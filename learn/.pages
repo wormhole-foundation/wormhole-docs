@@ -3,4 +3,5 @@ nav:
  - index.md
  - 'Introduction to Wormhole': 'introduction.md'
  - 'Security': security.md
+ - 'Architecture Overview': architecture.md
  - infrastructure
