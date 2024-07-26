@@ -1,3 +1,6 @@
+<!--
+some missing links will need to be added when pages are created
+-->
 # Security
 
 ## Core Security Assumptions
@@ -49,9 +52,9 @@ Guardians are not just running Wormhole validators; they're running validators f
 
 Guardians Monitor:
 
-- Block Production & Consensus of each blockchain. If a blockchain's consensus is violated it will be disconnected from the network until the Guardians resolve the issue.
-- Smart Contract level data. Via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains.
-- Guardian Level activity. The Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain (**[Gateway](#){target=\_blank}**).
+- Block Production & Consensus of each blockchain - if a blockchain's consensus is violated it will be disconnected from the network until the Guardians resolve the issue
+- Smart Contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
+- Guardian Level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain (**[Gateway](#){target=\_blank}**)
 
 ## Gateway & Asset Layer Protections
 
