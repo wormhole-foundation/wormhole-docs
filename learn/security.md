@@ -9,7 +9,7 @@ some missing links will need to be added when pages are created
 
 ## Core Security Assumptions
 
-At the core, Wormhole is secured by a network of **[Guardians](#){target=\_blank}** nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
+At its core, Wormhole is secured by a network of [Guardian](#){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
 
 - Wormhole's core security primitive is its signed messages (signed VAAs)
 - The Guardian network is currently secured by a collection of 19 of the world's top **[validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}**
