@@ -113,4 +113,5 @@ If you are interested in contributing to Wormhole security, please look at this 
 For more information about submitting to the bug bounty programs, refer to the [Wormhole Immunefi page](https://immunefi.com/bug-bounty/wormhole/){target=\blank}.
 
 ## Learn More
+
 The **[SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank}** from the official repository has the latest security policies and updates.
