@@ -47,6 +47,15 @@ The body is _deterministically_ derived from an on-chain message. Any two guardi
 ```js
 --8<-- 'code/learn/infrastructure/VAAs/body.js'
 ```
+```text
+u32         timestamp       // The timestamp of the block this message was                              published in
+u32         nonce           //  
+u16         emitter_chain   // The id of the chain that emitted the message
+[32]byte    emitter_address // The contract address (wormhole formatted)                                that called the core contract
+u64         sequence        // The auto incrementing integer that                                       represents the number of messages published by                              this emitter
+u8          consistency_level // The consistency level (finality) required                              by this emitter
+[]byte      payload         // arbitrary bytes containing the data to be                                acted on
+```
 
 The body is the relevant information for consumers and is handed back from a call like `parseAndVerifyVAA`. Because the `emitterAddress` is included as part of the body, the developer is able to tell if this VAA originated from a trusted contract.
 
