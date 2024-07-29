@@ -21,7 +21,7 @@ At its core, Wormhole is secured by a network of [Guardian](#){target=\_blank} n
 In summary:
 
 - **Core integrators aren't exposed to risk from chains and contracts they don't integrate with**
-- By default, you only trust Wormhole's signing process and the Core Contracts of the chains you're on
+- By default, you only trust Wormhole's signing process and the core contracts of the chains you're on
 - You can expand your contract and chain dependencies as you see fit
 
 Core assumptions aside, many other factors impact the real-world security of decentralized platforms. Here is more information on additional measures that have been put in place to ensure the security of Wormhole.
