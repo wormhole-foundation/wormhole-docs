@@ -108,7 +108,7 @@ Wormhole hosts two bug bounty programs:
 
 Both platforms have a top payout of **2.5 million dollars**.
 
-If you are interested in helping contribute to Wormhole security, please look at this section for **[Getting started as a White Hat](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#white-hat-hacking){target=\blank}**, and be sure to follow the **[Wormhole Contributor Guidelines](https://github.com/wormhole-foundation/wormhole/blob/main/CONTRIBUTING.md){target=\blank}**.
+If you are interested in contributing to Wormhole security, please look at this section for **[Getting Started as a White Hat](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#white-hat-hacking){target=\blank}**, and follow the **[Wormhole Contributor Guidelines](https://github.com/wormhole-foundation/wormhole/blob/main/CONTRIBUTING.md){target=\blank}**.
 
 For more information about submitting to the bug bounty programs, **[look here](https://immunefi.com/bug-bounty/wormhole/){target=\blank}**
 
