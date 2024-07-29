@@ -62,7 +62,7 @@ Guardians monitor:
 
 - Block production and consensus of each blockchain - if a blockchain's consensus is violated, it will be disconnected from the network until the Guardians resolve the issue
 - Smart contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
-- Guardian Level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain (**[Gateway](#){target=\_blank}**)
+- Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain (**[Gateway](#){target=\_blank}**)
 
 ## Gateway & Asset Layer Protections
 
