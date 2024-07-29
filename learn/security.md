@@ -58,7 +58,7 @@ Guardians are not just running Wormhole validators; they're running validators f
 Guardians are not just running Wormhole validators; they're running validators for every blockchain inside of Wormhole as well, which allows them to perform monitoring holistically across decentralized computing rather than just at a few single points.
 >>>>>>> fea029b8d60ce1d9e3a72dd6b5aa867999f0b737
 
-Guardians Monitor:
+Guardians monitor:
 
 - Block production and consensus of each blockchain - if a blockchain's consensus is violated, it will be disconnected from the network until the Guardians resolve the issue
 - Smart Contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
