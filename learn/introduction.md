@@ -13,7 +13,6 @@ also missing the list of blockchains
 Wormhole is a generic _message-passing protocol_ that enables communication between blockchains.
 
 ![Message-passing process in the Wormhole protocol](/images/learn/introduction/simple-overview.webp)
-<!-- add some more descriptive alt text that explains what the diagram depicts -->
 
 !!! note
     The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](#){target=\_blank}.
