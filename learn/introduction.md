@@ -1,13 +1,19 @@
+---
+title: Introduction to Wormhole
+description: Wormhole is a versatile message-passing protocol facilitating seamless communication between various blockchains, enabling cross-chain applications and integrations.
+---
 <!-- 
 some links are blank because not all the pages are created yet
 also missing the list of blockchains 
-the rest should be fine for now
+
+!!! No need to put all links in bold : check the rest
 -->
 # Introduction to Wormhole
 
 Wormhole is a generic _message-passing protocol_ that enables communication between blockchains.
 
-![Overview](/images/learn/introduction/simple-overview.webp)
+![Message-passing process in the Wormhole protocol](/images/learn/introduction/simple-overview.webp)
+<!-- add some more descriptive alt text that explains what the diagram depicts -->
 
 !!! note
     The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](#){target=\_blank}.
@@ -17,13 +23,13 @@ This simple message-passing protocol allows developers and users of cross-chain 
 
 - **Wormhole is _not_ a blockchain** - it provides a means of communication between blockchains or rollups
 
-- **Wormhole is _not_ a token bridge** - however, there are **[protocols built on Wormhole](https://portalbridge.com/#/transfer){target=\_blank}** that serve this purpose
+- **Wormhole is _not_ a token bridge** - however, there are [protocols built on Wormhole](https://portalbridge.com/#/transfer){target=\_blank} that serve this purpose
 
 ## What Can Wormhole Be Used For?
 
 Consider the following examples of potential applications enabled by Wormhole:
 
-- **Cross-Chain Exchange** - using **[Wormhole Connect](#){target=\_blank}**, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
+- **Cross-Chain Exchange** - using [Wormhole Connect](#){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
 - **Cross-Chain Governance** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
 - **Cross-Chain Game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
 
@@ -36,7 +42,7 @@ Tutorials are available to get started quickly and explain the concepts involved
 - **[Quick Start - Off Chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI
 - **[Quick Start - On Chain](#){target=\_blank}** - send your first cross-chain message
 
-More tutorials are available **[on github](#){target=\_blank}**.
+More tutorials are available [on github](#){target=\_blank}. <!-- tutorials will be on the docs site -->
 
 ## Explore
 
@@ -52,7 +58,7 @@ Demos offer more realistic implementations than tutorials:
 - **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repo
 - **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
 
-More demos are available in the **[demos page](#){target=\_blank}**.
+More demos are available in the [demos page](#){target=\_blank}.
 
 !!! note
     Wormhole Integration Complete?
