@@ -62,7 +62,7 @@ Guardians monitor:
 
 ## Gateway And Asset Layer Protections
 
-One of the most powerful aspects of the Wormhole ecosystem is that Guardians effectively have **the entire state DeFi available to them**.
+One of the most powerful aspects of the Wormhole ecosystem is that Guardians effectively have the entire state of DeFi available to them.
 
 Gateway is a Cosmos-based blockchain that runs internally to the Guardian network, whereby the Guardians can effectively execute smart contracts against the current state of all blockchains rather than just one blockchain.
 
