@@ -70,7 +70,7 @@ This enables additional protection for the Wormhole Asset Layer in addition to t
 
 - **Global Accountant** - the accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant
 
-In addition to the Global Accountant, Guardians may only sign transfers that do not violate the requirements of the Governor. The **[Governor](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md){target=\_blank}** tracks inflows and outflows of all blockchains and delays suspicious transfers which may be indicative of an exploit.
+In addition to the Global Accountant, Guardians may only sign transfers that do not violate the requirements of the Governor. The **[Governor](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md){target=\_blank}** tracks inflows and outflows of all blockchains and delays suspicious transfers that may indicate an exploit.
 
 ## Open Source
 
