@@ -34,7 +34,7 @@ Wormhole is an evolving platform. While the Guardian set currently comprises 19 
 
 Governance is the process through which contract upgrades happen. Guardians manually vote on governance proposals that originate inside the Guardian Network and are then submitted to ecosystem contracts.
 
-This means that **governance actions are held to the same security standard** as the rest of the system. A 2/3 supermajority of the Guardians is required to pass any Governance action.
+This means that governance actions are held to the same security standard as the rest of the system. A two-thirds supermajority of the Guardians is required to pass any governance action.
 
 Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed token bridge contracts. When a guardian signs such a message, its signature implies a vote on the action in question. Once more than 2/3 of the guardians have signed, the message and governance action are considered valid.
 
