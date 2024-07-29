@@ -60,7 +60,7 @@ Guardians monitor:
 - Smart contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
 - Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain (**[Gateway](#){target=\_blank}**)
 
-## Gateway & Asset Layer Protections
+## Gateway And Asset Layer Protections
 
 One of the most powerful aspects of the Wormhole ecosystem is that Guardians effectively have **the entire state DeFi available to them**.
 
