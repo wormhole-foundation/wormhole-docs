@@ -11,8 +11,6 @@ Wormhole is a generic _message-passing protocol_ that enables communication betw
 
 !!! note
     The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](#){target=\_blank}.
-
-
 This simple message-passing protocol allows developers and users of cross-chain applications to leverage the advantages of multiple ecosystems.
 
 ## What Isn't Wormhole?
