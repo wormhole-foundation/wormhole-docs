@@ -52,7 +52,7 @@ The governance system is fully open source in the core repository. See the **[Op
 
 A key element of Wormhole's defense-in-depth strategy is that each Guardian is a highly competent validator company with its own in-house processes for running, monitoring, and securing blockchain operations. This heterogeneous approach to monitoring increases the likelihood that fraudulent activity is detected and reduces the number of single failure points in the system.
 
-Guardians are not just running Wormhole validators; they're running validators for **every blockchain inside of Wormhole** as well, which allows them to perform monitoring **holistically across decentralized computing**, rather than just at a few single points.
+Guardians are not just running Wormhole validators; they're running validators for every blockchain inside of Wormhole as well, which allows them to perform monitoring holistically across decentralized computing, rather than just at a few single points.
 
 Guardians Monitor:
 
