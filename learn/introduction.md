@@ -55,7 +55,7 @@ Demos offer more realistic implementations than tutorials:
 More demos are available in the **[demos page](#){target=\_blank}**.
 
 !!! note
-    ## Wormhole Integration Complete?
+    Wormhole Integration Complete?
 
     Let us know so we can list your project in our ecosystem directory and introduce you to our global, multichain community!
 
