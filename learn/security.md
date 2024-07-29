@@ -110,7 +110,7 @@ Both platforms have a top payout of **2.5 million dollars**.
 
 If you are interested in contributing to Wormhole security, please look at this section for **[Getting Started as a White Hat](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#white-hat-hacking){target=\blank}**, and follow the **[Wormhole Contributor Guidelines](https://github.com/wormhole-foundation/wormhole/blob/main/CONTRIBUTING.md){target=\blank}**.
 
-For more information about submitting to the bug bounty programs, **[look here](https://immunefi.com/bug-bounty/wormhole/){target=\blank}**
+For more information about submitting to the bug bounty programs, refer to the [Wormhole Immunefi page](https://immunefi.com/bug-bounty/wormhole/){target=\blank}.
 
 ## Learn More
 The **[SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank}** from the official repository has the latest security policies and updates.
