@@ -67,6 +67,7 @@ One of the most powerful aspects of the Wormhole ecosystem is that Guardians eff
 Gateway is a Cosmos-based blockchain that runs internally to the Guardian network, whereby the Guardians can effectively execute smart contracts against the current state of all blockchains rather than just one blockchain.
 
 This enables additional protection for the Wormhole Asset Layer in addition to the core assumptions:
+
 - **Global Accountant** - the accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant
 
 In addition to the Global Accountant, Guardians may only sign transfers that do not violate the requirements of the Governor. The **[Governor](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md){target=\_blank}** tracks inflows and outflows of all blockchains and delays suspicious transfers which may be indicative of an exploit.
