@@ -77,7 +77,7 @@ In addition to the Global Accountant, Guardians may only sign transfers that do 
 Wormhole builds in the open and is always open source.
 
 - **[Wormhole core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}**
-- **[Wormhole Foundation Github Organization](https://github.com/wormhole-foundation){target=\_blank}**
+- **[Wormhole Foundation GitHub organization](https://github.com/wormhole-foundation){target=\_blank}**
 - **[Wormhole contract deployments](#){target=\_blank}** <!-- link to core contracts page-->
 
 ## Audits
