@@ -36,7 +36,7 @@ Governance is the process through which contract upgrades happen. Guardians manu
 
 This means that governance actions are held to the same security standard as the rest of the system. A two-thirds supermajority of the Guardians is required to pass any governance action.
 
-Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed token bridge contracts. When a guardian signs such a message, its signature implies a vote on the action in question. Once more than 2/3 of the guardians have signed, the message and governance action are considered valid.
+Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed token bridge contracts. When a Guardian signs such a message, its signature implies a vote on the action in question. Once more than two-thirds of the Guardians have signed, the message and governance action are considered valid.
 
 All governance actions and contract upgrades have been managed via Wormhole's on-chain governance system.
 
