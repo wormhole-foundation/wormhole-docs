@@ -10,7 +10,7 @@ Wormhole is a generic **message-passing protocol** that enables communication be
 ![Overview](/wormhole-mkdocs/images/learn/introduction/simple-overview.webp)
 
 !!! note
-    The above is an oversimplified illustration of the protocol; details about the architecture and components are available in the **[architecture page](#){target=\_blank}**.
+    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](#){target=\_blank}.
 
 
 This simple message-passing protocol allows developers and users of cross-chain applications to leverage the advantages of multiple ecosystems.
