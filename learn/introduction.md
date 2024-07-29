@@ -5,7 +5,7 @@ the rest should be fine for now
 -->
 # Introduction to Wormhole
 
-Wormhole is a generic **message-passing protocol** that enables communication between blockchains.
+Wormhole is a generic _message-passing protocol_ that enables communication between blockchains.
 
 ![Overview](/wormhole-mkdocs/images/learn/introduction/simple-overview.webp)
 
