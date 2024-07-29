@@ -52,16 +52,12 @@ The governance system is fully open source in the core repository. See the **[Op
 
 A key element of Wormhole's defense-in-depth strategy is that each Guardian is a highly competent validator company with its own in-house processes for running, monitoring, and securing blockchain operations. This heterogeneous approach to monitoring increases the likelihood that fraudulent activity is detected and reduces the number of single failure points in the system.
 
-<<<<<<< HEAD
-Guardians are not just running Wormhole validators; they're running validators for every blockchain inside of Wormhole as well, which allows them to perform monitoring holistically across decentralized computing, rather than just at a few single points.
-=======
 Guardians are not just running Wormhole validators; they're running validators for every blockchain inside of Wormhole as well, which allows them to perform monitoring holistically across decentralized computing rather than just at a few single points.
->>>>>>> fea029b8d60ce1d9e3a72dd6b5aa867999f0b737
 
 Guardians monitor:
 
 - Block production and consensus of each blockchain - if a blockchain's consensus is violated, it will be disconnected from the network until the Guardians resolve the issue
-- Smart contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
+- Smart Contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
 - Guardian Level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain (**[Gateway](#){target=\_blank}**)
 
 ## Gateway & Asset Layer Protections
