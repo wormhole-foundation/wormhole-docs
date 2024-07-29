@@ -99,7 +99,7 @@ Wormhole has had audits performed by the following firms, and continues to seek 
 
 ## Bug Bounties
 
-Wormhole has one of the largest bug bounty programs in software development, and has repeatedly shown commitment to engaging with the white hat community.
+Wormhole has one of the largest bug bounty programs in software development and has repeatedly shown commitment to engaging with the white hat community.
 
 Wormhole hosts two bug bounty programs:
 
