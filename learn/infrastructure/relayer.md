@@ -1,6 +1,6 @@
 ---
 title: Relayers
-description: Discover the role and types of relayers in the Wormhole network, including client-side, specialized, and standard relayers, facilitating secure cross-chain communication.
+description: Discover the role of relayers in the Wormhole network, including client-side, specialized, and standard types, for secure cross-chain communication.
 ---
 
 # Relayers
