@@ -20,7 +20,7 @@ The source for the Spy is available on [Github](https://github.com/wormhole-foun
 
 ## Use
 
-To start a Spy locally, run the following docker command.
+To start a Spy locally, run the following Docker command:
 
 === "Testnet"
 
