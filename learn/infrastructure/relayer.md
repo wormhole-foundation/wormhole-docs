@@ -1,16 +1,7 @@
 ---
 title: Relayers
-description: 
+description: Discover the role and types of relayers in the Wormhole network, including client-side, specialized, and standard relayers, facilitating secure cross-chain communication.
 ---
-
-<!--
-[link](#){target=\_blank}
-`
-!!! note
-```js
---8<-- 'code/learn/infrastructure/VAAs/header.js'
-```
--->
 
 # Relayers
 
@@ -21,7 +12,7 @@ Relayers in the Wormhole context are processes that deliver Verifiable Action Ap
 There are three primary types of relayers discussed:
 
 - **Client-side Relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
-- **Specialized Relayers** - they are backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy Relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST Relaying)
+- **Specialized Relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy Relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST Relaying)
 - **Standard Relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
 
 ## Fundamentals
@@ -39,20 +30,20 @@ Key characteristics of VAAs include:
 
 When designing contracts, it's crucial to only trust information contained within your contract or a VAA. Relying on information from a relayer could expose you to untrusted input attacks.
 
-Advanced strategies can involve having relayers perform untrusted off-chain computation, which is passed into the destination contract. These strategies can optimize gas costs but can also create attack vectors if not used correctly.
+Advanced strategies can involve relayers performing untrusted off-chain computation passed into the destination contract. These strategies can optimize gas costs but also create attack vectors if not used correctly.
 
-In summary, the design of a relayer should ensure there's a single, deterministic way that messages in your protocol can be processed. In an optimally designed protocol, relayers should have a 'correct' implementation, mirroring "crank turner" processes used elsewhere in blockchain.
+In summary, the design of a relayer should ensure that there's a single, deterministic way to process messages in your protocol. In an optimally designed protocol, relayers should have a 'correct' implementation, mirroring "crank turner" processes used elsewhere in blockchain.
 
 ## Client-side Relaying
 
-Client-side relaying relies on user-facing front ends, such as a webpage or a wallet, to carry out the complete cross-chain process.
+Client-side relaying relies on user-facing front ends, such as a webpage or a wallet, to complete the cross-chain process.
 
-### Key Features
+**Key Features**
 
-- **Cost-Efficiency** - Users only pay for the transaction fee for the second transaction, eliminating any additional costs.
-- **No Backend Infrastructure** - The process is completely client-based, eliminating the need for a backend relaying infrastructure.
+- **Cost-Efficiency** - users only pay the transaction fee for the second transaction, eliminating any additional costs
+- **No Backend Infrastructure** - the process is completely client-based, eliminating the need for a backend relaying infrastructure
 
-### Implementation
+**Implementation**
 
 Users themselves carry out the three steps of the cross-chain process:
 
@@ -60,10 +51,10 @@ Users themselves carry out the three steps of the cross-chain process:
 2. Retrieve the resulting VAA from the Guardian Network
 3. Perform an action on chain B using the VAA
 
-### Considerations
+**Considerations**
 
 !!! note
-    Though simple, this type of relaying is generally not recommended if your aim is a highly-polished user experience. It can, however, be useful for getting a Minimum Viable Product (MVP) up and running.
+    Though simple, this type of relaying is generally not recommended if your aim is a highly polished user experience. It can, however, be useful for getting a Minimum Viable Product (MVP) up and running.
 
 - Users must sign all required transactions with their own wallet
 - Users must have funds to pay the transaction fees on every chain involved
@@ -71,16 +62,16 @@ Users themselves carry out the three steps of the cross-chain process:
 
 ## Specialized Relayers
 
-Specialized relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use-cases.
+Specialized relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use cases.
 
-### Key Features
+**Key Features**
 
 - **Optimization** - capable of performing untrusted off-chain computations which can optimize gas costs
 - **Customizability** - allows for specific strategies like batching, conditional delivery, multi-chain deliveries, and more
 - **Incentive Structure** - developers have the freedom to design an incentive structure suitable for their application
 - **Enhanced UX** - the ability to perform steps 2 and 3 of the cross-chain process on behalf of the user can simplify the user experience
 
-### Implementation
+**Implementation**
 
 !!! note
     To make the development of specialized relayers easier, a plugin relayer is available in the [main Wormhole repository](#){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
@@ -90,34 +81,34 @@ There are two main methods of setting up a specialized relayer:
 - **Spy Relaying** - involves listening directly to the Guardian Network via a spy
 - **REST Relaying** - provides a REST endpoint to accept a VAA that should be relayed
 
-### Considerations
+**Considerations**
 
-Remember, despite their name, specialized relayers are still considered untrusted. VAAs are public and can be submitted by anyone, so developers should not rely on off-chain relayers to perform any computation which is considered "trusted".
+Remember, despite their name, specialized relayers still need to be considered untrusted. VAAs are public and can be submitted by anyone, so developers should not rely on off-chain relayers to perform any computation considered "trusted."
 
 - Development work and hosting of relayers are required
 - The fee-modeling can become complex, as relayers are responsible for paying target chain fees
-- Relayers are responsible for liveness, adding an additional dependency for the cross chain application
+- Relayers are responsible for liveness, adding dependency for the cross-chain application
 
 ## Standard Relayers
 
 Standard relayers are a component of a decentralized network in the Wormhole protocol, facilitating the delivery of Verifiable Action Approvals (VAAs) to recipient contracts compatible with the standard relayer API.
 
-### Key Features
+**Key Features**
 
 - **Lower Operational Costs** - no need to develop, host, or maintain individual relayers
 - **Simplified Integration** - because there is no need to run a relayer, integration is as simple as calling a function and implementing an interface
 
-### Implementation
+**Implementation**
 
 The standard relayer integration involves two key steps:
 
 - **Delivery Request** - request delivery from the Wormhole Relay Ecosystem Contract
 - **Relay Reception** - implement a [receiveWormholeMessages](#){target=\_blank} function within their contracts. This function is invoked upon successful relay of the VAA
 
-### Considerations
+**Considerations**
 
 !!! note
-    Developers should note that the choice of relayers depends on the specific requirements and constraints of their project. Standard relayers offer simplicity and convenience but might limit customization and optimization opportunities compared to specialized relayers.
+    Developers should note that the choice of relayers depends their project's specific requirements and constraints. Standard relayers offer simplicity and convenience but limit customization and optimization opportunities compared to specialized relayers.
 
 - All computations are performed on-chain
 - Potentially less gas-efficient compared to specialized relayers
