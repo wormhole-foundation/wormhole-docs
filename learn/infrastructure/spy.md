@@ -7,7 +7,7 @@ description: Learn about Wormhole's SPY daemon, a tool for subscribing to gossip
 
 In the wormhole context, a _spy_ is a daemon that subscribes to the gossiped messages in the Guardian Network.
 
-The messages available over gossip are things like
+The messages available over gossip are things like:
 
 - [VAAs](#){target=\_blank} <!-- link to VAAs page -->
 - [Observations](#){target=\_blank} <!-- link to glossary -->
