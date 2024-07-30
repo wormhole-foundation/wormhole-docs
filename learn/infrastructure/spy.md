@@ -1,6 +1,6 @@
 ---
 title: SPY
-description: Learn about Wormhole's SPY daemon, a tool for subscribing to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions.
+description: Discover Wormhole's SPY daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions.
 ---
 
 # SPY
