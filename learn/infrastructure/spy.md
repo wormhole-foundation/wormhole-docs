@@ -3,15 +3,6 @@ title: SPY
 description: 
 ---
 
-<!--
-[link](#){target=\_blank}
-`
-!!! note
-```js
---8<-- 'code/learn/infrastructure/VAAs/header.js'
-```
--->
-
 # SPY
 
 In the wormhole context, a _spy_ is a daemon that subscribes to the gossiped messages in the Guardian Network.
