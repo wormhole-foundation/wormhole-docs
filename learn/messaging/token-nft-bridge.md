@@ -1,21 +1,9 @@
 ---
-title: Core Contracts
-description: 
----
+title: Token and NFT Bridge 
+description: Learn about Wormhole's Token and NFT Bridge for cross-chain transfers using lock and mint mechanisms, ensuring secure and efficient asset movement.
 
-<!--
-[link](#){target=\_blank}
-`
-!!! note
-```js
---8<-- 'code/learn/infrastructure/VAAs/header.js'
-```
-=== "Testnet"
-```sh
-```
-```text
-```
--->
+
+---
 
 # Token and NFT Bridge
 
