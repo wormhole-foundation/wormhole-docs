@@ -28,6 +28,6 @@ Wormhole has several noteworthy components. Before discussing each component in 
 - **[API](#){target=\_blank}** - a REST server to retrieve details for a VAA or the Guardian Network
 - **[VAAs](/learn/infrastructure/vaas/){target=\_blank}** - Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract
 - **[Relayer](#){target=\_blank}** - any off-chain process that relays a VAA to the target chain
-    - **Standard Relayers** - a decentralized relayer network that delivers messages that are requested on-chain via the Wormhole Relay Contract. Also referred to as Generic Relayers
+    - **Standard Relayers** - a decentralized relayer network that delivers messages that are requested on-chain via the Wormhole Relay Contract
     - **Specialized Relayers** - relayers that only handle VAAs for a specific protocol or cross-chain application. They can execute custom logic off-chain, reducing gas costs and increasing cross-chain compatibility. Currently, cross-chain application developers are responsible for developing and hosting specialized relayers
 
