@@ -23,7 +23,7 @@ Wormhole has several noteworthy components. Before we discuss each component in 
 ## Off-Chain Components
 
 - **Guardian Network** - validators that exist in their own P2P network. Guardians observe and validate the messages emitted by the Core Contract on each supported chain to produce VAAs (signed messages)
-- **[Guardian](#){target=\_blank}** - one of 19 validators in the Guardian Network that contributes to the VAA multi-sig
+- **[Guardian](#){target=\_blank}** - one of 19 validators in the Guardian Network that contributes to the VAA multisig
 - **[Spy](#){target=\_blank}** - a daemon that subscribes to messages published within the Guardian Network. A Spy can observe and forward network traffic, which helps scale up VAA distribution
 - **[API](#){target=\_blank}** - a REST server to retrieve details for a VAA or the Guardian Network
 - **[VAAs](/learn/infrastructure/vaas/){target=\_blank}** - Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract
