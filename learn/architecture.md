@@ -10,9 +10,9 @@ need to add links
 
 ## Architecture
 
-Wormhole has several noteworthy components. Before we discuss each component in depth, let's discuss the names of the major pieces and how they fit together.
+Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
-![Wormhole architecture detailed diagram: source to target chain communication.](/images/learn/architecture/overview.webp)
+![Wormhole architecture detailed diagram: source to target chain communication.](/images/learn/architecture/architecture-1.webp)
 
 ## On-Chain Components
 
