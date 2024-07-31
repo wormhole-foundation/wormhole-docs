@@ -18,7 +18,7 @@ The source code for the Spy is available on [Github](https://github.com/wormhole
 !!! note
     The Spy has no persistence layer built in, so typically, it is paired with something like Redis or an SQL database to record relevant messages
 
-## Use
+## How to Start a Spy
 
 To start a Spy locally, run the following Docker command:
 
