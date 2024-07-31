@@ -15,7 +15,7 @@ Wormhole is a generic _message-passing protocol_ that enables communication betw
 ![Message-passing process in the Wormhole protocol](/images/learn/introduction/simple-overview.webp)
 
 !!! note
-    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](#){target=\_blank}.
+    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/architecture/){target=\_blank}.
 This simple message-passing protocol allows developers and users of cross-chain applications to leverage the advantages of multiple ecosystems.
 
 ## What Isn't Wormhole?
@@ -47,7 +47,7 @@ More tutorials are available [on github](#){target=\_blank}. <!-- tutorials will
 
 Discover more about the Wormhole ecosystem, components, and protocols:
 
-- **[Architecture](#){target=\_blank}** - explore the components of the protocol
+- **[Architecture](/learn/architecture/){target=\_blank}** - explore the components of the protocol
 - **[Protocol Specifications](https://github.com/wormhole-foundation/wormhole/tree/main/whitepapers){target=\_blank}** - learn about the protocols built on top of Wormhole
 
 ## Demos
