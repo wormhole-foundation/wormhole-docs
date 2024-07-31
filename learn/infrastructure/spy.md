@@ -1,6 +1,6 @@
 ---
 title: Spy
-description: Discover Wormhole's SPY daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions.
+description: Discover Wormhole's Spy daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions.
 ---
 
 # Spy
