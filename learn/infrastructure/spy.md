@@ -16,7 +16,7 @@ The messages available over gossip are things like:
 The source code for the Spy is available on [Github](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}
 
 !!! note
-    The Spy has no persistence layer built in, so typically, it is paired with something like Redis or an SQL database to record relevant messages
+    The Spy has no persistence layer built in, so typically, it is paired with something like Redis or an SQL database to record relevant messages.
 
 ## How to Start a Spy
 
