@@ -33,7 +33,7 @@ To start a Spy locally, run the following Docker command:
         --spyRPC "[::]:7073" \
         --env testnet
     ```
-        Optionally, add the flags to skip any VAAs with invalid signatures
+        Optionally, add the following flags to skip any VAAs with invalid signatures:
     ```sh
     --ethRPC https://sepolia.drpc.org/
     --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78    
