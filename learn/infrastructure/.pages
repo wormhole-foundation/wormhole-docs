@@ -2,3 +2,4 @@ title: Infrastructure Components
 nav:
  - index.md
  - 'VAAs': 'vaas.md'
+ - 'Guardians': 'guardians.md'
