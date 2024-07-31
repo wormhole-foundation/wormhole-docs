@@ -16,7 +16,7 @@ Wormhole has several noteworthy components. Before we discuss each component in 
 
 ## On-Chain Components
 
-- **Emitter** - a contract that calls the publish message method on the Core Contract. The core contract will write an event to the Transaction Logs with details about the emitter and sequence number to identify the message. This may be your [xDapp](#){target=\_blank} or an existing ecosystem protocol <!-- link to glossary xDapp -->
+- **Emitter** - a contract that calls the publish message method on the Core Contract. The Core Contract will write an event to the transaction logs with details about the emitter and sequence number to identify the message. This may be your [xDapp](#){target=\_blank} or an existing ecosystem protocol <!-- link to glossary xDapp -->
 - **[Wormhole core contract](#){target=\_blank}** - primary contract, this is the contract which the Guardians observe and which fundamentally allows for cross-chain communication <!-- link to core contracts page -->
 - **Transaction Log** - blockchain-specific logs that allow the Guardians to observe messages emitted by the core contract
 
