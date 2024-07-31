@@ -7,7 +7,7 @@ description: Discover Wormhole's Guardian Network, a decentralized, modular syst
 
 Wormhole relies on a set of distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
-It is the guardians' role to observe messages and sign the corresponding payloads. Each guardian performs this step in isolation, later combining the resulting signatures with other guardians as a final step. The resulting collection of independent observations forms a multi-sig, which represents a proof that a state has been observed and agreed upon by a majority of the Wormhole network. These multisigs are referred to as VAAs in Wormhole.
+It is the Guardians' role to observe messages and sign the corresponding payloads. Each Guardian performs this step in isolation, combining the resulting signatures with other Guardians as a final step. The resulting collection of independent observations forms a multisig, representing proof that the majority of the Wormhole network has observed and agreed upon a state. These multisigs are referred to as VAAs in Wormhole.
 
 ## Guardian Network
 
