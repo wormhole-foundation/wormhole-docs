@@ -35,7 +35,7 @@ In the current De-Fi landscape, most of the top blockchains are secured by the s
 
 If a protocol could unite a large number of those validator companies into a purpose-built consensus mechanism optimized for chain interoperability, that design would likely be more performant and secure than a network bootstrapped by a tokenomics model. Assuming the validators would be on board, how many could Wormhole realistically utilize?
 
-If Wormhole used threshold signatures, the answer would be 'as many as are willing to participate.' However, threshold signatures need more support across the blockchain world, meaning verifying the signatures would be difficult and expensive, ultimately limiting scalability and chain agnosticism. Thus, a t-schnorr multisig presents itself as the best option: cheap and well-supported, even though its verification costs increase linearly with the number of signatures included.
+If Wormhole used threshold signatures, the answer would be "as many as are willing to participate." However, threshold signatures need more support across the blockchain world, meaning verifying the signatures would be difficult and expensive, ultimately limiting scalability and chain agnosticism. Thus, a t-schnorr multisig presents itself as the best option: cheap and well-supported, even though its verification costs increase linearly with the number of signatures included.
 
 All these things considered, 19 seems to be the maximum number and a good tradeoff. If two-thirds of the signatures are needed for consensus, then 13 signatures must be verified on-chain, which remains reasonable from a gas-cost perspective.
 
