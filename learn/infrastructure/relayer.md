@@ -78,7 +78,7 @@ Specialized relayers are purpose-built components within the Wormhole protocol, 
 
 There are two main methods of setting up a specialized relayer:
 
-- **Spy Relaying** - involves listening directly to the Guardian Network via a spy
+- **Spy Relaying** - involves listening directly to the Guardian Network via a Spy
 - **REST Relaying** - provides a REST endpoint to accept a VAA that should be relayed
 
 **Considerations**
