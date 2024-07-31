@@ -11,7 +11,7 @@ The messages available over gossip are things like:
 
 - [VAAs](#){target=\_blank} <!-- link to VAAs page -->
 - [Observations](#){target=\_blank} <!-- link to glossary -->
-- Guardian Heartbeats
+- Guardian heartbeats
 
 The source code for the Spy is available on [Github](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}
 
