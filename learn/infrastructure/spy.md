@@ -56,7 +56,7 @@ To start a Spy locally, run the following Docker command:
     --ethContract 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B
     ```
 
-Once running, a [gRPC](https://grpc.io/){target=\_blank} client (i.e. your program) can subscribe to a filtered stream of messages.
+Once running, a [gRPC](https://grpc.io/){target=\_blank} client (i.e., your program) can subscribe to a filtered stream of messages.
 
 To generate a client for the gRPC service use [this proto spec file](https://github.com/wormhole-foundation/wormhole/blob/main/proto/spy/v1/spy.proto){target=\_blank}.
 
