@@ -47,7 +47,7 @@ With our perspective on Decentralization laid out, the remaining elements fall i
 
 ### Modularity
 
-The Guardian Network is robust and trustworthy by itself, so there's no need for components like the relayer to contribute to the security model. That makes Wormhole able to have simple components that are very good at their one thing. Guardians only need to verify on-chain activity and produce VAAs, while Relayers only need to interact with blockchains and deliver messages.
+The Guardian Network is robust and trustworthy by itself, so there's no need for components like the relayer to contribute to the security model. That makes Wormhole able to have simple components that are very good at their one thing. Guardians only need to verify on-chain activity and produce VAAs, while relayers only need to interact with blockchains and deliver messages.
 
 The VAAs' signing scheme can be changed without affecting downstream users, and multiple relay mechanisms can exist independently. xAssets can be implemented purely at the application layer and cross-chain applications can use whatever components suit them.
 
