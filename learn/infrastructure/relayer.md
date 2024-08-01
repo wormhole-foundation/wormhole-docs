@@ -68,7 +68,7 @@ Specialized relayers are purpose-built components within the Wormhole protocol, 
 
 - **Optimization** - capable of performing untrusted off-chain computations which can optimize gas costs
 - **Customizability** - allows for specific strategies like batching, conditional delivery, multi-chain deliveries, and more
-- **Incentive Structure** - developers have the freedom to design an incentive structure suitable for their application
+- **Incentive structure** - developers have the freedom to design an incentive structure suitable for their application
 - **Enhanced UX** - the ability to retrieve a VAA from the Guardian Network and perform an action on the target chain using the VAA on behalf of the user can simplify the user experience
 
 **Implementation**
