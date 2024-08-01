@@ -1,8 +1,6 @@
 ---
 title: Token and NFT Bridge 
 description: Learn about Wormhole's Token and NFT Bridge for cross-chain transfers using lock and mint mechanisms, ensuring secure and efficient asset movement.
-
-
 ---
 
 # Token and NFT Bridge
@@ -10,7 +8,7 @@ description: Learn about Wormhole's Token and NFT Bridge for cross-chain transfe
 ## Token Bridge
 
 !!! note
-    Before a token transfer can be made, the token being transfered must exist as a wrapped asset on the target chain. This is done by [Attesting](#){target=\_blank} the token details on the target chain. <!-- link to VAAs -->
+    Before a token transfer can be made, the token being transferred must exist as a wrapped asset on the target chain. This is done by [Attesting](#){target=\_blank} the token details on the target chain. <!-- link to VAAs -->
 
 The Token Bridge contract allows token transfers between blockchains through a lock and mint mechanism, using the [Core Contract](/learn/messaging/core-contracts/){target=\_blank} with a specific [payload](#){target=\_blank} to pass information about the transfer. <!--payload links to VAAs page payloads -->
 
