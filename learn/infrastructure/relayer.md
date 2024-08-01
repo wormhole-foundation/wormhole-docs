@@ -34,7 +34,7 @@ Advanced strategies can involve relayers performing untrusted off-chain computat
 
 In summary, the design of a relayer should ensure that there's a single, deterministic way to process messages in your protocol. In an optimally designed protocol, relayers should have a "correct" implementation, mirroring "crank turner" processes used elsewhere in blockchain.
 
-## Client-Side relaying
+## Client-Side Relaying
 
 Client-side relaying relies on user-facing front ends, such as a webpage or a wallet, to complete the cross-chain process.
 
