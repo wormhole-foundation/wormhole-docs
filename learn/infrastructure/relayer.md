@@ -95,8 +95,8 @@ Standard relayers are a component of a decentralized network in the Wormhole pro
 
 **Key Features**
 
-- **Lower Operational Costs** - no need to develop, host, or maintain individual relayers
-- **Simplified Integration** - because there is no need to run a relayer, integration is as simple as calling a function and implementing an interface
+- **Lower operational costs** - no need to develop, host, or maintain individual relayers
+- **Simplified integration** - because there is no need to run a relayer, integration is as simple as calling a function and implementing an interface
 
 **Implementation**
 
