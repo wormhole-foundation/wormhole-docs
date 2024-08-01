@@ -7,19 +7,19 @@ description: Discover the role of relayers in the Wormhole network, including cl
 
 This documentation provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating cross-chain processes.
 
-Relayers in the Wormhole context are processes that deliver Verifiable Action Approvals ([VAAs](#){target=\_blank}) to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only liveness, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
+Relayers in the Wormhole context are processes that deliver [VAAs](#){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only liveness, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
 
 There are three primary types of relayers discussed:
 
-- **Client-side Relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
-- **Specialized Relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy Relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST Relaying)
+- **Client-side relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
+- **Specialized relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST relaying)
 - **Standard Relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
 
 ## Fundamentals
 
 This section highlights the crucial principles underpinning the operation and handling of relayers within the Wormhole network.
 
-Relayers are fundamentally untrusted entities within the network. This means that while they don't require your trust, they shouldn't be trusted implicitly. They function as delivery mechanisms, transporting Verifiable Action Approvals (VAAs) from their source to their destination.
+Relayers are fundamentally untrusted entities within the network. This means that while they don't require your trust, they shouldn't be trusted implicitly. They function as delivery mechanisms, transporting VAAs from their source to their destination.
 
 Key characteristics of VAAs include:
 
@@ -32,9 +32,9 @@ When designing contracts, it's crucial to only trust information contained withi
 
 Advanced strategies can involve relayers performing untrusted off-chain computation passed into the destination contract. These strategies can optimize gas costs but also create attack vectors if not used correctly.
 
-In summary, the design of a relayer should ensure that there's a single, deterministic way to process messages in your protocol. In an optimally designed protocol, relayers should have a 'correct' implementation, mirroring "crank turner" processes used elsewhere in blockchain.
+In summary, the design of a relayer should ensure that there's a single, deterministic way to process messages in your protocol. In an optimally designed protocol, relayers should have a "correct" implementation, mirroring "crank turner" processes used elsewhere in blockchain.
 
-## Client-Side Relaying
+## Client-Side relaying
 
 Client-side relaying relies on user-facing front ends, such as a webpage or a wallet, to complete the cross-chain process.
 
@@ -69,7 +69,7 @@ Specialized relayers are purpose-built components within the Wormhole protocol, 
 - **Optimization** - capable of performing untrusted off-chain computations which can optimize gas costs
 - **Customizability** - allows for specific strategies like batching, conditional delivery, multi-chain deliveries, and more
 - **Incentive Structure** - developers have the freedom to design an incentive structure suitable for their application
-- **Enhanced UX** - the ability to perform steps 2 and 3 of the cross-chain process on behalf of the user can simplify the user experience
+- **Enhanced UX** - the ability to retrieve a VAA from the Guardian Network and perform an action on the target chain using the VAA on behalf of the user can simplify the user experience
 
 **Implementation**
 
@@ -78,8 +78,8 @@ Specialized relayers are purpose-built components within the Wormhole protocol, 
 
 There are two main methods of setting up a specialized relayer:
 
-- **Spy Relaying** - involves listening directly to the Guardian Network via a Spy
-- **REST Relaying** - provides a REST endpoint to accept a VAA that should be relayed
+- **Spy relaying** - involves listening directly to the Guardian Network via a Spy
+- **REST relaying** - provides a REST endpoint to accept a VAA that should be relayed
 
 **Considerations**
 
@@ -91,7 +91,7 @@ Remember, despite their name, specialized relayers still need to be considered u
 
 ## Standard Relayers
 
-Standard relayers are a component of a decentralized network in the Wormhole protocol, facilitating the delivery of Verifiable Action Approvals (VAAs) to recipient contracts compatible with the standard relayer API.
+Standard relayers are a component of a decentralized network in the Wormhole protocol, facilitating the delivery of VAAs to recipient contracts compatible with the standard relayer API.
 
 **Key Features**
 
