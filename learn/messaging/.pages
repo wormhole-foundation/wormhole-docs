@@ -3,5 +3,5 @@ nav:
  - index.md
  - 'Overview': 'overview.md'
  - 'Core Contracts': 'core-contracts.md'
- - 'Native Token Transfers': 'ntt.md'
+ - ntt
  - 'Token and NFT Bridge': 'token-nft-bridge.md'
