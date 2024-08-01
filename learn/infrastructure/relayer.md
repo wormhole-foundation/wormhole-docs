@@ -13,7 +13,7 @@ There are three primary types of relayers discussed:
 
 - **Client-side relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
 - **Specialized relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST relaying)
-- **Standard Relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
+- **Standard relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
 
 ## Fundamentals
 
