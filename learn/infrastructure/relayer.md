@@ -7,7 +7,7 @@ description: Discover the role of relayers in the Wormhole network, including cl
 
 This documentation provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating cross-chain processes.
 
-Relayers in the Wormhole context are processes that deliver [VAAs](#){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only liveness, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
+Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](#){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only liveness, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
 
 There are three primary types of relayers discussed:
 
