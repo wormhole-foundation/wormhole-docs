@@ -14,9 +14,9 @@ VAAs are Wormhole's core messaging primitive. They are packets of cross-chain da
 
 The basic VAA has two components: a Header and a Body.
 
-The guardians must validate messages emitted by contracts before they can be sent to the target chain. Once a majority of guardians observe the message and finality has been achieved, the Guardians sign a keccak256 hash of the message body.
+The Guardians must validate messages emitted by contracts before they can be sent to the target chain. Once a majority of Guardians observe the message and finality has been achieved, the Guardians sign a keccak256 hash of the message body.
 
-The message is wrapped up in a structure called a VAA, which combines the message with the guardian signatures to form a proof.
+The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof.
 
 VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. A VAA can be obtained by querying the Guardian [RPC](#){target=\_blank} or the [API](#){target=\_blank} with this information.
 
@@ -28,34 +28,29 @@ VAAs contain two sections of data.
 
 ### Header 
 
-The header holds metadata about the current VAA, the guardian set that is currently active, and the list of signatures gathered so far.
+The header holds metadata about the current VAA, the Guardian Set that is currently active, and the list of signatures gathered so far.
 
-```js
---8<-- 'code/learn/infrastructure/VAAs/header.js'
-```
+- `version` ++"byte"++ - the VAA Version
+- `guardian_set_index` ++"u32"++ - indicates which Guardian Set is signing
+- `len_signatures` ++"u8"++ - the number of signatures stored
+- `signatures` ++"[]signature"++ - the collection of Guardian signatures
 
 Where each `signature` is:
 
-```js
---8<-- 'code/learn/infrastructure/VAAs/signature.js'
-```
+- `index` ++"u8"++ - the index of this Guardian in the Guardian Set
+- `signature` ++"[65]byte"++ - the ECDSA signature 
 
 ### Body 
 
-The body is _deterministically_ derived from an on-chain message. Any two guardians must derive the exact same body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double processing of messages.
+The body is _deterministically_ derived from an on-chain message. Any two Guardians must derive the exact same body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double processing of messages.
 
-```js
---8<-- 'code/learn/infrastructure/VAAs/body.js'
-```
-```text
-u32         timestamp       // The timestamp of the block this message was                              published in
-u32         nonce           //  
-u16         emitter_chain   // The id of the chain that emitted the message
-[32]byte    emitter_address // The contract address (wormhole formatted)                                that called the core contract
-u64         sequence        // The auto incrementing integer that                                       represents the number of messages published by                              this emitter
-u8          consistency_level // The consistency level (finality) required                              by this emitter
-[]byte      payload         // arbitrary bytes containing the data to be                                acted on
-```
+- `timestamp` ++"u32"++ - the timestamp of the block this message was published in
+- `nonce` ++"u32"++
+- `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
+- `emitter_address` ++"[32]byte"++ - the contract address (wormhole formatted) that called the core contract
+- `sequence` ++"u64"++ - the auto incrementing integer that represents the number of messages published by this emitter
+- `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
+- `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
 
 The body is the relevant information for consumers and is handed back from a call like `parseAndVerifyVAA`. Because the `emitterAddress` is included as part of the body, the developer is able to tell if this VAA originated from a trusted contract.
 
@@ -67,7 +62,7 @@ The body is the relevant information for consumers and is handed back from a cal
 The body of the VAA is hashed twice with `keccak256` to produce the signed digest message.
 
 ```js
---8<-- 'code/learn/infrastructure/VAAs/sign-hash.js'
+--8<-- 'code/learn/infrastructure/VAAs/snippet-1.js'
 ```
 
 !!! note
@@ -85,13 +80,17 @@ Tokens are transferred from one chain to another using a lockup/mint and burn/un
 
 To transfer tokens from A to B, we must lock the tokens on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
 
-```js
---8<-- 'code/learn/infrastructure/VAAs/token-transfer.js'
-```
+- `payload_id = 1` ++"u8"++ - token transfer
+- `amount` ++"u256"++ - amount of tokens being transferred
+- `token_address` ++"u8[32]"++ - address on the source chain
+- `token_chain` ++"u16"++ - numeric ID for the source chain
+- `to` ++"u8[32]"++ - address on the destination chain
+- `to_chain` ++"u16"++ - numeric ID for the destination chain
+- `fee` ++"u256"++ - portion of amount paid to a relayer
 
 This structure contains everything the receiving chain needs to learn about a lockup event. Once Chain B receives this payload, it can mint the corresponding asset.
 
-Note that Chain B is agnostic regarding how the tokens on the sending side were locked. They could have been burned by a mint or locked in a custody account. The protocol relays the event once enough guardians have attested to its existence.
+Note that Chain B is agnostic regarding how the tokens on the sending side were locked. They could have been burned by a mint or locked in a custody account. The protocol relays the event once enough Guardians have attested to its existence.
 
 ### Attestation
 
@@ -101,9 +100,12 @@ For a token attestation, Chain A emits a message containing metadata about a tok
 
 The message format for this action is as follows:
 
-```js
---8<-- 'code/learn/infrastructure/VAAs/attestation.js'
-```
+- `payload_id = 2` ++"u8"++ - attestation
+- `token_address` ++"[32]byte"++ - address of the originating token contract
+- `token_chain` ++"u16"++ - chain ID of the originating token 
+- `decimals` ++"u8"++ - number of decimals this token should have
+- `symbol` ++"[32]byte"++ - short name of asset
+- `name` ++"[32]byte"++ - full name of asset
 
 Attestations use a fixed-length byte array to encode UTF8 token name and symbol data.
 
@@ -126,9 +128,14 @@ An essential detail of the token bridge is that an attestation is required befor
 
 The Token + Message data structure is identical to the token-only data structure with the addition of a `payload` field that contains arbitrary bytes. This arbitrary byte field is where an app may include additional data in the transfer to inform some application-specific behavior.
 
-```js
---8<-- 'code/learn/infrastructure/VAAs/token-msg.js'
-```
+- `payload_id = 3` ++"u8"++ - token transfer with wessage 
+- `amount` ++"u256"++ - amount of tokens being transferred
+- `token_address` ++"u8[32]"++ - address on the source chain
+- `token_chain` ++"u16"++ - numeric ID for the source chain
+- `to` ++"u8[32]"++ - address on the destination chain
+- `to_chain` ++"u16"++ - numeric ID for the destination chain
+- `fee` ++"u256"++ - portion of amount paid to a relayer
+- `payload` ++"[]byte"++ - message, arbitrary bytes, app specific
 
 ### Governance
 
@@ -138,14 +145,15 @@ Governance VAAs don't have a `payload_id` field like the above formats; they're 
 
 Governance messages contain pre-defined actions, which can target the various Wormhole modules currently deployed on-chain. The structure contains the following fields:
 
-```js
---8<-- 'code/learn/infrastructure/VAAs/action.js'
-```
+- `module` ++"u8[32]"++ - contains a right-aligned module identifier
+- `action` ++"u8"++ - predefined governance action to execute
+- `chain`  ++"u16"++ - chain the action is targeting, 0 = all chains
+- `args`  ++"..."++ - arguments to the action
 
 Here is an example message containing a governance action triggering a code upgrade to the Solana core contract. The module field here is a right-aligned encoding of the ASCII "Core", represented as a 32-byte hex string.
 
 ```js
---8<-- 'code/learn/infrastructure/VAAs/action-example.js'
+--8<-- 'code/learn/infrastructure/VAAs/snippet-2.js'
 ```
 
 ### Actions
@@ -159,11 +167,11 @@ The meaning of each numeric action is pre-defined and documented in the Wormhole
 ## Lifetime of a Message
 
 !!! note
-    Anyone can submit the VAA to the target chain. The guardians typically do not perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the guardian RPC and make the submission in a separate flow.
+    Anyone can submit the VAA to the target chain. The Guardians typically do not perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the Guardian RPC and make the submission in a separate flow.
 
 With the concepts now defined, we can illustrate what a full flow for a message passing between two chains looks like. The following stages demonstrate each stage of processing the Wormhole network performs in order to route a message.
 
-1. **A message is emitted by a contract running on chain A** - any contract can emit messages, and the guardians are programmed to observe all chains for these events. Here, the guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the 19 guardians
-2. **Signatures are aggregated** - guardians observe and sign the message independently. Once enough guardians have signed the message, the collection of signatures are combined with the message and metadata to produce a VAA
-3. **VAA submitted to target chain** - the VAA acts as proof that the guardians have collectively attested the existence of the message payload; in order to complete the final step, the VAA itself is submitted (or relayed) to the target chain to be processed by a receiving contract
+1. **A message is emitted by a contract running on chain A** - any contract can emit messages, and the Guardians are programmed to observe all chains for these events. Here, the Guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the 19 Guardians
+2. **Signatures are aggregated** - Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures are combined with the message and metadata to produce a VAA
+3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload; in order to complete the final step, the VAA itself is submitted (or relayed) to the target chain to be processed by a receiving contract
 
