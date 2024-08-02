@@ -155,7 +155,7 @@ Below is an example message containing a governance action triggering a code upg
 
 The meaning of each numeric action is pre-defined and documented in the Wormhole design documents. For each application, the relevant definitions can be found via these links:
 
-- Core governance actions are documented in the their [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
+- [Core governance actions] (https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
 - Token Bridge governance actions are documented in their [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
 - NFT Bridge governance actions are documented in their [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006_nft_bridge.md){target=\_blank}
 
