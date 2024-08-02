@@ -5,44 +5,44 @@ description: Learn about Verified Action Approvals (VAAs) in Wormhole, their str
 
 # Verified Action Approvals
 
-VAAs are Wormhole's core messaging primitive. They are packets of cross-chain data that are emitted any time a cross-chain application contract interacts with the Core Contract.
+VAAs are Wormhole's core messaging primitive. They are packets of cross-chain data emitted whenever a cross-chain application contract interacts with the Core Contract.
 
 The basic VAA has two components: a Header and a Body.
 
-The Guardians must validate messages emitted by contracts before they can be sent to the target chain. Once a majority of Guardians observe the message and finality has been achieved, the Guardians sign a keccak256 hash of the message body.
+The Guardians must validate messages emitted by contracts before sending them to the target chain. Once a majority of Guardians observe the message and determine finality, the Guardians sign a keccak256 hash of the message body.
 
 The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof.
 
-VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. A VAA can be obtained by querying the Guardian [RPC](#){target=\_blank} or the [API](#){target=\_blank} with this information.
+VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. To obtain a VAA, one can query the Guardian [RPC](#){target=\_blank} or the [API](#){target=\_blank} with this information.
 
 These VAAs are ultimately what a smart contract on a receiving chain must process to receive a Wormhole message.
 
 ## VAA Format
 
-VAAs contain two sections of data.
+The basic VAA has two components: a Header and a Body.
 
 ### Header 
 
-The header holds metadata about the current VAA, the Guardian Set that is currently active, and the list of signatures gathered so far.
+The header holds metadata about the current VAA, the Guardian set that is currently active, and the list of signatures gathered so far.
 
 - `version` ++"byte"++ - the VAA Version
-- `guardian_set_index` ++"u32"++ - indicates which Guardian Set is signing
+- `guardian_set_index` ++"u32"++ - indicates which Guardian set is signing
 - `len_signatures` ++"u8"++ - the number of signatures stored
 - `signatures` ++"[]signature"++ - the collection of Guardian signatures
 
 Where each `signature` is:
 
-- `index` ++"u8"++ - the index of this Guardian in the Guardian Set
+- `index` ++"u8"++ - the index of this Guardian in the Guardian set
 - `signature` ++"[65]byte"++ - the ECDSA signature 
 
 ### Body 
 
-The body is _deterministically_ derived from an on-chain message. Any two Guardians must derive the same body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double-processing of messages.
+The body is _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double-processing messages.
 
 - `timestamp` ++"u32"++ - the timestamp of the block this message was published in
 - `nonce` ++"u32"++
 - `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
-- `emitter_address` ++"[32]byte"++ - the contract address (wormhole formatted) that called the core contract
+- `emitter_address` ++"[32]byte"++ - the contract address (Wormhole formatted) that called the Core Contract
 - `sequence` ++"u64"++ - the auto-incrementing integer that represents the number of messages published by this emitter
 - `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
 - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
@@ -71,11 +71,11 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 ### Token Transfer
 
-Tokens are transferred from one chain to another using a lockup/mint and burn/unlock mechanism. While many bridges work on this basic premise, this implementation achieves this by relying on the generic message-passing protocol provided by Wormhole to support routing the lock and burn events from one chain to another. This makes Wormhole's token bridge ultimately chain-agnostic. An implementation can be quickly incorporated into the network if a wormhole contract exists on the chain we wish to transfer to. Due to the generic message-passing nature of Wormhole, programs emitting messages do not need to know anything about the implementation details of any other chain.
+Tokens are transferred from one chain to another using a lockup/mint and burn/unlock mechanism. While many bridges work on this basic premise, this implementation achieves this by relying on the generic message-passing protocol provided by Wormhole to support routing the lock and burn events from one chain to another. This makes Wormhole's token bridge ultimately chain-agnostic. An implementation can be quickly incorporated into the network if a Wormhole contract exists on the chain we wish to transfer to. Due to the generic message-passing nature of Wormhole, programs emitting messages do not need to know anything about the implementation details of any other chain.
 
-To transfer tokens from A to B, we must lock the tokens on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
+To transfer tokens from Chain A to Chain B, we must lock them on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, Chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
 
-- `payload_id = 1` ++"u8"++ - token transfer
+- `payload_id` ++"u8"++ - the ID of the payload. This should be set to `1` for a token transfer
 - `amount` ++"u256"++ - amount of tokens being transferred
 - `token_address` ++"u8[32]"++ - address on the source chain
 - `token_chain` ++"u16"++ - numeric ID for the source chain
@@ -89,13 +89,13 @@ Note that Chain B is agnostic regarding how the tokens on the sending side were 
 
 ### Attestation
 
-The Transfer event above needs an important detail added. While the program on Chain B can trust the message to inform it of token lockup events, it has no way of knowing what the token being locked up actually is. The address alone is a meaningless value to most users. To solve this, the Token Bridge supports token attestation.
+The Transfer event above needs an important detail added. While the program on Chain B can trust the message to inform it of token lockup events, it has no way of verifying the correct token is locked up. The address alone is a meaningless value to most users. To solve this, the Token Bridge supports token attestation.
 
 For a token attestation, Chain A emits a message containing metadata about a token, which Chain B may use to preserve the name, symbol, and decimal precision of a token address.
 
 The message format for this action is as follows:
 
-- `payload_id = 2` ++"u8"++ - attestation
+- `payload_id` ++"u8"++ - the ID of the payload. This should be set to `2` for an attestation
 - `token_address` ++"[32]byte"++ - address of the originating token contract
 - `token_chain` ++"u16"++ - chain ID of the originating token 
 - `decimals` ++"u8"++ - number of decimals this token should have
@@ -114,7 +114,7 @@ When parsing an attestation VAA, we recommend trimming all trailing 0 bytes and 
 !!! note
     Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8.
 
-An essential detail of the token bridge is that an attestation is required before a token can be transferred. Without knowing a token's decimal precision, Chain B cannot correctly mint the correct amount of tokens when processing a transfer.
+Without knowing a token's decimal precision, Chain B cannot correctly mint the number of tokens when processing a transfer. For this reason, the token bridge requires an attestation for each token transfer.
 
 ### Token + Message
 
@@ -123,7 +123,7 @@ An essential detail of the token bridge is that an attestation is required befor
 
 The Token + Message data structure is identical to the token-only data structure with the addition of a `payload` field containing arbitrary bytes. In this arbitrary byte field, an app may include additional data in the transfer to inform some application-specific behavior.
 
-- `payload_id = 3` ++"u8"++ - token transfer with wessage 
+- `payload_id` ++"u8"++ -  the ID of the payload. This should be set to `3` for a token transfer with message 
 - `amount` ++"u256"++ - amount of tokens being transferred
 - `token_address` ++"u8[32]"++ - address on the source chain
 - `token_chain` ++"u16"++ - numeric ID for the source chain
@@ -142,7 +142,7 @@ Governance messages contain pre-defined actions, which can target the various Wo
 
 - `module` ++"u8[32]"++ - contains a right-aligned module identifier
 - `action` ++"u8"++ - predefined governance action to execute
-- `chain`  ++"u16"++ - chain the action is targeting, 0 = all chains
+- `chain`  ++"u16"++ - chain the action is targeting. This should be set to `0` for all chains
 - `args`  ++"..."++ - arguments to the action
 
 Below is an example message containing a governance action triggering a code upgrade to the Solana core contract. The module field here is a right-aligned encoding of the ASCII "Core", represented as a 32-byte hex string.
@@ -155,9 +155,9 @@ Below is an example message containing a governance action triggering a code upg
 
 The meaning of each numeric action is pre-defined and documented in the Wormhole design documents. For each application, the relevant definitions can be found via these links:
 
-- Core governance actions are documented in the their [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
-- Token Bridge governance actions are documented in their [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
-- NFT Bridge governance actions are documented in their [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006_nft_bridge.md){target=\_blank}
+- [Core governance actions] (https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
+- [Token Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
+- [NFT Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006_nft_bridge.md){target=\_blank}
 
 ## Lifetime of a Message
 
