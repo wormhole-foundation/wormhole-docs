@@ -89,7 +89,7 @@ Note that Chain B is agnostic regarding how the tokens on the sending side were 
 
 ### Attestation
 
-The Transfer event above needs an important detail added. While the program on Chain B can trust the message to inform it of token lockup events, it has no way of knowing what the token being locked up actually is. The address alone is a meaningless value to most users. To solve this, the Token Bridge supports token attestation.
+The Transfer event above needs an important detail added. While the program on Chain B can trust the message to inform it of token lockup events, it has no way of verifying the correct token is locked up. The address alone is a meaningless value to most users. To solve this, the Token Bridge supports token attestation.
 
 For a token attestation, Chain A emits a message containing metadata about a token, which Chain B may use to preserve the name, symbol, and decimal precision of a token address.
 
