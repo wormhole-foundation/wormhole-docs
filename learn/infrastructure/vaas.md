@@ -95,7 +95,7 @@ For a token attestation, Chain A emits a message containing metadata about a tok
 
 The message format for this action is as follows:
 
-- `payload_id = 2` ++"u8"++ - attestation
+- `payload_id` ++"u8"++ - the ID of the payload. This should be set to `2` for an attestation
 - `token_address` ++"[32]byte"++ - address of the originating token contract
 - `token_chain` ++"u16"++ - chain ID of the originating token 
 - `decimals` ++"u8"++ - number of decimals this token should have
