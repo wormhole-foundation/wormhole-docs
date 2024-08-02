@@ -32,7 +32,7 @@ The header holds metadata about the current VAA, the Guardian set that is curren
 
 Where each `signature` is:
 
-- `index` ++"u8"++ - the index of this Guardian in the Guardian Set
+- `index` ++"u8"++ - the index of this Guardian in the Guardian set
 - `signature` ++"[65]byte"++ - the ECDSA signature 
 
 ### Body 
