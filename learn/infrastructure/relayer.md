@@ -41,7 +41,7 @@ Client-side relaying relies on user-facing front ends, such as a webpage or a wa
 **Key Features**
 
 - **Cost-Efficiency** - users only pay the transaction fee for the second transaction, eliminating any additional costs
-- **No Backend Infrastructure** - the process is completely client-based, eliminating the need for a backend relaying infrastructure
+- **No backend infrastructure** - the process is completely client-based, eliminating the need for a backend relaying infrastructure
 
 **Implementation**
 
