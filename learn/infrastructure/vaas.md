@@ -142,7 +142,7 @@ Governance messages contain pre-defined actions, which can target the various Wo
 
 - `module` ++"u8[32]"++ - contains a right-aligned module identifier
 - `action` ++"u8"++ - predefined governance action to execute
-- `chain`  ++"u16"++ - chain the action is targeting, 0 = all chains
+- `chain`  ++"u16"++ - chain the action is targeting. This should be set to `0` for all chains
 - `args`  ++"..."++ - arguments to the action
 
 Below is an example message containing a governance action triggering a code upgrade to the Solana core contract. The module field here is a right-aligned encoding of the ASCII "Core", represented as a 32-byte hex string.
