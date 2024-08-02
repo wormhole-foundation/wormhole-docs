@@ -157,7 +157,7 @@ The meaning of each numeric action is pre-defined and documented in the Wormhole
 
 - [Core governance actions] (https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
 - [Token Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
-- NFT Bridge governance actions are documented in their [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006_nft_bridge.md){target=\_blank}
+- [NFT Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006_nft_bridge.md){target=\_blank}
 
 ## Lifetime of a Message
 
