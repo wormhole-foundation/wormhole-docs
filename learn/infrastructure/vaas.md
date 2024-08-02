@@ -37,7 +37,7 @@ Where each `signature` is:
 
 ### Body 
 
-The body is _deterministically_ derived from an on-chain message. Any two Guardians must derive the same body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double-processing of messages.
+The body is _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double-processing messages.
 
 - `timestamp` ++"u32"++ - the timestamp of the block this message was published in
 - `nonce` ++"u32"++
