@@ -19,7 +19,7 @@ These VAAs are ultimately what a smart contract on a receiving chain must proces
 
 ## VAA Format
 
-VAAs contain two sections of data.
+The basic VAA has two components: a Header and a Body.
 
 ### Header 
 
