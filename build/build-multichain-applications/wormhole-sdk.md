@@ -42,28 +42,25 @@ npm install @wormhole-foundation/sdk-evm-tokenbridge
 
 Getting started is simple; just import Wormhole and the [Platform](#platforms) modules you wish to support
 
-<!--EXAMPLE_IMPORTS-->
 ```ts
 import { wormhole } from '@wormhole-foundation/sdk';
 ```
-See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/index.ts#L2)
-<!--EXAMPLE_IMPORTS-->
+
+??? code "View the complete script"
+    ```ts hl_lines="2"
+    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
+    ```
 
 And pass those to the Wormhole constructor to make them available for use
 
-<!--EXAMPLE_WORMHOLE_INIT-->
 ```ts
-const wh = await wormhole('Testnet', [
-  evm,
-  solana,
-  aptos,
-  algorand,
-  cosmwasm,
-  sui,
-]);
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/wormhole-init.ts'
 ```
-See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/index.ts#L16)
-<!--EXAMPLE_WORMHOLE_INIT-->
+
+??? code "View the complete script"
+    ```ts hl_lines="16"
+    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
+    ```
 
 With a configured Wormhole object, we can do things like parse addresses for the platforms we passed, get a [ChainContext](#chain-context) object, or fetch VAAs.
 
@@ -72,44 +69,33 @@ With a configured Wormhole object, we can do things like parse addresses for the
 // Grab a ChainContext object from our configured Wormhole instance
 const ctx = wh.getChain('Solana');
 ```
-See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/index.ts#L20)
-<!--EXAMPLE_WORMHOLE_CHAIN-->
 
-<!--EXAMPLE_WORMHOLE_VAA-->
+??? code "View the complete script"
+    ```ts hl_lines="21"
+    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
+    ```
+
+You can retrieve a VAA as follows:
+
 ```ts
-// Get the VAA from the wormhole message id
-const vaa = await wh.getVaa(
-  // Wormhole Message ID
-  whm!,
-  // Protocol:Payload name to use for decoding the VAA payload
-  'TokenBridge:Transfer',
-  // Timeout in milliseconds, depending on the chain and network, the VAA may take some time to be available
-  60_000
-);
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa-snippet.ts'
 ```
-See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/index.ts#L49)
-<!--EXAMPLE_WORMHOLE_VAA-->
 
+??? code "View the complete script"
+    ```ts hl_lines="68-74"
+    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
+    ```
 
 Optionally, the default configuration may be overridden if you want to support a different RPC endpoint.
 
-<!--EXAMPLE_CONFIG_OVERRIDE-->
 ```ts
-// Pass a partial WormholeConfig object to override specific
-// fields in the default config
-const wh = await wormhole('Testnet', [solana], {
-  chains: {
-    Solana: {
-      contracts: {
-        coreBridge: '11111111111111111111111111111',
-      },
-      rpc: 'https://api.devnet.solana.com',
-    },
-  },
-});
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/config-override.ts'
 ```
-See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/config.ts#L5)
-<!--EXAMPLE_CONFIG_OVERRIDE-->
+
+??? code "View the complete script"
+    ```ts
+    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/config.ts'
+    ```
 
 ## Concepts
 
@@ -128,13 +114,7 @@ The `Wormhole` class provides a `getChain` method that returns a `ChainContext` 
 The ChainContext object is also responsible for holding a cached rpc client and protocol clients.
 
 ```ts
-// Get the chain context for the source and destination chains
-// This is useful to grab direct clients for the protocols
-const srcChain = wh.getChain(senderAddress.chain);
-const dstChain = wh.getChain(receiverAddress.chain);
-
-const tb = await srcChain.getTokenBridge(); // => TokenBridge<'Evm'>
-srcChain.getRpcClient(); // => RpcClient<'Evm'>
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-chain.ts'
 ```
 
 ### Addresses
@@ -144,25 +124,7 @@ Within the Wormhole context, addresses are often [normalized](https://docs.wormh
 Each platform has an address type that understands the native address formats, unsurprisingly referred to as NativeAddress. This abstraction allows the SDK to work with addresses consistently regardless of the underlying chain.
 
 ```ts
-// Its possible to convert a string address to its Native address
-const ethAddr: NativeAddress<'Evm'> = toNative('Ethereum', '0xbeef...');
-
-// A common type in the SDK is the `ChainAddress` which provides
-// the additional context of the `Chain` this address is relevant for.
-const senderAddress: ChainAddress = Wormhole.chainAddress(
-  'Ethereum',
-  '0xbeef...'
-);
-const receiverAddress: ChainAddress = Wormhole.chainAddress(
-  'Solana',
-  'Sol1111...'
-);
-
-// Convert the ChainAddress back to its canonical string address format
-const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
-
-// Or if the ethAddr above is for an emitter and you need the UniversalAddress
-const emitterAddr = ethAddr.toUniversalAddress().toString();
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/addresses.ts'
 ```
 
 ### Tokens 
@@ -170,16 +132,7 @@ const emitterAddr = ethAddr.toUniversalAddress().toString();
 Similar to the `ChainAddress` type, the `TokenId` type provides the Chain and Address of a given Token.
 
 ```ts
-// Returns a TokenId
-const sourceToken: TokenId = Wormhole.tokenId('Ethereum', '0xbeef...');
-
-// Whereas the ChainAddress is limited to valid addresses, a TokenId may
-// have the string literal 'native' to consistently denote the native
-// gas token of the chain
-const gasToken: TokenId = Wormhole.tokenId('Ethereum', 'native');
-
-// the same method can be used to convert the TokenId back to its canonical string address format
-const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/tokens.ts'
 ```
 
 ### Signers
@@ -187,39 +140,7 @@ const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
 An object that fulfils the `Signer` interface is required to sign transactions. This simple interface can be implemented by wrapping a web wallet or other signing mechanism.
 
 ```ts
-// A Signer is an interface that must be provided to certain methods
-// in the SDK to sign transactions. It can be either a SignOnlySigner
-// or a SignAndSendSigner depending on circumstances.
-// A Signer can be implemented by wrapping an existing offline wallet
-// or a web wallet
-export type Signer = SignOnlySigner | SignAndSendSigner;
-
-// A SignOnlySender is for situations where the signer is not
-// connected to the network or does not wish to broadcast the
-// transactions themselves
-export interface SignOnlySigner {
-  chain(): ChainName;
-  address(): string;
-  // Accept an array of unsigned transactions and return
-  // an array of signed and serialized transactions.
-  // The transactions may be inspected or altered before
-  // signing.
-  // Note: The serialization is chain specific, if in doubt,
-  // see the example implementations linked below
-  sign(tx: UnsignedTransaction[]): Promise<SignedTx[]>;
-}
-
-// A SignAndSendSigner is for situations where the signer is
-// connected to the network and wishes to broadcast the
-// transactions themselves
-export interface SignAndSendSigner {
-  chain(): ChainName;
-  address(): string;
-  // Accept an array of unsigned transactions and return
-  // an array of transaction ids in the same order as the
-  // UnsignedTransactions array.
-  signAndSend(tx: UnsignedTransaction[]): Promise<TxHash[]>;
-}
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/signers.ts'
 ```
 
 See the testing signers ([Evm](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts), [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts), ...) for an example of how to implement a signer for a specific chain or platform.
@@ -234,53 +155,14 @@ If available, each protocol will have a platform-specific implementation. These 
 
 The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [Emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter), the [Sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence) for the message, and the Payload of the message itself.
 
-<!--EXAMPLE_CORE_BRIDGE-->
 ```ts
- const wh = await wormhole('Testnet', [solana]);
-
-const chain = wh.getChain('Solana');
-const { signer, address } = await getSigner(chain);
-
-// Get a reference to the core messaging bridge
-const coreBridge = await chain.getWormholeCore();
-
-// Generate transactions, sign and send them
-const publishTxs = coreBridge.publishMessage(
-  // Address of sender (emitter in VAA)
-  address.address,
-  // Message to send (payload in VAA)
-  encoding.bytes.encode('lol'),
-  // Nonce (user defined, no requirement for a specific value, useful to provide a unique identifier for the message)
-  0,
-  // ConsistencyLevel (ie finality of the message, see wormhole docs for more)
-  0
-);
-// Send the transaction(s) to publish the message
-const txids = await signSendWait(chain, publishTxs, signer);
-
-// Take the last txid in case multiple were sent
-// the last one should be the one containing the relevant
-// event or log info
-const txid = txids[txids.length - 1];
-
-// Grab the wormhole message id from the transaction logs or storage
-const [whm] = await chain.parseTransaction(txid!.txid);
-
-// Or pull the full message content as an Unsigned VAA
-// const msgs = await coreBridge.parseMessages(txid!.txid);
-// console.log(msgs);
-
-// Wait for the vaa to be signed and available with a timeout
-const vaa = await wh.getVaa(whm!, 'Uint8Array', 60_000);
-console.log(vaa);
-// Also possible to search by txid but it takes longer to show up
-// console.log(await wh.getVaaByTxHash(txid!.txid, "Uint8Array"));
-
-const verifyTxs = coreBridge.verifyMessage(address.address, vaa!);
-console.log(await signSendWait(chain, verifyTxs, signer));
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/core-bridge.ts'
 ```
-See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/messaging.ts#L7)
-<!--EXAMPLE_CORE_BRIDGE-->
+
+??? code "View the complete script"
+    ```ts
+    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-core-bridge.ts'
+    ```
 
 The information necessary to perform whatever action is required based on the Protocol that uses it is within the payload.
 
@@ -293,19 +175,10 @@ Every chain has a `TokenBridge` protocol client that provides a consistent inter
 `WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
 
 ```ts
-import { signSendWait } from '@wormhole-foundation/sdk';
-
-// ...
-
-const tb = await srcChain.getTokenBridge(); // => TokenBridge<'Evm'>
-
-const token = '0xdeadbeef...';
-const txGenerator = tb.createAttestation(token); // => AsyncGenerator<UnsignedTransaction, ...>
-const txids = await signSendWait(srcChain, txGenerator, src.signer); // => TxHash[]
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/token-bridge-snippet.ts'
 ```
 
 Supported protocols are defined in the [definitions module](https://github.com/wormhole-foundation/connect-sdk/tree/main/core/definitions/src/protocols).
-
 
 ## Transfers
 
@@ -319,50 +192,17 @@ Performing a Token Transfer is trivial for any source and destination chains.
 
 We can create a new `Wormhole` object to make `TokenTransfer,` `CircleTransfer,` `GatewayTransfer,` etc., objects to transfer tokens between chains. The transfer object is responsible for tracking the transfer through the process and providing updates on its status.
 
-<!--EXAMPLE_TOKEN_TRANSFER-->
 ```ts
-// Create a TokenTransfer object to track the state of the transfer over time
-const xfer = await wh.tokenTransfer(
-  route.token,
-  route.amount,
-  route.source.address,
-  route.destination.address,
-  route.delivery?.automatic ?? false,
-  route.payload,
-  route.delivery?.nativeGas
-);
-
-const quote = await TokenTransfer.quoteTransfer(
-  wh,
-  route.source.chain,
-  route.destination.chain,
-  xfer.transfer
-);
-console.log(quote);
-
-if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
-  throw 'The amount requested is too low to cover the fee and any native gas requested.';
-
-// 1) Submit the transactions to the source chain, passing a signer to sign any txns
-console.log('Starting transfer');
-const srcTxids = await xfer.initiateTransfer(route.source.signer);
-console.log(`Started transfer: `, srcTxids);
-
-// If automatic, we're done
-if (route.delivery?.automatic) return xfer;
-
-// 2) Wait for the VAA to be signed and ready (not required for auto transfer)
-console.log('Getting Attestation');
-const attestIds = await xfer.fetchAttestation(60_000);
-console.log(`Got Attestation: `, attestIds);
-
-// 3) Redeem the VAA on the dest chain
-console.log('Completing Transfer');
-const destTxids = await xfer.completeTransfer(route.destination.signer);
-console.log(`Completed Transfer: `, destTxids);
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-token-transfer.ts'
 ```
+
 See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/tokenBridge.ts#L122)
-<!--EXAMPLE_TOKEN_TRANSFER-->
+
+
+??? code "View the complete script"
+    ```ts hl_lines="122"
+    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/token-bridge.ts'
+    ```
 
 
 Internally, this uses the [TokenBridge](#token-bridge) protocol client to transfer tokens. Like other Protocols, the `TokenBridge` protocol provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
