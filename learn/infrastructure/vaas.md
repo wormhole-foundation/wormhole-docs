@@ -114,7 +114,7 @@ When parsing an attestation VAA, we recommend trimming all trailing 0 bytes and 
 !!! note
     Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8.
 
-An essential detail of the token bridge is that an attestation is required before a token can be transferred. Without knowing a token's decimal precision, Chain B cannot correctly mint the correct amount of tokens when processing a transfer.
+Without knowing a token's decimal precision, Chain B cannot correctly mint the number of tokens when processing a transfer. For this reason, the token bridge requires an attestation for each token transfer.
 
 ### Token + Message
 
