@@ -123,7 +123,7 @@ Without knowing a token's decimal precision, Chain B cannot correctly mint the n
 
 The Token + Message data structure is identical to the token-only data structure with the addition of a `payload` field containing arbitrary bytes. In this arbitrary byte field, an app may include additional data in the transfer to inform some application-specific behavior.
 
-- `payload_id = 3` ++"u8"++ - token transfer with wessage 
+- `payload_id` ++"u8"++ -  the ID of the payload. This should be set to `3` for a token transfer with message 
 - `amount` ++"u256"++ - amount of tokens being transferred
 - `token_address` ++"u8[32]"++ - address on the source chain
 - `token_chain` ++"u16"++ - numeric ID for the source chain
