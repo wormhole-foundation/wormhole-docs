@@ -75,7 +75,7 @@ Tokens are transferred from one chain to another using a lockup/mint and burn/un
 
 To transfer tokens from Chain A to Chain B, we must lock them on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, Chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
 
-- `payload_id = 1` ++"u8"++ - token transfer
+- `payload_id` ++"u8"++ - the ID of the payload. This should be set to `1` for a token transfer
 - `amount` ++"u256"++ - amount of tokens being transferred
 - `token_address` ++"u8[32]"++ - address on the source chain
 - `token_chain` ++"u16"++ - numeric ID for the source chain
