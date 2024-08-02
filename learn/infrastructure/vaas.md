@@ -42,7 +42,7 @@ The body is _deterministically_ derived from an on-chain message. Any two Guardi
 - `timestamp` ++"u32"++ - the timestamp of the block this message was published in
 - `nonce` ++"u32"++
 - `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
-- `emitter_address` ++"[32]byte"++ - the contract address (wormhole formatted) that called the core contract
+- `emitter_address` ++"[32]byte"++ - the contract address (Wormhole formatted) that called the Core Contract
 - `sequence` ++"u64"++ - the auto-incrementing integer that represents the number of messages published by this emitter
 - `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
 - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
