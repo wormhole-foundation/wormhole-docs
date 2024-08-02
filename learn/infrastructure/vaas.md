@@ -73,7 +73,7 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 Tokens are transferred from one chain to another using a lockup/mint and burn/unlock mechanism. While many bridges work on this basic premise, this implementation achieves this by relying on the generic message-passing protocol provided by Wormhole to support routing the lock and burn events from one chain to another. This makes Wormhole's token bridge ultimately chain-agnostic. An implementation can be quickly incorporated into the network if a Wormhole contract exists on the chain we wish to transfer to. Due to the generic message-passing nature of Wormhole, programs emitting messages do not need to know anything about the implementation details of any other chain.
 
-To transfer tokens from A to B, we must lock the tokens on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
+To transfer tokens from Chain A to Chain B, we must lock them on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, Chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
 
 - `payload_id = 1` ++"u8"++ - token transfer
 - `amount` ++"u256"++ - amount of tokens being transferred
