@@ -16,11 +16,11 @@ Install the (meta) package
 npm install @wormhole-foundation/sdk
 ```
 
-This package combines all the individual packages in a way that makes setup easier while still allowing for tree shaking. 
+This package combines all the individual packages to make setup easier while allowing for tree shaking.  
 
 ### Advanced
 
-Alternatively, for an advanced user, install a specific set of the packages published.
+Alternatively, for an advanced user, install a specific set of published packages.
 
 ```bash
 # constants
@@ -35,7 +35,7 @@ npm install @wormhole-foundation/sdk-evm-tokenbridge
 
 ## Usage
 
-Getting started is simple, just import Wormhole and the [Platform](#platforms) modules you wish to support
+Getting started is simple; just import Wormhole and the [Platform](#platforms) modules you wish to support
 
 <!--EXAMPLE_IMPORTS-->
 ```ts
@@ -53,7 +53,7 @@ And pass those to the Wormhole constructor to make them available for use
 See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/index.ts#L16)
 <!--EXAMPLE_WORMHOLE_INIT-->
 
-With a configured Wormhole object, we have the ability to do things like; parse addresses for the platforms we passed, get a [ChainContext](#chain-context) object, or fetch VAAs.
+With a configured Wormhole object, we can do things like parse addresses for the platforms we passed, get a [ChainContext](#chain-context) object, or fetch VAAs.
 
 <!--EXAMPLE_WORMHOLE_CHAIN-->
 ```ts
@@ -79,7 +79,7 @@ See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/m
 <!--EXAMPLE_WORMHOLE_VAA-->
 
 
-Optionally, the default configuration may be overriden in the case that you want to support, eg a different RPC endpoint.
+Optionally, the default configuration may be overridden if you want to support a different RPC endpoint.
 
 <!--EXAMPLE_CONFIG_OVERRIDE-->
 ```ts
@@ -101,11 +101,11 @@ See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/m
 
 ## Concepts
 
-Understanding several higher level concepts of the SDK will help in using it effectively.
+Understanding several higher-level concepts of the SDK will help you use it effectively.
 
 ### Platforms
 
-Every chain is its own special snowflake but many of them share similar functionality. The `Platform` modules provide a consistent interface for interacting with the chains that share a platform.
+Every chain is its own special snowflake, but many share similar functionality. The `Platform` modules provide a consistent interface for interacting with the chains that share a platform.
 
 Each platform can be installed separately so that dependencies can stay as slim as possible.
 
@@ -130,7 +130,7 @@ srcChain.getRpcClient(); // => RpcClient<'Evm'>
 
 Within the Wormhole context, addresses are often [normalized](https://docs.wormhole.com/wormhole/blockchain-environments/evm#addresses) to 32 bytes and referred to in this SDK as a `UniversalAddresses`.
 
-Each platform comes with an address type that understands the native address formats, unsurprisingly referred to as NativeAddress. This abstraction allows the SDK to work with addresses in a consistent way regardless of the underlying chain.
+Each platform has an address type that understands the native address formats, unsurprisingly referred to as NativeAddress. This abstraction allows the SDK to work with addresses consistently regardless of the underlying chain.
 
 ```ts
 // Its possible to convert a string address to its Native address
@@ -168,7 +168,7 @@ const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
 
 ### Signers
 
-In order to sign transactions, an object that fulfils the `Signer` interface is required. This is a simple interface that can be implemented by wrapping a web wallet or other signing mechanism.
+An object that fulfils the `Signer` interface is required to sign transactions. This simple interface can be implemented by wrapping a web wallet or other signing mechanism.
 
 ```ts
 // A Signer is an interface that must be provided to certain methods
@@ -210,13 +210,13 @@ See the testing signers ([Evm](https://github.com/wormhole-foundation/connect-sd
 
 ### Protocols
 
-While Wormhole itself is a Generic Message Passing protocol, a number of protocols have been built on top of it to provide specific functionality.
+While Wormhole is a Generic Message Passing (GMP) protocol, several protocols have been built to provide specific functionality.
 
-Each Protocol, if available, will have a Platform specific implementation. These implementations provide methods to generate transactions or read state from the contract on-chain.
+If available, each protocol will have a platform-specific implementation. These implementations provide methods to generate transactions or read state from the contract on-chain.
 
 #### Wormhole Core
 
-The protocol that underlies all Wormhole activity is the Core protocol. This protocol is responsible for emitting the message containing the information necessary to perform bridging including [Emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter), the [Sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence) for the message and the Payload of the message itself.
+The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [Emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter), the [Sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence) for the message, and the Payload of the message itself.
 
 <!--EXAMPLE_CORE_BRIDGE-->
 ```ts
@@ -266,15 +266,15 @@ The protocol that underlies all Wormhole activity is the Core protocol. This pro
 See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/messaging.ts#L7)
 <!--EXAMPLE_CORE_BRIDGE-->
 
-Within the payload is the information necessary to perform whatever action is required based on the Protocol that uses it.
+The information necessary to perform whatever action is required based on the Protocol that uses it is within the payload.
 
 #### Token Bridge
 
 The most familiar protocol built on Wormhole is the Token Bridge.
 
-Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens, as well as methods to generate and redeem attestations.
+Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations.
 
-Using the `WormholeTransfer` abstractions is the recommended way to interact with these protocols but it is possible to use them directly
+`WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
 
 ```ts
 import { signSendWait } from "@wormhole-foundation/sdk";
@@ -301,7 +301,7 @@ The `WormholeTransfer` interface provides a convenient abstraction to encapsulat
 
 Performing a Token Transfer is trivial for any source and destination chains.
 
-We can create a new `Wormhole` object and use it to to create `TokenTransfer`, `CircleTransfer`, `GatewayTransfer`, etc. objects to transfer tokens between chains. The transfer object is responsible for tracking the transfer through the process and providing updates on its status.
+We can create a new `Wormhole` object to make `TokenTransfer,` `CircleTransfer,` `GatewayTransfer,` etc., objects to transfer tokens between chains. The transfer object is responsible for tracking the transfer through the process and providing updates on its status.
 
 <!--EXAMPLE_TOKEN_TRANSFER-->
 ```ts
@@ -349,7 +349,7 @@ See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/m
 <!--EXAMPLE_TOKEN_TRANSFER-->
 
 
-Internally, this uses the [TokenBridge](#token-bridge) protocol client to transfer tokens. The `TokenBridge` protocol, like other Protocols, provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
+Internally, this uses the [TokenBridge](#token-bridge) protocol client to transfer tokens. Like other Protocols, the `TokenBridge` protocol provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
 
 ### Native USDC Transfers
 
@@ -405,7 +405,7 @@ See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/m
 
 ### Gateway Transfers
 
-Gateway transfers are transfers that are passed through the Wormhole Gateway to or from Cosmos chains.
+Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains.
 
 A transfer into Cosmos from outside cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain)
 <!--EXAMPLE_GATEWAY_INBOUND-->
@@ -491,7 +491,7 @@ See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/m
 
 ### Recovering Transfers
 
-It may be necessary to recover a transfer that was abandoned before being completed. This can be done by instantiating the Transfer class with the `from` static method and passing one of several types of identifiers.
+It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the Transfer class with the `from` static method and pass one of several types of identifiers.
 
 A `TransactionId` or `WormholeMessageId` may be used to recover the transfer
 
@@ -511,7 +511,7 @@ See example [here](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/m
 
 ## Routes
 
-While a specific `WormholeTransfer` may be used (TokenTransfer, CCTPTransfer, ...), it requires the developer know exactly which transfer type to use for a given request. 
+While a specific `WormholeTransfer` may be used (TokenTransfer, CCTPTransfer, etc.), the developer must know exactly which transfer type to use for a given request. 
 
 To provide a more flexible and generic interface, the `Wormhole` class provides a method to produce a `RouteResolver` that can be configured with a set of possible routes to be supported.
 
