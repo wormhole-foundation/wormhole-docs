@@ -23,7 +23,7 @@ The basic VAA has two components: a Header and a Body.
 
 ### Header 
 
-The header holds metadata about the current VAA, the Guardian Set that is currently active, and the list of signatures gathered so far.
+The header holds metadata about the current VAA, the Guardian set that is currently active, and the list of signatures gathered so far.
 
 - `version` ++"byte"++ - the VAA Version
 - `guardian_set_index` ++"u32"++ - indicates which Guardian Set is signing
