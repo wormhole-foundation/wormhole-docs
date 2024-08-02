@@ -13,7 +13,7 @@ The Guardians must validate messages emitted by contracts before sending them to
 
 The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof.
 
-VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. A VAA can be obtained by querying the Guardian [RPC](#){target=\_blank} or the [API](#){target=\_blank} with this information.
+VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. To obtain a VAA, one can query the Guardian [RPC](#){target=\_blank} or the [API](#){target=\_blank} with this information.
 
 These VAAs are ultimately what a smart contract on a receiving chain must process to receive a Wormhole message.
 
