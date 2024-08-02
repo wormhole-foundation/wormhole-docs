@@ -9,17 +9,17 @@ description: Explore Wormhole Connect, the React widget that allows you to offer
 
 Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole, directly in a web application.
 
-Check out the [Github repository](https://github.com/wormhole-foundation/wormhole-connect)!
+Check out the [Github repository](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}!
 
 ![Wormhole Connect Screenshot](https://camo.githubusercontent.com/fda29f71df76f388a4e579624e538c876f89c396d2dd6d9486657aa8f9a3a19c/68747470733a2f2f692e696d6775722e636f6d2f735a4a4b7738652e706e67)
 
-The [Wormhole Typescript SDK](../reference/sdk-docs/README.md) allows you to implement the same functionality as the Connect widget, but in your own UI. For more information on using the SDK instead of Connect [check out the docs](../reference/sdk-docs/README.md).
+The Wormhole Typescript SDK allows you to implement the same functionality as the Connect widget, but in your own UI. For more information on using the SDK instead of Connect check out the docs.
 
 ## Features
 This is just an overview of what features are available. For details about each, check [here](../connect/features.md).
 
 - multiple ways to bridge assets ("[routes](./routes.md)")
-- extensive ways to style the UI (also try the [codeless styler interface](https://connect-in-style.wormhole.com/)!)
+- extensive ways to style the UI (also try the [codeless styler interface](https://connect-in-style.wormhole.com/){target=\_blank}!)
 - ways to [configure](./configuration.md) what feature set to offer
 - ability to configure any token to bridge via Wormhole
 - [drop off some gas](./features.md) at the destination
@@ -28,9 +28,9 @@ This is just an overview of what features are available. For details about each,
 
 Wormhole Connect is deployed live in several production apps. Here are a few:
 
-- [Portal Bridge](https://portalbridge.com/)
-- [Jupiter](https://jup.ag/bridge/wormhole)
-- [Pancake Swap](https://bridge.pancakeswap.finance/wormhole)
+- [Portal Bridge](https://portalbridge.com/){target=\_blank}
+- [Jupiter](https://jup.ag/bridge/cctp){target=\_blank}
+- [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
 
 ## Integrate Connect
 
@@ -71,7 +71,7 @@ For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wor
 
 
 ## Configuration
-This is just an overview of what's possible. For details about all the configuration options, check [here](../connect/configuration.md).
+This is just an overview of what's possible. For details about all the configuration options, check the [Configuration Docs](../connect/configuration.md).
 
 The default configuration of Wormhole Connect may not be what you want to use.  You may want to:
 
