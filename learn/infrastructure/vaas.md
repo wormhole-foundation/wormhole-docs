@@ -9,7 +9,7 @@ VAAs are Wormhole's core messaging primitive. They are packets of cross-chain da
 
 The basic VAA has two components: a Header and a Body.
 
-The Guardians must validate messages emitted by contracts before they can be sent to the target chain. Once a majority of Guardians observe the message and finality has been achieved, the Guardians sign a keccak256 hash of the message body.
+The Guardians must validate messages emitted by contracts before sending them to the target chain. Once a majority of Guardians observe the message and determine finality, the Guardians sign a keccak256 hash of the message body.
 
 The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof.
 
