@@ -3,7 +3,7 @@ title: Queries Overview
 description: Explore Wormhole Queries, offering real-time access to verified blockchain data via a REST endpoint, enabling secure cross-chain interactions and verifications.
 ---
 
-# Overview {: #overview }
+# Queries Overview {: #queries-overview }
 
 💡 Queries are currently in closed-beta, though you can start developing today! Check out [Getting Started](./getting-started.md) and reach out to [Join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
@@ -33,7 +33,7 @@ There are currently 5 supported types of queries. See [the whitepaper](https://g
 
 ### eth_call {: #eth-call}
 
-Effectively an equivalent of [eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call) against a block specified by number or hash.
+Effectively an equivalent of [eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} against a block specified by number or hash.
 
 Calls are batched to allow specifying multiple calls (even to multiple contracts) against the same block. These will be done in the same batch RPC call and are easier for the requestor to verify on chain. Up to 255 calls may be batched in an single `eth_call` query.
 

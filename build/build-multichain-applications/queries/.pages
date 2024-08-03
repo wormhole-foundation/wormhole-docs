@@ -1,4 +1,6 @@
 title: Queries
 nav:
  - index.md
- - overview.md
+ - 'Overview': overview.md
+ - 'Getting Started': getting-started.md
+ - 'FAQs': faqs.md
