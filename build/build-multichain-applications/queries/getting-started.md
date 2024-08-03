@@ -33,7 +33,7 @@ npm i @wormhole-foundation/wormhole-query-sdk axios
 
 In order to make an `EthCallQueryRequest`, we need a specific block number or hash as well as the call data to request.
 
-To get the latest block, we can request it from a public node using `eth_getBlockByNumber`.
+We can request the latest block from a public node using `eth_getBlockByNumber` to get the latest block.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/get-block-by-number.jsx'
@@ -71,7 +71,7 @@ This response is suited for on-chain use, but the SDK also includes a parser so 
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-response.jsx'
 ```
 
-Testing this all together might look like the following
+Testing this all together might look like the following:
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/test-full.jsx'
