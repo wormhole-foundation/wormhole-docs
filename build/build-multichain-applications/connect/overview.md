@@ -1,11 +1,11 @@
 ---
-title: Wormhole Connect
+title: Overview
 description: Explore Wormhole Connect, the React widget that allows you to offer an easy-to-use UI for cross-chain asset transfers via Wormhole in a web application. 
 ---
 
 # Wormhole Connect
 
-## Summary
+## Summary {: #summary }
 
 Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole, directly in a web application.
 
@@ -15,7 +15,8 @@ Check out the [Github repository](https://github.com/wormhole-foundation/wormhol
 
 The Wormhole Typescript SDK allows you to implement the same functionality as the Connect widget, but in your own UI. For more information on using the SDK instead of Connect check out the docs.
 
-## Features
+## Features {: #features }
+
 This is just an overview of what features are available. For details about each, check [here](../connect/features.md).
 
 - multiple ways to bridge assets ("[routes](./routes.md)")
@@ -24,7 +25,7 @@ This is just an overview of what features are available. For details about each,
 - ability to configure any token to bridge via Wormhole
 - [drop off some gas](./features.md) at the destination
 
-## Demo
+## Demo {: #demo }
 
 Wormhole Connect is deployed live in several production apps. Here are a few:
 
@@ -32,9 +33,9 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 - [Jupiter](https://jup.ag/bridge/cctp){target=\_blank}
 - [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
 
-## Integrate Connect
+## Integrate Connect {: #integrate-connect }
 
-### Option 1: import directly into a React app
+### Option 1: import directly into a React app  {: #option-1-import-directly-into-a-react-app}
 
 First, install the npm package.
 
@@ -50,7 +51,7 @@ Now you can import the React component:
 --8<-- 'code/build/build-multichain-applications/connect/overview/import.js'
 ```
 
-### Option 2: hosted version via CDN (for any website)
+### Option 2: hosted version via CDN (for any website) {: #option-2-hosted-version-via-cdn-for-any-website}
 
 If you're not using React, you can still embed Connect on your website by using the hosted version. The sample code below uses the popular and free unpkg.com CDN from which your app will load the widget.
 
@@ -69,8 +70,8 @@ For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wor
 !!! note 
     It is important to periodically update your Wormhole Connect instance to the latest version, as there are frequent functionality and security releases.
 
+## Configuration {: #configuration}
 
-## Configuration
 This is just an overview of what's possible. For details about all the configuration options, check the [Configuration Docs](../connect/configuration.md).
 
 The default configuration of Wormhole Connect may not be what you want to use.  You may want to:

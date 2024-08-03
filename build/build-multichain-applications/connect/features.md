@@ -3,7 +3,8 @@ title: Features
 description: Explore a comprehensive Feature Support matrix and explanation detailing Wormhole's capabilities across networks for Token Bridge, CCTP, ETH Bridge, and more. 
 ---
 
-## Feature Support Matrix
+## Feature Support Matrix {: #feature-support-matrix}
+
 *Scroll down for details about each column.*
 
 | **Network** | **Token bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Dropoff** |
@@ -32,9 +33,9 @@ description: Explore a comprehensive Feature Support matrix and explanation deta
 | Evmos       | ✅ (Gateway)      | ✅ (IBC)                  | ❌               | ❌              | ❌               |
 | Kujira      | ✅ (Gateway)      | ✅ (IBC)                  | ❌               | ❌              | ❌               |
 
-## Feature Explanation
+## Feature Explanation {: #feature-explanation}
 
-### Token Bridge 
+### Token Bridge {: #token-bridge}
 
 This is the transfer method that Wormhole is best known for. It locks assets on the source chain, and mints wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the wormhole-wrapped tokens are burned, which unlocks the tokens on their original chain.
 
@@ -42,38 +43,39 @@ This route appears if
 - both the origin and destination chains support Token Bridge 
 - and if no non-Token Bridge routes are available for the selected token
 
-### Token Bridge Relayer
-On the [routes](../connect/routes.md) page, this is referred to the "automatic route" in the Token Bridge section.
+### Token Bridge Relayer {: #token-bridge-relayer}
 
-Trustless relayers are able to execute the second transaction on behalf of the user, so that the user only needs to execute 1 transaction on the origin chain to have the tokens delivered to the destination automatically - for a small fee.
+On the [routes](../connect/routes.md) page, this is referred to as the "automatic route" in the Token Bridge section.
 
-This route appears if
+Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to execute 1 transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee.
+
+This route appears if:
 - both the origin and destination chains support Token Bridge
 - both the origin and destination chains support Token Bridge Relayer
 - if no non-Token Bridge routes are available for the selected token
-- the selected token on the origin chain is supported by the relayer
+- the relayer supports the selected token on the origin chain
 
-### Circle CCTP
+### Circle CCTP {: #circle-cctp}
 
-[Circle](https://www.circle.com/en/), issuer of USDC, provides a native way by which native USDC can be transferred between [CCTP enabled](https://www.circle.com/en/cross-chain-transfer-protocol) chains.
+[Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains.
 
 This route appears if
 - both the origin and destination chains support Circle CCTP
 - the selected token is native Circle-issued USDC
 
-### ETH Bridge
+### ETH Bridge {: #eth-bridge}
 
-[Powered by Uniswap liquidity pools](https://github.com/wormhole-foundation/example-uniswap-liquidity-layer), this route can transfer native ETH or wstETH between certain EVMs without going through the native bridges.
+[Powered by Uniswap liquidity pools](https://github.com/wormhole-foundation/example-uniswap-liquidity-layer){target=\_blank}, this route can transfer native ETH or wstETH between certain EVMs without going through the native bridges.
 
 This route appears if
 - both the origin and destination chains support the ETH Bridge
 - the selected token is native ETH or wstETH, or canonical wETH
 
-### Gas Dropoff
+### Gas Dropoff {: #gas-dropoff}
 
-Relayers are able to drop off some gas tokens on the destination chain by swapping some of the assets transferred to the native gas token. Useful if the user wishes to transfer assets to a chain where they don't already have gas. This way, they don't need to onboard into the ecosystem from a CEX.
+Relayers can drop off some gas tokens on the destination chain by swapping some of the assets transferred to the native gas token. This is useful if the user wishes to transfer assets to a chain where they don't already have gas. This way, they don't need to onboard into the ecosystem from a CEX.
 
 This option appears if
 - both the origin and destination chains support Gas Dropoff
 - an automatic route is selected
-- the selected token is accepted by the relayer to swap into the gas token
+- the relayer accepts the selected token to swap into the gas token
