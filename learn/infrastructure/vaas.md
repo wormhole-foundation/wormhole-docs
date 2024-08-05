@@ -70,7 +70,7 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 ### Token Transfer
 
-Tokens are transferred from one chain to another using a lockup/mint and burn/unlock mechanism. While many bridges work on this basic premise, this implementation achieves this by relying on the generic message-passing protocol provided by Wormhole to support routing the lock and burn events from one chain to another. This makes Wormhole's token bridge ultimately chain-agnostic. An implementation can be quickly incorporated into the network if a Wormhole contract exists on the chain we wish to transfer to. Due to the generic message-passing nature of Wormhole, programs emitting messages do not need to know anything about the implementation details of any other chain.
+Tokens are transferred between chains using a lockup/mint and burn/unlock mechanism. Many bridges use such a basic method, but the implementation described leverages the generic message-passing protocol provided by Wormhole to handle the routing of lock and burn events across chains. This approach ensures that Wormhole's Token Bridge is chain-agnostic. The bridge can be rapidly integrated into any network with a Wormhole contract. Wormhole's generic message-passing does not require any program to send messages to understand the specific implementation details of other chains.
 
 To transfer tokens from Chain A to Chain B, we must lock them on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, Chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
 
@@ -106,14 +106,14 @@ Attestations use a fixed-length byte array to encode UTF8 token name and symbol 
 !!! note
     Because the byte array is fixed length, the data contained may truncate multibyte Unicode characters.
 
-When sending an attestation VAA, we recommend sending the longest UTF8 prefix that does NOT truncate a character and right-padding it with 0 bytes.
+When sending an attestation VAA, it is recommended to send the longest UTF-8 prefix that does not truncate a character and then right-pad it with zero bytes.
 
-When parsing an attestation VAA, we recommend trimming all trailing 0 bytes and converting the remainder to UTF8 via any lossy algorithm.
+When parsing an attestation VAA, it is recommended to trim all trailing zero bytes and converting the remainder to UTF-8 via any lossy algorithm.
 
 !!! note
     Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8.
 
-Without knowing a token's decimal precision, Chain B cannot correctly mint the number of tokens when processing a transfer. For this reason, the token bridge requires an attestation for each token transfer.
+Without knowing a token's decimal precision, Chain B cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer.
 
 ### Token + Message
 
@@ -163,7 +163,7 @@ The meaning of each numeric action is pre-defined and documented in the Wormhole
 !!! note
     Anyone can submit the VAA to the target chain. The Guardians typically do not perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the Guardian RPC and make the submission in a separate flow.
 
-With the concepts now defined, we can illustrate what a full flow for a message passing between two chains looks like. The following stages demonstrate each stage of processing the Wormhole network performs in order to route a message.
+With the concepts now defined, it is possible to illustrate what a full flow for message passing between two chains looks like. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
 
 1. **A message is emitted by a contract running on chain A** - any contract can emit messages, and the Guardians are programmed to observe all chains for these events. Here, the Guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the 19 Guardians
 2. **Signatures are aggregated** - Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
