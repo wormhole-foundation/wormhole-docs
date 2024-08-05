@@ -1,6 +1,6 @@
 ---
-title: Native Token Transfers
-description: Discover Wormhole's Native Token Transfers (NTT) for secure, flexible cross-chain token transfers with customizable features and deployment options.
+title: Native Token Transfers Architecture
+description: Explore Wormhole's Native Token Transfers Architecture, covering components, message flow, rate limiting, and custom transceivers.
 ---
 
 ## Introduction 
@@ -39,7 +39,7 @@ NTT has the flexibility to support custom message verification in addition to Wo
 
 ![Custom Attestation with NTT diagram](/images/learn/messaging/messaging-2.webp)
 
-The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian network and the additional verifier are processed. model incorporates an extra verifier(s) into the bridging process, enhancing security and providing an added assurance of transaction integrity.
+The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. model incorporates an extra verifier(s) into the bridging process, enhancing security and providing an added assurance of transaction integrity.
 
 For more details, to collaborate or see examples of custom transceivers, contact Wormhole contributors.
 
