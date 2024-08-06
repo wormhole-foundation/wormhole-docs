@@ -102,7 +102,7 @@ Understanding several higher-level concepts of the SDK will help you use it effe
 
 ### Platforms {: #platforms}
 
-Every chain is its own special snowflake, but many share similar functionality. The `Platform` modules provide a consistent interface for interacting with the chains that share a platform.
+Every chain is unique, but many share similar functionality. The `Platform` modules provide a consistent interface for interacting with the chains that share a platform.
 
 Each platform can be installed separately so that dependencies can stay as slim as possible.
 
