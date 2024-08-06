@@ -13,10 +13,6 @@
   req.nativeGas
 );
 
-// Note, if the transfer is requested to be Automatic, a fee for performing the relay
-// will be present in the quote. The fee comes out of the amount requested to be sent.
-// If the user wants to receive 1.0 on the destination, the amount to send should be 1.0 + fee.
-// The same applies for native gas dropoff
 const quote = await CircleTransfer.quoteTransfer(
   src.chain,
   dst.chain,

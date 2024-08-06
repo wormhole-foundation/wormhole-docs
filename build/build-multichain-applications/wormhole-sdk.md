@@ -8,13 +8,13 @@ description: Explore Wormhole's Typescript SDK and learn about how to perform di
 The Wormhole Typescript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole.
 
 !!! warning
-    This package is a Work in Progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find. :warning:
+    This package is a Work in Progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find.
 
 ## Installation {: #installation}
 
 ### Basic {: #basic}
 
-Install the (meta) package
+Install the (meta) package:
 
 ```bash
 npm install @wormhole-foundation/sdk
@@ -24,42 +24,35 @@ This package combines all the individual packages to make setup easier while all
 
 ### Advanced {: #advanced}
 
-Alternatively, for an advanced user, install a specific set of published packages.
+Alternatively, you can install a specific set of published packages:
 
 ```bash
 # constants
 npm install @wormhole-foundation/sdk-base
+
 # contract interfaces, basic types, vaa payload definitions
 npm install @wormhole-foundation/sdk-definitions
+
 # Evm specific utilities
 npm install @wormhole-foundation/sdk-evm
+
 # Evm TokenBridge protocol client
 npm install @wormhole-foundation/sdk-evm-tokenbridge
 ```
 
 ## Usage {: #usage}
 
-Getting started is simple; just import Wormhole and the [Platform](#platforms) modules you wish to support
+Getting started is simple; just import Wormhole and the [Platform](#platforms) modules you wish to support:
 
 ```ts
 import { wormhole } from '@wormhole-foundation/sdk';
 ```
 
-??? code "View the complete script"
-    ```ts hl_lines="2"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
-    ```
-
-And pass those to the Wormhole constructor to make them available for use
+Then, pass the [Platform](#platforms) modules to the Wormhole constructor to make them available for use:
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/wormhole-init.ts'
 ```
-
-??? code "View the complete script"
-    ```ts hl_lines="16"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
-    ```
 
 With a configured Wormhole object, we can do things like parse addresses for the platforms we passed, get a [ChainContext](#chain-context) object, or fetch VAAs.
 
@@ -67,11 +60,6 @@ With a configured Wormhole object, we can do things like parse addresses for the
 // Grab a ChainContext object from our configured Wormhole instance
 const ctx = wh.getChain('Solana');
 ```
-
-??? code "View the complete script"
-    ```ts hl_lines="21"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
-    ```
 
 You can retrieve a VAA as follows:
 
@@ -84,7 +72,8 @@ You can retrieve a VAA as follows:
     --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
     ```
 
-Optionally, the default configuration may be overridden if you want to support a different RPC endpoint.
+
+Optionally, you can override the default configuration with a partial `WormholeConfig` object to specify particular fields, such as a different RPC endpoint.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/config-override.ts'
@@ -97,7 +86,7 @@ Optionally, the default configuration may be overridden if you want to support a
 
 ## Concepts {: #concepts}
 
-Understanding several higher-level concepts of the SDK will help you use it effectively.
+Understanding several higher-level concepts of the SDK will help you use it effectively. The following sections will introduce and discuss the concepts of platforms, chain contexts, addresses, tokens, signers, and protocols.
 
 ### Platforms {: #platforms}
 
@@ -203,7 +192,7 @@ Internally, this uses the [TokenBridge](#token-bridge) protocol client to transf
 
 ### Native USDC Transfers {: #native-usdc-transfers}
 
-We can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}
+We can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. Please note that if the transfer is set to Automatic mode, a fee for performing the relay will be included in the quote. This fee is deducted from the total amount requested to be sent. For example, if the user wishes to receive `1.0` on the destination, the amount sent should be adjusted to `1.0` plus the relay fee. The same principle applies to native gas dropoffs
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/cctp-example-snippet.ts'
