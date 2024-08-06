@@ -5,7 +5,7 @@ description: Discover Wormhole's Messaging features, including cross-chain commu
 
 # Messaging Overview
 
-The Messaging section covers various aspects and services related to communication protocols and systems within our platform. Each subsection provides detailed information on specific components, contracts, and bridges used for messaging and data transfer. Below is a brief overview of each subsection:
+The Messaging section covers various aspects and services related to communication protocols and systems within the Wormhole platform. Each subsection provides detailed information on specific components, contracts, and bridges used for messaging and data transfer. Below is a brief overview of each subsection.
 
 ## Core Contracts
 
