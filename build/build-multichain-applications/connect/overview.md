@@ -25,7 +25,7 @@ Wormhole Connect is easy to customize to suit your application's needs. You can 
 
 For more details about the features of Wormhole Connect, and a breakdown of supported features by chain, be sure to check [the features page](../connect/features.md).
 
-## Demo {: #demo }
+## Production DApp Examples {: #production-dapp-examples }
 
 Wormhole Connect is deployed live in several production apps. Here are a few:
 
