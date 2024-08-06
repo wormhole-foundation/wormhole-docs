@@ -45,7 +45,7 @@ The body is _deterministically_ derived from an on-chain message. Any two Guardi
 - `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
 - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
 
-The body contains relevant information for consumers and is handed back from a call like `parseAndVerifyVAA`. Because the `emitterAddress` is included as part of the body, the developer can tell if this VAA originated from a trusted contract.
+The body contains relevant information for entities, such as contracts, or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
 
 !!! note
     Because VAAs have no destination, they are effectively multicast. Any Core Contract on any chain in the network will verify them as authentic. If a VAA has a specific destination, relayers are entirely responsible for completing that delivery appropriately.
@@ -114,12 +114,12 @@ When parsing an attestation VAA, it is recommended to trim all trailing zero byt
 
 Without knowing a token's decimal precision, Chain B cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer.
 
-### Token + Message
+### Token Transfer with Message
 
 !!! note
     This VAA type is also referred to as a payload3 message or a Contract Controlled Transfer.
 
-The Token + Message data structure is identical to the token-only data structure with the addition of a `payload` field containing arbitrary bytes. In this arbitrary byte field, an app may include additional data in the transfer to inform some application-specific behavior.
+The Token Transfer with Message data structure is identical to the token-only data structure with the addition of a `payload` field containing arbitrary bytes. In this arbitrary byte field, an app may include additional data in the transfer to inform some application-specific behavior.
 
 - `payload_id` ++"u8"++ -  the ID of the payload. This should be set to `3` for a token transfer with message 
 - `amount` ++"u256"++ - amount of tokens being transferred
@@ -141,7 +141,7 @@ Governance messages contain pre-defined actions, which can target the various Wo
 - `module` ++"u8[32]"++ - contains a right-aligned module identifier
 - `action` ++"u8"++ - predefined governance action to execute
 - `chain`  ++"u16"++ - chain the action is targeting. This should be set to `0` for all chains
-- `args`  ++"..."++ - arguments to the action
+- `args`  ++"any"++ - arguments to the action
 
 Below is an example message containing a governance action triggering a code upgrade to the Solana core contract. The module field here is a right-aligned encoding of the ASCII "Core", represented as a 32-byte hex string.
 
