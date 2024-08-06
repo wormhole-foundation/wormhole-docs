@@ -304,7 +304,7 @@ Once the tokens are selected, a `RouteTransferRequest` may be created to provide
     --8<-- 'code/build/build-multichain-applications/wormhole-sdk/router.ts'
     ```
 
-Choosing the best route is currently left to the developer but strategies might include sorting by output amount or expected time to complete the transfer (no estimate currently provided).
+Choosing the best route is currently left to the developer, but strategies might include sorting by output amount or expected time to complete the transfer (no estimate is currently provided).
 
 After choosing the best route, extra parameters like `amount`, `nativeGasDropoff`, and `slippage` can be passed, depending on the specific route selected and a quote can be retrieved with the validated request.
 
