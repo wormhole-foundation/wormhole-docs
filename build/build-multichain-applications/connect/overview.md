@@ -5,7 +5,7 @@ description: Explore Wormhole Connect, the React widget that allows you to offer
 
 # Wormhole Connect
 
-## Summary {: #summary }
+## Introduction {: #introduction }
 
 Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole, directly in a web application.
 
