@@ -1,6 +1,6 @@
 ---
 title: Overview
-description: 
+description: Discover Wormhole's Messaging features, including cross-chain communication, token and NFT bridges, and the Circle Bridge integration.
 ---
 
 # Messaging Overview
