@@ -1,11 +1,17 @@
 ---
 title: Native Token Transfers Architecture
-description: Explore Wormhole's Native Token Transfers Architecture, covering components, message flow, rate limiting, and custom transceivers.
+description: Explore Wormhole's Native Token Transfers Architecture, which covers components, message flow, rate limiting, and custom transceivers.
 ---
 
 ## Introduction 
 
-high level overview 
+The Native Token Transfers (NTT) architecture in the Wormhole ecosystem enables secure and efficient token transfers across multiple blockchains. Its core components, managers and transmitters, are designed to handle the complexities of cross-chain communication.
+
+_Managers_ oversee the token transfer process, including rate limiting and message attestation. They manage interactions with multiple Transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain.
+
+_Transceivers_ are responsible for encoding, sending, receiving, and decoding messages across chains, facilitating seamless communication between different blockchain environments. They work in conjunction with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers.
+
+The NTT framework supports advanced features such as custom transceivers for specialized message verification, enhancing security and adaptability. The architecture includes detailed processes for initiating transfers, managing rate limits, and finalizing token operations, with specific instructions and events outlined for EVM-compatible chains and Solana.
 
 ## System Components
 
