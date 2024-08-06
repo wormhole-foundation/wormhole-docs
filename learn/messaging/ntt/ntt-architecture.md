@@ -15,7 +15,7 @@ The NTT framework supports advanced features such as custom transceivers for spe
 
 ## System Components
 
-There are two primary components to NTT.
+There are two primary components to NTT: Managers and Transceivers.
 
 ### Managers
 
