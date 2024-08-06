@@ -7,9 +7,8 @@ description: Explore Wormhole's Typescript SDK and learn about how to perform di
 
 The Wormhole Typescript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole.
 
-## Warning {: #warning}
-
-:warning: This package is a Work in Progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find. :warning:
+!!! warning
+    This package is a Work in Progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find. :warning:
 
 ## Installation {: #installation}
 
