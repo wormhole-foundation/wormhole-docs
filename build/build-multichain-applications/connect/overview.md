@@ -17,7 +17,7 @@ The [Wormhole Typescript SDK](https://docs.wormhole.com/wormhole/reference/sdk-d
 
 This is just an overview of what features are available. For details about each, check [here](../connect/features.md).
 
-- multiple ways to bridge assets ("[routes](./routes.md)")
+- Multiple ways to bridge assets ("[routes](./routes.md)")
 - extensive ways to style the UI (also try the [codeless styler interface](https://connect-in-style.wormhole.com/){target=\_blank}!)
 - ways to [configure](./configuration.md) what feature set to offer
 - ability to configure any token to bridge via Wormhole
