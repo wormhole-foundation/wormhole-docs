@@ -124,7 +124,11 @@ Similar to the `ChainAddress` type, the `TokenId` type provides the Chain and Ad
 
 ### Signers {: #signers}
 
-An object that fulfils the `Signer` interface is required to sign transactions. This simple interface can be implemented by wrapping a web wallet or other signing mechanism.
+In the SDK, a Signer interface is required for certain methods to sign transactions. This interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`, depending on the specific requirements. A Signer can be created by wrapping an existing offline wallet or a web wallet.
+
+A `SignOnlySigner` is used in scenarios where the signer is not connected to the network or prefers not to broadcast transactions themselves. It accepts an array of unsigned transactions and returns an array of signed and serialized transactions. Before signing, the transactions may be inspected or altered. It's important to note that the serialization process is chain-specific; for guidance, refer to the linked example implementations.
+
+Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to the network and intends to broadcast the transactions. This type of signer also accepts an array of unsigned transactions but returns an array of transaction IDs, corresponding to the order of the unsigned transactions.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/signers.ts'
@@ -134,9 +138,7 @@ See the testing signers ([Evm](https://github.com/wormhole-foundation/connect-sd
 
 ### Protocols {: #protocols}
 
-While Wormhole is a Generic Message Passing (GMP) protocol, several protocols have been built to provide specific functionality.
-
-If available, each protocol will have a platform-specific implementation. These implementations provide methods to generate transactions or read state from the contract on-chain.
+While Wormhole is a Generic Message Passing (GMP) protocol, several protocols have been built to provide specific functionality. If available, each protocol will have a platform-specific implementation. These implementations provide methods to generate transactions or read state from the contract on-chain.
 
 #### Wormhole Core {: #wormhole-core}
 
@@ -155,11 +157,7 @@ The payload contains the information necessary to perform whatever action is req
 
 #### Token Bridge {: #token-bridge}
 
-The most familiar protocol built on Wormhole is the Token Bridge.
-
-Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations.
-
-`WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
+The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/token-bridge-snippet.ts'
@@ -205,9 +203,7 @@ We can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en
 
 ### Gateway Transfers {: #gateway-transfers}
 
-Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains.
-
-A transfer into Cosmos from outside cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain)
+Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain)
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-inbound-example.ts'
@@ -242,9 +238,7 @@ A transfer leaving Cosmos will produce a VAA from the Gateway that must be manua
 
 ### Recovering Transfers {: #recovering-transfers}
 
-It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the Transfer class with the `from` static method and pass one of several types of identifiers.
-
-A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
+It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the Transfer class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/recover-transfer-example.ts'
