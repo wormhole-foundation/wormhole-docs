@@ -163,7 +163,7 @@ The core protocol underlies all Wormhole activity. This protocol is responsible 
     --8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-core-bridge.ts'
     ```
 
-The information necessary to perform whatever action is required based on the Protocol that uses it is within the payload.
+The payload contains the information necessary to perform whatever action is required based on the Protocol that uses it. 
 
 #### Token Bridge {: #token-bridge}
 
