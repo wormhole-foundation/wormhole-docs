@@ -110,7 +110,7 @@ Each platform can be installed separately so that dependencies can stay as slim 
 
 The `Wormhole` class provides a `getChain` method that returns a `ChainContext` object for a given chain. This object provides access to the chain specific methods and utilities. Much of the functionality in the `ChainContext` is provided by the `Platform` methods but the specific chain may have overridden methods.
 
-The ChainContext object is also responsible for holding a cached rpc client and protocol clients.
+The `ChainContext` object is also responsible for holding a cached RPC client and protocol clients.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-chain.ts'
