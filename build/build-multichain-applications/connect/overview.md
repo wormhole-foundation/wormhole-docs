@@ -11,8 +11,6 @@ Wormhole Connect is a React widget that lets developers offer an easy-to-use int
 
 Check out the [Github repository](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}
 
-![Wormhole Connect Screenshot](https://camo.githubusercontent.com/fda29f71df76f388a4e579624e538c876f89c396d2dd6d9486657aa8f9a3a19c/68747470733a2f2f692e696d6775722e636f6d2f735a4a4b7738652e706e67)
-
 The Wormhole Typescript SDK allows you to implement the same functionality as the Connect widget, but in your own UI. For more information on using the SDK instead of Connect check out the docs.
 
 ## Features {: #features }
