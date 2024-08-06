@@ -1,5 +1,3 @@
-// Pass a partial WormholeConfig object to override specific
-// fields in the default config
 const wh = await wormhole('Testnet', [solana], {
   chains: {
     Solana: {

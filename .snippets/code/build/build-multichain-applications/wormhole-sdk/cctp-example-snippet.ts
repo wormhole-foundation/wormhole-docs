@@ -1,15 +1,9 @@
  const xfer = await wh.circleTransfer(
-  // amount as bigint (base units)
   req.amount,
-  // sender chain/address
   src.address,
-  // receiver chain/address
   dst.address,
-  // automatic delivery boolean
   req.automatic,
-  // payload to be sent with the transfer
   undefined,
-  // If automatic, native gas can be requested to be sent to the receiver
   req.nativeGas
 );
 
@@ -30,8 +24,6 @@ if (req.automatic) {
   return;
 }
 
-// Note: Depending on chain finality, this timeout may need to be increased.
-// See https://developers.circle.com/stablecoin/docs/cctp-technical-reference#mainnet for more
 console.log('Waiting for Attestation');
 const attestIds = await xfer.fetchAttestation(60_000);
 console.log(`Got Attestation: `, attestIds);

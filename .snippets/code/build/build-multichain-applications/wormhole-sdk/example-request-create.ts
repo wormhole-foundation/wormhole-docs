@@ -1,5 +1,3 @@
-// creating a transfer request fetches token details
-// since all routes will need to know about the tokens
 const tr = await routes.RouteTransferRequest.create(wh, {
   from: sender.address,
   to: receiver.address,

@@ -8,10 +8,10 @@ import {
   Wormhole,
   amount,
   wormhole,
-} from "@wormhole-foundation/sdk";
-import evm from "@wormhole-foundation/sdk/evm";
-import solana from "@wormhole-foundation/sdk/solana";
-import { SignerStuff, getSigner, waitForRelay } from "./helpers/index.js";
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { SignerStuff, getSigner, waitForRelay } from './helpers/index.js';
 
 /*
 Notes:
@@ -24,11 +24,11 @@ AutoRelayer takes a 0.1usdc fee when xfering to any chain beside goerli, which i
 (async function () {
   // init Wormhole object, passing config for which network
   // to use (e.g. Mainnet/Testnet) and what Platforms to support
-  const wh = await wormhole("Testnet", [evm, solana]);
+  const wh = await wormhole('Testnet', [evm, solana]);
 
   // Grab chain Contexts
-  const sendChain = wh.getChain("Avalanche");
-  const rcvChain = wh.getChain("Solana");
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Solana');
 
   // Get signer from local key but anything that implements
   // Signer interface (e.g. wrapper around web wallet) should work
@@ -36,7 +36,7 @@ AutoRelayer takes a 0.1usdc fee when xfering to any chain beside goerli, which i
   const destination = await getSigner(rcvChain);
 
   // 6 decimals for USDC (except for bsc, so check decimals before using this)
-  const amt = amount.units(amount.parse("0.2", 6));
+  const amt = amount.units(amount.parse('0.2', 6));
 
   // Choose whether or not to have the attestation delivered for you
   const automatic = false;
@@ -45,7 +45,7 @@ AutoRelayer takes a 0.1usdc fee when xfering to any chain beside goerli, which i
   // during redemption, the receiver gets some amount of native gas transferred to them
   // so that they may pay for subsequent transactions
   // The amount specified here is denominated in the token being transferred (USDC here)
-  const nativeGas = automatic ? amount.units(amount.parse("0.0", 6)) : 0n;
+  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
 
   await cctpTransfer(wh, source, destination, {
     amount: amt,
@@ -75,7 +75,7 @@ async function cctpTransfer<N extends Network>(
     amount: bigint;
     automatic: boolean;
     nativeGas?: bigint;
-  },
+  }
 ) {
   // EXAMPLE_CCTP_TRANSFER
   const xfer = await wh.circleTransfer(
@@ -90,17 +90,21 @@ async function cctpTransfer<N extends Network>(
     // payload to be sent with the transfer
     undefined,
     // If automatic, native gas can be requested to be sent to the receiver
-    req.nativeGas,
+    req.nativeGas
   );
 
   // Note, if the transfer is requested to be Automatic, a fee for performing the relay
   // will be present in the quote. The fee comes out of the amount requested to be sent.
   // If the user wants to receive 1.0 on the destination, the amount to send should be 1.0 + fee.
   // The same applies for native gas dropoff
-  const quote = await CircleTransfer.quoteTransfer(src.chain, dst.chain, xfer.transfer);
-  console.log("Quote", quote);
+  const quote = await CircleTransfer.quoteTransfer(
+    src.chain,
+    dst.chain,
+    xfer.transfer
+  );
+  console.log('Quote', quote);
 
-  console.log("Starting Transfer");
+  console.log('Starting Transfer');
   const srcTxids = await xfer.initiateTransfer(src.signer);
   console.log(`Started Transfer: `, srcTxids);
 
@@ -112,11 +116,11 @@ async function cctpTransfer<N extends Network>(
 
   // Note: Depending on chain finality, this timeout may need to be increased.
   // See https://developers.circle.com/stablecoin/docs/cctp-technical-reference#mainnet for more
-  console.log("Waiting for Attestation");
+  console.log('Waiting for Attestation');
   const attestIds = await xfer.fetchAttestation(60_000);
   console.log(`Got Attestation: `, attestIds);
 
-  console.log("Completing Transfer");
+  console.log('Completing Transfer');
   const dstTxids = await xfer.completeTransfer(dst.signer);
   console.log(`Completed Transfer: `, dstTxids);
   // EXAMPLE_CCTP_TRANSFER
@@ -125,16 +129,16 @@ async function cctpTransfer<N extends Network>(
 export async function completeTransfer(
   wh: Wormhole<Network>,
   txid: TransactionId,
-  signer: Signer,
+  signer: Signer
 ): Promise<void> {
   // EXAMPLE_RECOVER_TRANSFER
   // Rebuild the transfer from the source txid
   const xfer = await CircleTransfer.from(wh, txid);
 
   const attestIds = await xfer.fetchAttestation(60 * 60 * 1000);
-  console.log("Got attestation: ", attestIds);
+  console.log('Got attestation: ', attestIds);
 
   const dstTxIds = await xfer.completeTransfer(signer);
-  console.log("Completed transfer: ", dstTxIds);
+  console.log('Completed transfer: ', dstTxIds);
   // EXAMPLE_RECOVER_TRANSFER
 }

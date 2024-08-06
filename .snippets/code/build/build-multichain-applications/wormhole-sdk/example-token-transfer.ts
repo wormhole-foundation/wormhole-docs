@@ -1,4 +1,3 @@
-// Create a TokenTransfer object to track the state of the transfer over time
 const xfer = await wh.tokenTransfer(
   route.token,
   route.amount,

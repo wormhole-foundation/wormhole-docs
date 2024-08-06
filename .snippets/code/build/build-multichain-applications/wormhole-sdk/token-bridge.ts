@@ -7,25 +7,25 @@ import {
   amount,
   isTokenId,
   wormhole,
-} from "@wormhole-foundation/sdk";
+} from '@wormhole-foundation/sdk';
 
 // Import the platform-specific packages
 
-import evm from "@wormhole-foundation/sdk/evm";
-import solana from "@wormhole-foundation/sdk/solana";
-import { SignerStuff, getSigner, waitLog } from "./helpers/index.js";
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
 
 (async function () {
   // Init Wormhole object, passing config for which network
   // to use (e.g. Mainnet/Testnet) and what Platforms to support
-  const wh = await wormhole("Testnet", [evm, solana]);
+  const wh = await wormhole('Testnet', [evm, solana]);
 
   // Grab chain Contexts -- these hold a reference to a cached rpc client
-  const sendChain = wh.getChain("Avalanche");
-  const rcvChain = wh.getChain("Solana");
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Solana');
 
   // Shortcut to allow transferring native gas token
-  const token = Wormhole.tokenId(sendChain.chain, "native");
+  const token = Wormhole.tokenId(sendChain.chain, 'native');
 
   // A TokenId is just a `{chain, address}` pair and an alias for ChainAddress
   // The `address` field must be a parsed address.
@@ -41,7 +41,7 @@ import { SignerStuff, getSigner, waitLog } from "./helpers/index.js";
   // Note: The Token bridge will dedust past 8 decimals
   // this means any amount specified past that point will be returned
   // to the caller
-  const amt = "0.05";
+  const amt = '0.05';
 
   // With automatic set to true, perform an automatic transfer. This will invoke a relayer
   // contract intermediary that knows to pick up the transfers
@@ -54,7 +54,7 @@ import { SignerStuff, getSigner, waitLog } from "./helpers/index.js";
   // The automatic relayer has the ability to deliver some native gas funds to the destination account
   // The amount specified for native gas will be swapped for the native gas token according
   // to the swap rate provided by the contract, denominated in native gas tokens
-  const nativeGas = automatic ? "0.01" : undefined;
+  const nativeGas = automatic ? '0.01' : undefined;
 
   // Get signer from local key but anything that implements
   // Signer interface (e.g. wrapper around web wallet) should work
@@ -86,10 +86,12 @@ import { SignerStuff, getSigner, waitLog } from "./helpers/index.js";
           destination,
           delivery: {
             automatic,
-            nativeGas: nativeGas ? amount.units(amount.parse(nativeGas, decimals)) : undefined,
+            nativeGas: nativeGas
+              ? amount.units(amount.parse(nativeGas, decimals))
+              : undefined,
           },
         },
-        roundTrip,
+        roundTrip
       )
     : // Recover the transfer from the originating txid
       await TokenTransfer.from(wh, {
@@ -116,7 +118,7 @@ async function tokenTransfer<N extends Network>(
     };
     payload?: Uint8Array;
   },
-  roundTrip?: boolean,
+  roundTrip?: boolean
 ): Promise<TokenTransfer<N>> {
   // EXAMPLE_TOKEN_TRANSFER
   // Create a TokenTransfer object to track the state of the transfer over time
@@ -127,22 +129,22 @@ async function tokenTransfer<N extends Network>(
     route.destination.address,
     route.delivery?.automatic ?? false,
     route.payload,
-    route.delivery?.nativeGas,
+    route.delivery?.nativeGas
   );
 
   const quote = await TokenTransfer.quoteTransfer(
     wh,
     route.source.chain,
     route.destination.chain,
-    xfer.transfer,
+    xfer.transfer
   );
   console.log(quote);
 
   if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
-    throw "The amount requested is too low to cover the fee and any native gas requested.";
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
   // 1) Submit the transactions to the source chain, passing a signer to sign any txns
-  console.log("Starting transfer");
+  console.log('Starting transfer');
   const srcTxids = await xfer.initiateTransfer(route.source.signer);
   console.log(`Started transfer: `, srcTxids);
 
@@ -150,12 +152,12 @@ async function tokenTransfer<N extends Network>(
   if (route.delivery?.automatic) return xfer;
 
   // 2) Wait for the VAA to be signed and ready (not required for auto transfer)
-  console.log("Getting Attestation");
+  console.log('Getting Attestation');
   const attestIds = await xfer.fetchAttestation(60_000);
   console.log(`Got Attestation: `, attestIds);
 
   // 3) Redeem the VAA on the dest chain
-  console.log("Completing Transfer");
+  console.log('Completing Transfer');
   const destTxids = await xfer.completeTransfer(route.destination.signer);
   console.log(`Completed Transfer: `, destTxids);
   // EXAMPLE_TOKEN_TRANSFER

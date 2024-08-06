@@ -1,13 +1,13 @@
-import { encoding, signSendWait, wormhole } from "@wormhole-foundation/sdk";
-import { getSigner } from "./helpers/index.js";
-import solana from "@wormhole-foundation/sdk/solana";
-import evm from "@wormhole-foundation/sdk/evm";
+import { encoding, signSendWait, wormhole } from '@wormhole-foundation/sdk';
+import { getSigner } from './helpers/index.js';
+import solana from '@wormhole-foundation/sdk/solana';
+import evm from '@wormhole-foundation/sdk/evm';
 
 (async function () {
   // EXAMPLE_CORE_BRIDGE
-  const wh = await wormhole("Testnet", [solana, evm]);
+  const wh = await wormhole('Testnet', [solana, evm]);
 
-  const chain = wh.getChain("Avalanche");
+  const chain = wh.getChain('Avalanche');
   const { signer, address } = await getSigner(chain);
 
   // Get a reference to the core messaging bridge
@@ -18,11 +18,11 @@ import evm from "@wormhole-foundation/sdk/evm";
     // Address of sender (emitter in VAA)
     address.address,
     // Message to send (payload in VAA)
-    encoding.bytes.encode("lol"),
+    encoding.bytes.encode('lol'),
     // Nonce (user defined, no requirement for a specific value, useful to provide a unique identifier for the message)
     0,
     // ConsistencyLevel (ie finality of the message, see wormhole docs for more)
-    0,
+    0
   );
   // Send the transaction(s) to publish the message
   const txids = await signSendWait(chain, publishTxs, signer);
@@ -39,7 +39,7 @@ import evm from "@wormhole-foundation/sdk/evm";
   // console.log(await coreBridge.parseMessages(txid!.txid));
 
   // Wait for the vaa to be signed and available with a timeout
-  const vaa = await wh.getVaa(whm!, "Uint8Array", 60_000);
+  const vaa = await wh.getVaa(whm!, 'Uint8Array', 60_000);
   console.log(vaa);
 
   // Also possible to search by txid but it takes longer to show up
