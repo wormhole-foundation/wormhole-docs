@@ -50,7 +50,7 @@ A unique number that increments for every message for a given emitter (and impli
 
 ## Receiving
 
-The method signature for receiving messages, encoded as a VAA
+The method signature for receiving messages, encoded as a VAA:
 
 ```js
 --8<-- 'code/learn/messaging/core-contracts/receiving.js'
