@@ -3,4 +3,5 @@ nav:
  - index.md
  - 'VAAs': 'vaas.md'
  - 'Guardians': 'guardians.md'
- - 'Spies': 'spy.md'
+ - 'Spy': 'spy.md'
+ - 'Relayers': 'relayer.md'
