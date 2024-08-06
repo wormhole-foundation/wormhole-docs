@@ -9,7 +9,7 @@ The Native Token Transfers (NTT) architecture in the Wormhole ecosystem enables 
 
 _Managers_ oversee the token transfer process, including rate limiting and message attestation. They manage interactions with multiple Transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain.
 
-_Transceivers_ are responsible for encoding, sending, receiving, and decoding messages across chains, facilitating seamless communication between different blockchain environments. They work in conjunction with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers.
+_Transceivers_ are responsible for encoding, sending, receiving, and decoding messages across chains, facilitating seamless communication between different blockchain environments. They work with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers.
 
 The NTT framework supports advanced features such as custom transceivers for specialized message verification, enhancing security and adaptability. The architecture includes detailed processes for initiating transfers, managing rate limits, and finalizing token operations, with specific instructions and events outlined for EVM-compatible chains and Solana.
 
@@ -41,21 +41,21 @@ Responsible for sending NTT transfers forwarded through the manager on the sourc
 
 #### Custom Transceivers
 
-NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as Transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example 2/2, 2/3, 3/5, etc.
+NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as Transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5, etc. <!-- check back how to write the numbers -->
 
 ![Custom Attestation with NTT diagram](/images/learn/messaging/messaging-2.webp)
 
-The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. model incorporates an extra verifier(s) into the bridging process, enhancing security and providing an added assurance of transaction integrity.
+The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. The model includes an extra verifier(s) in the bridging process, enhancing security and providing an added assurance of transaction integrity.
 
-For more details, to collaborate or see examples of custom transceivers, contact Wormhole contributors.
+For more details, to collaborate, or to see examples of custom transceivers, contact Wormhole contributors.
 
 ## Lifecycle of a Message
 
 ### EVM
 
-#### 1. Transfer
+#### Transfer
 
-A client calls on `transfer` to initiate an NTT transfer. The client must specify at minimum, the amount of the transfer, the recipient chain, and the recipient address on the recipient chain. `transfer`also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the Transceiver on the source chain. Depending on mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned". Once the transfer has been forwarded to the Transceiver, the `NttManager` emits the `TransferSent` event.
+A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the amount of the transfer, the recipient chain, and the recipient address on the recipient chain. `transfer`also supports a flag to specify whether the `NttManager` should queue rate limited transfers or revert. Clients can also include additional instructions to forward along to the Transceiver on the source chain. Depending on mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned". Once the transfer has been forwarded to the Transceiver, the `NttManager` emits the `TransferSent` event.
 
 _Events_
 
@@ -74,17 +74,17 @@ event TransferSent(
 ```
 
 
-#### 2. Rate Limit
+#### Rate Limit
 
-A transfer can be rate-limited both on the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
+A transfer can be rate limited on both on the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
 
-If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with a `OutboundQueuedTransferStillQueued` error.
+If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
 
-Similarly, transfers that are rate-limited on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method. The `InboundTransferQueued` event is emitted.
+Similarly, rate limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
 
-If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with a `InboundQueuedTransferStillQueued` error.
+If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `InboundQueuedTransferStillQueued` error.
 
-To disable the rate-limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate-limiter is disabled, the inbound and outbound rate-limits can be set to 0.
+To disable the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is disabled, the inbound and outbound rate limits can be set to 0.
 
 _Events_
 
@@ -116,7 +116,7 @@ event OutboundTransferRateLimited(
 event InboundTransferQueued(bytes32 digest);
 ```
 
-#### 3. Send
+#### Send
 
 Once the `NttManager` forwards the message to the Transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the Transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole Transceiver can be sent via standard relaying, a specialized or custom relayer, or manually published via the core bridge).
 
@@ -135,13 +135,13 @@ event SendTransceiverMessage(
 );
 ```
 
-#### 4. Receive
+#### Receive
 
-Once a message has been emitted by a Transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding Transceiver on the recipient chain. The relayer interacts with the Transceiver via an entrypoint for receiving messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
+Once a message has been emitted by a Transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding Transceiver on the recipient chain. The relayer interacts with the Transceiver via an entry point for receiving messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
 
 This method should also forward the message to the `NttManager` on the destination chain. Note that the the Transceiver interface does not declare a signature for this method because receiving messages is specific to each Transceiver, and a one-size-fits-all solution would be overly restrictive.
 
-The `NttManager` contract allows an M of N threshold for Transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single Transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two Transceivers deliver valid attestations. When a message is attested to by a Transceiver, the contract emits the `MessageAttestedTo` event.
+The `NttManager` contract allows an M of N threshold for Transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single Transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two Transceivers deliver valid attestations. When a Transceiver attests to a message, the contract emits the `MessageAttestedTo` event.
 
 NTT implements replay protection, so if a given Transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
 
@@ -182,7 +182,7 @@ event ReceivedMessage(
 event MessageAlreadyExecuted(bytes32 indexed sourceNttManager, bytes32 indexed msgHash);
 ```
 
-#### 5. Mint or Unlock
+#### Mint or Unlock
 
 Once a transfer has been successfully verified, the tokens can be minted (if the mode is "burning") or unlocked (if the mode is "locking") to the recipient on the destination chain. Note that the source token decimals are bounded betweeen 0 and `TRIMMED_DECIMALS` as enforced in the wire format. The transfer amount is untrimmed (scaled-up) if the destination chain token decimals exceed `TRIMMED_DECIMALS`. Once the approriate number of tokens have been minted or unlocked to the recipient, the `TransferRedeemed` event is emitted.
 
@@ -199,12 +199,12 @@ event TransferRedeemed(bytes32 indexed digest);
 
 ### Solana
 
-#### 1. Transfer
+#### Transfer
 
 A client calls the `transfer_lock` or `transfer_burn` instruction based on whether the program is in `LOCKING` or `BURNING` mode. The program mode is set during initialization. When transferring, the client must specify the amount of the transfer, the recipient chain, the recipient address on the recipient chain, and the boolean flag `should_queue` to specify whether the transfer should be queued if it hits the outbound rate limit. If `should_queue` is set to false, the transfer reverts instead of queuing if the rate limit were to be hit.
 
 !!! note
-    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in `InvalidMode` error.
+    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in an `InvalidMode` error.
 
 Depending on the mode and instruction, the following will be produced in the program logs:
 
@@ -213,11 +213,11 @@ Program log: Instruction: TransferLock
 Program log: Instruction: TransferBurn
 ```
 
-Outbound transfers are always added into an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate limited. An `OutboxItem` is a Solana Account which holds details of the outbound transfer. If no rate limit is hit, the transfer can be released from the Outbox immediately. If a rate limit is hit, the transfer can only be released from the Outbox after the rate limit delay duration has expired.
+Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
 
-#### 2. Rate Limit
+#### Rate Limit
 
-The program checks rate limits via the `consume_or_delay` function during the transfer process. The Solana rate limiting logic is equivalent to the EVM rate limiting logic.
+During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate limiting logic is equivalent to the EVM rate limiting logic.
 
 If the transfer amount fits within the current capacity:
 
@@ -230,7 +230,7 @@ If the transfer amount does not fit within the current capacity:
 - If `shouldQueue = true`, add the transfer to the outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
 - If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
 
-#### 3. Send
+#### Send
 
 The caller then needs to request each Transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the Transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
 
@@ -245,11 +245,11 @@ The following will be produced in the program logs:
 Program log: Instruction: ReleaseOutbound
 ```
 
-#### 4. Receive
+#### Receive
 
-Similar to EVM, Transceivers vary in how they receive messages, since message relaying and verification methods may differ between implementations.
+Similar to EVM, Transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
 
-The Wormhole Transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole VAA and stores it in a `VerifiedTransceiverMessage` account.
+The Wormhole Transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
 
 The following will be produced in the program logs:
 
@@ -265,7 +265,7 @@ The following will be produced in the program logs:
 Program log: Instruction: Redeem
 ```
 
-#### 5. Mint or Unlock
+#### Mint or Unlock
 
 The inbound transfer is released and the tokens are unlocked or minted to the recipient through either `release_inbound_mint` if the mode is `BURNING`, or `release_inbound_unlock` if the mode is `LOCKING`. Similar to transfer, using the wrong transfer instruction (such as `release_inbound_mint` for a program that is in locking mode) will result in `InvalidMode` error.
 
