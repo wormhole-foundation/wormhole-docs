@@ -128,7 +128,7 @@ Each platform has an address type that understands the native address formats, r
 
 ### Tokens {: #tokens} 
 
-Similar to the `ChainAddress` type, the `TokenId` type provides the Chain and Address of a given Token.
+Similar to the `ChainAddress` type, the `TokenId` type provides the Chain and Address of a given token.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/tokens.ts'
