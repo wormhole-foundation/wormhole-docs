@@ -5,10 +5,10 @@ description: Explore Wormhole Queries, offering real-time access to verified blo
 
 # Queries Overview {: #queries-overview }
 
+Wormhole guardians, who run full nodes for various connected chains, facilitate a new cross-chain query (CCQ) service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
+
 !!! note
 	Queries are currently in closed beta, though you can start developing today! Check out [Getting Started](./getting-started.md) and reach out to [Join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
-
-Wormhole guardians, who run full nodes for various connected chains, facilitate a new cross-chain query (CCQ) service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
 Wormhole CCQs offers on-demand access to guardian-attested on-chain data. The current implementation provides integrators a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute CCQ requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
 
