@@ -86,7 +86,7 @@ The following section shows how to add an arbitrary token to your deployment of 
     You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
 
 This example config limits Connect to the Solana and Ethereum networks,
-and a handful of tokens including `BSKT`, which is not built in by default
+and a handful of tokens, including `BSKT`, which is not built in by default
 and provided under the `tokensConfig` key.
 
 See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank}
@@ -208,7 +208,7 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 |:--------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------:|
 | `moreNetworks.href`                         | Default value for missing network hrefs                                                                                                                               |                                       mandatory                                        |
 | `moreNetworks.target`                       | Default value for missing network link targets                                                                                                                        |                             optional, defaults to `_self`                              |
-| `moreNetworks.description`                  | Brief description that should be displayed as tooltip when the user hover an more network icon. Used as default for missing network descriptions                      |                                        optional                                        |
+| `moreNetworks.description`                  | Brief description that should be displayed as a tooltip when the user hovers over a more network icon. Used as default for missing network descriptions                      |                                        optional                                        |
 | `moreNetworks.networks[].icon`              | URL data encoded icon to display                                                                                                                                      |                                       mandatory                                        |
 | `moreNetworks.networks[].href`              | Network href to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the currently selected chains before redirecting |                                        optional                                        |
 | `moreNetworks.networks[].label`             | Display text                                                                                                                                                          |                                       mandatory                                        |
@@ -224,7 +224,7 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 
 ### More Tokens {: #more-tokens }
 
-Show a particular entry on the select tokens modal which redirects the user to a different page/dApp/mobile app.
+Show a particular entry on the select tokens modal, redirecting the user to a different page/dApp/mobile app.
 
 | Property            | Description                                                                                                                                                  |           Required            |
 |:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------:|
