@@ -27,7 +27,7 @@ Converting the returned value of the executed call from hexidecimal results in t
 
 ## Construct a Query {: #construct-a-query}
 
-For this part, you can use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} along with [axios](https://www.npmjs.com/package/axios){target=\_blank} for your RPC requests.
+You can use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to construct a query. You will also need an RPC endpoint from the provider of your choice. This example uses [axios](https://www.npmjs.com/package/axios){target=\_blank} for RPC requests.
 
 ```jsx
 npm i @wormhole-foundation/wormhole-query-sdk axios
