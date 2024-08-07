@@ -90,7 +90,7 @@ For example, many chains have implementations forked from [geth](https://github.
 
 \*EthCallByTimestamp arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
 
-### Testnet {: #testnet}
+### TestNet {: #testnet}
 
 See the [Constants Reference](../reference/constants.md) for the list of TestNet chains.
 
