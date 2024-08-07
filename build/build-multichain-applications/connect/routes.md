@@ -49,7 +49,7 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
 
 [Powered by Uniswap liquidity pools](https://github.com/wormhole-foundation/example-uniswap-liquidity-layer){target=\_blank}, this route can transfer native ETH or wstETH between certain EVMs without going through the native bridges. For example, you can transfer native ETH from Arbitrum to Optimism and end up with Optimism ETH all in one go. Supported chains are Ethereum, Arbitrum, Optimism, Base, Polygon (canonical wETH), BSC (canonical wETH), Avalanche (canonical wETH)
 
-#### Automatic route {: #automatic-route-eth}
+#### Automatic Route {: #automatic-route-eth}
 Due to the complexity of the transaction that needs to be executed on the destination, only the relayed route is available. Enable the `ethBridge` and/or `wstETHBridge` route in the configuration to offer this option.
 
 ## USDT Bridge route (for USDT only) {: #usdt-bridge-route-for-usdt-only}
