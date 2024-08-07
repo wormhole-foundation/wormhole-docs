@@ -5,7 +5,8 @@ description: Explore Wormhole Queries, offering real-time access to verified blo
 
 # Queries Overview {: #queries-overview }
 
-💡 Queries are currently in closed beta, though you can start developing today! Check out [Getting Started](./getting-started.md) and reach out to [Join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
+!!! note
+	Queries are currently in closed beta, though you can start developing today! Check out [Getting Started](./getting-started.md) and reach out to [Join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
 Wormhole Queries offer on-demand access to guardian-attested on-chain data. The current implementation provides integrators with a simple REST endpoint to initiate an off-chain request via a proxy, which handles forwarding the request to the guardians and gathering a quorum of responses. The result consists of the encoded response (including the request details) and the guardian signatures. These can then be verified on-chain. Read more about Queries in the [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
 
@@ -43,13 +44,7 @@ The result contains the specified block number, hash, timestamp, and the call re
 
 This query type is similar to `eth_call` but targets a timestamp instead of a specific block_id. This can be useful when forming requests based on uncorrelated data, such as requiring data from another chain based on the block timestamp of a given chain.
 
-The result also contains the target and block details with the following enforced conditions:
-
-```
-target_block.timestamp <= target_time < following_block.timestamp
-and
-following_block_num - 1 == target_block_num
-```
+The result also contains the target and block details with the following enforced conditions: `target_block.timestamp <= target_time < following_block.timestamp` and `following_block_num - 1 == target_block_num`
 
 ### eth_call With Finality {: #eth-call-with-finality}
 
