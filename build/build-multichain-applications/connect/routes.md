@@ -64,7 +64,7 @@ Only the relayed route is available due to the complexity of the transaction tha
 
 [Wormhole Gateway](https://docs.wormhole.com/wormhole/explore-wormhole/gateway){target=\_blank}  is a Cosmos-SDK chain that bridges non-native assets into the Cosmos ecosystem and serves as a source for unified liquidity across Cosmos chains. This transfer method is offered when the destination is an [IBC-compatible](https://cosmos.network/ibc/){target=\_blank}  Cosmos chain (Osmosis, CosmosHub, Evmos, Kujira, Injective).
 
-#### Automatic route {: #automatic-route-cosmos}
+#### Automatic Route {: #automatic-route-cosmos}
 
 The Wormhole Guardian network automatically delivers messages to Wormhole Gateway if the tokens are destined for IBC-compatible Cosmos chains, requiring no input or extra 'Gateway gas' from the user. When the wormhole-wrapped tokens are minted on Gateway, they are automatically transferred to their intended destination via a network of IBC relayers. Enable the `cosmosGateway` route in the configuration to offer this option.
 
