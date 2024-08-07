@@ -3,7 +3,7 @@ title: Query FAQs
 description: Explore frequently asked questions about Wormhole Queries, which offer on-demand access to guardian-attested on-chain data via a REST API endpoint.
 ---
 
-# FAQs about Queries
+# Query FAQs
 
 ## What libraries are available to handle queries?
 
