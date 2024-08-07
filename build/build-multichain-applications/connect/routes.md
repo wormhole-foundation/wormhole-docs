@@ -68,7 +68,7 @@ Only the relayed route is available due to the complexity of the transaction tha
 
 The Wormhole Guardian network automatically delivers messages to Wormhole Gateway if the tokens are destined for IBC-compatible Cosmos chains, requiring no input or extra 'Gateway gas' from the user. When the wormhole-wrapped tokens are minted on Gateway, they are automatically transferred to their intended destination via a network of IBC relayers. Enable the `cosmosGateway` route in the configuration to offer this option.
 
-## tBTC route (for tBTC only) {: #tbtc-route-for-tbtc-only}
+## tBTC Route (tBTC only) {: #tbtc-route-for-tbtc-only}
 
 Bridge [Threshold](https://threshold.network/){target=\_blank}'s Bitcoin via this hybrid solution that combines the Token Bridge and Threshold's own contracts. Native tBTC is first locked in the Wormhole Token Bridge, transferred to the destination in the form of wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (Solana, Polygon, Arbitrum, Optimism, Base).
 
