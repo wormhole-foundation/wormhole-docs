@@ -29,7 +29,7 @@ Up to 255 queries can be batched together, with certain types allowing for batch
 
 ## Supported Query Types {: #supported-query-types}
 
-There are currently 5 supported types of queries. See [the whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank} for more details on each.
+There are currently five supported types of queries. See [the whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank} for more details on each.
 
 ### eth_call {: #eth-call}
 
