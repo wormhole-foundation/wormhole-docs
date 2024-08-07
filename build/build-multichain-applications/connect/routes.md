@@ -3,7 +3,7 @@ title: Routes
 description: Explore Wormhole Connect's routing capabilities for asset transfers, featuring Token Bridge, CCTP, NTT, and various blockchain-specific routes for optimal UX. 
 ---
 
-## Routes overview {: #routes-overview}
+## Routes Overview {: #routes-overview}
 
 This page explains the concept of routes in Wormhole Connect. To configure routes for your widget, check [here](../connect/configuration.md).
 
