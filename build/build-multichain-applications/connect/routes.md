@@ -76,4 +76,4 @@ Note that if native tBTC is transferred out of these chains to any other outside
 
 #### Manual Route  {: #manual-route-tbtc}
 
-This transfer method needs two transactions: one on the origin chain to burn or lock the tokens, and one on the destination chain to mint the tokens. To offer this option, enable the `tbtc` route in the configuration.
+This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To provide this option, enable the `tbtc` route in the configuration.
