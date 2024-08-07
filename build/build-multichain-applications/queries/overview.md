@@ -71,8 +71,8 @@ For example, many chains have implementations forked from [geth](https://github.
 
 ### Mainnet {: #mainnet}
 
-| Chain         | Wormhole Chain ID | eth_call | By Timestamp       | With Finality | Expected History |
-|---------------|-------------------|----------|--------------------|---------------|------------------|
+|      Chain      | Wormhole Chain ID | eth_call |    By Timestamp    | With Finality | Expected History |
+|:---------------:|:-----------------:|:--------:|:------------------:|:-------------:|:----------------:|
 | Ethereum      | 2                 | ✅        | ✅                  | ✅             | 128 blocks       |
 | BSC           | 4                 | ✅        | ✅                  | ✅             | 128 blocks       |
 | Polygon       | 5                 | ✅        | ✅                  | ✅             | 128 blocks       |
