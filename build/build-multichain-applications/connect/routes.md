@@ -58,7 +58,7 @@ Operating on the same technology as the ETH Bridge, this route can transfer USDT
 
 #### Automatic Route {: #automatic-route-usdt}
 
-Due to the complexity of the transaction that needs to be executed on the destination, only the relayed route is available. To offer this option, enable the `usdtBridge` route in the configuration.
+Only the relayed route is available due to the complexity of the transaction that needs to be executed on the destination. Enable the `usdtBridge` route in the configuration to offer this option.
 
 ## Cosmos Gateway route {: #cosmos-gateway-route}
 
