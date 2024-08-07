@@ -68,7 +68,7 @@ You can configure Connect to be used in TestNet environments also. You can toggl
 
 ### Custom RPC Endpoint {: #custom-rpc-endpoint }
 
-This shows how to change which RPC provider Connect uses for a particular network.
+You can define a custom RPC provider for your Connect Widget to use. This can be especially helpful if you'd like to replace public endpoints with dedicated or private endpoints.
 
 ```json
 const config: WormholeConnectConfig = {
@@ -99,7 +99,7 @@ for the type definition of `TokensConfig`.
 
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
-You can provide a whitelist of tokens under `tokens`. By default, Connect will offer its full built-in list:
+By default, Connect will offer its full built-in list of assets but you can alternatively restrict the displayed assets by defining a subset of tokens under `tokens`. The default, full list is as follows:
 
 | Mainnet        | TestNet                            |
 |----------------|------------------------------------|
@@ -153,7 +153,7 @@ You can provide a whitelist of tokens under `tokens`. By default, Connect will o
 
 ### Routes {: #routes }
 
-You can provide a whietlist of routes under `routes`. By default, Connect will offer its full built-in list:
+By default, Connect will offer its full built-in list of routes but you can alternatively restrict the possible routes assets by defining a subset under `routes`. By default, Connect will offer its full built-in list:
 
 | Mainnet       | TestNet       |
 |---------------|---------------|
@@ -171,7 +171,7 @@ You can provide a whietlist of routes under `routes`. By default, Connect will o
 
 ### Wallet Connect Project ID  {: #wallet-connect-project-id }
 
-Required in order to display Wallet Connect as a wallet option. You can get a project ID on https://cloud.walletconnect.com/.
+If you would like to offer WalletConnect as a supported wallet option, you'll need to obtain a project ID on the [WalletConnect cloud dashboard](https://cloud.walletconnect.com/){target=\_blank}.
 
 ### Toggle Hamburger Menu {: #toggle-hamburger-menu }
 
