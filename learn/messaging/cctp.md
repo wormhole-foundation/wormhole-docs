@@ -1,6 +1,6 @@
 ---
 title: CCTP and Circle Bridge
-description: TODO
+description: Unlock fast, affordable USDC transfers with Wormhole's integration of Circle's CCTP, featuring automatic relaying and native gas solutions.
 ---
 
 # CCTP and Circle Bridge
@@ -27,6 +27,7 @@ The Wormhole CCTP Relayer charges a fee to deliver the attestation and complete 
 |  Ethereum       |     1.0 USDC    |
 | Everything else |     0.1 USDC    |
 
+<!-- this is maybe the intended profit margin, but definitely not the total relaying cost -->
 
 Another advantage of using the Automatic Relaying feature is the opportunity to transfer some native gas to the receiver on the destination chain. This feature is referred to as `native gas dropoff`.
 
