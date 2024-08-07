@@ -11,7 +11,7 @@ Routes are methods by which the widget will transfer the assets. Wormhole Connec
 
 When you select the source chain, source token, and destination chain, Wormhole Connect will display the best routes available for that particular combination. In practice,  if routes other than the Token Bridge are available, only those will be displayed. Check the [feature matrix](./features.md) to see under which exact conditions the routes appear.
 
-## Token bridge routes {: #token-bridge-routes}
+## Token Bridge Routes {: #token-bridge-routes}
 
 The Token Bridge is Wormhole's best-known transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
