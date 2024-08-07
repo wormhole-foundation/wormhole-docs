@@ -40,7 +40,7 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 [Wormhole's Native Token Transfer framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](./configuration.md) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repo](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
 
 #### Manual Route {: #manual-route-ntt}
-This transfer method needs two transactions: one on the origin chain to burn or lock the tokens, and one on the destination chain to mint the tokens. To offer this option, enable the `nttManual` route in the configuration.
+This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To offer this option, enable the `nttManual` route in the configuration.
 
 #### Automatic Route  {: #automatic-route-ntt}
 Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to execute one transaction on the origin chain and have the tokens delivered to the destination automatically—for a small fee. Wormhole Connect automatically detects whether a token is supported by the relayer and will display the option if the `nttRelay` route is enabled in the configuration.
