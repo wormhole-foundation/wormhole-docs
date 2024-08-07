@@ -30,7 +30,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
 ### Custom Networks and RPC Endpoints {: #custom-networks-and-rpc-endpoints }
 
-Specify supported networks/tokens and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you do not provide your own
+Specify supported networks/tokens and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you do not provide your own.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/connect/configuration/custom-simple.jsx'
@@ -38,7 +38,7 @@ Specify supported networks/tokens and custom RPC endpoints. Your users may encou
 
 ### Fully Customized Theme {: #fully-customized-theme }
 
-Wormhole Connect offers a high level of customizability to suit and integrate with your application's design, including a variety of options for button, background, popover, font and more.
+Wormhole Connect offers a high level of customizability to suit and integrate with your application's design, including a variety of options for button, background, popover, font and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [codeless style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/connect/configuration/custom-full.jsx'
