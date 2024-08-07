@@ -7,7 +7,7 @@ description: Explore frequently asked questions about Wormhole Queries, which of
 
 ## What libraries are available to handle queries?
 
-The [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses along with some utilities for posting query responses.
+You can use the [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses.
 
 The [Solidity QueryResponse Abstract Contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. Simply `forge install wormhole-foundation/wormhole-solidity-sdk`. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repo as an example use case. The SDK also contains [`QueryTest.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/helpers/QueryTest.sol){target=\_blank} for mocking query requests and responses in forge tests.
 
