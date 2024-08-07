@@ -92,7 +92,7 @@ For example, many chains have implementations forked from [geth](https://github.
 
 ### Testnet {: #testnet}
 
-See the [Constants Reference](../reference/constants.md) for the list of testnet chains.
+See the [Constants Reference](../reference/constants.md) for the list of TestNet chains.
 
 ## Next Steps {: #next-steps}
 
