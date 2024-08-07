@@ -7,7 +7,7 @@ description: Explore Wormhole's Native Token Transfers Architecture, which cover
 
 The Native Token Transfers (NTT) architecture in the Wormhole ecosystem enables secure and efficient token transfers across multiple blockchains. Its core components, managers and transmitters, are designed to handle the complexities of cross-chain communication.
 
-_Managers_ oversee the token transfer process, including rate limiting and message attestation. They manage interactions with multiple Transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain.
+_Managers_ oversee the token transfer process, including rate-limiting and message attestation. They manage interactions with multiple Transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain.
 
 _Transceivers_ are responsible for encoding, sending, receiving, and decoding messages across chains, facilitating seamless communication between different blockchain environments. They work with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers.
 
@@ -19,7 +19,7 @@ There are two primary components to NTT: Managers and Transceivers.
 
 ### Managers
 
-Manage the token and the transceivers, handle rate limiting, and message attestation. Each `NttManager` corresponds to a single token but can control multiple transceivers. Key functions include:
+Manage the token and the transceivers, handle rate-limiting and message attestation. Each `NttManager` corresponds to a single token but can control multiple transceivers. Key functions include:
 
 - `transfer` - initiates a token transfer process involving token locking or burning on the source chain
 - `quoteDeliveryPrice` - quotes the fee for delivering a message to a specific target chain by querying and aggregating quotes from the Transceiver contracts
@@ -41,7 +41,7 @@ Responsible for sending NTT transfers forwarded through the manager on the sourc
 
 #### Custom Transceivers
 
-NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as Transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5, etc. <!-- check back how to write the numbers -->
+NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as Transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
 
 ![Custom Attestation with NTT diagram](/images/learn/messaging/messaging-2.webp)
 
@@ -55,7 +55,7 @@ For more details, to collaborate, or to see examples of custom transceivers, con
 
 #### Transfer
 
-A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the amount of the transfer, the recipient chain, and the recipient address on the recipient chain. `transfer`also supports a flag to specify whether the `NttManager` should queue rate limited transfers or revert. Clients can also include additional instructions to forward along to the Transceiver on the source chain. Depending on mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned". Once the transfer has been forwarded to the Transceiver, the `NttManager` emits the `TransferSent` event.
+A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the transfer amount, the recipient chain, and the recipient address on the recipient chain. `transfer` also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the Transceiver on the source chain. Depending on the mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned." Once the transfer has been forwarded to the Transceiver, the `NttManager` emits the `TransferSent` event.
 
 _Events_
 
@@ -76,13 +76,13 @@ event TransferSent(
 
 #### Rate Limit
 
-A transfer can be rate limited on both on the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
+A transfer can be rate-limited on both on the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
 
 If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
 
-Similarly, rate limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
+Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
 
-If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `InboundQueuedTransferStillQueued` error.
+If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
 
 To disable the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is disabled, the inbound and outbound rate limits can be set to 0.
 
@@ -137,7 +137,7 @@ event SendTransceiverMessage(
 
 #### Receive
 
-Once a message has been emitted by a Transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding Transceiver on the recipient chain. The relayer interacts with the Transceiver via an entry point for receiving messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
+Once a message has been emitted by a Transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding Transceiver on the recipient chain. The relayer interacts with the Transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
 
 This method should also forward the message to the `NttManager` on the destination chain. Note that the the Transceiver interface does not declare a signature for this method because receiving messages is specific to each Transceiver, and a one-size-fits-all solution would be overly restrictive.
 
@@ -145,7 +145,7 @@ The `NttManager` contract allows an M of N threshold for Transceiver attestation
 
 NTT implements replay protection, so if a given Transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
 
-If a message had already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of Transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
+If a message has already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of Transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
 
 _Events_
 
@@ -213,21 +213,21 @@ Program log: Instruction: TransferLock
 Program log: Instruction: TransferBurn
 ```
 
-Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
+Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
 
 #### Rate Limit
 
-During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate limiting logic is equivalent to the EVM rate limiting logic.
+During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
 
 If the transfer amount fits within the current capacity:
 
 - Reduce the current capacity
 - Refill the inbound capacity for the destination chain
-- Add the transfer to the outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
+- Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
 
 If the transfer amount does not fit within the current capacity:
 
-- If `shouldQueue = true`, add the transfer to the outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
+- If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
 - If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
 
 #### Send
