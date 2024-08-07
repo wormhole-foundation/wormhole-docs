@@ -188,7 +188,7 @@ If you have a CoinGecko API Plan, you can include the API key in the configurati
 
 ### More Networks {: #more-networks }
 
-Specify a set of extra networks to be displayed on the network selection modal, each of them linking to a different page/dApp/mobile app the user will be redirected to.
+Specify a set of extra networks to be displayed on the network selection modal, each linking to a different page, dApp, or mobile app the user will be redirected to.
 
 | Property                                    | description                                                                                                                                                           |                                                                                        |
 |:--------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------:|
