@@ -233,7 +233,7 @@ Show a special entry on the select tokens modal which redirects the user to a di
 
 ### Explorer {: #explorer }
 
-Enable explorer button to allow users to search for his transactions on a given explorer filtering by their wallet address.
+Enable the explorer button to allow users to search for their transactions on a given explorer, filtering by their wallet address.
 
 | Property          | Description                                                                                                                                   |               Required               |
 |:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------:|
