@@ -38,7 +38,7 @@ Specify supported networks/tokens and custom RPC endpoints. Your users may encou
 
 ### Fully Customized Theme {: #fully-customized-theme }
 
-Wormhole Connect offers a high level of customizability to suit and integrate with your application's design, including a variety of options for button, background, popover, font and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [codeless style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
+Wormhole Connect offers a high level of customizability that suits and integrates with your application's design, including various options for buttons, backgrounds, popovers, fonts, and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [codeless style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/connect/configuration/custom-full.jsx'
@@ -46,7 +46,7 @@ Wormhole Connect offers a high level of customizability to suit and integrate wi
 
 ### Environment {: #environment }
 
-You can configure Connect to be used in TestNet environments also. You can toggle between Mainnet and TestNet environments by defining the `WormholeConnectConfig` as follows:
+You can configure Connect to be used in TestNet environments, too. You can toggle between Mainnet and TestNet environments by defining the `WormholeConnectConfig` as follows:
 
 === "Mainnet"
 
@@ -80,11 +80,10 @@ const config: WormholeConnectConfig = {
 
 ### Arbitrary Token {: #arbitrary-token }
 
-This shows how to add an arbitrary token to your deployment of Connect.
-Please note you will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
+The following example shows how to add an arbitrary token to your deployment of Connect. Please note you will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
 
-These example config limits Connect to the Solana and Ethereum networks,
-and a handful of tokens including `BSKT` which is not built in by default
+This example config limits Connect to the Solana and Ethereum networks,
+and a handful of tokens including `BSKT`, which is not built in by default
 and provided under the `tokensConfig` key.
 
 See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank}
@@ -99,7 +98,7 @@ for the type definition of `TokensConfig`.
 
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
-By default, Connect will offer its full built-in list of assets but you can alternatively restrict the displayed assets by defining a subset of tokens under `tokens`. The default, full list is as follows:
+By default, Connect will offer its complete built-in list of assets, but you can restrict the displayed assets by defining a subset of tokens under `tokens.` The default full list is as follows:
 
 | Mainnet        | TestNet                            |
 |----------------|------------------------------------|
@@ -153,7 +152,7 @@ By default, Connect will offer its full built-in list of assets but you can alte
 
 ### Routes {: #routes }
 
-By default, Connect will offer its full built-in list of routes but you can alternatively restrict the possible routes assets by defining a subset under `routes`. By default, Connect will offer its full built-in list:
+By default, Connect will offer its complete built-in list of routes, but you can restrict the possible route assets by defining a subset under `routes.` By default, Connect will offer its complete built-in list:
 
 | Mainnet       | TestNet       |
 |---------------|---------------|
@@ -222,7 +221,7 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 
 ### More Tokens {: #more-tokens }
 
-Show a special entry on the select tokens modal which redirects the user to a different page/dApp/mobile app.
+Show a particular entry on the select tokens modal which redirects the user to a different page/dApp/mobile app.
 
 | Property            | Description                                                                                                                                                  |           Required            |
 |:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------:|
