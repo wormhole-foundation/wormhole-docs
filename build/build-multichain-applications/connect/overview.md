@@ -49,7 +49,7 @@ Now you can import the React component:
 --8<-- 'code/build/build-multichain-applications/connect/overview/import.js'
 ```
 
-### Option 2: hosted version via CDN (for any website) {: #option-2-hosted-version-via-cdn-for-any-website}
+### Use Hosted Version via CDN (for any website) {: #option-2-hosted-version-via-cdn-for-any-website}
 
 If you're not using React, you can still embed Connect on your website by using the hosted version. The sample code below uses the popular and free unpkg.com CDN from which your app will load the widget.
 
