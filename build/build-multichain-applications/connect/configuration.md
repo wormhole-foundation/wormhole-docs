@@ -176,7 +176,7 @@ If you would like to offer WalletConnect as a supported wallet option, you'll ne
 
 By setting the `showHamburgerMenu` option to **false**, you can deactivate the hamburger menu, causing the links to be positioned at the bottom.
 
-#### Add extra menu entry {: #add-extra-menu-entry }
+#### Add Extra Menu Entry {: #add-extra-menu-entry }
 
 By setting the `showHamburgerMenu` option to `false,` you can use the `menu` array to add extra links.
 
@@ -201,13 +201,13 @@ The CoinGecko API can be used to fetch token price data. If you have a CoinGecko
 
 Specify a set of extra networks to be displayed on the network selection modal, each linking to a different page, dApp, or mobile app the user will be redirected to.
 
-| Property                                    | description                                                                                                                                                           |                                                                                        |
+| Property                                    | Description                                                                                                                                                           |                                                                                        |
 |:--------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------:|
 | `moreNetworks.href`                         | Default value for missing network hrefs                                                                                                                               |                                       mandatory                                        |
 | `moreNetworks.target`                       | Default value for missing network link targets                                                                                                                        |                             optional, defaults to `_self`                              |
 | `moreNetworks.description`                  | Brief description that should be displayed as tooltip when the user hover an more network icon. Used as default for missing network descriptions                      |                                        optional                                        |
 | `moreNetworks.networks[].icon`              | URL data encoded icon to display                                                                                                                                      |                                       mandatory                                        |
-| `moreNetworks.networks[].href`              | Network href to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the selected currently selected chains before redirecting |                                        optional                                        |
+| `moreNetworks.networks[].href`              | Network href to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the currently selected chains before redirecting |                                        optional                                        |
 | `moreNetworks.networks[].label`             | Display text                                                                                                                                                          |                                       mandatory                                        |
 | `moreNetworks.networks[].name`              | Unique network key                                                                                                                                                    |                optional, defaults to a snake_case version of the label                 |
 | `moreNetworks.networks[].description`       | Description value                                                                                                                                                     |                    optional, defaults to `moreNetworks.description`                    |
@@ -232,7 +232,7 @@ Show a particular entry on the select tokens modal which redirects the user to a
 
 ### Explorer {: #explorer }
 
-Enable explorer button to allow users to search for his transactions on a given explorer filtering by their wallet address.
+Enable the explorer button to allow users to search for their transactions on a given explorer, filtering by their wallet address.
 
 | Property          | Description                                                                                                                                   |               Required               |
 |:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------:|
