@@ -1,6 +1,6 @@
 ---
 title: Getting Started with Queries 
-description: Explore a simple demo of interacting with Wormhole Queries by using an eth_call request to querying the supply of wETH on Ethereum using a Wormhole query.
+description: Explore a simple demo of interacting with Wormhole Queries using an eth_call request to query the supply of wETH on Ethereum using a Wormhole query.
 ---
 
 # Getting Started with Queries {: #getting-started-with-queries}
