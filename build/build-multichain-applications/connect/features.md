@@ -39,7 +39,7 @@ description: Explore a comprehensive Feature Support matrix and explanation deta
 
 Wormhole is best known for its token bridge transfer method. It locks assets on the source chain and mints wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
-This route appears if 
+This route appears if:
 - both the origin and destination chains support Token Bridge 
 - and if no non-Token Bridge routes are available for the selected token
 
