@@ -36,7 +36,7 @@ Specify supported networks/tokens and custom RPC endpoints. Your users may encou
 --8<-- 'code/build/build-multichain-applications/connect/configuration/custom-simple.jsx'
 ```
 
-### Fully customized theme {: #fully-customized-theme }
+### Fully Customized Theme {: #fully-customized-theme }
 
 Wormhole Connect offers a high level of customizability to suit and integrate with your application's design, including a variety of options for button, background, popover, font and more.
 
