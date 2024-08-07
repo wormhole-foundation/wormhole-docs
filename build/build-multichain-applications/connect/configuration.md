@@ -46,13 +46,25 @@ Wormhole Connect offers a high level of customizability to suit and integrate wi
 
 ### Environment {: #environment }
 
-This shows how to run Connect on TestNet.
+You can configure Connect to be used in TestNet environments as well. You can toggle between Mainnet and TestNet environments by defining the `WormholeConnectConfig` as follows:
 
-```json
-const config: WormholeConnectConfig = {
-  "env": "testnet"
-}
-```
+=== "Mainnet"
+
+    ```json
+    const config: WormholeConnectConfig = {
+      "env": "mainnet"
+    }
+    ```
+
+=== "TestNet"
+
+    ```json
+    const config: WormholeConnectConfig = {
+      "env": "testnet"
+    }
+    ```
+
+
 
 ### Custom RPC Endpoint {: #custom-rpc-endpoint }
 
