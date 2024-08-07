@@ -53,7 +53,7 @@ Finally, put it all together in a `QueryRequest`
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-request.jsx'
 ```
 
-This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can log this out as JSON to see the structure.
+This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can use `console.log` to print the JSON object and review the structure.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/per-chain-query-request.jsx'
