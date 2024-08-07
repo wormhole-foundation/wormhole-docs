@@ -61,7 +61,7 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 
 ## Mock a Query {: #mock-a-query}
 
-For easier testing, the Query SDK provides a `QueryProxyMock` which will perform the request and sign the result with the [devnet](../reference/dev-env/tilt.md) guardian key. The `mock` call returns the same format as the Query Proxy.
+For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [devnet](../reference/dev-env/tilt.md) guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-proxy-mock.jsx'
