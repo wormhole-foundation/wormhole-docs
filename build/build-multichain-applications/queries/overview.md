@@ -24,7 +24,7 @@ The step-by-step flow of a query is as follows:
 2. The query proxy validates the request and forwards it to the Guardians via a gossip network.
 3. The Guardians independently validate the request, make the requisite RPC calls, verify the results, sign, and gossip a response back to the Query Proxy.
 4. The Query Proxy aggregates the results and returns a response when it reaches a quorum of two-thirds or more of the current Guardian set - the exact quorum requirements as the core bridge.
-5. The off-chain process can then submit these to an on-chain contract which should verify the signatures and validate the request before processing the result.
+5. The off-chain process can then submit these requests to an on-chain contract which should verify the signatures and validate the request before processing the result.
 
 In the flow described above, the Query Proxy is a permissioned but trustless part of the protocol. In most cases, this entire process takes less than one second. If a request is invalid or cannot be processed by the Guardians, they will retry for up to one minute before timing out. Requests can be batched to have the guardians make multiple calls to multiple networks. This can further reduce overhead for processing query responses on-chain. Up to 255 queries can be batched together, with certain types allowing for batching themselves.
 
