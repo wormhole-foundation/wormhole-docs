@@ -74,6 +74,6 @@ Bridge [Threshold](https://threshold.network/){target=\_blank}'s Bitcoin via thi
 
 Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through the Token Bridge and the resulting asset will be a wormhole-wrapped token instead of native tBTC.
 
-#### Manual route  {: #manual-route-tbtc}
+#### Manual Route  {: #manual-route-tbtc}
 
 This transfer method needs two transactions: one on the origin chain to burn or lock the tokens, and one on the destination chain to mint the tokens. To offer this option, enable the `tbtc` route in the configuration.
