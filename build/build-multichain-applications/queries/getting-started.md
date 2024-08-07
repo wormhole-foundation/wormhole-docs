@@ -11,7 +11,7 @@ This guide covers using a simple `eth_call` request to get the total supply of W
 
 ## RPC Basics {: #rpc-basics}
 
-Before we dig into anything Queries specific, let’s look at how to make an [eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} against a public Ethereum RPC. Before we can make a request, we need some information about the contract we want to call.
+Before digging into anything Queries specific, this page will look at how to make an [eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} against a public Ethereum RPC. Before making a request, you need some information about the contract you want to call, including:
 
 - **to**: the contract to call
   - WETH is [0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2){target=\_blank}
@@ -27,15 +27,15 @@ Converting that result from hex gets us `3172615244782286193073777`. You can com
 
 ## Construct a Query {: #construct-a-query}
 
-For this part, we will use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} along with [axios](https://www.npmjs.com/package/axios){target=\_blank} for our RPC requests.
+For this part, you can use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} along with [axios](https://www.npmjs.com/package/axios){target=\_blank} for your RPC requests.
 
 ```jsx
 npm i @wormhole-foundation/wormhole-query-sdk axios
 ```
 
-In order to make an `EthCallQueryRequest`, we need a specific block number or hash as well as the call data to request.
+In order to make an `EthCallQueryRequest`, you need a specific block number or hash as well as the call data to request.
 
-We can request the latest block from a public node using `eth_getBlockByNumber` to get the latest block.
+You can request the latest block from a public node using `eth_getBlockByNumber` to get the latest block.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/get-block-by-number.jsx'
@@ -67,7 +67,7 @@ For easier testing, the Query SDK provides a `QueryProxyMock` which will perform
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-proxy-mock.jsx'
 ```
 
-This response is suited for on-chain use, but the SDK also includes a parser so we can read the results in the client.
+This response is suited for on-chain use, but the SDK also includes a parser so you can read the results in the client.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-response.jsx'
@@ -87,7 +87,7 @@ It is common to test against a local fork of mainnet with something like
 anvil --fork-url https://ethereum.publicnode.com
 ```
 
-In order for mock requests to verify against the mainnet Core bridge contract, we need to replace the current guardian set with the single devnet key used by the mock.
+In order for mock requests to verify against the mainnet Core bridge contract, you need to replace the current guardian set with the single devnet key used by the mock.
 
 Here's an example for Ethereum mainnet, where the `-a` parameter is the [Core bridge address](../reference/constants.md#core-contracts) on that chain.
 
