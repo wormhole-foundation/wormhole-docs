@@ -20,7 +20,7 @@ The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main
 
 Certainly. You can find a complete walkthrough on the [Getting Started page](./getting-started.md). Additionally, you can find full code examples in available in the following repositories:
 
-- [Basic Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
+- [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
 - [Solana PDA / Token Account Balance](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
 - [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
