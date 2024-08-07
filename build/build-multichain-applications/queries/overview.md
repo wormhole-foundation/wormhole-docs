@@ -21,7 +21,7 @@ Wormhole Queries offer on-demand access to guardian-attested on-chain data. The 
 
 In the flow described above, the Query Proxy is a permissioned but trustless part of the protocol.
 
-In most cases, this entire process takes less than one second! If a request is invalid or cannot be processed by the guadians, they will retry for up to one minute before timing out.
+In most cases, this entire process takes less than one second. If a request is invalid or cannot be processed by the Guardians, they will retry for up to one minute before timing out.
 
 Requests can be batched to have the guardians make multiple calls to multiple networks. This can further reduce overhead for processing query responses on-chain.
 
