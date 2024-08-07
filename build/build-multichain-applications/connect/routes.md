@@ -52,7 +52,7 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
 #### Automatic Route {: #automatic-route-eth}
 Only the relayed route is available due to the complexity of the transaction that needs to be executed at the destination. To offer this option, enable the `ethBridge` and/or `wstETHBridge` route in the configuration to provide this option.
 
-## USDT Bridge route (for USDT only) {: #usdt-bridge-route-for-usdt-only}
+## USDT Bridge Route (USDT only) {: #usdt-bridge-route-for-usdt-only}
 
 Operating on the same technology as the ETH Bridge, this route can transfer USDT between certain EVMs without going through the native bridges. The resulting token will be the canonical USDT token on the destination, as opposed to the wormhole-wrapped variant. Supported chains are: Ethereum, Polygon, Avalanche, Arbitrum, Optimism, BSC, Base.
 
