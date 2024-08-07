@@ -167,7 +167,7 @@ By setting the `showHamburgerMenu` option to **false**, you can deactivate the h
 
 #### Add extra menu entry {: #add-extra-menu-entry }
 
-By setting the `showHamburgerMenu` option to **false**, you can use the `menu` array to add extra links.
+By setting the `showHamburgerMenu` option to `false,` you can use the `menu` array to add extra links.
 
 | property        | description                                 |
 |-----------------|---------------------------------------------|
