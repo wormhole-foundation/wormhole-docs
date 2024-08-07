@@ -117,7 +117,7 @@ A [QueryResponse abstract contract](https://github.com/wormhole-foundation/wormh
    1. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current guardian set stored in the Core bridge contract.
 2. Validate the request details. This may be different for every integrator depending on their use case, but generally checks the following.
    1. Is the request against the expected chain?
-   2. Is the request of the expected type? The `parseEthCall*` helpers perform this check when parsing.
+   2. Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing.
    3. Is the resulting block number and time expected? Some consumers might require that a block number be higher than the last, or the block time be within the last 5 minutes. `validateBlockNum` and `validateBlockTime` can help with the checks.
    4. Is the request for the expected contract and function signature? The `validateMultipleEthCallData` can help with non-parameter-dependent cases.
    5. Is the result of the expected length for the expected result type?
