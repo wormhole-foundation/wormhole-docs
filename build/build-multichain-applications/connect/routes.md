@@ -43,7 +43,7 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To offer this option, enable the `nttManual` route in the configuration.
 
 #### Automatic Route  {: #automatic-route-ntt}
-Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to execute one transaction on the origin chain and have the tokens delivered to the destination automatically—for a small fee. Wormhole Connect automatically detects whether a token is supported by the relayer and will display the option if the `nttRelay` route is enabled in the configuration.
+Trustless relayers can execute the second transaction on the user's behalf, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee. Wormhole Connect automatically detects whether the relayer supports a token and will display the option if the `nttRelay` route is enabled in the configuration.
 
 ## ETH Bridge route (for native ETH and wstETH) {: #eth-bridge-route-for-native-eth-and-wsteth}
 
