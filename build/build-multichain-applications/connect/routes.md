@@ -15,7 +15,7 @@ When you select the source chain, source token, and destination chain, Wormhole 
 
 The Token Bridge is Wormhole's best-known transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
-#### Manual route {: #manual-route}
+#### Manual Route {: #manual-route}
 
 This transfer method requires two transactions: one on the origin chain to lock the tokens (or burn the wormhole-wrapped tokens) and one on the destination chain to mint the wormhole-wrapped tokens (or unlock the original tokens). Enable the `bridge` route in the configuration to offer this option.
 
