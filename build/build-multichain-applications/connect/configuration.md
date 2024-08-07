@@ -188,7 +188,7 @@ By setting the `showHamburgerMenu` option to `false,` you can use the `menu` arr
 | `menu[].target` | anchor standard target, by default `_blank` |
 | `menu[].order`  | order where the new item should be injected |
 
-#### Sample configuration {: #sample-configuration }
+#### Sample Configuration {: #sample-configuration }
 
 ```json
 --8<-- 'code/build/build-multichain-applications/connect/configuration/sample-configuration.json'
