@@ -113,15 +113,15 @@ A mainnet Query Proxy is available at ` https://query.wormhole.com/v1/query`
 
 A [QueryResponse abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. Simply `forge install wormhole-foundation/wormhole-solidity-sdk`. Broadly, using a query response on-chain comes down to 3 steps.
 
-1. Parse and verify the query response.
-   1. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current guardian set stored in the Core bridge contract.
-2. Validate the request details. This may be different for every integrator depending on their use case, but generally checks the following.
-   1. Is the request against the expected chain?
-   2. Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing.
-   3. Is the resulting block number and time expected? Some consumers might require that a block number be higher than the last, or the block time be within the last 5 minutes. `validateBlockNum` and `validateBlockTime` can help with the checks.
-   4. Is the request for the expected contract and function signature? The `validateMultipleEthCallData` can help with non-parameter-dependent cases.
-   5. Is the result of the expected length for the expected result type?
-3. `abi.decode` the result.
+   1. Parse and verify the query response
+   2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current guardian set stored in the Core bridge contract
+   3. Validate the request details. This may be different for every integrator depending on their use case, but generally checks the following:
+    - Is the request against the expected chain?
+    - Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing
+    - Is the resulting block number and time expected? Some consumers might require that a block number be higher than the last, or the block time be within the last 5 minutes. `validateBlockNum` and `validateBlockTime` can help with the checks
+    - Is the request for the expected contract and function signature? The `validateMultipleEthCallData` can help with non-parameter-dependent cases
+    - Is the result of the expected length for the expected result type?
+   4. Run `abi.decode` on the result 
 
 See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol#L86-L135) contract for an example and read the docstrings of the above methods for detailed usage instructions.
 
