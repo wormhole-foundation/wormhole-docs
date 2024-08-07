@@ -72,7 +72,7 @@ The Wormhole Guardian network automatically delivers messages to Wormhole Gatewa
 
 You can bridge [Threshold's Bitcoin](https://threshold.network/){target=\_blank} via this hybrid solution that combines the Token Bridge and Threshold's contracts. Native tBTC is first locked in the Wormhole Token Bridge, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (Solana, Polygon, Arbitrum, Optimism, Base).
 
-Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through the Token Bridge and the resulting asset will be a wormhole-wrapped token instead of native tBTC.
+Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through the Token Bridge and the resulting asset will be a Wormhole-wrapped token instead of native tBTC.
 
 #### Manual Route  {: #manual-route-tbtc}
 
