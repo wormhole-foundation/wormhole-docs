@@ -16,7 +16,7 @@ The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main
 !!! note
 	A Rust SDK for Solana is being actively investigated by the Wormhole Contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repo as a proof of concept.
 
-## Are there any examples?
+## Are there any query examples?
 
 There sure are!
 
