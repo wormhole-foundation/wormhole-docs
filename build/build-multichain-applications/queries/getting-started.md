@@ -134,7 +134,7 @@ See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blo
 
 The `QueryProxyQueryResponse` result requires a slight tweak when submitting to the contract to match the format of `function parseAndVerifyQueryResponse(bytes memory response, IWormhole.Signature[] memory signatures)`. A helper function, `signaturesToEvmStruct`, is provided in the SDK for this.
 
-For example, submitting the transaction to the demo contract:
+This example submits the transaction to the demo contract:
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-proxy-query-response.jsx'
