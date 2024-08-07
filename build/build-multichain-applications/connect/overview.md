@@ -51,7 +51,7 @@ Now you can import the React component:
 
 ### Use Hosted Version via CDN (for any website) {: #use-hosted-version-via-cdn-for-any-website}
 
-If you're not using React, you can still embed Connect on your website by using the hosted version. The sample code below uses the popular and free unpkg.com CDN from which your app will load the widget.
+If you're not using React, you can still embed Connect on your website by using the hosted version. The sample code below uses the popular and free `unpkg.com` CDN from which your app will load the widget.
 
 Simply copy and paste the following into your HTML body, and replace the ```{WORMHOLE_CONNECT_VERSION}``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest).
 
