@@ -5,7 +5,9 @@ description: Explore a simple demo of interacting with Wormhole Queries using an
 
 # Getting Started with Queries {: #getting-started-with-queries}
 
-💡There is a basic demo interacting with the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract hosted at [https://wormholelabs-xyz.github.io/example-queries-demo/](https://wormholelabs-xyz.github.io/example-queries-demo/){target=\_blank}. To get started, we will look at a simple `eth_call` request to get the total supply of WETH on Ethereum.
+You can visit the [Example Queries Demo](https://wormholelabs-xyz.github.io/example-queries-demo/) to view an interactive example of an application interacting with the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract.   
+
+This guide covers using a simple `eth_call` request to get the total supply of WETH on Ethereum.
 
 ## RPC Basics {: #rpc-basics}
 
