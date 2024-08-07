@@ -59,7 +59,7 @@ This route appears if:
 
 [Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains.
 
-This route appears if
+This route appears if:
 - both the origin and destination chains support Circle CCTP
 - the selected token is native Circle-issued USDC
 
