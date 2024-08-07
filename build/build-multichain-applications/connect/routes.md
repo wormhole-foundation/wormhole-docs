@@ -70,10 +70,10 @@ The Wormhole Guardian network automatically delivers messages to Wormhole Gatewa
 
 ## tBTC Route (tBTC only) {: #tbtc-route-for-tbtc-only}
 
-You can bridge [Threshold](https://threshold.network/){target=\_blank}'s Bitcoin via this hybrid solution that combines the Token Bridge and Threshold's own contracts. Native tBTC is first locked in the Wormhole Token Bridge, transferred to the destination in the form of wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (Solana, Polygon, Arbitrum, Optimism, Base).
+You can bridge [Threshold's Bitcoin](https://threshold.network/){target=\_blank} via this hybrid solution that combines the Token Bridge and Threshold's contracts. Native tBTC is first locked in the Wormhole Token Bridge, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (Solana, Polygon, Arbitrum, Optimism, Base).
 
 Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through the Token Bridge and the resulting asset will be a wormhole-wrapped token instead of native tBTC.
 
 #### Manual Route  {: #manual-route-tbtc}
 
-This transfer method needs two transactions: one on the origin chain to burn or lock the tokens, and one on the destination chain to mint the tokens. To offer this option, enable the `tbtc` route in the configuration.
+This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To provide this option, enable the `tbtc` route in the configuration.
