@@ -19,7 +19,7 @@ The Token Bridge is Wormhole's best-known transfer method. It locks assets on th
 
 This transfer method requires two transactions: one on the origin chain to lock the tokens (or burn the wormhole-wrapped tokens) and one on the destination chain to mint the wormhole-wrapped tokens (or unlock the original tokens). Enable the `bridge` route in the configuration to offer this option.
 
-#### Automatic route {: #automatic-route}
+#### Automatic Route {: #automatic-route}
 
 Trustless relayers can execute the second transaction on the user's behalf, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically - for a small fee. Wormhole Connect automatically detects whether the relayer supports a token and will display the option if the `relay` route is enabled in the configuration.
 
