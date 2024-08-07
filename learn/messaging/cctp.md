@@ -35,15 +35,3 @@ The ability to perform native gas dropoff addresses the common issue where a use
 
 !!! note
     Native gas dropoff is limited to TODO <!-- ?? -->
-
-## CCTP via Wormhole Connect Widget
-
-Using the Wormhole Connect widget, supporting CCTP USDC transfers is incredibly simple. Enable USDC bridging directly in your dApp in as few as five lines of code, and you'll get all the user-friendly features built by Wormhole along with it.
-
-An introduction is available on the [Wormhole Connect: Bridging Made Easy](#){target=\_blank} page.
-
-## CCTP via Connect SDK
-
-Supporting CCTP with manual or automatic transfers is straightforward using the Connect SDK.
-
-A full tutorial is available on the [USDC Transfers With Connect SDK](#){target=\_blank} page.
