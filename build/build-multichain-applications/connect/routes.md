@@ -30,7 +30,7 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
 Note that if native USDC is transferred from the CCTP-enabled chains to any other outside of this list, the transfer will be routed through the Token Bridge, and the resulting asset will be a Wormhole-wrapped token instead of native USDC.
 
 #### Manual Route {: #manual-route-cctp}
-This transfer method needs two transactions: one on the origin chain to burn the USDC and one on the destination chain to mint the USDC. The manual CCTP route does not use Wormhole messaging in the background; it relies on CCTP only. Enable the `cctpManual` route in the configuration to offer this option.
+This transfer method requires two transactions: one on the origin chain to burn the USDC and one on the destination chain to mint the USDC. The manual CCTP route does not use Wormhole messaging in the background; it relies on CCTP only. Enable the `cctpManual` route in the configuration to offer this option.
 
 #### Automatic Route {: #automatic-route-cctp}
 Trustless relayers can execute the second transaction on the user's behalf. Therefore, the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee. To offer this option, enable the `cctpRelay` route in the configuration.
