@@ -16,7 +16,7 @@ Wormhole Queries offer on-demand access to guardian-attested on-chain data. The 
 1. An off-chain process initiates a query request via HTTPS to the query proxy (a.k.a. CCQ Server) 
 2. The query proxy validates the request and forwards it to the Guardians via a gossip network.
 3. The Guardians independently validate the request, make the requisite RPC calls, verify the results, sign, and gossip a response back to the Query Proxy.
-4. The Query Proxy aggregates the results and returns a response when it reaches quorum - 2/3+ of the current guardian set - the same quorum requirements as the core bridge.
+4. The Query Proxy aggregates the results and returns a response when it reaches a quorum of two-thirds or more of the current Guardian set - the exact quorum requirements as the core bridge.
 5. The off-chain process can then submit these to an on-chain contract which should verify the signatures and validate the request before processing the result.
 
 In the flow described above, the Query Proxy is a permissioned but trustless part of the protocol.
