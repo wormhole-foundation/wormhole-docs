@@ -1,5 +1,5 @@
 ---
-title: FAQs about Queries
+title: Query FAQs
 description: Explore frequently asked questions about Wormhole Queries, which offer on-demand access to guardian-attested on-chain data via a REST API endpoint.
 ---
 
