@@ -56,7 +56,7 @@ Only the relayed route is available due to the complexity of the transaction tha
 
 Operating on the same technology as the ETH Bridge, this route can transfer USDT between certain EVMs without going through the native bridges. The resulting token will be the canonical USDT token on the destination instead of the Wormhole-wrapped variant. Supported chains are Ethereum, Polygon, Avalanche, Arbitrum, Optimism, BSC, and Base.
 
-#### Automatic route {: #automatic-route-usdt}
+#### Automatic Route {: #automatic-route-usdt}
 
 Due to the complexity of the transaction that needs to be executed on the destination, only the relayed route is available. To offer this option, enable the `usdtBridge` route in the configuration.
 
