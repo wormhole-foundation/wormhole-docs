@@ -67,7 +67,7 @@ This route appears if
 
 [Powered by Uniswap liquidity pools](https://github.com/wormhole-foundation/example-uniswap-liquidity-layer){target=\_blank}, this route can transfer native ETH or wstETH between certain EVMs without going through the native bridges.
 
-This route appears if
+This route appears if:
 - both the origin and destination chains support the ETH Bridge
 - the selected token is native ETH or wstETH, or canonical wETH
 
