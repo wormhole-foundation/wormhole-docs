@@ -67,7 +67,7 @@ For easier testing, the Query SDK provides a `QueryProxyMock` which will perform
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-proxy-mock.jsx'
 ```
 
-This response is suited for on-chain use, but the SDK also includes a parser so you can read the results in the client.
+This response is suited for on-chain use, but the SDK also includes a parser to make the results readable via the client.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-response.jsx'
