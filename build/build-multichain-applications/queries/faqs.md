@@ -18,7 +18,7 @@ The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main
 
 ## Are there any examples?
 
-There sure are!
+Certainly. You can find a complete walkthrough on the [Getting Started page](./getting-started.md). Additionally, you can find full code examples in available in the following repositories:
 
 - [Getting Started](./getting-started.md)
 - [Basic Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
