@@ -177,7 +177,7 @@ If you would like to offer WalletConnect as a supported wallet option, you'll ne
 
 By setting the `showHamburgerMenu` option to **false**, you can deactivate the hamburger menu, causing the links to be positioned at the bottom.
 
-#### Add extra menu entry {: #add-extra-menu-entry }
+#### Add Extra Menu Entry {: #add-extra-menu-entry }
 
 By setting the `showHamburgerMenu` option to `false,` you can use the `menu` array to add extra links.
 
