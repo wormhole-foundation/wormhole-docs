@@ -53,7 +53,7 @@ following_block_num - 1 == target_block_num
 
 ### eth_call With Finality {: #eth-call-with-finality}
 
-This query type is similar to `eth_call` but ensures that the specified block has reached the specified finality before returning the query results. The finality may be `finalized` or `safe`. Note that if a chain does not natively support the `safe` tag, this will be equivalent to `finalized
+This query type is similar to `eth_call` but ensures that the specified block has reached the specified finality before returning the query results. The finality may be `finalized` or `safe.` Note that if a chain does not natively support the `safe` tag, this will be equivalent to `finalized.`
 
 ### sol_account {: #sol_account}
 
