@@ -5,3 +5,4 @@ nav:
  - 'Core Contracts': 'core-contracts.md'
  - ntt
  - 'Token and NFT Bridge': 'token-nft-bridge.md'
+ - 'CCTP and Circle Bridge': 'cctp.md'
