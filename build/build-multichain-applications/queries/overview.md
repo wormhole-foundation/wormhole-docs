@@ -12,6 +12,8 @@ Wormhole Queries offer on-demand access to guardian-attested on-chain data. The 
 
 ## The Flow of a Query {: #the-flow-of-a-query}
 
+The general overview of the flow of a query is as follows: An off-chain process sends HTTPS query requests to a Query Proxy, which validates and forwards them to the Guardians; these Guardians independently validate, sign, and return the response, with the entire process typically taking less than a second.
+
 ![The architecture flow of a query](/images/build/build-multichain-applications/queries/overview/overview-1.webp)
 
 1. An off-chain process initiates a query request via HTTPS to the query proxy (a.k.a. CCQ Server) 
@@ -79,7 +81,7 @@ For example, many chains have implementations forked from [geth](https://github.
 | Klaytn        | 13                | ✅        | ✅                  | ✅             | 128 blocks       |
 | Celo          | 14                | ✅        | ℹ️ hints required\* | ✅             | 128 blocks       |
 | Moonbeam      | 16                | ✅        | ℹ️ hints required\* | ✅             | 256 blocks       |
-| Arbitrum One  | 23                | ✅        | ✅                  | ✅             | \~6742 blocks    |
+| Arbitrum One  | 23                | ✅        | ✅                  | ✅             | ~6742 blocks    |
 | Optimism      | 24                | ✅        | ✅                  | ❌             | 128 blocks       |
 | Base          | 30                | ✅        | ✅                  | ✅             | archive          |
 
