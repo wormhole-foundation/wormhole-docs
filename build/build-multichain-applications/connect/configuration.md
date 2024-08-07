@@ -28,7 +28,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
     --8<-- 'code/build/build-multichain-applications/connect/configuration/index.ts'
     ```
 
-### Custom networks and RPC endpoints {: #custom-networks-and-rpc-endpoints }
+### Custom Networks and RPC Endpoints {: #custom-networks-and-rpc-endpoints }
 
 Specify supported networks/tokens and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you do not provide your own
 
