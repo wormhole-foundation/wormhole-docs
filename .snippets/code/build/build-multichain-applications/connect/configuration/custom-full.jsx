@@ -1,11 +1,11 @@
 import WormholeConnect, {
   WormholeConnectTheme,
-} from "@wormhole-foundation/wormhole-connect";
-import red from "@mui/material/colors/red";
-import lightblue from "@mui/material/colors/lightBlue";
-import grey from "@mui/material/colors/grey";
-import green from "@mui/material/colors/green";
-import orange from "@mui/material/colors/orange";
+} from '@wormhole-foundation/wormhole-connect';
+import red from '@mui/material/colors/red';
+import lightblue from '@mui/material/colors/lightBlue';
+import grey from '@mui/material/colors/grey';
+import green from '@mui/material/colors/green';
+import orange from '@mui/material/colors/orange';
 
 const customTheme: WormholeConnectTheme = {
   mode: 'dark',
@@ -13,10 +13,10 @@ const customTheme: WormholeConnectTheme = {
   secondary: grey,
   divider: 'rgba(255, 255, 255, 0.2)',
   background: {
-    default: "#232323",
+    default: '#232323',
   },
   text: {
-    primary: "#ffffff",
+    primary: '#ffffff',
     secondary: grey[500],
   },
   error: red,
@@ -25,29 +25,29 @@ const customTheme: WormholeConnectTheme = {
   warning: orange,
   button: {
     primary: 'rgba(255, 255, 255, 0.2)',
-    primaryText: "#ffffff",
+    primaryText: '#ffffff',
     disabled: 'rgba(255, 255, 255, 0.1)',
     disabledText: 'rgba(255, 255, 255, 0.4)',
     action: orange[300],
-    actionText: "#000000",
+    actionText: '#000000',
     hover: 'rgba(255, 255, 255, 0.7)',
   },
   options: {
-    hover: "#474747",
-    select: "#5b5b5b",
+    hover: '#474747',
+    select: '#5b5b5b',
   },
   card: {
-    background: "#333333",
-    secondary: "#474747",
-    elevation: "none",
+    background: '#333333',
+    secondary: '#474747',
+    elevation: 'none',
   },
   popover: {
-    background: "#1b2033",
+    background: '#1b2033',
     secondary: 'rgba(255, 255, 255, 0.5)',
-    elevation: "none",
+    elevation: 'none',
   },
   modal: {
-    background: "#474747",
+    background: '#474747',
   },
   font: {
     primary: 'Impact',
