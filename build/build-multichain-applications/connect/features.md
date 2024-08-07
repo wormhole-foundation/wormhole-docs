@@ -47,7 +47,7 @@ This route appears if:
 
 On the [routes](../connect/routes.md) page, this is referred to as the "automatic route" in the Token Bridge section.
 
-Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to execute 1 transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee.
+Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to execute one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee.
 
 This route appears if:
 - both the origin and destination chains support Token Bridge
