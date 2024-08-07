@@ -17,7 +17,7 @@ Before digging into anything Queries specific, this page will look at how to mak
   - WETH is [0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2){target=\_blank}
 - **data** - the method identifier and ABI-encoded parameters: 
   - `web3.eth.abi.encodeFunctionSignature("totalSupply()")` → `0x18160ddd`
-- **block id**: the block number, hash, or tag, like `latest`, `safe`, or `finalized`
+- **block id** - the block number, hash, or tag. Tag options include `latest,` `safe,` or `finalized`
 
 ```bash
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/eth-call-initial.txt'
