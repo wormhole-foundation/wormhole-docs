@@ -7,8 +7,8 @@ description: Explore a comprehensive Feature Support matrix and explanation deta
 
 *Scroll down for details about each column.*
 
-| **Network** | **Token bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Dropoff** |
-|-------------|------------------|--------------------------|-----------------|----------------|-----------------|
+| **Network**     | **Token bridge**      | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Dropoff** |
+|:---------------:|:---------------------:|:------------------------:|:---------------:|:--------------:|:---------------:|
 | Solana      | ✅                | ✅                        | ✅               | ❌              | ✅               |
 | Ethereum    | ✅                | ✅                        | ✅               | ✅              | ✅               |
 | BSC         | ✅                | ✅                        | ❌               | ✅              | ✅               |
