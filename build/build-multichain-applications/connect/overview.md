@@ -35,7 +35,7 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 
 ## Integrate Connect {: #integrate-connect }
 
-### Option 1: import directly into a React app  {: #option-1-import-directly-into-a-react-app}
+### Import Directly into a React App  {: #option-1-import-directly-into-a-react-app}
 
 First, install the Wormhole Connect npm package. You can read more about the package by clicking on the following button: [![npm version](https://img.shields.io/npm/v/@wormhole-foundation/wormhole-connect.svg)](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank} 
 
