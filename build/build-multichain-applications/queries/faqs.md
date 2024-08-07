@@ -13,7 +13,8 @@ You can use the [Solidity QueryResponse Abstract Contract](https://github.com/wo
 
 The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main/node/pkg/query){target=\_blank} can also be used to create query requests and parse query responses.
 
-💡 A Rust SDK for Solana is being actively investigated by the Wormhole Contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repo as a proof of concept.
+!!! note
+	A Rust SDK for Solana is being actively investigated by the Wormhole Contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repo as a proof of concept.
 
 ## Are there any examples?
 
