@@ -64,7 +64,7 @@ When a VAA is passed to this function, it will either return the payload and ass
 
 Please note that there is no destination address or chain for these functions.
 
-VAAs simply attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain they are brought to.
+VAAs are a simple attestation that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified authentic on any chain where they are used.
 
 This multicast-by-default model is integral to the design. Having this multicast capacity makes it easy to synchronize state across the entire ecosystem, because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
 
