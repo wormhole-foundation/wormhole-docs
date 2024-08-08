@@ -206,11 +206,17 @@ The `WormholeTransfer` interface provides a convenient abstraction to encapsulat
 
 ### Token Transfers {: #token-transfers}
 
-Performing a Token Transfer is trivial for any source and destination chains. We can create a new `Wormhole` object to make objects like `TokenTransfer,` `CircleTransfer,` and `GatewayTransfer,` to transfer tokens between chains. 
+Performing a Token Transfer is trivial for any source and destination chains. You can create a new `Wormhole` object to make objects like `TokenTransfer,` `CircleTransfer,` and `GatewayTransfer,` to transfer tokens between chains. 
 
 The following example demonstrates process of initiating and completing a token transfer. It starts by creating a `TokenTransfer` object, which tracks the transfer's state throughout its lifecycle. The code then obtains a quote for the transfer, ensuring the amount is sufficient to cover fees and any requested native gas.
 
-The transfer process is divided into three main steps: initiating the transfer on the source chain, waiting for the transfer to be attested (if not automatic), and completing the transfer on the destination chain. For automatic transfers, the process ends after initiation. For manual transfers, the code waits for the transfer to be attested and then completes it on the destination chain.
+The transfer process is divided into three main steps: 
+
+1. Initiating the transfer on the source chain
+2. Waiting for the transfer to be attested (if not automatic)
+3. Completing the transfer on the destination chain 
+
+For automatic transfers, the process ends after initiation. For manual transfers, the code waits for the transfer to be attested and then completes it on the destination chain.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-token-transfer.ts'
@@ -244,13 +250,13 @@ When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amou
 
 ### Gateway Transfers {: #gateway-transfers}
 
-Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain)
+Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain).
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-inbound-example.ts'
 ```
 
-A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain
+A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-intercosmos-example.ts'
