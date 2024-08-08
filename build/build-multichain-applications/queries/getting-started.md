@@ -111,7 +111,13 @@ A mainnet Query Proxy is available at ` https://query.wormhole.com/v1/query`
 
 ## Verify a QueryResponse On-Chain {: #verify-a-queryresponse-on-chain}
 
-A [QueryResponse abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. Simply `forge install wormhole-foundation/wormhole-solidity-sdk`. Broadly, using a query response on-chain comes down to three main steps:
+A [QueryResponse abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
+
+```
+forge install wormhole-foundation/wormhole-solidity-sdk
+```
+
+Broadly, using a query response on-chain comes down to three main steps:
 
    1. Parse and verify the query response
    2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current guardian set stored in the Core bridge contract
