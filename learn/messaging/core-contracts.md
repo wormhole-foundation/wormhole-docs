@@ -55,7 +55,7 @@ Use the following method signature to receive a message encoded as a VAA:
 --8<-- 'code/learn/messaging/core-contracts/receiving.js'
 ```
 
-When passed a VAA, this function will either return the payload and associated metadata for the VAA or throw an exception. An exception should only ever be thrown if the VAA fails signature verification, indicating that the VAA is invalid or inauthentic in some form.
+When a VAA is passed to this function, it will either return the payload and associated metadata for the VAA or throw an exception. An exception should only be thrown if the VAA fails signature verification, an indication the VAA is invalid or inauthentic in some form.
 
 !!! note
     A developer should take care to make sure this method is called during the execution of a transaction where a VAA is passed to ensure the signatures are checked and verified.
