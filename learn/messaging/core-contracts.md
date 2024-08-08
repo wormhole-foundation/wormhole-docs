@@ -46,7 +46,6 @@ Different chains use different consensus mechanisms, so each one has different f
 
 - **sequenceNumber** - a unique number that increments for every message for a given emitter (and implicitly chain). This, combined with the emitter address and emitter chain ID, allows the VAA for this message to be queried from the [APIs](#){target=\_blank}
 
-A unique number that increments for every message for a given emitter (and implicitly chain). This combined with the emitter address and emitter chain ID allows the VAA for this message to be queried from the [APIs](#){target=\_blank}.
 
 ## Receiving
 
