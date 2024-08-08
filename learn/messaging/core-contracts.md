@@ -39,7 +39,7 @@ Some advanced integrators may want to get messages before finality. The `consist
 
 Different chains use different consensus mechanisms, so each one has different finality assumptions. See the options for finality in the [Environments](#){target=\_blank} pages <!-- link to blockchain platforms -->
 
-**nonce**
+- **nonce** - A free integer field that can be used however you like. Note that changing the `nonce` will result in a different digest
 
 A free integer field that can be used however the developer would like. Note that a different `nonce` will result in a different digest.
 
