@@ -79,4 +79,4 @@ The default configuration of Wormhole Connect may not be what you want to use.  
 - Configuring custom RPC URLs (This is highly recommended as default public RPCs are heavily throttled)
 - Restrict the [routes](./routes.md) that are available
 
-Check the [configuration options](./configuration.md) and customize your widget however you like
+Check the [configuration options](./configuration.md) and customize your widget however you like.
