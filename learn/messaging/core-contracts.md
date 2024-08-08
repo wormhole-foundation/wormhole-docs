@@ -28,7 +28,7 @@ The method signature for publishing messages:
 
 #### Parameters
 
-**payload**
+- **payload** - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
 
 The content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length.
 
