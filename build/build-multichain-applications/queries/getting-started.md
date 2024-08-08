@@ -105,6 +105,8 @@ The standardized means of making a QueryRequest with an API key is as follows:
 --8<-- 'code/build/build-multichain-applications/queries/getting-started/query-request-with-api-key.jsx'
 ```
 
+Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
+
 A testnet Query Proxy is available at `https://testnet.query.wormhole.com/v1/query`
 
 A mainnet Query Proxy is available at ` https://query.wormhole.com/v1/query`
