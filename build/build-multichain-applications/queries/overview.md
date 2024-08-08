@@ -91,6 +91,8 @@ See the [Constants Reference](../reference/constants.md) for the list of TestNet
 
 ## Next Steps {: #next-steps}
 
+Remember that Wormhole Queries are currently in Beta. You can [register to join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
+
 Still have questions? See if they are answered in the [FAQs](./faqs.md).
 
 Ready to dive in? Check out [Getting Started](./getting-started.md).
