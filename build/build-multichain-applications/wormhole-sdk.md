@@ -203,7 +203,13 @@ Performing a Token Transfer is trivial for any source and destination chains. We
 
 The following example demonstrates process of initiating and completing a token transfer. It starts by creating a `TokenTransfer` object, which tracks the transfer's state throughout its lifecycle. The code then obtains a quote for the transfer, ensuring the amount is sufficient to cover fees and any requested native gas.
 
-The transfer process is divided into three main steps: initiating the transfer on the source chain, waiting for the transfer to be attested (if not automatic), and completing the transfer on the destination chain. For automatic transfers, the process ends after initiation. For manual transfers, the code waits for the transfer to be attested and then completes it on the destination chain.
+The transfer process is divided into three main steps: 
+
+1. Initiating the transfer on the source chain
+2. Waiting for the transfer to be attested (if not automatic)
+3. Completing the transfer on the destination chain 
+
+For automatic transfers, the process ends after initiation. For manual transfers, the code waits for the transfer to be attested and then completes it on the destination chain.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-token-transfer.ts'
