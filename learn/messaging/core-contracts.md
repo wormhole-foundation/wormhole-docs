@@ -41,7 +41,6 @@ Different chains use different consensus mechanisms, so each one has different f
 
 - **nonce** - A free integer field that can be used however you like. Note that changing the `nonce` will result in a different digest
 
-A free integer field that can be used however the developer would like. Note that a different `nonce` will result in a different digest.
 
 #### Returns
 
