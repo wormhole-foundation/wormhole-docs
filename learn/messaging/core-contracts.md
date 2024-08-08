@@ -35,7 +35,6 @@ The method signature for publishing messages:
 
     Some advanced integrators may want to get messages before finality, which is where the `consistency_level` field offers chain-specific flexibility.
 
-The `consistency_level` can be considered as a numeric `enum` data type where the value is treated differently for different chains.
 
 It describes the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered `final`, is guaranteed not to have the state changes it caused be rolled back.
 
