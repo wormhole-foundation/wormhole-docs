@@ -19,8 +19,12 @@ Before digging into anything Queries specific, this page will look at how to mak
   - `web3.eth.abi.encodeFunctionSignature("totalSupply()")` → `0x18160ddd`
 - **block id** - the block number, hash, or tag. Tag options include `latest,` `safe,` or `finalized`
 
-```bash
---8<-- 'code/build/build-multichain-applications/queries/getting-started/eth-call-initial.txt'
+```bash title="eth_call JSON RPC Request"
+--8<-- 'code/build/build-multichain-applications/queries/getting-started/eth-call-initial-request.txt'
+```
+
+```bash title="eth_call JSON RPC Reponse"
+--8<-- 'code/build/build-multichain-applications/queries/getting-started/eth-call-initial-response.txt'
 ```
 
 Converting the returned value of the executed call from hexidecimal results in the value `3172615244782286193073777`. You can compare your result to the [Read Contract](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract){target=\_blank} tab in Etherscan. Your result will be different as WETH is minted/burned over time.
