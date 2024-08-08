@@ -7,9 +7,7 @@ description: Explore Wormhole Connect, the React widget that allows you to offer
 
 ## Introduction {: #introduction }
 
-Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
-
-Check out the [Github repository](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}
+Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application. Check out the [Wormhole Connect Github repository](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}.
 
 The [Wormhole Typescript SDK](https://docs.wormhole.com/wormhole/reference/sdk-docs){target=\_blank} allows you to implement the same functionality as the Connect widget but in your own UI. Check out the docs for more information on using the SDK instead of Connect.
 
@@ -52,15 +50,15 @@ Now you can import the React component:
 
 If you're not using React, you can still embed Connect on your website by using the hosted version. The sample code below uses the popular and free `unpkg.com` CDN from which your app will load the widget.
 
-Simply copy and paste the following into your HTML body, and replace the ```{WORMHOLE_CONNECT_VERSION}``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest).
+Simply copy and paste the following into your HTML body, and replace the ```{WORMHOLE_CONNECT_VERSION}``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest){target=\_blank}.
 
-```html
+```js
 --8<-- 'code/build/build-multichain-applications/connect/overview/cdn.html'
 ```
 
-For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/0.3.13):
+For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/0.3.13){target=\_blank}:
 
-```html
+```js
 --8<-- 'code/build/build-multichain-applications/connect/overview/cdn-with-version.html'
 ```
 
@@ -71,7 +69,7 @@ For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wor
 
 This is just an overview of what's possible. Check the [Configuration Docs](../connect/configuration.md) for details about all the configuration options.
 
-The default configuration of Wormhole Connect may not be what you want to use.  You may want to:
+The default configuration of Wormhole Connect may not be exact;y what you're looking for. You may want to:
 
 - Use custom styles 
 - Restrict the chains that you allow in your app
@@ -79,4 +77,4 @@ The default configuration of Wormhole Connect may not be what you want to use.  
 - Configuring custom RPC URLs (This is highly recommended as default public RPCs are heavily throttled)
 - Restrict the [routes](./routes.md) that are available
 
-Check the [configuration options](./configuration.md) and customize your widget however you like.
+For the above options and more, check the [configuration options](./configuration.md) and customize your widget however you like.
