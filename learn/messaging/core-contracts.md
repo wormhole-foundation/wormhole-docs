@@ -36,7 +36,6 @@ The method signature for publishing messages:
 Some advanced integrators may want to get messages before finality. The `consistency_level` field offers chain-specific flexibility. It describes the required level of finality that must be reached before the Guardians will observe and attest to the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered `final,` is guaranteed not to have the state changes it caused be rolled back.
 
 
-It describes the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered `final`, is guaranteed not to have the state changes it caused be rolled back.
 
 Different chains use different consensus mechanisms, so there are different finality assumptions with each one, see the options for finality in the [Environments](#){target=\_blank} pages. <!-- link to blockchain platforms -->
 
