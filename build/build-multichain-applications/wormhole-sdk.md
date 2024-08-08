@@ -243,7 +243,7 @@ Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chai
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-inbound-example.ts'
 ```
 
-A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain
+A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-intercosmos-example.ts'
