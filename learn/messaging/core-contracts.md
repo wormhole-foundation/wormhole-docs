@@ -13,7 +13,12 @@ Core Contracts are generally simple and can be divided into sending and receivin
 
 There are no fees to publish a message, except when publishing on Solana, but this is subject to change in the future.
 
-The implementation strategy for `publishMessage` differs by chain. However, the general strategy consists of the Core Contract posting the `emitterAddress` (the contract which called `publishMessage`), `sequenceNumber`, and `consistencyLevel` into the blockchain logs. Once the desired `consistencyLevel` has been reached and the message passes all of the Guardians' optional checks, the Guardian Network will produce the requested Verified Action Approvals [VAAs].
+The implementation strategy for `publishMessage` differs by chain. However, the general strategy consists of the Core Contract posting the following items to the blockchain logs:
+- `emitterAddress` of the contract which made the `publishMessage` call
+- `sequenceNumber`
+- `consistencyLevel` 
+
+Once the desired `consistencyLevel` has been reached and the message passes all of the Guardians' optional checks, the Guardian Network will produce the requested Verified Action Approvals [VAAs].
 
 The method signature for publishing messages:
 
