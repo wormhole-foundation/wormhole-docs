@@ -49,7 +49,7 @@ Different chains use different consensus mechanisms, so each one has different f
 
 ## Receiving
 
-The method signature for receiving messages, encoded as a VAA:
+Use the following method signature to receive a message encoded as a VAA:
 
 ```js
 --8<-- 'code/learn/messaging/core-contracts/receiving.js'
