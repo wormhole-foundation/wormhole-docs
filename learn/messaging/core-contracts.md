@@ -31,7 +31,7 @@ The method signature for publishing messages:
 - **payload** - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
 
 
-**consistencyLevel**
+- **consistencyLevel** - a numeric enum data type where the value is treated differently for different chains
 
 !!! note
     Some advanced integrators may want to get messages before finality, which is where the `consistency_level` field offers chain-specific flexibility.
