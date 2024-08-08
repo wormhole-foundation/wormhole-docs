@@ -54,6 +54,13 @@ Getting started is simple; just import Wormhole and the [Platform](#platforms) m
 import { wormhole } from '@wormhole-foundation/sdk';
 ```
 
+Don't forget to import each of the ecosystem platforms that you wish to support:
+
+```ts
+--8<-- 'code/build/build-multichain-applications/wormhole-sdk/import-platforms.ts'
+```
+
+
 Then, pass the [Platform](#platforms) modules to the Wormhole constructor to make them available for use:
 
 ```ts
