@@ -93,11 +93,9 @@ See the [Constants Reference](../reference/constants.md) for the list of TestNet
 
 Remember that Wormhole Queries are currently in Beta. You can [register to join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
 
-Still have questions? See if they are answered in the [FAQs](./faqs.md).
+Be sure to check out the [FAQs](./faqs.md) and the [Getting Started Guide](./getting-started.md).
 
-Ready to dive in? Check out [Getting Started](./getting-started.md).
-
-Need some examples?
+You can also check out the following examples of applications that make use of Wormhole Queries: 
 
 - [Basic Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
