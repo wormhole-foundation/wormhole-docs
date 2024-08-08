@@ -9,13 +9,13 @@ Configure the Wormhole Connect React component by passing a `WormholeConnectConf
 
 === "React"
 
-    ```tsx
+    ```ts
     --8<-- 'code/build/build-multichain-applications/connect/configuration/configure-react.tsx'
     ```
 
 === "HTML Tags"
 
-    ```tsx
+    ```ts
     --8<-- 'code/build/build-multichain-applications/connect/configuration/configure-html.html'
     ```
 
@@ -32,7 +32,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
 Specify supported networks/tokens and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you do not provide your own.
 
-```jsx
+```js
 --8<-- 'code/build/build-multichain-applications/connect/configuration/custom-simple.jsx'
 ```
 
