@@ -33,7 +33,6 @@ The method signature for publishing messages:
 
 - **consistencyLevel** - a numeric enum data type where the value is treated differently for different chains
 
-!!! note
     Some advanced integrators may want to get messages before finality, which is where the `consistency_level` field offers chain-specific flexibility.
 
 The `consistency_level` can be considered as a numeric `enum` data type where the value is treated differently for different chains.
