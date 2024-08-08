@@ -62,7 +62,7 @@ When a VAA is passed to this function, it will either return the payload and ass
 
 ## Multicast
 
-Please notice that there is no destination address or chain in these functions.
+Please note that there is no destination address or chain for these functions.
 
 VAAs simply attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain they are brought to.
 
