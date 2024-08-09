@@ -158,7 +158,7 @@ Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/signers.ts'
 ```
 
-See the testing signers ([Evm](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank}, [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}, ...) for an example of how to implement a signer for a specific chain or platform.
+See the testing signers (e.g., [EVM](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank} or [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for an example of how to implement a signer for a specific chain or platform.
 
 ### Protocols {: #protocols}
 
