@@ -24,6 +24,8 @@ The method signature for publishing messages:
 --8<-- 'code/learn/messaging/core-contracts/sending.js'
 ```
 
+There are no fees to publish a message, except when publishing on Solana, but this is subject to change in the future.
+
 #### Parameters
 
 - **payload** - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
