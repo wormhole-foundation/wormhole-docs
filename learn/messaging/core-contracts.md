@@ -53,11 +53,9 @@ When a VAA is passed to this function, it will either return the payload and ass
 
 ## Multicast
 
-Please note that there is no destination address or chain for these functions.
+Multicast refers to simultaneously broadcasting a single message or transaction across different blockchains. This means that there is no destination address or chain for the sending and receiving functions. This is possible because VAAs simply attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain where they are used.
 
-VAAs are a simple attestation that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified authentic on any chain where they are used.
-
-This multicast-by-default model makes it easy to synchronize state across the entire ecosystem because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
+This multicast-by-default model makes it easy to synchronize the state across the entire ecosystem because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
 
 This does not mean an application _cannot_ specify a destination address or chain. For example, the Token Bridge and Standard Relayer contracts require that some destination details be passed and verified on the destination chain.
 
