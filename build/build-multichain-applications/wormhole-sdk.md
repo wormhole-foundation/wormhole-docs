@@ -48,7 +48,7 @@ npm install @wormhole-foundation/sdk-evm-tokenbridge
 
 ## Usage {: #usage}
 
-Getting started is simple; just import Wormhole and the [Platform](#platforms) modules you wish to support:
+Getting started is simple; just import Wormhole:
 
 ```ts
 import { wormhole } from '@wormhole-foundation/sdk';
