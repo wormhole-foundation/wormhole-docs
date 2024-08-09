@@ -60,7 +60,6 @@ Don't forget to import each of the ecosystem platforms that you wish to support:
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/import-platforms.ts'
 ```
 
-
 Then, pass the [Platform](#platforms) modules to the Wormhole constructor to make them available for use:
 
 ```ts
@@ -105,6 +104,16 @@ Understanding several higher-level concepts of the SDK will help you use it effe
 Every chain is unique, but many share similar functionality. The `Platform` modules provide a consistent interface for interacting with the chains that share a platform.
 
 Each platform can be installed separately so that dependencies can stay as slim as possible.
+
+Wormhole currently supports the following platforms:
+
+- EVM
+- Solana
+- Cosmwasm
+- Sui
+- Aptos
+
+See the [Platforms folder of the Typescript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole Typescript SDK. 
 
 ### Chain Context {: #chain-context}
 
