@@ -1,5 +1,5 @@
 ---
-title: Token and NFT Bridge 
+title: Token Bridge 
 description: Learn about Wormhole's Token and NFT Bridge for cross-chain transfers using lock and mint mechanisms, ensuring secure and efficient asset movement.
 ---
 
