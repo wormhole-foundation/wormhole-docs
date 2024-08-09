@@ -340,7 +340,7 @@ Finally, assuming the quote looks good, the route can initiate the request with 
     --8<-- 'code/build/build-multichain-applications/wormhole-sdk/router.ts'
     ```
 
-Note: See the `router.ts` example in the [examples directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/examples){target=\_blank} for a full working example.
+See the `router.ts` example in the [examples directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/examples){target=\_blank} for a full working example.
 
 ## See Also {: #see-also}
 
