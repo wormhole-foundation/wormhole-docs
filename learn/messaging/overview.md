@@ -9,7 +9,7 @@ This section covers various aspects and services related to communication protoc
 
 ## Core Contracts
 
-The Core Contracts form the backbone of Wormhole's cross-chain communication system, allowing for the emission and receipt of messages across different blockchains. Each blockchain in the ecosystem has its own Core Contract, which Guardians observe to ensure the integrity and synchronization of data. These contracts handle message sending, receiving, and multicast, providing a seamless mechanism for inter-chain communication without additional costs.
+The Core Contracts form the backbone of Wormhole's cross-chain communication system, allowing for the emission and receipt of messages across different blockchains. Each blockchain in the ecosystem has its own Core Contract, which Guardians observe to ensure the integrity and synchronization of data. These contracts handle message sending, receiving, and multicasting, providing a seamless mechanism for inter-chain communication without additional costs.
 
 ## NTT (Native Token Transfers)
 _A description will be added here._
