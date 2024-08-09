@@ -28,8 +28,7 @@ There are no fees to publish a message, except when publishing on Solana, but th
 
 #### Parameters
 
-- **payload** - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
-
+- `payload` ++"byte[]"++ - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
 
 - **consistencyLevel** - a numeric enum data type where the value is treated differently for different chains
 
