@@ -136,7 +136,7 @@ Each platform has an address type that understands the native address formats, r
 
 ### Tokens {: #tokens} 
 
-Similar to the `ChainAddress` type, the `TokenId` type provides the Chain and Address of a given token. The following snippet introduces `TokenId`, a way to uniquely identify any token, whether it's a standard token or a blockchain's native currency (like ETH for Ethereum).
+Similar to the `ChainAddress` type, the `TokenId` type provides the chain and address of a given token. The following snippet introduces `TokenId`, a way to uniquely identify any token, whether it's a standard token or a blockchain's native currency (like ETH for Ethereum).
 
 For standard tokens, Wormhole uses their contract address to create a `TokenId`. For native currencies, Wormhole uses the keyword `native` instead of an address. This makes it easy to work with any type of token consistently.
 
