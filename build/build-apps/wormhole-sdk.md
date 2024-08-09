@@ -57,12 +57,12 @@ import { wormhole } from '@wormhole-foundation/sdk';
 Then, import each of the ecosystem [platforms](#platforms) that you wish to support:
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/import-platforms.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/import-platforms.ts'
 ```
 To make the [platform](#platforms) modules available for use, pass them to the Wormhole constructor:
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/wormhole-init.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/wormhole-init.ts'
 ```
 
 With a configured Wormhole object, you can do things like parse addresses for the provided platforms, get a [`ChainContext`](#chain-context) object, or fetch VAAs.
@@ -75,23 +75,23 @@ const ctx = wh.getChain('Solana');
 You can retrieve a VAA as follows. In this example, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will vary by network. 
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa-snippet.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/get-vaa-snippet.ts'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="68-74"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-vaa.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts'
     ```
 
 Optionally, you can override the default configuration with a partial `WormholeConfig` object to specify particular fields, such as a different RPC endpoint.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/config-override.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/config-override.ts'
 ```
 
 ??? code "View the complete script"
     ```ts
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/config.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/config.ts'
     ```
 
 ## Concepts {: #concepts}
@@ -121,7 +121,7 @@ The `Wormhole` class provides a `getChain` method that returns a `ChainContext` 
 The `ChainContext` object is also responsible for holding a cached RPC client and protocol clients.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/get-chain.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/get-chain.ts'
 ```
 
 ### Addresses {: #addresses}
@@ -131,7 +131,7 @@ Within the Wormhole context, addresses are often [normalized](https://docs.wormh
 Each platform has an address type that understands the native address formats, referred to as `NativeAddress.` This abstraction allows the SDK to work with addresses consistently regardless of the underlying chain.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/addresses.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/addresses.ts'
 ```
 
 ### Tokens {: #tokens} 
@@ -143,7 +143,7 @@ For standard tokens, Wormhole uses their contract address to create a `TokenId`.
 Finally, the snippet also demonstrates how to convert a `TokenId` back into a regular address format when needed.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/tokens.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/tokens.ts'
 ```
 
 ### Signers {: #signers}
@@ -155,7 +155,7 @@ A `SignOnlySigner` is used in scenarios where the signer is not connected to the
 Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to the network and intends to broadcast the transactions. This type of signer also accepts an array of unsigned transactions but returns an array of transaction IDs, corresponding to the order of the unsigned transactions.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/signers.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/signers.ts'
 ```
 
 See the testing signers ([Evm](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank}, [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}, ...) for an example of how to implement a signer for a specific chain or platform.
@@ -186,12 +186,12 @@ The code then waits for the Wormhole network to process and sign the message, tu
 Lastly, the code will demonstrate how to verify the message on the receiving end. A verification transaction is prepared using the original sender's address and the VAA, and finally this transaction is signed and sent.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/core-bridge.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/core-bridge.ts'
 ```
 
 ??? code "View the complete script"
     ```ts
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-core-bridge.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/example-core-bridge.ts'
     ```
 
 The payload contains the information necessary to perform whatever action is required based on the protocol that uses it. 
@@ -201,7 +201,7 @@ The payload contains the information necessary to perform whatever action is req
 The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/token-bridge-snippet.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/token-bridge-snippet.ts'
 ```
 
 Supported protocols are defined in the [definitions module](https://github.com/wormhole-foundation/connect-sdk/tree/main/core/definitions/src/protocols){target=\_blank}.
@@ -227,12 +227,12 @@ The transfer process is divided into three main steps:
 For automatic transfers, the process ends after initiation. For manual transfers, the code waits for the transfer to be attested and then completes it on the destination chain.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-token-transfer.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/example-token-transfer.ts'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="122"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/token-bridge.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/token-bridge.ts'
     ```
 
 Internally, this uses the [TokenBridge](#token-bridge) protocol client to transfer tokens. Like other Protocols, the `TokenBridge` protocol provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
@@ -248,12 +248,12 @@ An optional payload can be included with the transfer, though in this case it's 
 When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will [vary by network](https://developers.circle.com/stablecoin/docs/cctp-technical-reference#mainnet){target=\_blank}. 
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/cctp-example-snippet.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/cctp-example-snippet.ts'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="122"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/cctp.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/cctp.ts'
     ```
 
 ### Gateway Transfers {: #gateway-transfers}
@@ -261,24 +261,24 @@ When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amou
 Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain).
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-inbound-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/gateway-inbound-example.ts'
 ```
 
 A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-intercosmos-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/gateway-intercosmos-example.ts'
 ```
 
 A transfer leaving Cosmos will produce a VAA from the Gateway that must be manually redeemed on the destination chain.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/gateway-outbound-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/gateway-outbound-example.ts'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="184"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/cosmos.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/cosmos.ts'
     ```
 
 ### Recovering Transfers {: #recovering-transfers}
@@ -286,12 +286,12 @@ A transfer leaving Cosmos will produce a VAA from the Gateway that must be manua
 It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the `Transfer` class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/recover-transfer-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/recover-transfer-example.ts'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="130"
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/cctp.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/cctp.ts'
     ```
 
 ## Routes {: #routes}
@@ -303,19 +303,19 @@ To provide a more flexible and generic interface, the `Wormhole` class provides 
 The following section demonstrates the process of setting up and validating a token transfer using Wormhole's routing system.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/resolver-create-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/resolver-create-example.ts'
 ```
 
 Once created, the resolver can be used to provide a list of input and possible output tokens.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-resolver-list-tokens.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/example-resolver-list-tokens.ts'
 ```
 
 Once the tokens are selected, a `RouteTransferRequest` may be created to provide a list of routes that can fulfill the request. Creating a transfer request fetches the token details since all routes will need to know about the tokens.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-request-create.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/example-request-create.ts'
 ```
 
 Choosing the best route is currently left to the developer, but strategies might include sorting by output amount or expected time to complete the transfer (no estimate is currently provided).
@@ -325,18 +325,18 @@ After choosing the best route, extra parameters like `amount`, `nativeGasDropoff
 After successful validation, the code requests a transfer quote. This quote likely includes important details such as fees, estimated time, and the final amount to be received. If the quote is generated successfully, it's displayed for the user to review and decide whether to proceed with the transfer. This process ensures that all transfer details are properly set up and verified before any actual transfer takes place.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-request-validate.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/example-request-validate.ts'
 ```
 
 Finally, assuming the quote looks good, the route can initiate the request with the quote and the `signer`.
 
 ```ts
---8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-request-initiate.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/example-request-initiate.ts'
 ```
 
 ??? code "View the complete script"
     ```ts
-    --8<-- 'code/build/build-multichain-applications/wormhole-sdk/router.ts'
+    --8<-- 'code/build/build-apps/wormhole-sdk/router.ts'
     ```
 
 See the `router.ts` example in the [examples directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/examples){target=\_blank} for a full working example.
