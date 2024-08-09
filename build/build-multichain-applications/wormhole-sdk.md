@@ -65,7 +65,7 @@ To make the [platform](#platforms) modules available for use, pass them to the W
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/wormhole-init.ts'
 ```
 
-With a configured Wormhole object, we can do things like parse addresses for the platforms we passed, get a [ChainContext](#chain-context) object, or fetch VAAs.
+With a configured Wormhole object, you can do things like parse addresses for the provided platforms, get a [`ChainContext`](#chain-context) object, or fetch VAAs.
 
 ```ts
 // Grab a ChainContext object from our configured Wormhole instance
