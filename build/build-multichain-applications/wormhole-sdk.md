@@ -194,7 +194,7 @@ Lastly, the code will demonstrate how to verify the message on the receiving end
     --8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-core-bridge.ts'
     ```
 
-The payload contains the information necessary to perform whatever action is required based on the Protocol that uses it. 
+The payload contains the information necessary to perform whatever action is required based on the protocol that uses it. 
 
 #### Token Bridge {: #token-bridge}
 
