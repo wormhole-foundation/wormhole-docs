@@ -344,4 +344,4 @@ Note: See the `router.ts` example in the [examples directory](https://github.com
 
 ## See also {: #see-also}
 
-The tsdoc is available [on Github](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.
+The tsdoc is available [on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.
