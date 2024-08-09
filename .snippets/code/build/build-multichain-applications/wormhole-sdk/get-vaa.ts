@@ -71,7 +71,7 @@ import { getSigner } from './helpers/index.js';
   const txids = await signSendWait(ctx, transfer, sender.signer);
   console.log('Sent: ', txids);
 
-  // Get the wormhole message id from the transaction
+  // Get the Wormhole message ID from the transaction
   const [whm] = await ctx.parseTransaction(txids[txids.length - 1]!.txid);
   console.log('Wormhole Messages: ', whm);
 
