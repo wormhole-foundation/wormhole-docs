@@ -1,6 +1,4 @@
-// EXAMPLE_IMPORTS
 import { wormhole } from '@wormhole-foundation/sdk';
-// EXAMPLE_IMPORTS
 
 import { Wormhole, amount, signSendWait } from '@wormhole-foundation/sdk';
 import algorand from '@wormhole-foundation/sdk/algorand';
@@ -12,7 +10,6 @@ import sui from '@wormhole-foundation/sdk/sui';
 import { getSigner } from './helpers/index.js';
 
 (async function () {
-  // EXAMPLE_WORMHOLE_INIT
   const wh = await wormhole('Testnet', [
     evm,
     solana,
@@ -21,12 +18,8 @@ import { getSigner } from './helpers/index.js';
     cosmwasm,
     sui,
   ]);
-  // EXAMPLE_WORMHOLE_INIT
 
-  // EXAMPLE_WORMHOLE_CHAIN
-  // Grab a ChainContext object from our configured Wormhole instance
   const ctx = wh.getChain('Solana');
-  // EXAMPLE_WORMHOLE_CHAIN
 
   const rcv = wh.getChain('Algorand');
 
@@ -75,8 +68,6 @@ import { getSigner } from './helpers/index.js';
   const [whm] = await ctx.parseTransaction(txids[txids.length - 1]!.txid);
   console.log('Wormhole Messages: ', whm);
 
-  // EXAMPLE_WORMHOLE_VAA
-  // Get the VAA from the wormhole message id
   const vaa = await wh.getVaa(
     // Wormhole Message ID
     whm!,
@@ -85,7 +76,6 @@ import { getSigner } from './helpers/index.js';
     // Timeout in milliseconds, depending on the chain and network, the VAA may take some time to be available
     60_000
   );
-  // EXAMPLE_WORMHOLE_VAA
 
   // Now get the token bridge on the redeem side
   const rcvTb = await rcv.getTokenBridge();

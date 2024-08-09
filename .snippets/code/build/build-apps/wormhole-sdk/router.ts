@@ -21,7 +21,6 @@ import { getSigner } from './helpers/index.js';
   const sender = await getSigner(sendChain);
   const receiver = await getSigner(destChain);
 
-  // EXAMPLE_RESOLVER_CREATE
   // create new resolver, passing the set of routes to consider
   const resolver = wh.resolver([
     routes.TokenBridgeRoute, // manual token bridge
@@ -30,9 +29,7 @@ import { getSigner } from './helpers/index.js';
     routes.AutomaticCCTPRoute, // automatic CCTP
     routes.AutomaticPorticoRoute, // Native eth transfers
   ]);
-  // EXAMPLE_RESOLVER_CREATE
 
-  // EXAMPLE_RESOLVER_LIST_TOKENS
   // what tokens are available on the source chain?
   const srcTokens = await resolver.supportedSourceTokens(sendChain);
   console.log(
@@ -40,8 +37,6 @@ import { getSigner } from './helpers/index.js';
     srcTokens.map((t) => canonicalAddress(t))
   );
 
-  // Grab the first one for the example
-  // const sendToken = srcTokens[0]!;
   const sendToken = Wormhole.tokenId(sendChain.chain, 'native');
 
   // given the send token, what can we possibly get on the destination chain?
@@ -56,9 +51,7 @@ import { getSigner } from './helpers/index.js';
   );
   //grab the first one for the example
   const destinationToken = destTokens[0]!;
-  // EXAMPLE_RESOLVER_LIST_TOKENS
 
-  // EXAMPLE_REQUEST_CREATE
   // creating a transfer request fetches token details
   // since all routes will need to know about the tokens
   const tr = await routes.RouteTransferRequest.create(wh, {
@@ -72,14 +65,12 @@ import { getSigner } from './helpers/index.js';
     'For the transfer parameters, we found these routes: ',
     foundRoutes
   );
-  // EXAMPLE_REQUEST_CREATE
 
   // Sort the routes given some input (not required for mvp)
   // const bestRoute = (await resolver.sortRoutes(foundRoutes, "cost"))[0]!;
   const bestRoute = foundRoutes[0]!;
   console.log('Selected: ', bestRoute);
 
-  // EXAMPLE_REQUEST_VALIDATE
   console.log(
     'This route offers the following default options',
     bestRoute.getDefaultOptions()
@@ -101,12 +92,10 @@ import { getSigner } from './helpers/index.js';
   const quote = await bestRoute.quote(tr, validated.params);
   if (!quote.success) throw quote.error;
   console.log('Best route quote: ', quote);
-  // EXAMPLE_REQUEST_VALIDATE
 
   // If you're sure you want to do this, set this to true
   const imSure = false;
   if (imSure) {
-    // EXAMPLE_REQUEST_INITIATE
     // Now the transfer may be initiated
     // A receipt will be returned, guess what you gotta do with that?
     const receipt = await bestRoute.initiate(
@@ -116,7 +105,6 @@ import { getSigner } from './helpers/index.js';
       receiver.address
     );
     console.log('Initiated transfer with receipt: ', receipt);
-    // EXAMPLE_REQUEST_INITIATE
 
     // Kick off a wait log, if there is an opportunity to complete, this function will do it
     // see the implementation for how this works

@@ -53,18 +53,6 @@ AutoRelayer takes a 0.1usdc fee when xfering to any chain beside goerli, which i
     nativeGas,
   });
 
-  // Note: you can pick up a partial transfer from the origin chain name and txid
-  // once created, you can call `fetchAttestations` and `completeTransfer` assuming its a manual transfer.
-  // This is especially helpful for chains with longer time to finality where you don't want
-  // to have to wait for the attestation to be generated.
-  // await completeTransfer(
-  //   wh,
-  //   {
-  //     chain: sendChain.chain,
-  //     txid: "0x6b431a9172f6c672976294b3a3d6cd79f46a7d6247440c0934af4bfc2b5ad957",
-  //   },
-  //   destination.signer,
-  // );
 })();
 
 async function cctpTransfer<N extends Network>(
@@ -77,7 +65,7 @@ async function cctpTransfer<N extends Network>(
     nativeGas?: bigint;
   }
 ) {
-  // EXAMPLE_CCTP_TRANSFER
+
   const xfer = await wh.circleTransfer(
     // amount as bigint (base units)
     req.amount,
@@ -114,8 +102,6 @@ async function cctpTransfer<N extends Network>(
     return;
   }
 
-  // Note: Depending on chain finality, this timeout may need to be increased.
-  // See https://developers.circle.com/stablecoin/docs/cctp-technical-reference#mainnet for more
   console.log('Waiting for Attestation');
   const attestIds = await xfer.fetchAttestation(60_000);
   console.log(`Got Attestation: `, attestIds);
@@ -123,7 +109,6 @@ async function cctpTransfer<N extends Network>(
   console.log('Completing Transfer');
   const dstTxids = await xfer.completeTransfer(dst.signer);
   console.log(`Completed Transfer: `, dstTxids);
-  // EXAMPLE_CCTP_TRANSFER
 }
 
 export async function completeTransfer(
@@ -131,8 +116,7 @@ export async function completeTransfer(
   txid: TransactionId,
   signer: Signer
 ): Promise<void> {
-  // EXAMPLE_RECOVER_TRANSFER
-  // Rebuild the transfer from the source txid
+
   const xfer = await CircleTransfer.from(wh, txid);
 
   const attestIds = await xfer.fetchAttestation(60 * 60 * 1000);
@@ -140,5 +124,4 @@ export async function completeTransfer(
 
   const dstTxIds = await xfer.completeTransfer(signer);
   console.log('Completed transfer: ', dstTxIds);
-  // EXAMPLE_RECOVER_TRANSFER
 }

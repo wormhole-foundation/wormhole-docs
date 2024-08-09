@@ -4,7 +4,6 @@ import solana from '@wormhole-foundation/sdk/solana';
 import evm from '@wormhole-foundation/sdk/evm';
 
 (async function () {
-  // EXAMPLE_CORE_BRIDGE
   const wh = await wormhole('Testnet', [solana, evm]);
 
   const chain = wh.getChain('Avalanche');
@@ -51,5 +50,4 @@ import evm from '@wormhole-foundation/sdk/evm';
   // this is simply for demo purposes
   const verifyTxs = coreBridge.verifyMessage(address.address, vaa!);
   console.log(await signSendWait(chain, verifyTxs, signer));
-  // EXAMPLE_CORE_BRIDGE
 })();

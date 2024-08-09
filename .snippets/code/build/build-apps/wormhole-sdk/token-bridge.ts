@@ -9,8 +9,6 @@ import {
   wormhole,
 } from '@wormhole-foundation/sdk';
 
-// Import the platform-specific packages
-
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
@@ -72,7 +70,6 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
   // Set this to the transfer txid of the initiating transaction to recover a token transfer
   // and attempt to fetch details about its progress.
   let recoverTxid = undefined;
-  // recoverTxid = "0xa4e0a2c1c994fe3298b5646dfd5ce92596dc1a589f42e241b7f07501a5a5a39f";
 
   // Finally create and perform the transfer given the parameters set above
   const xfer = !recoverTxid
@@ -120,7 +117,6 @@ async function tokenTransfer<N extends Network>(
   },
   roundTrip?: boolean
 ): Promise<TokenTransfer<N>> {
-  // EXAMPLE_TOKEN_TRANSFER
   // Create a TokenTransfer object to track the state of the transfer over time
   const xfer = await wh.tokenTransfer(
     route.token,
@@ -160,7 +156,6 @@ async function tokenTransfer<N extends Network>(
   console.log('Completing Transfer');
   const destTxids = await xfer.completeTransfer(route.destination.signer);
   console.log(`Completed Transfer: `, destTxids);
-  // EXAMPLE_TOKEN_TRANSFER
 
   // If no need to send back, dip
   if (!roundTrip) return xfer;

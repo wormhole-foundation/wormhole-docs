@@ -32,7 +32,7 @@ import { SignerStuff, getSigner } from './helpers/index.js';
 //   {*}: Transparently handled by Gateway
 
 (async function () {
-  // init Wormhole object, passing config for which network
+  // Init Wormhole object, passing config for which network
   // to use (e.g. Mainnet/Testnet) and what Platforms to support
   const wh = await wormhole('Mainnet', [evm, solana, cosmwasm]);
   // Pick up where you left off by updating the txids as you go
@@ -49,7 +49,7 @@ import { SignerStuff, getSigner } from './helpers/index.js';
   const leg2 = await getSigner(cosmos1);
   const leg3 = await getSigner(cosmos2);
 
-  // we'll use the native token on the source chain
+  // We'll use the native token on the source chain
   const token: TokenId = Wormhole.tokenId(external.chain, 'native');
   const amt = amount.units(
     amount.parse('0.001', external.config.nativeTokenDecimals)
@@ -118,7 +118,6 @@ async function transferIntoCosmos(
   src: SignerStuff<Network, Chain>,
   dst: SignerStuff<Network, Chain>
 ): Promise<GatewayTransfer<Network>> {
-  // EXAMPLE_GATEWAY_INBOUND
   console.log(
     `Beginning transfer into Cosmos from ${
       src.chain.chain
@@ -140,8 +139,6 @@ async function transferIntoCosmos(
 
   const attests = await xfer.fetchAttestation(600_000);
   console.log('Got Attestations', attests);
-  // EXAMPLE_GATEWAY_INBOUND
-
   return xfer;
 }
 
@@ -152,7 +149,6 @@ async function transferBetweenCosmos<N extends Network>(
   src: SignerStuff<N, Chain>,
   dst: SignerStuff<N, Chain>
 ): Promise<GatewayTransfer<N>> {
-  // EXAMPLE_GATEWAY_INTERCOSMOS
   console.log(
     `Beginning transfer within cosmos from ${
       src.chain.chain
@@ -174,7 +170,6 @@ async function transferBetweenCosmos<N extends Network>(
 
   const attests = await xfer.fetchAttestation(60_000);
   console.log('Got attests: ', attests);
-  // EXAMPLE_GATEWAY_INTERCOSMOS
 
   return xfer;
 }
@@ -186,7 +181,6 @@ async function transferOutOfCosmos<N extends Network>(
   src: SignerStuff<N, Chain>,
   dst: SignerStuff<N, Chain>
 ): Promise<GatewayTransfer<N>> {
-  // EXAMPLE_GATEWAY_OUTBOUND
   console.log(
     `Beginning transfer out of cosmos from ${
       src.chain.chain
@@ -211,7 +205,6 @@ async function transferOutOfCosmos<N extends Network>(
   // Since we're leaving cosmos, this is required to complete the transfer
   const dstTxIds = await xfer.completeTransfer(dst.signer);
   console.log('Completed transfer on destination chain', dstTxIds);
-  // EXAMPLE_GATEWAY_OUTBOUND
 
   return xfer;
 }
