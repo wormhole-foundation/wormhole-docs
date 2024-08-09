@@ -166,7 +166,7 @@ While Wormhole is a Generic Message Passing (GMP) protocol, several protocols ha
 
 #### Wormhole Core {: #wormhole-core}
 
-The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [Emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter){target=\_blank}, the [Sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence){target=\_blank} for the message, and the Payload of the message itself.
+The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter){target=\_blank}, the [sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence){target=\_blank} for the message, and the payload of the message itself.
 
 The following example demonstrates sending and verifying a message using the Wormhole Core protocol on Solana. 
 
