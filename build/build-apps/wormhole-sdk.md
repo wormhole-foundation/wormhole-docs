@@ -26,23 +26,23 @@ This package combines all the individual packages to make setup easier while all
 
 Alternatively, you can install a specific set of published packages:
 
-- You can install the necessary constants with the `sdk-base` package:
-```
+- `sdk-base` - exposes constants
+```sh
 npm install @wormhole-foundation/sdk-base
 ```
 
-- You can install the contract interfaces, basic types, and VAA payload definitions with the `sdk-definitions` package:
-```
+- `sdk-definitions` - exposes contract interfaces, basic types, and VAA payload definitions
+```sh
 npm install @wormhole-foundation/sdk-definitions
 ```
 
-- You can install the EVM-specific utilities with the `sdk-evm` package:
-```
+- `sdk-evm` - exposes EVM-specific utilities
+```sh
 npm install @wormhole-foundation/sdk-evm
 ```
 
-- You can install the EVM TokenBridge protocol client with the `sdk-evm-tokenbridge` package:
-```
+- `sdk-evm-tokenbridge` - exposes the EVM Token Bridge protocol client
+```sh
 npm install @wormhole-foundation/sdk-evm-tokenbridge
 ```
 
