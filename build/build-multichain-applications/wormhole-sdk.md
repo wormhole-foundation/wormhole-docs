@@ -181,7 +181,7 @@ The code then prepares a message for publication. This message includes:
 
 After preparing the message, the next steps are to generate, sign, and send the transaction(s) required to publish the message on the Solana blockchain. Once the transaction is confirmed, the Wormhole message ID is extracted from the transaction logs. This ID is crucial for tracking the message across chains.
 
-The code then waits for the Wormhole network to process and sign the message, turning it into a Valid Action Approval (VAA). This VAA is retrieved in a `Uint8Array` format, with a timeout of 60 seconds.
+The code then waits for the Wormhole network to process and sign the message, turning it into a Verified Action Approval (VAA). This VAA is retrieved in a `Uint8Array` format, with a timeout of 60 seconds.
 
 Lastly, the code will demonstrate how to verify the message on the receiving end. A verification transaction is prepared using the original sender's address and the VAA, and finally this transaction is signed and sent.
 
