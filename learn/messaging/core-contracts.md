@@ -38,7 +38,6 @@ There are no fees to publish a message, except when publishing on Solana, but th
 
 - `sequenceNumber` ++"int"++ - a unique number that increments for every message for a given emitter (and implicitly chain). This, combined with the emitter address and emitter chain ID, allows the VAA for this message to be queried from the [APIs](#){target=\_blank}
 
-
 ## Receiving
 
 Use the following method signature to receive a message encoded as a VAA:
