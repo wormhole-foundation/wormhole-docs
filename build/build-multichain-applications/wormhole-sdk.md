@@ -283,7 +283,7 @@ A transfer leaving Cosmos will produce a VAA from the Gateway that must be manua
 
 ### Recovering Transfers {: #recovering-transfers}
 
-It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the Transfer class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
+It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the `Transfer` class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/recover-transfer-example.ts'
@@ -296,7 +296,7 @@ It may be necessary to recover an abandoned transfer before being completed. To 
 
 ## Routes {: #routes}
 
-While a specific `WormholeTransfer` may be used (TokenTransfer, CCTPTransfer, etc.), the developer must know exactly which transfer type to use for a given request. 
+While a specific `WormholeTransfer` may be used (`TokenTransfer`, `CCTPTransfer`, etc.), the developer must know exactly which transfer type to use for a given request. 
 
 To provide a more flexible and generic interface, the `Wormhole` class provides a method to produce a `RouteResolver` that can be configured with a set of possible routes to be supported.
 
@@ -323,7 +323,6 @@ Choosing the best route is currently left to the developer, but strategies might
 After choosing the best route, extra parameters like `amount`, `nativeGasDropoff`, and `slippage` can be passed, depending on the specific route selected and a quote can be retrieved with the validated request. 
 
 After successful validation, the code requests a transfer quote. This quote likely includes important details such as fees, estimated time, and the final amount to be received. If the quote is generated successfully, it's displayed for the user to review and decide whether to proceed with the transfer. This process ensures that all transfer details are properly set up and verified before any actual transfer takes place.
-
 
 ```ts
 --8<-- 'code/build/build-multichain-applications/wormhole-sdk/example-request-validate.ts'
