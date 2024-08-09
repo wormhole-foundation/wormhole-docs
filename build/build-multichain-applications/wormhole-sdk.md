@@ -214,7 +214,7 @@ The `WormholeTransfer` interface provides a convenient abstraction to encapsulat
 
 ### Token Transfers {: #token-transfers}
 
-Performing a token transfer is trivial for any source and destination chains. You can create a new `Wormhole` object to make objects like `TokenTransfer,` `CircleTransfer,` and `GatewayTransfer,` to transfer tokens between chains. 
+Performing a token transfer is trivial for any source and destination chains. You can create a new `Wormhole` object to make objects like `TokenTransfer`, `CircleTransfer`, and `GatewayTransfer`, to transfer tokens between chains. 
 
 The following example demonstrates process of initiating and completing a token transfer. It starts by creating a `TokenTransfer` object, which tracks the transfer's state throughout its lifecycle. The code then obtains a quote for the transfer, ensuring the amount is sufficient to cover fees and any requested native gas.
 
