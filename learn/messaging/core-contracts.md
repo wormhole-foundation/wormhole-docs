@@ -40,7 +40,7 @@ There are no fees to publish a message, except when publishing on Solana, but th
 
 ## Receiving
 
-Use the following method signature to receive a message encoded as a VAA:
+The method signature for receiving a message encoded as a VAA:
 
 ```js
 --8<-- 'code/learn/messaging/core-contracts/receiving.js'
