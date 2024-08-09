@@ -148,7 +148,7 @@ Finally, the snippet also demonstrates how to convert a `TokenId` back into a re
 
 ### Signers {: #signers}
 
-In the SDK, a Signer interface is required for certain methods to sign transactions. This interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`, depending on the specific requirements. A Signer can be created by wrapping an existing offline wallet or a web wallet.
+In the SDK, a `Signer` interface is required for certain methods to sign transactions. This interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`, depending on the specific requirements. A signer can be created by wrapping an existing offline wallet or a web wallet.
 
 A `SignOnlySigner` is used in scenarios where the signer is not connected to the network or prefers not to broadcast transactions themselves. It accepts an array of unsigned transactions and returns an array of signed and serialized transactions. Before signing, the transactions may be inspected or altered. It's important to note that the serialization process is chain-specific; for guidance, refer to the linked example implementations.
 
