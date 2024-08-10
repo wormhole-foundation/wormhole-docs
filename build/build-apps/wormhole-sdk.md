@@ -51,35 +51,36 @@ npm install @wormhole-foundation/sdk-evm-tokenbridge
 Getting started is simple; just import Wormhole:
 
 ```ts
-import { wormhole } from '@wormhole-foundation/sdk';
+--8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts::1'
 ```
 
 Then, import each of the ecosystem [platforms](#platforms) that you wish to support:
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/import-platforms.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts:4:9'
 ```
+
+
 To make the [platform](#platforms) modules available for use, pass them to the Wormhole constructor:
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/wormhole-init.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts:13:20'
 ```
 
 With a configured Wormhole object, you can do things like parse addresses for the provided platforms, get a [`ChainContext`](#chain-context) object, or fetch VAAs.
 
 ```ts
-// Grab a ChainContext object from our configured Wormhole instance
-const ctx = wh.getChain('Solana');
+--8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts:22:22'
 ```
 
 You can retrieve a VAA as follows. In this example, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will vary by network. 
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/get-vaa-snippet.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts:54:61'
 ```
 
 ??? code "View the complete script"
-    ```ts hl_lines="68-74"
+    ```ts
     --8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts'
     ```
 

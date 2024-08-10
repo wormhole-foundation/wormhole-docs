@@ -35,23 +35,6 @@ import { getSigner } from './helpers/index.js';
   // bigint amount using `amount` module
   const amt = amount.units(amount.parse('0.1', ctx.config.nativeTokenDecimals));
 
-  // NOTE: If the recipient chain is Solana the ATA _must_ be the recipient address
-  // using a standard wallet account address will result in a failed transfer
-  // and loss of funds
-
-  // Higher level objects like TokenTransfer are available and provide things like destination overrides
-  // in the case that the destination has some special rules the source chain must follow for
-  // successful redemption on the destination chain.
-
-  // Some static helpers are available for more direct control
-  // const withOverrides = await TokenTransfer.destinationOverrides(ctx, rcv, {
-  //   token: tokenId,
-  //   amount: amt,
-  //   from: sender.address,
-  //   to: receiver.address,
-  // });
-  // console.log(withOverrides);
-
   // Create a transaction stream for transfers
   const transfer = sndTb.transfer(
     sender.address.address,
