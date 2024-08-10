@@ -17,11 +17,11 @@ import { getSigner } from './helpers/index.js';
   const sendChain = wh.getChain('Avalanche');
   const destChain = wh.getChain('Solana');
 
-  // get signers from local config
+  // Get signers from local config
   const sender = await getSigner(sendChain);
   const receiver = await getSigner(destChain);
 
-  // create new resolver, passing the set of routes to consider
+  // Create new resolver, passing the set of routes to consider
   const resolver = wh.resolver([
     routes.TokenBridgeRoute, // manual token bridge
     routes.AutomaticTokenBridgeRoute, // automatic token bridge
@@ -30,7 +30,7 @@ import { getSigner } from './helpers/index.js';
     routes.AutomaticPorticoRoute, // Native eth transfers
   ]);
 
-  // what tokens are available on the source chain?
+  // What tokens are available on the source chain?
   const srcTokens = await resolver.supportedSourceTokens(sendChain);
   console.log(
     'Allowed source tokens: ',
@@ -39,7 +39,7 @@ import { getSigner } from './helpers/index.js';
 
   const sendToken = Wormhole.tokenId(sendChain.chain, 'native');
 
-  // given the send token, what can we possibly get on the destination chain?
+  // Given the send token, what can we possibly get on the destination chain?
   const destTokens = await resolver.supportedDestinationTokens(
     sendToken,
     sendChain,
@@ -49,25 +49,23 @@ import { getSigner } from './helpers/index.js';
     'For the given source token and routes configured, the following tokens may be receivable: ',
     destTokens.map((t) => canonicalAddress(t))
   );
-  //grab the first one for the example
+  // Grab the first one for the example
   const destinationToken = destTokens[0]!;
 
-  // creating a transfer request fetches token details
-  // since all routes will need to know about the tokens
+  // Creating a transfer request fetches token details
+  // Since all routes will need to know about the tokens
   const tr = await routes.RouteTransferRequest.create(wh, {
     source: sendToken,
     destination: destinationToken,
   });
 
-  // resolve the transfer request to a set of routes that can perform it
+  // Resolve the transfer request to a set of routes that can perform it
   const foundRoutes = await resolver.findRoutes(tr);
   console.log(
     'For the transfer parameters, we found these routes: ',
     foundRoutes
   );
 
-  // Sort the routes given some input (not required for mvp)
-  // const bestRoute = (await resolver.sortRoutes(foundRoutes, "cost"))[0]!;
   const bestRoute = foundRoutes[0]!;
   console.log('Selected: ', bestRoute);
 
@@ -75,20 +73,21 @@ import { getSigner } from './helpers/index.js';
     'This route offers the following default options',
     bestRoute.getDefaultOptions()
   );
+
   // Specify the amount as a decimal string
   const amt = '0.001';
   // Create the transfer params for this request
   const transferParams = { amount: amt, options: { nativeGas: 0 } };
 
-  // validate the transfer params passed, this returns a new type of ValidatedTransferParams
-  // which (believe it or not) is a validated version of the input params
-  // this new var must be passed to the next step, quote
+  // Validate the transfer params passed, this returns a new type of ValidatedTransferParams
+  // Which (believe it or not) is a validated version of the input params
+  // This new var must be passed to the next step, quote
   const validated = await bestRoute.validate(tr, transferParams);
   if (!validated.valid) throw validated.error;
   console.log('Validated parameters: ', validated.params);
 
-  // get a quote for the transfer, this too returns a new type that must
-  // be passed to the next step, execute (if you like the quote)
+  // Get a quote for the transfer, this too returns a new type that must
+  // Be passed to the next step, execute (if you like the quote)
   const quote = await bestRoute.quote(tr, validated.params);
   if (!quote.success) throw quote.error;
   console.log('Best route quote: ', quote);
@@ -107,7 +106,7 @@ import { getSigner } from './helpers/index.js';
     console.log('Initiated transfer with receipt: ', receipt);
 
     // Kick off a wait log, if there is an opportunity to complete, this function will do it
-    // see the implementation for how this works
+    // See the implementation for how this works
     await routes.checkAndCompleteTransfer(bestRoute, receipt, receiver.signer);
   } else {
     console.log('Not initiating transfer (set `imSure` to true to do so)');

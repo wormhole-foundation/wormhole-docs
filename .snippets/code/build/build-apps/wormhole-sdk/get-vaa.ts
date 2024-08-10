@@ -32,7 +32,7 @@ import { getSigner } from './helpers/index.js';
   // Send the native token of the source chain
   const tokenId = Wormhole.tokenId(ctx.chain, 'native');
 
-  // bigint amount using `amount` module
+  // Bigint amount using `amount` module
   const amt = amount.units(amount.parse('0.1', ctx.config.nativeTokenDecimals));
 
   // Create a transaction stream for transfers
@@ -71,7 +71,7 @@ import { getSigner } from './helpers/index.js';
   console.log('Sent: ', rcvTxids);
 
   // Now check if the transfer is completed according to
-  // the destination token bridge
+  // The destination token bridge
   const finished = await rcvTb.isTransferCompleted(vaa!);
   console.log('Transfer completed: ', finished);
 })();

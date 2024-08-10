@@ -27,27 +27,21 @@ import evm from '@wormhole-foundation/sdk/evm';
   const txids = await signSendWait(chain, publishTxs, signer);
 
   // Take the last txid in case multiple were sent
-  // the last one should be the one containing the relevant
-  // event or log info
+  // The last one should be the one containing the relevant
+  // Event or log info
   const txid = txids[txids.length - 1];
 
   // Grab the wormhole message id from the transaction logs or storage
   const [whm] = await chain.parseTransaction(txid!.txid);
 
-  // Or pull the full message content as an Unsigned VAA
-  // console.log(await coreBridge.parseMessages(txid!.txid));
-
   // Wait for the vaa to be signed and available with a timeout
   const vaa = await wh.getVaa(whm!, 'Uint8Array', 60_000);
   console.log(vaa);
 
-  // Also possible to search by txid but it takes longer to show up
-  // console.log(await wh.getVaaByTxHash(txid!.txid, "Uint8Array"));
-
   // Note: calling verifyMessage manually is typically not a useful thing to do
-  // as the VAA is typically submitted to the counterpart contract for
-  // a given protocol and the counterpart contract will verify the VAA
-  // this is simply for demo purposes
+  // As the VAA is typically submitted to the counterpart contract for
+  // A given protocol and the counterpart contract will verify the VAA
+  // This is simply for demo purposes
   const verifyTxs = coreBridge.verifyMessage(address.address, vaa!);
   console.log(await signSendWait(chain, verifyTxs, signer));
 })();

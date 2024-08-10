@@ -1,4 +1,4 @@
-// create new resolver, passing the set of routes to consider
+// Create new resolver, passing the set of routes to consider
 const resolver = wh.resolver([
   routes.TokenBridgeRoute, // manual token bridge
   routes.AutomaticTokenBridgeRoute, // automatic token bridge

@@ -15,7 +15,7 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
 
 (async function () {
   // Init Wormhole object, passing config for which network
-  // to use (e.g. Mainnet/Testnet) and what Platforms to support
+  // To use (e.g. Mainnet/Testnet) and what Platforms to support
   const wh = await wormhole('Testnet', [evm, solana]);
 
   // Grab chain Contexts -- these hold a reference to a cached rpc client
@@ -37,21 +37,21 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
 
   // Normalized given token decimals later but can just pass bigints as base units
   // Note: The Token bridge will dedust past 8 decimals
-  // this means any amount specified past that point will be returned
-  // to the caller
+  // This means any amount specified past that point will be returned
+  // To the caller
   const amt = '0.05';
 
   // With automatic set to true, perform an automatic transfer. This will invoke a relayer
-  // contract intermediary that knows to pick up the transfers
+  // Contract intermediary that knows to pick up the transfers
   // With automatic set to false, perform a manual transfer from source to destination
-  // of the token
+  // Of the token
   // On the destination side, a wrapped version of the token will be minted
-  // to the address specified in the transfer VAA
+  // To the address specified in the transfer VAA
   const automatic = false;
 
   // The automatic relayer has the ability to deliver some native gas funds to the destination account
   // The amount specified for native gas will be swapped for the native gas token according
-  // to the swap rate provided by the contract, denominated in native gas tokens
+  // To the swap rate provided by the contract, denominated in native gas tokens
   const nativeGas = automatic ? '0.01' : undefined;
 
   // Get signer from local key but anything that implements
@@ -68,7 +68,7 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
   const roundTrip: boolean = false;
 
   // Set this to the transfer txid of the initiating transaction to recover a token transfer
-  // and attempt to fetch details about its progress.
+  // And attempt to fetch details about its progress.
   let recoverTxid = undefined;
 
   // Finally create and perform the transfer given the parameters set above

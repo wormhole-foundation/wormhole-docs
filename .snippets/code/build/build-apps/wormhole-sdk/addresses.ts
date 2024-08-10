@@ -2,7 +2,7 @@
 const ethAddr: NativeAddress<'Evm'> = toNative('Ethereum', '0xbeef...');
 
 // A common type in the SDK is the `ChainAddress` which provides
-// the additional context of the `Chain` this address is relevant for
+// The additional context of the `Chain` this address is relevant for
 const senderAddress: ChainAddress = Wormhole.chainAddress(
   'Ethereum',
   '0xbeef...'
