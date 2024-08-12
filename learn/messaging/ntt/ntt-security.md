@@ -15,7 +15,7 @@ Contact Wormhole contributors if you are interested in having Global Accountant 
 
 ## Governance and Upgradeability
 
-Integrators should implement governance mechanisms to manage the addition and removal of transceivers and to `upgrade` contracts using proxy patterns, as demonstrated in the upgrade functions in the `NttManager` contracts. These processes can also set thresholds and rules for attestation and message approval.
+Integrators should implement governance mechanisms to manage the addition and removal of transceivers and to upgrade contracts using proxy patterns, as demonstrated in the upgrade functions in the `NttManager` contracts. These processes can also set thresholds and rules for attestation and message approval.
 
 The registry component of the NTT system is crucial for maintaining a trusted list of transceivers and managing their status. Governance processes for the following actions can be submitted directly to the corresponding contract on-chain, whether it is one or multiple of the bridging contracts or one of the token contracts:
 
