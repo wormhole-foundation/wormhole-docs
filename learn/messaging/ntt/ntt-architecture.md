@@ -19,7 +19,7 @@ There are two primary components to NTT: Managers and Transceivers.
 
 ### Managers
 
-Manage the token and the transceivers, handle rate-limiting and message attestation. Each `NttManager` corresponds to a single token but can control multiple transceivers. Key functions include:
+Manage the token and the transceivers, handle rate-limiting and message attestation. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
 
 - `transfer` - initiates a token transfer process involving token locking or burning on the source chain
 - `quoteDeliveryPrice` - quotes the fee for delivering a message to a specific target chain by querying and aggregating quotes from the Transceiver contracts
