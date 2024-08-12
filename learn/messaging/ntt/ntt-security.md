@@ -1,6 +1,6 @@
 ---
 title: Native Token Transfers Security
-description: Explore the security measures of Native Token Transfers, including Global Accountant and governance strategies for seamless token safety.
+description: Explore the security measures of Native Token Transfers, including the Global Accountant and governance strategies for seamless token safety.
 ---
 
 # Security
