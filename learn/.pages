@@ -5,3 +5,4 @@ nav:
  - 'Security': 'security.md'
  - 'Architecture Overview': 'architecture.md'
  - infrastructure
+ - messaging
