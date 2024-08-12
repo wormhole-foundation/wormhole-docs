@@ -22,7 +22,9 @@ The framework offers two modes of operation for existing token deployments. In l
 - **Maximum composability** - open-source and extensible for widespread adoption and integration with other protocols
 - **Custom attestation** - optionally add external verifiers and configure custom message attestation thresholds
 
-Integrators looking to deploy their token to connected chains can use the NTT framework or the Token Bridge. Both options carry a distinct integration path and feature set depending on your requirements:
+## Integration Paths
+
+Integrators looking to deploy their token to connected chains can use the NTT framework or the Token Bridge. Both options carry a distinct integration path and feature set depending on your requirements, as outlined in the following sections.
 
 ### Native Token Transfers
 
