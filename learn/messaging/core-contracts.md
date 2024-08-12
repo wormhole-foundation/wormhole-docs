@@ -12,6 +12,7 @@ Core Contracts are generally simple and can be divided into sending and receivin
 ## Sending
 
 The implementation strategy for `publishMessage` differs by chain. However, the general strategy consists of the Core Contract posting the following items to the blockchain logs:
+
 - `emitterAddress` of the contract which made the `publishMessage` call
 - `sequenceNumber`
 - `consistencyLevel` 
