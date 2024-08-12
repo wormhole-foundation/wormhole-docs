@@ -7,7 +7,7 @@ description: Explore the security measures of Native Token Transfers, including 
 
 ## Global Accountant
 
-Global Accountant is a defense-in-depth security feature that performs integrity checks on every token transfer. This feature isolates chain balances, ensuring more tokens cannot be burned and transferred out of a chain than were ever minted.
+The Global Accountant is a defense-in-depth security feature that performs integrity checks on every token transfer. This feature isolates chain balances, ensuring more tokens cannot be burned and transferred out of a chain than were ever minted.
 
 This CosmWasm-based module acts as a smart contract on Wormhole Gateway and ensures that native asset fungibility remains in 1:1 parity. At no time will assets coming from a spoke chain exceed the number of native assets sent to that spoke chain. Accounting is enforced transparently by Wormhole Guardians, who will not attest to an NTT transfer if it violates checks.
 
