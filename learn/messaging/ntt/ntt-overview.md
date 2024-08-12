@@ -11,7 +11,7 @@ Wormhole's Native Token Transfers (NTT) is an open-source, flexible, and composa
 
 The framework offers two modes of operation for existing token deployments. In locking mode, the original token supply is preserved on a single chain. In contrast, the burning mode enables the deployment of multichain tokens, distributing the supply across various chains.
 
-### Key Features
+## Key Features
 
 - **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience.
 - **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
