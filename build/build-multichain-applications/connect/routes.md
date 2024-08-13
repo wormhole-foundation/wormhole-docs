@@ -5,7 +5,7 @@ description: Explore Wormhole Connect's routing capabilities for asset transfers
 
 ## Routes Overview {: #routes-overview}
 
-This page explains the concept of routes in Wormhole Connect. To configure routes for your widget, check [here](../connect/configuration.md).
+This page explains the concept of routes in Wormhole Connect. To configure routes for your widget, check the [Wormhole Connect Configuration](../connect/configuration.md).
 
 Routes are methods by which the widget will transfer the assets. Wormhole Connect supports Token Bridge transfers for any arbitrary token, and for specific tokens, it also supports more advanced transfer methods that provide superior UX.
 
