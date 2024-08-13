@@ -5,13 +5,14 @@ description: Discover Wormhole's Core Contracts, enabling cross-chain communicat
 
 # Core Contracts
 
-The Core Contracts are the mechanism by which all Wormhole messages are emitted. All cross-chain applications either interact directly with the Core Contract or interact with another contract that does. Each blockchain in the ecosystem has a single Core Contract, which the Guardians are required to monitor. These Core Contracts emit the messages that the [Guardians](https://github.com/learn/infrastructure/guardians/){target=_blank} pick up as [Observations](https://github.com/wormhole-foundation/wormhole-docs/pull/8/files#){target=_blank}.
+The Core Contracts are the mechanism by which all Wormhole messages are emitted. All cross-chain applications either interact directly with the Core Contract or interact with another contract that does. Each blockchain in the ecosystem has a single Core Contract, which the Guardians are required to monitor. These Core Contracts emit the messages that the [Guardians](/learn/infrastructure/guardians/){target=_blank} pick up as [Observations](#){target=_blank}.
 
 Core Contracts are generally simple and can be divided into sending and receiving sides, each of which will be defined next. 
 
 ## Sending
 
 The implementation strategy for `publishMessage` differs by chain. However, the general strategy consists of the Core Contract posting the following items to the blockchain logs:
+
 - `emitterAddress` of the contract which made the `publishMessage` call
 - `sequenceNumber`
 - `consistencyLevel` 
