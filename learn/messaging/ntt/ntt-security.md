@@ -11,7 +11,7 @@ The Global Accountant is a defense-in-depth security feature that performs integ
 
 This CosmWasm-based module acts as a smart contract on Wormhole Gateway and ensures that native asset fungibility remains in 1:1 parity. At no time will assets coming from a spoke chain exceed the number of native assets sent to that spoke chain. Accounting is enforced transparently by Wormhole Guardians, who will not attest to an NTT transfer if it violates checks.
 
-Contact Wormhole contributors if you are interested in having Global Accountant configured for your multichain deployment.
+[Contact](#){target=\_blank} Wormhole contributors if you are interested in having Global Accountant configured for your multichain deployment.
 
 ## Governance and Upgradeability
 
