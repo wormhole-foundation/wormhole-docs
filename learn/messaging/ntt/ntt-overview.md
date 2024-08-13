@@ -31,7 +31,7 @@ Integrators looking to deploy their token to connected chains can use the NTT fr
 Highly customizable. For example, a DeFi governance token deployed on multiple chains that want fungible multichain liquidity and direct integration into governance processes.
 
 - **Mechanism** - can entirely utilize a burn and mint mechanism or can be paired for a hub and spoke model
-- **Security** - fully configurable rate limiting, pausing, access control, and threshold attestations. Integrated with Global Accountant
+- **Security** - fully configurable rate limiting, pausing, access control, and threshold attestations. Integrated with the Global Accountant
 - **Contract ownership** - retain ownership and upgrade authority of token contracts on each chain
 - **Token contracts** - native contracts owned by your protocol governance
 - **Integration** - streamlined, customizable framework allows for more sophisticated and bespoke deployments
