@@ -1,15 +1,7 @@
 ---
 title: Glossary
-description: TODO
+description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network.
 ---
-
-<!--
-[link](#){target=\_blank}
-![img description](/images/learn/introduction/introduction-1.webp)
-`
-!!! note
-	note
--->
 
 # Glossary
 
