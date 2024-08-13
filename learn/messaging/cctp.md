@@ -31,7 +31,7 @@ The Wormhole CCTP Relayer charges a fee to deliver the attestation and complete 
 
 Another advantage of using the automatic relaying feature is the opportunity to transfer some native gas to the receiver on the destination chain. This feature is referred to as _native gas drop-off_.
 
-The ability to perform native gas dropoff addresses the common issue where a user may hold a balance of USDC but has no native gas to perform subsequent transactions.
+The ability to perform native gas drop-off addresses the common issue where a user may hold a balance of USDC but has no native gas to perform subsequent transactions.
 
 <!-- 
 !!! note
