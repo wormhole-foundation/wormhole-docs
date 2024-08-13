@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: Configure Your Connect Widget
 description: Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions. 
 ---
 

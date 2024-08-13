@@ -1,8 +1,8 @@
 title: Connect
 nav:
  - index.md
- - overview.md
- - routes.md
- - features.md
- - configuration.md
+ - 'Overview': overview.md
+ - 'Routes': routes.md
+ - 'Features': features.md
+ - 'Configuration': configuration.md
  
