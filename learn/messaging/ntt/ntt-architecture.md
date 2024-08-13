@@ -76,7 +76,7 @@ event TransferSent(
 
 #### Rate Limit
 
-A transfer can be rate-limited on both on the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
+A transfer can be rate-limited on both the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
 
 If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
 
