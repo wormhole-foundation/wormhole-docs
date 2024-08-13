@@ -19,6 +19,6 @@ console.log('Started transfer on source chain', srcTxIds);
 const attests = await xfer.fetchAttestation(600_000);
 console.log('Got attests', attests);
 
-// Since we're leaving cosmos, this is required to complete the transfer
+// Since we're leaving Cosmos, this is required to complete the transfer
 const dstTxIds = await xfer.completeTransfer(dst.signer);
 console.log('Completed transfer on destination chain', dstTxIds);
