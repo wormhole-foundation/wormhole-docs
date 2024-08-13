@@ -41,7 +41,7 @@ Responsible for sending NTT transfers forwarded through the manager on the sourc
 
 #### Custom Transceivers
 
-NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as Transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
+NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
 
 ![Custom Attestation with NTT diagram](/images/learn/messaging/messaging-2.webp)
 
