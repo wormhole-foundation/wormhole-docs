@@ -22,7 +22,7 @@ AutoRelayer takes a 0.1 USDC fee when transferring to any chain beside Goerli, w
 //
 
 (async function () {
-  // Init Wormhole object, passing config for which network
+  // Init the Wormhole object, passing in the config for which network
   // to use (e.g. Mainnet/Testnet) and what Platforms to support
   const wh = await wormhole('Testnet', [evm, solana]);
 
