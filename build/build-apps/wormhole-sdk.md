@@ -157,7 +157,7 @@ Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to
 
 ```ts
 --8<-- 'code/build/build-apps/wormhole-sdk/signers.ts'
-````
+```
 
 ### Protocols {: #protocols}
 
@@ -184,11 +184,7 @@ The code then waits for the Wormhole network to process and sign the message, tu
 
 Lastly, the code will demonstrate how to verify the message on the receiving end. A verification transaction is prepared using the original sender's address and the VAA, and finally this transaction is signed and sent.
 
-```ts
---8<-- 'code/build/build-apps/wormhole-sdk/core-bridge.ts'
-```
-
-??? code "View the complete script"
+???+ code "View the complete script"
     ```ts
     --8<-- 'code/build/build-apps/wormhole-sdk/example-core-bridge.ts'
     ```
