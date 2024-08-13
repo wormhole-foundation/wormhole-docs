@@ -52,13 +52,13 @@ If you're not using React, you can still embed Connect on your website by using 
 
 Simply copy and paste the following into your HTML body, and replace the ```INSERT_WORMHOLE_CONNECT_VERSION``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest){target=\_blank}.
 
-```js
+```html
 --8<-- 'code/build/build-multichain-applications/connect/overview/cdn.html'
 ```
 
 For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/0.3.13){target=\_blank}:
 
-```js
+```html
 --8<-- 'code/build/build-multichain-applications/connect/overview/cdn-with-version.html'
 ```
 
