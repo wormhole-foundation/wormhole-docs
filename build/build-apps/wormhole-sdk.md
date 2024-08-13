@@ -157,6 +157,7 @@ Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to
 
 ```ts
 --8<-- 'code/build/build-apps/wormhole-sdk/signers.ts'
+````
 
 ### Protocols {: #protocols}
 
