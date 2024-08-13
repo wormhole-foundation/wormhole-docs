@@ -22,6 +22,7 @@ Wormhole Connect is easy to customize to suit your application's needs. You can 
 - [Ability to drop off some gas](./features.md) at the destination
 
 For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](../connect/features.md).
+
 ## Production DApp Examples {: #production-dapp-examples }
 
 Wormhole Connect is deployed live in several production apps. Here are a few:
@@ -32,7 +33,7 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 
 ## Integrate Connect {: #integrate-connect }
 
-### Import Directly into a React App  {: #option-1-import-directly-into-a-react-app}
+### Import Directly into a React App  {: #import-directly-into-a-react-app}
 
 First, install the Wormhole Connect npm package. You can read more about the package by clicking on the following button: [![npm version](https://img.shields.io/npm/v/@wormhole-foundation/wormhole-connect.svg)](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank} 
 
