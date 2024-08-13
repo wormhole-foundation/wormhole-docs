@@ -23,7 +23,7 @@ The manual route transfer method requires two transactions: one on the origin ch
 
 Trustless relayers can execute the second transaction on the user's behalf, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically - for a small fee. Wormhole Connect automatically detects whether the relayer supports a token and will display the option if the `relay` route is enabled in the configuration.
 
-## CCTP Routes (USDC only) {: #cctp-routes-for-usdc-only}
+## CCTP Routes (USDC) {: #cctp-routes-usdc}
  
 [Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains. Wormhole Connect can facilitate such transfers.
 
