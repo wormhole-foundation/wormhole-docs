@@ -304,7 +304,7 @@ Once created, the resolver can be used to provide a list of input and possible o
 Once the tokens are selected, a `RouteTransferRequest` may be created to provide a list of routes that can fulfill the request. Creating a transfer request fetches the token details since all routes will need to know about the tokens.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/example-request-create.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/router.ts:55:67'
 ```
 
 Choosing the best route is currently left to the developer, but strategies might include sorting by output amount or expected time to complete the transfer (no estimate is currently provided).
@@ -314,13 +314,13 @@ After choosing the best route, extra parameters like `amount`, `nativeGasDropoff
 After successful validation, the code requests a transfer quote. This quote likely includes important details such as fees, estimated time, and the final amount to be received. If the quote is generated successfully, it's displayed for the user to review and decide whether to proceed with the transfer. This process ensures that all transfer details are properly set up and verified before any actual transfer takes place.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/example-request-validate.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/router.ts:72:93'
 ```
 
 Finally, assuming the quote looks good, the route can initiate the request with the quote and the `signer`.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/example-request-initiate.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/router.ts:100:106'
 ```
 
 ??? code "View the complete script"
