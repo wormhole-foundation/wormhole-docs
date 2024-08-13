@@ -28,7 +28,7 @@ import evm from '@wormhole-foundation/sdk/evm';
 
   // Take the last txid in case multiple were sent
   // The last one should be the one containing the relevant
-  // Event or log info
+  // event or log info
   const txid = txids[txids.length - 1];
 
   // Grab the wormhole message id from the transaction logs or storage

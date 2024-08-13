@@ -80,14 +80,14 @@ import { getSigner } from './helpers/index.js';
   const transferParams = { amount: amt, options: { nativeGas: 0 } };
 
   // Validate the transfer params passed, this returns a new type of ValidatedTransferParams
-  // Which (believe it or not) is a validated version of the input params
+  // which (believe it or not) is a validated version of the input params
   // This new var must be passed to the next step, quote
   const validated = await bestRoute.validate(tr, transferParams);
   if (!validated.valid) throw validated.error;
   console.log('Validated parameters: ', validated.params);
 
   // Get a quote for the transfer, this too returns a new type that must
-  // Be passed to the next step, execute (if you like the quote)
+  // be passed to the next step, execute (if you like the quote)
   const quote = await bestRoute.quote(tr, validated.params);
   if (!quote.success) throw quote.error;
   console.log('Best route quote: ', quote);

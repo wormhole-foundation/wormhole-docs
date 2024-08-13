@@ -71,7 +71,7 @@ import { getSigner } from './helpers/index.js';
   console.log('Sent: ', rcvTxids);
 
   // Now check if the transfer is completed according to
-  // The destination token bridge
+  // the destination token bridge
   const finished = await rcvTb.isTransferCompleted(vaa!);
   console.log('Transfer completed: ', finished);
 })();

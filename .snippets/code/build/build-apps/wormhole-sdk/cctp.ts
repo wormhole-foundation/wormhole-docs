@@ -22,7 +22,7 @@ AutoRelayer takes a 0.1 USDC fee when transferring to any chain beside Goerli, w
 //
 
 (async function () {
-  // init Wormhole object, passing config for which network
+  // Init Wormhole object, passing config for which network
   // to use (e.g. Mainnet/Testnet) and what Platforms to support
   const wh = await wormhole('Testnet', [evm, solana]);
 
@@ -67,15 +67,15 @@ async function cctpTransfer<N extends Network>(
 ) {
 
   const xfer = await wh.circleTransfer(
-    // amount as bigint (base units)
+    // Amount as bigint (base units)
     req.amount,
-    // sender chain/address
+    // Sender chain/address
     src.address,
-    // receiver chain/address
+    // Receiver chain/address
     dst.address,
-    // automatic delivery boolean
+    // Automatic delivery boolean
     req.automatic,
-    // payload to be sent with the transfer
+    // Payload to be sent with the transfer
     undefined,
     // If automatic, native gas can be requested to be sent to the receiver
     req.nativeGas
