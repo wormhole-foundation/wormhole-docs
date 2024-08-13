@@ -21,7 +21,7 @@ Wormhole Connect is easy to customize to suit your application's needs. You can 
 - Ability to configure any token to bridge via Wormhole
 - [Ability to drop off some gas](/build/build-multichain-applications/connect/features) at the destination
 
-For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](../connect/features.md).
+For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/build/build-multichain-applications/connect/features).
 
 ## Production DApp Examples {: #production-dapp-examples }
 
@@ -68,7 +68,7 @@ For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wor
 
 ## Configuration {: #configuration}
 
-This is just an overview of what's possible. Check the [Configuration Docs](../connect/configuration.md) for details about all the configuration options.
+This is just an overview of what's possible. Check the [Configuration Docs](/build/build-multichain-applications/connect/configuration) for details about all the configuration options.
 
 The default configuration of Wormhole Connect may not be exact;y what you're looking for. You may want to:
 
@@ -76,6 +76,6 @@ The default configuration of Wormhole Connect may not be exact;y what you're loo
 - Restrict the chains that you allow in your app
 - Add support for your project's token, and eliminate tokens you don't want to reduce noise
 - Configuring custom RPC URLs (This is highly recommended as default public RPCs are heavily throttled)
-- Restrict the [routes](./routes.md) that are available
+- Restrict the [routes](/build/build-multichain-applications/connect/routes) that are available
 
-For the above options and more, check the [configuration options](./configuration.md) and customize your widget however you like.
+For the above options and more, check the [configuration options](/build/build-multichain-applications/connect/configuration) and customize your widget however you like.
