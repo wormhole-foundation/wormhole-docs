@@ -13,6 +13,8 @@ The framework offers two modes of operation for existing token deployments. In l
 
 ## Key Features
 
+Wormhole's Native Token Transfers (NTT) framework offers a comprehensive and flexible solution for seamless token transfers across blockchains. Below are some of the key features that make this framework stand out:
+
 - **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience.
 - **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
 - **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
@@ -26,7 +28,7 @@ The framework offers two modes of operation for existing token deployments. In l
 
 Integrators looking to deploy their token to connected chains can use the NTT framework or the Token Bridge. Both options carry a distinct integration path and feature set depending on your requirements, as outlined in the following sections.
 
-### Native Token Transfers
+### Native Token Transfers Framework
 
 Highly customizable. For example, a DeFi governance token deployed on multiple chains that want fungible multichain liquidity and direct integration into governance processes.
 
