@@ -15,11 +15,11 @@ The [Wormhole Typescript SDK](https://docs.wormhole.com/wormhole/reference/sdk-d
 
 Wormhole Connect is easy to customize to suit your application's needs. You can specify technical details like supported assets and custom RPCs or forgo customization and have a full-featured widget. The widget's UI is highly customizable, with extensive styling options available, including a user-friendly codeless styling interface for those who prefer a more visual approach to design. The features of Wormhole Connect include:
 
-- Multiple ways to bridge assets ("[routes](./routes.md)")
+- Multiple ways to bridge assets ([routes](/build/build-multichain-applications/connect/routes))
 - Extensive ways to style the UI (including the [codeless styler interface](https://connect-in-style.wormhole.com/){target=\_blank})
-- Ways to [configure](./configuration.md) what feature set to offer
+- Ways to [configure](/build/build-multichain-applications/connect/configuration) what feature set to offer
 - Ability to configure any token to bridge via Wormhole
-- [Ability to drop off some gas](./features.md) at the destination
+- [Ability to drop off some gas](/build/build-multichain-applications/connect/features) at the destination
 
 For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](../connect/features.md).
 
