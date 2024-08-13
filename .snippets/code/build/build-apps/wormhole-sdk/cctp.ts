@@ -35,7 +35,7 @@ AutoRelayer takes a 0.1 USDC fee when transferring to any chain beside Goerli, w
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
-  // 6 decimals for USDC (except for bsc, so check decimals before using this)
+  // 6 decimals for USDC (except for BSC, so check decimals before using this)
   const amt = amount.units(amount.parse('0.2', 6));
 
   // Choose whether or not to have the attestation delivered for you
