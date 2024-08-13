@@ -222,9 +222,8 @@ The transfer process is divided into three main steps:
 For automatic transfers, the process ends after initiation. For manual transfers, the code waits for the transfer to be attested and then completes it on the destination chain.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/example-token-transfer.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/token-bridge.ts:120:158'
 ```
-
 ??? code "View the complete script"
     ```ts hl_lines="122"
     --8<-- 'code/build/build-apps/wormhole-sdk/token-bridge.ts'
