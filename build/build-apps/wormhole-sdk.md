@@ -275,7 +275,7 @@ A transfer leaving Cosmos will produce a VAA from the Gateway that must be manua
 It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the `Transfer` class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/recover-transfer-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/cctp.ts:120:126'
 ```
 
 ??? code "View the complete script"
