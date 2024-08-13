@@ -12,7 +12,7 @@ While this protocol is wholly separate from Wormhole itself, Wormhole builds on 
 !!! note
     Wormhole supports all CCTP-supported chains but at the moment only a [handful of chains](https://developers.circle.com/stablecoins/docs/supported-domains){target=\_blank} are supported by Circle.
 
-You can use Wormhole's CCTP Powered USDC bridging by embedding the [Connect Widget](#){target=\_blank} or by integrating the [Connect SDK](#){target=\_blank} directly.
+You can use Wormhole's CCTP-powered USDC bridging by embedding the [Connect Widget](#){target=\_blank} or by integrating the [Connect SDK](#){target=\_blank} directly.
 
 ## Automatic Relaying
 
