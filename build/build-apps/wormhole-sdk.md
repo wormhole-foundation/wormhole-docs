@@ -127,7 +127,7 @@ The `ChainContext` object is also responsible for holding a cached RPC client an
 
 ### Addresses {: #addresses}
 
-Within the Wormhole context, addresses are often [normalized](https://docs.wormhole.com/wormhole/blockchain-environments/evm#addresses){target=\_blank} to 32 bytes and referred to in this SDK as a `UniversalAddresses`.
+Within the Wormhole context, addresses are often [normalized](https://docs.wormhole.com/wormhole/blockchain-environments/evm#addresses){target=\_blank} to 32 bytes and referred to in this SDK as a `UniversalAddress`.
 
 Each platform has an address type that understands the native address formats, referred to as `NativeAddress.` This abstraction allows the SDK to work with addresses consistently regardless of the underlying chain.
 
