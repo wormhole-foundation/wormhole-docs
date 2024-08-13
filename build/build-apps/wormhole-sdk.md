@@ -292,13 +292,13 @@ To provide a more flexible and generic interface, the `Wormhole` class provides 
 The following section demonstrates the process of setting up and validating a token transfer using Wormhole's routing system.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/resolver-create-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/router.ts:24:31'
 ```
 
 Once created, the resolver can be used to provide a list of input and possible output tokens.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/example-resolver-list-tokens.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/router.ts:33:53'
 ```
 
 Once the tokens are selected, a `RouteTransferRequest` may be created to provide a list of routes that can fulfill the request. Creating a transfer request fetches the token details since all routes will need to know about the tokens.
