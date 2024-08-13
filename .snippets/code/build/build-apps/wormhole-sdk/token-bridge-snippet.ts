@@ -1,9 +1,7 @@
 import { signSendWait } from '@wormhole-foundation/sdk';
 
-// ...
-
-const tb = await srcChain.getTokenBridge(); // => TokenBridge<'Evm'>
+const tb = await srcChain.getTokenBridge(); 
 
 const token = '0xdeadbeef...';
-const txGenerator = tb.createAttestation(token); // => AsyncGenerator<UnsignedTransaction, ...>
-const txids = await signSendWait(srcChain, txGenerator, src.signer); // => TxHash[]
+const txGenerator = tb.createAttestation(token); 
+const txids = await signSendWait(srcChain, txGenerator, src.signer);
