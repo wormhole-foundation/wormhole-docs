@@ -253,26 +253,20 @@ When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amou
 
 ### Gateway Transfers {: #gateway-transfers}
 
-Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain).
+Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain). A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/gateway-inbound-example.ts'
-```
-
-A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
-
-```ts
---8<-- 'code/build/build-apps/wormhole-sdk/gateway-intercosmos-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/cosmos.ts:152:172'
 ```
 
 A transfer leaving Cosmos will produce a VAA from the Gateway that must be manually redeemed on the destination chain.
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/gateway-outbound-example.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/cosmos.ts:184:207'
 ```
 
 ??? code "View the complete script"
-    ```ts hl_lines="184"
+    ```ts
     --8<-- 'code/build/build-apps/wormhole-sdk/cosmos.ts'
     ```
 
