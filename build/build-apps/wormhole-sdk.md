@@ -224,6 +224,7 @@ For automatic transfers, the process ends after initiation. For manual transfers
 ```ts
 --8<-- 'code/build/build-apps/wormhole-sdk/token-bridge.ts:120:158'
 ```
+
 ??? code "View the complete script"
     ```ts hl_lines="122"
     --8<-- 'code/build/build-apps/wormhole-sdk/token-bridge.ts'
@@ -242,11 +243,11 @@ An optional payload can be included with the transfer, though in this case it's 
 When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will [vary by network](https://developers.circle.com/stablecoin/docs/cctp-technical-reference#mainnet){target=\_blank}. 
 
 ```ts
---8<-- 'code/build/build-apps/wormhole-sdk/cctp-example-snippet.ts'
+--8<-- 'code/build/build-apps/wormhole-sdk/cctp.ts:69:112'
 ```
 
 ??? code "View the complete script"
-    ```ts hl_lines="122"
+    ```ts
     --8<-- 'code/build/build-apps/wormhole-sdk/cctp.ts'
     ```
 
