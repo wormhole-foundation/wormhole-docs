@@ -5,7 +5,7 @@ description: Unlock fast, affordable USDC transfers with Wormhole's integration 
 
 # Circle's CCTP Bridge
 
-Wormhole Connect and the Wormhole Connect SDK support fast, cheap, native USDC bridging between all networks supported by Circle's [Cross chain Transfer Protocol](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. Cross Chain Transfer Protocol is Circle's native USDC cross-chain transfer attestation service.
+Wormhole Connect and the Wormhole Connect SDK support fast, cheap, native USDC bridging between all networks supported by Circle's [Cross-Chain Transfer Protocol](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. CCTP is Circle's native USDC cross-chain transfer attestation service.
 
 While this protocol is wholly separate from Wormhole itself, Wormhole builds on top of CCTP and adds several valuable augmentations, making it more straightforward to use and more useful for end users. These features include automated relaying, which eliminates the need for users to redeem USDC transfers themselves; gas payment on the destination chain, allowing users to transfer USDC without needing to pay gas on the destination chain; and gas dropoff, enabling users to convert a portion of USDC into the destination chain's gas token upon a successful transfer.
 
