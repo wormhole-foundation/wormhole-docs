@@ -5,12 +5,12 @@ description: Explore Wormhole Queries, offering real-time access to verified blo
 
 # Queries Overview {: #queries-overview }
 
-Wormhole guardians, who run full nodes for various connected chains, facilitate a new cross-chain query (CCQ) service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
+Wormhole guardians, who run full nodes for various connected chains, facilitate a new cross-chain query service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
 !!! note
 	Queries are currently in closed beta, though you can start developing today! Check out [Hands on with Queries](/build/build-multichain-applications/queries/hands-on-with-queries) and reach out to [Join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
-Wormhole CCQs offers on-demand access to guardian-attested on-chain data. The current implementation provides integrators a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute CCQ requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
+Wormhole Queries offers on-demand access to guardian-attested on-chain data. The current implementation provides integrators a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute Query requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
 
 ## The Flow of a Query {: #the-flow-of-a-query}
 
@@ -20,7 +20,7 @@ The general overview of the flow of a query is as follows: An off-chain process 
 
 The step-by-step flow of a query is as follows:
 
-1. An off-chain process initiates a query request via HTTPS to the query proxy (a.k.a. CCQ Server) 
+1. An off-chain process initiates a query request via HTTPS to the query proxy (a.k.a. Query Server) 
 2. The query proxy validates the request and forwards it to the Guardians via a gossip network.
 3. The Guardians independently validate the request, make the requisite RPC calls, verify the results, sign, and gossip a response back to the Query Proxy.
 4. The Query Proxy aggregates the results and returns a response when it reaches a quorum of two-thirds or more of the current Guardian set - the exact quorum requirements as the core bridge.
