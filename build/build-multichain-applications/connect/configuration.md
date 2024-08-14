@@ -84,8 +84,7 @@ The following section shows how to add an arbitrary token to your deployment of 
 
 This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which is not built in by default and provided under the `tokensConfig` key.
 
-See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank}
-for the type definition of `TokensConfig`.
+See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
 ```json
 --8<-- 'code/build/build-multichain-applications/connect/configuration/arbitrary-token.json'
