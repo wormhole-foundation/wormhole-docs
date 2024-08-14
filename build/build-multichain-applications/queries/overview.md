@@ -5,12 +5,12 @@ description: Explore Wormhole Queries, offering real-time access to verified blo
 
 # Queries Overview {: #queries-overview }
 
-Wormhole guardians, who run full nodes for various connected chains, facilitate a new cross-chain query service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
+Wormhole Guardians, who run full nodes for various connected chains, facilitate a new cross-chain query service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
 !!! note
 	Queries are currently in closed beta, though you can start developing today! Check out [Hands on with Queries](/build/build-multichain-applications/queries/hands-on-with-queries) and reach out to [Join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
-Wormhole Queries offers on-demand access to guardian-attested on-chain data. The current implementation provides integrators with a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute query requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
+Wormhole Queries offers on-demand access to Guardian-attested on-chain data. The current implementation provides integrators with a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute query requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
 
 ## The Flow of a Query {: #the-flow-of-a-query}
 
@@ -26,7 +26,7 @@ The step-by-step flow of a query is as follows:
 4. The Query Proxy aggregates the results and returns a response when it reaches a quorum of two-thirds or more of the current Guardian set - the exact quorum requirements as the core bridge.
 5. The off-chain process can then submit these requests to an on-chain contract which should verify the signatures and validate the request before processing the result.
 
-In the flow described above, the Query Proxy is a permissioned but trustless part of the protocol. In most cases, this entire process takes less than one second. If a request is invalid or cannot be processed by the Guardians, they will retry for up to one minute before timing out. Requests can be batched to have the guardians make multiple calls to multiple networks. This can further reduce overhead for processing query responses on-chain. Up to 255 queries can be batched together, with certain types allowing for batching themselves.
+In the flow described above, the Query Proxy is a permissioned but trustless part of the protocol. In most cases, this entire process takes less than one second. If a request is invalid or cannot be processed by the Guardians, they will retry for up to one minute before timing out. Requests can be batched to have the Guardians make multiple calls to multiple networks. This can further reduce overhead for processing query responses on-chain. Up to 255 queries can be batched together, with certain types allowing for batching themselves.
 
 ## Supported Query Types {: #supported-query-types}
 
@@ -62,7 +62,7 @@ This query is used to read data for one or more [Program Derived Addresses](http
 
 The following table provides expected support based on testing. However, the success of any given query is based on the success of the underlying call on each Guardian’s RPC node.
 
-For example, many chains have implementations forked from [geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which keeps 128 blocks of state in memory by default (without running in archive mode). While this is good for about 25 minutes of history on Ethereum mainnet, it is only about 3 minutes on Optimism. While guardian nodes can be expected to have access to recent state, there are currently no guarantees of how far back in history they have access to.
+For example, many chains have implementations forked from [geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which keeps 128 blocks of state in memory by default (without running in archive mode). While this is good for about 25 minutes of history on Ethereum mainnet, it is only about 3 minutes on Optimism. While Guardian nodes can be expected to have access to recent state, there are currently no guarantees of how far back in history they have access to.
 
 ### Mainnet {: #mainnet}
 
