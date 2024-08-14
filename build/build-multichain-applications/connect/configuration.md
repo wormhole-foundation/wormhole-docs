@@ -46,7 +46,7 @@ Wormhole Connect offers a high level of customizability that suits and integrate
 
 ### Environment {: #environment }
 
-You can configure Connect to be used in TestNet environments, too. You can toggle between Mainnet and TestNet environments by defining the `WormholeConnectConfig` as follows:
+You can configure Connect to be used in TestNet environments, too. You can toggle between MainNet and TestNet environments by defining the `WormholeConnectConfig` as follows:
 
 === "Mainnet"
 
