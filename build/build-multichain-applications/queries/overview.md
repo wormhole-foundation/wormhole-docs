@@ -56,7 +56,7 @@ This query is used to read data for one or more accounts on Solana, akin to [`ge
 
 ### sol_pda {: #sol_pda}
 
-This query is used to read data for one or more [Program Derived Addresses](https://www.anchor-lang.com/docs/pdas){target=\_blank} on Solana, akin to calling [getMultipleAccounts](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank} on the result of `PublicKey.findProgramAddressSync(seeds, programId).` This query is helpful for times when you want to more generally read accounts owned by a program and verify the derivation on another chain, like how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account){target=\_blank}.
+This query is used to read data for one or more [Program Derived Addresses](https://www.anchor-lang.com/docs/pdas){target=\_blank} on Solana, akin to calling [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank} on the result of `PublicKey.findProgramAddressSync(seeds, programId).` This query is helpful for times when you want to more generally read accounts owned by a program and verify the derivation on another chain, like how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account){target=\_blank}.
 
 ## Supported Chains {: #supported-chains}
 
