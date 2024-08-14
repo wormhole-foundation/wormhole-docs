@@ -30,9 +30,11 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
 Note that if native USDC is transferred from the CCTP-enabled chains to any other outside of this list, the transfer will be routed through the Token Bridge, and the resulting asset will be a Wormhole-wrapped token instead of native USDC.
 
 #### Manual Route {: #manual-route-cctp}
+
 This transfer method requires two transactions: one on the origin chain to burn the USDC and one on the destination chain to mint the USDC. The manual CCTP route does not use Wormhole messaging in the background; it relies on CCTP only. Enable the `cctpManual` route in the configuration to offer this option.
 
 #### Automatic Route {: #automatic-route-cctp}
+
 Trustless relayers can execute the second transaction on the user's behalf. Therefore, the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee. To offer this option, enable the `cctpRelay` route in the configuration.
 
 ## Native Token Transfers (NTT) Routes {: #native-token-transfers-ntt-routes}
@@ -40,19 +42,22 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 [Wormhole's Native Token Transfer framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](./configuration.md) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repo](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
 
 #### Manual Route {: #manual-route-ntt}
+
 This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To offer this option, enable the `nttManual` route in the configuration.
 
 #### Automatic Route  {: #automatic-route-ntt}
+
 Trustless relayers can execute the second transaction on the user's behalf, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee. Wormhole Connect automatically detects whether the relayer supports a token and will display the option if the `nttRelay` route is enabled in the configuration.
 
-## ETH Bridge Route (Native ETH and wstETH) {: #eth-bridge-route-for-native-eth-and-wsteth}
+## ETH Bridge Route for Native ETH and wstETH {: #eth-bridge-route-for-native-eth-and-wsteth}
 
 [Powered by Uniswap liquidity pools](https://github.com/wormhole-foundation/example-uniswap-liquidity-layer){target=\_blank}, this route can transfer native ETH or wstETH between certain EVMs without going through the native bridges. For example, you can transfer native ETH from Arbitrum to Optimism and end up with Optimism ETH all in one go. Supported chains are Ethereum, Arbitrum, Optimism, Base, Polygon (canonical wETH), BSC (canonical wETH), Avalanche (canonical wETH)
 
 #### Automatic Route {: #automatic-route-eth}
+
 Only the relayed route is available due to the complexity of the transaction that needs to be executed at the destination. To offer this option, enable the `ethBridge` and/or `wstETHBridge` route in the configuration to provide this option.
 
-## USDT Bridge Route (USDT only) {: #usdt-bridge-route-for-usdt-only}
+## USDT Bridge Route {: #usdt-bridge-route}
 
 Operating on the same technology as the ETH Bridge, this route can transfer USDT between certain EVMs without going through the native bridges. The resulting token will be the canonical USDT token on the destination instead of the Wormhole-wrapped variant. Supported chains are Ethereum, Polygon, Avalanche, Arbitrum, Optimism, BSC, and Base.
 
@@ -68,12 +73,12 @@ Only the relayed route is available due to the complexity of the transaction tha
 
 The Wormhole Guardian network automatically delivers messages to Wormhole Gateway if the tokens are destined for IBC-compatible Cosmos chains, requiring no input or extra 'Gateway gas' from the user. When the wormhole-wrapped tokens are minted on Gateway, they are automatically transferred to their intended destination via a network of IBC relayers. Enable the `cosmosGateway` route in the configuration to offer this option.
 
-## tBTC Route (tBTC only) {: #tbtc-route-for-tbtc-only}
+## tBTC Route {: #tbtc-route}
 
 You can bridge [Threshold's Bitcoin](https://threshold.network/){target=\_blank} via this hybrid solution that combines the Token Bridge and Threshold's contracts. Native tBTC is first locked in the Wormhole Token Bridge, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (Solana, Polygon, Arbitrum, Optimism, Base).
 
 Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through the Token Bridge, and the resulting asset will be a Wormhole-wrapped token instead of native tBTC.
 
-#### Manual Route  {: #manual-route-tbtc}
+#### Manual Route {: #manual-route-tbtc}
 
 This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To provide this option, enable the `tbtc` route in the configuration.
