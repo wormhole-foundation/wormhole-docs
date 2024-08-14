@@ -96,62 +96,62 @@ See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connec
 
 By default, Connect will offer its complete built-in list of assets, but you can restrict the displayed assets by defining a subset of tokens under `tokens.` The default full list is as follows:
 
-| Mainnet        | TestNet                            |
-|----------------|------------------------------------|
-| ETH            | ETH, ETHsepolia                    |
-| WETH           | WETH, WETHsepolia                  |
-| USDCeth        | USDCeth                            |
-| WBTC           | -                                  |
-| USDT           | -                                  |
-| DAI            | -                                  |
-| BUSD           | -                                  |
-| MATIC          | MATIC                              |
-| WMATIC         | WMATIC                             |
-| USDCpolygon    | -                                  |
-| BNB            | BNB                                |
-| WBNB           | WBNB                               |
-| USDCbnb        | -                                  |
-| AVAX           | AVAX                               |
-| WAVAX          | WAVAX                              |
-| USDCavax       | USDCavax                           |
-| FTM            | FTM                                |
-| WFTM           | WFTM                               |
-| CELO           | CELO                               |
-| GLMR           | GLMR                               |
-| WGLMR          | WGLMR                              |
-| SOL            | WSOL                               |
-| PYTH           | -                                  |
-| SUI            | SUI                                |
-| USDCsol        | -                                  |
-| APT            | APT                                |
-| ETHarbitrum    | ETHarbitrum, ETHarbitrum_sepolia   |
-| WETHarbitrum   | WETHarbitrum, WETHarbitrum_sepolia |
-| USDCarbitrum   | USDCarbitrum                       |
-| ETHoptimism    | ETHoptimism, ETHoptimism_sepolia   |
-| WETHoptimism   | WETHoptimism, WETHoptimism_sepolia |
-| USDCoptimism   | USDCoptimism                       |
-| ETHbase        | ETHbase, ETHbase_sepolia           |
-| WETHbase       | WETHbase, WETHbase_sepolia         |
-| tBTC           | tBTC                               |
-| tBTCpolygon    | tBTCpolygon                        |
-| tBTCoptimism   | tBTCoptimism                       |
-| tBTCarbitrum   | tBTCarbitrum                       |
-| tBTCbase       | tBTCbase                           |
-| tBTCsol        | tBTCsol                            |
-| WETHpolygon    | -                                  |
-| WETHbsc        | -                                  |
-| wstETH         | wstETH                             |
-| wstETHarbitrum | -                                  |
-| wstETHoptimism | -                                  |
-| wstETHpolygon  | -                                  |
-| wstETHbase     | -                                  |
+|     Mainnet     |               TestNet               |
+|:---------------:|:-----------------------------------:|
+| ETH             | ETH, ETHsepolia                     |
+| WETH            | WETH, WETHsepolia                   |
+| USDCeth         | USDCeth                             |
+| WBTC            | -                                   |
+| USDT            | -                                   |
+| DAI             | -                                   |
+| BUSD            | -                                   |
+| MATIC           | MATIC                               |
+| WMATIC          | WMATIC                              |
+| USDCpolygon     | -                                   |
+| BNB             | BNB                                 |
+| WBNB            | WBNB                                |
+| USDCbnb         | -                                   |
+| AVAX            | AVAX                                |
+| WAVAX           | WAVAX                               |
+| USDCavax        | USDCavax                            |
+| FTM             | FTM                                 |
+| WFTM            | WFTM                                |
+| CELO            | CELO                                |
+| GLMR            | GLMR                                |
+| WGLMR           | WGLMR                               |
+| SOL             | WSOL                                |
+| PYTH            | -                                   |
+| SUI             | SUI                                 |
+| USDCsol         | -                                   |
+| APT             | APT                                 |
+| ETHarbitrum     | ETHarbitrum, ETHarbitrum_sepolia    |
+| WETHarbitrum    | WETHarbitrum, WETHarbitrum_sepolia  |
+| USDCarbitrum    | USDCarbitrum                        |
+| ETHoptimism     | ETHoptimism, ETHoptimism_sepolia    |
+| WETHoptimism    | WETHoptimism, WETHoptimism_sepolia  |
+| USDCoptimism    | USDCoptimism                        |
+| ETHbase         | ETHbase, ETHbase_sepolia            |
+| WETHbase        | WETHbase, WETHbase_sepolia          |
+| tBTC            | tBTC                                |
+| tBTCpolygon     | tBTCpolygon                         |
+| tBTCoptimism    | tBTCoptimism                        |
+| tBTCarbitrum    | tBTCarbitrum                        |
+| tBTCbase        | tBTCbase                            |
+| tBTCsol         | tBTCsol                             |
+| WETHpolygon     | -                                   |
+| WETHbsc         | -                                   |
+| wstETH          | wstETH                              |
+| wstETHarbitrum  | -                                   |
+| wstETHoptimism  | -                                   |
+| wstETHpolygon   | -                                   |
+| wstETHbase      | -                                   |
 
 ### Routes {: #routes }
 
 By default, Connect will offer its complete built-in list of routes, but you can restrict the possible route assets by defining a subset under `routes.` By default, Connect will offer its complete built-in list:
 
-| Mainnet       | TestNet       |
-|---------------|---------------|
+|    Mainnet    |    TestNet    |
+|:-------------:|:-------------:|
 | bridge        | bridge        |
 | relay         | relay         |
 | cctpManual    | cctpManual    |
