@@ -105,7 +105,7 @@ If you are using `EthCallWithFinality`, you will need to mine additional blocks 
 
 ## Make a Query Request {: #make-a-query-request}
 
-The standardized means of making a QueryRequest with an API key is as follows:
+The standardized means of making a `QueryRequest` with an API key is as follows:
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-request-with-api-key.jsx'
