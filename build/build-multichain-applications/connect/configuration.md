@@ -104,16 +104,16 @@ By default, Connect will offer its complete built-in list of assets, but you can
 | ETH            | ETH, ETHsepolia                    |
 | WETH           | WETH, WETHsepolia                  |
 | USDCeth        | USDCeth                            |
-| WBTC           |                                    |
-| USDT           |                                    |
-| DAI            |                                    |
-| BUSD           |                                    |
+| WBTC           | -                                  |
+| USDT           | -                                  |
+| DAI            | -                                  |
+| BUSD           | -                                  |
 | MATIC          | MATIC                              |
 | WMATIC         | WMATIC                             |
-| USDCpolygon    |                                    |
+| USDCpolygon    | -                                  |
 | BNB            | BNB                                |
 | WBNB           | WBNB                               |
-| USDCbnb        |                                    |
+| USDCbnb        | -                                  |
 | AVAX           | AVAX                               |
 | WAVAX          | WAVAX                              |
 | USDCavax       | USDCavax                           |
@@ -123,9 +123,9 @@ By default, Connect will offer its complete built-in list of assets, but you can
 | GLMR           | GLMR                               |
 | WGLMR          | WGLMR                              |
 | SOL            | WSOL                               |
-| PYTH           |                                    |
+| PYTH           | -                                  |
 | SUI            | SUI                                |
-| USDCsol        |                                    |
+| USDCsol        | -                                  |
 | APT            | APT                                |
 | ETHarbitrum    | ETHarbitrum, ETHarbitrum_sepolia   |
 | WETHarbitrum   | WETHarbitrum, WETHarbitrum_sepolia |
@@ -141,13 +141,13 @@ By default, Connect will offer its complete built-in list of assets, but you can
 | tBTCarbitrum   | tBTCarbitrum                       |
 | tBTCbase       | tBTCbase                           |
 | tBTCsol        | tBTCsol                            |
-| WETHpolygon    |                                    |
-| WETHbsc        |                                    |
+| WETHpolygon    | -                                  |
+| WETHbsc        | -                                  |
 | wstETH         | wstETH                             |
-| wstETHarbitrum |                                    |
-| wstETHoptimism |                                    |
-| wstETHpolygon  |                                    |
-| wstETHbase     |                                    |
+| wstETHarbitrum | -                                  |
+| wstETHoptimism | -                                  |
+| wstETHpolygon  | -                                  |
+| wstETHbase     | -                                  |
 
 ### Routes {: #routes }
 
@@ -161,9 +161,9 @@ By default, Connect will offer its complete built-in list of routes, but you can
 | cctpRelay     | cctpRelay     |
 | nttManual     | nttManual     |
 | nttRelay      | nttRelay      |
-| ethBridge     |               |
-| wstETHBridge  |               |
-| usdtBridge    |               |
+| ethBridge     | -             |
+| wstETHBridge  | -             |
+| usdtBridge    | -             |
 | cosmosGateway | cosmosGateway |
 | tbtc          | tbtc          |
 
