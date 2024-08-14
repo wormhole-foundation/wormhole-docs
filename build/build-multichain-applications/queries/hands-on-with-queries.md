@@ -29,7 +29,7 @@ And the corresponding response is:
 --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/eth-call-initial-response.txt'
 ```
 
-Converting the returned value of the executed call from hexidecimal results in the value `3172615244782286193073777`. You can compare your result to the [Read Contract](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract){target=\_blank} tab in Etherscan. Your result will be different as WETH is minted/burned over time.
+Converting the returned value of the executed call from hexidecimal results in the value `3172615244782286193073777`. You can compare your result to the [**Read Contract**](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract){target=\_blank} tab in Etherscan. Your result will be different as WETH is minted/burned over time.
 
 ## Construct a Query {: #construct-a-query}
 
