@@ -5,7 +5,7 @@ description: Explore Wormhole's Native Token Transfers Deployment Models - Hub a
 
 # Deployment Models
 
-The Wormhole framework offers two deployment models, each catering to different token management needs: the Hub and Spoke model and the Burn and Mint model. These models provide flexible solutions for both existing token deployments and new projects looking to enable secure and seamless multichain token transfers.
+The Wormhole framework offers two deployment models, each catering to different token management needs: the hub and spoke model and the burn and mint model. These models provide flexible solutions for both existing token deployments and new projects looking to enable secure and seamless multichain token transfers.
 
 ## Hub and Spoke
 
