@@ -14,7 +14,7 @@ Wormhole Queries offers on-demand access to guardian-attested on-chain data. The
 
 ## The Flow of a Query {: #the-flow-of-a-query}
 
-The general overview of the flow of a query is as follows: An off-chain process sends HTTPS query requests to a Query Proxy, which validates and forwards them to the Guardians; these Guardians independently validate, sign, and return the response, with the entire process typically taking less than a second.
+The general overview of the flow of a query is as follows: an off-chain process sends HTTPS query requests to a Query Proxy, which validates and forwards them to the Guardians; these Guardians independently validate, sign, and return the response, with the entire process typically taking less than a second.
 
 ![The architecture flow of a query](/images/build/build-multichain-applications/queries/overview/overview-1.webp)
 
