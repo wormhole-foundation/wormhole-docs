@@ -119,9 +119,9 @@ A MainNet Query Proxy is available at ` https://query.wormhole.com/v1/query`
 
 ## Verify a Query Response On-Chain {: #verify-a-query-response-on-chain}
 
-A [QueryResponse abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
+A [`QueryResponse` abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
 
-```
+```bash
 forge install wormhole-foundation/wormhole-solidity-sdk
 ```
 
@@ -144,7 +144,7 @@ See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blo
     --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-demo.sol'
     ```
 
-## Submit a QueryResponse On-Chain {: #submit-a-queryresponse-on-chain}
+## Submit a Query Response On-Chain {: #submit-a-query-response-on-chain}
 
 The `QueryProxyQueryResponse` result requires a slight tweak when submitting to the contract to match the format of `function parseAndVerifyQueryResponse(bytes memory response, IWormhole.Signature[] memory signatures)`. A helper function, `signaturesToEvmStruct`, is provided in the SDK for this.
 
