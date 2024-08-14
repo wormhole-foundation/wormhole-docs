@@ -11,7 +11,7 @@ This guide covers using a simple `eth_call` request to get the total supply of W
 
 ## RPC Basics {: #rpc-basics}
 
-Before digging into anything Queries specific, this page will look at how to make an [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} against a public Ethereum RPC. Suppose you'd like to query the WETH contract for its total supply. Before making a request, you need some information about the contract you want to call, including:
+Before digging into anything Queries-specific, this page will look at how to make an [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} against a public Ethereum RPC. Suppose you'd like to query the WETH contract for its total supply; before making a request, you need some information about the contract you want to call, including:
 
 - **to** - the contract to call. WETH is [0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2){target=\_blank}
 - **data** - the method identifier and ABI-encoded parameters, which can be obtained as follows: `web3.eth.abi.encodeFunctionSignature("totalSupply()")` which yields `0x18160ddd`
