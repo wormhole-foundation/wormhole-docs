@@ -226,7 +226,6 @@ Show a particular entry on the select tokens modal, redirecting the user to a di
 |  `moreTokens.href`  | URL to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the currently selected chains before redirecting |           mandatory           |
 | `moreTokens.target` | href target                                                                                                                                         | optional, defaults to `_self` |
 
-
 ### Explorer {: #explorer }
 
 Enable the explorer button to allow users to search for their transactions on a given explorer, filtering by their wallet address.
