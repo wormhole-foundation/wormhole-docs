@@ -52,7 +52,7 @@ This query type is similar to `eth_call` but ensures that the specified block ha
 
 ### sol_account {: #sol_account}
 
-This query is used to read data for one or more accounts on Solana, akin to [getMultipleAccounts](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank}.
+This query is used to read data for one or more accounts on Solana, akin to [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank}.
 
 ### sol_pda {: #sol_pda}
 
