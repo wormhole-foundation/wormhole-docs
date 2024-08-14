@@ -101,9 +101,9 @@ Here's an example for Ethereum MainNet, where the `-a` parameter is the [Core Co
 npx @wormhole-foundation/wormhole-cli evm hijack -a 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B -g 0xbeFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
 ```
 
-If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using Anvil) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://book.getfoundry.sh/reference/anvil/#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
+If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using [Anvil](https://book.getfoundry.sh/anvil/){target=\_blank}) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://book.getfoundry.sh/reference/anvil/#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
 
-## Make a QueryRequest {: #make-a-queryrequest}
+## Make a Query Request {: #make-a-query-request}
 
 The standardized means of making a QueryRequest with an API key is as follows:
 
