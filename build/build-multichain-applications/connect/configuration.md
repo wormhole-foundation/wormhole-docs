@@ -65,7 +65,7 @@ You can configure Connect to be used in TestNet environments, too. You can toggl
     ```
 ### Custom RPC Endpoint {: #custom-rpc-endpoint }
 
-You can define a custom RPC provider for your Connect Widget to use. This can be especially helpful if you'd like to replace public endpoints with dedicated or private endpoints.
+You can define a custom RPC provider for your Connect widget to use. This can be especially helpful if you'd like to replace public endpoints with dedicated or private endpoints.
 
 ```json
 const config: WormholeConnectConfig = {
