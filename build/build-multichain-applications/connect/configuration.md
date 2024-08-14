@@ -191,7 +191,7 @@ By setting the `showHamburgerMenu` option to `false,` you can use the `menu` arr
 
 ### CoinGecko API Key {: #coingecko-api-key }
 
-The CoinGecko API can be used to fetch token price data. If you have a CoinGecko API Plan, you can include the API key in the configuration. In case you do not have the API key, [follow these steps](https://apiguide.coingecko.com/getting-started/getting-started){target=\_blank}. Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
+The CoinGecko API can be used to fetch token price data. If you have a [CoinGecko API Plan](https://apiguide.coingecko.com/getting-started/getting-started){target=\_blank}, you can include the API key in the configuration. Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
 
 ### More Networks {: #more-networks }
 
