@@ -71,7 +71,7 @@ Only the relayed route is available due to the complexity of the transaction tha
 
 #### Automatic Route {: #automatic-route-cosmos}
 
-The Wormhole Guardian network automatically delivers messages to Wormhole Gateway if the tokens are destined for IBC-compatible Cosmos chains, requiring no input or extra 'Gateway gas' from the user. When the wormhole-wrapped tokens are minted on Gateway, they are automatically transferred to their intended destination via a network of IBC relayers. Enable the `cosmosGateway` route in the configuration to offer this option.
+The Wormhole Guardian Network automatically delivers messages to Wormhole Gateway if the tokens are destined for IBC-compatible Cosmos chains, requiring no input or extra "Gateway gas" from the user. When the Wormhole-wrapped tokens are minted on Gateway, they are automatically transferred to their intended destination via a network of IBC relayers. Enable the `cosmosGateway` route in the configuration to offer this option.
 
 ## tBTC Route {: #tbtc-route}
 
