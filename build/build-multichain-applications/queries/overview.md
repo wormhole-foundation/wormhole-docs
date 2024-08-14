@@ -44,7 +44,7 @@ The result contains the specified block number, hash, timestamp, and the call re
 
 This query type is similar to `eth_call` but targets a timestamp instead of a specific block_id. This can be useful when forming requests based on uncorrelated data, such as requiring data from another chain based on the block timestamp of a given chain.
 
-The result also contains the target and block details with the following enforced conditions: `target_block.timestamp <= target_time < following_block.timestamp` and `following_block_num - 1 == target_block_num`
+The result also contains the target and block details with the following enforced conditions: `target_block.timestamp <= target_time < following_block.timestamp` and `following_block_num - 1 == target_block_num`.
 
 ### eth_call With Finality {: #eth-call-with-finality}
 
