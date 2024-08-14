@@ -5,7 +5,7 @@ description: Explore Wormhole Queries, offering real-time access to verified blo
 
 # Queries Overview {: #queries-overview }
 
-Wormhole guardians, who run full nodes for various connected chains, facilitate a new cross-chain query (CCQ) service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
+Wormhole Guardians, who run full nodes for various connected chains, facilitate a new Cross-Chain Query (CCQ) service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and more cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
 !!! note
 	Queries are currently in closed beta, though you can start developing today! Check out [Hands on with Queries](/build/build-multichain-applications/queries/hands-on-with-queries) and reach out to [Join the Beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
