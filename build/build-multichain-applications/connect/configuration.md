@@ -218,14 +218,13 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 
 ### More Tokens {: #more-tokens }
 
-Show a particular entry on the select tokens modal, redirecting the user to a different page/dApp/mobile app.
+Show a particular entry on the select tokens modal, redirecting the user to a different page, dApp, or mobile app.
 
 |      Property       | Description                                                                                                                                         |           Required            |
 |:-------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------:|
 | `moreTokens.label`  | Display text                                                                                                                                        |           mandatory           |
 |  `moreTokens.href`  | URL to redirect to. If present, the values `sourceChain` and `targetChain` are replaced with the currently selected chains before redirecting |           mandatory           |
 | `moreTokens.target` | href target                                                                                                                                         | optional, defaults to `_self` |
-
 
 ### Explorer {: #explorer }
 
