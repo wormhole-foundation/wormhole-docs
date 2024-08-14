@@ -59,7 +59,7 @@ This route appears if all of the following conditions are satisfied:
 
 ### Circle CCTP {: #circle-cctp}
 
-[Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains.
+[Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains.
 
 This route appears if all of the following conditions are satisfied:
 
