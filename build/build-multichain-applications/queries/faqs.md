@@ -18,7 +18,7 @@ The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main
 
 ## Are There Any Query Examples?
 
-Certainly. You can find a complete walkthrough on the [Getting Started page](./getting-started.md). Additionally, you can find full code examples in available in the following repositories:
+Certainly. You can find a complete walkthrough on the [Hands on with Queries page](/build/build-multichain-applications/queries/hands-on-with-queries). Additionally, you can find full code examples in available in the following repositories:
 
 - [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
