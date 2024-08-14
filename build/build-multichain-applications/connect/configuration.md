@@ -15,7 +15,7 @@ Configure the Wormhole Connect React component by passing a `WormholeConnectConf
 
 === "HTML Tags"
 
-    ```ts
+    ```html
     --8<-- 'code/build/build-multichain-applications/connect/configuration/configure-html.html'
     ```
 
