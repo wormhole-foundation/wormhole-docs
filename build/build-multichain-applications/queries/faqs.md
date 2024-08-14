@@ -38,6 +38,6 @@ See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blo
 
 ## Can Anyone Run a Query Proxy Server?
 
-The Query Proxy is currently permissioned by the Guardians. The guardian nodes are configured to only listen to a set of allow-listed proxies. However, it is possible that this restriction may be lifted in the future and/or more proxies could be added.
+The Query Proxy is currently permissioned by the Guardians. The Guardian nodes are configured to only listen to a set of allow-listed proxies. However, it is possible that this restriction may be lifted in the future and/or more proxies could be added.
 
 It is also important to note that the proxies do not impact the verifiability the request and result - i.e. their role in the process is trustless.
