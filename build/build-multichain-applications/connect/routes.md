@@ -25,7 +25,7 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
 
 ## CCTP Routes (USDC) {: #cctp-routes-usdc}
  
-[Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains. Wormhole Connect can facilitate such transfers.
+[Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains. Wormhole Connect can facilitate such transfers.
 
 Note that if native USDC is transferred from the CCTP-enabled chains to any other outside of this list, the transfer will be routed through the Token Bridge, and the resulting asset will be a Wormhole-wrapped token instead of native USDC.
 
@@ -39,7 +39,7 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 
 ## Native Token Transfers (NTT) Routes {: #native-token-transfers-ntt-routes}
 
-[Wormhole's Native Token Transfer framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](./configuration.md) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repo](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
+[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](./configuration.md) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repo](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
 
 #### Manual Route {: #manual-route-ntt}
 
