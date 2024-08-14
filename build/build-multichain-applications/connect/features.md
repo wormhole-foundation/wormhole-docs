@@ -73,7 +73,7 @@ This route appears if all of the following conditions are satisfied:
 This route appears if all of the following conditions are satisfied:
 
 - Both the origin and destination chains support the ETH Bridge
-- The selected token is native ETH or wstETH, or canonical wETH
+- The selected token is native ETH, wstETH, or canonical wETH
 
 ### Gas Dropoff {: #gas-dropoff}
 
