@@ -176,12 +176,12 @@ By setting the `showHamburgerMenu` option to **false**, you can deactivate the h
 
 By setting the `showHamburgerMenu` option to `false,` you can use the `menu` array to add extra links.
 
-| property        | description                                 |
-|-----------------|---------------------------------------------|
-| `menu[].label`  | link name to show up                        |
-| `menu[].href`   | target url or urn                           |
-| `menu[].target` | anchor standard target, by default `_blank` |
-| `menu[].order`  | order where the new item should be injected |
+|     property     |                 description                 |
+|:----------------:|:-------------------------------------------:|
+| `menu[].label`   | link name to show up                        |
+| `menu[].href`    | target url or urn                           |
+| `menu[].target`  | anchor standard target, by default `_blank` |
+| `menu[].order`   | order where the new item should be injected |
 
 #### Sample Configuration {: #sample-configuration }
 
@@ -197,18 +197,19 @@ The CoinGecko API can be used to fetch token price data. If you have a CoinGecko
 
 Specify a set of extra networks to be displayed on the network selection modal, each linking to a different page, dApp, or mobile app the user will be redirected to.
 
-| Property                                    | Description                                                                                                                                                           |                                                                                        |
-|:--------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------:|
-| `moreNetworks.href`                         | Default value for missing network hrefs                                                                                                                               |                                       mandatory                                        |
-| `moreNetworks.target`                       | Default value for missing network link targets                                                                                                                        |                             optional, defaults to `_self`                              |
-| `moreNetworks.description`                  | Brief description that should be displayed as a tooltip when the user hovers over a more network icon. Used as default for missing network descriptions                      |                                        optional                                        |
-| `moreNetworks.networks[].icon`              | URL data encoded icon to display                                                                                                                                      |                                       mandatory                                        |
-| `moreNetworks.networks[].href`              | Network href to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the currently selected chains before redirecting |                                        optional                                        |
-| `moreNetworks.networks[].label`             | Display text                                                                                                                                                          |                                       mandatory                                        |
-| `moreNetworks.networks[].name`              | Unique network key                                                                                                                                                    |                optional, defaults to a snake_case version of the label                 |
-| `moreNetworks.networks[].description`       | Description value                                                                                                                                                     |                    optional, defaults to `moreNetworks.description`                    |
-| `moreNetworks.networks[].target`            | href target value                                                                                                                                                     |                      optional, defaults to `moreNetworks.target`                       |
-| `moreNetworks.networks[].showOpenInNewIcon` | Disable top right open in new icon                                                                                                                                    | optional, defaults to **true** if target is `_blank` or **false** if target is `_self` |
+|                  Property                   |                                                                         Description                                                                          |                                        Required                                        |
+|:-------------------------------------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
+|             `moreNetworks.href`             |                                                           Default value for missing network hrefs                                                            |                                       mandatory                                        |
+|            `moreNetworks.target`            |                                                        Default value for missing network link targets                                                        |                             optional, defaults to `_self`                              |
+|         `moreNetworks.description`          |   Brief description that should be displayed as a tooltip when the user hovers over a more network icon. Used as default for missing network descriptions    |                                        optional                                        |
+|       `moreNetworks.networks[].icon`        |                                                               URL data encoded icon to display                                                               |                                       mandatory                                        |
+|       `moreNetworks.networks[].href`        | Network href to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the currently selected chains before redirecting |                                        optional                                        |
+|       `moreNetworks.networks[].label`       |                                                                         Display text                                                                         |                                       mandatory                                        |
+|       `moreNetworks.networks[].name`        |                                                                      Unique network key                                                                      |                optional, defaults to a snake_case version of the label                 |
+|    `moreNetworks.networks[].description`    |                                                                      Description value                                                                       |                    optional, defaults to `moreNetworks.description`                    |
+|      `moreNetworks.networks[].target`       |                                                                      href target value                                                                       |                      optional, defaults to `moreNetworks.target`                       |
+| `moreNetworks.networks[].showOpenInNewIcon` |                                                              Disable top right open in new icon                                                              | optional, defaults to **true** if target is `_blank` or **false** if target is `_self` |
+
 
 ??? code "View full configuration"
     ```json
@@ -219,19 +220,19 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 
 Show a particular entry on the select tokens modal, redirecting the user to a different page/dApp/mobile app.
 
-| Property            | Description                                                                                                                                                  |           Required            |
-|:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------:|
-| `moreTokens.label`  | Display text                                                                                                                                                 |           mandatory           |
-| `moreTokens.href`   | URL to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the selected currently selected chains before redirecting |           mandatory           |
-| `moreTokens.target` | href target                                                                                                                                                  | optional, defaults to `_self` |
+|      Property       | Description                                                                                                                                         |           Required            |
+|:-------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------:|
+| `moreTokens.label`  | Display text                                                                                                                                        |           mandatory           |
+|  `moreTokens.href`  | URL to redirect to. If present, the values `{:sourceChain}` and `{:targetChain}` are replaced with the currently selected chains before redirecting |           mandatory           |
+| `moreTokens.target` | href target                                                                                                                                         | optional, defaults to `_self` |
 
 
 ### Explorer {: #explorer }
 
 Enable the explorer button to allow users to search for their transactions on a given explorer, filtering by their wallet address.
 
-| Property          | Description                                                                                                                                   |               Required               |
-|:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------:|
-| `explorer.label`  | Display text                                                                                                                                  | optional, defaults to `Transactions` |
-| `explorer.href`   | URL of the explorer, for instance [https://wormholescan.io/](https://wormholescan.io/){target=\_blank}. If present, the values `{:address}` is replaced with the connected wallet address |              mandatory               |
-| `explorer.target` | href target                                                                                                                                   |    optional, defaults to `_blank`    |
+|      Property      |                                                          Description                                                          |             Required             |
+|:------------------:|:-----------------------------------------------------------------------------------------------------------------------------:|:---------------------------------:|
+| `explorer.label`   |                                                    Display text                                                               | optional, defaults to `Transactions` |
+| `explorer.href`    | URL of the explorer, for instance [https://wormholescan.io/](https://wormholescan.io/){target=\_blank}. If present, the value `{:address}` is replaced with the connected wallet address |            mandatory              |
+| `explorer.target`  |                                                     href target                                                                |     optional, defaults to `_blank` |
