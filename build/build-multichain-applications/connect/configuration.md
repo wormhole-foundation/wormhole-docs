@@ -176,7 +176,7 @@ By setting the `showHamburgerMenu` option to **false**, you can deactivate the h
 
 By setting the `showHamburgerMenu` option to `false,` you can use the `menu` array to add extra links.
 
-|     property     |                 description                 |
+|     Property     |                 Description                 |
 |:----------------:|:-------------------------------------------:|
 | `menu[].label`   | link name to show up                        |
 | `menu[].href`    | target url or urn                           |
