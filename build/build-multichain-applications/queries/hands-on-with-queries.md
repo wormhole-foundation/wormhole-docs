@@ -33,7 +33,7 @@ Converting the returned value of the executed call from hexidecimal results in t
 
 ## Construct a Query {: #construct-a-query}
 
-You can use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to construct a query. You will also need an RPC endpoint from the provider of your choice. This example uses [axios](https://www.npmjs.com/package/axios){target=\_blank} for RPC requests.
+You can use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to construct a query. You will also need an RPC endpoint from the provider of your choice. This example uses [Axios](https://www.npmjs.com/package/axios){target=\_blank} for RPC requests.
 
 ```jsx
 npm i @wormhole-foundation/wormhole-query-sdk axios
@@ -41,19 +41,19 @@ npm i @wormhole-foundation/wormhole-query-sdk axios
 
 In order to make an `EthCallQueryRequest`, you need a specific block number or hash as well as the call data to request.
 
-You can request the latest block from a public node using `eth_getBlockByNumber` to get the latest block.
+You can request the latest block from a public node using `eth_getBlockByNumber`.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/get-block-by-number.jsx'
 ```
 
-Then construct the call data:
+Then construct the call data.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/eth-call-data.jsx'
 ```
 
-Finally, put it all together in a `QueryRequest`
+Finally, put it all together in a `QueryRequest`.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-request.jsx'
@@ -67,7 +67,7 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 
 ## Mock a Query {: #mock-a-query}
 
-For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [devnet](../reference/dev-env/tilt.md) guardian key. The `mock` call returns the same format as the Query Proxy.
+For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [DevNet](../reference/dev-env/tilt.md) Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
 --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-proxy-mock.jsx'
@@ -93,7 +93,7 @@ It is common to test against a local fork of mainnet with something like
 anvil --fork-url https://ethereum.publicnode.com
 ```
 
-In order for mock requests to verify against the mainnet Core bridge contract, you need to replace the current guardian set with the single devnet key used by the mock.
+In order for mock requests to verify against the mainnet Core bridge contract, you need to replace the current Guardian set with the single DevNet key used by the mock.
 
 Here's an example for Ethereum mainnet, where the `-a` parameter is the [Core bridge address](../reference/constants.md#core-contracts) on that chain.
 
@@ -128,7 +128,7 @@ forge install wormhole-foundation/wormhole-solidity-sdk
 Broadly, using a query response on-chain comes down to three main steps:
 
    1. Parse and verify the query response
-   2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current guardian set stored in the Core bridge contract
+   2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current Guardian set stored in the Core bridge contract
    3. Validate the request details. This may be different for every integrator depending on their use case, but generally checks the following:
     - Is the request against the expected chain?
     - Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing
