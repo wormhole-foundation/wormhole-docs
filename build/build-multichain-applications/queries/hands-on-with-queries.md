@@ -5,7 +5,7 @@ description: Explore a simple demo of interacting with Wormhole Queries using an
 
 # Hands on with Queries {: #hands-on-with-queries}
 
-You can visit the [Example Queries Demo](https://wormholelabs-xyz.github.io/example-queries-demo/) to view an interactive example of an application interacting with the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract.   
+You can visit the [Example Queries Demo](https://wormholelabs-xyz.github.io/example-queries-demo/) to view an interactive example of an application interacting with the [Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract.   
 
 This guide covers using a simple `eth_call` request to get the total supply of WETH on Ethereum.
 
