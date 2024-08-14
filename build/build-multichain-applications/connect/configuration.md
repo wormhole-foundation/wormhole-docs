@@ -50,7 +50,7 @@ You can configure Connect to be used in TestNet environments, too. You can toggl
 
 === "MainNet"
 
-    ```json
+    ```ts
     const config: WormholeConnectConfig = {
       "env": "mainnet"
     }
@@ -58,7 +58,7 @@ You can configure Connect to be used in TestNet environments, too. You can toggl
 
 === "TestNet"
 
-    ```json
+    ```ts
     const config: WormholeConnectConfig = {
       "env": "testnet"
     }
@@ -69,7 +69,7 @@ You can configure Connect to be used in TestNet environments, too. You can toggl
 
 You can define a custom RPC provider for your Connect Widget to use. This can be especially helpful if you'd like to replace public endpoints with dedicated or private endpoints.
 
-```json
+```ts
 const config: WormholeConnectConfig = {
   "rpcs": {
     "solana": "https://rpc.ankr.com/solana/ee827255553bb0fa9e0aaeab27e988707e60ea06ae36be0658b778072e94979e"
