@@ -37,7 +37,7 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 
 ### Token Bridge {: #token-bridge}
 
-Wormhole is best known for its token bridge transfer method. It locks assets on the source chain and mints wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
+Wormhole is best known for its token bridge transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
 This route appears if both of the following conditions are satisfied:
 
