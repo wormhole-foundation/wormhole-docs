@@ -60,7 +60,7 @@ This query is used to read data for one or more [Program Derived Addresses](http
 
 ## Supported Chains {: #supported-chains}
 
-The following table provides expected support based on testing. However, the success of any given query is based on the success of the underlying call on each guardian’s RPC node.
+The following table provides expected support based on testing. However, the success of any given query is based on the success of the underlying call on each Guardian’s RPC node.
 
 For example, many chains have implementations forked from [geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which keeps 128 blocks of state in memory by default (without running in archive mode). While this is good for about 25 minutes of history on Ethereum mainnet, it is only about 3 minutes on Optimism. While guardian nodes can be expected to have access to recent state, there are currently no guarantees of how far back in history they have access to.
 
