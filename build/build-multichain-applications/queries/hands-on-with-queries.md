@@ -113,11 +113,11 @@ The standardized means of making a `QueryRequest` with an API key is as follows:
 
 Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
 
-A testnet Query Proxy is available at `https://testnet.query.wormhole.com/v1/query`
+A TestNet Query Proxy is available at `https://testnet.query.wormhole.com/v1/query`
 
 A MainNet Query Proxy is available at ` https://query.wormhole.com/v1/query`
 
-## Verify a QueryResponse On-Chain {: #verify-a-queryresponse-on-chain}
+## Verify a Query Response On-Chain {: #verify-a-query-response-on-chain}
 
 A [QueryResponse abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
 
