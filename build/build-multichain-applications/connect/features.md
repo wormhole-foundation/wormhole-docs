@@ -7,31 +7,31 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 
 *Scroll down for details about each column.*
 
-| **Network**     | **Token bridge**      | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop-off** |
-|:---------------:|:---------------------:|:------------------------:|:---------------:|:--------------:|:---------------:|
-| Solana      | ✅                | ✅                        | ✅               | ❌              | ✅               |
-| Ethereum    | ✅                | ✅                        | ✅               | ✅              | ✅               |
-| BSC         | ✅                | ✅                        | ❌               | ✅              | ✅               |
-| Polygon     | ✅                | ✅                        | ✅               | ✅              | ✅               |
-| Avalanche   | ✅                | ✅                        | ✅               | ✅              | ✅               |
-| Fantom      | ✅                | ✅                        | ❌               | ❌              | ✅               |
-| Klaytn      | ✅                | ❌                        | ❌               | ❌              | ❌               |
-| Celo        | ✅                | ✅                        | ❌               | ❌              | ✅               |
-| Moonbeam    | ✅                | ✅                        | ❌               | ❌              | ✅               |
-| Injective   | ✅                | ❌                        | ❌               | ❌              | ❌               |
-| Sui         | ✅                | ✅                        | ❌               | ❌              | ✅               |
-| Aptos       | ✅                | ❌                        | ❌               | ❌              | ❌               |
-| Arbitrum    | ✅                | ✅                        | ✅               | ✅              | ✅               |
-| Optimism    | ✅                | ✅                        | ✅               | ✅              | ✅               |
-| Base        | ✅                | ✅                        | ✅               | ✅              | ✅               |
-| Sei         | ✅                | ❌                        | ❌               | ❌              | ❌               |
-| Scroll      | ✅                | ❌                        | ❌               | ❌              | ❌               |
-| Blast       | ✅                | ❌                        | ❌               | ❌              | ❌               |
-| X Layer     | ✅                | ❌                        | ❌               | ❌              | ❌               |
-| Osmosis     | ✅ (Gateway)      | ✅ (IBC)                  | ❌               | ❌              | ❌               |
-| CosmosHub   | ✅ (Gateway)      | ✅ (IBC)                  | ❌               | ❌              | ❌               |
-| Evmos       | ✅ (Gateway)      | ✅ (IBC)                  | ❌               | ❌              | ❌               |
-| Kujira      | ✅ (Gateway)      | ✅ (IBC)                  | ❌               | ❌              | ❌               |
+| **Network** | **Token bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop-off** |
+|:-----------:|:----------------:|:------------------------:|:---------------:|:--------------:|:----------------:|
+|   Solana    |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
+|  Ethereum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
+|     BSC     |        ✅         |            ✅             |        ❌        |       ✅        |        ✅         |
+|   Polygon   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
+|  Avalanche  |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
+|   Fantom    |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
+|   Klaytn    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|    Celo     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
+|  Moonbeam   |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
+|  Injective  |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|     Sui     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
+|    Aptos    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|  Arbitrum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
+|  Optimism   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
+|    Base     |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
+|     Sei     |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|   Scroll    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|    Blast    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|   X Layer   |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|   Osmosis   |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
+|  CosmosHub  |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
+|    Evmos    |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
+|   Kujira    |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
 
 ## Feature Explanation {: #feature-explanation}
 
