@@ -218,7 +218,7 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 
 ### More Tokens {: #more-tokens }
 
-Show a particular entry on the select tokens modal, redirecting the user to a different page/dApp/mobile app.
+Show a particular entry on the select tokens modal, redirecting the user to a different page, dApp, or mobile app.
 
 |      Property       | Description                                                                                                                                         |           Required            |
 |:-------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------:|
