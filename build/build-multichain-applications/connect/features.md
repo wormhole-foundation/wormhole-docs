@@ -81,6 +81,6 @@ Relayers can drop off some gas tokens on the destination chain by swapping some 
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support Gas Dropoff
+- Both the origin and destination chains support gas drop-off
 - An automatic route is selected
 - The relayer accepts the selected token to swap into the gas token
