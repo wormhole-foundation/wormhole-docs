@@ -1,6 +1,6 @@
 ---
 title: Glossary
-description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network.
+description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
 ---
 
 # Glossary
