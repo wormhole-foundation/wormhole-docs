@@ -30,6 +30,7 @@ The contract that calls the Wormhole Core contract. Its address is included in t
 The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, it can be assumed that the state changes it caused won't be rolled back.
 
 ## Gateway
+
 The [Gateway](/learn/messaging/gateway/){target=\_blank} is the Cosmos-SDK chain used by Wormhole to facilitate communication with the Cosmos ecosystem.
 
 ## Guardian
