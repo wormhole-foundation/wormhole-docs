@@ -15,7 +15,7 @@ The framework offers two modes of operation for existing token deployments. In l
 
 Wormhole's Native Token Transfers (NTT) framework offers a comprehensive and flexible solution for seamless token transfers across blockchains. Below are some of the key features that make this framework stand out:
 
-- **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience.
+- **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience
 - **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
 - **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
 - **Advanced rate limiting** - inbound and outbound rate limits are configurable per chain and over arbitrary periods, preventing abuse while managing network congestion and allowing for controlled deployments to new chains
@@ -30,7 +30,7 @@ Integrators looking to deploy their token to connected chains can use the NTT fr
 
 ### Native Token Transfers Framework
 
-Highly customizable. For example, a DeFi governance token deployed on multiple chains that want fungible multichain liquidity and direct integration into governance processes.
+The Native Token Transfers Framework is highly customizable and ideal for applications such as a DeFi governance token deployed across multiple chains, which seeks to achieve fungible multichain liquidity and direct integration into governance processes.
 
 - **Mechanism** - can entirely utilize a burn and mint mechanism or can be paired for a hub and spoke model
 - **Security** - fully configurable rate limiting, pausing, access control, and threshold attestations. Integrated with the Global Accountant
@@ -40,13 +40,13 @@ Highly customizable. For example, a DeFi governance token deployed on multiple c
 
 ### Token Bridge
 
-A secure, low-lift integration. For example, a web3 game that wants its token to be tradable across multiple chains.
+The Token Bridge offers a secure, low-effort integration suitable for applications like a Web3 game that wants to make its token tradable across multiple chains.
 
-- **Mechanism** - Solely utilizes a lock and mint model
-- **Security** - Preconfigured rate limiting and integrated Global Accountant
-- **Contract** ownership - Token Bridge contracts are upgradeable via [Wormhole Governance](/learn/security/){target=\_blank}
-- **Token contracts** - Wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
-- **Integration** - Straightforward and permissionless method to deploy on multiple chains
+- **Mechanism** - solely utilizes a lock and mint model
+- **Security** - preconfigured rate limiting and integrated Global Accountant
+- **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/learn/security/){target=\_blank}
+- **Token contracts** - wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
+- **Integration** - straightforward and permissionless method to deploy on multiple chains
 
 !!! note
     [Learn more](#){target=\_blank} about the core messaging primitives in the Wormhole network. <!-- link to vaas -->
