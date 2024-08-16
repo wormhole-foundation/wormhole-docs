@@ -52,7 +52,7 @@ The heartbeats are shown on the [Wormhole dashboard](https://wormhole-foundation
 
 ## Observation
 
-An Observation is a data structure that describes a message that the Core Contract emitted and that the Guardian node noticed.
+An Observation is a data structure describing a message emitted by the Core Contract and noticed by the Guardian node.
 
 ## Relayer
 
