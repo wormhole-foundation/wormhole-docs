@@ -20,35 +20,7 @@ Our initial `HelloWorld` smart contract focuses on a simple functionality: allow
 Here’s the Solidity code for the `HelloWorld` contract:
 
 ```solidity
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
-
-contract HelloWorld {
-    event GreetingReceived(string greeting, address sender);
-
-    string[] public greetings;
-
-    /**
-     * @notice Returns the cost (in wei) of a greeting
-     * @dev In this simple contract, the cost is always zero.
-     */
-    function quoteGreeting() public view returns (uint256 cost) {
-        return 0;
-    }
-
-    /**
-     * @notice Updates the list of 'greetings'
-     * and emits a 'GreetingReceived' event with 'greeting'
-     */
-    function sendGreeting(
-        string memory greeting
-    ) public payable {
-        uint256 cost = quoteGreeting();
-        require(msg.value == cost);
-        emit GreetingReceived(greeting, msg.sender);
-        greetings.push(greeting);
-    }
-}
+--8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-1.sol'
 ```
 
 Key Functions:
@@ -58,3 +30,32 @@ Key Functions:
 
 This contract serves as the foundation for more advanced cross-chain functionality, which we’ll cover next.
 
+### Taking HelloWorld cross-chain using Wormhole Automatic Relayers
+
+Now, let's extend our simple HelloWorld contract to support cross-chain functionality using Wormhole Automatic Relayers. Our goal is to allow users to send a greeting from one chain, like Ethereum, to another, like Avalanche, and vice versa—all triggered from their Ethereum wallet.
+
+To achieve this, we’ll write a contract that can be deployed on Ethereum, Avalanche, or any other supported chain, enabling seamless communication between instances of the contract regardless of which chain they’re on.
+
+To accomplish this, we’ll implement the following function:
+
+```solidity
+--8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-2.sol'
+```
+
+To send greetings across chains, we can use the Wormhole Relayer, which handles cross-chain communication for us. The relayer network allows us to relay messages (or "payloads") from one chain to another through a network of Delivery Providers.
+
+If you’d like a more detailed understanding of how the Wormhole Relayer and Delivery Providers work, check out the [Learning section on Relayers]().
+
+Now, let’s dive into the Wormhole Relayer interface that enables this functionality:
+
+```solidity
+--8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-3.sol'
+```
+
+To perform this cross-chain delivery, **Delivery Providers** charge a fee based on the target network’s conditions. You can calculate this fee using:
+
+```
+(deliveryPrice,) = quoteEVMDeliveryPrice(targetChain, receiverValue, gasLimit)
+```
+
+This fee must be included as `msg.value` when calling `sendPayloadToEvm`.

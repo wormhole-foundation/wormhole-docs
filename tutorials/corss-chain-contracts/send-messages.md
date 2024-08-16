@@ -30,18 +30,13 @@ Local testing ensures that the `HelloWormhole` contract is functioning as expect
 Clone the repository from GitHub, navigate into the directory, and then build and test the code.
 
 ```sh
-git clone https://github.com/wormhole-foundation/hello-wormhole.git
-cd hello-wormhole
-npm run build
-forge test
+--8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-1.sh'
 ```
 
 The expected output should look like this:
 
 ```sh
-Running 1 test for test/HelloWormhole.t.sol:HelloWormholeTest
-[PASS] testGreeting() (gas: 777229)
-Test result: ok. 1 passed; 0 failed; finished in 3.98s
+--8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-2.sh'
 ```
 
 ## Deploying to Testnet
@@ -54,7 +49,7 @@ Now that we have tested the contract locally, we can deploy it to the testnet. F
 Once you have the required funds, deploy the contract to the testnet by running the following command:
 
 ```sh
-EVM_PRIVATE_KEY=your_wallet_private_key npm run deploy
+--8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-3.sh'
 ```
 
 ## Testing on Testnet
@@ -65,6 +60,6 @@ Before testing, ensure you have a wallet with at least 0.02 [Testnet AVAX](https
 Make sure the contracts are deployed to the testnet as described in the above section. To test sending and receiving a message, execute the following command:
 
 ```sh
-EVM_PRIVATE_KEY=your_wallet_private_key npm run test
+--8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-4.sh'
 ```
 
