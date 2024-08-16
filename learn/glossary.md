@@ -55,7 +55,8 @@ The heartbeats are shown on the [Wormhole dashboard](https://wormhole-foundation
 An Observation is a data structure that describes a message that the Core Contract emitted and that the Guardian node noticed.
 
 ## Relayer
-A Relayer is any process that delivers VAAs to a destination.
+
+A relayer is any process that delivers VAAs to a destination.
 
 ## Sequence
 A nonce, strictly increasing, tracked by the wormhole core contract and unique to the emitter chain and address.
