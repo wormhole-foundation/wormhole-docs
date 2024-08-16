@@ -34,6 +34,7 @@ The finality of a transaction depends on its blockchain properties. Once a trans
 The [Gateway](/learn/messaging/gateway/){target=\_blank} is the Cosmos-SDK chain used by Wormhole to facilitate communication with the Cosmos ecosystem.
 
 ## Guardian
+
 A [Guardian](/learn/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network that contributes to the VAA multisig.
 
 ## Guardian Network
