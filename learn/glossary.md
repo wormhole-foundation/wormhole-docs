@@ -90,6 +90,5 @@ A chain-and-path agnostic token that exists on a layer outside the blockchain ec
 A decentralized application that enables users to create and/or use [xData](#xdata).
 
 ## xData
+
 Data that exists in a layer outside of Layer 1 blockchains, which is accessible by all chains.
-
-
