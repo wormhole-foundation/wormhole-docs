@@ -35,7 +35,7 @@ The [Gateway](/learn/messaging/gateway/){target=\_blank} is the Cosmos-SDK chain
 
 ## Guardian
 
-A [Guardian](/learn/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network that contributes to the VAA multisig.
+A [Guardian](/learn/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
 
 ## Guardian Network
 
