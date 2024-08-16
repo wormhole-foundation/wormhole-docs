@@ -67,7 +67,8 @@ A nonce, strictly increasing, tracked by the Wormhole Core Contract and unique t
 A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
 
 ## VAA
-[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem, containing the messages emitted by xDapps along with information such as what contract emitted the message.
+
+[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem, containing the messages emitted by [xDapps](#xdapps) along with information such as what contract emitted the message.
 
 ## Validator
 A daemon that is configured to monitor a blockchain node and observe messages emitted by the wormhole contracts.
