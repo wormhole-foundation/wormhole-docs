@@ -8,7 +8,7 @@ description: Explore a comprehensive glossary of technical terms and key concept
 An index of commonly used technical terms.
 
 ## Chain ID
-The Chain IDs in the Wormhole context are `u16` integers that map to chains. Note that these Chain IDs are different from other Chain IDs used for things like wallets.
+The chain IDs in the Wormhole context are `u16` integers that map to chains. Note that these chain IDs are different from other chain IDs used for things like wallets.
 
 Each Chain ID is documented on its page in the [Blockchain Environments](#){target=\_blank}. 
 <!-- link to blockchain platforms page-->
