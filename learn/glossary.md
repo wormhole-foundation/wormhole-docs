@@ -78,6 +78,7 @@ A daemon that is configured to monitor a blockchain node and observe messages em
 The original name of the [Gateway](/learn/glossary/#gateway){target=\_blank}.
 
 ## xChain
+
 A term that refers to the full range of cross-blockchain interoperability.
 
 ## xAssets
