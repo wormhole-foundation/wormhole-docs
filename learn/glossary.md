@@ -63,6 +63,7 @@ A relayer is any process that delivers VAAs to a destination.
 A nonce, strictly increasing, tracked by the Wormhole Core Contract and unique to the emitter chain and address.
 
 ## Spy
+
 A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
 
 ## VAA
