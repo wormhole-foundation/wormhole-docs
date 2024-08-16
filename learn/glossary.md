@@ -31,7 +31,7 @@ The finality of a transaction depends on its blockchain properties. Once a trans
 
 ## Gateway
 
-The [Gateway](/learn/messaging/gateway/){target=\_blank} is the Cosmos-SDK chain Wormhole uses to facilitate communication with the Cosmos ecosystem.
+The [Gateway](/learn/messaging/gateway/){target=\_blank}, previously referred to as Wormchain, is the Cosmos-SDK chain Wormhole uses to facilitate communication with the Cosmos ecosystem.
 
 ## Guardian
 
@@ -46,9 +46,9 @@ The Guardian Set is a set of guardians responsible for validating a message emit
 
 ## Heartbeat
 
-Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and to convey details about its identity, uptime, version, and status of the connected nodes.
+Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and convey details about its identity, uptime, version, and the status of the connected nodes.
 
-The heartbeats are shown on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+You can view the heartbeats on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
 ## Observation
 
@@ -60,7 +60,7 @@ A relayer is any process that delivers VAAs to a destination.
 
 ## Sequence
 
-A nonce, strictly increasing, tracked by the Wormhole Core Contract and unique to the emitter chain and address.
+A nonce, strictly increasing, which is tracked by the Wormhole Core Contract and unique to the emitter chain and address.
 
 ## Spy
 
@@ -68,14 +68,11 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 
 ## VAA
 
-[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem, containing the messages emitted by [xDapps](#xdapps) along with information such as what contract emitted the message.
+[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapps) along with information such as what contract emitted the message.
 
 ## Validator
 
-A daemon that is configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
-
-## Wormchain
-The original name of the [Gateway](/learn/glossary/#gateway){target=\_blank}.
+A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 
 ## xChain
 
@@ -83,7 +80,7 @@ A term that refers to the full range of cross-blockchain interoperability.
 
 ## xAssets
 
-A chain-and-path agnostic token that exists on a layer outside the blockchain ecosystem and can be used to conduct transactions on any blockchain.
+A chain-and-path agnostic token on a layer outside the blockchain ecosystem that can conduct transactions on any blockchain.
 
 ## xDapp
 
