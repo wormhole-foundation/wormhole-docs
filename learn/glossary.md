@@ -48,7 +48,7 @@ The Guardian Set is a set of guardians responsible for validating a message emit
 
 Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and to convey details about its identity, uptime, version, and status of the connected nodes.
 
-The heartbeats are shown on the [dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+The heartbeats are shown on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
 ## Observation
 An Observation is a data structure that describes a message that the Core Contract emitted and that the Guardian node noticed.
