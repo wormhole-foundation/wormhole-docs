@@ -3,3 +3,4 @@ nav:
  - index.md
  - 'Introduction': 'introduction.md'
  - 'Send Multichain Messages': 'send-messages.md'
+ - 'How to Use Core Contracts': 'core-contracts.md'
