@@ -27,7 +27,7 @@ The emitter contract makes the call to the Wormhole Core contract. The published
 
 ## Finality
 
-The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, it can be assumed that the state changes it caused won't be rolled back.
+The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
 
 ## Gateway
 
