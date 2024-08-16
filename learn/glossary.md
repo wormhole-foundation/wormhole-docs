@@ -51,6 +51,7 @@ Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it
 The heartbeats are shown on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
 ## Observation
+
 An Observation is a data structure that describes a message that the Core Contract emitted and that the Guardian node noticed.
 
 ## Relayer
