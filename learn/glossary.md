@@ -45,7 +45,8 @@ Validators in their own P2P network that serve as Wormhole's oracle by observing
 The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
 
 ## Heartbeat
-Each Guardian will issue a `heartbeat` on a 15s interval to signal that it is still running and to convey details about its identity, uptime, version, and status of the connected nodes.
+
+Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and to convey details about its identity, uptime, version, and status of the connected nodes.
 
 The heartbeats are shown on the [dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
