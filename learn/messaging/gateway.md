@@ -1,22 +1,7 @@
 ---
 title: Gateway
-description: TODO
+description: Explore Wormhole Gateway - a Cosmos-SDK chain for bridging assets into Cosmos, enhancing liquidity and cross-chain communication with IBC integration.
 ---
-
-<!--
-[link](#){target=\_blank}
-![img description](/images/learn/introduction/introduction-1.webp)
-`
-```ts
---8<-- 'code/learn/infrastructure/VAAs/header.js'
-```
-=== "Testnet"
-```sh
-```
-```text
-```
-- `variable` ++"type"++ - description
--->
 
 # Gateway 
 
