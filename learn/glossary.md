@@ -82,7 +82,8 @@ The original name of the [Gateway](/learn/glossary/#gateway){target=\_blank}.
 A term that refers to the full range of cross-blockchain interoperability.
 
 ## xAssets
-A chain-and-path agnostic token that exists on a layer outside the blockchain ecosystem, it can be used to conduct transactions on any blockchain.
+
+A chain-and-path agnostic token that exists on a layer outside the blockchain ecosystem and can be used to conduct transactions on any blockchain.
 
 ## xDapp
 A decentralized application that enables users to create and/or use xData.
