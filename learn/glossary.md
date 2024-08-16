@@ -19,7 +19,7 @@ The level of finality (consistency) a transaction should meet before being signe
 
 ## Delivery Provider
 
-A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers to the intended target chain as instructed.
+A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
 
 ## Emitter
 
