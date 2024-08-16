@@ -5,7 +5,7 @@ description: Explore a comprehensive glossary of technical terms and key concept
 
 # Glossary
 
-An index of commonly used technical terms.
+This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
 
 ## Chain ID
 Wormhole uses a `u16` integer Chain ID to map to each specific supported chain. Please note that these chain IDs are unique to Wormhole and differ from those used in popular libraries like viem or Wagmi.  
