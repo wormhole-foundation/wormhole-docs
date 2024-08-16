@@ -86,7 +86,8 @@ A term that refers to the full range of cross-blockchain interoperability.
 A chain-and-path agnostic token that exists on a layer outside the blockchain ecosystem and can be used to conduct transactions on any blockchain.
 
 ## xDapp
-A decentralized application that enables users to create and/or use xData.
+
+A decentralized application that enables users to create and/or use [xData](#xdata).
 
 ## xData
 Data that exists in a layer outside of Layer 1 blockchains, which is accessible by all chains.
