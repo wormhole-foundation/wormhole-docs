@@ -5,22 +5,15 @@ description: Explore Wormhole's Native Token Transfers architecture, which cover
 
 ## Introduction 
 
-The Native Token Transfers (NTT) architecture within the Wormhole ecosystem provides a robust framework for secure and efficient token transfers across multiple blockchains. Its core components, Managers and Transceivers, are designed to handle the complexities of cross-chain communication, including token locking, burning, and message delivery, ensuring a reliable and scalable cross-chain communication system.
-
-This page provides an overview of the Manager and Transceiver components, detailing how they collaborate throughout the lifecycle of a message to ensure secure and efficient token transfers.
+The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on two core components, Managers and Transceivers, that work together to manage cross-chain communication and token operations complexities.
 
 ## System Components
 
-There are two primary components to NTT: Managers and Transceivers:
-
-- _Managers_ oversee the token transfer process, including rate-limiting and message attestation. They manage interactions with multiple Transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain
-- _Transceivers_ are responsible for encoding, sending, receiving, and decoding messages across chains, facilitating seamless communication between different blockchain environments. They work with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers
-
-The NTT framework supports advanced features such as custom Transceivers for specialized message verification, enhancing security and adaptability. The architecture includes detailed processes for initiating transfers, managing rate limits, and finalizing token operations, with specific instructions and events outlined for EVM-compatible chains and Solana.
+The NTT framework is composed of Managers, which oversee the transfer process, and Transceivers, which handle cross-chain messaging, ensuring smooth and reliable token transfers.
 
 ### Managers
 
-Manage the token and the Transceivers, handle rate-limiting and message attestation. Each NTT manager corresponds to a single token but can control multiple Transceivers. Key functions include:
+_Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple Transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple Transceivers. Key functions include:
 
 - `transfer` - initiates a token transfer process involving token locking or burning on the source chain
 - `quoteDeliveryPrice` - quotes the fee for delivering a message to a specific target chain by querying and aggregating quotes from the Transceiver contracts
@@ -28,7 +21,8 @@ Manage the token and the Transceivers, handle rate-limiting and message attestat
 
 ### Transceivers
 
-Responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. These contracts are responsible for encoding, sending, receiving, and decoding messages across chains, ensuring the seamless transfer of tokens. Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
+_Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers.
+Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
 
 - `sendMessage` - this external function sends messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
 - `quoteDeliveryPrice` - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
@@ -40,6 +34,8 @@ Responsible for routing NTT transfers through the manager on the source chain an
 
 
 #### Custom Transceivers
+
+The NTT framework supports advanced features such as custom Transceivers for specialized message verification, enhancing security and adaptability. The architecture includes detailed processes for initiating transfers, managing rate limits, and finalizing token operations, with specific instructions and events outlined for EVM-compatible chains and Solana.
 
 NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
 
