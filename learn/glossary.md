@@ -59,7 +59,8 @@ An Observation is a data structure that describes a message that the Core Contra
 A relayer is any process that delivers VAAs to a destination.
 
 ## Sequence
-A nonce, strictly increasing, tracked by the wormhole core contract and unique to the emitter chain and address.
+
+A nonce, strictly increasing, tracked by the Wormhole Core Contract and unique to the emitter chain and address.
 
 ## Spy
 A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
