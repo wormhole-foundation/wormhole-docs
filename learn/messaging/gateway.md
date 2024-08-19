@@ -33,7 +33,7 @@ The Wormhole network utilizes the Inter-Blockchain Communication (IBC) protocol,
 
 Traditionally, Wormhole [Guardians](/learn/infrastructure/guardians/){target=\_blank} have had to operate full nodes for each blockchain connected to Wormhole. This requirement ensures the highest levels of security and decentralization by allowing each Guardian to verify messages independently. However, this approach introduces significant operational costs and complexities, especially as more chains are added to the network, thereby challenging Wormhole's scalability.
 
-To address these challenges, Wormhole has adopted IBC to facilitate message verification through [tendermint light clients](https://docs.tendermint.com/v0.34/tendermint-core/light-client.html){target=\_blank}. This method significantly reduces the burden on Guardians, as IBC enables the trustless verification of messages across chains.
+To address these challenges, Wormhole has adopted IBC to facilitate message verification through [Tendermint light clients](https://docs.tendermint.com/v0.34/tendermint-core/light-client.html){target=\_blank}. This method significantly reduces the burden on Guardians, as IBC enables the trustless verification of messages across chains.
 
 ### Optimizing Guardian Operations
 
