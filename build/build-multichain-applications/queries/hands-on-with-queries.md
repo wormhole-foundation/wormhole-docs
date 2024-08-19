@@ -1,5 +1,5 @@
 ---
-title: Hands on With Queries
+title: Hands on with Queries
 description: Explore a simple demo of interacting with Wormhole Queries using an eth_call request to query the supply of wETH on Ethereum using a Wormhole query.
 ---
 
