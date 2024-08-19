@@ -20,7 +20,7 @@ Our initial `HelloWorld` smart contract focuses on a simple functionality: allow
 Here’s the Solidity code for the `HelloWorld` contract:
 
 ```solidity
---8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-1.sol'
+--8<-- 'code/tutorials/messaging/core-contracts/snippet-1.sol'
 ```
 
 **Key Functions:**
@@ -39,7 +39,7 @@ To achieve this, we’ll write a contract that can be deployed on Ethereum, Aval
 To accomplish this, we’ll implement the following function:
 
 ```solidity
---8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-2.sol'
+--8<-- 'code/tutorials/messaging/core-contracts/snippet-2.sol'
 ```
 
 You can use the Wormhole Relayer to send greetings across chains, which handles cross-chain communications. The relayer network allows you to send messages (or "payloads") from one chain to another through a network of **Delivery Providers**.
@@ -49,7 +49,7 @@ If you’d like a more detailed understanding of how the Wormhole Relayer and De
 Now, let’s dive into the Wormhole Relayer interface that enables this functionality:
 
 ```solidity
---8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-3.sol'
+--8<-- 'code/tutorials/messaging/core-contracts/snippet-3.sol'
 ```
 
 Delivery Providers charge a fee based on the target network’s conditions for performing this cross-chain delivery. You can calculate this fee using:
@@ -65,7 +65,7 @@ So, using the `sendPayloadToEvm` interface, you can implement `sendCrossChainGre
 Here’s the code:
 
 ```solidity
---8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-4.sol'
+--8<-- 'code/tutorials/messaging/core-contracts/snippet-4.sol'
 ```
 
 For this cross-chain interaction to work, the contract at the `targetAddress` on the `targetChain` must implement the `IWormholeReceiver` interface. This interface ensures that the contract can correctly receive and process the incoming message from the relayer.
@@ -77,7 +77,7 @@ To enable both sending and receiving messages within the `HelloWormhole` contrac
 Here is the interface:
 
 ```solidity
---8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-5.sol'
+--8<-- 'code/tutorials/messaging/core-contracts/snippet-5.sol'
 ```
 
 Once `sendPayloadToEvm` is called on the source chain, the off-chain Delivery Provider picks up the [VAA](/learn/infrastructure/vaas/){target=\_blank} corresponding to the message and relays it to the target chain. The provider will then invoke the `receiveWormholeMessages` function on the contract specified by `targetAddress` on the `targetChain`.

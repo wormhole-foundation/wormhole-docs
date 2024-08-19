@@ -34,13 +34,13 @@ Local testing ensures that the `HelloWormhole` contract functions as expected in
 Clone the repository from GitHub, navigate into the directory, and then build and test the code.
 
 ```sh
---8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-1.sh'
+--8<-- 'code/tutorials/messaging/send-messages/snippet-1.sh'
 ```
 
 The expected output should look like this:
 
 ```sh
---8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-2.sh'
+--8<-- 'code/tutorials/messaging/send-messages/snippet-2.sh'
 ```
 
 ## Deploy to TestNet
@@ -53,7 +53,7 @@ Now that you have tested the contract locally, you can deploy it to TestNet. You
 Once you have the required funds, deploy the contract to the TestNet by running the following command:
 
 ```sh
---8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-3.sh'
+--8<-- 'code/tutorials/messaging/send-messages/snippet-3.sh'
 ```
 
 ## Test on TestNet
@@ -64,6 +64,6 @@ Before testing, ensure you have a wallet with at least 0.02 [TestNet AVAX](https
 Ensure the contracts are deployed to the TestNet as described above. To test sending and receiving a message, execute the following command:
 
 ```sh
---8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-4.sh'
+--8<-- 'code/tutorials/messaging/send-messages/snippet-4.sh'
 ```
 
