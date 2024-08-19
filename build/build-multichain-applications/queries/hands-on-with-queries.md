@@ -1,11 +1,11 @@
 ---
-title: Hands on With Queries
+title: Hands on with Queries
 description: Explore a simple demo of interacting with Wormhole Queries using an eth_call request to query the supply of wETH on Ethereum using a Wormhole query.
 ---
 
 # Hands on with Queries {: #hands-on-with-queries}
 
-You can visit the [Example Queries Demo](https://wormholelabs-xyz.github.io/example-queries-demo/) to view an interactive example of an application interacting with the [Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract.   
+You can visit the [Example Queries Demo](https://wormholelabs-xyz.github.io/example-queries-demo/){target=\_blank} to view an interactive example of an application interacting with the [Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract.   
 
 This guide covers using a simple `eth_call` request to get the total supply of WETH on Ethereum.
 
@@ -139,7 +139,7 @@ Broadly, using a query response on-chain comes down to three main steps:
 
 See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol) contract for an example and read the docstrings of the above methods for detailed usage instructions.
 
-??? code "View the complete QueryDemo"
+??? code "View the complete `QueryDemo`"
     ```solidity
     --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-demo.sol'
     ```
