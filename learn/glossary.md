@@ -68,7 +68,7 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 
 ## VAA
 
-[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapps) along with information such as what contract emitted the message.
+[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapp) along with information such as what contract emitted the message.
 
 ## Validator
 
