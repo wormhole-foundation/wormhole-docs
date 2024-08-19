@@ -83,6 +83,7 @@ Here is the interface:
 Once `sendPayloadToEvm` is called on the source chain, the off-chain Delivery Provider picks up the [VAA](/learn/infrastructure/vaas/){target=\_blank} corresponding to the message and relays it to the target chain. The provider will then invoke the `receiveWormholeMessages` function on the contract specified by `targetAddress` on the `targetChain`.
 
 In the `receiveWormholeMessages` function, you want to:
+
  - Update the latest greeting
  - Emit a `GreetingReceived` event with the greeting message and the sender
 
