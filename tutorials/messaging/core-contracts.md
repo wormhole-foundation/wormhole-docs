@@ -19,14 +19,14 @@ Here’s the Solidity code for the `HelloWorld` contract:
 --8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-1.sol'
 ```
 
-####Key Functions:
+**Key Functions:**
 
- - `quoteGreeting()`: Returns the cost of sending a greeting, set to `0` in this simple example
- - `sendGreeting()`: Allows users to send a greeting, emits the `GreetingReceived` event, and stores the message in the `greetings` list
+ - **`quoteGreeting()`** - returns the cost of sending a greeting, set to `0` in this simple example
+ - **`sendGreeting()`** - allows users to send a greeting, emits the `GreetingReceived` event, and stores the message in the `greetings` list
 
 This contract serves as the foundation for more advanced cross-chain functionality, which we’ll cover next.
 
-## Taking HelloWorld cross-chain using Wormhole Automatic Relayers
+## Take HelloWorld cross-chain using Wormhole Automatic Relayers
 
 Now, let's extend our simple HelloWorld contract to support cross-chain functionality using Wormhole Automatic Relayers. Our goal is to allow users to send a greeting from one chain, like Ethereum, to another, like Avalanche, and vice versa—all triggered from their Ethereum wallet.
 
@@ -38,7 +38,7 @@ To accomplish this, we’ll implement the following function:
 --8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-2.sol'
 ```
 
-To send greetings across chains, we can use the Wormhole Relayer, which handles cross-chain communication for us. The relayer network allows us to relay messages (or "payloads") from one chain to another through a network of Delivery Providers.
+To send greetings across chains, you can use the Wormhole Relayer, which handles _cross-chain_ communications. The relayer network allows you to relay messages (or "payloads") from one chain to another through a network of Delivery Providers.
 
 If you’d like a more detailed understanding of how the Wormhole Relayer and Delivery Providers work, check out the [Learning section on Relayers](/learn/infrastructure/relayer/){target=\_blank}.
 
@@ -56,7 +56,7 @@ To perform this cross-chain delivery, **Delivery Providers** charge a fee based 
 
 This fee must be included as `msg.value` when calling `sendPayloadToEvm`.
 
-So, using the `sendPayloadToEvm` interface, we can implement `sendCrossChainGreeting` by sending a payload that contains the greeting message and the sender’s address. The relayer handles the cross-chain delivery, ensuring the message is received on the target chain.
+So, using the `sendPayloadToEvm` interface, you can implement `sendCrossChainGreeting` by sending a payload that contains the greeting message and the sender’s address. The relayer handles the cross-chain delivery, ensuring the message is received on the target chain.
 
 Here’s the code:
 
@@ -66,9 +66,9 @@ Here’s the code:
 
 For this cross-chain interaction to work, the contract at the targetAddress on the targetChain must implement the `IWormholeReceiver` interface. This interface ensures that the contract can correctly receive and process the incoming message from the relayer.
 
-## Implementing the IWormholeReceiver Interface
+## Implement the IWormholeReceiver Interface
 
-To enable both sending and receiving messages within the `HelloWormhole` contract, we need to implement the `IWormholeReceiver` interface. This interface defines the function that will be called by the Wormhole Relayer on the target chain when a cross-chain message is received.
+To enable both sending and receiving messages within the `HelloWormhole` contract, you need to implement the `IWormholeReceiver` interface. This interface defines the function that will be called by the Wormhole Relayer on the target chain when a cross-chain message is received.
 
 Here is the interface:
 
@@ -78,15 +78,15 @@ Here is the interface:
 
 Once `sendPayloadToEvm` is called on the source chain, the off-chain Delivery Provider picks up the VAA corresponding to the message and relays it to the target chain. The provider will then invoke the `receiveWormholeMessages` function on the contract specified by `targetAddress` on the `targetChain`.
 
-In the `receiveWormholeMessages` function, we want to:
+In the `receiveWormholeMessages` function, you want to:
  - Update the latest greeting
  - Emit a `GreetingReceived` event with the greeting message and the sender
 
 ### Key Security Considerations:
- - **Restricting Access**: It is crucial to ensure that only the Wormhole Relayer contract can call `receiveWormholeMessages` to prevent unauthorized access
- - **Verification of Source**: It’s important to verify that the message is from the expected `sourceChain` and `sourceAddress` to avoid malicious calls
+ - **Restricting Access** - it's crucial to ensure that only the Wormhole Relayer contract can call `receiveWormholeMessages` to prevent unauthorized access
+ - **Verification of Source** - it’s important to verify that the message is from the expected `sourceChain` and `sourceAddress` to avoid malicious calls
 
- And voilà, we now have a fully functional contract that can be deployed across multiple EVM chains, forming a complete cross-chain application powered by Wormhole! Users can interact with the contract from any supported chain and send greetings that will be emitted on other chains within the system.
+ And voilà, you now have a fully functional contract that can be deployed across multiple EVM chains, forming a complete cross-chain application powered by Wormhole! Users can interact with the contract from any supported chain and send greetings that will be emitted on other chains within the system.
 
 This setup allows users with any wallet to request greetings to be emitted on any participating chain, creating a seamless cross-chain experience.
 
