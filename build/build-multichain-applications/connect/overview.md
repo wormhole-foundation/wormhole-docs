@@ -68,7 +68,7 @@ For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wor
 
 ## Configuration {: #configuration}
 
-This is just an overview of what's possible. Check the [Configuration Docs](/build/build-multichain-applications/connect/configuration) for details about all the configuration options.
+This is just an overview of what's possible. Check the [Configuration docs](/build/build-multichain-applications/connect/configuration) for details about all the configuration options.
 
 The default configuration of Wormhole Connect may not be exact;y what you're looking for. You may want to:
 
