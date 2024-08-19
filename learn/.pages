@@ -6,3 +6,4 @@ nav:
  - 'Architecture Overview': 'architecture.md'
  - infrastructure
  - messaging
+ - 'Glossary': 'glossary.md'
