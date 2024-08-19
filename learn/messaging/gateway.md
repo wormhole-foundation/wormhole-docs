@@ -63,7 +63,7 @@ Required Fees:
 - **Relayer Fee (Source Chain to Gateway)** - there is currently no cost for processing Wormhole messages from the source chain to the Gateway, although this may change in the future
 - **Destination Chain Gas (Non-Cosmos)** - for non-Cosmos destination chains, gas fees must be paid by the relayer or the user in cases of manual redemption
 
-Not Required Fees: 
+Optional Fees: 
 
 - **Gateway Operations** - the Gateway itself does not require gas fees to be paid by users, nor does it have token-priced metering
 - **Relayer Fee (Gateway to Cosmos)** - there are no relayer fees charged for transferring messages from the Gateway to Cosmos chains
