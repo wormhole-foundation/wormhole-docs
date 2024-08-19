@@ -43,6 +43,7 @@ A [Guardian](/learn/infrastructure/guardians/){target=\_blank} is one of the 19 
 Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
 
 ## Guardian Set
+
 The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
 
 ## Heartbeat
