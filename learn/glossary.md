@@ -11,7 +11,7 @@ This glossary is an index of technical term definitions for words commonly used 
 Wormhole uses a `u16` integer Chain ID to map to each specific supported chain. Please note that these chain IDs are unique to Wormhole and differ from those used in popular libraries like viem or Wagmi.  
 
 You can find each chain ID documented on the [Wormhole Chain IDs](#){target=\_blank} page. 
-<!-- link to blockchain platforms page-->
+<!-- link to chain ids page-->
 
 ## Consistency Level
 
