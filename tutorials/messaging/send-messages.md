@@ -57,7 +57,7 @@ Once you have the required funds, deploy the contract to the TestNet by running 
 ```
 
 ## Test on TestNet
-Now that the `HelloWormhole` contract has been successfully deployed to the TestNet, the next step is to test its functionality by sending a cross-chain message. This will ensure that the contract is correctly set up and that the _cross-chain messaging_ works as expected.
+Now that the `HelloWormhole` contract has been successfully deployed to the TestNet, the next step is to test its functionality by sending a cross-chain message. This will ensure that the contract is correctly set up and that the cross-chain messaging works as expected.
 
 Before testing, ensure you have a wallet with at least 0.02 [TestNet AVAX](https://faucet.avax-test.network/){target=\_blank}.
 

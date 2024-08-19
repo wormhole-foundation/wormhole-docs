@@ -7,7 +7,7 @@ description: Detailed explanaiton on how to use the core contracts in the Wormho
 
 ## Introduction
 
-Let’s examine the `HelloWormhole` contract and explain how it works _step-by-step_. We’ll start by creating a basic single-chain Solidity contract called `HelloWorld` and then explore how to extend it cross-chain using Wormhole.
+Let’s examine the `HelloWormhole` contract and explain how it works _step-by-step_. We’ll start by creating a basic single-chain Solidity contract called `HelloWorld` and then explore how to extend it _cross-chain_ using Wormhole.
 
 ## Single-Chain HelloWorld Solidity Contract
 
@@ -38,7 +38,7 @@ To accomplish this, we’ll implement the following function:
 --8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-2.sol'
 ```
 
-You can use the Wormhole Relayer to send greetings across chains, which handles _cross-chain_ communications. The relayer network allows you to relay messages (or "payloads") from one chain to another through a network of Delivery Providers.
+You can use the Wormhole Relayer to send greetings across chains, which handles cross-chain communications. The relayer network allows you to relay messages (or "payloads") from one chain to another through a network of Delivery Providers.
 
 If you’d like a more detailed understanding of how the Wormhole Relayer and Delivery Providers work, check out the [Learning section on Relayers](/learn/infrastructure/relayer/){target=\_blank}.
 
@@ -100,7 +100,7 @@ For the complete implementation of the [HelloWormhole.sol contract](https://gith
 
 !!! note
     **Wormhole integration complete?**
-    
+
     Let us know so we can list your project in our ecosystem directory and introduce you to our global, multichain community!
 
     [Reach out now!](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}
