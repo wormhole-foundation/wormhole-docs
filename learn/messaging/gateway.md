@@ -14,7 +14,7 @@ In addition to facilitating asset transfers, _Wormhole Gateway_ (FKA `wormchain`
 
 ### Core Functionality and Purpose
 
-The primary function of the Wormhole Gateway is to enable the movement of digital assets from various blockchains into the Cosmos network, enhancing interoperability and connectivity. This integration helps maintain a cohesive liquidity pool across the Cosmos ecosystem, essential for efficiently operating decentralized applications (DApps) and services.
+The Wormhole Gateway's primary function is to enable the movement of digital assets from various blockchains into the Cosmos network, enhancing interoperability and connectivity. This integration helps maintain a cohesive liquidity pool across the Cosmos ecosystem, which is essential for efficiently operating decentralized applications (dApps) and services.
 
 ### Inter-Blockchain Communication (IBC) for Secure Transfers
 
