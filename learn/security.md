@@ -9,7 +9,7 @@ some missing links will need to be added when pages are created
 
 ## Core Security Assumptions
 
-At its core, Wormhole is secured by a network of [Guardian](#){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
+At its core, Wormhole is secured by a network of [Guardian](/learn/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
 
 - Wormhole's core security primitive is its signed messages (signed VAAs)
 - The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}
@@ -46,7 +46,7 @@ Via governance, the Guardians can:
 - Expand the Guardian set
 - Upgrade ecosystem contract implementations
 
-The governance system is fully open source in the core repository. See the [Open Source section](#){target=\_blank} for contract source.
+The governance system is fully open source in the core repository. See the [Open Source section](/learn/security/#open-source){target=\_blank} for contract source.
 
 ## Monitoring
 
@@ -58,7 +58,7 @@ Guardians monitor:
 
 - Block production and consensus of each blockchain - if a blockchain's consensus is violated, it will be disconnected from the network until the Guardians resolve the issue
 - Smart contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
-- Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain ([Gateway](#){target=\_blank})
+- Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain ([Gateway](/learn/messaging/gateway/){target=\_blank})
 
 ## Gateway And Asset Layer Protections
 
@@ -78,7 +78,7 @@ Wormhole builds in the open and is always open source.
 
 - **[Wormhole core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}**
 - **[Wormhole Foundation GitHub organization](https://github.com/wormhole-foundation){target=\_blank}**
-- **[Wormhole contract deployments](#){target=\_blank}** <!-- link to core contracts page-->
+- **[Wormhole contract deployments](/learn/messaging/core-contracts/){target=\_blank}** <!-- link to core contracts page-->
 
 ## Audits
 
