@@ -97,7 +97,7 @@ Be sure to check out the [FAQs](/build/build-multichain-applications/queries/faq
 
 You can also check out the following examples of applications that make use of Wormhole Queries: 
 
-- [Basic Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
+- [Basic demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
 - [Solana PDA / Token Account Balance](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
 - [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
