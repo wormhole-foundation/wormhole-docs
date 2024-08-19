@@ -45,7 +45,7 @@ The expected output should look like this:
 
 ## Deploy to TestNet
 
-Now that you have tested the contract locally, you can deploy it to the TestNet. You will need a wallet with at least 0.05 TestNet AVAX and 0.01 TestNet CELO.
+Now that you have tested the contract locally, you can deploy it to TestNet. You will need a wallet with at least 0.05 TestNet AVAX and 0.01 TestNet CELO.
 
 - [Obtain TestNet AVAX](https://faucet.avax-test.network/){target=\_blank}
 - [Obtain TestNet CELO](https://celo.org/developers/faucet){target=\_blank}
@@ -57,7 +57,7 @@ Once you have the required funds, deploy the contract to the TestNet by running 
 ```
 
 ## Test on TestNet
-Now that the `HelloWormhole` contract has been successfully deployed to the TestNet, the next step is to test its functionality by sending a cross-chain message. This will ensure that the contract is correctly set up and that the cross-chain messaging works as expected.
+Now that the `HelloWormhole` contract has been successfully deployed to TestNet, the next step is to test its functionality by sending a cross-chain message. This will ensure the contract is correctly set up and the cross-chain messaging works as expected.
 
 Before testing, ensure you have a wallet with at least 0.02 [TestNet AVAX](https://faucet.avax-test.network/){target=\_blank}.
 
