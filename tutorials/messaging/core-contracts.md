@@ -99,7 +99,8 @@ Curious about the underlying mechanisms? In [Part 2](/tutorials/messaging/use-co
 For the complete implementation of the [HelloWormhole.sol contract](https://github.com/wormhole-foundation/hello-wormhole/blob/main/src/HelloWormhole.sol){target=\_blank}, along with testing infrastructure, check out the complete [GitHub repository](https://github.com/wormhole-foundation/hello-wormhole/){target=\_blank}.
 
 !!! note
-    ####Wormhole integration complete?
+    **Wormhole integration complete?**
+    
     Let us know so we can list your project in our ecosystem directory and introduce you to our global, multichain community!
 
     [Reach out now!](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}
