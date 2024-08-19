@@ -67,7 +67,7 @@ Optional Fees:
 
 - **Gateway Operations** - the Gateway itself does not require gas fees to be paid by users, nor does it have token-priced metering
 - **Relayer Fee (Gateway to Cosmos)** - there are no relayer fees charged for transferring messages from the Gateway to Cosmos chains
-- **Destination Chain (Cosmos)** - costs on the destination chain within the Cosmos network are covered by IBC relayers
+- **Destination Chain (Cosmos)** - IBC relayers cover costs on the destination chain within the Cosmos network
 
 
 
