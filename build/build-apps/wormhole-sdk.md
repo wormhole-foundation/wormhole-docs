@@ -1,6 +1,6 @@
 ---
 title: Wormhole TS SDK 
-description: Explore Wormhole's Typescript SDK and learn about how to perform different types of transfers, including Native, Token, USDC, and Gateway Transfers.
+description: Explore Wormhole's TypeScript SDK and learn about how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 ---
 
 # Wormhole TS SDK {: #wormhole-ts-sdk}
