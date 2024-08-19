@@ -11,9 +11,9 @@ comments go here
 
 ## Introduction
 
-In this tutorial, you will explore how to create and deploy a _cross-chain_ application using the `HelloWormhole` Solidity contract, which can be deployed onto many EVM-compatible networks. This contract allows users to send greetings across different blockchains and request a `GreetingReceived` event to be emitted on a different chain, even if they don’t have gas funds on that chain.
+In this tutorial, you will explore how to create and deploy a _cross-chain_ application using the `HelloWormhole` Solidity contract, which can be deployed onto many EVM-compatible networks. This contract allows users to send greetings across different blockchains and request a `GreetingReceived` event to be emitted on a different chain, even if they don’t have gas funds on the target chain.
 
-you will work with a dedicated repository designed to help you understand and implement _cross-chain messaging_ using this contract.
+You will work with a dedicated repository designed to help you understand and implement _cross-chain messaging_ using this contract.
 
 The repository includes the following key components:
 
@@ -29,7 +29,7 @@ The repository includes the following key components:
 
 ## Test Locally
 
-Local testing ensures that the `HelloWormhole` contract is functioning as expected in your development environment before deploying it to TestNet.
+Local testing ensures that the `HelloWormhole` contract functions as expected in your development environment before you deploy it to TestNet.
 
 Clone the repository from GitHub, navigate into the directory, and then build and test the code.
 
@@ -45,7 +45,7 @@ The expected output should look like this:
 
 ## Deploy to TestNet
 
-Now that you have tested the contract locally, you can deploy it to the TestNet. For this you will need a wallet with at least 0.05 TestNet AVAX and 0.01 TestNet CELO.
+Now that you have tested the contract locally, you can deploy it to the TestNet. You will need a wallet with at least 0.05 TestNet AVAX and 0.01 TestNet CELO.
 
 - [Obtain TestNet AVAX](https://faucet.avax-test.network/){target=\_blank}
 - [Obtain TestNet CELO](https://celo.org/developers/faucet){target=\_blank}
@@ -61,7 +61,7 @@ Now that the `HelloWormhole` contract has been successfully deployed to the Test
 
 Before testing, ensure you have a wallet with at least 0.02 [TestNet AVAX](https://faucet.avax-test.network/){target=\_blank}.
 
-Make sure the contracts are deployed to the TestNet as described in the above section. To test sending and receiving a message, execute the following command:
+Ensure the contracts are deployed to the TestNet as described above. To test sending and receiving a message, execute the following command:
 
 ```sh
 --8<-- 'code/tutorials/cross-chain-contracts/send-messages/snippet-4.sh'

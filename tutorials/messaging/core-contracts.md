@@ -7,11 +7,11 @@ description: Detailed explanaiton on how to use the core contracts in the Wormho
 
 ## Introduction
 
-Let’s dive into the `HelloWormhole` contract and break down how it works _step-by-step_. We’ll start by creating a basic single-chain Solidity contract called `HelloWorld`, and then explore how to extend it cross-chain using Wormhole.
+Let’s examine the `HelloWormhole` contract and explain how it works _step-by-step_. We’ll start by creating a basic single-chain Solidity contract called `HelloWorld` and then explore how to extend it cross-chain using Wormhole.
 
 ## Single-Chain HelloWorld Solidity Contract
 
-Our initial `HelloWorld` smart contract focuses on a simple functionality: allowing users to send greetings. When someone sends a greeting, the contract emits an event called `GreetingReceived`, recording their message. The greetings are also stored in a list for later retrieval.
+Our initial `HelloWorld` smart contract focuses on a simple functionality: allowing users to send greetings. When someone sends a greeting, the contract emits an event called `GreetingReceived`, recording their message. The system stores the greetings in a list for later retrieval.
 
 Here’s the Solidity code for the `HelloWorld` contract:
 
@@ -24,13 +24,13 @@ Here’s the Solidity code for the `HelloWorld` contract:
  - **`quoteGreeting()`** - returns the cost of sending a greeting, set to `0` in this simple example
  - **`sendGreeting()`** - allows users to send a greeting, emits the `GreetingReceived` event, and stores the message in the `greetings` list
 
-This contract serves as the foundation for more advanced cross-chain functionality, which we’ll cover next.
+This contract is the foundation for more advanced cross-chain functionality, which we’ll cover next.
 
 ## Take HelloWorld cross-chain using Wormhole Automatic Relayers
 
-Now, let's extend our simple HelloWorld contract to support cross-chain functionality using Wormhole Automatic Relayers. Our goal is to allow users to send a greeting from one chain, like Ethereum, to another, like Avalanche, and vice versa—all triggered from their Ethereum wallet.
+Let's extend our simple HelloWorld contract to support cross-chain functionality using Wormhole Automatic Relayers. We aim to allow users to send a greeting from one chain, like Ethereum, to another, like Avalanche, and vice versa—all triggered from their Ethereum wallet.
 
-To achieve this, we’ll write a contract that can be deployed on Ethereum, Avalanche, or any other supported chain, enabling seamless communication between instances of the contract regardless of which chain they’re on.
+To achieve this, we’ll write a contract that can be deployed on Ethereum, Avalanche, or any other supported chain. This will enable seamless communication between instances of the contract regardless of which chain they’re on.
 
 To accomplish this, we’ll implement the following function:
 
@@ -38,7 +38,7 @@ To accomplish this, we’ll implement the following function:
 --8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-2.sol'
 ```
 
-To send greetings across chains, you can use the Wormhole Relayer, which handles _cross-chain_ communications. The relayer network allows you to relay messages (or "payloads") from one chain to another through a network of Delivery Providers.
+You can use the Wormhole Relayer to send greetings across chains, which handles _cross-chain_ communications. The relayer network allows you to relay messages (or "payloads") from one chain to another through a network of Delivery Providers.
 
 If you’d like a more detailed understanding of how the Wormhole Relayer and Delivery Providers work, check out the [Learning section on Relayers](/learn/infrastructure/relayer/){target=\_blank}.
 
@@ -64,7 +64,7 @@ Here’s the code:
 --8<-- 'code/tutorials/cross-chain-contracts/core-contracts/snippet-4.sol'
 ```
 
-For this cross-chain interaction to work, the contract at the targetAddress on the targetChain must implement the `IWormholeReceiver` interface. This interface ensures that the contract can correctly receive and process the incoming message from the relayer.
+For this cross-chain interaction to work, the contract at the `targetAddress` on the `targetChain` must implement the `IWormholeReceiver` interface. This interface ensures that the contract can correctly receive and process the incoming message from the relayer.
 
 ## Implement the IWormholeReceiver Interface
 
@@ -84,9 +84,9 @@ In the `receiveWormholeMessages` function, you want to:
 
 ### Key Security Considerations:
  - **Restricting Access** - it's crucial to ensure that only the Wormhole Relayer contract can call `receiveWormholeMessages` to prevent unauthorized access
- - **Verification of Source** - it’s important to verify that the message is from the expected `sourceChain` and `sourceAddress` to avoid malicious calls
+ - **Verification of Source** - it’s essential to verify that the message is from the expected `sourceChain` and `sourceAddress` to avoid malicious calls
 
- And voilà, you now have a fully functional contract that can be deployed across multiple EVM chains, forming a complete cross-chain application powered by Wormhole! Users can interact with the contract from any supported chain and send greetings that will be emitted on other chains within the system.
+And voilà, you now have a fully functional contract that can be deployed across multiple EVM chains, forming a complete cross-chain application powered by Wormhole! Users can interact with the contract from any supported chain and send greetings to other chains within the system.
 
 This setup allows users with any wallet to request greetings to be emitted on any participating chain, creating a seamless cross-chain experience.
 
@@ -96,7 +96,7 @@ Curious about the underlying mechanisms? In [Part 2](/tutorials/messaging/use-co
 
 ## Full Cross-Chain HelloWormhole Solidity Contract
 
-For the complete implementation of the [HelloWormhole.sol contract](https://github.com/wormhole-foundation/hello-wormhole/blob/main/src/HelloWormhole.sol){target=\_blank}, along with testing infrastructure, check out the full [GitHub repository](https://github.com/wormhole-foundation/hello-wormhole/){target=\_blank}.
+For the complete implementation of the [HelloWormhole.sol contract](https://github.com/wormhole-foundation/hello-wormhole/blob/main/src/HelloWormhole.sol){target=\_blank}, along with testing infrastructure, check out the complete [GitHub repository](https://github.com/wormhole-foundation/hello-wormhole/){target=\_blank}.
 
 !!! note
     ####Wormhole integration complete?
