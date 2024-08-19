@@ -41,9 +41,9 @@ const callData: EthCallData = {
   }
   const targetResult = targetResponse.data?.result;
   console.log('Target Result:    ', targetResult, `(${BigInt(targetResult)})`);
-  // form the query request
+  // Form the query request
   const request = new QueryRequest(
-    0, // nonce
+    0, // Nonce
     [
       new PerChainQueryRequest(
         2, // Ethereum Wormhole Chain ID
@@ -51,7 +51,7 @@ const callData: EthCallData = {
       ),
     ]
   );
-  // console.log(JSON.stringify(request, undefined, 2));
+  console.log(JSON.stringify(request, undefined, 2));
   const mock = new QueryProxyMock({ 2: rpc });
   const mockData = await mock.mock(request);
   console.log(mockData);

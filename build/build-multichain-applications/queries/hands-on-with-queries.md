@@ -44,13 +44,14 @@ In order to make an `EthCallQueryRequest`, you need a specific block number or h
 You can request the latest block from a public node using `eth_getBlockByNumber`.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/get-block-by-number.jsx'
+--8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:12:12'
+--8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:19:26'
 ```
 
 Then construct the call data.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/eth-call-data.jsx'
+--8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:13:16'
 ```
 
 Finally, put it all together in a `QueryRequest`.
@@ -62,7 +63,25 @@ Finally, put it all together in a `QueryRequest`.
 This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can use `console.log` to print the JSON object and review the structure.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/per-chain-query-request.jsx'
+--8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:54:54'
+// {
+//   "nonce": 0,
+//   "requests": [
+//     {
+//       "chainId": 2,
+//       "query": {
+//         "callData": [
+//           {
+//             "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+//             "data": "0x18160ddd"
+//           }
+//         ],
+//         "blockTag": "0x11e9068"
+//       }
+//     }
+//   ],
+//   "version": 1
+// }
 ```
 
 ## Mock a Query {: #mock-a-query}
@@ -80,7 +99,8 @@ For easier testing, the Query SDK provides a `QueryProxyMock` method. This metho
 This response is suited for on-chain use, but the SDK also includes a parser to make the results readable via the client.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-response.jsx'
+--8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:58:64'
+// Mock Query Result: 0x000000000000000000000000000000000000000000029fd09d4d81addb3ccfee (3172556167631284394053614)
 ```
 
 Testing this all together might look like the following:
