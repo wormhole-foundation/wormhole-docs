@@ -113,7 +113,7 @@ Wormhole currently supports the following platforms:
 - Sui
 - Aptos
 
-See the [Platforms folder of the Typescript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole Typescript SDK. 
+See the [Platforms folder of the TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole TypeScript SDK. 
 
 ### Chain Context {: #chain-context}
 
