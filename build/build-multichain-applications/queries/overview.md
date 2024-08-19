@@ -85,10 +85,6 @@ For example, many chains have implementations forked from [geth](https://github.
 
 \*EthCallByTimestamp arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
 
-### TestNet {: #testnet}
-
-See the [Constants Reference](../reference/constants.md) for the list of TestNet chains.
-
 ## Next Steps {: #next-steps}
 
 Remember that Wormhole Queries are currently in beta. You can [register to join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
