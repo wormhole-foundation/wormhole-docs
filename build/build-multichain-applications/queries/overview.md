@@ -89,11 +89,11 @@ For example, many chains have implementations forked from [geth](https://github.
 
 Remember that Wormhole Queries are currently in beta. You can [register to join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
 
-Be sure to check out the [FAQs](/build/build-multichain-applications/queries/faqs) and the [Hands on with Queries Guide](/build/build-multichain-applications/queries/hands-on-with-queries).
+Be sure to check out the [FAQs](/build/build-multichain-applications/queries/faqs) and the [Hands on with Queries guide](/build/build-multichain-applications/queries/hands-on-with-queries).
 
 You can also check out the following examples of applications that make use of Wormhole Queries: 
 
-- [Basic Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
+- [Basic demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
 - [Solana PDA / Token Account Balance](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
 - [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
