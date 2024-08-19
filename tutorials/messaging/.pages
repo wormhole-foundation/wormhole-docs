@@ -1,0 +1,9 @@
+title: Messaging
+nav:
+ - index.md
+ - 'Send Multichain Messages': 'send-messages.md'
+ - 'Create Cross-Chain Contracts': 'core-contracts.md'
+ - 'How to Use Core Contracts': 'use-contracts.md'
+ - 'How to Use Token & NFT Bridge': 'use-bridge.md'
+ - 'How to Use Circle Bridge': 'use-circle.md'
+ - 'How to Use Gateway': 'use-gateway.md'
