@@ -54,7 +54,7 @@ const callData: EthCallData = {
   // console.log(JSON.stringify(request, undefined, 2));
   const mock = new QueryProxyMock({ 2: rpc });
   const mockData = await mock.mock(request);
-  //   console.log(mockData);
+  console.log(mockData);
   const mockQueryResponse = QueryResponse.from(mockData.bytes);
   const mockQueryResult = (
     mockQueryResponse.responses[0].response as EthCallQueryResponse

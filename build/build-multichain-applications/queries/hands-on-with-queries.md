@@ -56,7 +56,7 @@ Then construct the call data.
 Finally, put it all together in a `QueryRequest`.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-request.jsx'
+--8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:44:53'
 ```
 
 This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can use `console.log` to print the JSON object and review the structure.
@@ -70,7 +70,11 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [DevNet](/wormhole/reference/dev-env/tilt) Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-proxy-mock.jsx'
+--8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:55:57'
+// {
+//   signatures: ['...'],
+//   bytes: '...'
+// }
 ```
 
 This response is suited for on-chain use, but the SDK also includes a parser to make the results readable via the client.
