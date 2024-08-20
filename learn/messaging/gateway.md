@@ -20,8 +20,8 @@ The Wormhole Gateway's primary function is to enable the movement of digital ass
 
 Utilizing the Inter-Blockchain Communication (IBC) protocol, the Wormhole Gateway ensures secure and reliable asset transfers. IBC allows the Gateway to interact smoothly with various blockchain protocols within the Cosmos network, providing a robust framework for:
 
-- **Asset bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
-- **Security and integrity** - conducting thorough consistency checks to validate transactions and ensure that asset transfers are executed without discrepancies
+- **Asset Bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
+- **Security and Integrity** - conducting thorough consistency checks to validate transactions and ensure that asset transfers are executed without discrepancies
 
 ## Scaling with IBC
 
@@ -59,7 +59,7 @@ Using the Wormhole Gateway costs minimal fees and is designed to be as low as po
 
 Required fees: 
 
-- **Source chain gas** - users must cover gas fees on the source chain, such as Ethereum, to initiate transfers
+- **Source Chain Gas** - users must cover gas fees on the source chain, such as Ethereum, to initiate transfers
 - **Relayer Fee (Source Chain to Gateway)** - there is currently no cost for processing Wormhole messages from the source chain to the Gateway, although this may change in the future
 - **Destination Chain Gas (Non-Cosmos)** - for non-Cosmos destination chains, gas fees must be paid by the relayer or the user in cases of manual redemption
 
