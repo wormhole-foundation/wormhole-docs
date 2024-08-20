@@ -1,0 +1,14 @@
+$ worm-fetch-governance 13940208096455381020 > guardian-upgrade.txt
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain oasis
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain aurora
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain fantom
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain karura
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain acala
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain klaytn
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain avalanche
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain polygon
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain bsc
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain solana
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain terra
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain ethereum
+$ worm submit $(cat guardian-upgrade.txt) --network mainnet --chain celo

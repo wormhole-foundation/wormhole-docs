@@ -1,4 +1,4 @@
-worm evm <command>
+worm evm INSERT_COMMAND
 
 Commands:
   worm evm address-from-secret <secret>  Compute a 20 byte eth address from a 32

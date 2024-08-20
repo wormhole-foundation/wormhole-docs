@@ -1,4 +1,4 @@
-worm near [command]
+worm near INSERT_COMMAND
 
 Commands:
   worm near contract-update <file>  Submit a contract update using our specific

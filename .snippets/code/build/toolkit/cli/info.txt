@@ -1,4 +1,4 @@
-worm info [command]
+worm info INSERT_COMMAND
 
 Commands:
   worm info chain-id <chain>                Print the wormhole chain ID integer

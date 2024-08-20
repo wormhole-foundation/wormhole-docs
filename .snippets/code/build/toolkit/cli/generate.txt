@@ -1,4 +1,4 @@
-worm generate [command]
+worm generate INSERT_COMMAND
 
 Commands:
   worm generate registration                Generate registration VAA
