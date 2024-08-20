@@ -38,7 +38,7 @@ Initialize a new `deployment.json` file, specifying the network:
 
 If you haven't already, deploy your SPL token to Solana.
 
-1. Generate a new Solana keypair in order to create a wallet:
+1. Generate a new Solana keypair to create a wallet:
 ```bash
 solana-keygen grind --starts-with w:1 --ignore-case
 ```
@@ -84,7 +84,7 @@ NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
 
 #### Generate NTT Program Keypair
 
-When you deploy a Solana program, you need to hardcode the program ID (which is itself a pubkey) into the program code. The NTT CLI allows you to do this seamlessly.
+When you deploy a Solana program, you need to hardcode the program ID (a pubkey) into the program code. The NTT CLI allows you to do this seamlessly.
 
 Generate a new NTT program keypair using:
 
@@ -102,7 +102,7 @@ ntt solana token-authority INSERT-YOUR-NTT-PROGRAM-KEYPAIR
 
 #### Set SPL Token Mint Authority
 
-In this step, you'll set SPL token mint authority to newly generated token authority PDA:
+In this step, you'll set SPL token mint authority to the newly generated token authority PDA:
 
 ```bash
 spl-token authorize INSERT-TOKEN-ADDRESS mint INSERT-DERIVED-PDA

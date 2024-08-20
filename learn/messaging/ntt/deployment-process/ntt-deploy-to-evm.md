@@ -7,7 +7,7 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 
 If your token is not already deployed, deploy the token contract to the destination or spoke chains.
 
-Tokens integrated with `NttManager` in `burning` mode requre the following two functions to be present:
+Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
 
 1. `burn(uint256 amount)`
 2. `mint(address account, uint256 amount)`
@@ -56,7 +56,7 @@ Add each chain you'll be deploying to. The following example demonstrates config
 --8<-- 'code/learn/messaging/ntt/deployment-process/initialize.txt'
 ```
 
-While not recommended, if you would like to skip contract verification, you can pass the `--skip-verify` flag to the `ntt add-chain` command.
+While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you would like to skip contract verification.
 
 The `ntt add-chain` command takes the following parameters:
 
@@ -75,7 +75,7 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
 - `ntt pull` to sync your `deployment.json` file with the on-chain configuration
 - `ntt push` to sync the on-chain configuration with local changes made to your `deployment.json` file
 
-After you deploy the NTT contracts, make sure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
+After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
 
 ## Set Token Minter to NTT Manager
 
