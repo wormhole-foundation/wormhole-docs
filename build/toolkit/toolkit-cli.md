@@ -5,7 +5,7 @@ description: Learn how to install and use the Wormhole CLI, including commands a
 
 # Wormhole CLI
 
-This tool is a command line interface to Wormhole, allowing you to perform a variety of actions such as querying a transaction's status or submitting token transfers. 
+This tool is a command-line interface to Wormhole, allowing you to perform various actions, such as querying a transaction's status or submitting token transfers. 
 
 ## Installation
 
@@ -20,7 +20,7 @@ Build and install the cli tool:
 
 This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`.
 
-To use `worm`, set up `$HOME/.wormhole/.env` with your
+To use `worm,` set up `$HOME/.wormhole/.env` with your
 private keys, based on `.env.sample` in this folder.
 
 ## Usage
@@ -150,15 +150,13 @@ The above example will fetch governance VAA `13940208096455381020` and print it 
 
 ### Submitting VAAs
 
-Use `submit` to submit a VAA to a chain. It first parses the VAA and figures out
-what's the destination chain and module. For example, a contract upgrade contains both the target chain and module, so the only required argument is the network moniker (`mainnet` or `testnet`):
+Use `submit` to submit a VAA to a chain. It first parses the VAA and determines the destination chain and module. For example, a contract upgrade contains both the target chain and module, so the only required argument is the network moniker (`mainnet` or `testnet`):
 
 ```bash
 worm submit $(cat my-nft-registration.txt) --network mainnet
 ```
 
-For VAAs that don't have a specific target chain (like registrations or guardian set upgrades), the script will ask you to specify the target chain.
-For example, to submit a guardian set upgrade on all chains, simply run:
+The script will ask you to specify the target chain for VAAs that don't have a specific target chain (like registrations or guardian set upgrades). For example, to submit a guardian set upgrade on all chains, simply run:
 
 ```bash
 --8<-- 'code/build/toolkit/cli/guardian-upgrade.txt'
@@ -188,7 +186,7 @@ You can get the contract address for a module as follows:
 worm info rpc INSERT_NETWORK INSERT_CHAIN INSERT_MODULE
 ```
 
-To get the contract address for `NFTBridge` on BSC MainNet for example, you can provide the following command:
+To get the contract address for `NFTBridge` on BSC MainNet, for example, you can provide the following command:
 
 ```bash
 worm info contract mainnet bsc NFTBridge
