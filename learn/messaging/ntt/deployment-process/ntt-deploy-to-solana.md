@@ -53,7 +53,7 @@ solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
 solana config set -ud
 ```
 
-4. Request an airdrop of 2 SOL and check the balance:
+4. Request an airdrop of two SOL and check the balance:
 ```bash
 solana airdrop 2 & solana balance
 ```
@@ -63,7 +63,7 @@ solana airdrop 2 & solana balance
 cargo install spl-token-cli
 ```
 
-6. Create a new token with the SPL Token CLI using the token-2022 program:
+6. Create a new token with the SPL Token CLI using the `token-2022` program:
 ```bash
 spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 
 ```
@@ -73,7 +73,7 @@ spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
 spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
 ```
 
-8. Mint 1000 tokens to the created account:
+8. Mint `1000` tokens to the created account:
 ```bash
 spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
 ```

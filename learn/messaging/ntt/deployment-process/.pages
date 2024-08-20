@@ -4,3 +4,4 @@ nav:
  - 'Installation': 'ntt-installation.md'
  - 'Deploy to EVM': 'ntt-deploy-to-evm.md'
  - 'Deploy to Solana': 'ntt-deploy-to-solana.md'
+ - 'Post Deployment': 'ntt-post-deployment.md'

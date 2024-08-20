@@ -32,13 +32,13 @@ cd my-ntt-deployment
 
 Initialize a new `deployment.json` file, specifying the network:
 
-=== "Testnet"
+=== "TestNet"
 
     ```bash
 	ntt init Testnet
     ```
 
-=== "Mainnet"
+=== "MainNet"
 
     ```bash
 	ntt init Mainnet

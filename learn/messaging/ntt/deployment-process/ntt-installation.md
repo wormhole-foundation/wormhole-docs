@@ -11,6 +11,7 @@ The fastest way to deploy NTT is using the NTT CLI.
 - Install [Bun](https://bun.sh/)
 
 Install the NTT CLI:
+
 ```bash
 curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/example-native-token-transfers/cli/cli/install.sh | bash
 ```
