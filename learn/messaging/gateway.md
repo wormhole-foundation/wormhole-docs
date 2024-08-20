@@ -20,7 +20,7 @@ The Wormhole Gateway's primary function is to enable the movement of digital ass
 
 Utilizing the Inter-Blockchain Communication (IBC) protocol, the Wormhole Gateway ensures secure and reliable asset transfers. IBC allows the Gateway to interact smoothly with various blockchain protocols within the Cosmos network, providing a robust framework for:
 
-- **Asset Bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
+- **Asset bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
 - **Security and Integrity** - conducting thorough consistency checks to validate transactions and ensure that asset transfers are executed without discrepancies
 
 ## Scaling with IBC
