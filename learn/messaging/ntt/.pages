@@ -5,4 +5,5 @@ nav:
  - 'NTT Architecture': 'ntt-architecture.md'
  - 'Deployment Models': 'ntt-deployment.md'
  - deployment-process
+ - configuration
  - 'Security': 'ntt-security.md'
