@@ -1,0 +1,14 @@
+worm generate [command]
+
+Commands:
+  worm generate registration                Generate registration VAA
+  worm generate upgrade                     Generate contract upgrade VAA
+  worm generate attestation                 Generate a token attestation VAA
+  worm generate recover-chain-id            Generate a recover chain ID VAA
+  worm generate                             Sets the default delivery provider
+  set-default-delivery-provider             for the Wormhole Relayer contract
+
+Options:
+      --help             Show help                                     [boolean]
+      --version          Show version number                           [boolean]
+  -g, --guardian-secret  Guardians' secret keys (CSV)        [string] [required]
