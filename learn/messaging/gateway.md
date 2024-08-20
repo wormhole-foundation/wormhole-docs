@@ -57,7 +57,7 @@ The Wormhole Gateway incorporates several key components that support its operat
 
 Using the Wormhole Gateway costs minimal fees and is designed to be as low as possible to facilitate easy and efficient cross-chain transactions.
 
-Required Fees: 
+Required fees: 
 
 - **Source Chain Gas** - users must cover gas fees on the source chain, such as Ethereum, to initiate transfers
 - **Relayer Fee (Source Chain to Gateway)** - there is currently no cost for processing Wormhole messages from the source chain to the Gateway, although this may change in the future
