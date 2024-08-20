@@ -4,4 +4,5 @@ nav:
  - 'NTT Overview': 'ntt-overview.md'
  - 'NTT Architecture': 'ntt-architecture.md'
  - 'Deployment Models': 'ntt-deployment.md'
+ - deployment-process
  - 'Security': 'ntt-security.md'
