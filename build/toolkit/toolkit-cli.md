@@ -9,18 +9,20 @@ This tool is a command-line interface to Wormhole, allowing you to perform vario
 
 ## Installation
 
-Pull down the repo if you don't already have it and change directories to the appropriate directory:
+Clone the repo and change directories to the appropriate directory:
 
-    git clone https://github.com/wormhole-foundation/wormhole
-    cd wormhole/clients/js
+```bash
+git clone https://github.com/wormhole-foundation/wormhole &&
+cd wormhole/clients/js
+```
 
 Build and install the cli tool:
 
-    make install
+```bash
+make install
+```
 
-This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`.
-
-To use `worm,` set up `$HOME/.wormhole/.env` with your
+This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. To use `worm,` set up `$HOME/.wormhole/.env` with your
 private keys, based on `.env.sample` in this folder.
 
 ## Usage
