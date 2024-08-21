@@ -20,7 +20,7 @@ However, in the context of Wormhole, 'Tilt' refers to the development environmen
 
 The Tilt environment is designed to provide an entire cross-chain development stack right out of the box.
 
-#### Is Tilt Right for You?
+## Is Tilt Right for You?
 
 Tilt is a good option for developers who need a local development environment and have access to a machine that can handle running it. It is also a great option for developers who want to establish a CI testing suite.
 
@@ -37,11 +37,11 @@ Tilt is a good option for developers who need a local development environment an
 	- Most blockchains are 'fresh' and have no contracts by default. Thus, if your contracts have any dependencies, you may have to deploy them yourself or alter the default tilt configuration
 	- Spin-up and rebuild times can be slow, which can result in a slow workflow
 
-### Tilt Installation
+## Tilt Installation
 
 Tilt functions best in a UNIX-style environment. To run the Tilt environment, make sure you have [Tilt](https://docs.tilt.dev/install.html){target=\_blank} and [Go](https://go.dev/doc/install){target=\_blank} installed.
 
-#### MacOS Instructions
+### MacOS Instructions
 
 You'll need to have `homebrew` installed on your system. You can install it with:
 
@@ -69,26 +69,26 @@ Install Tilt:
 brew install tilt
 ```
 
-#### Linux Instructions
+### Linux Instructions
 
-Install Go:
+#### Install Go
+
+You can install Go with the following command:
 
 ```sh
 wget https://go.dev/dl/go1.18.1.linux-amd64.tar.gz &&
 rm -r /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 ```
 
-Install Docker:
+#### Install Docker Desktop 
 
 If you're using Linux with a window manager, it's highly recommended to install Docker Desktop since it comes with Kubernetes built in and you won't need to download `minikube`. It's recommended to have at least 4 CPUs and 16GB RAM dedicated to Docker. Also, make absolutely sure that you set up Docker as a non-root user. You can refer to [this list of Docker installation methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods){target=\_blank}.
-
-Install Docker Desktop (Recommended):
 
 If you're using Docker Desktop, you can enable Kubernetes by going into Settings > Kubernetes and checking the checkbox to enable Kubernetes.
 
 ![Enable Kubernetes](/images/build/toolkit/tilt/tilt-1.webp)
 
-**CLI**
+#### Minikube
 
 The alternative to Docker Desktop with Kubernetes is to install [minikube](https://minikube.sigs.k8s.io/docs/start/). You can configure minikube as follows:
 
@@ -98,20 +98,22 @@ minikube start --driver=docker --kubernetes-version=v1.23.3 --cpus=4 --memory=14
 
 If you reboot your VM you'll need to run the `minikube start` command again before you bring up tilt.
 
-Install Tilt with the following command:
+#### Install Tilt
+
+You can install Tilt with the following command:
 
 ```sh
 curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 ```
 
-#### Linux Experimental Instructions
+### Linux Experimental Instructions
 
-This is an Experimental Setup Script. 
+This is an experimental, single command setup script. 
 
 !!! warning
 	This is only recommended if you're running headless Linux and unable to use Docker Desktop, as you can enable Kubernetes from Docker.
 
-There's an experimental single command setup script that should install dependencies for you on Linux and configure everything properly.
+This experimental single command setup script should install dependencies for you on Linux and configure everything properly. If it doesn't work as expected, refer to [standard Linux installation steps above](#linux-instructions).
 
 ```bash
 curl $URL | sh install_linux.sh &&
@@ -127,7 +129,7 @@ cd wormhole &&
 tilt up
 ```
 
-#### Virtual Machine Instructions
+### Virtual Machine Instructions
 
 If you're running Tilt in a VM, you'll need to pass in some extra flags to enable Tilt to listen to incoming traffic from external addresses:
 
