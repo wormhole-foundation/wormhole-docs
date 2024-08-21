@@ -179,7 +179,7 @@ If you want to iterate quickly and don't want to bring Tilt down and back up, yo
 
 The devnet environment deploys the core layer and token bridge to each of the chains at the same addresses every time. It also provides specific wallets with funds.
 
-### Default Ports
+## Default Ports
 
 | Service            | Port |
 | ------------------ | ---- |
