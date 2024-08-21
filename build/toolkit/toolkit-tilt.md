@@ -7,7 +7,7 @@ description: Learn about Tilt, a Wormhole dev environment with a local Kubernete
 
 [Tilt](https://tilt.dev/){target=\_blank} is part of the official Docker ecosystem. It's a tool which allows developers to easily configure a Kubernetes environment for development.
 
-!!!note
+!!! note
 	Tilt is often referred to as 'Devnet' in the Wormhole ecosystem so any information that is labeled as 'Devnet' also applies to Tilt.
 
 However, in the context of Wormhole, 'Tilt' refers to the development environment used by the [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}. This environment stands up docker images for all the tools necessary to build across multiple blockchains, including:
@@ -49,13 +49,13 @@ You'll need to have `homebrew` installed on your system. You can install it with
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-**Install Go**
+Install Go:
 
 ```sh
 brew install go
 ```
 
-**Install Docker**
+Install Docker:
 
 ```sh
 brew install docker
@@ -74,8 +74,8 @@ brew install tilt
 Install Go:
 
 ```sh
-wget https://go.dev/dl/go1.18.1.linux-amd64.tar.gz
-rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.18.1.linux-amd64.tar.gz &&
+rm -r /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 ```
 
 Install Docker:
@@ -135,13 +135,7 @@ If you're running Tilt in a VM, you'll need to pass in some extra flags to enabl
 tilt up --host=0.0.0.0 -- --webHost=0.0.0.0
 ```
 
-You can now access the Tilt UI at `vm_external_ip:10350`.
-
-If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic.
-
-Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/main/Tiltfile){target=\_blank}, which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components.
-
-For example, you can enable blockchains by setting them to true at startup. Note the use of the **--** separator between tilt command flags and the flags you wish to pass to configure the setup.
+You can now access the Tilt UI at `vm_external_ip:10350`. If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic. Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/main/Tiltfile){target=\_blank}, which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. For example, you can enable blockchains by setting them to true at startup. Note the use of the **--** separator between tilt command flags and the flags you wish to pass to configure the setup.
 
 ```bash
 tilt up -- --algorand --solana
