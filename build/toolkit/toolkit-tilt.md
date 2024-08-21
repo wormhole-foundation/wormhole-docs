@@ -84,7 +84,7 @@ If you're using Linux with a window manager, it's highly recommended to install 
 
 Install Docker Desktop (Recommended):
 
-You can enable Kubernetes by going into Settings > Kubernetes and checking the checkbox to enable Kubernetes.
+If you're using Docker Desktop, you can enable Kubernetes by going into Settings > Kubernetes and checking the checkbox to enable Kubernetes.
 
 ![Enable Kubernetes](/images/build/toolkit/tilt/tilt-1.webp)
 
