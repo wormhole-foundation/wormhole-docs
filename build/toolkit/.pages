@@ -1,4 +1,5 @@
 title: Toolkit
 nav:
  - index.md
- - 'CLI' : 'toolkit-cli.md'
+ - 'Local Dev Environment' : 'toolkit-dev-env.md'
+ - 'Tilt': 'toolkit-tilt.md'
