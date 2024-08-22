@@ -7,7 +7,7 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 
 *Scroll down for details about each column.*
 
-| **Network** | **Token Bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop-off** |
+| **Network** | **Token Bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop Off** |
 |:-----------:|:----------------:|:------------------------:|:---------------:|:--------------:|:----------------:|
 |   Solana    |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
 |  Ethereum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
