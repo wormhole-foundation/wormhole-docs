@@ -79,7 +79,7 @@ For more information see [https://www.alchemy.com/overviews/ethereum-commitment-
 | MockProvider    | `0x1ef9e15c3bbf0555860b5009B51722027134d53a` |
 | MockIntegration | `0x0eb0dD3aa41bD15C706BC09bC03C002b7B85aeAC` |
   
-# Other EVM Chains
+## Other EVM Chains
 
 Besides Ethereum, a number of other EVM chains are supported.
 
@@ -523,7 +523,7 @@ If a value is passed that is not in the set above it's assumed to mean finalized
 
 - [Website](https://acala.network/karura){target=_blank}
 - Block Explorers: [Subscan](https://karura.subscan.io/){target=_blank} | [Blockscout](https://blockscout.karura.network/){target=_blank}
-- [Dev Docs](https://wiki.acala.network/){target=_blank}
+- [Developer Docs](https://wiki.acala.network/){target=_blank}
 
 ### Wormhole Details
 

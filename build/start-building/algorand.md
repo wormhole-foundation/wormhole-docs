@@ -23,8 +23,8 @@ The emitter is the application address, normalized to the wormhole address forma
 
 ### Ecosystem
 
-- [Web site](https://algorand.com){target=_blank}
-- [Allo](https://allo.info/){target=_blank} | [Pera Explorer](https://explorer.perawallet.app/)
+- [Website](https://algorand.com){target=_blank}
+- [Allo Explorer](https://allo.info/){target=_blank} | [Pera Explorer](https://explorer.perawallet.app/){target=_blank}
 - [Developer Docs](https://developer.algorand.org){target=_blank} | [Faucet](https://bank.testnet.algorand.network/){target=_blank}
 
 ### Wormhole Details
@@ -47,19 +47,19 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 
 ### Mainnet Contracts (<code>mainnet-v1.0</code>)
 
-| Type         | Contract    |
-|--------------|-------------|
-| Core         | `842125965` |
-| Token Bridge | `842126029` |
-| NFT Bridge   | **N/A**     |
+| Type         | Contract                                                              |
+|--------------|-----------------------------------------------------------------------|
+| Core         | [`842125965`](https://explorer.perawallet.app/application/842125965/){target=_blank} |
+| Token Bridge | [`842126029`](https://explorer.perawallet.app/application/842126029/){target=_blank} |
+| NFT Bridge   | **N/A**                                                               |
 
 ### Testnet Contracts (<code>testnet-v1.0</code>)
 
-| Type         | Contract   |
-|--------------|------------|
-| Core         | `86525623` |
-| Token Bridge | `86525641` |
-| NFT Bridge   | **N/A**    |
+| Type         | Contract                                                                    |
+|--------------|-----------------------------------------------------------------------------|
+| Core         | [`86525623`](https://testnet.explorer.perawallet.app/application/86525623/){target=_blank} |
+| Token Bridge | [`86525641`](https://testnet.explorer.perawallet.app/application/86525641/){target=_blank} |
+| NFT Bridge   | **N/A**                                                                     |
 
 ### Local Network Contract
 
