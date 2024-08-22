@@ -3,7 +3,9 @@ title: EVM
 description: This page includes important information for EVM chains supported by Wormhole, including contract addresses, chain IDs, bridge addresses, and other constants.
 ---
 
-Details for working with EVM environment chains.
+# EVM Network Details
+
+This page includes details for working with EVM environment chains.
 
 ## Developer tools
 
@@ -11,11 +13,7 @@ The recommended development tool for EVM environments is [Foundry](https://book.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. 
-
-For EVM chains, this means a wormhole formatted address is the 20 byte EVM standard address left padded with `0`s.
-
-e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For EVM chains, this means a wormhole formatted address is the 20 byte EVM standard address left padded with `0`s. e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`
 
 ## Emitter 
 
@@ -23,19 +21,19 @@ The emitter address on EVM chains is the contract address, normalized to the wor
 
 ## Ethereum
 
-Deployed contracts are also available on the [Sepolia](#sepolia) testnet.
+Deployed contracts are also available on the [Sepolia](#sepolia) TestNet.
 
 ### Ecosystem
 
-- [Web site](https://ethereum.org/)
-- [https://etherscan.io/](https://etherscan.io/)
-- [https://ethereum.org/en/developers/docs/](https://ethereum.org/en/developers/docs/)
+- [Website](https://ethereum.org/){target=_blank}
+- Block Explorers: [https://etherscan.io/](https://etherscan.io/){target=_blank}
+- [https://ethereum.org/en/developers/docs/](https://ethereum.org/en/developers/docs/){target=_blank}
 
 ### Wormhole Details
 
-- **Name**: `ethereum`
-- **Chain ID**: `2`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `ethereum`
+- Chain ID: `2`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -45,13 +43,11 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |-----|-----|
 |Instant|200|
 |Safe|201|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://www.alchemy.com/overviews/ethereum-commitment-levels](https://www.alchemy.com/overviews/ethereum-commitment-levels){target=_blank}.
 
-For more information see [https://www.alchemy.com/overviews/ethereum-commitment-levels](https://www.alchemy.com/overviews/ethereum-commitment-levels)
-
-
-### Mainnet Contracts (<code>1</code>)
+### MainNet Contracts (<code>1</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -61,7 +57,7 @@ For more information see [https://www.alchemy.com/overviews/ethereum-commitment-
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 | CCTP         | `0xAaDA05BD399372f0b0463744C09113c137636f6a` |
 
-### Testnet Contracts (<code>Holesky</code> - <code>17000</code>)
+### TestNet Contracts (<code>Holesky</code> - <code>17000</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -83,29 +79,23 @@ For more information see [https://www.alchemy.com/overviews/ethereum-commitment-
 | MockProvider    | `0x1ef9e15c3bbf0555860b5009B51722027134d53a` |
 | MockIntegration | `0x0eb0dD3aa41bD15C706BC09bC03C002b7B85aeAC` |
   
-
-<!--ETHEREUM_CHAIN_DETAILS-->
-
 # Other EVM Chains
 
-Besides Ethereum, a number of EVM chains are supported.
+Besides Ethereum, a number of other EVM chains are supported.
 
+## Acala
 
-<!--ACALA_CHAIN_DETAILS-->
+### Ecosystem
 
-# Acala
+- [Website](https://acala.network/){target=_blank}
+- Block Explorers: [https://acala.subscan.io/](https://acala.subscan.io/){target=_blank} | [https://blockscout.acala.network/](https://blockscout.acala.network/){target=_blank}
+- [Developer docs](https://evmdocs.acala.network/){target=_blank} | [Faucet](https://evmdocs.acala.network/tooling/faucet){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://acala.network/)
-- [https://acala.subscan.io/](https://acala.subscan.io/) | [https://blockscout.acala.network/](https://blockscout.acala.network/)
-- [Developer docs](https://evmdocs.acala.network/) | [Faucet](https://evmdocs.acala.network/tooling/faucet)
-
-## Wormhole Details
-
-- **Name**: `acala`
-- **Chain ID**: `12`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `acala`
+- Chain ID: `12`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -114,11 +104,10 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
 
-
-### Mainnet Contracts (<code>787</code>)
+### MainNet Contracts (<code>787</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -127,7 +116,7 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 | NFT Bridge   | `0xb91e3638F82A1fACb28690b37e3aAE45d2c33808` |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>597</code>)
+### TestNet Contracts (<code>597</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -139,27 +128,23 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Arbitrum
 
-<!--ACALA_CHAIN_DETAILS-->
-<!--ARBITRUM_CHAIN_DETAILS-->
+### Ecosystem
 
-# Arbitrum
+- [Website](https://arbitrum.io/){target=_blank}
+- [Arbitrum Explorer](https://arbiscan.io/){target=_blank}
+- [Developer Docs](https://developer.arbitrum.io/getting-started-devs){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://arbitrum.io/)
-- [Arbitrum Explorer](https://arbiscan.io/)
-- [Developer Docs](https://developer.arbitrum.io/getting-started-devs)
-
-## Wormhole Details
-
-- **Name**: `arbitrum`
-- **Chain ID**: `23`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/arbitrum.json)
+- Name: `arbitrum`
+- Chain ID: `23`
+- Contract Source: No source file
 
 ### Consistency Levels
 
@@ -168,13 +153,11 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://developer.arbitrum.io/tx-lifecycle](https://developer.arbitrum.io/tx-lifecycle){target=_blank}.
 
-For more information see [https://developer.arbitrum.io/tx-lifecycle](https://developer.arbitrum.io/tx-lifecycle)
-
-
-### Mainnet Contracts (<code>Arbitrum One</code> - <code>42161</code>)
+### MainNet Contracts (<code>Arbitrum One</code> - <code>42161</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -184,7 +167,7 @@ For more information see [https://developer.arbitrum.io/tx-lifecycle](https://de
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 | CCTP         | `0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c` |
 
-### Testnet Contracts (<code>Sepolia</code> - <code>421614</code>)
+### TestNet Contracts (<code>Sepolia</code> - <code>421614</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -199,35 +182,25 @@ For more information see [https://developer.arbitrum.io/tx-lifecycle](https://de
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Aurora
 
-<!--ARBITRUM_CHAIN_DETAILS-->
-<!--AURORA_CHAIN_DETAILS-->
+### Ecosystem
 
-# Aurora
+- [Website](https://aurora.dev/){target=_blank}
+- [Block Explorer](https://explorer.aurora.dev/){target=_blank}
+- [Developer docs](https://doc.aurora.dev/){target=_blank} | [Faucet](https://aurora.dev/faucet){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://aurora.dev/)
-- [Block Explorer](https://explorer.aurora.dev/)
-- [Developer docs](https://doc.aurora.dev/) | [Faucet](https://aurora.dev/faucet)
+- Name: `aurora`
+- Chain ID: `9`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-## Wormhole Details
-
-- **Name**: `aurora`
-- **Chain ID**: `9`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>1313161554</code>)
+### MainNet Contracts (<code>1313161554</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -235,7 +208,7 @@ For more information see [https://developer.arbitrum.io/tx-lifecycle](https://de
 | Token Bridge | `0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F` |
 | NFT Bridge   | `0x6dcC0484472523ed9Cdc017F711Bcbf909789284` |
 
-### Testnet Contracts (<code>1313161555</code>)
+### TestNet Contracts (<code>1313161555</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -247,27 +220,23 @@ For more information see [https://developer.arbitrum.io/tx-lifecycle](https://de
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Avalanche
 
-<!--AURORA_CHAIN_DETAILS-->
-<!--AVALANCHE_CHAIN_DETAILS-->
+### Ecosystem
 
-# Avalanche
+- [Website](https://www.avax.network/){target=_blank}
+- [C-Chain Block Explorer](https://snowscan.xyz/){target=_blank} | [https://subnets.avax.network/](https://subnets.avax.network/){target=_blank}
+- [Developer docs](https://docs.avax.network/){target=_blank} | [Faucet](https://core.app/tools/TestNet-faucet/?subnet=c&token=c){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://www.avax.network/)
-- [C-Chain Block Explorer](https://snowtrace.io/) | [https://subnets.avax.network/](https://subnets.avax.network/)
-- [Developer docs](https://docs.avax.network/) | [Faucet](https://core.app/tools/testnet-faucet/?subnet=c&token=c)
-
-## Wormhole Details
-
-- **Name**: `avalanche`
-- **Chain ID**: `6`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `avalanche`
+- Chain ID: `6`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -279,11 +248,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 
 This field is may be ignored since the chain provides instant finality.
 
+For more information see [https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality](https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality){target=_blank}.
 
-For more information see [https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality](https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality)
-
-
-### Mainnet Contracts (<code>C-Chain</code> - <code>43114</code>)
+### MainNet Contracts (<code>C-Chain</code> - <code>43114</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -293,7 +260,7 @@ For more information see [https://docs.avax.network/build/dapp/advanced/integrat
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 | CCTP         | `0x09Fb06A271faFf70A651047395AaEb6265265F13` |
 
-### Testnet Contracts (<code>Fuji</code> - <code>43113</code>)
+### TestNet Contracts (<code>Fuji</code> - <code>43113</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -309,35 +276,25 @@ For more information see [https://docs.avax.network/build/dapp/advanced/integrat
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Base
 
-<!--AVALANCHE_CHAIN_DETAILS-->
-<!--BASE_CHAIN_DETAILS-->
+### Ecosystem
 
-# Base
+- [Website](https://base.org/){target=_blank}
+- [Etherscan](https://goerli.basescan.org/){target=_blank} | [Blockscout](https://base-goerli.blockscout.com/){target=_blank}
+- [Developer docs](https://docs.base.org/){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://base.org/)
-- [Etherscan](https://goerli.basescan.org/) | [Blockscout](https://base-goerli.blockscout.com/)
-- [Developer docs](https://docs.base.org/)
+- Name: `base`
+- Chain ID: `30`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-## Wormhole Details
-
-- **Name**: `base`
-- **Chain ID**: `30`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>Base</code> - <code>8453</code>)
+### MainNet Contracts (<code>Base</code> - <code>8453</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -347,7 +304,7 @@ For more information see [https://docs.avax.network/build/dapp/advanced/integrat
 | Relayer      | `0x706f82e9bb5b0813501714ab5974216704980e31` |
 | CCTP         | `0x03faBB06Fa052557143dC28eFCFc63FC12843f1D` |
 
-### Testnet Contracts (<code>Base Goerli</code> - <code>84531</code>)
+### TestNet Contracts (<code>Base Goerli</code> - <code>84531</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -362,27 +319,23 @@ For more information see [https://docs.avax.network/build/dapp/advanced/integrat
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
-  
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-<!--BASE_CHAIN_DETAILS-->
-<!--BSC_CHAIN_DETAILS-->
+## BNB Smart Chain
 
-# BNB Smart Chain
+### Ecosystem
 
-## Ecosystem
+- [Website](https://www.bnbchain.org/en/smartChain){target=_blank}
+- [Etherscan](https://bscscan.com/){target=_blank}
+- [Developer docs](https://docs.bnbchain.org/docs/learn/intro){target=_blank} | [Faucet](https://TestNet.binance.org/faucet-smart/){target=_blank}
 
-- [Web site](https://www.bnbchain.org/en/smartChain)
-- [Etherscan](https://bscscan.com/)
-- [Developer docs](https://docs.bnbchain.org/docs/learn/intro) | [Faucet](https://testnet.binance.org/faucet-smart/)
+### Wormhole Details
 
-## Wormhole Details
-
-- **Name**: `bsc`
-- **Chain ID**: `4`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `bsc`
+- Chain ID: `4`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -392,13 +345,11 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |---------|-------|
 | Instant | 200   |
 | Safe    | 201   |
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized. 
 
+For more information see [https://docs.bnbchain.org/docs/learn/consensus](https://docs.bnbchain.org/docs/learn/consensus){target=_blank}.
 
-For more information see [https://docs.bnbchain.org/docs/learn/consensus](https://docs.bnbchain.org/docs/learn/consensus)
-
-
-### Mainnet Contracts (<code>56</code>)
+### MainNet Contracts (<code>56</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -407,7 +358,7 @@ For more information see [https://docs.bnbchain.org/docs/learn/consensus](https:
 | NFT Bridge   | `0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE` |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>97</code>)
+### TestNet Contracts (<code>97</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -429,23 +380,19 @@ For more information see [https://docs.bnbchain.org/docs/learn/consensus](https:
 | MockProvider    | `0x1ef9e15c3bbf0555860b5009B51722027134d53a` |
 | MockIntegration | `0x0eb0dD3aa41bD15C706BC09bC03C002b7B85aeAC` |
   
+## Celo
 
-<!--BSC_CHAIN_DETAILS-->
-<!--CELO_CHAIN_DETAILS-->
+### Ecosystem
 
-# Celo
+- [Website](https://celo.org/){target=_blank}
+- [https://explorer.celo.org/](https://explorer.celo.org/){target=_blank} | [https://celoscan.io/](https://celoscan.io/){target=_blank}
+- [Developer docs](https://docs.celo.org/){target=_blank} | [Faucet](https://faucet.celo.org/alfajores){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://celo.org/)
-- [https://explorer.celo.org/mainnet/](https://explorer.celo.org/mainnet/) | [https://celoscan.io/](https://celoscan.io/)
-- [Developer docs](https://docs.celo.org/) | [Faucet](https://faucet.celo.org/alfajores)
-
-## Wormhole Details
-
-- **Name**: `celo`
-- **Chain ID**: `14`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `celo`
+- Chain ID: `14`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -454,11 +401,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
-
-
-### Mainnet Contracts (<code>42220</code>)
+### MainNet Contracts (<code>42220</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -467,7 +412,7 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 | NFT Bridge   | `0xA6A377d75ca5c9052c9a77ED1e865Cc25Bd97bf3` |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>Alfajores</code> - <code>44787</code>)
+### TestNet Contracts (<code>Alfajores</code> - <code>44787</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -482,27 +427,23 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Fantom
 
-<!--CELO_CHAIN_DETAILS-->
-<!--FANTOM_CHAIN_DETAILS-->
+### Ecosystem
 
-# Fantom
+- [Website](https://fantom.foundation/){target=_blank}
+- [https://ftmscan.com/](https://ftmscan.com/){target=_blank}
+- [Developer docs](https://docs.fantom.foundation/){target=_blank} | [Faucet](https://faucet.fantom.network/){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://fantom.foundation/)
-- [https://ftmscan.com/](https://ftmscan.com/)
-- [Developer docs](https://docs.fantom.foundation/) | [Faucet](https://faucet.fantom.network/)
-
-## Wormhole Details
-
-- **Name**: `fantom`
-- **Chain ID**: `10`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `fantom`
+- Chain ID: `10`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -511,11 +452,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
-
-
-### Mainnet Contracts (<code>250</code>)
+### MainNet Contracts (<code>250</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -524,7 +463,7 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 | NFT Bridge   | `0xA9c7119aBDa80d4a4E0C06C8F4d8cF5893234535` |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>4002</code>)
+### TestNet Contracts (<code>4002</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -536,75 +475,61 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Gnosis
 
-<!--FANTOM_CHAIN_DETAILS-->
-<!--GNOSIS_CHAIN_DETAILS-->
+### Ecosystem
 
-# Gnosis
+- [Website](https://www.gnosis.io/){target=_blank}
+- [Block Explorer](https://gnosisscan.io/){target=_blank}
+- [Developer docs](https://docs.gnosischain.com/developers/overview){target=_blank} | [Faucet](https://faucet.gnosischain.com/){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://www.gnosis.io/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/gnosis.json)
-- [Developer docs](https://docs.gnosischain.com/developers/overview) | [Faucet](https://faucet.gnosischain.com/)
+- Name: `gnosis`
+- Chain ID: `25`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-## Wormhole Details
-
-- **Name**: `gnosis`
-- **Chain ID**: `25`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>100</code>)
+### MainNet Contracts (<code>100</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xa321448d90d4e5b0A732867c18eA198e75CAC48E` |
-| Token Bridge | **N/A**                                      |
-| NFT Bridge   | **N/A**                                      |
+| Token Bridge | N/A                                      |
+| NFT Bridge   | N/A                                      |
 
-### Testnet Contracts (<code>Chaido</code> - <code>10200</code>)
+### TestNet Contracts (<code>Chaido</code> - <code>10200</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd` |
-| Token Bridge | **N/A**                                      |
-| NFT Bridge   | **N/A**                                      |
+| Token Bridge | N/A                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Karura
 
-<!--GNOSIS_CHAIN_DETAILS-->
-<!--KARURA_CHAIN_DETAILS-->
+### Ecosystem
 
-# Karura
+- [Website](https://acala.network/karura){target=_blank}
+- Block Explorers: [Subscan](https://karura.subscan.io/){target=_blank} | [Blockscout](https://blockscout.karura.network/){target=_blank}
+- [Dev Docs](https://wiki.acala.network/){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://acala.network/karura)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/karura.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/karura.json)
-
-## Wormhole Details
-
-- **Name**: `karura`
-- **Chain ID**: `11`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `karura`
+- Chain ID: `11`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -613,13 +538,11 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://wiki.polkadot.network/docs/learn-consensus](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}.
 
-For more information see [https://wiki.polkadot.network/docs/learn-consensus](https://wiki.polkadot.network/docs/learn-consensus)
-
-
-### Mainnet Contracts (<code>686</code>)
+### MainNet Contracts (<code>686</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -628,7 +551,7 @@ For more information see [https://wiki.polkadot.network/docs/learn-consensus](ht
 | NFT Bridge   | `0xb91e3638F82A1fACb28690b37e3aAE45d2c33808` |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>596</code>)
+### TestNet Contracts (<code>596</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -640,27 +563,23 @@ For more information see [https://wiki.polkadot.network/docs/learn-consensus](ht
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Klaytn
 
-<!--KARURA_CHAIN_DETAILS-->
-<!--KLAYTN_CHAIN_DETAILS-->
+### Ecosystem
 
-# Klaytn
+- [Website](https://klaytn.foundation/){target=_blank}
+- [Klaytnfinder](https://www.klaytnfinder.io/){target=_blank} | [Klaytnscope](https://scope.klaytn.com/){target=_blank}
+- [Developer docs](https://docs.klaytn.foundation/){target=_blank} | [Faucet](https://baobab.wallet.klaytn.foundation/faucet){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://klaytn.foundation/)
-- [Klaytnfinder](https://www.klaytnfinder.io/) | [Klaytnscope](https://scope.klaytn.com/)
-- [Developer docs](https://docs.klaytn.foundation/) | [Faucet](https://baobab.wallet.klaytn.foundation/faucet)
-
-## Wormhole Details
-
-- **Name**: `klaytn`
-- **Chain ID**: `13`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `klaytn`
+- Chain ID: `13`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -669,11 +588,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
-
-
-### Mainnet Contracts (<code>8217</code>)
+### MainNet Contracts (<code>8217</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -682,7 +599,7 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 | NFT Bridge   | `0x3c3c561757BAa0b78c5C025CdEAa4ee24C1dFfEf` |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>Baobab</code> - <code>1001</code>)
+### TestNet Contracts (<code>Baobab</code> - <code>1001</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -694,27 +611,23 @@ If a value is passed that is _not_ in the set above it's assumed to mean finaliz
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Moonbeam
 
-<!--KLAYTN_CHAIN_DETAILS-->
-<!--MOONBEAM_CHAIN_DETAILS-->
+### Ecosystem
 
-# Moonbeam
+- [Website](https://moonbeam.network/){target=_blank}
+- [Moonbeam EVM Block Explorer](https://moonscan.io/){target=_blank}
+- [Developer docs](https://docs.moonbeam.network/){target=_blank} | [Faucet](https://faucet.moonbeam.network/){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://moonbeam.network/)
-- [Moonbeam EVM Block Explorer](https://moonscan.io/)
-- [Developer docs](https://docs.moonbeam.network/) | [Faucet](https://faucet.moonbeam.network/)
-
-## Wormhole Details
-
-- **Name**: `moonbeam`
-- **Chain ID**: `16`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `moonbeam`
+- Chain ID: `16`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -723,13 +636,11 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints){target=_blank}.
 
-For more information see [https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints)
-
-
-### Mainnet Contracts (<code>1284</code>)
+### MainNet Contracts (<code>1284</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -738,7 +649,7 @@ For more information see [https://docs.moonbeam.network/builders/build/moonbeam-
 | NFT Bridge   | `0x453cfbe096c0f8d763e8c5f24b441097d577bde2` |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>Moonbase-Alphanet</code> - <code>1287</code>)
+### TestNet Contracts (<code>Moonbase-Alphanet</code> - <code>1287</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -753,83 +664,63 @@ For more information see [https://docs.moonbeam.network/builders/build/moonbeam-
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Neon
 
-<!--MOONBEAM_CHAIN_DETAILS-->
-<!--NEON_CHAIN_DETAILS-->
+### Ecosystem
 
-# Neon
+- [Website](https://neon-labs.org/){target=_blank}
+- Block Explorers: [NeonScan](https://neonscan.org/){target=_blank} | [Blockscout](https://neon.blockscout.com/){target=_blank}
+- [Developer Docs](https://neonevm.org/docs/quick_start){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://neon-labs.org/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/neon.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/neon.json)
+- Name: `neon`
+- Chain ID: `17`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-## Wormhole Details
-
-- **Name**: `neon`
-- **Chain ID**: `17`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>245022934</code>)
+### MainNet Contracts (<code>245022934</code>)
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>245022940</code>)
+### TestNet Contracts (<code>245022940</code>)
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Oasis
 
-<!--NEON_CHAIN_DETAILS-->
-<!--OASIS_CHAIN_DETAILS-->
+### Ecosystem
 
-# Oasis
+- [Website](https://oasisprotocol.org/){target=_blank}
+- [OasisScan](https://www.oasisscan.com/){target=_blank}
+- [Developer Docs](https://docs.oasis.io/){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://oasisprotocol.org/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/oasis.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/oasis.json)
+- Name: `oasis`
+- Chain ID: `7`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-## Wormhole Details
-
-- **Name**: `oasis`
-- **Chain ID**: `7`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>42262</code>)
+### MainNet Contracts (<code>42262</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -837,7 +728,7 @@ For more information see [https://docs.moonbeam.network/builders/build/moonbeam-
 | Token Bridge | `0x5848C791e09901b40A9Ef749f2a6735b418d7564` |
 | NFT Bridge   | `0x04952D522Ff217f40B5Ef3cbF659EcA7b952a6c1` |
 
-### Testnet Contracts (<code>42261</code>)
+### TestNet Contracts (<code>42261</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -849,27 +740,23 @@ For more information see [https://docs.moonbeam.network/builders/build/moonbeam-
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Optimism
 
-<!--OASIS_CHAIN_DETAILS-->
-<!--OPTIMISM_CHAIN_DETAILS-->
+### Ecosystem
 
-# Optimism
-
-## Ecosystem
-
-- [Web site](https://www.optimism.io/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/optimism.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/optimism.json)
+- [Website](https://www.optimism.io/){target=_blank}
+- [Block Explorer](https://optimistic.etherscan.io/){target=_blank}
+- [Developer Docs](https://docs.optimism.io/){target=_blank}
 
 ## Wormhole Details
 
-- **Name**: `optimism`
-- **Chain ID**: `24`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `optimism`
+- Chain ID: `24`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -878,13 +765,11 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
 
-For more information see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/)
-
-
-### Mainnet Contracts (<code>10</code>)
+### MainNet Contracts (<code>10</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -894,7 +779,7 @@ For more information see [https://community.optimism.io/docs/developers/bridge/c
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 | CCTP         | `0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c` |
 
-### Testnet Contracts (<code>Optimism Goerli</code> - <code>420</code>)
+### TestNet Contracts (<code>Optimism Goerli</code> - <code>420</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -909,27 +794,23 @@ For more information see [https://community.optimism.io/docs/developers/bridge/c
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Polygon
 
-<!--OPTIMISM_CHAIN_DETAILS-->
-<!--POLYGON_CHAIN_DETAILS-->
+### Ecosystem
 
-# Polygon
+- [Website](https://polygon.technology/){target=_blank}
+- [PolygonScan Block Explorer](https://polygonscan.com/){target=_blank}
+- [Developer Docs](https://wiki.polygon.technology/){target=_blank} | [Faucet](https://faucet.polygon.technology/){target=_blank}
 
-## Ecosystem
+### Wormhole Details
 
-- [Web site](https://polygon.technology/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/polygon.json)
-- [Developer docs](https://wiki.polygon.technology/) | [Faucet](https://faucet.polygon.technology/)
-
-## Wormhole Details
-
-- **Name**: `polygon`
-- **Chain ID**: `5`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `polygon`
+- Chain ID: `5`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -938,13 +819,11 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
-For more information see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/)
-
-
-### Mainnet Contracts (<code>137</code>)
+### MainNet Contracts (<code>137</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -954,7 +833,7 @@ For more information see [https://docs.polygon.technology/pos/architecture/heimd
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 | CCTP         | `0x0FF28217dCc90372345954563486528aa865cDd6` |
 
-### Testnet Contracts (<code>Mumbai</code> - <code>80001</code>)
+### TestNet Contracts (<code>Mumbai</code> - <code>80001</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -970,93 +849,67 @@ For more information see [https://docs.polygon.technology/pos/architecture/heimd
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Rootstock
 
-<!--POLYGON_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--ROOTSTOCK_CHAIN_DETAILS-->
+- [Website](https://rootstock.io/){target=_blank}
+- [Block Explorer](https://explorer.rootstock.io/){target=_blank}
+- [Developer Docs](https://dev.rootstock.io/){target=_blank}
 
-# Rootstock
+### Wormhole Details
 
-## Ecosystem
+- Name: `rootstock`
+- Chain ID: `33`
+- Contract Source: No source file
 
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/rootstock.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/rootstock.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/rootstock.json)
-
-## Wormhole Details
-
-- **Name**: `rootstock`
-- **Chain ID**: `33`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/rootstock.json)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>30</code>)
+### MainNet Contracts (<code>30</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6` |
-| Token Bridge | **N/A**                                      |
-| NFT Bridge   | **N/A**                                      |
+| Token Bridge | N/A                                      |
+| NFT Bridge   | N/A                                      |
 
-### Testnet Contracts (<code>31</code>)
+### TestNet Contracts (<code>31</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6` |
-| Token Bridge | **N/A**                                      |
-| NFT Bridge   | **N/A**                                      |
+| Token Bridge | N/A                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
-# Ethereum Sepolia
+## Ethereum Sepolia
 
+Sepolia is a TestNet only chain and can be used as an alternative to Goerli. Note that a different chain id is used for Sepolia.
 
-Sepolia is a testnet only chain and can be used as an alternative to Goerli
+### Wormhole Details
 
-Note that a different chain id is used for Sepolia
+- Name: `sepolia`
+- Chain ID: `10002`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-## Ecosystem
-
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/sepolia.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/sepolia.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/sepolia.json)
-
-## Wormhole Details
-
-- **Name**: `sepolia`
-- **Chain ID**: `10002`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>N/A</code>)
+### MainNet Contracts (<code>N/A</code>)
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>Sepolia</code> - <code>11155111</code>)
+### TestNet Contracts (<code>Sepolia</code> - <code>11155111</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -1072,42 +925,29 @@ Note that a different chain id is used for Sepolia
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
-  
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-<!--SEPOLIA_CHAIN_DETAILS-->
+## Ethereum Holesky
 
-<!--HOLESKY_CHAIN_DETAILS-->
+Holesky is a TestNet only chain and can be used as an alternative to Goerli. Note that a different chain id is used for Holesky.
 
-# Ethereum Holesky
+### Wormhole Details
 
-Holesky is a testnet only chain and can be used as an alternative to Goerli
+- Name: `holesky`
+- Chain ID: `10006`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-Note that a different chain id is used for Holesky
-
-## Ecosystem
-
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/holesky.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/holesky.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/holesky.json)
-
-## Wormhole Details
-
-- **Name**: `holesky`
-- **Chain ID**: `10006`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-### Mainnet Contracts (<code>N/A</code>)
+### MainNet Contracts (<code>N/A</code>)
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>Holesky</code> - <code>17000</code>)
+### TestNet Contracts (<code>Holesky</code> - <code>17000</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -1119,39 +959,33 @@ Note that a different chain id is used for Holesky
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
-# Arbitrum Sepolia
+## Arbitrum Sepolia
 
-## Ecosystem
+### Ecosystem
 
-- [Web site](https://arbitrum.io/)
-- [Arbitrum Explorer](https://sepolia.arbiscan.io/)
-- 
+- [Website](https://arbitrum.io/){target=_blank}
+- [Arbitrum Explorer](https://sepolia.arbiscan.io/){target=_blank}
+- [Developer Docs](https://rootstock.io/){target=_blank}
 
-## Wormhole Details
+### Wormhole Details
 
-- **Name**: `arbitrum_sepolia`
-- **Chain ID**: `10003`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/arbitrum_sepolia.json)
+- Name: `arbitrum_sepolia`
+- Chain ID: `10003`
+- Contract Source: No source file
 
-
-
-
-
-
-
-### Mainnet Contracts 
+### MainNet Contracts 
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>Sepolia</code> - <code>421614</code>)
+### TestNet Contracts (<code>Sepolia</code> - <code>421614</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -1167,28 +1001,23 @@ Note that a different chain id is used for Holesky
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Optimism Sepolia
 
-<!--ARBITRUM_SEPOLIA_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--OPTIMISM_SEPOLIA_CHAIN_DETAILS-->
+- [Website](https://www.optimism.io/){target=_blank}
+- [Block Explorer](https://sepolia-optimism.etherscan.io/){target=_blank}
+- [Developer Docs](https://docs.optimism.io/){target=_blank}
 
-# Optimism Sepolia
+### Wormhole Details
 
-## Ecosystem
-
-- [Web site](https://www.optimism.io/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/optimism_sepolia.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/optimism_sepolia.json)
-
-## Wormhole Details
-
-- **Name**: `optimism_sepolia`
-- **Chain ID**: `10005`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `optimism_sepolia`
+- Chain ID: `10005`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -1197,21 +1026,19 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
 
-For more information see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/)
-
-
-### Mainnet Contracts 
+### MainNet Contracts 
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>Optimism Sepolia</code> - <code>11155420</code>)
+### TestNet Contracts (<code>Optimism Sepolia</code> - <code>11155420</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -1227,44 +1054,33 @@ For more information see [https://community.optimism.io/docs/developers/bridge/c
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Base Sepolia
 
-<!--OPTIMISM_SEPOLIA_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--BASE_SEPOLIA_CHAIN_DETAILS-->
+- [Website](https://base.org/){target=_blank}
+- [Etherscan](https://sepolia.basescan.org/){target=_blank}
+- [Developer docs](https://docs.base.org/){target=_blank}
 
-# Base Sepolia
+### Wormhole Details
 
-## Ecosystem
+- Name: `base_sepolia`
+- Chain ID: `10004`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-- [Web site](https://base.org/)
-- [Etherscan](https://sepolia.basescan.org/)
-- [Developer docs](https://docs.base.org/)
-
-## Wormhole Details
-
-- **Name**: `base_sepolia`
-- **Chain ID**: `10004`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
-
-
-
-
-
-
-
-### Mainnet Contracts 
+### MainNet Contracts 
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>Base Sepolia</code> - <code>84532</code>)
+### TestNet Contracts (<code>Base Sepolia</code> - <code>84532</code>)
 
 | Type            | Contract                                     |
 |-----------------|----------------------------------------------|
@@ -1280,127 +1096,99 @@ For more information see [https://community.optimism.io/docs/developers/bridge/c
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Scroll
 
-<!--BASE_SEPOLIA_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--SCROLL_CHAIN_DETAILS-->
+- [Website](https://scroll.io/){target=_blank}
+- [ScrollScan Block Explorer](https://scrollscan.com/){target=_blank}
+- [Developer docs](https://docs.scroll.io/en/home/){target=_blank}
 
-# Scroll
+### Wormhole Details
 
-## Ecosystem
+- Name: `scroll`
+- Chain ID: `34`
+- Contract Source: No source file
 
-- [Web site](https://scroll.io/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/scroll.json)
-- [Developer docs](https://docs.scroll.io/en/home/)
-
-## Wormhole Details
-
-- **Name**: `scroll`
-- **Chain ID**: `34`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/scroll.json)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>534352</code>)
+### MainNet Contracts (<code>534352</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6` |
 | Token Bridge | `0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>Sepolia</code> - <code>534351</code>)
+### TestNet Contracts (<code>Sepolia</code> - <code>534351</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0x055F47F1250012C6B20c436570a76e52c17Af2D5` |
 | Token Bridge | `0x22427d90B7dA3fA4642F7025A854c7254E4e45BF` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Mantle
 
-<!--SCROLL_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--MANTLE_CHAIN_DETAILS-->
+- [Website](https://www.mantle.xyz/){target=_blank}
+- [Block Explorer](https://explorer.mantle.xyz/){target=_blank}
+- [Developer Docs](https://docs.mantle.xyz/network/introduction/overview){target=_blank}
 
-# Mantle
+### Wormhole Details
 
-## Ecosystem
+- Name: `mantle`
+- Chain ID: `35`
+- Contract Source: No source file
 
-- [Web site](https://www.mantle.xyz/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/mantle.json)
-- [Developer docs](https://docs.mantle.xyz/network/introduction/overview)
-
-## Wormhole Details
-
-- **Name**: `mantle`
-- **Chain ID**: `35`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/mantle.json)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>5000</code>)
+### MainNet Contracts (<code>5000</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6` |
 | Token Bridge | `0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
-### Testnet Contracts (<code>Sepolia</code> - <code>5003</code>)
+### TestNet Contracts (<code>Sepolia</code> - <code>5003</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0x376428e7f26D5867e69201b275553C45B09EE090` |
 | Token Bridge | `0x75Bfa155a9D7A3714b0861c8a8aF0C4633c45b5D` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Polygon Sepolia
 
-<!--MANTLE_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--POLYGON_SEPOLIA_CHAIN_DETAILS-->
+- [Website](https://polygon.technology/){target=_blank}
+- [Developer Docs](https://wiki.polygon.technology/){target=_blank} | [Faucet](https://faucet.polygon.technology/){target=_blank}
 
-# Polygon Sepolia
+### Wormhole Details
 
-## Ecosystem
-
-- [Web site](https://polygon.technology/)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/polygon_sepolia.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/polygon_sepolia.json)
-
-## Wormhole Details
-
-- **Name**: `polygon_sepolia`
-- **Chain ID**: `10007`
-- **Contract Source**: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol)
+- Name: `polygon_sepolia`
+- Chain ID: `10007`
+- Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
 ### Consistency Levels
 
@@ -1409,21 +1197,19 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is _not_ in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above it's assumed to mean finalized
 
+For more information see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
-For more information see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/)
-
-
-### Mainnet Contracts 
+### MainNet Contracts 
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>Sepolia</code> - <code>80002</code>)
+### TestNet Contracts (<code>Sepolia</code> - <code>80002</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
@@ -1435,253 +1221,198 @@ For more information see [https://docs.polygon.technology/pos/architecture/heimd
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Berachain
 
-<!--POLYGON_SEPOLIA_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--BERACHAIN_CHAIN_DETAILS-->
+- [Website](https://www.berachain.com/){target=_blank}
+- [Explorer update](https://bartio.beratrail.io/){target=_blank}
+- [Docs](https://docs.berachain.com/){target=_blank}
 
-# Berachain
+### Wormhole Details
 
-## Ecosystem
+- Name: `berachain`
+- Chain ID: `39`
+- Contract Source: No source file
 
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/berachain.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/berachain.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/berachain.json)
-
-## Wormhole Details
-
-- **Name**: `berachain`
-- **Chain ID**: `39`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/berachain.json)
-
-
-
-
-
-
-
-### Mainnet Contracts 
+### MainNet Contracts 
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>80084</code>)
+### TestNet Contracts (<code>80084</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd` |
 | Token Bridge | `0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Blast
 
-<!--BERACHAIN_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--BLAST_CHAIN_DETAILS-->
+- [Website](https://blast.io/en){target=_blank}
+- [Explorer](https://blastscan.io/){target=_blank}
+- [Docs](https://docs.blast.io/about-blast){target=_blank}
 
-# Blast
+### Wormhole Details
 
-## Ecosystem
+- Name: `blast`
+- Chain ID: `36`
+- Contract Source: No source file
 
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/blast.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/blast.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/blast.json)
-
-## Wormhole Details
-
-- **Name**: `blast`
-- **Chain ID**: `36`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/blast.json)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>81457</code>)
+### MainNet Contracts (<code>81457</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6` |
 | Token Bridge | `0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 | Relayer      | `0x27428DD2d3DD32A4D7f7C497eAaa23130d894911` |
 
-### Testnet Contracts (<code>168587773</code>)
+### TestNet Contracts (<code>168587773</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0x473e002D7add6fB67a4964F13bFd61280Ca46886` |
 | Token Bridge | `0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Linea
 
-<!--BLAST_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--LINEA_CHAIN_DETAILS-->
+- [Website](https://linea.build/){target=_blank}
+- [Explorer](https://lineascan.build/){target=_blank}
+- [Docs](https://docs.linea.build/){target=_blank}
 
-# Linea
+### Wormhole Details
 
-## Ecosystem
+- Name: `linea`
+- Chain ID: `38`
+- Contract Source: No source file
 
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/linea.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/linea.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/linea.json)
-
-## Wormhole Details
-
-- **Name**: `linea`
-- **Chain ID**: `38`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/linea.json)
-
-
-
-
-
-
-
-### Mainnet Contracts (<code>59144</code>)
+### MainNet Contracts (<code>59144</code>)
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts (<code>59141</code>)
+### TestNet Contracts (<code>59141</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0x79A1027a6A159502049F10906D333EC57E95F083` |
 | Token Bridge | `0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Seievm
 
-<!--LINEA_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--SEIEVM_CHAIN_DETAILS-->
+- [Website](https://www.sei.io/){target=_blank}
+- [Explorer](https://seistream.app/){target=_blank}
+- [Docs](https://www.docs.sei.io/){target=_blank}
 
-# Seievm
+### Wormhole Details
 
-## Ecosystem
+- Name: `seievm`
+- Chain ID: `40`
+- Contract Source: No source file
 
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/seievm.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/seievm.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/seievm.json)
-
-## Wormhole Details
-
-- **Name**: `seievm`
-- **Chain ID**: `40`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/seievm.json)
-
-
-
-
-
-
-
-### Mainnet Contracts 
+### MainNet Contracts 
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
 
-### Testnet Contracts 
+### TestNet Contracts 
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0x07782FCe991dAb4DE7a3124032E534A0D059B4d8` |
-| Token Bridge | **N/A**                                      |
-| NFT Bridge   | **N/A**                                      |
+| Token Bridge | N/A                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
+## Xlayer
 
-<!--SEIEVM_CHAIN_DETAILS-->
+### Ecosystem
 
-<!--XLAYER_CHAIN_DETAILS-->
+- [Website](https://www.okx.com/xlayer){target=_blank}
+- [Explorer](https://www.oklink.com/xlayer){target=_blank}
+- [Docs](https://www.okx.com/xlayer/docs/developer/build-on-xlayer/about-xlayer){target=_blank}
 
-# Xlayer
+### Wormhole Details
 
-## Ecosystem
+- Name: `xlayer`
+- Chain ID: `37`
+- Contract Source: No source file
 
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/xlayer.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/xlayer.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/xlayer.json)
-
-## Wormhole Details
-
-- **Name**: `xlayer`
-- **Chain ID**: `37`
-- **Contract Source**: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/xlayer.json)
-
-
-
-
-
-
-
-### Mainnet Contracts 
+### MainNet Contracts 
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0x194B123c5E96B9b2E49763619985790Dc241CAC0` |
 | Token Bridge | `0x5537857664B0f9eFe38C9f320F75fEf23234D904` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
-### Testnet Contracts (<code>195</code>)
+### TestNet Contracts (<code>195</code>)
 
 | Type         | Contract                                     |
 |--------------|----------------------------------------------|
 | Core         | `0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780` |
 | Token Bridge | `0xdA91a06299BBF302091B053c6B9EF86Eff0f930D` |
-| NFT Bridge   | **N/A**                                      |
+| NFT Bridge   | N/A                                      |
 
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |
   
