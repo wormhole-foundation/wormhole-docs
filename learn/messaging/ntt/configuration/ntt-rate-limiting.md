@@ -11,8 +11,8 @@ If a transfer is rate-limited on the source chain and queueing is enabled via `s
 
 You can configure the following limits on every chain that NTT is deployed to directly on the Manager:
 
-- **Sending limit:** A single outbound limit for sending tokens from the chain.
-- **Per-chain receiving limits:** For example, allowing `100` tokens to be received from Ethereum, but only 50 tokens to be received from Arbitrum.
+- Sending limit: A single outbound limit for sending tokens from the chain
+- Per-chain receiving limits: For example, allowing `100` tokens to be received from Ethereum, but only 50 tokens to be received from Arbitrum
 
 Rate limits are replenished every second over a fixed duration. While the default duration is 24 hours, the value is configurable at contract creation. Transfers that are rate-limited on the destination chain are added to an inbound queue with a similar release delay.
 
@@ -20,8 +20,8 @@ Rate limits are replenished every second over a fixed duration. While the defaul
 
 When a transfer exceeds the rate limit, it is queued and it can be released after the set rate limit duration has expired. The sending and receiving queuing behavior is as follows:
 
-*   **Sending:** If an outbound transfer violates rate limits, users can either revert and try again later or queue their transfer. Users must return after the queue duration has expired to complete sending their transfer.
-*   **Receiving:** If an inbound transfer violates rate limits, it will be queued. Users or relayers must return after the queue duration has expired to complete receiving their transfer on the destination chain.
+- Sending: If an outbound transfer violates rate limits, users can either revert and try again later or queue their transfer. Users must return after the queue duration has expired to complete sending their transfer
+- Receiving: If an inbound transfer violates rate limits, it will be queued. Users or relayers must return after the queue duration has expired to complete receiving their transfer on the destination chain
     
 ## Cancel Flows
 
