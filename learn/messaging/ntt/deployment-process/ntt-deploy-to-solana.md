@@ -124,8 +124,13 @@ The NTT Solana program will then compile and deploy.
 
 As with other deployments, run the following commands to ensure that the on-chain configuration is correct and your local `deployment.json` file is synced with the on-chain state:
 
-- `ntt status`
-- `ntt pull`
+```bash
+ntt status
+```
+
+```bash
+ntt pull
+```
 
 ### Deploy
 
