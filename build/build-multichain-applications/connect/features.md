@@ -7,7 +7,7 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 
 *Scroll down for details about each column.*
 
-| **Network** | **Token bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop-off** |
+| **Network** | **Token Bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop Off** |
 |:-----------:|:----------------:|:------------------------:|:---------------:|:--------------:|:----------------:|
 |   Solana    |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
 |  Ethereum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
@@ -37,7 +37,7 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 
 ### Token Bridge {: #token-bridge}
 
-Wormhole is best known for its token bridge transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
+Wormhole is best known for its Token Bridge transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
 This route appears if both of the following conditions are satisfied:
 
@@ -53,7 +53,7 @@ Trustless relayers can execute the second transaction on behalf of the user, so 
 This route appears if all of the following conditions are satisfied:
 
 - Both the origin and destination chains support Token Bridge
-- Both the origin and destination chains support Token Bridge Relayer
+- Both the origin and destination chains support Token Bridge relayer
 - No non-Token Bridge routes are available for the selected token
 - The relayer supports the selected token on the origin chain
 
@@ -75,9 +75,9 @@ This route appears if all of the following conditions are satisfied:
 - Both the origin and destination chains support the ETH Bridge
 - The selected token is native ETH, wstETH, or canonical wETH
 
-### Gas Dropoff {: #gas-dropoff}
+### Gas Drop Off {: #gas-dropoff}
 
-Relayers can drop off some gas tokens on the destination chain by swapping some of the assets transferred to the native gas token. This is useful if the user wishes to transfer assets to a chain where they don't already have gas. This way, they don't need to onboard into the ecosystem from a centralized exchange.
+A relayer can drop off some gas tokens on the destination chain by swapping some of the assets transferred to the native gas token. This is useful if the user wishes to transfer assets to a chain where they don't already have gas. This way, they don't need to onboard into the ecosystem from a centralized exchange.
 
 This route appears if all of the following conditions are satisfied:
 
