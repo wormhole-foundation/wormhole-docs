@@ -8,7 +8,8 @@ description: Explore a comprehensive glossary of technical terms and key concept
 This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
 
 ## Chain ID
-Wormhole uses a `u16` integer Chain ID to map to each specific supported chain. Please note that these chain IDs are unique to Wormhole and differ from those used in popular libraries like viem or Wagmi.  
+
+Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
 
 You can find each chain ID documented on the [Wormhole Chain IDs](#){target=\_blank} page. 
 <!-- link to chain ids page-->
@@ -42,6 +43,7 @@ A [Guardian](/learn/infrastructure/guardians/){target=\_blank} is one of the 19 
 Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
 
 ## Guardian Set
+
 The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
 
 ## Heartbeat
@@ -68,7 +70,7 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 
 ## VAA
 
-[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapps) along with information such as what contract emitted the message.
+[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapp) along with information such as what contract emitted the message.
 
 ## Validator
 
