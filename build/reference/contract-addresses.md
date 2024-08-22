@@ -1,6 +1,6 @@
 ---
 title: Contract Addresses
-description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, NFTBridge, TokenBridge and more.
+description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, NFTBridge, TokenBridge, and more.
 ---
 
 ## Core Contracts

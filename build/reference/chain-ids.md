@@ -1,6 +1,6 @@
 ---
 title: Chain IDs
-description: This page documents the Wormhole specific Chain IDs for each chain and constrast them to the more commonly referenced EVM chain IDs originating in EIP-155
+description: This page documents the Wormhole-specific Chain IDs for each chain and contrast them to the more commonly referenced EVM chain IDs originating in EIP-155
 ---
 
 # Chain IDs
