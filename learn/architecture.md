@@ -2,10 +2,7 @@
 title: Architecture
 description: Overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
 ---
-<!--
-need to link this page in the introduction page once its merged
-need to add links
--->
+
 # Architecture Overview
 
 ## Architecture
@@ -25,7 +22,7 @@ Wormhole has several noteworthy components. Before discussing each component in 
 - **Guardian Network** - validators that exist in their own P2P network. Guardians observe and validate the messages emitted by the Core Contract on each supported chain to produce VAAs (signed messages)
 - **[Guardian](/learn/infrastructure/guardians/){target=\_blank}** - one of 19 validators in the Guardian Network that contributes to the VAA multisig
 - **[Spy](/learn/infrastructure/spy/){target=\_blank}** - a daemon that subscribes to messages published within the Guardian Network. A Spy can observe and forward network traffic, which helps scale up VAA distribution
-- **[API](#){target=\_blank}** - a REST server to retrieve details for a VAA or the Guardian Network <!-- should link to API docs but maybe we wont have that page anymore? -->
+- **[API](https://docs.wormholescan.io/){target=\_blank}** - a REST server to retrieve details for a VAA or the Guardian Network 
 - **[VAAs](/learn/infrastructure/vaas/){target=\_blank}** - Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract
 - **[Relayer](/learn/infrastructure/relayer/){target=\_blank}** - any off-chain process that relays a VAA to the target chain
     - **Standard Relayers** - a decentralized relayer network that delivers messages that are requested on-chain via the Wormhole Relay Contract
