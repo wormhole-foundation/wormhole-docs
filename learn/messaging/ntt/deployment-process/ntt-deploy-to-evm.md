@@ -63,7 +63,7 @@ The `ntt add-chain` command takes the following parameters:
 - Name of each chain
 - Version of NTT to deploy (use `--latest` for the latest contract versions)
 - Mode (either `burning` or `locking`)
-- Your Token Contract Address
+- Your token contract address
 
 The NTT CLI prints detailed logs and transaction hashes, so you can see exactly what's happening under the hood.
 
