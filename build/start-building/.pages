@@ -1,11 +1,4 @@
 title: Start Building
 nav:
  - index.md
- - 'Supported Networks': 'supported-networks.md'
- - 'EVM': 'evm.md'
- - 'Algorand': 'algorand.md'
- - 'Aptos': 'aptos.md'
- - 'CosmWasm' : 'cosmwasm.md'
- - 'Near' : 'near.md'
- - 'Solana' : 'solana.md'
- - 'Sui' : 'sui.md'
+ - supported-networks
