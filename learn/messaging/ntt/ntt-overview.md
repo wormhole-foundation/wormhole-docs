@@ -49,4 +49,4 @@ The Token Bridge offers a secure, low-effort integration suitable for applicatio
 - **Integration** - straightforward and permissionless method to deploy on multiple chains
 
 !!! note
-    [Learn more](#){target=\_blank} about the core messaging primitives in the Wormhole network. <!-- link to vaas -->
+    [Learn more](/learn/infrastructure/vaas/){target=\_blank} about the core messaging primitives in the Wormhole network. 
