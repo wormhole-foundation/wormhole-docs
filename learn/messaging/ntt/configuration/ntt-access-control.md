@@ -13,7 +13,7 @@ NTT can be paused on a particular chain by updating the `paused` parameter on th
 - **Pauser** - can pause NTT contracts to halt token transfers temporarily. This is crucial for responding quickly to potential risks without a prolonged governance process. Cannot un-pause contracts
 
 !!! note
-	While the `Pauser` can pause contracts, the ability to un-pause contracts is callable only by the `Owner`.
+    While the `Pauser` can pause contracts, the ability to un-pause contracts is callable only by the `Owner`.
 
 The contract can be paused via the contract `Owner` or the `Pauser` address. Since the contract `Owner` address is typically a multi-sig or a more complex DAO governance contract, and pausing the contract only affects the liveness of token transfers, protocols can choose to set the `Pauser` address to be a different address. This can help ensure that protocols can respond very quickly to potential risks without going through a drawn-out process.
 
