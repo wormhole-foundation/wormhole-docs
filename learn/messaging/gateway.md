@@ -9,7 +9,7 @@ description: Explore Wormhole Gateway - a Cosmos-SDK chain for bridging assets i
 
 The _Wormhole Gateway_ is a Cosmos-SDK chain designed to bridge non-native assets into the Cosmos ecosystem. It is critical for providing unified liquidity across Cosmos chains, facilitating seamless asset transfers and communication across different blockchain networks.
 
-In addition to facilitating asset transfers, _Wormhole Gateway_ (FKA `wormchain`, AKA `Shai-Hulud`) allows Wormhole to ensure proper accounting with the [Global Accountant](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0011_accountant.md){target=\_blank}. 
+In addition to facilitating asset transfers, Wormhole Gateway allows Wormhole to ensure proper accounting with the [Global Accountant](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0011_accountant.md){target=\_blank}. 
 
 
 ### Core Functionality and Purpose
