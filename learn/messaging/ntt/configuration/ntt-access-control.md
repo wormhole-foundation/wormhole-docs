@@ -17,4 +17,4 @@ NTT can be paused on a particular chain by updating the `paused` parameter on th
 
 The contract can be paused via the contract `Owner` or the `Pauser` address. Since the contract `Owner` address is typically a multisig or a more complex DAO governance contract, and pausing the contract only affects the liveness of token transfers, protocols can choose to set the `Pauser` address to be a different address. This can help ensure that protocols can respond very quickly to potential risks without going through a drawn-out process.
 
-Consider separating `Owner` and `Pauser` roles for your multichain deployment. Owner and Pauser roles are defined directly on the `NttManager`.
+Consider separating `Owner` and `Pauser` roles for your multichain deployment. `Owner` and `Pauser` roles are defined directly on the `NttManager` contract.
