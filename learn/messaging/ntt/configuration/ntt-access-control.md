@@ -9,8 +9,8 @@ Pausing the NTT manager contract will disallow initiating new token transfers. W
 
 NTT can be paused on a particular chain by updating the `paused` parameter on the deployment to `true` via the NTT CLI, then performing `ntt push` to sync the local configuration with the on-chain deployment.
 
-*   **Owner:** Full control over NTT contracts, can perform administrative functions. Has the ability to un-pause contracts if they have been paused.
-*   **Pauser:** Can pause NTT contracts to halt token transfers temporarily. This is crucial for responding quickly to potential risks without a prolonged governance process. Cannot un-pause contracts.
+- **Owner** - full control over NTT contracts, can perform administrative functions. Has the ability to un-pause contracts if they have been paused
+- **Pauser** - can pause NTT contracts to halt token transfers temporarily. This is crucial for responding quickly to potential risks without a prolonged governance process. Cannot un-pause contracts
 
 !!! note
 	While the `Pauser` can pause contracts, the ability to un-pause contracts is callable only by the `Owner`.
