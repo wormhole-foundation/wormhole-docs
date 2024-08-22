@@ -2,3 +2,4 @@ title: Reference
 nav:
  - index.md
  - 'Chain IDs' : 'chain-ids.md'
+ - 'Contract Addresses' : 'contract-addresses.md'
