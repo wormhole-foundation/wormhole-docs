@@ -13,26 +13,26 @@ To develop contracts for Solana, you'll need to have the following tools install
 - [Solana CLI tools](https://docs.solana.com/cli/install-solana-cli-tools){target=_blank} - CLI tools for working with Solana
 - [Anchor](https://www.anchor-lang.com/docs/installation){target=_blank} - Smart contract development framework
 
-Install [Wormhole Rust crates](https://lib.rs/crates/wormhole-token-bridge-solana){target=_blank} to interact with solana onchain programs and token bridge.
+Install [Wormhole Rust crates](https://lib.rs/crates/wormhole-token-bridge-solana){target=_blank} to interact with Solana onchain programs and token bridge.
 
 !!! warning
 	Known issues exist with Solana version 1.15 - downgrade to Solana 1.14.14
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For Solana based chains, this means a wormhole formatted address is the base58 decoded address. E.g. `worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth` becomes `0x0e0a589a41a55fbd66c52a475f2d92a6d3dc9b4747114cb9af825a98b545d3ce`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For Solana-based chains, a Wormhole formatted address is the base58 decoded address. E.g. `worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth` becomes `0x0e0a589a41a55fbd66c52a475f2d92a6d3dc9b4747114cb9af825a98b545d3ce`
 
 ## Emitter 
 
-The emitter address on Solana chains is a Program Derived Address which is derived by the application, normalized to the Wormhole address format. 
+The emitter address on Solana chains is a Program-Derived Address derived by the application and normalized to the Wormhole address format. 
 
 !!! note 
-	As the application developer, you decide whether this is a consistent address over time or changes. We strongly recommend making it consistent.
+	As the application developer, you decide whether this address will remain consistent over time or change. We strongly recommend keeping it consistent.
 
 ## Solana
 
 !!! note
-	The contract addresess for `testnet` are on the Solana `devnet`
+	The contract addresses for `testnet` are on the Solana `devnet`
 
 ### Ecosystem
 
@@ -55,7 +55,7 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Confirmed|0|
 |Finalized|1|
 
-For more information see [the Solana Docs](https://docs.solana.com/cluster/commitments){target=_blank}.
+For more information, see [the Solana Docs](https://docs.solana.com/cluster/commitments){target=_blank}.
 
 ### Mainnet Contracts (<code>Mainnet Beta</code> - <code>5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d</code>)
 
@@ -91,29 +91,29 @@ For more information see [the Solana Docs](https://docs.solana.com/cluster/commi
 
 ### Wormhole Details
 
-- **Name**: `pythnet`
-- **Chain ID**: `26`
-- **Contract Source**: No source file
+- Name: `pythnet`
+- Chain ID: `26`
+- Contract Source: No source file
 
 ### Mainnet Contracts 
 
 | Type         | Contract                                                                                                                           |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------|
 | Core         | [`H3fxXJ86ADW2PNuDDmZJg6mzTtPxkYCpNuQUTgmJ7AjU`](https://explorer.solana.com/address/H3fxXJ86ADW2PNuDDmZJg6mzTtPxkYCpNuQUTgmJ7AjU){target=_blank} |
-| Token Bridge | **N/A**                                                                                                                            |
-| NFT Bridge   | **N/A**                                                                                                                            |
+| Token Bridge | N/A                                                                                                                            |
+| NFT Bridge   | N/A                                                                                                                            |
 
 ### Testnet Contracts 
 
 | Type         | Contract                                                                                                                           |
 |--------------|------------------------------------------------------------------------------------------------------------------------------------|
 | Core         | [`EUrRARh92Cdc54xrDn6qzaqjA77NRrCcfbr8kPwoTL4z`](https://explorer.solana.com/address/EUrRARh92Cdc54xrDn6qzaqjA77NRrCcfbr8kPwoTL4z?cluster=devnet){target=_blank} |
-| Token Bridge | **N/A**                                                                                                                            |
-| NFT Bridge   | **N/A**                                                                                                                            |
+| Token Bridge | N/A                                                                                                                            |
+| NFT Bridge   | N/A                                                                                                                            |
 ### Local Network Contract
 
 | Type         | Contract |
 |--------------|----------|
-| Core         | **N/A**  |
-| Token Bridge | **N/A**  |
-| NFT Bridge   | **N/A**  |
+| Core         | N/A  |
+| Token Bridge | N/A  |
+| NFT Bridge   | N/A  |

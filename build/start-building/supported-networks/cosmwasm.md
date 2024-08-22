@@ -7,11 +7,11 @@ This page includes details for working with CosmWasm environment chains.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For CosmWasm based chains, this means a wormhole formatted address is the [bech32](https://en.bitcoin.it/wiki/Bech32){target=_blank} format converted to hex. E.g. `xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv` becomes `0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c`.
+Because Wormhole works with many environments, the Wormhole address format is normalized. For CosmWasm-based chains, this means a wormhole formatted address is the [bech32](https://en.bitcoin.it/wiki/Bech32){target=_blank} format converted to hex. E.g. `xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv` becomes `0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c`.
 
 ## Emitter 
 
-The emitter address on CosmWasm chains is the canonical address of the contract, normalized to the wormhole address format. 
+The emitter address on CosmWasm chains is the contract's canonical address, normalized to the wormhole address format. 
 
 ## Cosmoshub
 
@@ -578,4 +578,3 @@ The emitter address on CosmWasm chains is the canonical address of the contract,
 | Core         | N/A      |
 | Token Bridge | N/A      |
 | NFT Bridge   | N/A      |
-  

@@ -1,19 +1,19 @@
 ---
-title: Algorand
+title: Aptos
 description: Learn how to work with Wormhole in the Aptos ecosystem with address formats, emitter details, contract consistency levels, and key contract info. 
 ---
 
-This page includes details for working with Aptos based chains.
+This page includes details on working with Aptos-based chains.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For Aptos based chains, no normalization is needed for standard addresses since they're already 32 bytes. E.g. `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31` becomes `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For Aptos-based chains, no normalization is needed for standard addresses since they already have 32 bytes. E.g. `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31` becomes `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31`
 
 However, emitter addresses are recorded as a uint64 (8 bytes), so they're left padded with `0`s to 32 bytes. E.g. `0x0000000000000001` beomces `0000000000000000000000000000000000000000000000000000000000000001`
 
 ## Emitter 
 
-On Aptos, an emitter capability is taken from the core bridge. The core bridge generates capabilities in a sequence and the capability object ID is its index in the sequence. The capability object ID (uint64) is used as the emitter address after normalizing to wormhole address format.
+On Aptos, an emitter capability is taken from the core bridge. The core bridge generates capabilities in a sequence and the capability object ID is its index in the sequence. The capability object ID (uint64) is used as the emitter address after normalizing to the Wormhole address format.
 
 ## Aptos
 
@@ -25,9 +25,9 @@ On Aptos, an emitter capability is taken from the core bridge. The core bridge g
 
 ### Wormhole Details
 
-- **Name**: `aptos`
-- **Chain ID**: `22`
-- **Contract Source**: [aptos/wormhole/sources/wormhole.move](https://github.com/wormhole-foundation/wormhole/blob/main/aptos/wormhole/sources/wormhole.move){target=_blank}
+- Name: `aptos`
+- Chain ID: `22`
+- Contract Source: [aptos/wormhole/sources/wormhole.move](https://github.com/wormhole-foundation/wormhole/blob/main/aptos/wormhole/sources/wormhole.move){target=_blank}
 
 ### Consistency Levels
 
@@ -37,7 +37,7 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |-----|-----|
 |Finalized|0|
 
-This field is may be ignored since the chain provides instant finality. For more information, see [the Aptos Docs](https://aptos.dev/reference/glossary/#byzantine-fault-tolerance-bft){target=_blank}.
+This field may be ignored since the chain provides instant finality. For more information, see [the Aptos Docs](https://aptos.dev/reference/glossary/#byzantine-fault-tolerance-bft){target=_blank}.
 
 ### Mainnet Contracts (<code>1</code>)
 

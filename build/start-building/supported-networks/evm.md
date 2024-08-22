@@ -13,7 +13,7 @@ The recommended development tool for EVM environments is [Foundry](https://book.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For EVM chains, this means a wormhole formatted address is the 20 byte EVM standard address left padded with `0`s. e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For EVM chains, a wormhole formatted address is the 20-byte EVM standard address left padded with `0`s. e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`
 
 ## Emitter 
 
@@ -43,9 +43,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |-----|-----|
 |Instant|200|
 |Safe|201|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://www.alchemy.com/overviews/ethereum-commitment-levels](https://www.alchemy.com/overviews/ethereum-commitment-levels){target=_blank}.
+For more information,, see [https://www.alchemy.com/overviews/ethereum-commitment-levels](https://www.alchemy.com/overviews/ethereum-commitment-levels){target=_blank}.
 
 ### MainNet Contracts (<code>1</code>)
 
@@ -82,7 +82,7 @@ For more information see [https://www.alchemy.com/overviews/ethereum-commitment-
   
 ## Other EVM Chains
 
-Besides Ethereum, a number of other EVM chains are supported.
+Besides Ethereum, several other EVM chains are supported.
 
 ## Acala
 
@@ -105,7 +105,7 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
 
 ### MainNet Contracts (<code>787</code>)
@@ -155,9 +155,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://developer.arbitrum.io/tx-lifecycle](https://developer.arbitrum.io/tx-lifecycle){target=_blank}.
+For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://developer.arbitrum.io/tx-lifecycle){target=_blank}.
 
 ### MainNet Contracts (<code>Arbitrum One</code> - <code>42161</code>)
 
@@ -251,9 +251,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |-----|-----|
 |Finalized|0|
 
-This field is may be ignored since the chain provides instant finality.
+This field may be ignored since the chain provides instant finality.
 
-For more information see [https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality](https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality){target=_blank}.
+For more information, see [https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality](https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality){target=_blank}.
 
 ### MainNet Contracts (<code>C-Chain</code> - <code>43114</code>)
 
@@ -351,9 +351,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |---------|-------|
 | Instant | 200   |
 | Safe    | 201   |
-If a value is passed that is not in the set above it's assumed to mean finalized. 
+If a value is passed that is not in the set above, it's assumed to mean finalized.. 
 
-For more information see [https://docs.bnbchain.org/docs/learn/consensus](https://docs.bnbchain.org/docs/learn/consensus){target=_blank}.
+For more information, see [https://docs.bnbchain.org/docs/learn/consensus](https://docs.bnbchain.org/docs/learn/consensus){target=_blank}.
 
 ### MainNet Contracts (<code>56</code>)
 
@@ -408,7 +408,7 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
 ### MainNet Contracts (<code>42220</code>)
 
@@ -460,7 +460,7 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
 ### MainNet Contracts (<code>250</code>)
 
@@ -546,9 +546,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://wiki.polkadot.network/docs/learn-consensus](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}.
+For more information, see [https://wiki.polkadot.network/docs/learn-consensus](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}.
 
 ### MainNet Contracts (<code>686</code>)
 
@@ -596,7 +596,7 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
 ### MainNet Contracts (<code>8217</code>)
 
@@ -644,9 +644,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints){target=_blank}.
+For more information, see [https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints){target=_blank}.
 
 ### MainNet Contracts (<code>1284</code>)
 
@@ -773,9 +773,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
+For more information, see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
 
 ### MainNet Contracts (<code>10</code>)
 
@@ -827,9 +827,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
+For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
 ### MainNet Contracts (<code>137</code>)
 
@@ -902,7 +902,7 @@ For more information see [https://docs.polygon.technology/pos/architecture/heimd
   
 ## Ethereum Sepolia
 
-Sepolia is a TestNet only chain and can be used as an alternative to Goerli. Note that a different chain id is used for Sepolia.
+Sepolia is a TestNet-only chain that can be used as an alternative to Goerli. Note that a different chain ID is used for Sepolia.
 
 ### Wormhole Details
 
@@ -940,7 +940,7 @@ Sepolia is a TestNet only chain and can be used as an alternative to Goerli. Not
 
 ## Ethereum Holesky
 
-Holesky is a TestNet only chain and can be used as an alternative to Goerli. Note that a different chain id is used for Holesky.
+Holesky is a TestNet-only chain that can be used as an alternative to Goerli. Note that a different chain ID is used for Holesky.
 
 ### Wormhole Details
 
@@ -1035,9 +1035,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
+For more information, see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
 
 ### MainNet Contracts 
 
@@ -1206,9 +1206,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 |Level|Value|
 |-----|-----|
 |Instant|200|
-If a value is passed that is not in the set above it's assumed to mean finalized
+If a value is passed that is not in the set above, it's assumed to mean finalized.
 
-For more information see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
+For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
 ### MainNet Contracts 
 
@@ -1416,7 +1416,6 @@ For more information see [https://docs.polygon.technology/pos/architecture/heimd
 | Core         | [`0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780`](https://www.oklink.com/xlayer-test/address/0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780){target=_blank}         |
 | Token Bridge | [`0xdA91a06299BBF302091B053c6B9EF86Eff0f930D`](https://www.oklink.com/xlayer-test/address/0xdA91a06299BBF302091B053c6B9EF86Eff0f930D){target=_blank}         |
 | NFT Bridge   | N/A                                                                                                                                                         |
-
 
 ### Local Network Contract
 
