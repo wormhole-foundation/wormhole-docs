@@ -9,9 +9,9 @@ In the Wormhole context, a _Spy_ is a daemon that subscribes to the gossiped mes
 
 The messages available over gossip are things like:
 
-- [VAAs](#){target=\_blank} <!-- link to VAAs page -->
-- [Observations](#){target=\_blank} <!-- link to glossary -->
-- Guardian heartbeats
+- [VAAs](/learn/infrastructure/vaas/){target=\_blank}
+- [Observations](/learn/glossary/#observation){target=\_blank} <!-- link to glossary -->
+- [Guardian heartbeats](/learn/glossary/#heartbeat){target=\_blank}
 
 The source code for the Spy is available on [GitHub](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}.
 

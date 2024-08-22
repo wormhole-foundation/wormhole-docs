@@ -78,7 +78,7 @@ Wormhole builds in the open and is always open source.
 
 - **[Wormhole core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}**
 - **[Wormhole Foundation GitHub organization](https://github.com/wormhole-foundation){target=\_blank}**
-- **[Wormhole contract deployments](/learn/messaging/core-contracts/){target=\_blank}** <!-- link to core contracts page-->
+- **[Wormhole contract deployments](/learn/messaging/core-contracts/){target=\_blank}** 
 
 ## Audits
 
