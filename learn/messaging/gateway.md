@@ -24,17 +24,15 @@ IBC section:
 ## Scaling with IBC
 -->
 
-## Inter-Blockchain Communication (IBC) for Secure Transfers
+## Inter-Blockchain Communication (IBC)
 
 ### Overview 
 
-### IBC 
 
-### IBC's Role
+### IBC
 
 The Wormhole network utilizes the Inter-Blockchain Communication (IBC) protocol, a key component of the Cosmos ecosystem, to facilitate generic message passing. IBC is integral to the Cosmos SDK, enabling chains within this ecosystem to connect and interact seamlessly. The Wormhole Gateway, a Cosmos SDK-based blockchain specifically designed for Wormhole, exemplifies this integration by using IBC to minimize operational overhead and maximize efficiency.
 
-### Components and Features
 
 <!-- 
 This sort of section should go before the design decision-type content in the Scaling with IBC sections. But I would expand on this. It would be nice to add a diagram similar to the NTT architecture diagrams. And at the very least, some text that covers the exact flow until we can get a diagram made. Can you please start mocking something up in Miro to share with the Sp-ce team?
@@ -53,9 +51,9 @@ Utilizing the [Inter-Blockchain Communication (IBC) protocol](https://tutorials.
 - **Asset Bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
 - **Security and Integrity** - conducting thorough consistency checks to validate transactions and ensure that asset transfers are executed without discrepancies
 
-## Scaling with IBC
-
 <!-- Before diving into these sections, I think it is more important to understand how Gateway works, what the architecture looks like, how messages flow, etc. -->
+
+## Scaling with IBC
 
 ### Operational Challenges
 
