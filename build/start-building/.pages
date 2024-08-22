@@ -4,3 +4,4 @@ nav:
  - 'Supported Networks': 'supported-networks.md'
  - 'EVM': 'evm.md'
  - 'Algorand': 'algorand.md'
+ - 'Aptos': 'aptos.md'
