@@ -1,6 +1,6 @@
 ---
 title: Native Token Transfers Access Control
-description: Learn how to Manage NTT access with Owner/Pauser roles, control the pausing of token transfers, define roles for quick responses, and sync settings via NTT CLI.
+description: Learn about the owner and pauser access roles for the NTT manager contract, which can be used to pause and un-pause token transfers.
 ---
 
 ## Owner and Pauser Roles
