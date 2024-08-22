@@ -12,7 +12,7 @@ Tokens integrated with `NttManager` in `burning` mode require the following two 
 1. `burn(uint256 amount)`
 2. `mint(address account, uint256 amount)`
 
-These functions are not part of the standard ERC20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
+These functions are not part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
 
 ??? code "View the complete `INttToken` Interface`"
     ```solidity
