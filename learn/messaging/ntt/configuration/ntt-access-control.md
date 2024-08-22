@@ -1,5 +1,5 @@
 ---
-title: Native Token Transfers Rate Limiting
+title: Native Token Transfers Access Control
 description: Learn how to Manage NTT access with Owner/Pauser roles, control the pausing of token transfers, define roles for quick responses, and sync settings via NTT CLI.
 ---
 
