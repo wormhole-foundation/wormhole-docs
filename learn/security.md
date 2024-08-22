@@ -2,9 +2,7 @@
 title: Security
 description: Explore Wormhole's security features, including the Guardian network, governance, monitoring, open-source development, and bug bounty programs.
 ---
-<!--
-some missing links will need to be added when pages are created
--->
+
 # Security
 
 ## Core Security Assumptions

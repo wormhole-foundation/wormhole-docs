@@ -2,10 +2,7 @@
 title: Introduction to Wormhole
 description: Wormhole is a protocol for seamless communication between blockchains, enabling cross-chain applications and integrations.
 ---
-<!-- 
-some links still blank
-also missing the list of blockchains 
--->
+
 # Introduction to Wormhole
 
 Wormhole is a generic _message-passing protocol_ that enables communication between blockchains.
