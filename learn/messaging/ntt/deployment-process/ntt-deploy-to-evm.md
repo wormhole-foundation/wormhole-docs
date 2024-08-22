@@ -19,7 +19,7 @@ These functions are not part of the standard ERC20 interface. The [`INttToken` i
     --8<-- 'code/learn/messaging/ntt/deployment-process/INttToken.sol'
     ```
 
-Later on, we will demonstrate setting mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
+Later on, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
 
 ## Deploy NTT
 
@@ -35,13 +35,13 @@ Initialize a new `deployment.json` file, specifying the network:
 === "TestNet"
 
     ```bash
-	ntt init Testnet
+    ntt init Testnet
     ```
 
 === "MainNet"
 
     ```bash
-	ntt init Mainnet
+    ntt init Mainnet
     ```
 
 Ensure you have set up your environment correctly: 
