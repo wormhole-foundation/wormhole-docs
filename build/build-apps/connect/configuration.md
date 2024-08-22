@@ -10,13 +10,13 @@ Configure the Wormhole Connect React component by passing a `WormholeConnectConf
 === "React"
 
     ```ts
-    --8<-- 'code/build/build-multichain-applications/connect/configuration/configure-react.tsx'
+    --8<-- 'code/build/build-apps/connect/configuration/configure-react.tsx'
     ```
 
 === "HTML Tags"
 
     ```html
-    --8<-- 'code/build/build-multichain-applications/connect/configuration/configure-html.html'
+    --8<-- 'code/build/build-apps/connect/configuration/configure-html.html'
     ```
 
 ## Examples {: #examples }
@@ -25,7 +25,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
 ??? code "View `WormholeConnectConfig`"
     ```ts
-    --8<-- 'code/build/build-multichain-applications/connect/configuration/index.ts'
+    --8<-- 'code/build/build-apps/connect/configuration/index.ts'
     ```
 
 ### Custom Networks and RPC Endpoints {: #custom-networks-and-rpc-endpoints }
@@ -33,7 +33,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 Specify supported networks, tokens, and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you do not provide your own.
 
 ```js
---8<-- 'code/build/build-multichain-applications/connect/configuration/custom-simple.jsx'
+--8<-- 'code/build/build-apps/connect/configuration/custom-simple.jsx'
 ```
 
 ### Fully Customized Theme {: #fully-customized-theme }
@@ -41,7 +41,7 @@ Specify supported networks, tokens, and custom RPC endpoints. Your users may enc
 Wormhole Connect offers a high level of customizability that suits and integrates with your application's design, including various options for buttons, backgrounds, popovers, fonts, and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [codeless style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/connect/configuration/custom-full.jsx'
+--8<-- 'code/build/build-apps/connect/configuration/custom-full.jsx'
 ```
 
 ### Environment {: #environment }
@@ -87,7 +87,7 @@ This example configuration limits Connect to the Solana and Ethereum networks an
 See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
 ```json
---8<-- 'code/build/build-multichain-applications/connect/configuration/arbitrary-token.json'
+--8<-- 'code/build/build-apps/connect/configuration/arbitrary-token.json'
 ```
 
 ## More Configuration Options {: #more-configuration-options }
@@ -186,7 +186,7 @@ By setting the `showHamburgerMenu` option to `false,` you can add extra links. T
 #### Sample Configuration {: #sample-configuration }
 
 ```json
---8<-- 'code/build/build-multichain-applications/connect/configuration/sample-configuration.json'
+--8<-- 'code/build/build-apps/connect/configuration/sample-configuration.json'
 ```
 
 ### CoinGecko API Key {: #coingecko-api-key }
@@ -212,7 +212,7 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 
 ??? code "View full configuration"
     ```json
-    --8<-- 'code/build/build-multichain-applications/connect/configuration/advanced-configuration.json'
+    --8<-- 'code/build/build-apps/connect/configuration/advanced-configuration.json'
     ```
 
 ### More Tokens {: #more-tokens }

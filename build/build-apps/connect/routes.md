@@ -5,11 +5,11 @@ description: Explore Wormhole Connect's routing capabilities for asset transfers
 
 ## Routes Overview {: #routes-overview}
 
-This page explains the concept of routes in Wormhole Connect. To configure routes for your widget, check the [Wormhole Connect Configuration](/build/build-multichain-applications/connect/configuration).
+This page explains the concept of routes in Wormhole Connect. To configure routes for your widget, check the [Wormhole Connect Configuration](/build/build-apps/connect/configuration).
 
 Routes are methods by which the widget will transfer the assets. Wormhole Connect supports Token Bridge transfers for any arbitrary token, and for specific tokens, it also supports more advanced transfer methods that provide superior UX.
 
-When you select the source chain, source token, and destination chain, Wormhole Connect will display the best routes available for that particular combination. In practice, if routes other than the Token Bridge are available, only those will be displayed. Check the [feature matrix](/build/build-multichain-applications/connect/features) to see under which exact conditions the routes appear.
+When you select the source chain, source token, and destination chain, Wormhole Connect will display the best routes available for that particular combination. In practice, if routes other than the Token Bridge are available, only those will be displayed. Check the [feature matrix](/build/build-apps/connect/features) to see under which exact conditions the routes appear.
 
 ## Token Bridge Routes {: #token-bridge-routes}
 
@@ -39,7 +39,7 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 
 ## Native Token Transfers (NTT) Routes {: #native-token-transfers-ntt-routes}
 
-[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/build/build-multichain-applications/connect/configuration) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repo](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
+[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/build/build-apps/connect/configuration) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repo](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
 
 #### Manual Route {: #manual-route-ntt}
 

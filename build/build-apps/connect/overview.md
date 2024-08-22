@@ -15,13 +15,13 @@ The [Wormhole TypeScript SDK](https://docs.wormhole.com/wormhole/reference/sdk-d
 
 Wormhole Connect is easy to customize to suit your application's needs. You can specify technical details like supported assets and custom RPCs or forgo customization and have a full-featured widget. The widget UI is highly customizable, with extensive styling options available, including a user-friendly no code styling interface for those who prefer a more visual approach to design. The features of Wormhole Connect include:
 
-- Multiple ways to bridge assets ([routes](/build/build-multichain-applications/connect/routes))
+- Multiple ways to bridge assets ([routes](/build/build-apps/connect/routes))
 - Extensive ways to style the UI (including the [no code styling interface](https://connect-in-style.wormhole.com/){target=\_blank})
-- Ways to [configure](/build/build-multichain-applications/connect/configuration) what feature set to offer
+- Ways to [configure](/build/build-apps/connect/configuration) what feature set to offer
 - Ability to configure any token to bridge via Wormhole
-- [Ability to drop off some gas](/build/build-multichain-applications/connect/features) at the destination
+- [Ability to drop off some gas](/build/build-apps/connect/features) at the destination
 
-For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/build/build-multichain-applications/connect/features).
+For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/build/build-apps/connect/features).
 
 ## Production DApp Examples {: #production-dapp-examples }
 
@@ -44,7 +44,7 @@ npm i @wormhole-foundation/wormhole-connect
 Now you can import the React component:
 
 ```ts
---8<-- 'code/build/build-multichain-applications/connect/overview/import.js'
+--8<-- 'code/build/build-apps/connect/overview/import.js'
 ```
 
 ### Use Hosted Version via CDN {: #use-hosted-version-via-cdn}
@@ -54,13 +54,13 @@ If you're not using React, you can still embed Connect on your website by using 
 Simply copy and paste the following into your HTML body, and replace the ```INSERT_WORMHOLE_CONNECT_VERSION``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest){target=\_blank}.
 
 ```html
---8<-- 'code/build/build-multichain-applications/connect/overview/cdn.html'
+--8<-- 'code/build/build-apps/connect/overview/cdn.html'
 ```
 
 For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/0.3.13){target=\_blank}:
 
 ```html
---8<-- 'code/build/build-multichain-applications/connect/overview/cdn-with-version.html'
+--8<-- 'code/build/build-apps/connect/overview/cdn-with-version.html'
 ```
 
 !!! note 
@@ -68,7 +68,7 @@ For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wor
 
 ## Configuration {: #configuration}
 
-This is just an overview of what's possible. Check the [Configuration docs](/build/build-multichain-applications/connect/configuration) for details about all the configuration options.
+This is just an overview of what's possible. Check the [Configuration docs](/build/build-apps/connect/configuration) for details about all the configuration options.
 
 The default configuration of Wormhole Connect may not be exactly what you're looking for. You may want to:
 
@@ -76,6 +76,6 @@ The default configuration of Wormhole Connect may not be exactly what you're loo
 - Restrict the chains that you allow in your app
 - Add support for your project's token, and eliminate tokens you don't want to reduce noise
 - Configuring custom RPC URLs (This is highly recommended as default public RPCs are heavily throttled)
-- Restrict the [routes](/build/build-multichain-applications/connect/routes) that are available
+- Restrict the [routes](/build/build-apps/connect/routes) that are available
 
-For additional information on the preceding options, check the [configuration options](/build/build-multichain-applications/connect/configuration) and customize your widget however you like.
+For additional information on the preceding options, check the [configuration options](/build/build-apps/connect/configuration) and customize your widget however you like.
