@@ -7,16 +7,16 @@ description: Explore Wormhole Connect, the React widget that allows you to offer
 
 ## Introduction {: #introduction }
 
-Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application. Check out the [Wormhole Connect Github repository](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}.
+Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application. Check out the [Wormhole Connect GitHub repository](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}.
 
-The [Wormhole Typescript SDK](https://docs.wormhole.com/wormhole/reference/sdk-docs){target=\_blank} allows you to implement the same functionality as the Connect widget but in your own UI. Check out the docs for more information on using the SDK instead of Connect.
+The [Wormhole TypeScript SDK](https://docs.wormhole.com/wormhole/reference/sdk-docs){target=\_blank} allows you to implement the same functionality as the Connect widget but in your own UI. Check out the docs for more information on using the SDK instead of Connect.
 
 ## Features {: #features }
 
-Wormhole Connect is easy to customize to suit your application's needs. You can specify technical details like supported assets and custom RPCs or forgo customization and have a full-featured widget. The widget's UI is highly customizable, with extensive styling options available, including a user-friendly codeless styling interface for those who prefer a more visual approach to design. The features of Wormhole Connect include:
+Wormhole Connect is easy to customize to suit your application's needs. You can specify technical details like supported assets and custom RPCs or forgo customization and have a full-featured widget. The widget UI is highly customizable, with extensive styling options available, including a user-friendly no code styling interface for those who prefer a more visual approach to design. The features of Wormhole Connect include:
 
 - Multiple ways to bridge assets ([routes](/build/build-multichain-applications/connect/routes))
-- Extensive ways to style the UI (including the [codeless styler interface](https://connect-in-style.wormhole.com/){target=\_blank})
+- Extensive ways to style the UI (including the [no code styling interface](https://connect-in-style.wormhole.com/){target=\_blank})
 - Ways to [configure](/build/build-multichain-applications/connect/configuration) what feature set to offer
 - Ability to configure any token to bridge via Wormhole
 - [Ability to drop off some gas](/build/build-multichain-applications/connect/features) at the destination
@@ -70,7 +70,7 @@ For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wor
 
 This is just an overview of what's possible. Check the [Configuration docs](/build/build-multichain-applications/connect/configuration) for details about all the configuration options.
 
-The default configuration of Wormhole Connect may not be exact;y what you're looking for. You may want to:
+The default configuration of Wormhole Connect may not be exactly what you're looking for. You may want to:
 
 - Use custom styles 
 - Restrict the chains that you allow in your app
@@ -78,4 +78,4 @@ The default configuration of Wormhole Connect may not be exact;y what you're loo
 - Configuring custom RPC URLs (This is highly recommended as default public RPCs are heavily throttled)
 - Restrict the [routes](/build/build-multichain-applications/connect/routes) that are available
 
-For the above options and more, check the [configuration options](/build/build-multichain-applications/connect/configuration) and customize your widget however you like.
+For additional information on the preceding options, check the [configuration options](/build/build-multichain-applications/connect/configuration) and customize your widget however you like.
