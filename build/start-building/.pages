@@ -3,3 +3,4 @@ nav:
  - index.md
  - 'Supported Networks': 'supported-networks.md'
  - 'EVM': 'evm.md'
+ - 'Algorand': 'algorand.md'
