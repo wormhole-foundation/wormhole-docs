@@ -5,7 +5,7 @@ description: Learn how to Manage NTT access with Owner/Pauser roles, control the
 
 ## Owner and Pauser Roles
 
-Pausing the NTT manager contract will disallow initiating new token transfer. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits, if configured).
+Pausing the NTT manager contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits, if configured).
 
 NTT can be paused on a particular chain by updating the `paused` parameter on the deployment to `true` via the NTT CLI, then performing `ntt push` to sync the local configuration with the on-chain deployment.
 
