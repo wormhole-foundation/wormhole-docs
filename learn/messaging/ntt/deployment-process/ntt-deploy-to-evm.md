@@ -9,8 +9,8 @@ If your token is not already deployed, deploy the token contract to the destinat
 
 Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
 
-1. `burn(uint256 amount)`
-2. `mint(address account, uint256 amount)`
+- `burn(uint256 amount)`
+- `mint(address account, uint256 amount)`
 
 These functions are not part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
 
