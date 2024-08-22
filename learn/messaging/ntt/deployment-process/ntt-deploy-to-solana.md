@@ -48,7 +48,7 @@ solana-keygen grind --starts-with w:1 --ignore-case
 solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
 ```
 
-3. Set the Solana configuration to use the default RPC URL for devnet:
+3. Set the Solana configuration to use the default RPC URL for DevNet:
 ```bash
 solana config set -ud
 ```
