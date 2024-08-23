@@ -39,26 +39,26 @@ This field may be ignored since the chain provides instant finality.
 
 For more information, see [the Near Consensus docs](https://nomicon.io/ChainSpec/Consensus){target=_blank}.
 
-### Mainnet Contracts (<code>mainnet</code>)
+=== "MainNet"
 
-|Type|Contract|
-|----|--------|
-|Core|`contract.wormhole_crypto.near`|
-|Token Bridge|`contract.portalbridge.near`|
-|NFT Bridge|N/A|
+	|    Type    |              Contract              |
+	|:----------:|:----------------------------------:|
+	|    Core    | `contract.wormhole_crypto.near`    |
+	| Token Bridge | `contract.portalbridge.near`     |
+	| NFT Bridge   |               N/A                |
 
-### Testnet Contracts (<code>testnet</code>)
+=== "TestNet"
 
-|Type|Contract|
-|----|--------|
-|Core|`wormhole.wormhole.testnet`|
-|Token Bridge|`token.wormhole.testnet`|
-|NFT Bridge|N/A|
+	|    Type    |            Contract            |
+	|:----------:|:------------------------------:|
+	|    Core    | `wormhole.wormhole.testnet`    |
+	| Token Bridge | `token.wormhole.testnet`     |
+	| NFT Bridge   |             N/A              |
 
-### Local Network Contract
+=== "Local Network"
 
-|Type|Contract|
-|----|--------|
-|Core|`wormhole.test.near`|
-|Token Bridge|`token.test.near`|
-|NFT Bridge|N/A|
+	|    Type    |       Contract       |
+	|:----------:|:--------------------:|
+	|    Core    | `wormhole.test.near` |
+	| Token Bridge | `token.test.near`  |
+	| NFT Bridge   |         N/A        |
