@@ -3,6 +3,8 @@ title: Near
 description: Learn how to work with Wormhole in the Near ecosystem with tools, address formats, contract details, and finality levels for various environments.
 ---
 
+# Near
+
 This page includes details for working with Near-environment chains
 
 ## Addresses

@@ -3,6 +3,8 @@ title: Algorand
 description: Learn how to work with Wormhole in the Algorand ecosystem with tools, address formats, contract details, and finality levels for a variety of environments.
 ---
 
+# Algorand
+
 This page includes details for working with Algorand environment chains.
 
 ## Developer Tools
@@ -45,7 +47,7 @@ This field may be ignored since the chain provides instant finality.
 
 For more information see [https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality](https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality){target=_blank}.
 
-### MainNet Contracts
+### MainNet Contracts `mainnet-v1.0`
 
 |   Type       |                                 Contract                                  |
 |:------------:|:------------------------------------------------------------------------:|
@@ -53,7 +55,7 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 | Token Bridge | [`842126029`](https://explorer.perawallet.app/application/842126029/){target=_blank} |
 | NFT Bridge   | N/A |
 
-### TestNet Contracts
+### TestNet Contracts `testnet-v1.0`
 
 |   Type       |                                 Contract                                        |
 |:------------:|:-------------------------------------------------------------------------------:|

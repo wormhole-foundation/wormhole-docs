@@ -3,6 +3,8 @@ title: Sui
 description: Learn how to work with Wormhole in the Sui ecosystem with dev tools, address formats, emitter details, and contract info for MainNet, TestNet, and local networks.
 ---
 
+# Sui
+
 This page contains details for working with Sui chains.
 
 ## Developer Tools
