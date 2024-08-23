@@ -17,18 +17,18 @@ Through its core functionalities and strategic use of the IBC protocol, the Worm
 
 ### Overview 
 
-The Wormhole Gateway uses the Inter-Blockchain Communication (IBC) protocol to connect with multiple blockchain platforms. This setup helps the Gateway function smoothly by ensuring that assets can be transferred securely and without interruptions across different blockchains. IBC is crucial because it keeps liquidity consistent and removes the usual barriers seen with moving assets from one chain to another.
+The Wormhole Gateway employs the Inter-Blockchain Communication (IBC) protocol to ensure secure and uninterrupted asset transfers across different blockchains. IBC is essential for maintaining consistent liquidity and removing the typical barriers associated with cross-chain transfers.
 
 ### IBC's Functional Role
 
-The Wormhole Gateway utilizes the Inter-Blockchain Communication (IBC) protocol, a vital component of the Cosmos ecosystem, to streamline the transfer of messages across different blockchain networks. This integration is crucial because it allows the Gateway to enable seamless interactions and data sharing among the chains within the Cosmos network. By implementing IBC, the Wormhole Gateway reduces operational complexity and overhead, making sending and receiving messages and transactions across various chains more efficient and cost-effective. This strategic use of IBC exemplifies its role in enhancing the functionality of the Wormhole network and ensuring it operates smoothly within the broader blockchain ecosystem.
+As a critical component of the Cosmos ecosystem, the Inter-Blockchain Communication (IBC) protocol plays a crucial role in the Wormhole Gateway. It enables seamless message and data transfer between blockchain networks, simplifying the process of sending and receiving transactions. By leveraging IBC, the Gateway minimizes operational complexity and cost, ensuring smooth and efficient cross-chain interactions within the broader blockchain ecosystem. This integration enhances the overall functionality of the Wormhole network.
 
 The following flow outlines the key steps involved in a cross-chain transaction within the Wormhole network, emphasizing the critical role of the Wormhole Gateway in facilitating secure and seamless communication between non-Cosmos chains and the Cosmos ecosystem.
 
 1. **Message emission on source chain** - a transaction triggers a message on the source chain, captured by the Wormhole Core Contract
 2. **Guardian Network validation** - the Guardian Network validates the message and creates a Verifiable Action Approval (VAA)
 3. **VAA relayed to Gateway** - if the target is a Cosmos chain, the VAA is relayed to the Wormhole Gateway
-4. **Gateway's role in the Cosmos ecosystem** - the Gateway, a Cosmos-SDK chain, receives the VAA and processes it using the IBC protocol. The Gateway ensures the VAA is correctly formatted and securely transmitted to the target Cosmos chain
+4. **Gateway's role in the Cosmos ecosystem** - the Gateway receives the VAA and processes it using the IBC protocol, it ensures the VAA is correctly formatted and securely transmitted to the target Cosmos chain
 5. **IBC-Enabled transmission** - using IBC, the Gateway facilitates the smooth and secure transfer of the VAA within the Cosmos network, ensuring interoperability and consistent asset handling
 6. **Finalization on target Cosmos chain** - the VAA is verified on the target Cosmos chain, enabling the execution of the corresponding transaction or operation
 7. **Global Accountant integration** - throughout the process, the Gateway works with the Global Accountant to maintain accurate asset tracking, ensuring the integrity of cross-chain transactions
