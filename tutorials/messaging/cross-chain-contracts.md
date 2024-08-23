@@ -81,9 +81,9 @@ You can find the full code for the `MessageReceiver.sol` below.
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-4.sol"
     ```
 
-## Deploy and Test the Contracts
+## Deploy Contracts
 
-This section will guide you through deploying and testing the cross-chain messaging contracts on the Avalanche Fuji and Celo Alfajores TestNets. Follow these steps to get your contracts up and running.
+This section will guide you through deploying the cross-chain messaging contracts on the Avalanche Fuji and Celo Alfajores TestNets. Follow these steps to get your contracts up and running.
 
 #### Deployment Tools
 We use _Foundry_ to deploy our smart contracts. However, you can use any tool you’re comfortable with, such as:
