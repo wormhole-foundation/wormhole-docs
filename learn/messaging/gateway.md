@@ -17,7 +17,7 @@ Through its core functionalities and strategic use of the IBC protocol, the Worm
 
 ### Overview 
 
-The Wormhole Gateway employs the Inter-Blockchain Communication (IBC) protocol to ensure secure and uninterrupted asset transfers across different blockchains. IBC is essential for maintaining consistent liquidity and removing the typical barriers associated with cross-chain transfers.
+The Wormhole Gateway employs the [Inter-Blockchain Communication (IBC) protocol](https://tutorials.cosmos.network/academy/3-ibc/1-what-is-ibc.html){target=\_blank} to ensure secure and uninterrupted asset transfers across different blockchains. IBC is essential for maintaining consistent liquidity and removing the typical barriers associated with cross-chain transfers.
 
 ### IBC's Functional Role
 
@@ -41,7 +41,7 @@ The Wormhole Gateway incorporates several key components that support its operat
 - **IBC Shim Contract** - a specialized CosmWasm contract that handles the bridging of assets by translating between the native Wormhole message formats and those used by IBC, effectively linking the Wormhole platform with the broader Cosmos ecosystem
 - **[Token Factory Module](https://github.com/CosmosContracts/juno/tree/v14.1.1/x/tokenfactory){target=\_blank}** - this module, operational on the Wormhole Gateway, is instrumental in creating tokens that represent bridged assets, facilitating their circulation within the Cosmos network
 
-Utilizing the [Inter-Blockchain Communication (IBC) protocol](https://tutorials.cosmos.network/academy/3-ibc/1-what-is-ibc.html){target=\_blank}, the Wormhole Gateway ensures secure and reliable asset transfers. IBC allows the Gateway to interact smoothly with various blockchain protocols within the Cosmos network, providing a robust framework for:
+Utilizing the Inter-Blockchain Communication (IBC) protocol, the Wormhole Gateway ensures secure and reliable asset transfers. IBC allows the Gateway to interact smoothly with various blockchain protocols within the Cosmos network, providing a robust framework for:
 
 - **Asset bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
 - **Security and integrity** - conducting thorough consistency checks to validate transactions and ensure that asset transfers are executed without discrepancies
