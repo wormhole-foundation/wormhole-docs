@@ -201,7 +201,7 @@ You can get the RPC address for a chain as follows:
 worm info rpc INSERT_NETWORK INSERT_CHAIN
 ```
 
-To get the RPC address for BSC MainNet for example, you can provide the following command: 
+To get the RPC address for BSC MainNet, for example, you can provide the following command: 
 
 ```bash
 worm info rpc mainnet bsc
