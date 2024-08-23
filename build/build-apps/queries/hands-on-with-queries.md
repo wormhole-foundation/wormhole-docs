@@ -20,13 +20,13 @@ Before digging into anything Queries-specific, this page will look at how to mak
 The prepared curl request is as follows:
 
 ```bash title="eth_call JSON-RPC request"
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/eth-call-initial-request.txt'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/eth-call-initial-request.txt'
 ```
 
 And the corresponding response is:
 
 ```bash title="eth_call JSON-RPC reponse"
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/eth-call-initial-response.txt'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/eth-call-initial-response.txt'
 ```
 
 Converting the returned value of the executed call from hexidecimal results in the value `3172615244782286193073777`. You can compare your result to the [**Read Contract**](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract){target=\_blank} tab in Etherscan. Your result will be different as WETH is minted/burned over time.
@@ -44,26 +44,26 @@ In order to make an `EthCallQueryRequest`, you need a specific block number or h
 You can request the latest block from a public node using `eth_getBlockByNumber`.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:12:12'
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:19:26'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx:12:12'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx:19:26'
 ```
 
 Then construct the call data.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:13:16'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx:13:16'
 ```
 
 Finally, put it all together in a `QueryRequest`.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:44:53'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx:44:53'
 ```
 
 This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can use `console.log` to print the JSON object and review the structure.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:54:54'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx:54:54'
 // {
 //   "nonce": 0,
 //   "requests": [
@@ -89,7 +89,7 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [DevNet](/wormhole/reference/dev-env/tilt) Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:55:57'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx:55:57'
 // {
 //   signatures: ['...'],
 //   bytes: '...'
@@ -99,14 +99,14 @@ For easier testing, the Query SDK provides a `QueryProxyMock` method. This metho
 This response is suited for on-chain use, but the SDK also includes a parser to make the results readable via the client.
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx:58:64'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx:58:64'
 // Mock Query Result: 0x000000000000000000000000000000000000000000029fd09d4d81addb3ccfee (3172556167631284394053614)
 ```
 
 Testing this all together might look like the following:
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/test-full.jsx'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/test-full.jsx'
 ```
 
 ### Fork Testing {: #fork-testing}
@@ -132,7 +132,7 @@ If you are using `EthCallWithFinality`, you will need to mine additional blocks 
 The standardized means of making a `QueryRequest` with an API key is as follows:
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-request-with-api-key.jsx'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/query-request-with-api-key.jsx'
 ```
 
 Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
@@ -165,7 +165,7 @@ See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blo
 
 ??? code "View the complete `QueryDemo`"
     ```solidity
-    --8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-demo.sol'
+    --8<-- 'code/build/build-apps/queries/hands-on-with-queries/query-demo.sol'
     ```
 
 ## Submit a Query Response On-Chain {: #submit-a-query-response-on-chain}
@@ -175,5 +175,5 @@ The `QueryProxyQueryResponse` result requires a slight tweak when submitting to 
 This example submits the transaction to the demo contract:
 
 ```jsx
---8<-- 'code/build/build-multichain-applications/queries/hands-on-with-queries/query-proxy-query-response.jsx'
+--8<-- 'code/build/build-apps/queries/hands-on-with-queries/query-proxy-query-response.jsx'
 ```

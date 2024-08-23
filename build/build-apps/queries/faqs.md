@@ -7,6 +7,8 @@ description: Explore frequently asked questions about Wormhole Queries, which of
 
 ## What Libraries Are Available to Handle Queries?
 
+- 
+
 You can use the [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses.
 
 You can use the [Solidity `QueryResponse` abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repo as an example use case. The SDK also contains [`QueryTest.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/helpers/QueryTest.sol){target=\_blank} for mocking query requests and responses in Forge tests.
@@ -18,7 +20,7 @@ The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main
 
 ## Are There Any Query Examples?
 
-Certainly. You can find a complete walkthrough on the [Hands on with Queries page](/build/build-multichain-applications/queries/hands-on-with-queries). Additionally, you can find full code examples in available in the following repositories:
+Certainly. You can find a complete walkthrough on the [Hands on with Queries page](/build/build-apps/queries/hands-on-with-queries). Additionally, you can find full code examples in available in the following repositories:
 
 - [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
