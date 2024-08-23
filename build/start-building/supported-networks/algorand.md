@@ -11,9 +11,9 @@ The recommended development tool for Algorand is [Algokit](https://developer.alg
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For Algorand chains, a wormhole formatted address is the 58-character address decoded from base32 with its checksum removed. E.g. `M7UT7JWIVROIDGMQVJZUBQGBNNIIVOYRPC7JWMGQES4KYJIZHVCRZEGFRQ` becomes `0x67e93fa6c8ac5c819990aa7340c0c16b508abb1178be9b30d024b8ac25193d45`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For Algorand chains, a wormhole formatted address is the 58-character address decoded from base32 with its checksum removed. E.g. `M7UT7JWIVROIDGMQVJZUBQGBNNIIVOYRPC7JWMGQES4KYJIZHVCRZEGFRQ` becomes `0x67e93fa6c8ac5c819990aa7340c0c16b508abb1178be9b30d024b8ac25193d45`.
 
-Algorand also uses a uint64 for Asset and Application IDs. These are converted to 32 bytes by first converting to an 8-byte big-endian byte array, then padding with 24 bytes of 0s. E.g. `123` becomes `0x000000000000000000000000000000000000000000000000000000000000007b`
+Algorand also uses a uint64 for Asset and Application IDs. These are converted to 32 bytes by first converting to an 8-byte big-endian byte array, then padding with 24 bytes of 0s. E.g. `123` becomes `0x000000000000000000000000000000000000000000000000000000000000007b`.
 
 ## Emitter 
 
@@ -43,9 +43,9 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 
 This field may be ignored since the chain provides instant finality.
 
-For more information see [https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality](https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality){target=_blank}
+For more information see [https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality](https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality){target=_blank}.
 
-### MainNet Contracts (<code>mainnet-v1.0</code>)
+### MainNet Contracts
 
 |   Type       |                                 Contract                                  |
 |:------------:|:------------------------------------------------------------------------:|
@@ -53,7 +53,7 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 | Token Bridge | [`842126029`](https://explorer.perawallet.app/application/842126029/){target=_blank} |
 | NFT Bridge   | N/A |
 
-### TestNet Contracts (<code>testnet-v1.0</code>)
+### TestNet Contracts
 
 |   Type       |                                 Contract                                        |
 |:------------:|:-------------------------------------------------------------------------------:|
