@@ -3,6 +3,8 @@ title: Native Token Transfers Solana Deployment
 description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
 ---
 
+# Native Token Transfers (NTT) Solana Deployment
+
 ## Install Dependencies
 
 Ensure you have the following dependencies installed:
@@ -38,12 +40,12 @@ Initialize a new `deployment.json` file, specifying the network:
 
 If you haven't already, deploy your SPL token to Solana.
 
-1. Generate a new Solana keypair to create a wallet:
+1. Generate a new Solana key pair to create a wallet:
 ```bash
 solana-keygen grind --starts-with w:1 --ignore-case
 ```
 
-2. Set Solana config to use the new keypair:
+2. Set Solana configuration to use the new key pair:
 ```bash
 solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
 ```
@@ -82,11 +84,11 @@ NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
 
 ## Configuration and Deployment
 
-#### Generate NTT Program Keypair
+#### Generate NTT Program Key Pair
 
-When you deploy a Solana program, you need to hardcode the program ID (a pubkey) into the program code. The NTT CLI allows you to do this seamlessly.
+When you deploy a Solana program, you need to hardcode the program ID (a Pubkey) into the program code. The NTT CLI allows you to do this seamlessly.
 
-Generate a new NTT program keypair using:
+Generate a new NTT program key pair using:
 
 ```bash
 solana-keygen grind --starts-with ntt:1 --ignore-case
@@ -94,10 +96,10 @@ solana-keygen grind --starts-with ntt:1 --ignore-case
 
 #### Derive Token Authority
 
-In this step, you'll derive the token authority PDA of the newly generated NTT program ID:
+In this step, you'll derive the token authority Program Derived Address (PDA) of the newly generated NTT program ID:
 
 ```bash
-ntt solana token-authority INSERT-YOUR-NTT-PROGRAM-KEYPAIR
+ntt solana token-authority INSERT-YOUR-NTT-PROGRAM-KEY-PAIR
 ```
 
 #### Set SPL Token Mint Authority
@@ -112,7 +114,7 @@ If deploying to Solana in `burning` mode, set the mint authority for your SPL to
 
 ### Deploy NTT
 
-Generate or export your payer keypair, then run:
+Generate or export your payer key pair, then run:
 
 ```bash
 ntt add-chain Solana --latest --mode burning --token INSERT_YOUR_SPL_TOKEN --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
@@ -134,7 +136,7 @@ ntt pull
 
 ### Deploy
 
-You can now push the deployment to the Solana network, specifying the Keypair that will cover the gas fees:
+You can now push the deployment to the Solana network, specifying the key pair that will cover the gas fees:
 
 ```bash
 ntt push --payer INSERT_YOUR_KEYPAIR_JSON

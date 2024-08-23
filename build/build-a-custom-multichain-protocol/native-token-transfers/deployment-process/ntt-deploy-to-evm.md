@@ -3,16 +3,18 @@ title: Native Token Transfers EVM Deployment
 description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
 ---
 
+# Native Token Transfers (NTT) EVM Development
+
 ## Deploy Your Token and Ensure Compatibility
 
-If your token is not already deployed, deploy the token contract to the destination or spoke chains.
+If your token isn't already deployed, deploy the token contract to the destination or spoke chains.
 
 Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
 
 - `burn(uint256 amount)`
 - `mint(address account, uint256 amount)`
 
-These functions are not part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
+These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
 
 ??? code "View the complete `INttToken` Interface`"
     ```solidity
@@ -82,6 +84,6 @@ After you deploy the NTT contracts, ensure that the deployment is properly confi
 The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub and spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
 
 - If you followed the [`INttToken`](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
-- If you have a custom process to manage your token minter(s), you should now follow that process to add the corresponding NTT Manager as a minter
+- If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
 
-By default, NTT transfers to EVM blockchains support automatic relaying, which does not require the user to perform a transaction on the destination chain to complete the transfer.
+By default, NTT transfers to EVM blockchains support automatic relaying, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
