@@ -2,12 +2,7 @@
 title: Introduction to Wormhole
 description: Wormhole is a protocol for seamless communication between blockchains, enabling cross-chain applications and integrations.
 ---
-<!-- 
-some links are blank because not all the pages are created yet
-also missing the list of blockchains 
 
-!!! No need to put all links in bold : check the rest
--->
 # Introduction to Wormhole
 
 Wormhole is a generic _message-passing protocol_ that enables communication between blockchains.
@@ -28,7 +23,7 @@ This simple message-passing protocol allows developers and users of cross-chain 
 
 Consider the following examples of potential applications enabled by Wormhole:
 
-- **Cross-Chain Exchange** - using [Wormhole Connect](#){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
+- **Cross-Chain Exchange** - using [Wormhole Connect](#){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access <!-- Wormhole Connect: Bridging Made Easy -->
 - **Cross-Chain Governance** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
 - **Cross-Chain Game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
 
@@ -38,8 +33,8 @@ Consider the following examples of potential applications enabled by Wormhole:
 
 Tutorials are available to get started quickly and explain the concepts involved.
 
-- **[Quick Start - Off Chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI
-- **[Quick Start - On Chain](#){target=\_blank}** - send your first cross-chain message
+- **[Quick Start - Off Chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI <!-- Wormhole Connect: Bridging Made Easy -->
+- **[Quick Start - On Chain](#){target=\_blank}** - send your first cross-chain message <!-- Developing Cross Chain Dapps -->
 
 More tutorials are available [on github](#){target=\_blank}. <!-- tutorials will be on the docs site -->
 
@@ -57,7 +52,7 @@ Demos offer more realistic implementations than tutorials:
 - **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repo
 - **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
 
-More demos are available in the [demos page](#){target=\_blank}.
+More demos are available in the [demos page](#){target=\_blank}. <!-- demos page -->
 
 !!! note
     Wormhole Integration Complete?
