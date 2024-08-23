@@ -7,7 +7,7 @@ description: Discover the role of relayers in the Wormhole network, including cl
 
 This documentation provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating cross-chain processes.
 
-Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](#){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only liveness, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
+Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](/learn/infrastructure/vaas/){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only liveness, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
 
 There are three primary types of relayers discussed:
 
@@ -74,7 +74,7 @@ Specialized relayers are purpose-built components within the Wormhole protocol, 
 **Implementation**
 
 !!! note
-    To make the development of specialized relayers easier, a plugin relayer is available in the [main Wormhole repository](#){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
+    To make the development of specialized relayers easier, a plugin relayer is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
 
 There are two main methods of setting up a specialized relayer:
 
@@ -103,7 +103,7 @@ Standard relayers are a component of a decentralized network in the Wormhole pro
 The standard relayer integration involves two key steps:
 
 - **Delivery request** - request delivery from the Wormhole Relay Ecosystem Contract
-- **Relay reception** - implement a [`receiveWormholeMessages`](#){target=\_blank} function within their contracts. This function is invoked upon successful relay of the VAA
+- **Relay reception** - implement a [`receiveWormholeMessages`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/bacbe82e6ae3f7f5ec7cdcd7d480f1e528471bbb/src/interfaces/IWormholeReceiver.sol#L44-L50){target=\_blank} function within their contracts. This function is invoked upon successful relay of the VAA
 
 **Considerations**
 
