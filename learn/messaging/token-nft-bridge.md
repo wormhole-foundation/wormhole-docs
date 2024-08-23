@@ -8,11 +8,11 @@ description: Learn about Wormhole's Token and NFT Bridge for cross-chain transfe
 ## Token Bridge
 
 !!! note
-    Before a token transfer can be made, the token being transferred must exist as a wrapped asset on the target chain. This is done by [Attesting](#){target=\_blank} the token details on the target chain. <!-- link to VAAs -->
+    Before a token transfer can be made, the token being transferred must exist as a wrapped asset on the target chain. This is done by [Attesting](/learn/infrastructure/vaas/#attestation){target=\_blank} the token details on the target chain.
 
-The Token Bridge contract allows token transfers between blockchains through a lock and mint mechanism, using the [Core Contract](/learn/messaging/core-contracts/){target=\_blank} with a specific [payload](#){target=\_blank} to pass information about the transfer. <!--payload links to VAAs page payloads -->
+The Token Bridge contract allows token transfers between blockchains through a lock and mint mechanism, using the [Core Contract](/learn/messaging/core-contracts/){target=\_blank} with a specific [payload](/learn/infrastructure/vaas/#token-transfer){target=\_blank} to pass information about the transfer. 
 
-The Token Bridge also supports sending tokens with some additional data in the form of arbitrary byte payload attached to the token transfer. This type of transfer is referred to as a [Contract Controlled Transfer](#){target=\_blank}. <!-- links to VAAs page token + msg  -->
+The Token Bridge also supports sending tokens with some additional data in the form of arbitrary byte payload attached to the token transfer. This type of transfer is referred to as a [Contract Controlled Transfer](/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}.
 
 While the [Core Contract](/learn/messaging/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the token bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
 
