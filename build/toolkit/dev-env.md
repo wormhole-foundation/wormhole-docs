@@ -41,7 +41,7 @@ Once you've finished the application's initial development and performed integra
 ### Tilt
 If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 min to spin up fully, but comes with all chains running out of the box. Refer to the [Tilt](/build/toolkit/toolkit-tilt) page for a full guide to setting up and configuring Tilt.
 
-## Deploying to public networks
+## Deploying to Public Networks
 
 ### TestNet
 
