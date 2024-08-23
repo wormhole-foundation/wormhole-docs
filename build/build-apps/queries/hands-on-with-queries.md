@@ -161,7 +161,7 @@ Broadly, using a query response on-chain comes down to three main steps:
     - Is the result of the expected length for the expected result type?
    4. Run `abi.decode` on the result 
 
-See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol) contract for an example and read the docstrings of the above methods for detailed usage instructions.
+See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol) contract for an example and read the docstrings of the preceding methods for detailed usage instructions.
 
 ??? code "View the complete `QueryDemo`"
     ```solidity
