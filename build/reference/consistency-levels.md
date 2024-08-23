@@ -3,6 +3,8 @@ title: Consistency Levels
 description: This page documents how long to wait for finality before signing, based on each chain’s consistency (finality) level and consensus mechanism.
 ---
 
+# Consistency Levels
+
 The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` is not one of those specific values, the `Otherwise` column describes how it's interpreted.
 
 | Chain           | Instant | Safe | Finalized | Otherwise | Time to Finalize | Details                                                                                                            |
