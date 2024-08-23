@@ -43,7 +43,7 @@ NTT has the flexibility to support custom message verification in addition to Wo
 
 The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. The model includes an extra verifier(s) in the bridging process, enhancing security and providing an added assurance of transaction integrity.
 
-For more details, to collaborate, or to see examples of custom Transceivers, [contact](#){target=\_blank} Wormhole contributors.
+For more details, to collaborate, or to see examples of custom Transceivers, [contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors.
 
 ## Lifecycle of a Message
 
