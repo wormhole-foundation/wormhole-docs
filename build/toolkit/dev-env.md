@@ -17,7 +17,13 @@ Different approaches to development and testing are recommended at different sta
 
 ### Initial Development
 
-During the initial development of an on-chain application, the best option is to use the native tools available in the environment. For the specific native tools recommended, see the page for the [Environment](../../blockchain-environments/README.md) you're interested in. For any program methods that require some message be sent or received, it's recommended to set up some Mock Guardian or Emitter to provide signed VAAs. A Mock utility is available [here](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank} and an example of its use can be found in the [Wormhole Scaffolding repo](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}. This approach allows for more rapid prototyping and iteration without waiting for, or debugging issues related to, Wormhole.
+During the initial development of an on-chain application, the best option is to use the native tools available in the environment. You can visit the following resources for more information:
+
+- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset  
+- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a Mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received. 
+- **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}** - example Mock Guardian test
+
+Relying on native tools when possible allows for more rapid prototyping and iteration.  
 
 ### Integration
 
@@ -39,7 +45,7 @@ If you'd like to set up a local validator environment, follow the setup guide fo
 
 ### TestNet
 
-When doing integration testing on TestNets, remember that there is a single Guardian node watching for transactions on various test networks. Because TestNet only has a single Guardian, there's a slight chance that your VAAs will not be processed. This rate does not indicate performance on MainNet, where 19 Guardians are watching for transactions. The TestNet contract addresses are available on the page for each [environment](../../blockchain-environments/environments.md). The TestNet Guardian RPC configuration is available on the [SDK page](../sdk-docs/#testnet-guardian-rpc).
+When doing integration testing on TestNets, remember that there is a single Guardian node watching for transactions on various test networks. Because TestNet only has a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on MainNet, where 19 Guardians are watching for transactions. The TestNet contract addresses are available on the page for each [environment](../../blockchain-environments/environments.md). The TestNet Guardian RPC configuration is available on the [SDK page](../sdk-docs/#testnet-guardian-rpc).
 
 ### MainNet
 

@@ -21,7 +21,7 @@ WormholeScan is a resource for looking at individual transfer statuses on MainNe
 
 #### [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole/tree/main/){target=\_blank}
 
-Most developers find it useful to clone the Wormhole Core repository. This repository provides the Devnet Tilt environment, plenty of useful code examples and tests, and some utilities that do not have an official release package.
+Most developers find it useful to clone the Wormhole Core repository. This repository provides the DevNet Tilt environment, plenty of useful code examples and tests, and some utilities that don't have an official release package.
 
 #### [Worm CLI tool](https://github.com/wormhole-foundation/wormhole/tree/main/clients/js){target=\_blank}
 
@@ -37,7 +37,7 @@ The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
 
 #### [Wormhole SDK Docs](../../reference/sdk-docs/README.md){target=\_blank}
 
-The Wormhole SDK is a Typescript SDK distributed on npm. It can greatly aid in writing frontend code for cross-chain applications and utilizing the Wormhole Token Bridge directly.
+The Wormhole SDK is a TypeScript SDK distributed on npm. It can greatly aid in writing frontend code for cross-chain applications and utilizing the Wormhole Token Bridge directly.
 
 #### [Wormhole API Docs](../../reference/api-docs/README.md)
 

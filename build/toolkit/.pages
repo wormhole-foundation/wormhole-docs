@@ -1,6 +1,6 @@
 title: Toolkit
 nav:
  - index.md
- - 'Local Dev Environment' : 'toolkit-dev-env.md'
- - 'Tilt': 'toolkit-tilt.md'
- - 'Tooling': 'toolkit-tooling.md'
+ - 'Local Dev Environment' : 'dev-env.md'
+ - 'Tilt': 'tilt.md'
+ - 'Tooling': 'tooling.md'
