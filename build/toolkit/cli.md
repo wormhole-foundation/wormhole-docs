@@ -9,14 +9,14 @@ This tool is a command-line interface to Wormhole, allowing you to perform vario
 
 ## Installation
 
-Clone the repo and change directories to the appropriate directory:
+Clone the repository and change directories to the appropriate directory:
 
 ```bash
 git clone https://github.com/wormhole-foundation/wormhole &&
 cd wormhole/clients/js
 ```
 
-Build and install the cli tool:
+Build and install the CLI tool:
 
 ```bash
 make install
@@ -34,7 +34,7 @@ You can interact with the Wormhole CLI by typing `worm` and including the `comma
 | `worm aptos INSERT_COMMAND`                   | Aptos utilities                                                                              |
 | `worm edit-vaa INSERT_COMMAND`                | Edits or generates a VAA                                                                     |
 | `worm evm INSERT_COMMAND`                     | EVM utilities                                                                                |
-| `worm generate INSERT_COMMAND`                | Generate VAAs (devnet and testnet only)                                                      |
+| `worm generate INSERT_COMMAND`                | Generate VAAs (DevNet and TestNet only)                                                      |
 | `worm info INSERT_COMMAND`                    | Contract, chain, RPC, and address information utilities                                      |
 | `worm near INSERT_NETWORK, INSERT_ACCOUNT`    | NEAR utilities                                                                               |
 | `worm parse INSERT_VAA`                       | Parse a VAA (can be in either hex or base64 format)                                          |
@@ -43,7 +43,7 @@ You can interact with the Wormhole CLI by typing `worm` and including the `comma
 | `worm submit INSERT_VAA`                      | Execute a VAA                                                                                |
 | `worm sui INSERT_COMMAND`                     | Sui utilities                                                                                |
 | `worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK` | Transfers a token                                      |
-| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                             | Verifies a VAA by querying the core contract on Ethereum                                     |
+| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                             | Verifies a VAA by querying the Core Contract on Ethereum                                     |
 
 
 You can also refer to the below options, available with all `worm` commands:
@@ -142,9 +142,9 @@ The below example generates a token attestation VAA:
 
 Use `parse` to parse a VAA into JSON:
 
-    worm parse $(worm-fetch-governance 13940208096455381020)
+    `worm parse $(worm-fetch-governance 13940208096455381020)`
 
-The above example will fetch governance VAA `13940208096455381020` and print it as JSON: 
+This example will fetch governance VAA `13940208096455381020` and print it as JSON: 
 
 ```bash
 --8<-- 'code/build/toolkit/cli/fetch-vaa-example.txt'
@@ -158,13 +158,13 @@ Use `submit` to submit a VAA to a chain. It first parses the VAA and determines 
 worm submit $(cat my-nft-registration.txt) --network mainnet
 ```
 
-The script will ask you to specify the target chain for VAAs that don't have a specific target chain (like registrations or guardian set upgrades). For example, to submit a guardian set upgrade on all chains, simply run:
+The script will ask you to specify the target chain for VAAs that don't have a specific target chain (like registrations or Guardian set upgrades). For example, to submit a Guardian set upgrade on all chains, simply run:
 
 ```bash
 --8<-- 'code/build/toolkit/cli/guardian-upgrade.txt'
 ```
 
-The VAA payload type (guardian set upgrade) specifies that this VAA should go to the core bridge, and the tool directs it there.
+The VAA payload type (Guardian set upgrade) specifies that this VAA should go to the core bridge, and the tool directs it there.
 
 ### Getting Info
 
@@ -174,7 +174,7 @@ To get info about a contract (only EVM supported at this time), use the followin
 worm evm info -c bsc -n mainnet -m TokenBridge
 ```
 
-Running the above command generates the following output:
+Running this command generates the following output:
 
 ```bash
 --8<-- 'code/build/toolkit/cli/info-response.txt'
