@@ -29,22 +29,21 @@ private keys, based on `.env.sample` in this folder.
 
 You can interact with the Wormhole CLI by typing `worm` and including the `command` and any necessary subcommands/parameters.  
 
-| Command                                       | Description                                                                                  |
-|------------------------------------------------|----------------------------------------------------------------------------------------------|
-| `worm aptos INSERT_COMMAND`                   | Aptos utilities                                                                              |
-| `worm edit-vaa INSERT_COMMAND`                | Edits or generates a VAA                                                                     |
-| `worm evm INSERT_COMMAND`                     | EVM utilities                                                                                |
-| `worm generate INSERT_COMMAND`                | Generate VAAs (DevNet and TestNet only)                                                      |
-| `worm info INSERT_COMMAND`                    | Contract, chain, RPC, and address information utilities                                      |
-| `worm near INSERT_NETWORK, INSERT_ACCOUNT`    | NEAR utilities                                                                               |
-| `worm parse INSERT_VAA`                       | Parse a VAA (can be in either hex or base64 format)                                          |
-| `worm recover INSERT_DIGEST INSERT_SIGNATURE` | Recover an address from a signature                                                          |
-| `worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH` | Prints information about the automatic delivery initiated on the specified network, chain, and transaction hash |
-| `worm submit INSERT_VAA`                      | Execute a VAA                                                                                |
-| `worm sui INSERT_COMMAND`                     | Sui utilities                                                                                |
-| `worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK` | Transfers a token                                      |
-| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                             | Verifies a VAA by querying the Core Contract on Ethereum                                     |
-
+| Command                                                                                                                  | Description                                                                                                     |
+|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| `worm aptos INSERT_COMMAND`                                                                                              | Aptos utilities                                                                                                 |
+| `worm edit-vaa INSERT_COMMAND`                                                                                           | Edits or generates a VAA                                                                                        |
+| `worm evm INSERT_COMMAND`                                                                                                | EVM utilities                                                                                                   |
+| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (DevNet and TestNet only)                                                                         |
+| `worm info INSERT_COMMAND`                                                                                               | Contract, chain, RPC, and address information utilities                                                         |
+| `worm near INSERT_NETWORK, INSERT_ACCOUNT`                                                                               | NEAR utilities                                                                                                  |
+| `worm parse INSERT_VAA`                                                                                                  | Parse a VAA (can be in either hex or base64 format)                                                             |
+| `worm recover INSERT_DIGEST INSERT_SIGNATURE`                                                                            | Recover an address from a signature                                                                             |
+| `worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH`                                                              | Prints information about the automatic delivery initiated on the specified network, chain, and transaction hash |
+| `worm submit INSERT_VAA`                                                                                                 | Execute a VAA                                                                                                   |
+| `worm sui INSERT_COMMAND`                                                                                                | Sui utilities                                                                                                   |
+| `worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK` | Transfers a token                                                                                               |
+| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                                                                             | Verifies a VAA by querying the Core Contract on Ethereum                                                        |
 
 You can also refer to the below options, available with all `worm` commands:
 
