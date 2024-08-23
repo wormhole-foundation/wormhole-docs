@@ -37,9 +37,9 @@ The emitter is the application address, normalized to the wormhole address forma
 
 The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
-|Level|Value|
-|-----|-----|
-|Finalized|0|
+|  Level   | Value |
+|:--------:|:-----:|
+| Finalized|   0   |
 
 This field may be ignored since the chain provides instant finality.
 
@@ -47,24 +47,24 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 
 ### MainNet Contracts (<code>mainnet-v1.0</code>)
 
-| Type         | Contract                                                              |
-|--------------|-----------------------------------------------------------------------|
+|   Type       |                                 Contract                                  |
+|:------------:|:------------------------------------------------------------------------:|
 | Core         | [`842125965`](https://explorer.perawallet.app/application/842125965/){target=_blank} |
 | Token Bridge | [`842126029`](https://explorer.perawallet.app/application/842126029/){target=_blank} |
-| NFT Bridge   | N/A                                                               |
+| NFT Bridge   | N/A |
 
 ### TestNet Contracts (<code>testnet-v1.0</code>)
 
-| Type         | Contract                                                                    |
-|--------------|-----------------------------------------------------------------------------|
+|   Type       |                                 Contract                                        |
+|:------------:|:-------------------------------------------------------------------------------:|
 | Core         | [`86525623`](https://testnet.explorer.perawallet.app/application/86525623/){target=_blank} |
 | Token Bridge | [`86525641`](https://testnet.explorer.perawallet.app/application/86525641/){target=_blank} |
-| NFT Bridge   | N/A                                                                     |
+| NFT Bridge   | N/A |
 
 ### Local Network Contract
 
-| Type         | Contract |
-|--------------|----------|
+|   Type       | Contract |
+|:------------:|:--------:|
 | Core         | `1004`   |
 | Token Bridge | `1006`   |
 | NFT Bridge   | N/A  |
