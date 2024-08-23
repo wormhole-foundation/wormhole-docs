@@ -48,7 +48,7 @@ You can interact with the Wormhole CLI by typing `worm` and including the `comma
 
 You can also refer to the below options, available with all `worm` commands:
 
-```
+```bash
 Options:
   --help     Show help                                                 [boolean]
   --version  Show version number                                       [boolean]
@@ -142,7 +142,9 @@ The below example generates a token attestation VAA:
 
 Use `parse` to parse a VAA into JSON:
 
-    `worm parse $(worm-fetch-governance 13940208096455381020)`
+```bash
+worm parse $(worm-fetch-governance 13940208096455381020)
+```
 
 This example will fetch governance VAA `13940208096455381020` and print it as JSON: 
 
