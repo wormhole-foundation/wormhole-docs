@@ -7,36 +7,33 @@ description: Explore Wormhole Gateway - a Cosmos-SDK chain for bridging assets i
 
 ## Introduction 
 
-The _Wormhole Gateway_, a Cosmos-SDK chain, is a critical component of the Cosmos ecosystem, bridging non-native assets from several blockchain networks. This integration is essential for guaranteeing seamless interoperability and unifying liquidity across the Cosmos chains, enhancing the functionality and accessibility of decentralized applications (dApps). The Gateway efficiently addresses issues like liquidity fragmentation and complex asset management across chains by enabling digital assets' open and secure flow.
+The _Wormhole Gateway_, a Cosmos-SDK chain, is a critical component of the Cosmos ecosystem, bridging non-native assets from several blockchain networks. This integration is essential for guaranteeing seamless interoperability and unifying liquidity across the Cosmos chains, enhancing the functionality and accessibility of decentralized applications (dApps). By enabling the secure and open flow of digital assets, the Gateway addresses issues like liquidity fragmentation and complex asset management across chains. Leveraging the Inter-Blockchain Communication (IBC) protocol, the Gateway enhances cross-chain communication and asset transfer within the Cosmos ecosystem.
 
 The primary function of the Gateway is to facilitate the movement of digital assets into the Cosmos network, which is crucial for maintaining a cohesive liquidity pool essential for the operation of dApps. Moreover, the Wormhole Gateway integrates with the [Global Accountant](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0011_accountant.md){target=\_blank} to prevent discrepancies in asset tracking and balances, enhancing the integrity and trustworthiness of cross-chain transactions.
 
-Leveraging the Inter-Blockchain Communication (IBC) protocol, the Gateway enables robust and secure interactions across a diverse range of blockchain platforms. The integration of IBC highlights the Gateway's role in building a cohesive environment where assets can flow freely and securely, with consistent liquidity and fewer obstacles typically associated with cross-chain transfers.
-
 Through its core functionalities and strategic use of the IBC protocol, the Wormhole Gateway supports the Cosmos network's infrastructure and significantly contributes to a unified and efficient blockchain ecosystem.
-
-<!--
-Create a ## section that provides an overview of IBC (basically with the content you have here, plus just an introduction sentence or two to what IBC is)
-
-IBC section: 
-## Introduction
-## IBC section (w/ better name haha)
-## Scaling with IBC
--->
 
 ## Inter-Blockchain Communication (IBC)
 
 ### Overview 
 
+The Wormhole Gateway uses the Inter-Blockchain Communication (IBC) protocol to connect with multiple blockchain platforms. This setup helps the Gateway function smoothly by ensuring that assets can be transferred securely and without interruptions across different blockchains. IBC is crucial because it keeps liquidity consistent and removes the usual barriers seen with moving assets from one chain to another.
 
-### IBC
+### IBC's Functional Role
 
-The Wormhole network utilizes the Inter-Blockchain Communication (IBC) protocol, a key component of the Cosmos ecosystem, to facilitate generic message passing. IBC is integral to the Cosmos SDK, enabling chains within this ecosystem to connect and interact seamlessly. The Wormhole Gateway, a Cosmos SDK-based blockchain specifically designed for Wormhole, exemplifies this integration by using IBC to minimize operational overhead and maximize efficiency.
+The Wormhole Gateway utilizes the Inter-Blockchain Communication (IBC) protocol, a vital component of the Cosmos ecosystem, to streamline the transfer of messages across different blockchain networks. This integration is crucial because it allows the Gateway to enable seamless interactions and data sharing among the chains within the Cosmos network. By implementing IBC, the Wormhole Gateway reduces operational complexity and overhead, making sending and receiving messages and transactions across various chains more efficient and cost-effective. This strategic use of IBC exemplifies its role in enhancing the functionality of the Wormhole network and ensuring it operates smoothly within the broader blockchain ecosystem.
 
+The following flow outlines the key steps involved in a cross-chain transaction within the Wormhole network, emphasizing the critical role of the Wormhole Gateway in facilitating secure and seamless communication between non-Cosmos chains and the Cosmos ecosystem.
 
-<!-- 
-This sort of section should go before the design decision-type content in the Scaling with IBC sections. But I would expand on this. It would be nice to add a diagram similar to the NTT architecture diagrams. And at the very least, some text that covers the exact flow until we can get a diagram made. Can you please start mocking something up in Miro to share with the Sp-ce team?
--->
+1. **Message emission on source chain** - a transaction triggers a message on the source chain, captured by the Wormhole Core Contract
+2. **Guardian Network validation** - the Guardian Network validates the message and creates a Verifiable Action Approval (VAA)
+3. **VAA relayed to Gateway** - if the target is a Cosmos chain, the VAA is relayed to the Wormhole Gateway
+4. **Gateway's role in the Cosmos ecosystem** - the Gateway, a Cosmos-SDK chain, receives the VAA and processes it using the IBC protocol. The Gateway ensures the VAA is correctly formatted and securely transmitted to the target Cosmos chain
+5. **IBC-Enabled transmission** - using IBC, the Gateway facilitates the smooth and secure transfer of the VAA within the Cosmos network, ensuring interoperability and consistent asset handling
+6. **Finalization on target Cosmos chain** - the VAA is verified on the target Cosmos chain, enabling the execution of the corresponding transaction or operation
+7. **Global Accountant integration** - throughout the process, the Gateway works with the Global Accountant to maintain accurate asset tracking, ensuring the integrity of cross-chain transactions
+
+<!-- add diagram here -->
 
 The Wormhole Gateway incorporates several key components that support its operations:
 
@@ -44,14 +41,10 @@ The Wormhole Gateway incorporates several key components that support its operat
 - **IBC Shim Contract** - a specialized CosmWasm contract that handles the bridging of assets by translating between the native Wormhole message formats and those used by IBC, effectively linking the Wormhole platform with the broader Cosmos ecosystem
 - **[Token Factory Module](https://github.com/CosmosContracts/juno/tree/v14.1.1/x/tokenfactory){target=\_blank}** - this module, operational on the Wormhole Gateway, is instrumental in creating tokens that represent bridged assets, facilitating their circulation within the Cosmos network
 
-<!-- -->
-
 Utilizing the [Inter-Blockchain Communication (IBC) protocol](https://tutorials.cosmos.network/academy/3-ibc/1-what-is-ibc.html){target=\_blank}, the Wormhole Gateway ensures secure and reliable asset transfers. IBC allows the Gateway to interact smoothly with various blockchain protocols within the Cosmos network, providing a robust framework for:
 
-- **Asset Bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
-- **Security and Integrity** - conducting thorough consistency checks to validate transactions and ensure that asset transfers are executed without discrepancies
-
-<!-- Before diving into these sections, I think it is more important to understand how Gateway works, what the architecture looks like, how messages flow, etc. -->
+- **Asset bridging** - facilitating the conversion and transfer of assets between disparate blockchain systems, thereby broadening their usability and application
+- **Security and integrity** - conducting thorough consistency checks to validate transactions and ensure that asset transfers are executed without discrepancies
 
 ## Scaling with IBC
 
@@ -77,15 +70,15 @@ Using the Wormhole Gateway costs minimal fees and is designed to be as low as po
 
 Required fees: 
 
-- **Source Chain Gas** - users must cover gas fees on the source chain, such as Ethereum, to initiate transfers
-- **Relayer Fee (Source Chain to Gateway)** - there is currently no cost for processing Wormhole messages from the source chain to the Gateway, although this may change in the future
-- **Destination Chain Gas (Non-Cosmos)** - for non-Cosmos destination chains, gas fees must be paid by the relayer or the user in cases of manual redemption
+- **Source chain gas** - users must cover gas fees on the source chain, such as Ethereum, to initiate transfers
+- **Relayer fee (Source chain to Gateway)** - there is currently no cost for processing Wormhole messages from the source chain to the Gateway, although this may change in the future
+- **Destination chain gas (Non-Cosmos)** - for non-Cosmos destination chains, gas fees must be paid by the relayer or the user in cases of manual redemption
 
-Optional Fees: 
+Optional fees: 
 
-- **Gateway Operations** - the Gateway itself does not require gas fees to be paid by users, nor does it have token-priced metering
-- **Relayer Fee (Gateway to Cosmos)** - there are no relayer fees charged for transferring messages from the Gateway to Cosmos chains
-- **Destination Chain (Cosmos)** - IBC relayers cover costs on the destination chain within the Cosmos network
+- **Gateway operations** - the Gateway itself does not require gas fees to be paid by users, nor does it have token-priced metering
+- **Relayer fee (Gateway to Cosmos)** - there are no relayer fees charged for transferring messages from the Gateway to Cosmos chains
+- **Destination chain (Cosmos)** - IBC relayers cover costs on the destination chain within the Cosmos network
 
 
 
