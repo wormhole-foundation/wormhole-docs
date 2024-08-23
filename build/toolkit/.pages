@@ -1,4 +1,4 @@
 title: Toolkit
 nav:
  - index.md
- - 'CLI' : 'toolkit-cli.md'
+ - 'CLI' : 'cli.md'
