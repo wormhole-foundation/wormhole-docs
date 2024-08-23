@@ -10,7 +10,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 !!! note 
 	Please note, Wormhole chain IDs are different than the more commonly referenced EVM [chain IDs](https://eips.ethereum.org/EIPS/eip-155){target=\_blank}, specified in the MainNet and TestNet ID columns.
 
-| Chain Name       | Wormhole Chain Id | MainNet Id                                                      | TestNet Id                                                |
+| Chain Name       | Wormhole Chain ID | MainNet ID                                                      | TestNet ID                                               |
 |------------------|-------------------|-----------------------------------------------------------------|-----------------------------------------------------------|
 | Solana           | 1                 | `Mainnet Beta` - `5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d` | `Devnet` - `EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG` |
 | Ethereum         | 2                 | `1`                                                             | `Goerli` - `5`                                            |
