@@ -553,7 +553,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - [Block Explorer](https://explorer.provenance.io/dashboard){target=_blank}
 - [Developer Docs](https://developer.provenance.io/docs/quick-start/start-here/){target=_blank}
 
-## Wormhole Details
+### Wormhole Details
 
 - Name: `provenance`
 - Chain ID: `4008`
