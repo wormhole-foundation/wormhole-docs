@@ -28,11 +28,7 @@ The following flow outlines the key steps involved in a cross-chain transaction 
 
 ## Inter-Blockchain Communication (IBC)
 
-### Overview 
-
 The Wormhole Gateway employs the [Inter-Blockchain Communication (IBC) protocol](https://tutorials.cosmos.network/academy/3-ibc/1-what-is-ibc.html){target=\_blank} to ensure secure and uninterrupted asset transfers across different blockchains. IBC is essential for maintaining consistent liquidity and removing the typical barriers associated with cross-chain transfers.
-
-### IBC's Functional Role
 
 IBC is central to the Wormhole Gateway's functionality, enabling seamless data and message transfers across blockchain networks. This reduces operational complexity and costs, ensuring the Gateway operates efficiently within the Cosmos ecosystem. By allowing the Gateway to interact smoothly with various blockchain protocols, IBC provides a robust framework for:
 
