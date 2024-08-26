@@ -11,7 +11,7 @@ Wormhole supports several different blockchains and environments. Since many of 
 - [Solana](/build/start-building/supported-networks/solana)
 - [CosmWasm](/build/start-building/supported-networks/cosmwasm)
 - [Algorand](/build/start-building/supported-networks/algorand)
-- [Near](/build/start-building/supported-networks/near)
+- [NEAR](/build/start-building/supported-networks/near)
 - [Aptos](/build/start-building/supported-networks/aptos)
 - [Sui](/build/start-building/supported-networks/sui)
 
@@ -116,8 +116,8 @@ Click on a blockchain's logo to see the relevant chain details.
     </td>
     <td style="vertical-align: top; text-align: center;">
         <a href="/build/start-building/supported-networks/cosmwasm/#cosmoshub">
-            <strong>Cosmoshub</strong><br>
-            <img src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmoshub" style="width:90px; height:auto;">
+            <strong>Cosmos Hub</strong><br>
+            <img src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:auto;">
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
@@ -296,8 +296,8 @@ Click on a blockchain's logo to see the relevant chain details.
     </td>
     <td style="vertical-align: top; text-align: center;">
         <a href="/build/start-building/supported-networks/cosmwasm/#seda">
-            <strong>Seda</strong><br>
-            <img src="/images/build/start-building/supported-networks/seda.webp" alt="Seda" style="width:90px; height:auto;">
+            <strong>SEDA</strong><br>
+            <img src="/images/build/start-building/supported-networks/seda.webp" alt="SEDA" style="width:90px; height:auto;">
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
@@ -356,14 +356,14 @@ Click on a blockchain's logo to see the relevant chain details.
     </td>
     <td style="vertical-align: top; text-align: center;">
         <a href="/build/start-building/supported-networks/evm#xlayer">
-            <strong>Xlayer</strong><br>
-            <img src="/images/build/start-building/supported-networks/xlayer.webp" alt="Xlayer" style="width:90px; height:auto;">
+            <strong>X Layer</strong><br>
+            <img src="/images/build/start-building/supported-networks/xlayer.webp" alt="X Layer" style="width:90px; height:auto;">
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
         <a href="/build/start-building/supported-networks/cosmwasm/#xpla">
-            <strong>Xpla</strong><br>
-            <img src="/images/build/start-building/supported-networks/xpla.webp" alt="Xpla" style="width:90px; height:auto;">
+            <strong>XPLA</strong><br>
+            <img src="/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:auto;">
         </a>
     </td>
 </tr>

@@ -13,7 +13,7 @@ The recommended development tool for EVM environments is [Foundry](https://book.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For EVM chains, a wormhole formatted address is the 20-byte EVM standard address left padded with `0`s. e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For EVM chains, a Wormhole formatted address is the 20-byte EVM standard address left padded with zeroes. e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`
 
 ## Emitter 
 
@@ -37,14 +37,14 @@ Deployed contracts are also available on the [Sepolia](#sepolia) TestNet.
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 |  Safe   |  201  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information,, see [https://www.alchemy.com/overviews/ethereum-commitment-levels](https://www.alchemy.com/overviews/ethereum-commitment-levels){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information,, see [https://www.alchemy.com/overviews/ethereum-commitment-levels](https://www.alchemy.com/overviews/ethereum-commitment-levels){target=_blank}.
 
 === "MainNet"
 
@@ -99,13 +99,13 @@ Besides Ethereum, several other EVM chains are supported.
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
 
 === "MainNet `787`"
@@ -149,13 +149,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 | Level  | Value |
 |:------:|:-----:|
 | Instant| 200   |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
 For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://developer.arbitrum.io/tx-lifecycle){target=_blank}.
 
@@ -244,7 +244,7 @@ For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level   |  Value  |
 |:--------:|:-------:|
@@ -345,14 +345,14 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 |  Safe   |  201  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information, see [https://docs.bnbchain.org/docs/learn/consensus](https://docs.bnbchain.org/docs/learn/consensus){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.bnbchain.org/docs/learn/consensus](https://docs.bnbchain.org/docs/learn/consensus){target=_blank}.
 
 === "MainNet `56`"
 
@@ -401,13 +401,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
 === "MainNet `42220`"
 
@@ -454,13 +454,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
 === "MainNet `250`"
 
@@ -531,7 +531,7 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 ### Ecosystem
 
 - [Website](https://acala.network/karura){target=_blank}
-- Block Explorers: [Subscan](https://karura.subscan.io/){target=_blank} | [Blockscout](https://blockscout.karura.network/){target=_blank}
+- Block Explorers: [Subscan](https://karura.subscan.io/){target=_blank} | [BlockScout](https://blockscout.karura.network/){target=_blank}
 - [Developer Docs](https://wiki.acala.network/){target=_blank}
 
 ### Wormhole Details
@@ -542,13 +542,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information, see [https://wiki.polkadot.network/docs/learn-consensus](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://wiki.polkadot.network/docs/learn-consensus](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}.
 
 === "MainNet `686`"
 
@@ -592,13 +592,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
 === "MainNet `8217`"
 
@@ -642,13 +642,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information, see [https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints){target=_blank}.
 
 === "MainNet `1284`"
 
@@ -684,7 +684,7 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 ### Ecosystem
 
 - [Website](https://neon-labs.org/){target=_blank}
-- Block Explorers: [NeonScan](https://neonscan.org/){target=_blank} | [Blockscout](https://neon.blockscout.com/){target=_blank}
+- Block Explorers: [NeonScan](https://neonscan.org/){target=_blank} | [BlockScout](https://neon.blockscout.com/){target=_blank}
 - [Developer Docs](https://neonevm.org/docs/quick_start){target=_blank}
 
 ### Wormhole Details
@@ -773,13 +773,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information, see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
 
 === "MainNet `10`"
 
@@ -827,13 +827,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
 === "MainNet `137`"
 
@@ -1036,13 +1036,13 @@ Holesky is a TestNet-only chain that can be used as an alternative to Goerli. No
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information, see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://community.optimism.io/docs/developers/bridge/comm-strategies/](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}.
 
 === "MainNet"
 
@@ -1208,13 +1208,13 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
 | Instant |  200  |
 
-If a value is passed that is not in the set above, it's assumed to mean finalized. For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
+If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
 === "MainNet"
 
@@ -1394,7 +1394,7 @@ If a value is passed that is not in the set above, it's assumed to mean finalize
 	| Token Bridge |   N/A    |
 	| NFT Bridge   |   N/A    |
 
-## Xlayer
+## X Layer
 
 ### Ecosystem
 

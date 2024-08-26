@@ -1,19 +1,19 @@
 ---
-title: Near
-description: Learn how to work with Wormhole in the Near ecosystem with tools, address formats, contract details, and finality levels for various environments.
+title: NEAR
+description: Learn how to work with Wormhole in the NEAR ecosystem with tools, address formats, contract details, and finality levels for various environments.
 ---
 
-# Near
+# NEAR
 
-This page includes details for working with Near-environment chains
+This page includes details for working with NEAR-environment chains
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For NEAR-based chains, because NEAR addresses are arbitrary-length strings, a wormhole formatted address is the sha256 hash of the address. E.g., `contract.portalbridge.near` => `0x148410499d3fcda4dcfd68a1ebfcdddda16ab28326448d4aae4d2f0465cdfcb7`.
+Because Wormhole works with many environments, the Wormhole address format is normalized. For NEAR-based chains, because NEAR addresses are arbitrary-length strings, a Wormhole formatted address is the sha256 hash of the address. E.g., `contract.portalbridge.near` => `0x148410499d3fcda4dcfd68a1ebfcdddda16ab28326448d4aae4d2f0465cdfcb7`.
 
 ## Emitter 
 
-The emitter address on NEAR chains is the sha256 digest of the program address string, normalized to wormhole address format.
+The emitter address on NEAR chains is the sha256 digest of the program address string, normalized to Wormhole address format.
 
 ### Ecosystem
 
@@ -29,7 +29,7 @@ The emitter address on NEAR chains is the sha256 digest of the program address s
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |Level|Value|
 |-----|-----|
@@ -37,7 +37,7 @@ The options for [consistencyLevel](../../reference/components/core-contracts.md#
 
 This field may be ignored since the chain provides instant finality.
 
-For more information, see [the Near Consensus docs](https://nomicon.io/ChainSpec/Consensus){target=_blank}.
+For more information, see [the NEAR Consensus docs](https://nomicon.io/ChainSpec/Consensus){target=_blank}.
 
 === "MainNet"
 

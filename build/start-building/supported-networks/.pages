@@ -5,6 +5,6 @@ nav:
  - 'Algorand': 'algorand.md'
  - 'Aptos': 'aptos.md'
  - 'CosmWasm' : 'cosmwasm.md'
- - 'Near' : 'near.md'
+ - 'NEAR' : 'near.md'
  - 'Solana' : 'solana.md'
  - 'Sui' : 'sui.md'

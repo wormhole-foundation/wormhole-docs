@@ -15,7 +15,7 @@ To develop contracts for Solana, you'll need to have the following tools install
 - [Solana CLI tools](https://docs.solana.com/cli/install-solana-cli-tools){target=_blank} - CLI tools for working with Solana
 - [Anchor](https://www.anchor-lang.com/docs/installation){target=_blank} - Smart contract development framework
 
-Install [Wormhole Rust crates](https://lib.rs/crates/wormhole-token-bridge-solana){target=_blank} to interact with Solana onchain programs and token bridge.
+Install [Wormhole Rust crates](https://lib.rs/crates/wormhole-token-bridge-solana){target=_blank} to interact with Solana on-chain programs and Token Bridge.
 
 !!! warning
 	Known issues exist with Solana version 1.15 - downgrade to Solana 1.14.14
@@ -29,7 +29,7 @@ Because Wormhole works with many environments, the Wormhole address format is no
 The emitter address on Solana chains is a Program-Derived Address derived by the application and normalized to the Wormhole address format. 
 
 !!! note 
-	As the application developer, you decide whether this address will remain consistent over time or change. We strongly recommend keeping it consistent.
+	As the application developer, you decide whether this address will remain consistent over time or change. It is strongly recommended that you keep it consistent.
 
 ## Solana
 
@@ -50,7 +50,7 @@ The emitter address on Solana chains is a Program-Derived Address derived by the
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |Level|Value|
 |-----|-----|

@@ -9,13 +9,13 @@ This page includes details for working with CosmWasm environment chains.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For CosmWasm-based chains, this means a wormhole formatted address is the [bech32](https://en.bitcoin.it/wiki/Bech32){target=_blank} format converted to hex. E.g. `xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv` becomes `0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c`.
+Because Wormhole works with many environments, the Wormhole address format is normalized. For CosmWasm-based chains, this means a Wormhole formatted address is the [bech32](https://en.bitcoin.it/wiki/Bech32){target=_blank} format converted to hex. E.g. `xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv` becomes `0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c`.
 
 ## Emitter 
 
-The emitter address on CosmWasm chains is the contract's canonical address, normalized to the wormhole address format. 
+The emitter address on CosmWasm chains is the contract's canonical address, normalized to the Wormhole address format. 
 
-## Cosmoshub
+## Cosmos Hub
 
 ### Ecosystem
 
@@ -57,8 +57,8 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 ### Ecosystem
 
 - [Website](https://evmos.org/){target=_blank}
-- [https://www.mintscan.io/evmos](https://www.mintscan.io/evmos)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/evmos.json)
+- [Mintscan](https://www.mintscan.io/evmos)
+- [Evmos JSON updates](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/evmos.json)
 
 ### Wormhole Details
 
@@ -96,7 +96,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 
 - No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json)
 - No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json)
-- No dev docs, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json)
+- [Kujira JSON updates](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json)
 
 ### Wormhole Details
 
@@ -133,8 +133,8 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 ### Ecosystem
 
 - [Website](https://injective.com/){target=_blank}
-- [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective Testnet Explorer](https://testnet.explorer.injective.network/){target=_blank}
-- [Developer Docs](https://docs.injective.network/){target=_blank} | [Injective Typescript SDK docs](https://docs.ts.injective.network/){target=_blank} | [Injective trading docs](https://docs.trading.injective.network/){target=_blank}
+- [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective TestNet Explorer](https://testnet.explorer.injective.network/){target=_blank}
+- [Developer Docs](https://docs.injective.network/){target=_blank} | [Injective TypeScript SDK docs](https://docs.ts.injective.network/){target=_blank} | [Injective trading docs](https://docs.trading.injective.network/){target=_blank}
 
 ### Wormhole Details
 
@@ -181,7 +181,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - Chain ID: `20`
 - Contract Source: No source file
 
-=== "Mainnet `osmosis-1`"
+=== "MainNet `osmosis-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -315,7 +315,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
     | NFT Bridge   |   N/A    |
 
   
-## Xpla
+## XPLA
 
 ### Ecosystem
 
@@ -406,7 +406,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - Chain ID: `4004`
 - Contract Source: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/celestia.json)
 
-=== "Mainnet `celestia`"
+=== "MainNet `celestia`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -507,7 +507,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
     | NFT Bridge   |   N/A    |
 
   
-## Seda
+## SEDA
 
 ### Ecosystem
 

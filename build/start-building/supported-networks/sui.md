@@ -9,7 +9,7 @@ This page contains details for working with Sui chains.
 
 ## Developer Tools
 
-You can install the Sui dev tools using `cargo install`:
+You can install the Sui development tools using `cargo install`:
 
 ```sh
 cargo install --locked \
@@ -31,7 +31,7 @@ On Sui, the emitter is the object ID of the emitter capability.
 ### Ecosystem
 
 - [Website](https://sui.io/){target=_blank}
-- [Suivision Block Explorer](https://suivision.xyz/){target=_blank} | [Suiscan](https://suiscan.xyz/){target=_blank}
+- [SuiVision Block Explorer](https://suivision.xyz/){target=_blank} | [Suiscan](https://suiscan.xyz/){target=_blank}
 - [Developer Docs](https://docs.sui.io/){target=_blank} | [Faucet](https://docs.sui.io/build/faucet){target=_blank}
 
 ### Wormhole Details
@@ -42,7 +42,7 @@ On Sui, the emitter is the object ID of the emitter capability.
 
 ### Consistency Levels
 
-The options for [consistencyLevel](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
 
 |Level|Value|
 |-----|-----|
