@@ -72,7 +72,7 @@ Required fees:
 
 - **Source chain gas** - users must cover gas fees on the source chain, such as Ethereum, to initiate transfers
 - **Relayer fee (source chain to Gateway)** - there is currently no cost for processing Wormhole messages from the source chain to the Gateway, although this may change in the future
-- **Destination chain gas (Non-Cosmos)** - for non-Cosmos destination chains, gas fees must be paid by the relayer or the user in cases of manual redemption
+- **Destination chain gas (non-Cosmos)** - for non-Cosmos destination chains, gas fees must be paid by the relayer or the user in cases of manual redemption
 
 Optional fees: 
 
