@@ -2,4 +2,5 @@ title: Build Apps
 nav:
  - index.md
  - 'Wormhole SDK': 'wormhole-sdk.md'
+ - queries
  - connect
