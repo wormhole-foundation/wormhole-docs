@@ -10,4 +10,4 @@ The content in this repository is displayed on the Wormhole documentation site, 
 
 ## Contributing
 
-TODO
+**WIP**
