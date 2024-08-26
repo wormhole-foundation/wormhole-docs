@@ -327,7 +327,7 @@ description: This page documents the deployed contract addresses of the Wormhole
 
 ## NFT Bridge
 
-=== "Mainnet"
+=== "MainNet"
 
     | Chain Name       | MainNet Contract Address                                                                                                                                                                                       |
     |------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

@@ -10,7 +10,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 !!! note 
 	Please note, Wormhole chain IDs are different than the more commonly referenced EVM [chain IDs](https://eips.ethereum.org/EIPS/eip-155){target=\_blank}, specified in the MainNet and TestNet ID columns.
 
-| Chain Name       | Wormhole Chain ID | MainNet ID                                                      | TestNet ID                                               |
+| Chain Name       | Wormhole Chain ID | MainNet ID                                                      | TestNet ID                                                |
 |------------------|-------------------|-----------------------------------------------------------------|-----------------------------------------------------------|
 | Solana           | 1                 | `Mainnet Beta` - `5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d` | `Devnet` - `EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG` |
 | Ethereum         | 2                 | `1`                                                             | `Goerli` - `5`                                            |
@@ -25,7 +25,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Acala            | 12                | `787`                                                           | `597`                                                     |
 | Klaytn           | 13                | `8217`                                                          | `Baobab` - `1001`                                         |
 | Celo             | 14                | `42220`                                                         | `Alfajores` - `44787`                                     |
-| Near             | 15                | `mainnet`                                                       | `testnet`                                                 |
+| NEAR             | 15                | `mainnet`                                                       | `testnet`                                                 |
 | Moonbeam         | 16                | `1284`                                                          | `Moonbase-Alphanet` - `1287`                              |
 | Neon             | 17                | `245022934`                                                     | `245022940`                                               |
 | Terra2           | 18                | `phoenix-1`                                                     | `pisco-1`                                                 |
@@ -44,17 +44,17 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Scroll           | 34                | `534352`                                                        | `Sepolia` - `534351`                                      |
 | Mantle           | 35                | `5000`                                                          | `Sepolia` - `5003`                                        |
 | Blast            | 36                | `81457`                                                         | `168587773`                                               |
-| Xlayer           | 37                |                                                                 | `195`                                                     |
+| X Layer          | 37                |                                                                 | `195`                                                     |
 | Linea            | 38                | `59144`                                                         | `59141`                                                   |
 | Berachain        | 39                |                                                                 | `80084`                                                   |
 | Seievm           | 40                |                                                                 |                                                           |
-| Cosmoshub        | 4000              | `cosmoshub-4`                                                   | `theta-testnet-001`                                       |
+| Cosmos Hub       | 4000              | `cosmoshub-4`                                                   | `theta-testnet-001`                                       |
 | Evmos            | 4001              | `evmos_9001-2`                                                  | `evmos_9000-4`                                            |
 | Kujira           | 4002              | `kaiyo-1`                                                       | `harpoon-4`                                               |
 | Neutron          | 4003              | `neutron-1`                                                     | `pion-1`                                                  |
 | Celestia         | 4004              | `celestia`                                                      | `mocha-4`                                                 |
 | Stargaze         | 4005              | `stargaze-1`                                                    |                                                           |
-| Seda             | 4006              |                                                                 | `seda-1-testnet`                                          |
+| SEDA             | 4006              |                                                                 | `seda-1-testnet`                                          |
 | Dymension        | 4007              | `dymension_1100-1`                                              |                                                           |
 | Provenance       | 4008              | `pio-mainnet-1`                                                 |                                                           |
 | Sepolia          | 10002             | `N/A`                                                           | `Sepolia` - `11155111`                                    |
