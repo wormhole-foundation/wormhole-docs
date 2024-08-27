@@ -5,7 +5,7 @@ description: Learn about rate limits in Wormhole NTT by configuring send/receive
 
 ## Introduction
 
-The _Native Token Transfer_ (NTT) framework provides configurable per-chain rate limits for sending and receiving token transfers. Integrators can manage these limits via their own governance processes to quickly adapt to on-chain activity.
+The Native Token Transfer (NTT) framework provides configurable per-chain rate limits for sending and receiving token transfers. Integrators can manage these limits via their own governance processes to quickly adapt to on-chain activity.
 
 If a transfer is rate-limited on the source chain and queueing is enabled via `shouldQueue = true`, the transfer is placed into an outbound queue and can be released after the duration of the rate limit expires.
 
