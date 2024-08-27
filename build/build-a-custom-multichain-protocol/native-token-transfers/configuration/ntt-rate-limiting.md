@@ -20,8 +20,8 @@ Rate limits are replenished every second over a fixed duration. While the defaul
 
 When a transfer exceeds the rate limit, it is queued and it can be released after the set rate limit duration has expired. The sending and receiving queuing behavior is as follows:
 
-- Sending - If an outbound transfer violates rate limits, users can either revert and try again later or queue their transfer. Users must return after the queue duration has expired to complete sending their transfer
-- Receiving - If an inbound transfer violates rate limits, it will be queued. Users or relayers must return after the queue duration has expired to complete receiving their transfer on the destination chain
+- **Sending** - if an outbound transfer violates rate limits, users can either revert and try again later or queue their transfer. Users must return after the queue duration has expired to complete sending their transfer
+- **Receiving** - if an inbound transfer violates rate limits, is held in a queue. Users or relayers must return after the queue duration has expired to complete receiving their transfer on the destination chain
     
 ## Cancel Flows
 
