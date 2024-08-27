@@ -11,8 +11,8 @@ If a transfer is rate-limited on the source chain and queueing is enabled via `s
 
 You can configure the following limits on every chain where NTT is deployed directly using the Manager:
 
-- Sending limit - A single outbound limit for sending tokens from the chain
-- Per-chain receiving limits - For example, allowing `100` tokens to be received from Ethereum, but only 50 tokens to be received from Arbitrum
+- **Sending limit** - a single outbound limit for sending tokens from the chain
+- **Per-chain receiving limits** - the maximum receiving limit, which can be configured on a per-chain basis. For example, allowing `100` tokens to be received from Ethereum, but only 50 tokens to be received from Arbitrum
 
 Rate limits are replenished every second over a fixed duration. While the default duration is 24 hours, the value is configurable at contract creation. Rate-limited transfers on the destination chain are added to an inbound queue with a similar release delay.
 
