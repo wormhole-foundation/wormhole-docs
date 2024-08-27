@@ -165,11 +165,11 @@ The smart contract development environment is effectively the same for all chain
 
 ### Solana is Taking Forever
 
-Due to Solana's architecture, it often takes 25-40min to build the Solana pod. Consider increasing CPU cores assigned to DevNet for a faster build.
+Due to Solana's architecture, it often takes 25-40 minutes to build the Solana pod. Consider increasing CPU cores assigned to DevNet for a faster build.
 
 ### Solana Program Deploy Doesn't Work
 
-Kubernetes doesn't currently allow port forwarding for UDP ports ([Github Issue](https://github.com/kubernetes/kubernetes/issues/47862){target=\_blank}), which is what Solana uses for `solana program deploy`. Instead, we recommend using [Solana Deployer](https://github.com/acheroncrypto/solana-deployer){target=\_blank}. Not only does this deploy programs over regular RPC (thus bypassing UDP port requirements), it's also much faster than `solana program deploy`.
+Kubernetes doesn't currently allow port forwarding for UDP ports ([GitHub Issue](https://github.com/kubernetes/kubernetes/issues/47862){target=\_blank}), which is what Solana uses for `solana program deploy`. Instead, it is recommended to use [Solana Deployer](https://github.com/acheroncrypto/solana-deployer){target=\_blank}. Not only does this deploy programs over regular RPC (thus bypassing UDP port requirements), it's also much faster than `solana program deploy`.
 
 ### How Do I Reset State For a Pod?
 
