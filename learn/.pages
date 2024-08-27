@@ -4,6 +4,7 @@ nav:
  - 'Introduction to Wormhole': 'introduction.md'
  - 'Security': 'security.md'
  - 'Architecture Overview': 'architecture.md'
+ - 'Fast Transfers': 'fast-transfers.md'
  - infrastructure
  - messaging
  - 'Glossary': 'glossary.md'
