@@ -21,7 +21,7 @@ These functions aren't part of the standard ERC-20 interface. The [`INttToken` i
     --8<-- 'code/build/build-a-custom-multichain-protocol/native-token-transfers/deployment-process/INttToken.sol'
     ```
 
-Later on, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
+Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
 
 ## Deploy NTT
 
