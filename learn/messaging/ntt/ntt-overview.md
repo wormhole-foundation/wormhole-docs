@@ -7,7 +7,7 @@ description: Explore Wormhole's Native Token Transfers for flexible cross-chain 
 
 ## Introduction
 
-Wormhole's Native Token Transfers (NTT) is an open-source, flexible, and composable framework for transferring tokens across blockchains. Integrators have complete control over how their tokens that use NTT behave on each chain, including the token standard, metadata, ownership, upgradeability, and custom features.
+Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. Integrators have complete control over how their tokens that use NTT behave on each chain, including the token standard, metadata, ownership, upgrade ability, and custom features.
 
 The framework offers two modes of operation for existing token deployments. In locking mode, the original token supply is preserved on a single chain. In contrast, the burning mode enables the deployment of multichain tokens, distributing the supply across various chains.
 
@@ -19,9 +19,9 @@ Wormhole's Native Token Transfers (NTT) framework offers a comprehensive and fle
 - **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
 - **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
 - **Advanced rate limiting** - inbound and outbound rate limits are configurable per chain and over arbitrary periods, preventing abuse while managing network congestion and allowing for controlled deployments to new chains
-- **Global accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
-- **Access control** - to prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions, such as the pauser role, to a separate address from the owner
-- **Maximum composability** - open-source and extensible for widespread adoption and integration with other protocols
+- **Global Accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
+- **Access control** - to prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions, such as the Pauser role, to a separate address from the owner
+- **Maximum composability** - open source and extensible for widespread adoption and integration with other protocols
 - **Custom attestation** - optionally add external verifiers and configure custom message attestation thresholds
 
 ## Integration Paths

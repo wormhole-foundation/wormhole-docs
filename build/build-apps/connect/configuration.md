@@ -21,7 +21,7 @@ Configure the Wormhole Connect React component by passing a `WormholeConnectConf
 
 ## Examples {: #examples }
 
-Below are some examples of different ways you can configure Connect. See `WormholeConnectConfig` in the below file for a full view of the supported config parameters.
+Below are some examples of different ways you can configure Connect. See `WormholeConnectConfig` in the below file for a full view of the supported configuration parameters.
 
 ??? code "View `WormholeConnectConfig`"
     ```ts
@@ -30,7 +30,7 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
 ### Custom Networks and RPC Endpoints {: #custom-networks-and-rpc-endpoints }
 
-Specify supported networks, tokens, and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you do not provide your own.
+Specify supported networks, tokens, and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you don't provide your own.
 
 ```js
 --8<-- 'code/build/build-apps/connect/configuration/custom-simple.jsx'
@@ -38,7 +38,7 @@ Specify supported networks, tokens, and custom RPC endpoints. Your users may enc
 
 ### Fully Customized Theme {: #fully-customized-theme }
 
-Wormhole Connect offers a high level of customizability that suits and integrates with your application's design, including various options for buttons, backgrounds, popovers, fonts, and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [codeless style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
+Wormhole Connect offers a high level of customizability that suits and integrates with your application's design, including various options for buttons, backgrounds, popovers, fonts, and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [no code style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
 
 ```jsx
 --8<-- 'code/build/build-apps/connect/configuration/custom-full.jsx'
@@ -82,7 +82,7 @@ The following section shows how to add an arbitrary token to your deployment of 
 !!! note
     You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
 
-This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which is not built in by default and provided under the `tokensConfig` key.
+This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which isn't built in by default and provided under the `tokensConfig` key.
 
 See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
@@ -94,9 +94,9 @@ See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connec
 
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
-By default, Connect will offer its complete built-in list of assets, but you can restrict the displayed assets by defining a subset of tokens under `tokens.` The default full list is as follows:
+By default, Connect will offer its complete built-in list of assets, but you can restrict the displayed assets by defining a subset of tokens under `tokens`. The default full list is as follows:
 
-|    Mainnet     |              TestNet               |
+|    MainNet     |              TestNet               |
 |:--------------:|:----------------------------------:|
 |      ETH       |          ETH, ETHsepolia           |
 |      WETH      |         WETH, WETHsepolia          |
@@ -162,7 +162,7 @@ By default, Connect will offer its complete built-in list of routes, but you can
 | wstETHBridge  |       -       |
 |  usdtBridge   |       -       |
 | cosmosGateway | cosmosGateway |
-|     tbtc      |     tbtc      |
+|     tBTC      |     tBTC      |
 
 ### Wallet Connect Project ID  {: #wallet-connect-project-id }
 

@@ -22,7 +22,7 @@ The source code for the Spy is available on [GitHub](https://github.com/wormhole
 
 To start a Spy locally, run the following Docker command:
 
-=== "Testnet"
+=== "TestNet"
 
     ```sh
     docker run --platform=linux/amd64 \
@@ -39,7 +39,7 @@ To start a Spy locally, run the following Docker command:
     --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78    
     ```
 
-=== "Mainnet"
+=== "MainNet"
 
     ```sh
     docker run --platform=linux/amd64 \
@@ -65,6 +65,6 @@ To generate a client for the gRPC service use [this proto spec file](https://git
 
 ## See Also
 
-The [Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank} provides an alternate Spy implementation that is highly available for improved performance and reliability.
+The [Pythnet Beacon](https://github.com/pyth-network/beacon){target=\_blank} provides an alternate Spy implementation that is highly available for improved performance and reliability.
 
 The [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} implements a client and persistence layer for messages received from a Spy subscription.
