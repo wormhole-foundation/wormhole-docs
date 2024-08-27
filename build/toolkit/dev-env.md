@@ -30,7 +30,7 @@ Relying on native tools when possible allows for more rapid prototyping and iter
 For integration to Wormhole and with multiple chains, the simplest option is to use the chains' TestNets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to TestNet tokens and where block times are fast. Find links for TestNet faucets in the [blockchain details section](../../blockchain-environments/environments.md). A developer may prefer standing up a set of local validators instead of using the TestNet. For this option, [Tilt](/build/toolkit/toolkit-tilt) is available to run local instances of all the chains Wormhole supports.
 
 !!! note
-	The variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make it difficult or time-consuming to set up. You may prefer TestNets for the simplest integration testing.
+    The variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make it difficult or time-consuming to set up. You may prefer TestNets for the simplest integration testing.
 
 ### Prepare for Deployment
 
