@@ -34,7 +34,7 @@ Tilt is a good option for developers who need a local development environment an
 === "Cons"
 
     - Relatively high system requirements, but this can be mitigated by disabling components
-	- Most blockchains are 'fresh' and have no contracts by default. Thus, if your contracts have any dependencies, you may have to deploy them yourself or alter the default tilt configuration
+	- Most blockchains are 'fresh' and have no contracts by default. Thus, if your contracts have any dependencies, you may have to deploy them yourself or alter the default Tilt configuration
 	- Spin-up and rebuild times can be slow, which can result in a slow workflow
 
 ## Tilt Installation
@@ -137,7 +137,7 @@ If you're running Tilt in a VM, you'll need to pass in some extra flags to enabl
 tilt up --host=0.0.0.0 -- --webHost=0.0.0.0
 ```
 
-You can now access the Tilt UI at `vm_external_ip:10350`. If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic. Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/main/Tiltfile){target=\_blank}, which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. For example, you can enable blockchains by setting them to true at startup. Note the use of the **--** separator between Tilt command flags and the flags you wish to pass to configure the setup.
+You can now access the Tilt UI at `vm_external_ip:10350`. If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic. Be sure to check out the [`Tiltfile`](https://github.com/wormhole-foundation/wormhole/blob/main/Tiltfile){target=\_blank}, which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. For example, you can enable blockchains by setting them to true at startup. Note the use of the `--` separator between Tilt command flags and the flags you wish to pass to configure the setup.
 
 ```bash
 tilt up -- --algorand --solana
