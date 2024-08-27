@@ -51,13 +51,13 @@ You'll need to have `homebrew` installed on your system. You can install it with
 
 Install Go:
 
-```sh
+```bash
 brew install go
 ```
 
 Install Docker:
 
-```sh
+```bash
 brew install docker
 ```
 
@@ -65,7 +65,7 @@ After installation, go into Docker settings and switch on `kubernetes`. Also con
 
 Install Tilt:
 
-```sh
+```bash
 brew install tilt
 ```
 
@@ -75,7 +75,7 @@ brew install tilt
 
 You can install Go with the following command:
 
-```sh
+```bash
 wget https://go.dev/dl/go1.18.1.linux-amd64.tar.gz &&
 rm -r /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 ```
@@ -92,7 +92,7 @@ If you're using Docker Desktop, you can enable Kubernetes by going into Settings
 
 The alternative to Docker Desktop with Kubernetes is to install [minikube](https://minikube.sigs.k8s.io/docs/start/){target=\_blank}. You can configure minikube as follows:
 
-```sh
+```bash
 minikube start --driver=docker --kubernetes-version=v1.23.3 --cpus=4 --memory=14G --disk-size=10G --namespace=wormhole
 ```
 
@@ -102,7 +102,7 @@ If you reboot your VM you'll need to run the `minikube start` command again befo
 
 You can install Tilt with the following command:
 
-```sh
+```bash
 curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/install.sh | bash
 ```
 
@@ -123,7 +123,7 @@ cd wormhole/ &&
 
 If you've all got prerequisites installed, just clone the Wormhole Core Repository and start Tilt.
 
-```sh
+```bash
 git clone --branch main https://github.com/wormhole-foundation/wormhole.git &&
 cd wormhole &&
 tilt up
