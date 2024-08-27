@@ -90,7 +90,7 @@ If you're using Docker Desktop, you can enable Kubernetes by going into Settings
 
 #### Minikube
 
-The alternative to Docker Desktop with Kubernetes is to install [minikube](https://minikube.sigs.k8s.io/docs/start/). You can configure minikube as follows:
+The alternative to Docker Desktop with Kubernetes is to install [minikube](https://minikube.sigs.k8s.io/docs/start/){target=\_blank}. You can configure minikube as follows:
 
 ```sh
 minikube start --driver=docker --kubernetes-version=v1.23.3 --cpus=4 --memory=14G --disk-size=10G --namespace=wormhole
@@ -113,7 +113,7 @@ This is an experimental, single command setup script.
 !!! warning
     This is only recommended if you're running headless Linux and unable to use Docker Desktop, as you can enable Kubernetes from Docker.
 
-This experimental single command setup script should install dependencies for you on Linux and configure everything properly. If it doesn't work as expected, refer to [standard Linux installation steps above](#linux-instructions).
+This experimental single command setup script should install dependencies for you on Linux and configure everything properly. If it doesn't work as expected, refer to the [standard Linux installation steps above](#linux-instructions).
 
 ```bash
 curl $URL | sh install_linux.sh &&
