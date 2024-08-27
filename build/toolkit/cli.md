@@ -79,7 +79,7 @@ Options:
     --8<-- 'code/build/toolkit/cli/info.txt'
     ```
 
-??? code "Near"
+??? code "NEAR"
     ```bash
     --8<-- 'code/build/toolkit/cli/near.txt'
     ```
