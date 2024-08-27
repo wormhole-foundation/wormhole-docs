@@ -73,7 +73,7 @@ The NTT CLI prints detailed logs and transaction hashes, so you can see exactly 
 
 The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
 
-- `ntt status` to check whether your `deployment.json` file is consistent with what's actually on-chain
+- `ntt status` to check whether your `deployment.json` file is consistent with what is on-chain
 - `ntt pull` to sync your `deployment.json` file with the on-chain configuration
 - `ntt push` to sync the on-chain configuration with local changes made to your `deployment.json` file
 
