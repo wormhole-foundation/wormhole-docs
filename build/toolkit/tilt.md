@@ -137,7 +137,7 @@ If you're running Tilt in a VM, you'll need to pass in some extra flags to enabl
 tilt up --host=0.0.0.0 -- --webHost=0.0.0.0
 ```
 
-You can now access the Tilt UI at `vm_external_ip:10350`. If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic. Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/main/Tiltfile){target=\_blank}, which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. For example, you can enable blockchains by setting them to true at startup. Note the use of the **--** separator between tilt command flags and the flags you wish to pass to configure the setup.
+You can now access the Tilt UI at `vm_external_ip:10350`. If the VM's external IP doesn't work, check firewall and port settings to make sure your VM allows incoming traffic. Be sure to check out the [**Tiltfile**](https://github.com/wormhole-foundation/wormhole/blob/main/Tiltfile){target=\_blank}, which has much of the configuration and arguments for the development environment. It's relatively straightforward to enable and disable components. For example, you can enable blockchains by setting them to true at startup. Note the use of the **--** separator between Tilt command flags and the flags you wish to pass to configure the setup.
 
 ```bash
 tilt up -- --algorand --solana
@@ -153,7 +153,7 @@ All the deployed contract addresses can be found under the "DevNet" section of t
 
 To shut down Tilt, run `tilt down` with the same network flags provided in the `tilt up` command.
 
-```
+```bash
 tilt down -- --solana --algorand
 ```
 
