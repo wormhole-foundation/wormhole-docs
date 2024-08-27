@@ -8,7 +8,7 @@ description: Learn about Tilt, a Wormhole dev environment with a local Kubernete
 [Tilt](https://tilt.dev/){target=\_blank} is part of the official Docker ecosystem. It's a tool which allows developers to easily configure a Kubernetes environment for development.
 
 !!! note
-	Tilt is often referred to as 'Devnet' in the Wormhole ecosystem so any information that is labeled as 'Devnet' also applies to Tilt.
+    Tilt is often referred to as 'Devnet' in the Wormhole ecosystem so any information that is labeled as 'Devnet' also applies to Tilt.
 
 However, in the context of Wormhole, 'Tilt' refers to the development environment used by the [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}. This environment stands up docker images for all the tools necessary to build across multiple blockchains, including:
 
