@@ -9,7 +9,7 @@ The Native Token Transfer (NTT) framework provides configurable per-chain rate l
 
 If a transfer is rate-limited on the source chain and queueing is enabled via `shouldQueue = true`, the transfer is placed into an outbound queue and can be released after the duration of the rate limit expires.
 
-You can configure the following limits on every chain where NTT is deployed directly using the Manager:
+You can configure the following limits on every chain where NTT is deployed directly using the manager:
 
 - **Sending limit** - a single outbound limit for sending tokens from the chain
 - **Per-chain receiving limits** - the maximum receiving limit, which can be configured on a per-chain basis. For example, allowing `100` tokens to be received from Ethereum, but only 50 tokens to be received from Arbitrum
