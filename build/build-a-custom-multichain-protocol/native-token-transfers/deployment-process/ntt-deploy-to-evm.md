@@ -7,7 +7,7 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 
 ## Deploy Your Token and Ensure Compatibility
 
-If your token isn't already deployed, deploy the token contract to the destination or spoke chains.
+If you still need to do so, deploy the token contract to the destination or spoke chains.
 
 Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
 
