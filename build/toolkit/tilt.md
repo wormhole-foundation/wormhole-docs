@@ -10,7 +10,7 @@ description: Learn about Tilt, a Wormhole dev environment with a local Kubernete
 !!! note
     Tilt is often referred to as "DevNet" in the Wormhole ecosystem so any information that is labeled as "DevNet" also applies to Tilt.
 
-However, in the context of Wormhole, 'Tilt' refers to the development environment used by the [Wormhole Core Repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}. This environment stands up docker images for all the tools necessary to build across multiple blockchains, including:
+However, in the context of Wormhole, "Tilt" refers to the development environment used by the [Wormhole Core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}. This environment stands up Docker images for all the tools necessary to build across multiple blockchains, including:
 
 - All the Wormhole-supported blockchains / ecosystems
 - A Guardian node
@@ -111,7 +111,7 @@ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/instal
 This is an experimental, single command setup script. 
 
 !!! warning
-	This is only recommended if you're running headless Linux and unable to use Docker Desktop, as you can enable Kubernetes from Docker.
+    This is only recommended if you're running headless Linux and unable to use Docker Desktop, as you can enable Kubernetes from Docker.
 
 This experimental single command setup script should install dependencies for you on Linux and configure everything properly. If it doesn't work as expected, refer to [standard Linux installation steps above](#linux-instructions).
 
