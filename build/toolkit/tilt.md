@@ -61,7 +61,7 @@ Install Docker:
 brew install docker
 ```
 
-After installation, go into Docker settings and switch ON `kubernetes`. Also configure Docker to have 4 CPUs and about 16GB of RAM.
+After installation, go into Docker settings and switch on `kubernetes`. Also configure Docker to have 4 CPUs and about 16GB of RAM.
 
 Install Tilt:
 
