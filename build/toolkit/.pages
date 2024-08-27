@@ -3,4 +3,3 @@ nav:
  - index.md
  - 'Local Dev Environment' : 'dev-env.md'
  - 'Tilt': 'tilt.md'
- - 'Tooling': 'tooling.md'
