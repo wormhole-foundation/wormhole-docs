@@ -34,7 +34,7 @@ Tilt is a good option for developers who need a local development environment an
 === "Cons"
 
     - Relatively high system requirements, but this can be mitigated by disabling components
-	- Most blockchains are 'fresh' and have no contracts by default. Thus, if your contracts have any dependencies, you may have to deploy them yourself or alter the default Tilt configuration
+	- Most blockchains are "blank slates" and have no contracts by default. Thus, if your contracts have any dependencies, you may have to deploy them yourself or alter the default Tilt configuration
 	- Spin-up and rebuild times can be slow, which can result in a slow workflow
 
 ## Tilt Installation
