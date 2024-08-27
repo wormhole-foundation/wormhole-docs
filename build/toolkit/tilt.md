@@ -82,7 +82,7 @@ rm -r /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 
 #### Install Docker Desktop 
 
-If you're using Linux with a window manager, it's highly recommended to install Docker Desktop since it comes with Kubernetes built in and you won't need to download `minikube`. It's recommended to have at least 4 CPUs and 16GB RAM dedicated to Docker. Also, make absolutely sure that you set up Docker as a non-root user. You can refer to [this list of Docker installation methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods){target=\_blank}.
+If you're using Linux with a window manager, it's highly recommended to install Docker Desktop since it comes with Kubernetes built in and you won't need to download minikube. It's recommended to have at least 4 CPUs and 16GB RAM dedicated to Docker. Also, make absolutely sure that you set up Docker as a non-root user. You can refer to [this list of Docker installation methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods){target=\_blank}.
 
 If you're using Docker Desktop, you can enable Kubernetes by going into Settings > Kubernetes and checking the checkbox to enable Kubernetes.
 
@@ -96,7 +96,7 @@ The alternative to Docker Desktop with Kubernetes is to install [minikube](https
 minikube start --driver=docker --kubernetes-version=v1.23.3 --cpus=4 --memory=14G --disk-size=10G --namespace=wormhole
 ```
 
-If you reboot your VM you'll need to run the `minikube start` command again before you bring up tilt.
+If you reboot your VM you'll need to run the `minikube start` command again before you bring up Tilt.
 
 #### Install Tilt
 
