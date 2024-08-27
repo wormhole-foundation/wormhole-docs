@@ -180,7 +180,7 @@ Running this command generates the following output:
 --8<-- 'code/build/toolkit/cli/info-response.txt'
 ```
 
-### Additional Info Demos
+### Additional Info Examples
 
 You can get the contract address for a module as follows:
 
