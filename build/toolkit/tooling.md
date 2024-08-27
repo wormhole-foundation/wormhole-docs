@@ -5,7 +5,7 @@ description: This page lists key dev tools, including the WormholeScan Explorer,
 
 # Wormhole Tooling
 
-Regardless of the development environment that you use, there are a few Wormhole-specific tools you should know about.
+Regardless of your development environment, there are a few Wormhole-specific tools you should know about.
 
 ## Wormhole Explorer
 
@@ -13,7 +13,7 @@ Regardless of the development environment that you use, there are a few Wormhole
 
 ## Wormhole Core Repository
 
-Most developers find it useful to clone the [Wormhole Core repository](https://github.com/wormhole-foundation/wormhole/tree/main/){target=\_blank}. This repository provides the DevNet Tilt environment, plenty of useful code examples and tests, and some utilities that don't have an official release package.
+Most developers find it helpful to clone the [Wormhole Core repository](https://github.com/wormhole-foundation/wormhole/tree/main/){target=\_blank}. This repository provides the DevNet Tilt environment, plenty of practical code examples and tests, and some utilities that don't have an official release package.
 
 ## Wormhole CLI Tool
 
@@ -29,7 +29,7 @@ The [Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/tree/main
 
 ## Wormhole SDK Docs
 
-The [Wormhole SDK](#) is a TypeScript SDK distributed on npm. It can greatly aid in writing frontend code for cross-chain applications and utilizing the Wormhole Token Bridge directly.
+The [Wormhole SDK](#) is a TypeScript SDK distributed on npm. It can significantly aid in writing frontend code for cross-chain applications and utilizing the Wormhole Token Bridge directly.
 
 ## Wormhole API Docs
 
