@@ -1,8 +1,0 @@
-# Set scanner API Keys as environment variables
-export SEPOLIA_SCAN_API_KEY=INSERT_ETHERSCAN_SEPOLIA_API_KEY
-export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
-
-# Add each chain
-# The contracts will be automatically verified using the scanner API keys above
-ntt add-chain Sepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
-ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
