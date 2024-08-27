@@ -159,19 +159,19 @@ tilt down -- --solana --algorand
 
 ## FAQ
 
-### Where are Fantom/Celo/Polygon/other EVM chains?
+### Where are Fantom, Celo, Polygon, and Other EVM Chains?
 
 The smart contract development environment is effectively the same for all chains that support EVM. For changes in gas costs and transaction times, consider testing contract logic on DevNet and then using TestNet environments to get chain-specific answers.
 
-### Solana is taking forever
+### Solana is Taking Forever
 
 Due to Solana's architecture, it often takes 25-40min to build the Solana pod. Consider increasing CPU cores assigned to DevNet for a faster build.
 
-### Solana program deploy doesn't work
+### Solana Program Deploy Doesn't Work
 
 Kubernetes doesn't currently allow port forwarding for UDP ports ([Github Issue](https://github.com/kubernetes/kubernetes/issues/47862){target=\_blank}), which is what Solana uses for `solana program deploy`. Instead, we recommend using [Solana Deployer](https://github.com/acheroncrypto/solana-deployer){target=\_blank}. Not only does this deploy programs over regular RPC (thus bypassing UDP port requirements), it's also much faster than `solana program deploy`.
 
-### How do I reset state for a pod?
+### How Do I Reset State For a Pod?
 
 If you want to iterate quickly and don't want to bring Tilt down and back up, you can reset a pod's state by clicking the 🔄 button next to the pod name in the Tilt UI.
 
