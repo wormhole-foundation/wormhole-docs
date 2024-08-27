@@ -22,7 +22,7 @@ Build and install the CLI tool:
 make install
 ```
 
-This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. To use `worm,` set up `$HOME/.wormhole/.env` with your private keys, based on `.env.sample` in this folder.
+This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. To use `worm`, set up `$HOME/.wormhole/.env` with your private keys, based on `.env.sample` in this folder.
 
 ## Usage
 
