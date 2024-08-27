@@ -7,7 +7,7 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 
 ## Deploy Your Token and Ensure Compatibility
 
-If your token isn't already deployed, deploy the token contract to the destination or spoke chains.
+If you still need to do so, deploy the token contract to the destination or spoke chains.
 
 Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
 
@@ -21,7 +21,7 @@ These functions aren't part of the standard ERC-20 interface. The [`INttToken` i
     --8<-- 'code/build/build-a-custom-multichain-protocol/native-token-transfers/deployment-process/INttToken.sol'
     ```
 
-Later on, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
+Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
 
 ## Deploy NTT
 
@@ -58,7 +58,7 @@ Add each chain you'll be deploying to. The following example demonstrates config
 --8<-- 'code/build/build-a-custom-multichain-protocol/native-token-transfers/deployment-process/initialize.txt'
 ```
 
-While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you would like to skip contract verification.
+While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
 
 The `ntt add-chain` command takes the following parameters:
 
@@ -73,7 +73,7 @@ The NTT CLI prints detailed logs and transaction hashes, so you can see exactly 
 
 The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
 
-- `ntt status` to check whether your `deployment.json` file is consistent with what's actually on-chain
+- `ntt status` to check whether your `deployment.json` file is consistent with what is on-chain
 - `ntt pull` to sync your `deployment.json` file with the on-chain configuration
 - `ntt push` to sync the on-chain configuration with local changes made to your `deployment.json` file
 
