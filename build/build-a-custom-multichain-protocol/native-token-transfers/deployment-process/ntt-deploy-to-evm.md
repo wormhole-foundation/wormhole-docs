@@ -58,7 +58,7 @@ Add each chain you'll be deploying to. The following example demonstrates config
 --8<-- 'code/build/build-a-custom-multichain-protocol/native-token-transfers/deployment-process/initialize.txt'
 ```
 
-While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you would like to skip contract verification.
+While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
 
 The `ntt add-chain` command takes the following parameters:
 
