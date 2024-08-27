@@ -12,7 +12,7 @@ description: Learn about Tilt, a Wormhole dev environment with a local Kubernete
 
 However, in the context of Wormhole, "Tilt" refers to the development environment used by the [Wormhole Core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}. This environment stands up Docker images for all the tools necessary to build across multiple blockchains, including:
 
-- All the Wormhole-supported blockchains / ecosystems
+- All the Wormhole-supported blockchains and ecosystems
 - A Guardian node
 - Relayers
 - Databases, Redis
