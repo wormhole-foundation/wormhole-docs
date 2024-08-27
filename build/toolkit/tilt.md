@@ -177,12 +177,12 @@ If you want to iterate quickly and don't want to bring Tilt down and back up, yo
 
 ## Contracts and Accounts
 
-The DevNet environment deploys the core layer and token bridge to each of the chains at the same addresses every time. It also provides specific wallets with funds.
+The DevNet environment deploys the core layer and Token Bridge to each of the chains at the same addresses every time. It also provides specific wallets with funds.
 
 ## Default Ports
 
 | Service            | Port |
-| ------------------ | ---- |
+|:------------------:|:----:|
 | Guardian REST      | 7071 |
 | Guardian gRPC Port | 7070 |
 | Eth0 RPC           | 8545 |
