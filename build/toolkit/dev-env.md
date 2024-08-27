@@ -45,7 +45,7 @@ If you'd like to set up a local validator environment, follow the setup guide fo
 
 ### TestNet
 
-When doing integration testing on TestNets, remember that there is a single Guardian node watching for transactions on various test networks. Because TestNet only has a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on MainNet, where 19 Guardians are watching for transactions. The TestNet contract addresses are available on the page for each [environment](../../blockchain-environments/environments.md). The TestNet Guardian RPC configuration is available on the [SDK page](../sdk-docs/#testnet-guardian-rpc).
+When doing integration testing on TestNets, remember that there is a single Guardian node watching for transactions on various test networks. Because TestNets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on MainNet, where 19 Guardians are watching for transactions. The TestNet contract addresses are available on the page for each [environment](../../blockchain-environments/environments.md). The TestNet Guardian RPC configuration is available on the [SDK page](../sdk-docs/#testnet-guardian-rpc).
 
 ### MainNet
 
