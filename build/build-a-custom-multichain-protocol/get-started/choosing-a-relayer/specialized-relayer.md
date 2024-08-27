@@ -7,7 +7,7 @@ description: Learn about specialized relayers, which are purpose-built component
 
 ![Specialized Relayer](/images/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/specialized-relayer-1.webp)
 
-Wormhole is compatible with many [ecosystems](/build/start-building/supported-networks) and integration is straight forward.
+Wormhole is compatible with many [ecosystems](/build/start-building/supported-networks) and integration is straightforward.
 
 ## On-Chain
 
@@ -53,7 +53,7 @@ The way a message is received and handled depends on the environment.
     --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/receiveMessageEVM.sol'
     ```
 
-    More can be found details in [the Hello World example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/src/01\_hello\_world/HelloWorld.sol){target=\_blank}.
+    More details in [the Hello World example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/src/01\_hello\_world/HelloWorld.sol){target=\_blank}.
 
 === "Solana"
 
@@ -63,16 +63,16 @@ The way a message is received and handled depends on the environment.
     --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/receiveMessageSolana.rs'
     ```
 
-    More details can be found in [the Hello World Example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/solana/programs/01\_hello\_world/src/lib.rs){target=\_blank}.
+    More details are available in [the Hello World Example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/solana/programs/01\_hello\_world/src/lib.rs){target=\_blank}.
 
 
 In addition to environment specific checks that should be performed, a contract should take care to check other [fields in the body](/learn/infrastructure/vaas/) including:
 
 - Emitter: Is this coming from an emitter address and chain id I expect? Typically contracts will provide a method to register a new emitter and check the incoming message against the set of emitters it trusts.
 - Sequence: Is this the sequence number I expect? How should I handle out of order deliveries?
-- Consistency Level: For the chain this message came from, is the [consistency level](/build/reference/consistency-levels/) enough to guarantee the transaction wont be reverted after I take some action?
+- Consistency Level: For the chain this message came from, is the [consistency level](/build/reference/consistency-levels/) enough to guarantee the transaction will not be reverted after taking some action?
 
-Outside of body of the VAA, but also relevant, is the digest of the VAA which can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application specific, there may be other elements to check to ensure safety.
+Outside of the body of the VAA, but also relevant, is the digest of the VAA which can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application specific, there may be other elements to check to ensure safety.
 
 ## Off-Chain
 
@@ -84,7 +84,7 @@ After enough Guardians have signed the message (at least a two thirds + 1 majori
 
 A relayer is needed to deliver the VAA containing the message to the target chain. When the relayer is written specifically for a custom application, it's referred to as a Specialized Relayer.
 
-A specialized relayer might be as simple as an in browser process that polls the API for the availability of a VAA after submitting a transaction and delivers it to the target chain. It might also be implemented with a [Spy](/learn/infrastructure/spy/) coupled with some daemon listening for VAAs from a relevant `chainID` and `emitter` then taking action when one is observed.
+A specialized relayer might be as simple as an in-browser process that polls the API for the availability of a VAA after submitting a transaction and delivers it to the target chain. It might also be implemented with a [Spy](/learn/infrastructure/spy/) coupled with some daemon listening for VAAs from a relevant `chainID` and `emitter` then taking action when one is observed.
 
 #### Simple Relayer
 
