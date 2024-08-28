@@ -37,7 +37,7 @@ To send a message, regardless of the environment or chain, the core contract is 
 
     More details are available in the [Hello World example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/solana/programs/01_hello_world/src/lib.rs){target=\_blank}.
 
-Once the message is emitted from the core contract, the [Guardian Network](/learn/infrastructure/guardians/) will observe the message and sign the digest of an Attestation [VAA](/learn/infrastructure/vaas/). We'll discuss this in more depth in the [Off-Chain](#off-chain) section below.
+Once the message is emitted from the core contract, the [Guardian Network](/learn/infrastructure/guardians/) will observe the message and sign the digest of an Attestation [VAA](/learn/infrastructure/vaas/). This will be discussed in more depth in the [Off-Chain](#off-chain) section below.
 
 VAAs are [multicast](/learn/messaging/core-contracts/#multicast) by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 
@@ -88,13 +88,13 @@ A specialized relayer might be as simple as an in-browser process that polls the
 
 #### Simple Relayer
 
-Regardless of the environment, to get the VAA we intend to relay, we need:
+Regardless of the environment, to get the VAA you intend to relay, you need:
 
 1. The `emitter` address
-2. The `sequence` id of the message we're interested in
+2. The `sequence` id of the message you're interested in
 3. The `chainId` for the chain that emitted the message
 
-With these three components, we're able to uniquely identify a VAA and fetch it from the API.
+With these three components, you're able to uniquely identify a VAA and fetch it from the API.
 
 #### Fetching the VAA
 
@@ -104,7 +104,7 @@ Using the `getSignedVAAWithRetry` function provided in the [SDK](/build/build-ap
 --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/getVAA.ts'
 ```
 
-Once we have the VAA, the delivery method is chain-dependent.
+Once you have the VAA, the delivery method is chain-dependent.
 
 === "EVM"
 
@@ -115,6 +115,8 @@ Once we have the VAA, the delivery method is chain-dependent.
     ```
 
 === "Solana"
+
+    On Solana, the VAA is first posted to the core bridge, and then a custom transaction is prepared to process and validate the VAA. 
 
     ```ts
     --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/deliverVAASolana.ts'
