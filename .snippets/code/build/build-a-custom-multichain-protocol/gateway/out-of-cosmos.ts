@@ -9,7 +9,7 @@ const memo = JSON.stringify({
   gateway_ibc_token_bridge_payload: {
     gateway_transfer: {
       chain: 0, // Chain ID of receiver
-      recipient: 'INSERT-RECEIVER-ADDRESS',
+      recipient: 'INSERT_RECEIVER_ADDRESS',
       fee: 0, // Fee to cover transfer
       nonce: 0,
     },
