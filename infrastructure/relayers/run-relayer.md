@@ -115,7 +115,7 @@ The last line in the simple example runs `await app.listen()`, which starts the 
 
 This will run until the process is killed or encounters an unrecoverable error. To gracefully shut down the relayer, call `app.stop()`.
 
-## Resources
+## Source Code
 
 The source code for this example is available in the [`relayer-engine` repository](https://github.com/wormhole-foundation/relayer-engine/blob/main/examples/simple/src/app.ts){target=\_blank}.
 
