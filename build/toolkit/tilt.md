@@ -26,16 +26,16 @@ Tilt is a good option for developers who need a local development environment an
 
 === "Pros"
 
-	- Out-of-the-box support for the many components needed to develop across the heterogeneous blockchain spaces
-	- Consistent development environment, where contracts deploy deterministically, and everything is already linked up
-	- Ability to easily enable or disable components as needed
-	- Regularly updated as new components join the Wormhole ecosystem
+    - Out-of-the-box support for the many components needed to develop across the heterogeneous blockchain spaces
+    - Consistent development environment, where contracts deploy deterministically, and everything is already linked up
+    - Ability to easily enable or disable components as needed
+    - Regularly updated as new components join the Wormhole ecosystem
 
 === "Cons"
 
     - Relatively high system requirements, but this can be mitigated by disabling components
-	- Most blockchains are "blank slates" with no contracts deployed. Thus, if your contracts have any dependencies, you may have to deploy them yourself or alter the default Tilt configuration
-	- Spin-up and rebuild times can be slow, which can result in a slow workflow
+    - Most blockchains are "blank slates" with no contracts deployed. Thus, if your contracts have any dependencies, you may have to deploy them yourself or alter the default Tilt configuration
+    - Spin-up and rebuild times can be slow, which can result in a slow workflow
 
 ## Tilt Installation
 
