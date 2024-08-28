@@ -122,7 +122,7 @@ Once you have the VAA, the delivery method is chain-dependent.
     --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/deliverVAASolana.ts'
     ```
 
-See the [Specialized Relayer Tutorial](#) for a detailed walkthrough.
+See the [Specialized Relayer Tutorial](#) for a detailed guide.
 
 ## Reference
 
