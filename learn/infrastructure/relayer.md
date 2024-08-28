@@ -19,7 +19,7 @@ There are three primary types of relayers discussed:
 
 This section highlights the crucial principles underpinning the operation and handling of relayers within the Wormhole network.
 
-Relayers are fundamentally not trusted entities within the network. This means that while they don't require your trust, they shouldn't be trusted implicitly. They function as delivery mechanisms, transporting VAAs from their source to their destination.
+Relayers are fundamentally trustless entities within the network. This means that while they don't require your trust, they shouldn't be trusted implicitly. They function as delivery mechanisms, transporting VAAs from their source to their destination.
 
 Key characteristics of VAAs include:
 
