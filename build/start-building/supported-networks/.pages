@@ -1,0 +1,10 @@
+title: Supported Networks
+nav:
+ - index.md
+ - 'EVM': 'evm.md'
+ - 'Algorand': 'algorand.md'
+ - 'Aptos': 'aptos.md'
+ - 'CosmWasm' : 'cosmwasm.md'
+ - 'NEAR' : 'near.md'
+ - 'Solana' : 'solana.md'
+ - 'Sui' : 'sui.md'

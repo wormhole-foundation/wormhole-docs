@@ -1,0 +1,9 @@
+worm recover INSERT_DIGEST INSERT_SIGNATURE
+
+Positionals:
+  digest     digest                                                     [string]
+  signature  signature                                                  [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
