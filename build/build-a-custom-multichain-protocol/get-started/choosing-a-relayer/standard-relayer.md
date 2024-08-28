@@ -62,7 +62,7 @@ Some implementation details should be considered during development to ensure sa
 - Calling `parseAndVerify` on any additional VAAs
 - Replay protection
 - Message Ordering (No guarantees on order of messages delivered)
-- Forwarding and Call Chaining
+- Forwarding and call chaining
 - Refunding overpayment of `gasLimit`
 - Refunding overpayment of value sent
 
