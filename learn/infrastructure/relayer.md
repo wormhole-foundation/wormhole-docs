@@ -7,7 +7,7 @@ description: Discover the role of relayers in the Wormhole network, including cl
 
 This documentation provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating cross-chain processes.
 
-Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](/learn/infrastructure/vaas/){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only liveness, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
+Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](/learn/infrastructure/vaas/){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only availability, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
 
 There are three primary types of relayers discussed:
 
@@ -19,7 +19,7 @@ There are three primary types of relayers discussed:
 
 This section highlights the crucial principles underpinning the operation and handling of relayers within the Wormhole network.
 
-Relayers are fundamentally untrusted entities within the network. This means that while they don't require your trust, they shouldn't be trusted implicitly. They function as delivery mechanisms, transporting VAAs from their source to their destination.
+Relayers are fundamentally trustless entities within the network. This means that while they don't require your trust, they shouldn't be trusted implicitly. They function as delivery mechanisms, transporting VAAs from their source to their destination.
 
 Key characteristics of VAAs include:
 
@@ -28,9 +28,9 @@ Key characteristics of VAAs include:
 - Verifiability by any entity or any Wormhole Core Contract
 - As a result of these characteristics, anyone can pick up a VAA and deliver it anywhere, but no one can alter the VAA content without invalidating the signatures
 
-When designing contracts, it's crucial to only trust information contained within your contract or a VAA. Relying on information from a relayer could expose you to untrusted input attacks.
+When designing contracts, it's crucial to only trust information contained within your contract or a VAA. Relying on information from a relayer could expose you to input attacks.
 
-Advanced strategies can involve relayers performing untrusted off-chain computation passed into the destination contract. These strategies can optimize gas costs but also create attack vectors if not used correctly.
+Advanced strategies can involve relayers performing trustless off-chain computation passed into the destination contract. These strategies can optimize gas costs but also create attack vectors if not used correctly.
 
 In summary, the design of a relayer should ensure that there's a single, deterministic way to process messages in your protocol. In an optimally designed protocol, relayers should have a "correct" implementation, mirroring "crank turner" processes used elsewhere in blockchain.
 
@@ -66,7 +66,7 @@ Specialized relayers are purpose-built components within the Wormhole protocol, 
 
 **Key Features**
 
-- **Optimization** - capable of performing untrusted off-chain computations which can optimize gas costs
+- **Optimization** - capable of performing trustless off-chain computations which can optimize gas costs
 - **Customizability** - allows for specific strategies like batching, conditional delivery, multi-chain deliveries, and more
 - **Incentive structure** - developers have the freedom to design an incentive structure suitable for their application
 - **Enhanced UX** - the ability to retrieve a VAA from the Guardian Network and perform an action on the target chain using the VAA on behalf of the user can simplify the user experience
@@ -83,11 +83,11 @@ There are two main methods of setting up a specialized relayer:
 
 **Considerations**
 
-Remember, despite their name, specialized relayers still need to be considered untrusted. VAAs are public and can be submitted by anyone, so developers should not rely on off-chain relayers to perform any computation considered "trusted."
+Remember, despite their name, specialized relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
 
 - Development work and hosting of relayers are required
 - The fee-modeling can become complex, as relayers are responsible for paying target chain fees
-- Relayers are responsible for liveness, adding dependency for the cross-chain application
+- Relayers are responsible for availability, adding dependency for the cross-chain application
 
 ## Standard Relayers
 

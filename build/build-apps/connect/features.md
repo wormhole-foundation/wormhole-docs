@@ -75,12 +75,12 @@ This route appears if all of the following conditions are satisfied:
 - Both the origin and destination chains support the ETH Bridge
 - The selected token is native ETH, wstETH, or canonical wETH
 
-### Gas Drop Off {: #gas-dropoff}
+### Gas Drop Off {: #gas-drop-off}
 
 A relayer can drop off some gas tokens on the destination chain by swapping some of the assets transferred to the native gas token. This is useful if the user wishes to transfer assets to a chain where they don't already have gas. This way, they don't need to onboard into the ecosystem from a centralized exchange.
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support gas drop-off
+- Both the origin and destination chains support gas drop off
 - An automatic route is selected
 - The relayer accepts the selected token to swap into the gas token
