@@ -61,7 +61,7 @@ Some implementation details should be considered during development to ensure sa
 - Checking for expected emitter
 - Calling `parseAndVerify` on any additional VAAs
 - Replay protection
-- Message Ordering (No guarantees on order of messages delivered)
+- Message ordering (No guarantees on order of messages delivered)
 - Forwarding and call chaining
 - Refunding overpayment of `gasLimit`
 - Refunding overpayment of value sent
