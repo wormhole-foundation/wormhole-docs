@@ -2,5 +2,7 @@ title: Build
 nav:
  - index.md
  - start-building
- - reference
  - build-apps
+ - build-a-custom-multichain-protocol
+ - toolkit
+ - reference
