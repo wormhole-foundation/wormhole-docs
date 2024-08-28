@@ -1,0 +1,18 @@
+worm near INSERT_COMMAND
+
+Commands:
+  worm near contract-update <file>  Submit a contract update using our specific
+                                    APIs
+  worm near deploy <file>           Submit a contract update using near APIs
+
+Options:
+      --help      Show help                                            [boolean]
+      --version   Show version number                                  [boolean]
+  -m, --module    Module to query  [choices: "Core", "NFTBridge", "TokenBridge"]
+  -n, --network   Network   [required] [choices: "mainnet", "testnet", "devnet"]
+      --account   Near deployment account                    [string] [required]
+      --attach    Attach some near                                      [string]
+      --target    Near account to upgrade                               [string]
+      --mnemonic  Near private keys                                     [string]
+      --key       Near private key                                      [string]
+  -r, --rpc       Override default rpc endpoint url                     [string]

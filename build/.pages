@@ -3,5 +3,6 @@ nav:
  - index.md
  - start-building
  - reference
+ - toolkit
  - build-apps
  - build-a-custom-multichain-protocol
