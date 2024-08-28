@@ -14,7 +14,7 @@ The Standard Relayer provides a mechanism for a contract on one chain to send a 
 
 ## Tutorials
 
-The following tutorials demonstrate the use of the Standard Relayer:
+The following tutorials demonstrate the use of a standard relayer:
 
  - [Hello Wormhole](#) - A tutorial that covers message passing across EVM environments 
  - [Hello Token](#) - A tutorial that covers token transfer across EVM environments
