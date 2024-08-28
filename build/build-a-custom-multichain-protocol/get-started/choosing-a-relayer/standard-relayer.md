@@ -7,7 +7,7 @@ description: Learn about the standard relayer configuration for seamless cross-c
 
 ![Standard Relayer](/images/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/standard-relayer/standard-relayer-1.webp)
 
-The Standard Relayer provides a mechanism for a contract on one chain to send a message to a contract on a different chain without requiring the developer to deal with any off-chain deployments.
+A standard relayer provides a mechanism for a contract on one chain to send a message to a contract on a different chain without requiring the developer to deal with any off-chain deployments.
 
 !!! note
     The Standard Relayer feature is currently limited to EVM environments. The complete list of EVM environment blockchains is on the [Supported Networks page](/build/start-building/supported-networks).
