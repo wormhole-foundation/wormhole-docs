@@ -1,6 +1,8 @@
 ---
 title: Gateway Onboarding Instructions
-description: Explore Wormhole's Native Token Transfers architecture, which covers components, message flow, rate limiting, and custom transceivers.
+description: Guide for Cosmos chain developers to connect to Wormhole Gateway, enabling Ethereum-to-Cosmos bridging via governance proposals, IBC setup, and UI integration
+
+Learn how to onboard your Cosmos chain to Wormhole Gateway, enabling Ethereum-to-Cosmos bridging via governance proposals, IBC setup, and UI integration
 ---
 
 # Wormhole Gateway Onboarding Instructions
