@@ -34,7 +34,7 @@ This page is for any Cosmos chain developer who wants to enable bridging from Ga
         1. `Trust_threshold` should be 2/3.
         2. `Trusting_period` should be 2/3 of the unbonding period of your chain
     2. Please see the [Wormchain Syncing docs](https://github.com/wormhole-foundation/wormhole/blob/main/wormchain/syncing.md){target=\_blank} to learn how to set up your own Wormhole Gateway node to connect your IBC relayer to. Alternatively, you can browse and connect to available public nodes on the [Cosmos chain registry](https://github.com/cosmos/chain-registry/blob/master/gateway/chain.json){target=\_blank}
-    2. Below, you'll find an example IBC relayer config for Wormhole Gateway
+    2. Below, you'll find an example IBC relayer configuration for Wormhole Gateway
 
     ??? code "View example IBC Relayer config for Wormhole Gateway"
         ```toml
