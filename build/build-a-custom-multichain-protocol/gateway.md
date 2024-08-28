@@ -15,7 +15,7 @@ Integrating with Wormhole Gateway is straightforward and can be achieved with ju
 
 - For Transfers from an external chain to any supported Cosmos Chain, see [Into Cosmos](#into-cosmos)
 - For Transfers from any supported Cosmos Chain to an external chain, see [Out of Comsos](#out-of-cosmos)
-- For Transfers between any supported Cosmos Chains, see [Between Cosmos Chains](#between-cosmos-chains)
+- For Transfers between any supported Cosmos Chains, see [between Cosmos chains](#between-cosmos-chains)
 
 ### Into Cosmos
 
