@@ -93,7 +93,7 @@ Participating in the Fast Transfers protocol offers several advantages for solve
 
 ### Liquidity Fragmentation
 
-One of the significant challenges in cross-chain asset transfers is liquidity fragmentation. This issue arises primarily due to the use of wrapped tokens, such as those facilitated by the Wormhole token bridge. When transferring assets like USDC across different blockchain networks, the process often results in the creation of multiple versions of the same token on various chains. For example, transferring native USDC from Solana and Arbitrum to Sui could result in two different tokens being created on Sui, leading to fragmented liquidity pools.
+One of the significant challenges in cross-chain asset transfers is liquidity fragmentation. This issue arises primarily due to wrapped tokens, such as those facilitated by the Wormhole Token Bridge. Transferring assets like USDC across different blockchain networks often results in creating multiple versions of the same token on various chains. For example, transferring native USDC from Solana and Arbitrum to Sui could result in creating two different tokens on Sui, leading to fragmented liquidity pools.
 
 This fragmentation creates inefficiencies in the market, as liquidity is scattered across multiple versions of the same token rather than being concentrated in a single, cohesive pool. This complicates liquidity management and makes it more challenging for users and developers to move assets across chains without encountering delays, increased costs, or the risk of slippage.
 
