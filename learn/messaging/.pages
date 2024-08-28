@@ -1,7 +1,6 @@
 title: Messaging
 nav:
  - index.md
- - 'Overview': 'overview.md'
  - 'Core Contracts': 'core-contracts.md'
  - ntt
  - 'Token and NFT Bridge': 'token-nft-bridge.md'

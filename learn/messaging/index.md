@@ -1,6 +1,6 @@
 ---
 title: Messaging Protocols
-description: This section introduces the core messaging protocols that powers seamless cross-chain communication and asset transfer within the Wormhole ecosystem.
+description: This section introduces the core messaging protocols that power seamless cross-chain communication and asset transfer within the Wormhole ecosystem.
 ---
 
 # Messaging Protocols
