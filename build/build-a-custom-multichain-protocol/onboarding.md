@@ -1,8 +1,6 @@
 ---
 title: Gateway Onboarding Instructions
-description: Guide for Cosmos chain developers to connect to Wormhole Gateway, enabling Ethereum-to-Cosmos bridging via governance proposals, IBC setup, and UI integration
-
-Learn how to onboard your Cosmos chain to Wormhole Gateway, enabling Ethereum-to-Cosmos bridging via governance proposals, IBC setup, and UI integration
+description: Learn how to onboard your Cosmos chain to Wormhole Gateway, including how to satisfy the requisite governance proposals, IBC setup, and UI integration. 
 ---
 
 # Wormhole Gateway Onboarding Instructions
