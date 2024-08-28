@@ -6,7 +6,7 @@ privateKeys?: Partial<{ [k in ChainId]: any[]; }>; // A set of keys that can be 
 tokensByChain?: TokensByChain;    // The token list we care about
 workflows?: { retries: number; }; // How many times to retry a given workflow
 providers?: ProvidersOpts;        // Configuration for the default providers
-fetchSourceTxhash?: boolean;      // whether or not to get the original transaction id/hash
+fetchSourceTxhash?: boolean;      // whether or not to get the original transaction ID/hash
 // Redis config
 redisClusterEndpoints?: ClusterNode[];
 redisCluster?: ClusterOptions;
