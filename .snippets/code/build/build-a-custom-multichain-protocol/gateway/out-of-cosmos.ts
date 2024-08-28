@@ -20,7 +20,7 @@ const ibcTranslatorAddress =
 const result = await client.sendIbcTokens(
   faucet.address0, // Sender address
   ibcTranslatorAddress, // Receiver address
-  coin(INSERT-AMOUNT, 'INSERT-COIN'), // Amount and coin
+  coin(INSERT_AMOUNT, 'INSERT_COIN'), // Amount and coin
   'transfer', // Source port
   'channel-2186', // Source channel
   timeoutHeight, 
