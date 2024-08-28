@@ -14,7 +14,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data. The
 
 ## The Flow of a Query {: #the-flow-of-a-query}
 
-The general overview of the flow of a query is as follows: an off-chain process sends HTTPS query requests to a Query Proxy, which validates and forwards them to the Guardians; these Guardians independently validate, sign, and return the response, with the entire process typically taking less than a second.
+The general overview of a query's flow is as follows: an off-chain process sends HTTPS query requests to a Query Proxy, which validates and forwards them to the Guardians; these Guardians independently validate, sign, and return the response, with the entire process typically taking less than a second.
 
 ![The architecture flow of a query](/images/build/build-apps/queries/overview/overview-1.webp)
 
@@ -83,7 +83,7 @@ For example, many chains have implementations forked from [Geth](https://github.
 | Optimism      | 24                | ✅        | ✅                  | ❌             | 128 blocks       |
 | Base          | 30                | ✅        | ✅                  | ✅             | archive          |
 
-\*EthCallByTimestamp arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
+\*`EthCallByTimestamp` arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
 
 ## Next Steps {: #next-steps}
 
@@ -95,5 +95,5 @@ You can also check out the following examples of applications that make use of W
 
 - [Basic demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
-- [Solana PDA / Token Account Balance](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
+- [Solana Program Derived Address (PDA) / Token Account Balance](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
 - [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}

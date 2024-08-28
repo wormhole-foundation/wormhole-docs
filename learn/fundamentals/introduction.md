@@ -10,7 +10,7 @@ Wormhole is a generic _message-passing protocol_ that enables communication betw
 ![Message-passing process in the Wormhole protocol](/images/learn/introduction/introduction-1.webp)
 
 !!! note
-    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/architecture/){target=\_blank}.
+    The previous section is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/architecture/){target=\_blank}.
 This simple message-passing protocol allows developers and users of cross-chain applications to leverage the advantages of multiple ecosystems.
 
 ## What Isn't Wormhole?
@@ -36,7 +36,7 @@ Tutorials are available to get started quickly and explain the concepts involved
 - **[Quick Start - Off Chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI <!-- Wormhole Connect: Bridging Made Easy -->
 - **[Quick Start - On Chain](#){target=\_blank}** - send your first cross-chain message <!-- Developing Cross Chain Dapps -->
 
-More tutorials are available [on github](#){target=\_blank}. <!-- tutorials will be on the docs site -->
+More tutorials are available [on GitHub](#){target=\_blank}. <!-- tutorials will be on the docs site -->
 
 ## Explore
 
@@ -49,7 +49,7 @@ Discover more about the Wormhole ecosystem, components, and protocols:
 
 Demos offer more realistic implementations than tutorials:
 
-- **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repo
+- **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repository
 - **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
 
 More demos are available in the [demos page](#){target=\_blank}. <!-- demos page -->

@@ -3,9 +3,9 @@ title: Wormhole TS SDK
 description: Explore Wormhole's TypeScript SDK and learn about how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 ---
 
-# Wormhole TS SDK {: #wormhole-ts-sdk}
+# Wormhole TypeScript SDK {: #wormhole-ts-sdk}
 
-The Wormhole Typescript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole.
+The Wormhole TypeScript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole.
 
 !!! warning
     This package is a work in progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find.
@@ -48,7 +48,7 @@ npm install @wormhole-foundation/sdk-evm-tokenbridge
 
 ## Usage {: #usage}
 
-Getting started is simple; just import Wormhole:
+Getting started is simple. First, import Wormhole:
 
 ```ts
 --8<-- 'code/build/build-apps/wormhole-sdk/get-vaa.ts::1'
@@ -151,7 +151,7 @@ Finally, the snippet also demonstrates how to convert a `TokenId` back into a re
 
 In the SDK, a `Signer` interface is required for certain methods to sign transactions. This interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`, depending on the specific requirements. A signer can be created by wrapping an existing offline wallet or a web wallet.
 
-A `SignOnlySigner` is used in scenarios where the signer is not connected to the network or prefers not to broadcast transactions themselves. It accepts an array of unsigned transactions and returns an array of signed and serialized transactions. Before signing, the transactions may be inspected or altered. It's important to note that the serialization process is chain-specific; refer to the testing signers (e.g., [EVM](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank} or [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for an example of how to implement a signer for a specific chain or platform.
+A `SignOnlySigner` is used in scenarios where the signer isn't connected to the network or prefers not to broadcast transactions themselves. It accepts an array of unsigned transactions and returns an array of signed and serialized transactions. Before signing, the transactions may be inspected or altered. It's important to note that the serialization process is chain-specific. Refer to the testing signers (e.g., [EVM](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank} or [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for an example of how to implement a signer for a specific chain or platform.
 
 Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to the network and intends to broadcast the transactions. This type of signer also accepts an array of unsigned transactions but returns an array of transaction IDs, corresponding to the order of the unsigned transactions.
 
@@ -169,16 +169,16 @@ The core protocol underlies all Wormhole activity. This protocol is responsible 
 
 The following example demonstrates sending and verifying a message using the Wormhole Core protocol on Solana. 
 
-First, we initialize a Wormhole instance for the Testnet environment, specifically for the Solana chain. We then obtain a signer and its associated address, which will be used to sign transactions.
-Next, we get a reference to the core messaging bridge, which is the main interface for interacting with Wormhole's cross-chain messaging capabilities.
+First, initialize a Wormhole instance for the TestNet environment, specifically for the Solana chain. Then obtain a signer and its associated address, which will be used to sign transactions.
+Next, get a reference to the core messaging bridge, which is the main interface for interacting with Wormhole's cross-chain messaging capabilities.
 The code then prepares a message for publication. This message includes:
 
 - The sender's address
-- The message payload (in this case, the encoded string "lol")
+- The message payload (in this case, the encoded string `lol`)
 - A nonce (set to `0` here, but can be any user-defined value to uniquely identify the message)
 - A consistency level (set to `0`, which determines the finality requirements for the message)
 
-After preparing the message, the next steps are to generate, sign, and send the transaction(s) required to publish the message on the Solana blockchain. Once the transaction is confirmed, the Wormhole message ID is extracted from the transaction logs. This ID is crucial for tracking the message across chains.
+After preparing the message, the next steps are to generate, sign, and send the transaction or transactions required to publish the message on the Solana blockchain. Once the transaction is confirmed, the Wormhole message ID is extracted from the transaction logs. This ID is crucial for tracking the message across chains.
 
 The code then waits for the Wormhole network to process and sign the message, turning it into a Verified Action Approval (VAA). This VAA is retrieved in a `Uint8Array` format, with a timeout of 60 seconds.
 
@@ -234,7 +234,7 @@ Internally, this uses the [TokenBridge](#token-bridge) protocol client to transf
 
 ### Native USDC Transfers {: #native-usdc-transfers}
 
-You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. Please note that if the transfer is set to `Automatic` mode, a fee for performing the relay will be included in the quote. This fee is deducted from the total amount requested to be sent. For example, if the user wishes to receive `1.0` on the destination, the amount sent should be adjusted to `1.0` plus the relay fee. The same principle applies to native gas dropoffs.
+You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. Please note that if the transfer is set to `Automatic` mode, a fee for performing the relay will be included in the quote. This fee is deducted from the total amount requested to be sent. For example, if the user wishes to receive `1.0` on the destination, the amount sent should be adjusted to `1.0` plus the relay fee. The same principle applies to native gas drop offs.
 
 In the following example, the `wh.circleTransfer` function is called with several parameters to set up the transfer. It takes the amount to be transferred (in the token's base units), the sender's chain and address, and the receiver's chain and address. The function also allows specifying whether the transfer should be automatic, meaning it will be completed without further user intervention.
 
@@ -253,7 +253,7 @@ When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amou
 
 ### Gateway Transfers {: #gateway-transfers}
 
-Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain (fka Wormchain). A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
+Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain. A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
 
 ```ts
 --8<-- 'code/build/build-apps/wormhole-sdk/cosmos.ts:152:172'
@@ -285,7 +285,7 @@ It may be necessary to recover an abandoned transfer before being completed. To 
 
 ## Routes {: #routes}
 
-While a specific `WormholeTransfer` may be used (`TokenTransfer`, `CCTPTransfer`, etc.), the developer must know exactly which transfer type to use for a given request. 
+While a specific `WormholeTransfer`, such as `TokenTransfer` or `CCTPTransfer`, may be used the developer must know exactly which transfer type to use for a given request. 
 
 To provide a more flexible and generic interface, the `Wormhole` class provides a method to produce a `RouteResolver` that can be configured with a set of possible routes to be supported.
 
@@ -332,4 +332,4 @@ See the `router.ts` example in the [examples directory](https://github.com/wormh
 
 ## See Also {: #see-also}
 
-The tsdoc is available [on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.
+The TSdoc is available [on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.

@@ -31,7 +31,7 @@ Note that if native USDC is transferred from the CCTP-enabled chains to any othe
 
 #### Manual Route {: #manual-route-cctp}
 
-This transfer method requires two transactions: one on the origin chain to burn the USDC and one on the destination chain to mint the USDC. The manual CCTP route does not use Wormhole messaging in the background; it relies on CCTP only. Enable the `cctpManual` route in the configuration to offer this option.
+This transfer method requires two transactions: one on the origin chain to burn the USDC and one on the destination chain to mint the USDC. The manual CCTP route relies on CCTP only and doesn't use Wormhole messaging in the background. Enable the `cctpManual` route in the configuration to offer this option.
 
 #### Automatic Route {: #automatic-route-cctp}
 
@@ -39,7 +39,7 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 
 ## Native Token Transfers (NTT) Routes {: #native-token-transfers-ntt-routes}
 
-[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/build/build-apps/connect/configuration) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repo](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
+[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/example-native-token-transfers){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/build/build-apps/connect/configuration) with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repository](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
 
 #### Manual Route {: #manual-route-ntt}
 
