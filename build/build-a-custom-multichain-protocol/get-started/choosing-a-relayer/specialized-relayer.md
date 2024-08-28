@@ -76,7 +76,7 @@ Outside of the VAA body, but also relevant, is the VAA digest, which can be used
 
 ## Off-Chain
 
-Some [off-chain processes](/learn/architecture/#off-chain-components) are involved in shuttling messages between chains. The [Guardians](/learn/infrastructure/guardians/) observe the events from the core contract and sign a [VAA](/learn/infrastructure/vaas/).
+Shuttling messages between chains requires some [off-chain processes](/learn/architecture/#off-chain-components). The [Guardians](/learn/infrastructure/guardians/) observe these events from the Core Contract and sign a [VAA](/learn/infrastructure/vaas/).
 
 After enough Guardians have signed the message (at least two-thirds + 1 majority or 13 of 19 guardians), the VAA is available to be delivered to a target chain. Once the VAA is available, a [Relayer](/learn/infrastructure/relayer/) may deliver it in a properly formatted transaction to the target chain.
 
