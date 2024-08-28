@@ -173,7 +173,7 @@ Kubernetes doesn't currently allow port forwarding for UDP ports ([GitHub Issue]
 
 ### How Do I Reset State For a Pod?
 
-If you want to iterate quickly and don't want to bring Tilt down and back up, you can reset a pod's state by clicking the 🔄 button next to the pod name in the Tilt UI.
+If you want to iterate quickly and don't want to bring Tilt down and back up, you can reset a pod's state by clicking the refresh button next to the pod name in the Tilt UI.
 
 ## Contracts and Accounts
 
