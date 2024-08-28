@@ -220,74 +220,76 @@ In this example, we will use the `sendMessage.js` script to transmit a message f
 
 Let’s break down the script step by step.
 
-### Configuration Files
+1. Load Configuration Files
 
-We load two JSON files:
+    1. **`chains.json`** - contains details about the supported TestNet chains, such as RPC URLs and relayer addresses
+    2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
 
-1. **`chains.json`** - contains details about the supported TestNet chains, such as RPC URLs and relayer addresses
-2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:8:13"
+    ```
 
-### Configure the Provider and Signer
+2. Configure the Provider and Signer
 
-The script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider.
+    The script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider.
 
-Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
-    
-```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:25:26"
-```
+    Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
+        
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:25:26"
+    ```
 
-After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
+    After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
 
-```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:36:40"
-```
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:36:40"
+    ```
 
-### Set Up the Message Details
+3. Set Up the Message Details
 
-The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
+    The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
 
-```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:43:44"
-```
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:43:44"
+    ```
 
-You can customize the message that will be sent across chains:
+    You can customize the message that will be sent across chains:
 
-```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:47:47"
-```
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:47:47"
+    ```
 
-### Estimate Cross-Chain Cost
+4. Estimate Cross-Chain Cost
 
-Before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
+    Before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
 
-```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:50:50"
-```
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:50:50"
+    ```
 
-This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
+    This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
 
-### Send a Message
+5. Send a Message
 
-With everything set up, the message is sent using the `sendMessage` function:
+    With everything set up, the message is sent using the `sendMessage` function:
 
-```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:53:55"
-```
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:53:55"
+    ```
 
-After sending, the script waits for the transaction to be confirmed:
+    After sending, the script waits for the transaction to be confirmed:
 
-```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:58:58"
-```
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:58:58"
+    ```
 
-### Run the Script
+6. Run the Script
 
-To send the message, run the following command:
+    To send the message, run the following command:
 
-```bash
-npm run send:message
-```
+    ```bash
+    npm run send:message
+    ```
 
 If everything is set up correctly, the message will be sent from the Avalanche Fuji TestNet to the Celo Alfajores TestNet. You can monitor the transaction and verify that the message was received on Celo using the [Wormhole Explorer](https://wormholescan.io/#/?network=TESTNET){target=\_blank}.
 
