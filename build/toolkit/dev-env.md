@@ -27,26 +27,26 @@ Relying on native tools when possible allows for more rapid prototyping and iter
 
 ### Integration
 
-For integration to Wormhole and with multiple chains, the simplest option is to use the chains' TestNets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to TestNet tokens and where block times are fast. Find links for TestNet faucets in the [blockchain details section](build/start-building/supported-networks). A developer may prefer standing up a set of local validators instead of using the TestNet. For this option, [Tilt](/build/toolkit/tilt/) is available to run local instances of all the chains Wormhole supports.
+For integration to Wormhole and with multiple chains, the simplest option is to use the chains' TestNets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to TestNet tokens and where block times are fast. Find links for TestNet faucets in the [blockchain details section](build/start-building/supported-networks/). A developer may prefer standing up a set of local validators instead of using the TestNet. For this option, [Tilt](/build/toolkit/tilt/) is available to run local instances of all the chains Wormhole supports.
 
 !!! note
     Variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make setting them up difficult or time-consuming. You may prefer TestNets for the simplest integration testing.
 
 ### Prepare for Deployment
 
-Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](/build/toolkit/toolkit-tilt) since it allows you to spin up any chains supported by Wormhole in a consistent environment.
+Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](/build/toolkit/tilt/) since it allows you to spin up any chains supported by Wormhole in a consistent environment.
 
 ## Validator Setup with Tilt
 
 ### Tilt
-If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](/build/toolkit/toolkit-tilt) page for a complete guide to setting up and configuring Tilt.
+If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](/build/toolkit/tilt/) page for a complete guide to setting up and configuring Tilt.
 
 ## Deploying to Public Networks
 
 ### TestNet
 
-When doing integration testing on TestNets, remember that a single Guardian node is watching for transactions on various test networks. Because TestNets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on MainNet, where 19 Guardians are watching for transactions. The TestNet contract addresses are available on the page for each [environment](build/start-building/supported-networks). The TestNet Guardian RPC configuration is available on the [SDK page](#).
+When doing integration testing on TestNets, remember that a single Guardian node is watching for transactions on various test networks. Because TestNets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on MainNet, where 19 Guardians are watching for transactions. The TestNet contract addresses are available on the page for each [environment](build/start-building/supported-networks/). The TestNet Guardian RPC configuration is available on the [SDK page](#).
 
 ### MainNet
 
-The MainNet contract addresses are available on the page for each [environment](build/start-building/supported-networks). The MainNet Guardian RPC configuration is available on the [SDK page](#).
+The MainNet contract addresses are available on the page for each [environment](build/start-building/supported-networks/). The MainNet Guardian RPC configuration is available on the [SDK page](#).
