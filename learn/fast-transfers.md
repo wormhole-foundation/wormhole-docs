@@ -66,7 +66,7 @@ In summary, the auction mechanism ensures competitive pricing and efficient exec
 The auction mechanism incorporates several risk management features to ensure reliability and protect both users and solvers:
 
 - **Security deposit** - the security deposit is a small amount of USDC that solvers must provide when initiating an auction. This deposit serves as a commitment to fulfill the transfer and is returned upon successful completion
-- **Slashing conditions** - if the winning solver fails to complete the transfer within the grace period, their security deposit may be slashed. This slashed amount is awarded to the user as compensation for any delay, incentivizing solvers to act quickly and reliably
+- **Slashing conditions** - if the winning solver fails to complete the transfer within the grace period, their security deposit may be slashed. This slashed amount is awarded to the user as compensation for any delay, serving as an incentive for solvers to act quickly and reliably
 - **Ensuring prompt execution and reliability** - the competitive nature of the auction, combined with the risk of losing the security deposit, ensures that solvers are motivated to fulfill transfers promptly. This system helps maintain the overall efficiency and reliability of the Fast Transfers protocol
 
 This auction mechanism is crucial to the Fast Transfers protocol. It provides a robust, competitive environment that drives efficiency and cost-effectiveness in cross-chain transfers.
