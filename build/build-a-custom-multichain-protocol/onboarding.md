@@ -19,7 +19,7 @@ This page is for any Cosmos chain developer who wants to enable bridging from Ga
 
 ## Step 3 - Establish an IBC Connection
 
-1. Allowlist your IBC relayer(s) on Wormhole Gateway
+1. Allowlist your IBC relayer on Wormhole Gateway
 
     1. The IBC relayer should [generate an address via the `wormchaind` CLI](https://github.com/wormhole-foundation/wormhole/tree/main/wormchain){target=\_blank}
     2. Fill out the IBC relayer allowlist request template below and post the request in the `#guardian-cosmos` channel
