@@ -13,7 +13,7 @@ This CosmWasm-based module acts as a smart contract on Wormhole Gateway and ensu
 
 [Contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors if you are interested in having Global Accountant configured for your multichain deployment.
 
-## Governance and Upgrading
+## Governance and Upgradeability
 
 Integrators should implement governance mechanisms to manage the addition and removal of transceivers and to upgrade contracts using proxy patterns, as demonstrated in the upgrade functions in the `NttManager` contracts. These processes can also set thresholds and rules for attestation and message approval.
 
