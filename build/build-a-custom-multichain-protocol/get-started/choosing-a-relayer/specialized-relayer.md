@@ -82,7 +82,7 @@ After enough Guardians have signed the message (at least two-thirds + 1 majority
 
 ### Specialized Relayer
 
-A relayer is needed to deliver the VAA containing the message to the target chain. When the relayer is explicitly written for a custom application, it's called a Specialized Relayer.
+A relayer is needed to deliver the VAA containing the message to the target chain. When the relayer is explicitly written for a custom application, it's called a specialized relayer.
 
 A specialized relayer might be as simple as an in-browser process that polls the API for the availability of a VAA after submitting a transaction and delivers it to the target chain. It might also be implemented with a [Spy](/learn/infrastructure/spy/) coupled with some daemon listening for VAAs from a relevant `chainID` and `emitter` then taking action when one is observed.
 
