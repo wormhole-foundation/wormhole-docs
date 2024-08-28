@@ -1,6 +1,6 @@
 ---
 title: Fast Transfers
-description: TODO
+description: Discover Fast Transfers, a protocol for quick, efficient cross-chain liquidity movement, addressing fragmentation and finality with a hub-and-spoke model.
 ---
 
 # Fast Transfers
