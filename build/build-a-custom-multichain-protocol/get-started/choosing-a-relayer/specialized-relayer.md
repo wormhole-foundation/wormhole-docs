@@ -70,7 +70,7 @@ In addition to environment-specific checks that should be performed, a contract 
 
 - Emitter - Is this coming from an expected emitter address and chain id? Typically, contracts will provide a method to register a new emitter and check the incoming message against the set of emitters it trusts.
 - Sequence - Is this the expected sequence number? How should out-of-order deliveries be handled?
-- Consistency Level - For the chain this message came from, is the [consistency level](/build/reference/consistency-levels/) enough to guarantee the transaction will not be reverted after taking some action?
+- Consistency Level - For the chain this message came from, is the [consistency level](/build/reference/consistency-levels/) enough to guarantee the transaction won't be reverted after taking some action?
 
 Outside of the VAA body, but also relevant, is the VAA digest, which can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
 
