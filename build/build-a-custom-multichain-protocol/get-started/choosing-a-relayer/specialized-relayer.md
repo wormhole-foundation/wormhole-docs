@@ -126,4 +126,4 @@ See the [Specialized Relayer Tutorial](#) for a detailed guide.
 
 ## Reference
 
-You can read more about the architecture and core components [in the Learn section](/learn/architecture/).
+You can read more about the architecture and core components in the [Learn section](/learn/architecture/).
