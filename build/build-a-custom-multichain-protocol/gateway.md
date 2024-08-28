@@ -51,6 +51,6 @@ The core data structure of Gateway token transfers is the `GatewayIbcTokenBridge
 --8<-- 'code/build/build-a-custom-multichain-protocol/gateway/GatewayIbcTokenBridgePayload.rs'
 ```
 
-When sending a `GatewayIbcTokenBridge` payload, it must be serialized as JSON. The Binary values are `base64` encoded for proper JSON encoding. The `recipient` for Cosmos chains are `base64` encoded `bech32` addresses. For example, if the `recipient` is `wormhole1f3jshdsmzl03v03w2hswqcfmwqf2j5csw223ls`, the encoding will be the direct `base64` encoding of `d29ybWhvbGUxZjNqc2hkc216bDAzdjAzdzJoc3dxY2Ztd3FmMmo1Y3N3MjIzbHM=`.
+When sending a `GatewayIbcTokenBridge` payload, it must be serialized as JSON. The binary values are `base64` encoded for proper JSON encoding. The `recipient` for Cosmos chains are `base64` encoded `bech32` addresses. For example, if the `recipient` is `wormhole1f3jshdsmzl03v03w2hswqcfmwqf2j5csw223ls`, the encoding will be the direct `base64` encoding of `d29ybWhvbGUxZjNqc2hkc216bDAzdjAzdzJoc3dxY2Ztd3FmMmo1Y3N3MjIzbHM=`.
 
 The `chain` values map to [Wormhole chain IDs](/learn/glossary/#chain-ids). The `fee` and `nonce` are Wormhole-specific parameters, both unused today. For incoming IBC messages from Cosmos chains, the `receiver` field will be base64 encoded in the `Simple.recipient`  field, and the `channel-id` will be included as the equivalent Wormhole chain ID.
