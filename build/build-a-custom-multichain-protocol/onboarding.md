@@ -56,7 +56,7 @@ If you'd like to add your Cosmos chain into Wormhole Connect, please refer to th
 
 ## Step 5 - Register Assets
 
-This final step involves registering bridged Assets with the Cosmos Chain Registry and other relevant wallet and frontend registries.
+This final step involves registering bridged assets with the Cosmos Chain Registry and other relevant wallet and frontend registries.
 
 1. Permissionlessly attest the assets you want to bridge into your chain (if not already attested) to Wormhole Gateway.
 2. Raise relevant PRs to ensure that explorers, wallets, and other UIs recognize the Wormhole assets when they are bridged to your chain.
