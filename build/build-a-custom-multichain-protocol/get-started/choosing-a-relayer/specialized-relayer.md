@@ -53,7 +53,7 @@ The way a message is received and handled depends on the environment.
     --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/receiveMessageEVM.sol'
     ```
 
-    More details in [the Hello World example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/src/01\_hello\_world/HelloWorld.sol){target=\_blank}.
+    More details are available in the [Hello World example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/src/01\_hello\_world/HelloWorld.sol){target=\_blank}.
 
 === "Solana"
 
