@@ -5,7 +5,7 @@ description: This section introduces the core messaging protocols that power sea
 
 # Messaging Protocols
 
-The Messaging section covers various aspects and services related to communication protocols and systems within our platform. Each subsection provides detailed information on specific components, contracts, and bridges for messaging and data transfer. Below is a brief overview of each subsection:
+The Messaging section covers various aspects and services related to communication protocols and systems within the Wormhole platform. Each subsection provides detailed information on specific components, contracts, and bridges for messaging and data transfer. Below is a brief overview of each subsection:
 
 ## Core Contracts
 
@@ -13,7 +13,7 @@ The [Core Contracts](/learn/messaging/core-contracts/){target=\_blank} form the 
 
 ## Native Token Transfers
 
-Wormhole's [Native Token Transfers](/learn/messaging/ntt/ntt-overview/){target=\_blank} (NTT) offer an open-source and flexible framework for cross-chain token transfers, providing full control over token behavior on each blockchain. This system supports two operation modes: locking mode for preserving the original token supply on a single chain and burning mode for distributing multichain tokens across various chains. Key features include integrator flexibility, advanced rate limiting, no need for liquidity pools, and custom attestation options. This ensures a consistent user experience, robust security, and easy integration for complex multichain deployments.
+Wormhole's [Native Token Transfers](/learn/messaging/ntt/ntt-overview/){target=\_blank} (NTT) offer an open source and flexible framework for cross-chain token transfers, providing full control over token behavior on each blockchain. This system supports two operation modes: locking mode for preserving the original token supply on a single chain and burning mode for distributing multichain tokens across various chains. Key features include integrator flexibility, advanced rate limiting, no need for liquidity pools, and custom attestation options. This ensures a consistent user experience, robust security, and easy integration for complex multichain deployments.
 
 ## Token Bridge
 
@@ -21,7 +21,7 @@ The [Token and NFT Bridges](/learn/messaging/token-nft-bridge/){target=\_blank} 
 
 ## Circle's CCTP Bridge
 
-The [CCTP Bridge](/learn/messaging/cctp/){target=\_blank} supports fast and cost-effective native USDC transfers across blockchains using Circle's Cross Chain Transfer Protocol (CCTP). While distinct from Wormhole, this protocol is enhanced by Wormhole's features, such as automated relaying, gas payment on the destination chain, and native gas dropoff, making it more user-friendly. The integration can be achieved through the Wormhole Connect Widget or the Connect SDK, providing a seamless experience for developers and users.
+The [CCTP Bridge](/learn/messaging/cctp/){target=\_blank} supports fast and cost-effective native USDC transfers across blockchains using Circle's Cross Chain Transfer Protocol (CCTP). While distinct from Wormhole, this protocol is enhanced by Wormhole's features, such as automated relaying, gas payment on the destination chain, and native gas drop off, making it more user-friendly. The integration can be achieved through the Wormhole Connect Widget or the Connect SDK, providing a seamless experience for developers and users.
 
 ## Gateway
 
