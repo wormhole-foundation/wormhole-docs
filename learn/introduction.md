@@ -17,7 +17,7 @@ This simple message-passing protocol allows developers and users of cross-chain 
 
 - **Wormhole is _not_ a blockchain** - it provides a means of communication between blockchains or rollups
 
-- **Wormhole is _not_ a Token Bridge** - however, there are [protocols built on Wormhole](https://portalbridge.com/#/transfer){target=\_blank} that serve this purpose
+- **Wormhole is _not_ a token bridge** - however, there are [protocols built on Wormhole](https://portalbridge.com/#/transfer){target=\_blank} that serve this purpose
 
 ## What Can Wormhole Be Used For?
 
