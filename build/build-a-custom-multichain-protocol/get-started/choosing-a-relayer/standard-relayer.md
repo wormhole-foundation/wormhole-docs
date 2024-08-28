@@ -1,6 +1,6 @@
 ---
 title: Standard Relayer
-description: Learn about the Standard Relayer, a tool that enables seamless cross-chain messaging between contracts on different EVM blockchains without requiring off-chain deployments.
+description: Learn about the standard relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
 ---
 
 # Standard Relayer
