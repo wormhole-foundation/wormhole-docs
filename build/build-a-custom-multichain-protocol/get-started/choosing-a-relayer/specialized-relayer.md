@@ -15,7 +15,7 @@ It's important to understand some [on-chain components](#) before sending and re
 
 ### Sending a message
 
-To send a message, regardless of the environment or chain, the core contract is invoked with a message argument from an [emitter](/learn/glossary/#emitter). This emitter may be your contract or an existing application such as the [Token Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003\_token\_bridge.md){target=\_blank}, or [NFT Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006\_nft\_bridge.md){target=\_blank}.
+To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/learn/glossary/#emitter). This emitter may be your contract or an existing application such as the [Token Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003\_token\_bridge.md){target=\_blank}, or [NFT Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006\_nft\_bridge.md){target=\_blank}.
 
 === "EVM"
 
