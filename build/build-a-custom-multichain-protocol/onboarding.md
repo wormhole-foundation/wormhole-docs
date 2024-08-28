@@ -3,7 +3,6 @@ title: Gateway Onboarding Instructions
 description: Explore Wormhole's Native Token Transfers architecture, which covers components, message flow, rate limiting, and custom transceivers.
 ---
 
-
 # Wormhole Gateway Onboarding Instructions
 
 This page is for any Cosmos chain developer who wants to enable bridging from Gateway. Gateway is Wormhole's Cosmos chain that leverages the Wormhole Guardian network for easy bridging from Ethereum to Cosmos. For an overview of Gateway, see [The Gateway to Cosmos](https://wormhole.com/gateway/){target=\_blank}.
