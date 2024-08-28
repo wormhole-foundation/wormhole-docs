@@ -1,1 +1,0 @@
-const message = 'Hello from Avalanche to Celo!';

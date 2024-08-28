@@ -55,7 +55,7 @@ Key functions include:
 Here's the core of the contract:
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-1.sol"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-1.sol:18:30"
 ```
 
 You can find the full code for the `MessageSender.sol` below.
@@ -63,7 +63,7 @@ You can find the full code for the `MessageSender.sol` below.
 ??? code "MessageSender.sol"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.sol"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-1.sol"
     ```
 
 ### Receiver Contract: MessageReceiver
@@ -77,7 +77,7 @@ Key functions include:
 Here's the core of the contract:
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:17:36"
 ```
 
 You can find the full code for the `MessageReceiver.sol` below.
@@ -85,7 +85,7 @@ You can find the full code for the `MessageReceiver.sol` below.
 ??? code "MessageReceiver.sol"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-4.sol"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol"
     ```
 
 ## Deploy Contracts
@@ -110,7 +110,7 @@ This demo focuses on using the scripts, so it’s best to take a look at them, s
 To configure the dependencies properly, run the following command:
 
 ```bash
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-5.sh"
+npm install
 ```
 
 The repository includes:
@@ -147,12 +147,12 @@ The repository includes:
 2. **Compile the Contracts** - ensure everything is set up correctly by compiling the contracts:
 
     ```bash
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-8.sh"
+    forge build
     ```
 
 The expected output should be similar to this:
 
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-23.html"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-7.html"
 
 ### Deployment Process
 
@@ -177,19 +177,19 @@ The sender contract will handle quoting and sending messages cross-chain.
 1. Run the following command to deploy the sender contract:
 
     ```bash
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-9.sh"
+    npm run deploy:sender
     ```
 
 2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}
 
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-24.html"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-8.html"
 
 You can find the full code for the `deploySender.js` below.
 
 ??? code "deploySender.js"
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-21.js"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-5.js"
     ```
 
 ### Deploy the Receiver Contract
@@ -199,7 +199,7 @@ The receiver contract listens for cross-chain messages and logs them when receiv
 1. Deploy the receiver contract with this command:
     
     ```bash
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-10.sh"
+    npm run deploy:receiver
     ```
 
 2. After deployment, note down the contract address. You may check the contract on the [Celo Alfajores Explorer](https://alfajores.celoscan.io/){target=\_blank}.
@@ -209,7 +209,7 @@ You can find the full code for the `deployReceiver.js` below.
 ??? code "deployReceiver.js"
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-22.js"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js"
     ```
 
 ## Send a Cross-Chain Message
@@ -234,13 +234,13 @@ The script first reads the chain configurations and extracts the contract addres
 Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
     
 ```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-11.js"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:25:26"
 ```
 
 After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
 
 ```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-12.js"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:36:40"
 ```
 
 ### Set Up the Message Details
@@ -248,13 +248,13 @@ After setting up the wallet, the script loads the ABI for the `MessageSender.sol
 The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
 
 ```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-13.js"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:43:44"
 ```
 
 You can customize the message that will be sent across chains:
 
 ```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-14.js"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:47:47"
 ```
 
 ### Estimate Cross-Chain Cost
@@ -262,7 +262,7 @@ You can customize the message that will be sent across chains:
 Before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
 
 ```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-15.js"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:50:50"
 ```
 
 This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
@@ -272,13 +272,13 @@ This ensures that the transaction includes enough funds to cover the gas fees fo
 With everything set up, the message is sent using the `sendMessage` function:
 
 ```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-16.js"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:53:55"
 ```
 
 After sending, the script waits for the transaction to be confirmed:
 
 ```javascript
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-17.js"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:58:58"
 ```
 
 ### Run the Script
@@ -286,21 +286,21 @@ After sending, the script waits for the transaction to be confirmed:
 To send the message, run the following command:
 
 ```bash
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-18.sh"
+npm run send:message
 ```
 
 If everything is set up correctly, the message will be sent from the Avalanche Fuji TestNet to the Celo Alfajores TestNet. You can monitor the transaction and verify that the message was received on Celo using the [Wormhole Explorer](https://wormholescan.io/#/?network=TESTNET){target=\_blank}.
 
 The console should output something similar to this:
 
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-19.html"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-4.html"
 
 You can find the full code for the `sendMessage.js` below.
 
 ??? code "sendMessage.js"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-20.js"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js"
     ```
 
 ## Conclusion

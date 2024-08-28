@@ -1,1 +1,0 @@
-const txCost = await MessageSender.quoteCrossChainCost(targetChain);
