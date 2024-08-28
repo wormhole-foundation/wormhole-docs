@@ -1,6 +1,6 @@
 ---
-title: TODO
-description: TODO
+title: Run a Spy
+description: Learn how to run a Spy locally to listen for and forward messages (Verifiable Action Approvals, or VAAs) published on the Wormhole network.
 ---
 
 # Run a Spy
