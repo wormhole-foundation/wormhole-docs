@@ -24,7 +24,7 @@ A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers
 
 ## Emitter
 
-The emitter contract makes the call to the Wormhole Core contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
+The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
 
 ## Finality
 
