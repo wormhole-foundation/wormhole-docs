@@ -68,7 +68,7 @@ The way a message is received and handled depends on the environment.
 
 In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/learn/infrastructure/vaas/), including:
 
-- Emitter - Is this coming from an emitter address and chain id I expect? Typically contracts will provide a method to register a new emitter and check the incoming message against the set of emitters it trusts.
+- Emitter - Is this coming from an expected emitter address and chain id? Typically, contracts will provide a method to register a new emitter and check the incoming message against the set of emitters it trusts.
 - Sequence - Is this the sequence number I expect? How should I handle out-of-order deliveries?
 - Consistency Level - For the chain this message came from, is the [consistency level](/build/reference/consistency-levels/) enough to guarantee the transaction will not be reverted after taking some action?
 
