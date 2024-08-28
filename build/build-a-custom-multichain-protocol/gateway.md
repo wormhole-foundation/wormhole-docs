@@ -1,6 +1,6 @@
 ---
 title: Wormhole Gateway Cosmos SDK
-description: Learn about Wormhole Gateway, a Cosmos-SDK chain enabling non-native asset bridging into the Cosmos ecosystem, unifying liquidity, and supporting seamless cross-chain transfers.
+description: Use the Wormhole Gateway, a Cosmos SDK chain enabling asset bridging into the Cosmos ecosystem, unifying liquidity, and supporting cross-chain transfers.
 ---
 
 # Wormhole Gateway
