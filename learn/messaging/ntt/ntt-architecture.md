@@ -226,7 +226,7 @@ If the transfer amount doesn't fit within the current capacity:
 
 #### Send
 
-The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. transceivers then send the messages based on the verification backend they are using.
+The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
 
 For example, the Wormhole transceiver will send by calling `post_message` on the Wormhole program, so that the Wormhole Guardians can observe and verify the message.
 
