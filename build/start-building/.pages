@@ -2,3 +2,4 @@ title: Start Building
 nav:
  - index.md
  - supported-networks
+ - 'Demos': 'demos.md'
