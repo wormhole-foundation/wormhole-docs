@@ -45,7 +45,7 @@ This method should be called before sending a message, and the value returned fo
 
 ### Receiving a Message
 
-To receive a message using the Standard Relayer, the target contract must implement the [IWormholeReceiver](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface.
+To receive a message using a standard relayer, the target contract must implement the [IWormholeReceiver](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface.
 
 ```solidity
 --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/standard-relayer/receiveWormholeMessages.sol'
