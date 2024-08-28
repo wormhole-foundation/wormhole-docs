@@ -14,7 +14,7 @@ Wormhole Gateway is a Cosmos SDK chain that provides a way to bridge non-native 
 Integrating with Wormhole Gateway is straightforward and can be achieved with just a few lines of code as follows:
 
 - For Transfers from an external chain to any supported Cosmos Chain, see [Into Cosmos](#into-cosmos)
-- For Transfers from any supported Cosmos Chain to an External Chain, see [Out of Comsos](#out-of-cosmos)
+- For Transfers from any supported Cosmos Chain to an external chain, see [Out of Comsos](#out-of-cosmos)
 - For Transfers between any supported Cosmos Chains, see [Between Cosmos Chains](#between-cosmos-chains)
 
 ### Into Cosmos
