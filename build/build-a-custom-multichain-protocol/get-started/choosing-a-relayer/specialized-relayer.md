@@ -63,7 +63,7 @@ The way a message is received and handled depends on the environment.
     --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/receiveMessageSolana.rs'
     ```
 
-    More details are available in [the Hello World Example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/solana/programs/01\_hello\_world/src/lib.rs){target=\_blank}.
+    More details are available in the [Hello World Example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/solana/programs/01\_hello\_world/src/lib.rs){target=\_blank}.
 
 
 In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/learn/infrastructure/vaas/), including:
