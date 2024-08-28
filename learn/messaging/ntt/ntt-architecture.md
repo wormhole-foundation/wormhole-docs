@@ -22,7 +22,7 @@ _Managers_ oversee the token transfer process and handle rate-limiting and messa
 ### Transceivers
 
 _Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers.
-transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
+Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
 
 - `sendMessage` - this external function sends messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
 - `quoteDeliveryPrice` - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
