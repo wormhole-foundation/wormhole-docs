@@ -11,7 +11,7 @@ The Wormhole framework offers two deployment models, each catering to different 
 
 The hub and spoke model involves locking tokens on a central hub chain and minting them on destination spoke chains. This model maintains the total supply on the hub chain and is backward-compatible with any existing token deployment.
 
-This model is ideal for existing token deployments that do not want to alter existing token contracts. It maintains the canonical balance on a hub chain while allowing for secure native deployment to new blockchains.
+This model is ideal for existing token deployments that don't want to alter existing token contracts. It maintains the canonical balance on a hub chain while allowing for secure native deployment to new blockchains.
 
 - **Hub chain** - tokens are locked when initiating a transfer
 - **Spoke chains** - Equivalent tokens are minted on the destination chain

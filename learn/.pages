@@ -1,9 +1,6 @@
 title: Learn
 nav:
  - index.md
- - 'Introduction to Wormhole': 'introduction.md'
- - 'Security': 'security.md'
- - 'Architecture Overview': 'architecture.md'
+ - fundamentals
  - infrastructure
  - messaging
- - 'Glossary': 'glossary.md'

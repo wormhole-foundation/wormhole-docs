@@ -14,7 +14,7 @@ The Token Bridge contract allows token transfers between blockchains through a l
 
 The Token Bridge also supports sending tokens with some additional data in the form of arbitrary byte payload attached to the token transfer. This type of transfer is referred to as a [Contract Controlled Transfer](/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}.
 
-While the [Core Contract](/learn/messaging/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the token bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
+While the [Core Contract](/learn/messaging/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the Token Bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
 
 ## NFT Bridge
 
