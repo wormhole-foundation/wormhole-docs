@@ -7,7 +7,7 @@ description: Learn about the standard relayer configuration for seamless cross-c
 
 ![Standard Relayer](/images/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/standard-relayer/standard-relayer-1.webp)
 
-A standard relayer provides a mechanism for a contract on one chain to send a message to a contract on a different chain without requiring the developer to deal with any off-chain deployments. The WormholeRelayer module allows developers to deliver their VAAs via an untrusted `DeliveryProvider`, rather than needing to develop and host their own relay infrastructure.
+A standard relayer provides a mechanism for a contract on one chain to send a message to a contract on a different chain without requiring the developer to deal with any off-chain deployments. The WormholeRelayer module allows developers to deliver their VAAs via an untrusted `DeliveryProvider`, rather than needing to develop and host their relay infrastructure.
 
 !!! note
     The standard relayer configuration is currently limited to EVM environments. The complete list of EVM environment blockchains is on the [Supported Networks page](/build/start-building/supported-networks).
@@ -27,17 +27,17 @@ There are three relevant interfaces to discuss when utilizing the `WormholeRelay
 - [IWormholeReceiver](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank} - this is the interface you are responsible for implementing. It allows the selected Delivery Provider to deliver messages/VAAs to your contract.
 - [IDeliveryProvider](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IDeliveryProvider.sol){target=\_blank} - this interface represents the delivery pricing information for a given relayer network. Each delivery provider implements this on every blockchain they support delivering from.
 
-Check the [EVM page](/build/start-building/supported-networks/evm/) for contract addresses on each supported blockchain.
+Check out the [EVM page](/build/start-building/supported-networks/evm/) for contract addresses on each supported blockchain.
 
 ### Sending a Message
 
-To send a message to a contract on another EVM chain, you can call the `sendPayloadToEvm` method, provided by the `IWormholeRelayer` interface.
+To send a message to a contract on another EVM chain, you can call the `sendPayloadToEvm` method provided by the `IWormholeRelayer` interface.
 
 ```solidity
 --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/standard-relayer/sendPayloadToEvm.sol'
 ```
 
-The `sendPayloadToEvm` method is marked `payable` so it can receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
+The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
 
 ```solidity
 --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/standard-relayer/quoteEVMDeliveryPrice.sol'
@@ -61,30 +61,30 @@ The logic inside the function body may be whatever business logic is required to
 
 ### Delivery Guarantees
 
-The `WormholeRelayer` protocol is intended to create a service interface whereby mutually distrustful integrators and DeliveryProviders can work together to provide a seamless Dapp experience. You don't trust the delivery providers with your data, and the delivery providers don't trust your smart contract. The primary agreement which is made between integrators and delivery providers is: when a delivery is requested, the delivery provider will attempt to deliver the VAA within the provider's stated delivery timeframe.
+The `WormholeRelayer` protocol is intended to create a service interface whereby mutually distrustful integrators and DeliveryProviders can work together to provide a seamless Dapp experience. You don't trust the delivery providers with your data, and the delivery providers don't trust your smart contract. The primary agreement between integrators and delivery providers is that when a delivery is requested, the provider will attempt to deliver the VAA within the provider's stated delivery timeframe.
 
-This creates a marketplace whereby providers can set different price levels and service guarantees. Delivery providers effectively accept the slippage risk premium of delivering your VAAs in exchange for a set fee rate. Thus, the providers agree to deliver your messages even if they have to do so at a loss.
+This creates a marketplace whereby providers can set different price levels and service guarantees. Delivery providers effectively accept the slippage risk premium of delivering your VAAs in exchange for a set fee rate. Thus, the providers agree to deliver your messages even if they do so at a loss.
 
-Delivery providers should set their prices such that they turn a profit on average, but not necessarily on every single transfer. Thus, some providers may choose to set higher rates for tighter guarantees, or lower rates for less stringent guarantees.
+Delivery providers should set their prices such that they turn a profit on average but not necessarily on every single transfer. Thus, some providers may choose to set higher rates for tighter guarantees or lower rates for less stringent guarantees.
 
 ### Delivery Statuses
 
-All deliveries result in one of following four outcomes prior to the delivery timeframe of the delivery provider. These outcomes are emitted as EVM events from the `WormholeRelayer` contract when they occur. The four possible outcomes are:
+All deliveries result in one of the following four outcomes before the delivery provider's delivery timeframe. When they occur, these outcomes are emitted as EVM events from the `WormholeRelayer` contract. The four possible outcomes are:
 
 - (0) Delivery Success
 - (1) Receiver Failure
 - (2) Forward Request Success
 - (3) Forward Request Failure
 
-A receiver failure is a well-defined term which means that the selected provider **performed the delivery, but the delivery was not able to be completed.** There are only three causes for a delivery failure:
+A receiver failure is a scenario in which the selected provider attempted the delivery but it could not be completely successfully. The three possible causes for a delivery failure are:
 
 - The target contract does not implement the `IWormholeReceiver` interface
-- The target contract threw an exception or reverted during execution of `receiveWormholeMessages`
+- The target contract threw an exception or reverted during the execution of `receiveWormholeMessages`
 - The target contract exceeded the specified `gasLimit` while executing `receiveWormholeMessages`
 
-All three of these scenarios should generally be avoidable by the integrator, and thus it is up to integrator to resolve them. Any other senario which causes a delivery to not be performed should be considered an outage by some component of the system, including potentially the blockchains themselves.
+All three of these scenarios can be avoided with correct design by the integrator, and thus, it is up to the integrator to resolve them. Any other scenario that causes a delivery to not be performed should be considered an outage by some component of the system, including potentially the blockchains themselves.
 
-`Forward Request Success` and `Forward Failure` represent when the delivery succeeded, and a forward was requested by the user during the delivery. If the user had enough funds left over as a refund to complete the forward, the forward will be executed and the status will be `Forward Request Success`. Otherwise, it will be `Forward Request Failure`.
+`Forward Request Success` and `Forward Failure` represent when the delivery succeeded and the user requested a forward during the delivery. If the user has enough funds left over as a refund to complete the forward, the forward will be executed, and the status will be `Forward Request Success`. Otherwise, it will be `Forward Request Failure`.
 
 ### Other Considerations
 
@@ -115,8 +115,8 @@ No off-chain logic needs to be implemented to take advantage of automatic relayi
     worm status testnet ethereum INSERT_TRANSACTION_HASH
     ```
 
-See the [Wormhole CLI tool docs](/build/toolkit/cli) for installation and usage.
+See the [Wormhole CLI tool docs](/build/toolkit/cli/) for installation and usage.
 
 ## See Also
 
-The [Supported Networks page](/build/start-building/supported-networks/evm) contains reference documentation for EVM chains.
+The [Supported Networks page](/build/start-building/supported-networks/evm/) contains reference documentation for EVM chains.
