@@ -95,7 +95,7 @@ The first meaningful line instantiates the `StandardRelayerApp`, a subclass of t
 
 The only field you pass in the `StandardRelayerAppOpts` is the name to help identify log messages and reserve a namespace in Redis.
 
-???- "`StandardRelayerAppOpts`"
+??? code "`StandardRelayerAppOpts`"
 
     Other options can be passed to the `StandardRelayerApp` constructor to configure the app further.
 
