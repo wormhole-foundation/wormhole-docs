@@ -19,7 +19,7 @@ Cross-chain liquidity movement in the broader blockchain ecosystem is crucial as
 
 To support Fast Transfers, a blockchain must meet several key requirements:
 
-- **CCTP USDC (Cross-Chain Transfer Protocol USDC)** - the primary requirement is that the chain must support CCTP USDC. This allows for seamless asset transfers using USDC as the intermediary currency across different chains
+- **CCTP USDC (Cross-Chain Transfer Protocol USDC)** - the primary requirement is that the chain must support [CCTP USDC.](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} This allows for seamless asset transfers using USDC as the intermediary currency across different chains
 - **NTT USDC (Native Token Transfers USDC)** - Fast Transfers relies on NTT for chains that don't support CCTP or lack a canonical version of USDC. In this scenario, USDC is locked on the hub chain, and an NTT message is sent to the destination chain to initiate the transfer
 - **Liquidity through Wormhole-wrapped assets** - in cases where CCTP USDC or NTT USDC are unavailable, the chain must have liquidity in Wormhole-wrapped assets. These wrapped assets can be used as an intermediate currency to facilitate transfers
 
