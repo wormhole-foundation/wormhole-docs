@@ -60,7 +60,7 @@ Tutorials are available to get started quickly and explain the concepts involved
 - **[Quick Start - Off Chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI <!-- Wormhole Connect: Bridging Made Easy -->
 - **[Quick Start - On Chain](#){target=\_blank}** - send your first cross-chain message <!-- Developing Cross Chain Dapps -->
 
-More tutorials are available [on github](#){target=\_blank}. <!-- tutorials will be on the docs site -->
+More tutorials are available [on GitHub](#){target=\_blank}. <!-- tutorials will be on the docs site -->
 
 ## Explore
 
