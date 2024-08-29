@@ -24,4 +24,4 @@ async function getVAA(
   return vaaBytes;
 }
 
-const vaaBytes = await getVAA('INSERT-EMITTER-ADDRESS', 1, CHAIN_ID_ETH);
+const vaaBytes = await getVAA('INSERT_EMITTER_ADDRESS', 1, CHAIN_ID_ETH);
