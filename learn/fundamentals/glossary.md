@@ -11,12 +11,11 @@ This glossary is an index of technical term definitions for words commonly used 
 
 Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
 
-You can find each chain ID documented on the [Wormhole Chain IDs](#){target=\_blank} page. 
-<!-- link to chain ids page-->
+You can find each chain ID documented on the [Wormhole Chain IDs](/build/reference/chain-ids/){target=\_blank} page.
 
 ## Consistency Level
 
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Consistency](#){target=\_blank} section of the constants page for details. <!-- Consistency Levels page -->
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Consistency Levels](/build/reference/consistency-levels/){target=\_blank} reference page for details.
 
 ## Delivery Provider
 
