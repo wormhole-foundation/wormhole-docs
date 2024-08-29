@@ -35,7 +35,7 @@ Critical problems Wormhole addresses include:
 Wormhole provides a suite of tools and protocols that support a wide range of use cases:
 
 - **Cross-chain messaging** - securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications (xDapps)
-- **Asset Transfer** - facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}
+- **Asset transfers** - facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}
 - **Developer Tools** - leverage Wormhole’s SDKs, APIs, and documentation to build and deploy cross-chain applications quickly and efficiently
 
 ## What Isn't Wormhole?
