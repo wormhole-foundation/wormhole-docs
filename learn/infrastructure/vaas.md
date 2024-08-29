@@ -70,9 +70,9 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 ### Token Transfer
 
-Tokens are transferred between chains using a lockup/mint and burn/unlock mechanism. Many bridges use such a basic method, but the implementation described leverages the generic message-passing protocol provided by Wormhole to handle the routing of lock and burn events across chains. This approach ensures that Wormhole's Token Bridge is chain-agnostic. The bridge can be rapidly integrated into any network with a Wormhole contract. Wormhole's generic message-passing does not require any program to send messages to understand the specific implementation details of other chains.
+Tokens are transferred between chains using a lockup/mint and burn/unlock mechanism. Many bridges use such a basic method, but the implementation described leverages the generic message-passing protocol provided by Wormhole to handle the routing of lock and burn events across chains. This approach ensures that Wormhole's Token Bridge is chain-agnostic. The bridge can be rapidly integrated into any network with a Wormhole contract. Wormhole's generic message-passing doesn't require any program to send messages to understand the specific implementation details of other chains.
 
-To transfer tokens from Chain A to Chain B, we must lock them on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, Chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
+To transfer tokens from Chain A to Chain B, you must lock them on A and mint them on B. The tokens on A must be proven to be locked before the minting can occur on B. To facilitate this process, Chain A first locks the tokens and emits a message indicating that the locking has been completed. This message has the following structure and is referred to as a transfer message:
 
 - `payload_id` ++"u8"++ - the ID of the payload. This should be set to `1` for a token transfer
 - `amount` ++"u256"++ - amount of tokens being transferred
@@ -88,7 +88,7 @@ Note that Chain B is agnostic regarding how the tokens on the sending side were 
 
 ### Attestation
 
-The Transfer event above needs an important detail added. While the program on Chain B can trust the message to inform it of token lockup events, it has no way of verifying the correct token is locked up. The address alone is a meaningless value to most users. To solve this, the Token Bridge supports token attestation.
+The Transfer event in the preceding section needs an important detail added. While the program on Chain B can trust the message to inform it of token lockup events, it has no way of verifying the correct token is locked up. The address alone is a meaningless value to most users. To solve this, the Token Bridge supports token attestation.
 
 For a token attestation, Chain A emits a message containing metadata about a token, which Chain B may use to preserve the name, symbol, and decimal precision of a token address.
 
@@ -106,7 +106,7 @@ Attestations use a fixed-length byte array to encode UTF8 token name and symbol 
 !!! note
     Because the byte array is fixed length, the data contained may truncate multibyte Unicode characters.
 
-When sending an attestation VAA, it is recommended to send the longest UTF-8 prefix that does not truncate a character and then right-pad it with zero bytes.
+When sending an attestation VAA, it is recommended to send the longest UTF-8 prefix that doesn't truncate a character and then right-pad it with zero bytes.
 
 When parsing an attestation VAA, it is recommended to trim all trailing zero bytes and converting the remainder to UTF-8 via any lossy algorithm.
 
@@ -133,7 +133,7 @@ The Token Transfer with Message data structure is identical to the token-only da
 
 ### Governance
 
-Governance VAAs don't have a `payload_id` field like the above formats; they're used to trigger some action in the deployed contracts (e.g., upgrade).
+Governance VAAs don't have a `payload_id` field like the preceding formats. They're used to trigger some action in the deployed contracts (for example, upgrade).
 
 ### Action Structure
 
@@ -144,7 +144,7 @@ Governance messages contain pre-defined actions, which can target the various Wo
 - `chain`  ++"u16"++ - chain the action is targeting. This should be set to `0` for all chains
 - `args`  ++"any"++ - arguments to the action
 
-Below is an example message containing a governance action triggering a code upgrade to the Solana core contract. The module field here is a right-aligned encoding of the ASCII "Core", represented as a 32-byte hex string.
+Below is an example message containing a governance action triggering a code upgrade to the Solana Core Contract. The module field here is a right-aligned encoding of the ASCII Core, represented as a 32-byte hex string.
 
 ```js
 --8<-- 'code/learn/infrastructure/VAAs/snippet-2.js'
@@ -161,7 +161,7 @@ The meaning of each numeric action is pre-defined and documented in the Wormhole
 ## Lifetime of a Message
 
 !!! note
-    Anyone can submit the VAA to the target chain. The Guardians typically do not perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the Guardian RPC and make the submission in a separate flow.
+    Anyone can submit the VAA to the target chain. The Guardians typically don't perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the Guardian RPC and make the submission in a separate flow.
 
 With the concepts now defined, it is possible to illustrate what a full flow for message passing between two chains looks like. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
 

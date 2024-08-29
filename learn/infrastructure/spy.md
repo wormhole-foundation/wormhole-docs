@@ -22,7 +22,7 @@ The source code for the Spy is available on [GitHub](https://github.com/wormhole
 
 To start a Spy locally, run the following Docker command:
 
-=== "Testnet"
+=== "TestNet"
 
     ```sh
     docker run --platform=linux/amd64 \
@@ -39,7 +39,7 @@ To start a Spy locally, run the following Docker command:
     --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78    
     ```
 
-=== "Mainnet"
+=== "MainNet"
 
     ```sh
     docker run --platform=linux/amd64 \
