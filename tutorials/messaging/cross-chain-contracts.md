@@ -160,6 +160,12 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
 
 1. **Load Configuration and Contract Details** - each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network.
 
+    === "`chains.json`"
+
+        ```json
+        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-9.json"
+        ```
+
     === "`deploySender.js`"
 
         ```javascript
@@ -169,8 +175,11 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     === "`deployReceiver.js`"
 
         ```javascript
-        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:7:13"
+        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:7:15"
         ```
+
+    !!! note
+        The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores TestNets. You can modify this file to add more networks if needed.
 
 2. **Set Up Provider and Wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction.
 
@@ -183,7 +192,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     === "`deployReceiver.js`"
 
         ```javascript
-        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:16:17"
+        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:18:19"
         ```
 
 3. **Deploy the Contract** - the contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on.
@@ -191,13 +200,13 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     === "`deploySender.js`"
 
         ```javascript
-        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-5.js:33:34"
+        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-5.js:36:39"
         ```
 
     === "`deployReceiver.js`"
 
         ```javascript
-        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:34:35"
+        --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:39:42"
         ```
 
 
@@ -257,7 +266,7 @@ Let's break down the script step by step.
     2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:8:13"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:8:16"
     ```
 
 2. Configure the Provider and Signer
@@ -267,13 +276,13 @@ Let's break down the script step by step.
     Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
         
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:25:26"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:34:35"
     ```
 
     After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:36:40"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:38:43"
     ```
 
 3. Set Up the Message Details
@@ -281,13 +290,13 @@ Let's break down the script step by step.
     The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:43:44"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:55:56"
     ```
 
     You can customize the message that will be sent across chains:
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:47:47"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:59:59"
     ```
 
 4. Estimate Cross-Chain Cost
@@ -295,7 +304,7 @@ Let's break down the script step by step.
     Before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:50:50"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:62:62"
     ```
 
     This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
@@ -305,13 +314,13 @@ Let's break down the script step by step.
     With everything set up, the message is sent using the `sendMessage` function:
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:53:55"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:65:72"
     ```
 
     After sending, the script waits for the transaction to be confirmed:
 
     ```javascript
-    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:58:58"
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:75:75"
     ```
 
 6. Run the Script

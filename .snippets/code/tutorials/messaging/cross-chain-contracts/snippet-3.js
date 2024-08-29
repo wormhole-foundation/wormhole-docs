@@ -4,67 +4,84 @@ const path = require('path');
 require('dotenv').config();
 
 async function main() {
-// Load the chain configuration and deployed contract addresses
-const chains = JSON.parse(
-	fs.readFileSync(path.resolve(__dirname, '../deploy-config/chains.json'))
-);
-const deployedContracts = JSON.parse(
-	fs.readFileSync(path.resolve(__dirname, '../deploy-config/deployedContracts.json'))
-);
+  // Load the chain configuration and deployed contract addresses
+  const chains = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, '../deploy-config/chains.json'))
+  );
 
-console.log('Sender Contract Address: ', deployedContracts.avalanche.MessageSender);
-console.log('Receiver Contract Address: ', deployedContracts.celo.MessageReceiver);
-console.log('...');
+  const deployedContracts = JSON.parse(
+    fs.readFileSync(
+      path.resolve(__dirname, '../deploy-config/deployedContracts.json')
+    )
+  );
 
-// Get the Avalanche Fuji configuration
-const avalancheChain = chains.chains.find((chain) =>
-	chain.description.includes('Avalanche testnet')
-);
+  console.log(
+    'Sender Contract Address: ',
+    deployedContracts.avalanche.MessageSender
+  );
+  console.log(
+    'Receiver Contract Address: ',
+    deployedContracts.celo.MessageReceiver
+  );
+  console.log('...');
 
-// Set up the provider and wallet
-const provider = new ethers.JsonRpcProvider(avalancheChain.rpc);
-const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+  // Get the Avalanche Fuji configuration
+  const avalancheChain = chains.chains.find((chain) =>
+    chain.description.includes('Avalanche testnet')
+  );
 
-// Load the ABI of the MessageSender contract
-const messageSenderJson = JSON.parse(
-	fs.readFileSync(path.resolve(__dirname, '../out/MessageSender.sol/MessageSender.json'), 'utf8')
-);
+  // Set up the provider and wallet
+  const provider = new ethers.JsonRpcProvider(avalancheChain.rpc);
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
-const abi = messageSenderJson.abi;
+  // Load the ABI of the MessageSender contract
+  const messageSenderJson = JSON.parse(
+    fs.readFileSync(
+      path.resolve(__dirname, '../out/MessageSender.sol/MessageSender.json'),
+      'utf8'
+    )
+  );
 
-// Create a contract instance for MessageSender
-const MessageSender = new ethers.Contract(
-	deployedContracts.avalanche.MessageSender,
-	abi,
-	wallet
-);
+  const abi = messageSenderJson.abi;
 
-// Define the target chain and target address (the Celo receiver contract)
-const targetChain = 14; // Wormhole chain ID for Celo Alfajores
-const targetAddress = deployedContracts.celo.MessageReceiver;
+  // Create a contract instance for MessageSender
+  const MessageSender = new ethers.Contract(
+    deployedContracts.avalanche.MessageSender,
+    abi,
+    wallet
+  );
 
-// The message you want to send
-const message = 'Hello from Avalanche to Celo!';
+  // Define the target chain and target address (the Celo receiver contract)
+  const targetChain = 14; // Wormhole chain ID for Celo Alfajores
+  const targetAddress = deployedContracts.celo.MessageReceiver;
 
-// Dynamically quote the cross-chain cost
-const txCost = await MessageSender.quoteCrossChainCost(targetChain);
+  // The message you want to send
+  const message = 'Hello from Avalanche to Celo!';
 
-// Send the message (make sure to send enough gas in the transaction)
-const tx = await MessageSender.sendMessage(targetChain, targetAddress, message, {
-	value: txCost,
-});
+  // Dynamically quote the cross-chain cost
+  const txCost = await MessageSender.quoteCrossChainCost(targetChain);
 
-console.log('Transaction sent, waiting for confirmation...');
-await tx.wait();
-console.log('...');
+  // Send the message (make sure to send enough gas in the transaction)
+  const tx = await MessageSender.sendMessage(
+    targetChain,
+    targetAddress,
+    message,
+    {
+      value: txCost,
+    }
+  );
 
-console.log('Message sent! Transaction hash:', tx.hash);
-console.log(
-	`You may see the transaction status on the Wormhole Explorer: https://wormholescan.io/#/tx/${tx.hash}?network=TESTNET`
-);
+  console.log('Transaction sent, waiting for confirmation...');
+  await tx.wait();
+  console.log('...');
+
+  console.log('Message sent! Transaction hash:', tx.hash);
+  console.log(
+    `You may see the transaction status on the Wormhole Explorer: https://wormholescan.io/#/tx/${tx.hash}?network=TESTNET`
+  );
 }
 
 main().catch((error) => {
-	console.error(error);
-	process.exit(1);
+  console.error(error);
+  process.exit(1);
 });
