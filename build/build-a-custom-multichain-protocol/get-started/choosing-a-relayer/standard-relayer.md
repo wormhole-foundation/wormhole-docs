@@ -12,14 +12,14 @@ A standard relayer provides a mechanism for a contract on one chain to send a me
 !!! note
     The standard relayer configuration is currently limited to EVM environments. The complete list of EVM environment blockchains is on the [Supported Networks page](/build/start-building/supported-networks).
 
-## Tutorials
+<!-- ## Tutorials
 
 The following tutorials demonstrate the use of a standard relayer:
 
  - [Hello Wormhole](#) - A tutorial that covers message passing across EVM environments 
- - [Hello Token](#) - A tutorial that covers token transfer across EVM environments
+ - [Hello Token](#) - A tutorial that covers token transfer across EVM environments -->
 
-## On Chain
+## On-Chain Components
 
 On-chain, a smart contract interacts with the [IWormholeRelayer](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} to send and receive messages.
 
@@ -45,7 +45,7 @@ This method should be called before sending a message, and the value returned fo
 
 ### Receiving a Message
 
-To receive a message using a standard relayer, the target contract must implement the [IWormholeReceiver](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface.
+To receive a message using a standard relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface.
 
 ```solidity
 --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/standard-relayer/receiveWormholeMessages.sol'
@@ -68,21 +68,21 @@ Some implementation details should be considered during development to ensure sa
 
 ## Off-Chain
 
-No off-chain logic needs to be implemented to take advantage of automatic relaying. While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the worm CLI tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command: 
+No off-chain logic needs to be implemented to take advantage of automatic relaying. While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the Wormhole CLI tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command: 
 
 === "MainNet"
 
     ```bash
-    worm status mainnet ethereum INSERT-TRANSACTION-HASH
+    worm status mainnet ethereum INSERT_TRANSACTION_HASH
     ```
 
 === "TestNet"
 
     ```bash
-    worm status testnet ethereum INSERT-TRANSACTION-HASH
+    worm status testnet ethereum INSERT_TRANSACTION_HASH
     ```
 
-See the [CLI tool docs](/build/toolkit/cli) for installation and usage.
+See the [Wormhole CLI tool docs](/build/toolkit/cli) for installation and usage.
 
 ## See Also
 
