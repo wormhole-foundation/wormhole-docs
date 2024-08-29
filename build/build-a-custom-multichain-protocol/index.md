@@ -7,6 +7,32 @@ description: This section takes you from setting up your developer environment a
 
 ## Get Started
 
+Give your project a strong start with this guide to setting up your developer environment
+
+<br>
+<div class="grid cards" markdown>
+-   :octicons-download-16:{ .lg .middle } __Install the Wormhole CLI Tool__
+
+    ---
+
+    Learn how to install [Wormhole CLI Tool](https://github.com/wormhole-foundation/wormhole/tree/main/clients/js){target=\_blank} into a new or existing project. You'll need the CLI tool regardless of the chosen environment.
+
+    <br>
+    [:octicons-arrow-right-24: Get started](/build/toolkit/cli.md)
+
+-   :octicons-code-16:{ .lg .middle } __Recommended Native Toolsets__
+
+    ---
+
+    Relying on native tools where possible creates a faster, lower friction development process. Find the suggested toolset for your desired network to get started.
+
+    <br>
+    [:octicons-arrow-right-24: Network Native Toolsets](https://github.com/wormhole-foundation/wormhole){target=\_blank}
+</div>
+<br>
+
+
+
 ## Native Token Transfers
 
 ## Wormhole Gateway
