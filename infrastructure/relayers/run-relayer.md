@@ -38,18 +38,6 @@ More details about the Spy are available in the [Spy Documentation](/learn/infra
 
 For our relayer app to receive messages, a local Spy must be running that watches the Guardian network. Our relayer app will receive updates from this Spy.
 
-=== "TestNet Spy"
-
-    ```bash
-    docker run --platform=linux/amd64 \
-    -p 7073:7073 \
-    --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
-    spy \
-    --nodeKey /node.key \
-    --spyRPC "[::]:7073" \
-    --env testnet   
-    ```
-
 === "MainNet Spy"
 
     ```bash
@@ -60,6 +48,18 @@ For our relayer app to receive messages, a local Spy must be running that watche
     --nodeKey /node.key \
     --spyRPC "[::]:7073" \
     --env mainnet
+    ```
+
+=== "TestNet Spy"
+
+    ```bash
+    docker run --platform=linux/amd64 \
+    -p 7073:7073 \
+    --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
+    spy \
+    --nodeKey /node.key \
+    --spyRPC "[::]:7073" \
+    --env testnet   
     ```
 
 #### Redis Persistence
