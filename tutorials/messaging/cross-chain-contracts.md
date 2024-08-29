@@ -55,7 +55,7 @@ Key functions include:
 Here's the core of the contract:
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-1.sol:18:30"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-1.sol:24:43"
 ```
 
 You can find the full code for the `MessageSender.sol` below.
@@ -77,7 +77,7 @@ Key functions include:
 Here's the core of the contract:
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:17:36"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:17:39"
 ```
 
 You can find the full code for the `MessageReceiver.sol` below.
