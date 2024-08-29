@@ -5,11 +5,11 @@ description: Learn how to tools like queries, Wormhole Connect, and the Wormhole
 
 # Building Applications
 
-Wormhole offers multiple tools to make your user-facing application integrations easier. Whether you are looking for a type-safe friendly SDK, a React widget to enable user-friendly UI development, or on-demand API acccess to Guardian attestations you'll find it here. 
+Wormhole offers multiple tools to make your user-facing application integrations easier. Whether you are looking for a type safe friendly SDK, a React widget to enable user-friendly UI development, or on-demand API access to Guardian attestations, you'll find it here. 
 
 ## Wormhole TypeScript SDK
 
-The Wormhole TypeScript SDK exposes constants, contract interfaces, basic types, VAA payload definitions, EVM-specific utilities, and the EVM Token Bridge protocol client combining convenience with the peace of mind of TypeScript type-safety out of the box.
+The Wormhole TypeScript SDK exposes constants, contract interfaces, basic types, VAA payload definitions, EVM-specific utilities, and the EVM Token Bridge protocol client, combining convenience with the peace of mind of TypeScript type safety out of the box.
 
 <!--TODO: css adjustments to make boxes in a row rather than column-->
 <br>
@@ -63,7 +63,7 @@ Wormhole Connect is a React widget that lets developers offer an easy-to-use int
 
 ## Wormhole Queries
 
-Wormhole Queries offers on-demand access to Guardian-attested on-chain data via a simple REST endpoint. Wormhole Guardians, who run full nodes for various connected chains, facilitate this cross-chain query service. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
+Wormhole Queries offers on-demand access to Guardian-attested on-chain data via a simple REST endpoint. Wormhole Guardians, who run full nodes for various connected chains, facilitate this cross-chain query service. This method is faster and more cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
 <!--TODO: css adjustments to make boxes in a row rather than column-->
 <br>
