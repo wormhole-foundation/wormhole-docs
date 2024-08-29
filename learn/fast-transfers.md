@@ -11,7 +11,7 @@ Fast Transfers is an innovative protocol that facilitates rapid and efficient li
 
 The primary goal of Fast Transfers is to eliminate the delays typically associated with cross-chain transfers. Traditional cross-chain transfers require waiting for finality on the source chain, which can be time-consuming, especially for networks like Ethereum, where finality can take up to 15 minutes. Fast Transfers bypasses this delay using a hub-and-spoke model, where Solana is the central hub, concentrating liquidity and enabling quick transfers to the destination chain.
 
-Cross-chain liquidity movement in the broader blockchain ecosystem is crucial as it enables assets and value to flow freely across different networks. However, existing solutions often face challenges such as fragmented liquidity and slow transfer times due to the need for finality on each chain. Fast Transfers addresses these challenges by providing a quicker, more efficient solution that ensures liquidity is readily available where needed, without the typical wait times. This makes Fast Transfers an essential tool for developers looking to build applications that require quick and reliable cross-chain asset transfers.
+Cross-chain liquidity movement in the broader blockchain ecosystem is crucial as it enables assets and value to flow freely across different networks. However, existing solutions often face challenges like fragmented liquidity and slow transfer times due to the time-to-finality across chains. Fast Transfers addresses these challenges by providing a quicker, more efficient solution that ensures liquidity is readily available where needed, without the typical wait times. This makes Fast Transfers an essential tool for developers looking to build applications that require quick and reliable cross-chain asset transfers.
 
 ## Key Concepts
 
@@ -19,7 +19,7 @@ Cross-chain liquidity movement in the broader blockchain ecosystem is crucial as
 
 To support Fast Transfers, a blockchain must meet several key requirements:
 
-- **CCTP USDC (Cross-Chain Transfer Protocol USDC)** - the primary requirement is that the chain must support CCTP USDC. This allows for seamless asset transfers using USDC as the intermediary currency across different chains
+- **CCTP USDC (Cross-Chain Transfer Protocol USDC)** - the primary requirement is that the chain must support [CCTP USDC.](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} This allows for seamless asset transfers using USDC as the intermediary currency across different chains
 - **NTT USDC (Native Token Transfers USDC)** - Fast Transfers relies on NTT for chains that don't support CCTP or lack a canonical version of USDC. In this scenario, USDC is locked on the hub chain, and an NTT message is sent to the destination chain to initiate the transfer
 - **Liquidity through Wormhole-wrapped assets** - in cases where CCTP USDC or NTT USDC are unavailable, the chain must have liquidity in Wormhole-wrapped assets. These wrapped assets can be used as an intermediate currency to facilitate transfers
 
