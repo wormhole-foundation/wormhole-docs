@@ -47,9 +47,9 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 Consider the following examples of potential applications enabled by Wormhole:
 
-- **Cross-Chain Exchange** - using [Wormhole Connect](#){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access <!-- Wormhole Connect: Bridging Made Easy -->
-- **Cross-Chain Governance** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
-- **Cross-Chain Game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
+- **Cross-chain exchange** - using [Wormhole Connect](#){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access <!-- Wormhole Connect: Bridging Made Easy -->
+- **Cross-chain governance** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
+- **Cross-chain game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
 
 ## Get Started
 
@@ -57,8 +57,8 @@ Consider the following examples of potential applications enabled by Wormhole:
 
 Tutorials are available to get started quickly and explain the concepts involved.
 
-- **[Quick Start - Off Chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI <!-- Wormhole Connect: Bridging Made Easy -->
-- **[Quick Start - On Chain](#){target=\_blank}** - send your first cross-chain message <!-- Developing Cross Chain Dapps -->
+- **[Quick start - Off-chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI <!-- Wormhole Connect: Bridging Made Easy -->
+- **[Quick start - On-chain](#){target=\_blank}** - send your first cross-chain message <!-- Developing Cross Chain Dapps -->
 
 More tutorials are available [on GitHub](#){target=\_blank}. <!-- tutorials will be on the docs site -->
 
