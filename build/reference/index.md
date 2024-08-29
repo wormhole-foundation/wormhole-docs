@@ -9,7 +9,7 @@ In this section, you'll find reference information that is essential for develop
 
 <div class="grid cards" markdown>
 
--   :material-format-list-numbered:{ .lg .middle } __Chain IDs__
+-   :octicons-list-ordered-16:{ .lg .middle } __Chain IDs__
 
     ---
 
@@ -25,7 +25,7 @@ In this section, you'll find reference information that is essential for develop
 
     [:octicons-arrow-right-24: Consistency Levels Reference](/build/reference/consistency-levels/)
 
--   :material-file-code:{ .lg .middle } __Canonical Contracts__
+-   :octicons-file-code-16:{ .lg .middle } __Canonical Contracts__
 
     ---
 
