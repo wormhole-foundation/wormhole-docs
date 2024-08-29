@@ -1,6 +1,6 @@
 ---
 title: Run a Relayer
-description: Develop and run a Wormhole relayer using the Relayer Engine. Guide to setup, message filtering, and processing across chains with the Wormhole network.
+description: Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
 ---
 
 # Run a Relayer
@@ -13,11 +13,11 @@ With the Relayer Engine, a developer can write specific logic for filtering to r
 
 Once a Wormhole message is received, the developer may apply additional logic to parse custom payloads or submit the Verifiable Action Approvals (VAA) to one or many destination chains.
 
-To use the Relayer Engine, a developer may specify how to relay Wormhole messages for their app using an idiomatic Express/Koa middleware-inspired API, then let the library handle all the details!
+To use the Relayer Engine, a developer may specify how to relay Wormhole messages for their app using an idiomatic Express/Koa middleware-inspired API, then let the library handle all the details.
 
 ## Quick Start
 
-### Install Package
+### Install the Relayer Engine
 
 First, install the `relayer-engine` package with your favorite package manager:
 
@@ -30,7 +30,7 @@ npm i @wormhole-foundation/relayer-engine
 !!! note
     These processes _must_ be running for the relayer app below to work.
 
-Next, you must start a Spy to listen for available VAAs published on the Guardian network. You also need a persistence layer. In this case, we're using Redis.
+Next, you must start a Spy to listen for available VAAs published on the Guardian network. You also need a persistence layer. This example uses Redis.
 
 More details about the Spy are available in the [Spy Documentation](/learn/infrastructure/spy){target=\_blank}.
 
@@ -78,7 +78,7 @@ docker run --rm -p 6379:6379 --name redis-docker -d redis
 In the following example, you'll:
 
 1. Set up a `StandardRelayerApp`, passing configuration options for our relayer
-2. Add a filter to capture only those messages our app cares about, with a callback to do _something_ with the VAA once we've got it
+2. Add a filter to capture only those messages our app cares about, with a callback to do _something_ with the VAA once received
 3. Start the relayer app
 
 ```typescript
@@ -111,16 +111,10 @@ If you'd like your program to subscribe to `multiple` chains and addresses, you 
 --8<-- 'code/infrastructure/relayers/snippet-4.ts'
 ```
 
-The last line in the simple example runs `await app.listen()`, which starts the relayer engine. Once started, the relayer engine issues subscription requests to the Spy and begins any other workflows (e.g., tracking missed VAAs).
+The last line in the simple example runs `await app.listen()`, which starts the relayer engine. Once started, the Relayer Engine issues subscription requests to the Spy and begins any other workflows (e.g., tracking missed VAAs).
 
 This will run until the process is killed or encounters an unrecoverable error. To gracefully shut down the relayer, call `app.stop()`.
 
 ## Source Code
 
 The source code for this example is available in the [`relayer-engine` repository](https://github.com/wormhole-foundation/relayer-engine/blob/main/examples/simple/src/app.ts){target=\_blank}.
-
-## Wormhole integration complete?
-
-Let us know so we can list your project in our ecosystem directory and introduce you to our global, multichain community!
-
-[Reach out now](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}
