@@ -21,7 +21,7 @@ The following tutorials demonstrate the use of a standard relayer:
 
 ## On-Chain Components
 
-On-chain, a smart contract interacts with the [IWormholeRelayer](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} to send and receive messages.
+On-chain, a smart contract interacts with the [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} to send and receive messages.
 
 ### Sending a Message
 
@@ -66,7 +66,7 @@ Some implementation details should be considered during development to ensure sa
 - Refunding overpayment of `gasLimit`
 - Refunding overpayment of value sent
 
-## Off-Chain
+## Off-Chain Components
 
 No off-chain logic needs to be implemented to take advantage of automatic relaying. While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the Wormhole CLI tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command: 
 

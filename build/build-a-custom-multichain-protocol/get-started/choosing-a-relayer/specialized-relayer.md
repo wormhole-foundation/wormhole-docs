@@ -9,11 +9,11 @@ description: Learn about specialized relayers, which are purpose-built component
 
 Wormhole is compatible with many [ecosystems](/build/start-building/supported-networks) and integration is straightforward.
 
-## On-Chain
+## On-Chain Components
 
 It's important to understand some [on-chain components](#) before sending and receiving messages between chains.
 
-### Sending a message
+### Sending a Message
 
 To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/learn/glossary/#emitter). This emitter may be your contract or an existing application such as the [Token Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003\_token\_bridge.md){target=\_blank}, or [NFT Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006\_nft\_bridge.md){target=\_blank}.
 
@@ -41,7 +41,7 @@ Once the message is emitted from the Core Contract, the [Guardian Network](/lear
 
 VAAs are [multicast](/learn/messaging/core-contracts/#multicast) by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 
-### Receiving a message
+### Receiving a Message
 
 The way a message is received and handled depends on the environment.
 
@@ -74,7 +74,7 @@ In addition to environment-specific checks that should be performed, a contract 
 
 Outside of the VAA body, but also relevant, is the VAA digest, which can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
 
-## Off-Chain
+## Off-Chain Components
 
 Shuttling messages between chains requires some [off-chain processes](/learn/architecture/#off-chain-components). The [Guardians](/learn/infrastructure/guardians/) observe these events from the Core Contract and sign a [VAA](/learn/infrastructure/vaas/).
 
