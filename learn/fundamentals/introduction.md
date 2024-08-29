@@ -73,7 +73,7 @@ Discover more about the Wormhole ecosystem, components, and protocols:
 
 Demos offer more realistic implementations than tutorials:
 
-- **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repo
+- **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repository
 - **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
 
 More demos are available in the [demos page](#){target=\_blank}. <!-- demos page -->
