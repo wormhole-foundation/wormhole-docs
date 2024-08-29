@@ -27,7 +27,7 @@ Interoperability is a critical challenge in the rapidly evolving blockchain land
 Critical problems Wormhole addresses include:
 
 - **Blockchain isolation** - Wormhole connects disparate blockchains, enabling the transfer of assets, data, and governance actions across networks
-- **Cross-Chain complexity** - by abstracting the complexities of cross-chain communication, Wormhole makes it easier for developers to build and deploy cross-chain applications
+- **Cross-chain complexity** - by abstracting the complexities of cross-chain communication, Wormhole makes it easier for developers to build and deploy cross-chain applications
 - **Security and decentralization** - Wormhole prioritizes security through a decentralized Guardian network that validates and signs messages, ensuring the integrity of cross-chain interactions
 
 ## What Does Wormhole Offer?
