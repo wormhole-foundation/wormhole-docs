@@ -37,7 +37,7 @@ At a high level, the hub-and-spoke model operates as follows:
 - **Hub** - the central node where all resources, data, assets, or information are aggregated and managed. The hub handles the distribution to the spokes, acting as a central point of processing and coordination
 - **Spokes** - the spokes are the endpoints connected to the hub. In the case of blockchain, these are the different chains. The spokes rely on the hub to receive and send resources or information, creating a streamlined and centralized flow
 
-This model is highly efficient because it centralizes control and reduces the complexity of direct interactions between each endpoint. Instead of managing multiple direct connections, each spoke only needs to connect to the hub, simplifying the overall system.
+This model is highly efficient because it aggregates control and reduces the complexity of direct interactions between each endpoint. Instead of managing multiple direct connections, each spoke only needs to connect to the hub, simplifying the overall system.
 
 #### Application in Fast Transfers
 
