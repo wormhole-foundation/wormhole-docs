@@ -16,7 +16,7 @@ Wormhole is distinguished by its focus on robust security, scalability, and tran
 !!! note
     The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/architecture/){target=\_blank}.
 
-Wormhole allows developers to leverage the strengths of multiple blockchain ecosystems without being confined to one. This means applications can benefit from the unique features of various networks—such as Solana's high throughput, Ethereum's security, and Cosmos's interoperability—while maintaining a unified, efficient user experience.
+Wormhole allows developers to leverage the strengths of multiple blockchain ecosystems without being confined to one. This means applications can benefit from the unique features of various networks—such as Solana's high throughput, Ethereum's security, and Cosmos's interoperability while maintaining a unified, efficient user experience.
 
 This page introduces the key concepts and components necessary to understand how Wormhole enables fast, secure, and scalable cross-chain communication.
 
@@ -36,7 +36,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 - **Cross-chain messaging** - securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications (xDapps)
 - **Asset transfers** - facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}
-- **Developer tools** - leverage Wormhole’s SDKs, APIs, and documentation to build and deploy cross-chain applications quickly and efficiently
+- **Developer tools** - leverage [Wormhole’s SDKs](/build/build-apps/wormhole-sdk/){target=\_blank}, [APIs](/build/toolkit/#wormhole-api-docs){target=\_blank}, [Wormhole Scan](https://wormholescan.io/){target=\_blank}, and documentation to build and deploy cross-chain applications quickly and efficiently
 
 ## What Isn't Wormhole?
 
@@ -47,9 +47,10 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 Consider the following examples of potential applications enabled by Wormhole:
 
-- **Cross-chain exchange** - using [Wormhole Connect](#){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access <!-- Wormhole Connect: Bridging Made Easy -->
-- **Cross-chain governance** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
+- **Cross-chain exchange** - using [Wormhole Connect](/build/build-apps/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
+- **[Cross-chain governance](#){target=\_blank}** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
 - **Cross-chain game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
+<!-- add a URL to an article that they have on this topic? -->
 
 ## Get Started
 
@@ -57,8 +58,8 @@ Consider the following examples of potential applications enabled by Wormhole:
 
 Tutorials are available to get started quickly and explain the concepts involved.
 
-- **[Quick start - Off-chain](#){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI <!-- Wormhole Connect: Bridging Made Easy -->
-- **[Quick start - On-chain](#){target=\_blank}** - send your first cross-chain message <!-- Developing Cross Chain Dapps -->
+- **[Quick start - Off-chain](/build/build-apps/connect/overview/){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI 
+- **[Quick start - On-chain](/tutorials/messaging/cross-chain-contracts/){target=\_blank}** - send your first cross-chain message 
 
 More tutorials are available [on GitHub](#){target=\_blank}. <!-- tutorials will be on the docs site -->
 
@@ -76,7 +77,7 @@ Demos offer more realistic implementations than tutorials:
 - **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repository
 - **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
 
-More demos are available in the [demos page](#){target=\_blank}. <!-- demos page -->
+More demos are available in the [demos page](/build/start-building/demos/){target=\_blank}. 
 
 !!! note
     Wormhole Integration Complete?
@@ -89,4 +90,354 @@ More demos are available in the [demos page](#){target=\_blank}. <!-- demos page
 
 Wormhole supports a growing number of blockchains.
 
-<!-- List of Blockchains here -->
+<table data-view="cards" data-full-width="false">
+<thead>
+    <tr>
+        <th></th>
+        <th data-hidden data-card-target data-type="content-ref"></th>
+        <th data-hidden data-card-cover data-type="files"></th>
+    </tr>
+</thead>
+<tbody>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#acala">
+            <strong>Acala</strong><br>
+            <img src="/images/build/start-building/supported-networks/acala.webp" alt="Acala" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/algorand">
+            <strong>Algorand</strong><br>
+            <img src="/images/build/start-building/supported-networks/algorand.webp" alt="Algorand" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/aptos">
+            <strong>Aptos</strong><br>
+            <img src="/images/build/start-building/supported-networks/aptos.webp" alt="Aptos" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#arbitrum">
+            <strong>Arbitrum</strong><br>
+            <img src="/images/build/start-building/supported-networks/arbitrum.webp" alt="Arbitrum" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#arbitrum-sepolia">
+            <strong>Arbitrum Sepolia</strong><br>
+            <img src="/images/build/start-building/supported-networks/arbitrum-sepolia.webp" alt="Arbitrum Sepolia" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#avalanche">
+            <strong>Avalanche</strong><br>
+            <img src="/images/build/start-building/supported-networks/avalanche.webp" alt="Avalanche" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#base">
+            <strong>Base</strong><br>
+            <img src="/images/build/start-building/supported-networks/base.webp" alt="Base" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#base-sepolia">
+            <strong>Base Sepolia</strong><br>
+            <img src="/images/build/start-building/supported-networks/base_sepolia.webp" alt="Base Sepolia" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#berachain">
+            <strong>Berachain</strong><br>
+            <img src="/images/build/start-building/supported-networks/berachain.webp" alt="Berachain" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#blast">
+            <strong>Blast</strong><br>
+            <img src="/images/build/start-building/supported-networks/blast.webp" alt="Blast" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#bnb-smart-chain">
+            <strong>BNB Smart Chain</strong><br>
+            <img src="/images/build/start-building/supported-networks/bsc.webp" alt="BNB Smart Chain" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#celestia">
+            <strong>Celestia</strong><br>
+            <img src="/images/build/start-building/supported-networks/celestia.webp" alt="Celestia" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#celo">
+            <strong>Celo</strong><br>
+            <img src="/images/build/start-building/supported-networks/celo.webp" alt="Celo" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#cosmoshub">
+            <strong>Cosmos Hub</strong><br>
+            <img src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#dymension">
+            <strong>Dymension</strong><br>
+            <img src="/images/build/start-building/supported-networks/dymension.webp" alt="Dymension" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#ethereum">
+            <strong>Ethereum</strong><br>
+            <img src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#evmos">
+            <strong>Evmos</strong><br>
+            <img src="/images/build/start-building/supported-networks/evmos.webp" alt="Evmos" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#fantom">
+            <strong>Fantom</strong><br>
+            <img src="/images/build/start-building/supported-networks/fantom.webp" alt="Fantom" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#gnosis">
+            <strong>Gnosis</strong><br>
+            <img src="/images/build/start-building/supported-networks/gnosis.webp" alt="Gnosis" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#ethereum-holesky">
+            <strong>Ethereum Holesky</strong><br>
+            <img src="/images/build/start-building/supported-networks/holesky.webp" alt="Ethereum Holesky" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#injective">
+            <strong>Injective</strong><br>
+            <img src="/images/build/start-building/supported-networks/injective.webp" alt="Injective" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#karura">
+            <strong>Karura</strong><br>
+            <img src="/images/build/start-building/supported-networks/karura.webp" alt="Karura" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#klaytn">
+            <strong>Klaytn</strong><br>
+            <img src="/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#kujira">
+            <strong>Kujira</strong><br>
+            <img src="/images/build/start-building/supported-networks/kujira.webp" alt="Kujira" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#linea">
+            <strong>Linea</strong><br>
+            <img src="/images/build/start-building/supported-networks/linea.webp" alt="Linea" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#mantle">
+            <strong>Mantle</strong><br>
+            <img src="/images/build/start-building/supported-networks/mantle.webp" alt="Mantle" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#moonbeam">
+            <strong>Moonbeam</strong><br>
+            <img src="/images/build/start-building/supported-networks/moonbeam.webp" alt="Moonbeam" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/near">
+            <strong>NEAR</strong><br>
+            <img src="/images/build/start-building/supported-networks/near.webp" alt="NEAR" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#neon">
+            <strong>Neon</strong><br>
+            <img src="/images/build/start-building/supported-networks/neon.webp" alt="Neon" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#neutron">
+            <strong>Neutron</strong><br>
+            <img src="/images/build/start-building/supported-networks/neutron.webp" alt="Neutron" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#oasis">
+            <strong>Oasis</strong><br>
+            <img src="/images/build/start-building/supported-networks/oasis.webp" alt="Oasis" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#optimism">
+            <strong>Optimism</strong><br>
+            <img src="/images/build/start-building/supported-networks/optimism.webp" alt="Optimism" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#optimism-sepolia">
+            <strong>Optimism Sepolia</strong><br>
+            <img src="/images/build/start-building/supported-networks/optimism_sepolia.webp" alt="Optimism Sepolia" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#osmosis">
+            <strong>Osmosis</strong><br>
+            <img src="/images/build/start-building/supported-networks/osmosis.webp" alt="Osmosis" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#polygon">
+            <strong>Polygon</strong><br>
+            <img src="/images/build/start-building/supported-networks/polygon.webp" alt="Polygon" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#polygon-sepolia">
+            <strong>Polygon Sepolia</strong><br>
+            <img src="/images/build/start-building/supported-networks/polygon_sepolia.webp" alt="Polygon Sepolia" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#provenance">
+            <strong>Provenance</strong><br>
+            <img src="/images/build/start-building/supported-networks/provenance.webp" alt="Provenance" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/solana/#pythnet">
+            <strong>Pythnet</strong><br>
+            <img src="/images/build/start-building/supported-networks/pythnet.webp" alt="Pythnet" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#rootstock">
+            <strong>Rootstock</strong><br>
+            <img src="/images/build/start-building/supported-networks/rootstock.webp" alt="Rootstock" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#scroll">
+            <strong>Scroll</strong><br>
+            <img src="/images/build/start-building/supported-networks/scroll.webp" alt="Scroll" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#seda">
+            <strong>SEDA</strong><br>
+            <img src="/images/build/start-building/supported-networks/seda.webp" alt="SEDA" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#sei">
+            <strong>Sei</strong><br>
+            <img src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#seievm">
+            <strong>Seievm</strong><br>
+            <img src="/images/build/start-building/supported-networks/seievm.webp" alt="Seievm" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#ethereum-sepolia">
+            <strong>Ethereum Sepolia</strong><br>
+            <img src="/images/build/start-building/supported-networks/sepolia.webp" alt="Ethereum Sepolia" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/solana">
+            <strong>Solana</strong><br>
+            <img src="/images/build/start-building/supported-networks/solana.webp" alt="Solana" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#stargaze">
+            <strong>Stargaze</strong><br>
+            <img src="/images/build/start-building/supported-networks/stargaze.webp" alt="Stargaze" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/sui">
+            <strong>Sui</strong><br>
+            <img src="/images/build/start-building/supported-networks/sui.webp" alt="Sui" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#terra">
+            <strong>Terra</strong><br>
+            <img src="/images/build/start-building/supported-networks/terra.webp" alt="Terra" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+<tr>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#terra2">
+            <strong>Terra2</strong><br>
+            <img src="/images/build/start-building/supported-networks/terra2.webp" alt="Terra2" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/evm#xlayer">
+            <strong>X Layer</strong><br>
+            <img src="/images/build/start-building/supported-networks/xlayer.webp" alt="X Layer" style="width:90px; height:auto;">
+        </a>
+    </td>
+    <td style="vertical-align: top; text-align: center;">
+        <a href="/build/start-building/supported-networks/cosmwasm/#xpla">
+            <strong>XPLA</strong><br>
+            <img src="/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:auto;">
+        </a>
+    </td>
+</tr>
+</tbody>
+</table>

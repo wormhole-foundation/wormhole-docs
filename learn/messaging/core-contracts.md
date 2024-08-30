@@ -31,7 +31,7 @@ There are no fees to publish a message, except when publishing on Solana, but th
 
 - `payload` ++"byte[]"++ - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
 
-- `consistencyLevel` ++"int"++ - a numeric value that defines the required level of finality that must be reached before the Guardians will observe and attest to emitted events. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Environments](#){target=\_blank} pages <!-- link to blockchain platforms -->
+- `consistencyLevel` ++"int"++ - a numeric value that defines the required level of finality that must be reached before the Guardians will observe and attest to emitted events. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Environments](/build/start-building/supported-networks/){target=\_blank} pages 
 
 - `nonce` ++"int"++ - a free integer field that can be used however you like. Note that changing the `nonce` will result in a different digest
 
