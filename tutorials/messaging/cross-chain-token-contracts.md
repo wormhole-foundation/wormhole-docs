@@ -1,6 +1,6 @@
 ---
-title: TODO
-description: TODO
+title: Cross-chain Token Contracts
+description: Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
 ---
 
 # Cross-chain Token Contracts
@@ -238,3 +238,116 @@ You can find the full code for the `deploy.ts` file below:
     --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts"
     ```
 
+## Transfer Tokens Across Chains
+
+### Quick Recap
+
+Up to this point, you've set up a new Solidity project using Foundry, developed two key contracts (`CrossChainSender` and `CrossChainReceiver`), and created a deployment script to deploy these contracts to different blockchain networks. The deployment script also saves the new contract addresses for easy reference. Now, with everything in place, it's time to transfer tokens using the deployed contracts.
+
+In this step, you'll write a script to transfer tokens across chains using the `CrossChainSender` and `CrossChainReceiver` contracts you deployed earlier. This script will interact with the contracts and facilitate the cross-chain token transfer.
+
+### Transfer Script
+
+1. Set Up the Transfer Script:
+
+    First, let's create the transfer script:
+
+    1. Create a new file named `transfer.ts` in the root directory:
+
+        ```bash
+        touch transfer.ts
+        ```
+
+    2. Open the file. Start with the necessary imports and configurations:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:1:7"
+        ```
+
+        These imports include the essential libraries for interacting with Ethereum, handling file paths, loading environment variables, and managing user input.
+
+    3. Load configuration and contracts:
+
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:27:47"
+        ```
+
+        These functions load the network and contract details that were saved during deployment.
+
+    4. Allow users to select source and target chains:
+
+        Refer to the deployed contracts and create logic as desired. In our example, we made this process interactive, allowing users to select the source and target chains from all the contracts that have been deployed historically. This interactive approach helps ensure that the correct chains are selected for the token transfer.
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:49:101"
+        ```
+
+2. Implement the Token Transfer Logic:
+
+    1. Start the Main Function:
+
+        Now, let's add the main function where the token transfer logic will reside.
+    
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:103:139"
+        ```
+    
+        The main function loads the chain and contract details, sets up the wallet and provider, and loads the CrossChainSender contract.
+
+    2. Ask the User for Token Transfer Details:
+
+        You'll now ask the user for the token contract address, recipient address on the target chain, and the amount of tokens to transfer.
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:147:171"
+        ```
+
+        This section of the script prompts the user for the token contract address and the recipient's address, fetches the token's decimal value, and parses the amount accordingly.
+
+    3. Initiate the Transfer:
+
+        Finally, initiate the cross-chain transfer and log the details.
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:174:199"
+        ```
+
+        This part of the script first approves the token transfer, then initiates the cross-chain transfer using the `CrossChainSender` contract, and finally logs the transaction hash for the user to track.
+
+### Transfer Tokens
+
+Now that your transfer script is ready, it’s time to execute it and perform a cross-chain token transfer.
+
+1. Run the Transfer Script:
+
+    Open your terminal and run the transfer script:
+
+    ```bash
+    npx ts-node transfer.ts
+    ```
+
+    This command will start the script, prompting you to select the source and target chains, input the token address, recipient address, and the amount of tokens to transfer.
+
+2. Follow the Prompts:
+
+    The script will guide you through selecting the source and target chains, as well as entering the necessary details for the token transfer. Once you provide all the required information, the script will initiate the token transfer.
+
+3. Verify the Transaction:
+
+    After running the script, you should see a confirmation message with the transaction hash. You can use this transaction hash to check the status of the transfer on the respective blockchain explorers.
+
+    You can verify the transaction on the Wormhole Explorer using the provided link in the terminal output. This explorer also offers an option to add the transferred token to your MetaMask wallet automatically.
+
+
+## Resources
+
+If you'd like to explore the full project or need a reference while following this tutorial, you can find the complete codebase in the [GitHub repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank}. The repository includes all the scripts, contracts, and configurations needed to deploy and transfer tokens across chains using the Wormhole protocol.
+
+## Conclusion
+
+Congratulations! You've successfully built and deployed a cross-chain token transfer system using Solidity and the Wormhole protocol. You've learned how to:
+
+ - Set up a new Solidity project using Foundry
+ - Develop smart contracts to send and receive tokens across chains
+ - Write deployment scripts to manage and deploy contracts on different networks
