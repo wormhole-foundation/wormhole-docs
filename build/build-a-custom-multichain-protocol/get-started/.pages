@@ -1,4 +1,5 @@
-title: Getting Started 
+title: Get Started
 nav:
-- index.md
-- 'Local Dev Environment': 'dev-env.md'
+ - index.md
+ - choosing-a-relayer
+ - 'Local Dev Environment': 'dev-env.md'
