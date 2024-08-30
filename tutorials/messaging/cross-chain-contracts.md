@@ -132,7 +132,7 @@ The repository includes:
 
 ### Important Setup Steps
 
-1. **Add Your Private Key** - create a `.env` file in the root of the project and add your private key:
+1. **Add your private key** - create a `.env` file in the root of the project and add your private key:
     
     ```env
     touch .env
@@ -144,7 +144,7 @@ The repository includes:
     PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
 
-2. **Compile the Contracts** - ensure everything is set up correctly by compiling the contracts:
+2. **Compile the contracts** - ensure everything is set up correctly by compiling the contracts:
 
     ```bash
     forge build
@@ -158,7 +158,7 @@ The expected output should be similar to this:
 
 Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the following key tasks:
 
-1. **Load Configuration and Contract Details** - each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network.
+1. **Load configuration and contract details** - each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network
 
     === "`chains.json`"
 
@@ -181,7 +181,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     !!! note
         The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores TestNets. You can modify this file to add more networks if needed.
 
-2. **Set Up Provider and Wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction.
+2. **Set up provider and wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction
 
     === "`deploySender.js`"
 
@@ -195,7 +195,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:18:19"
         ```
 
-3. **Deploy the Contract** - the contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on.
+3. **Deploy the contract** - the contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on
 
     === "`deploySender.js`"
 
@@ -260,7 +260,7 @@ In this example, we will use the `sendMessage.js` script to transmit a message f
 
 Let's break down the script step by step.
 
-1. Load Configuration Files
+1. **Load configuration files**
 
     1. **`chains.json`** - contains details about the supported TestNet chains, such as RPC URLs and relayer addresses
     2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
@@ -269,9 +269,7 @@ Let's break down the script step by step.
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:8:16"
     ```
 
-2. Configure the Provider and Signer
-
-    The script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider.
+2. **Configure the provider and signer** - the script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider
 
     Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
         
@@ -285,9 +283,7 @@ Let's break down the script step by step.
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:38:43"
     ```
 
-3. Set Up the Message Details
-
-    The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
+3. **Set up the message details** - the next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
 
     ```javascript
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:55:56"
@@ -299,9 +295,7 @@ Let's break down the script step by step.
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:59:59"
     ```
 
-4. Estimate Cross-Chain Cost
-
-    Before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
+4. **Estimate cross-chain cost** - before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
 
     ```javascript
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:62:62"
@@ -309,9 +303,7 @@ Let's break down the script step by step.
 
     This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
 
-5. Send a Message
-
-    With everything set up, the message is sent using the `sendMessage` function:
+5. **Send a message** - with everything set up, the message is sent using the `sendMessage` function:
 
     ```javascript
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:65:72"
@@ -323,9 +315,7 @@ Let's break down the script step by step.
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-3.js:75:75"
     ```
 
-6. Run the Script
-
-    To send the message, run the following command:
+6. **Run the script** - to send the message, run the following command:
 
     ```bash
     npm run send:message
