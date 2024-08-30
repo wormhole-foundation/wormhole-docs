@@ -169,9 +169,7 @@ You can find the full code for the `CrossChainReceiver.sol` contract below:
 
 Now that you've written the `CrossChainSender` and `CrossChainReceiver` contracts, it's time to deploy them to your chosen networks.
 
-1. Set Up Deployment Configuration:
-
-    Before deploying, you need to configure the networks and the deployment environment. This information is stored in a configuration file.
+1. **Set up deployment configuration** - before deploying, you need to configure the networks and the deployment environment. This information is stored in a configuration file
 
     1. Create a directory named deploy-config in the root of your project:
 
@@ -196,9 +194,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         !!! note
             You can add your desired chains to this file by specifying the required fields for each chain. In this example, we're using the Avalanche Fuji and Celo Alfajores TestNets.
 
-2. Write the Deployment Script:
-
-    You’ll need a script to automate the deployment of your contracts. Let’s create the deployment script.
+2. **Write the deployment script** - you’ll need a script to automate the deployment of your contracts. Let’s create the deployment script
 
     1. Load imports and configuration:
 
@@ -249,7 +245,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
             --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:141:167"
             ```
 
-3. Add your private key:
+3. **Add your private key**
 
     Create a `.env` file in the root of the project and add your private key:
 
@@ -263,11 +259,9 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
 
-4. Compile Your Smart Contracts:
+4. **Compile your smart contracts** - before running the deployment script, compile your smart contracts using Foundry. This ensures that your contracts are up-to-date and ready for deployment.
 
-    Before running the deployment script, compile your smart contracts using Foundry. This ensures that your contracts are up-to-date and ready for deployment.
-
-    1. Run the following command to compile your contracts:
+    - Run the following command to compile your contracts:
 
         ```bash
         forge build
@@ -279,9 +273,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
     --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-6.html"
 
-5. Set Up Your Node.js Environment:
-
-    Before running the deployment script, you'll need to set up your Node.js environment:
+5. **Set up your Node.js environment** - before running the deployment script, you'll need to set up your Node.js environment
 
     1. Initialize a Node.js project:
 
@@ -297,7 +289,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         These dependencies are required for the deployment script to work properly.
     
-6. Run the Deployment Script:
+6. **Run the deployment script**
 
     1. Open a terminal and run the following command:
 
@@ -335,9 +327,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 ### Transfer Script
 
-1. Set Up the Transfer Script:
-
-    First, let's create the transfer script:
+1. **Set up the transfer script** - first, let's create the transfer script:
 
     1. Create a new file named `transfer.ts` in the root directory:
 
@@ -370,7 +360,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:49:101"
         ```
 
-2. Implement the Token Transfer Logic:
+2. **Implement the token transfer logic**
 
     1. Start the Main Function:
 
@@ -414,7 +404,7 @@ You can find the full code for the `transfer.ts` file below:
 
 Now that your transfer script is ready, it’s time to execute it and perform a cross-chain token transfer.
 
-1. Run the Transfer Script:
+1. **Run the transfer script**
 
     Open your terminal and run the transfer script:
 
@@ -424,22 +414,18 @@ Now that your transfer script is ready, it’s time to execute it and perform a 
 
     This command will start the script, prompting you to select the source and target chains, input the token address, recipient address, and the amount of tokens to transfer.
 
-2. Follow the Prompts:
+2. **Follow the prompts** - the script will guide you through selecting the source and target chains, as well as entering the necessary details for the token transfer. Once you provide all the required information, the script will initiate the token transfer.
 
-    The script will guide you through selecting the source and target chains, as well as entering the necessary details for the token transfer. Once you provide all the required information, the script will initiate the token transfer.
+3. **Verify the transaction** - after running the script, you should see a confirmation message with the transaction hash. You can use this transaction hash to check the status of the transfer on the respective blockchain explorers.
 
-3. Verify the Transaction:
-
-    After running the script, you should see a confirmation message with the transaction hash. You can use this transaction hash to check the status of the transfer on the respective blockchain explorers.
-
-    You can verify the transaction on the Wormhole Explorer using the provided link in the terminal output. This explorer also offers an option to add the transferred token to your MetaMask wallet automatically.
+You can verify the transaction on the [Wormhole Explorer](https://wormholescan.io/){target=\_balnk} using the provided link in the terminal output. This explorer also offers an option to add the transferred token to your MetaMask wallet automatically.
 
 If you followed the logic provided in the `transfer.ts` file above, your terminal output should look something like this:
 
 --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-8.html"
 
 !!! note
-    In this example, we demonstrated a token transfer from the Avalanche Fuji testnet to the Celo Alfajores testnet. We sent 2 units of USDC testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your own project or use the same for testing purposes.
+    In this example, we demonstrated a token transfer from the Avalanche Fuji TestNet to the Celo Alfajores TestNet. We sent 2 units of USDC TestNet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your own project or use the same for testing purposes.
 
 ## Resources
 
