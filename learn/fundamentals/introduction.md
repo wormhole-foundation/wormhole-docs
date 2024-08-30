@@ -14,7 +14,7 @@ Wormhole is distinguished by its focus on robust security, scalability, and tran
 ![Message-passing process in the Wormhole protocol](/images/learn/introduction/introduction-1.webp)
 
 !!! note
-    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/architecture/){target=\_blank}.
+    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/fundamentals/architecture/){target=\_blank}.
 
 Wormhole allows developers to leverage the strengths of multiple blockchain ecosystems without being confined to one. This means applications can benefit from the unique features of various networks—such as Solana's high throughput, Ethereum's security, and Cosmos's interoperability while maintaining a unified, efficient user experience.
 
@@ -48,9 +48,8 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 Consider the following examples of potential applications enabled by Wormhole:
 
 - **Cross-chain exchange** - using [Wormhole Connect](/build/build-apps/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
-- **[Cross-chain governance](#){target=\_blank}** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
+- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
 - **Cross-chain game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
-<!-- add a URL to an article that they have on this topic? -->
 
 ## Get Started
 
@@ -67,7 +66,7 @@ More tutorials are available [on GitHub](#){target=\_blank}. <!-- tutorials will
 
 Discover more about the Wormhole ecosystem, components, and protocols:
 
-- **[Architecture](/learn/architecture/){target=\_blank}** - explore the components of the protocol
+- **[Architecture](/learn/fundamentals/architecture/){target=\_blank}** - explore the components of the protocol
 - **[Protocol Specifications](https://github.com/wormhole-foundation/wormhole/tree/main/whitepapers){target=\_blank}** - learn about the protocols built on top of Wormhole
 
 ## Demos
