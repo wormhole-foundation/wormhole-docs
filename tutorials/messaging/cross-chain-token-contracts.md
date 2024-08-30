@@ -3,13 +3,18 @@ title: Cross-chain Token Contracts
 description: Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
 ---
 
+<!-- 
+- Valid Tokens for Transfer -> Expand in description and reference to the respective functions. Chack Wormhole official documentation for ideas.
+
+ -->
+
 # Cross-chain Token Contracts
 
 ## Introduction
 
-In this tutorial, you'll learn how to create a simple cross-chain token transfer system using the Wormhole protocol. We'll guide you through building and deploying smart contracts that allow you to send tokens from one blockchain to another seamlessly. Whether you're a developer looking to explore cross-chain applications or just interested in the Wormhole protocol, this guide will help you understand the fundamentals.
+In this tutorial, you'll learn how to create a simple cross-chain token transfer system using the Wormhole protocol and the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}. We'll guide you through building and deploying smart contracts that enable seamless token transfers of IERC-20 tokens between blockchains. Whether you're a developer looking to explore cross-chain applications or just interested in the Wormhole protocol, this guide will help you understand the fundamentals.
 
-By the end of this tutorial, you'll have a working cross-chain token transfer system that you can further customize and integrate into your own projects.
+By the end of this tutorial, you'll have a working cross-chain token transfer system, built with the powerful tools provided by the Wormhole Solidity SDK, which you can further customize and integrate into your own projects.
 
 ## Prerequisites
 
@@ -20,9 +25,21 @@ Before you begin, ensure you have the following:
 - TestNet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
 - Wallet private key
 
+## Valid Tokens for Transfer
+
+It's important to note that this tutorial leverages Wormhole's TokenBridge to transfer tokens between chains. Therefore, the tokens you wish to transfer must be attested on the TokenBridge contract of the target blockchain.
+
+**Attesting a token** - if a token is not already attested on the target chain's TokenBridge, you must attest it using the `attestWorkflow` function. This process includes:
+
+1. **Source chain** - calling the `attestToken` function on the TokenBridge contract to generate a payload with the token details
+2. **VAA creation** - off-chain, the [VAA (Verifiable Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is fetched, containing the token details with signatures from Wormhole Guardians
+3. **Target chain** - using the VAA to call the `createWrapped` function on the TokenBridge contract, allowing it to mint the wrapped version of the token on the target chain
+
+To check if a token is already attested, use the `wrappedAsset` function on the TokenBridge. If attested, this function will return the address of the wrapped token on the target chain; otherwise, it returns the zero address.
+
 ## Project Setup
 
-Let's start by initializing a new Foundry project. This will set up a basic structure for our smart contracts and tests.
+Let's start by initializing a new Foundry project. This will set up a basic structure for our smart contracts.
 
 1. Open your terminal and run the following command to initialize a new Foundry project:
     
@@ -38,14 +55,37 @@ Let's start by initializing a new Foundry project. This will set up a basic stru
     cd cross-chain-token-contracts
     ```
 
-## Writing the Smart Contracts
+3. Install the Wormhole Solidity SDK:
 
-Now that our project is set up, let's start by writing the smart contracts that will handle the cross-chain token transfers. We'll create two main contracts:
+    To ease development, we'll make use of the Wormhole Solidity SDK, which provides useful helpers for cross-chain development.
 
- - **`CrossChainSender.sol`** - this contract will handle sending tokens from one blockchain to another.
- - **`CrossChainReceiver.sol`** - this contract will receive tokens on the target blockchain.
+    ```bash
+    forge install wormhole-foundation/wormhole-solidity-sdk
+    ```
 
-### CrossChainSender Contract
+    This SDK includes the `TokenSender` and `TokenReceiver` abstract classes, which simplify the process of sending and receiving tokens across chains.
+
+## Build Cross-Chain Contracts
+
+In this section, we'll build two smart contracts: one to send tokens from a source chain and another to receive them on a target chain. These contracts will interact with the Wormhole protocol to facilitate secure and seamless cross-chain token transfers.
+
+At a high level, our contracts will:
+
+1. Send tokens from one blockchain to another using the Wormhole protocol
+2. Receive and process the tokens on the target chain, ensuring they are correctly transferred to the intended recipient
+
+Before diving into the contract implementation steps, let’s first break down the key parts of the contracts.
+
+### Sender Contract: CrossChainSender
+
+The `CrossChainSender` contract is responsible for calculating the cost of sending tokens across chains and then facilitating the actual token transfer. This contract leverages the Wormhole protocol to ensure seamless cross-chain transactions.
+
+Key functions include:
+
+ - **`quoteCrossChainDeposit`** - calculates the cost of delivering tokens to the target chain using the Wormhole protocol
+ - **`sendCrossChainDeposit`** - encodes the recipient's address and sends the tokens to the target chain and contract address using the Wormhole protocol
+
+Let's start writing the `CrossChainSender` contract:
 
 1. Create a new file named `CrossChainSender.sol` in the `src` directory:
     
@@ -75,7 +115,7 @@ Now that our project is set up, let's start by writing the smart contracts that 
     --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-1.sol:31:57"
     ```
 
-    This sendCrossChainDeposit function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
+    This `sendCrossChainDeposit` function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
 
 You can find the full code for the `CrossChainSender.sol` below.
 
@@ -85,14 +125,15 @@ You can find the full code for the `CrossChainSender.sol` below.
     --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-1.sol"
     ```
 
-### CrossChainReceiver Contract
+### Receiver Contract: CrossChainReceiver
 
-<!-- The `CrossChainReceiver` contract will: -->
+The `CrossChainReceiver` contract is designed to handle the receipt of tokens and payloads from another blockchain. It ensures that the tokens are properly transferred to the designated recipient on the receiving chain.
 
-<!-- - Inherit from the `TokenReceiver` contract provided by the Wormhole SDK.
-- Receive tokens and a payload sent from the `CrossChainSender` contract on a different chain.
-- Decode the payload to determine the recipient on the destination chain.
-- Transfer the received tokens to the recipient specified in the payload. -->
+Key functions include:
+
+ - **`receivePayloadAndTokens`** - processes the incoming tokens and payload from another chain, decodes the recipient's address, and transfers the tokens to that address using the Wormhole protocol
+
+Let's start writing the `CrossChainReceiver` contract:
 
 1. Create a new file named `CrossChainReceiver.sol` in the `src` directory:
 
