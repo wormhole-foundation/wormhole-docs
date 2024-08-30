@@ -193,6 +193,9 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the token bridge address, the Wormhole relayer, and the Wormhole core contract.
 
+        !!! note
+            You can add your desired chains to this file by specifying the required fields for each chain. In this example, we're using the Avalanche Fuji and Celo Alfajores TestNets.
+
 2. Write the Deployment Script:
 
     You’ll need a script to automate the deployment of your contracts. Let’s create the deployment script.
@@ -213,7 +216,15 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to interactively choose the source and target chains for deployment. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
 
-    3. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
+    3. Set up provider and wallet: 
+    
+        The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:55:57"
+        ```
+
+    4. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
         === "`CrossChainSender`"
             ```typescript
@@ -227,7 +238,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         Both functions deploy the respective contracts to the selected chains.
 
-    4. Save the deployment details:
+    5. Save the deployment details:
 
         Add your desired logic to save the deployed contract addresses in a JSON file (or another format). This will be important later when transferring tokens, as you'll need these addresses to interact with the deployed contracts.
 
@@ -238,7 +249,37 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
             --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:141:167"
             ```
 
-3. Set Up Your Node.js Environment:
+3. Add your private key:
+
+    Create a `.env` file in the root of the project and add your private key:
+
+    ```bash
+    touch .env
+    ```
+
+    Inside `.env`, add your private key in the following format:
+
+    ```env
+    PRIVATE_KEY=INSERT_PRIVATE_KEY
+    ```
+
+4. Compile Your Smart Contracts:
+
+    Before running the deployment script, compile your smart contracts using Foundry. This ensures that your contracts are up-to-date and ready for deployment.
+
+    1. Run the following command to compile your contracts:
+
+        ```bash
+        forge build
+        ```
+
+        This will compile all the smart contracts in your project and generate the necessary ABI and bytecode files.
+
+    The expected output should be similar to this:
+
+    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-6.html"
+
+5. Set Up Your Node.js Environment:
 
     Before running the deployment script, you'll need to set up your Node.js environment:
 
@@ -256,7 +297,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         These dependencies are required for the deployment script to work properly.
     
-4. Run the Deployment Script:
+6. Run the Deployment Script:
 
     1. Open a terminal and run the following command:
 
@@ -278,6 +319,11 @@ You can find the full code for the `deploy.ts` file below:
     ```solidity
     --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts"
     ```
+
+If you followed the logic provided in the full code above, your terminal output should look something like this:
+
+--8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-7.html"
+
 
 ## Transfer Tokens Across Chains
 
@@ -334,7 +380,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:103:139"
         ```
     
-        The main function loads the chain and contract details, sets up the wallet and provider, and loads the CrossChainSender contract.
+        The main function loads the chain and contract details, sets up the wallet and provider, and loads the `CrossChainSender` contract.
 
     2. Ask the User for Token Transfer Details:
 
@@ -355,6 +401,14 @@ In this step, you'll write a script to transfer tokens across chains using the `
         ```
 
         This part of the script first approves the token transfer, then initiates the cross-chain transfer using the `CrossChainSender` contract, and finally logs the transaction hash for the user to track.
+
+You can find the full code for the `transfer.ts` file below:
+
+??? code "transfer.ts"
+
+    ```solidity
+    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts"
+    ```
 
 ### Transfer Tokens
 
@@ -380,6 +434,12 @@ Now that your transfer script is ready, it’s time to execute it and perform a 
 
     You can verify the transaction on the Wormhole Explorer using the provided link in the terminal output. This explorer also offers an option to add the transferred token to your MetaMask wallet automatically.
 
+If you followed the logic provided in the `transfer.ts` file above, your terminal output should look something like this:
+
+--8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-8.html"
+
+!!! note
+    In this example, we demonstrated a token transfer from the Avalanche Fuji testnet to the Celo Alfajores testnet. We sent 2 units of USDC testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your own project or use the same for testing purposes.
 
 ## Resources
 
