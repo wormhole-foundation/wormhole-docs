@@ -11,7 +11,7 @@ Moving liquidity across different networks in the broader blockchain ecosystem e
 
 Fast Transfers is a protocol designed by Wormhole to address these challenges by providing a quick and efficient solution for cross-chain liquidity movement. Leveraging a [hub-and-spoke model](/learn/fast-transfers/#hub-and-spoke-model) with Solana as the central hub, Fast Transfers consolidates liquidity into a single, unified pool. Solana was specifically chosen for its fast finality and low transaction costs, critical for enabling rapid asset transfers. This approach minimizes fragmentation by eliminating the need for multiple wrapped versions of the same token across different chains, ensuring a more streamlined and efficient transfer process.
 
-The key component of Fast Transfers is its aggregated [auction mechanism](/learn/fast-transfers/#auction-mechanism), where [solvers](/learn/fast-transfers/#solvers) compete to offer the best rates for cross-chain transactions. This competitive environment ensures optimal pricing and efficient execution of transfers, significantly reducing wait times compared to traditional cross-chain methods.
+The key component of Fast Transfers is its aggregated [auction mechanism](/learn/fast-transfers/#auction-mechanism), where [solvers](/learn/fast-transfers/#solvers)/market makers compete to offer the best rates for cross-chain transactions. This competitive environment ensures optimal pricing and efficient execution of transfers, significantly reducing wait times compared to traditional cross-chain methods.
 
 By addressing liquidity fragmentation and transfer delays, Fast Transfers provides developers with a robust and reliable infrastructure for building applications requiring swift and seamless cross-chain asset transfers. This enhancement improves the overall user experience and promotes greater interoperability within the blockchain ecosystem.
 
@@ -44,7 +44,6 @@ Fast Transfers operates through a series of well-defined steps to ensure quick a
 
 1. **Liquidity aggregation** - the transfer process begins by moving assets from the source chain (a spoke) to the hub chain, Solana. Here, liquidity is concentrated, and the auction process takes place
 2. **Auction process** - once the assets reach Solana, an auction is initiated on the hub chain. Solvers, who are market participants, bid to provide the best possible rate for the transfer. The winning solver executes the swap and facilitates the transfer to the destination chain via:
-3. 
     - **CCTP** - the protocol uses the [Cross-Chain Transfer Protocol (CCTP)](/learn/messaging/cctp/){target=\_blank} to manage the movement of assets from the hub chain. CCTP handles the burning of tokens on the source chain and the minting of equivalent tokens on the destination chain, ensuring the integrity of the transfer process
     - **[NTT (Native Token Transfers)](/learn/messaging/ntt/ntt-overview/){target=\_blank}** - for chains that do not support CCTP, Fast Transfers employs NTT messages. In this case, USDC is locked on Solana, and an NTT message is sent to the destination chain, triggering the transfer of an equivalent value of tokens
 4. **Final transfer** - the final step involves the solvers executing the necessary swaps to provide the user with a useful token on the destination chain. This ensures that the user receives the desired asset promptly, completing the cross-chain transfer process
@@ -52,8 +51,6 @@ Fast Transfers operates through a series of well-defined steps to ensure quick a
 This structured approach allows Fast Transfers to overcome the limitations of direct chain-to-chain transfers by using Solana as a central hub and leveraging the strengths of CCTP and NTT protocols, ensuring efficient and reliable liquidity movement across multiple chains.
 
 ## Auction Mechanism
-
-### Overview of the Auction Mechanism
 
 The auction mechanism is a core component of the Fast Transfers protocol, ensuring users receive the most efficient and cost-effective cross-chain transfers. It operates on the Solana network, where solvers compete to fulfill transfer requests by bidding in a reverse Dutch auction. This competitive environment drives down costs and speeds up the transfer process, benefiting both users and solvers.
 
