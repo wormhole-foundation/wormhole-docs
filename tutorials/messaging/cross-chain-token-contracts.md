@@ -23,19 +23,43 @@ Before you begin, ensure you have the following:
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
 - TestNet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
+- [USDC TestNet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
 - Wallet private key
 
 ## Valid Tokens for Transfer
 
-It's important to note that this tutorial leverages Wormhole's TokenBridge to transfer tokens between chains. Therefore, the tokens you wish to transfer must be attested on the TokenBridge contract of the target blockchain.
+It's important to note that this tutorial leverages [Wormhole's TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/TokenBridge.sol){target=\_blank} to transfer tokens between chains. Therefore, the tokens you wish to transfer must be attested on the TokenBridge contract of the target blockchain.
 
-**Attesting a token** - if a token is not already attested on the target chain's TokenBridge, you must attest it using the `attestWorkflow` function. This process includes:
+To simplify this process, we've included a tool that allows you to check if a token is already attested on the target chain. This tool uses the `wrappedAsset` function from the TokenBridge contract. If the token is attested, the `wrappedAsset` function returns the address of the wrapped token on the target chain; otherwise, it returns the zero address.
 
-1. **Source chain** - calling the `attestToken` function on the TokenBridge contract to generate a payload with the token details
-2. **VAA creation** - off-chain, the [VAA (Verifiable Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is fetched, containing the token details with signatures from Wormhole Guardians
-3. **Target chain** - using the VAA to call the `createWrapped` function on the TokenBridge contract, allowing it to mint the wrapped version of the token on the target chain
+???- tip "Check Token Attestation"
+    1. Clone the [repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank} and navigate to the project directory:
+        ```bash
+        git clone https://github.com/martin0995/cross-chain-token-transfers.git
+        cd cross-chain-token-transfers
+        ```
+    2. Install the dependencies:
+        ```bash
+        npm install
+        ```
+    
+    3. Run the script to check token attestation:
+        ```bash
+        npm run verify
+        ```
 
-To check if a token is already attested, use the `wrappedAsset` function on the TokenBridge. If attested, this function will return the address of the wrapped token on the target chain; otherwise, it returns the zero address.
+    4. Follow the prompts:
+
+        - Enter the RPC URL of the target chain
+        - Enter the Token Bridge contract address on the target chain
+        - Enter the token contract address on the source chain
+        - Enter the source chain ID
+
+    5. The expected output when the token is attested:
+        
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-10.html"
+    
+    Using this tool ensures that you only attempt to transfer tokens that are properly attested, avoiding any potential issues during the cross-chain transfer process.
 
 ## Project Setup
 
@@ -57,11 +81,11 @@ Let's start by initializing a new Foundry project. This will set up a basic stru
 
 3. Install the Wormhole Solidity SDK:
 
-    To ease development, we'll make use of the Wormhole Solidity SDK, which provides useful helpers for cross-chain development.
-
     ```bash
     forge install wormhole-foundation/wormhole-solidity-sdk
     ```
+
+    To ease development, we'll make use of the Wormhole Solidity SDK, which provides useful helpers for cross-chain development.
 
     This SDK includes the `TokenSender` and `TokenReceiver` abstract classes, which simplify the process of sending and receiving tokens across chains.
 
@@ -194,9 +218,23 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         !!! note
             You can add your desired chains to this file by specifying the required fields for each chain. In this example, we're using the Avalanche Fuji and Celo Alfajores TestNets.
 
+    4. Create a `contracts.json` file in the `deploy-config` directory:
+
+        ```bash
+        touch deploy-config/contracts.json
+        ```
+
+        This file can be left blank initially. It will be automatically updated with the deployed contract addresses after a successful deployment
+
 2. **Write the deployment script** - you’ll need a script to automate the deployment of your contracts. Let’s create the deployment script
 
-    1. Load imports and configuration:
+    1. Create a new file named `deploy.ts` in the `/src` directory:
+
+        ```bash
+        touch src/deploy.ts
+        ```
+
+    2. Load imports and configuration:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:1:7"
@@ -204,15 +242,15 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         Import required libraries and modules for interacting with Ethereum, handling file paths, loading environment variables, and enabling user interaction via the terminal.
     
-    2. Load and select the chains for deployment:
+    3. Load and select the chains for deployment:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:27:41"
+        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:27:47"
         ```
 
         The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to interactively choose the source and target chains for deployment. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
 
-    3. Set up provider and wallet: 
+    4. Set up provider and wallet: 
     
         The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction:
 
@@ -220,7 +258,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:55:57"
         ```
 
-    4. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
+    5. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
         === "`CrossChainSender`"
             ```typescript
@@ -234,7 +272,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         Both functions deploy the respective contracts to the selected chains.
 
-    5. Save the deployment details:
+    6. Save the deployment details:
 
         Add your desired logic to save the deployed contract addresses in a JSON file (or another format). This will be important later when transferring tokens, as you'll need these addresses to interact with the deployed contracts.
 
@@ -267,7 +305,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         forge build
         ```
 
-        This will compile all the smart contracts in your project and generate the necessary ABI and bytecode files.
+        This will compile all the smart contracts in your project and generate the necessary ABI and bytecode files in a directory named `/out`.
 
     The expected output should be similar to this:
 
@@ -294,7 +332,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     1. Open a terminal and run the following command:
 
         ```bash
-        npx ts-node deploy.ts
+        npx ts-node src/deploy.ts
         ```
 
         This will execute the deployment script, deploying both contracts to the selected chains.
@@ -329,10 +367,10 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 1. **Set up the transfer script** - first, let's create the transfer script:
 
-    1. Create a new file named `transfer.ts` in the root directory:
+    1. Create a new file named `transfer.ts` in the `/src` directory:
 
         ```bash
-        touch transfer.ts
+        touch src/transfer.ts
         ```
 
     2. Open the file. Start with the necessary imports and configurations:
@@ -362,17 +400,15 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 2. **Implement the token transfer logic**
 
-    1. Start the Main Function:
-
-        Now, let's add the main function where the token transfer logic will reside.
+    1. Start the `main` function:
     
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:103:139"
         ```
     
-        The main function loads the chain and contract details, sets up the wallet and provider, and loads the `CrossChainSender` contract.
+        The `main` function is where the token transfer logic will reside. It loads the chain and contract details, sets up the wallet and provider, and loads the `CrossChainSender` contract.
 
-    2. Ask the User for Token Transfer Details:
+    2. Ask the user for token transfer details:
 
         You'll now ask the user for the token contract address, recipient address on the target chain, and the amount of tokens to transfer.
 
@@ -382,7 +418,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
         This section of the script prompts the user for the token contract address and the recipient's address, fetches the token's decimal value, and parses the amount accordingly.
 
-    3. Initiate the Transfer:
+    3. Initiate the transfer:
 
         Finally, initiate the cross-chain transfer and log the details.
 
@@ -409,7 +445,7 @@ Now that your transfer script is ready, it’s time to execute it and perform a 
     Open your terminal and run the transfer script:
 
     ```bash
-    npx ts-node transfer.ts
+    npx ts-node src/transfer.ts
     ```
 
     This command will start the script, prompting you to select the source and target chains, input the token address, recipient address, and the amount of tokens to transfer.
