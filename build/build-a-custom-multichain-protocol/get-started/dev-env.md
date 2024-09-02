@@ -1,6 +1,6 @@
 ---
 title: Local Dev Environment
-description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more. 
+description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more.
 ---
 
 # Development Environment
@@ -19,11 +19,11 @@ Different approaches to development and testing are recommended at various stage
 
 During the initial development of an on-chain application, the best option is to use the native tools available in the environment. You can visit the following resources for more information:
 
-- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset  
-- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received. 
+- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset
+- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a mock Guardian or Emitter to provide signed VAAs for any program methods that require some message be sent or received.
 - **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}** - example mock Guardian test
 
-Relying on native tools when possible allows for more rapid prototyping and iteration.  
+Relying on native tools when possible allows for more rapid prototyping and iteration.
 
 ### Integration
 
@@ -50,3 +50,9 @@ When doing integration testing on TestNets, remember that a single Guardian node
 ### MainNet
 
 The MainNet contract addresses are available on the page for each [environment](build/start-building/supported-networks/). The MainNet Guardian RPC configuration is available on the [SDK page](#).
+
+## Enhancements for Developer Experience
+
+- **Detailed setup instructions**: Expand the initial setup instructions to include more comprehensive details on installing and configuring the development environment, especially for newcomers.
+- **Executable code examples**: Integrate interactive code snippets that developers can run within the documentation to better understand the setup process.
+- **Troubleshooting guide**: Include a section on common issues faced during the setup of local validators, particularly using Tilt, and how to resolve them.
