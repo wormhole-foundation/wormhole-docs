@@ -7,14 +7,15 @@ description: Discover Fast Transfers, a protocol for quick, efficient cross-chai
 
 ## Overview
 
-Moving liquidity across different networks in the broader blockchain ecosystem is crucial for enabling assets and value to flow freely. However, this process is often hindered by challenges such as fragmented liquidity and slow transfer times due to the time-to-finality across various chains. These issues can lead to inefficiencies and delays that negatively impact the user experience and the functionality of decentralized applications.
+Moving liquidity across different networks in the broader blockchain ecosystem enables assets and value to flow freely. However, challenges such as fragmented liquidity and slow transfer times often hinder this process due to the time-to-finality across various chains. These issues can lead to inefficiencies and delays that negatively impact the user experience and the functionality of decentralized applications.
 
-To address such issues, Wormhole offers users/developers Fast Transfers. It introduces an innovative solution that ensures quick and efficient cross-chain liquidity movement. The protocol is built on Solana, which was chosen for its fast finality and low transaction costs. The unique feature that sets Fast Transfers apart is its aggregated auction mechanism, which operates within a hub-and-spoke model. In this model, Solana acts as the central hub, concentrating liquidity and enabling rapid transfers to destination chains.
+Fast Transfers is a protocol designed by Wormhole to address these challenges by providing a quick and efficient solution for cross-chain liquidity movement. Leveraging a hub-and-spoke model with Solana as the central hub, Fast Transfers consolidates liquidity into a single, unified pool. Solana was specifically chosen for its fast finality and low transaction costs, critical for enabling rapid asset transfers. This approach minimizes fragmentation by eliminating the need for multiple wrapped versions of the same token across different chains, ensuring a more streamlined and efficient transfer process.
 
-In Fast Transfers auctions, solvers and market makers compete to provide the best rates for cross-chain transactions. This competition and the liquidity aggregation layer allow the protocol to bypass the delays associated with traditional cross-chain transfers. By aggregating liquidity and employing an effective auction system, Fast Transfers significantly reduces wait times. It is a solid solution for developers building applications that require fast and reliable cross-chain asset transfers.
+The key component of Fast Transfers is its aggregated auction mechanism, where solvers and market makers compete to offer the best rates for cross-chain transactions. This competitive environment ensures optimal pricing and efficient execution of transfers, significantly reducing wait times compared to traditional cross-chain methods.
+
+By addressing liquidity fragmentation and transfer delays, Fast Transfers provides developers with a robust and reliable infrastructure for building applications requiring swift and seamless cross-chain asset transfers. This enhancement improves the overall user experience and promotes greater interoperability within the blockchain ecosystem.
 
 This page introduces all relevant concepts to understand how Fast Transfers work, including the auction mechanism, the hub-and-spoke model, and the role of solvers in ensuring liquidity is always available where it’s needed.
-
 
 ## Key Concepts
 
@@ -30,21 +31,12 @@ To support Fast Transfers, a blockchain must meet one of the following messaging
 
 The hub-and-spoke model is a system architecture commonly used to optimize the movement of assets or information across a network. In this model, a central "hub" acts as the primary point of control and coordination, while "spokes" are the various endpoints or destinations that connect to the hub. This architecture is particularly effective in managing complex systems where resources need to be efficiently distributed and coordinated across multiple locations.
 
-#### Overview of the Hub and Spoke Model
-
 At a high level, the hub-and-spoke model operates as follows:
 
-- **Hub** - the central node where all resources, data, assets, or information are aggregated and managed. The hub handles the distribution to the spokes, acting as a central point of processing and coordination
-- **Spokes** - the spokes are the endpoints connected to the hub. In the case of blockchain, these are the different chains. The spokes rely on the hub to receive and send resources or information, creating a streamlined and centralized flow
+- **Hub** -  the central node where all resources, data, assets, or information are aggregated and managed. The hub handles the distribution to the spokes, acting as a central point of processing and coordination. In the context of Fast Transfers, Solana serves as the hub chain where all liquidity is concentrated. Solana was chosen due to its fast finality, low transaction costs, and strong support for the [Cross-Chain Transfer Protocol (CCTP)](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. By consolidating liquidity on Solana, Fast Transfers can efficiently manage the distribution of assets across multiple chains through a competitive auction mechanism. Additionally, CCTP USDC is used as the base asset, ensuring that USDC liquidity is available for moving assets across different chains
+- **Spokes** - the spokes are the endpoints connected to the hub. They rely on the hub to receive and send resources or information, creating a streamlined and centralized flow. In the case of Fast Transfers, these are the destination chains to which assets are transferred. Rather than transferring tokens directly between source and destination chains, Fast Transfers routes all transactions through the Solana hub. This routing allows for a more streamlined and efficient transfer process, reducing the complexity and delays that can arise from managing direct transfers between multiple chains
 
-This model is highly efficient because it aggregates control and reduces the complexity of direct interactions between each endpoint. Instead of managing multiple direct connections, each spoke only needs to connect to the hub, simplifying the overall system.
-
-#### Application in Fast Transfers
-
-Fast Transfers leverages the hub-and-spoke model to manage liquidity and execute cross-chain transfers with high efficiency. Here’s how it works within the Fast Transfers protocol:
-
-- **Hub chain** - Solana is the central hub where all liquidity is concentrated. Solana was selected as the hub due to its fast finality, low transaction costs, and strong support for the [Cross-Chain Transfer Protocol (CCTP)](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. By centralizing liquidity on Solana, Fast Transfers can efficiently manage the distribution of assets across multiple chains through a competitive auction mechanism
-- **Spoke chains** - these are the destination chains to which assets are transferred. Rather than transferring tokens directly between source and destination chains, Fast Transfers routes all transactions through the Solana hub. This approach allows for a more streamlined and efficient transfer process
+This model is highly efficient because it aggregates control and reduces the complexity of direct interactions between each endpoint. Instead of managing multiple direct connections, each spoke only needs to connect to the hub, simplifying the overall system and ensuring that liquidity is effectively utilized where it is needed most.
 
 ### How It Works
 
@@ -52,9 +44,10 @@ Fast Transfers operates through a series of well-defined steps to ensure quick a
 
 1. **Liquidity aggregation** - the transfer process begins by moving assets from the source chain (a spoke) to the hub chain, Solana. Here, liquidity is concentrated, and the auction process takes place
 2. **Auction process** - once the assets reach Solana, an auction is initiated on the hub chain. Solvers, who are market participants, bid to provide the best possible rate for the transfer. The winning solver executes the swap and facilitates the transfer to the destination chain via:
-3. **CCTP** - the protocol uses the [Cross-Chain Transfer Protocol (CCTP)](/learn/messaging/cctp/){target=\_blank} to manage the movement of assets from the hub chain. CCTP handles the burning of tokens on the source chain and the minting of equivalent tokens on the destination chain, ensuring the integrity of the transfer process
-4. **[NTT (Native Token Transfers)](/learn/messaging/ntt/ntt-overview/){target=\_blank}** - for chains that do not support CCTP, Fast Transfers employs NTT messages. In this case, USDC is locked on Solana, and an NTT message is sent to the destination chain, triggering the transfer of an equivalent value of tokens
-5. **Final transfer** - the final step involves the solvers executing the necessary swaps to provide the user with a useful token on the destination chain. This ensures that the user receives the desired asset promptly, completing the cross-chain transfer process
+3. 
+    - **CCTP** - the protocol uses the [Cross-Chain Transfer Protocol (CCTP)](/learn/messaging/cctp/){target=\_blank} to manage the movement of assets from the hub chain. CCTP handles the burning of tokens on the source chain and the minting of equivalent tokens on the destination chain, ensuring the integrity of the transfer process
+    - **[NTT (Native Token Transfers)](/learn/messaging/ntt/ntt-overview/){target=\_blank}** - for chains that do not support CCTP, Fast Transfers employs NTT messages. In this case, USDC is locked on Solana, and an NTT message is sent to the destination chain, triggering the transfer of an equivalent value of tokens
+4. **Final transfer** - the final step involves the solvers executing the necessary swaps to provide the user with a useful token on the destination chain. This ensures that the user receives the desired asset promptly, completing the cross-chain transfer process
 
 This structured approach allows Fast Transfers to overcome the limitations of direct chain-to-chain transfers by using Solana as a central hub and leveraging the strengths of CCTP and NTT protocols, ensuring efficient and reliable liquidity movement across multiple chains.
 
@@ -70,9 +63,8 @@ The auction process is designed to be straightforward yet effective, enabling so
 
 1. **Initiation** - users initiate a transfer through the Fast Transfers protocol, either via a user interface (UI) or directly on-chain. They can choose between a standard transfer, which waits for finality on the sending chain, or a Fast Transfer, which triggers the auction process. For Fast Transfers, users specify a maximum fee they are willing to pay and a deadline by which the auction must start. This ensures that the process is both cost-effective and timely
 2. **Auction** - the auction begins on the Solana network when a user requests a Fast Tansfer. Solvers monitor the network for these requests and initiate an auction by placing an offer to fulfill the transfer at or below the user’s specified maximum fee. To start the auction, the solver must transfer the amount of USDC requested by the user (X USDC) plus a small security deposit to the Fast Transfer hub on Solana. This deposit acts as a commitment to the process
-3. **Competition** - once the auction is initiated, other solvers can participate by submitting lower bids in a reverse Dutch auction. The goal is to provide end users with the best possible rate. If a new solver submits a better offer, the previous solver’s funds (X USDC and the security deposit) are returned, and the new offer takes precedence. This competitive process ensures that users receive the best possible transfer rate 
-4. **Fulfillment** - the winning solver must complete the transfer within a predefined grace period to earn their fee and security deposit back. If they fail to do so, their security deposit may be slashed, and the slashed amount is given to the user as compensation for any delays. This incentive mechanism rewards prompt execution.
-Upon successful completion, the Fast Transfer hub sends the X USDC to the user’s destination wallet, and the solver receives their security deposit back along with the fee for the transfer
+3. **Competition** - once the auction is initiated, other solvers can participate by submitting lower bids in a reverse [Dutch auction](https://en.wikipedia.org/wiki/Dutch_auction){target=\_blank}. The goal is to provide end users with the best possible rate. If a new solver submits a better offer, the previous solver’s funds (X USDC and the security deposit) are returned, and the new offer takes precedence. This competitive process ensures that users receive the best possible transfer rate 
+4. **Fulfillment** - the winning solver must complete the transfer within a predefined grace period to earn their fee and security deposit back. If they fail to do so, their security deposit may be slashed, and the slashed amount is given to the user as compensation for any delays. This incentive mechanism rewards prompt execution. Upon successful completion, the Fast Transfer hub sends the X USDC to the user’s destination wallet, and the solver receives their security deposit back along with the fee for the transfer
 5. **Settle auction** - after the user’s original transfer reaches finality on the source chain, the winning solver can use the finalized Wormhole message to settle the auction with the Fast Transfer hub. This allows the solver to retrieve the original transfer amount (X USDC) back into their wallet
 
 In summary, the auction mechanism ensures competitive pricing and efficient execution by leveraging a marketplace of solvers. The user benefits from lower costs and faster transfers, while solvers can earn fees by participating in the auction and completing transfers promptly.
@@ -105,17 +97,4 @@ Participating in the Fast Transfers protocol offers several advantages for solve
 - **Simplified Risk and Reward Structure** - since USDC is the exclusive settlement asset for the Fast Transfers protocol, solvers are insulated from the risks associated with volatile assets. The primary risk solvers need to consider is the finality risk of the source chain transaction. This straightforward risk assessment simplifies the bidding process and makes participation more attractive
 - **New Revenue Streams** - by facilitating fast transfers, solvers can earn fees on each transfer they process. This creates a new source of income and allows solvers to capitalize on the growing volume of cross-chain transfers. Given Wormhole's track record of enabling billions of dollars in cross-chain asset transfers, solvers can expect significant opportunities to generate revenue
 
-## Problem Addressed by Fast Transfers
-
-### Liquidity Fragmentation
-
-One of the significant challenges in cross-chain asset transfers is liquidity fragmentation. This issue arises primarily due to wrapped tokens, such as those facilitated by the Wormhole Token Bridge. Transferring assets like USDC across different blockchain networks often results in creating multiple versions of the same token on various chains. For example, transferring native USDC from Solana and Arbitrum to Sui could result in creating two different tokens on Sui, leading to fragmented liquidity pools.
-
-This fragmentation creates inefficiencies in the market, as liquidity is scattered across multiple versions of the same token rather than being concentrated in a single, cohesive pool. This complicates liquidity management and makes it more challenging for users and developers to move assets across chains without encountering delays, increased costs, or the risk of slippage.
-
-### Solution Provided by Fast Transfers
-
-Fast Transfers addresses the issue of liquidity fragmentation by adopting a hub-and-spoke model with Solana as the central hub. Instead of spreading liquidity across multiple chains, Fast Transfers consolidate liquidity on the Solana hub chain. This approach ensures that all transfers, regardless of the source or destination chain, are routed through a single, unified liquidity pool on Solana. By concentrating liquidity in one place, Fast Transfers eliminates the need for multiple versions of the same token across different chains. This reduces fragmentation and enhances the efficiency and reliability of cross-chain transfers. Additionally, using the Cross-Chain Transfer Protocol (CCTP) and Native Token Transfers (NTT) within the Fast Transfers framework ensures that assets are transferred quickly and securely, without the typical delays associated with finality times on various chains.
-
-In summary, Fast Transfers solves the liquidity and finality challenges inherent in cross-chain transfers by centralizing liquidity, reducing token fragmentation, and streamlining the transfer process. This makes it easier for developers to build cross-chain applications that are both efficient and user-friendly, ultimately improving the overall experience for users moving assets across different blockchain networks.
 
