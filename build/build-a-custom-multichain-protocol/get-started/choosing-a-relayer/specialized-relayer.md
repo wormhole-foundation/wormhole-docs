@@ -65,7 +65,6 @@ The way a message is received and handled depends on the environment.
 
     More details are available in the [Hello World Example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/solana/programs/01\_hello\_world/src/lib.rs){target=\_blank}.
 
-
 In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/learn/infrastructure/vaas/), including:
 
 - **Emitter** - is this coming from an expected emitter address and chain ID? Typically, contracts will provide a method to register a new emitter and check the incoming message against the set of emitters it trusts
@@ -102,28 +101,3 @@ Using the `getSignedVAAWithRetry` function provided in the [SDK](/build/build-ap
 
 ```ts
 --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/getVAA.ts'
-```
-
-Once you have the VAA, the delivery method is chain-dependent.
-
-=== "EVM"
-
-    On EVM chains, the bytes for the VAA can be passed directly as an argument to an ABI method.
-
-    ```ts
-    --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/deliverVAAEvm.ts'
-    ```
-
-=== "Solana"
-
-    On Solana, the VAA is first posted to the core bridge, and then a custom transaction is prepared to process and validate the VAA. 
-
-    ```ts
-    --8<-- 'code/build/build-a-custom-multichain-protocol/get-started/choosing-a-relayer/specialized-relayer/deliverVAASolana.ts'
-    ```
-
-<!-- See the [Specialized Relayer Tutorial](#) for a detailed guide. -->
-
-## Reference
-
-You can read more about the architecture and core components in the [Learn section](/learn/architecture/).
