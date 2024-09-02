@@ -9,9 +9,34 @@ description: Learn about specialized relayers, which are purpose-built component
 
 Wormhole is compatible with many [ecosystems](/build/start-building/supported-networks) and integration is straightforward.
 
+Specialized Relayers are custom-built components designed for specific cross-chain applications within the Wormhole protocol. Unlike standard relayers, they can perform off-chain computations and be tailored to optimize gas fees and enhance user experiences.
+
+### Key Concepts
+
+Before diving into implementation, it's crucial to understand the core components of Wormhole and how messages are sent and received across chains. This includes understanding VAAs (Verifiable Action Approvals), which are central to the security and functionality of relayers.
+
 ## On-Chain Components
 
 It's important to understand some [on-chain components](#) before sending and receiving messages between chains.
+
+#### Example Real-World Example: Cross-Chain Asset Transfers
+
+Let's consider a real-world scenario where you set up a specialized relayer for asset transfers between Ethereum and Solana.
+
+1. **Setting Up the Emitter**:
+   - Define the emitter address, which is the contract on the source chain (Ethereum) responsible for emitting the message.
+
+2. **Listening for VAAs**:
+   - Implement a Spy process that listens for VAAs from the Guardian Network. The Spy will monitor for specific `chainID` and `emitter` values.
+
+3. **Fetching and Relaying the VAA**:
+   - Once the VAA is detected, use the `getSignedVAAWithRetry` function to fetch it. This VAA is then relayed to the target chain (Solana) where it is processed.
+
+4. **Performing Off-Chain Computation**:
+   - If necessary, perform any off-chain computation required before the message is relayed to the target contract. This might include gas optimization calculations or conditional logic for message delivery.
+
+5. **Deploy and Test**:
+   - Deploy your specialized relayer and test it with a mock transaction to ensure it functions as expected.
 
 ### Sending a Message
 
