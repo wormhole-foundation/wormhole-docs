@@ -22,3 +22,19 @@ The messages available over gossip are things like:
 ## Source Code
 
 The source code for the Spy is available on [GitHub](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}.
+
+## Example: Building a Simple Spy
+
+To create a basic Spy that listens for a specific type of VAA, follow these steps:
+
+1. **Set Up Spy**: Use the existing Spy daemon to subscribe to all messages on the Guardian Network.
+2. **Filter Messages**: Implement filtering logic to listen only for VAAs from specific emitters or with specific payloads.
+3. **Process VAAs**: Once a relevant VAA is detected, process it by either logging the information or triggering further actions.
+
+For example, you could build a Spy that listens for token transfer VAAs and triggers a notification or an automated process when a transfer exceeds a certain value.
+
+## Enhancements for Developer Experience
+
+- **Detailed examples**: Provide more code examples of different Spy implementations, such as filtering based on specific VAA fields or integrating with external services like Slack for alerts.
+- **Monitoring and logging best practices**: Include tips on how to efficiently log and monitor Spy activity, especially when dealing with a high volume of messages.
+- **Security considerations**: Add a section on securing your Spy setup, such as using access controls and monitoring to ensure the integrity of the messages being processed.
