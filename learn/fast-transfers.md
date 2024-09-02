@@ -11,7 +11,7 @@ Moving liquidity across different networks in the broader blockchain ecosystem e
 
 Fast Transfers is a protocol designed by Wormhole to address these challenges by providing a quick and efficient solution for cross-chain liquidity movement. Leveraging a hub-and-spoke model with Solana as the central hub, Fast Transfers consolidates liquidity into a single, unified pool. Solana was specifically chosen for its fast finality and low transaction costs, critical for enabling rapid asset transfers. This approach minimizes fragmentation by eliminating the need for multiple wrapped versions of the same token across different chains, ensuring a more streamlined and efficient transfer process.
 
-The key component of Fast Transfers is its aggregated auction mechanism, where solvers and market makers compete to offer the best rates for cross-chain transactions. This competitive environment ensures optimal pricing and efficient execution of transfers, significantly reducing wait times compared to traditional cross-chain methods.
+The key component of Fast Transfers is its aggregated auction mechanism, where [solvers](/learn/fast-transfers/#solvers) compete to offer the best rates for cross-chain transactions. This competitive environment ensures optimal pricing and efficient execution of transfers, significantly reducing wait times compared to traditional cross-chain methods.
 
 By addressing liquidity fragmentation and transfer delays, Fast Transfers provides developers with a robust and reliable infrastructure for building applications requiring swift and seamless cross-chain asset transfers. This enhancement improves the overall user experience and promotes greater interoperability within the blockchain ecosystem.
 
