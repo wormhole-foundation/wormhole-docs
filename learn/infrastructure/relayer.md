@@ -9,11 +9,17 @@ This documentation provides a comprehensive guide to relayers within the Wormhol
 
 Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](/learn/infrastructure/vaas/){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only availability, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
 
+### Types of Relayers
+
 There are three primary types of relayers discussed:
 
-- **Client-side relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
-- **Specialized relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST relaying)
-- **Standard relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
+- **Client-side relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved.
+- **Specialized relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST relaying).
+- **Standard relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient.
+
+### Key Differences Between Specialized and Standard Relayers
+
+Specialized Relayers are designed for specific use cases, allowing off-chain computations and custom optimizations, such as batching and conditional delivery. They provide flexibility and potential cost savings in gas fees but require additional setup and maintenance. Standard Relayers, on the other hand, offer simplicity and ease of integration but are less customizable and potentially less efficient in gas usage.
 
 ## Fundamentals
 
@@ -81,13 +87,38 @@ There are two main methods of setting up a specialized relayer:
 - **Spy relaying** - involves listening directly to the Guardian Network via a Spy
 - **REST relaying** - provides a REST endpoint to accept a VAA that should be relayed
 
+**Detailed Setup Process**
+
+To assist developers in setting up specialized relayers, a more detailed walkthrough is provided:
+
+1. **Install Dependencies**:
+   Use `npm i` to install necessary dependencies.
+   
+   **Troubleshooting Tip**: If you encounter an error like `npm error code 127`, ensure your Node.js and npm versions are up to date and try running the command with administrative privileges.
+
+2. **Setup the Basic Infrastructure**:
+   You can start with the plugin relayer available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}.
+
+3. **Choose a Relaying Method**:
+   - **Spy relaying** - involves listening directly to the Guardian Network via a Spy.
+   - **REST relaying** - provides a REST endpoint to accept a VAA that should be relayed.
+
+4. **Real-World Example**:
+   Let's walk through setting up a Specialized Relayer for a cross-chain asset transfer between Ethereum and Solana:
+
+   - **Step 1**: Define the parameters of your relayer, such as the emitter address, sequence ID, and chain ID.
+   - **Step 2**: Implement off-chain computation logic, if necessary, to optimize gas fees.
+   - **Step 3**: Deploy your relayer and test it with a sample transaction.
+
+   This setup ensures that your relayer is both functional and optimized for your specific use case.
+
 **Considerations**
 
-Remember, despite their name, specialized relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
+Despite their name, specialized relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
 
-- Development work and hosting of relayers are required
-- The fee-modeling can become complex, as relayers are responsible for paying target chain fees
-- Relayers are responsible for availability, adding dependency for the cross-chain application
+- Development work and hosting of relayers are required.
+- The fee-modeling can become complex, as relayers are responsible for paying target chain fees.
+- Relayers are responsible for availability, adding dependency for the cross-chain application.
 
 ## Standard Relayers
 
