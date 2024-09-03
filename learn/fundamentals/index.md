@@ -31,7 +31,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     ---
 
-    Explore Wormhole's architecture to understand how its core components seamlessly work together to securely deliver cross-chain messages.
+    Explore Wormhole's architecture to understand how its core components seamlessly work together to deliver cross-chain messages securely.
 
     [:octicons-arrow-right-24: Discover how Wormhole works](/learn/fundamentals/architecture/)
 
@@ -45,7 +45,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     ---
 
-    Check out key terms and their definitions within the Wormhole ecosystem to gain a deeper understanding of the concepts and language used throughout the platform.
+    Check out key terms and their definitions within the Wormhole ecosystem to better understand the concepts and language used throughout the platform.
 
     [:octicons-arrow-right-24: Get to know the terms](/learn/fundamentals/glossary/)
 

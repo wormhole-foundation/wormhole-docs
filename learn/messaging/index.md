@@ -7,7 +7,7 @@ description: This section introduces the core messaging protocols that power sea
 
 ## Get Started
 
-This section covers various aspects and services related to communication protocols and systems within the Wormhole platform. Each subsection provides detailed information on specific components, contracts, and bridges for messaging and data transfer.
+This section covers various aspects and services related to communication protocols and systems within the Wormhole platform. Each subsection provides detailed information on key components, contracts, and bridges for messaging and data transfer.
 
 <div class="grid cards" markdown>
 

@@ -16,7 +16,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     ---
 
-    Start with the basics to get a good understanding of what Wormhole has to offer and how it works to provide secure cross-chain communication.
+    Start with the basics to get a solid understanding of what Wormhole has to offer and how it works to provide secure cross-chain communication.
 
     [:octicons-arrow-right-24: Get started](/learn/fundamentals/)
 
@@ -32,7 +32,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     ---
 
-    Discover Wormhole's messaging protocols and how each one facilitates secure and efficient communication across different blockchains.
+    Discover Wormhole's messaging protocols and how each facilitates secure and efficient communication across blockchains.
 
     [:octicons-arrow-right-24: Explore messaging protocols](/learn/fundamentals/security/)
 
