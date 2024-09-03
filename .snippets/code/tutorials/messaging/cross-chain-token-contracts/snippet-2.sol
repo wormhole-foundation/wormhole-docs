@@ -16,9 +16,9 @@ contract CrossChainReceiver is TokenReceiver {
     function receivePayloadAndTokens(
         bytes memory payload,
         TokenReceived[] memory receivedTokens,
-        bytes32,
+        bytes32, // sourceAddress
         uint16,
-        bytes32
+        bytes32 // deliveryHash
     ) internal override onlyWormholeRelayer {
         require(receivedTokens.length == 1, "Expected 1 token transfer");
 
