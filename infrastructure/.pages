@@ -1,6 +1,5 @@
 title: Infrastructure
 nav:
-  - index.md
-  - spy
-  - relayers
-
+ - index.md
+ - relayers
+ - spy
