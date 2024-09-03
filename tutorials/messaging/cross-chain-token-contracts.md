@@ -102,16 +102,11 @@ Before diving into the contract implementation steps, let’s first break down t
 
 ### Sender Contract: CrossChainSender
 
-The `CrossChainSender` contract calculates the cost of sending tokens across chains and then facilitates the actual token transfer. This contract leverages the Wormhole protocol to ensure seamless cross-chain transactions.
-
-Key functions include:
-
- - **`quoteCrossChainDeposit`** - calculates the cost of delivering tokens to the target chain using the Wormhole protocol
- - **`sendCrossChainDeposit`** - encodes the recipient's address and sends the tokens to the target chain and contract address using the Wormhole protocol
+The `CrossChainSender` contract calculates the cost of sending tokens across chains and then facilitates the actual token transfer.
 
 Let's start writing the `CrossChainSender` contract:
 
-1. Create a new file named `CrossChainSender.sol` in the `src` directory:
+1. Create a new file named `CrossChainSender.sol` in the `/src` directory:
     
     ```bash
     touch src/CrossChainSender.sol
@@ -141,6 +136,23 @@ Let's start writing the `CrossChainSender` contract:
 
     This `sendCrossChainDeposit` function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
 
+Here’s a breakdown of what happens in each step:
+
+1. **Cost calculation** - the function starts by calculating the cost of the cross-chain transfer using `quoteCrossChainDeposit`(targetChain). This cost includes both the delivery fee and the Wormhole message fee. The `sendCrossChainDeposit` function then checks that the user has sent the correct amount of Ether to cover this cost (`msg.value`)
+
+2. **Token transfer to contract** - the next step is to transfer the specified amount of tokens from the user to the contract itself using `IERC-20(token).transferFrom(msg.sender, address(this), amount)`. This ensures that the contract has custody of the tokens before initiating the cross-chain transfer
+
+3. **Payload encoding** - The recipient's address on the target chain is encoded into a payload using `abi.encode(recipient)`. This payload will be sent along with the token transfer, so the target contract knows who should receive the tokens on the destination chain
+
+4. **Cross-chain transfer** - the `sendTokenWithPayloadToEvm` function is called to initiate the cross-chain token transfer. This function:
+    - Specifies the `targetChain` (the Wormhole chain ID of the destination blockchain).
+    - Sends the `targetReceiver` contract address on the target chain that will receive the tokens.
+    - Attaches the payload containing the recipient's address.
+    - Sets the `GAS_LIMIT` for the transaction.
+    - Passes the token `address` and `amount` to transfer.
+
+    This triggers the Wormhole protocol to handle the cross-chain messaging and token transfer, ensuring the tokens and payload reach the correct destination on the target chain.
+
 You can find the complete code for the `CrossChainSender.sol` below.
 
 ??? code "MessageSender.sol"
@@ -153,13 +165,9 @@ You can find the complete code for the `CrossChainSender.sol` below.
 
 The `CrossChainReceiver` contract is designed to handle the receipt of tokens and payloads from another blockchain. It ensures that the tokens are correctly transferred to the designated recipient on the receiving chain.
 
-Key functions include:
-
- - **`receivePayloadAndTokens`** - processes the incoming tokens and payload from another chain, decodes the recipient's address, and transfers the tokens to that address using the Wormhole protocol
-
 Let's start writing the `CrossChainReceiver` contract:
 
-1. Create a new file named `CrossChainReceiver.sol` in the `src` directory:
+1. Create a new file named `CrossChainReceiver.sol` in the `/src` directory:
 
     ```bash
     touch src/CrossChainReceiver.sol
@@ -179,7 +187,27 @@ Let's start writing the `CrossChainReceiver` contract:
     --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-2.sol:16:31"
     ```
 
-    This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decoding the recipient address and transferring the tokens to them.
+    This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address and transfers the tokens to them using the Wormhole protocol.
+
+After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes through the standard Wormhole message lifecycle. Once a [VAA (Verifiable Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is available, the delivery provider will call `receivePayloadAndTokens` on the target chain and target address specified, with the appropriate inputs.
+
+??? tip "Understanding the `TokenReceived` Struct"
+
+    Let’s delve into the fields provided to us in the `TokenReceived` struct:
+
+    ```solidity
+    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-11.sol"
+    ```
+
+    - **`tokenHomeAddress`** - the original address of the token on its native chain. This is the same as the token field in the call to `sendTokenWithPayloadToEvm` unless the original token sent is a Wormhole-wrapped token. In that case, this will be the address of the original version of the token (on its native chain) in Wormhole address format (left-padded with 12 zeros)
+
+    - **`tokenHomeChain`** - the Wormhole chain ID corresponding to the home address above. This will typically be the source chain unless the original token sent is a Wormhole-wrapped asset, which will be the chain of the unwrapped version of the token
+
+    - **`tokenAddress`** - the address of the IERC-20 token on the target chain that has been transferred to this contract. If `tokenHomeChain` equals the target chain, this will be the same as `tokenHomeAddress`; otherwise, it will be the Wormhole-wrapped version of the token sent
+
+    - **`amount`** - the token amount sent to you with the same units as the original token. Since TokenBridge only sends with eight decimals of precision, if your token has 18 decimals, this will be the "amount" you sent, rounded down to the nearest multiple of 10^10
+
+    - **`amountNormalized`** - the amount of token divided by (1 if decimals ≤ 8, else 10^(decimals - 8))
 
 You can find the complete code for the `CrossChainReceiver.sol` contract below:
 
@@ -285,7 +313,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
             --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:141:167"
             ```
 
-3. **Add your private key**
+3. **Add your private key** - you'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf
 
     Create a `.env` file in the root of the project and add your private key:
 
@@ -367,7 +395,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 ### Transfer Script
 
-1. **Set up the transfer script** - first, let's create the transfer script:
+1. **Set up the transfer script**
 
     1. Create a new file named `transfer.ts` in the `/src` directory:
 
