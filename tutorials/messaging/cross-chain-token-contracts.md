@@ -30,7 +30,7 @@ Before you begin, ensure you have the following:
 
 It's important to note that this tutorial leverages [Wormhole's TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/TokenBridge.sol){target=\_blank} to transfer tokens between chains. Therefore, the tokens you wish to transfer must be attested on the TokenBridge contract of the target blockchain.
 
-To simplify this process, we've included a tool for checking if a token is already attested on the target chain. This tool uses the `wrappedAsset` function from the TokenBridge contract. If the token is attested, the `wrappedAsset` function returns the address of the wrapped token on the target chain; otherwise, it returns the zero address.
+To simplify this process, we've included a tool for checking if a token is already attested on the target chain. This tool uses the [`wrappedAsset`](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/BridgeGetters.sol#L50-L52){target=\_blank} function from the TokenBridge contract. If the token is attested, the `wrappedAsset` function returns the address of the wrapped token on the target chain; otherwise, it returns the zero address.
 
 ???- tip "Check Token Attestation"
     1. Clone the [repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank} and navigate to the project directory:
@@ -214,6 +214,8 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         ```
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the Token Bridge address, the Wormhole relayer, and the Wormhole Core Contract.
+
+        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/build/reference/contract-addresses/){target=_blank}.
 
         !!! note
             You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores TestNets.
