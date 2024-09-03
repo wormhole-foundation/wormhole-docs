@@ -5,7 +5,7 @@ description: Information to build multichain protocols and applications, includi
 
 # Build
 
-Whether you are a custom protocol looking for seamless, multichain interoperability, or an application developer crafting smooth, user-friendly cross-chain experiences, learn how Wormhole tools can help you accomplish your objectives. 
+Whether you are buildling a custom protocol looking for seamless, multichain interoperability, or an application developer crafting smooth, user-friendly cross-chain experiences, learn how Wormhole can help you accomplish your objectives. 
 
 <br>
 <div class="grid cards" markdown>
