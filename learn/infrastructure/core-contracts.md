@@ -7,7 +7,7 @@ description: Discover Wormhole's Core Contracts, enabling cross-chain communicat
 
 The Core Contracts are the mechanism by which all Wormhole messages are emitted. All cross-chain applications either interact directly with the Core Contract or interact with another contract that does. Each blockchain in the ecosystem has a single Core Contract, which the Guardians are required to monitor. These Core Contracts emit the messages that the [Guardians](/learn/infrastructure/guardians/){target=_blank} pick up as [Observations](/learn/glossary/#observation){target=_blank}.
 
-Core Contracts are generally simple and can be divided into sending and receiving sides, each of which will be defined next. 
+Core Contracts are generally simple and can be divided into sending and receiving sides, each of which will be defined next.
 
 ## Sending
 
@@ -22,7 +22,7 @@ Once the desired `consistencyLevel` has been reached and the message passes all 
 The method signature for publishing messages:
 
 ```js
---8<-- 'code/learn/messaging/core-contracts/sending.js'
+--8<-- 'code/learn/infrastructure/core-contracts/sending.js'
 ```
 
 There are no fees to publish a message, except when publishing on Solana, but this is subject to change in the future.
@@ -44,7 +44,7 @@ There are no fees to publish a message, except when publishing on Solana, but th
 The method signature for receiving a message encoded as a VAA:
 
 ```js
---8<-- 'code/learn/messaging/core-contracts/receiving.js'
+--8<-- 'code/learn/infrastructure/core-contracts/receiving.js'
 ```
 
 The general approach involves the Core Contract on a target Chain parsing and verifying the components of a VAA, which include the original `emitterAddress`, `sequenceNumber`, and `consistencyLevel` among other fields.
