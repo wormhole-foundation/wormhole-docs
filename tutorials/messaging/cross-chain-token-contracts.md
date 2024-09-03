@@ -213,7 +213,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-3.json"
         ```
 
-        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the token bridge address, the Wormhole relayer, and the Wormhole core contract.
+        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the Token Bridge address, the Wormhole relayer, and the Wormhole Core Contract.
 
         !!! note
             You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores TestNets.
