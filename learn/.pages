@@ -4,3 +4,4 @@ nav:
  - fundamentals
  - infrastructure
  - messaging
+ - 'Fast Transfers': 'fast-transfers.md'
