@@ -5,7 +5,7 @@ description: Step-by-step guides to using Wormhole's messaging infrastructure to
 
 # Messaging Tutorials
 
-Wormhole's cross-chain messaging infrastructure simplifies data transmission, event triggering, and transaction initiation, allowing smart contracts to interact seamlessly across multiple blockchains. Learn how to integrate these capabilities into your project using the guides in the following sections.
+Wormhole's cross-chain messaging infrastructure simplifies data transmission, event triggering, and transaction initiation, allowing smart contracts to interact seamlessly across multiple blockchains. The following sections provide guides for integrating these capabilities into your project.
 
 <div class="grid cards" markdown>
 
@@ -13,7 +13,7 @@ Wormhole's cross-chain messaging infrastructure simplifies data transmission, ev
 
     ---
 
-    This tutorial guides you through building a fully functioning cross-chain message sender and receiver using Solidity, understanding how to interact with the Wormhole relayer, managing cross-chain costs, configuring your smart contracts correctly on both source and target chains.
+    This tutorial guides you through building a fully functioning cross-chain message sender and receiver using Solidity, understanding how to interact with the Wormhole relayer, managing cross-chain costs, and configuring your smart contracts correctly on both source and target chains.
 
     [:octicons-arrow-right-24: Start building](/tutorials/messaging/cross-chain-contracts.md){target=\_blank}
 

@@ -6,7 +6,7 @@ template: root-index-page.html
 
 # Tutorials
 
-This section contains step-by-step guides to get you building with Wormhole. 
+This section contains step-by-step guides to help you build with Wormhole. 
 
 ## Get Started
 
