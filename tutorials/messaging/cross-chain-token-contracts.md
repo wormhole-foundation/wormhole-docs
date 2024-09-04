@@ -1,13 +1,13 @@
 ---
-title: Cross-chain Token Contracts
+title: Cross-Chain Token Transfers
 description: Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
 ---
 
-# Cross-chain Token Contracts
+# Cross-Chain Token Transfers
 
 ## Introduction
 
-In this tutorial, you'll learn how to create a simple cross-chain token transfer system using the Wormhole protocol and the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}. We'll guide you through building and deploying smart contracts that enable seamless token transfers of IERC-20 tokens between blockchains. Whether you're a developer looking to explore cross-chain applications or just interested in the Wormhole protocol, this guide will help you understand the fundamentals.
+In this tutorial, you'll learn how to create a simple cross-chain token transfer system using the Wormhole protocol via the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}. We'll guide you through building and deploying smart contracts that enable seamless token transfers of IERC-20 tokens between blockchains. Whether you're a developer looking to explore cross-chain applications or just interested in the Wormhole protocol, this guide will help you understand the fundamentals.
 
 By the end of this tutorial, you'll have a working cross-chain token transfer system built with the powerful tools provided by the Wormhole Solidity SDK, which you can further customize and integrate into your projects.
 
@@ -23,9 +23,9 @@ Before you begin, ensure you have the following:
 
 ## Valid Tokens for Transfer
 
-It's important to note that this tutorial leverages [Wormhole's TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/TokenBridge.sol){target=\_blank} to transfer tokens between chains. Therefore, the tokens you wish to transfer must be attested on the TokenBridge contract of the target blockchain.
+It's important to note that this tutorial leverages [Wormhole's TokenBridge](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/TokenBridge.sol){target=\_blank} to transfer tokens between chains. So, the tokens you'd like to transfer must have an attestation on the TokenBridge contract of the target blockchain.
 
-To simplify this process, we've included a tool for checking if a token is already attested on the target chain. This tool uses the [`wrappedAsset`](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/BridgeGetters.sol#L50-L52){target=\_blank} function from the TokenBridge contract. If the token is attested, the `wrappedAsset` function returns the address of the wrapped token on the target chain; otherwise, it returns the zero address.
+To simplify this process, we've included a tool for verifying if a token has an attestation on the target chain. This tool uses the [`wrappedAsset`](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/BridgeGetters.sol#L50-L52){target=\_blank} function from the TokenBridge contract. If the token has an attestation, the `wrappedAsset` function returns the address of the wrapped token on the target chain; otherwise, it returns the zero address.
 
 ???- tip "Check Token Attestation"
     1. Clone the [repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank} and navigate to the project directory:
@@ -50,11 +50,11 @@ To simplify this process, we've included a tool for checking if a token is alrea
         - Enter the token contract address on the source chain
         - Enter the source chain ID
 
-    5. The expected output when the token is attested:
+    5. The expected output when the token has an attestation:
         
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-10.html"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-10.html"
     
-    Using this tool ensures that you only attempt to transfer tokens that are properly attested, avoiding any potential issues during the cross-chain transfer process.
+    Using this tool ensures that you only attempt to transfer tokens with verified attestations, avoiding any potential issues during the cross-chain transfer process.
 
 ## Project Setup
 
@@ -63,15 +63,15 @@ Let's start by initializing a new Foundry project. This will set up a basic stru
 1. Open your terminal and run the following command to initialize a new Foundry project:
     
     ```bash
-    npx create-foundry-project cross-chain-token-contracts
+    forge init cross-chain-token-transfers
     ```
 
-    This will create a new directory named `cross-chain-token-transfer` with a basic project structure.
+    This will create a new directory named `cross-chain-token-transfers` with a basic project structure. This also initializes a new `git` repository.
 
 2. Navigate into the newly created project directory:
 
     ```bash
-    cd cross-chain-token-contracts
+    cd cross-chain-token-transfers
     ```
 
 3. Install the Wormhole Solidity SDK:
@@ -110,7 +110,7 @@ Let's start writing the `CrossChainSender` contract:
 2. Open the file. First, we'll start with the imports and the contract setup:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-1.sol:1:14"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:1:14"
     ```
 
     This sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
@@ -118,7 +118,7 @@ Let's start writing the `CrossChainSender` contract:
 3. Next, let's add a function that estimates the cost of sending tokens across chains:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-1.sol:17:28"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:17:28"
     ```
 
     This function, `quoteCrossChainDeposit`, helps calculate the cost of transferring tokens to a different chain. It factors in the delivery cost and the cost of publishing a message via the Wormhole protocol.
@@ -126,7 +126,7 @@ Let's start writing the `CrossChainSender` contract:
 4. Finally, we'll add the function that sends the tokens across chains:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-1.sol:31:57"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:31:57"
     ```
 
     This `sendCrossChainDeposit` function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
@@ -153,7 +153,7 @@ You can find the complete code for the `CrossChainSender.sol` below.
 ??? code "MessageSender.sol"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-1.sol"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol"
     ```
 
 ### Receiver Contract: CrossChainReceiver
@@ -171,7 +171,7 @@ Let's start writing the `CrossChainReceiver` contract:
 2. Open the file. First, we'll start with the imports and the contract setup:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-2.sol:1:13"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:1:13"
     ```
 
     Similar to the `CrossChainSender` contract, this sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
@@ -179,7 +179,7 @@ Let's start writing the `CrossChainReceiver` contract:
 3. Next, let's add a function to handle receiving the payload and tokens:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-2.sol:16:31"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:16:31"
     ```
 
     This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address and transfers the tokens to them using the Wormhole protocol.
@@ -191,7 +191,7 @@ After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes 
     Let’s delve into the fields provided to us in the `TokenReceived` struct:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-11.sol"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-11.sol"
     ```
 
     - **`tokenHomeAddress`** - the original address of the token on its native chain. This is the same as the token field in the call to `sendTokenWithPayloadToEvm` unless the original token sent is a Wormhole-wrapped token. In that case, this will be the address of the original version of the token (on its native chain) in Wormhole address format (left-padded with 12 zeros)
@@ -209,7 +209,7 @@ You can find the complete code for the `CrossChainReceiver.sol` contract below:
 ??? code "CrossChainReceiver.sol"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-2.sol"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol"
     ```
 
 ## Deploy the Contracts
@@ -233,7 +233,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     3. Open the `config.json` file and add the following configuration:
 
         ```json
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-3.json"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-3.json"
         ```
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the Token Bridge address, the Wormhole relayer, and the Wormhole Core Contract.
@@ -262,7 +262,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     2. Load imports and configuration:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:1:7"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:1:7"
         ```
 
         Import the required libraries and modules to interact with Ethereum, handle file paths, load environment variables, and enable user interaction via the terminal.
@@ -270,7 +270,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     3. Load and select the chains for deployment:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:27:47"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:27:47"
         ```
 
         The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to interactively choose the source and target chains for deployment. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
@@ -280,19 +280,19 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:55:57"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:55:57"
         ```
 
     5. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
         === "`CrossChainSender`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:80:85"
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:80:85"
             ```
 
         === "`CrossChainReceiver`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:113:118"
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:113:118"
             ```
 
         Both functions deploy the respective contracts to the selected chains.
@@ -305,7 +305,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         ???- example "Save Deployment Details"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts:141:167"
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:141:167"
             ```
 
 3. **Add your private key** - you'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf
@@ -334,7 +334,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
     The expected output should be similar to this:
 
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-6.html"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-6.html"
 
 5. **Set up your Node.js environment** - before running the deployment script, you'll need to set up your Node.js environment
 
@@ -372,12 +372,12 @@ You can find the full code for the `deploy.ts` file below:
 ??? code "deploy.ts"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-4.ts"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts"
     ```
 
 If you followed the logic provided in the full code above, your terminal output should look something like this:
 
---8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-7.html"
+--8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-7.html"
 
 
 ## Transfer Tokens Across Chains
@@ -401,7 +401,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
     2. Open the file. Start with the necessary imports and configurations:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:1:7"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:1:7"
         ```
 
         These imports include the essential libraries for interacting with Ethereum, handling file paths, loading environment variables, and managing user input.
@@ -410,7 +410,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:27:47"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:27:47"
         ```
 
         These functions load the network and contract details that were saved during deployment.
@@ -420,7 +420,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         Refer to the deployed contracts and create logic as desired. In our example, we made this process interactive, allowing users to select the source and target chains from all the historically deployed contracts. This interactive approach helps ensure the correct chains are selected for the token transfer.
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:49:101"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:49:101"
         ```
 
 2. **Implement the token transfer logic**
@@ -428,7 +428,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
     1. Start the `main` function:
     
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:103:139"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:103:139"
         ```
     
         The `main` function is where the token transfer logic will reside. It loads the chain and contract details, sets up the wallet and provider, and loads the `CrossChainSender` contract.
@@ -438,7 +438,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         You'll now ask the user for the token contract address, the recipient address on the target chain, and the amount of tokens to transfer.
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:147:171"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:147:171"
         ```
 
         This section of the script prompts the user for the token contract address and the recipient's address, fetches the token's decimal value, and parses the amount accordingly.
@@ -448,7 +448,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         Finally, initiate the cross-chain transfer and log the details.
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts:174:199"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:174:199"
         ```
 
         This part of the script first approves the token transfer, then initiates the cross-chain transfer using the `CrossChainSender` contract, and finally logs the transaction hash for the user to track.
@@ -458,7 +458,7 @@ You can find the full code for the `transfer.ts` file below:
 ??? code "transfer.ts"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-5.ts"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts"
     ```
 
 ### Transfer Tokens
@@ -483,7 +483,7 @@ You can verify the transaction on the [Wormhole Explorer](https://wormholescan.i
 
 If you followed the logic provided in the `transfer.ts` file above, your terminal output should look something like this:
 
---8<-- "code/tutorials/messaging/cross-chain-token-contracts/snippet-8.html"
+--8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-8.html"
 
 !!! note
     In this example, we demonstrated a token transfer from the Avalanche Fuji TestNet to the Celo Alfajores TestNet. We sent two units of USDC TestNet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
