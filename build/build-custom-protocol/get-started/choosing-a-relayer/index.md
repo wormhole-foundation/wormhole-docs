@@ -1,30 +1,30 @@
 ---
-title: Native Token Transfers
-description: This section includes information on how to configure and deploy Native Token Transfers for your custom multichain protocol.
+title: Choosing a Relayer
+description: This section includes information about the standard and specialized relayer configuration options for seamless cross-chain messaging.
 ---
 
-# Native Token Transfers
+# Choosing a Relayer
 
-This section includes information on how to configure and deploy Native Token Transfers (NTT) for your custom multichain protocol. 
+Learn more about the standard and specialized relayer configuration options for seamless cross-chain messaging and how to select the best option for your project. 
 
 <br>
 <div class="grid cards" markdown>
--   :octicons-gear-16:{ .lg .middle } __Configuration__
+-   :octicons-gear-16:{ .lg .middle } __Standard Relayer__
 
     ---
 
-    Find information on configuring NTT, including guidance on setting Owner and Pauser [access control](/build/build-a-custom-multichain-protocol/native-token-transfers/configuration/ntt-access-control.md){target=\_blank} roles and management of [rate-limiting](/build/build-a-custom-multichain-protocol/native-token-transfers/configuration/ntt-rate-limiting.md){target=\_blank}.
+    A standard relayer provides a mechanism for a contract on one chain to send a message to a contract on a different chain without requiring the developer to deal with any off-chain deployments.
 
     <br>
-    [:octicons-arrow-right-24: Get started](/learn/messaging/ntt)
+    [:octicons-arrow-right-24: Start building with relayers](/build/build-custom-protocol/get-started/choosing-a-relayer/standard-relayer.md){target=\_blank}
 
--   :octicons-rocket-16:{ .lg .middle } __Deployment__
+-   :octicons-tools-24:{ .lg .middle } __Specialized Relayer__
 
     ---
 
-    Guidance on installation, deployment to EVM and Solana, and maintaining your NTT after deployment
+    A specialized relayer is comprised of purpose-built components within the Wormhole protocol, designed to relay messages for specific applications.
 
     <br>
-    [:octicons-arrow-right-24: Get started](/build/build-a-custom-multichain-protocol/native-token-transfers/deployment-process)
+    [:octicons-arrow-right-24: Start customizing](/build/build-custom-protocol/get-started/choosing-a-relayer/specialized-relayer.md){target=\_blank}
 </div>
 <br>

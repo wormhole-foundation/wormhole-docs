@@ -17,15 +17,15 @@ This section provides you with the infomation you need to get started developing
     Learn about the compatible environments and individual networks that Wormhole supports.
 
     <br>
-    [:octicons-arrow-right-24: Supported Networks](/build/start-building/supported-networks){target=\_blank}
+    [:octicons-arrow-right-24: Supported networks](/build/start-building/supported-networks)
 
--   :octicons-code-24:{ .lg .middle } __Wormhole Examples__
+-   :octicons-code-24:{ .lg .middle } __Wormhole Demos__
 
     ---
 
-    [Wormhole Examples](https://github.com/wormhole-foundation/wormhole-examples){target=\_blank} contains a variety of example components. It features a mix of relayers, cross-chain applications, NFT projects, and more.
+    Explore various demos showcasing Wormhole's features, including starter apps, cross-chain examples, and UI components for token transfers and lending protocols.
 
     <br>
-    [:octicons-arrow-right-24: More Code Examples](/build/start-building/demos.md){target=\_blank}
+    [:octicons-arrow-right-24: Get inspired](/build/start-building/demos.md){target=\_blank}
 </div>
 <br>

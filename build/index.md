@@ -17,7 +17,7 @@ Whether you are buildling a custom protocol looking for seamless, multichain int
 
     This section has all you need to get started developing with Wormhole, including a guide to supported networks and tool sets and code examples.
 
-    [:octicons-arrow-right-24: Get started](/build/start-building)
+    [:octicons-arrow-right-24: Get started](/build/start-building){target=\_blank}
 
 -   :octicons-book-16:{ .lg .middle } **Reference**
 
@@ -25,7 +25,7 @@ Whether you are buildling a custom protocol looking for seamless, multichain int
 
     Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
 
-    [:octicons-arrow-right-24: Explore reference](/build/reference)
+    [:octicons-arrow-right-24: Explore reference](/build/reference){target=\_blank}
 
 -   :octicons-gear-24:{ .lg .middle } **Toolkit**
 
@@ -33,7 +33,7 @@ Whether you are buildling a custom protocol looking for seamless, multichain int
 
     Information on key dev tools, including the WormholeScan Explorer, Core protocol repo, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
 
-    [:octicons-arrow-right-24: Discover tools](/build/toolkit/)
+    [:octicons-arrow-right-24: Discover tools](/build/toolkit/){target=\_blank}
 
 -   :octicons-code-square-24:{ .lg .middle } **Building Applications with Wormhole**
 
@@ -41,7 +41,7 @@ Whether you are buildling a custom protocol looking for seamless, multichain int
 
     Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build applications with seamless interoperability.
 
-    [:octicons-arrow-right-24: Build applications](/build/build-apps)
+    [:octicons-arrow-right-24: Build applications](/build/build-apps){target=\_blank}
 
 -   :octicons-link-24:{ .lg .middle } **Build a Custom Multichain Protocol**
 
@@ -49,7 +49,7 @@ Whether you are buildling a custom protocol looking for seamless, multichain int
 
     This section takes you from setting up your developer environment and configuring token transfers to deploying your custom multichain protocol.
 
-    [:octicons-arrow-right-24: Build multichain protocols](/build/build-custom-protocol)
+    [:octicons-arrow-right-24: Build multichain protocols](/build/build-custom-protocol){target=\_blank}
 
 </div>
 <br>

@@ -9,15 +9,6 @@ This section contains information on configuring Native Token Transfers (NTT), i
 
 <br>
 <div class="grid cards" markdown>
--   :octicons-unlock-24:{ .lg .middle } __Access Control__
-
-    ---
-
-    Learn more about access control, including why you should consider setting a separate Pauser address as part of your development security plan.
-
-    <br>
-    [:octicons-arrow-right-24: Get started](/build/build-a-custom-multichain-protocol/native-token-transfers/configuration/ntt-access-control.md)
-
 -   :octicons-clock-24:{ .lg .middle } __Rate Limiting__
 
     ---
@@ -25,6 +16,15 @@ This section contains information on configuring Native Token Transfers (NTT), i
     Discover options for configuring rate limits and how queueing effects transaction flow.
 
     <br>
-    [:octicons-arrow-right-24: Get started](/build/build-a-custom-multichain-protocol/native-token-transfers/configuration/ntt-rate-limiting.md)
+    [:octicons-arrow-right-24: Get started](/build/build-custom-protocol/native-token-transfers/configuration/ntt-rate-limiting.md){target=\_blank}
+
+-   :octicons-unlock-24:{ .lg .middle } __Access Control__
+
+    ---
+
+    Learn more about access control, including why you should consider setting a separate Pauser address as part of your development security plan.
+
+    <br>
+    [:octicons-arrow-right-24: Get started](/build/build-custom-protocol/native-token-transfers/configuration/ntt-access-control.md)
 </div>
 <br>
