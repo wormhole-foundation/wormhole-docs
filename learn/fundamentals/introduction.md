@@ -11,7 +11,7 @@ Wormhole addresses this problem by providing a _generic message-passing_ protoco
 
 Wormhole is distinguished by its focus on robust security, scalability, and transparency. The protocol is supported by a decentralized network of validators that ensure the integrity of every cross-chain transaction. This, combined with Wormhole’s proven performance in real-world applications, gives developers a dependable platform to create and scale multichain applications confidently.
 
-![Message-passing process in the Wormhole protocol](/images/learn/introduction/introduction-1.webp)
+![Message-passing process in the Wormhole protocol](/images/learn/fundamentals/introduction/introduction-1.webp)
 
 !!! note
     The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/architecture/){target=\_blank}.

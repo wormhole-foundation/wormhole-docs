@@ -27,7 +27,7 @@ Transceivers can be defined independently of the Wormhole core and modified to s
 - `sendMessage` - this external function sends messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
 - `quoteDeliveryPrice` - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
 
-![NTT architecture diagram](/images/learn/messaging/messaging-1.webp)
+![NTT architecture diagram](/images/learn/messaging/ntt/ntt-architecture/architecture-1.webp)
 
 !!! note
     [Learn more](/learn/messaging/ntt/ntt-architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
@@ -39,7 +39,7 @@ The NTT framework supports advanced features such as custom transceivers for spe
 
 NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
 
-![Custom Attestation with NTT diagram](/images/learn/messaging/messaging-2.webp)
+![Custom Attestation with NTT diagram](/images/learn/messaging/ntt/ntt-architecture/architecture-2.webp)
 
 The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. The model includes an extra verifier in the bridging process, enhancing security and providing an added assurance of transaction integrity.
 
@@ -113,7 +113,7 @@ event InboundTransferQueued(bytes32 digest);
 
 #### Send
 
-Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via standard relaying, a specialized or custom relayer, or manually published via the core bridge).
+Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer, or manually published via the core bridge).
 
 Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
 

@@ -1,6 +1,6 @@
 ---
 title: Relayers
-description: Discover the role of relayers in the Wormhole network, including client-side, specialized, and standard types, for secure cross-chain communication.
+description: Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
 ---
 
 # Relayers
@@ -12,8 +12,8 @@ Relayers in the Wormhole context are processes that deliver [Verified Action App
 There are three primary types of relayers discussed:
 
 - **Client-side relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
-- **Specialized relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST relaying)
-- **Standard relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
+- **Custom relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST relaying)
+- **Wormhole-deployed relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
 
 ## Fundamentals
 
@@ -60,9 +60,9 @@ Users themselves carry out the three steps of the cross-chain process:
 - Users must have funds to pay the transaction fees on every chain involved
 - The user experience may be cumbersome due to the manual steps involved
 
-## Specialized Relayers
+## Custom Relayers
 
-Specialized relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use cases.
+Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use cases.
 
 **Key Features**
 
@@ -74,24 +74,24 @@ Specialized relayers are purpose-built components within the Wormhole protocol, 
 **Implementation**
 
 !!! note
-    To make the development of specialized relayers easier, a plugin relayer is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
+    To make the development of custom relayers easier, a plugin relayer is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
 
-There are two main methods of setting up a specialized relayer:
+There are two main methods of setting up a custom relayer:
 
 - **Spy relaying** - involves listening directly to the Guardian Network via a Spy
 - **REST relaying** - provides a REST endpoint to accept a VAA that should be relayed
 
 **Considerations**
 
-Remember, despite their name, specialized relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
+Remember, despite their name, custom relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
 
 - Development work and hosting of relayers are required
 - The fee-modeling can become complex, as relayers are responsible for paying target chain fees
 - Relayers are responsible for availability, adding dependency for the cross-chain application
 
-## Standard Relayers
+## Wormhole Relayers
 
-Standard relayers are a component of a decentralized network in the Wormhole protocol, facilitating the delivery of VAAs to recipient contracts compatible with the standard relayer API.
+Wormhole relayers are a component of a decentralized network in the Wormhole protocol, facilitating the delivery of VAAs to recipient contracts compatible with the standard relayer API.
 
 **Key Features**
 
@@ -100,17 +100,17 @@ Standard relayers are a component of a decentralized network in the Wormhole pro
 
 **Implementation**
 
-The standard relayer integration involves two key steps:
+The Wormhole relayer integration involves two key steps:
 
-- **Delivery request** - request delivery from the Wormhole Relay Ecosystem Contract
+- **Delivery request** - request delivery from the ecosystem Wormhole relayer contract
 - **Relay reception** - implement a [`receiveWormholeMessages`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/bacbe82e6ae3f7f5ec7cdcd7d480f1e528471bbb/src/interfaces/IWormholeReceiver.sol#L44-L50){target=\_blank} function within their contracts. This function is invoked upon successful relay of the VAA
 
 **Considerations**
 
 !!! note
-    Developers should note that the choice of relayers depends their project's specific requirements and constraints. Standard relayers offer simplicity and convenience but limit customization and optimization opportunities compared to specialized relayers.
+    Developers should note that the choice of relayers depends their project's specific requirements and constraints. Wormhole relayers offer simplicity and convenience but limit customization and optimization opportunities compared to custom relayers.
 
 - All computations are performed on-chain
-- Potentially less gas-efficient compared to specialized relayers
+- Potentially less gas-efficient compared to custom relayers
 - Optimization features like conditional delivery, batching, off-chain calculations might be restricted
 - Support may not be available for all chains

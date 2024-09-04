@@ -29,7 +29,7 @@ The [Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/tree/main
 
 ## Wormhole SDK Docs
 
-The [Wormhole SDK](/build/build-apps/wormhole-sdk/) is a TypeScript SDK distributed on npm. It can significantly aid in writing frontend code for cross-chain applications and utilizing the Wormhole Token Bridge directly.
+The [Wormhole SDK](/build/applications/wormhole-sdk/) is a TypeScript SDK distributed on npm. It can significantly aid in writing frontend code for cross-chain applications and utilizing the Wormhole Token Bridge directly.
 
 ## Wormhole API Docs
 
