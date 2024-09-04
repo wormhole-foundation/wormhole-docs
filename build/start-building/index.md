@@ -1,11 +1,11 @@
 ---
 title: Start Building
-description: Includes links to example source code as well as a guide to all supported networks and the official recommended tools to use with each one.
+description: This section has all you need to get started developing with Wormhole, including a guide to supported networks and tool sets and code examples.
 ---
 
 # Start Building
 
-Includes links to example source code as well as a guide to all supported networks and the official recommended tools to use with each one.
+This section provides you with the infomation you need to get started developing with Wormhole. You'll find a guide to supported networks, and the official recommended tools to use with each one, as well as links to example code.
 
 <br>
 <div class="grid cards" markdown>

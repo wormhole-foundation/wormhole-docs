@@ -1,6 +1,7 @@
 ---
-title: Build
-description: Information to build multichain protocols and applications, including guidance on customization, key references, and tips for getting started.  
+title: Build with Wormhole
+description: Information to build multichain protocols and applications, including guidance on customization, key references, and tips for getting started. 
+template: root-index-page.html 
 ---
 
 # Build
@@ -9,41 +10,47 @@ Whether you are buildling a custom protocol looking for seamless, multichain int
 
 <br>
 <div class="grid cards" markdown>
--   :octicons-tools-24:{ .lg .middle } __Build a Custom Multichain Protocol__
+
+-   :octicons-tools-24:{ .lg .middle } **Start Building**
 
     ---
 
-    Learn how to set up your developer environment, configure native token transfers, and more.
+    This section has all you need to get started developing with Wormhole, including a guide to supported networks and tool sets and code examples.
 
-    <br>
-    [:octicons-arrow-right-24: Get started](/build/build-a-custom-multichain-protocol){target=\_blank}
+    [:octicons-arrow-right-24: Get started](/build/start-building)
 
--   :octicons-browser-24:{ .lg .middle } __Build Applications__
-
-    ---
-
-    This section includes tools like the Wormhole TypeScript SDK, Query, and Connect to jumpstart your application integration process
-
-    <br>
-    [:octicons-arrow-right-24: Get started](/build/build-apps){target=\_blank}
-
--   :octicons-book-24:{ .lg .middle } __Reference__
+-   :octicons-book-16:{ .lg .middle } **Reference**
 
     ---
 
-    Reference lists for Wormhole chain IDs, consistency levels, and contract addresses
+    Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
 
-    <br>
-    [:octicons-arrow-right-24: Reference](/build/reference){target=\_blank}
+    [:octicons-arrow-right-24: Explore reference](/build/reference)
 
--   :octicons-broadcast-24:{ .lg .middle } __Supported Networks__
+-   :octicons-gear-24:{ .lg .middle } **Toolkit**
 
     ---
 
-    Learn about the compatible environments and individual networks that Wormhole supports.
+    Information on key dev tools, including the WormholeScan Explorer, Core protocol repo, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
 
-    <br>
-    [:octicons-arrow-right-24: Supported Networks](/build/start-building/supported-networks){target=\_blank}
+    [:octicons-arrow-right-24: Discover tools](/build/toolkit/)
+
+-   :octicons-code-square-24:{ .lg .middle } **Building Applications with Wormhole**
+
+    ---
+
+    Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build applications with seamless interoperability.
+
+    [:octicons-arrow-right-24: Build applications](/build/build-apps)
+
+-   :octicons-link-24:{ .lg .middle } **Build a Custom Multichain Protocol**
+
+    ---
+
+    This section takes you from setting up your developer environment and configuring token transfers to deploying your custom multichain protocol.
+
+    [:octicons-arrow-right-24: Build multichain protocols](/build/build-custom-protocol)
+
 </div>
 <br>
 
