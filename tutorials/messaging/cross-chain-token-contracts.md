@@ -292,12 +292,12 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     2. Open the file and load imports and configuration:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:1:25"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:1:7"
         ```
 
         Import the required libraries and modules to interact with Ethereum, handle file paths, load environment variables, and enable user interaction via the terminal.
 
-    3. Define interfaces to be used for chain configuration and contract deployment:
+    3. Define interfaces to use for chain configuration and contract deployment:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:9:25"
@@ -311,16 +311,16 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:27:47"
         ```
 
-        The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to interactively choose the source and target chains for deployment. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
+        The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to choose the source and target chains for deployment interactively. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
 
-    4. Define the main functions for deployment and load the chain configuration:
+    4. Define the main function for deployment and load the chain configuration:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:48:53"
         ```
 
         - The `main` function is the entry point for the deployment script.
-        - We then call the `loadConfig` function that we previously defined to load the chain configuration from the `config.json` file.
+        - We then call the `loadConfig` function we previously defined to load the chain configuration from the `config.json` file.
 
     4. Set up provider and wallet: 
     
@@ -336,8 +336,8 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:58:66"
         ```
 
-        - This code reads the CrossChainSender.json file, which is the compiled output of the CrossChainSender.sol contract.
-        - The file is located in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated after the contract was compiled.
+        - This code reads the `CrossChainSender.json` file, the compiled output of the `CrossChainSender.sol` contract.
+        - The file is in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated during contract compilation.
         - It uses the `fs.readFileSync` function to read the file and `JSON.parse` to convert the file contents (in JSON format) into a JavaScript object.
 
     6. Extract the contract ABI and bytecode:
@@ -355,8 +355,8 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:71:75"
         ```
 
-        - **`ethers.ContractFactory`** - this creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain.
-        - This is a crucial step for deploying the contract since the factory will handle creating and deploying the `CrossChainSender` contract.
+        - **`ethers.ContractFactory`** - creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain.
+        - This is a crucial step for deploying the contract since the factory will create and deploy the `CrossChainSender` contract.
 
     8. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
@@ -415,7 +415,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - If the error is due to insufficient funds, it logs a clear message about needing more gas fees
         - For any other errors, it logs the specific error message to help with debugging
 
-        The `process.exit(1)` ensures that if any error occurs, the script exits with a failure status code.
+        The `process.exit(1)` ensures that the script exits with a failure status code if any error occurs.
 
     You can find the full code for the `deploy.ts` file below:
 
