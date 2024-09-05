@@ -25,5 +25,3 @@ The registry component of the NTT system is crucial for maintaining a trusted li
 - Setting the registered bridging contract address on the token contract
 
 This governance model ensures that the system remains secure while being adaptable to new requirements in any environment where it is deployed.
-
-

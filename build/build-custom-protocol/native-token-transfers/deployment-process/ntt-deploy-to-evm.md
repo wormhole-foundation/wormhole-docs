@@ -52,7 +52,7 @@ Ensure you have set up your environment correctly:
 export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
 ```
 
-Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn and mint mode on Ethereum Sepolia and Arbitrum Sepolia:
+Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
 ```bash
 --8<-- 'code/build/build-custom-protocol/native-token-transfers/deployment-process/initialize.txt'
@@ -81,7 +81,7 @@ After you deploy the NTT contracts, ensure that the deployment is properly confi
 
 ## Set Token Minter to NTT Manager
 
-The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub and spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
+The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub-and-spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
 
 - If you followed the [`INttToken`](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
 - If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
