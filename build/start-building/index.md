@@ -5,7 +5,7 @@ description: This section has all you need to get started developing with Wormho
 
 # Start Building
 
-This section provides you with the infomation you need to get started developing with Wormhole. You'll find a guide to supported networks, and the official recommended tools to use with each one, as well as links to example code.
+This section provides the information you need to get started developing with Wormhole. It includes a guide on the supported networks, the official recommended tools for each network, and links to example code.
 
 <div class="grid cards" markdown>
 
