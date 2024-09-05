@@ -5,7 +5,7 @@ description: This page lists key dev tools, including the WormholeScan Explorer,
 
 # Wormhole Tooling
 
-Regardless of your development environment, there are a few Wormhole-specific tools you should know about.
+Regardless of which network development environment you are using, there are a few Wormhole-specific tools you should know about.
 
 ## Get Started
 
