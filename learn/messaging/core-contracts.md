@@ -5,7 +5,7 @@ description: Discover Wormhole's Core Contracts, enabling cross-chain communicat
 
 # Core Contracts
 
-The Core Contracts are the mechanism by which all Wormhole messages are emitted. All cross-chain applications either interact directly with the Core Contract or interact with another contract that does. Each blockchain in the ecosystem has a single Core Contract, which the Guardians are required to monitor. These Core Contracts emit the messages that the [Guardians](/learn/infrastructure/guardians/){target=_blank} pick up as [Observations](/learn/glossary/#observation){target=_blank}.
+The Core Contracts are the mechanism by which all Wormhole messages are emitted. All cross-chain applications either interact directly with the Core Contract or interact with another contract that does. Each blockchain in the ecosystem has a single Core Contract, which the Guardians are required to monitor. These Core Contracts emit the messages that the [Guardians](/learn/infrastructure/guardians/){target=_blank} pick up as [Observations](/learn/fundamentals/glossary/#observation){target=_blank}.
 
 Core Contracts are generally simple and can be divided into sending and receiving sides, each of which will be defined next. 
 
@@ -31,7 +31,7 @@ There are no fees to publish a message, except when publishing on Solana, but th
 
 - `payload` ++"byte[]"++ - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
 
-- `consistencyLevel` ++"int"++ - a numeric value that defines the required level of finality that must be reached before the Guardians will observe and attest to emitted events. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Environments](#){target=\_blank} pages <!-- link to blockchain platforms -->
+- `consistencyLevel` ++"int"++ - a numeric value that defines the required level of finality that must be reached before the Guardians will observe and attest to emitted events. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Environments](/build/start-building/supported-networks/){target=\_blank} pages 
 
 - `nonce` ++"int"++ - a free integer field that can be used however you like. Note that changing the `nonce` will result in a different digest
 
