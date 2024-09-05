@@ -1,4 +1,4 @@
 title: Relayers
 nav:
  - index.md
- - 'Run a Relayer': 'run-relayer.md'
+ - 'Run a Custom Relayer': 'run-relayer.md'

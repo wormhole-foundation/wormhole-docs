@@ -9,7 +9,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
 <div class="grid cards" markdown>
 
--   :octicons-terminal-16:{ .lg .middle } __Run a Relaying Service__
+-   :octicons-terminal-16:{ .lg .middle } **Run a Custom Relayer**
 
     ---
 
@@ -32,7 +32,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     <br>
 
-    [:octicons-arrow-right-24: Get started now](/infrastructure/spy/run-spy/)
+    [:octicons-arrow-right-16: Get started now](/infrastructure/relayer/run-relayer/)
 
 </div>
 
@@ -40,20 +40,20 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
 <div class="grid cards" markdown>
 
--   :octicons-question-16:{ .lg .middle } __What is a Relayer?__
+-   :octicons-question-16:{ .lg .middle } **What is a Relayer?**
 
     ---
 
     Learn about what a relayer is, what role it plays in the delivery of cross-chain messages, and the different types of relayers in the Wormhole ecosystem.
 
-    [:octicons-arrow-right-24: Learn more](/learn/infrastructure/spy/)
+    [:octicons-arrow-right-16: Learn more about relayers](/learn/infrastructure/relayer/)
 
--   :material-package-variant:{ .lg .middle } __Simplify the Development Process__
+-   :material-package-variant:{ .lg .middle } **Simplify the Development Process**
 
     ---
 
     Use the Wormhole Relayer Engine package as a foundational toolkit to develop your own customized off-chain relaying service, enabling tailored message handling.
 
-    [:octicons-arrow-right-24: Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}
+    [:octicons-arrow-right-16: Check out the Relayer Engine source code](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}
 
 </div>

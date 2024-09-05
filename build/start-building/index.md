@@ -5,26 +5,26 @@ description: This section has all you need to get started developing with Wormho
 
 # Start Building
 
+## Get Started
+
 This section provides the information you need to get started developing with Wormhole. It includes a guide on the supported networks, the official recommended tools for each network, and links to example code.
 
 <div class="grid cards" markdown>
 
--   :octicons-broadcast-24:{ .lg .middle } __Supported Networks__
+-   :octicons-broadcast-16:{ .lg .middle } **Supported Networks**
 
     ---
 
     Learn about the compatible environments and individual networks that Wormhole supports.
 
-    
-    [:octicons-arrow-right-24: Supported networks](/build/start-building/supported-networks/)
+    [:octicons-arrow-right-16: Supported networks](/build/start-building/supported-networks/)
 
--   :octicons-code-24:{ .lg .middle } __Demos__
+-   :octicons-code-16:{ .lg .middle } **Demos**
 
     ---
 
     Explore various demos showcasing Wormhole's features, including starter apps, cross-chain examples, and UI components for token transfers and lending protocols.
 
-    
-    [:octicons-arrow-right-24: Get inspired](/build/start-building/demos/)
-</div>
+    [:octicons-arrow-right-16: Get inspired](/build/start-building/demos/)
 
+</div>
