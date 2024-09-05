@@ -44,7 +44,7 @@ Via governance, the Guardians can:
 - Expand the Guardian set
 - Upgrade ecosystem contract implementations
 
-The governance system is fully open source in the core repository. See the [Open Source section](/learn/security/#open-source){target=\_blank} for contract source.
+The governance system is fully open source in the core repository. See the [Open Source section](/learn/fundamentals/security/#open-source){target=\_blank} for contract source.
 
 ## Monitoring
 

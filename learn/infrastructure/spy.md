@@ -16,8 +16,8 @@ They don’t do any validation work. Instead, they watch the Guardian Network an
 The messages available over gossip are things like:
 
 - [Verifiable Action Approvals (VAAs)](/learn/infrastructure/vaas/){target=\_blank} - packets of cross-chain data. A Spy can see whether a VAA has been approved by the Guardian Network
-- [Observations](/learn/glossary/#observation){target=\_blank} - messages emitted by Core Contracts that the Guardians have picked up
-- [Guardian heartbeats](/learn/glossary/#heartbeat){target=\_blank} - the liveness of a Guardian
+- [Observations](/learn/fundamentals/glossary/#observation){target=\_blank} - messages emitted by Core Contracts that the Guardians have picked up
+- [Guardian heartbeats](/learn/fundamentals/glossary/#heartbeat){target=\_blank} - the liveness of a Guardian
 
 ## Source Code
 
