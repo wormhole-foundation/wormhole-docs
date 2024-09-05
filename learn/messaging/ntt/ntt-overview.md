@@ -32,7 +32,7 @@ Integrators looking to deploy their token to connected chains can use the NTT fr
 
 The Native Token Transfers Framework is highly customizable and ideal for applications such as a DeFi governance token deployed across multiple chains, which seeks to achieve fungible multichain liquidity and direct integration into governance processes.
 
-- **Mechanism** - can entirely utilize a burn and mint mechanism or can be paired for a hub and spoke model
+- **Mechanism** - can entirely utilize a burn-and-mint mechanism or can be paired for a hub-and-spoke model
 - **Security** - fully configurable rate limiting, pausing, access control, and threshold attestations. Integrated with the Global Accountant
 - **Contract ownership** - retain ownership and upgrade authority of token contracts on each chain
 - **Token contracts** - native contracts owned by your protocol governance
@@ -44,7 +44,7 @@ The Token Bridge offers a secure, low-effort integration suitable for applicatio
 
 - **Mechanism** - solely utilizes a lock and mint model
 - **Security** - preconfigured rate limiting and integrated Global Accountant
-- **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/learn/security/){target=\_blank}
+- **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/learn/fundamentals/security/){target=\_blank}
 - **Token contracts** - wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
 - **Integration** - straightforward and permissionless method to deploy on multiple chains
 
