@@ -1,40 +1,74 @@
 ---
 title: Wormhole Tooling
-description: This page lists key dev tools, including the WormholeScan Explorer, Core protocol repo, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
+description: This page lists key dev tools, including the WormholeScan Explorer, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
 ---
 
 # Wormhole Tooling
 
-Regardless of your development environment, there are a few Wormhole-specific tools you should know about.
+Regardless of which network development environment you are using, there are a few Wormhole-specific tools you should know about.
 
-## Wormhole Explorer
+## Get Started
 
-[Wormholescan](https://wormholescan.io){target=\_blank} is a resource for looking at individual transfer statuses on [MainNet](https://wormholescan.io){target=\_blank} and [TestNet](https://wormholescan.io/#/?network=TESTNET){target=\_blank}.
+<div class="grid cards" markdown>
 
-## Wormhole Core Repository
+-   :octicons-telescope-24:{ .lg .middle } __Wormholescan__
 
-Most developers find it helpful to clone the [Wormhole Core repository](https://github.com/wormhole-foundation/wormhole/tree/main/){target=\_blank}. This repository provides the DevNet Tilt environment, plenty of practical code examples and tests, and some utilities that don't have an official release package.
+    ---
 
-## Wormhole CLI Tool
+    Wormholescan is an explorer for looking at individual transfer statuses on MainNet and TestNet.
 
-The [Wormhole CLI](https://github.com/wormhole-foundation/wormhole/tree/main/clients/js){target=\_blank} is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
 
-## Wormhole SDK Source
+    [:octicons-arrow-right-24: Wormholescan](https://wormholescan.io){target=\_blank}
 
-The [Wormhole SDK Source](https://github.com/wormhole-foundation/wormhole/tree/main/sdk){target=\_blank} contains libraries in various languages to help with interacting with Wormhole contracts.
+-   :octicons-code-square-24:{ .lg .middle } __Wormhole CLI Tool__
 
-## Wormhole Spy SDK Source
+    ---
 
-The [Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank} allows you to listen to all the Guardian Network activity.
+    The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
 
-## Wormhole SDK Docs
+    
+    [:octicons-arrow-right-24: Get started with CLI](/build/toolkit/cli/)
 
-The [Wormhole SDK](/build/build-apps/wormhole-sdk/) is a TypeScript SDK distributed on npm. It can significantly aid in writing frontend code for cross-chain applications and utilizing the Wormhole Token Bridge directly.
+-   :octicons-file-code-24:{ .lg .middle } __Wormhole SDK__
 
-## Wormhole API Docs
+    ---
 
-The [Wormhole API](#) can be used to query for VAA status and other network details.
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 
-## VAA Parser
+    
+    [:octicons-arrow-right-24: Explore Wormhole SDK](/build/build-apps/wormhole-sdk/)
 
-The [VAA Parser](https://vaa.dev/#/parse){target=\_blank} is a resource for parsing out details of an encoded VAA.
+-   :octicons-beaker-24:{ .lg .middle } __Tilt__
+
+    ---
+
+    Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
+
+    
+    [:octicons-arrow-right-24: Get started with Tilt](/build/toolkit/tilt/)
+</div>
+
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+-   :octicons-file-code-24:{ .lg .middle } __Wormhole Spy SDK__
+
+    ---
+
+    The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
+
+    
+    [:octicons-arrow-right-24: Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
+
+-   :octicons-pencil-24:{ .lg .middle } __VAA Parser__
+
+    ---
+
+    The VAA Parser is a resource for parsing out details of an encoded VAA.
+
+
+    [:octicons-arrow-right-24: Try the VAA Parser](https://vaa.dev/#/parse){target=\_blank}
+</div>
+
+

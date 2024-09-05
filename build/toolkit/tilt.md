@@ -1,6 +1,6 @@
 ---
 title: Tilt Introduction and Setup
-description: Learn about Tilt, a Wormhole dev environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development
+description: Learn about Tilt, a Wormhole dev environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 ---
 
 # Tilt
