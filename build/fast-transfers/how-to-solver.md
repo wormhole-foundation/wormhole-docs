@@ -7,7 +7,7 @@ description: TODO
 
 ## Overview
 
-In Fast Transfers, solvers play a crucial role in ensuring efficient cross-chain transfers through a competitive auction process on the Matching Engine. The auction consists of four key steps: <!-- link to matching engine -->
+In Fast Transfers, solvers ensure efficient cross-chain transfers through a competitive auction process on the Matching Engine. The auction consists of four key steps: <!-- link to matching engine -->
 
 1. **Starting an auction** - users initiate a transfer, and solvers begin bidding to fulfill it by offering the best rates
 2. **Participating in an auction** - solvers compete in a reverse Dutch auction to provide the most cost-effective solution
@@ -17,7 +17,7 @@ In Fast Transfers, solvers play a crucial role in ensuring efficient cross-chain
 ## Starting an Auction
 When users interact with Token Routers to transfer assets faster than finality to another chain, they place an order that is processed by the Matching Engine. <!-- link to token routers -->
 
-In order to initiate an auction with this message, the following needs to be done on Solana.
+To initiate an auction with this message, the following needs to be done on Solana.
 
 ### Send transactions to verify signatures and post VAA
 
@@ -48,12 +48,12 @@ After the VAA is posted, the next step is to place an initial offer in the aucti
 
 ## Participating in an Auction
 
-In order to participate in an already initialized auction, a relayer must place an offer with a better price than the current auction price. The auction data is stored in an account created by the Matching Engine, and this auction account address is determined by the fast VAA hash. 
+To participate in an already initialized auction, a relayer must place an offer at a price better than the current auction price. The auction data is stored in an account created by the Matching Engine, and the fast VAA hash determines this auction account address.  
 
 The auction account pubkey can be determined by either:
 
-- Listen to a Solana websocket connection to find the account when the initial offer is placed.
-- Use the fast VAA bytes to compute its hash and derive the auction account address from it.
+- Listen to a Solana web socket connection to find the account when the initial offer is placed
+- Use the fast VAA bytes to compute its hash and derive its auction account address
 
 Once the auction account is found, the relayer can submit an improved offer.
 
@@ -81,62 +81,35 @@ The main difference between [_Participating in an auction_](/build/fast-transfer
 
 ### Send transactions to verify signatures and post VAA
 
-The finalized VAA is observed via Wormhole Spy or a process that listens to the Wormhole Spy network like the relayer engine.
+Once the auction is completed, the finalized VAA must be posted to Solana to officially settle the auction. The finalized VAA can be observed using Wormhole Spy or similar processes, such as the relayer engine that listens to the Wormhole Spy network.
 
-In order to read VAAs on Solana, someone (anyone can do this) needs to verify signatures and post the VAA to a Solana account via Wormhole Core Bridge instructions. The typical way to do this is using the Wormhole JS SDK.
-
-<!-- snippet -->
+Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core Bridge instructions. This is typically done using the Wormhole JS SDK, as shown below:
 
 ```js
-import * as wormholeSdk from "@certusone/wormhole-sdk";
-import { Keypair } from "@solana/web3.js";
-
-const payer = Keypair.fromSecretKey(...)
-
-await wormholeSdk.postVaaSolanaWithRetry(
-    solanaConnection, // Connection in @solana/web3.js
-    new wormholeSdk.solana.NodeWallet(payer).signTransaction,
-    CORE_BRIDGE_PROGRAM_ID, // worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth on mainnet
-    payer.publicKey,
-    finalizedVaaBytes // Buffer type
-);
-
+--8<-- 'code/build/fast-transfers/how-to-solver/settle-auction-1.js'
 ```
+
+- `postVaaSolanaWithRetry` - posts the finalized VAA to the Solana blockchain by verifying the signatures and associating the VAA with a Solana account
+- `payer` - the entity responsible for covering transaction fees
+- `finalizedVaaBytes` - the VAA message confirming the auction's settlement
 
 ### Send transaction to settle complete auction
 
-<!-- snippet -->
+After posting the finalized VAA, the final step is to settle the auction on Solana. This confirms the auction and ensures the winning solver is paid out accordingly. The following code sends a transaction to the Matching Engine to settle the auction:
 
 ```js
-import { Connection } from "@solana/web3.js";
-import * as wormholeSdk from "@certusone/wormhole-sdk";
-
-const connection = new Connection(YOUR_RPC_URL, "confirmed");
-const payer = Keypair.fromSecretKey(...);
-
-const matchingEngine = new MatchingEngineProgram(
-  connection,
-	MATCHING_ENGINE_PROGRAM_ID,
-  USDC_MINT_ADDRESS // EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v on mainnet
-);
-
-const feeMicroLamports = yourMethodToDeterminePriorityFee(...);
-const tx = await matchingEngine.settleAuctionTx(
-    connection,
-    payer,
-    sourceRpc, // For fetching information from the source chain.
-    fastVaaBytes,
-    finalizedVaaBytes,
-    {
-        feeMicroLamports,
-        nonceAccount, // optional PublicKey (if durable nonce is used)
-        addressLookupTableAccounts, // optional AddressLookupTableAccount[];
-    }
-);
-
-const txSig = await connection.sendTransaction(tx);
-
+--8<-- 'code/build/fast-transfers/how-to-solver/settle-auction-2.js'
 ```
 
+- `settleAuctionTx` - settles the auction by confirming the transfer using both the fast VAA and the finalized VAA
+- `sourceRpc` - the RPC connection to the source chain, used for fetching required information during settlement
+- `fastVaaBytes` - the initial VAA from the fast transfer process
+- `finalizedVaaBytes` - the finalized VAA confirming the completion of the auction and transfer
 
 ## Mainnet Contract Addresses 
+
+This section provides the mainnet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager. Each contract is listed with its associated `chainId` and address, ensuring compatibility across multiple blockchain networks.
+
+```js
+--8<-- 'code/build/fast-transfers/how-to-solver/mainnet-addresses.js'
+```
