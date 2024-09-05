@@ -15,8 +15,8 @@ This section provides the information you need to get started developing with Wo
 
     Learn about the compatible environments and individual networks that Wormhole supports.
 
-    <br>
-    [:octicons-arrow-right-24: Supported networks](/build/start-building/supported-networks)
+    
+    [:octicons-arrow-right-24: Supported networks](/build/start-building/supported-networks/)
 
 -   :octicons-code-24:{ .lg .middle } __Demos__
 
@@ -24,7 +24,7 @@ This section provides the information you need to get started developing with Wo
 
     Explore various demos showcasing Wormhole's features, including starter apps, cross-chain examples, and UI components for token transfers and lending protocols.
 
-    <br>
-    [:octicons-arrow-right-24: Get inspired](/build/start-building/demos){target=\_blank}
+    
+    [:octicons-arrow-right-24: Get inspired](/build/start-building/demos/)
 </div>
-<br>
+

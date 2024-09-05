@@ -27,7 +27,7 @@ Regardless of which network development environment you are using, there are a f
     The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
 
     
-    [:octicons-arrow-right-24: Get started with CLI](/build/toolkit/cli){target=\_blank}
+    [:octicons-arrow-right-24: Get started with CLI](/build/toolkit/cli/)
 
 -   :octicons-file-code-24:{ .lg .middle } __Wormhole SDK__
 
@@ -36,16 +36,16 @@ Regardless of which network development environment you are using, there are a f
     Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 
     
-    [:octicons-arrow-right-24: Explore Wormhole SDK](/build/build-apps/wormhole-sdk){target=\_blank}
+    [:octicons-arrow-right-24: Explore Wormhole SDK](/build/build-apps/wormhole-sdk/)
 
 -   :octicons-beaker-24:{ .lg .middle } __Tilt__
 
     ---
 
-    Learn about Tilt, a Wormhole dev environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
+    Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
     
-    [:octicons-arrow-right-24: Get started with Tilt](/build/toolkit/tilt){target=\_blank}
+    [:octicons-arrow-right-24: Get started with Tilt](/build/toolkit/tilt/)
 </div>
 
 
