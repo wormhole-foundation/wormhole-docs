@@ -46,7 +46,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     Learn about what a relayer is, what role it plays in the delivery of cross-chain messages, and the different types of relayers in the Wormhole ecosystem.
 
-    [:octicons-arrow-right-24: Learn more](/learn/infrastructure/spy)
+    [:octicons-arrow-right-24: Learn more](/learn/infrastructure/spy/)
 
 -   :material-package-variant:{ .lg .middle } __Simplify the Development Process__
 
@@ -54,6 +54,6 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     Use the Wormhole Relayer Engine package as a foundational toolkit to develop your own customized off-chain relaying service, enabling tailored message handling.
 
-    [:octicons-arrow-right-24: Relayer Engine](https://github.com/wormhole-foundation/relayer-engine)
+    [:octicons-arrow-right-24: Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}
 
 </div>

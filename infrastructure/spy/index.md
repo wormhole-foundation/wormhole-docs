@@ -29,7 +29,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     Learn about what a Spy is and what role it plays in the delivery of cross-chain messages.
 
-    [:octicons-arrow-right-24: Learn more](/learn/infrastructure/spy)
+    [:octicons-arrow-right-24: Learn more](/learn/infrastructure/spy/)
 
 -   :material-package-variant:{ .lg .middle } __Interact with a Spy__
 
@@ -37,7 +37,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     Use the Wormhole Spy SDK to subscribe to the stream of signed messages.
 
-    [:octicons-arrow-right-24: Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/blob/main/spydk/js/README.md)
+    [:octicons-arrow-right-24: Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/blob/main/spydk/js/README.md){target=\_blank}
 
 -   :material-package-variant:{ .lg .middle } __Alternative Implementations__
 
@@ -45,6 +45,6 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     Check out Beacon, an alternative highly available version of the Wormhole Spy.
 
-    [:octicons-arrow-right-24: Pyth Beacon](https://github.com/pyth-network/beacon)
+    [:octicons-arrow-right-24: Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank}
 
 </div>
