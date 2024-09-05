@@ -68,10 +68,4 @@ Use this [proto-spec file](https://github.com/wormhole-foundation/wormhole/blob/
 
 The Spy does not have a built-in persistence layer, so it is typically paired with something like Redis or an SQL database to record relevant messages.
 
-The persistence layer needs to implement the appropriate interface. For example, you can check out the [Redis interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank} used by the Relayer Engine, a package that serves as a starting point for a custom relaying service.
-
-## See Also
-
-The [Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank} provides an alternate Spy implementation that is highly available for improved performance and reliability.
-
-The [Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} implements a client and persistence layer for messages received from a Spy subscription.
+The persistence layer needs to implement the appropriate interface. For example, you can check out the [Redis interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank} used by the Relayer Engine, a package that implements a client and persistence layer for messages received from a Spy subscription.
