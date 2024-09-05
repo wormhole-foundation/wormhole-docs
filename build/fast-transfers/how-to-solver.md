@@ -1,9 +1,9 @@
 ---
-title: Fast Transfers
-description: TODO
+title: How to be a Solver
+description: Explore how solvers engage in Fast Transfers auctions, from initiating offers to settling, with steps and mainnet contract addresses.
 ---
 
-# Solver
+# How to be a Solver
 
 ## Overview
 
