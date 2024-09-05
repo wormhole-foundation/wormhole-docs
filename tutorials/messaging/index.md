@@ -15,6 +15,6 @@ Wormhole's cross-chain messaging infrastructure simplifies data transmission, ev
 
     This tutorial guides you through building a fully functioning cross-chain message sender and receiver using Solidity, understanding how to interact with the Wormhole relayer, managing cross-chain costs, and configuring your smart contracts correctly on both source and target chains.
 
-    [:octicons-arrow-right-24: Start building](/tutorials/messaging/cross-chain-contracts.md){target=\_blank}
+    [:octicons-arrow-right-24: Start building](/tutorials/messaging/cross-chain-contracts/)
 
 </div>

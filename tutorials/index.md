@@ -6,9 +6,9 @@ template: root-index-page.html
 
 # Tutorials
 
-This section contains step-by-step guides to help you build with Wormhole. 
-
 ## Get Started
+
+This section contains step-by-step guides to help you build with Wormhole. 
 
 <div class="grid cards" markdown>
 
@@ -18,7 +18,7 @@ This section contains step-by-step guides to help you build with Wormhole.
 
     Wormhole's cross-chain messaging infrastructure simplifies data transmission, event triggering, and transaction initiation, allowing smart contracts to interact seamlessly across multiple blockchains. 
 
-    [:octicons-arrow-right-24: Start building](/tutorials/messaging){target=\_blank}
+    [:octicons-arrow-right-24: Start building](/tutorials/messaging/)
 
 </div>
 
