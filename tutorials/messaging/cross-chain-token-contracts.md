@@ -126,14 +126,14 @@ Let's start writing the `CrossChainSender` contract:
 4. Finally, we'll add the function that sends the tokens across chains:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:31:57"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:31:58"
     ```
 
     This `sendCrossChainDeposit` function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
 
 Here’s a breakdown of what happens in each step:
 
-1. **Cost calculation** - the function starts by calculating the cost of the cross-chain transfer using `quoteCrossChainDeposit`(targetChain). This cost includes both the delivery fee and the Wormhole message fee. The `sendCrossChainDeposit` function then checks that the user has sent the correct amount of Ether to cover this cost (`msg.value`)
+1. **Cost calculation** - the function starts by calculating the cost of the cross-chain transfer using `quoteCrossChainDeposit`(`targetChain`). This cost includes both the delivery fee and the Wormhole message fee. The `sendCrossChainDeposit` function then checks that the user has sent the correct amount of Ether to cover this cost (`msg.value`)
 
 2. **Token transfer to contract** - the next step is to transfer the specified amount of tokens from the user to the contract itself using `IERC-20(token).transferFrom(msg.sender, address(this), amount)`. This ensures that the contract has custody of the tokens before initiating the cross-chain transfer
 
@@ -179,7 +179,7 @@ Let's start writing the `CrossChainReceiver` contract:
 3. Next, let's add a function to handle receiving the payload and tokens:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:16:31"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:16:32"
     ```
 
     This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address and transfers the tokens to them using the Wormhole protocol.
@@ -246,27 +246,65 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     4. Create a `contracts.json` file in the `deploy-config` directory:
 
         ```bash
-        touch deploy-config/contracts.json
+        echo '{}' > deploy-config/contracts.json
         ```
 
         This file can be left blank initially. It will be automatically updated with the deployed contract addresses after a successful deployment
 
-2. **Write the deployment script** - you’ll need a script to automate the deployment of your contracts. Let’s create the deployment script
+2. **Set up your Node.js environment** - you'll need to set up your Node.js environment to run the deployment script
+
+    1. Initialize a Node.js project:
+
+        ```bash
+        npm init -y
+        ```
+    
+    2. Install the necessary dependencies:
+
+        ```bash
+        npm install ethers dotenv readline-sync @types/readline-sync
+        ```
+
+        These dependencies are required for the deployment script to work properly.
+
+5. **Compile your smart contracts** - compile your smart contracts using Foundry. This ensures that your contracts are up-to-date and ready for deployment
+
+    - Run the following command to compile your contracts:
+
+        ```bash
+        forge build
+        ```
+
+        This will generate the necessary ABI and bytecode files in a directory named `/out`.
+
+    The expected output should be similar to this:
+
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-6.html"
+
+3. **Write the deployment script** - you’ll need a script to automate the deployment of your contracts. Let’s create the deployment script
 
     1. Create a new file named `deploy.ts` in the `/src` directory:
 
         ```bash
-        touch src/deploy.ts
+        touch script/deploy.ts
         ```
 
-    2. Load imports and configuration:
+    2. Open the file and load imports and configuration:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:1:7"
         ```
 
         Import the required libraries and modules to interact with Ethereum, handle file paths, load environment variables, and enable user interaction via the terminal.
-    
+
+    3. Define interfaces to be used for chain configuration and contract deployment:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:9:25"
+        ```
+
+        These interfaces define the structure of the chain configuration and the contract deployment details.
+
     3. Load and select the chains for deployment:
 
         ```typescript
@@ -275,29 +313,87 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to interactively choose the source and target chains for deployment. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
 
-    4. Set up provider and wallet: 
-    
-        The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction:
+    4. Define the main functions for deployment and load the chain configuration:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:55:57"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:48:53"
         ```
 
-    5. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
+        - The `main` function is the entry point for the deployment script.
+        - We then call the `loadConfig` function that we previously defined to load the chain configuration from the `config.json` file.
+
+    4. Set up provider and wallet: 
+    
+        The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction on the source chain:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:54:57"
+        ```
+
+    5. Read the compiled contracts:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:58:66"
+        ```
+
+        - This code reads the CrossChainSender.json file, which is the compiled output of the CrossChainSender.sol contract.
+        - The file is located in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated after the contract was compiled.
+        - It uses the `fs.readFileSync` function to read the file and `JSON.parse` to convert the file contents (in JSON format) into a JavaScript object.
+
+    6. Extract the contract ABI and bytecode:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:68:69"
+        ```
+
+        - **ABI (Application Binary Interface)** - defines the structure of the contract’s functions, events, and data types, allowing the front end to interact with the contract on the blockchain
+        - **Bytecode** - this is the compiled machine code that will be deployed to the blockchain to create the contract
+
+    7. Create the Contract Factory:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:71:75"
+        ```
+
+        - **`ethers.ContractFactory`** - this creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain.
+        - This is a crucial step for deploying the contract since the factory will handle creating and deploying the `CrossChainSender` contract.
+
+    8. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
         === "`CrossChainSender`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:80:85"
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:77:83"
             ```
 
         === "`CrossChainReceiver`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:113:118"
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:91:115"
             ```
 
         Both functions deploy the respective contracts to the selected chains.
 
-    6. Save the deployment details:
+        For the `CrossChainReceiver` contract:
+
+        - It defines the wallet related to the target chain
+        - The logic reads the compiled ABI and bytecode from the JSON file generated during compilation
+        - It creates a new contract factory using the ABI, bytecode, and wallet
+        - It deploys the contract to the selected chain passing in the Wormhole Relayer, TokenBridge, and Wormhole addresses.
+
+    9. Save the deployed contract addresses:
+
+        === "`senderAddress`"
+            ```typescript
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:86:89"
+            ```
+
+        === "`receiverAddress`"
+            ```typescript
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:118:121"
+            ```
+
+        You may display the deployed contract addresses in the terminal or save them to a JSON file for future reference.
+
+    9. Save the deployment details:
 
         Add your desired logic to save the deployed contract addresses in a JSON file (or another format). This will be important later when transferring tokens, as you'll need these addresses to interact with the deployed contracts.
 
@@ -305,10 +401,31 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         ???- example "Save Deployment Details"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:141:167"
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:124:164"
             ```
+        
+    10. Handle errors and finalize the script:
 
-3. **Add your private key** - you'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:165:180"
+        ```
+
+        The try-catch block wraps the deployment logic to catch any errors that may occur.
+
+        - If the error is due to insufficient funds, it logs a clear message about needing more gas fees
+        - For any other errors, it logs the specific error message to help with debugging
+
+        The `process.exit(1)` ensures that if any error occurs, the script exits with a failure status code.
+
+    You can find the full code for the `deploy.ts` file below:
+
+    ??? code "deploy.ts"
+
+        ```solidity
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts"
+        ```
+
+4. **Add your private key** - you'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf
 
     Create a `.env` file in the root of the project and add your private key:
 
@@ -321,43 +438,13 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     ```env
     PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
-
-4. **Compile your smart contracts** - before running the deployment script, compile your smart contracts using Foundry. This ensures that your contracts are up-to-date and ready for deployment.
-
-    - Run the following command to compile your contracts:
-
-        ```bash
-        forge build
-        ```
-
-        This will compile all the smart contracts in your project and generate the necessary ABI and bytecode files in a directory named `/out`.
-
-    The expected output should be similar to this:
-
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-6.html"
-
-5. **Set up your Node.js environment** - before running the deployment script, you'll need to set up your Node.js environment
-
-    1. Initialize a Node.js project:
-
-        ```bash
-        npm init -y
-        ```
-    
-    2. Install the necessary dependencies:
-
-        ```bash
-        npm install ethers dotenv readline-sync
-        ```
-
-        These dependencies are required for the deployment script to work properly.
     
 6. **Run the deployment script**
 
     1. Open a terminal and run the following command:
 
         ```bash
-        npx ts-node src/deploy.ts
+        npx ts-node script/deploy.ts
         ```
 
         This will execute the deployment script, deploying both contracts to the selected chains.
@@ -366,14 +453,6 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         - You will see the deployed contract addresses printed in the terminal if successful. The `contracts.json` file will be updated with these addresses.
         - If you encounter an error, the script will provide feedback, such as insufficient funds for gas.
-
-You can find the full code for the `deploy.ts` file below:
-
-??? code "deploy.ts"
-
-    ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts"
-    ```
 
 If you followed the logic provided in the full code above, your terminal output should look something like this:
 

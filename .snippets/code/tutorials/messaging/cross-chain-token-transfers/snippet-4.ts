@@ -48,7 +48,6 @@ function selectChain(
 async function main() {
   const chains = loadConfig();
 
-  // Let the user select the source and target chains
   const sourceChain = selectChain(chains, 'source');
   const targetChain = selectChain(chains, 'target');
 
@@ -76,7 +75,6 @@ async function main() {
   );
 
   try {
-    // Deploy the contract on the source chain
     const senderContract = await CrossChainSenderFactory.deploy(
       sourceChain.wormholeRelayer,
       sourceChain.tokenBridge,
@@ -87,10 +85,9 @@ async function main() {
     // Safely access the deployed contract's address
     const senderAddress = (senderContract as ethers.Contract).target;
     console.log(
-      `CrossChainSender deployed on ${sourceChain.description} at: ${senderAddress}`
+      `CrossChainSender on ${sourceChain.description}: ${senderAddress}`
     );
 
-    // Deploy the receiver contract on the target chain
     const targetWallet = new ethers.Wallet(
       process.env.PRIVATE_KEY!,
       targetProvider
@@ -120,7 +117,7 @@ async function main() {
     // Safely access the deployed contract's address
     const receiverAddress = (receiverContract as ethers.Contract).target;
     console.log(
-      `CrossChainReceiver deployed on ${targetChain.description} at: ${receiverAddress}`
+      `CrossChainReceiver on ${targetChain.description}: ${receiverAddress}`
     );
 
     // Load existing deployed contract addresses from contracts.json
