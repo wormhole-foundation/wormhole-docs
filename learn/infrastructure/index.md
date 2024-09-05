@@ -60,7 +60,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     Relayers are processes that handle the delivery of VAAs to their intended destination.
 
-    [:octicons-arrow-right-16: Learn more about relayers](/learn/infrastructure/relayers/)
+    [:octicons-arrow-right-16: Learn more about relayers](/learn/infrastructure/relayer/)
 
 -   :octicons-book-16:{ .lg .middle } **Spy**
 

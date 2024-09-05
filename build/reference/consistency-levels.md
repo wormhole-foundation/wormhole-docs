@@ -30,7 +30,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Sui             |         |      | 0         | finalized | ~ 3&nbsp;s       | [Details](https://docs.sui.io/concepts/sui-architecture/consensus){target=_blank}                                  |
 | Aptos           |         |      | 0         | finalized | ~ 4&nbsp;s       | [Details](https://aptos.dev/reference/glossary/#byzantine-fault-tolerance-bft){target=_blank}                      |
 | Arbitrum        | 200     |      |           | finalized | ~ 1066&nbsp;s    | [Details](https://developer.arbitrum.io/tx-lifecycle){target=_blank}                                               |
-| Optimism        | 200     |      |           | finalized | ~ 1026&nbsp;s    | [Details](https://community.optimism.io/docs/developers/bridge/comm-strategies/){target=_blank}                    |
+| Optimism        | 200     |      |           | finalized | ~ 1026&nbsp;s    |                                                                                                                    |
 | XPLA            | 200     | 201  |           | finalized | ~ 5&nbsp;s       |                                                                                                                    |
 | Base            | 200     | 201  |           | finalized | ~ 1026&nbsp;s    |                                                                                                                    |
 | Sei             | 200     | 201  |           | finalized | ~ 1&nbsp;s       |                                                                                                                    |
