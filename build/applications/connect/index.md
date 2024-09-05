@@ -5,39 +5,63 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 # Wormhole Connect
 
+## Get Started
+
 Wormhole Connect is a React widget offering an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-24:{ .lg .middle } __Overview__
+-   :octicons-code-square-16:{ .lg .middle } **Overview**
 
     ---
 
     Explore Wormhole Connect, the React widget that allows you to offer an easy-to-use UI for cross-chain asset transfers via Wormhole in a web application.
 
-    [:octicons-arrow-right-24: Get started](/build/build-apps/connect/overview/)
+    [:octicons-arrow-right-16: Get started](/build/applications/connect/overview/)
 
--   :octicons-code-24:{ .lg .middle } __Routes__
+-   :octicons-code-16:{ .lg .middle } **Routes**
 
     ---
 
     Explore Wormhole Connect's routing capabilities for asset transfers, featuring Token Bridge, CCTP, NTT, and various blockchain-specific routes for optimal UX.
 
-    [:octicons-arrow-right-24: Explore routes](/build/build-apps/connect/routes/)
+    [:octicons-arrow-right-16: Explore routes](/build/applications/connect/routes/)
 
--   :octicons-globe-24:{ .lg .middle } __Features__
+-   :octicons-globe-16:{ .lg .middle } **Features**
 
     ---
     Learn which features of Connect are available for your network of choice.
-    
 
-    [:octicons-arrow-right-24: Discover supported features](/build/build-apps/connect/features/)
+    [:octicons-arrow-right-16: Discover supported features](/build/applications/connect/features/)
 
--   :octicons-pencil-24:{ .lg .middle } __Configuration__
+-   :octicons-pencil-16:{ .lg .middle } **Configuration**
 
     ---
 
     Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions.
 
-    [:octicons-arrow-right-24: Configure for customization](/build/build-apps/connect/configuration/)
+    [:octicons-arrow-right-16: Configure for customization](/build/applications/connect/configuration/)
+
+</div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-browser-16:{ .lg .middle } **Codeless Interface**
+
+    ---
+
+    Check out the codeless interface for an easy approach to styling and customizing a Connect widget for your multichain application.
+
+    [:octicons-arrow-right-16: Quickly get started](https://connect-in-style.wormhole.com/){target=\_blank}
+
+-   :octicons-browser-16:{ .lg .middle } **A Live Example**
+
+    ---
+
+    View an example of the Wormhole Connect widget live in a production application.
+
+    [:octicons-arrow-right-16: See Connect in action](https://portalbridge.com/){target=\_blank}
+
 </div>

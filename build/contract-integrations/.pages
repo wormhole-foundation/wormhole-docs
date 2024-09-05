@@ -7,4 +7,4 @@ nav:
 #  - 'CCTP': 'cctp.md'
  - 'Gateway' : 'gateway.md'
  - native-token-transfers
- - 'Set Up a Dev Env': 'dev-env.md'
+ - 'Set Up a Dev Environment': 'dev-env.md'

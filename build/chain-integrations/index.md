@@ -1,31 +1,20 @@
 ---
-title: Get Started
-description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more.
+title: Add Chain Integrations
+description: How to add cross-chain support to your chain by connecting it to Wormhole's secure communication network, enabling interoperability with other supported chains.
 ---
 
-# Get Started
+# Add Chain Integrations
 
-Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more.
-
+In this section, you'll learn how to add cross-chain support to your chain by connecting it to Wormhole's secure communication network. This will enable seamless interoperability with other supported chains.
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-24:{ .lg .middle } __Choosing a Relayer__
+-   :octicons-code-of-conduct-16:{ .lg .middle } **Onboard to Gateway**
 
     ---
 
-    This section includes information about the standard and specialized relayer configuration options for seamless cross-chain messaging.
+    Learn how to onboard your Cosmos chain to Wormhole Gateway to enable bridging to and from your chain, including how to satisfy the requisite governance proposals, IBC setup, and UI integration.
 
-    
-    [:octicons-arrow-right-24: Get started with relayers](/build/build-custom-protocol/get-started/choosing-a-relayer/)
+    [:octicons-arrow-right-16: Start onboarding](/build/chain-integrations/gateway/)
 
--   :octicons-file-code-24:{ .lg .middle } __Local Dev Environment__
-
-    ---
-    Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more.
-
-    
-    [:octicons-arrow-right-24: Set up environment](/build/build-custom-protocol/get-started/dev-env/)
 </div>
-
-

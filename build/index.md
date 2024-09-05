@@ -1,22 +1,56 @@
 ---
 title: Build with Wormhole
-description: Information to build multichain protocols and applications, including guidance on customization, key references, and tips for getting started. 
+description: Learn how to start building multichain solutions on Wormhole, with tips to get started, an overview of the toolkit, and an introduction to the protocols.
 template: root-index-page.html 
 ---
 
 # Build
 
-Whether you are building a custom protocol looking for seamless, multichain interoperability, or an application developer crafting smooth, user-friendly cross-chain experiences, learn how Wormhole can help you accomplish your objectives. 
+## Get Started
+
+Whether you’re developing front-end applications using Wormhole's application-layer tools or building smart contract integrations on top of Wormhole’s messaging protocols, learn how Wormhole can help you achieve seamless, multichain interoperability.
 
 <div class="grid cards" markdown>
 
--   :octicons-tools-24:{ .lg .middle } **Start Building**
+-   :octicons-tools-16:{ .lg .middle } **Start Building**
 
     ---
 
-    This section has all you need to get started developing with Wormhole, including a guide to supported networks and tool sets and code examples.
+    Get equipped with everything you need to start developing with Wormhole, including an overview of supported networks and a list of demo projects.
 
-    [:octicons-arrow-right-24: Get started](/build/start-building/)
+    [:octicons-arrow-right-16: Get started](/build/start-building/)
+
+-   :octicons-browser-16:{ .lg .middle } **Build Frontend Applications**
+
+    ---
+
+    Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build applications with seamless interoperability.
+
+    [:octicons-arrow-right-16: Build applications](/build/applications/)
+
+-   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
+
+    ---
+
+    Begin your journey by creating smart contracts that harness the power of Wormhole's advanced messaging protocols.
+
+    [:octicons-arrow-right-16: Build contract integrations](/build/contract-integrations/)
+
+-   :octicons-link-16:{ .lg .middle } **Add Chain Integrations**
+
+    ---
+
+    Learn how to add cross-chain support to your chain by connecting it to Wormhole's secure communication network.
+
+    [:octicons-arrow-right-16: Add chain integrations](/build/chain-integrations/)
+
+-   :octicons-gear-16:{ .lg .middle } **Toolkit**
+
+    ---
+
+    Discover essential developer tools for managing and sending cross-chain transfers, including the Wormholescan explorer, Wormhole CLI, Wormhole SDKs, and more.
+
+    [:octicons-arrow-right-16: Discover tools](/build/toolkit/)
 
 -   :octicons-book-16:{ .lg .middle } **Reference**
 
@@ -24,32 +58,6 @@ Whether you are building a custom protocol looking for seamless, multichain inte
 
     Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
 
-    [:octicons-arrow-right-24: Explore reference](/build/reference/)
+    [:octicons-arrow-right-16: Explore reference](/build/reference/)
 
--   :octicons-gear-24:{ .lg .middle } **Toolkit**
-
-    ---
-
-    Information on key dev tools, including the WormholeScan Explorer, Core protocol repo, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
-
-    [:octicons-arrow-right-24: Discover tools](/build/toolkit/)
-
--   :octicons-code-square-24:{ .lg .middle } **Building Applications with Wormhole**
-
-    ---
-
-    Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build applications with seamless interoperability.
-
-    [:octicons-arrow-right-24: Build applications](/build/build-apps/)
-
--   :octicons-link-24:{ .lg .middle } **Build a Custom Multichain Protocol**
-
-    ---
-
-    This section takes you from setting up your developer environment and configuring token transfers to deploying your custom multichain protocol.
-
-    [:octicons-arrow-right-24: Build multichain protocols](/build/build-custom-protocol/)
 </div>
-
-
-

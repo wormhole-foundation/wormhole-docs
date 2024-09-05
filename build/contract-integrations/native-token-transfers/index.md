@@ -1,29 +1,30 @@
 ---
-title: Choosing a Relayer
-description: This section includes information about the standard and specialized relayer configuration options for seamless cross-chain messaging.
+title: Native Token Transfers (NTT)
+description: This section provides comprehensive guidance on configuring, deploying, and managing your Native Token Transfers (NTT) integration. 
 ---
 
-# Choosing a Relayer
+# Native Token Transfers
 
-Learn more about the standard and specialized relayer configuration options for seamless cross-chain messaging and how to select the best option for your project. 
+## Get Started
 
+This section provides comprehensive guidance on configuring, deploying, and managing your Native Token Transfers (NTT) integration. It includes information relevant to both new token deployments and existing token management.
 
 <div class="grid cards" markdown>
--   :octicons-gear-16:{ .lg .middle } __Standard Relayer__
+
+-   :octicons-rocket-16:{ .lg .middle } **Deployment Process**
 
     ---
 
-    A standard relayer provides a mechanism for a contract on one chain to send a message to a contract on a different chain without requiring the developer to deal with any off-chain deployments.
+    Guidance on installation, deployment to EVM and Solana, and maintaining your NTT after deployment.
 
-    
-    [:octicons-arrow-right-24: Start building with relayers](/build/build-custom-protocol/get-started/choosing-a-relayer/standard-relayer/)
+    [:octicons-arrow-right-16: Start the deployment process](/build/contract-integrations/native-token-transfers/deployment-process/)
 
--   :octicons-tools-24:{ .lg .middle } __Specialized Relayer__
+-   :octicons-gear-16:{ .lg .middle } **Configure NTT**
 
     ---
 
-    A specialized relayer is comprised of purpose-built components within the Wormhole protocol, designed to relay messages for specific applications.
+    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
 
-    
-    [:octicons-arrow-right-24: Start customizing](/build/build-custom-protocol/get-started/choosing-a-relayer/specialized-relayer/)
+    [:octicons-arrow-right-16: Configure your NTT deployment](/build/contract-integrations/native-token-transfers/configuration/)
+
 </div>

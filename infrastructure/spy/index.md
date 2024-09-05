@@ -9,13 +9,13 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
 <div class="grid cards" markdown>
 
--   :octicons-terminal-16:{ .lg .middle } __Run a Spy__
+-   :octicons-terminal-16:{ .lg .middle } **Run a Spy**
 
     ---
 
     The content in this section shows you how you can run your own infrastructure and spin up a Spy daemon locally to subscribe to a stream of messages, also known as Verifiable Action Approvals (VAAs).
 
-    [:octicons-arrow-right-24: Get started now](/infrastructure/spy/run-spy/)
+    [:octicons-arrow-right-16: Get started now](/infrastructure/spy/run-spy/)
 
 </div>
 
@@ -23,28 +23,28 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
 <div class="grid cards" markdown>
 
--   :octicons-question-16:{ .lg .middle } __What is a Spy?__
+-   :octicons-question-16:{ .lg .middle } **What is a Spy?**
 
     ---
 
     Learn about what a Spy is and what role it plays in the delivery of cross-chain messages.
 
-    [:octicons-arrow-right-24: Learn more](/learn/infrastructure/spy/)
+    [:octicons-arrow-right-16: Learn more about Spies](/learn/infrastructure/spy/)
 
--   :material-package-variant:{ .lg .middle } __Interact with a Spy__
+-   :material-package-variant:{ .lg .middle } **Interact with a Spy**
 
     ---
 
     Use the Wormhole Spy SDK to subscribe to the stream of signed messages.
 
-    [:octicons-arrow-right-24: Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/blob/main/spydk/js/README.md){target=\_blank}
+    [:octicons-arrow-right-16: Use the Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/blob/main/spydk/js/README.md){target=\_blank}
 
--   :material-package-variant:{ .lg .middle } __Alternative Implementations__
+-   :material-package-variant:{ .lg .middle } **Alternative Implementations**
 
     ---
 
     Check out Beacon, an alternative highly available version of the Wormhole Spy.
 
-    [:octicons-arrow-right-24: Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank}
+    [:octicons-arrow-right-16: Use Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank}
 
 </div>
