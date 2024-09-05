@@ -7,7 +7,7 @@ description: Learn how to configure a development environment to build with Worm
 
 Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more.
 
-<br>
+
 <div class="grid cards" markdown>
 
 -   :octicons-code-square-24:{ .lg .middle } __Choosing a Relayer__
@@ -16,7 +16,7 @@ Learn how to configure a development environment to build with Wormhole, includi
 
     This section includes information about the standard and specialized relayer configuration options for seamless cross-chain messaging.
 
-    <br>
+    
     [:octicons-arrow-right-24: Get started with relayers](/build/build-custom-protocol/get-started/choosing-a-relayer){target=\_blank}
 
 -   :octicons-file-code-24:{ .lg .middle } __Local Dev Environment__
@@ -24,8 +24,8 @@ Learn how to configure a development environment to build with Wormhole, includi
     ---
     Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more.
 
-    <br>
-    [:octicons-arrow-right-24: Set up environment](/build/build-custom-protocol/get-started/dev-env.md){target=\_blank}
+    
+    [:octicons-arrow-right-24: Set up environment](/build/build-custom-protocol/get-started/dev-env){target=\_blank}
 </div>
-<br>
+
 

@@ -8,7 +8,6 @@ template: root-index-page.html
 
 Whether you are buildling a custom protocol looking for seamless, multichain interoperability, or an application developer crafting smooth, user-friendly cross-chain experiences, learn how Wormhole can help you accomplish your objectives. 
 
-<br>
 <div class="grid cards" markdown>
 
 -   :octicons-tools-24:{ .lg .middle } **Start Building**
@@ -50,8 +49,7 @@ Whether you are buildling a custom protocol looking for seamless, multichain int
     This section takes you from setting up your developer environment and configuring token transfers to deploying your custom multichain protocol.
 
     [:octicons-arrow-right-24: Build multichain protocols](/build/build-custom-protocol){target=\_blank}
-
 </div>
-<br>
+
 
 

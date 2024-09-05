@@ -7,7 +7,7 @@ description: This section takes you from setting up your developer environment a
 
 This section takes you from setting up your developer environment and configuring token transfers to deploying your custom multichain protocol.
 
-<br>
+
 <div class="grid cards" markdown>
 -   :octicons-download-16:{ .lg .middle } __Get Started__
 
@@ -24,8 +24,8 @@ This section takes you from setting up your developer environment and configurin
 
     Use the Wormhole Gateway, a Cosmos SDK chain enabling asset bridging into the Cosmos ecosystem, unifying liquidity, and supporting cross-chain transfers.
 
-    <br>
-    [:octicons-arrow-right-24: Explore Wormhole Gateway](wormhole-docs/build/build-custom-protocol/gateway.md){target=\_blank}
+    
+    [:octicons-arrow-right-24: Explore Wormhole Gateway](wormhole-docs/build/build-custom-protocol/gateway){target=\_blank}
 
 -   :octicons-code-of-conduct-24:{ .lg .middle } __Onboarding__
 
@@ -33,8 +33,8 @@ This section takes you from setting up your developer environment and configurin
 
     Learn how to onboard your Cosmos chain to Wormhole Gateway, including how to satisfy the requisite governance proposals, IBC setup, and UI integration.
 
-    <br>
-    [:octicons-arrow-right-24: Start onboarding](/build/build-custom-protocol/onboarding.md){target=\_blank}
+    
+    [:octicons-arrow-right-24: Start onboarding](/build/build-custom-protocol/onboarding){target=\_blank}
 
 -   :octicons-arrow-switch-24:{ .lg .middle } __Native Token Transfers__
 
@@ -42,8 +42,8 @@ This section takes you from setting up your developer environment and configurin
 
     Find guidance on how to configure and deploy Native Token Transfers for your custom multichain protocol.
 
-    <br>
+    
     [:octicons-arrow-right-24: Discover token transfers](/build/build-custom-protocol/native-token-transfers){target=\_blank}
 </div>
-<br>
+
 
