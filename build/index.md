@@ -6,7 +6,7 @@ template: root-index-page.html
 
 # Build
 
-Whether you are buildling a custom protocol looking for seamless, multichain interoperability, or an application developer crafting smooth, user-friendly cross-chain experiences, learn how Wormhole can help you accomplish your objectives. 
+Whether you are building a custom protocol looking for seamless, multichain interoperability, or an application developer crafting smooth, user-friendly cross-chain experiences, learn how Wormhole can help you accomplish your objectives. 
 
 <div class="grid cards" markdown>
 
