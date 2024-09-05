@@ -319,8 +319,8 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:48:53"
         ```
 
-        - The `main` function is the entry point for the deployment script.
-        - We then call the `loadConfig` function we previously defined to load the chain configuration from the `config.json` file.
+        - The `main` function is the entry point for the deployment script
+        - We then call the `loadConfig` function we previously defined to load the chain configuration from the `config.json` file
 
     4. Set up provider and wallet: 
     
@@ -336,9 +336,9 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:58:66"
         ```
 
-        - This code reads the `CrossChainSender.json` file, the compiled output of the `CrossChainSender.sol` contract.
-        - The file is in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated during contract compilation.
-        - It uses the `fs.readFileSync` function to read the file and `JSON.parse` to convert the file contents (in JSON format) into a JavaScript object.
+        - This code reads the `CrossChainSender.json` file, the compiled output of the `CrossChainSender.sol` contract
+        - The file is in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated during contract compilation
+        - It uses the `fs.readFileSync` function to read the file and `JSON.parse` to convert the file contents (in JSON format) into a JavaScript object
 
     6. Extract the contract ABI and bytecode:
 
@@ -355,8 +355,8 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:71:75"
         ```
 
-        - **`ethers.ContractFactory`** - creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain.
-        - This is a crucial step for deploying the contract since the factory will create and deploy the `CrossChainSender` contract.
+        - **`ethers.ContractFactory`** - creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain
+        - This is a crucial step for deploying the contract since the factory will create and deploy the `CrossChainSender` contract
 
     8. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
@@ -377,7 +377,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - It defines the wallet related to the target chain
         - The logic reads the compiled ABI and bytecode from the JSON file generated during compilation
         - It creates a new contract factory using the ABI, bytecode, and wallet
-        - It deploys the contract to the selected chain passing in the Wormhole Relayer, TokenBridge, and Wormhole addresses.
+        - It deploys the contract to the selected chain passing in the Wormhole Relayer, TokenBridge, and Wormhole addresses
 
     9. Save the deployed contract addresses:
 
@@ -451,8 +451,8 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
     2. Check the deployment output:
 
-        - You will see the deployed contract addresses printed in the terminal if successful. The `contracts.json` file will be updated with these addresses.
-        - If you encounter an error, the script will provide feedback, such as insufficient funds for gas.
+        - You will see the deployed contract addresses printed in the terminal if successful. The `contracts.json` file will be updated with these addresses
+        - If you encounter an error, the script will provide feedback, such as insufficient funds for gas
 
 If you followed the logic provided in the full code above, your terminal output should look something like this:
 
