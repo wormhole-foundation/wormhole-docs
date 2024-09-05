@@ -283,7 +283,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
 3. **Write the deployment script** - you’ll need a script to automate the deployment of your contracts. Let’s create the deployment script
 
-    1. Create a new file named `deploy.ts` in the `/src` directory:
+    1. Create a new file named `deploy.ts` in the `/script` directory:
 
         ```bash
         touch script/deploy.ts
@@ -292,7 +292,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     2. Open the file and load imports and configuration:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:1:7"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:1:25"
         ```
 
         Import the required libraries and modules to interact with Ethereum, handle file paths, load environment variables, and enable user interaction via the terminal.
@@ -471,16 +471,16 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 1. **Set up the transfer script**
 
-    1. Create a new file named `transfer.ts` in the `/src` directory:
+    1. Create a new file named `transfer.ts` in the `/script` directory:
 
         ```bash
-        touch src/transfer.ts
+        touch script/transfer.ts
         ```
 
-    2. Open the file. Start with the necessary imports and configurations:
+    2. Open the file. Start with the necessary imports, interfaces and configurations:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:1:7"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:1:25"
         ```
 
         These imports include the essential libraries for interacting with Ethereum, handling file paths, loading environment variables, and managing user input.
@@ -527,10 +527,18 @@ In this step, you'll write a script to transfer tokens across chains using the `
         Finally, initiate the cross-chain transfer and log the details.
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:174:199"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:174:204"
         ```
 
         This part of the script first approves the token transfer, then initiates the cross-chain transfer using the `CrossChainSender` contract, and finally logs the transaction hash for the user to track.
+
+    4. Finalize the script:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:205:208"
+        ```
+
+        This section finalizes the script by calling the `main` function and handling any errors that may occur during the token transfer process.
 
 You can find the full code for the `transfer.ts` file below:
 
@@ -549,7 +557,7 @@ Now that your transfer script is ready, it’s time to execute it and perform a 
     Open your terminal and run the transfer script:
 
     ```bash
-    npx ts-node src/transfer.ts
+    npx ts-node script/transfer.ts
     ```
 
     This command will start the script, prompting you to select the source and target chains, input the token address, recipient address, and the amount of tokens to transfer.

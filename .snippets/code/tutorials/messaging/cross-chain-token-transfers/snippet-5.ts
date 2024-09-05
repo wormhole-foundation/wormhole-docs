@@ -197,13 +197,8 @@ async function main() {
     { value: cost } // Attach the necessary fee for cross-chain transfer
   );
   await transferTx.wait();
-  console.log('...');
   console.log(
     `Transfer initiated from ${sourceNetworkName} to ${targetNetworkName}. Transaction Hash: ${transferTx.hash}`
-  );
-  console.log('...');
-  console.log(
-    `You may see the transaction status on the Wormhole Explorer: https://wormholescan.io/#/tx/${transferTx.hash}?network=TESTNET`
   );
 }
 
