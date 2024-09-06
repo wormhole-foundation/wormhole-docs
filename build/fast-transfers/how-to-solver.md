@@ -7,7 +7,7 @@ description: Explore how solvers engage in Fast Transfers auctions, from initiat
 
 ## Overview
 
-In Fast Transfers, solvers ensure efficient cross-chain transfers through a competitive auction process on the Matching Engine. The auction consists of four key steps: <!-- link to matching engine -->
+In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers ensure efficient cross-chain transfers through a competitive auction process on the Matching Engine. The auction consists of four key steps: <!-- link to matching engine -->
 
 1. **Starting an auction** - users initiate a transfer, and solvers begin bidding to fulfill it by offering the best rates
 2. **Participating in an auction** - solvers compete in a reverse Dutch auction to provide the most cost-effective solution
