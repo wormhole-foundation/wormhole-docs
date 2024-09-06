@@ -9,7 +9,7 @@ This page features various demos showcasing Wormhole's features, including start
 
 ### Scaffolding
 
-[Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank} is a starter application repository that contains example dApps that integrate with Wormhole messaging. It includes basic xdapp structures, tests, and walkthroughs for core components like Wormhole messaging and the portal token bridge.
+[Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank} is a starter application repository that contains example dApps that integrate with Wormhole messaging. It includes basic xDapp structures, tests, and walkthroughs for core components like Wormhole messaging and the portal token bridge.
 
 ### Wormhole Examples
 
