@@ -53,7 +53,7 @@ To participate in an already initialized auction, a relayer must place an offer 
 The auction account pubkey can be determined by either:
 
 - Listening to a Solana web socket connection to find the account when the initial offer is placed
-- Use the fast VAA bytes to compute its hash and derive its auction account address
+- Using the fast VAA bytes to compute its hash and derive its auction account address
 
 Once the auction account is found, the relayer can submit an improved offer.
 
