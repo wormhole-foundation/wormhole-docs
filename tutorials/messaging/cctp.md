@@ -62,13 +62,90 @@ In this section, you'll set up your project for transferring USDC across chains 
     Inside the `.env` file, add your private key:
 
     ```env
-    PRIVATE_KEY=INSERT_YOUR_PRIVATE_KEY
+    ETH_PRIVATE_KEY=INSERT_YOUR_PRIVATE_KEY
+    SOL_PRIVATE_KEY=INSERT_YOUR_PRIVATE_KEY
     ```
 
     !!! note
         Make sure your private key is funded with USDC and gas on both the source and destination chains.
 
-4. **Create the main script** - create a new file named `transfer-usdc.ts` to hold your script for transferring USDC across chains
+4. **Create `helpers.ts` file** - to simplify the interaction between chains, create a `helpers.ts` file with necessary utility functions. This file handles fetching your private key, setting up signers for different chains, and managing transaction relays.
+
+    1. Create the helpers file:
+
+        ```bash
+        mkdir helpers
+        touch helpers/index.ts
+        ```
+
+    2. Open the `index.ts` file and add the following code:
+
+        ```typescript
+        import {
+        ChainAddress,
+        ChainContext,
+        DEFAULT_TASK_TIMEOUT,
+        Network,
+        Signer,
+        TokenTransfer,
+        TransferState,
+        TxHash,
+        Wormhole,
+        Chain,
+        api,
+        tasks,
+        } from "@wormhole-foundation/sdk";
+        import evm from "@wormhole-foundation/sdk/evm";
+        import solana from "@wormhole-foundation/sdk/solana";
+        import { config } from "dotenv";
+        config(); // Load .env file
+
+        // Function to fetch environment variables (like your private key)
+        function getEnv(key: string): string {
+        const val = process.env[key];
+        if (!val) throw new Error(`Missing environment variable: ${key}`);
+        return val;
+        }
+
+        // Signer setup function for different blockchain platforms
+        export async function getSigner<N extends Network, C extends Chain>(
+        chain: ChainContext<N, C>
+        ): Promise<{ chain: ChainContext<N, C>; signer: Signer<N, C>; address: ChainAddress<C> }> {
+        let signer: Signer;
+        const platform = chain.platform.utils()._platform;
+
+        switch (platform) {
+            case "Solana":
+            signer = await (await solana()).getSigner(await chain.getRpc(), getEnv("SOL_PRIVATE_KEY"));
+            break;
+            case "Evm":
+            signer = await (await evm()).getSigner(await chain.getRpc(), getEnv("ETH_PRIVATE_KEY"));
+            break;
+            default:
+            throw new Error("Unsupported platform: " + platform);
+        }
+
+        return {
+            chain,
+            signer: signer as Signer<N, C>,
+            address: Wormhole.chainAddress(chain.chain, signer.address()),
+        };
+        }
+
+        // Function to track the relay status of a token transfer
+        export async function waitForRelay(txid: TxHash): Promise<api.RelayData | null> {
+        const relayerApi = "https://relayer.dev.stable.io";
+        const task = () => api.getRelayStatus(relayerApi, txid);
+        return tasks.retry<api.RelayData>(task, 5000, 60 * 1000, "Wormhole:GetRelayStatus");
+        }
+        ```
+
+        - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
+        - **`getSigner`** - based on the chain you're working with (EVM, Solana, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your .env file
+        - **`waitForRelay`** - this function polls the Wormhole Relayer API to track the status of your token transfer. If you're using automatic relaying, this will keep checking the status until the transfer is fully processed
+
+
+5. **Create the main script** - create a new file named `transfer-usdc.ts` to hold your script for transferring USDC across chains
 
     ```bash
     touch transfer-usdc.ts
