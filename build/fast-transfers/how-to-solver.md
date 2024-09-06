@@ -33,7 +33,7 @@ To read VAAs on Solana, someone must verify the signatures and post the VAA to a
 - `payer` - the entity paying the transaction fees, defined by a secret key using the Solana Keypair
 - `fastVaaBytes` - the VAA message that acts as an IOU for the auction settlement
 
-### Send transaction to place initial offer
+### Send Transaction to Place Initial Offer
 
 After the VAA is posted, the next step is to place an initial offer in the auction. This involves setting the offer price and priority fees.
 
