@@ -17,7 +17,7 @@ This section covers various aspects and services related to communication protoc
 
     Wormhole's Native Token Transfers (NTT) offers an open source and flexible framework for cross-chain token transfers, providing full control over token behavior on each blockchain.
 
-    [:octicons-arrow-right-16: Learn more about NTT](/learn/messaging/ntt/)
+    [:octicons-arrow-right-16: Learn more about NTT](/learn/messaging/native-token-transfers/)
 
 -   :octicons-book-16:{ .lg .middle } **Circle's CCTP Bridge**
 
