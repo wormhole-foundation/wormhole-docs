@@ -99,7 +99,7 @@ solana-keygen grind --starts-with ntt:1 --ignore-case
 In this step, you'll derive the token authority Program Derived Address (PDA) of the newly generated NTT program ID:
 
 ```bash
-ntt solana token-authority INSERT-YOUR-NTT-PROGRAM-KEY-PAIR
+ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
 ```
 
 #### Set SPL Token Mint Authority
@@ -107,7 +107,7 @@ ntt solana token-authority INSERT-YOUR-NTT-PROGRAM-KEY-PAIR
 In this step, you'll set SPL token mint authority to the newly generated token authority PDA:
 
 ```bash
-spl-token authorize INSERT-TOKEN-ADDRESS mint INSERT-DERIVED-PDA
+spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
 ```
 
 If deploying to Solana in `burning` mode, set the mint authority for your SPL token to the NTT program ID you generated in the previous step.
