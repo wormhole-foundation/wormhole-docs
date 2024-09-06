@@ -3,16 +3,16 @@ title: Wormhole TS SDK
 description: Explore Wormhole's TypeScript SDK and learn about how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 ---
 
-# Wormhole TypeScript SDK {: #wormhole-ts-sdk}
+# Wormhole TypeScript SDK
 
 The Wormhole TypeScript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole.
 
 !!! warning
     This package is a work in progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find.
 
-## Installation {: #installation}
+## Installation
 
-### Basic {: #basic}
+### Basic
 
 Install the (meta) package:
 
@@ -22,7 +22,7 @@ npm install @wormhole-foundation/sdk
 
 This package combines all the individual packages to make setup easier while allowing for tree shaking.  
 
-### Advanced {: #advanced}
+### Advanced
 
 Alternatively, you can install a specific set of published packages:
 
@@ -46,7 +46,7 @@ npm install @wormhole-foundation/sdk-evm
 npm install @wormhole-foundation/sdk-evm-tokenbridge
 ```
 
-## Usage {: #usage}
+## Usage
 
 Getting started is simple. First, import Wormhole:
 
@@ -95,11 +95,11 @@ Optionally, you can override the default configuration with a partial `WormholeC
     --8<-- 'code/build/applications/wormhole-sdk/config.ts'
     ```
 
-## Concepts {: #concepts}
+## Concepts
 
 Understanding several higher-level concepts of the SDK will help you use it effectively. The following sections will introduce and discuss the concepts of platforms, chain contexts, addresses, tokens, signers, and protocols.
 
-### Platforms {: #platforms}
+### Platforms
 
 Every chain is unique, but many share similar functionality. The `Platform` modules provide a consistent interface for interacting with the chains that share a platform.
 
@@ -115,7 +115,7 @@ Wormhole currently supports the following platforms:
 
 See the [Platforms folder of the TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole TypeScript SDK.
 
-### Chain Context {: #chain-context}
+### Chain Context
 
 The `Wormhole` class provides a `getChain` method that returns a `ChainContext` object for a given chain. This object provides access to the chain specific methods and utilities. Much of the functionality in the `ChainContext` is provided by the `Platform` methods but the specific chain may have overridden methods.
 
@@ -125,7 +125,7 @@ The `ChainContext` object is also responsible for holding a cached RPC client an
 --8<-- 'code/build/applications/wormhole-sdk/get-chain.ts'
 ```
 
-### Addresses {: #addresses}
+### Addresses
 
 Within the Wormhole context, addresses are often [normalized](https://docs.wormhole.com/wormhole/blockchain-environments/evm#addresses){target=\_blank} to 32 bytes and referred to in this SDK as a `UniversalAddress`.
 
@@ -135,7 +135,7 @@ Each platform has an address type that understands the native address formats, r
 --8<-- 'code/build/applications/wormhole-sdk/addresses.ts'
 ```
 
-### Tokens {: #tokens}
+### Tokens
 
 Similar to the `ChainAddress` type, the `TokenId` type provides the chain and address of a given token. The following snippet introduces `TokenId`, a way to uniquely identify any token, whether it's a standard token or a blockchain's native currency (like ETH for Ethereum).
 
@@ -147,7 +147,7 @@ Finally, the snippet also demonstrates how to convert a `TokenId` back into a re
 --8<-- 'code/build/applications/wormhole-sdk/tokens.ts'
 ```
 
-### Signers {: #signers}
+### Signers
 
 In the SDK, a `Signer` interface is required for certain methods to sign transactions. This interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`, depending on the specific requirements. A signer can be created by wrapping an existing offline wallet or a web wallet.
 
@@ -159,11 +159,11 @@ Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to
 --8<-- 'code/build/applications/wormhole-sdk/signers.ts'
 ```
 
-### Protocols {: #protocols}
+### Protocols
 
 While Wormhole is a Generic Message Passing (GMP) protocol, several protocols have been built to provide specific functionality. If available, each protocol will have a platform-specific implementation. These implementations provide methods to generate transactions or read state from the contract on-chain.
 
-#### Wormhole Core {: #wormhole-core}
+#### Wormhole Core
 
 The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter){target=\_blank}, the [sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence){target=\_blank} for the message, and the payload of the message itself.
 
@@ -191,7 +191,7 @@ Lastly, the code will demonstrate how to verify the message on the receiving end
 
 The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
 
-#### Token Bridge {: #token-bridge}
+#### Token Bridge
 
 The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
 
@@ -201,13 +201,13 @@ The most familiar protocol built on Wormhole is the Token Bridge. Every chain ha
 
 Supported protocols are defined in the [definitions module](https://github.com/wormhole-foundation/connect-sdk/tree/main/core/definitions/src/protocols){target=\_blank}.
 
-## Transfers {: #transfers}
+## Transfers
 
 While using the [`ChainContext`](#chain-context) and [`Protocol`](#protocols) clients directly is possible, the SDK provides some helpful abstractions for doing things like transferring tokens.
 
 The `WormholeTransfer` interface provides a convenient abstraction to encapsulate the steps involved in a cross-chain transfer.
 
-### Token Transfers {: #token-transfers}
+### Token Transfers
 
 Performing a token transfer is trivial for any source and destination chains. You can create a new `Wormhole` object to make objects like `TokenTransfer`, `CircleTransfer`, and `GatewayTransfer`, to transfer tokens between chains.
 
@@ -232,7 +232,7 @@ For automatic transfers, the process ends after initiation. For manual transfers
 
 Internally, this uses the [TokenBridge](#token-bridge) protocol client to transfer tokens. Like other Protocols, the `TokenBridge` protocol provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
 
-### Native USDC Transfers {: #native-usdc-transfers}
+### Native USDC Transfers
 
 You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. Please note that if the transfer is set to `Automatic` mode, a fee for performing the relay will be included in the quote. This fee is deducted from the total amount requested to be sent. For example, if the user wishes to receive `1.0` on the destination, the amount sent should be adjusted to `1.0` plus the relay fee. The same principle applies to native gas drop offs.
 
@@ -251,7 +251,7 @@ When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amou
     --8<-- 'code/build/applications/wormhole-sdk/cctp.ts'
     ```
 
-### Gateway Transfers {: #gateway-transfers}
+### Gateway Transfers
 
 Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain. A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
 
@@ -270,7 +270,7 @@ A transfer leaving Cosmos will produce a VAA from the Gateway that must be manua
     --8<-- 'code/build/applications/wormhole-sdk/cosmos.ts'
     ```
 
-### Recovering Transfers {: #recovering-transfers}
+### Recovering Transfers
 
 It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the `Transfer` class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
 
@@ -283,7 +283,7 @@ It may be necessary to recover an abandoned transfer before being completed. To 
     --8<-- 'code/build/applications/wormhole-sdk/cctp.ts'
     ```
 
-## Routes {: #routes}
+## Routes
 
 While a specific `WormholeTransfer`, such as `TokenTransfer` or `CCTPTransfer`, may be used the developer must know exactly which transfer type to use for a given request.
 
@@ -331,6 +331,6 @@ Finally, assuming the quote looks good, the route can initiate the request with 
 
 See the `router.ts` example in the [examples directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/examples){target=\_blank} for a full working example.
 
-## See Also {: #see-also}
+## See Also
 
 The TSdoc is available [on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.
