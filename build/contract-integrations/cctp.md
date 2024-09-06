@@ -9,7 +9,7 @@ Cross-Chain Transfer Protocol (CCTP) is a permissionless utility created by Circ
 
 ## CCTP Core Contracts Overview
 
-There are three core contracts that make up CCTP. `TokenMessenger` serves as the entry point for cross-chain USDC transfers, routing messages to initiate USDC burns on the source chain and mint USDC on the destination chain. `MessageTransmitter` handles generic message passing, sending messages from the source chain and receiving them on the destination chain. `TokenMinter` is responsible for the actual minting and burning of USDC, utilizing chain-specific settings for both the burners and minters across different networks. This guide will take a closer look at each of these contracts, paying careful attention to the methods that can be called and their respective parameters, in addition to important events emitted by the contract.
+There are three core contracts that make up CCTP. `TokenMessenger` serves as the entry point for cross-chain USDC transfers, routing messages to initiate USDC burns on the source chain and mint USDC on the destination chain. `MessageTransmitter` handles generic message passing, sending messages from the source chain and receiving them on the destination chain. `TokenMinter` is responsible for the actual minting and burning of USDC, utilizing chain-specific settings for both the burners and minters across different networks. This guide will take a closer look at each of these contracts, paying careful attention to the methods that can be called and their respective parameters, in addition to important events emitted by the contracts.
 
 ## TokenMessenger Contract
 
@@ -79,7 +79,7 @@ The key events of the `TokenMessenger` contract are as follows:
 
 ## MessageTransmitter Contract
 
-The `MessageTransmitter` contract ensure the secure sending and receiving of messages across different blockchain domains. It manages message dispatch, incrementing a unique nonce for each message, and emitting events like `MessageSent` and `MessageReceived` to track communication. It ensures proper validation of message format, attestation signatures, and nonce usage to prevent replay attacks. The contract supports flexible message delivery options, allowing for a specific destinationCaller or a general broadcast, and uses domain-specific configurations to handle communication. It also offers functionality to replace previously sent messages, set maximum message body sizes, and verify that messages can only be received once per nonce to maintain integrity across chains.
+The `MessageTransmitter` contract ensure the secure sending and receiving of messages across different blockchain domains. It manages message dispatch, incrementing a unique nonce for each message, and emitting events like `MessageSent` and `MessageReceived` to track communication. It ensures proper validation of message format, attestation signatures, and nonce usage to prevent replay attacks. The contract supports flexible message delivery options, allowing for a specific `destinationCaller` or a general broadcast, and uses domain-specific configurations to handle communication. It also offers functionality to replace previously sent messages, set maximum message body sizes, and verify that messages can only be received once per nonce to maintain integrity across chains.
 
 ??? code "View the complete MessageTransmitter Contract"
     ```solidity
