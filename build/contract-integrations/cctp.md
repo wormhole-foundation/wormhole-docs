@@ -9,11 +9,11 @@ Cross-Chain Transfer Protocol (CCTP) is a permissionless utility created by Circ
 
 ## CCTP Core Contracts Overview
 
-There are three core contracts that make up CCTP. `TokenMessenger` serves as the entry point for cross-chain USDC transfers, routing messages to initiate USDC burns on the source chain and mint USDC on the destination chain. `MessageTransmitter` handles generic message passing, sending messages from the source chain and receiving them on the destination chain. `TokenMinter` is responsible for the actual minting and burning of USDC, utilizing chain-specific settings for both the burners and minters across different networks. This guide will take a closer look at each of these contracts, paying careful attention to the methods that can be called and their respective parameters, in addition to important events emitted by the contracts.
+Three core contracts make up CCTP. `TokenMessenger` is the entry point for cross-chain USDC transfers, routing messages to initiate USDC burns on the source chain, and mint USDC on the destination chain. `MessageTransmitter` handles generic message passing, sending messages from the source chain and receiving them on the destination chain. `TokenMinter` is responsible for the actual minting and burning of USDC, utilizing chain-specific settings for both the burners and minters across different networks. This guide will take a closer look at these contracts, paying careful attention to the methods that can be called and their respective parameters and important events emitted by the contracts.
 
 ## TokenMessenger Contract
 
-The `TokenMessenger` contract is responsible for facilitating cross-chain USDC transfers by sending and receiving messages between different blockchains. It works with the `MessageTransmitter` to relay messages for burning USDC on a source chain and minting it on a destination chain. It emits events to track deposits for burning and the subsequent minting of tokens on the destination chain. The contract ensures that only registered remote `TokenMessenger` contracts are allowed to handle messages, verifies proper conditions for burning tokens, and uses chain-specific settings to manage local and remote minters. Additionally, it provides methods for replacing or updating previously sent burn messages, adding or removing remote `TokenMessengers`, and managing the minting process for cross-chain transfers.
+The `TokenMessenger` contract facilitates cross-chain USDC transfers by sending and receiving messages between blockchains. It works with the `MessageTransmitter` to relay messages for burning USDC on a source chain and minting it on a destination chain. It emits events to track deposits for burning and the subsequent minting of tokens on the destination chain. The contract ensures that only registered remote `TokenMessenger` contracts can handle messages, verifies proper conditions for burning tokens, and uses chain-specific settings to manage local and remote minters. Additionally, it provides methods for replacing or updating previously sent burn messages, adding or removing remote `TokenMessengers`, and managing the minting process for cross-chain transfers.
 
 ??? code "View the complete TokenMessenger Contract"
     ```solidity
@@ -43,7 +43,7 @@ The permissionless messaging functions exposed by the `TokenMessenger` are as fo
         - `burnToken` *address* - address of contract to burn deposited tokens, on local domain
         - `destinationCaller` *bytes32* - address of the caller on the destination domain who will trigger the mint
 
-??? function "**replaceDepositForBurn**(_bytes calldata originalMessage, bytes calldata originalAttestation, bytes32 newDestinationCaller, bytes32 newMintRecipient_) — Replaces a previous burn message to modify the mint recipient and/or destination caller. Allows the sender of the original message to update the details without requiring a new deposit."
+??? function "**replaceDepositForBurn**(_bytes calldata originalMessage, bytes calldata originalAttestation, bytes32 newDestinationCaller, bytes32 newMintRecipient_) — Replaces a previous burn message to modify the mint recipient and/or destination caller. Allows the original message's sender to update the details without requiring a new deposit."
 
     === "Parameters"
 
@@ -79,7 +79,7 @@ The key events of the `TokenMessenger` contract are as follows:
 
 ## MessageTransmitter Contract
 
-The `MessageTransmitter` contract ensure the secure sending and receiving of messages across different blockchain domains. It manages message dispatch, incrementing a unique nonce for each message, and emitting events like `MessageSent` and `MessageReceived` to track communication. It ensures proper validation of message format, attestation signatures, and nonce usage to prevent replay attacks. The contract supports flexible message delivery options, allowing for a specific `destinationCaller` or a general broadcast, and uses domain-specific configurations to handle communication. It also offers functionality to replace previously sent messages, set maximum message body sizes, and verify that messages can only be received once per nonce to maintain integrity across chains.
+The `MessageTransmitter` contract ensure the secure sending and receiving of messages across different blockchain domains. It manages message dispatch, incrementing a unique nonce for each message, and emitting events like `MessageSent` and `MessageReceived` to track communication. It ensures proper message format validation, attestation signatures, and nonce usage to prevent replay attacks. The contract supports flexible message delivery options, allowing for a specific `destinationCaller` or a general broadcast, and uses domain-specific configurations to handle communication. It also offers functionality to replace previously sent messages, set maximum message body sizes, and verify that messages can only be received once per nonce to maintain integrity across chains.
 
 ??? code "View the complete MessageTransmitter Contract"
     ```solidity
@@ -125,7 +125,7 @@ The permissionless messaging functions exposed by the `MessageTransmitter` contr
 
 ### Events
 
-The key events of the `MessageTransmitter` contract are as follows:
+The critical events of the `MessageTransmitter` contract are as follows:
 
 ??? event "**MessageSent**(_bytes message_) — Emitted when a new message is dispatched."
 
@@ -146,7 +146,7 @@ The key events of the `MessageTransmitter` contract are as follows:
 
 ## TokenMinter Contract
 
-The `TokenMinter` contract manages the minting and burning of tokens across different blockchain domains. It maintains a registry that links local tokens to their corresponding remote tokens, ensuring that tokens maintain a 1:1 exchange rate across domains. The contract only allows a designated `TokenMessenger` to call mint and burn functions, ensuring security and consistency in cross-chain operations. When tokens are burned on a remote domain, the corresponding amount of tokens is minted on the local domain for a specified recipient, and vice versa. The contract includes mechanisms to pause operations, set burn limits, and update the `TokenController`, which governs token minting permissions. Additionally, it provides functionality to add or remove the local `TokenMessenger` and retrieve the local token address associated with a remote token.
+The `TokenMinter` contract manages the minting and burning of tokens across different blockchain domains. It maintains a registry that links local tokens to their corresponding remote tokens, ensuring that tokens maintain a 1:1 exchange rate across domains. The contract only allows a designated `TokenMessenger` to call mint and burn functions, ensuring security and consistency in cross-chain operations. When tokens are burned on a remote domain, the corresponding token amount is minted on the local domain for a specified recipient, and vice versa. The contract includes mechanisms to pause operations, set burn limits, and update the `TokenController`, which governs token minting permissions. Additionally, it provides functionality to add or remove the local `TokenMessenger` and retrieve the local token address associated with a remote token.
 
 ??? code "View the complete TokenMinter Contract"
     ```solidity
