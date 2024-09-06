@@ -2,8 +2,9 @@ title: Build
 nav:
  - index.md
  - start-building
- - reference
+ - applications
+ - contract-integrations
+ - chain-integrations
  - toolkit
- - build-apps
- - build-custom-protocol
+ - reference
  - fast-transfers

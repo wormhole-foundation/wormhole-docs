@@ -1,6 +1,7 @@
 title: Infrastructure Components
 nav:
  - index.md
+ - 'Core Contracts': 'core-contracts.md'
  - 'VAAs': 'vaas.md'
  - 'Guardians': 'guardians.md'
  - 'Spy': 'spy.md'

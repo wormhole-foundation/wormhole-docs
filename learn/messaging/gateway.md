@@ -37,7 +37,7 @@ IBC is central to the Wormhole Gateway's functionality, enabling seamless data a
 
 Several key components support the Wormhole Gateway's operations:
 
-- **[Wormhole Core Contracts](/learn/messaging/core-contracts/){target=\_blank}** - deployed on each participating Cosmos chain, these contracts are crucial for managing the cross-chain communication, including the emission of messages and the verification of signatures from the network’s Guardians
+- **[Wormhole Core Contracts](/learn/infrastructure/core-contracts/){target=\_blank}** - deployed on each participating Cosmos chain, these contracts are crucial for managing the cross-chain communication, including the emission of messages and the verification of signatures from the network’s Guardians
 - **IBC Shim Contract** - a specialized CosmWasm contract that handles the bridging of assets by translating between the native Wormhole message formats and those used by IBC, effectively linking the Wormhole platform with the broader Cosmos ecosystem
 - **[Token Factory Module](https://github.com/CosmosContracts/juno/tree/v14.1.1/x/tokenfactory){target=\_blank}** - this module, operational on the Wormhole Gateway, is instrumental in creating tokens that represent bridged assets, facilitating their circulation within the Cosmos network
 - **[Token Bridge](/learn/messaging/token-nft-bridge/){target=\_blank}** - if an IBC-enabled chain already has a Wormhole Core Contract, the existing contract can be migrated to the new `wormhole-ibc` bytecode, eliminating the need to redeploy and re-instantiate Token Bridge contracts. This streamlines the integration process and ensures compatibility with the IBC framework
