@@ -304,7 +304,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         These interfaces define the structure of the chain configuration and the contract deployment details.
 
-    3. Load and select the chains for deployment:
+    4. Load and select the chains for deployment:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:27:47"
@@ -312,7 +312,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to choose the source and target chains for deployment interactively. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
 
-    4. Define the main function for deployment and load the chain configuration:
+    5. Define the main function for deployment and load the chain configuration:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:48:53"
@@ -321,7 +321,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - The `main` function is the entry point for the deployment script
         - We then call the `loadConfig` function we previously defined to load the chain configuration from the `config.json` file
 
-    4. Set up provider and wallet: 
+    6. Set up provider and wallet: 
     
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:54:57"
@@ -329,7 +329,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         
         The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction on the source chain.
 
-    5. Read the compiled contracts:
+    7. Read the compiled contracts:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:58:66"
@@ -339,7 +339,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - The file is in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated during contract compilation
         - It uses the `fs.readFileSync` function to read the file and `JSON.parse` to convert the file contents (in JSON format) into a JavaScript object
 
-    6. Extract the contract ABI and bytecode:
+    8. Extract the contract ABI and bytecode:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:68:69"
@@ -348,7 +348,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - **ABI (Application Binary Interface)** - defines the structure of the contract’s functions, events, and data types, allowing the front end to interact with the contract on the blockchain
         - **Bytecode** - this is the compiled machine code that will be deployed to the blockchain to create the contract
 
-    7. Create the Contract Factory:
+    9. Create the Contract Factory:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:71:75"
@@ -357,7 +357,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - **`ethers.ContractFactory`** - creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain
         - This is a crucial step for deploying the contract since the factory will create and deploy the `CrossChainSender` contract
 
-    8. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
+    10. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
         === "`CrossChainSender`"
             ```typescript
@@ -378,7 +378,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         - It creates a new contract factory using the ABI, bytecode, and wallet
         - It deploys the contract to the selected chain passing in the Wormhole Relayer, `TokenBridge`, and Wormhole addresses
 
-    9. Save the deployed contract addresses:
+    11. Save the deployed contract addresses:
 
         === "`senderAddress`"
             ```typescript
@@ -392,7 +392,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         You may display the deployed contract addresses in the terminal or save them to a JSON file for future reference.
 
-    10. Save the deployment details:
+    12. Save the deployment details:
 
         ???- example "Save Deployment Details Example"
             ```typescript
@@ -401,7 +401,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         
         Add your desired logic to save the deployed contract addresses in a JSON file (or another format). This will be important later when transferring tokens, as you'll need these addresses to interact with the deployed contracts.
 
-    11. Handle errors and finalize the script:
+    13. Handle errors and finalize the script:
 
         ```typescript
         --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:165:180"
