@@ -211,7 +211,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 
 - [Website](https://www.sei.io/){target=_blank}
 - [SeiScan Explorer](https://www.seiscan.app/){target=_blank}
-- [Faucet](https://atlantic-2.app.sei.io/faucet){target=_blank}
+- [Faucet](https://atlantic-2.app.sei.io/faucet/){target=_blank}
 
 ### Wormhole Details
 

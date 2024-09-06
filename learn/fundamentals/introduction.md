@@ -51,17 +51,6 @@ Consider the following examples of potential applications enabled by Wormhole:
 - **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
 - **Cross-chain game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
 
-## Get Started
-
-### Quick Start Tutorials
-
-Tutorials are available to get started quickly and explain the concepts involved.
-
-- **[Quick start - Off-chain](/build/applications/connect/overview/){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI
-- **[Quick start - On-chain](/tutorials/messaging/cross-chain-contracts/){target=\_blank}** - send your first cross-chain message
-
-More tutorials are available [on GitHub](#){target=\_blank}. <!-- tutorials will be on the docs site -->
-
 ## Explore
 
 Discover more about the Wormhole ecosystem, components, and protocols:
