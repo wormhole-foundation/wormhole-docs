@@ -37,4 +37,4 @@ The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-conne
 
 ### Wormhole Demo NTT TS SDK
 
-The [Demo NTT TS SDK Example](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} demonstrates the use of the Wormhole TS-SDK to facilitate token transfers between different blockchain networks after performing a deployment of the Native Token Transfer framework.
+The [Demo NTT TS SDK Example](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} demonstrates the use of the Wormhole TS SDK to facilitate token transfers between different blockchain networks after performing a deployment of the Native Token Transfers framework.
