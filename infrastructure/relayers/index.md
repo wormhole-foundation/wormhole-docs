@@ -32,7 +32,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     <br>
 
-    [:octicons-arrow-right-16: Get started now](/infrastructure/relayer/run-relayer/)
+    [:octicons-arrow-right-16: Get started now](/infrastructure/relayers/run-relayer/)
 
 </div>
 

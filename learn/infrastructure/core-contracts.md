@@ -37,7 +37,7 @@ There are no fees to publish a message, except when publishing on Solana, but th
 
 ### Returns
 
-- `sequenceNumber` ++"int"++ - a unique number that increments for every message for a given emitter (and implicitly chain). This, combined with the emitter address and emitter chain ID, allows the VAA for this message to be queried from the [APIs](#){target=\_blank}
+- `sequenceNumber` ++"int"++ - a unique number that increments for every message for a given emitter (and implicitly chain). This, combined with the emitter address and emitter chain ID, allows the VAA for this message to be queried from the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank}
 
 ## Receiving
 
