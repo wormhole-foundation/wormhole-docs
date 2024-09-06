@@ -19,7 +19,7 @@ When users interact with Token Routers to transfer assets faster than finality t
 
 To initiate an auction with this message, the following needs to be done on Solana.
 
-### Send transactions to verify signatures and post VAA
+### Send Transactions to Verify Signatures and Post VAA
 
 The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an IOU (I owe you) for the solver when the auction is settled. The Wormhole Spy or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA.
 
