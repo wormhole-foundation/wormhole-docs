@@ -33,7 +33,7 @@ The [Native USDC Bridging](https://github.com/wormhole-foundation/wormhole-circl
 
 ### Wormhole NTT Connect Demo
 
-The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} demo configures a Vite-React TypeScript application using the Wormhole Connect SDK and, as an example, preconfigures the Wormhole Connect Widget to allow transfers between Sepolia and Solana TestNet environments. 
+The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} demo configures a Vite-React TypeScript application using the Wormhole Connect SDK and, as an example, preconfigures the Wormhole Connect widget to allow transfers between Sepolia and Solana TestNet environments. 
 
 ### Wormhole Demo NTT TS SDK
 
