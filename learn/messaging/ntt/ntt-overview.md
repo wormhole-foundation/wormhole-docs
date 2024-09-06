@@ -38,7 +38,7 @@ The Native Token Transfers Framework is highly customizable and ideal for applic
 - **Token contracts** - native contracts owned by your protocol governance
 - **Integration** - streamlined, customizable framework allows for more sophisticated and bespoke deployments
 
-The following example projects demonstrate the use of the Wormhole NTT Framework through Wormhole Connect and the Typescript SDK:
+The following example projects demonstrate the use of the Wormhole NTT framework through Wormhole Connect and the TypeScript SDK:
 
 - [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} 
 - [NTT TS SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} 
