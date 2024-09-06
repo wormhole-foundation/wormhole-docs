@@ -93,7 +93,7 @@ Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core B
 - `payer` - the entity responsible for covering transaction fees
 - `finalizedVaaBytes` - the VAA message confirming the auction's settlement
 
-### Send transaction to settle complete auction
+### Send Transaction to Settle Complete Auction
 
 After posting the finalized VAA, the final step is to settle the auction on Solana. This confirms the auction and ensures the winning solver is paid out accordingly. The following code sends a transaction to the Matching Engine to settle the auction:
 
