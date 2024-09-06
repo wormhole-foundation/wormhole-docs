@@ -79,7 +79,7 @@ The main difference between [_Participating in an auction_](/build/fast-transfer
 
 ## Settle Auction with Finalized VAA
 
-### Send transactions to verify signatures and post VAA
+### Send Transactions to Verify Signatures and Post VAA
 
 Once the auction is completed, the finalized VAA must be posted to Solana to officially settle the auction. The finalized VAA can be observed using Wormhole Spy or similar processes, such as the relayer engine that listens to the Wormhole Spy network.
 
