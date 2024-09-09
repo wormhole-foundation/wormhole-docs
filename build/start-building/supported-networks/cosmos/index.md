@@ -1,11 +1,11 @@
 ---
 title: Cosmos
-description: 
+description: This section has all you need to work with the Cosmos ecosystem and to onboard your Cosmos chain to Wormhole Gateway.
 ---
 
 # Cosmos
 
-In this section, you'll learn how to add cross-chain support to your chain by connecting it to Wormhole's secure communication network. This will enable seamless interoperability with other supported chains.
+In this section, you'll learn how to work with Wormhole in the Cosmos ecosystem and onboard your Cosmos chain to Wormhole Gateway.
 
 <div class="grid cards" markdown>
 
@@ -13,7 +13,7 @@ In this section, you'll learn how to add cross-chain support to your chain by co
 
     ---
 
-    Learn how to onboard your Cosmos chain to Wormhole Gateway to enable bridging to and from your chain, including how to satisfy the requisite governance proposals, IBC setup, and UI integration.
+    Learn how to work with Wormhole in the Cosmos ecosystem with address formats, emitter details, contract consistency levels, and key contract info. 
 
     [:octicons-arrow-right-16: Start onboarding](/build/chain-integrations/gateway/)
 

@@ -1,19 +1,19 @@
 ---
 title: Cosmos
-description: Learn how to work with Wormhole in the CosmWasm ecosystem with address formats, emitter details, contract consistency levels, and key contract info. 
+description: Learn how to work with Wormhole in the Cosmos ecosystem with address formats, emitter details, contract consistency levels, and key contract info. 
 ---
 
 # Cosmos
 
-This page includes details for working with CosmWasm environment chains. 
+This page includes details for working with Cosmos environment chains. 
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For CosmWasm-based chains, this means a Wormhole formatted address is the [bech32](https://en.bitcoin.it/wiki/Bech32){target=_blank} format converted to hex. E.g. `xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv` becomes `0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c`.
+Because Wormhole works with many environments, the Wormhole address format is normalized. For Cosmos-based chains, this means a Wormhole formatted address is the [bech32](https://en.bitcoin.it/wiki/Bech32){target=_blank} format converted to hex. E.g. `xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv` becomes `0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c`.
 
 ## Emitter 
 
-The emitter address on CosmWasm chains is the contract's canonical address, normalized to the Wormhole address format. 
+The emitter address on Cosmos chains is the contract's canonical address, normalized to the Wormhole address format. 
 
 ## Cosmos Hub
 
@@ -94,9 +94,9 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 
 ### Ecosystem
 
-- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json)
-- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json)
-- [Kujira JSON updates](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json)
+- No webpage, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json){target=_blank}
+- No explorer, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json){target=_blank}
+- [Kujira JSON updates](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/kujira.json){target=_blank}
 
 ### Wormhole Details
 
