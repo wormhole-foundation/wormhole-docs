@@ -1,5 +1,5 @@
 title: NTT Configuration
 nav:
  - index.md
- - 'Rate Limiting': 'ntt-rate-limiting.md'
- - 'Access Control': 'ntt-access-control.md'
+ - 'Rate Limiting': 'rate-limiting.md'
+ - 'Access Control': 'access-control.md'

@@ -47,7 +47,7 @@ This page is for any Cosmos chain developer who wants to enable bridging from Ga
 
 ## Optional UI Integration with Wormhole Connect
 
-[Wormhole Connect](https://wormhole.com/connect/){target=\_blank} is a seamless way to embed bridging directly to your app with three lines of code. [Integrating Connect](https://wormhole-connect-builder.netlify.app/){target=\_blank} is fast, customizable, and brings all the functionality and utility of Wormhole right into your own application.
+[Wormhole Connect](https://wormhole.com/connect/){target=\_blank} is a seamless way to embed bridging directly to your app with three lines of code. [Integrating Connect](/build/applications/connect/overview/){target=\_blank} is fast, customizable, and brings all the functionality and utility of Wormhole right into your own application.
 
 If you'd like to add your Cosmos chain into Wormhole Connect, please refer to these reference PRs. Wormhole core contributors will need to review your PRs prior to merging them.
 

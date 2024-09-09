@@ -1,7 +1,0 @@
-title: Native Token Transfers
-nav:
- - index.md
- - 'NTT Overview': 'ntt-overview.md'
- - 'NTT Architecture': 'ntt-architecture.md'
- - 'Deployment Models': 'ntt-deployment.md'
- - 'Security': 'ntt-security.md'

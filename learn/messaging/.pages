@@ -1,7 +1,7 @@
 title: Messaging
 nav:
  - index.md
- - ntt
+ - native-token-transfers
  - 'CCTP Bridge': 'cctp.md'
  - 'Gateway': 'gateway.md'
  - 'Token Bridge': 'token-nft-bridge.md'
