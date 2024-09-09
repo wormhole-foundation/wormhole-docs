@@ -5,10 +5,16 @@ description: Explore Wormhole's TypeScript SDK and learn about how to perform di
 
 # Wormhole TypeScript SDK
 
-The Wormhole TypeScript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole.
+## Get Started
+
+
+
+The Wormhole TypeScript SDK is useful for interacting with the chains Wormhole supports and the protocols built on top of Wormhole.
 
 !!! warning
     This package is a work in progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find.
+
+
 
 ## Installation
 
@@ -54,20 +60,20 @@ Getting started is simple. First, import Wormhole:
 --8<-- 'code/build/applications/wormhole-sdk/get-vaa.ts::1'
 ```
 
-Then, import each of the ecosystem [platforms](#platforms) that you wish to support:
+Then, import each of the ecosystem [platforms](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/sdk/src/platforms){target=/_blank} that you wish to support:
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/get-vaa.ts:4:9'
 ```
 
 
-To make the [platform](#platforms) modules available for use, pass them to the Wormhole constructor:
+To make the platform modules available for use, pass them to the Wormhole constructor:
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/get-vaa.ts:13:20'
 ```
 
-With a configured Wormhole object, you can do things like parse addresses for the provided platforms, get a [`ChainContext`](#chain-context) object, or fetch VAAs.
+With a configured Wormhole object, you can do things like parse addresses for the provided platforms, get a `ChainContext` object, or fetch VAAs.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/get-vaa.ts:22:22'
@@ -127,7 +133,7 @@ The `ChainContext` object is also responsible for holding a cached RPC client an
 
 ### Addresses
 
-Within the Wormhole context, addresses are often [normalized](https://docs.wormhole.com/wormhole/blockchain-environments/evm#addresses){target=\_blank} to 32 bytes and referred to in this SDK as a `UniversalAddress`.
+Within the Wormhole context, addresses are often normalized to 32 bytes and referred to in this SDK as a `UniversalAddress`.
 
 Each platform has an address type that understands the native address formats, referred to as `NativeAddress.` This abstraction allows the SDK to work with addresses consistently regardless of the underlying chain.
 
@@ -165,7 +171,7 @@ While Wormhole is a Generic Message Passing (GMP) protocol, several protocols ha
 
 #### Wormhole Core
 
-The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter){target=\_blank}, the [sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence){target=\_blank} for the message, and the payload of the message itself.
+The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [emitter address](/learn/fundamentals/glossary#emitter){target=\_blank}, the [sequence number](/learn/fundamentals/glossary#sequence){target=\_blank} for the message, and the payload of the message itself.
 
 The following example demonstrates sending and verifying a message using the Wormhole Core protocol on Solana.
 
@@ -203,7 +209,7 @@ Supported protocols are defined in the [definitions module](https://github.com/w
 
 ## Transfers
 
-While using the [`ChainContext`](#chain-context) and [`Protocol`](#protocols) clients directly is possible, the SDK provides some helpful abstractions for doing things like transferring tokens.
+While using the `ChainContext` and `Protocol` clients directly is possible, the SDK provides some helpful abstractions for doing things like transferring tokens.
 
 The `WormholeTransfer` interface provides a convenient abstraction to encapsulate the steps involved in a cross-chain transfer.
 
@@ -230,7 +236,7 @@ For automatic transfers, the process ends after initiation. For manual transfers
     --8<-- 'code/build/applications/wormhole-sdk/token-bridge.ts'
     ```
 
-Internally, this uses the [TokenBridge](#token-bridge) protocol client to transfer tokens. Like other Protocols, the `TokenBridge` protocol provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
+Internally, this uses the TokenBridge protocol client to transfer tokens. Like other Protocols, the `TokenBridge` protocol provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
 
 ### Native USDC Transfers
 
