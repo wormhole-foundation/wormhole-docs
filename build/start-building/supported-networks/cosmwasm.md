@@ -59,6 +59,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - [Website](https://evmos.org/){target=_blank}
 - [Mintscan](https://www.mintscan.io/evmos)
 - [Evmos JSON updates](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/evmos.json)
+- [Faucet](https://faucet.evmos.dev/){target=/_blank}
 
 ### Wormhole Details
 
@@ -135,6 +136,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - [Website](https://injective.com/){target=_blank}
 - [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective TestNet Explorer](https://testnet.explorer.injective.network/){target=_blank}
 - [Developer Docs](https://docs.injective.network/){target=_blank} | [Injective TypeScript SDK docs](https://docs.ts.injective.network/){target=_blank} | [Injective trading docs](https://docs.trading.injective.network/){target=_blank}
+- [Faucet](https://testnet.faucet.injective.network/){target=/_blank}
 
 ### Wormhole Details
 
@@ -174,6 +176,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - [Website](https://osmosis.zone/){target=_blank}
 - [Block Explorer](https://atomscan.com/osmosis){target=_blank}
 - [Developer Docs](https://docs.osmosis.zone/){target=_blank}
+- [Faucet](https://faucet.testnet.osmosis.zone/){target=/_blank}
 
 ### Wormhole Details
 
