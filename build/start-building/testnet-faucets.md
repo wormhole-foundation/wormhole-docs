@@ -198,6 +198,12 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="grid cards" markdown>
 
+-   **Celestia**
+
+    <img src="/images/build/start-building/supported-networks/celestia.webp" alt="Celestia" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://docs.celestia.org/nodes/mocha-testnet#:~:text=celestia%2Dmocha.com-,Mocha,-testnet%20faucet){target=\_blank}
+
 -   **Cosmos Hub**
 
     <img src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:auto;">
@@ -222,12 +228,93 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
     [:octicons-arrow-right-16: Visit faucet](https://discord.com/invite/teamkujira){target=\_blank}
 
+-   **Neutron**
+
+    <img src="/images/build/start-building/supported-networks/neutron.webp" alt="Neutron" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://docs.neutron.org/neutron/faq#where-is-the-testnet-faucet){target=\_blank}
+
 -   **Osmosis**
 
     <img src="/images/build/start-building/supported-networks/osmosis.webp" alt="Osmosis" style="width:90px; height:auto;">
 
     [:octicons-arrow-right-16: Visit faucet](https://faucet.testnet.osmosis.zone/){target=\_blank}
+
+-   **Provenance**
+
+    <img src="/images/build/start-building/supported-networks/provenance.webp" alt="Osmosis" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://explorer.test.provenance.io/faucet){target=\_blank}
+
+-   **Sei**
+
+    <img src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://atlantic-2.app.sei.io/faucet/){target=\_blank}
+
+-   **Stargaze**
+
+    <img src="/images/build/start-building/supported-networks/stargaze.webp" alt="Stargaze" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://docs.stargaze.zone/developers/cosmwasm-smart-contracts/testnet#faucet){target=\_blank}
+
+-   **Terra and Terra 2**
+
+    <img src="/images/build/start-building/supported-networks/terra.webp" alt="Terra" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://faucet.terra.money/){target=\_blank}
+
+-   **XPLA**
+
+    <img src="/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://faucet.xpla.io/){target=\_blank}
+
 </div>
+
+### NEAR
+
+<div class="grid cards" markdown>
+
+-   **NEAR**
+
+    <img src="/images/build/start-building/supported-networks/near.webp" alt="NEAR" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://near-faucet.io/){target=\_blank}
+
+</div>
+
+### Solana
+
+<div class="grid cards" markdown>
+
+-   **Solana**
+
+    <img src="/images/build/start-building/supported-networks/solana.webp" alt="Solana" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://faucet.solana.com/){target=\_blank}
+
+-   **Pythnet**
+
+    <img src="/images/build/start-building/supported-networks/pythnet.webp" alt="Pythnet" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://app.optimism.io/faucet?utm_source=docs){target=\_blank}
+
+</div>
+
+### Sui
+
+<div class="grid cards" markdown>
+
+-   **Sui**
+
+    <img src="/images/build/start-building/supported-networks/sui.webp" alt="Sui" style="width:90px; height:auto;">
+
+    [:octicons-arrow-right-16: Visit faucet](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank}
+
+</div>
+
+
 
 
 

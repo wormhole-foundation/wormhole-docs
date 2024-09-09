@@ -254,6 +254,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - [Website](https://www.terra.money/){target=_blank}
 - [Block Explorer](https://finder.terra.money/){target=_blank}
 - [Developer Docs](https://docs.terra.money/){target=_blank}
+- [Faucet](https://faucet.terra.money/){target=/_blank}
 
 ### Wormhole Details
 
@@ -325,6 +326,7 @@ The emitter address on CosmWasm chains is the contract's canonical address, norm
 - [Website](https://www.xpla.io/en){target=_blank}
 - [Block Explorer](https://explorer.xpla.io/){target=_blank}
 - [Developer Docs](https://docs.xpla.io/learn/learn/about-xpla-chain/){target=_blank}
+- [Faucet](https://faucet.xpla.io/){target=/_blank}
 
 ### Wormhole Details
 
