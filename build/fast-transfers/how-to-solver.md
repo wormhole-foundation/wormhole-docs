@@ -21,9 +21,9 @@ To initiate an auction with this message, the following needs to be done on Sola
 
 ### Send Transactions to Verify Signatures and Post VAA
 
-The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an IOU (I owe you) for the solver when the auction is settled. The Wormhole Spy or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA.
+The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an IOU (I owe you) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA. 
 
-To read VAAs on Solana, someone must verify the signatures and post the VAA to a Solana account using the Wormhole Core Bridge. This is done through the Wormhole JS SDK.
+To read VAAs on Solana, someone must verify the signatures and post the VAA to a Solana account using the Wormhole Core Bridge. This is done through the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}.
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/send-tx-1.js'
@@ -36,6 +36,11 @@ To read VAAs on Solana, someone must verify the signatures and post the VAA to a
 ### Send Transaction to Place Initial Offer
 
 After the VAA is posted, the next step is to place an initial offer in the auction. This involves setting the offer price and priority fees.
+<!-- 
+this code will for sure fail because there is a bunch of variables that are not being initialized properly like ":Keypair", "MatchingEngineProgram"
+
+Unclear what we should do here
+-->
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/send-tx-2.js'
@@ -54,8 +59,16 @@ The auction account pubkey can be determined by either:
 
 - Listening to a Solana web socket connection to find the account when the initial offer is placed
 - Using the fast VAA bytes to compute its hash and derive its auction account address
+<!-- 
+Would be great to add more info on how you do this
+-->
 
 Once the auction account is found, the relayer can submit an improved offer.
+<!-- 
+this code will for sure fail because there is a bunch of variables that are not being initialized properly like ":Keypair", "MatchingEngineProgram"
+
+Unclear what we should do here
+-->
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/auction-1.js'
@@ -83,7 +96,7 @@ The main difference between [_Participating in an auction_](/build/fast-transfer
 
 Once the auction is completed, the finalized VAA must be posted to Solana to officially settle the auction. The finalized VAA can be observed using Wormhole Spy or similar processes, such as the relayer engine that listens to the Wormhole Spy network.
 
-Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core Bridge instructions. This is typically done using the Wormhole JS SDK, as shown below:
+Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core Bridge instructions. This is typically done using the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, as shown below:
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/settle-auction-1.js'
@@ -109,6 +122,10 @@ After posting the finalized VAA, the final step is to settle the auction on Sola
 ## Mainnet Contract Addresses 
 
 This section provides the mainnet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager. Each contract is listed with its associated `chainId` and address, ensuring compatibility across multiple blockchain networks.
+
+<!-- 
+Would it be better to put this in a table?
+-->
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/mainnet-addresses.js'

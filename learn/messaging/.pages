@@ -5,3 +5,4 @@ nav:
  - 'CCTP Bridge': 'cctp.md'
  - 'Gateway': 'gateway.md'
  - 'Token Bridge': 'token-nft-bridge.md'
+ - 'Fast Transfers': 'fast-transfers.md'
