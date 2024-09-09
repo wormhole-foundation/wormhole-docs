@@ -1,9 +1,9 @@
 ---
-title: CosmWasm
+title: Cosmos
 description: Learn how to work with Wormhole in the CosmWasm ecosystem with address formats, emitter details, contract consistency levels, and key contract info. 
 ---
 
-# CosmWasm
+# Cosmos
 
 This page includes details for working with CosmWasm environment chains. 
 
