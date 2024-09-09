@@ -15,7 +15,7 @@ In this section, you'll learn how to work with Wormhole in the Cosmos ecosystem 
 
     Learn how to work with Wormhole in the Cosmos ecosystem with address formats, emitter details, contract consistency levels, and key contract info. 
 
-    [:octicons-arrow-right-16: Start onboarding](/build/chain-integrations/gateway/)
+    [:octicons-arrow-right-16: Start onboarding](/build/start-building/supported-networks/cosmos/cosmos)
 
 </div>
 
