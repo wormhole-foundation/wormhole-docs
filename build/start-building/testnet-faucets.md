@@ -166,7 +166,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### Algorand
 
-<div class="grid cards" markdown>
+<div class="grid cards tri" markdown>
 
 -   **Algorand**
 
@@ -178,7 +178,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### Aptos
 
-<div class="grid cards" markdown>
+<div class="grid cards tri" markdown>
 
 -   **Aptos**
 
@@ -190,7 +190,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### CosmWasm
 
-<div class="grid cards" markdown>
+<div class="grid cards tri" markdown>
 
 -   **Celestia**
 
@@ -268,7 +268,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### NEAR
 
-<div class="grid cards" markdown>
+<div class="grid cards tri" markdown>
 
 -   **NEAR**
 
@@ -280,7 +280,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### Solana
 
-<div class="grid cards" markdown>
+<div class="grid cards tri" markdown>
 
 -   **Solana**
 
@@ -298,7 +298,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### Sui
 
-<div class="grid cards" markdown>
+<div class="grid cards tri" markdown>
 
 -   **Sui**
 
