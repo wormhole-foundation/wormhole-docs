@@ -7,7 +7,7 @@ description: Explore how solvers engage in Fast Transfers auctions, from initiat
 
 ## Overview
 
-In Fast Transfers, solvers ensure efficient cross-chain transfers through a competitive auction process on the [Matching Engine](/build/fast-transfers/smart-components/#matching-engine){target=\_blank}. The auction consists of four key steps: 
+In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers ensure efficient cross-chain transfers through a competitive auction process on the Matching Engine. The auction consists of four key steps: <!-- link to matching engine -->
 
 1. **Starting an auction** - users initiate a transfer, and solvers begin bidding to fulfill it by offering the best rates
 2. **Participating in an auction** - solvers compete in a reverse Dutch auction to provide the most cost-effective solution
@@ -15,15 +15,15 @@ In Fast Transfers, solvers ensure efficient cross-chain transfers through a comp
 4. **Settling an auction** - once the transfer is finalized, the solver retrieves their funds and earns the fee for the completed transaction
 
 ## Starting an Auction
-When users interact with [Token Routers](/build/fast-transfers/smart-components/#token-router-contracts){target=\_blank} to transfer assets faster than finality to another chain, they place an order that is processed by the [Matching Engine](/build/fast-transfers/smart-components/#matching-engine){target=\_blank}. 
+When users interact with Token Routers to transfer assets faster than finality to another chain, they place an order that is processed by the Matching Engine. <!-- link to token routers -->
 
 To initiate an auction with this message, the following needs to be done on Solana.
 
-### Send transactions to verify signatures and post VAA
+### Send Transactions to Verify Signatures and Post VAA
 
-The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an IOU (I owe you) for the solver when the auction is settled. The Wormhole Spy or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA.
+The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an IOU (I owe you) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA. 
 
-To read VAAs on Solana, someone must verify the signatures and post the VAA to a Solana account using the Wormhole Core Bridge. This is done through the Wormhole JS SDK.
+To read VAAs on Solana, someone must verify the signatures and post the VAA to a Solana account using the Wormhole Core Bridge. This is done through the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}.
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/send-tx-1.js'
@@ -33,29 +33,44 @@ To read VAAs on Solana, someone must verify the signatures and post the VAA to a
 - `payer` - the entity paying the transaction fees, defined by a secret key using the Solana Keypair
 - `fastVaaBytes` - the VAA message that acts as an IOU for the auction settlement
 
-### Send transaction to place initial offer
+### Send Transaction to Place Initial Offer
 
 After the VAA is posted, the next step is to place an initial offer in the auction. This involves setting the offer price and priority fees.
+<!-- 
+this code will for sure fail because there is a bunch of variables that are not being initialized properly like ":Keypair", "MatchingEngineProgram"
+
+Unclear what we should do here
+-->
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/send-tx-2.js'
 ```
 
 - `MatchingEngineProgram`- handles interactions with the auction system on Solana
-- `placeInitialOfferTx` - function that submits the solver's initial offer to the [Matching Engine](/build/fast-transfers/smart-components/#matching-engine){target=\_blank} with details like the offer price and the fee (in [micro-lamports](https://solana.com/docs/terminology#lamport){target=\_blank})
+- `placeInitialOfferTx` - function that submits the solver's initial offer to the Matching Engine with details like the offer price and the fee (in [micro-lamports](https://solana.com/docs/terminology#lamport){target=\_blank})
 - `feeMicroLamports` - the priority fee for processing this transaction
 - `fastVaaBytes` - the VAA message that represents the auction
 
 ## Participating in an Auction
 
-To participate in an already initialized auction, a relayer must place an offer at a price better than the current auction price. The auction data is stored in an account created by the [Matching Engine](/build/fast-transfers/smart-components/#matching-engine){target=\_blank}, and the fast VAA hash determines this auction account address.  
+To participate in an already initialized auction, a relayer must place an offer at a price better than the current auction price. The auction data is stored in an account created by the Matching Engine, and the fast VAA hash determines this auction account address.  
 
 The auction account pubkey can be determined by either:
 
-- Listen to a Solana web socket connection to find the account when the initial offer is placed
-- Use the fast VAA bytes to compute its hash and derive its auction account address
+- Listening to a Solana web socket connection to find the account when the initial offer is placed:
+    - Subscribe to a WebSocket service that monitors Solana for new transactions
+    - Filter the transactions to identify those related to the initial offer by checking for interaction with the Matching Engine’s program id 
+    - Extract the auction account public key from the transaction where the initial offer was placed
+- Using the fast VAA bytes to compute its hash and derive its auction account address
+    - Convert the fast VAA bytes into a hash using a cryptographic hash function <!-- hashing function ?? Keccak256 ??  -->
+    - Derive the auction account public key by using the hash as an input to a deterministic function that maps the hash to a public key within the Matching Engine's account space
 
 Once the auction account is found, the relayer can submit an improved offer.
+<!-- 
+this code will for sure fail because there is a bunch of variables that are not being initialized properly like ":Keypair", "MatchingEngineProgram"
+
+Unclear what we should do here
+-->
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/auction-1.js'
@@ -67,7 +82,7 @@ Once the auction account is found, the relayer can submit an improved offer.
 
 ## Execute Fast Order to Complete Auction
 
-To complete the auction, the relayer must execute the fast order before the grace period ends. This step releases the funds to the user on the target chain. To execute the fast order, the relayer must interact with the [Matching Engine](/build/fast-transfers/smart-components/#matching-engine){target=\_blank} on Solana, using the auction account derived from the fast VAA. 
+To complete the auction, the relayer must execute the fast order before the grace period ends. This step releases the funds to the user on the target chain. To execute the fast order, the relayer must interact with the Matching Engine on Solana, using the auction account derived from the fast VAA. 
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/auction-2.js'
@@ -79,11 +94,11 @@ The main difference between [_Participating in an auction_](/build/fast-transfer
 
 ## Settle Auction with Finalized VAA
 
-### Send transactions to verify signatures and post VAA
+### Send Transactions to Verify Signatures and Post VAA
 
 Once the auction is completed, the finalized VAA must be posted to Solana to officially settle the auction. The finalized VAA can be observed using Wormhole Spy or similar processes, such as the relayer engine that listens to the Wormhole Spy network.
 
-Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core Bridge instructions. This is typically done using the Wormhole JS SDK, as shown below:
+Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core Bridge instructions. This is typically done using the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, as shown below:
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/settle-auction-1.js'
@@ -93,9 +108,9 @@ Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core B
 - `payer` - the entity responsible for covering transaction fees
 - `finalizedVaaBytes` - the VAA message confirming the auction's settlement
 
-### Send transaction to settle complete auction
+### Send Transaction to Settle Complete Auction
 
-After posting the finalized VAA, the final step is to settle the auction on Solana. This confirms the auction and ensures the winning solver is paid out accordingly. The following code sends a transaction to the [Matching Engine](/build/fast-transfers/smart-components/#matching-engine){target=\_blank} to settle the auction:
+After posting the finalized VAA, the final step is to settle the auction on Solana. This confirms the auction and ensures the winning solver is paid out accordingly. The following code sends a transaction to the Matching Engine to settle the auction:
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/settle-auction-2.js'
@@ -108,8 +123,4 @@ After posting the finalized VAA, the final step is to settle the auction on Sola
 
 ## Mainnet Contract Addresses 
 
-This section provides the mainnet contract addresses for various components of the Fast Transfers protocol, including the [Matching Engine](/build/fast-transfers/smart-components/#matching-engine){target=\_blank}, [Token Router](/build/fast-transfers/smart-components/#token-router-contracts){target=\_blank}, and Upgrade Manager. Each contract is listed with its associated `chainId` and address, ensuring compatibility across multiple blockchain networks.
-
-```js
---8<-- 'code/build/fast-transfers/how-to-solver/mainnet-addresses.js'
-```
+For mainnet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager refer to the [Mainnet Contract Addresses page.](/build/reference/ft-mainnet-addresses/){target=\_blank}

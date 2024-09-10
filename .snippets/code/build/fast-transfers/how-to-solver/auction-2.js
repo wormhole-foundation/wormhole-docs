@@ -1,4 +1,4 @@
-import { Connection } from "@solana/web3.js";
+import { Connection, Keypair } from "@solana/web3.js";
 import * as wormholeSdk from "@certusone/wormhole-sdk";
 
 const connection = new Connection(YOUR_RPC_URL, "confirmed");
