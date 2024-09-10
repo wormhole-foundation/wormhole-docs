@@ -11,7 +11,7 @@ Wormhole addresses this problem by providing a _generic message-passing_ protoco
 
 Wormhole is distinguished by its focus on robust security, scalability, and transparency. The protocol is supported by a decentralized network of validators that ensure the integrity of every cross-chain transaction. This, combined with Wormhole’s proven performance in real-world applications, gives developers a dependable platform to create and scale multichain applications confidently.
 
-![Message-passing process in the Wormhole protocol](/images/learn/introduction/introduction-1.webp)
+![Message-passing process in the Wormhole protocol](/images/learn/fundamentals/introduction/introduction-1.webp)
 
 !!! note
     The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/fundamentals/architecture/){target=\_blank}.
@@ -36,7 +36,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 - **Cross-chain messaging** - securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications (xDapps)
 - **Asset transfers** - facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}
-- **Developer tools** - leverage [Wormhole’s SDKs](/build/build-apps/wormhole-sdk/){target=\_blank}, [APIs](/build/toolkit/#wormhole-api-docs){target=\_blank}, [Wormhole Scan](https://wormholescan.io/){target=\_blank}, and documentation to build and deploy cross-chain applications quickly and efficiently
+- **Developer tools** - leverage [Wormhole’s SDKs](/build/applications/wormhole-sdk/){target=\_blank}, [APIs](/build/toolkit/#wormhole-api-docs){target=\_blank}, [Wormhole Scan](https://wormholescan.io/){target=\_blank}, and documentation to build and deploy cross-chain applications quickly and efficiently
 
 ## What Isn't Wormhole?
 
@@ -47,20 +47,9 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 Consider the following examples of potential applications enabled by Wormhole:
 
-- **Cross-chain exchange** - using [Wormhole Connect](/build/build-apps/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
+- **Cross-chain exchange** - using [Wormhole Connect](/build/applications/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
 - **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
 - **Cross-chain game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
-
-## Get Started
-
-### Quick Start Tutorials
-
-Tutorials are available to get started quickly and explain the concepts involved.
-
-- **[Quick start - Off-chain](/build/build-apps/connect/overview/){target=\_blank}** - integrate Wormhole Connect into a new or existing web UI 
-- **[Quick start - On-chain](/tutorials/messaging/cross-chain-contracts/){target=\_blank}** - send your first cross-chain message 
-
-More tutorials are available [on GitHub](#){target=\_blank}. <!-- tutorials will be on the docs site -->
 
 ## Explore
 
@@ -76,7 +65,7 @@ Demos offer more realistic implementations than tutorials:
 - **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repository
 - **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
 
-More demos are available in the [demos page](/build/start-building/demos/){target=\_blank}. 
+More demos are available in the [demos page](/build/start-building/demos/){target=\_blank}.
 
 !!! note
     Wormhole Integration Complete?
@@ -90,4 +79,3 @@ More demos are available in the [demos page](/build/start-building/demos/){targe
 Wormhole supports a growing number of blockchains.
 
 --8<-- 'text/supported-networks.md'
-

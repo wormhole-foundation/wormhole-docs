@@ -11,8 +11,7 @@ The Guardians must validate messages emitted by contracts before sending them to
 
 The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof.
 
-VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. To obtain a VAA, one can query the Guardian [RPC](#){target=\_blank} or the [API](https://docs.wormholescan.io/){target=\_blank} with this information.
-<!-- sdk legacy link for rpc -->
+VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. To obtain a VAA, one can query the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank} with this information.
 
 These VAAs are ultimately what a smart contract on a receiving chain must process to receive a Wormhole message.
 
@@ -20,7 +19,7 @@ These VAAs are ultimately what a smart contract on a receiving chain must proces
 
 The basic VAA has two components: a header and a body.
 
-### Header 
+### Header
 
 The header holds metadata about the current VAA, the Guardian set that is currently active, and the list of signatures gathered so far.
 
@@ -32,9 +31,9 @@ The header holds metadata about the current VAA, the Guardian set that is curren
 Where each `signature` is:
 
 - `index` ++"u8"++ - the index of this Guardian in the Guardian set
-- `signature` ++"[65]byte"++ - the ECDSA signature 
+- `signature` ++"[65]byte"++ - the ECDSA signature
 
-### Body 
+### Body
 
 The body is _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double-processing messages.
 
@@ -168,4 +167,3 @@ With the concepts now defined, it is possible to illustrate what a full flow for
 1. **A message is emitted by a contract running on Chain A** - any contract can emit messages, and the Guardians are programmed to observe all chains for these events. Here, the Guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the 19 Guardians
 2. **Signatures are aggregated** - Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload; to complete the final step, the VAA itself is submitted (or relayed) to the target chain to be processed by a receiving contract
-
