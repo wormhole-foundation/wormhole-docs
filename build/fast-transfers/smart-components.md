@@ -1,6 +1,6 @@
 ---
 title: Smart Contract Components
-description: TODO
+description: Learn about the Token Router and Matching Engine smart contracts that enable fast, efficient cross-chain USDC transfers across blockchain networks.
 ---
 
 <!-- Explanation of the Token Router Contracts and Matching Engine 
@@ -15,6 +15,12 @@ the description of the matching references Avax which we deprecated in favor of 
 -->
 
 # Smart Contract Components
+
+Transferring USDC between different blockchains can be slow, costly, and complex, especially when moving between chains that do not support CCTP. Managing liquidity and ensuring compatibility across networks is a major challenge.
+
+The Token Router and Matching Engine smart contracts solve this by enabling fast and efficient cross-chain transfers. The Token Router determines the type of USDC required on the destination chain, while the Matching Engine handles liquidity management and fast transfer auctions, ensuring low fees and quick delivery. Together, they provide seamless token transfers, even between CCTP-enabled and non-CCTP chains.
+
+This page explains the key components and processes behind the Token Router and Matching Engine smart contracts, and how they facilitate efficient Fast Transfers across blockchain networks.
 
 ## Token Router Contracts 
 
