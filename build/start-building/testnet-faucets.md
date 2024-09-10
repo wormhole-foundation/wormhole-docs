@@ -11,7 +11,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### **EVM**
 
-<div class="grid cards" markdown>
+<div class="grid cards tri" markdown>
 
 -   **Ethereum**
 
