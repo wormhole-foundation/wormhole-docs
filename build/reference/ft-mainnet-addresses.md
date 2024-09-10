@@ -1,5 +1,5 @@
 
-This section provides the mainnet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager. Each contract is listed with its associated `chainId` and address, ensuring compatibility across multiple blockchain networks.
+This section provides the MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager. Each contract is listed with its associated `chainId` and address, ensuring compatibility across multiple blockchain networks.
 
 | Component               | chainId | Address                                      | Constructor Arguments            |
 |-------------------------|---------|----------------------------------------------|----------------------------------|

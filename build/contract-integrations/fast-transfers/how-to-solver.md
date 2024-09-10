@@ -17,11 +17,11 @@ In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers e
 ## Starting an Auction
 When users interact with Token Routers to transfer assets faster than finality to another chain, they place an order that is processed by the Matching Engine. <!-- link to token routers -->
 
-To initiate an auction with this message, the following needs to be done on Solana.
+To initiate an auction with this message, complete the following steps on Solana:
 
 ### Send Transactions to Verify Signatures and Post VAA
 
-The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an IOU (I owe you) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA. 
+The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an I owe you (IOU) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA. 
 
 To read VAAs on Solana, someone must verify the signatures and post the VAA to a Solana account using the Wormhole Core Bridge. This is done through the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}.
 
@@ -90,7 +90,7 @@ To complete the auction, the relayer must execute the fast order before the grac
 
 - `executeFastOrderTx` - function that executes the fast order, which releases the intended funds to the user on the target chain, finalizing the auction
 
-The main difference between [_Participating in an auction_](/build/fast-transfers/how-to-solver/#participating-in-an-auction) and [_Execute fast order to complete auction_](/build/fast-transfers/how-to-solver/#execute-fast-order-to-complete-auction) is that the latter focuses on executing the fast order to finalize the auction and release funds to the user on the target chain. In contrast, _Participating in an auction_ is part of the bidding process, where the solver improves their offer to compete for the auction. _Execute fast order to complete auction_ does not involve submitting a new offer price but ensures the transfer is completed once the auction is won.
+Participating in an auction is part of the bidding process, where the solver improves their offer to provide the most cost-effective solution and win the right to fulfill the transfer. In comparison, executing a fast order to complete an auction does not involve submitting a new offer price but ensuring the auction winner appropriately processes the transfer. Funds are transferred within the set time frame to finalize the auction and release funds to the user on the target chain. 
 
 ## Settle Auction with Finalized VAA
 
@@ -98,7 +98,7 @@ The main difference between [_Participating in an auction_](/build/fast-transfer
 
 Once the auction is completed, the finalized VAA must be posted to Solana to officially settle the auction. The finalized VAA can be observed using Wormhole Spy or similar processes, such as the relayer engine that listens to the Wormhole Spy network.
 
-Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core Bridge instructions. This is typically done using the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, as shown below:
+Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core Bridge instructions. This is typically done using the [Wormhole TS SDK](/build/applications/wormhole-sdk/){target=\_blank}, as shown below:
 
 ```js
 --8<-- 'code/build/fast-transfers/how-to-solver/settle-auction-1.js'
@@ -121,6 +121,6 @@ After posting the finalized VAA, the final step is to settle the auction on Sola
 - `fastVaaBytes` - the initial VAA from the fast transfer process
 - `finalizedVaaBytes` - the finalized VAA confirming the completion of the auction and transfer
 
-## Mainnet Contract Addresses 
+## MainNet Contract Addresses 
 
-For mainnet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager refer to the [Mainnet Contract Addresses page.](/build/reference/ft-mainnet-addresses/){target=\_blank}
+For MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager, refer to the [Mainnet Contract Addresses page.](/build/reference/ft-mainnet-addresses/){target=\_blank}
