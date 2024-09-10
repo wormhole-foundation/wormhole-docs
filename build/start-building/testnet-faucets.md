@@ -17,9 +17,9 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
     <img src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:auto;">
 
-    [:octicons-arrow-right-16: Visit Sepolia faucet](https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia){target=\_blank}
+    [:octicons-arrow-right-16: Sepolia faucet](https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia){target=\_blank}
     <br>
-    [:octicons-arrow-right-16: Visit Holesky faucet](https://holesky-faucet.pk910.de/){target=\_blank}
+    [:octicons-arrow-right-16: Holesky faucet](https://holesky-faucet.pk910.de/){target=\_blank}
 
 -   **Acala**
 
@@ -31,15 +31,9 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
     <img src="/images/build/start-building/supported-networks/arbitrum-sepolia.webp" alt="Arbitrum Sepolia" style="width:90px; height:auto;">
 
-    [:octicons-arrow-right-16: Visit Quicknode faucet](https://faucet.quicknode.com/arbitrum/sepolia){target=\_blank}
+    [:octicons-arrow-right-16: Quicknode faucet](https://faucet.quicknode.com/arbitrum/sepolia){target=\_blank}
     <br>
-    [:octicons-arrow-right-16: Visit Alchemy faucet](https://www.alchemy.com/faucets/arbitrum-sepolia){target=\_blank}
-
--   **Aurora**
-
-    <img src="/images/build/start-building/supported-networks/aurora.webp" alt="Aurora" style="width:90px; height:auto;">
-
-    [:octicons-arrow-right-16: Visit faucet](https://aurora.dev/faucet){target=\_blank}
+    [:octicons-arrow-right-16: Alchemy faucet](https://www.alchemy.com/faucets/arbitrum-sepolia){target=\_blank}
 
 -   **Avalanche**
 
@@ -159,9 +153,9 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
     <img src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:auto;">
 
-    [:octicons-arrow-right-16: Visit Arctic-1 faucet](https://arctic-1.app.sei.io/faucet/){target=\_blank}
+    [:octicons-arrow-right-16: Arctic-1 faucet](https://arctic-1.app.sei.io/faucet/){target=\_blank}
     <br>
-    [:octicons-arrow-right-16: Visit Atlantic-2 faucet](https://atlantic-2.app.sei.io/faucet/){target=\_blank}
+    [:octicons-arrow-right-16: Atlantic-2 faucet](https://atlantic-2.app.sei.io/faucet/){target=\_blank}
 
 -   **X Layer**
 
