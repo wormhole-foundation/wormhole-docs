@@ -27,7 +27,7 @@ This page is for any Cosmos chain developer who wants to enable bridging from Ga
         ???+ code "View IBC relayer allowlist request template"
 
             ```text
-            --8<-- 'text/build/chain-integrations/gateway/IBCRelayerAllowlistTemplate.md'
+            --8<-- 'text/build/start-building/supported-networks/cosmos/IBCRelayerAllowlistTemplate.md'
             ```
 
 2. Establish the IBC connection
@@ -40,7 +40,7 @@ This page is for any Cosmos chain developer who wants to enable bridging from Ga
 
         ??? code "View example IBC relayer configuration for Wormhole Gateway"
             ```toml
-            --8<-- 'code/build/chain-integrations/gateway/gatewayIBCRelayerConfig.toml'
+            --8<-- 'code/build/start-building/supported-networks/cosmos/gatewayIBCRelayerConfig.toml'
             ```
 
 3. Share the IBC connection details in the `#guardian-cosmos` channel along with a request to the Wormhole contributors to prepare governance for the IBC connection. Allow 48 hours for governance vote on accepting this IBC channel

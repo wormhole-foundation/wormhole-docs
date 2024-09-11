@@ -27,6 +27,6 @@ In this section, you'll learn how to work with Wormhole in the Cosmos ecosystem 
 
     Learn how to onboard your Cosmos chain to Wormhole Gateway to enable bridging to and from your chain, including how to satisfy the requisite governance proposals, IBC setup, and UI integration.
 
-    [:octicons-arrow-right-16: Start onboarding](/build/chain-integrations/gateway/)
+    [:octicons-arrow-right-16: Start onboarding](/build/start-building/supported-networks/cosmos/gateway/)
 
 </div>
