@@ -3,7 +3,7 @@ title: Cosmos Gateway
 description: Explore Wormhole Gateway - a Cosmos-SDK chain for bridging assets into Cosmos, enhancing liquidity, and cross-chain communication with IBC integration.
 ---
 
-# Cosmos Gateway 
+# Wormhole Gateway in Cosmos
 
 ## Introduction 
 
