@@ -5,73 +5,56 @@ description: Discover Wormhole's Core Contracts, enabling cross-chain communicat
 
 # Core Contracts
 
-The Core Contracts are the mechanism by which all Wormhole messages are emitted. All cross-chain applications either interact directly with the Core Contract or interact with another contract that does. Each blockchain in the ecosystem has a single Core Contract, which the Guardians are required to monitor. These Core Contracts emit the messages that the [Guardians](/learn/infrastructure/guardians/){target=_blank} pick up as [Observations](/learn/fundamentals/glossary/#observation){target=_blank}.
+## Introduction
 
-Core Contracts are generally simple and can be divided into sending and receiving sides, each of which will be defined next.
+The Wormhole Core Contract is a fundamental component of the Wormhole interoperability protocol deployed across each supported blockchain network. This contract acts as the foundational layer that enables secure and efficient cross-chain messaging, as all cross-chain applications either interact directly with the Core Contract or with another contract that does.
 
-## Sending
+This guide summarizes the key functions of the Core Contract and outlines how the Core Contract works.
 
-The implementation strategy for `publishMessage` differs by chain. However, the general strategy consists of the Core Contract posting the following items to the blockchain logs:
+## Key Functions of the Wormhole Core Contract
 
-- `emitterAddress` of the contract which made the `publishMessage` call
-- `sequenceNumber`
-- `consistencyLevel`
+- **Cross-chain messaging** - the Core Contract enables the transfer of messages between different blockchain networks connected via Wormhole. It standardizes and secures the message format, ensuring consistent communication across multiple chains. This capability allows developers to build cross-chain applications that leverage the unique features of each network
 
-Once the desired `consistencyLevel` has been reached and the message passes all of the Guardians' optional checks, the Guardian Network will produce the requested Verified Action Approvals (VAAs).
+- **Verification and validation** - the Core Contract is responsible for verifying and validating all VAAs received on the target chain. When a message is transmitted from one blockchain, it is signed by the Wormhole Guardians (a decentralized set of validators). The Core Contract on the target chain checks this signature to confirm that the message is legitimate and has not been tampered with
 
-The method signature for publishing messages:
+- **Guardian Network coordination** - the Core Contract coordinates with Wormhole's Guardian Network to facilitate secure, trustless communication across chains. By relying on a quorum of Guardians to verify cross-chain messages and transactions, the contract ensures that only validated interactions are processed, enhancing the protocol's overall security and reliability
 
-```js
---8<-- 'code/learn/infrastructure/core-contracts/sending.js'
-```
+- **Event emission for monitoring** - the Core Contract emits events for every cross-chain message it processes, allowing dApps and developers to monitor activity on the network. These events are critical for tracking message statuses, debugging, and building responsive applications that can react to cross-chain events in real time
 
-There are no fees to publish a message, except when publishing on Solana, but this is subject to change in the future.
+## How the Core Contract Works
 
-### Parameters
+The Wormhole Core Contract is central in facilitating secure and efficient cross-chain transactions. It enables communication between different blockchain networks by packaging transaction data into standardized messages, verifying their authenticity, and ensuring they are executed correctly on the destination chain. This process involves several steps, from the initial message submission to final execution, all while leveraging the Wormhole Guardian network to maintain trust and security.
 
-- `payload` ++"byte[]"++ - the content of the emitted message is an arbitrary byte array. Due to the constraints of individual blockchains, it may be capped to a certain maximum length
+Below is a simplified breakdown that focuses on the role of the Wormhole Core Contract in these operations:
 
-- `consistencyLevel` ++"int"++ - a numeric value that defines the required level of finality that must be reached before the Guardians will observe and attest to emitted events. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Environments](/build/start-building/supported-networks/){target=\_blank} pages 
+1. **Message submission** - when a user initiates a cross-chain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification
+2. **Guardian verification** - the Guardians validate the message by checking its integrity and authenticity. Once 13 of the 19 Guardians have verified the message, it is signed and sent to the target chain
+3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions, such as minting tokens, updating states, or calling specific smart contract functions
 
-- `nonce` ++"int"++ - a free integer field that can be used however you like. Note that changing the `nonce` will result in a different digest
+For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/learn/fundamentals/architecture/) page.
 
-### Returns
+### Message Submission
 
-- `sequenceNumber` ++"int"++ - a unique number that increments for every message for a given emitter (and implicitly chain). This, combined with the emitter address and emitter chain ID, allows the VAA for this message to be queried from the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank}
+When sending a cross-chain message from the source chain Core Contract, you'll call a function that publishes the message. The implementation strategy for publishing messages differs by chain. However, the general strategy consists of the Core Contract posting the following items to the blockchain logs:
 
-## Receiving
+- `emitterAddress` - the contract which made the call to publish the message
+- `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
+- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Consistency Levels](/build/reference/consistency-levels/){target=\_blank} reference page
 
-The method signature for receiving a message encoded as a VAA:
+There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
-```js
---8<-- 'code/learn/infrastructure/core-contracts/receiving.js'
-```
+### Message Reception
 
-The general approach involves the Core Contract on a target Chain parsing and verifying the components of a VAA, which include the original `emitterAddress`, `sequenceNumber`, and `consistencyLevel` among other fields.
+When receiving a cross-chain message on the target chain Core Contract, the general approach involves parsing and verifying the [components of a VAA](/learn/infrastructure/vaas#vaa-format).
 
 The process of receiving and verifying a VAA ensures that the message was properly attested by the Guardian Network, maintaining the integrity and authenticity of the data transmitted between chains.
 
-### Parameters
-
-- `VAA` ++"byte[]"++ - the encoded message as a Verified Action Approval, which is a byte array that contains all necessary information for verification and processing
-
-### Returns
-
-- `payload` ++"byte[]"++ - the original payload of the message, as extracted from the VAA, which can then be further processed or acted upon according to the logic of the contract
-
-### Error Handling
-
-When a VAA is passed to the `parseAndVerifyVAA` function, it will either return the payload and associated metadata for the VAA or throw an exception. An exception should only be thrown if the VAA fails signature verification, an indication the VAA is invalid or inauthentic in some form.
-
-!!! note
-    Take care to make sure this method is called during the execution of a transaction where a VAA is passed to ensure the signatures are checked and verified.
-
 ## Multicast
 
-Multicast refers to simultaneously broadcasting a single message or transaction across different blockchains. This means that there is no destination address or chain for the sending and receiving functions. This is possible because VAAs simply attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain where they are used.
+Multicast refers to simultaneously broadcasting a single message or transaction across different blockchains. This means there is no destination address or chain for the sending and receiving functions. This is possible because VAAs attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain where they are used.
 
 This multicast-by-default model makes it easy to synchronize the state across the entire ecosystem because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the Token Bridge and Wormhole relayer contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the Token Bridge and Wormhole relayer contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
