@@ -1,8 +1,8 @@
 title: Messaging
 nav:
  - index.md
- - native-token-transfers
- - 'CCTP Bridge': 'cctp.md'
- - 'Gateway': 'gateway.md'
  - 'Token Bridge': 'token-nft-bridge.md'
+ - 'Cosmos Gateway': 'gateway.md'
+ - 'CCTP Bridge': 'cctp.md'
+ - native-token-transfers
  - 'Fast Transfers': 'fast-transfers.md'

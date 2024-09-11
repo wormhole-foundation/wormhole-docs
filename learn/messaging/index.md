@@ -27,7 +27,7 @@ This section covers various aspects and services related to communication protoc
 
     [:octicons-arrow-right-16: Learn more about CCTP](/learn/messaging/cctp/)
 
--   :octicons-book-16:{ .lg .middle } **Gateway**
+-   :octicons-book-16:{ .lg .middle } **Cosmos Gateway**
 
     ---
 
