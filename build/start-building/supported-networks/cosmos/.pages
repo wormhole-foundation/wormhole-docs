@@ -2,4 +2,4 @@ title: Cosmos
 nav:
  - index.md
  - 'Cosmos' : 'cosmos.md'
- - 'Onboard to Gateway' : 'gateway.md'
+ - 'Onboard to Cosmos Gateway' : 'gateway.md'

@@ -21,7 +21,7 @@ In this section, you'll learn how to work with Wormhole in the Cosmos ecosystem 
 
 <div class="grid cards" markdown>
 
--   :octicons-code-of-conduct-16:{ .lg .middle } **Onboard to Gateway**
+-   :octicons-code-of-conduct-16:{ .lg .middle } **Onboard to Cosmos Gateway**
 
     ---
 

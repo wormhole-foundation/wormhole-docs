@@ -1,5 +1,5 @@
 ---
-title: Gateway Onboarding Instructions
+title: Cosmos Gateway Onboarding Instructions
 description: Learn how to onboard your Cosmos chain to Wormhole Gateway, including how to satisfy the requisite governance proposals, IBC setup, and UI integration. 
 ---
 
