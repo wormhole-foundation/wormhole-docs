@@ -9,12 +9,12 @@ description: Explore Wormhole's security features, including the Guardian networ
 
 At its core, Wormhole is secured by a network of [Guardian](/learn/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
 
-- Wormhole's core security primitive is its signed messages (signed VAAs)
+- Wormhole's core security primitive is its signed messages (signed [VAAs](/learn/fundamentals/glossary/#vaa){target=\_blank})
 - The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}
 - Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator
 - Every Guardian runs full nodes (rather than light nodes) of every blockchain in the Wormhole network, so if a blockchain suffers a consensus attack or hard fork, the blockchain will disconnect from the network rather than potentially produce invalid signed VAAs
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain
-- Relayers are considered untrusted in the Wormhole ecosystem
+- [Relayers](/learn/fundamentals/glossary/#relayer){target=\_blank} are considered untrusted in the Wormhole ecosystem
 
 In summary:
 
@@ -80,32 +80,26 @@ Wormhole builds in the open and is always open source.
 
 ## Audits
 
-Wormhole has been heavily audited, with _29 third-party audits completed_ and more started.
+Wormhole has been heavily audited, with _29 third-party audits completed_ and more started. Audits have been performed by the following firms:
 
-Wormhole has had audits performed by the following firms, and continues to seek more:
+- [Trail of Bits](https://www.trailofbits.com/){target=\_blank}
+- [Neodyme](https://neodyme.io/en/){target=\_blank}
+- [Kudelski](https://kudelskisecurity.com/){target=\_blank}
+- [OtterSec](https://osec.io/){target=\_blank}
+- [Certik](https://www.certik.com/){target=\_blank}
+- [Hacken](https://hacken.io/){target=\_blank}
+- [Zellic](https://www.zellic.io/){target=\_blank}
+- [Coinspect](https://www.coinspect.com/){target=\_blank}
+- [Halborn](https://www.halborn.com/){target=\_blank}
+- [Cantina](https://cantina.xyz/welcome){target=\_blank}
 
-- Trail of Bits
-- Neodyme
-- Kudelski
-- OtterSec
-- Certik
-- Hacken
-- Zellic
-- Coinspect
-- Halborn
-
-[The most up-to-date list of audits, as well as the final reports](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#3rd-party-security-audits){target=\blank}.
+All audits and final reports can be found in [security page of the GitHub Repo](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#3rd-party-security-audits){target=\blank}.
 
 ## Bug Bounties
 
 Wormhole has one of the largest bug bounty programs in software development and has repeatedly shown commitment to engaging with the white hat community.
 
-Wormhole hosts two bug bounty programs:
-
-- An [Immunefi](https://immunefi.com/bug-bounty/wormhole/){target=\blank} program 
-- As well as a [self-hosted program](https://immunefi.com/bug-bounty/wormhole/){target=\blank}
-
-Both platforms have a top payout of _2.5 million dollars_.
+Wormhole runs a bug bounty program through [Immunefi](https://immunefi.com/bug-bounty/wormhole/){target=\blank} program, with a top payout of **5 million dollars**.
 
 If you are interested in contributing to Wormhole security, please look at this section for [Getting Started as a White Hat](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#white-hat-hacking){target=\blank}, and follow the [Wormhole Contributor Guidelines](https://github.com/wormhole-foundation/wormhole/blob/main/CONTRIBUTING.md){target=\blank}.
 
