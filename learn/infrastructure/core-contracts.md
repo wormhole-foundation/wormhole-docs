@@ -28,7 +28,7 @@ The Wormhole Core Contract is central in facilitating secure and efficient cross
 Below is a simplified breakdown that focuses on the role of the Wormhole Core Contract in these operations:
 
 1. **Message submission** - when a user initiates a cross-chain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification
-2. **Guardian verification** - the Guardians validate the message by checking its integrity and authenticity. Once 13 of the 19 Guardians have verified the message, it is signed and sent to the target chain
+2. **Guardian verification** - the Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions, such as minting tokens, updating states, or calling specific smart contract functions
 
 For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/learn/fundamentals/architecture/) page.
