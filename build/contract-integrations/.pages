@@ -2,7 +2,7 @@ title: Build Contract Integrations
 nav:
  - index.md
  - 'Wormhole Relayer': 'wormhole-relayers.md'
- - 'Core Contract': 'core-contracts.md'
+ - 'Core Contracts': 'core-contracts.md'
 #  - 'Token Bridge': 'token-bridge.md'
 #  - 'CCTP': 'cctp.md'
  - 'Gateway' : 'gateway.md'
