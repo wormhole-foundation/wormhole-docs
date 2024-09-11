@@ -1,18 +1,18 @@
 import { Connection, Keypair } from "@solana/web3.js";
 import * as wormholeSdk from "@certusone/wormhole-sdk";
 
-const YOUR_RPC_URL = 'INSERT_RPC_URL';
-const MATCHING_ENGINE_PROGRAM_ID = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
-const USDC_MINT_ADDRESS = 'INSERT_USDC_MINT_ADDRESS';
+const rpcUrl = 'INSERT_RPC_URL';
+const matchingEngineProgramId = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
+const usdcMintAddress = 'INSERT_USDC_MINT_ADDRESS';
 
-const connection = new Connection(YOUR_RPC_URL, "confirmed");
+const connection = new Connection(rpcUrl, "confirmed");
 const payer = Keypair.fromSecretKey(...);
 
 const matchingEngine = new MatchingEngineProgram(
   connection,
-  MATCHING_ENGINE_PROGRAM_ID,
-  // EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v on mainnet
-  USDC_MINT_ADDRESS 
+  matchingEngineProgramId,
+  // EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v on MainNet
+  usdcMintAddress 
 );
 
 const auction = yourMethodToFindAuctionPubkey(...);

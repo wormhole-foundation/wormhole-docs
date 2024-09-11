@@ -1,6 +1,6 @@
 ---
 title: How to be a Solver
-description: Explore how solvers engage in Fast Transfers auctions, from initiating offers to settling, with steps and mainnet contract addresses.
+description: Explore how solvers engage in Fast Transfers auctions, from initiating offers to settling, with steps and MainNet contract addresses.
 ---
 
 # How to be a Solver
@@ -17,7 +17,7 @@ In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers e
 ## Starting an Auction
 When users interact with Token Routers to transfer assets faster than finality to another chain, they place an order that is processed by the Matching Engine. <!-- link to token routers -->
 
-To initiate an auction with this message, complete the following steps on Solana:
+To initiate an auction with this message, complete the steps in the following sections on Solana.
 
 ### Send Transactions to Verify Signatures and Post VAA
 
