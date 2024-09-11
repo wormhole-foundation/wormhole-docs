@@ -1,9 +1,9 @@
 import { Connection, Keypair } from "@solana/web3.js";
 import * as wormholeSdk from "@certusone/wormhole-sdk";
 
-const YOUR_RPC_URL = 'https://your-rpc-url.com';
-const MATCHING_ENGINE_PROGRAM_ID = 'Your_MatchingEngine_Program_ID';
-const USDC_MINT_ADDRESS = "Your_USDC_Mint_Address";
+const YOUR_RPC_URL = 'INSERT_RPC_URL';
+const MATCHING_ENGINE_PROGRAM_ID = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
+const USDC_MINT_ADDRESS = 'INSERT_USDC_MINT_ADDRESS';
 
 const connection = new Connection(YOUR_RPC_URL, "confirmed");
 const payer = Keypair.fromSecretKey(...); // Replace [...] with your secret key numbers
