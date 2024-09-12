@@ -1,6 +1,6 @@
 ---
 title: CCTP with Wormhole SDK
-description: TODO
+description: Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
 ---
 
 # CCTP with Wormhole SDK
