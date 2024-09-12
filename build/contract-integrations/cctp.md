@@ -9,7 +9,13 @@ Cross-Chain Transfer Protocol (CCTP) is a permissionless utility created by Circ
 
 ## CCTP Core Contracts Overview
 
-Three core contracts make up CCTP. `TokenMessenger` is the entry point for cross-chain USDC transfers, routing messages to initiate USDC burns on the source chain, and mint USDC on the destination chain. `MessageTransmitter` handles generic message passing, sending messages from the source chain and receiving them on the destination chain. `TokenMinter` is responsible for the actual minting and burning of USDC, utilizing chain-specific settings for both the burners and minters across different networks. This guide will take a closer look at these contracts, paying careful attention to the methods that can be called and their respective parameters and important events emitted by the contracts.
+Three core contracts make up CCTP:
+
+- **`TokenMessenger`** - The entry point for cross-chain USDC transfers. Routes messages to initiate USDC burns on the source chain and mint USDC on the destination chain
+- **`MessageTransmitter`** - Handles generic message passing. Sends messages from the source chain and receives them on the destination chain 
+- **`TokenMinter`** - Responsible for the actual minting and burning of USDC. Utilizes chain-specific settings for both the burners and minters across different networks 
+
+This guide will take a closer look at these contracts, paying careful attention to the methods that can be called, their respective parameters, and important events emitted  the contracts.
 
 ## TokenMessenger Contract
 
@@ -20,62 +26,241 @@ The `TokenMessenger` contract facilitates cross-chain USDC transfers by sending 
     --8<-- 'code/build/contract-integrations/cctp/TokenMessenger.sol'
     ```
 
-### Methods
+### Methods and Events
 
-The permissionless messaging functions exposed by the `TokenMessenger` are as follows:
+The permissionless messaging functions, and their related events, exposed by the `TokenMessenger` are as follows:
 
-???+ function "**depositForBurn**(_uint256 amount, uint32 destinationDomain, bytes32 mintRecipient, address burnToken_) — Deposits and burns tokens from sender to be minted on destination domain. Minted tokens will be transferred to mintRecipient."
+- **`depositForBurn`** - Deposits and burns tokens from sender to be minted on destination domain. Minted tokens will be transferred to `mintRecipient`
 
-    === "Parameters"
+    ??? interface "Parameters"
 
-        - `amount` *uint256* - the amount of tokens to burn
-        - `destinationDomain` *uint32* - the network where the token will be minted after burn
-        - `mintRecipient` *bytes32* - address of mint recipient on destination domain
-        - `burnToken` *address* -  address of contract to burn deposited tokens, on local domain
+        `amount` ++"uint256"++ The amount of tokens to burn
 
-??? function "**depositForBurnWithCaller**(_uint256 amount, uint32 destinationDomain, bytes32 mintRecipient, address burnToken, bytes32 destinationCaller_) — Deposits and burns tokens from sender to be minted on destination domain. The mint on the destination domain must be called by `destinationCaller`."
+        ---
 
-    === "Parameters"
+        `destinationDomain` ++"uint32"++ The network where the token will be minted after burn
 
-        - `amount` *uint256* - the amount of tokens to burn
-        - `destinationDomain` *uint32* - the network where the token will be minted after burn
-        - `mintRecipient` *bytes32* - address of mint recipient on destination domain
-        - `burnToken` *address* - address of contract to burn deposited tokens, on local domain
-        - `destinationCaller` *bytes32* - address of the caller on the destination domain who will trigger the mint
+        ---
 
-??? function "**replaceDepositForBurn**(_bytes calldata originalMessage, bytes calldata originalAttestation, bytes32 newDestinationCaller, bytes32 newMintRecipient_) — Replaces a previous burn message to modify the mint recipient and/or destination caller. Allows the original message's sender to update the details without requiring a new deposit."
+        `mintRecipient` ++"bytes32"++ Address of mint recipient on destination domain
 
-    === "Parameters"
+        ---
 
-        - `originalMessage` *bytes* - the original burn message to be replaced
-        - `originalAttestation` *bytes* - the attestation of the original message
-        - `newDestinationCaller` *bytes32* - the new caller on the destination domain, can be the same or updated
-        - `newMintRecipient` *bytes32* - the new recipient for the minted tokens, can be the same or updated
+        `burnToken` ++"address"++ Address of contract to burn deposited tokens, on local domain
 
-### Events
+    ??? interface "Returns"
 
-The key events of the `TokenMessenger` contract are as follows:
+        `_nonce` ++"uint64"++ unique nonce reserved by message
 
-??? event "**DepositForBurn**(_uint64 indexed nonce, address indexed burnToken, uint256 amount, address indexed depositor, bytes32 mintRecipient, uint32 destinationDomain, bytes32 destinationTokenMessenger, bytes32 destinationCaller_) — Emitted when a `DepositForBurn` message is sent."
+    ??? interface "Emits"
 
-    === "Parameters"
+        `DepositForBurn` ++"event"++
 
-        - `nonce` *uint64* - the unique nonce reserved for this message
-        - `burnToken` *address* - the address of the token being burned on the source domain
-        - `amount` *uint256* - the amount of tokens being deposited for burning
-        - `depositor` *address* - the address from which the tokens are being transferred and burned
-        - `mintRecipient` *bytes32* - the recipient's address on the destination domain who will receive the minted tokens
-        - `destinationDomain` *uint32* - the target domain where the tokens will be minted
-        - `destinationTokenMessenger` *bytes32* - the address of the `TokenMessenger` on the destination domain
-        - `destinationCaller` *bytes32* - the authorized caller on the destination domain to trigger `receiveMessage()`. If `0x0`, any address can trigger it
+        ??? child "Event Arguments"
+        
+            `nonce` ++"uint64"++ - unique nonce reserved by message (indexed)
 
-??? event "**MintAndWithdraw**(_address indexed mintRecipient, uint256 amount, address indexed mintToken_) — Emitted when tokens are minted and withdrawn."
+            ---
 
-    === "Parameters"
+            `burnToken` ++"address"++ - address of token burnt on source domain
 
-        - `mintRecipient` *address* - the address receiving the minted tokens
-        - `amount` *uint256* - the amount of tokens that were minted
-        - `mintToken` *address* - the contract address of the minted token
+            ---
+                
+            `amount` ++"uint256"++ - deposit amount
+
+            ---
+
+            `depositor` ++"address"++ - address where deposit is transferred from
+
+            ---
+
+            `mintRecipient` ++""++ - address receiving minted tokens on destination domain as ++"bytes32"++
+
+            ---
+
+            `destinationDomain` ++"uint32"++ - destination domain
+                
+            ---
+
+            `destinationTokenMessenger` ++"bytes32"++ - address of `TokenMessenger` on destination domain as ++"bytes32"++
+            
+            ---
+                
+            `bytes32(0)` - placeholder for `destinationCaller` to allow any address to call `receiveMessage` on the destination domain
+
+- **`depositForBurnWithCaller`** - Deposits and burns tokens from sender to be minted on destination domain. This method differs from `depositForBurn` in that the mint on the destination domain can only be called by the designated `destinationCaller` address 
+
+    ??? interface "Parameters"
+
+        `amount` ++"uint256"++ - the amount of tokens to burn
+
+        ---
+
+        `destinationDomain` ++"uint32"++ - the network where the token will be minted after burn
+
+        ---
+
+        `mintRecipient` ++"bytes32"++ - address of mint recipient on destination domain
+
+        ---
+
+        `burnToken` ++"address"++ - address of contract to burn deposited tokens, on local domain
+
+        ---
+
+        `destinationCaller` ++"bytes32"++ - address of the caller on the destination domain who will trigger the mint
+
+    ??? interface "Returns"
+
+        `_nonce` ++"uint64"++ unique nonce reserved by message
+
+    ??? interface "Emits"
+
+        `_depositForBurn` ++"event"++
+
+        ??? child "Event Arguments"
+        
+            `nonce` ++"uint64"++ - unique nonce reserved by message (indexed)
+
+            ---
+
+            `burnToken` ++"address"++ - address of token burnt on source domain
+
+            ---
+                
+            `amount` ++"uint256"++ - deposit amount
+
+            ---
+
+            `depositor` ++"address"++ - address where deposit is transferred from
+
+            ---
+
+            `mintRecipient` ++"bytes32"++ - address receiving minted tokens on destination domain
+
+            ---
+
+            `destinationDomain` ++"uint32"++ - destination domain 
+                
+            ---
+
+            `destinationTokenMessenger` ++"bytes32"++ - address of `TokenMessenger` on destination domain as ++"bytes32"++
+            
+            ---
+                
+            `destinationCaller` ++"bytes32"++ - authorized caller of `receiveMessage` on destination domain
+
+
+- **`replaceDepositForBurn`** — Replaces a previous `BurnMessage` to modify the mint recipient and/or destination caller. Allows the original message's sender to update the details without requiring a new deposit
+
+    ??? interface "Parameters"
+
+        `originalMessage` ++"bytes"++ - the original burn message to be replaced
+
+        ---
+
+        `originalAttestation` ++"bytes"++ - the attestation of the original message
+
+        ---
+
+        `newDestinationCaller` ++"bytes32"++ - the new caller on the destination domain, can be the same or updated
+
+        ---
+
+        `newMintRecipient` ++"bytes32"++ - the new recipient for the minted tokens, can be the same or updated
+
+    ??? interface "Returns"
+
+        Nothing. The replacement message reuses the `_nonce` created by the original message
+
+    ??? interface "Emits"
+
+        `DepositForBurn` ++"event"++
+
+        ??? child "Event Arguments"
+
+            `nonce` ++"uint64"++ - the nonce from the original message is used
+
+            ---
+
+            `burnToken` ++"address"++ - address of token burnt on source domain
+
+            ---
+                
+            `amount` ++"uint256"++ - deposit amount
+
+            ---
+
+            `msg.sender` ++"address"++ - the `msg.sender` of the replaced message must be the same as the `msg.sender` of the original message
+
+            ---
+
+            `newMintRecipient` ++"bytes32"++ - the new mint recipient, which may be the same as the original mint recipient, or different
+
+            ---
+
+            `destinationDomain` ++"uint32"++ - the orginal message destination domain 
+                
+            ---
+
+            `recipient` ++"bytes32"++ - the recipient from the original message
+
+            `destinationTokenMessenger` ++"bytes32"++ - address of `TokenMessenger` on destination domain as ++"bytes32"++
+            
+            ---
+                
+            `newDestinationCaller` ++"bytes32"++ - the new destination caller, which may be the same as the original destination caller, a new destination caller, or an empty destination caller (`bytes32(0)`), indicating that any destination caller is valid
+
+
+
+- **`handleReceiveMessage`** - Handles an incoming message received by the local `MessageTransmitter` and takes the appropriate action. For a burn message, mints the associated token to the requested recipient on the local domain. 
+
+    ???+ note 
+
+        Though this function can only be called by the local `MessageTransmitter`, it is included here as it emits the essential event for minting tokens and withdrawing to send to the recipient
+
+    ??? interface "Parameters"
+
+        `remoteDomain` ++"uint32"++ - the domain where the message originated
+
+        ---
+
+        `sender` ++"bytes32"++ - the address of the sender of the message
+
+        ---
+
+        `messageBody` ++"bytes"++ - the bytes making up the body of the message
+
+
+    ??? interface "Returns"
+
+        `true` ++"boolean"++ - returns `true` if successful
+
+
+    ??? interface "Emits"
+
+        `MintAndWithdraw` ++"event"++ including `_localMinter` address, `remoteDomain`, `_burnToken`, and 
+
+        ??? child "Event Arguments"
+
+            `localMinter` ++"address"++ - minter responsible for minting and burning tokens on the local domain
+
+            ---
+
+            `remoteDomain` ++"uint32"++ - the domain where the message originated from
+
+            ---
+
+            `burnToken` ++"address"++ address of contract to burn deposited tokens, on local domain
+
+            ---
+
+            `mintRecipient` ++"address"++ - recipient address of minted tokens (indexed)
+
+            ---
+
+            `amount` ++"uint256"++ - amount of minted tokens
+
 
 ## MessageTransmitter Contract
 
@@ -86,63 +271,134 @@ The `MessageTransmitter` contract ensure the secure sending and receiving of mes
     --8<-- 'code/build/contract-integrations/cctp/MessageTransmitter.sol'
     ```
 
-### Methods
+### Methods and Events
 
-The permissionless messaging functions exposed by the `MessageTransmitter` contract are as follows:
+The permissionless messaging functions, and their related events, exposed by the `MessageTransmitter` contract are as follows:
 
-??? function "**receiveMessage**(_bytes calldata message, bytes calldata attestation_) — Processes and validates an incoming message and its attestation. If valid, it triggers further action based on the message body."
+- **`receiveMessage`** — Processes and validates an incoming message and its attestation. If valid, it triggers further action based on the message body
 
-    === "Parameters"
+    ??? interface "Parameters"
 
-        - `message` *bytes* - the message to be processed, including details such as sender, recipient, and message body
-        - `attestation` *bytes* - concatenated 65-byte signature(s) that attest to the validity of the `message`
+        `message` ++"bytes"++ - the message to be processed, including details such as sender, recipient, and message body
 
-??? function "**sendMessage**(_uint32 destinationDomain, bytes32 recipient, bytes calldata messageBody_) — Sends a message to a recipient on the specified destination domain. The message is broadcasted with a unique nonce."
+        --- 
 
-    === "Parameters"
+        `attestation` ++"bytes"++ - concatenated 65-byte signature(s) that attest to the validity of the `message`
 
-        - `destinationDomain` *uint32* - the target blockchain network where the message is to be sent
-        - `recipient` *bytes32* - the recipient's address on the destination domain
-        - `messageBody` *bytes* - the raw content of the message to be sent
+    ??? interface "Returns"
 
-??? function "**sendMessageWithCaller**(_uint32 destinationDomain, bytes32 recipient, bytes32 destinationCaller, bytes calldata messageBody_) — Sends a message to a recipient on the specified destination domain, with a specific caller required to trigger the message on the destination chain."
+        `true` ++"boolean"++ - returns true if successful
 
-    === "Parameters"
 
-        - `destinationDomain` *uint32* - the target blockchain network where the message is to be sent
-        - `recipient` *bytes32* - the recipient's address on the destination domain
-        - `destinationCaller` *bytes32* - the caller on the destination domain who is authorized to trigger the message
-        - `messageBody` *bytes* - the raw content of the message to be sent
+    ??? interface "Emits"
 
-??? function "**replaceMessage**(_bytes calldata originalMessage, bytes calldata originalAttestation, bytes calldata newMessageBody, bytes32 newDestinationCaller_) — Replaces an original message with a new message body and/or updates the destination caller, keeping the same nonce."
+        `MessageReceived` ++"event"++
 
-    === "Parameters"
+        ??? child "Event Arguments"
 
-        - `originalMessage` *bytes* - the original message to be replaced
-        - `originalAttestation` *bytes* - attestation verifying the original message
-        - `newMessageBody` *bytes* - the new content for the replaced message
-        - `newDestinationCaller` *bytes32* - the new caller on the destination domain, which can be the same or different from the original caller
+            `caller` ++"address"++ - caller on destination domain
 
-### Events
+            ---
 
-The critical events of the `MessageTransmitter` contract are as follows:
+            `sourceDomain` ++"uint32"++ - the source domain this message originated from
 
-??? event "**MessageSent**(_bytes message_) — Emitted when a new message is dispatched."
+            ---
 
-    === "Parameters"
+            `nonce` ++"uint64"++ - nonce unique to this message (indexed)
 
-        - `message` *bytes* - the raw bytes of the dispatched message
+            ---
 
-??? event "**MessageReceived**(_address indexed caller, uint32 sourceDomain, uint64 indexed nonce, bytes32 sender, bytes messageBody_) — Emitted when a new message is successfully received on the destination domain."
+            `sender` ++"bytes32"++ - sender of this message
 
-    === "Parameters"
+            ---
 
-        - `caller` *address* - the address (msg.sender) that called the receive function on the destination domain
-        - `sourceDomain` *uint32* - the blockchain network where the message originated
-        - `nonce` *uint64* - a unique identifier for the message, used to prevent message replay
-        - `sender` *bytes32* - the address of the sender from the source domain
-        - `messageBody` *bytes* - the body of the received message in raw bytes
+            `messageBody` ++"bytes"++ - the body of the message in bytes
 
+- **`sendMessage`** — Increments the `nonce`, assigns unique `nonce` to message, and emits `MessageSent` event to send message to the destination domain and recipient
+
+    ??? interface "Parameters"
+
+        `destinationDomain` ++"uint32"++ - the target blockchain network where the message is to be sent
+
+        ---
+
+        `recipient` ++"bytes32"++ - the recipient's address on the destination domain
+
+        ---
+
+        `messageBody` ++"bytes"++ - the raw bytes content of the message
+
+    ??? interface "Returns"
+
+        `nonce` ++"uint64"++ - nonce unique to this message
+
+    ??? interface "Emits"
+
+        `MessageSent` ++"event"++
+
+        ??? child "Event Arguments"
+
+            `message` ++"bytes"++ - raw bytes of message
+
+- **`sendMessageWithCaller`** — Increments the `nonce`, assigns unique `nonce` to message, and emits `MessageSent` event to send message to the destination domain and recipient. Requires a specific caller to trigger the message on the destination chain
+
+    ??? interface "Parameters"
+
+        `destinationDomain` ++"uint32"++ - the target blockchain network where the message is to be sent
+
+        ---
+
+        `recipient` ++"bytes32"++ - the recipient's address on the destination domain
+
+        ---
+
+        `destinationCaller` ++"bytes32"++ - caller on the destination domain
+
+        ---
+
+        `messageBody` ++"bytes"++ - the raw bytes content of the message
+
+    ??? interface "Returns"
+
+        `nonce` ++"uint64"++ - nonce unique to this message
+
+    ??? interface "Emits"
+
+        `MessageSent` ++"event"++
+
+        ??? child "Event Arguments"
+
+            `message` ++"bytes"++ - raw bytes of message
+
+- **`replaceMessage`** — Replaces an original message with a new message body and/or updates the destination caller, keeping the same nonce
+
+    ??? interface "Parameters"
+
+        `originalMessage` ++"bytes"++ - the original message to be replaced
+
+        ---
+
+        `originalAttestation` ++"bytes"++ - attestation verifying the original message
+
+        ---
+
+        `newMessageBody` ++"bytes"++ - the new content for the replaced message
+
+        ---
+
+        `newDestinationCaller` ++"bytes32"++ - the new destination caller, which may be the same as the original destination caller, a new destination caller, or an empty destination caller (`bytes32(0)`), indicating that any destination caller is valid
+
+    ??? interface "Returns"
+
+        Nothing. The replacement message reuses the `_nonce` created by the original message
+
+    ??? interface "Emits"
+
+        `MessageSent` ++"event"++
+
+        ??? child "Event Arguments"
+
+            `message` ++"bytes"++ - raw bytes of message
 
 ## TokenMinter Contract
 
@@ -157,9 +413,16 @@ The `TokenMinter` contract manages the minting and burning of tokens across diff
 
 Most of the methods of the `TokenMinter` contract can be called only by the registered `TokenMessenger`. However, there is one publicly accessible method, a public view function that allows anyone to query the local token associated with a remote domain and token.
 
-??? function "**getLocalToken**(_uint32 remoteDomain, bytes32 remoteToken_) — Returns the local token address associated with a given remote domain and token."
+- **`getLocalToken`** — Returns the local token address associated with a given remote domain and token
 
-    === "Parameters"
+    ??? interface "Parameters"
 
-        - `remoteDomain` *uint32* - the remote blockchain domain where the token resides
-        - `remoteToken` *bytes32* - the address of the token on the remote domain
+        `remoteDomain` ++"uint32"++ - the remote blockchain domain where the token resides
+
+        ---
+
+        `remoteToken` ++"bytes32"++ - the address of the token on the remote domain
+
+    ??? interface "Returns"
+
+        ++"address"++ - local token address
