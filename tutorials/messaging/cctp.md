@@ -273,6 +273,10 @@ npx ts-node automatic-transfer.ts
 
 The automatic relayer will take care of fetching the attestation and completing the transfer for you.
 
+## Resources
+
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [CCTP with Wormhole SDK GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/develop/examples/src/cctp.ts){target=\_blank}. The repository includes all the scripts and configurations needed to perform USDC cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK and Circle's CCTP.
+
 ## Conclusion
 
 In this tutorial, you’ve gained hands-on experience with Circle’s Cross-Chain Transfer Protocol (CCTP) and the Wormhole SDK. You’ve learned how to perform manual and automatic USDC transfers across multiple chains and recover partial transfers if needed.
