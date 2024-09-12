@@ -33,7 +33,7 @@ Wormhole currently supports the following platforms:
 - Aptos
 - Algorand
 
-See [Platforms](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} in the code repository to dig deeper into the information provided by the Wormhole TypeScript SDK for your platform of interest.
+See [Platforms](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} in the code repository to dig deeper into the information the Wormhole TypeScript SDK provides for your platform of interest.
 
 ### Chain Context
 
