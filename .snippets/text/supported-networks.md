@@ -82,7 +82,7 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#celestia">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#celestia">
             <strong>Celestia</strong><br>
             <img src="/images/build/start-building/supported-networks/celestia.webp" alt="Celestia" style="width:90px; height:auto;">
         </a>
@@ -96,13 +96,13 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#cosmoshub">
+        <a href="/start-building/supported-networks/cosmos/cosmos/#cosmos-hub">
             <strong>Cosmos Hub</strong><br>
             <img src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:auto;">
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#dymension">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#dymension">
             <strong>Dymension</strong><br>
             <img src="/images/build/start-building/supported-networks/dymension.webp" alt="Dymension" style="width:90px; height:auto;">
         </a>
@@ -116,7 +116,7 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#evmos">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#evmos">
             <strong>Evmos</strong><br>
             <img src="/images/build/start-building/supported-networks/evmos.webp" alt="Evmos" style="width:90px; height:auto;">
         </a>
@@ -142,7 +142,7 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#injective">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#injective">
             <strong>Injective</strong><br>
             <img src="/images/build/start-building/supported-networks/injective.webp" alt="Injective" style="width:90px; height:auto;">
         </a>
@@ -162,7 +162,7 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#kujira">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#kujira">
             <strong>Kujira</strong><br>
             <img src="/images/build/start-building/supported-networks/kujira.webp" alt="Kujira" style="width:90px; height:auto;">
         </a>
@@ -202,7 +202,7 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#neutron">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#neutron">
             <strong>Neutron</strong><br>
             <img src="/images/build/start-building/supported-networks/neutron.webp" alt="Neutron" style="width:90px; height:auto;">
         </a>
@@ -230,7 +230,7 @@
 </tr>
 <tr>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#osmosis">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#osmosis">
             <strong>Osmosis</strong><br>
             <img src="/images/build/start-building/supported-networks/osmosis.webp" alt="Osmosis" style="width:90px; height:auto;">
         </a>
@@ -250,7 +250,7 @@
 </tr>
 <tr>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#provenance">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#provenance">
             <strong>Provenance</strong><br>
             <img src="/images/build/start-building/supported-networks/provenance.webp" alt="Provenance" style="width:90px; height:auto;">
         </a>
@@ -276,13 +276,13 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#seda">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#seda">
             <strong>SEDA</strong><br>
             <img src="/images/build/start-building/supported-networks/seda.webp" alt="SEDA" style="width:90px; height:auto;">
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#sei">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#sei">
             <strong>Sei</strong><br>
             <img src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:auto;">
         </a>
@@ -310,7 +310,7 @@
 </tr>
 <tr>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#stargaze">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#stargaze">
             <strong>Stargaze</strong><br>
             <img src="/images/build/start-building/supported-networks/stargaze.webp" alt="Stargaze" style="width:90px; height:auto;">
         </a>
@@ -322,7 +322,7 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#terra">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#terra">
             <strong>Terra</strong><br>
             <img src="/images/build/start-building/supported-networks/terra.webp" alt="Terra" style="width:90px; height:auto;">
         </a>
@@ -330,7 +330,7 @@
 </tr>
 <tr>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#terra2">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#terra2">
             <strong>Terra2</strong><br>
             <img src="/images/build/start-building/supported-networks/terra2.webp" alt="Terra2" style="width:90px; height:auto;">
         </a>
@@ -342,7 +342,7 @@
         </a>
     </td>
     <td style="vertical-align: top; text-align: center;">
-        <a href="/build/start-building/supported-networks/cosmwasm/#xpla">
+        <a href="/build/start-building/supported-networks/cosmos/cosmos/#xpla">
             <strong>XPLA</strong><br>
             <img src="/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:auto;">
         </a>
