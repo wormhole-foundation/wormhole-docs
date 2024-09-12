@@ -1,21 +1,15 @@
 ---
-title: USDC Transfers with CCTP and the Wormhole Connect SDK
+title: CCTP with Wormhole SDK
 description: TODO
 ---
 
-# USDC Transfers with CCTP and the Wormhole Connect SDK
+# CCTP with Wormhole SDK
 
 ## Introduction
 
-In this guide, you'll learn how to bridge native USDC across different chains using [Circle's Cross-Chain Transfer Protocol](/learn/messaging/cctp/){target=\_blank} (CCTP) via the Wormhole Protocol. We'll explore both the underlying theory of how CCTP works and provide a hands-on tutorial for integrating it using [Wormhole’s Connect SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
+In this guide, you'll learn how to bridge native USDC across different chains using [Circle's Cross-Chain Transfer Protocol](/learn/messaging/cctp/){target=\_blank} (CCTP) via the Wormhole Protocol. We'll explore the underlying theory of CCTP and provide a hands-on tutorial for integrating it using [Wormhole’s Connect SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
 
-Wormhole builds upon Circle's CCTP to enhance cross-chain transfers, making the process simpler and more user-friendly. With Wormhole, users benefit from automated relaying of transfers, gas payments on the destination chain, and the option to drop off native gas tokens, eliminating many common pain points.
-
-### Key Features
-
- - **Automated Relaying** - Wormhole automatically relays the USDC transfer across chains, so users don't have to manually relay the transfer.
- - **Native Gas Dropoff** - Wormhole pays for the gas fees on the destination chain, so users don't have to worry about having gas on the destination chain.
- - **Support for Multiple Chains** - Wormhole provides native gas drop-offs on the destination chain, so users don't have to worry about having gas on the destination chain.
+Wormhole builds upon Circle's CCTP to enhance cross-chain transfers, making the process more straightforward and user-friendly. With Wormhole, users benefit from automated transfer relaying, gas payments on the destination chain, and the option to drop off native gas tokens, eliminating many common pain points.
 
 ### Core Concepts
 
@@ -33,7 +27,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The circleTransfer function is compatible with a variety of EVM and non-EVM chains across both TestNet and MainNet. A full list of supported chains can be found in the [CCTP GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=\_blank}.
+The `circleTransfer` function is compatible with a variety of EVM and non-EVM chains across both TestNet and MainNet. The [CCTP GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=\_blank} has a full list of supported chains.
 
 ## Project Setup
 
@@ -73,7 +67,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     !!! note
         Make sure your private key is funded with USDC and native tokens for gas on both the source and destination chains.
 
-4. **Create `helpers.ts` file** - to simplify the interaction between chains, create a `helpers.ts` file with necessary utility functions. This file handles fetching your private key, setting up signers for different chains, and managing transaction relays.
+4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a `helpers.ts` file with the necessary utility functions. This file handles fetching your private key, setting up signers for different chains, and managing transaction relays
 
     1. Create the helpers file:
 
@@ -105,17 +99,17 @@ In this section, you'll set up your project for transferring USDC across chains 
 
     Relevant imports include:
 
-    - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia and more
+    - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
     - **`solana`** - this adds support for Solana, a non-EVM chain. While we won’t be using Solana in this specific example, you can experiment with Solana transfers if you choose to
     - **`getSigner`** - utility function from the helper file. `getSigner` retrieves the signer to sign transactions
 
 ## Manual Transfers
 
-In this section, we’ll guide you through the steps of performing a manual USDC transfer across chains using the Wormhole SDK and Circle’s CCTP.
+This section’ll guide you through performing a manual USDC transfer across chains using the Wormhole SDK and Circle’s CCTP.
 
-### Set Up
+### Set-Up
 
-1. **Transfer details** - before you initiate a cross-chain transfer, you need to set up the chain context and signers for both the source and destination chains. Here’s how you can configure them:
+1. **Transfer details** - before you initiate a cross-chain transfer, you need to set up the chain context and signers for both the source and destination chains
 
     1. **Initialize the Wormhole SDK** - the wormhole function is initialized for the Testnet environment, and we specify the platforms (EVM and Solana) we want to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
 
@@ -126,66 +120,67 @@ In this section, we’ll guide you through the steps of performing a manual USDC
     !!! note
         You can replace `"Testnet"` with `"Mainnet"` if you want to perform transfers on MainNet.
 
-    2. **Set up source and destination chains** - we specify the source chain (Avalanche) and the destination chain (BaseSepolia) using the getChain method. This allows us to define where the USDC will be sent from and where it will be received.
+    2. **Set up source and destination chains** - we specify the source chain (Avalanche) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:15:16"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:14:15"
         ```
 
-    3. **Configure the signers** - the `getSigner` function retrieves the signers responsible for signing transactions on the respective chains. This ensures that transactions are properly authorized on both the source and destination chains.
+    3. **Configure the signers** - the `getSigner` function retrieves the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:19:20"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:18:19"
         ```
 
-    4. **Define the transfer amount** - the amount of USDC to transfer is specified. In this case, we're transferring 0.2 USDC, which is parsed and converted into the base units expected by the Wormhole SDK.
+    4. **Define the transfer amount** - the amount of USDC to transfer is specified. In this case, we're transferring 0.1 USDC, which is parsed and converted into the base units expected by the Wormhole SDK
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:23:23"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:22:22"
         ```
 
-    5. **Set transfer mode** - we specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself.
+    5. **Set transfer mode** - we specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:25:25"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:24:24"
         ```
 
-2. **Initiate the transfer** - to begin the manual transfer process, you first need to create the transfer object and then manually initiate the transfer on the source chain.
+2. **Initiate the transfer** - to begin the manual transfer process, you first need to create the transfer object and then manually initiate the transfer on the source chain
 
-    1. **Create the Circle transfer object** - the `wh.circleTransfer()` function creates an object with the details of the transfer, such as the amount of USDC, source, destination addresses and the mode. However, this does not initiate the transfer itself
+    1. **Create the Circle transfer object** - the `wh.circleTransfer()` function creates an object with the  transfer details, such as the amount of USDC, source, destination addresses, and mode. However, this does not initiate the transfer itself
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:28:33"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:27:32"
         ```
 
     2. **Start the transfer** - the `initiateTransfer` function sends the transaction on the source chain. It involves signing and sending the transaction using the source signer. This will return a list of transaction IDs (srcTxids) that you can use to track the transfer
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:39:40"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:38:39"
         ```
 
-3. **Fetch the Circle attestation (VAA)** - once the transfer has been initiated on the source chain, you need to fetch the VAA (Verifiable Action Approval) from Circle. The VAA serves as a cryptographic proof that the transfer has been successfully recognized by Circle's Cross-Chain Transfer Protocol (CCTP). The transfer cannot be completed on the destination chain until this attestation is fetched
+3. **Fetch the Circle attestation (VAA)** - once you initialize the transfer on the source chain, you must fetch the VAA from Circle. The VAA serves as cryptographic proof that CCTP has successfully recognized the transfer. The transfer cannot be completed on the destination chain until this attestation is fetched
 
-    1. **Set a timeout** - the process of fetching the attestation can take some time, so it’s common to set a timeout. In this example, we set the timeout to 60 seconds
+
+    1. **Set a timeout** - fetching the attestation can take some time, so setting a timeout is common. In this example, we set the timeout to 60 seconds
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:43:43"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:42:42"
         ```
 
-    2. **Fetch the attestation** - after the transfer is initiated, you can use the `fetchAttestation()` function to retrieve the VAA. This function will wait until the attestation is available or the timeout is reached
+    2. **Fetch the attestation** - after initiating the transfer, you can use the `fetchAttestation()` function to retrieve the VAA. This function will wait until the attestation is available or you reach the specified timeout
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:45:46"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:44:45"
         ```
 
-        - The `attestIds` will contain the details of the fetched attestation, which can then be used to complete the transfer on the destination chain
+        - The `attestIds` will contain the details of the fetched attestation, which Wormhole uses to complete the transfer on the destination chain
 
 4. **Complete the transfer on the destination chain** - once the VAA is fetched, the final step is to complete the transfer on the destination chain (Solana in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain
 
     1. **Complete the transfer** - after successfully fetching the VAA, use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:50:51"
+        --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:49:55"
         ```
 
         - The `dstTxids` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
@@ -207,37 +202,65 @@ npx ts-node manual-transfer.ts
 
 This will initiate the USDC transfer from the source chain (Avalanche) and complete it on the destination chain (Solana).
 
+You can monitor the status of the transaction on the [Wromhole Explorer](https://wormholescan.io/){target=\_blank}.
+
+### Complete Partial Transfer
+
+In some cases, a manual transfer might start but not finish—perhaps the user terminates their session, or there's an issue before the transfer can be completed. The Wormhole SDK allows you to reconstitute the transfer object from the transaction hash on the source chain.
+
+This feature is handy for recovering an incomplete transfer or when debugging.
+
+Here’s how you can complete a partial transfer using just the source chain and transaction hash:
+
+```typescript
+--8<-- "code/tutorials/messaging/cctp/snippet-4.ts:23:33"
+```
+
+You will need to provide the below requirements to complete the partial transfer:
+
+- **Transaction ID (txid)** - the transaction hash from the source chain where the transfer was initiated
+- **Signer for the destination chain (destination.signer)** - the wallet or private key that can authorize and complete the transfer on the destination chain. This signer is the same as the `destination.signer` defined in the manual transfer setup
+
+This allows you to resume the transfer process by rebuilding the transfer object and completing it on the destination chain. It's especially convenient when debugging or handling interrupted transfers.
+
+You can find the full code for the manual USDC transfer script below:
+
+???- tip "`partial-transfer.ts`"
+    ```typescript
+    --8<-- "code/tutorials/messaging/cctp/snippet-4.ts"
+    ```
+
 ## Automatic Transfers
 
 The Automatic Transfer process simplifies the steps by automating the attestation fetching and transfer completion. All you need to do is initiate the transfer.
 
-### Set Up
+### Set-Up
 
-1. **Configure the transfer** - the setup for automatic transfers is similar to manual transfers, with the key difference being the `automatic` flag set to `true`. This tells Wormhole to handle the attestation and finalization steps for you
+1. **Configure the transfer** - the setup for automatic transfers is similar to manual transfers, with the key difference being that the `automatic` flag is `true`. This indicates Wormhole to handle the attestation and finalization steps for you
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/snippet-3.ts:25:25"
     ```
 
-2. **Initiate the transfer** - the process of initiating the transfer is the same as for manual transfers. You create the transfer object and then start the transfer on the source chain
+2. **Initiate the transfer** - the transfer process is the same as that for manual transfers. You create the transfer object and then start the transfer on the source chain
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/snippet-3.ts:28:33"
     ```
 
-With automatic transfers, you don't need to fetch the attestation or complete the transfer manually. Wormhole will handle these steps for you
+    With automatic transfers, you don't need to fetch the attestation or complete the transfer manually. Wormhole will handle these steps for you
+
+3. **Log the transfer details** - after initiating the transfer, you can log the transaction IDs for both the source and destination chains. This will help you track the progress of the transfer
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/cctp/snippet-3.ts:39:43"
+    ```
 
 You can find the full code for the automatic USDC transfer script below:
 
 ???- tip "`automatic-transfer.ts`"
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/snippet-3.ts"
-    ```
-
-3. **Log the transfer details** - after initiating the transfer, you can log the transaction IDs for both the source and destination chains. This will help you track the progress of the transfer
-
-    ```typescript
-    --8<-- "code/tutorials/messaging/cctp/snippet-3.ts:39:43"
     ```
 
 ### Run Automatic Transfer
@@ -249,3 +272,13 @@ npx ts-node automatic-transfer.ts
 ```
 
 The automatic relayer will take care of fetching the attestation and completing the transfer for you.
+
+## Conclusion
+
+In this tutorial, you’ve gained hands-on experience with Circle’s Cross-Chain Transfer Protocol (CCTP) and the Wormhole SDK. You’ve learned how to perform manual and automatic USDC transfers across multiple chains and recover partial transfers if needed.
+
+By following these steps, you've learned how to:
+
+- Set up cross-chain transfers for native USDC between supported chains
+- Handle both manual and automatic relaying of transactions
+- Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
