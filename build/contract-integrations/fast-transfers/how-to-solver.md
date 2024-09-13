@@ -21,7 +21,7 @@ To initiate an auction with this message, complete the steps in the following se
 
 ### Send Transactions to Verify Signatures and Post VAA
 
-The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an I owe you (IOU) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [relayer engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA. 
+The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an I owe you (IOU) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [custom relayer](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA. 
 
 To read VAAs on Solana, someone must verify the signatures and post the VAA to a Solana account using the Wormhole Core Bridge. This is done through the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}.
 

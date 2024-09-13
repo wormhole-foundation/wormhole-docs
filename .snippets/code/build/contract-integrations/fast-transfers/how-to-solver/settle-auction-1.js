@@ -1,7 +1,8 @@
-import * as wormholeSdk from "@certusone/wormhole-sdk";
-import { Keypair } from "@solana/web3.js";
+import * as wormholeSdk from '@certusone/wormhole-sdk';
+import { Keypair } from '@solana/web3.js';
 
-const payer = Keypair.fromSecretKey(...)
+// This is only for example purposes, it is not recommended to store your secret key in a js file
+const payer = Keypair.fromSecretKey('INSERT_PRIVATE_KEY')
 
 await wormholeSdk.postVaaSolanaWithRetry(
     solanaConnection, // Connection in @solana/web3.js

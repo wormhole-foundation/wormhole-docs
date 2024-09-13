@@ -1,12 +1,13 @@
-import { Connection, Keypair } from "@solana/web3.js";
-import * as wormholeSdk from "@certusone/wormhole-sdk";
+import { Connection, Keypair } from '@solana/web3.js';
+import * as wormholeSdk from '@certusone/wormhole-sdk';
 
 const YOUR_RPC_URL = 'INSERT_RPC_URL';
 const MATCHING_ENGINE_PROGRAM_ID = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
 const USDC_MINT_ADDRESS = 'INSERT_USDC_MINT_ADDRESS';
 
 const connection = new Connection(YOUR_RPC_URL, "confirmed");
-const payer = Keypair.fromSecretKey(...); // Replace [...] with your secret key numbers
+// This is only for example purposes, it is not recommended to store your secret key in a js file
+const payer = Keypair.fromSecretKey('INSERT_PRIVATE_KEY'); 
 
 
 const matchingEngine = new MatchingEngineProgram(
