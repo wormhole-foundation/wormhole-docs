@@ -1,11 +1,9 @@
 import { Connection, Keypair } from '@solana/web3.js';
 import * as wormholeSdk from '@certusone/wormhole-sdk';
 
-const rpcUrl = 'INSERT_RPC_URL';
 const matchingEngineProgramId = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
 const usdcMintAddress = 'INSERT_USDC_MINT_ADDRESS';
-
-const connection = new Connection(rpcUrl, "confirmed");
+const connection = new Connection('YOUR_RPC_URL', "confirmed");
 // This is only for example purposes, it is not recommended to store your secret key in a js file
 const payer = Keypair.fromSecretKey('INSERT_PRIVATE_KEY');
 
@@ -18,6 +16,7 @@ const matchingEngine = new MatchingEngineProgram(
 
 const auction = yourMethodToFindAuctionPubkey(...);
 const feeMicroLamports = yourMethodToDeterminePriorityFee(...);
+
 const tx = await matchingEngine.improveOfferTx(
   {
 	  payer, // Transaction payer
@@ -30,5 +29,17 @@ const tx = await matchingEngine.improveOfferTx(
     addressLookupTableAccounts, // optional AddressLookupTableAccount[];
   }
 );
+
+const tx = await matchingEngine.executeFastOrderTx(
+    {
+        payer, // Transaction payer
+        auction, // Auction account public key
+    },
+    {
+      feeMicroLamports, // Priority fee for the transaction
+      nonceAccount, // optional PublicKey (if durable nonce is used)
+      addressLookupTableAccounts, // optional AddressLookupTableAccount[];
+    }
+  );
 
 const txSig = await connection.sendTransaction(tx);

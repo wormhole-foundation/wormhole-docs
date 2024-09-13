@@ -12,3 +12,15 @@ await wormholeSdk.postVaaSolanaWithRetry(
     payer.publicKey,
     fastVaaBytes // Buffer type JL
 );
+
+// above Send Transactions to Verify Signatures and Post VAA
+// below Send Transactions to Verify Signatures and Post VAA
+
+await wormholeSdk.postVaaSolanaWithRetry(
+    solanaConnection, // Connection in @solana/web3.js
+    new wormholeSdk.solana.NodeWallet(payer).signTransaction,
+    // worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth on mainnet
+    CORE_BRIDGE_PROGRAM_ID, 
+    payer.publicKey,
+    finalizedVaaBytes // Buffer type
+);
