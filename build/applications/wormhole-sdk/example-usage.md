@@ -11,7 +11,7 @@ Getting started is simple. First, import Wormhole:
 --8<-- 'code/build/applications/wormhole-sdk/get-vaa.ts::1'
 ```
 
-Then, import each of the ecosystem [platforms](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/sdk/src/platforms){target=/_blank} that you wish to support:
+Then, import each of the ecosystem [platforms](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/sdk/src/platforms/){target=/_blank} that you wish to support:
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/get-vaa.ts:4:9'
@@ -52,9 +52,35 @@ Optionally, you can override the default configuration with a partial `WormholeC
     --8<-- 'code/build/applications/wormhole-sdk/config.ts'
     ```
 
+## Adresses
+
+<!--TODO: copy for this example-->
+
+```ts
+--8<-- 'code/build/applications/wormhole-sdk/addresses.ts'
+```
+
+## Signers
+
+```ts
+--8<-- 'code/build/applications/wormhole-sdk/signers.ts'
+```
+
 ## Transfers
 
 While using the `ChainContext` and `Protocol` clients directly is possible, the SDK provides some helpful abstractions for doing things like transferring tokens.
+
+### Tokens
+
+The `TokenId` interface provides a unique identifier for a token on a given chain. This interface accepts the chain name and token contract address to generate this unique identifier. In the case of a blockchain's native currency (like ETH for Ethereum), you pass the keyword `native` in place of a token contract address
+
+The following example demonstrates usage of `TokenId`, including syntax for both passing a token contract address and using the `native` keyword. Finally, the snippet also demonstrates how to convert a `TokenId` back into a regular address format when needed.
+
+```ts
+--8<-- 'code/build/applications/wormhole-sdk/tokens.ts'
+```
+
+You can find the directory of token constants used by the SDK in the [`tokens`](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/tokens){target=/_blank} folder of the `base` subpackage.
 
 The `WormholeTransfer` interface provides a convenient abstraction to encapsulate the steps involved in a cross-chain transfer.
 
@@ -85,13 +111,13 @@ Internally, this uses the TokenBridge protocol client to transfer tokens. Like o
 
 ### Native USDC Transfers
 
-You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. Please note that if the transfer is set to `Automatic` mode, a fee for performing the relay will be included in the quote. This fee is deducted from the total amount requested to be sent. For example, if the user wishes to receive `1.0` on the destination, the amount sent should be adjusted to `1.0` plus the relay fee. The same principle applies to native gas drop offs.
+You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol/){target=\_blank}. Please note that if the transfer is set to `Automatic` mode, a fee for performing the relay will be included in the quote. This fee is deducted from the total amount requested to be sent. For example, if the user wishes to receive `1.0` on the destination, the amount sent should be adjusted to `1.0` plus the relay fee. The same principle applies to native gas drop offs.
 
 In the following example, the `wh.circleTransfer` function is called with several parameters to set up the transfer. It takes the amount to be transferred (in the token's base units), the sender's chain and address, and the receiver's chain and address. The function also allows specifying whether the transfer should be automatic, meaning it will be completed without further user intervention.
 
 An optional payload can be included with the transfer, though in this case it's set to undefined. Finally, if the transfer is automatic, you can request that native gas (the blockchain's native currency used for transaction fees) be sent to the receiver along with the transferred tokens.
 
-When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will [vary by network](https://developers.circle.com/stablecoins/docs/required-block-confirmations#mainnet){target=\_blank}.
+When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will [vary by network](https://developers.circle.com/stablecoins/docs/required-block-confirmations#mainnet/){target=\_blank}.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/cctp.ts:69:112'
@@ -180,7 +206,35 @@ Finally, assuming the quote looks good, the route can initiate the request with 
     --8<-- 'code/build/applications/wormhole-sdk/router.ts'
     ```
 
-See the `router.ts` example in the [examples directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/examples){target=\_blank} for a full working example.
+See the `router.ts` example in the [examples directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/examples/){target=\_blank} for a full working example.
+
+## Protocols
+
+### Wormhole Core
+
+The following example demonstrates sending and verifying a message using the Wormhole Core protocol on Solana.
+
+First, initialize a Wormhole instance for the TestNet environment, specifically for the Solana chain. Then obtain a signer and its associated address, which will be used to sign transactions.
+Next, get a reference to the core messaging bridge, which is the main interface for interacting with Wormhole's cross-chain messaging capabilities.
+The code then prepares a message for publication. This message includes:
+
+- The sender's address
+- The message payload (in this case, the encoded string `lol`)
+- A nonce (set to `0` here, but can be any user-defined value to uniquely identify the message)
+- A consistency level (set to `0`, which determines the finality requirements for the message)
+
+After preparing the message, the next steps are to generate, sign, and send the transaction or transactions required to publish the message on the Solana blockchain. Once the transaction is confirmed, the Wormhole message ID is extracted from the transaction logs. This ID is crucial for tracking the message across chains.
+
+The code then waits for the Wormhole network to process and sign the message, turning it into a Verified Action Approval (VAA). This VAA is retrieved in a `Uint8Array` format, with a timeout of 60 seconds.
+
+Lastly, the code will demonstrate how to verify the message on the receiving end. A verification transaction is prepared using the original sender's address and the VAA, and finally this transaction is signed and sent.
+
+??? code "View the complete script"
+    ```ts
+    --8<-- 'code/build/applications/wormhole-sdk/example-core-bridge.ts'
+    ```
+
+The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
 
 ## See Also
 
