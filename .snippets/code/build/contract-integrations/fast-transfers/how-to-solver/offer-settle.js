@@ -6,7 +6,8 @@ const MATCHING_ENGINE_PROGRAM_ID = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
 const USDC_MINT_ADDRESS = 'INSERT_USDC_MINT_ADDRESS';
 
 const connection = new Connection(YOUR_RPC_URL, "confirmed");
-const feeMicroLamports = yourMethodToDeterminePriorityFee(...);
+// You will need to create your own logic for the following method
+const feeMicroLamports =  INSERT_METHOD_TO_FIND_AUCTION; 
 // This is only for example purposes, it is not recommended to store your secret key in a js file
 const payer = Keypair.fromSecretKey('INSERT_PRIVATE_KEY'); 
 
@@ -30,8 +31,8 @@ const tx = await matchingEngine.placeInitialOfferTx(
     }
 );
 
-// above Send Transaction to Place Initial Offer
-// below Send Transaction to Settle Complete Auction
+// above snippet Send Transaction to Place Initial Offer section
+// below snippet Send Transaction to Settle Complete Auction section
 
 const tx = await matchingEngine.settleAuctionTx(
     connection,

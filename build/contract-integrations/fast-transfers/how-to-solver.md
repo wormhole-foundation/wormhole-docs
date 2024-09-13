@@ -38,7 +38,7 @@ To read VAAs on Solana, someone must verify the signatures and post the VAA to a
 After the VAA is posted, the next step is to place an initial offer in the auction. This involves setting the offer price and priority fees.
 
 ```js
---8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js::32'
+--8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js::33'
 --8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js:50'
 ```
 
@@ -77,8 +77,8 @@ Once the auction account is found, the relayer can submit an improved offer.
 To complete the auction, the relayer must execute the fast order before the grace period ends. This step releases the funds to the user on the target chain. To execute the fast order, the relayer must interact with the Matching Engine on Solana, using the auction account derived from the fast VAA. 
 
 ```js
---8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/auction.js::18'
---8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/auction.js:32:45'
+--8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/auction.js::20'
+--8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/auction.js:34'
 ```
 
 - `executeFastOrderTx` - function that executes the fast order, which releases the intended funds to the user on the target chain, finalizing the auction
@@ -95,7 +95,7 @@ Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core B
 
 ```js
 --8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/postVaa.js::6'
---8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/postVaa.js:19:26'
+--8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/postVaa.js:19'
 ```
 
 - `postVaaSolanaWithRetry` - posts the finalized VAA to the Solana blockchain by verifying the signatures and associating the VAA with a Solana account
@@ -107,8 +107,8 @@ Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core B
 After posting the finalized VAA, the final step is to settle the auction on Solana. This confirms the auction and ensures the winning solver is paid out accordingly. The following code sends a transaction to the Matching Engine to settle the auction:
 
 ```js
---8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js::19'
---8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js:36'
+--8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js::20'
+--8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js:37'
 ```
 
 - `settleAuctionTx` - settles the auction by confirming the transfer using both the fast VAA and the finalized VAA

@@ -3,7 +3,7 @@ import * as wormholeSdk from '@certusone/wormhole-sdk';
 
 const matchingEngineProgramId = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
 const usdcMintAddress = 'INSERT_USDC_MINT_ADDRESS';
-const connection = new Connection('YOUR_RPC_URL', "confirmed");
+const connection = new Connection('YOUR_RPC_URL', 'confirmed');
 // This is only for example purposes, it is not recommended to store your secret key in a js file
 const payer = Keypair.fromSecretKey('INSERT_PRIVATE_KEY');
 
@@ -14,8 +14,9 @@ const matchingEngine = new MatchingEngineProgram(
   usdcMintAddress 
 );
 
-const auction = yourMethodToFindAuctionPubkey(...);
-const feeMicroLamports = yourMethodToDeterminePriorityFee(...);
+// You will need to create your own logic for the following methods
+const auction = INSERT_METHOD_TO_FIND_AUCTION;
+const feeMicroLamports = INSERT_METHOD_TO_FIND_AUCTION;
 
 const tx = await matchingEngine.improveOfferTx(
   {
@@ -31,15 +32,15 @@ const tx = await matchingEngine.improveOfferTx(
 );
 
 const tx = await matchingEngine.executeFastOrderTx(
-    {
-        payer, // Transaction payer
-        auction, // Auction account public key
-    },
-    {
-      feeMicroLamports, // Priority fee for the transaction
-      nonceAccount, // optional PublicKey (if durable nonce is used)
-      addressLookupTableAccounts, // optional AddressLookupTableAccount[];
-    }
-  );
+  {
+    payer, // Transaction payer
+    auction, // Auction account public key
+  },
+  {
+    feeMicroLamports, // Priority fee for the transaction
+    nonceAccount, // optional PublicKey (if durable nonce is used)
+    addressLookupTableAccounts, // optional AddressLookupTableAccount[];
+  }
+);
 
 const txSig = await connection.sendTransaction(tx);

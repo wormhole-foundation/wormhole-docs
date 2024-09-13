@@ -13,8 +13,8 @@ await wormholeSdk.postVaaSolanaWithRetry(
     fastVaaBytes // Buffer type JL
 );
 
-// above Send Transactions to Verify Signatures and Post VAA
-// below Send Transactions to Verify Signatures and Post VAA
+// above snippet Starting an Auction > Send Transactions to Verify Signatures and Post VAA section
+// below snippet Settle Auction with Finalized VAA > Send Transactions to Verify Signatures and Post VAA section
 
 await wormholeSdk.postVaaSolanaWithRetry(
     solanaConnection, // Connection in @solana/web3.js
