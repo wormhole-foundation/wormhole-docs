@@ -4,4 +4,3 @@ nav:
  - 'Chain IDs' : 'chain-ids.md'
  - 'Contract Addresses' : 'contract-addresses.md'
  - 'Consistency Levels': 'consistency-levels.md'
- - 'Mainnet Contract Addresses': 'ft-mainnet-addresses.md'

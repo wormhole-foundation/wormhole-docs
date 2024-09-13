@@ -113,4 +113,4 @@ After posting the finalized VAA, the final step is to settle the auction on Sola
 
 ## MainNet Contract Addresses 
 
-For MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager, refer to the [Mainnet Contract Addresses page.](/build/reference/ft-mainnet-addresses/){target=\_blank}
+For MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager, refer to the [Contract Addresses page.](/build/reference/contract-addresses/#fast-transfers){target=\_blank}
