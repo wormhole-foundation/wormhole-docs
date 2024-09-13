@@ -19,6 +19,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with the Wormhole relayer](/build/contract-integrations/wormhole-relayers/)
 
+-   :octicons-arrow-switch-16:{ .lg .middle } **Core Contracts**
+
+    ---
+
+    Discover how to develop or adapt your contracts to interact directly with Wormhole's Core Contracts for sending and receiving cross-chain messages.
+
+    [:octicons-arrow-right-16: Get started with Core Contracts](/build/contract-integrations/core-contracts/)
+
 -   :octicons-arrow-switch-16:{ .lg .middle } **Gateway**
 
     ---
