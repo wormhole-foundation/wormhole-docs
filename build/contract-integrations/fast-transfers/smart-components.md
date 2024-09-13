@@ -5,7 +5,7 @@ description: Learn about the Token Router and Matching Engine smart contracts th
 
 # Smart Contract Components
 
-Transferring USDC between different blockchains can be slow, costly, and complex, especially when moving between chains that do not support CCTP. Managing liquidity and ensuring compatibility across networks is a significant challenge.
+Transferring USDC between different blockchains can be slow, costly, and complex, especially when moving between chains that do not support [Circle's Cross-Chain Transfer Protocol (CCTP)](/learn/messaging/cctp/){target=\_blank}. Managing liquidity and ensuring compatibility across networks is a significant challenge.
 
 The Token Router and Matching Engine smart contracts solve this by enabling fast and efficient cross-chain transfers. The Token Router determines the type of USDC required on the destination chain, while the Matching Engine handles liquidity management and fast transfer auctions, ensuring low fees and quick delivery. They provide seamless token transfers, even between CCTP-enabled and non-CCTP chains.
 
@@ -15,11 +15,11 @@ This page explains the key components and processes behind the Token Router and 
 
 The Token Router smart contract is the entry point for sending USDC and other supported tokens across different blockchain networks. It allows users to transfer tokens from one blockchain to another, handling all interactions with the [Matching Engine](#){target=\_blank} and determining the appropriate routing method depending on whether the destination chain is CCTP-enabled or not.
 
-The Token Router provides two main order types for token transfers: Place Market Order and Place Fast Market Order.
+The Token Router provides two main order types for token transfers: place market order and place fast market order.
 
 ### Place Market Order
 
-The `placeMarketOrder` function allows users to send USDC (with an optional message payload) to any CCTP-enabled blockchain network registered with the TokenRouter. This function is designed to future-proof the contract by including parameters that, while unused now, can be leveraged in future versions to improve functionality.
+The `placeMarketOrder` function allows users to send USDC (with an optional message payload) to any CCTP-enabled blockchain network registered with the Token Router. This function is designed to future-proof the contract by including parameters that, while unused now, can be leveraged in future versions to improve functionality.
 
 ```sol
 --8<-- 'code/build/fast-transfers/smart-components/market-order.sol'
