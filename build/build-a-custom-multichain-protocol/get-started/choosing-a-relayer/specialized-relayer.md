@@ -120,7 +120,7 @@ On EVM chains, the bytes for the VAA can be passed directly as an argument to an
 
 <!-- See the [Specialized Relayer Tutorial](#) for a detailed guide. -->
 
-## Example: Building a Custom Relayer
+## Reference
 
 Here's a simple example of creating a specialized relayer for a custom application. This example assumes you are familiar with the basics of setting up a Wormhole environment.
 
