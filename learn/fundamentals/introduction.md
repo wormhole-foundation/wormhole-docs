@@ -90,9 +90,3 @@ More demos are available in the [demos page](#){target=\_blank}. <!-- demos page
 Wormhole supports a growing number of blockchains.
 
 <!-- List of Blockchains here -->
-
-## Enhancements for Developer Experience
-
-- **Glossary and definitions**: Add a glossary of key terms, such as “guardian,” “set,” and “relayers,” with detailed explanations to help new developers quickly understand essential concepts.
-- **Visual aids**: Include more diagrams and flowcharts to illustrate the architecture and data flow within the Wormhole protocol.
-- **Links to additional resources**: Provide more links to related resources, such as detailed architecture documents and relevant GitHub repositories, directly within the introductory content.
