@@ -35,7 +35,7 @@ To send a message, regardless of the environment or chain, the Core Contract is 
     ```
 
     More details are available in the [Hello World example](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/solana/programs/01_hello_world/src/lib.rs){target=\_blank}.
-    Once the message is emitted from the Core Contract, the [Guardian Network](/learn/infrastructure/guardians/) will observe the message and sign the digest of an Attestation [VAA](/learn/infrastructure/vaas/). This will be discussed in more depth in the [Off-Chain](#off-chain) section below.
+Once the message is emitted from the Core Contract, the [Guardian Network](/learn/infrastructure/guardians/) will observe the message and sign the digest of an Attestation [VAA](/learn/infrastructure/vaas/). This will be discussed in more depth in the [Off-Chain](#off-chain) section below.
 
 VAAs are [multicast](/learn/messaging/core-contracts/#multicast) by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 
