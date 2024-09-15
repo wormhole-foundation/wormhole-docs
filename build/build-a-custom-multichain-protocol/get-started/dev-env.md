@@ -50,9 +50,3 @@ When doing integration testing on TestNets, remember that a single Guardian node
 ### MainNet
 
 The MainNet contract addresses are available on the page for each [environment](build/start-building/supported-networks/). The MainNet Guardian RPC configuration is available on the [SDK page](#).
-
-## Enhancements for Developer Experience
-
-- **Detailed setup instructions**: Expand the initial setup instructions to include more comprehensive details on installing and configuring the development environment, especially for newcomers.
-- **Executable code examples**: Integrate interactive code snippets that developers can run within the documentation to better understand the setup process.
-- **Troubleshooting guide**: Include a section on common issues faced during the setup of local validators, particularly using Tilt, and how to resolve them.
