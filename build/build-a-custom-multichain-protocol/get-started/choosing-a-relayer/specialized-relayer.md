@@ -19,25 +19,6 @@ Before diving into implementation, it's crucial to understand the core component
 
 It's important to understand some [on-chain components](#) before sending and receiving messages between chains.
 
-#### Example Real-World Example: Cross-Chain Asset Transfers
-
-Let's consider a real-world scenario where you set up a specialized relayer for asset transfers between Ethereum and Solana.
-
-1. **Setting Up the Emitter**:
-   - Define the emitter address, which is the contract on the source chain (Ethereum) responsible for emitting the message.
-
-2. **Listening for VAAs**:
-   - Implement a Spy process that listens for VAAs from the Guardian Network. The Spy will monitor for specific `chainID` and `emitter` values.
-
-3. **Fetching and Relaying the VAA**:
-   - Once the VAA is detected, use the `getSignedVAAWithRetry` function to fetch it. This VAA is then relayed to the target chain (Solana) where it is processed.
-
-4. **Performing Off-Chain Computation**:
-   - If necessary, perform any off-chain computation required before the message is relayed to the target contract. This might include gas optimization calculations or conditional logic for message delivery.
-
-5. **Deploy and Test**:
-   - Deploy your specialized relayer and test it with a mock transaction to ensure it functions as expected.
-
 ### Sending a Message
 
 To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/learn/glossary/#emitter). This emitter may be your contract or an existing application such as the [Token Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003\_token\_bridge.md){target=\_blank}, or [NFT Bridge](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0006\_nft\_bridge.md){target=\_blank}.
