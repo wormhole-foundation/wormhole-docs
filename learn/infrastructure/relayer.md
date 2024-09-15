@@ -87,31 +87,6 @@ There are two main methods of setting up a specialized relayer:
 - **Spy relaying** - involves listening directly to the Guardian Network via a Spy
 - **REST relaying** - provides a REST endpoint to accept a VAA that should be relayed
 
-**Detailed Setup Process**
-
-To assist developers in setting up specialized relayers, a more detailed walkthrough is provided:
-
-1. **Install Dependencies**:
-   Use `npm i` to install necessary dependencies.
-   
-   **Troubleshooting Tip**: If you encounter an error like `npm error code 127`, ensure your Node.js and npm versions are up to date and try running the command with administrative privileges.
-
-2. **Setup the Basic Infrastructure**:
-   You can start with the plugin relayer available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}.
-
-3. **Choose a Relaying Method**:
-   - **Spy relaying** - involves listening directly to the Guardian Network via a Spy.
-   - **REST relaying** - provides a REST endpoint to accept a VAA that should be relayed.
-
-4. **Real-World Example**:
-   Let's walk through setting up a Specialized Relayer for a cross-chain asset transfer between Ethereum and Solana:
-
-   - **Step 1**: Define the parameters of your relayer, such as the emitter address, sequence ID, and chain ID.
-   - **Step 2**: Implement off-chain computation logic, if necessary, to optimize gas fees.
-   - **Step 3**: Deploy your relayer and test it with a sample transaction.
-
-   This setup ensures that your relayer is both functional and optimized for your specific use case.
-
 **Considerations**
 
 Despite their name, specialized relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
