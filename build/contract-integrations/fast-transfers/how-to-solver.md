@@ -7,7 +7,7 @@ description: Explore how solvers engage in Fast Transfers auctions, from initiat
 
 ## Overview
 
-In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers ensure efficient cross-chain transfers through a competitive auction process on the Matching Engine. The auction consists of four key steps: <!-- link to matching engine -->
+In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers ensure efficient cross-chain transfers through a competitive auction process on the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank}. The auction consists of four key steps: 
 
 1. **Starting an auction** - users initiate a transfer, and solvers begin bidding to fulfill it by offering the best rates
 2. **Participating in an auction** - solvers compete in a reverse Dutch auction to provide the most cost-effective solution
@@ -15,7 +15,7 @@ In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers e
 4. **Settling an auction** - once the transfer is finalized, the solver retrieves their funds and earns the fee for the completed transaction
 
 ## Starting an Auction
-When users interact with Token Routers to transfer assets faster than finality to another chain, they place an order that is processed by the Matching Engine. <!-- link to token routers -->
+When users interact with [Token Routers](/build/contract-integrations/fast-transfers/smart-components/#token-router-contracts){target=\_blank} to transfer assets faster than finality to another chain, they place an order that is processed by the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank}. 
 
 To initiate an auction with this message, complete the steps in the following sections on Solana.
 
@@ -49,7 +49,7 @@ After the VAA is posted, the next step is to place an initial offer in the aucti
 
 ## Participating in an Auction
 
-To participate in an already initialized auction, a relayer must place an offer at a price better than the current auction price. The auction data is stored in an account created by the Matching Engine, and the fast VAA hash determines this auction account address.  
+To participate in an already initialized auction, a relayer must place an offer at a price better than the current auction price. The auction data is stored in an account created by the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank}, and the fast VAA hash determines this auction account address.  
 
 The auction account pubkey can be determined by either:
 
@@ -74,7 +74,7 @@ Once the auction account is found, the relayer can submit an improved offer.
 
 ## Execute Fast Order to Complete Auction
 
-To complete the auction, the relayer must execute the fast order before the grace period ends. This step releases the funds to the user on the target chain. To execute the fast order, the relayer must interact with the Matching Engine on Solana, using the auction account derived from the fast VAA. 
+To complete the auction, the relayer must execute the fast order before the grace period ends. This step releases the funds to the user on the target chain. To execute the fast order, the relayer must interact with the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} on Solana, using the auction account derived from the fast VAA. 
 
 ```js
 --8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/auction.js::20'
@@ -104,7 +104,7 @@ Anyone can post the VAAs on Solana to read and verify VAAs using Wormhole Core B
 
 ### Send Transaction to Settle Complete Auction
 
-After posting the finalized VAA, the final step is to settle the auction on Solana. This confirms the auction and ensures the winning solver is paid out accordingly. The following code sends a transaction to the Matching Engine to settle the auction:
+After posting the finalized VAA, the final step is to settle the auction on Solana. This confirms the auction and ensures the winning solver is paid out accordingly. The following code sends a transaction to the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} to settle the auction:
 
 ```js
 --8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/offer-settle.js::20'
