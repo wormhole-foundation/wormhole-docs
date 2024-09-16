@@ -11,7 +11,7 @@ The Token Router and Matching Engine smart contracts solve this by enabling fast
 
 This page explains the key components and processes behind the Token Router and Matching Engine smart contracts and how they facilitate efficient Fast Transfers across blockchain networks.
 
-## Token Router Contracts 
+## Token Router Contracts
 
 The Token Router smart contract is the entry point for sending USDC and other supported tokens across different blockchain networks. It allows users to transfer tokens from one blockchain to another, handling all interactions with the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} and determining the appropriate routing method depending on whether the destination chain is CCTP-enabled or not.
 
@@ -63,11 +63,17 @@ The `placeMarketOrder` function allows users to send USDC (with an optional mess
 
     ---
 
-The `minAmountOut` and `refundAddress` parameters are currently unused but are included for future compatibility. The contract is designed to handle future upgrades that could support non-CCTP-enabled chains by swapping CCTP USDC for a wrapped alternative through the MatchingEngine.
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+     The sequence number of the `Fill` Wormhole message.
+
+The `minAmountOut` and `refundAddress` parameters are currently unused but are included for future compatibility. The contract is designed to handle future upgrades that could support non-CCTP-enabled chains by swapping CCTP USDC for a wrapped alternative through the Matching Engine.
 
 ### Place Fast Market Order
 
-The `placeFastMarketOrder` function allows users to initiate a faster-than-finality USDC transfer by specifying a maxFee and a deadline. This type of order does not wait for finality, enabling faster delivery through market participants who compete for the lowest fee in an auction on the MatchingEngine.
+The `placeFastMarketOrder` function allows users to initiate a faster-than-finality USDC transfer by specifying a maxFee and a deadline. This type of order does not wait for finality, enabling faster delivery through market participants who compete for the lowest fee in an auction on the Matching Engine.
 
 ```sol
 --8<-- 'code/build/contract-integrations/fast-transfers/smart-components/fast-order.sol'
@@ -111,6 +117,18 @@ The `placeFastMarketOrder` function allows users to initiate a faster-than-final
 
     ---
 
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+     The sequence number of the `SlowOrderResponse` Wormhole message.
+
+    ---
+
+    `fastSequence` ++"uint64"++
+
+    The sequence number of the `FastMarketOrder` Wormhole message.
+
 The `placeFastMarketOrder` function allows market participants to engage in a fee-based auction, ensuring the user's transfer is completed as fast as possible based on available liquidity.
 
 ### USDC Routing and Canonical USDC
@@ -120,13 +138,13 @@ The type of USDC received on the destination chain depends on whether the chain 
 - **CCTP-enabled chains** - the user receives native USDC
 - **Non-CCTP chains** - the user receives ethUSDC (Ethereum-based USDC)
 
-If the source and destination chains use different types of USDC, the TokenRouter interacts with the MatchingEngine to facilitate a token swap to ensure the correct form of USDC is delivered. If both chains use the same type of USDC, the transfer occurs directly, bypassing the MatchingEngine.
+If the source and destination chains use different types of USDC, the Token Router interacts with the Matching Engine to facilitate a token swap to ensure the correct form of USDC is delivered. If both chains use the same type of USDC, the transfer occurs directly, bypassing the Matching Engine.
 
 In cases where a swap is required, the `minAmountOut` parameter ensures that the user receives a minimum amount of USDC, and any excess USDC is refunded to the specified `refundAddress`.
 
 ### Additional Features
 
-The TokenRouter contract is designed to handle future upgrades and different blockchain configurations. It supports cross-chain USDC transfers by managing liquidity and routing logic and ensuring that the right type of USDC is delivered based on the destination chain's compatibility.
+The Token Router contract is designed to handle future upgrades and different blockchain configurations. It supports cross-chain USDC transfers by managing liquidity and routing logic and ensuring that the right type of USDC is delivered based on the destination chain's compatibility.
 
 For more detailed implementation, you can explore the Matching Engine smart contract in the [Wormhole Foundation GitHub repository](https://github.com/wormhole-foundation/example-liquidity-layer/blob/main/evm/src/TokenRouter/TokenRouter.sol){target=\_blank}.
 
@@ -145,26 +163,26 @@ Some of the key functions and mechanisms within the Matching Engine smart contra
 
 - **Initialization** - the Matching Engine is initialized with key addresses and configurations (e.g., `ownerAssistant`, `feeRecipient`) to ensure proper contract setup. The function `_parseInitData` decodes initialization data and verifies that the addresses are not zero addresses
 
-```sol
-function _parseInitData(bytes memory initData)
-    internal
-    pure
-    returns (address ownerAssistant, address feeRecipient)
-{
-    uint256 offset = 0;
-    (ownerAssistant, offset) = initData.asAddressUnchecked(offset);
-    (feeRecipient, offset) = initData.asAddressUnchecked(offset);
-    initData.checkLength(offset);
-}
-```
+    ```sol
+    function _parseInitData(bytes memory initData)
+        internal
+        pure
+        returns (address ownerAssistant, address feeRecipient)
+    {
+        uint256 offset = 0;
+        (ownerAssistant, offset) = initData.asAddressUnchecked(offset);
+        (feeRecipient, offset) = initData.asAddressUnchecked(offset);
+        initData.checkLength(offset);
+    }
+    ```
 
 - **Penalty and auction settings** - the Matching Engine sets parameters like auction duration, grace period, and penalties for non-compliance during fast transfers. These parameters help manage the auction process and ensure reliability in the system
 
-```sol
-assert(this.getUserPenaltyRewardBps() == _userPenaltyRewardBps);
-assert(this.getInitialPenaltyBps() == _initialPenaltyBps);
-assert(this.getAuctionDuration() == _auctionDuration);
-```
+    ```sol
+    assert(this.getUserPenaltyRewardBps() == _userPenaltyRewardBps);
+    assert(this.getInitialPenaltyBps() == _initialPenaltyBps);
+    assert(this.getAuctionDuration() == _auctionDuration);
+    ```
 
 - **Auction execution** - the contract ensures that auctions are executed within the defined auctionDuration and gracePeriod, preventing delays and ensuring efficient processing of fast orders
 
