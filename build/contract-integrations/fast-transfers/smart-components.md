@@ -13,7 +13,7 @@ This page explains the key components and processes behind the Token Router and 
 
 ## Token Router Contracts 
 
-The Token Router smart contract is the entry point for sending USDC and other supported tokens across different blockchain networks. It allows users to transfer tokens from one blockchain to another, handling all interactions with the [Matching Engine](#){target=\_blank} and determining the appropriate routing method depending on whether the destination chain is CCTP-enabled or not.
+The Token Router smart contract is the entry point for sending USDC and other supported tokens across different blockchain networks. It allows users to transfer tokens from one blockchain to another, handling all interactions with the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} and determining the appropriate routing method depending on whether the destination chain is CCTP-enabled or not.
 
 The Token Router provides two main order types for token transfers: place market order and place fast market order.
 
