@@ -181,11 +181,11 @@ Let's start writing the `CrossChainReceiver` contract:
     --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:17:40"
     ```
 
-    This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address and transfers the tokens to them using the Wormhole protocol. This function also validates the emitter (`sourceAddress`) to ensure the message comes from a trusted sender.
+    This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address, and transfers the tokens to them using the Wormhole protocol. This function also validates the emitter (`sourceAddress`) to ensure the message comes from a trusted sender.
 
     This function ensures that:
 
-    - Only one token transfer is processed at a time
+    - It only processes one token transfer at a time
     - The `sourceAddress` is checked against a list of registered senders using the `isRegisteredSender` modifier, which verifies if the emitter is allowed to send tokens to this contract
     - The recipient address is decoded from the payload, and the received tokens are transferred to them using the ERC-20 interface
 
