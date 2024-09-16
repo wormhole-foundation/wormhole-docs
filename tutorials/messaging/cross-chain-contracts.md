@@ -72,7 +72,7 @@ The `MessageReceiver` contract handles incoming cross-chain messages. When a mes
 
 Key functions include:
 
- - **`setRegisteredSender`** - this new function registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders.
+ - **`setRegisteredSender`** - this new function registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders
 
  - **`receiveWormholeMessages`** - the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages
 
@@ -215,7 +215,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:39:42"
         ```
 
-4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed.
+4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
 
     This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract.
 
