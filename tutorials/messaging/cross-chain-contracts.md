@@ -78,7 +78,7 @@ Key functions include:
 
 #### Emitter Validation
 
-In cross-chain messaging, it's essential to validate the sender to prevent unauthorized contracts from sending messages. The `isRegisteredSender` modifier ensures that messages can only be processed if they come from the registered contract on the source chain. This guards against malicious messages and enhances security.
+In cross-chain messaging, validating the sender is essential to prevent unauthorized contracts from sending messages. The `isRegisteredSender` modifier ensures that messages can only be processed if they come from the registered contract on the source chain. This guards against malicious messages and enhances security.
 
 Here's the core of the contract:
 
@@ -215,6 +215,13 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:39:42"
         ```
 
+4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed.
+
+    This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract.
+
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:55:66"
+    ```
 
 You can find the full code for the `deploySender.js` and `deployReceiver.js` below.
 
