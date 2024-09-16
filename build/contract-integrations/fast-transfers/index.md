@@ -15,7 +15,7 @@ This section will guide you through interacting with the Fast Transfers protocol
 
     Learn how to initiate and participate in cross-chain transfer auctions, submit and verify transactions, and settle auctions efficiently as a solver in the Fast Transfers protocol.
 
-    [:octicons-arrow-right-16: Learn how to be a solver](/build/contract-integrations/wormhole-relayers/)
+    [:octicons-arrow-right-16: Learn how to be a solver](/build/contract-integrations/fast-transfers/how-to-solver/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Smart Contract Components**
 
