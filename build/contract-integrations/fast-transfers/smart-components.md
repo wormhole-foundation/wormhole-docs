@@ -22,15 +22,46 @@ The Token Router provides two main order types for token transfers: place market
 The `placeMarketOrder` function allows users to send USDC (with an optional message payload) to any CCTP-enabled blockchain network registered with the Token Router. This function is designed to future-proof the contract by including parameters that, while unused now, can be leveraged in future versions to improve functionality.
 
 ```sol
---8<-- 'code/build/fast-transfers/smart-components/market-order.sol'
+--8<-- 'code/build/contract-integrations/fast-transfers/smart-components/market-order.sol'
 ```
 
-- `amountIn` - the amount of USDC being transferred
-- `minAmountOut` - the minimum amount of tokens expected on the destination chain
-- `targetChain` - the chain ID of the blockchain where the tokens will be transferred
-- `redeemer` - the address of the contract that will handle the redemption of tokens on the target chain
-- `redeemerMessage` - optional message payload to be delivered along with the tokens
-- `refundAddress` - the address that will receive a refund if the transaction fails
+??? interface "Parameters"
+
+    `amountIn` ++"uint128"++
+        
+    The amount of USDC being transferred.
+
+    ---
+
+    `minAmountOut` ++"uint128"++
+        
+    The minimum amount of tokens expected on the destination chain.
+
+    ---
+
+    `targetChain` ++"uint16"++
+        
+    The chain ID of the blockchain where the tokens will be transferred.
+
+    ---
+
+    `redeemer` ++"bytes32"++
+        
+    The address of the contract that will handle the redemption of tokens on the target chain.
+
+    ---
+
+    `redeemerMessage` ++"bytes calldata"++
+        
+    Optional message payload to be delivered along with the tokens.
+
+    ---
+
+    `refundAddress` ++"address"++
+        
+    The address that will receive a refund if the transaction fails.
+
+    ---
 
 The `minAmountOut` and `refundAddress` parameters are currently unused but are included for future compatibility. The contract is designed to handle future upgrades that could support non-CCTP-enabled chains by swapping CCTP USDC for a wrapped alternative through the MatchingEngine.
 
@@ -39,15 +70,46 @@ The `minAmountOut` and `refundAddress` parameters are currently unused but are i
 The `placeFastMarketOrder` function allows users to initiate a faster-than-finality USDC transfer by specifying a maxFee and a deadline. This type of order does not wait for finality, enabling faster delivery through market participants who compete for the lowest fee in an auction on the MatchingEngine.
 
 ```sol
---8<-- 'code/build/fast-transfers/smart-components/fast-order.sol'
+--8<-- 'code/build/contract-integrations/fast-transfers/smart-components/fast-order.sol'
 ```
 
-- `amountIn` - the amount of USDC being transferred
-- `minAmountOut` - the minimum expected amount of tokens on the destination chain
-- `targetChain` - the chain ID of the blockchain where tokens will be sent
-- `redeemer` - the address on the target chain that will redeem the tokens
-- `maxFee` - the maximum fee the user is willing to pay to expedite the transaction
-- `deadline` - the deadline for the fast transfer auction to start. A value of 0 opts out of using a deadline
+??? interface "Parameters"
+
+    `amountIn` ++"uint128"++
+        
+    The amount of USDC being transferred.
+
+    ---
+
+    `minAmountOut` ++"uint128"++
+        
+    The minimum expected amount of tokens on the destination chain.
+
+    ---
+
+    `targetChain` ++"uint16"++
+        
+    The chain ID of the blockchain where tokens will be sent.
+
+    ---
+
+    `redeemer` ++"bytes32"++
+        
+    The address on the target chain that will redeem the tokens.
+
+    ---
+
+    `maxFee` ++"uint128"++
+        
+    The maximum fee the user is willing to pay to expedite the transaction.
+
+    ---
+
+    `deadline` ++"uint32"++
+        
+    The deadline for the fast transfer auction to start. A value of 0 opts out of using a deadline.
+
+    ---
 
 The `placeFastMarketOrder` function allows market participants to engage in a fee-based auction, ensuring the user's transfer is completed as fast as possible based on available liquidity.
 
