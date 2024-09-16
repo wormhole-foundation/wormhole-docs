@@ -43,7 +43,15 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with NTT](/build/contract-integrations/native-token-transfers/)
 
--   :octicons-file-code-16:{ .lg .middle } **Set Up a Dev Environment**
+-   :octicons-arrow-switch-16:{ .lg .middle } **Fast Transfers**
+
+    ---
+
+    Learn how to take advantage of the Fast Transfers protocol for quick, efficient cross-chain liquidity movement.
+
+    [:octicons-arrow-right-16: Get started with Fast Transfers](/build/contract-integrations/fast-transfers/)
+
+-   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
     ---
 
