@@ -1,7 +1,9 @@
 ---
 title: Example SDK Usage 
-description: TODO
+description: Find sample code snippets demonstrating some of the powerful abstractions offered via the Wormhole TypeScript SDK
 ---
+
+# Example SDK Usage
 
 ## Usage
 
@@ -66,11 +68,7 @@ Optionally, you can override the default configuration with a partial `WormholeC
 --8<-- 'code/build/applications/wormhole-sdk/signers.ts'
 ```
 
-## Transfers
-
-While using the `ChainContext` and `Protocol` clients directly is possible, the SDK provides some helpful abstractions for doing things like transferring tokens.
-
-### Tokens
+## Tokens
 
 The `TokenId` interface provides a unique identifier for a token on a given chain. This interface accepts the chain name and token contract address to generate this unique identifier. In the case of a blockchain's native currency (like ETH for Ethereum), you pass the keyword `native` in place of a token contract address
 
@@ -81,6 +79,11 @@ The following example demonstrates usage of `TokenId`, including syntax for both
 ```
 
 You can find the directory of token constants used by the SDK in the [`tokens`](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/tokens){target=/_blank} folder of the `base` subpackage.
+
+## Transfers
+
+While using the `ChainContext` and `Protocol` clients directly is possible, the SDK provides some helpful abstractions for doing things like transferring tokens.
+
 
 The `WormholeTransfer` interface provides a convenient abstraction to encapsulate the steps involved in a cross-chain transfer.
 
@@ -235,6 +238,14 @@ Lastly, the code will demonstrate how to verify the message on the receiving end
     ```
 
 The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
+
+### Token Bridge
+
+```ts
+--8<-- 'code/build/applications/wormhole-sdk/token-bridge-snippet.ts'
+```
+
+Supported protocols are defined in the [definitions module](https://github.com/wormhole-foundation/connect-sdk/tree/main/core/definitions/src/protocols){target=\_blank}.
 
 ## See Also
 

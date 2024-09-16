@@ -463,9 +463,9 @@ The `Address` interface represents a parsed address and includes the following m
 
 In the SDK, a `Signer` type is defined which consists of the following interfaces:  
 
-- **`SignerBase`** - defines the base functionality common to all signers
+??? interface "**`SignerBase`** - defines the base functionality common to all signers"
 
-    ??? interface "Methods"
+    ??? child "Methods"
 
         ??? child "**`chain`**"
 
@@ -487,9 +487,9 @@ In the SDK, a `Signer` type is defined which consists of the following interface
          
                 ++"string"++ - the signer's address
 
-- **`SignOnlySigner`** - a signer that only signs transactions but does not broadcast them to the network
+??? interface "**`SignOnlySigner`** - a signer that only signs transactions but does not broadcast them to the network"
 
-    ??? interface "Methods"
+    ??? child "Methods"
 
         ??? child "**`sign`**" 
 
@@ -501,13 +501,13 @@ In the SDK, a `Signer` type is defined which consists of the following interface
 
                 ++"Promise<SignedTx[]>"++ - a promise that resolves with an array of signed and serialized transactions
 
-- **`SignAndSendSigner`** - a signer that both signs transactions and sends them to the network
+??? interface "**`SignAndSendSigner`** - a signer that both signs transactions and sends them to the network"
 
     ??? interface "Methods"
 
         ??? child "**`signAndSend`**"
 
-            ??? child "Parameters"
+            ??? child "Parameters
 
                 `tx` ++"UnsignedTransaction<N, C>[]"++ - an array of unsigned transactions to be signed
 
@@ -527,16 +527,231 @@ While Wormhole is a Generic Message Passing (GMP) protocol, several protocols ha
 
 ### Wormhole Core
 
-The core protocol forms the foundation for all Wormhole activity. Every supported platform module contains a core protocol configured to work with the specific platform. The protocol consists of two key subpackages, the `base` and `definitions` packages. The `base` package contains [constants](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants){target=/_blank} such as contract addresses, RPC configurations, and finality as well as [utility](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/utils){target=/_blank} types for accessing and validating constants. The [`definitions`](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/definitions) package defines the VAA payload structure layout, interfaces for platforms and chain contexts, protocol interfaces, and types. 
+The core protocol forms the foundation for all Wormhole activity. Every supported platform module contains a core protocol configured to work with the chains sharing that specific platform. The `WormholeRegistry` namespace is defined here to standardize the mapping of protocols to platforms. The `GuardianSet` interface is also defined to standardize an `index` (++"number"++), `keys` (++"string[]"++), and `expiry` (++"bigint"++) for the Guardian Set. The `WormholeCore` interface exposes the following methods:
 
-This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [emitter address](/learn/fundamentals/glossary#emitter){target=\_blank}, the [sequence number](/learn/fundamentals/glossary#sequence){target=\_blank} for the message, and the payload of the message itself.
+??? interface "**`getMessageFee`** - Get the fee for publishing a message"
+
+    ??? child "Parameters"
+
+        None 
+
+    ??? child "Returns"
+
+        ++"Promise<bigint>"++ - a promise resolving to the fee for publishing a message
+
+??? interface "**`getGuardianSetIndex`** - Get the current Guardian set index"
+
+    ??? child "Parameters"
+
+        None 
+
+    ??? child "Returns"
+
+        ++"Promise<number>"++ - a promise resolving to the current Guardian set index
+
+??? interface "**`getGuardianSet`** - Get the guardian set data corresponding to the index"
+
+    ??? child "Parameters"
+
+        `index` ++"number"++ - the index to get the Guardian set for
+
+    ??? child "Returns"
+
+        ++"Promise<WormholeCore.GuardianSet>"++ - a promise resolving to the current Guardian set
+
+??? interface "**`publishMessage`** - Publish a message"
+
+    ??? child "Parameters"
+
+        `sender` ++"AccountAddress<C>"++ - The address of the sender
+
+        ---
+
+        `message` ++"string"++ | ++"Uint8Array"++ - The message to send
+
+        ---
+
+        `nonce` ++"number"++ - A number that may be set if needed for the application, may be 0 if unneeded
+
+        ---
+
+        `consistencyLevel` ++"number"++ - The consistency level to reach before the guardians should sign the message
+
+    ??? child "Returns"
+
+        ++"AsyncGenerator<UnsignedTransaction<N, C>>"++ - a stream of unsigned transactions to be signed and submitted on chain
+
+??? interface "**`verifyMessage`** - Verify a VAA against the core contract"
+
+    ??? child "Parameters"
+
+        `sender` ++"AccountAddress<C>"++ - the sender of the transaction
+
+        ---
+
+        `vaa` ++"VAA<PayloadLiteral>"++ - the VAA to verify
+
+    ??? child "Returns"
+
+        ++"AsyncGenerator<UnsignedTransaction<N, C>, any, unknown>"++ - a stream of unsigned transactions to be signed and submitted on chain
+
+??? interface "**`parseTransaction`** - Parse a transaction to get its message ID"
+
+    ??? child "Parameters"
+
+        `txid` ++"TxHash"++ - the transaction hash to parse
+
+    ??? child "Returns"
+
+        ++"Promise<WormholeMessageId[]>"++ - a promise resolving to an array of message IDs produced by the transaction
+
+??? interface "**`parseMessages`** - Parse a transaction to get the VAA message it produced"
+
+    ??? child "Parameters"
+
+        `txid` ++"TxHash"++ - the transaction hash to parse
+
+    ??? child "Returns"
+
+        ++"Promise<VAA<Uint8Array>[]>"++ - a promise resolving to the VAA message produced by the transaction
 
 ### Token Bridge
 
-The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
+The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. The `TokenBridge` interface provides a consistent client interface for the Token Bridge protocol and exposes the following methods:
 
-```ts
---8<-- 'code/build/applications/wormhole-sdk/token-bridge-snippet.ts'
-```
+??? interface "**`isWrappedAsset`** - Checks a native address to see if it's a wrapped version"
 
-Supported protocols are defined in the [definitions module](https://github.com/wormhole-foundation/connect-sdk/tree/main/core/definitions/src/protocols){target=\_blank}.
+    ??? child "Parameters"
+
+        `nativeAddress` ++"TokenAddress<C>"++ - the wrapped address to check
+
+    ??? child "Returns"
+
+        `true` ++"boolean"++ - true if the address is a wrapped version of a foreign token
+
+??? interface "**`getOriginalAsset`** - returns the original asset with its foreign chain"
+
+    ??? child "Parameters"
+
+        `nativeAddress` ++"TokenAddress<C>"++ - the wrapped address to check
+
+    ??? child "Returns"
+
+        ++"Promise<TokenId<Chain>>"++ - a promise resolving to the Token ID corresponding to the original asset and chain
+
+??? interface "**`getWrappedNative`** - returns the wrapped version of the native asset"
+
+    ??? child "Parameters"
+
+        `nativeAddress` ++"TokenAddress<C>"++ - the wrapped address to check
+
+    ??? child "Returns"
+
+        ++"Promise<GetNativeAddress<ChainToPlatform<C>>>"++ - a promise resolving to the address of the native gas token that has been wrapped. For use where the gas token is not possible to use, such as bridging
+
+??? interface "**`hasWrappedAsset`** - Check to see if a foreign token has a wrapped version"
+
+    ??? child "Parameters"
+
+        `foreignToken` ++"TokenId<Chain>"++ - the token to check
+
+    ??? child "Returns"
+
+        `true` ++"Promise<boolean>"++ - true if the token has a wrapped version
+
+??? interface "**`getWrappedAsset`** - returns the address of the native version of this asset"
+
+    ??? child "Parameters"
+
+        `foreignToken` ++"TokenId"++ - the token to check
+
+    ??? child "Returns"
+
+        ++"Promise<GetNativeAddress<ChainToPlatform<C>>>"++ - the address of the native version of this asset
+
+??? interface "**`isTransferCompleted`** - Checks if a transfer VAA has been redeemed"
+
+    ??? child "Parameters"
+
+        `vaa` ++"VAA<TokenBridge:Transfer> | VAA<TokenBridge:TransferWithPayload>"++ - the transfer VAA to check
+
+    ??? child "Returns"
+
+        `true` ++"Promise<boolean>"++ - true if the transfer has been redeemed
+
+??? interface "**`createAttestation`** - Create a Token Attestation VAA containing metadata about the token that may be submitted to a token bridge on another chain to allow it to create a wrapped version of the token"
+
+    ??? child "Parameters"
+
+        `token` ++"TokenAddress<C>"++ - the token to create an attestation for
+
+        ---
+
+        `payer` ++"UniversalOrNative<C>"++ - the payer of the transaction
+
+
+    ??? child "Returns"
+
+        ++"AsyncGenerator<UnsignedTransaction<N, C>, any, unknown>"++ - produces transactions to sign and send
+
+??? interface "**`submitAttestation`** - Submit the Token Attestation VAA to the token bridge to create the wrapped token represented by the data in the VAA"
+
+    ??? child "Parameters"
+
+        `vaa` ++"VAA<TokenBridge:AttestMeta>"++ - the attestation VAA to submit
+
+        ---
+
+        `payer` ++"UniversalOrNative<C>"++ (_optional_) - the payer of the transaction
+
+    ??? child "Returns"
+
+        ++"AsyncGenerator<UnsignedTransaction<N, C>, any, unknown>"++ - produces transactions to sign and send
+
+??? interface "**`transfer`** - Initiate a transfer of some token to another chain"
+
+    ??? child "Parameters"
+
+        `sender` ++"AccountAddress<C>"++ - the sender of the transfer
+
+        ---
+
+        `recipient` ++"ChainAddress"++ - the recipient of the transfer as a chain address so we know what the destination chain should be
+
+        ---
+
+        `token` ++"TokenAddress<C>"++ - the token to transfer
+
+        ---
+
+        `amount` ++"bigint"++ - the amount of the token to transfer
+
+        ---
+
+        `payload` ++"Uint8Array"++ (_optional_) - payload to include in the transfer
+
+    ??? child "Returns"
+
+        ++"AsyncGenerator<UnsignedTransaction<N, C>, any, unknown>"++ - produces transactions to sign and send
+
+??? interface "**`redeem`** - Redeem a transfer VAA to receive the tokens on this chain"
+
+    ??? child "Parameters"
+
+        `sender` ++"AccountAddress<C>"++ - the sender of the transfer
+
+        ---
+
+        `vaa` ++"VAA<TokenBridge:Transfer> | VAA<TokenBridge:TransferWithPayload>"++ - description stuff here
+
+        ---
+
+        `unwrapNative` ++"boolean"++ - true if the native token should be unwrapped if it is a wrapped token
+
+    ??? child "Returns"
+
+        ++"AsyncGenerator<UnsignedTransaction<N, C>, any, unknown>"++ - produces transactions to sign and send
+
+
+
+
