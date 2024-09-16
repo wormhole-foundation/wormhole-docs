@@ -11,15 +11,22 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### **EVM**
 
-<div class="grid cards tri" markdown>
+<div class="cards faucet" markdown>
 
--   **Ethereum**
 
-    <img src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:auto;">
 
-    [:octicons-arrow-right-16: Sepolia faucet](https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia){target=\_blank}
-    <br>
-    [:octicons-arrow-right-16: Holesky faucet](https://holesky-faucet.pk910.de/){target=\_blank}
+-   **Ethereum - Sepolia**
+
+    <a href="https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:auto; border-radius: 50%;">
+    </a>
+
+- **Ethereum - Holesky**
+
+    <a href="https://holesky-faucet.pk910.de/" target= "\_blank">
+    <img class = "image" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:auto;">
+    </a>
+
 
 -   **Acala**
 
@@ -55,13 +62,13 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 -   **Blast**
 
-    <img src="/images/build/start-building/supported-networks/blast.webp" alt="Blast" style="width:90px; height:auto;">
+    <img src="/images/build/start-building/supported-networks/blast.webp" alt="Blast" style="width:90px; height:auto; border-radius: 50%;">
 
     [:octicons-arrow-right-16: Visit faucet](https://blastapi.io/faucets/blastl2-testnet){target=\_blank}
 
 -   **BNB Smart Chain**
 
-    <img src="/images/build/start-building/supported-networks/bsc.webp" alt="BNB Smart Chain" style="width:90px; height:auto;">
+    <img src="/images/build/start-building/supported-networks/bsc.webp" alt="BNB Smart Chain" style="width:90px; height:90; border-radius: 50%;">
 
     [:octicons-arrow-right-16: Visit faucet](https://testnet.binance.org/faucet-smart/){target=\_blank}
 
@@ -79,7 +86,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 -   **Gnosis**
 
-    <img src="/images/build/start-building/supported-networks/gnosis-light.webp" alt="Gnosis" style="width:90px; height:auto;">
+    <img src="/images/build/start-building/supported-networks/gnosis.webp" alt="Gnosis" style="width:90px; height:90; border-radius:50%;">
 
     [:octicons-arrow-right-16: Visit faucet](https://faucet.gnosischain.com/){target=\_blank}
 
