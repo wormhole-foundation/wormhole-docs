@@ -72,12 +72,18 @@ The `MessageReceiver` contract handles incoming cross-chain messages. When a mes
 
 Key functions include:
 
+ - **`setRegisteredSender`** - this new function registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders.
+
  - **`receiveWormholeMessages`** - the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages
+
+#### Emitter Validation
+
+In cross-chain messaging, it's essential to validate the sender to prevent unauthorized contracts from sending messages. The `isRegisteredSender` modifier ensures that messages can only be processed if they come from the registered contract on the source chain. This guards against malicious messages and enhances security.
 
 Here's the core of the contract:
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:17:39"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:31:66"
 ```
 
 You can find the full code for the `MessageReceiver.sol` below.
