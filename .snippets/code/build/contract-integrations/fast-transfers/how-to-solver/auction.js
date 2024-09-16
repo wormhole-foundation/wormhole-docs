@@ -3,7 +3,7 @@ import * as wormholeSdk from '@certusone/wormhole-sdk';
 
 const matchingEngineProgramId = 'INSERT_MATCHING_ENGINE_PROGRAM_ID';
 const usdcMintAddress = 'INSERT_USDC_MINT_ADDRESS';
-const connection = new Connection('YOUR_RPC_URL', 'confirmed');
+const connection = new Connection('INSERT_RPC_URL', 'confirmed');
 // This is only for example purposes, it is not recommended to store your secret key in a js file
 const payer = Keypair.fromSecretKey('INSERT_PRIVATE_KEY');
 

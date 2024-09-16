@@ -7,7 +7,7 @@ description: Explore how solvers engage in Fast Transfers auctions, from initiat
 
 ## Overview
 
-In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers ensure efficient cross-chain transfers through a competitive auction process on the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank}. The auction consists of four key steps: 
+In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers ensure efficient cross-chain transfers through a competitive auction process on the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank}. The auction consists of four key steps:
 
 1. **Starting an auction** - users initiate a transfer, and solvers begin bidding to fulfill it by offering the best rates
 2. **Participating in an auction** - solvers compete in a reverse Dutch auction to provide the most cost-effective solution
@@ -15,13 +15,14 @@ In [Fast Transfers](/learn/messaging/fast-transfers/){target=\_blank}, solvers e
 4. **Settling an auction** - once the transfer is finalized, the solver retrieves their funds and earns the fee for the completed transaction
 
 ## Starting an Auction
-When users interact with [Token Routers](/build/contract-integrations/fast-transfers/smart-components/#token-router-contracts){target=\_blank} to transfer assets faster than finality to another chain, they place an order that is processed by the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank}. 
+
+When users interact with [Token Routers](/build/contract-integrations/fast-transfers/smart-components/#token-router-contracts){target=\_blank} to transfer assets faster than finality to another chain, they place an order that is processed by the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank}.
 
 To initiate an auction with this message, complete the steps in the following sections on Solana.
 
 ### Send Transactions to Verify Signatures and Post VAA
 
-The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an I owe you (IOU) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [custom relayer](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA. 
+The [VAA (Verified Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is a message that acts as an I owe you (IOU) for the solver when the auction is settled. The [Wormhole Spy](/learn/infrastructure/spy/){target=\_blank} or a [custom relayer](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} listens to the Wormhole gossip network to observe the fast VAA.
 
 To read VAAs on Solana, someone must verify the signatures and post the VAA to a Solana account using the Wormhole Core Bridge. This is done through the [Wormhole TS SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}.
 
@@ -55,7 +56,7 @@ The auction account pubkey can be determined by either:
 
 - Listening to a Solana web socket connection to find the account when the initial offer is placed:
     - Subscribe to a WebSocket service that monitors Solana for new transactions
-    - Filter the transactions to identify those related to the initial offer by checking for interaction with the Matching Engine’s program id 
+    - Filter the transactions to identify those related to the initial offer by checking for interaction with the Matching Engine’s program ID
     - Extract the auction account public key from the transaction where the initial offer was placed
 - Using the fast VAA bytes to compute its hash and derive its auction account address
     - Convert the fast VAA bytes into a hash using a cryptographic hash function <!-- hashing function ?? Keccak256 ??  -->
@@ -74,7 +75,7 @@ Once the auction account is found, the relayer can submit an improved offer.
 
 ## Execute Fast Order to Complete Auction
 
-To complete the auction, the relayer must execute the fast order before the grace period ends. This step releases the funds to the user on the target chain. To execute the fast order, the relayer must interact with the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} on Solana, using the auction account derived from the fast VAA. 
+To complete the auction, the relayer must execute the fast order before the grace period ends. This step releases the funds to the user on the target chain. To execute the fast order, the relayer must interact with the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} on Solana, using the auction account derived from the fast VAA.
 
 ```js
 --8<-- 'code/build/contract-integrations/fast-transfers/how-to-solver/auction.js::20'
@@ -83,7 +84,7 @@ To complete the auction, the relayer must execute the fast order before the grac
 
 - `executeFastOrderTx` - function that executes the fast order, which releases the intended funds to the user on the target chain, finalizing the auction
 
-Participating in an auction is part of the bidding process, where the solver improves their offer to provide the most cost-effective solution and win the right to fulfill the transfer. In comparison, executing a fast order to complete an auction does not involve submitting a new offer price but ensuring the auction winner appropriately processes the transfer. Funds are transferred within the set time frame to finalize the auction and release funds to the user on the target chain. 
+Participating in an auction is part of the bidding process, where the solver improves their offer to provide the most cost-effective solution and win the right to fulfill the transfer. In comparison, executing a fast order to complete an auction does not involve submitting a new offer price but ensuring the auction winner appropriately processes the transfer. Funds are transferred within the set time frame to finalize the auction and release funds to the user on the target chain.
 
 ## Settle Auction with Finalized VAA
 
@@ -116,6 +117,6 @@ After posting the finalized VAA, the final step is to settle the auction on Sola
 - `fastVaaBytes` - the initial VAA from the fast transfer process
 - `finalizedVaaBytes` - the finalized VAA confirming the completion of the auction and transfer
 
-## MainNet Contract Addresses 
+## MainNet Contract Addresses
 
-For MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager, refer to the [Contract Addresses page.](/build/reference/contract-addresses/#fast-transfers){target=\_blank}
+For MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager, refer to the [Contract Addresses page](/build/reference/contract-addresses/#fast-transfers){target=\_blank}.
