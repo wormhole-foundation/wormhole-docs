@@ -5,7 +5,7 @@ nav:
  - 'Core Contracts': 'core-contracts.md'
 #  - 'Token Bridge': 'token-bridge.md'
  - 'CCTP': 'cctp.md'
- - 'Gateway' : 'gateway.md'
+ - 'Cosmos Gateway' : 'gateway.md'
  - native-token-transfers
  - fast-transfers
  - 'Set Up a Dev Environment': 'dev-env.md'
