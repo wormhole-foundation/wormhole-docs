@@ -11,307 +11,473 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 ### **EVM**
 
-<div class="cards faucet" markdown>
+<div class="card-container" markdown>
 
+<div class="faucet" markdown>
 
+**Ethereum - Sepolia**
 
--   **Ethereum - Sepolia**
+<a href="https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
+</a>
 
-    <a href="https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:auto; border-radius: 50%;">
-    </a>
+</div>
 
-- **Ethereum - Holesky**
+<div class="faucet" markdown>
 
-    <a href="https://holesky-faucet.pk910.de/" target= "\_blank">
-    <img class = "image" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:auto;">
-    </a>
+**Ethereum - Holesky**
 
+<a href="https://holesky-faucet.pk910.de/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
+</a>
 
--   **Acala**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/acala.webp" alt="Acala" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://evmdocs.acala.network/tooling/faucet){target=\_blank}
+**Acala**
 
--   **Arbitrum Sepolia**
+<a href="https://evmdocs.acala.network/tooling/faucet" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/acala.webp" alt="Acala" style="width:90px; height:90px;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/arbitrum-sepolia.webp" alt="Arbitrum Sepolia" style="width:90px; height:auto;">
+</div>
 
-    [:octicons-arrow-right-16: Quicknode faucet](https://faucet.quicknode.com/arbitrum/sepolia){target=\_blank}
-    <br>
-    [:octicons-arrow-right-16: Alchemy faucet](https://www.alchemy.com/faucets/arbitrum-sepolia){target=\_blank}
+<div class="faucet" markdown>
 
--   **Avalanche**
+**Arbitrum Sepolia**
 
-    <img src="/images/build/start-building/supported-networks/avalanche.webp" alt="Avalanche" style="width:90px; height:auto;">
+<a href="https://faucet.quicknode.com/arbitrum/sepolia" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/arbitrum-sepolia.webp" alt="Arbitrum Sepolia" style="width:90px; height:90px;">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}
+</div>
 
--   **Base Sepolia**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/base.webp" alt="Base Sepolia" style="width:90px; height:auto;">
+**Avalanche**
 
-    [:octicons-arrow-right-16: Visit faucet](https://www.ethereum-ecosystem.com/faucets/base-sepolia){target=\_blank}
+<a href="https://core.app/tools/testnet-faucet/?subnet=c&token=c" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/avalanche.webp" alt="Avalanche" style="width:90px; height:90px;">
+</a>
 
--   **Berachain**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/berachain.webp" alt="Berachain" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://bartio.faucet.berachain.com/){target=\_blank}
+**Base Sepolia**
 
--   **Blast**
+<a href="https://www.ethereum-ecosystem.com/faucets/base-sepolia" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/base.webp" alt="Base Sepolia" style="width:90px; height:90px;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/blast.webp" alt="Blast" style="width:90px; height:auto; border-radius: 50%;">
+</div>
 
-    [:octicons-arrow-right-16: Visit faucet](https://blastapi.io/faucets/blastl2-testnet){target=\_blank}
+<div class="faucet" markdown>
 
--   **BNB Smart Chain**
+**Berachain**
 
-    <img src="/images/build/start-building/supported-networks/bsc.webp" alt="BNB Smart Chain" style="width:90px; height:90; border-radius: 50%;">
+<a href="https://bartio.faucet.berachain.com/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/berachain.webp" alt="Berachain" style="width:90px; height:90px;">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://testnet.binance.org/faucet-smart/){target=\_blank}
+</div>
 
--   **Celo**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/celo.webp" alt="Celo" style="width:90px; height:auto;">
+**Blast**
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.celo.org/alfajores){target=\_blank}
+<a href="https://blastapi.io/faucets/blastl2-testnet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/blast.webp" alt="Blast" style="width:90px; height:90px;">
+</a>
 
--   **Fantom**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/fantom.webp" alt="Fantom" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.fantom.network/){target=\_blank}
+**BNB Smart Chain**
 
--   **Gnosis**
+<a href="https://testnet.binance.org/faucet-smart/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/bsc.webp" alt="BNB Smart Chain" style="width:90px; height:90px; ">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/gnosis.webp" alt="Gnosis" style="width:90px; height:90; border-radius:50%;">
+</div>
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.gnosischain.com/){target=\_blank}
+<div class="faucet" markdown>
 
--   **Karura**
+**Celo**
 
-    <img src="/images/build/start-building/supported-networks/karura.webp" alt="Karura" style="width:90px; height:auto;">
+<a href="https://faucet.celo.org/alfajores/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/celo.webp" alt="Celo" style="width:90px; height:90px; ">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://evmdocs.acala.network/tooling/faucet){target=\_blank}
+</div>
 
--   **Klaytn**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:auto;">
+**Fantom**
 
-    [:octicons-arrow-right-16: Visit faucet](https://baobab.wallet.klaytn.foundation/faucet){target=\_blank}
+<a href="https://faucet.fantom.network/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/fantom.webp" alt="Fantom" style="width:90px; height:90px; ">
+</a>
 
--   **Linea**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/linea.webp" alt="Linea" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://getblock.io/faucet/linea-sepolia/){target=\_blank}
+**Gnosis**
 
--   **Mantle**
+<a href="https://faucet.gnosischain.com/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/gnosis.webp" alt="Gnosis" style="width:90px; height:90px; border-radius:50%;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/mantle.webp" alt="Mantle" style="width:90px; height:auto;">
+</div>
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.testnet.mantle.xyz/){target=\_blank}
+<div class="faucet" markdown>
 
--   **Moonbeam**
+**Karura**
 
-    <img src="/images/build/start-building/supported-networks/moonbeam.webp" alt="Moonbeam" style="width:90px; height:auto;">
+<a href="https://evmdocs.acala.network/tooling/faucet" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/karura.webp" alt="Karura" style="width:90px; height:90px;">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.moonbeam.network/){target=\_blank}
+</div>
 
--   **Neon**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/neon.webp" alt="Neon" style="width:90px; height:auto;">
+**Klaytn**
 
-    [:octicons-arrow-right-16: Visit faucet](https://neonfaucet.org/){target=\_blank}
+<a href="https://baobab.wallet.klaytn.foundation/faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:90px;">
+</a>
 
--   **Oasis**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/oasis.webp" alt="Oasis" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.testnet.oasis.dev/){target=\_blank}
+**Linea**
 
--   **Optimism Sepolia**
+<a href="https://getblock.io/faucet/linea-sepolia/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/linea.webp" alt="Linea" style="width:90px; height:90px;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/optimism_sepolia.webp" alt="Optimism Sepolia" style="width:90px; height:auto;">
+</div>
 
-    [:octicons-arrow-right-16: Visit faucet](https://console.optimism.io/faucet?utm_source=docs){target=\_blank}
+<div class="faucet" markdown>
 
--   **Polygon and Polygon Sepolia**
+**Mantle**
 
-    <img src="/images/build/start-building/supported-networks/polygon.webp" alt="Polygon" style="width:90px; height:auto;">
+<a href="https://faucet.testnet.mantle.xyz/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/mantle.webp" alt="Mantle" style="width:90px; height:90px;">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.polygon.technology/){target=\_blank}
+</div>
 
--   **Rootstock**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/rootstock.webp" alt="Rootstock" style="width:90px; height:auto;">
+**Moonbeam**
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.rootstock.io/){target=\_blank}
+<a href="https://faucet.moonbeam.network/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/moonbeam.webp" alt="Moonbeam" style="width:90px; height:90px;">
+</a>
 
--   **Scroll**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/scroll.webp" alt="Scroll" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://www.sepoliafaucet.io/){target=\_blank}
+**Neon**
 
--   **Sei**
+<a href="https://neonfaucet.org/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/neon.webp" alt="Neon" style="width:90px; height:90px;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:auto;">
+</div>
 
-    [:octicons-arrow-right-16: Arctic-1 faucet](https://arctic-1.app.sei.io/faucet/){target=\_blank}
-    <br>
-    [:octicons-arrow-right-16: Atlantic-2 faucet](https://atlantic-2.app.sei.io/faucet/){target=\_blank}
+<div class="faucet" markdown>
 
--   **X Layer**
+**Oasis**
 
-    <img src="/images/build/start-building/supported-networks/xlayer.webp" alt="X Layer" style="width:90px; height:auto;">
+<a href="https://faucet.testnet.oasis.dev/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/oasis.webp" alt="Oasis" style="width:90px; height:90px;">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://www.okx.com/xlayer/faucet){target=\_blank}
+</div>
+
+<div class="faucet" markdown>
+
+**Optimism Sepolia**
+
+<a href="https://console.optimism.io/faucet?utm_source=docs/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/optimism_sepolia.webp" alt="Optimism Sepolia" style="width:90px; height:90px;">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**Polygon and Polygon Sepolia**
+
+<a href="https://faucet.polygon.technology/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/polygon.webp" alt="Polygon" style="width:90px; height:90px;">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**Rootstock**
+
+<a href="https://faucet.rootstock.io/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/rootstock.webp" alt="Rootstock" style="width:90px; height:90px;">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**Scroll - Sepolia**
+
+<a href="https://www.sepoliafaucet.io/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/scroll.webp" alt="Scroll" style="width:90px; height:90px;">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**Sei**
+
+<a href="https://arctic-1.app.sei.io/faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:90px; ">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**X Layer**
+
+<a href="https://www.okx.com/xlayer/faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/xlayer.webp" alt="X Layer" style="width:90px; height:90px; ">
+</a>
+
+</div>
 </div>
 
 ### Algorand
 
-<div class="grid cards tri" markdown>
+<div class="card-container" markdown>
 
--   **Algorand**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/algorand.webp" alt="Algorand" style="width:90px; height:auto;">
+**Algorand**
 
-    [:octicons-arrow-right-16: Visit faucet](https://bank.testnet.algorand.network/){target=\_blank}
+<a href="https://bank.testnet.algorand.network/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/algorand.webp" alt="Algorand" style="width:90px; height:90px; ">
+</a>
+
+</div>
 
 </div>
 
 ### Aptos
 
-<div class="grid cards tri" markdown>
+<div class="card-container" markdown>
 
--   **Aptos**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/aptos.webp" alt="Aptos" style="width:90px; height:auto;">
+**Aptos**
 
-    [:octicons-arrow-right-16: Visit faucet](https://www.aptosfaucet.com/){target=\_blank}
+<a href="https://www.aptosfaucet.com/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/aptos.webp" alt="Aptos" style="width:90px; height:90px; ">
+</a>
 
 </div>
 
-### CosmWasm
+</div>
 
-<div class="grid cards tri" markdown>
+### Cosmos
 
--   **Celestia**
+<div class="card-container" markdown>
 
-    <img src="/images/build/start-building/supported-networks/celestia.webp" alt="Celestia" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://docs.celestia.org/nodes/mocha-testnet#:~:text=celestia%2Dmocha.com-,Mocha,-testnet%20faucet){target=\_blank}
+**Celestia**
 
--   **Cosmos Hub**
+<a href="https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/celestia.webp" alt="Celestia" style="width:90px; height:90px;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:auto;">
+</div>
 
-    [:octicons-arrow-right-16: Visit faucet](https://discord.com/invite/cosmosnetwork){target=\_blank}
 
--   **Evmos**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/evmos.webp" alt="Evmos" style="width:90px; height:auto;">
+**Cosmos Hub**
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.evmos.dev/){target=\_blank}
+<a href="https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:90px;">
+</a>
 
--   **Injective**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/injective.webp" alt="Injective" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://testnet.faucet.injective.network/){target=\_blank}
+**Evmos**
 
--   **Kujira**
+<a href="https://faucet.evmos.dev/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/evmos.webp" alt="Evmos" style="width:90px; height:90px;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/kujira.webp" alt="Kujira" style="width:90px; height:auto;">
+</div>
 
-    [:octicons-arrow-right-16: Visit faucet](https://discord.com/invite/teamkujira){target=\_blank}
+<div class="faucet" markdown>
 
--   **Neutron**
+**Injective**
 
-    <img src="/images/build/start-building/supported-networks/neutron.webp" alt="Neutron" style="width:90px; height:auto;">
+<a href="https://testnet.faucet.injective.network/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/injective.webp" alt="Injective" style="width:90px; height:90px;">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://docs.neutron.org/neutron/faq#where-is-the-testnet-faucet){target=\_blank}
+</div>
 
--   **Osmosis**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/osmosis.webp" alt="Osmosis" style="width:90px; height:auto;">
+**Kujira**
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.testnet.osmosis.zone/){target=\_blank}
+<a href="https://hummingbot.org/chains/kujira/#faucets/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/kujira.webp" alt="Kujira" style="width:90px; height:90px;">
+</a>
 
--   **Provenance**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/provenance.webp" alt="Osmosis" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://explorer.test.provenance.io/faucet){target=\_blank}
+**Neutron**
 
--   **Sei**
+<a href="https://docs.neutron.org/neutron/faq/#where-is-the-testnet-faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/neutron.webp" alt="Neutron" style="width:90px; height:90px;">
+</a>
 
-    <img src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:auto;">
+</div>
 
-    [:octicons-arrow-right-16: Visit faucet](https://atlantic-2.app.sei.io/faucet/){target=\_blank}
+<div class="faucet" markdown>
 
--   **Stargaze**
+**Osmosis**
 
-    <img src="/images/build/start-building/supported-networks/stargaze.webp" alt="Stargaze" style="width:90px; height:auto;">
+<a href="https://faucet.testnet.osmosis.zone/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/osmosis.webp" alt="Osmosis" style="width:90px; height:90px;">
+</a>
 
-    [:octicons-arrow-right-16: Visit faucet](https://docs.stargaze.zone/developers/cosmwasm-smart-contracts/testnet#faucet){target=\_blank}
+</div>
 
--   **Terra and Terra 2**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/terra.webp" alt="Terra" style="width:90px; height:auto;">
+**Provenance**
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.terra.money/){target=\_blank}
+<a href="https://explorer.test.provenance.io/faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/provenance.webp" alt="Osmosis" style="width:90px; height:90px;">
+</a>
 
--   **XPLA**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.xpla.io/){target=\_blank}
+**Sei**
+
+<a href="https://atlantic-2.app.sei.io/faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:90px;">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**Stargaze**
+
+<a href="https://docs.stargaze.zone/developers/cosmwasm-smart-contracts/testnet#faucet/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/stargaze.webp" alt="Stargaze" style="width:90px; height:90px;">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**Terra**
+
+<a href="https://faucet.terra.money/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/terra.webp" alt="Terra" style="width:90px; height:90px;">
+</a>
+
+</div>
+
+<div class="faucet" markdown>
+
+**XPLA**
+
+<a href="https://faucet.xpla.io/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:90px;">
+</a>
+
+</div>
 
 </div>
 
 ### NEAR
 
-<div class="grid cards tri" markdown>
+<div class="card-container" markdown>
 
--   **NEAR**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/near.webp" alt="NEAR" style="width:90px; height:auto;">
+**NEAR**
 
-    [:octicons-arrow-right-16: Visit faucet](https://near-faucet.io/){target=\_blank}
+<a href="https://near-faucet.io/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/near.webp" alt="NEAR" style="width:90px; height:90px;">
+</a>
+
+</div>
 
 </div>
 
 ### Solana
 
-<div class="grid cards tri" markdown>
+<div class="card-container" markdown>
 
--   **Solana**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/solana.webp" alt="Solana" style="width:90px; height:auto;">
+**Solana**
 
-    [:octicons-arrow-right-16: Visit faucet](https://faucet.solana.com/){target=\_blank}
+<a href="https://faucet.solana.com/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/solana.webp" alt="Solana" style="width:90px; height:90px;">
+</a>
 
--   **Pythnet**
+</div>
 
-    <img src="/images/build/start-building/supported-networks/pythnet.webp" alt="Pythnet" style="width:90px; height:auto;">
+<div class="faucet" markdown>
 
-    [:octicons-arrow-right-16: Visit faucet](https://app.optimism.io/faucet?utm_source=docs){target=\_blank}
+**Pythnet (Sepolia)**
+
+<a href="https://app.optimism.io/faucet?utm_source=docs/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/pythnet.webp" alt="Pythnet" style="width:90px; height:90px;">
+</a>
+
+</div>
 
 </div>
 
 ### Sui
 
-<div class="grid cards tri" markdown>
+<div class="card-container" markdown>
 
--   **Sui**
+<div class="faucet" markdown>
 
-    <img src="/images/build/start-building/supported-networks/sui.webp" alt="Sui" style="width:90px; height:auto;">
+**Sui**
 
-    [:octicons-arrow-right-16: Visit faucet](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank}
+<a href="https://docs.sui.io/guides/developer/getting-started/get-coins/" target= "\_blank">
+    <img class="no-lightbox" src="/images/build/start-building/supported-networks/sui.webp" alt="Sui" style="width:90px; height:90px;">
+</a>
+
+</div>
 
 </div>
 
