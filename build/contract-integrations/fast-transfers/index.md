@@ -23,7 +23,7 @@ This section will guide you through interacting with the Fast Transfers protocol
 
     Take a look at the key components and processes behind the smart contracts that power the Fast Transfers protocol and how they facilitate efficient transfers across blockchain networks.
 
-    [:octicons-arrow-right-16: See the smart contract components](/build/contract-integrations/core-contracts/)
+    [:octicons-arrow-right-16: See the smart contract components](/build/contract-integrations/fast-transfers/smart-components/)
 
 </div>
 
