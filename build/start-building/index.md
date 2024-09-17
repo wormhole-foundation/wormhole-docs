@@ -1,21 +1,21 @@
 ---
 title: Start Building
-description: This section has all you need to get started developing with Wormhole, including a guide to supported networks and tool sets and code examples.
+description: This section has all you need to start developing with Wormhole, including a guide to supported networks, tool sets, and code examples.
 ---
 
 # Start Building
 
 ## Introduction
 
-Wormhole's role as a Generic Message Passing (GMP) protocol means it brings increased ease of interoperability across multiple areas of project development. 
+Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates interoperability across multiple areas of project development. The following sections will help you locate the tools most relevant to your development needs. 
 
-Builders of crosschain dApps will find tools like Wormhole TypeScript SDK, Connect, and Queries helpful to integrate Wormhole functionality without sacrificing user experience. 
+Builders of cross-chain dApps will find tools like Wormhole TypeScript SDK, Connect, and Queries helpful for integrating Wormhole functionality without sacrificing user experience. 
 
-Smart contract developers will find tools like Womrhole Relayer, Native Token Transfers, and Fast Transfers useful for creating protocols that seamlessly move assets between chains while maintaining security for protocol builders and users. Contract and protocol developers will also find guidance for setting up their local environment for various stages of the development process. 
+Smart contract developers will find tools like Wormhole Relayer, Core Contracts, and the Wormhole Solidity SDK useful for creating protocols that seamlessly move assets between chains while maintaining security for protocol builders and users. Contract and protocol developers will also find guidance for setting up their local environment for various stages of the development process. 
 
-This section also offers links to key developer resources like references and useful code examples. 
+This section also links to developer resources like references and helpful code examples. 
 
-## Crosschain DApp Developers
+## Cross-chain DApp Developers
 
 <div class="grid cards" markdown>
 
@@ -23,7 +23,7 @@ This section also offers links to key developer resources like references and us
 
     ---
 
-    Explore Wormhole's TypeScript SDK and learn about how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 
     [:octicons-arrow-right-16: Explore the SDK](/build/applications/wormhole-sdk/)
 
@@ -61,7 +61,7 @@ This section also offers links to key developer resources like references and us
 
     ---
 
-    Find Solidity interfaces, testing tools, and libraries to make on-chain integration with EVM compatible chains as smooth as possible.
+    Find Solidity interfaces, testing tools, and libraries to make smooth out on-chain integration with EVM-compatible chains.
 
     [:octicons-arrow-right-16: Explore the SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}
 
@@ -69,7 +69,7 @@ This section also offers links to key developer resources like references and us
 
     ---
 
-    Get familiar with the Wormhole relayer interfaces and learn the essential requirements for interacting with the relayer to send and receive cross-chain messages.
+    Get familiar with the Wormhole relayer interfaces and learn the requirements for interacting with the relayer to send and receive cross-chain messages.
 
     [:octicons-arrow-right-16: Get started with Wormhole Relayer](/build/contract-integrations/wormhole-relayers/)
 
