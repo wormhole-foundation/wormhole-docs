@@ -21,10 +21,11 @@ jobs:
           # clone mkdocs repo locally
           git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/papermoonio/wormhole-mkdocs.git
 
-      - name: Move wormhole-docs contents to mkdocs repository
+      - name: Update wormhole-docs content in the mkdocs-repository
         run: |
-          mkdir wormhole-mkdocs/wormhole-docs
-          mv * wormhole-mkdocs/wormhole-docs &> /dev/null || echo "Error with mv expected due to recursively moving all contents into subfolder"
+          # update the wormhole-docs submodule
+          # running this command on the branch associated with the PR will test the workflow using the latest commits
+          git submodule update --remote
 
       - name: Install pip requirements
         run: |
