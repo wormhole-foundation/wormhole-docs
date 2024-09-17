@@ -1,0 +1,5 @@
+title: Cosmos
+nav:
+ - index.md
+ - 'Cosmos' : 'cosmos.md'
+ - 'Onboard to Cosmos Gateway' : 'gateway.md'

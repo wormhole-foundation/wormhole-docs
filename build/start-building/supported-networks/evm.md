@@ -13,7 +13,7 @@ The recommended development tool for EVM environments is [Foundry](https://book.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For EVM chains, a Wormhole formatted address is the 20-byte EVM standard address left padded with zeroes. e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For EVM chains, a Wormhole formatted address is the 20-byte EVM standard address left padded with zeroes. e.g. `0xd8da6bf26964af9d7eed9e03e53415d37aa96045` becomes `0x000000000000000000000000d8da6bf26964af9d7eed9e03e53415d37aa96045`.
 
 ## Emitter 
 

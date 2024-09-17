@@ -9,9 +9,9 @@ This page includes details on working with Aptos-based chains.
 
 ## Addresses
 
-Because Wormhole works with many environments, the Wormhole address format is normalized. For Aptos-based chains, no normalization is needed for standard addresses since they already have 32 bytes. E.g. `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31` becomes `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31`
+Because Wormhole works with many environments, the Wormhole address format is normalized. For Aptos-based chains, no normalization is needed for standard addresses since they already have 32 bytes. E.g. `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31` becomes `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31`.
 
-However, emitter addresses are recorded as a uint64 (8 bytes), so they're left padded with `0`s to 32 bytes. E.g. `0x0000000000000001` becomes `0000000000000000000000000000000000000000000000000000000000000001`
+However, emitter addresses are recorded as a uint64 (8 bytes), so they're left padded with `0`s to 32 bytes. E.g. `0x0000000000000001` becomes `0000000000000000000000000000000000000000000000000000000000000001`.
 
 ## Emitter 
 

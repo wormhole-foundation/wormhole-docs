@@ -11,13 +11,21 @@ This section covers various aspects and services related to communication protoc
 
 <div class="grid cards" markdown>
 
--   :octicons-book-16:{ .lg .middle } **Native Token Transfers**
+-   :octicons-book-16:{ .lg .middle } **Token Bridge**
 
     ---
 
-    Wormhole's Native Token Transfers (NTT) offers an open source and flexible framework for cross-chain token transfers, providing full control over token behavior on each blockchain.
+    The Token and NFT Bridges provide a secure, low-lift integration for cross-chain transfers of fungible and non-fungible tokens (NFTs).
 
-    [:octicons-arrow-right-16: Learn more about NTT](/learn/messaging/native-token-transfers/)
+    [:octicons-arrow-right-16: Learn more about Token Bridges](/learn/messaging/token-nft-bridge/)
+
+-   :octicons-book-16:{ .lg .middle } **Cosmos Gateway**
+
+    ---
+
+    Wormhole Gateway is a Cosmos-SDK chain designed to bridge non-native assets into the Cosmos ecosystem, offering unified liquidity across Cosmos chains.
+
+    [:octicons-arrow-right-16: Learn more about Gateway](/learn/messaging/gateway/)
 
 -   :octicons-book-16:{ .lg .middle } **Circle's CCTP Bridge**
 
@@ -27,20 +35,20 @@ This section covers various aspects and services related to communication protoc
 
     [:octicons-arrow-right-16: Learn more about CCTP](/learn/messaging/cctp/)
 
--   :octicons-book-16:{ .lg .middle } **Gateway**
+-   :octicons-book-16:{ .lg .middle } **Native Token Transfers**
 
     ---
 
-    Wormhole Gateway is a Cosmos-SDK chain designed to bridge non-native assets into the Cosmos ecosystem, offering unified liquidity across Cosmos chains.
+    Wormhole's Native Token Transfers (NTT) offers an open source and flexible framework for cross-chain token transfers, providing full control over token behavior on each blockchain.
 
-    [:octicons-arrow-right-16: Learn more about Gateway](/learn/messaging/gateway/)
+    [:octicons-arrow-right-16: Learn more about NTT](/learn/messaging/native-token-transfers/)
 
--   :octicons-book-16:{ .lg .middle } **Token Bridge**
+-   :octicons-book-16:{ .lg .middle } **Fast Transfers**
 
     ---
 
-    The Token and NFT Bridges provide a secure, low-lift integration for cross-chain transfers of fungible and non-fungible tokens (NFTs).
+    Fast Transfers is a protocol designed by Wormhole to provide quick and efficient cross-chain liquidity movement, addressing fragmentation and finality with a hub-and-spoke model.
 
-    [:octicons-arrow-right-16: Learn more about Token Bridges](/learn/messaging/token-nft-bridge/)
+    [:octicons-arrow-right-16: Learn more about Fast Transfers](/learn/messaging/fast-transfers/)
 
 </div>
