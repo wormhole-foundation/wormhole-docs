@@ -8,4 +8,4 @@ nav:
  - 'Cosmos Gateway' : 'gateway.md'
  - native-token-transfers
  - fast-transfers
- - 'Set Up a Dev Environment': 'dev-env.md'
+ - 'Development Environment': 'dev-env.md'

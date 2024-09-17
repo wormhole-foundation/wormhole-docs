@@ -677,7 +677,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 - [Website](https://neon-labs.org/){target=_blank}
 - Block Explorers: [NeonScan](https://neonscan.org/){target=_blank} | [BlockScout](https://neon.blockscout.com/){target=_blank}
-- [Developer Docs](https://neonevm.org/docs/quick_start){target=_blank}
+- [Developer Docs](https://neonevm.org/docs/quick_start){target=_blank} | [Faucet](https://neonfaucet.org/){target=/_blank}
 
 ### Wormhole Details
 
@@ -715,7 +715,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 - [Website](https://oasisprotocol.org/){target=_blank}
 - [OasisScan](https://www.oasisscan.com/){target=_blank}
-- [Developer Docs](https://docs.oasis.io/){target=_blank}
+- [Developer Docs](https://docs.oasis.io/){target=_blank} | [Faucet](https://faucet.testnet.oasis.dev/){target=/_blank}
 
 ### Wormhole Details
 
@@ -755,7 +755,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - [Block Explorer](https://optimistic.etherscan.io/){target=_blank}
 - [Developer Docs](https://docs.optimism.io/){target=_blank}
 
-## Wormhole Details
+### Wormhole Details
 
 - Name: `optimism`
 - Chain ID: `24`
@@ -860,7 +860,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 - [Website](https://rootstock.io/){target=_blank}
 - [Block Explorer](https://explorer.rootstock.io/){target=_blank}
-- [Developer Docs](https://dev.rootstock.io/){target=_blank}
+- [Developer Docs](https://dev.rootstock.io/){target=_blank} | [Faucet](https://faucet.rootstock.io/)
 
 ### Wormhole Details
 
@@ -1065,7 +1065,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 - [Website](https://base.org/){target=_blank}
 - [Etherscan](https://sepolia.basescan.org/){target=_blank}
-- [Developer docs](https://docs.base.org/){target=_blank}
+- [Developer docs](https://docs.base.org/){target=_blank} | [Faucet](https://www.ethereum-ecosystem.com/faucets/base-sepolia){target=_blank}
 
 ### Wormhole Details
 
@@ -1146,7 +1146,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 - [Website](https://www.mantle.xyz/){target=_blank}
 - [Block Explorer](https://explorer.mantle.xyz/){target=_blank}
-- [Developer Docs](https://docs.mantle.xyz/network/introduction/overview){target=_blank}
+- [Developer Docs](https://docs.mantle.xyz/network/introduction/overview){target=_blank} | [Faucet](https://faucet.testnet.mantle.xyz/){target=/_blank}
 
 ### Wormhole Details
 
@@ -1231,7 +1231,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 - [Website](https://www.berachain.com/){target=_blank}
 - [Explorer update](https://bartio.beratrail.io/){target=_blank}
-- [Docs](https://docs.berachain.com/){target=_blank}
+- [Docs](https://docs.berachain.com/){target=_blank} | [Faucet](https://bartio.faucet.berachain.com/)
 
 ### Wormhole Details
 
