@@ -20,7 +20,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Find installation instructions for both the meta package and installing specific, individual packages
 
-    [:octicons-arrow-right-16: Installation instructions](#installation)
+    [:octicons-arrow-right-16: Install the SDK](#installation)
 
 -   :octicons-book-16:{ .lg .middle } **Concepts**
 
@@ -36,7 +36,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Guidance on using the SDK to add seamless interchain messaging to your application, including code examples
 
-    [:octicons-arrow-right-16: Using the SDK](#usage)
+    [:octicons-arrow-right-16: Use the SDK](#usage)
 
 -   :octicons-code-square-16:{ .lg .middle } **TSdoc for SDK**
 
@@ -44,7 +44,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Review the TSdoc for the Wormhole TypeScript SDK for a detailed look at availabel methods, classes, interfaces, and definitions
 
-    [:octicons-arrow-right-16: TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
+    [:octicons-arrow-right-16: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
 
 </div>
 
@@ -142,7 +142,7 @@ Optionally, you can override the default configuration with a partial `WormholeC
 
 ## Concepts
 
- Understanding several higher-level Wormhole concepts and how the SDK abstracts them away will help you use the tools most effectively. The following sections will introduce and discuss the concepts of platforms, chain contexts, addresses, signers, and protocols, how they are used in the Wormhole context, and how the SDK helps ease development in each conceptual area.
+Understanding several higher-level Wormhole concepts and how the SDK abstracts them away will help you use the tools most effectively. The following sections will introduce and discuss the concepts of platforms, chain contexts, addresses, signers, and protocols, how they are used in the Wormhole context, and how the SDK helps ease development in each conceptual area.
 
 ### Platforms
 
@@ -159,102 +159,75 @@ Wormhole currently supports the following platforms:
 
 ??? interface "EVM"
 
-    ??? child "Available protocols"
+    [**`CCTP`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/cctp/){target=\_blank} - Circle's Cross-Chain Transfer Protocol for moving USDC securely across blockchains
 
-        [**`CCTP`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/cctp/){target=\_blank} - Circle's Cross-Chain Transfer Protocol for moving USDC securely across blockchains
+    ---
 
-        ---
+    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Ethereum network
 
-        [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Ethereum network
+    ---
 
-        ---
+    [**`Portico`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/portico/){target=\_blank} - Portico Bridge protocol, configured for Ethereum network
 
-        [**`Portico`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/portico/){target=\_blank} - Portico Bridge protocol, configured for Ethereum network
+    ---
 
-        ---
-
-        [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Ethereum network
+    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Ethereum network
 
 ??? interface "Solana"
 
-    ??? child "Available protocols"
+    [**`CCTP`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/cctp/){target=\_blank} - Circle's Cross-Chain Transfer Protocol for moving USDC securely across blockchains
 
-        [**`CCTP`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/cctp/){target=\_blank} - Circle's Cross-Chain Transfer Protocol for moving USDC securely across blockchains
+    ---
 
-        ---
+    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Solana network
 
-        [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Solana network
+    ---
 
-        ---
-
-        [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Solana network
+    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Solana network
 
 ??? interface "Cosmos"
 
-    ??? child "Available protocols"
+    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Cosmos network 
 
-        [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Cosmos network 
+    ---
 
-        ---
+    [**`IBC`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/ibc){target=\_blank} - Cosmos' Inter-Blockchain Protocol, configured for Cosmos network
 
-        [**`IBC`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/ibc){target=\_blank} - Cosmos' Inter-Blockchain Protocol, configured for Cosmos network
+    ---
 
-        ---
-
-        [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Cosmos network
+    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Cosmos network
 
 ??? interface "Sui"
 
-    ??? child "Available protocols"
+    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/sui/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Sui network 
 
-        [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/sui/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Sui network 
+    ---
 
-        ---
-
-        [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/sui/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Sui network
+    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/sui/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Sui network
 
 ??? interface "Aptos"
 
-    ??? child "Available protocols"
+    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/aptos/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Aptos network 
 
-        [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/aptos/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Aptos network 
+    ---
 
-        ---
-
-        [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/aptos/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Aptos network
+    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/aptos/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Aptos network
 
 
 ??? interface "Algorand"
 
-    ??? child "Available protocols"
+    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/algorand/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Algorand network 
 
-        [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/algorand/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Algorand network 
+    ---
 
-        ---
-
-        [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/algorand/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Algorand network
+    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/algorand/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Algorand network
 
 
 See the [Platforms folder of the TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole TypeScript SDK.
 
 ### Chain Context
 
-The `definitions` package of the SDK includes the `ChainContext` class, which creates an interface for working with connected chains in a standardized way. This class contains the network, chain, and platform configurations for connected chains and cached RPC and protocol clients. The `ChainContext` class also exposes chain-specific methods and utilities. Much of the functionality comes from the `Platform` methods but some specific chains may have overridden methods via the context.
-
-The `ChainContext` class defines the following key type parameters which are used throughout the package:
-
-??? interface "Type parameters"
-
-    **`N`** extends _Network_
-
-    ---
-
-    **`C`** extends _Chain = Chain_
-
-    ---
-
-    **`P`** extends _Platform = ChainToPlatform<C>_
-
+The `definitions` package of the SDK includes the `ChainContext` class, which creates an interface for working with connected chains in a standardized way. This class contains the network, chain, and platform configurations for connected chains and cached RPC and protocol clients. The `ChainContext` class also exposes chain-specific methods and utilities. Much of the functionality comes from the `Platform` methods but some specific chains may have overridden methods via the context. This is also where the `Network`, `Chain`, and `Platform` type parameters which are used throughout the package are defined.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/get-chain.ts'
@@ -327,7 +300,7 @@ The payload contains the information necessary to perform whatever action is req
 
 #### Token Bridge
 
-The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge which includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
+The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge, which includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols, but it is possible to use them directly.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/token-bridge-snippet.ts'
