@@ -325,7 +325,7 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 |  NFT Bridge  |   N/A    |
 
 
-## BNB Smart Chain
+## BNB Smart Chain {: #bsc }
 
 ### Ecosystem
 
