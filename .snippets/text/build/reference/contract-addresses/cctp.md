@@ -1,4 +1,4 @@
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the scripts directory to learn how to update this page. -->
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CCTP_ADDRESS-->
 
 === "MainNet"
