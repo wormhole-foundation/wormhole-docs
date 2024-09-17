@@ -18,7 +18,7 @@ This guide will walk you through getting started with Wormhole's CCTP contracts 
 To interact with the Wormhole CCTP, you'll need the following:
 
 - [The address of the CCTP contract](/build/reference/contract-addresses#cctp) on the chains you're deploying your contract on
-- [The Wormhole chain ID](/build//reference/chain-ids/) of the chains you're deploying your contract on
+- [The Wormhole chain ID](/build/reference/chain-ids/) of the chains you're deploying your contract on
 
 ## Wormhole's CCTP Integration Contract
 
