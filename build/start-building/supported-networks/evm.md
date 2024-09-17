@@ -382,7 +382,7 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 <!--BASE_CHAIN_DETAILS-->
 <!--BSC_CHAIN_DETAILS-->
 
-## BNB Smart Chain
+## BNB Smart Chain {: #bsc }
 
 ### Quick Links
 
