@@ -157,71 +157,12 @@ These modules also import and expose essential functions and define types or con
 
 Wormhole currently supports the following platforms:
 
-??? interface "EVM"
-
-    [**`CCTP`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/cctp/){target=\_blank} - Circle's Cross-Chain Transfer Protocol for moving USDC securely across blockchains
-
-    ---
-
-    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Ethereum network
-
-    ---
-
-    [**`Portico`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/portico/){target=\_blank} - Portico Bridge protocol, configured for Ethereum network
-
-    ---
-
-    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/evm/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Ethereum network
-
-??? interface "Solana"
-
-    [**`CCTP`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/cctp/){target=\_blank} - Circle's Cross-Chain Transfer Protocol for moving USDC securely across blockchains
-
-    ---
-
-    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Solana network
-
-    ---
-
-    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/solana/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Solana network
-
-??? interface "Cosmos"
-
-    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Cosmos network 
-
-    ---
-
-    [**`IBC`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/ibc){target=\_blank} - Cosmos' Inter-Blockchain Protocol, configured for Cosmos network
-
-    ---
-
-    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/cosmwasm/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Cosmos network
-
-??? interface "Sui"
-
-    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/sui/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Sui network 
-
-    ---
-
-    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/sui/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Sui network
-
-??? interface "Aptos"
-
-    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/aptos/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Aptos network 
-
-    ---
-
-    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/aptos/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Aptos network
-
-
-??? interface "Algorand"
-
-    [**`Core`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/algorand/protocols/core/){target=\_blank} - Wormhole's Core protocol, configured for Algorand network 
-
-    ---
-
-    [**`Token Bridge`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms/algorand/protocols/tokenBridge/){target=\_blank} - Wormhole's Token Bridge protocol, configured for Algorand network
-
+- EVM
+- Solana
+- Cosmos
+- Sui
+- Aptos
+- Algorand
 
 See the [Platforms folder of the TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole TypeScript SDK.
 
