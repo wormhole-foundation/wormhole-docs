@@ -25,7 +25,7 @@ This section provides the information you need to get started developing with Wo
 
     This page includes resources to quickly find the TestNet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
 
-    [:octicons-arrow-right-16: TestNet faucets](/build/start-building/testnet-faucets/)
+    [:octicons-arrow-right-16: Find TestNet faucets](/build/start-building/testnet-faucets/)
 
 -   :octicons-code-16:{ .lg .middle } **Demos**
 

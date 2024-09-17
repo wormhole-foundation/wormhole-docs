@@ -9,13 +9,13 @@ description: This page includes resources to quickly find the TestNet tokens you
 
 Don't let the need for TestNet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the TestNet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
-### **EVM**
+### EVM
 
 <div class="card-container" markdown>
 
 <div class="faucet" markdown>
 
-**Ethereum - Sepolia**
+**Ethereum Sepolia**
 
 <a href="https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia" target= "\_blank">
     <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
@@ -25,7 +25,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="faucet" markdown>
 
-**Ethereum - Holesky**
+**Ethereum Holesky**
 
 <a href="https://holesky-faucet.pk910.de/" target= "\_blank">
     <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
@@ -215,7 +215,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="faucet" markdown>
 
-**Polygon and Polygon Sepolia**
+**Polygon**
 
 <a href="https://faucet.polygon.technology/" target= "\_blank">
     <img class="no-lightbox" src="/images/build/start-building/supported-networks/polygon.webp" alt="Polygon" style="width:90px; height:90px;">
@@ -235,9 +235,9 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="faucet" markdown>
 
-**Scroll - Sepolia**
+**Scroll**
 
-<a href="https://www.sepoliafaucet.io/" target= "\_blank">
+<a href="https://docs.scroll.io/en/user-guide/faucet/" target= "\_blank">
     <img class="no-lightbox" src="/images/build/start-building/supported-networks/scroll.webp" alt="Scroll" style="width:90px; height:90px;">
 </a>
 
@@ -453,16 +453,6 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
-
-**Pythnet (Sepolia)**
-
-<a href="https://app.optimism.io/faucet?utm_source=docs/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/pythnet.webp" alt="Pythnet" style="width:90px; height:90px;">
-</a>
-
-</div>
-
 </div>
 
 ### Sui
@@ -480,14 +470,3 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
