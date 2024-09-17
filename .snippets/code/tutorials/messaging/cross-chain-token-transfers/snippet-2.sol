@@ -5,7 +5,7 @@ import "lib/wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
 import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
 
 contract CrossChainReceiver is TokenReceiver {
-    // The wormhole relayer and registeredSenders are inherited from the Base.sol contract.
+    // The Wormhole relayer and registeredSenders are inherited from the Base.sol contract
 
     constructor(
         address _wormholeRelayer,
