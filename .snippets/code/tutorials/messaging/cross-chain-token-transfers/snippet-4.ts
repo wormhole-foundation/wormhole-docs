@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { BytesLike, ethers } from 'ethers';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
@@ -118,6 +118,27 @@ async function main() {
     const receiverAddress = (receiverContract as ethers.Contract).target;
     console.log(
       `CrossChainReceiver on ${targetChain.description}: ${receiverAddress}`
+    );
+
+    // Register the sender contract in the receiver contract
+    console.log(
+      `Registering CrossChainSender (${senderAddress}) as a valid sender in CrossChainReceiver (${receiverAddress})...`
+    );
+
+    const CrossChainReceiverContract = new ethers.Contract(
+      receiverAddress,
+      receiverJson.abi,
+      targetWallet
+    );
+
+    const tx = await CrossChainReceiverContract.setRegisteredSender(
+      sourceChain.chainId,
+      ethers.zeroPadValue(senderAddress as BytesLike, 32)
+    );
+
+    await tx.wait();
+    console.log(
+      `CrossChainSender registered as a valid sender on ${targetChain.description}`
     );
 
     // Load existing deployed contract addresses from contracts.json
