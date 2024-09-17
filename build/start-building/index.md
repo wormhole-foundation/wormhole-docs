@@ -61,7 +61,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     ---
 
-    Explore the blockchains supported by Wormhole for cross-chain communication and asset transfers. Understand which networks are available for both testnet and mainnet environments.
+    Explore the blockchains supported by Wormhole for cross-chain communication and asset transfers. Understand which networks are available for both TestNet and MainNet environments.
 
     [:octicons-arrow-right-16: Discover supported networks](/build/start-building/supported-networks/)
 
