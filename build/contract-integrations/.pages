@@ -4,8 +4,8 @@ nav:
  - 'Wormhole Relayer': 'wormhole-relayers.md'
  - 'Core Contracts': 'core-contracts.md'
 #  - 'Token Bridge': 'token-bridge.md'
-#  - 'CCTP': 'cctp.md'
- - 'Gateway' : 'gateway.md'
+ - 'CCTP': 'cctp.md'
+ - 'Cosmos Gateway' : 'gateway.md'
  - native-token-transfers
  - fast-transfers
  - 'Development Environment': 'dev-env.md'
