@@ -19,7 +19,6 @@ contract MessageReceiver is IWormholeReceiver {
         registrationOwner = msg.sender; // Set contract deployer as the owner
     }
 
-    // Modifier to check if the sender is registered for the source chain
     modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
         require(
             registeredSenders[sourceChain] == sourceAddress,
@@ -28,7 +27,6 @@ contract MessageReceiver is IWormholeReceiver {
         _;
     }
 
-    // Function to register the valid sender address for a specific chain
     function setRegisteredSender(
         uint16 sourceChain,
         bytes32 sourceAddress
