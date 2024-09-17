@@ -49,7 +49,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Explore pre-built reference applications that demonstrate real-world use cases of Wormhole’s messaging protocols and token bridges.
 
-    [:octicons-arrow-right-16: Get inspired with demos](/build/contract-integrations/core-contracts/)
+    [:octicons-arrow-right-16: Get inspired with demos](/build/start-building/demos/)
 
 </div>
 
