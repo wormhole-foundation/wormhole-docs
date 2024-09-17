@@ -68,22 +68,29 @@ You can find the full code for the `MessageSender.sol` below.
 
 ### Receiver Contract: MessageReceiver
 
-The `MessageReceiver` contract handles incoming cross-chain messages. When a message arrives, it decodes the payload and logs the message content.
+The `MessageReceiver` contract handles incoming cross-chain messages. When a message arrives, it decodes the payload and logs the message content. It ensures that only authorized contracts can send and process messages, adding an extra layer of security in cross-chain communication.
 
-Key functions include:
-
- - **`setRegisteredSender`** - this new function registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders
-
- - **`receiveWormholeMessages`** - the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages
-
-#### Emitter Validation
+#### Emitter Validation and Registration
 
 In cross-chain messaging, validating the sender is essential to prevent unauthorized contracts from sending messages. The `isRegisteredSender` modifier ensures that messages can only be processed if they come from the registered contract on the source chain. This guards against malicious messages and enhances security.
 
-Here's the core of the contract:
+Key implementation details include:
+
+ - **`registeredSender`** - stores the address of the registered sender contract
+ - **`setRegisteredSender`** - registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders
+ - **`isRegisteredSender`** - restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:31:66"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:12:13"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:22:39"
+```
+
+#### Message Processing
+
+The `receiveWormholeMessages` is the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
+
+```solidity
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:42:64"
 ```
 
 You can find the full code for the `MessageReceiver.sol` below.
@@ -217,7 +224,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
 
 4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
 
-    This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract.
+    This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
 
     ```javascript
     --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:55:66"
