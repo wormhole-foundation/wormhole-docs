@@ -17,9 +17,11 @@ In this guide, we’ll first explore the theory behind CCTP, then provide a step
 
 ### Core Concepts
 
-1. **Manual Transfers** - manual transfers involve three key steps: initiating the transfer on the source chain, fetching the Circle attestation to verify the transfer, and completing the transfer on the destination chain
+When bridging assets across chains, there are two primary approaches to handling the transfer process: manual and automated. Below, you may find the differences between these approaches and how they impact the user experience:
 
-2. **Automated Transfers** - automatic transfers simplify the process by handling Circle attestations and finalization for you. With Wormhole's automated relaying, you only need to initiate the transfer, and the rest is managed for you
+ - **Manual transfers** - manual transfers involve three key steps: initiating the transfer on the source chain, fetching the Circle attestation to verify the transfer, and completing the transfer on the destination chain
+
+ - **Automated transfers** - automatic transfers simplify the process by handling Circle attestations and finalization for you. With Wormhole's automated relaying, you only need to initiate the transfer, and the rest is managed for you
 
 ## Prerequisites
 
