@@ -3,7 +3,7 @@
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Acala</strong>
 <br><br>
@@ -11,7 +11,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Algorand</strong>
 <br><br>
@@ -19,7 +19,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Aptos</strong>
 <br><br>
@@ -27,7 +27,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Arbitrum</strong>
 <br><br>
@@ -35,7 +35,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Avalanche</strong>
 <br><br>
@@ -43,7 +43,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Base</strong>
 <br><br>
@@ -51,7 +51,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Berachain</strong>
 <br><br>
@@ -59,7 +59,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Blast</strong>
 <br><br>
@@ -67,7 +67,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>BNB Smart Chain</strong>
 <br><br>
@@ -75,7 +75,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Celestia</strong>
 <br><br>
@@ -83,7 +83,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Celo</strong>
 <br><br>
@@ -91,7 +91,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Cosmoshub</strong>
 <br><br>
@@ -99,7 +99,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Dymension</strong>
 <br><br>
@@ -107,7 +107,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Ethereum</strong>
 <br><br>
@@ -115,7 +115,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Evmos</strong>
 <br><br>
@@ -123,7 +123,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Fantom</strong>
 <br><br>
@@ -131,7 +131,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Gnosis</strong>
 <br><br>
@@ -139,7 +139,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Injective</strong>
 <br><br>
@@ -147,7 +147,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Karura</strong>
 <br><br>
@@ -155,7 +155,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Klaytn</strong>
 <br><br>
@@ -163,7 +163,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Kujira</strong>
 <br><br>
@@ -171,7 +171,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Linea</strong>
 <br><br>
@@ -179,7 +179,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Mantle</strong>
 <br><br>
@@ -187,7 +187,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Moonbeam</strong>
 <br><br>
@@ -195,7 +195,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>NEAR</strong>
 <br><br>
@@ -203,7 +203,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Neon</strong>
 <br><br>
@@ -211,7 +211,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Neutron</strong>
 <br><br>
@@ -219,7 +219,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Oasis</strong>
 <br><br>
@@ -227,7 +227,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Optimism</strong>
 <br><br>
@@ -235,7 +235,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Osmosis</strong>
 <br><br>
@@ -243,7 +243,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Polygon</strong>
 <br><br>
@@ -251,7 +251,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Provenance</strong>
 <br><br>
@@ -259,7 +259,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Pythnet</strong>
 <br><br>
@@ -267,7 +267,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Rootstock</strong>
 <br><br>
@@ -275,7 +275,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Scroll</strong>
 <br><br>
@@ -283,7 +283,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Seda</strong>
 <br><br>
@@ -291,7 +291,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Sei</strong>
 <br><br>
@@ -299,7 +299,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Seievm</strong>
 <br><br>
@@ -307,7 +307,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Solana</strong>
 <br><br>
@@ -315,7 +315,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Stargaze</strong>
 <br><br>
@@ -323,7 +323,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Sui</strong>
 <br><br>
@@ -331,7 +331,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Terra</strong>
 <br><br>
@@ -339,7 +339,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Terra2</strong>
 <br><br>
@@ -347,7 +347,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Xlayer</strong>
 <br><br>
@@ -355,7 +355,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Xpla</strong>
 <br><br>
