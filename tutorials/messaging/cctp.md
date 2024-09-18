@@ -39,15 +39,13 @@ The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you t
 
 In this section, you'll set up your project for transferring USDC across chains using Wormhole's SDK and Circle's CCTP. We’ll guide you through initializing the project, installing dependencies, and preparing your environment for cross-chain transfers.
 
-1. **Initialize the project** - start by creating a new directory for your project and initializing it with `npm`
+1. **Initialize the project** - start by creating a new directory for your project and initializing it with `npm`, which will create the `package.json` file for your project
 
     ```bash
     mkdir cctp-circle
     cd cctp-circle
     npm init -y
     ```
-
-    This will create the necessary `package.json` file and set up the basic structure of your project.
 
 2. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
 
