@@ -234,7 +234,7 @@ The automatic transfer process simplifies the steps by automating the attestatio
 
 ### Set-Up
 
-1. **Configure the transfer** - the setup for automatic transfers is similar to manual transfers, with the key difference being that the `automatic` flag is `true`. This indicates Wormhole to handle the attestation and finalization steps for you
+1. **Configure the transfer** - the setup for automatic transfers is similar to manual transfers, with the key difference being that the `automatic` flag is `true`. This indicates that Wormhole will handle the attestation and finalization steps for you
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/snippet-3.ts:25:25"
