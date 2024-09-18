@@ -15,7 +15,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     The content in this section shows you how you can run your own infrastructure and spin up a Spy daemon locally to subscribe to a stream of messages, also known as Verifiable Action Approvals (VAAs).
 
-    [:octicons-arrow-right-16: Get started now](/docs/infrastructurespy/run-spy/)
+    [:octicons-arrow-right-16: Get started now](/docs/infrastructure/spy/run-spy/)
 
 </div>
 
