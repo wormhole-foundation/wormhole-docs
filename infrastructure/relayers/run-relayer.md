@@ -101,7 +101,7 @@ The source code for this example is available in the [`relayer-engine` repositor
 
 Next, you must start a Spy to listen for available VAAs published on the Guardian network. You also need a persistence layer. This example uses Redis.
 
-More details about the Spy are available in the [Spy Documentation](/learn/infrastructure/spy){target=\_blank}.
+More details about the Spy are available in the [Spy Documentation](/docs/learn/infrastructure/spy){target=\_blank}.
 
 ### Wormhole Network Spy
 

@@ -17,7 +17,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Prerequisites and commands for installing the NTT CLI and working with the NTT framework.
 
-    [:octicons-arrow-right-16: Install the NTT CLI](/build/contract-integrations/native-token-transfers/deployment-process/installation/)
+    [:octicons-arrow-right-16: Install the NTT CLI](/docs/build/contract-integrations/native-token-transfers/deployment-process/installation/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM**
 
@@ -25,7 +25,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Find information on preparing for NTT deployment to EVM, including an example NTT token repository.
 
-    [:octicons-arrow-right-16: Deploy token and NTT contracts](/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/)
+    [:octicons-arrow-right-16: Deploy token and NTT contracts](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**
 
@@ -33,7 +33,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Your guide to NTT deployment to Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
 
-    [:octicons-arrow-right-16: Deploy token and NTT contracts](/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/)
+    [:octicons-arrow-right-16: Deploy token and NTT contracts](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/)
 
 -   :octicons-search-16:{ .lg .middle } **Post Deployment**
 
@@ -41,6 +41,6 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Learn how to best monitor and maintain your NTT deployment to get the most out of your Wormhole integration while providing security for users.
 
-    [:octicons-arrow-right-16: Explore next steps](/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
+    [:octicons-arrow-right-16: Explore next steps](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
 
 </div>

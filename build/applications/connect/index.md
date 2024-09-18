@@ -17,7 +17,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Explore Wormhole Connect, the React widget that allows you to offer an easy-to-use UI for cross-chain asset transfers via Wormhole in a web application.
 
-    [:octicons-arrow-right-16: Get started](/build/applications/connect/overview/)
+    [:octicons-arrow-right-16: Get started](/docs/build/applications/connect/overview/)
 
 -   :octicons-code-16:{ .lg .middle } **Routes**
 
@@ -25,14 +25,14 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Explore Wormhole Connect's routing capabilities for asset transfers, featuring Token Bridge, CCTP, NTT, and various blockchain-specific routes for optimal UX.
 
-    [:octicons-arrow-right-16: Explore routes](/build/applications/connect/routes/)
+    [:octicons-arrow-right-16: Explore routes](/docs/build/applications/connect/routes/)
 
 -   :octicons-globe-16:{ .lg .middle } **Features**
 
     ---
     Learn which features of Connect are available for your network of choice.
 
-    [:octicons-arrow-right-16: Discover supported features](/build/applications/connect/features/)
+    [:octicons-arrow-right-16: Discover supported features](/docs/build/applications/connect/features/)
 
 -   :octicons-pencil-16:{ .lg .middle } **Configuration**
 
@@ -40,7 +40,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions.
 
-    [:octicons-arrow-right-16: Configure for customization](/build/applications/connect/configuration/)
+    [:octicons-arrow-right-16: Configure for customization](/docs/build/applications/connect/configuration/)
 
 </div>
 

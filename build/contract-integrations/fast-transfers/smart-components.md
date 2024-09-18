@@ -5,7 +5,7 @@ description: Learn about the Token Router and Matching Engine smart contracts th
 
 # Smart Contract Components
 
-Transferring USDC between different blockchains can be slow, costly, and complex, especially when moving between chains that do not support [Circle's Cross-Chain Transfer Protocol (CCTP)](/learn/messaging/cctp/){target=\_blank}. Managing liquidity and ensuring compatibility across networks is a significant challenge.
+Transferring USDC between different blockchains can be slow, costly, and complex, especially when moving between chains that do not support [Circle's Cross-Chain Transfer Protocol (CCTP)](/docs/learn/messaging/cctp/){target=\_blank}. Managing liquidity and ensuring compatibility across networks is a significant challenge.
 
 The Token Router and Matching Engine smart contracts solve this by enabling fast and efficient cross-chain transfers. The Token Router determines the type of USDC required on the destination chain, while the Matching Engine handles liquidity management and fast transfer auctions, ensuring low fees and quick delivery. They provide seamless token transfers, even between CCTP-enabled and non-CCTP chains.
 
@@ -13,7 +13,7 @@ This page explains the key components and processes behind the Token Router and 
 
 ## Token Router Contracts
 
-The Token Router smart contract is the entry point for sending USDC and other supported tokens across different blockchain networks. It allows users to transfer tokens from one blockchain to another, handling all interactions with the [Matching Engine](/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} and determining the appropriate routing method depending on whether the destination chain is CCTP-enabled or not.
+The Token Router smart contract is the entry point for sending USDC and other supported tokens across different blockchain networks. It allows users to transfer tokens from one blockchain to another, handling all interactions with the [Matching Engine](/docs/build/contract-integrations/fast-transfers/smart-components/#matching-engine){target=\_blank} and determining the appropriate routing method depending on whether the destination chain is CCTP-enabled or not.
 
 The Token Router provides two main order types for token transfers: place market order and place fast market order.
 

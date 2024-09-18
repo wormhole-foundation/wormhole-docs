@@ -30,7 +30,7 @@ Transceivers can be defined independently of the Wormhole core and modified to s
 ![NTT architecture diagram](/images/learn/messaging/native-token-transfers/architecture/architecture-1.webp)
 
 !!! note
-    [Learn more](/learn/messaging/native-token-transfers/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
+    [Learn more](/docs/learn/messaging/native-token-transfers/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
 
 
 #### Custom Transceivers

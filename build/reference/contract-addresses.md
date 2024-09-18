@@ -46,7 +46,7 @@ description: This page documents the deployed contract addresses of the Wormhole
 
 ## Fast Transfers
 
-This section provides the MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager. Each contract is listed with its associated chain name and address, for the associated `chainId` refer to the [Chain IDs](/build/reference/chain-ids/){target=\_blank} page.
+This section provides the MainNet contract addresses for various components of the Fast Transfers protocol, including the Matching Engine, Token Router, and Upgrade Manager. Each contract is listed with its associated chain name and address, for the associated `chainId` refer to the [Chain IDs](/docs/build/reference/chain-ids/){target=\_blank} page.
 
 === "MatchingEngineProxy"
 
