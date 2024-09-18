@@ -18,7 +18,7 @@ Before getting started, it's important to note that the Wormhole-deployed relaye
 To interact with the Wormhole relayer, you'll need to create contracts on the source and target chains to handle the sending and receiving of messages. No off-chain logic needs to be implemented to take advantage of Wormhole-powered relaying.
 
 <figure markdown="span">
-  ![Wormhole Relayer](/images/build/contract-integrations/wormhole-relayers/relayer-1.webp)
+  ![Wormhole Relayer](/docs/images/build/contract-integrations/wormhole-relayers/relayer-1.webp)
   <figcaption>The components outlined in blue must be implemented.</figcaption>
 </figure>
 
