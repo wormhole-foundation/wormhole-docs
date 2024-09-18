@@ -86,7 +86,7 @@ If you're using Linux with a windows manager, it's highly recommended that you i
 
 If you're using Docker Desktop, you can enable Kubernetes by going into Settings > Kubernetes and checking the checkbox to enable Kubernetes.
 
-![Enable Kubernetes](/images/build/toolkit/tilt/tilt-1.webp)
+![Enable Kubernetes](/docs/images/build/toolkit/tilt/tilt-1.webp)
 
 #### Minikube
 

@@ -9,7 +9,7 @@ description: Overview of Wormhole's architecture, detailing key on-chain and off
 
 Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
-![Wormhole architecture detailed diagram: source to target chain communication.](/images/learn/fundamentals/architecture/architecture-1.webp)
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/learn/fundamentals/architecture/architecture-1.webp)
 
 ## On-Chain Components
 
