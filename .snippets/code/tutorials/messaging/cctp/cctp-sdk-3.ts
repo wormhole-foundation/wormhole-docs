@@ -11,20 +11,20 @@ dotenv.config();
   // Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)
   const wh = await wormhole('Testnet', [evm, solana]);
 
-  // Grab chain Contexts -- these hold a reference to a cached rpc client
+  // Set up source and destination chains
   const sendChain = wh.getChain('Avalanche');
   const rcvChain = wh.getChain('Solana');
 
-  // Get signer from local key
+  // Configure the signers
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
-  // Define the amount of USDC to transfer (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
+  // Define the transfer amount (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
   const amt = 100_000n;
 
   const automatic = true;
 
-  // Create the circleTransfer transaction (USDC-only)
+  // Create the Circle transfer object (USDC-only)
   const xfer = await wh.circleTransfer(
     amt,
     source.address,
@@ -34,7 +34,7 @@ dotenv.config();
 
   console.log('Circle Transfer object created:', xfer);
 
-  // Step 1: Initiate the transfer on the source chain (Avalanche)
+  // Initiate the transfer on the source chain (Avalanche)
   console.log('Starting Transfer');
   const srcTxids = await xfer.initiateTransfer(source.signer);
   console.log(`Started Transfer: `, srcTxids);
