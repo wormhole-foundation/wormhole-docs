@@ -574,7 +574,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 ### Ecosystem
 
 - [Website](https://klaytn.foundation/){target=_blank}
-- [Kaiascan](https://kaiascan.io/address/){target=_blank} | [Klaytnscope](https://scope.klaytn.com/){target=_blank}
+- [Kaiascan](https://kaiascan.io/){target=_blank} | [Klaytnscope](https://scope.klaytn.com/){target=_blank}
 - [Developer docs](https://docs.klaytn.foundation/){target=_blank} | [Faucet](https://baobab.wallet.klaytn.foundation/faucet){target=_blank}
 
 ### Wormhole Details
