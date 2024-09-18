@@ -15,7 +15,7 @@ This section will guide you through interacting with the Fast Transfers protocol
 
     Learn how to initiate and participate in cross-chain transfer auctions, submit and verify transactions, and settle auctions efficiently as a solver in the Fast Transfers protocol.
 
-    [:octicons-arrow-right-16: Learn how to be a solver](/build/contract-integrations/fast-transfers/how-to-solver/)
+    [:octicons-arrow-right-16: Learn how to be a solver](/docs/build/contract-integrations/fast-transfers/how-to-solver/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Smart Contract Components**
 
@@ -23,7 +23,7 @@ This section will guide you through interacting with the Fast Transfers protocol
 
     Take a look at the key components and processes behind the smart contracts that power the Fast Transfers protocol and how they facilitate efficient transfers across blockchain networks.
 
-    [:octicons-arrow-right-16: See the smart contract components](/build/contract-integrations/fast-transfers/smart-components/)
+    [:octicons-arrow-right-16: See the smart contract components](/docs/build/contract-integrations/fast-transfers/smart-components/)
 
 </div>
 
@@ -37,7 +37,7 @@ This section will guide you through interacting with the Fast Transfers protocol
 
     Not familiar with the Fast Transfers protocol? Learn all about it, including its key components and how it works to provide efficient liquidity movement while addressing fragmentation and finality.
 
-    [:octicons-arrow-right-16: Learn about Fast Transfers](/learn/messaging/fast-transfers/)
+    [:octicons-arrow-right-16: Learn about Fast Transfers](/docs/learn/messaging/fast-transfers/)
 
 -    :octicons-question-16:{ .lg .middle } **What is a Solver?**
 
@@ -45,6 +45,6 @@ This section will guide you through interacting with the Fast Transfers protocol
 
     Solvers play a critical role in the Fast Transfers protocol, facilitating seamless and efficient liquidity transfers across blockchain networks. Discover their role and the benefits of becoming a solver.
 
-    [:octicons-arrow-right-16: Learn about solvers](/learn/messaging/fast-transfers#solvers)
+    [:octicons-arrow-right-16: Learn about solvers](/docs/learn/messaging/fast-transfers#solvers)
 
 </div>

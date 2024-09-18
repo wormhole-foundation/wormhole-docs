@@ -42,7 +42,7 @@ On Sui, the emitter is the object ID of the emitter capability.
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |Level|Value|
 |-----|-----|

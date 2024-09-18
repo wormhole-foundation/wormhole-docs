@@ -31,7 +31,7 @@ Below is a simplified breakdown that focuses on the role of the Wormhole Core Co
 2. **Guardian verification** - the Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions, such as minting tokens, updating states, or calling specific smart contract functions
 
-For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/learn/fundamentals/architecture/) page.
+For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/learn/fundamentals/architecture/) page.
 
 ### Message Submission
 
@@ -39,13 +39,13 @@ When sending a cross-chain message from the source chain Core Contract, you'll c
 
 - `emitterAddress` - the contract which made the call to publish the message
 - `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
-- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Consistency Levels](/build/reference/consistency-levels/){target=\_blank} reference page
+- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
 ### Message Reception
 
-When receiving a cross-chain message on the target chain Core Contract, the general approach involves parsing and verifying the [components of a VAA](/learn/infrastructure/vaas#vaa-format).
+When receiving a cross-chain message on the target chain Core Contract, the general approach involves parsing and verifying the [components of a VAA](/docs/learn/infrastructure/vaas#vaa-format).
 
 The process of receiving and verifying a VAA ensures that the message was properly attested by the Guardian Network, maintaining the integrity and authenticity of the data transmitted between chains.
 

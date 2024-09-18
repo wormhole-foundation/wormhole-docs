@@ -18,7 +18,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Start with the basics to get a solid understanding of what Wormhole has to offer and how it works to provide secure cross-chain communication.
 
-    [:octicons-arrow-right-16: Get started](/learn/fundamentals/)
+    [:octicons-arrow-right-16: Get started](/docs/learn/fundamentals/)
 
 -   :octicons-book-16:{ .lg .middle } **Infrastructure Components**
 
@@ -26,7 +26,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Explore Wormhole's core infrastructure components and the unique roles each plays in enabling seamless message delivery across chains.
 
-    [:octicons-arrow-right-16: Understand Wormhole's infrastructure](/learn/fundamentals/architecture/)
+    [:octicons-arrow-right-16: Understand Wormhole's infrastructure](/docs/learn/fundamentals/architecture/)
 
 -   :octicons-book-16:{ .lg .middle } **Messaging**
 
@@ -34,6 +34,6 @@ This section offers informational content on Wormhole, covering its architecture
 
     Discover Wormhole's messaging protocols and how each facilitates secure and efficient communication across blockchains.
 
-    [:octicons-arrow-right-16: Explore messaging protocols](/learn/fundamentals/security/)
+    [:octicons-arrow-right-16: Explore messaging protocols](/docs/learn/fundamentals/security/)
 
 </div>

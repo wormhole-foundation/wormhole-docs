@@ -14,7 +14,7 @@ Wormhole is distinguished by its focus on robust security, scalability, and tran
 ![Message-passing process in the Wormhole protocol](/images/learn/fundamentals/introduction/introduction-1.webp)
 
 !!! note
-    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/learn/fundamentals/architecture/){target=\_blank}.
+    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/docs/learn/fundamentals/architecture/){target=\_blank}.
 
 Wormhole allows developers to leverage the strengths of multiple blockchain ecosystems without being confined to one. This means applications can benefit from the unique features of various networks—such as Solana's high throughput, Ethereum's security, and Cosmos's interoperability while maintaining a unified, efficient user experience.
 
@@ -36,7 +36,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 - **Cross-chain messaging** - securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications (xDapps)
 - **Asset transfers** - facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}
-- **Developer tools** - leverage [Wormhole’s SDKs](/build/applications/wormhole-sdk/){target=\_blank}, [APIs](/build/toolkit/#wormhole-api-docs){target=\_blank}, [Wormhole Scan](https://wormholescan.io/){target=\_blank}, and documentation to build and deploy cross-chain applications quickly and efficiently
+- **Developer tools** - leverage [Wormhole’s SDKs](/docs/build/applications/wormhole-sdk/){target=\_blank}, [APIs](/docs/build/toolkit/#wormhole-api-docs){target=\_blank}, [Wormhole Scan](https://wormholescan.io/){target=\_blank}, and documentation to build and deploy cross-chain applications quickly and efficiently
 
 ## What Isn't Wormhole?
 
@@ -47,7 +47,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 Consider the following examples of potential applications enabled by Wormhole:
 
-- **Cross-chain exchange** - using [Wormhole Connect](/build/applications/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
+- **Cross-chain exchange** - using [Wormhole Connect](/docs/build/applications/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
 - **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
 - **Cross-chain game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
 
@@ -55,7 +55,7 @@ Consider the following examples of potential applications enabled by Wormhole:
 
 Discover more about the Wormhole ecosystem, components, and protocols:
 
-- **[Architecture](/learn/fundamentals/architecture/){target=\_blank}** - explore the components of the protocol
+- **[Architecture](/docs/learn/fundamentals/architecture/){target=\_blank}** - explore the components of the protocol
 - **[Protocol Specifications](https://github.com/wormhole-foundation/wormhole/tree/main/whitepapers){target=\_blank}** - learn about the protocols built on top of Wormhole
 
 ## Demos
@@ -65,7 +65,7 @@ Demos offer more realistic implementations than tutorials:
 - **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repository
 - **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
 
-More demos are available in the [demos page](/build/start-building/demos/){target=\_blank}.
+More demos are available in the [demos page](/docs/build/start-building/demos/){target=\_blank}.
 
 !!! note
     Wormhole Integration Complete?
