@@ -144,7 +144,7 @@ This section’ll guide you through performing a manual USDC transfer across cha
 
 2. **Initiate the transfer** - to begin the manual transfer process, you first need to create the transfer object and then manually initiate the transfer on the source chain
 
-    1. **Create the Circle transfer object** - the `wh.circleTransfer()` function creates an object with the  transfer details, such as the amount of USDC, source, destination addresses, and mode. However, this does not initiate the transfer itself
+    1. **Create the Circle transfer object** - the `wh.circleTransfer()` function creates an object with the  transfer details, such as the amount of USDC, the source and destination addresses, and the mode. However, this does not initiate the transfer itself
 
         ```typescript
         --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:27:32"
