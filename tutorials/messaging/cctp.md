@@ -15,7 +15,7 @@ Wormhole’s TypeScript SDK simplifies this process by offering automated transf
 
 In this guide, we’ll first explore the theory behind CCTP, then provide a step-by-step tutorial for integrating Wormhole’s TypeScript SDK into your application to streamline USDC transfers across multiple chains.
 
-### Core Concepts
+## Core Concepts
 
 When bridging assets across chains, there are two primary approaches to handling the transfer process: manual and automated. Below, you may find the differences between these approaches and how they impact the user experience:
 
@@ -123,8 +123,8 @@ This section will guide you through performing a manual USDC transfer across cha
         --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:10:11"
         ```
     
-    !!! note
-        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on MainNet.
+        !!! note
+            You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on MainNet.
 
     2. **Set up source and destination chains** - we specify the source chain (Avalanche) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
 
@@ -253,8 +253,6 @@ The automatic transfer process simplifies the steps by automating the attestatio
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-3.ts:28:33"
     ```
-
-    With automatic transfers, you don't need to fetch the attestation or complete the transfer manually. Wormhole will handle these steps for you
 
 3. **Log the transfer details** - after initiating the transfer, you can log the transaction IDs for both the source and destination chains. This will help you track the progress of the transfer
 
