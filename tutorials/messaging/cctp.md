@@ -107,11 +107,15 @@ In this section, you'll set up your project for transferring USDC across chains 
 
 ## Manual Transfers
 
-This section’ll guide you through performing a manual USDC transfer across chains using the Wormhole SDK and Circle’s CCTP.
+In a manual USDC transfer, you perform each step of the cross-chain transfer process individually. This approach allows for greater control and flexibility over how the transfer is executed, which can be useful in scenarios where you need to customize certain aspects of the transfer, such as gas management, specific chain selection, or signing transactions manually.
 
-### Set-Up
+Manual transfers give developers more control over each step, making them useful for custom setups, testing, or when automation isn't available.
 
-1. **Transfer details** - before you initiate a cross-chain transfer, you need to set up the chain context and signers for both the source and destination chains
+This section will guide you through performing a manual USDC transfer across chains using the Wormhole SDK and Circle’s Cross-Chain Transfer Protocol (CCTP).
+
+### Set Up the Transfer Environment
+
+1. **Configure transfer details** - before you initiate a cross-chain transfer, you need to set up the chain context and signers for both the source and destination chains
 
     1. **Initialize the Wormhole SDK** - the `wormhole` function is initialized for the `Testnet` environment, and we specify the platforms (EVM and Solana) we want to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
 
