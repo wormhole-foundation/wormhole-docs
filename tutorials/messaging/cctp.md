@@ -89,21 +89,21 @@ In this section, you'll set up your project for transferring USDC across chains 
 
 5. **Create the main script** - create a new file named `manual-transfer.ts` to hold your script for transferring USDC across chains
 
-    ```bash
-    touch manual-transfer.ts
-    ```
+    1. Create the helpers file
 
-    Open the file and begin by importing the necessary modules from the SDK and helper files
+        ```bash
+        touch manual-transfer.ts
+        ```
 
-    ```typescript
-    --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:1:8"
-    ```
+    2. Open the `manual-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
 
-    Relevant imports include:
+        ```typescript
+        --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:1:8"
+        ```
 
-    - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
-    - **`solana`** - this adds support for Solana, a non-EVM chain. While we won’t be using Solana in this specific example, you can experiment with Solana transfers if you choose to
-    - **`getSigner`** - utility function from the helper file that retrieves the signer to sign transactions
+        - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
+        - **`solana`** - this adds support for Solana, a non-EVM chain. While we won’t be using Solana in this specific example, you can experiment with Solana transfers if you choose to
+        - **`getSigner`** - utility function from the helper file that retrieves the signer to sign transactions
 
 ## Manual Transfers
 
