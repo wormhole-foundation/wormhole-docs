@@ -33,7 +33,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The `circleTransfer` function is compatible with a variety of EVM and non-EVM chains across both TestNet and MainNet. The [CCTP GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=\_blank} has a full list of supported chains.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a full list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=_blank}, which covers both TestNet and MainNet environments.
 
 ## Project Setup
 
