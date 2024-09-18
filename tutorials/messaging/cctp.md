@@ -200,7 +200,7 @@ npx ts-node manual-transfer.ts
 
 This will initiate the USDC transfer from the source chain (Avalanche) and complete it on the destination chain (Solana).
 
-You can monitor the status of the transaction on the [Wromhole Explorer](https://wormholescan.io/){target=\_blank}.
+You can monitor the status of the transaction on the [Wormhole explorer](https://wormholescan.io/){target=\_blank}.
 
 ### Complete Partial Transfer
 
