@@ -36,9 +36,11 @@ Initialize a new `deployment.json` file, specifying the network:
 	ntt init Mainnet
     ```
 
-## Deploy your SPL Token
+## Deploy Your Solana Token
 
-If you haven't already, deploy your SPL token to Solana.
+### Deploy an SPL Token
+
+If you haven't already, deploy your token to Solana:
 
 1. Generate a new Solana key pair to create a wallet:
 ```bash
@@ -80,7 +82,57 @@ spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 --program-id T
 spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
 ```
 
-NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
+!!! note
+    NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
+
+### Deploy a Token with the Token-2022 Program
+
+To deploy a token to Solana with the Token-2022 program, take the following steps:
+
+1. Generate a new Solana keypair in order to create a wallet:
+
+```bash
+solana-keygen grind --starts-with w:1 --ignore-case
+```
+
+2. Set Solana config to use the new keypair:
+```bash
+solana config set --keypair <PATH_TO_KEYPAIR_STEP1>
+```
+
+3. Set the Solana configuration to use the default RPC URL for devnet:
+```bash
+solana config set -ud
+```
+
+4. Request an airdrop of 2 SOL and check the balance:
+```bash
+solana airdrop 2 & solana balance
+```
+
+5. Install or update the SPL Token CLI:
+```bash
+cargo install spl-token-cli
+```
+
+6. Create a new token with the SPL Token CLI using the token-2022 program:
+```bash
+spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 
+```
+
+7. Create a new account for the token:
+```bash
+spl-token create-account <ADDRESS_CREATED_TOKEN_STEP6> --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
+```
+
+8. Mint 1000 tokens to the created account:
+```bash
+spl-token mint <ADDRESS_CREATED_TOKEN_STEP6> 1000
+```
+
+
+!!! note
+    NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
 
 ## Configuration and Deployment
 
