@@ -124,15 +124,26 @@ The NTT Solana program will then compile and deploy.
 
 ### Configure NTT
 
-As with other deployments, run the following commands to ensure that the on-chain configuration is correct and your local `deployment.json` file is synced with the on-chain state:
+The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
 
-```bash
-ntt status
-```
+- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
+- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
 
-```bash
-ntt pull
-```
+    For Solana, the limits are set with 9 decimal places:
+      ```json
+      "inbound": {
+          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+      }
+      ```
+
+    For Sepolia (Ethereum TestNet), the limits are set with 18 decimal places:
+      ```json
+      "inbound": {
+          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+      }
+      ```
+
+    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
 
 ### Deploy
 
