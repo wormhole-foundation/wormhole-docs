@@ -64,6 +64,8 @@ Users themselves carry out the three steps of the cross-chain process:
 
 Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use cases.
 
+The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/learn/infrastructure/spy/).
+
 **Key Features**
 
 - **Optimization** - capable of performing trustless off-chain computations which can optimize gas costs
@@ -75,8 +77,6 @@ Custom relayers are purpose-built components within the Wormhole protocol, desig
 
 !!! note
     To make the development of custom relayers easier, a plugin relayer is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
-
-There main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/learn/infrastructure/spy/).
 
 **Considerations**
 
