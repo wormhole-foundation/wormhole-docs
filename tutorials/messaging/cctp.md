@@ -230,7 +230,7 @@ You can find the full code for the manual USDC transfer script below:
 
 ## Automatic Transfers
 
-The Automatic Transfer process simplifies the steps by automating the attestation fetching and transfer completion. All you need to do is initiate the transfer.
+The automatic transfer process simplifies the steps by automating the attestation fetching and transfer completion. All you need to do is initiate the transfer.
 
 ### Set-Up
 
