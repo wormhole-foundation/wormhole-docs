@@ -2,4 +2,4 @@ title: Messaging
 nav:
  - index.md
  - 'Create Cross-Chain Contracts': 'cross-chain-contracts.md'
- - 'CCTP with Wormhole SDK': 'cctp.md'
+ - 'Transfer USDC via Wormhole SDK': 'cctp.md'
