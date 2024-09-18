@@ -99,7 +99,7 @@ In this section, you'll set up your project for transferring USDC across chains 
 
     - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
     - **`solana`** - this adds support for Solana, a non-EVM chain. While we won’t be using Solana in this specific example, you can experiment with Solana transfers if you choose to
-    - **`getSigner`** - utility function from the helper file. `getSigner` retrieves the signer to sign transactions
+    - **`getSigner`** - utility function from the helper file that retrieves the signer to sign transactions
 
 ## Manual Transfers
 
