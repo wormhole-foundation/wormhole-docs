@@ -52,6 +52,23 @@ async function main() {
     fs.readFileSync(deployedContractsPath, 'utf8')
   );
 
+  // Retrieve the address of the MessageSender from the deployedContracts.json file
+  const avalancheSenderAddress = deployedContracts.avalanche.MessageSender;
+
+  // Define the source chain ID for Avalanche Fuji
+  const sourceChainId = 6;
+
+  // Call setRegisteredSender on the MessageReceiver contract
+  const tx = await receiverContract.setRegisteredSender(
+    sourceChainId,
+    ethers.zeroPadValue(avalancheSenderAddress, 32)
+  );
+  await tx.wait();
+
+  console.log(
+    `Registered MessageSender (${avalancheSenderAddress}) for Avalanche chain (${sourceChainId})`
+  );
+
   deployedContracts.celo = {
     MessageReceiver: receiverContract.target,
     deployedAt: new Date().toISOString(),

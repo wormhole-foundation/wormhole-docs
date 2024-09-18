@@ -29,11 +29,11 @@ The [Native USDC Bridging](https://github.com/wormhole-foundation/wormhole-circl
 
 ### Borrow Lend
 
-[Borrow Lend](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} contains two examples of cross-chain lending protocol implementations. The first example provides a basic lending skeleton for borrowing and lending between two chains. In contrast, the second example offers a more advanced cross-chain lending model using a hub-and-spoke approach. 
+[Borrow Lend](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} contains two examples of cross-chain lending protocol implementations. The first example provides a basic lending skeleton for borrowing and lending between two chains. In contrast, the second example offers a more advanced cross-chain lending model using a hub-and-spoke approach.
 
 ### Wormhole NTT Connect Demo
 
-The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} demo configures a Vite-React TypeScript application using the Wormhole Connect SDK and, as an example, preconfigures the Wormhole Connect widget to allow transfers between Sepolia and Solana TestNet environments. 
+The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} demo configures a Vite-React TypeScript application using the Wormhole TypeScript SDK and, as an example, preconfigures the Wormhole Connect widget to allow transfers between Sepolia and Solana TestNet environments.
 
 ### Wormhole Demo NTT TS SDK
 
