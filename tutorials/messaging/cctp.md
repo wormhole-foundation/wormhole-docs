@@ -7,13 +7,13 @@ description: Learn how to perform USDC cross-chain transfers using Wormhole SDK 
 
 ## Introduction
 
-In this guide, we will walk you through how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/learn/messaging/cctp/){target=\_blank} (CCTP), with the help of [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
+In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/learn/messaging/cctp/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
 
-Traditionally, cross-chain transfers using CCTP involve multiple manual steps, such as initiating the transfer on the source chain, relaying messages between chains, and covering gas fees on both the source and destination chains. Without the TypeScript SDK, developers need to handle these operations independently, adding complexity and increasing the chance for errors, particularly when dealing with gas payments on the destination chain and native gas token management.
+Traditionally, cross-chain transfers using CCTP involve multiple manual steps, such as initiating the transfer on the source chain, relaying messages between chains, and covering gas fees on both the source and destination chains. Without the TypeScript SDK, developers must handle these operations independently, adding complexity and increasing the chance for errors, mainly when dealing with gas payments on the destination chain and native gas token management.
 
-Wormhole’s TypeScript SDK simplifies this process by offering automated transfer relaying and handling gas payments on the destination chain, with an option to include native gas tokens for seamless execution. This reduces developer overhead, makes transfers faster and more reliable, and enhances the user experience.
+Wormhole’s TypeScript SDK simplifies this process by offering automated transfer relaying and handling gas payments on the destination chain. It also offers an option to include native gas tokens for seamless execution. This reduces developer overhead, makes transfers faster and more reliable, and enhances the user experience.
 
-In this guide, we’ll first explore the theory behind CCTP, then provide a step-by-step tutorial for integrating Wormhole’s TypeScript SDK into your application to streamline USDC transfers across multiple chains.
+In this guide, we’ll first explore the theory behind CCTP and then provide a step-by-step tutorial for integrating Wormhole’s TypeScript SDK into your application to streamline USDC transfers across multiple chains.
 
 ## Core Concepts
 
@@ -33,7 +33,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a full list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=_blank}, which covers both TestNet and MainNet environments.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=_blank}, which covers both TestNet and MainNet environments.
 
 ## Project Setup
 
@@ -67,7 +67,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     ```
 
     !!! note
-        Make sure your private key is funded with USDC and native tokens for gas on both the source and destination chains.
+        Ensure your private key contains USDC funds and native tokens for gas on both the source and destination chains.
 
 4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays
 
@@ -107,7 +107,7 @@ In this section, you'll set up your project for transferring USDC across chains 
 
 ## Manual Transfers
 
-In a manual USDC transfer, you perform each step of the cross-chain transfer process individually. This approach allows for greater control and flexibility over how the transfer is executed, which can be useful in scenarios where you need to customize certain aspects of the transfer, such as gas management, specific chain selection, or signing transactions manually.
+In a manual USDC transfer, you perform each step of the cross-chain transfer process individually. This approach allows for greater control and flexibility over how the transfer is executed, which can be helpful in scenarios where you need to customize certain aspects of the transfer, such as gas management, specific chain selection, or signing transactions manually.
 
 Manual transfers give developers more control over each step, making them useful for custom setups, testing, or when automation isn't available.
 
@@ -117,9 +117,9 @@ This section will guide you through performing a manual USDC transfer across cha
 
 #### Configure Transfer Details
 
-Before you initiate a cross-chain transfer, you need to set up the chain context and signers for both the source and destination chains
+Before initiating a cross-chain transfer, you must set up the chain context and signers for both the source and destination chains.
 
-1. **Initialize the Wormhole SDK** - the `wormhole` function is initialized for the `Testnet` environment, and we specify the platforms (EVM and Solana) we want to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
+1. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment, and we specify the platforms (EVM and Solana) we want to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:10:11"
@@ -189,7 +189,7 @@ Once you initialize the transfer on the source chain, you must fetch the VAA fro
 
 #### Complete the Transfer on the Destination Chain
 
-Once the VAA is fetched, the final step is to complete the transfer on the destination chain (Solana in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain
+Once you fetch the VAA correctly, the final step is to complete the transfer on the destination chain (Solana in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain
 
 1. **Complete the transfer** - after successfully fetching the VAA, use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
 
@@ -297,7 +297,7 @@ If you'd like to explore the complete project or need a reference while followin
 
 ## Conclusion
 
-In this tutorial, you’ve gained hands-on experience with Circle’s Cross-Chain Transfer Protocol (CCTP) and the Wormhole SDK. You’ve learned how to perform manual and automatic USDC transfers across multiple chains and recover partial transfers if needed.
+In this tutorial, you’ve gained hands-on experience with Circle’s Cross-Chain Transfer Protocol (CCTP) and the Wormhole SDK. You’ve learned to perform manual and automatic USDC transfers across multiple chains and recover partial transfers if needed.
 
 By following these steps, you've learned how to:
 
