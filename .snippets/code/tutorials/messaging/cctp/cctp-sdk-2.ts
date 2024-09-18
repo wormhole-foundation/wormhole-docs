@@ -1,58 +1,55 @@
-import {
-  ChainAddress,
-  ChainContext,
-  Network,
-  Signer,
-  Wormhole,
-  Chain,
-} from '@wormhole-foundation/sdk';
+import { wormhole } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
-import { config } from 'dotenv';
-config();
+import * as dotenv from 'dotenv';
+import { getSigner } from './helpers/helpers';
 
-export interface SignerStuff<N extends Network, C extends Chain> {
-  chain: ChainContext<N, C>;
-  signer: Signer<N, C>;
-  address: ChainAddress<C>;
-}
+// Load environment variables
+dotenv.config();
 
-// Function to fetch environment variables (like your private key)
-function getEnv(key: string): string {
-  const val = process.env[key];
-  if (!val) throw new Error(`Missing environment variable: ${key}`);
-  return val;
-}
+(async function () {
+  const wh = await wormhole('Testnet', [evm, solana]);
 
-// Signer setup function for different blockchain platforms
-export async function getSigner<N extends Network, C extends Chain>(
-  chain: ChainContext<N, C>
-): Promise<{
-  chain: ChainContext<N, C>;
-  signer: Signer<N, C>;
-  address: ChainAddress<C>;
-}> {
-  let signer: Signer;
-  const platform = chain.platform.utils()._platform;
+  // Set up source and destination chains
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Solana');
 
-  switch (platform) {
-    case 'Solana':
-      signer = await (
-        await solana()
-      ).getSigner(await chain.getRpc(), getEnv('SOL_PRIVATE_KEY'));
-      break;
-    case 'Evm':
-      signer = await (
-        await evm()
-      ).getSigner(await chain.getRpc(), getEnv('ETH_PRIVATE_KEY'));
-      break;
-    default:
-      throw new Error('Unsupported platform: ' + platform);
-  }
+  // Configure the signers
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
 
-  return {
-    chain,
-    signer: signer as Signer<N, C>,
-    address: Wormhole.chainAddress(chain.chain, signer.address()),
-  };
-}
+  // Define the transfer amount (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
+  const amt = 100_000n;
+
+  const automatic = false;
+
+  // Create the Circle transfer object 
+  const xfer = await wh.circleTransfer(
+    amt,
+    source.address,
+    destination.address,
+    automatic
+  );
+
+  console.log('Circle Transfer object created:', xfer);
+
+  // Initiate the transfer on the source chain (Avalanche)
+  console.log('Starting Transfer');
+  const srcTxids = await xfer.initiateTransfer(source.signer);
+  console.log(`Started Transfer: `, srcTxids);
+
+  // Wait for Circle Attestation (VAA)
+  const timeout = 60 * 1000; // Timeout in milliseconds (60 seconds)
+  console.log('Waiting for Attestation');
+  const attestIds = await xfer.fetchAttestation(timeout);
+  console.log(`Got Attestation: `, attestIds);
+
+  // Complete the transfer on the destination chain (Solana)
+  console.log('Completing Transfer');
+  const dstTxids = await xfer.completeTransfer(destination.signer);
+  console.log(`Completed Transfer: `, dstTxids);
+
+  console.log('Circle Transfer status: ', xfer);
+
+  process.exit(0);
+})();
