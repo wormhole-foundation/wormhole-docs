@@ -7,9 +7,13 @@ description: Learn how to perform USDC cross-chain transfers using Wormhole SDK 
 
 ## Introduction
 
-In this guide, you'll learn how to bridge native USDC across different chains using [Circle's Cross-Chain Transfer Protocol](/learn/messaging/cctp/){target=\_blank} (CCTP) via the Wormhole Protocol. We'll explore the underlying theory of CCTP and provide a hands-on tutorial for integrating it using [Wormhole’s Connect SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
+In this guide, we will walk you through how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/learn/messaging/cctp/){target=\_blank} (CCTP), with the help of [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
 
-Wormhole builds upon Circle's CCTP to enhance cross-chain transfers, making the process more straightforward and user-friendly. With Wormhole, users benefit from automated transfer relaying, gas payments on the destination chain, and the option to drop off native gas tokens, eliminating many common pain points.
+Traditionally, cross-chain transfers using CCTP involve multiple manual steps, such as initiating the transfer on the source chain, relaying messages between chains, and covering gas fees on both the source and destination chains. Without the TypeScript SDK, developers need to handle these operations independently, adding complexity and increasing the chance for errors, particularly when dealing with gas payments on the destination chain and native gas token management.
+
+Wormhole’s TypeScript SDK simplifies this process by offering automated transfer relaying and handling gas payments on the destination chain, with an option to include native gas tokens for seamless execution. This reduces developer overhead, makes transfers faster and more reliable, and enhances the user experience.
+
+In this guide, we’ll first explore the theory behind CCTP, then provide a step-by-step tutorial for integrating Wormhole’s TypeScript SDK into your application to streamline USDC transfers across multiple chains.
 
 ### Core Concepts
 
