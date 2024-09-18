@@ -65,7 +65,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     !!! note
         Make sure your private key is funded with USDC and native tokens for gas on both the source and destination chains.
 
-4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a `helpers.ts` file with the necessary utility functions. This file handles fetching your private key, setting up signers for different chains, and managing transaction relays
+4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays
 
     1. Create the helpers file:
 
