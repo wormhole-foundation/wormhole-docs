@@ -185,7 +185,7 @@ This section’ll guide you through performing a manual USDC transfer across cha
 
 You can find the full code for the manual USDC transfer script below:
 
-???- tip "`manual-transfer.ts`"
+???- code "`manual-transfer.ts`"
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/snippet-1.ts"
     ```
