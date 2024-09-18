@@ -10,20 +10,20 @@ dotenv.config();
 (async function () {
   const wh = await wormhole('Testnet', [evm, solana]);
 
-  // Grab chain Contexts -- these hold a reference to a cached rpc client
+  // Set up source and destination chains
   const sendChain = wh.getChain('Avalanche');
   const rcvChain = wh.getChain('Solana');
 
-  // Get signer from local key
+  // Configure the signers
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
-  // Define the amount of USDC to transfer (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
+  // Define the transfer amount (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
   const amt = 100_000n;
 
   const automatic = false;
 
-  // Create the circleTransfer transaction (USDC-only)
+  // Create the Circle transfer object 
   const xfer = await wh.circleTransfer(
     amt,
     source.address,
@@ -33,18 +33,18 @@ dotenv.config();
 
   console.log('Circle Transfer object created:', xfer);
 
-  // Step 1: Initiate the transfer on the source chain (Avalanche)
+  // Initiate the transfer on the source chain (Avalanche)
   console.log('Starting Transfer');
   const srcTxids = await xfer.initiateTransfer(source.signer);
   console.log(`Started Transfer: `, srcTxids);
 
-  // Step 2: Wait for Circle Attestation (VAA)
+  // Wait for Circle Attestation (VAA)
   const timeout = 60 * 1000; // Timeout in milliseconds (60 seconds)
   console.log('Waiting for Attestation');
   const attestIds = await xfer.fetchAttestation(timeout);
   console.log(`Got Attestation: `, attestIds);
 
-  // Step 3: Complete the transfer on the destination chain (Celo)
+  // Complete the transfer on the destination chain (Solana)
   console.log('Completing Transfer');
   const dstTxids = await xfer.completeTransfer(destination.signer);
   console.log(`Completed Transfer: `, dstTxids);
