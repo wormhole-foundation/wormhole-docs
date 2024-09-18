@@ -18,7 +18,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Ethereum Sepolia**
 
 <a href="https://www.ethereum-ecosystem.com/faucets/ethereum-sepolia" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -28,7 +28,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Ethereum Holesky**
 
 <a href="https://holesky-faucet.pk910.de/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/ethereum.webp" alt="Ethereum" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -38,7 +38,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Acala**
 
 <a href="https://evmdocs.acala.network/tooling/faucet" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/acala.webp" alt="Acala" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/acala.webp" alt="Acala" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -48,7 +48,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Arbitrum Sepolia**
 
 <a href="https://faucet.quicknode.com/arbitrum/sepolia" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/arbitrum-sepolia.webp" alt="Arbitrum Sepolia" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/arbitrum-sepolia.webp" alt="Arbitrum Sepolia" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -58,7 +58,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Avalanche**
 
 <a href="https://core.app/tools/testnet-faucet/?subnet=c&token=c" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/avalanche.webp" alt="Avalanche" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/avalanche.webp" alt="Avalanche" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -68,7 +68,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Base Sepolia**
 
 <a href="https://www.ethereum-ecosystem.com/faucets/base-sepolia" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/base.webp" alt="Base Sepolia" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/base.webp" alt="Base Sepolia" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -78,7 +78,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Berachain**
 
 <a href="https://bartio.faucet.berachain.com/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/berachain.webp" alt="Berachain" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/berachain.webp" alt="Berachain" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -88,7 +88,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Blast**
 
 <a href="https://blastapi.io/faucets/blastl2-testnet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/blast.webp" alt="Blast" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/blast.webp" alt="Blast" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -98,7 +98,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **BNB Smart Chain**
 
 <a href="https://testnet.binance.org/faucet-smart/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/bsc.webp" alt="BNB Smart Chain" style="width:90px; height:90px; ">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/bsc.webp" alt="BNB Smart Chain" style="width:90px; height:90px; ">
 </a>
 
 </div>
@@ -108,7 +108,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Celo**
 
 <a href="https://faucet.celo.org/alfajores/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/celo.webp" alt="Celo" style="width:90px; height:90px; ">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/celo.webp" alt="Celo" style="width:90px; height:90px; ">
 </a>
 
 </div>
@@ -118,7 +118,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Fantom**
 
 <a href="https://faucet.fantom.network/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/fantom.webp" alt="Fantom" style="width:90px; height:90px; ">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/fantom.webp" alt="Fantom" style="width:90px; height:90px; ">
 </a>
 
 </div>
@@ -128,7 +128,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Gnosis**
 
 <a href="https://faucet.gnosischain.com/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/gnosis.webp" alt="Gnosis" style="width:90px; height:90px; border-radius:50%;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/gnosis.webp" alt="Gnosis" style="width:90px; height:90px; border-radius:50%;">
 </a>
 
 </div>
@@ -138,7 +138,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Karura**
 
 <a href="https://evmdocs.acala.network/tooling/faucet" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/karura.webp" alt="Karura" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/karura.webp" alt="Karura" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -148,7 +148,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Klaytn**
 
 <a href="https://baobab.wallet.klaytn.foundation/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -158,7 +158,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Linea**
 
 <a href="https://getblock.io/faucet/linea-sepolia/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/linea.webp" alt="Linea" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/linea.webp" alt="Linea" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -168,7 +168,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Mantle**
 
 <a href="https://faucet.testnet.mantle.xyz/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/mantle.webp" alt="Mantle" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/mantle.webp" alt="Mantle" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -178,7 +178,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Moonbeam**
 
 <a href="https://faucet.moonbeam.network/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/moonbeam.webp" alt="Moonbeam" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/moonbeam.webp" alt="Moonbeam" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -188,7 +188,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Neon**
 
 <a href="https://neonfaucet.org/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/neon.webp" alt="Neon" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/neon.webp" alt="Neon" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -198,7 +198,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Oasis**
 
 <a href="https://faucet.testnet.oasis.dev/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/oasis.webp" alt="Oasis" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/oasis.webp" alt="Oasis" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -208,7 +208,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Optimism Sepolia**
 
 <a href="https://console.optimism.io/faucet?utm_source=docs/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/optimism_sepolia.webp" alt="Optimism Sepolia" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/optimism_sepolia.webp" alt="Optimism Sepolia" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -218,7 +218,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Polygon**
 
 <a href="https://faucet.polygon.technology/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/polygon.webp" alt="Polygon" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/polygon.webp" alt="Polygon" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -228,7 +228,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Rootstock**
 
 <a href="https://faucet.rootstock.io/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/rootstock.webp" alt="Rootstock" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/rootstock.webp" alt="Rootstock" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -238,7 +238,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Scroll**
 
 <a href="https://docs.scroll.io/en/user-guide/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/scroll.webp" alt="Scroll" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/scroll.webp" alt="Scroll" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -248,7 +248,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Sei**
 
 <a href="https://arctic-1.app.sei.io/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:90px; ">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:90px; ">
 </a>
 
 </div>
@@ -258,7 +258,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **X Layer**
 
 <a href="https://www.okx.com/xlayer/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/xlayer.webp" alt="X Layer" style="width:90px; height:90px; ">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/xlayer.webp" alt="X Layer" style="width:90px; height:90px; ">
 </a>
 
 </div>
@@ -273,7 +273,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Algorand**
 
 <a href="https://bank.testnet.algorand.network/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/algorand.webp" alt="Algorand" style="width:90px; height:90px; ">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/algorand.webp" alt="Algorand" style="width:90px; height:90px; ">
 </a>
 
 </div>
@@ -289,7 +289,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Aptos**
 
 <a href="https://www.aptosfaucet.com/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/aptos.webp" alt="Aptos" style="width:90px; height:90px; ">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/aptos.webp" alt="Aptos" style="width:90px; height:90px; ">
 </a>
 
 </div>
@@ -305,7 +305,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Celestia**
 
 <a href="https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/celestia.webp" alt="Celestia" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/celestia.webp" alt="Celestia" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -316,7 +316,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Cosmos Hub**
 
 <a href="https://docs.celestia.org/nodes/mocha-testnet#mocha-testnet-faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/cosmoshub.webp" alt="Cosmos Hub" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -326,7 +326,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Evmos**
 
 <a href="https://faucet.evmos.dev/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/evmos.webp" alt="Evmos" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/evmos.webp" alt="Evmos" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -336,7 +336,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Injective**
 
 <a href="https://testnet.faucet.injective.network/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/injective.webp" alt="Injective" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/injective.webp" alt="Injective" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -346,7 +346,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Kujira**
 
 <a href="https://hummingbot.org/chains/kujira/#faucets/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/kujira.webp" alt="Kujira" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/kujira.webp" alt="Kujira" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -356,7 +356,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Neutron**
 
 <a href="https://docs.neutron.org/neutron/faq/#where-is-the-testnet-faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/neutron.webp" alt="Neutron" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/neutron.webp" alt="Neutron" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -366,7 +366,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Osmosis**
 
 <a href="https://faucet.testnet.osmosis.zone/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/osmosis.webp" alt="Osmosis" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/osmosis.webp" alt="Osmosis" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -376,7 +376,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Provenance**
 
 <a href="https://explorer.test.provenance.io/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/provenance.webp" alt="Osmosis" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/provenance.webp" alt="Osmosis" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -386,7 +386,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Sei**
 
 <a href="https://atlantic-2.app.sei.io/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/sei.webp" alt="Sei" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -396,7 +396,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Stargaze**
 
 <a href="https://docs.stargaze.zone/developers/cosmwasm-smart-contracts/testnet#faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/stargaze.webp" alt="Stargaze" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/stargaze.webp" alt="Stargaze" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -406,7 +406,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Terra**
 
 <a href="https://faucet.terra.money/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/terra.webp" alt="Terra" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/terra.webp" alt="Terra" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -416,7 +416,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **XPLA**
 
 <a href="https://faucet.xpla.io/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/xpla.webp" alt="XPLA" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -432,7 +432,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **NEAR**
 
 <a href="https://near-faucet.io/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/near.webp" alt="NEAR" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/near.webp" alt="NEAR" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -448,7 +448,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Solana**
 
 <a href="https://faucet.solana.com/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/solana.webp" alt="Solana" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/solana.webp" alt="Solana" style="width:90px; height:90px;">
 </a>
 
 </div>
@@ -464,7 +464,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 **Sui**
 
 <a href="https://docs.sui.io/guides/developer/getting-started/get-coins/" target= "\_blank">
-    <img class="no-lightbox" src="/images/build/start-building/supported-networks/sui.webp" alt="Sui" style="width:90px; height:90px;">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/sui.webp" alt="Sui" style="width:90px; height:90px;">
 </a>
 
 </div>
