@@ -3,5 +3,5 @@ nav:
  - index.md
  - 'Wormholescan': 'https://wormholescan.io/'
  - 'Wormhole CLI' : 'cli.md'
- - 'Wormhole SDK' : 'wormhole-sdk.md'
+ - 'Wormhole SDK' : '/docs/build/applications/wormhole-sdk/'
  - 'Tilt': 'tilt.md'
