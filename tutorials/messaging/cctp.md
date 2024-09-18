@@ -217,7 +217,7 @@ Here’s how you can complete a partial transfer using just the source chain and
 You will need to provide the below requirements to complete the partial transfer:
 
 - **Transaction ID (`txid`)** - the transaction hash from the source chain where the transfer was initiated
-- **Signer for the destination chain (destination.signer)** - the wallet or private key that can authorize and complete the transfer on the destination chain. This signer is the same as the `destination.signer` defined in the manual transfer setup
+- **Signer for the destination chain (`destination.signer`)** - the wallet or private key that can authorize and complete the transfer on the destination chain. This signer is the same as the `destination.signer` defined in the manual transfer setup
 
 This allows you to resume the transfer process by rebuilding the transfer object and completing it on the destination chain. It's especially convenient when debugging or handling interrupted transfers.
 
