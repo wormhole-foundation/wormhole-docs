@@ -36,14 +36,6 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     [:octicons-arrow-right-16: Build contract integrations](/docs/build/contract-integrations/)
 
--   :octicons-link-16:{ .lg .middle } **Add Chain Integrations**
-
-    ---
-
-    Learn how to add cross-chain support to your chain by connecting it to Wormhole's secure communication network.
-
-    [:octicons-arrow-right-16: Add chain integrations](/docs/build/chain-integrations/)
-
 -   :octicons-gear-16:{ .lg .middle } **Toolkit**
 
     ---
