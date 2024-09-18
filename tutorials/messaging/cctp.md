@@ -109,7 +109,7 @@ This section’ll guide you through performing a manual USDC transfer across cha
 
 1. **Transfer details** - before you initiate a cross-chain transfer, you need to set up the chain context and signers for both the source and destination chains
 
-    1. **Initialize the Wormhole SDK** - the wormhole function is initialized for the Testnet environment, and we specify the platforms (EVM and Solana) we want to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
+    1. **Initialize the Wormhole SDK** - the `wormhole` function is initialized for the `Testnet` environment, and we specify the platforms (EVM and Solana) we want to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
 
         ```typescript
         --8<-- "code/tutorials/messaging/cctp/snippet-1.ts:10:11"
