@@ -5,7 +5,7 @@ description: Find answers to frequently asked questions about Wormhole's feature
 
 # FAQs
 
-## NTT
+##  Native Token Transfers (NTT)
 
 ### Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
@@ -89,7 +89,7 @@ These functions ensure Connect can handle token transfers and manage chain-rate 
 
 The source chain's transceiver includes the destination chain's transceiver in the message via the relayer contract. The admin configures each transceiver's mapping of its peers on other chains. This mapping allows the destination transceiver to verify that the message came from a trusted source.
 
-## Connect
+## Wormhole Connect
 
 ### Do integrators need to enable wallets like Phantom or Backpack in Wormhole Connect?
 
