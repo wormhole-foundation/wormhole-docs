@@ -43,12 +43,4 @@ This section covers various aspects and services related to communication protoc
 
     [:octicons-arrow-right-16: Learn more about NTT](/docs/learn/messaging/native-token-transfers/)
 
--   :octicons-book-16:{ .lg .middle } **Fast Transfers**
-
-    ---
-
-    Fast Transfers is a protocol designed by Wormhole to provide quick and efficient cross-chain liquidity movement, addressing fragmentation and finality with a hub-and-spoke model.
-
-    [:octicons-arrow-right-16: Learn more about Fast Transfers](/docs/learn/messaging/fast-transfers/)
-
 </div>
