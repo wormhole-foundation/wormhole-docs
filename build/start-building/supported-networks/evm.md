@@ -37,7 +37,7 @@ Deployed contracts are also available on the [Sepolia](#sepolia) TestNet.
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -98,7 +98,7 @@ Besides Ethereum, several other EVM chains are supported.
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -148,7 +148,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -241,7 +241,7 @@ For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |   Level   | Value |
 |:---------:|:-----:|
@@ -341,7 +341,7 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -397,7 +397,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -449,7 +449,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -536,7 +536,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -574,7 +574,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 ### Ecosystem
 
 - [Website](https://klaytn.foundation/){target=_blank}
-- [Kaiascan](https://kaiascan.io/address/){target=_blank} | [Klaytnscope](https://scope.klaytn.com/){target=_blank}
+- [Kaiascan](https://kaiascan.io/){target=_blank} | [Klaytnscope](https://scope.klaytn.com/){target=_blank}
 - [Developer docs](https://docs.klaytn.foundation/){target=_blank} | [Faucet](https://baobab.wallet.klaytn.foundation/faucet){target=_blank}
 
 ### Wormhole Details
@@ -585,7 +585,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -634,7 +634,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -763,7 +763,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -816,7 +816,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -1023,7 +1023,7 @@ Holesky is a TestNet-only chain that can be used as an alternative to Goerli. No
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|
@@ -1193,7 +1193,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
 
 |  Level  | Value |
 |:-------:|:-----:|

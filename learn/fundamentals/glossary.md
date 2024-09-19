@@ -11,11 +11,11 @@ This glossary is an index of technical term definitions for words commonly used 
 
 Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
 
-You can find each chain ID documented on the [Wormhole Chain IDs](/build/reference/chain-ids/){target=\_blank} page.
+You can find each chain ID documented on the [Wormhole Chain IDs](/docs/build/reference/chain-ids/){target=\_blank} page.
 
 ## Consistency Level
 
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Consistency Levels](/build/reference/consistency-levels/){target=\_blank} reference page for details.
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page for details.
 
 ## Delivery Provider
 
@@ -31,11 +31,11 @@ The finality of a transaction depends on its blockchain properties. Once a trans
 
 ## Gateway
 
-The [Gateway](/learn/messaging/gateway/){target=\_blank}, previously referred to as Wormchain, is the Cosmos-SDK chain Wormhole uses to facilitate communication with the Cosmos ecosystem.
+The [Gateway](/docs/learn/messaging/gateway/){target=\_blank}, previously referred to as Wormchain, is the Cosmos-SDK chain Wormhole uses to facilitate communication with the Cosmos ecosystem.
 
 ## Guardian
 
-A [Guardian](/learn/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
+A [Guardian](/docs/learn/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
 
 ## Guardian Network
 
@@ -69,7 +69,7 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 
 ## VAA
 
-[Verifiable Action Approvals](/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapp) along with information such as what contract emitted the message.
+[Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapp) along with information such as what contract emitted the message.
 
 ## Validator
 

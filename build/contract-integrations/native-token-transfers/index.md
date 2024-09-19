@@ -17,7 +17,7 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 
     Guidance on installation, deployment to EVM and Solana, and maintaining your NTT after deployment.
 
-    [:octicons-arrow-right-16: Start the deployment process](/build/contract-integrations/native-token-transfers/deployment-process/)
+    [:octicons-arrow-right-16: Start the deployment process](/docs/build/contract-integrations/native-token-transfers/deployment-process/)
 
 -   :octicons-gear-16:{ .lg .middle } **Configure NTT**
 
@@ -25,6 +25,6 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 
     Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
 
-    [:octicons-arrow-right-16: Configure your NTT deployment](/build/contract-integrations/native-token-transfers/configuration/)
+    [:octicons-arrow-right-16: Configure your NTT deployment](/docs/build/contract-integrations/native-token-transfers/configuration/)
 
 </div>

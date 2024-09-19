@@ -5,4 +5,3 @@ nav:
  - 'Cosmos Gateway': 'gateway.md'
  - 'CCTP Bridge': 'cctp.md'
  - native-token-transfers
- - 'Fast Transfers': 'fast-transfers.md'

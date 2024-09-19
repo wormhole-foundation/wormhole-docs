@@ -32,7 +32,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     <br>
 
-    [:octicons-arrow-right-16: Get started now](/infrastructure/relayers/run-relayer/)
+    [:octicons-arrow-right-16: Get started now](/docs/infrastructure/relayers/run-relayer/)
 
 </div>
 
@@ -46,7 +46,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     Learn about what a relayer is, what role it plays in the delivery of cross-chain messages, and the different types of relayers in the Wormhole ecosystem.
 
-    [:octicons-arrow-right-16: Learn more about relayers](/learn/infrastructure/relayer/)
+    [:octicons-arrow-right-16: Learn more about relayers](/docs/learn/infrastructure/relayer/)
 
 -   :material-package-variant:{ .lg .middle } **Simplify the Development Process**
 

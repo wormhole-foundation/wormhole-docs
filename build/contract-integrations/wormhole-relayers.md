@@ -7,18 +7,18 @@ description: Learn about the Wormhole-deployed relayer configuration for seamles
 
 ## Introduction
 
-The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/infrastructure/relayers/run-relayer/) is available for more complex needs.
+The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/infrastructure/relayers/run-relayer/) is available for more complex needs.
 
 This section covers the components and interfaces involved in using the Wormhole relayer module, such as message sending and receiving, delivery guarantees, and considerations for building reliable and efficient cross-chain applications. Additionally, you'll find details on how to handle specific implementation scenarios and track message delivery progress using the Wormhole CLI tool.
 
 ## Get Started with the Wormhole Relayer
 
-Before getting started, it's important to note that the Wormhole-deployed relayer configuration is currently **limited to EVM environments**. The complete list of EVM environment blockchains is on the [Supported Networks](/build/start-building/supported-networks/) page.
+Before getting started, it's important to note that the Wormhole-deployed relayer configuration is currently **limited to EVM environments**. The complete list of EVM environment blockchains is on the [Supported Networks](/docs/build/start-building/supported-networks/) page.
 
 To interact with the Wormhole relayer, you'll need to create contracts on the source and target chains to handle the sending and receiving of messages. No off-chain logic needs to be implemented to take advantage of Wormhole-powered relaying.
 
 <figure markdown="span">
-  ![Wormhole Relayer](/images/build/contract-integrations/wormhole-relayers/relayer-1.webp)
+  ![Wormhole Relayer](/docs/images/build/contract-integrations/wormhole-relayers/relayer-1.webp)
   <figcaption>The components outlined in blue must be implemented.</figcaption>
 </figure>
 
@@ -36,7 +36,7 @@ To start interacting with the Wormhole relayer in your contracts, you'll need to
 
 To easily integrate with the Wormhole relayer interface, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}.
 
-To retrieve the contract address of the Wormhole relayer, refer to the Wormhole relayer section on the [Contract Addresses](/build/reference/contract-addresses/#wormhole-relayer) reference page.
+To retrieve the contract address of the Wormhole relayer, refer to the Wormhole relayer section on the [Contract Addresses](/docs/build/reference/contract-addresses/#wormhole-relayer) reference page.
 
 Your initial set up should resemble the following:
 
@@ -120,7 +120,7 @@ Some implementation details should be considered during development to ensure sa
 
 ## Track the Progress of Messages with the Wormhole CLI
 
-While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the [Wormhole CLI](/build/toolkit/cli/) tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command:
+While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the [Wormhole CLI](/docs/build/toolkit/cli/) tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command:
 
 === "MainNet"
 
@@ -134,8 +134,8 @@ While no off-chain programs are required, a developer may want to track the prog
     worm status testnet ethereum INSERT_TRANSACTION_HASH
     ```
 
-See the [Wormhole CLI tool docs](/build/toolkit/cli/) for installation and usage.
+See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and usage.
 
 ## Step-by-Step Tutorial
 
-For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/tutorials/messaging/cross-chain-contracts/) tutorial.
+For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/messaging/cross-chain-contracts/) tutorial.

@@ -189,7 +189,7 @@ Let's start writing the `CrossChainReceiver` contract:
     - The `sourceAddress` is checked against a list of registered senders using the `isRegisteredSender` modifier, which verifies if the emitter is allowed to send tokens to this contract
     - The recipient address is decoded from the payload, and the received tokens are transferred to them using the ERC-20 interface
 
-After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes through the standard Wormhole message lifecycle. Once a [VAA (Verifiable Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is available, the delivery provider will call `receivePayloadAndTokens` on the target chain and target address specified, with the appropriate inputs.
+After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes through the standard Wormhole message lifecycle. Once a [VAA (Verifiable Action Approval)](/docs/learn/infrastructure/vaas/){target=\_blank} is available, the delivery provider will call `receivePayloadAndTokens` on the target chain and target address specified, with the appropriate inputs.
 
 ??? tip "Understanding the `TokenReceived` Struct"
 
@@ -243,7 +243,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core Contract.
 
-        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/build/reference/contract-addresses/){target=_blank}.
+        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/build/reference/contract-addresses/){target=_blank}.
 
         !!! note
             You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores TestNets.

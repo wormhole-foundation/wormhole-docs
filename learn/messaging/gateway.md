@@ -37,17 +37,17 @@ IBC is central to the Wormhole Gateway's functionality, enabling seamless data a
 
 Several key components support the Wormhole Gateway's operations:
 
-- **[Wormhole Core Contracts](/learn/infrastructure/core-contracts/){target=\_blank}** - deployed on each participating Cosmos chain, these contracts are crucial for managing the cross-chain communication, including the emission of messages and the verification of signatures from the network’s Guardians
+- **[Wormhole Core Contracts](/docs/learn/infrastructure/core-contracts/){target=\_blank}** - deployed on each participating Cosmos chain, these contracts are crucial for managing the cross-chain communication, including the emission of messages and the verification of signatures from the network’s Guardians
 - **IBC Shim Contract** - a specialized CosmWasm contract that handles the bridging of assets by translating between the native Wormhole message formats and those used by IBC, effectively linking the Wormhole platform with the broader Cosmos ecosystem
 - **[Token Factory Module](https://github.com/CosmosContracts/juno/tree/v14.1.1/x/tokenfactory){target=\_blank}** - this module, operational on the Wormhole Gateway, is instrumental in creating tokens that represent bridged assets, facilitating their circulation within the Cosmos network
-- **[Token Bridge](/learn/messaging/token-nft-bridge/){target=\_blank}** - if an IBC-enabled chain already has a Wormhole Core Contract, the existing contract can be migrated to the new `wormhole-ibc` bytecode, eliminating the need to redeploy and re-instantiate Token Bridge contracts. This streamlines the integration process and ensures compatibility with the IBC framework
+- **[Token Bridge](/docs/learn/messaging/token-nft-bridge/){target=\_blank}** - if an IBC-enabled chain already has a Wormhole Core Contract, the existing contract can be migrated to the new `wormhole-ibc` bytecode, eliminating the need to redeploy and re-instantiate Token Bridge contracts. This streamlines the integration process and ensures compatibility with the IBC framework
 - **IBC Composability Middleware** - built on top of the [Packet Forwarding Module (PFM)](https://github.com/strangelove-ventures/packet-forward-middleware){target=\_blank} and IBC Hooks middleware, it integrates their functionalities seamlessly. This middleware enables integrators on Cosmos chains to support both inter-Cosmos and Cosmos-to-external flows using a unified payload structure
 
 ## Scaling with IBC
 
 ### Operational Challenges
 
-Traditionally, Wormhole [Guardians](/learn/infrastructure/guardians/){target=\_blank} have had to operate full nodes for each blockchain connected to Wormhole. This requirement ensures the highest levels of security and decentralization by allowing each Guardian to verify messages independently. However, this approach introduces significant operational costs and complexities, presenting a challenge to Wormhole's scalability as more chains are added to the network.
+Traditionally, Wormhole [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank} have had to operate full nodes for each blockchain connected to Wormhole. This requirement ensures the highest levels of security and decentralization by allowing each Guardian to verify messages independently. However, this approach introduces significant operational costs and complexities, presenting a challenge to Wormhole's scalability as more chains are added to the network.
 
 To address these challenges, Wormhole has adopted IBC to facilitate message verification through [Tendermint light clients](https://docs.tendermint.com/v0.34/tendermint-core/light-client.html){target=\_blank}. This method significantly reduces the burden on Guardians, as IBC enables the trustless verification of messages across chains.
 

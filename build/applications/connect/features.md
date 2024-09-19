@@ -46,7 +46,7 @@ This route appears if both of the following conditions are satisfied:
 
 ### Token Bridge Relayer {: #token-bridge-relayer}
 
-On the [routes](/build/applications/connect/routes) page, this is referred to as the automatic route in the Token Bridge section.
+On the [routes](/docs/build/applications/connect/routes) page, this is referred to as the automatic route in the Token Bridge section.
 
 Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee.
 
