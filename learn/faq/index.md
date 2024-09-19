@@ -1,6 +1,6 @@
 ---
 title: FAQs
-description: Find answers to frequently asked questions about Wormhole's features, including NTT, CCTP, custom relayers, token bridges, TypeScript SDK and more.
+description: Find answers to frequently asked questions about Wormhole's features, including NTT, CCTP, custom relayers, token bridges, TypeScript SDK, and more.
 ---
 
 # FAQs
@@ -9,21 +9,21 @@ description: Find answers to frequently asked questions about Wormhole's feature
 
 ### Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
-Yes, we have an example of cross-chain lending that leverages Wormhole’s token-bridge. In this example, deposits of collateral (such as ETH on Ethereum) are bridged to a hub chain. Once collateral is deposited, the borrowed assets, like wrapped BNB, are then bridged over to Binance Smart Chain. You can explore the full implementation in this [cross-chain lending example repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank}.
+Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/learn/messaging/token-nft-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in this [cross-chain lending example repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank}.
 
-Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/learn/messaging/native-token-transfers/){target=\_blank} instead of the token bridge, which avoids the limitations imposed by governor limits. In this setup, ETH would be custodied on the Ethereum spoke, and BNB on the Binance spoke. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on token-bridge limits.
+Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/learn/messaging/native-token-transfers/){target=\_blank} instead of the token bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on token-bridge limits.
 
 ### What causes the "No protocols registered for Evm" error in Wormhole SDK?
 
 This error typically occurs when the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} cannot recognize or register the necessary EVM protocols, which are required for interacting with Ethereum-based networks. The most common reason for this error is that the relevant EVM package for Wormhole's NTT has not been imported correctly.
 
-To resolve this issue, ensure that you have imported the appropriate Wormhole SDK package for EVM environments. The necessary package for handling Native Token Transfers (NTT) on EVM chains is `@wormhole-foundation/sdk-evm-ntt`. Here's the correct import statement:
+To resolve this issue, ensure you have imported the appropriate Wormhole SDK package for EVM environments. The necessary package for handling Native Token Transfers (NTT) on EVM chains is `@wormhole-foundation/sdk-evm-ntt`. Here's the correct import statement:
 
 ```rust
 import "@wormhole-foundation/sdk-evm-ntt";
 ```
 
-By importing this package, the Wormhole SDK will be able to register and utilize the required protocols for EVM chains, enabling cross-chain token transfers using the NTT framework. Make sure to include this import at the start of your code, especially before attempting any interactions with EVM chains in your project.
+By importing this package, the Wormhole SDK can register and utilize the required protocols for EVM chains, enabling cross-chain token transfers using the NTT framework. Ensure to include this import at the start of your code, especially before attempting any interactions with EVM chains in your project.
 
 ### How can I transfer ownership of NTT to a multisig?
 
@@ -36,7 +36,7 @@ Transferring ownership of Wormhole's NTT to a multisig is a two-step process for
 
 ### How can I specify a custom RPC for NTT?
 
-To specify a custom RPC for Wormhole's NTT, create an `overrides.json` file in the root of your deployment directory. This file allows you to define custom RPC endpoints, which can be useful when you need to connect to specific nodes or networks for better performance, security, or control over the RPC connection.
+To specify a custom RPC for Wormhole's NTT, create an `overrides.json` file in the root of your deployment directory. This file allows you to define custom RPC endpoints, which can be helpful when you need to connect to specific nodes or networks for better performance, security, or control over the RPC connection.
 
 Below’s an example of how the `overrides.json` file should be structured:
 
@@ -59,18 +59,18 @@ Below’s an example of how the `overrides.json` file should be structured:
 
 ### How can I redeem tokens if NTT rate limits block them on the target chain?
 
-If the rate limits on Wormhole's NTT block tokens from being received on the target chain, the transaction will typically be paused until the rate limits are adjusted. Rate limits are put in place to manage congestion and prevent abuse across chains, but they can occasionally delay token redemptions.
+If the rate limits on Wormhole's NTT block tokens from being received on the target chain, the transaction will typically be paused until the rate limits are adjusted. Rate limits are implemented to manage congestion and prevent chain abuse, but they can occasionally delay token redemptions.
 
 To resolve this:
 
 1. **Adjust rate limits** - the rate limits must be modified by an administrator or through the appropriate configuration tools to allow the blocked transaction to proceed
-2. **Resume transaction flow** - once the rate limits are adjusted, you can resume the transaction flow, which should be visible in the UI. The tokens will then be redeemable on the target chain
+2. **Resume transaction flow** - once the rate limits are adjusted, you can resume the flow, which should be visible in the UI. The tokens will then be redeemable on the target chain
 
 In most cases, the transaction will resume automatically once the rate limits are adjusted, and the UI will guide you through the redemption process.
 
 ### What are the challenges of deploying NTT to non-EVM chains?
 
-NTT currently requires the same transceiver for all routes, limiting flexibility when deploying across both EVM and non-EVM chains. For example, if you're deploying to Ethereum, Arbitrum, and Solana, you can't use both Wormhole and Axelar as transceivers because Axelar doesn't support Solana. This constraint forces integrators to use a single transceiver (e.g., Wormhole) for all chains, reducing flexibility in optimizing cross-chain transfers.
+NTT requires the same transceiver for all routes, limiting flexibility when deploying across EVM and non-EVM chains. For example, if you're deploying to Ethereum, Arbitrum, and Solana, you can't use Wormhole and Axelar as transceivers because Axelar doesn't support Solana. This constraint forces integrators to use a single transceiver (e.g., Wormhole) for all chains, reducing flexibility in optimizing cross-chain transfers.
 
 ### Does the NTT manager function as an escrow account for a hubchain?
 
@@ -83,19 +83,19 @@ Connect relies on the NTT SDK for integration, with platform-specific implementa
 - **Initiate and redeem functions** - these functions are essential for initiating token transfers and redeeming them on the destination chain
 - **Rate capacity methods** - methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion
 
-These functions ensure that Connect can handle token transfers and manage rate limits across chains.
+These functions ensure Connect can handle token transfers and manage chain-rate limits.
 
 ### How does the relayer contract determine which transceiver to call?
 
-The source chain's transceiver includes the destination chain's transceiver in the message it sends via the relayer contract. Each transceiver holds a mapping of its peers on other chains, which is configured by the admin. This mapping allows the destination transceiver to verify that the message came from a trusted source.
+The source chain's transceiver includes the destination chain's transceiver in the message via the relayer contract. The admin configures each transceiver's mapping of its peers on other chains. This mapping allows the destination transceiver to verify that the message came from a trusted source.
 
 ## Connect
 
 ### Do integrators need to enable wallets like Phantom or Backpack in Wormhole Connect?
 
-No, integrators don’t need to explicitly enable wallets like Phantom or Backpack in Wormhole Connect. However, the wallet must be installed and enabled in the user's browser for it to appear as an option in the interface.
+Integrators don’t need to enable wallets like Phantom or Backpack in Wormhole Connect explicitly. However, the wallet must be installed and enabled in the user's browser to appear as an option in the interface.
 
-### Is there a minimum amount required for bridging with CCTP/Connect SDK?
+### Is a minimum amount required for bridging with CCTP/Connect SDK?
 
 There is no minimum amount for bridging if the user is paying gas fees on both the source and destination chains. However, if you want to use automatic relaying, a minimum amount is required to cover relay fees:
 
@@ -110,7 +110,7 @@ There is no minimum amount for bridging if the user is paying gas fees on both t
 
 In legacy [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_balnk}, you can modify the priority fees for Solana transactions by updating the `computeBudget/index.ts` file. This file contains the logic for adjusting the compute unit limit and priority fees associated with Solana transactions.
 
-You can modify the `feePercentile` and `minPriorityFee` parameters in the `addComputeBudget` and `determineComputeBudget` functions to control the priority fee applied to your transactions.
+To control the priority fee applied to your transactions, you can modify the `feePercentile` and `minPriorityFee` parameters in the `addComputeBudget` and `determineComputeBudget` functions.
 
 The relevant file can be found in the legacy Connect codebase: [`computeBudget/index.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/62f1ba8ee5502ac6fd405680e6b3816c9aa54325/sdk/src/contexts/solana/utils/computeBudget/index.ts){target=\_blank}.
 
@@ -141,7 +141,7 @@ To manually submit a VAA (Verifiable Action Approval) to a destination chain, fo
     https://wormholescan.io/#/tx/<INSERT_TX_HASH_HERE>?view=advanced
     ```
 
-2. **Convert the VAA to hex** - you need to convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
+2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
 
 3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the relevant contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
 
@@ -149,7 +149,7 @@ To manually submit a VAA (Verifiable Action Approval) to a destination chain, fo
 
     - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field
 
-By following these steps, you can manually submit a VAA in the proper format to a destination chain.
+Following these steps, you can manually submit a VAA in the proper format to a destination chain.
 
 ## TypeScript SDK
 
@@ -157,7 +157,7 @@ By following these steps, you can manually submit a VAA in the proper format to 
 
 The `toNative` function may return an error if the platform-specific module (such as Solana or EVM) is not correctly imported or passed into the Wormhole constructor.
 
-To fix this, ensure that the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
+To fix this, ensure the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
 
 ```typescript
 import solana from "@wormhole-foundation/sdk/solana";
@@ -174,7 +174,7 @@ Previously referred to as specialized relayers, custom relayers allow you to bui
  - [Relayer Engine](https://wormhole.com/docs/infrastructure/relayers/run-relayer/#get-started-with-the-relayer-engine){target=\_blank}
  - [Run a Custom Relayer](https://wormhole.com/docs/infrastructure/relayers/run-relayer/){target=\_blank}
 
-These resources will guide you through the process of building and deploying custom relayers tailored to your use case.
+These resources will guide you through building and deploying custom relayers tailored to your use case.
 
 ## Token Bridge
 
