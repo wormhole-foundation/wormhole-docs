@@ -309,6 +309,14 @@
 
 <div class="faucet" markdown>
 
+<strong>SNAXchain</strong>
+<br><br>
+<a href="/docs/build/start-building/supported-networks/evm#snaxchain"><img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/snaxchain.webp" alt="SNAXchain" style="width:90px; height:auto;"></a>
+
+</div>
+
+<div class="faucet" markdown>
+
 <strong>Solana</strong>
 <br><br>
 <a href="/docs/build/start-building/supported-networks/solana#solana"><img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/solana.webp" alt="Solana" style="width:90px; height:auto;"></a>
