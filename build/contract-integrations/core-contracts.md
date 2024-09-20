@@ -255,9 +255,26 @@ The way a message is received and handled depends on the environment.
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
 
+#### Validating the Emitter
+
+When processing cross-chain messages, it's critical to ensure that the message originates from a trusted sender (emitter). This can be done by verifying the emitter address and chain ID in the parsed VAA.
+
+Typically, contracts should provide a method to register trusted emitters and check incoming messages against this list before processing them. For example, the following check ensures that the emitter is registered and authorized:
+
+```solidity
+require(isRegisteredSender(emitterChainId, emitterAddress), "Invalid emitter");
+```
+
+This check can be applied after the VAA is parsed, ensuring only authorized senders can interact with the receiving contract. Trusted emitters can be registered using a method like `setRegisteredSender` during contract deployment or initialization.
+
+```typescript
+--8<-- 'code/build/contract-integrations/core-contracts/receiveEmitterCheck.ts'
+```
+
+#### Additional Checks
+
 In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/learn/infrastructure/vaas/){target=\_blank}, including:
 
-- **Emitter** - is this coming from an expected emitter address and chain ID? Typically, contracts will provide a method to register a new emitter and check the incoming message against the set of emitters it trusts
 - **Sequence** - is this the expected sequence number? How should out-of-order deliveries be handled?
 - **Consistency level** - for the chain this message came from, is the [consistency level](/docs/build/reference/consistency-levels/){target=\_blank} enough to guarantee the transaction won't be reverted after taking some action?
 
