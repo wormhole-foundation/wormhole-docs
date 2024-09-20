@@ -20,7 +20,7 @@ description: Explore frequently asked questions about Wormhole Queries, which of
 
 ## Are There Any Query Examples?
 
-Certainly. You can find a complete guide on the [Use Queries page](/docs/build/applications/queries/use-queries). Additionally, you can find full code examples in the following repositories:
+Certainly. You can find a complete guide on the [Use Queries page](/docs/build/applications/queries/use-queries){target=\_blank}. Additionally, you can find full code examples in the following repositories:
 
 - [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
