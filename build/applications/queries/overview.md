@@ -89,7 +89,7 @@ For example, many chains have implementations forked from [Geth](https://github.
 
 Remember that Wormhole Queries are currently in beta. You can [register to join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
 
-Be sure to check out the [FAQs](/docs/build/applications/queries/faqs){target=\_blank} and the [Use Queries guide](/docs/build/applications/queries/use-queries){target=\_blank}.
+Be sure to check out the [FAQs](/docs/build/applications/queries/faqs/){target=\_blank} and the [Use Queries guide](/docs/build/applications/queries/use-queries/){target=\_blank}.
 
 You can also check out the following examples of applications that make use of Wormhole Queries: 
 
