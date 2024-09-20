@@ -29,7 +29,7 @@ The emitter address on NEAR chains is the sha256 digest of the program address s
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){target=\_blank} (i.e., finality) are:
 
 |Level|Value|
 |-----|-----|

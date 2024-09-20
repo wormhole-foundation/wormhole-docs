@@ -20,7 +20,7 @@ This guide teaches you how to set up and configure a custom relayer for efficien
 To start building a custom relayer, it's essential to grasp the components you'll be managing as part of your relaying service. Your relayer must be capable of retrieving and delivering VAAs.
 
 <figure markdown="span">
-  ![Custom relayer](/images/infrastructure/relayers/run-relayer/relayer-1.webp)
+  ![Custom relayer](/docs/images/infrastructure/relayers/run-relayer/relayer-1.webp)
   <figcaption>The off-chain components outlined in blue must be implemented.</figcaption>
 </figure>
 
@@ -101,7 +101,7 @@ The source code for this example is available in the [`relayer-engine` repositor
 
 Next, you must start a Spy to listen for available VAAs published on the Guardian network. You also need a persistence layer. This example uses Redis.
 
-More details about the Spy are available in the [Spy Documentation](/learn/infrastructure/spy){target=\_blank}.
+More details about the Spy are available in the [Spy Documentation](/docs/learn/infrastructure/spy){target=\_blank}.
 
 ### Wormhole Network Spy
 

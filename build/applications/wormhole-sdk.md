@@ -1,20 +1,61 @@
 ---
 title: Wormhole TS SDK 
-description: Explore Wormhole's TypeScript SDK and learn about how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
+description: Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 ---
 
 # Wormhole TypeScript SDK
 
-The Wormhole TypeScript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole.
+## Introduction
+
+The Wormhole TypeScript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole. This package bundles together functions, definitions, and constants that streamline the process of connecting chains and completing transfers using Wormhole. The SDK also offers targeted sub-packages for Wormhole-connected platforms, which allow you to add multichain support without creating outsized dependencies.
+
+This section covers all you need to know about the functionality and ease of development offered through the Wormhole TypeScript SDK. Take a tour of the package to discover how it helps make integration easier. Learn more about how the SDK abstracts away complexities around concepts like platforms, contexts, and signers. Finally, you'll find guidance on usage, along with code examples, to show you how to use the tools of the SDK.
+
+
+<div class="grid cards" markdown>
+
+-   :octicons-download-16:{ .lg .middle } **Installation**
+
+    ---
+
+    Find installation instructions for both the meta package and installing specific, individual packages
+
+    [:octicons-arrow-right-16: Install the SDK](#installation)
+
+-   :octicons-book-16:{ .lg .middle } **Concepts**
+
+    ---
+
+    Understand key concepts and how the SDK abstracts them away. Learn more about platforms, chain context, addresses, and signers
+
+    [:octicons-arrow-right-16: Explore concepts](#concepts)
+
+-   :octicons-file-code-16:{ .lg .middle } **Usage**
+
+    ---
+
+    Guidance on using the SDK to add seamless interchain messaging to your application, including code examples
+
+    [:octicons-arrow-right-16: Use the SDK](#usage)
+
+-   :octicons-code-square-16:{ .lg .middle } **TSdoc for SDK**
+
+    ---
+
+    Review the TSdoc for the Wormhole TypeScript SDK for a detailed look at availabel methods, classes, interfaces, and definitions
+
+    [:octicons-arrow-right-16: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
+
+</div>
 
 !!! warning
-    This package is a work in progress, so the interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find.
+    This package is a work in progress. The interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find.
 
 ## Installation
 
 ### Basic
 
-Install the (meta) package:
+To install the meta package using npm, run the following command in the root directory of your project:
 
 ```bash
 npm install @wormhole-foundation/sdk
@@ -24,31 +65,35 @@ This package combines all the individual packages to make setup easier while all
 
 ### Advanced
 
-Alternatively, you can install a specific set of published packages:
+Alternatively, you can install a specific set of published packages individually:
 
-- `sdk-base` - exposes constants
-```sh
-npm install @wormhole-foundation/sdk-base
-```
+??? interface "`sdk-base` - exposes constants"
 
-- `sdk-definitions` - exposes contract interfaces, basic types, and VAA payload definitions
-```sh
-npm install @wormhole-foundation/sdk-definitions
-```
+    ```sh
+    npm install @wormhole-foundation/sdk-base
+    ```
 
-- `sdk-evm` - exposes EVM-specific utilities
-```sh
-npm install @wormhole-foundation/sdk-evm
-```
+??? interface "`sdk-definitions` - exposes contract interfaces, basic types, and VAA payload definitions"
 
-- `sdk-evm-tokenbridge` - exposes the EVM Token Bridge protocol client
-```sh
-npm install @wormhole-foundation/sdk-evm-tokenbridge
-```
+    ```sh
+    npm install @wormhole-foundation/sdk-definitions
+    ```
+
+??? interface "`sdk-evm` - exposes EVM-specific utilities"
+
+    ```sh
+    npm install @wormhole-foundation/sdk-evm
+    ```
+
+??? interface "`sdk-evm-tokenbridge` - exposes the EVM Token Bridge protocol client"
+
+    ```sh
+    npm install @wormhole-foundation/sdk-evm-tokenbridge
+    ```
 
 ## Usage
 
-Getting started is simple. First, import Wormhole:
+Getting your integration started is simple. First, import Wormhole:
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/get-vaa.ts::1'
@@ -97,29 +142,33 @@ Optionally, you can override the default configuration with a partial `WormholeC
 
 ## Concepts
 
-Understanding several higher-level concepts of the SDK will help you use it effectively. The following sections will introduce and discuss the concepts of platforms, chain contexts, addresses, tokens, signers, and protocols.
+Understanding several higher-level Wormhole concepts and how the SDK abstracts them away will help you use the tools most effectively. The following sections will introduce and discuss the concepts of platforms, chain contexts, addresses, signers, and protocols, how they are used in the Wormhole context, and how the SDK helps ease development in each conceptual area.
 
 ### Platforms
 
-Every chain is unique, but many share similar functionality. The `Platform` modules provide a consistent interface for interacting with the chains that share a platform.
+While every chain has unique attributes, chains from the same platform typically have standard functionalities they share. The SDK includes `Platform` modules, which create a standardized interface for interacting with the chains of a supported platform. The contents of a module vary by platform but can include:
 
-Each platform can be installed separately so that dependencies can stay as slim as possible.
+- Protocols, such as [Wormhole core](#wormhole-core), preconfigured to suit the selected platform
+- Definitions and configurations for types, signers, addresses, and chains 
+- Helpers configured for dealing with unsigned transactions on the selected platform
+
+These modules also import and expose essential functions and define types or constants from the chain's native ecosystem to reduce the dependencies needed to interact with a chain using Wormhole. Rather than installing the entire native package for each desired platform, you can install a targeted package of standardized functions and definitions essential to connecting with Wormhole, keeping project dependencies as slim as possible.
+
 
 Wormhole currently supports the following platforms:
 
 - EVM
 - Solana
-- Cosmwasm
+- Cosmos
 - Sui
 - Aptos
+- Algorand
 
 See the [Platforms folder of the TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole TypeScript SDK.
 
 ### Chain Context
 
-The `Wormhole` class provides a `getChain` method that returns a `ChainContext` object for a given chain. This object provides access to the chain specific methods and utilities. Much of the functionality in the `ChainContext` is provided by the `Platform` methods but the specific chain may have overridden methods.
-
-The `ChainContext` object is also responsible for holding a cached RPC client and protocol clients.
+The `definitions` package of the SDK includes the `ChainContext` class, which creates an interface for working with connected chains in a standardized way. This class contains the network, chain, and platform configurations for connected chains and cached RPC and protocol clients. The `ChainContext` class also exposes chain-specific methods and utilities. Much of the functionality comes from the `Platform` methods but some specific chains may have overridden methods via the context. This is also where the `Network`, `Chain`, and `Platform` type parameters which are used throughout the package are defined.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/get-chain.ts'
@@ -127,9 +176,7 @@ The `ChainContext` object is also responsible for holding a cached RPC client an
 
 ### Addresses
 
-Within the Wormhole context, addresses are often [normalized](https://docs.wormhole.com/wormhole/blockchain-environments/evm#addresses){target=\_blank} to 32 bytes and referred to in this SDK as a `UniversalAddress`.
-
-Each platform has an address type that understands the native address formats, referred to as `NativeAddress.` This abstraction allows the SDK to work with addresses consistently regardless of the underlying chain.
+The SDK uses the `UniversalAddress` class to implement the `Address` interface, which all address types must implement. Addresses from various networks are parsed into their byte representation and modified as needed to ensure they are exactly 32 bytes long. Each platform also has an address type that understands the native address formats, referred to as `NativeAddress.` These abstractions allow you to work with addresses consistently regardless of the underlying chain.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/addresses.ts'
@@ -139,9 +186,9 @@ Each platform has an address type that understands the native address formats, r
 
 Similar to the `ChainAddress` type, the `TokenId` type provides the chain and address of a given token. The following snippet introduces `TokenId`, a way to uniquely identify any token, whether it's a standard token or a blockchain's native currency (like ETH for Ethereum).
 
-For standard tokens, Wormhole uses their contract address to create a `TokenId`. For native currencies, Wormhole uses the keyword `native` instead of an address. This makes it easy to work with any type of token consistently.
+Wormhole uses their contract address to create a `TokenId` for standard tokens. For native currencies, Wormhole uses the keyword `native` instead of an address. This makes it easy to work with any type of token consistently.
 
-Finally, the snippet also demonstrates how to convert a `TokenId` back into a regular address format when needed.
+Finally, the snippet demonstrates how to convert a `TokenId` back into a regular address format when needed.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/tokens.ts'
@@ -149,11 +196,11 @@ Finally, the snippet also demonstrates how to convert a `TokenId` back into a re
 
 ### Signers
 
-In the SDK, a `Signer` interface is required for certain methods to sign transactions. This interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`, depending on the specific requirements. A signer can be created by wrapping an existing offline wallet or a web wallet.
+Certain methods of signing transactions require a `Signer` interface in the SDK. Depending on the specific requirements, this interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`. A signer can be created by wrapping an offline or web wallet.
 
-A `SignOnlySigner` is used in scenarios where the signer isn't connected to the network or prefers not to broadcast transactions themselves. It accepts an array of unsigned transactions and returns an array of signed and serialized transactions. Before signing, the transactions may be inspected or altered. It's important to note that the serialization process is chain-specific. Refer to the testing signers (e.g., [EVM](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank} or [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for an example of how to implement a signer for a specific chain or platform.
+A `SignOnlySigner` is used when the signer isn't connected to the network or prefers not to broadcast transactions themselves. It accepts an array of unsigned transactions and returns an array of signed and serialized transactions. Before signing, the transactions may be inspected or altered. It's important to note that the serialization process is chain-specific. Refer to the testing signers (e.g., [EVM](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank} or [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for an example of how to implement a signer for a specific chain or platform.
 
-Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to the network and intends to broadcast the transactions. This type of signer also accepts an array of unsigned transactions but returns an array of transaction IDs, corresponding to the order of the unsigned transactions.
+Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to the network and intends to broadcast the transactions. This type of signer also accepts an array of unsigned transactions but returns an array of transaction IDs corresponding to the order of the unsigned transactions.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/signers.ts'
@@ -169,7 +216,8 @@ The core protocol underlies all Wormhole activity. This protocol is responsible 
 
 The following example demonstrates sending and verifying a message using the Wormhole Core protocol on Solana.
 
-First, initialize a Wormhole instance for the TestNet environment, specifically for the Solana chain. Then obtain a signer and its associated address, which will be used to sign transactions.
+First, initialize a Wormhole instance for the TestNet environment, specifically for the Solana chain. Then, obtain a signer and its associated address, which will be used to sign transactions.
+
 Next, get a reference to the core messaging bridge, which is the main interface for interacting with Wormhole's cross-chain messaging capabilities.
 The code then prepares a message for publication. This message includes:
 
@@ -182,7 +230,7 @@ After preparing the message, the next steps are to generate, sign, and send the 
 
 The code then waits for the Wormhole network to process and sign the message, turning it into a Verified Action Approval (VAA). This VAA is retrieved in a `Uint8Array` format, with a timeout of 60 seconds.
 
-Lastly, the code will demonstrate how to verify the message on the receiving end. A verification transaction is prepared using the original sender's address and the VAA, and finally this transaction is signed and sent.
+Lastly, the code will demonstrate how to verify the message on the receiving end. A verification transaction is prepared using the original sender's address and the VAA, and finally, this transaction is signed and sent.
 
 ???+ code "View the complete script"
     ```ts
@@ -193,7 +241,7 @@ The payload contains the information necessary to perform whatever action is req
 
 #### Token Bridge
 
-The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge. This includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols but it is possible to use them directly.
+The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge, which includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols, but it is possible to use them directly.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/token-bridge-snippet.ts'
@@ -203,7 +251,7 @@ Supported protocols are defined in the [definitions module](https://github.com/w
 
 ## Transfers
 
-While using the [`ChainContext`](#chain-context) and [`Protocol`](#protocols) clients directly is possible, the SDK provides some helpful abstractions for doing things like transferring tokens.
+While using the [`ChainContext`](#chain-context) and [`Protocol`](#protocols) clients directly is possible, the SDK provides some helpful abstractions for transferring tokens.
 
 The `WormholeTransfer` interface provides a convenient abstraction to encapsulate the steps involved in a cross-chain transfer.
 
@@ -219,7 +267,7 @@ The transfer process is divided into three main steps:
 2. Waiting for the transfer to be attested (if not automatic)
 3. Completing the transfer on the destination chain
 
-For automatic transfers, the process ends after initiation. For manual transfers, the code waits for the transfer to be attested and then completes it on the destination chain.
+For automatic transfers, the process ends after initiation. The code waits for the transfer to be attested for manual transfers and then completes it on the destination chain.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/token-bridge.ts:120:158'
@@ -238,7 +286,7 @@ You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/e
 
 In the following example, the `wh.circleTransfer` function is called with several parameters to set up the transfer. It takes the amount to be transferred (in the token's base units), the sender's chain and address, and the receiver's chain and address. The function also allows specifying whether the transfer should be automatic, meaning it will be completed without further user intervention.
 
-An optional payload can be included with the transfer, though in this case it's set to undefined. Finally, if the transfer is automatic, you can request that native gas (the blockchain's native currency used for transaction fees) be sent to the receiver along with the transferred tokens.
+An optional payload can be included with the transfer, though it's set to undefined in this case . Finally, if the transfer is automatic, you can request that native gas (the blockchain's native currency used for transaction fees) be sent to the receiver along with the transferred tokens.
 
 When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will [vary by network](https://developers.circle.com/stablecoins/docs/required-block-confirmations#mainnet){target=\_blank}.
 
@@ -253,7 +301,7 @@ When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amou
 
 ### Gateway Transfers
 
-Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain. A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain, then out from the Gateway to the destination chain.
+Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain. A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain and then out from the Gateway to the destination chain.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/cosmos.ts:152:172'
@@ -272,7 +320,7 @@ A transfer leaving Cosmos will produce a VAA from the Gateway that must be manua
 
 ### Recovering Transfers
 
-It may be necessary to recover an abandoned transfer before being completed. To do this, instantiate the `Transfer` class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
+It may be necessary to recover an abandoned transfer before it is completed. To do this, instantiate the `Transfer` class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/cctp.ts:120:126'
@@ -285,11 +333,11 @@ It may be necessary to recover an abandoned transfer before being completed. To 
 
 ## Routes
 
-While a specific `WormholeTransfer`, such as `TokenTransfer` or `CCTPTransfer`, may be used the developer must know exactly which transfer type to use for a given request.
+While a specific `WormholeTransfer`, such as `TokenTransfer` or `CCTPTransfer`, may be used, the developer must know exactly which transfer type to use for a given request.
 
 To provide a more flexible and generic interface, the `Wormhole` class provides a method to produce a `RouteResolver` that can be configured with a set of possible routes to be supported.
 
-The following section demonstrates the process of setting up and validating a token transfer using Wormhole's routing system.
+The following section demonstrates setting up and validating a token transfer using Wormhole's routing system.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/router.ts:24:31'
@@ -309,9 +357,9 @@ Once the tokens are selected, a `RouteTransferRequest` may be created to provide
 
 Choosing the best route is currently left to the developer, but strategies might include sorting by output amount or expected time to complete the transfer (no estimate is currently provided).
 
-After choosing the best route, extra parameters like `amount`, `nativeGasDropoff`, and `slippage` can be passed, depending on the specific route selected and a quote can be retrieved with the validated request.
+After choosing the best route, extra parameters like `amount`, `nativeGasDropoff`, and `slippage` can be passed, depending on the specific route selected. A quote can be retrieved with the validated request.
 
-After successful validation, the code requests a transfer quote. This quote likely includes important details such as fees, estimated time, and the final amount to be received. If the quote is generated successfully, it's displayed for the user to review and decide whether to proceed with the transfer. This process ensures that all transfer details are properly set up and verified before any actual transfer takes place.
+After successful validation, the code requests a transfer quote. This quote likely includes important details such as fees, estimated time, and the final amount to be received. If the quote is generated successfully, it's displayed for the user to review and decide whether to proceed with the transfer. This process ensures that all transfer details are properly set up and verified before any actual transfer occurs.
 
 ```ts
 --8<-- 'code/build/applications/wormhole-sdk/router.ts:72:93'

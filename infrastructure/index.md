@@ -18,7 +18,7 @@ Follow the guides in this section to learn how to run off-chain infrastructure s
 
     Learn how to develop your own custom off-chain relaying service, giving you greater control and flexibility than using Wormhole-deployed relayers.
 
-    [:octicons-arrow-right-16: Run a relayer](/infrastructure/relayers/run-relayer/)
+    [:octicons-arrow-right-16: Run a relayer](/docs/infrastructure/relayers/run-relayer/)
 
 </div>
 
@@ -30,6 +30,6 @@ Follow the guides in this section to learn how to run off-chain infrastructure s
 
     Learn how to run a Spy locally to listen for and forward messages (Verifiable Action Approvals, or VAAs) published on the Wormhole network.
 
-    [:octicons-arrow-right-16: Run a Spy](/infrastructure/spy/run-spy/)
+    [:octicons-arrow-right-16: Run a Spy](/docs/infrastructure/spy/run-spy/)
 
 </div>

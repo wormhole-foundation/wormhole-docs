@@ -33,7 +33,7 @@ On Aptos, an emitter capability is taken from the core bridge. The core bridge g
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){target=\_blank} (i.e., finality) are:
 
 |  Level   | Value |
 |:-------:|:-----:|
@@ -64,4 +64,3 @@ This field may be ignored since the chain provides instant finality. For more in
 |    Core    | `0xde0036a9600559e295d5f6802ef6f3f802f510366e0c23912b0655d972166017` |
 | Token Bridge | `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31` |
 | NFT Bridge   | `0x46da3d4c569388af61f951bdd1153f4c875f90c2991f6b2d0a38e2161a40852c` |
-

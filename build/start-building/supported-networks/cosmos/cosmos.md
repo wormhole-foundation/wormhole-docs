@@ -59,6 +59,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - [Website](https://evmos.org/){target=_blank}
 - [Mintscan](https://www.mintscan.io/evmos)
 - [Evmos JSON updates](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/evmos.json)
+- [Faucet](https://faucet.evmos.dev/){target=/_blank}
 
 ### Wormhole Details
 
@@ -135,6 +136,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - [Website](https://injective.com/){target=_blank}
 - [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective TestNet Explorer](https://testnet.explorer.injective.network/){target=_blank}
 - [Developer Docs](https://docs.injective.network/){target=_blank} | [Injective TypeScript SDK docs](https://docs.ts.injective.network/){target=_blank} | [Injective trading docs](https://docs.trading.injective.network/){target=_blank}
+- [Faucet](https://testnet.faucet.injective.network/){target=/_blank}
 
 ### Wormhole Details
 
@@ -174,6 +176,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - [Website](https://osmosis.zone/){target=_blank}
 - [Block Explorer](https://atomscan.com/osmosis){target=_blank}
 - [Developer Docs](https://docs.osmosis.zone/){target=_blank}
+- [Faucet](https://faucet.testnet.osmosis.zone/){target=/_blank}
 
 ### Wormhole Details
 
@@ -251,6 +254,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - [Website](https://www.terra.money/){target=_blank}
 - [Block Explorer](https://finder.terra.money/){target=_blank}
 - [Developer Docs](https://docs.terra.money/){target=_blank}
+- [Faucet](https://faucet.terra.money/){target=/_blank}
 
 ### Wormhole Details
 
@@ -322,6 +326,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - [Website](https://www.xpla.io/en){target=_blank}
 - [Block Explorer](https://explorer.xpla.io/){target=_blank}
 - [Developer Docs](https://docs.xpla.io/learn/learn/about-xpla-chain/){target=_blank}
+- [Faucet](https://faucet.xpla.io/){target=/_blank}
 
 ### Wormhole Details
 

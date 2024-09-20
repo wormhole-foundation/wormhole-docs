@@ -13,15 +13,15 @@ Wormhole's messaging infrastructure simplifies data transmission, event triggeri
 
 By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the Wormhole relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
 
-This tutorial assumes a basic understanding of Solidity and smart contract development. Before diving in, it may be helpful to review [the basics of Wormhole](/learn/){target=\_blank} to familiarize yourself with the protocol.
+This tutorial assumes a basic understanding of Solidity and smart contract development. Before diving in, it may be helpful to review [the basics of Wormhole](/docs/learn/){target=\_blank} to familiarize yourself with the protocol.
 
 ## Wormhole Overview
 
-We'll interact with two key Wormhole components: the [Wormhole relayer](/learn/infrastructure/relayer/){target=\_blank} and the [Wormhole Core Contracts](/learn/infrastructure/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
+We'll interact with two key Wormhole components: the [Wormhole relayer](/docs/learn/infrastructure/relayer/){target=\_blank} and the [Wormhole Core Contracts](/docs/learn/infrastructure/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
 
 Additionally, we'll rely on the Wormhole relayer to automatically determine cross-chain transaction costs and facilitate payments. This feature simplifies cross-chain development by allowing you to specify only the target chain and the message. The relayer handles the rest, ensuring that the message is transmitted with the appropriate fee.
 
-![Wormhole architecture detailed diagram: source to target chain communication.](/images/learn/fundamentals/architecture/architecture-1.webp)
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/learn/fundamentals/architecture/architecture-1.webp)
 
 ## Prerequisites
 
@@ -68,16 +68,29 @@ You can find the full code for the `MessageSender.sol` below.
 
 ### Receiver Contract: MessageReceiver
 
-The `MessageReceiver` contract handles incoming cross-chain messages. When a message arrives, it decodes the payload and logs the message content.
+The `MessageReceiver` contract handles incoming cross-chain messages. When a message arrives, it decodes the payload and logs the message content. It ensures that only authorized contracts can send and process messages, adding an extra layer of security in cross-chain communication.
 
-Key functions include:
+#### Emitter Validation and Registration
 
- - **`receiveWormholeMessages`** - the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages
+In cross-chain messaging, validating the sender is essential to prevent unauthorized contracts from sending messages. The `isRegisteredSender` modifier ensures that messages can only be processed if they come from the registered contract on the source chain. This guards against malicious messages and enhances security.
 
-Here's the core of the contract:
+Key implementation details include:
+
+ - **`registeredSender`** - stores the address of the registered sender contract
+ - **`setRegisteredSender`** - registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders
+ - **`isRegisteredSender`** - restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:17:39"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:12:13"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:22:39"
+```
+
+#### Message Processing
+
+The `receiveWormholeMessages` is the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
+
+```solidity
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:42:64"
 ```
 
 You can find the full code for the `MessageReceiver.sol` below.
@@ -209,6 +222,13 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:39:42"
         ```
 
+4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
+
+    This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
+
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:55:66"
+    ```
 
 You can find the full code for the `deploySender.js` and `deployReceiver.js` below.
 

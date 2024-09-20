@@ -49,9 +49,9 @@ The Token Bridge offers a secure, low-effort integration suitable for applicatio
 
 - **Mechanism** - solely utilizes a lock and mint model
 - **Security** - preconfigured rate limiting and integrated Global Accountant
-- **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/learn/fundamentals/security/){target=\_blank}
+- **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/docs/learn/fundamentals/security/){target=\_blank}
 - **Token contracts** - wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
 - **Integration** - straightforward and permissionless method to deploy on multiple chains
 
 !!! note
-    [Learn more](/learn/infrastructure/vaas/){target=\_blank} about the core messaging primitives in the Wormhole network. 
+    [Learn more](/docs/learn/infrastructure/vaas/){target=\_blank} about the core messaging primitives in the Wormhole network. 

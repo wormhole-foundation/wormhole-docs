@@ -20,7 +20,7 @@ description: Explore frequently asked questions about Wormhole Queries, which of
 
 ## Are There Any Query Examples?
 
-Certainly. You can find a complete guide on the [Use Queries page](/build/applications/queries/use-queries). Additionally, you can find full code examples in the following repositories:
+Certainly. You can find a complete guide on the [Use Queries page](/docs/build/applications/queries/use-queries/){target=\_blank}. Additionally, you can find full code examples in the following repositories:
 
 - [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
@@ -43,3 +43,7 @@ See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blo
 Permissions for Query Proxy are managed by the Guardians. The Guardian nodes are configured to only listen to a set of allow-listed proxies. However, it is possible that this restriction may be lifted in the future and/or more proxies could be added.
 
 It is also important to note that the proxies don't impact the verifiability of the request or result, i.e., their role in the process is trustless.
+
+## What Does Queries Offer over an RPC Service
+
+Wormhole Queries provides on-demand, attested, on-chain, verifiable RPC results. Each Guardian independently executes the specified query and returns the result and their signature. The proxy handles aggregating the results and signatures, giving you a single result (all within one REST call) with a quorum of signatures suitable for on-chain submission, parsing, and verification using one of our examples or SDKs.

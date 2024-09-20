@@ -3,7 +3,7 @@ title: Native Token Transfers Architecture
 description: Explore Wormhole's Native Token Transfers architecture, which covers components, message flow, rate limiting, and custom transceivers.
 ---
 
-## Introduction 
+## Introduction
 
 The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components that work together to manage cross-chain communication and token operations complexities.
 
@@ -15,23 +15,66 @@ The NTT framework is composed of Managers, which oversee the transfer process, a
 
 _Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
 
-- `transfer` - initiates a token transfer process involving token locking or burning on the source chain
-- `quoteDeliveryPrice` - quotes the fee for delivering a message to a specific target chain by querying and aggregating quotes from the transceiver contracts
-- `setPeer` - establishes trust between different instances of NTT manager contracts across chains by cross-registering them as peers, ensuring secure communication
+- **`transfer`** - initiates a token transfer process involving token locking or burning on the source chain
+
+    ```solidity
+    function transfer(
+        uint256 amount, // amount (in atomic units)
+        uint16 recipientChain, // chain ID (Wormhole formatted) 
+        bytes32 recipient // recipient address (Wormhole formatted)
+    ) external payable nonReentrant whenNotPaused returns (uint64)
+    ```
+
+- **`quoteDeliveryPrice`** - quotes the fee for delivering a message to a specific target chain by querying and aggregating quotes from the transceiver contracts
+
+    ```solidity
+    function quoteDeliveryPrice(
+        uint16 recipientChain, // chain ID (Wormhole formatted) 
+        bytes memory transceiverInstructions // extra instructions for Transceivers (Transceiver-dependent on whether extra instructions are used/accepted)
+    ) public view returns (uint256[] memory, uint256)
+    ```
+
+- **`setPeer`** - establishes trust between different instances of NTT manager contracts across chains by cross-registering them as peers, ensuring secure communication
+
+    ```solidity
+    function setPeer(
+        uint16 peerChainId, // chain ID (Wormhole formatted) 
+        bytes32 peerContract, // peer NTT Manager address (Wormhole formatted)
+        uint8 decimals, // token decimals on the peer chain
+        uint256 inboundLimit // inbound rate limit (in atomic units)
+    ) public onlyOwner
+    ```
 
 ### Transceivers
 
 _Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with Managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers.
 Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
 
-- `sendMessage` - this external function sends messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
-- `quoteDeliveryPrice` - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
+- **`sendMessage`** - this external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
 
-![NTT architecture diagram](/images/learn/messaging/native-token-transfers/architecture/architecture-1.webp)
+    ```solidity
+    function sendMessage(
+        uint16 recipientChain,   // chain ID (Wormhole formatted)
+        TransceiverStructs.TransceiverInstruction memory instruction, // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
+        bytes memory nttManagerMessage, // serialized NTT Manager message, provided by the NTT Manager
+        bytes32 recipientNttManagerAddress, // NTT Manager address on the recipient chain (Wormhole formatted)
+        bytes32 refundAddress // address to receive refunds on the destination chain in case of excess quotes (Wormhole formatted)
+    ) external payable nonReentrant onlyNttManager
+    ```
+
+- **`quoteDeliveryPrice`** - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
+
+    ```solidity
+    function quoteDeliveryPrice(
+        uint16 targetChain,  // chain ID (Wormhole formatted) 
+        TransceiverStructs.TransceiverInstruction memory instruction // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
+    ) external view returns (uint256) 
+    ```
+
+![NTT architecture diagram](/docs/images/learn/messaging/native-token-transfers/architecture/architecture-1.webp)
 
 !!! note
-    [Learn more](/learn/messaging/native-token-transfers/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
-
+    [Learn more](/docs/learn/messaging/native-token-transfers/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
 
 #### Custom Transceivers
 
@@ -39,7 +82,7 @@ The NTT framework supports advanced features such as custom transceivers for spe
 
 NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
 
-![Custom Attestation with NTT diagram](/images/learn/messaging/native-token-transfers/architecture/architecture-2.webp)
+![Custom Attestation with NTT diagram](/docs/images/learn/messaging/native-token-transfers/architecture/architecture-2.webp)
 
 The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. The model includes an extra verifier in the bridging process, enhancing security and providing an added assurance of transaction integrity.
 
