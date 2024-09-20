@@ -55,7 +55,7 @@ Ready to dive in and start building? Check out the following resources to begin 
 
     ---
 
-    Explore detailed guides that walk you through the deployment process—from installing the NTT CLI and running deployment commands to reviewing post-deployment procedures.
+    Explore detailed guides that walk you through the entire deployment process, from installing the NTT CLI to deploying NTT across supported chains.
 
     [:octicons-arrow-right-16: Deploy now using the NTT CLI](/docs/build/contract-integrations/native-token-transfers/deployment-process/)
 
