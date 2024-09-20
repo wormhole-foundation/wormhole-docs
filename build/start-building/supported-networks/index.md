@@ -7,13 +7,13 @@ Wormhole supports several different blockchains and environments. Since many of 
 
 ## Environments Supported
 
-- [EVM](/docs/build/start-building/supported-networks/evm)
-- [Solana](/docs/build/start-building/supported-networks/solana)
+- [EVM](/docs/build/start-building/supported-networks/evm/)
+- [Solana](/docs/build/start-building/supported-networks/solana/)
 - [Cosmos](/docs/build/start-building/supported-networks/cosmos/cosmos/)
-- [Algorand](/docs/build/start-building/supported-networks/algorand)
-- [NEAR](/docs/build/start-building/supported-networks/near)
-- [Aptos](/docs/build/start-building/supported-networks/aptos)
-- [Sui](/docs/build/start-building/supported-networks/sui)
+- [Algorand](/docs/build/start-building/supported-networks/algorand/)
+- [NEAR](/docs/build/start-building/supported-networks/near/)
+- [Aptos](/docs/build/start-building/supported-networks/aptos/)
+- [Sui](/docs/build/start-building/supported-networks/sui/)
 
 ## Blockchains Supported
 
