@@ -11,15 +11,15 @@ Wormhole's Core Contracts, deployed on each supported blockchain network, enable
 
 While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
 
-This guide will walk you through the variations and key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts. To learn more about Core Contracts' features and how it works, please refer to the [Core Contracts](/docs/learn/infrastructure/core-contracts/) page in the Learn section.
+This guide will walk you through the variations and key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts. To learn more about Core Contracts' features and how it works, please refer to the [Core Contracts](/docs/learn/infrastructure/core-contracts/){target=\_blank} page in the Learn section.
 
 ## Prerequisites
 
 To interact with the Wormhole Core Contract, you'll need the following:
 
-- [The address of the Core Contract](/docs/build/reference/contract-addresses#core-contracts) on the chains you're deploying your contract on
-- [The Wormhole chain ID](/docs/build/reference/chain-ids/) of the chains you're deploying your contract on
-- [The consistency levels](/docs/build/reference/consistency-levels/) (required finality) for the chains you're deploying your contract on
+- [The address of the Core Contract](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
+- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
+- [The consistency levels](/docs/build/reference/consistency-levels/){target=\_blank} (required finality) for the chains you're deploying your contract on
 
 ## How to Interact with Core Contracts
 
@@ -32,7 +32,7 @@ While the implementation details of the Core Contracts vary by network, the core
 
 ### Sending Messages
 
-To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/learn/fundamentals/glossary/#emitter). This emitter might be your contract or an existing application such as the [Token Bridge](/docs/learn/messaging/token-nft-bridge#token-bridge){target=\_blank} or [NFT Bridge](/docs/learn/messaging/token-nft-bridge#nft-bridge){target=\_blank}.
+To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/learn/fundamentals/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/learn/messaging/token-nft-bridge/#token-bridge){target=\_blank} or [NFT Bridge](/docs/learn/messaging/token-nft-bridge/#nft-bridge){target=\_blank}.
 
 === "EVM"
 
@@ -168,9 +168,9 @@ To send a message, regardless of the environment or chain, the Core Contract is 
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
 
-Once the message is emitted from the Core Contract, the [Guardian Network](/docs/learn/infrastructure/guardians/) will observe the message and sign the digest of an Attestation [VAA](/docs/learn/infrastructure/vaas/). On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.solana.com/developing/runtime-facilities/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+Once the message is emitted from the Core Contract, the [Guardian Network](/docs/learn/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/learn/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.solana.com/developing/runtime-facilities/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
-VAAs are [multicast](/docs/learn/infrastructure/core-contracts/#multicast) by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
+VAAs are [multicast](/docs/learn/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 
 ### Receiving Messages
 
@@ -255,11 +255,28 @@ The way a message is received and handled depends on the environment.
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
 
-In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/learn/infrastructure/vaas/), including:
+#### Validating the Emitter
 
-- **Emitter** - is this coming from an expected emitter address and chain ID? Typically, contracts will provide a method to register a new emitter and check the incoming message against the set of emitters it trusts
+When processing cross-chain messages, it's critical to ensure that the message originates from a trusted sender (emitter). This can be done by verifying the emitter address and chain ID in the parsed VAA.
+
+Typically, contracts should provide a method to register trusted emitters and check incoming messages against this list before processing them. For example, the following check ensures that the emitter is registered and authorized:
+
+```solidity
+require(isRegisteredSender(emitterChainId, emitterAddress), "Invalid emitter");
+```
+
+This check can be applied after the VAA is parsed, ensuring only authorized senders can interact with the receiving contract. Trusted emitters can be registered using a method like `setRegisteredSender` during contract deployment or initialization.
+
+```typescript
+--8<-- 'code/build/contract-integrations/core-contracts/receiveEmitterCheck.ts'
+```
+
+#### Additional Checks
+
+In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/learn/infrastructure/vaas/){target=\_blank}, including:
+
 - **Sequence** - is this the expected sequence number? How should out-of-order deliveries be handled?
-- **Consistency level** - for the chain this message came from, is the [consistency level](/docs/build/reference/consistency-levels/) enough to guarantee the transaction won't be reverted after taking some action?
+- **Consistency level** - for the chain this message came from, is the [consistency level](/docs/build/reference/consistency-levels/){target=\_blank} enough to guarantee the transaction won't be reverted after taking some action?
 
 The VAA digest is separate from the VAA body but is also relevant. It can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
 

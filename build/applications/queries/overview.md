@@ -8,7 +8,7 @@ description: Explore Wormhole Queries, offering real-time access to verified blo
 Wormhole Guardians, who run full nodes for various connected chains, facilitate a new cross-chain query service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
 !!! note
-	Queries are currently in closed beta, though you can start developing today. Check out [Use Queries](/docs/build/applications/queries/use-queries) and reach out to [Join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
+	Queries are currently in closed beta, though you can start developing today. Check out [Use Queries](/docs/build/applications/queries/use-queries/){target=\_blank} and reach out to [Join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
 Wormhole Queries offers on-demand access to Guardian-attested on-chain data. The current implementation provides integrators with a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute query requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [white paper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
 
@@ -89,7 +89,7 @@ For example, many chains have implementations forked from [Geth](https://github.
 
 Remember that Wormhole Queries are currently in beta. You can [register to join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
 
-Be sure to check out the [FAQs](/docs/build/applications/queries/faqs) and the [Use Queries guide](/docs/build/applications/queries/use-queries).
+Be sure to check out the [FAQs](/docs/build/applications/queries/faqs/){target=\_blank} and the [Use Queries guide](/docs/build/applications/queries/use-queries/){target=\_blank}.
 
 You can also check out the following examples of applications that make use of Wormhole Queries: 
 

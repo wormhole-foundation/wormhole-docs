@@ -12,7 +12,7 @@ Relayers in the Wormhole context are processes that deliver [Verified Action App
 There are three primary types of relayers discussed:
 
 - **Client-side relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
-- **Custom relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying) or by providing a REST endpoint to accept VAAs to be relayed (REST relaying)
+- **Custom relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying)
 - **Wormhole-deployed relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
 
 ## Fundamentals
@@ -64,6 +64,8 @@ Users themselves carry out the three steps of the cross-chain process:
 
 Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use cases.
 
+The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/learn/infrastructure/spy/).
+
 **Key Features**
 
 - **Optimization** - capable of performing trustless off-chain computations which can optimize gas costs
@@ -75,11 +77,6 @@ Custom relayers are purpose-built components within the Wormhole protocol, desig
 
 !!! note
     To make the development of custom relayers easier, a plugin relayer is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
-
-There are two main methods of setting up a custom relayer:
-
-- **Spy relaying** - involves listening directly to the Guardian Network via a Spy
-- **REST relaying** - provides a REST endpoint to accept a VAA that should be relayed
 
 **Considerations**
 

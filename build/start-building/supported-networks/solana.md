@@ -50,7 +50,7 @@ The emitter address on Solana chains is a Program-Derived Address derived by the
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/) (i.e., finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){target=\_blank} (i.e., finality) are:
 
 |Level|Value|
 |-----|-----|
