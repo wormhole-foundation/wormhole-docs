@@ -7,17 +7,23 @@ description: Learn about Wormhole's Token and NFT Bridge for cross-chain transfe
 
 ## Token Bridge
 
-The Token Bridge is a decentralized protocol that enables secure and efficient cross-chain token transfers using Wormhole's message-passing infrastructure. This system allows standards-compliant tokens, like ERC-20 on Ethereum or SPL on Solana, to be transferred between different blockchain networks while maintaining their properties and value.
+Transferring tokens across blockchain networks is challenging due to the lack of interoperability. Maintaining token properties such as value, name, and precision while ensuring security during transfers often requires complex and costly solutions like liquidity pools or native swaps, which can introduce inefficiencies and risks.
+
+Wormhole’s Token Bridge addresses these challenges by providing a decentralized protocol for seamless cross-chain token transfers through a lock-and-mint mechanism. Using Wormhole’s message-passing protocol, the Token Bridge allows standards-compliant tokens, like ERC-20 on Ethereum or SPL on Solana, to be transferred between different blockchains while preserving their original attributes.
+
+Offering a more efficient, scalable, and secure alternative to traditional solutions, the Token Bridge ensures that assets retain their properties across multiple blockchain ecosystems. Additionally, it supports flexible features like [Contract Controlled Transfer](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, enabling custom interactions by allowing tokens to carry additional data for smart contract integration on the destination chain.
+
+This page introduces the core concepts and functions of Wormhole’s Token Bridge, explaining how it operates, its key features, and how it enables secure and efficient cross-chain token transfers.
 
 ### How Does It Work?
 
-At the core of the Token Bridge lies the lock-and-mint mechanism, which uses the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} with a specific [payload](/docs/learn/infrastructure/vaas/#token-transfer){target=\_blank} to pass information about the transfer. Tokens on the source chain are locked and wrapped tokens are minted on the destination chain. This approach guarantees that token transfers are secure and consistent, ensuring that token properties such as name, symbol, and decimal precision are preserved across chains.
+At the core of the Token Bridge lies the lock-and-mint mechanism, which uses the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} with a specific [payload](/docs/learn/infrastructure/vaas/#token-transfer){target=\_blank} to pass information about the transfer. Tokens on the source chain are locked, and wrapped tokens are minted on the destination chain. This approach guarantees that token transfers are secure and consistent, ensuring that token properties such as name, symbol, and decimal precision are preserved across chains.
 
 Before a token can be transferred to a new chain, the token’s metadata must be [attested](/docs/learn/infrastructure/vaas/#attestation){target=\_blank}. This process registers the token details (such as decimals and symbol) on the destination chain, enabling the creation of wrapped assets.
 
-In addition to standard token transfers, the Token Bridge supports [Contract Controlled Transfer](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}. This functionality allows users to attach additional data to token transfers, enabling more complex interactions with smart contracts on the destination chain. For instance, a token transfer can include a payload that triggers certain actions, such as interacting with a decentralized exchange (DEX) or automated market maker (AMM).
-
 While the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the Token Bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
+
+In addition to standard token transfers, the Token Bridge supports [Contract Controlled Transfer](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}. This functionality allows users to attach additional data to token transfers, enabling more complex interactions with smart contracts on the destination chain. For instance, a token transfer can include a payload that triggers specific actions, such as interacting with a decentralized exchange (DEX) or automated market maker (AMM).
 
 ### Token Transfer Flow
 
@@ -30,9 +36,9 @@ The transfer process is simple yet secure, involving a few key steps:
 
 ### Key Features of the Token Bridge
 
-When tokens are transferred to a different chain, the Token Bridge creates wrapped versions of those tokens. These wrapped assets represent the locked tokens on the source chain and allow users to interact with them on the destination chain. This mechanism ensures seamless functionality without the need for liquidity pools or native token swaps.
+The Token Bridge creates wrapped versions when tokens are transferred to a different chain. These wrapped assets represent the locked tokens on the source chain and allow users to interact with them on the destination chain. This mechanism ensures seamless functionality without needing liquidity pools or native token swaps.
 
-The Token Bridge employs a universal token representation, compatible with various virtual machine (VM) data types. This allows the tokens to interact with decentralized applications (dApps) across different chains without issues related to differing token standards.
+The Token Bridge employs a universal token representation that is compatible with various virtual machine (VM) data types. This allows the tokens to interact with decentralized applications (dApps) across different chains without issues related to differing token standards.
 
 ### Message and Payload Structure
 
@@ -46,18 +52,17 @@ To facilitate cross-chain communication, the Token Bridge uses specialized paylo
 
 Each payload type is designed to serve a specific function in the token transfer process, ensuring that the bridge operates efficiently and securely.
 
-One of the key challenges in cross-chain token transfers is maintaining the correct token precision. The Token Bridge addresses this by using the `AssetMeta` payload to store token metadata. Before transferring a token to a new chain, its metadata—such as its decimal precision, name, and symbol—must be attested. The bridge ensures that token amounts are truncated to a maximum of 8 decimals, ensuring compatibility with chains that may not support higher decimal precision. For example, an 18-decimal token on Ethereum will be represented with only 8 decimals on the destination chain, simplifying integration with various decentralized applications.
+One of the key challenges in cross-chain token transfers is maintaining the correct token precision. The Token Bridge addresses this using the `AssetMeta` payload to store token metadata. Before transferring a token to a new chain, metadata such as its decimal precision, name, and symbol must be attested. The bridge ensures token amounts are truncated to a maximum of 8 decimals, guaranteeing compatibility with chains that may not support higher decimal precision. For example, an 18-decimal token on Ethereum will be represented with only eight decimals on the destination chain, simplifying integration with various decentralized applications.
 
 ### Security and Authorization
 
-The Token Bridge uses an emitter chain and address authorization system to verify the validity of messages. Each token bridge endpoint is registered on its respective chain, ensuring that only trusted contracts can send or receive transfer messages.
+The Token Bridge uses an emitter chain and address authorization system to verify the validity of messages. Each token bridge endpoint is registered on its respective chain, ensuring only trusted contracts can send or receive transfer messages.
 
-The Wormhole guardian network plays a critical role in this process by verifying each transfer and ensuring that the message is signed and relayed securely between chains.
+The [Wormhole guardian network](/docs/learn/infrastructure/guardians/#guardian-network){target=\_blank} plays a critical role in verifying each transfer and ensuring that the message is signed and relayed securely between chains.
 
 ### Portal Bridge
 
-A real-world example of Wormhole's Token Bridge in action is the [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides users with a simple interface to transfer tokens across multiple blockchains. By using the Wormhole infrastructure, Portal Bridge guarantees secure and seamless cross-chain transfers, making it easier for users to move assets between different blockchain ecosystems.
-
+A real-world example of Wormhole's Token Bridge in action is the [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides users with a simple interface to transfer tokens across multiple blockchains. Using the Wormhole infrastructure, Portal Bridge guarantees secure and seamless cross-chain transfers, making it easier for users to move assets between different blockchain ecosystems.
 
 ## NFT Bridge
 
