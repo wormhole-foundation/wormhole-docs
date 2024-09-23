@@ -135,7 +135,7 @@ Simply replace `INSERT_ADDRESS_HERE` with the address you want to query. The API
 
 To manually submit a VAA (Verifiable Action Approval) to a destination chain, follow these steps:
 
-1. **Obtain the VAA in Base64 format** - navigate to the Advanced tab in [WormholeScan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
+1. **Obtain the VAA in Base64 format** - navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
 
     ```bash
     https://wormholescan.io/#/tx/<INSERT_TX_HASH_HERE>?view=advanced
