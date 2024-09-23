@@ -17,7 +17,7 @@ Alternatively, you can also implement cross-chain lending using [Wormhole’s co
 
 This error typically occurs when the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} cannot recognize or register the necessary EVM protocols, which are required for interacting with Ethereum-based networks. The most common reason for this error is that the relevant EVM package for Wormhole's NTT has not been imported correctly.
 
-To resolve this issue, ensure you have imported the appropriate Wormhole SDK package for EVM environments. The necessary package for handling Native Token Transfers (NTT) on EVM chains is `@wormhole-foundation/sdk-evm-ntt`. Here's the correct import statement:
+To resolve this issue, ensure you have imported the appropriate Wormhole SDK package for EVM environments. The necessary package for handling NTT on EVM chains is `@wormhole-foundation/sdk-evm-ntt`. Here's the correct import statement:
 
 ```rust
 import "@wormhole-foundation/sdk-evm-ntt";
@@ -44,15 +44,15 @@ Below’s an example of how the `overrides.json` file should be structured:
     ```json
     {
     "chains": {
-            "Bsc": {
+        "Bsc": {
             "rpc": "http://127.0.0.1:8545"
-            },
-            "Sepolia": {
+        },
+        "Sepolia": {
             "rpc": "http://127.0.0.1:8546"
-            },
-            "Solana": {
+        },
+        "Solana": {
             "rpc": "http://127.0.0.1:8899"
-            }
+        }
         }
     }
     ```
@@ -170,9 +170,9 @@ const wh = await wormhole("Testnet", [solana]);
 
 Previously referred to as specialized relayers, custom relayers allow you to build and tailor relayers to fit your specific use case. To get started, refer to the following resources:
 
- - [Custom Relayers documentation](https://wormhole.com/docs/learn/infrastructure/relayer/#custom-relayers){target=\_blank}
- - [Relayer Engine](https://wormhole.com/docs/infrastructure/relayers/run-relayer/#get-started-with-the-relayer-engine){target=\_blank}
- - [Run a Custom Relayer](https://wormhole.com/docs/infrastructure/relayers/run-relayer/){target=\_blank}
+ - [Custom Relayers documentation](/docs/learn/infrastructure/relayer/#custom-relayers){target=\_blank}
+ - [Relayer Engine](/docs/infrastructure/relayers/run-relayer/#get-started-with-the-relayer-engine){target=\_blank}
+ - [Run a Custom Relayer](/docs/infrastructure/relayers/run-relayer/){target=\_blank}
 
 These resources will guide you through building and deploying custom relayers tailored to your use case.
 
