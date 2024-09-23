@@ -12,7 +12,7 @@ description:
 
 ## Introduction
 
-Building a multichain decentralized application presents the challenge of transferring tokens seamlessly between different blockchain networks. The lack of interoperability between chains requires a reliable and efficient mechanism to transfer assets while maintaining security, token properties, and functionality. Traditional solutions often need more flexibility, can be slow, and involve high transaction fees.
+Building a multichain decentralized application requires overcoming the challenge of seamless token transfers across different blockchains. Without interoperability, transferring assets securely while maintaining token properties and functionality can be slow, inflexible, and costly with traditional solutions.
 
 Wormhole's Token Bridge offers a solution that enables token transfers across blockchain networks using a lock-and-mint mechanism. Leveraging Wormhole's [generic message-passing protocol](/learn/fundamentals/introduction/){target=\_blank}, the Token Bridge allows assets to move across supported blockchains without native token swaps. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain, making the transfer process efficient and chain-agnostic. This approach is highly scalable and doesn't require each blockchain to understand the token transfer logic of other chains, making it a robust and flexible solution for multichain dApps. Additionally, the Token Bridge supports [Contract Controlled Transfers](/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions.
 
@@ -98,13 +98,224 @@ getTokenUniversalAddress(token: NativeAddress<C>): Promise<UniversalAddress>;
         
     The original asset's token ID and the chain it belongs to.
 
+### Create a Token Attestation
 
+To transfer a token between chains, its metadata must be attested first. Use the `createAttestation` function to generate an attestation message for the token.
 
+```ts
+createAttestation(
+  token: TokenAddress<C>,
+  payer?: AccountAddress<C>
+): AsyncGenerator<UnsignedTransaction<N, C>>;
+```
 
-## Interface
+??? interface "Parameters"
 
+    `token` ++"TokenAddress<C>"++
+        
+    The address of the token you want to attest.
+
+    `payer` ++"AccountAddress<C>"++
+        
+    (Optional) The account paying for the transaction.
+
+??? interface "Returns"
+
+    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
+        
+    An asynchronous generator that produces transactions to sign and send.
+
+### Submit a Token Attestation
+
+Once you have an attestation message (VAA), you can submit it to create the wrapped token on the target chain using the `submitAttestation` function.
+
+```ts
+submitAttestation(
+  vaa: TokenBridge.AttestVAA,
+  payer?: AccountAddress<C>
+): AsyncGenerator<UnsignedTransaction<N, C>>;
+```
+
+??? interface "Parameters"
+
+    `vaa` ++"TokenBridge.AttestVAA"++
+        
+    The attestation VAA that contains the token metadata.
+
+    `payer` ++"AccountAddress<C>"++
+        
+    (Optional) The account paying for the transaction.
+
+??? interface "Returns"
+
+    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
+        
+    An asynchronous generator that produces transactions to sign and send.
+
+### Initiate a Token Transfer
+
+To transfer tokens from one chain to another, you can use the `transfer` function. This function locks the tokens on the source chain and generates a transfer message.
+
+```ts
+transfer(
+  sender: AccountAddress<C>,
+  recipient: ChainAddress,
+  token: TokenAddress<C>,
+  amount: bigint,
+  payload?: Uint8Array
+): AsyncGenerator<UnsignedTransaction<N, C>>;
+```
+
+??? interface "Parameters"
+
+    `sender` ++"AccountAddress<C>"++
+        
+    The account initiating the transfer.
+
+    `recipient` ++"ChainAddress"++
+        
+    The recipient's address on the destination chain.
+
+    `token` ++"TokenAddress<C>"++
+        
+    The token being transferred.
+
+    `amount` ++"bigint"++
+        
+    The amount of the token to transfer.
+
+    `payload` ++"Uint8Array"++
+        
+    (Optional) A custom payload attached to the transfer
+
+??? interface "Returns"
+
+    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
+        
+    An asynchronous generator that produces transactions to sign and send.
+
+### Redeem a Token Transfer
+
+After transferring tokens between chains, the recipient can redeem the transfer using the `redeem` function. This function mints the wrapped tokens on the destination chain or unlocks them if they were previously locked.
+
+```ts
+redeem(
+  sender: AccountAddress<C>,
+  vaa: TokenBridge.TransferVAA,
+  unwrapNative?: boolean
+): AsyncGenerator<UnsignedTransaction<N, C>>;
+```
+
+??? interface "Parameters"
+
+    `sender` ++"AccountAddress<C>"++
+        
+    The account redeeming the transfer.
+
+    `vaa` ++"TokenBridge.TransferVAA"++
+        
+    The transfer VAA that contains the details of the token lockup on the source chain.
+
+    `unwrapNative` ++"boolean"++
+        
+    (Optional) Whether to unwrap the native token if it is a wrapped asset.
+
+??? interface "Returns"
+
+    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
+        
+    An asynchronous generator that produces transactions to sign and send.
+
+## Automatic Token Bridge
+
+The `AutomaticTokenBridge` interface offers additional functionality for automatic token transfers, including automatic redemption on the destination chain. This makes the transfer process more efficient by removing the need for manual redemption.
+
+### Initiate an Automatic Transfer
+
+To initiate a token transfer that includes automatic redemption on the destination chain, use the `transfer` method from the `AutomaticTokenBridge` interface.
+
+```ts
+transfer(
+  sender: AccountAddress<C>,
+  recipient: ChainAddress,
+  token: TokenAddress<C>,
+  amount: bigint,
+  nativeGas?: bigint
+): AsyncGenerator<UnsignedTransaction<N, C>>;
+```
+
+??? interface "Parameters"
+
+    `sender` ++"AccountAddress<C>"++
+        
+    The account initiating the transfer.
+
+    `recipient` ++"ChainAddress"++
+        
+    The recipient's address on the destination chain.
+
+    `token` ++"TokenAddress<C>"++
+        
+    The token being transferred.
+
+    `amount` ++"bigint"++
+        
+    The amount of the token to transfer.
+
+    `nativeGas` ++"bigint"++
+        
+    (Optional) The amount of native gas to include for the transfer.
+
+??? interface "Returns"
+
+    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
+        
+    An asynchronous generator that produces transactions to sign and send.
+
+### Manually Redeem a Transfer
+
+In rare cases where automatic redemption fails, you can manually redeem the transfer using the `AutomaticTokenBridge`'s `redeem` function.
+
+!!! note
+    This function should _not_ be used unless it is necessary to take over some stalled transfer.
+
+```ts
+redeem(
+  sender: AccountAddress<C>,
+  vaa: AutomaticTokenBridge.VAA
+): AsyncGenerator<UnsignedTransaction<N, C>>;
+```
+
+??? interface "Parameters"
+
+    `sender` ++"AccountAddress<C>"++
+        
+    The account redeeming the transfer.
+
+    `vaa` ++"AutomaticTokenBridge.VAA"++
+        
+    The transfer VAA to redeem.
+
+??? interface "Returns"
+
+    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
+        
+    An asynchronous generator that produces transactions to sign and send.
 
 <!--
+The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a TokenBridge protocol client that provides a consistent interface for interacting with the Token Bridge, which includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. WormholeTransfer abstractions are the recommended way to interact with these protocols, but it is possible to use them directly.
+
+
+import { signSendWait } from '@wormhole-foundation/sdk';
+
+const tb = await srcChain.getTokenBridge(); 
+
+const token = '0xdeadbeef...';
+const txGenerator = tb.createAttestation(token); 
+const txids = await signSendWait(srcChain, txGenerator, src.signer);
+Supported protocols are defined in the definitions module.
+
+
 notes: 
 https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/DESIGN.md
 - to redeem the transferred tokens on the target chain you would need to have already native tokens in order to redeem the transaction -> The Token Bridge Relayer provides an alternative instantiation of Bob, such that the user only has to interact with a single smart contract on the origin chain (in Step 1). Additionally, when completing the transaction, the TBR swaps some of the transferred tokens into native gas, and sends those to the recipient along with the tokens ("native drop-off").
