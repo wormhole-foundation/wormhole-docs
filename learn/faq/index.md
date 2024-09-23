@@ -78,7 +78,7 @@ Yes, the NTT manager acts like an escrow account for non-transferable tokens on 
 
 ### Which functions or events does Connect rely on for NTT integration?
 
-Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=/_blank}. The key methods involved include:
+Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=\_blank}. The key methods involved include:
 
 - **Initiate and redeem functions** - these functions are essential for initiating token transfers and redeeming them on the destination chain
 - **Rate capacity methods** - methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion
