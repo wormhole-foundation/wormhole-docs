@@ -74,7 +74,7 @@ NTT requires the same transceiver for all routes, limiting flexibility when depl
 
 ### Does the NTT manager function as an escrow account for a hubchain?
 
-Yes, the NTT manager acts like an escrow account for non-transferable tokens on a hubchain. To manage non-transferable tokens, you would add the NTT manager to the allowlist, ensuring that only the NTT manager can hold and control the tokens as they are transferred across chains.
+Yes, the NTT manager acts like an escrow account for non-transferable tokens on a hub chain. To manage non-transferable tokens, you would add the NTT manager to the allowlist, ensuring that only the NTT manager can hold and control the tokens as they are transferred across chains.
 
 ### Which functions or events does Connect rely on for NTT integration?
 
