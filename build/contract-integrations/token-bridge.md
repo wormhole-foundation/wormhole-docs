@@ -16,37 +16,115 @@ Building a multichain decentralized application presents the challenge of transf
 
 Wormhole's Token Bridge offers a solution that enables token transfers across blockchain networks using a lock-and-mint mechanism. Leveraging Wormhole's [generic message-passing protocol](/learn/fundamentals/introduction/){target=\_blank}, the Token Bridge allows assets to move across supported blockchains without native token swaps. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain, making the transfer process efficient and chain-agnostic. This approach is highly scalable and doesn't require each blockchain to understand the token transfer logic of other chains, making it a robust and flexible solution for multichain dApps. Additionally, the Token Bridge supports [Contract Controlled Transfers](/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions.
 
-This page will walk you through the essential methods and events of the Token Bridge contracts, providing you with the knowledge needed to integrate them into your cross-chain applications. For more details on how the Token Bridge works, refer to the [Token Bridge](/learn/messaging/token-nft-bridge/){target=\_blank} or [Native Token Transfers](/learn/messaging/native-token-transfers/overview/#token-bridge){target=\_blank} pages in the Learn section.
+This page will walk you through the essential methods and events of the Token Bridge contracts, providing you with the knowledge needed to integrate them into your cross-chain applications. For more details on how the Token Bridge works, refer to the [Token Bridge](/learn/messaging/token-nft-bridge/){target=\_blank} or [Native Token Transfers](/learn/messaging/native-token-transfers/overview/#token-bridge){target=\_blank} pages in the Learn section and the [Token Bridge Whitepaper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}.
 
 ## Prerequisites
 
-To successfully transfer tokens using the Wormhole Token Bridge, some prerequisites must be met.
-
-- **Token compatibility** - the token you wish to transfer must be compatible with the destination chain as a wrapped asset. For tokens that do not already exist on the target chain, you must attest their details, which includes metadata like `name`, `symbol`, `decimals`, and `payload_id` which must be set to `2` for an attestation. This ensures that the wrapped token on the destination chain preserves the original token’s properties. The attestation process creates a record of the token's metadata on the target chain to ensure its consistency across chains. See the [Attestation section](/learn/infrastructure/vaas/#attestation){target=\_blank} for more details and all the required metadata fields
-- **Chain compatibility** - ensure that your desired chains are supported by Wormhole and have the necessary bridge contracts deployed. Check the list of [supported networks](/build/start-building/supported-networks/){target=\_blank}
-
 To interact with the Wormhole Token Bridge, you'll need the following:
 
+- **SDK Installation** - Ensure that the Wormhole SDK is installed in your project. You can install it via npm or yarn:
+```sh
+npm install @wormhole-foundation/sdk
+```
 - [The address of the Token Bridge Core Contract](/build/reference/contract-addresses#core-contracts) on the chains you're working with
 - [The Wormhole chain ID](/build/reference/chain-ids/) of the chains you're you're targeting for token transfers
-- The token must be attested on the target chain before it can be transferred
+- **Token attestation** - the token you wish to transfer must be compatible with the destination chain as a wrapped asset. For tokens that do not already exist on the target chain, you must attest their details, which includes metadata like `name`, `symbol`, `decimals`, and `payload_id` which must be set to `2` for an attestation. This ensures that the wrapped token on the destination chain preserves the original token’s properties. The attestation process creates a record of the token's metadata on the target chain to ensure its consistency across chains. See the [Attestation section](/learn/infrastructure/vaas/#attestation){target=\_blank} for more details and all the required metadata fields
 
 ## How to Interact with the Token Bridge Contracts
 
-Before writing your own contracts, it’s important to understand the key functions and events provided by the Wormhole Token Bridge. The primary functionality revolves around:
+The Wormhole Token Bridge SDK offers a set of TypeScript types and functions that make it easy to interact with the bridge. This includes handling token transfers, verifying wrapped assets, and submitting attestations. The key functionality revolves around:
 
-- **Locking and Minting tokens** – locking tokens on the source chain and minting wrapped tokens on the destination chain
-- **Sending tokens with additional data** – attaching arbitrary payloads to token transfers for Contract Controlled Transfers
+- **Token transfers** - locking tokens on the source chain and minting wrapped tokens on the destination chain
+- **Attestations** - submitting metadata about a token to other chains for wrapping
+- **Verifying wrapped assets** - checking if a token is wrapped and retrieving its original chain and asset details
 
-Token transfers using the Token Bridge follow the lock-and-mint mechanism. Tokens are locked on the source chain, and wrapped tokens are minted on the destination chain after the transfer message is verified.
+### Check if a Token is Wrapped
 
-### EVM
+To verify whether a token is a wrapped asset (i.e., a token from another chain that has been bridged), use the `isWrappedAsset` function.
 
-### Solana
+```ts
+isWrappedAsset(nativeAddress: TokenAddress<C>): Promise<boolean>;
+```
 
-### Sui
+??? interface "Parameters"
+
+    `nativeAddress` ++"TokenAddress<C>"++
+        
+    The address of the token you want to check.
+
+??? interface "Returns"
+
+    `true` ++"Promise<boolean>"++
+        
+    If the token is a wrapped version of a foreign token.
+
+### Retrieve the Original Asset of a Wrapped Token
+
+If a token is wrapped, you can retrieve its original asset and the chain it originated from using the `getOriginalAsset` function.
+
+```ts
+getOriginalAsset(nativeAddress: TokenAddress<C>): Promise<TokenId<Chain>>;
+```
+
+??? interface "Parameters"
+
+    `nativeAddress` ++"TokenAddress<C>"++
+        
+    The wrapped token's address.
+
+??? interface "Returns"
+
+    `Promise` ++"<TokenId<Chain>>"++
+        
+    The original asset's token ID and the chain it belongs to.
+
+### Get a Token's Universal Address
+
+The UniversalAddress represents a token in a cross-chain manner, allowing you to handle the same token on different chains. Use the `getTokenUniversalAddress` function to retrieve this address.
+
+```ts
+getTokenUniversalAddress(token: NativeAddress<C>): Promise<UniversalAddress>;
+```
+
+??? interface "Parameters"
+
+    `token` ++"TokenAddress<C>"++
+        
+    The wrapped token's address.
+
+??? interface "Returns"
+
+    `Promise` ++"<TokenId<Chain>>"++
+        
+    The original asset's token ID and the chain it belongs to.
+
+
+
 
 ## Interface
 
 
+<!--
+notes: 
+https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/DESIGN.md
+- to redeem the transferred tokens on the target chain you would need to have already native tokens in order to redeem the transaction -> The Token Bridge Relayer provides an alternative instantiation of Bob, such that the user only has to interact with a single smart contract on the origin chain (in Step 1). Additionally, when completing the transaction, the TBR swaps some of the transferred tokens into native gas, and sends those to the recipient along with the tokens ("native drop-off").
 
+https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md 
+For outbound transfers, the contracts will have a lock method that either locks up a native token and produces a respective Transfer message that is posted to Wormhole, or burns a wrapped token and produces/posts said message.
+
+For inbound transfers they can consume, verify and process Wormhole messages containing a token bridge payload.
+
+There will be five different payloads:
+
+Transfer - Will trigger the release of locked tokens or minting of wrapped tokens.
+TransferWithPayload - Will trigger the release of locked tokens or minting of wrapped tokens, with additional domain-specific payload.
+AssetMeta - Attests asset metadata (required before the first transfer).
+RegisterChain - Register the token bridge contract (emitter address) for a foreign chain.
+UpgradeContract - Upgrade the contract.
+
+
+```ts
+
+```
+
+-->

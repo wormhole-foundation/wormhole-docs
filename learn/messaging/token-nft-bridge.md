@@ -16,6 +16,29 @@ The Token Bridge also supports sending tokens with some additional data in the f
 
 While the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the Token Bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
 
+<!--
+https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md 
+
+Goals:
+We want to implement a generalized token bridge using the Wormhole message passing protocol that is able to bridge any standards-compliant token between chains, creating unique wrapped representations on each connected chain on demand.
+- Allow transfer of standards-compliant tokens between chains.
+- Allow creation of wrapped assets.
+- Use a universal token representation that is compatible with most VM data types.
+- Allow domain-specific payload to be transferred along the token, enabling tight integration with smart contracts on the target chain.
+
+Non-Goals:
+- Support fee-burning / rebasing / non-standard tokens.
+- Manage chain-specific token metadata that isn't broadly applicable to all chains.
+- Automatically relay token transfer messages to the target chain.
+
+OVERVIEW:   
+On each chain of the token bridge network there will be a token bridge endpoint program.
+These programs will manage authorization of payloads (emitter filtering), wrapped representations of foreign chain tokens ("Wrapped Assets") and custody locked tokens.
+
+
+
+-->
+
 ## NFT Bridge
 
 The NFT Bridge functions similarly to the Token Bridge but with special rules for what may be transferred and how the wrapped version is created on the destination chain.
