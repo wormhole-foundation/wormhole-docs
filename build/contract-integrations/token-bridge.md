@@ -1,12 +1,7 @@
 ---
 title: Get Started with Token Bridge
-description: 
+description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
 ---
-
-<!--
-- Minimal requirements to build a multichain solution with Token Bridge - requirements needed to deploy contracts that directly interact with the Token Bridge
-- An overview of the Token Bridge interface – what functions can be called, what events are emitted, etc.
--->
 
 # Token Bridge
 
@@ -302,40 +297,7 @@ redeem(
         
     An asynchronous generator that produces transactions to sign and send.
 
-<!--
-The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a TokenBridge protocol client that provides a consistent interface for interacting with the Token Bridge, which includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. WormholeTransfer abstractions are the recommended way to interact with these protocols, but it is possible to use them directly.
 
+## Portal bridge
 
-import { signSendWait } from '@wormhole-foundation/sdk';
-
-const tb = await srcChain.getTokenBridge(); 
-
-const token = '0xdeadbeef...';
-const txGenerator = tb.createAttestation(token); 
-const txids = await signSendWait(srcChain, txGenerator, src.signer);
-Supported protocols are defined in the definitions module.
-
-
-notes: 
-https://github.com/wormhole-foundation/example-token-bridge-relayer/blob/main/DESIGN.md
-- to redeem the transferred tokens on the target chain you would need to have already native tokens in order to redeem the transaction -> The Token Bridge Relayer provides an alternative instantiation of Bob, such that the user only has to interact with a single smart contract on the origin chain (in Step 1). Additionally, when completing the transaction, the TBR swaps some of the transferred tokens into native gas, and sends those to the recipient along with the tokens ("native drop-off").
-
-https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md 
-For outbound transfers, the contracts will have a lock method that either locks up a native token and produces a respective Transfer message that is posted to Wormhole, or burns a wrapped token and produces/posts said message.
-
-For inbound transfers they can consume, verify and process Wormhole messages containing a token bridge payload.
-
-There will be five different payloads:
-
-Transfer - Will trigger the release of locked tokens or minting of wrapped tokens.
-TransferWithPayload - Will trigger the release of locked tokens or minting of wrapped tokens, with additional domain-specific payload.
-AssetMeta - Attests asset metadata (required before the first transfer).
-RegisterChain - Register the token bridge contract (emitter address) for a foreign chain.
-UpgradeContract - Upgrade the contract.
-
-
-```ts
-
-```
-
--->
+A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
