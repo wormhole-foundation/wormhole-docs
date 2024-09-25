@@ -63,6 +63,6 @@ Regardless of which network development environment you are using, there are a f
 
     The VAA Parser is a resource for parsing out details of an encoded VAA.
 
-    [:octicons-arrow-right-16: Try the VAA Parser](https://vaa.dev/#/parse){target=\_blank}
+    [:octicons-arrow-right-16: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
 
 </div>
