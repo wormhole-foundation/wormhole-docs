@@ -116,7 +116,7 @@ The contracts and deployment steps remain the same regardless of your preferred 
 
 ### Repository Setup
 
-To get started with cross-chain messaging using Wormhole, first clone the [GitHub repository](https://github.com/martin0995/cross-chain-messaging){target=\_blank}. This repository includes everything you need to deploy, interact, and test the message flow between chains.
+To get started with cross-chain messaging using Wormhole, first clone the [GitHub repository](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}. This repository includes everything you need to deploy, interact, and test the message flow between chains.
 
 This demo focuses on using the scripts, so it's best to take a look at them, starting with `deploySender.js`, `deployReceiver.js`, and `sendMessage.js`.
 
