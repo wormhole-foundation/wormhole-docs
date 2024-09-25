@@ -11,10 +11,10 @@ Welcome to the MultiGov docs! This first section provides an overview of MultiGo
 1. [Overview](/docs/learn/multigov/multigov-overview/){target=\_blank}
 2. [Getting Started](/docs/learn/multigov/getting-started/){target=\_blank}
 3. [Deployment](/docs/build/multigov/deployment/){target=\_blank}
-4. [Upgrading](#){target=\_blank}
+4. [Upgrading](/docs/build/multigov/upgrading/){target=\_blank}
 5. [Architecture](/docs/learn/multigov/multigov-architecture/){target=\_blank}
-6. [Guides](#){target=\_blank}
-7. [FAQs](#){target=\_blank}
+6. [Guides](/docs/build/multigov/guides/){target=\_blank}
+7. [FAQs](/docs/build/multigov/faq/){target=\_blank}
 
 ## Overview
 

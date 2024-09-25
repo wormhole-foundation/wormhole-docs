@@ -2,3 +2,6 @@ title: MultiGov
 nav:
  - index.md
  - 'Deployment': 'deployment.md'
+ - 'Upgrading': 'upgrading.md'
+ - 'Guides': 'guides.md'
+ - 'FAQs': 'faq.md'
