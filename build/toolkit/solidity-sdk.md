@@ -56,22 +56,21 @@ The `Base.sol` contract is a core part of the SDK, providing fundamental helper 
  - **`onlyWormholeRelayer()`** - ensures only authorized messages from the Wormhole Relayer contract are processed
 
     ```solidity
-    modifier onlyWormholeRelayer() {
-        require(msg.sender == address(wormholeRelayer), "Msg.sender is not Wormhole Relayer");
-        _;
-    }
+    --8<-- "code/build/toolkit/solidity-sdk/base.sol:22:28"
     ```
 
  - **`setRegisteredSender()`** - restricts message acceptance to a registered sender from a specific chain, ensuring messages are only processed from trusted sources
 
     ```solidity
-    function setRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) public {
-        require(msg.sender == registrationOwner, "Not allowed to set registered sender");
-        registeredSenders[sourceChain] = sourceAddress;
-    }
+    --8<-- "code/build/toolkit/solidity-sdk/base.sol:45:54"
     ```
 
-These security measures ensure messages come from the correct source and are processed securely.
+These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete Base.sol contract below for further details.
+
+???- code "`Base.sol`"
+    ```solidity
+    --8<-- "code/build/toolkit/solidity-sdk/base.sol"
+    ```
 
 ### Interface for Sending Cross-Chain Messages
 
@@ -149,17 +148,17 @@ For developers interested in exploring additional advanced topics, the following
     
     ```solidity
     function sendToEvm(
-    uint16 targetChain,
-    address targetAddress,
-    bytes memory payload,
-    uint256 receiverValue,
-    uint256 paymentForExtraReceiverValue,
-    uint256 gasLimit,
-    uint16 refundChain,
-    address refundAddress,
-    address deliveryProviderAddress,
-    MessageKey[] memory messageKeys,
-    uint8 consistencyLevel
+        uint16 targetChain,
+        address targetAddress,
+        bytes memory payload,
+        uint256 receiverValue,
+        uint256 paymentForExtraReceiverValue,
+        uint256 gasLimit,
+        uint16 refundChain,
+        address refundAddress,
+        address deliveryProviderAddress,
+        MessageKey[] memory messageKeys,
+        uint8 consistencyLevel
     ) external payable returns (uint64 sequence);
     ```
 
@@ -172,23 +171,7 @@ This section covers cross-chain messaging and token transfers and shows how to u
 To send a cross-chain message, inherit from the base contract provided by the SDK and use its helper methods to define your message and sender address. Here’s a basic example:
 
 ```solidity
-pragma solidity ^0.8.19;
-
-import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/Base.sol";
-
-contract CrossChainSender is Base {
-    constructor(address _wormholeRelayer, address _wormhole) Base(_wormholeRelayer, _wormhole) {}
-
-    function sendMessage(
-        bytes memory message,
-        uint16 targetChain,
-        bytes32 targetAddress
-    ) external payable {
-        // Register sender and send message through WormholeRelayer
-        setRegisteredSender(targetChain, msg.sender);
-        onlyWormholeRelayer().sendPayloadToEvm(targetChain, address(targetAddress), message, 0, 500_000);
-    }
-}
+--8<-- "code/build/toolkit/solidity-sdk/Send-message.sol"
 ```
 
 This contract extends `Base.sol` and allows sending cross-chain messages securely using the `WormholeRelayer`.
@@ -198,23 +181,7 @@ This contract extends `Base.sol` and allows sending cross-chain messages securel
 The SDK enables seamless token transfers between EVM-compatible chains in addition to sending messages. To facilitate cross-chain token transfers, you can extend the SDK's `TokenSender` and `TokenReceiver` base contracts.
 
 ```solidity
-pragma solidity ^0.8.19;
-
-import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
-
-contract CrossChainTokenSender is TokenSender {
-    constructor(address _wormholeRelayer, address _wormhole) TokenSender(_wormholeRelayer, _wormhole) {}
-
-    function sendToken(
-        address token,
-        uint256 amount,
-        uint16 targetChain,
-        bytes32 targetAddress
-    ) external payable {
-        // Send tokens across chains
-        transferTokenToTarget(token, amount, targetChain, targetAddress);
-    }
-}
+--8<-- "code/build/toolkit/solidity-sdk/Send-tokens.sol"
 ```
 
 In this example, `TokenSender` initiates a token transfer to another chain. The SDK’s built-in utilities securely handle token transfers, ensuring proper VAAs are generated and processed.
@@ -224,31 +191,13 @@ In this example, `TokenSender` initiates a token transfer to another chain. The 
 To receive tokens on the target chain, implement a contract that inherits from `TokenReceiver` and overrides the `receiveWormholeMessages` function.
 
 ```solidity
-pragma solidity ^0.8.19;
-
-import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
-
-contract CrossChainTokenReceiver is TokenReceiver {
-    constructor(address _wormholeRelayer, address _wormhole) TokenReceiver(_wormholeRelayer, _wormhole) {}
-
-    // Function to handle received tokens from another chain
-    function receiveWormholeMessages(
-        bytes memory payload,
-        bytes[] memory additionalMessages,
-        bytes32 sourceAddress,
-        uint16 sourceChain,
-        bytes32 deliveryHash
-    ) external payable override {
-        // Process the received tokens here
-        receiveTokens(payload);
-    }
-}
+--8<-- "code/build/toolkit/solidity-sdk/Receive-tokens.sol"
 ```
 
 In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.
 
 !!! note
-    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](){target=\_blank} section for more details.
+    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](/docs/build/contract-integrations/core-contracts/#validating-the-emitter/){target=\_blank} section for more details.
 
 ## Testing Environment
 
