@@ -192,7 +192,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         ```
 
     !!! note
-        The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores TestNets. You can modify this file to add more networks if needed.
+        The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores TestNets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/build/reference/){target=\_blank}.
 
 2. **Set up provider and wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction
 
