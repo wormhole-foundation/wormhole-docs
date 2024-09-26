@@ -76,7 +76,7 @@ These security measures ensure messages come from the correct source and are pro
 
 The `IWormholeRelayer` interface provides key methods for sending messages across chains. It is integral for developers who want to pass instructions, token transfers, or any custom payload between EVM-compatible chains without maintaining their relaying infrastructure.
 
- - **sendPayloadToEvm()** - sends a message to a specific chain along with gas and value. Valid for general cross-chain messaging
+ - **`sendPayloadToEvm()`** - sends a message to a specific chain along with gas and value. Valid for general cross-chain messaging
 
     ```solidity
     function sendPayloadToEvm(
@@ -88,7 +88,7 @@ The `IWormholeRelayer` interface provides key methods for sending messages acros
     ) external payable returns (uint64 sequence);
     ```
 
- - **sendVaasToEvm()** - sends both a payload and any associated VAAs, such as those required for cross-chain token transfers, to another chain
+ - **`sendVaasToEvm()`** - sends both a payload and any associated VAAs, such as those required for cross-chain token transfers, to another chain
 
     ```solidity
     function sendVaasToEvm(
