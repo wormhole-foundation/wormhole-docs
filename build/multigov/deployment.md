@@ -1,6 +1,6 @@
 ---
-title: 
-description:
+title: MultiGov Deployment
+description: Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 ---
 
 # Deployment 

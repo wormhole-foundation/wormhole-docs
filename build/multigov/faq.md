@@ -19,10 +19,10 @@ Unlike traditional DAO governance that typically operates on a single blockchain
 
 The main components of MultiGov include:
 
-- Hub Chain: Central coordination point for governance activities
-- Spoke Chains: Additional chains where token holders can participate in governance
-- Wormhole Integration: Enables secure cross-chain message passing
-- Governance Token: Allows holders to participate in governance across all integrated chains
+- Hub Chain - central coordination point for governance activities
+- Spoke Chains - additional chains where token holders can participate in governance
+- Wormhole Integration - enables secure cross-chain message passing
+- Governance Token - allows holders to participate in governance across all integrated chains
 
 ## Technical Questions
 
@@ -73,7 +73,7 @@ Tally will reach out to help get your DAO set up with MultiGov.
 
 To set up testing MultiGov for your DAO, you'll need:
 
-- Foundry and Git installed
+- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} and [Git](https://git-scm.com/downloads){target=\_blank} installed
 - Test ETH on the testnets you plan to use (e.g., Sepolia for hub, Optimism Sepolia for spoke)
 - Modify and deploy the hub and spoke contracts using the provided scripts
 - Set up the necessary environment variables and configurations
@@ -92,9 +92,9 @@ Remember to thoroughly test your MultiGov implementation on testnets before depl
 
 MultiGov includes several mechanisms to handle network issues or temporary chain unavailability:
 
-1. Asynchronous vote aggregation: Votes are aggregated periodically, allowing the system to continue functioning even if one chain is temporarily unavailable.
-2. Proposal extension: The HubGovernorProposalExtender allows trusted actors to extend voting periods if needed, which can help mitigate issues caused by temporary network problems.
-3. Wormhole retry mechanism: Wormhole's infrastructure includes retry mechanisms for failed message deliveries, helping ensure cross-chain messages eventually get through.
-4. Decentralized relayer network: Wormhole's decentralized network of relayers helps maintain system availability even if some relayers are offline.
+1. **Asynchronous vote aggregation** - votes are aggregated periodically, allowing the system to continue functioning even if one chain is temporarily unavailable
+2. **Proposal extension** - the HubGovernorProposalExtender allows trusted actors to extend voting periods if needed, which can help mitigate issues caused by temporary network problems
+3. **Wormhole retry mechanism** - Wormhole's infrastructure includes retry mechanisms for failed message deliveries, helping ensure cross-chain messages eventually get through
+4. **Decentralized relayer network** - Wormhole's decentralized network of relayers helps maintain system availability even if some relayers are offline
 
 However, prolonged outages on the hub chain or critical spoke chains could potentially disrupt governance activities. It's important for projects to have contingency plans for such scenarios.

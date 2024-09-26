@@ -1,6 +1,6 @@
 ---
-title: 
-description:
+title: MultiGov Guides
+description: Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
 ---
 
 # Guides
