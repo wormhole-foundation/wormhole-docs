@@ -9,7 +9,7 @@ description: Access step-by-step guides for executing cross-chain governance act
 
 This guide walks through creating and executing a cross-chain governance proposal to mint W token to the Optimism and Arbitrum treasuries.
 
-### 1. Create a Proposal (Hub Chain - Ethereum Mainnet)
+### Create a Proposal (Hub Chain - Ethereum Mainnet)
 
 ```solidity
 HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
@@ -49,7 +49,7 @@ uint256 proposalId = governor.propose(
 )
 ```
 
-### 2. Vote on the Proposal via Spoke
+### Vote on the Proposal via Spoke
 
 ```solidity
 // Connect to the SpokeVoteAggregator contract of the desired chain
@@ -59,14 +59,14 @@ uint8 support = 1; // 1 for 'For'
 uint256 weight = voteAggregator.castVote(proposalId, support);
 ```
 
-### 3. Vote Aggregation (Background Process)
+### Vote Aggregation (Background Process)
 
 ```solidity
 // Aggregate votes sent to Hub (this would typically be done by a "crank turner" off-chain)
 hubVotePool.crossChainVote(queryResponseRaw, signatures);
 ```
 
-### 4. Execute Proposal and Dispatch Cross-Chain Messages
+### Execute Proposal and Dispatch Cross-Chain Messages
 
 ```solidity
 HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);

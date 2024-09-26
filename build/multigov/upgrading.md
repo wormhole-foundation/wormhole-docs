@@ -15,7 +15,7 @@ MultiGov is designed to be flexible but stable. Upgrades should be rare and care
 2. **HubVotePool**:
     - Can be replaced by setting a new HubVotePool on the HubGovernor
     - Requires re-registering all spokes on the new HubVotePool
-    - Must register the query type and implementation for vote decoding by calling [registerQueryType](https://github.com/wormhole-foundation/example-multigov/blob/main/evm/src/HubVotePool.sol#L84) on the new `HubVotePool` <!-- link not working -->
+    - Must register the query type and implementation for vote decoding by calling [registerQueryType](https://github.com/wormhole-foundation/example-multigov/blob/main/evm/src/HubVotePool.sol#L84) on the new `HubVotePool` <!-- link not working repo not public yet -->
     - A new proposal would have to authorize the governor to use the newly created hub vote pool and will also handle registering the appropriate query decoders and registering the approporiate spoke `SpokeVoteAggregators`
 
 3. **SpokeMessageExecutor**:
@@ -32,8 +32,7 @@ MultiGov is designed to be flexible but stable. Upgrades should be rare and care
 6. **`SpokeMetadataCollector`**:
     - Requires redeployment if the hub chain ID changes or if `HubProposalMetadata` changes
 
-## Process for Major System Upgrade (e.g., New HubGovernor)
-
+## Process for Major System Upgrade <!-- (e.g., New HubGovernor) i dont really like this eg being in the title -->
 
 1. **New `HubGovernor` Deployment**:
     - Deploy the new HubGovernor contract

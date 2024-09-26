@@ -6,7 +6,7 @@ description: Set up and deploy MultiGov locally with step-by-step instructions f
 # Deployment 
 
 ## Development Setup
-
+<!-- check out the getting started page first -->
 For developers looking to set up a local MultiGov environment:
 
 1. Install prerequisites:
