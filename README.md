@@ -1,5 +1,3 @@
-**WIP**
-
 # Documentation for Wormhole
 
 This repository contains documentation for Wormhole, an interoperability platform powering multichain apps and bridges. Here, you'll find both high-level and technical information for developers.
@@ -10,7 +8,9 @@ The content in this repository is displayed on the Wormhole documentation site g
 
 ## Contributing
 
-**WIP**
+If you're interested in contributing to this repository, please feel free to clone the repo, make changes, and open a PR ✨. Please review the guidelines in the .CONTRIBUTING.md file before making any changes.
+
+Thank you for taking your time to contribute to this repository 💜.
 
 ## Disclaimer
 
