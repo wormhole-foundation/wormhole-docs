@@ -76,7 +76,7 @@ For example, many chains have implementations forked from [Geth](https://github.
 | Fantom        | 10                | ✅        | ✅                  | ✅             | 16 blocks        |
 | Karura        | 11                | ✅        | ✅                  | ✅             | archive          |
 | Acala         | 12                | ✅        | ✅                  | ✅             | archive          |
-| Klaytn        | 13                | ✅        | ✅                  | ✅             | 128 blocks       |
+| Kaia        | 13                | ✅        | ✅                  | ✅             | 128 blocks       |
 | Celo          | 14                | ✅        | ℹ️ hints required\* | ✅             | 128 blocks       |
 | Moonbeam      | 16                | ✅        | ℹ️ hints required\* | ✅             | 256 blocks       |
 | Arbitrum One  | 23                | ✅        | ✅                  | ✅             | ~6742 blocks    |
