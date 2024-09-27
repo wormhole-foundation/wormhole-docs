@@ -28,9 +28,9 @@ It's important to note that this tutorial leverages [Wormhole's TokenBridge](htt
 To simplify this process, we've included a tool for verifying if a token has an attestation on the target chain. This tool uses the [`wrappedAsset`](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/BridgeGetters.sol#L50-L52){target=\_blank} function from the `TokenBridge` contract. If the token has an attestation, the `wrappedAsset` function returns the address of the wrapped token on the target chain; otherwise, it returns the zero address.
 
 ???- tip "Check Token Attestation"
-    1. Clone the [repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank} and navigate to the project directory:
+    1. Clone the [repository](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank} and navigate to the project directory:
         ```bash
-        git clone https://github.com/martin0995/cross-chain-token-transfers.git
+        git clone https://github.com/wormhole-foundation/demo-cross-chain-token-transfer.git
         cd cross-chain-token-transfers
         ```
     2. Install the dependencies:
@@ -590,7 +590,7 @@ If you followed the logic provided in the `transfer.ts` file above, your termina
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [Cross-Chain Token Transfers GitHub repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank}. The repository includes all the scripts, contracts, and configurations needed to deploy and transfer tokens across chains using the Wormhole protocol.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [Cross-Chain Token Transfers GitHub repository](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank}. The repository includes all the scripts, contracts, and configurations needed to deploy and transfer tokens across chains using the Wormhole protocol.
 
 ## Conclusion
 
