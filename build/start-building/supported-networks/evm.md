@@ -569,7 +569,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-## Kaia
+## Kaia {: #klaytn }
 
 ### Ecosystem
 
