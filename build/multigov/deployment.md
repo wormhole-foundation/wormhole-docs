@@ -53,29 +53,29 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
 
 1. `initialVotingDelay` - the delay before voting on a proposal begins
     - Type: `uint256`
-    - Measured in: Seconds
+    - Measured in _seconds_
     - Example: `86400` (1 day)
 
 2. `initialProposalThreshold` - the number of tokens needed to create a proposal
     - Type: `uint256`
-    - Measured in: Tokens
+    - Measured in _tokens_
 
 3. `initialQuorum` - the number minimum number of votes needed for a proposal to be successful
     - Type: `uint256`
-    - Measured in: Votes
+    - Measured in _votes_
 
 4. `initialVoteWeightWindow` - a window where the minimum checkpointed voting weight is taken for a given address. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window
     - Type: `uint256`
-    - Measured in: Seconds
+    - Measured in _seconds_
     - Example: `86400` (1 day)
     !!! note
         This helps mitigate cross-chain double voting.
 
 ### `HubProposalExtender` Key Parameters
 
-1. `extensionDuration` - amount of time for which target proposals will be extended
+1. `extensionDuration` - the amount of time for which target proposals will be extended
     - Type: `uint256`
-    - Measured in: Seconds
+    - Measured in _seconds_
     - Example: `10800` (3 hours)
 
 2. `minimumExtensionDuration` - lower limit for extension duration
@@ -85,7 +85,7 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
 
 #### `SpokeVoteAggregator` Key Parameters
 
-1. `initialVoteWindow` - the moving window for vote weight checkpoints. These checkpoints are taken whenever an address that is delegting sends or receives tokens
+1. `initialVoteWindow` - the moving window for vote weight checkpoints. These checkpoints are taken whenever an address that is delegating sends or receives tokens
     - Type: `uint256`
     - Measured in: Seconds
     - Example: `86400` (1 day)

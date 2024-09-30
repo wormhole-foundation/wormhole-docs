@@ -1,6 +1,6 @@
 ---
-title: 
-description:
+title: MultiGov FAQs
+description: Find answers to common questions about MultiGov, covering cross-chain governance, technical setup, security, proposal creation, and more.
 ---
 
 # FAQs
@@ -9,11 +9,11 @@ description:
 
 ### What is MultiGov?
 
-MultiGov is a cross-chain governance system that extends traditional DAO governance across multiple blockchain networks. It leverages Wormhole's interoperability infrastructure to enable seamless voting and proposal mechanisms across various chains.
+MultiGov is a cross-chain governance system that extends traditional DAO governance across multiple blockchain networks. It leverages Wormhole's interoperability infrastructure for seamless voting and proposal mechanisms across various chains.
 
 ### How does MultiGov differ from traditional DAO governance?
 
-Unlike traditional DAO governance that typically operates on a single blockchain, MultiGov allows for coordinated decision-making and execution of proposals across multiple chains. This enables more inclusive participation from token holders on different networks and allows for more complex, cross-chain governance actions.
+Unlike traditional DAO governance, which typically operates on a single blockchain, MultiGov allows for coordinated decision-making and proposal execution across multiple chains. This enables more inclusive participation from token holders on different networks and more complex, cross-chain governance actions.
 
 ### What are the main components of MultiGov?
 
@@ -51,7 +51,7 @@ Yes! MultiGov can support progressively upgrading from a single-chain governance
 
 ### How can I create a proposal in MultiGov?
 
-Proposals are created on the hub chain using the `HubEvmSpokeAggregateProposer` contract or by calling `propose` on the `HubGovernor`. You need to prepare the proposal details including targets, values, and calldatas. The proposer's voting weight is aggregated across chains using Wormhole queries to determine eligibility.
+Proposals are created on the hub chain using the `HubEvmSpokeAggregateProposer` contract or by calling `propose` on the `HubGovernor`. You need to prepare the proposal details, including targets, values, and calldatas. The proposer's voting weight is aggregated across chains using Wormhole queries to determine eligibility.
 
 ### How do I vote on a proposal if I hold tokens on a spoke chain?
 
@@ -59,13 +59,13 @@ You can vote on proposals via the `SpokeVoteAggregator` contract on the respecti
 
 ### How are approved proposals executed across multiple chains?
 
-When a proposal is approved and the timelock period elapses, it's first executed on the hub chain. A proposal can include a cross chain message by including a call to `dispatch` on the `HubMessageDispatcher` which sends a messages to the relevant spoke chains. On each spoke chain, the `SpokeMessageExecutor` receives, verifies, and automatically executes the instructions using the `SpokeAirlock` as the `msg.sender`.
+When a proposal is approved and the timelock period elapses, it's first executed on the hub chain. A proposal can include a cross-chain message by including a call to `dispatch` on the `HubMessageDispatcher` which sends a messages to the relevant spoke chains. On each spoke chain, the `SpokeMessageExecutor` receives, verifies, and automatically executes the instructions using the `SpokeAirlock` as the `msg.sender`.
 
 ## Implementation Questions
 
 ### What do I need to set up MultiGov for my project?
 
-Get started by filling out the below form:
+Get started by filling out the form below:
 
 https://www.tally.xyz/get-started
 
@@ -86,7 +86,7 @@ The current implementation is designed for EVM-compatible chains. However, Solan
 
 Voting parameters such as voting delay, voting period, proposal threshold, and quorum (and others) can be customized in the deployment scripts (`DeployHubContractsSepolia.s.sol` and `DeploySpokeContractsOptimismSepolia.s.sol` as examples for their respective chains). Make sure to adjust these parameters according to your DAO's specific needs before deployment.
 
-Remember to thoroughly test your MultiGov implementation on testnets before deploying to mainnet, and have your contracts audited for additional security.
+Remember to thoroughly test your MultiGov implementation on testnets before deploying to MainNet, and have your contracts audited for additional security.
 
 ### How does MultiGov handle potential network issues or temporary chain unavailability?
 
@@ -97,4 +97,4 @@ MultiGov includes several mechanisms to handle network issues or temporary chain
 3. **Wormhole retry mechanism** - Wormhole's infrastructure includes retry mechanisms for failed message deliveries, helping ensure cross-chain messages eventually get through
 4. **Decentralized relayer network** - Wormhole's decentralized network of relayers helps maintain system availability even if some relayers are offline
 
-However, prolonged outages on the hub chain or critical spoke chains could potentially disrupt governance activities. It's important for projects to have contingency plans for such scenarios.
+However, prolonged outages on the hub chain or critical spoke chains could potentially disrupt governance activities. Projects should have contingency plans for such scenarios.

@@ -16,7 +16,7 @@ MultiGov is designed to be flexible but stable. Upgrades should be rare and care
     - Can be replaced by setting a new HubVotePool on the HubGovernor
     - Requires re-registering all spokes on the new HubVotePool
     - Must register the query type and implementation for vote decoding by calling [registerQueryType](https://github.com/wormhole-foundation/example-multigov/blob/main/evm/src/HubVotePool.sol#L84) on the new `HubVotePool` <!-- link not working repo not public yet -->
-    - A new proposal would have to authorize the governor to use the newly created hub vote pool and will also handle registering the appropriate query decoders and registering the approporiate spoke `SpokeVoteAggregators`
+    - A new proposal would have to authorize the governor to use the newly created hub vote pool and will also handle registering the appropriate query decoders and registering the appropriate spoke `SpokeVoteAggregators`
 
 3. **SpokeMessageExecutor**:
     - Upgradeable via [UUPS](https://www.rareskills.io/post/uups-proxy) proxy pattern

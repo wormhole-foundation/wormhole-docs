@@ -5,7 +5,7 @@ description: Discover MultiGov's hub-and-spoke architecture, enabling secure cro
 
 # MultiGov Architecture
 
-MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizing Wormhole's interoperability infrastructure for secure cross-chain communication. This architecture allows for coordinated decision-making across multiple blockchain networks while maintaining a central point of coordination.
+MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizing Wormhole's interoperability infrastructure for secure cross-chain communication. This architecture allows coordinated decision-making across multiple blockchain networks while maintaining a central coordination point.
 
 ## Key Components
 
@@ -14,14 +14,14 @@ MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizi
    - **`HubVotePool`** - receives aggregated votes from spokes and submits them to `HubGovernor`
    - **`HubMessageDispatcher`** - relays approved proposal executions to spoke chains
    - **`HubProposalExtender`** - allows trusted actors to extend voting periods if needed
-   - **`HubProposalMetadata`** - helper contract returning proposalId and vote start for `HubGovernor` proposals
+   - **`HubProposalMetadata`** - helper contract returning `proposalId` and vote start for `HubGovernor` proposals
    - **`HubEvmSpokeAggregateProposer`** - aggregates cross-chain voting weight for an address and proposes via the `HubGovernor` if eligible
 
 ### **Spoke Chains**
    - **`SpokeVoteAggregator`** - collects votes on the spoke chain and forwards them to the hub
    - **`SpokeMessageExecutor`** - receives and executes approved proposals from the hub
    - **`SpokeMetadataCollector`** - fetches proposal metadata from the hub for spoke chain voters
-   - **`SpokeAirlock`** - acts as governance's "admin" on the spoke, has permissions and its own treasury
+   - **`SpokeAirlock`** - acts as governance's "admin" on the spoke, has permissions and its treasury
 
 ## System Workflow
 
@@ -37,9 +37,9 @@ MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizi
     - `HubVotePool` submits the aggregated votes to the `HubGovernor`
 1. **Vote Tallying and Proposal Execution**:
     - `HubGovernor` tallies votes from all chains
-    - If quorum is reached and there are more for votes then against votes, the vote passes and is queued for execution
+    - If a quorum is reached and there are more for votes than against votes, the vote passes and is queued for execution
     - After the timelock delay, the proposal can be executed on the hub chain
-    - For cross-chain actions, a proposal should call the `dispatch` method in the `HubMessageDispatcher` which sends execution messages to the relevant spoke chains
+    - For cross-chain actions, a proposal should call the `dispatch` method in the `HubMessageDispatcher`, which sends execution messages to the relevant spoke chains
     - `SpokeMessageExecutors` on each spoke chain receive and execute the approved actions through their respective `SpokeAirlocks`
 
 ## Cross-Chain Communication
