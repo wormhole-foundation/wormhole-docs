@@ -66,22 +66,22 @@ For example, many chains have implementations forked from [Geth](https://github.
 
 ### MainNet {: #mainnet}
 
-|      Chain      | Wormhole Chain ID | eth_call |    By Timestamp    | With Finality | Expected History |
-|:---------------:|:-----------------:|:--------:|:------------------:|:-------------:|:----------------:|
-| Ethereum      | 2                 | ✅        | ✅                  | ✅             | 128 blocks       |
-| BSC           | 4                 | ✅        | ✅                  | ✅             | 128 blocks       |
-| Polygon       | 5                 | ✅        | ✅                  | ✅             | 128 blocks       |
-| Avalanche     | 6                 | ✅        | ✅                  | ✅             | 32 blocks        |
-| Oasis Emerald | 7                 | ✅        | ✅                  | ✅             | archive          |
-| Fantom        | 10                | ✅        | ✅                  | ✅             | 16 blocks        |
-| Karura        | 11                | ✅        | ✅                  | ✅             | archive          |
-| Acala         | 12                | ✅        | ✅                  | ✅             | archive          |
-| Kaia        | 13                | ✅        | ✅                  | ✅             | 128 blocks       |
-| Celo          | 14                | ✅        | ℹ️ hints required\* | ✅             | 128 blocks       |
-| Moonbeam      | 16                | ✅        | ℹ️ hints required\* | ✅             | 256 blocks       |
-| Arbitrum One  | 23                | ✅        | ✅                  | ✅             | ~6742 blocks    |
-| Optimism      | 24                | ✅        | ✅                  | ❌             | 128 blocks       |
-| Base          | 30                | ✅        | ✅                  | ✅             | archive          |
+|     Chain     | Wormhole Chain ID | eth_call |    By Timestamp    | With Finality | Expected History |
+|:-------------:|:-----------------:|:--------:|:------------------:|:-------------:|:----------------:|
+|   Ethereum    |         2         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|      BSC      |         4         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|    Polygon    |         5         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|   Avalanche   |         6         |    ✅     |         ✅          |       ✅       |    32 blocks     |
+| Oasis Emerald |         7         |    ✅     |         ✅          |       ✅       |     archive      |
+|    Fantom     |        10         |    ✅     |         ✅          |       ✅       |    16 blocks     |
+|    Karura     |        11         |    ✅     |         ✅          |       ✅       |     archive      |
+|     Acala     |        12         |    ✅     |         ✅          |       ✅       |     archive      |
+|     Kaia      |        13         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|     Celo      |        14         |    ✅     | ℹ️ hints required\* |       ✅       |    128 blocks    |
+|   Moonbeam    |        16         |    ✅     | ℹ️ hints required\* |       ✅       |    256 blocks    |
+| Arbitrum One  |        23         |    ✅     |         ✅          |       ✅       |   ~6742 blocks   |
+|   Optimism    |        24         |    ✅     |         ✅          |       ❌       |    128 blocks    |
+|     Base      |        30         |    ✅     |         ✅          |       ✅       |     archive      |
 
 \*`EthCallByTimestamp` arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
 
