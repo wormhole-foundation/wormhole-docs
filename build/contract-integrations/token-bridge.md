@@ -25,7 +25,7 @@ npm install @wormhole-foundation/sdk
 
 ## How to Interact with the Token Bridge Contracts
 
-The Wormhole Token Bridge SDK offers a set of TypeScript types and functions that make it easy to interact with the bridge. This includes handling token transfers, verifying wrapped assets, and submitting attestations. The key functionality revolves around:
+The Wormhole Token Bridge SDK offers a set of TypeScript types and functions that make it easy to interact with the bridge. The key functionality revolves around:
 
 - **Token transfers** - locking tokens on the source chain and minting wrapped tokens on the destination chain
 - **Attestations** - submitting metadata about a token to other chains for wrapping
