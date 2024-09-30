@@ -315,7 +315,7 @@
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 <strong>Solana</strong>
 <br><br>
