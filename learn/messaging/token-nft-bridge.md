@@ -34,6 +34,8 @@ The transfer process is simple yet secure, involving a few key steps:
 3. **Message emission** - a message detailing the transfer is sent through Wormhole’s guardian network, which verifies the transfer and signs the message
 4. **Verification and Minting** - on the destination chain, the transfer message is verified, and wrapped tokens are minted, or native tokens are released from custody
 
+![Token Bridge detailed flow](/docs/images/learn/messaging/token-bridge/token-bridge-diagram.webp)
+
 ### Key Features of the Token Bridge
 
 The Token Bridge creates wrapped versions when tokens are transferred to a different chain. These wrapped assets represent the locked tokens on the source chain and allow users to interact with them on the destination chain. This mechanism ensures seamless functionality without needing liquidity pools or native token swaps.
