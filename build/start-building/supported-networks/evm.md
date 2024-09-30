@@ -569,17 +569,17 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-## Klaytn
+## Kaia
 
 ### Ecosystem
 
-- [Website](https://klaytn.foundation/){target=_blank}
+- [Website](https://kaia.io/){target=_blank}
 - [Kaiascan](https://kaiascan.io/){target=_blank} | [Klaytnscope](https://scope.klaytn.com/){target=_blank}
-- [Developer docs](https://docs.klaytn.foundation/){target=_blank} | [Faucet](https://baobab.wallet.klaytn.foundation/faucet){target=_blank}
+- [Developer docs](https://docs.kaia.io/){target=_blank} | [Faucet](https://faucet.kaia.io){target=_blank}
 
 ### Wormhole Details
 
-- Name: `klaytn`
+- Name: `kaia`
 - Chain ID: `13`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
