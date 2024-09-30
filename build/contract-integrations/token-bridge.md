@@ -31,7 +31,7 @@ The Wormhole Token Bridge SDK offers a set of TypeScript types and functions tha
 - **Attestations** - submitting metadata about a token to other chains for wrapping
 - **Verifying wrapped assets** - checking if a token is wrapped and retrieving its original chain and asset details
 
-### Check if a Token is Wrapped
+### Check If a Token Is Wrapped
 
 To verify whether a token is a wrapped asset (i.e., a token from another chain that has been bridged), use the `isWrappedAsset` function.
 
