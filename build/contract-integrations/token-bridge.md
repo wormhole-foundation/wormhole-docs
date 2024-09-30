@@ -15,13 +15,9 @@ This page will walk you through the essential methods and events of the Token Br
 
 To interact with the Wormhole Token Bridge, you'll need the following:
 
-- **SDK Installation** - Ensure the Wormhole SDK is installed in your project. You can install it via npm or yarn:
-```sh
-npm install @wormhole-foundation/sdk
-```
 - [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses#core-contracts) on the chains you're working with
 - [The Wormhole chain ID](/docs/build/reference/chain-ids/) of the chains you're you're targeting for token transfers
-- **Token attestation** - the token you wish to transfer must be compatible with the destination chain as a wrapped asset. For tokens that do not exist on the target chain, you must attest their details, including metadata like `name`, `symbol`, `decimals`, and `payload_id`, which must be set to `2` for an attestation. This ensures that the wrapped token on the destination chain preserves the original token’s properties. The attestation process records the token's metadata on the target chain to ensure consistency across chains. See the [Attestation section](/docs/learn/infrastructure/vaas/#attestation){target=\_blank} for more details and all the required metadata fields
+- [Token attestation](/docs/learn/infrastructure/vaas/#attestation){target=\_blank} - the token you wish to transfer must be compatible with the destination chain as a wrapped asset. For tokens that do not exist on the target chain, you must attest their details, including metadata like `name`, `symbol`, `decimals`, and `payload_id`, which must be set to `2` for an attestation. This ensures that the wrapped token on the destination chain preserves the original token’s properties. The attestation process records the token's metadata on the target chain to ensure consistency across chains. See the [Attestation section](/docs/learn/infrastructure/vaas/#attestation){target=\_blank} for more details and all the required metadata fields
 
 ## How to Interact with the Token Bridge Contracts
 
