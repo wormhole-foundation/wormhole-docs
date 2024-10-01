@@ -1,5 +1,5 @@
 ---
-title: "Set Signers: Connect vs. SDK"
+title: Set Signers: Connect vs. SDK
 description: Learn the difference between signing transactions using Wormhole Connect and the SDK, integrating MetaMask, WalletConnect, and ethers.js.
 ---
 
