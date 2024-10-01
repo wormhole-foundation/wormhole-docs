@@ -113,7 +113,17 @@ The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidit
     ) external payable returns (uint64 sequence);
     ```
 
-These functions enable seamless communication across chains, reducing the complexity of multi-chain dApp development.
+ - **`quoteEVMDeliveryPrice()`** - calculates the required gas for a cross-chain delivery to help developers avoid underfunded transactions
+
+    ```solidity
+    function quoteEVMDeliveryPrice(
+        uint16 targetChain,
+        uint256 receiverValue,
+        uint256 gasLimit
+    ) external view returns (uint256 nativePriceQuote, uint256 targetChainRefundPerGasUnused);
+    ```
+
+These functions enable seamless communication across chains, reducing the complexity of multi-chain dApp development. By using `quoteEVMDeliveryPrice()`, developers can calculate the gas fees required for cross-chain deliveries, ensuring the transaction is adequately funded.
 
 ### Interface for Receiving Cross-Chain Messages
 
@@ -142,17 +152,6 @@ For developers interested in exploring additional advanced topics, the following
 
     ```solidity
     error InvalidMsgValue(uint256 msgValue, uint256 totalFee);
-    ```
-
-???- note "Gas Management"
-    Gas is critical for cross-chain interactions. The SDK includes methods like `quoteEVMDeliveryPrice()` to calculate the required gas for a cross-chain delivery, helping developers avoid underfunded transactions.
-
-    ```solidity
-    function quoteEVMDeliveryPrice(
-        uint16 targetChain,
-        uint256 receiverValue,
-        uint256 gasLimit
-    ) external view returns (uint256 nativePriceQuote, uint256 targetChainRefundPerGasUnused);
     ```
 
 ???- note "Cross-Chain Token Transfers and CCTP"
