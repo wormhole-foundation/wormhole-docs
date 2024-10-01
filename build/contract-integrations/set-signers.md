@@ -9,7 +9,7 @@ description: Learn the difference between signing transactions using Wormhole Co
 
 When building with Wormhole, there are two primary ways to sign transactions: using [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} for web-based signers like MetaMask and WalletConnect, or interacting with [Wormhole SDK](/docs/build/applications/wormhole-sdk/){target=\_blank} directly using libraries like [Ethers.js](https://docs.ethers.org/v6/){target=\_blank}.
 
-In this guide, we’ll clarify the differences between these approaches and show you how to set up both. Wormhole Connect is ideal if you’re developing a front-end application and want a simple, secure way to sign transactions through a UI. However, if you’re working at a lower level or directly with the SDK, you’ll need to handle signing through private keys, typically using `ethers.js` or a similar library.
+This guide clarifies the differences between these approaches and show you how to set up both. Wormhole Connect is ideal if you’re developing a front-end application and want a simple, secure way to sign transactions through a UI. However, if you’re working at a lower level or directly with the SDK, you’ll need to handle signing through private keys, typically using `ethers.js` or a similar library.
 
 By the end of this page, you’ll:
 
@@ -73,7 +73,7 @@ Here’s an example of setting up a signer with `ethers.js`:
 
  - **`provider`** - responsible for connecting to the Ethereum network (or any EVM-compatible network). It acts as a bridge between your application and the blockchain, allowing you to fetch data, check the state of the blockchain, and submit transactions
 
- - **`signer`** - represents the account that will sign the transaction. In this case, we’re creating a signer using the private key associated with the account. The signer is responsible for authorizing transactions by digitally signing them with the private key
+ - **`signer`** - represents the account that will sign the transaction. In this case, you’re creating a signer using the private key associated with the account. The signer is responsible for authorizing transactions by digitally signing them with the private key
 
  - **`Wallet`** - combines both the provider (for blockchain interaction) and the signer (for transaction authorization), allowing you to sign and send transactions programmatically
 
@@ -85,7 +85,7 @@ These components work together to create, sign, and submit a transaction to the 
      - **Use environment variables** - avoid hardcoding private keys in your code. Use environment variables or secret management tools to inject private keys securely
      - **Hardware Wallets** - for production environments, consider integrating hardware wallets to keep private keys secure while allowing programmatic access through the SDK
 
-### What’s Next?
+### What’s Next? {: #whats-next-sdk }
 
 Now that you’ve seen how to set up a signer and securely handle private keys, you can start building more advanced transaction workflows using the Wormhole SDK. If you're looking for a practical example, check out the [send cross-chain messages demo](https://github.com/wormhole-foundation/demo-wormhole-messaging/blob/a52860abfcdde62fe0abd259edfefce9cc3e726d/script/sendMessage.js#L24-L58){target=\_blank} where it implements `ethers.js` to sign and send transactions.
 
