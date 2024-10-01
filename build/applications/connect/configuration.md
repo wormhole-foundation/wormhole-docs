@@ -32,9 +32,20 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
 Specify supported networks, tokens, and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you don't provide your own.
 
-```js
---8<-- 'code/build/applications/connect/configuration/custom-simple.jsx'
-```
+=== "MainNet"
+
+    ```js
+    --8<-- 'code/build/applications/connect/configuration/custom-simple.jsx'
+    ```
+
+=== "TestNet"
+
+    ```js
+    --8<-- 'code/build/applications/connect/configuration/custom-simple-testnet.jsx'
+    ```
+
+!!! note
+    For a complete list of TestNet chain names that can be manually added, see the [TestNet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}. 
 
 ### Fully Customized Theme {: #fully-customized-theme }
 

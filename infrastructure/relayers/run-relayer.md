@@ -110,7 +110,7 @@ For our relayer app to receive messages, a local Spy must be running that watche
 === "MainNet Spy"
 
     ```bash
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
     -p 7073:7073 \
     --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
     spy \
@@ -122,7 +122,7 @@ For our relayer app to receive messages, a local Spy must be running that watche
 === "TestNet Spy"
 
     ```bash
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
     -p 7073:7073 \
     --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
     spy \
