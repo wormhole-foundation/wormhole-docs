@@ -220,7 +220,7 @@ Certainly. You can find a complete guide on the [Use Queries page](/docs/build/a
 
 The Guardian node calculates an ECDSA signature using [`Sign` function of the crypto package](https://pkg.go.dev/github.com/ethereum/go-ethereum@v1.10.21/crypto#Sign){target=\_blank} where the digest hash is:
 
-`keccak256("query_response_0000000000000000000|"+keccak256(responseBytes))` 
+```keccak256("query_response_0000000000000000000|"+keccak256(responseBytes))``` 
 
 See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0009_guardian_key.md){target=\_blank} white paper for more background. Once this signature is created, the Guardian's index in the Guardian set is appended to the end.
 
