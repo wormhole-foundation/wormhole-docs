@@ -20,7 +20,7 @@ This error typically occurs when the [Wormhole SDK](https://github.com/wormhole-
 To resolve this issue, ensure you have imported the appropriate Wormhole SDK package for EVM environments. The necessary package for handling NTT on EVM chains is `@wormhole-foundation/sdk-evm-ntt`. Here's the correct import statement:
 
 ```rust
-import "@wormhole-foundation/sdk-evm-ntt";
+import '@wormhole-foundation/sdk-evm-ntt';
 ```
 
 By importing this package, the Wormhole SDK can register and utilize the required protocols for EVM chains, enabling cross-chain token transfers using the NTT framework. Ensure to include this import at the start of your code, especially before attempting any interactions with EVM chains in your project.
