@@ -49,7 +49,7 @@ If you'd like to offer WalletConnect as an option for EVM, make sure to obtain a
 
 Once you've integrated Wormhole Connect and set up wallet options for your dApp, you can start handling user transactions securely. If you want to dive deeper into customizing wallet interactions or exploring advanced configuration options, check out the [Wormhole Connect Configuration](/docs/build/applications/connect/configuration/){target=\_blank} page.
 
-For developers who need more control and flexibility, you may want to explore SDK-Level Applications. These applications allow you to work directly with the Wormhole SDK and handle signing transactions programmatically.
+For developers who need more control and flexibility, you may want to explore [SDK-Level Applications](#sdk-level-applications). These applications allow you to work directly with the Wormhole SDK and handle signing transactions programmatically.
 
 ## SDK-Level Applications
 
