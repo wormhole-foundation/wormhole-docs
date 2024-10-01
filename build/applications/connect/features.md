@@ -15,7 +15,7 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 |   Polygon   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |  Avalanche  |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |   Fantom    |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|   Klaytn    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|    Kaia     |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 |    Celo     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Moonbeam   |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Injective  |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
