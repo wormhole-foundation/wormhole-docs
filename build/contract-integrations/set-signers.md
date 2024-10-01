@@ -90,9 +90,3 @@ These components work together to create, sign, and submit a transaction to the 
 Now that you’ve seen how to set up a signer and securely handle private keys, you can start building more advanced transaction workflows using the Wormhole SDK. If you're looking for a practical example, check out the [send cross-chain messages demo](https://github.com/wormhole-foundation/demo-wormhole-messaging/blob/a52860abfcdde62fe0abd259edfefce9cc3e726d/script/sendMessage.js#L24-L58){target=\_blank} where it implements `ethers.js` to sign and send transactions.
 
 For more detailed information and advanced use cases, explore the [Wormhole SDK Tutorials](/docs/tutorials/messaging/){target=\_blank}.
-
-## Conclusion
-
-Choosing the right approach for signing transactions depends on the needs of your project. Wormhole Connect is the perfect solution if you’re building a user-friendly dApp with a UI and want to integrate popular wallets like MetaMask or WalletConnect without managing private keys directly. For more advanced or backend applications, using the Wormhole SDK with a library like `ethers.js` gives you complete control over transaction signing and private key management.
-
-Whether you're developing a front-end app or a low-level SDK-based solution, Wormhole provides the tools and flexibility to handle multi-chain integrations securely and efficiently. Be sure to explore the provided demos and documentation to learn more about the specifics of each approach.
