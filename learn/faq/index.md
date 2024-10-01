@@ -121,7 +121,7 @@ The relevant file can be found in the legacy Connect codebase: [`computeBudget/i
 To retrieve the history of previously bridged transactions, you can use the Wormholescan API. Use the following endpoint to query the transaction history for a specific address:
 
 ```bash
-https://api.wormholescan.io/api/v1/operations?address=INSERT_ADDRESS_HERE
+https://api.wormholescan.io/api/v1/operations?address=INSERT_ADDRESS
 ```
 
 Simply replace `INSERT_ADDRESS_HERE` with the address you want to query. The API will return a list of operations, including details about previously bridged transactions.
