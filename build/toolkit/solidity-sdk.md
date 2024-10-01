@@ -101,7 +101,7 @@ The `IWormholeRelayer` interface provides key methods for sending messages acros
     ) external payable returns (uint64 sequence);
     ```
 
-    These functions enable seamless communication across chains, reducing the complexity of multi-chain dApp development.
+These functions enable seamless communication across chains, reducing the complexity of multi-chain dApp development.
 
 ### Interface for Receiving Cross-Chain Messages
 
