@@ -61,6 +61,13 @@ The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-s
 
 The Wormhole Solidity SDK offers a unified framework for cross-chain communication. Developers can select specific modules based on their application’s requirements, whether for messaging, token transfers, or CCTP. Each module includes built-in security measures, ensuring that only authorized senders or relayers are accepted, thereby protecting the application from unauthorized interactions.
 
+Please refer to the complete `WormholeRelayerSDK.sol` file below for further details.
+
+???- code "`WormholeRelayerSDK.sol`"
+    ```solidity
+    --8<-- "code/build/toolkit/solidity-sdk/WormholeRelayerSDK.sol"
+    ```
+
 ### `Base.sol` Contract Overview
 
 The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Base.sol){target=\_blank} contract is a core part of the SDK, providing fundamental helper functions and modifiers to manage cross-chain messages securely. This contract integrates both the Wormhole relayer and the `TokenBridge`.
@@ -77,7 +84,7 @@ The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/bl
     --8<-- "code/build/toolkit/solidity-sdk/base.sol:45:54"
     ```
 
-These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete Base.sol contract below for further details.
+These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete `Base.sol` contract below for further details.
 
 ???- code "`Base.sol`"
     ```solidity
@@ -123,6 +130,24 @@ The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidit
     ) external view returns (uint256 nativePriceQuote, uint256 targetChainRefundPerGasUnused);
     ```
 
+ - **`sendToEvm()`** - supports cross-chain token transfers through the `TokenBridge` and Circle CCTP. It allows transferring tokens and other data between chains, handling both the messaging and token aspects of the transaction
+
+    ```solidity
+    function sendToEvm(
+        uint16 targetChain,
+        address targetAddress,
+        bytes memory payload,
+        uint256 receiverValue,
+        uint256 paymentForExtraReceiverValue,
+        uint256 gasLimit,
+        uint16 refundChain,
+        address refundAddress,
+        address deliveryProviderAddress,
+        MessageKey[] memory messageKeys,
+        uint8 consistencyLevel
+    ) external payable returns (uint64 sequence);
+    ```
+
 These functions enable seamless communication across chains, reducing the complexity of multi-chain dApp development. By using `quoteEVMDeliveryPrice()`, developers can calculate the gas fees required for cross-chain deliveries, ensuring the transaction is adequately funded.
 
 ### Interface for Receiving Cross-Chain Messages
@@ -152,25 +177,6 @@ For developers interested in exploring additional advanced topics, the following
 
     ```solidity
     error InvalidMsgValue(uint256 msgValue, uint256 totalFee);
-    ```
-
-???- note "Cross-Chain Token Transfers and CCTP"
-    The SDK supports cross-chain token transfers through the TokenBridge and Circle CCTP. To transfer tokens and other data between chains, you can use the `sendToEvm()` function.
-    
-    ```solidity
-    function sendToEvm(
-        uint16 targetChain,
-        address targetAddress,
-        bytes memory payload,
-        uint256 receiverValue,
-        uint256 paymentForExtraReceiverValue,
-        uint256 gasLimit,
-        uint16 refundChain,
-        address refundAddress,
-        address deliveryProviderAddress,
-        MessageKey[] memory messageKeys,
-        uint8 consistencyLevel
-    ) external payable returns (uint64 sequence);
     ```
 
 ## Usage
