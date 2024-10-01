@@ -42,16 +42,28 @@ Before deploying applications using the Wormhole Solidity SDK, keep these consid
 
 The Wormhole Solidity SDK consists of key components that streamline cross-chain communication, allowing developers to securely and efficiently interact with Wormhole’s infrastructure. Below are the critical concepts and contracts you'll encounter when working with the SDK.
 
-### Cross-Chain Messaging with the Wormhole Relayer
+### Cross-Chain Messaging with `WormholeRelayerSDK.sol`
 
-The Wormhole Relayer simplifies cross-chain messaging by automating message delivery between chains. Developers no longer need to manage relayer infrastructure or handle gas on the target chain. Instead, delivery providers relay the message payload.
+The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} contract simplifies cross-chain messaging and asset transfers by integrating several important modules, including the Wormhole Relayer. By automating message delivery between chains, the Wormhole Relayer removes the need for developers to manage relayer infrastructure or handle gas on the target chain. Delivery providers handle the message payload, ensuring secure and efficient communication.
 
  - **Why it’s important?** - the relayer automates message delivery, removing manual intervention and ensuring secure, gas-efficient communication across chains
  - **Learn more** - refer to the [Wormhole Relayer documentation](/docs/build/contract-integrations/wormhole-relayers/){target=\_blank} for deeper details
 
-### Core Contract for Wormhole Messaging
+ Key Modules in the SDK include:
 
-The `Base.sol` contract is a core part of the SDK, providing fundamental helper functions and modifiers to manage cross-chain messages securely. This contract integrates both the Wormhole Relayer and the `TokenBridge`.
+ - **`Base.sol`** - the core module for cross-chain messaging. It provides utility functions like `onlyWormholeRelayer()` and `setRegisteredSender()`, ensuring that only messages from trusted relayers are processed
+
+ - **`TokenBase.sol`** - this module extends the base messaging functionality to support cross-chain token transfers. It includes utilities for securely sending and receiving tokens between EVM-compatible chains
+
+ - **`CCTPBase.sol`** - designed for Circle’s Cross-Chain Transfer Protocol, this module manages asset transfers such as USDC between chains. It includes functionalities for both sending and receiving CCTP-based assets
+
+ - **`CCTPAndTokenBase.sol`** - a combined module that supports both token transfers and CCTP-based asset transfers in a single implementation. This module simplifies development for applications needing to handle both types of transfers
+
+The Wormhole Solidity SDK offers a unified framework for cross-chain communication, allowing developers to select specific modules based on their application’s requirements, whether for messaging, token transfers, or CCTP. Each module includes built-in security measures, ensuring that only authorized senders or relayers are accepted, thereby protecting the application from unauthorized interactions.
+
+### `Base.sol` Contract Overview
+
+The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Base.sol){target=\_blank} contract is a core part of the SDK, providing fundamental helper functions and modifiers to manage cross-chain messages securely. This contract integrates both the Wormhole Relayer and the `TokenBridge`.
 
  - **`onlyWormholeRelayer()`** - ensures only authorized messages from the Wormhole Relayer contract are processed
 
@@ -74,7 +86,7 @@ These security measures ensure messages come from the correct source and are pro
 
 ### Interface for Sending Cross-Chain Messages
 
-The `IWormholeRelayer` interface provides key methods for sending messages across chains. It is integral for developers who want to pass instructions, token transfers, or any custom payload between EVM-compatible chains without maintaining their relaying infrastructure.
+The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} interface provides key methods for sending messages across chains. It is integral for developers who want to pass instructions, token transfers, or any custom payload between EVM-compatible chains without maintaining their relaying infrastructure.
 
  - **`sendPayloadToEvm()`** - sends a message to a specific chain along with gas and value. Valid for general cross-chain messaging
 
@@ -105,7 +117,7 @@ These functions enable seamless communication across chains, reducing the comple
 
 ### Interface for Receiving Cross-Chain Messages
 
-The `IWormholeReceiver` interface defines the function your contract must implement to receive messages sent from other chains. This entry point for cross-chain messaging must be secured to accept messages only from the Wormhole relayer.
+The [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface defines the function your contract must implement to receive messages sent from other chains. This entry point for cross-chain messaging must be secured to accept messages only from the Wormhole relayer.
 
  - **`receiveWormholeMessages()`** - handles the incoming message, allowing your contract to process cross-chain payloads
 
