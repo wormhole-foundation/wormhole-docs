@@ -108,7 +108,7 @@ There is no minimum amount for bridging if the user is paying gas fees on both t
 
 ### Which function should be modified to set priority fees for Solana transactions?
 
-In legacy [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_balnk}, you can modify the priority fees for Solana transactions by updating the `computeBudget/index.ts` file. This file contains the logic for adjusting the compute unit limit and priority fees associated with Solana transactions.
+In legacy [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}, you can modify the priority fees for Solana transactions by updating the `computeBudget/index.ts` file. This file contains the logic for adjusting the compute unit limit and priority fees associated with Solana transactions.
 
 To control the priority fee applied to your transactions, you can modify the `feePercentile` and `minPriorityFee` parameters in the `addComputeBudget` and `determineComputeBudget` functions.
 
