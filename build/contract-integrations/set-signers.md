@@ -55,7 +55,7 @@ For developers who need more control and flexibility, you may want to explore [S
 
 For developers working with Wormhole SDK directly, signing transactions requires a more hands-on approach than UI-based integrations like Wormhole Connect. In SDK-level applications, you'll typically work without a pre-built interface, meaning you will programmatically handle private keys to sign and send transactions.
 
-### Why Use SDK for Signing?
+### Why Use the SDK for Signing?
 
  - **Low-level control** - the SDK gives you full control over how transactions are signed and sent, allowing for more customization and flexibility in backend or automation scenarios
  - **Backend applications** - ideal for server-side implementations where you may not have a UI but need to interact with smart contracts and submit transactions programmatically
