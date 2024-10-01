@@ -65,7 +65,7 @@ Please refer to the complete `WormholeRelayerSDK.sol` file below for further det
 
 ???- code "`WormholeRelayerSDK.sol`"
     ```solidity
-    --8<-- "code/build/toolkit/solidity-sdk/WormholeRelayerSDK.sol"
+    --8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-1.sol"
     ```
 
 ### `Base.sol` Contract Overview
@@ -75,20 +75,20 @@ The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/bl
  - **`onlyWormholeRelayer()`** - ensures only authorized messages from the Wormhole Relayer contract are processed
 
     ```solidity
-    --8<-- "code/build/toolkit/solidity-sdk/base.sol:22:28"
+    --8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-2.sol:22:28"
     ```
 
  - **`setRegisteredSender()`** - restricts message acceptance to a registered sender from a specific chain, ensuring messages are only processed from trusted sources
 
     ```solidity
-    --8<-- "code/build/toolkit/solidity-sdk/base.sol:45:54"
+    --8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-2.sol:45:54"
     ```
 
 These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete `Base.sol` contract below for further details.
 
 ???- code "`Base.sol`"
     ```solidity
-    --8<-- "code/build/toolkit/solidity-sdk/base.sol"
+    --8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-2.sol"
     ```
 
 ### Interface for Sending Cross-Chain Messages
@@ -188,7 +188,7 @@ This section covers cross-chain messaging and token transfers and shows how to u
 To send a cross-chain message, inherit from the base contract provided by the SDK and use its helper methods to define your message and sender address. Here’s a basic example:
 
 ```solidity
---8<-- "code/build/toolkit/solidity-sdk/Send-message.sol"
+--8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-3.sol"
 ```
 
 This contract extends `Base.sol` and allows sending cross-chain messages securely using the `WormholeRelayer`.
@@ -198,7 +198,7 @@ This contract extends `Base.sol` and allows sending cross-chain messages securel
 The SDK enables seamless token transfers between EVM-compatible chains in addition to sending messages. To facilitate cross-chain token transfers, you can extend the SDK's `TokenSender` and `TokenReceiver` base contracts.
 
 ```solidity
---8<-- "code/build/toolkit/solidity-sdk/Send-tokens.sol"
+--8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-4.sol"
 ```
 
 In this example, `TokenSender` initiates a token transfer to another chain. The SDK’s built-in utilities securely handle token transfers, ensuring proper VAAs are generated and processed.
@@ -208,7 +208,7 @@ In this example, `TokenSender` initiates a token transfer to another chain. The 
 To receive tokens on the target chain, implement a contract that inherits from `TokenReceiver` and overrides the `receiveWormholeMessages` function.
 
 ```solidity
---8<-- "code/build/toolkit/solidity-sdk/Receive-tokens.sol"
+--8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-5.sol"
 ```
 
 In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.
