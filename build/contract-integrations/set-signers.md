@@ -7,7 +7,7 @@ description: Learn the difference between signing transactions using Wormhole Co
 
 ## Introduction
 
-When building with Wormhole, there are two primary ways to sign transactions: using [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} for web-based signers like MetaMask and WalletConnect, or interacting with [Wormhole SDK](/docs/build/applications/wormhole-sdk/){target=\_blank} directly using libraries like [`ethers.js`](https://docs.ethers.org/v6/){target=\_blank}.
+When building with Wormhole, there are two primary ways to sign transactions: using [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} for web-based signers like MetaMask and WalletConnect, or interacting with [Wormhole SDK](/docs/build/applications/wormhole-sdk/){target=\_blank} directly using libraries like [Ethers.js](https://docs.ethers.org/v6/){target=\_blank}.
 
 In this guide, we’ll clarify the differences between these approaches and show you how to set up both. Wormhole Connect is ideal if you’re developing a front-end application and want a simple, secure way to sign transactions through a UI. However, if you’re working at a lower level or directly with the SDK, you’ll need to handle signing through private keys, typically using `ethers.js` or a similar library.
 
