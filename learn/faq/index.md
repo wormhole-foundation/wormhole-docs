@@ -104,15 +104,14 @@ There is no minimum amount for bridging if the user is paying gas fees on both t
 
 !!! note
     - Currently, Wormhole’s native CCTP route does not support automatic relaying of USDC to Solana. For this, you can use the [Mayan plugin](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank}
-    - There are two types of frontend integrations: [Wormhole Connect](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank} (includes a UI) and [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} (does not include a UI)
 
 ### Which function should be modified to set priority fees for Solana transactions?
 
-In legacy [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}, you can modify the priority fees for Solana transactions by updating the `computeBudget/index.ts` file. This file contains the logic for adjusting the compute unit limit and priority fees associated with Solana transactions.
+In [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}, you can modify the priority fees for Solana transactions by updating the `computeBudget/index.ts` file. This file contains the logic for adjusting the compute unit limit and priority fees associated with Solana transactions.
 
 To control the priority fee applied to your transactions, you can modify the `feePercentile` and `minPriorityFee` parameters in the `addComputeBudget` and `determineComputeBudget` functions.
 
-The relevant file can be found in the legacy Connect codebase: [`computeBudget/index.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/62f1ba8ee5502ac6fd405680e6b3816c9aa54325/sdk/src/contexts/solana/utils/computeBudget/index.ts){target=\_blank}.
+The relevant file can be found in the Connect codebase: [`computeBudget/index.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/62f1ba8ee5502ac6fd405680e6b3816c9aa54325/sdk/src/contexts/solana/utils/computeBudget/index.ts){target=\_blank}.
 
 ## Wormholescan API
 
