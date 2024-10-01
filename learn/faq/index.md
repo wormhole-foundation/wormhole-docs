@@ -137,7 +137,7 @@ To manually submit a VAA (Verifiable Action Approval) to a destination chain, fo
 1. **Obtain the VAA in Base64 format** - navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
 
     ```bash
-    https://wormholescan.io/#/tx/<INSERT_TX_HASH_HERE>?view=advanced
+    https://wormholescan.io/#/tx/INSERT_TX_HASH?view=advanced
     ```
 
 2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
