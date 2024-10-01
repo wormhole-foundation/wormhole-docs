@@ -159,8 +159,8 @@ The `toNative` function may return an error if the platform-specific module (suc
 To fix this, ensure the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
 
 ```typescript
-import solana from "@wormhole-foundation/sdk/solana";
-const wh = await wormhole("Testnet", [solana]);
+import solana from '@wormhole-foundation/sdk/solana';
+const wh = await wormhole('Testnet', [solana]);
 ```
 
 ## Relayer
