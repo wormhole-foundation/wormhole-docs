@@ -105,7 +105,7 @@ These functions enable seamless communication across chains, reducing the comple
 
 ### Interface for Receiving Cross-Chain Messages
 
-The `IWormholeReceiver` interface defines the function your contract must implement to receive messages sent from other chains. This entry point for cross-chain messaging must be secured to accept messages only from the Wormhole Relayer.
+The `IWormholeReceiver` interface defines the function your contract must implement to receive messages sent from other chains. This entry point for cross-chain messaging must be secured to accept messages only from the Wormhole relayer.
 
  - **`receiveWormholeMessages()`** - handles the incoming message, allowing your contract to process cross-chain payloads
 
