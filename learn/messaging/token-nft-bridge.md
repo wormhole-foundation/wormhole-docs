@@ -23,7 +23,7 @@ Before a token can be transferred to a new chain, the token’s metadata must be
 
 While the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the Token Bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
 
-In addition to standard token transfers, the Token Bridge supports [Contract Controlled Transfer](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}. This functionality allows users to attach additional data to token transfers, enabling more complex interactions with smart contracts on the destination chain. For instance, a token transfer can include a payload that triggers specific actions, such as interacting with a decentralized exchange (DEX) or automated market maker (AMM).
+In addition to standard token transfers, the Token Bridge supports [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}. This functionality allows users to attach additional data to token transfers, enabling more complex interactions with smart contracts on the destination chain. For instance, a token transfer can include a payload that triggers specific actions, such as interacting with a decentralized exchange (DEX) or automated market maker (AMM).
 
 ### Token Transfer Flow
 
