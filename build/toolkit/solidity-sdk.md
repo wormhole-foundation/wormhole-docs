@@ -220,7 +220,7 @@ In this example, `TokenReceiver` allows the contract to handle tokens sent from 
 
 The SDK includes built-in support for Forge-based testing, which allows you to test your cross-chain applications locally before deploying them to production. Testing with the same Solidity compiler version and configuration you plan to use in production is highly recommended to catch any potential issues early.
 
-For a detailed testing example, check out the below repositories:
+For a detailed example, check out the below repositories:
 
  - [Cross chain messaging](/docs/tutorials/messaging/cross-chain-contracts/){target=\_blank}
  - [Cross chain token transfer](/docs/tutorials/messaging/cross-chain-token-contracts/){target=\_blank}
