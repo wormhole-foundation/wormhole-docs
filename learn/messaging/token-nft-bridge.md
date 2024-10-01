@@ -11,7 +11,7 @@ Transferring tokens across blockchain networks is challenging due to the lack of
 
 Wormhole’s Token Bridge addresses these challenges by providing a decentralized protocol for seamless cross-chain token transfers through a lock-and-mint mechanism. Using Wormhole’s message-passing protocol, the Token Bridge allows standards-compliant tokens, like ERC-20 on Ethereum or SPL on Solana, to be transferred between different blockchains while preserving their original attributes.
 
-Offering a more efficient, scalable, and secure alternative to traditional solutions, the Token Bridge ensures that assets retain their properties across multiple blockchain ecosystems. Additionally, it supports flexible features like [Contract Controlled Transfer](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, enabling custom interactions by allowing tokens to carry additional data for smart contract integration on the destination chain.
+Offering a more efficient, scalable, and secure alternative to traditional solutions, the Token Bridge ensures that assets retain their properties across multiple blockchain ecosystems. Additionally, it supports flexible features like [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, enabling custom interactions by allowing tokens to carry additional data for smart contract integration on the destination chain.
 
 This page introduces the core concepts and functions of Wormhole’s Token Bridge, explaining how it operates, its key features, and how it enables secure and efficient cross-chain token transfers.
 
@@ -31,8 +31,8 @@ The transfer process is simple yet secure, involving a few key steps:
 
 1. **Attestation** - first, a token's metadata is attested on the source chain, ensuring that its properties are consistent across chains
 2. **Locking** - on the source chain, the native token is locked in a custody account
-3. **Message emission** - a message detailing the transfer is sent through Wormhole’s guardian network, which verifies the transfer and signs the message
-4. **Verification and Minting** - on the destination chain, the transfer message is verified, and wrapped tokens are minted, or native tokens are released from custody
+3. **Message emission** - a message detailing the transfer is sent through Wormhole’s Guardian Network, which verifies the transfer and signs the message
+4. **Verification and minting** - on the destination chain, the transfer message is verified, and wrapped tokens are minted, or native tokens are released from custody
 
 ![Token Bridge detailed flow](/docs/images/learn/messaging/token-bridge/token-bridge-diagram.webp)
 
@@ -49,7 +49,7 @@ To facilitate cross-chain communication, the Token Bridge uses specialized paylo
 - `Transfer` - this payload initiates the transfer of tokens, either by minting wrapped tokens or releasing locked tokens
 - `TransferWithPayload` - in addition to transferring tokens, this payload carries additional data, allowing integration with smart contracts or dApps on the target chain
 - `AssetMeta` - before a token can be transferred for the first time, this payload is used to attest to the token’s metadata, including decimals, symbol, and name
-- `RegisterChain` - register the token bridge contract (emitter address) for a foreign chain
+- `RegisterChain` - register the Token Bridge contract (emitter address) for a foreign chain
 - `UpgradeContract` - upgrade the contract
 
 Each payload type is designed to serve a specific function in the token transfer process, ensuring that the bridge operates efficiently and securely.
@@ -58,9 +58,9 @@ One of the key challenges in cross-chain token transfers is maintaining the corr
 
 ### Security and Authorization
 
-The Token Bridge uses an emitter chain and address authorization system to verify the validity of messages. Each token bridge endpoint is registered on its respective chain, ensuring only trusted contracts can send or receive transfer messages.
+The Token Bridge uses an emitter chain and address authorization system to verify the validity of messages. Each Token Bridge endpoint is registered on its respective chain, ensuring only trusted contracts can send or receive transfer messages.
 
-The [Wormhole guardian network](/docs/learn/infrastructure/guardians/#guardian-network){target=\_blank} plays a critical role in verifying each transfer and ensuring that the message is signed and relayed securely between chains.
+The [Wormhole Guardian Network](/docs/learn/infrastructure/guardians/#guardian-network){target=\_blank} plays a critical role in verifying each transfer and ensuring that the message is signed and relayed securely between chains.
 
 ### Portal Bridge
 
