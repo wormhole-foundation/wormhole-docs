@@ -224,9 +224,3 @@ For a detailed testing example, check out the below repositories:
 
  - [Cross chain messaging](/docs/tutorials/messaging/cross-chain-contracts/){target=\_blank}
  - [Cross chain token transfer](/docs/tutorials/messaging/cross-chain-token-contracts/){target=\_blank}
-
-## Conclusion
-
-The Wormhole Solidity SDK simplifies building secure, cross-chain applications on EVM-compatible chains. With its suite of interfaces, base contracts, and testing utilities, developers can focus on their application logic rather than the complexities of cross-chain messaging and token transfers. By providing a standardized way to interact with the WormholeRelayer, TokenBridge, and other Wormhole services, the SDK ensures a smooth development experience.
-
-For more advanced examples, refer to the official Wormhole SDK GitHub repository.
