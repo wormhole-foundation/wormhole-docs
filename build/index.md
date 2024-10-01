@@ -52,4 +52,12 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     [:octicons-arrow-right-16: Explore reference](/docs/build/reference/)
 
+-   :octicons-question-16:{ .lg .middle } **FAQs**
+
+    ---
+
+    Find answers to frequently asked questions about Wormhole's features, including token transfers, relayers, TypeScript SDK, Wormhole Connect, and more.
+
+    [:octicons-arrow-right-16: Explore FAQs](/docs/build/faq/)
+
 </div>
