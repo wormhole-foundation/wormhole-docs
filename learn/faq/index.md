@@ -40,7 +40,7 @@ To specify a custom RPC for Wormhole's NTT, create an `overrides.json` file in t
 
 Below’s an example of how the `overrides.json` file should be structured:
 
-???- example "Example `overrides.json`"
+???- code "`overrides.json`"
     ```json
     {
     "chains": {
@@ -142,9 +142,9 @@ To manually submit a VAA (Verifiable Action Approval) to a destination chain, fo
 
 2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
 
-3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the relevant contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
+3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
 
-    - The correct contract addresses for each chain are available in the [Wormhole contract addresses](/docs/build/reference/contract-addresses/){target=\_blank} section
+    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/build/reference/contract-addresses/){target=\_blank} section
 
     - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field
 
