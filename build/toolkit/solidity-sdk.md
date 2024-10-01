@@ -9,7 +9,7 @@ description: How to use the Wormhole Solidity SDK for cross-chain messaging, tok
 
 The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} simplifies cross-chain messaging on EVM-compatible chains by providing essential Solidity interfaces, utility libraries, and testing tools. It allows developers to build secure and efficient cross-chain decentralized applications (dApps) without manually interacting with Wormhole’s core contracts across multiple chains.
 
-Initially designed for interactions with the WormholeRelayer, the SDK now includes tools for other components, such as the TokenBridge and CCTP (Circle Cross-Chain Transfer Protocol). It also ensures compatibility with various EVM versions, addressing challenges that arise from differences in EVM equivalence across chains.
+Initially designed for interactions with the Wormhole-deployed relayer contract, the SDK now includes tools for other components, such as the Token Bridge and CCTP (Circle Cross-Chain Transfer Protocol). It also ensures compatibility with various EVM versions, addressing challenges that arise from differences in EVM equivalence across chains.
 
 This guide covers installation, key concepts, and usage examples to help you build secure cross-chain applications using the SDK, from token transfers to advanced message passing.
 
