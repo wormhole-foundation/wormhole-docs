@@ -145,10 +145,10 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="chains-list" markdown>
 
-**Klaytn**
+**Kaia**
 
-<a href="https://baobab.wallet.klaytn.foundation/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:90px;">
+<a href="https://faucet.kaia.io/" target= "\_blank">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/klaytn.webp" alt="Kaia" style="width:90px; height:90px;">
 </a>
 
 </div>
