@@ -382,15 +382,14 @@ Key UI changes:
 
 The following properties that were previously defined at the root level of the configuration are now part of the `ui` key:
 
-???- tip "UI Properties"
-    - `explorer` → `ui.explorer` - specifies the explorer to use for viewing transactions
-    - `bridgeDefaults` → `ui.defaultInputs` - sets default input values for the bridge, such as the source and destination chains and token
-    - `pageHeader` → `ui.pageHeader` - sets the title and header for the page
-    - `menu` → `ui.menu` - defines the menu items displayed in the interface
-    - `searchTx` → `ui.searchTx` - configures the transaction search functionality
-    - `partnerLogo` → `ui.partnerLogo` - displays a partner's logo on the interface
-    - `walletConnectProjectId` → `ui.walletConnectProjectId` - integrates WalletConnect into the UI
-    - `showHamburgerMenu` → `ui.showHamburgerMenu` - enables or disables the hamburger menu for navigation
+ - `explorer` → `ui.explorer` - specifies the explorer to use for viewing transactions
+ - `bridgeDefaults` → `ui.defaultInputs` - sets default input values for the bridge, such as the source and destination chains and token
+ - `pageHeader` → `ui.pageHeader` - sets the title and header for the page
+ - `menu` → `ui.menu` - defines the menu items displayed in the interface
+ - `searchTx` → `ui.searchTx` - configures the transaction search functionality
+ - `partnerLogo` → `ui.partnerLogo` - displays a partner's logo on the interface
+ - `walletConnectProjectId` → `ui.walletConnectProjectId` - integrates WalletConnect into the UI
+ - `showHamburgerMenu` → `ui.showHamburgerMenu` - enables or disables the hamburger menu for navigation
 
 Additionally, there are two new properties under `ui`:
 
