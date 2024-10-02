@@ -366,7 +366,7 @@ In this new structure, NTT routes are passed directly through the `nttRoutes` fu
 
 In Wormhole Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
 
-Key UI Changes:
+Key UI changes:
 
  - **Consolidated UI properties** - many UI-related properties moved under a new top-level ui key for better organization
  - **Removed `customTheme` and `mode`** - these properties have been removed in favor of a new top-level prop called `theme`, which simplifies theming and allows dynamic switching between themes
