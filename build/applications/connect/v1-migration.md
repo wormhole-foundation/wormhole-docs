@@ -232,7 +232,7 @@ const config: WormholeConnectConfig = {
 };
 ```
 
-#### Example: Updated `tokensConfig` in v1.0
+#### Example: Updated `tokensConfig`
 
 In v1.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
 
