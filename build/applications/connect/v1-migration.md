@@ -450,7 +450,7 @@ const config: WormholeConnectConfig = {
 
 In version 1.0, the `customTheme` and `mode` properties, which were previously used to set themes, have been removed. They have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
 
-Important Details:
+Important details:
 
  - The `theme` prop is not part of the `config` object and is passed separately to Wormhole Connect
  - `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes
