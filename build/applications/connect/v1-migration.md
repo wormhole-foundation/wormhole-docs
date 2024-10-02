@@ -70,12 +70,12 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 ```typescript
 // Before
 const config: WormholeConnectConfig = {
-  env: 'testnet',
+    env: 'testnet',
 };
 
 // Now (v1.0)
 const config: WormholeConnectConfig = {
-  network: 'Testnet',
+    network: 'Testnet',
 };
 ```
 
@@ -95,18 +95,18 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 ```typescript
 // Before
 const config: WormholeConnectConfig = {
-  networks: [
-    'solana',
-    'ethereum',
-  ],
+    networks: [
+        'solana',
+        'ethereum',
+    ],
 };
 
 // Now (v1.0)
 const config: WormholeConnectConfig = {
-  chains: [
-    'Solana',
-    'Ethereum',
-  ],
+    chains: [
+        'Solana',
+        'Ethereum',
+    ],
 };
 ```
 
@@ -151,15 +151,15 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 
 ```typescript
 import {
-  AutomaticCCTPRoute,
-  WormholeConnectConfig,
-  WormholeConnect,
+    AutomaticCCTPRoute,
+    WormholeConnectConfig,
+    WormholeConnect,
 } from "@wormhole-foundation/wormhole-connect";
 
 const config: WormholeConnectConfig = {
-  routes: [
-    AutomaticCCTPRoute,
-  ],
+    routes: [
+        AutomaticCCTPRoute,
+    ],
 };
 
 <WormholeConnect config={config} />;
@@ -171,21 +171,21 @@ In this example, Wormhole Connect is configured with routes for both default pro
 
 ```typescript
 import {
-  DEFAULT_ROUTES,
-  nttRoutes,
-  MayanRouteSWIFT,
-  WormholeConnectConfig,
-  WormholeConnect,
+    DEFAULT_ROUTES,
+    nttRoutes,
+    MayanRouteSWIFT,
+    WormholeConnectConfig,
+    WormholeConnect,
 } from "@wormhole-foundation/wormhole-connect";
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
 const config: WormholeConnectConfig = {
-  routes: [
-    ...DEFAULT_ROUTES,
-    ...nttRoutes(myNttConfig),
-    MayanRouteSWIFT,
-  ],
+    routes: [
+        ...DEFAULT_ROUTES,
+        ...nttRoutes(myNttConfig),
+        MayanRouteSWIFT,
+    ],
 };
 
 <WormholeConnect config={config} />;
@@ -209,23 +209,23 @@ In the old structure, the `foreignAssets` field defined the token’s presence o
 
 ```typescript
 tokensConfig: {
-  WETH: {
-    key: 'WETH',
-    symbol: 'WETH',
-    nativeChain: 'ethereum',
-    icon: Icon.ETH,
-    tokenId: {
-      chain: 'ethereum',
-      address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    WETH: {
+        key: 'WETH',
+        symbol: 'WETH',
+        nativeChain: 'ethereum',
+        icon: Icon.ETH,
+        tokenId: {
+            chain: 'ethereum',
+        address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
     },
     coinGeckoId: 'ethereum',
     color: '#62688F',
     decimals: { Ethereum: 18, default: 8 },
     foreignAssets: {
-      Solana: {
-        address: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
-        decimals: 8,
-      },
+        Solana: {
+            address: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
+            decimals: 8,
+        },
     },
   }
 }
@@ -236,26 +236,30 @@ tokensConfig: {
 In v1.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
 
 ```typescript
-tokensConfig: {
-  WETH: {
-    key: "WETH",
-    symbol: "WETH",
-    nativeChain: "Ethereum", // Chain name now capitalized
-    icon: Icon.ETH,
-    tokenId: {
-      chain: "Ethereum",
-      address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+
+const config: WormholeConnectConfig = {
+    tokensConfig: {
+        WETH: {
+            key: "WETH",
+            symbol: "WETH",
+            nativeChain: "Ethereum", // Chain name now capitalized
+            icon: Icon.ETH,
+            tokenId: {
+            chain: "Ethereum",
+            address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            },
+            coinGeckoId: "ethereum",
+            color: "#62688F",
+            decimals: 18, // Simplified decimals field
+        }
     },
-    coinGeckoId: "ethereum",
-    color: "#62688F",
-    decimals: 18, // Simplified decimals field
-  }
-},
-wrappedTokens: {
-  WETH: {
-    Solana: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs", // Now under wrappedTokens
-    /* additional chains */
-  }
+    wrappedTokens: {
+        WETH: {
+            Solana: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
+            /* additional chains */
+        }
+    }
 }
 ```
 
@@ -310,37 +314,44 @@ nttGroups: {
 In v1.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
 
 ```typescript
-routes: [
-  ...nttRoutes({
-    tokens: {
-      Lido_wstETH: [
-        {
-          chain: "Ethereum",
-          manager: "0xb948a93827d68a82F6513Ad178964Da487fe2BD9",
-          token: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
-          transceiver: [
+import WormholeConnect, {
+  nttRoutes
+} from '@wormhole-foundation/wormhole-connect';
+
+
+const config: WormholeConnectConfig = {
+    routes: [
+    ...nttRoutes({
+        tokens: {
+        Lido_wstETH: [
             {
-              address: "0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0",
-              type: "wormhole",
+            chain: "Ethereum",
+            manager: "0xb948a93827d68a82F6513Ad178964Da487fe2BD9",
+            token: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+            transceiver: [
+                {
+                address: "0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0",
+                type: "wormhole",
+                },
+            ],
             },
-          ],
-        },
-        {
-          chain: "Bsc",
-          manager: "0x6981F5621691CBfE3DdD524dE71076b79F0A0278",
-          token: "0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C",
-          transceiver: [
             {
-              address: "0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986",
-              type: "wormhole",
+            chain: "Bsc",
+            manager: "0x6981F5621691CBfE3DdD524dE71076b79F0A0278",
+            token: "0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C",
+            transceiver: [
+                {
+                address: "0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986",
+                type: "wormhole",
+                },
+            ],
             },
-          ],
+        ],
         },
-      ],
-    },
-  }),
-  /* other routes */
-];
+    }),
+    /* other routes */
+    ],
+};
 ```
 
 In this new structure, NTT routes are passed directly through the `nttRoutes` function, with `tokens`, `chains`, and `transceivers` clearly defined for each supported asset.
@@ -374,11 +385,28 @@ Additionally, there are two new properties under `ui`:
  - **`ui.getHelpUrl`** - URL that Connect will render when an unknown error occurs, allowing users to seek help. This can link to a Discord server or any other support channel
 
 ```typescript
+import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+
 const config: WormholeConnectConfig = {
-  ui: {
-    title: 'DonkeyCoin Bridge',
-    getHelpUrl: 'https://discord.gg/DonkeyCoinCommunity',
-  },
+    ui: {
+        title: 'DonkeyCoin Bridge',
+        getHelpUrl: 'https://discord.gg/DonkeyCoinCommunity',
+        menu:
+            [{
+                label: 'Support',
+                href: 'https://donkeycoin.io/about',
+                target: '_blank',
+                order: 1, // Order of appearance in the menu
+            },
+            {
+                label: 'About',
+                href: 'https://donkeycoin.io/about',
+                target: '_blank',
+                order: 2,
+            },
+            ],
+        showHamburgerMenu: false,
+    },
 };
 ```
 
@@ -389,26 +417,26 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 ```typescript
 // Before (v0.x)
 const config: WormholeConnectConfig = {
-  bridgeDefaults: {
-    fromNetwork: 'solana',
-    toNetwork: 'ethereum',
-    tokenKey: 'USDC',
-    requiredNetwork: 'solana',
-  },
-  showHamburgerMenu: true,
+    bridgeDefaults: {
+        fromNetwork: 'solana',
+        toNetwork: 'ethereum',
+        tokenKey: 'USDC',
+        requiredNetwork: 'solana',
+    },
+    showHamburgerMenu: true,
 };
 
 // Now (v1.0)
 const config: WormholeConnectConfig = {
-  ui: {
-    defaultInputs: {
-      fromChain: 'Solana',  // Chain names now capitalized
-      toChain: 'Ethereum',
-      tokenKey: 'USDC',
-      requiredChain: 'Solana',
+    ui: {
+        defaultInputs: {
+            fromChain: 'Solana',  // Chain names now capitalized
+            toChain: 'Ethereum',
+            tokenKey: 'USDC',
+            requiredChain: 'Solana',
+        },
+        showHamburgerMenu: true,
     },
-    showHamburgerMenu: true,
-  },
 };
 ```
 
@@ -424,20 +452,20 @@ Important Details:
 ```typescript
 // Before (v0.x)
 const config: WormholeConnectConfig = {
-  customTheme: {
-    primaryColor: "#4266f5",
-    secondaryColor: "#ff5733",
-  },
-  mode: 'dark',
+    customTheme: {
+        primaryColor: "#4266f5",
+        secondaryColor: "#ff5733",
+    },
+    mode: 'dark',
 };
 
 // Now (v1.0)
 const theme: WormholeConnectTheme = {
-  mode: 'dark',  // Can be dynamically changed
-  font: 'Arial',
-  button: {
-    primary: '#4266f5',
-  }
+    mode: 'dark',  // Can be dynamically changed
+    font: 'Arial',
+    button: {
+        primary: '#4266f5',
+    }
 };
 
 <WormholeConnect config={config} theme={theme} />;
@@ -498,17 +526,17 @@ import {
 const container = document.getElementById('connect')!;
 
 wormholeConnectHosted(container, {
-  config: {
-    routes: [MayanRoute],
-    eventHandler: (e) => {
-      console.log('Connect event', e);
-    }
-  },
-  theme: {
+    config: {
+        routes: [MayanRoute],
+        eventHandler: (e) => {
+            console.log('Connect event', e);
+        }
+    },
+    theme: {
     background: {
-      default: '#004547',
+        default: '#004547',
     }
-  }
+    }
 });
 ```
 
