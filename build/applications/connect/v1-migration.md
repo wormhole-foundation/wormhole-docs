@@ -145,7 +145,7 @@ For further details on available route plugins, refer to the [Wormhole TypeScrip
 
 Now that you know the available `route` plugins, let's explore some examples on how to configure them.
 
-#### Example 1: Offering Only CCTP Transfers
+#### Example: Offering Only CCTP Transfers
 
 To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
@@ -165,7 +165,7 @@ const config: WormholeConnectConfig = {
 <WormholeConnect config={config} />;
 ```
 
-#### Example 2: Offering All Default Routes and Third-Party Plugins
+#### Example: Offering All Default Routes and Third-Party Plugins
 
 In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
@@ -257,5 +257,103 @@ wrappedTokens: {
     /* additional chains */
   }
 }
+```
+
+## UI Configuration Updates
+
+In version 1.0 of Wormhole Connect, the configuration related to the user interface has been significantly updated. Several UI properties that were previously scattered have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
+
+Key UI Changes:
+
+ - **Consolidated UI properties** - many UI-related properties have been moved under a new top-level ui key for better organization
+ - **Removed `customTheme` and `mode`** - these properties have been removed in favor of a new top-level prop called `theme`, which simplifies theming and allows dynamic switching between themes
+
+### UI Properties
+
+The following properties that were previously defined at the root level of the configuration are now part of the `ui` key:
+
+???- tip "UI Properties"
+    - `explorer` → `ui.explorer` - specifies the explorer to use for viewing transactions
+    - `bridgeDefaults` → `ui.defaultInputs` - sets default input values for the bridge, such as the source and destination chains and token
+    - `pageHeader` → `ui.pageHeader` - sets the title and header for the page
+    - `menu` → `ui.menu` - defines the menu items displayed in the interface
+    - `searchTx` → `ui.searchTx` - configures the transaction search functionality
+    - `partnerLogo` → `ui.partnerLogo` - displays a partner's logo on the interface
+    - `walletConnectProjectId` → `ui.walletConnectProjectId` - integrates WalletConnect into the UI
+    - `showHamburgerMenu` → `ui.showHamburgerMenu` - enables or disables the hamburger menu for navigation
+
+Additionally, there are two new properties under `ui`:
+
+ - **`ui.title`** - sets the title rendered in the top left corner of the UI. The default is "Wormhole Connect"
+ - **`ui.getHelpUrl`** - URL that Connect will render when an unknown error occurs, allowing users to seek help. This can link to a Discord server or any other support channel
+
+```typescript
+const config: WormholeConnectConfig = {
+  ui: {
+    title: 'DonkeyCoin Bridge',
+    getHelpUrl: 'https://discord.gg/DonkeyCoinCommunity',
+  },
+};
+```
+
+### UI Configuration Updates
+
+In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the readability and manageability of the configuration.
+
+```typescript
+// Before (v0.x)
+const config: WormholeConnectConfig = {
+  bridgeDefaults: {
+    fromNetwork: 'solana',
+    toNetwork: 'ethereum',
+    tokenKey: 'USDC',
+    requiredNetwork: 'solana',
+  },
+  showHamburgerMenu: true,
+};
+
+// Now (v1.0)
+const config: WormholeConnectConfig = {
+  ui: {
+    defaultInputs: {
+      fromChain: 'Solana',  // Chain names now capitalized
+      toChain: 'Ethereum',
+      tokenKey: 'USDC',
+      requiredChain: 'Solana',
+    },
+    showHamburgerMenu: true,
+  },
+};
+```
+
+### `customTheme` and `mode` Removed
+
+In version 1.0, the `customTheme` and `mode` properties, which were previously used for setting themes, have been removed. These have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
+
+Important Details:
+
+ - The `theme` prop is not part of the `config` object and is passed separately to Wormhole Connect
+ - `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes
+
+```typescript
+// Before (v0.x)
+const config: WormholeConnectConfig = {
+  customTheme: {
+    primaryColor: "#4266f5",
+    secondaryColor: "#ff5733",
+  },
+  mode: 'dark',
+};
+
+// Now (v1.0)
+const theme: WormholeConnectTheme = {
+  mode: 'dark',  // Can be dynamically changed
+  font: 'Arial',
+  button: {
+    primary: '#4266f5',
+  }
+};
+
+<WormholeConnect config={config} theme={theme} />;
 ```
 
