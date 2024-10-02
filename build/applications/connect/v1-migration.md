@@ -56,16 +56,16 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 // Before
 const config: WormholeConnectConfig = {
   rpcs: {
-    ethereum: '<rpcUrl>',
-    solana: '<rpcUrl>',
+    ethereum: 'INSERT_ETH_RPC_URL',
+    solana: 'INSERT_SOLANA_RPC_URL',
   },
 };
 
 // Now (v1.0)
 const config: WormholeConnectConfig = {
   rpcs: {
-    Ethereum: '<rpcUrl>',
-    Solana: '<rpcUrl>',
+    Ethereum: 'INSERT_ETH_RPC_URL',
+    Solana: 'INSERT_SOLANA_RPC_URL',
   },
 };
 ```
