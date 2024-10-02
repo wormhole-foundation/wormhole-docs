@@ -84,7 +84,7 @@ const config: WormholeConnectConfig = {
 
 // Now (v1.0)
 const config: WormholeConnectConfig = {
-    network: 'Testnet',
+  network: 'Testnet',
 };
 ```
 
