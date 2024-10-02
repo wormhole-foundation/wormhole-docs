@@ -461,3 +461,55 @@ Removed Config Keys:
 
 If your current setup includes any of these properties, you can safely remove them, as they are no longer supported in v1.0.
 
+## CDN-Hosted Version of Wormhole Connect
+
+For those using the CDN-hosted version of Wormhole Connect, there have been updates in how the package is installed and integrated. You will now need to install the Connect package from npm and use the new wormholeConnectHosted utility function.
+
+### Steps to Install and Integrate
+
+1. Install the Connect package via npm:
+
+    ```bash
+    npm install @wormhole-foundation/wormhole-connect@^0.1
+    ```
+
+2. After installing the package, you can embed Wormhole Connect into your page by adding the following code:
+
+    ```typescript
+    import {
+    wormholeConnectHosted,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    const container = document.getElementById('connect')!;
+
+    wormholeConnectHosted(container);
+    ```
+
+### Custom Configuration for Hosted Version
+
+The `wormholeConnectHosted` function accepts two parameters: `config` and `theme`. This allows you to customize the routes and apply a theme directly within the hosted version. Here’s an example of how you can pass a custom configuration:
+
+```typescript
+import {
+  wormholeConnectHosted,
+  MayanRoute
+} from '@wormhole-foundation/wormhole-connect';
+
+const container = document.getElementById('connect')!;
+
+wormholeConnectHosted(container, {
+  config: {
+    routes: [MayanRoute],
+    eventHandler: (e) => {
+      console.log('Connect event', e);
+    }
+  },
+  theme: {
+    background: {
+      default: '#004547',
+    }
+  }
+});
+```
+
+In this example, the `config` object defines the routes (in this case, using the Mayan route), while the `theme` object allows customization of the Connect interface (e.g., background color).
