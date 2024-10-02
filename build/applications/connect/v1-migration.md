@@ -52,13 +52,22 @@ These changes are explained in more detail below, with examples for easy referen
 
 In version 1.0, chain names are now consistent with the `Chain` type from the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, and must be capitalized. This affects all config properties where a chain is referenced, including `rpcs`, `rest`, `graphql`, and `chains`.
 
-```diff
-rpcs: {
--  "ethereum": "<rpcUrl>",
--  "solana": "<rpcUrl>"
-+  "Ethereum": "<rpcUrl>",
-+  "Solana": "<rpcUrl>"
-}
+```typescript
+// Before
+const config: WormholeConnectConfig = {
+  rpcs: {
+    ethereum: '<rpcUrl>',
+    solana: '<rpcUrl>',
+  },
+};
+
+// Now (v1.0)
+const config: WormholeConnectConfig = {
+  rpcs: {
+    Ethereum: '<rpcUrl>',
+    Solana: '<rpcUrl>',
+  },
+};
 ```
 
 You can find the complete list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/core/base/src/constants/chains.ts#L12-L66){target=\_blank}.
@@ -196,27 +205,31 @@ Key Changes to `tokensConfig`:
 In the old structure, the `foreignAssets` field defined the token’s presence on other chains, and `decimals` were mapped across multiple chains.
 
 ```typescript
-tokensConfig: {
+import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+
+const config: WormholeConnectConfig = {
+  tokensConfig: {
     WETH: {
-        key: 'WETH',
-        symbol: 'WETH',
-        nativeChain: 'ethereum',
-        icon: Icon.ETH,
-        tokenId: {
-            chain: 'ethereum',
+      key: 'WETH',
+      symbol: 'WETH',
+      nativeChain: 'ethereum',
+      icon: Icon.ETH,
+      tokenId: {
+        chain: 'ethereum',
         address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    },
-    coinGeckoId: 'ethereum',
-    color: '#62688F',
-    decimals: { Ethereum: 18, default: 8 },
-    foreignAssets: {
+      },
+      coinGeckoId: 'ethereum',
+      color: '#62688F',
+      decimals: { Ethereum: 18, default: 8 },
+      foreignAssets: {
         Solana: {
-            address: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
-            decimals: 8,
+          address: '7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs',
+          decimals: 8,
         },
+      },
     },
-  }
-}
+  },
+};
 ```
 
 ### Example: Updated `tokensConfig` in v1.0
@@ -267,34 +280,40 @@ This change simplifies the configuration process by providing a cleaner, more fl
 In the previous version, `nttGroups` defined the NTT managers and transceivers for different tokens across multiple chains.
 
 ```typescript
-nttGroups: {
-  Lido_wstETH: {
-    nttManagers: [
-      {
-        chainName: "ethereum",
-        address: "0xb948a93827d68a82F6513Ad178964Da487fe2BD9",
-        tokenKey: "wstETH",
-        transceivers: [
-          {
-            address: "0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0",
-            type: "wormhole",
-          },
-        ],
-      },
-      {
-        chainName: "bsc",
-        address: "0x6981F5621691CBfE3DdD524dE71076b79F0A0278",
-        tokenKey: "wstETH",
-        transceivers: [
-          {
-            address: "0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986",
-            type: "wormhole",
-          },
-        ],
-      },
-    ],
+import WormholeConnect, {
+  nttRoutes,
+} from '@wormhole-foundation/wormhole-connect';
+
+const config: WormholeConnectConfig = {
+  nttGroups: {
+    Lido_wstETH: {
+      nttManagers: [
+        {
+          chainName: 'ethereum',
+          address: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
+          tokenKey: 'wstETH',
+          transceivers: [
+            {
+              address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
+              type: 'wormhole',
+            },
+          ],
+        },
+        {
+          chainName: 'bsc',
+          address: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
+          tokenKey: 'wstETH',
+          transceivers: [
+            {
+              address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
+              type: 'wormhole',
+            },
+          ],
+        },
+      ],
+    },
   },
-}
+};
 ```
 
 ### Example: NTT Configuration in v1.0
@@ -402,7 +421,7 @@ const config: WormholeConnectConfig = {
 In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
 
 ```typescript
-// Before (v0.x)
+// Before
 const config: WormholeConnectConfig = {
   bridgeDefaults: {
     fromNetwork: 'solana',
@@ -437,7 +456,7 @@ Important Details:
  - `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes
 
 ```typescript
-// Before (v0.x)
+// Before
 const config: WormholeConnectConfig = {
   customTheme: {
     primaryColor: '#4266f5',
