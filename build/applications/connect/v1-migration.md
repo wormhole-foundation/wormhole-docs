@@ -268,7 +268,7 @@ const config: WormholeConnectConfig = {
 
 In Wormhole Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
 
-Key Changes:
+Key changes:
 
  - **Removed `nttGroups`** - the `nttGroups` property has been removed from the configuration and is now passed as an argument to the `nttRoutes` function
  - **Direct NTT route configuration** - NTT routes are now defined more explicitly, allowing for a more organized structure when specifying tokens, chains, and managers
