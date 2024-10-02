@@ -79,7 +79,7 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 ```typescript
 // Before
 const config: WormholeConnectConfig = {
-    env: 'testnet',
+  env: 'testnet',
 };
 
 // Now (v1.0)
