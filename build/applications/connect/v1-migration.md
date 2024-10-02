@@ -259,6 +259,92 @@ wrappedTokens: {
 }
 ```
 
+## NTT Configuration Updates
+
+In version 1.0 of Wormhole Connect, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, NTT configuration is now passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
+
+Key Changes:
+
+ - **Removed `nttGroups`** - the `nttGroups` property has been removed from the configuration and is now passed as an argument to the `nttRoutes` function
+ - **Direct NTT route configuration** - NTT routes are now defined more explicitly, allowing for a more organized structure when specifying tokens, chains, and managers
+
+This change simplifies the configuration process by providing a cleaner, more flexible way to handle NTT routes across different chains.
+
+### Example: Old NTT Configuration
+
+In the previous version, `nttGroups` was used to define the NTT managers and transceivers for different tokens across multiple chains.
+
+```typescript
+nttGroups: {
+  Lido_wstETH: {
+    nttManagers: [
+      {
+        chainName: "ethereum",
+        address: "0xb948a93827d68a82F6513Ad178964Da487fe2BD9",
+        tokenKey: "wstETH",
+        transceivers: [
+          {
+            address: "0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0",
+            type: "wormhole",
+          },
+        ],
+      },
+      {
+        chainName: "bsc",
+        address: "0x6981F5621691CBfE3DdD524dE71076b79F0A0278",
+        tokenKey: "wstETH",
+        transceivers: [
+          {
+            address: "0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986",
+            type: "wormhole",
+          },
+        ],
+      },
+    ],
+  },
+}
+```
+
+### Example: NTT Configuration in v1.0
+
+In v1.0, `nttGroups` has been removed, and the configuration is passed as an argument to the NTT route constructor. The tokens and their corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
+
+```typescript
+routes: [
+  ...nttRoutes({
+    tokens: {
+      Lido_wstETH: [
+        {
+          chain: "Ethereum",
+          manager: "0xb948a93827d68a82F6513Ad178964Da487fe2BD9",
+          token: "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+          transceiver: [
+            {
+              address: "0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0",
+              type: "wormhole",
+            },
+          ],
+        },
+        {
+          chain: "Bsc",
+          manager: "0x6981F5621691CBfE3DdD524dE71076b79F0A0278",
+          token: "0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C",
+          transceiver: [
+            {
+              address: "0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986",
+              type: "wormhole",
+            },
+          ],
+        },
+      ],
+    },
+  }),
+  /* other routes */
+];
+```
+
+In this new structure, NTT routes are passed directly through the `nttRoutes` function, with `tokens`, `chains`, and `transceivers` clearly defined for each supported asset.
+
 ## UI Configuration Updates
 
 In version 1.0 of Wormhole Connect, the configuration related to the user interface has been significantly updated. Several UI properties that were previously scattered have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
