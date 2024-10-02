@@ -481,7 +481,7 @@ const theme: WormholeConnectTheme = {
 
 Several configuration properties have been removed in Wormhole Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
 
-Removed Config Keys:
+Removed config keys:
 
  - `cta`
  - `cctpWarning`
