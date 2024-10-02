@@ -193,3 +193,69 @@ const config: WormholeConnectConfig = {
 
 This flexible plugin system allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering full control over which routes are available in your application.
 
+## `tokensConfig` Updated with New Structure
+
+In version 1.0 of Wormhole Connect, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens`, has been introduced to handle foreign assets more effectively.
+
+Key Changes to `tokensConfig`:
+
+ - **Capitalized chain names** - all chain names, like "`ethereum`", must now be capitalized, such as "`Ethereum`", to maintain consistency with the rest of the Wormhole SDK
+ - **`wrappedTokens`** - this new key replaces foreignAssets and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure
+ - **Simplified decimals** - instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain
+
+### Example: Old `tokensConfig`
+
+In the old structure, the `foreignAssets` field was used to define the token’s presence on other chains, and `decimals` were mapped across multiple chains.
+
+```typescript
+tokensConfig: {
+  WETH: {
+    key: 'WETH',
+    symbol: 'WETH',
+    nativeChain: 'ethereum',
+    icon: Icon.ETH,
+    tokenId: {
+      chain: 'ethereum',
+      address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+    },
+    coinGeckoId: 'ethereum',
+    color: '#62688F',
+    decimals: { Ethereum: 18, default: 8 },
+    foreignAssets: {
+      Solana: {
+        address: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs",
+        decimals: 8,
+      },
+    },
+  }
+}
+```
+
+### Example: Updated `tokensConfig` in v1.0
+
+In v1.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
+
+```typescript
+tokensConfig: {
+  WETH: {
+    key: "WETH",
+    symbol: "WETH",
+    nativeChain: "Ethereum", // Chain name now capitalized
+    icon: Icon.ETH,
+    tokenId: {
+      chain: "Ethereum",
+      address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    },
+    coinGeckoId: "ethereum",
+    color: "#62688F",
+    decimals: 18, // Simplified decimals field
+  }
+},
+wrappedTokens: {
+  WETH: {
+    Solana: "7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs", // Now under wrappedTokens
+    /* additional chains */
+  }
+}
+```
+
