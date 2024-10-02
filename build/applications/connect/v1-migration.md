@@ -31,7 +31,7 @@ npm install @wormhole-foundation/wormhole-connect@^1.0
 
 This command installs the latest stable version of Wormhole Connect and prepares your environment for the new configuration changes.
 
-## Update Your `WormholeConnectConfig`
+## Update the `WormholeConnectConfig` Object
 
 In version 1.0, the `WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
 
@@ -48,7 +48,7 @@ In version 1.0, the `WormholeConnectConfig` object underwent several breaking ch
 
 These changes are explained in more detail below, with examples for easy reference.
 
-### Chain Names are Capitalized
+### Capitalize Chain Names
 
 In version 1.0, chain names are now consistent with the `Chain` type from the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, and must be capitalized. This affects all config properties where a chain is referenced, including `rpcs`, `rest`, `graphql`, and `chains`.
 
@@ -72,7 +72,7 @@ const config: WormholeConnectConfig = {
 
 You can find the complete list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/core/base/src/constants/chains.ts#L12-L66){target=\_blank}.
 
-### `env` is Renamed to `network`
+### Rename `env` to `network`
 
 The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure TestNet and MainNet environments.
 
@@ -97,7 +97,7 @@ const config: WormholeConnectConfig = {};
 
 For more information, refer to the [network constants list](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/networks.ts){target=\_blank}.
 
-### `networks` is Renamed to `chains`
+### Rename `networks` to `chains`
 
 The `networks` property, which allowed whitelisting chains, is now renamed `chains`, and the chain names are capitalized.
 
@@ -113,7 +113,7 @@ const config: WormholeConnectConfig = {
 };
 ```
 
-### `routes` Updated to Use Route Plugins
+### Update `routes` to Use Route Plugins
 
 The `routes` property in Wormhole Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
 
@@ -124,7 +124,7 @@ By default, if no `routes` property is set, Wormhole Connect will provide routes
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
 
-#### Available Route Plugins
+#### Available `route` Plugins
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
@@ -148,7 +148,7 @@ For further details on available route plugins, refer to the [Wormhole TypeScrip
 
 Now that you know the available `route` plugins, let's explore some examples of configuring them.
 
-#### Example: Offering Only CCTP Transfers
+#### Example: Offer Only CCTP Transfers
 
 To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
@@ -166,7 +166,7 @@ const config: WormholeConnectConfig = {
 <WormholeConnect config={config} />;
 ```
 
-#### Example: Offering All Default Routes and Third-Party Plugins
+#### Example: Offer All Default Routes and Third-Party Plugins
 
 In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
@@ -190,7 +190,7 @@ const config: WormholeConnectConfig = {
 
 This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
 
-## `tokensConfig` Updated with New Structure
+### Update the `tokensConfig` Structure
 
 In Wormhole Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
 
@@ -200,7 +200,7 @@ Key Changes to `tokensConfig`:
  - **`wrappedTokens`** - this new key replaces `foreignAssets` and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure
  - **Simplified decimals** - instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain
 
-### Example: Old `tokensConfig`
+#### Example: Old `tokensConfig`
 
 In the old structure, the `foreignAssets` field defined the token’s presence on other chains, and `decimals` were mapped across multiple chains.
 
@@ -232,7 +232,7 @@ const config: WormholeConnectConfig = {
 };
 ```
 
-### Example: Updated `tokensConfig` in v1.0
+#### Example: Updated `tokensConfig` in v1.0
 
 In v1.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
 
@@ -264,7 +264,7 @@ const config: WormholeConnectConfig = {
 };
 ```
 
-## NTT Configuration Updates
+### Update NTT Configuration
 
 In Wormhole Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
 
@@ -275,7 +275,7 @@ Key Changes:
 
 This change simplifies the configuration process by providing a cleaner, more flexible way to handle NTT routes across different chains.
 
-### Example: Old NTT Configuration
+#### Example: Old NTT Configuration
 
 In the previous version, `nttGroups` defined the NTT managers and transceivers for different tokens across multiple chains.
 
@@ -316,7 +316,7 @@ const config: WormholeConnectConfig = {
 };
 ```
 
-### Example: NTT Configuration in v1.0
+#### Example: Updated NTT Configuration
 
 In v1.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
 
@@ -362,7 +362,7 @@ const config: WormholeConnectConfig = {
 
 In this new structure, NTT routes are passed directly through the `nttRoutes` function, with `tokens`, `chains`, and `transceivers` clearly defined for each supported asset.
 
-## UI Configuration Updates
+### Update UI Configuration
 
 In Wormhole Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
 
@@ -371,7 +371,7 @@ Key UI Changes:
  - **Consolidated UI properties** - many UI-related properties moved under a new top-level ui key for better organization
  - **Removed `customTheme` and `mode`** - these properties have been removed in favor of a new top-level prop called `theme`, which simplifies theming and allows dynamic switching between themes
 
-### UI Properties
+#### UI Properties
 
 The following properties that were previously defined at the root level of the configuration are now part of the `ui` key:
 
@@ -416,7 +416,7 @@ const config: WormholeConnectConfig = {
 };
 ```
 
-### UI Configuration Updates
+#### Example: Updated UI Configuration
 
 In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
 
@@ -446,7 +446,7 @@ const config: WormholeConnectConfig = {
 };
 ```
 
-### `customTheme` and `mode` Removed
+#### Remove `customTheme` and `mode` Properties
 
 In version 1.0, the `customTheme` and `mode` properties, which were previously used to set themes, have been removed. They have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
 
@@ -477,7 +477,7 @@ const theme: WormholeConnectTheme = {
 <WormholeConnect config={config} theme={theme} />;
 ```
 
-## Removed Properties
+### Removed Configuration Properties
 
 Several configuration properties have been removed in Wormhole Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
 
@@ -495,11 +495,11 @@ Removed Config Keys:
 
 If your current setup includes any of these properties, you can safely remove them, as they are no longer supported in v1.0.
 
-## CDN-Hosted Version of Wormhole Connect
+## Use the CDN-Hosted Version of Wormhole Connect
 
 For those using the CDN-hosted version of Wormhole Connect, the package's installation and integration have been updated. You must install the Connect package from npm and use the new `wormholeConnectHosted` utility function.
 
-### Steps to Install and Integrate
+### Install and Integrate the Hosted Version
 
 1. Install the Connect package via npm:
 
@@ -517,7 +517,7 @@ For those using the CDN-hosted version of Wormhole Connect, the package's instal
     wormholeConnectHosted(container);
     ```
 
-### Custom Configuration for Hosted Version
+### Example: Custom Configuration for Hosted Version
 
 The `wormholeConnectHosted` function accepts two parameters: `config` and `theme`. This allows you to customize the routes and apply a theme directly within the hosted version. Here’s an example of how you can pass a custom configuration:
 
