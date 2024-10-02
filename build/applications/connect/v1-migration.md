@@ -7,7 +7,7 @@ description: Learn how to migrate to Wormhole Connect v1.0, with step-by-step gu
 
 ## Overview
 
-The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how the application is configured, requiring minor updates to your integration.
+The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
@@ -33,7 +33,7 @@ This command installs the latest stable version of Wormhole Connect and prepares
 
 ## Update Your `WormholeConnectConfig`
 
-Several breaking changes were introduced to the `WormholeConnectConfig` object in version 1.0. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
+In version 1.0, the `WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
 
 ### Summary of Breaking Changes
 
@@ -44,9 +44,9 @@ Several breaking changes were introduced to the `WormholeConnectConfig` object i
 - `nttGroups` removed in favor of route plugin configuration
 - `tokensConfig` updated, with a new key `wrappedTokens` added
 - Many UI-related properties consolidated under a top-level `ui` key
-- `customTheme` and `mode` removed, replaced by a top-level `theme` property
+- `customTheme` and `mode` were removed, replaced by a top-level `theme` property
 
-Each of these changes is explained in more detail below, with examples for easy reference.
+These changes are explained in more detail below, with examples for easy reference.
 
 ### Chain Names are Capitalized
 
@@ -61,7 +61,7 @@ rpcs: {
 }
 ```
 
-You can find the full list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/core/base/src/constants/chains.ts#L12-L66){target=\_blank}.
+You can find the complete list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/core/base/src/constants/chains.ts#L12-L66){target=\_blank}.
 
 ### `env` is Renamed to `network`
 
@@ -90,7 +90,7 @@ For more information, refer to the [network constants list](https://github.com/w
 
 ### `networks` is Renamed to `chains`
 
-The `networks` property, which allowed whitelisting chains, is now renamed to `chains`, and the chain names are capitalized.
+The `networks` property, which allowed whitelisting chains, is now renamed `chains`, and the chain names are capitalized.
 
 ```typescript
 // Before
@@ -112,14 +112,14 @@ const config: WormholeConnectConfig = {
 
 ### `routes` Updated to Use Route Plugins
 
-The `routes` property in Wormhole Connect version 1.0 has undergone a significant update. Previously, `routes` was a simple array of strings. In the latest version, it has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
+The `routes` property in Wormhole Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
 
 By default, if no `routes` property is set, Wormhole Connect will provide routes for two core protocols:
 
  - [Wormhole Token Bridge](/docs/learn/messaging/token-nft-bridge/){target=\_blank}
  - [CCTP](/docs/learn/messaging/cctp/){target=\_blank}
 
-For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include, as well as exclude any routes unnecessary for your application. This includes both default and third-party routes.
+For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
 
 #### Available Route Plugins
 
@@ -143,7 +143,7 @@ In addition to these routes, developers can create custom routes for their own W
 
 For further details on available route plugins, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
 
-Now that you know the available `route` plugins, let's explore some examples on how to configure them.
+Now that you know the available `route` plugins, let's explore some examples of configuring them.
 
 #### Example: Offering Only CCTP Transfers
 
@@ -191,11 +191,11 @@ const config: WormholeConnectConfig = {
 <WormholeConnect config={config} />;
 ```
 
-This flexible plugin system allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering full control over which routes are available in your application.
+This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
 
 ## `tokensConfig` Updated with New Structure
 
-In version 1.0 of Wormhole Connect, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens`, has been introduced to handle foreign assets more effectively.
+In Wormhole Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
 
 Key Changes to `tokensConfig`:
 
@@ -205,7 +205,7 @@ Key Changes to `tokensConfig`:
 
 ### Example: Old `tokensConfig`
 
-In the old structure, the `foreignAssets` field was used to define the token’s presence on other chains, and `decimals` were mapped across multiple chains.
+In the old structure, the `foreignAssets` field defined the token’s presence on other chains, and `decimals` were mapped across multiple chains.
 
 ```typescript
 tokensConfig: {
@@ -261,7 +261,7 @@ wrappedTokens: {
 
 ## NTT Configuration Updates
 
-In version 1.0 of Wormhole Connect, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, NTT configuration is now passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
+In Wormhole Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
 
 Key Changes:
 
@@ -272,7 +272,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
 
 ### Example: Old NTT Configuration
 
-In the previous version, `nttGroups` was used to define the NTT managers and transceivers for different tokens across multiple chains.
+In the previous version, `nttGroups` defined the NTT managers and transceivers for different tokens across multiple chains.
 
 ```typescript
 nttGroups: {
@@ -307,7 +307,7 @@ nttGroups: {
 
 ### Example: NTT Configuration in v1.0
 
-In v1.0, `nttGroups` has been removed, and the configuration is passed as an argument to the NTT route constructor. The tokens and their corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
+In v1.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
 
 ```typescript
 routes: [
@@ -347,11 +347,11 @@ In this new structure, NTT routes are passed directly through the `nttRoutes` fu
 
 ## UI Configuration Updates
 
-In version 1.0 of Wormhole Connect, the configuration related to the user interface has been significantly updated. Several UI properties that were previously scattered have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
+In Wormhole Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
 
 Key UI Changes:
 
- - **Consolidated UI properties** - many UI-related properties have been moved under a new top-level ui key for better organization
+ - **Consolidated UI properties** - many UI-related properties moved under a new top-level ui key for better organization
  - **Removed `customTheme` and `mode`** - these properties have been removed in favor of a new top-level prop called `theme`, which simplifies theming and allows dynamic switching between themes
 
 ### UI Properties
@@ -384,7 +384,7 @@ const config: WormholeConnectConfig = {
 
 ### UI Configuration Updates
 
-In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the readability and manageability of the configuration.
+In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
 
 ```typescript
 // Before (v0.x)
@@ -414,7 +414,7 @@ const config: WormholeConnectConfig = {
 
 ### `customTheme` and `mode` Removed
 
-In version 1.0, the `customTheme` and `mode` properties, which were previously used for setting themes, have been removed. These have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
+In version 1.0, the `customTheme` and `mode` properties, which were previously used to set themes, have been removed. They have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
 
 Important Details:
 
@@ -445,7 +445,7 @@ const theme: WormholeConnectTheme = {
 
 ## Removed Properties
 
-In version 1.0 of Wormhole Connect, several configuration properties have been removed. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
+Several configuration properties have been removed in Wormhole Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
 
 Removed Config Keys:
 
@@ -463,7 +463,7 @@ If your current setup includes any of these properties, you can safely remove th
 
 ## CDN-Hosted Version of Wormhole Connect
 
-For those using the CDN-hosted version of Wormhole Connect, there have been updates in how the package is installed and integrated. You will now need to install the Connect package from npm and use the new wormholeConnectHosted utility function.
+For those using the CDN-hosted version of Wormhole Connect, the package's installation and integration have been updated. You must install the Connect package from npm and use the new `wormholeConnectHosted` utility function.
 
 ### Steps to Install and Integrate
 
