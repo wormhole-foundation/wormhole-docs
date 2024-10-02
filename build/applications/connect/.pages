@@ -5,4 +5,5 @@ nav:
  - 'Routes': routes.md
  - 'Features': features.md
  - 'Configuration': configuration.md
+ - 'v1 Migration': v1-migration.md
  
