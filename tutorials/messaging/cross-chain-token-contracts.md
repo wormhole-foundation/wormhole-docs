@@ -17,8 +17,8 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
-- TestNet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
-- [USDC TestNet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
+- [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
 - Wallet private key
 
 ## Valid Tokens for Transfer
@@ -246,7 +246,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/build/reference/contract-addresses/){target=_blank}.
 
         !!! note
-            You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores TestNets.
+            You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores Testnets.
 
     4. Create a `contracts.json` file in the `deploy-config` directory:
 
@@ -586,7 +586,7 @@ If you followed the logic provided in the `transfer.ts` file above, your termina
 --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-8.html"
 
 !!! note
-    In this example, we demonstrated a token transfer from the Avalanche Fuji TestNet to the Celo Alfajores TestNet. We sent two units of USDC TestNet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
+    In this example, we demonstrated a token transfer from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. We sent two units of USDC Testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
 
 ## Resources
 

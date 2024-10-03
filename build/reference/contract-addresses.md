@@ -27,7 +27,7 @@ description: This page documents the deployed contract addresses of the Wormhole
 
 ## Gateway
 
-=== "MainNet"
+=== "Mainnet"
 
     | Contract              | Address                                                               |
     |-----------------------|-----------------------------------------------------------------------|
@@ -35,7 +35,7 @@ description: This page documents the deployed contract addresses of the Wormhole
     | Wormhole Token Bridge | `wormhole1466nf3zuxpya8q9emxukd7vftaf6h4psr0a07srl5zw74zh84yjq4lyjmh` |
     | IBC Translator        | `wormhole14ejqjyq8um4p3xfqj74yld5waqljf88fz25yxnma0cngspxe3les00fpjx` |
 
-=== "TestNet"
+=== "Testnet"
 
     | Contract              | Address                                                               |
     |-----------------------|-----------------------------------------------------------------------|

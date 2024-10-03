@@ -216,7 +216,7 @@ The core protocol underlies all Wormhole activity. This protocol is responsible 
 
 The following example demonstrates sending and verifying a message using the Wormhole Core protocol on Solana.
 
-First, initialize a Wormhole instance for the TestNet environment, specifically for the Solana chain. Then, obtain a signer and its associated address, which will be used to sign transactions.
+First, initialize a Wormhole instance for the Testnet environment, specifically for the Solana chain. Then, obtain a signer and its associated address, which will be used to sign transactions.
 
 Next, get a reference to the core messaging bridge, which is the main interface for interacting with Wormhole's cross-chain messaging capabilities.
 The code then prepares a message for publication. This message includes:

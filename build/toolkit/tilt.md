@@ -161,7 +161,7 @@ tilt down -- --solana --algorand
 
 ### Where are Fantom, Celo, Polygon, and Other EVM Chains?
 
-The smart contract development environment is effectively the same for all chains that support EVM. For changes in gas costs and transaction times, consider testing contract logic on DevNet and then using TestNet environments to get chain-specific answers.
+The smart contract development environment is effectively the same for all chains that support EVM. For changes in gas costs and transaction times, consider testing contract logic on DevNet and then using Testnet environments to get chain-specific answers.
 
 ### Solana is Taking Forever
 
@@ -181,10 +181,10 @@ The DevNet environment deploys the core layer and Token Bridge to each chain at 
 
 ## Default Ports
 
-| Service            | Port |
+|      Service       | Port |
 |:------------------:|:----:|
-| Guardian REST      | 7071 |
+|   Guardian REST    | 7071 |
 | Guardian gRPC Port | 7070 |
-| Eth0 RPC           | 8545 |
-| Eth1 RPC           | 8546 |
-| Solana RPC         | 8899 |
+|      Eth0 RPC      | 8545 |
+|      Eth1 RPC      | 8546 |
+|     Solana RPC     | 8899 |
