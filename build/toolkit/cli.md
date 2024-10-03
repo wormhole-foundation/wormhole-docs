@@ -26,14 +26,14 @@ This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. 
 
 ## Usage
 
-You can interact with the Wormhole CLI by typing `worm` and including the `command` and any necessary subcommands and parameters.
+You can interact with the Wormhole CLI by typing `worm` and including the `command` and any necessary subcommands and parameters.  
 
 | Command                                                                                                                  | Description                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | `worm aptos INSERT_COMMAND`                                                                                              | Aptos utilities                                                                                                 |
 | `worm edit-vaa INSERT_COMMAND`                                                                                           | Edits or generates a VAA                                                                                        |
 | `worm evm INSERT_COMMAND`                                                                                                | EVM utilities                                                                                                   |
-| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (Devnet and Testnet only)                                                                         |
+| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (DevNet and TestNet only)                                                                         |
 | `worm info INSERT_COMMAND`                                                                                               | Contract, chain, RPC, and address information utilities                                                         |
 | `worm near INSERT_NETWORK, INSERT_ACCOUNT`                                                                               | NEAR utilities                                                                                                  |
 | `worm parse INSERT_VAA`                                                                                                  | Parse a VAA (can be in either hex or base64 format)                                                             |
@@ -55,69 +55,70 @@ Options:
 ### Subcommands
 
 ??? code "Aptos"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/aptos.txt'
-    `
+    ```
 
 ??? code "Edit VAA"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/edit-vaa.txt'
-    `
+    ```
 
 ??? code "EVM"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/evm.txt'
-    `
+    ```
 
 ??? code "Generate"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/generate.txt'
-    `
+    ```
 
 ??? code "Info"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/info.txt'
-    `
+    ```
 
 ??? code "NEAR"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/near.txt'
-    `
+    ```
 
 ??? code "Parse"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/parse.txt'
-    `
+    ```
 
 ??? code "Recover"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/recover.txt'
-    `
+    ```
 
 ??? code "Status"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/status.txt'
-    `
+    ```
 
 ??? code "Submit"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/submit.txt'
-    `
+    ```
 
 ??? code "Sui"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/sui.txt'
-    `
+    ```
 
 ??? code "Transfer"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/transfer.txt'
-    `
+    ```
 
 ??? code "Verify VAA"
-`bash
+    ```bash
     --8<-- 'code/build/toolkit/cli/verify-vaa.txt'
-    `
+    ```
+
 
 ## Examples
 
@@ -143,7 +144,7 @@ Use `parse` to parse a VAA into JSON:
 worm parse $(worm-fetch-governance 13940208096455381020)
 ```
 
-This example will fetch governance VAA `13940208096455381020` and print it as JSON:
+This example will fetch governance VAA `13940208096455381020` and print it as JSON: 
 
 ```bash
 --8<-- 'code/build/toolkit/cli/fetch-vaa-example.txt'
@@ -187,7 +188,7 @@ You can get the contract address for a module as follows:
 worm info rpc INSERT_NETWORK INSERT_CHAIN INSERT_MODULE
 ```
 
-To get the contract address for `NFTBridge` on BSC Mainnet, for example, you can provide the following command:
+To get the contract address for `NFTBridge` on BSC MainNet, for example, you can provide the following command:
 
 ```bash
 worm info contract mainnet bsc NFTBridge
@@ -199,8 +200,9 @@ You can get the RPC address for a chain as follows:
 worm info rpc INSERT_NETWORK INSERT_CHAIN
 ```
 
-To get the RPC address for BSC Mainnet, for example, you can provide the following command:
+To get the RPC address for BSC MainNet, for example, you can provide the following command: 
 
 ```bash
 worm info rpc mainnet bsc
 ```
+

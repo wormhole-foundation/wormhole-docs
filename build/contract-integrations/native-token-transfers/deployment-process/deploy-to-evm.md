@@ -17,9 +17,9 @@ Tokens integrated with `NttManager` in `burning` mode require the following two 
 These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
 
 ??? code "View the complete `INttToken` Interface`"
-`solidity
---8<-- 'code/build/contract-integrations/native-token-transfers/deployment-process/INttToken.sol'
-`
+    ```solidity
+    --8<-- 'code/build/contract-integrations/native-token-transfers/deployment-process/INttToken.sol'
+    ```
 
 Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
 
@@ -34,19 +34,19 @@ cd my-ntt-deployment
 
 Initialize a new `deployment.json` file, specifying the network:
 
-=== "Testnet"
+=== "TestNet"
 
     ```bash
     ntt init Testnet
     ```
 
-=== "Mainnet"
+=== "MainNet"
 
     ```bash
     ntt init Mainnet
     ```
 
-Ensure you have set up your environment correctly:
+Ensure you have set up your environment correctly: 
 
 ```bash
 export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
@@ -76,22 +76,22 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
 - `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
 - `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
 
-  For Solana, the limits are set with 9 decimal places:
-  `json
-  "inbound": {
-      "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
-  }
-  `
+    For Solana, the limits are set with 9 decimal places:
+      ```json
+      "inbound": {
+          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+      }
+      ```
 
-  For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
-  `json
-  "inbound": {
-      "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
-  }
-  `
+    For Sepolia (Ethereum TestNet), the limits are set with 18 decimal places:
+      ```json
+      "inbound": {
+          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+      }
+      ```
 
-  This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
-
+    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
+  
 - `ntt push` - syncs the on-chain configuration with local changes made to your `deployment.json` file
 
 After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.

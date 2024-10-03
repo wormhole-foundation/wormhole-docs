@@ -61,13 +61,13 @@ In the following example, you'll:
 3. Start the relayer app
 
 ```typescript
---8 < --'code/infrastructure/relayers/run-relayer/snippet-1.ts';
+--8<-- 'code/infrastructure/relayers/run-relayer/snippet-1.ts'
 ```
 
 The first meaningful line instantiates the `StandardRelayerApp`, a subclass of the `RelayerApp` with standard defaults.
 
 ```typescript
---8 < --'code/infrastructure/relayers/run-relayer/snippet-2.ts';
+--8<-- 'code/infrastructure/relayers/run-relayer/snippet-2.ts'
 ```
 
 The only field you pass in the `StandardRelayerAppOpts` is the name to help identify log messages and reserve a namespace in Redis.
@@ -85,7 +85,7 @@ The next meaningful line in the example adds a filter middleware component. This
 If you'd like your program to subscribe to `multiple` chains and addresses, you can call the same method several times or use the `multiple` helper.
 
 ```typescript
---8 < --'code/infrastructure/relayers/run-relayer/snippet-4.ts';
+--8<-- 'code/infrastructure/relayers/run-relayer/snippet-4.ts'
 ```
 
 The last line in the simple example runs `await app.listen()`, which starts the relayer engine. Once started, the Relayer Engine issues subscription requests to the Spy and begins any other workflows (e.g., tracking missed VAAs).
@@ -97,7 +97,7 @@ The source code for this example is available in the [`relayer-engine` repositor
 ## Start Background Processes
 
 !!! note
-These processes _must_ be running for the relayer app below to work.
+    These processes _must_ be running for the relayer app below to work.
 
 Next, you must start a Spy to listen for available VAAs published on the Guardian network. You also need a persistence layer. This example uses Redis.
 
@@ -107,7 +107,7 @@ More details about the Spy are available in the [Spy Documentation](/docs/learn/
 
 For our relayer app to receive messages, a local Spy must be running that watches the Guardian network. Our relayer app will receive updates from this Spy.
 
-=== "Mainnet Spy"
+=== "MainNet Spy"
 
     ```bash
     docker run --pull=always --platform=linux/amd64 \
@@ -119,7 +119,7 @@ For our relayer app to receive messages, a local Spy must be running that watche
     --env mainnet
     ```
 
-=== "Testnet Spy"
+=== "TestNet Spy"
 
     ```bash
     docker run --pull=always --platform=linux/amd64 \
@@ -128,13 +128,13 @@ For our relayer app to receive messages, a local Spy must be running that watche
     spy \
     --nodeKey /node.key \
     --spyRPC "[::]:7073" \
-    --env testnet
+    --env testnet   
     ```
 
 ### Redis Persistence
 
 !!! note
-While you're using [Redis](https://redis.io/docs/latest/develop/get-started/){target=\_blank} here, the persistence layer can be swapped out for some other database by implementing the appropriate [interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank}.
+    While you're using [Redis](https://redis.io/docs/latest/develop/get-started/){target=\_blank} here, the persistence layer can be swapped out for some other database by implementing the appropriate [interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank}.
 
 A Redis instance must also be available to persist job data for fetching VAAs from the Spy.
 
@@ -147,7 +147,7 @@ docker run --rm -p 6379:6379 --name redis-docker -d redis
 You can also use the Wormhole SDK to poll the Guardian RPC until a signed VAA is ready using the SDK's `getSignedVAAWithRetry` function.
 
 ```ts
---8 < --'code/infrastructure/relayers/run-relayer/snippet-5.ts';
+--8<-- 'code/infrastructure/relayers/run-relayer/snippet-5.ts'
 ```
 
 Once you have the VAA, the delivery method is chain-dependent.
@@ -162,7 +162,7 @@ Once you have the VAA, the delivery method is chain-dependent.
 
 === "Solana"
 
-    On Solana, the VAA is first posted to the core bridge, and then a custom transaction is prepared to process and validate the VAA.
+    On Solana, the VAA is first posted to the core bridge, and then a custom transaction is prepared to process and validate the VAA. 
 
     ```ts
     --8<-- 'code/infrastructure/relayers/run-relayer/snippet-7.ts'

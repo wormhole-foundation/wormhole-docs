@@ -122,13 +122,13 @@ Some implementation details should be considered during development to ensure sa
 
 While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the [Wormhole CLI](/docs/build/toolkit/cli/) tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command:
 
-=== "Mainnet"
+=== "MainNet"
 
     ```bash
     worm status mainnet ethereum INSERT_TRANSACTION_HASH
     ```
 
-=== "Testnet"
+=== "TestNet"
 
     ```bash
     worm status testnet ethereum INSERT_TRANSACTION_HASH
