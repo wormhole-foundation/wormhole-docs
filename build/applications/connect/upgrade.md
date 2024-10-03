@@ -38,7 +38,7 @@ In version 1.0, the `WormholeConnectConfig` object underwent several breaking ch
 ### Summary of Breaking Changes
 
 - Chain names are now capitalized: `solana` → `Solana`
-- `env` renamed to `network`: `mainnet` → `Mainnet`
+- `env` renamed to `network` and is now capitalized: `mainnet` → `Mainnet`
 - `networks` renamed to `chains`, with capitalized names
 - `routes` updated to use route plugins
 - `nttGroups` removed in favor of route plugin configuration
@@ -77,7 +77,7 @@ You can find the complete list of supported chain names in the [Wormhole TypeScr
 
 ### Rename `env` to `network`
 
-The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure TestNet and MainNet environments.
+The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure Testnet and Mainnet environments.
 
 === "v0.x"
 
@@ -153,7 +153,7 @@ The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` 
 
 In addition to these routes, developers can create custom routes for their own Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/example-native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
-For further details on available route plugins, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
+For further details on the Route plugin interface, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
 
 Now that you know the available `route` plugins, let's explore some examples of configuring them.
 
@@ -206,7 +206,7 @@ In Wormhole Connect version 1.0, the `tokensConfig` property has been updated to
 Key Changes to `tokensConfig`:
 
  - **Capitalized chain names** - all chain names, like `ethereum`, must now be capitalized, such as `Ethereum`, to maintain consistency with the rest of the Wormhole SDK
- - **`wrappedTokens`** - this new key replaces `foreignAssets` and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via token bridge routes
+ - **`wrappedTokens`** - this new key replaces `foreignAssets` and defines the wrapped token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via token bridge routes
  - **Simplified decimals** - instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain
 
 === "v0.x"
@@ -367,7 +367,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
     };
     ```
 
-    In this new structure, NTT routes are passed directly through the `nttRoutes` function, with `tokens`, `chains`, and `transceivers` clearly defined for each supported asset.
+    In this new structure, NTT routes are passed directly through the `nttRoutes` function, with the `token`, `chain`, `manager` and `transceiver` clearly defined for each supported asset.
 
 ### Update UI Configuration
 
@@ -401,18 +401,18 @@ import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
   ui: {
-    title: 'DonkeyCoin Bridge',
-    getHelpUrl: 'https://discord.gg/DonkeyCoinCommunity',
+    title: 'My Custom Bridge Example',
+    getHelpUrl: 'https://examplehelp.com/',
     menu: [
       {
         label: 'Support',
-        href: 'https://donkeycoin.io/about',
+        href: 'https://examplehelp.com/support',
         target: '_blank',
         order: 1, // Order of appearance in the menu
       },
       {
         label: 'About',
-        href: 'https://donkeycoin.io/about',
+        href: 'https://examplehelp.com/about',
         target: '_blank',
         order: 2,
       },
@@ -518,7 +518,7 @@ For those using the CDN-hosted version of Wormhole Connect, the package's instal
 1. Install the Connect package via npm:
 
     ```bash
-    npm install @wormhole-foundation/wormhole-connect@^0.1
+    npm install @wormhole-foundation/wormhole-connect@^1.0
     ```
 
 2. After installing the package, you can embed Wormhole Connect into your page by adding the following code:
