@@ -56,20 +56,20 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 
     ```typescript
     const config: WormholeConnectConfig = {
-        rpcs: {
-            ethereum: 'INSERT_ETH_RPC_URL',
-            solana: 'INSERT_SOLANA_RPC_URL',
-        },
+      rpcs: {
+        ethereum: 'INSERT_ETH_RPC_URL',
+        solana: 'INSERT_SOLANA_RPC_URL',
+      },
     };
     ```
 === "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
-        rpcs: {
-            Ethereum: 'INSERT_ETH_RPC_URL',
-            Solana: 'INSERT_SOLANA_RPC_URL',
-        },
+      rpcs: {
+        Ethereum: 'INSERT_ETH_RPC_URL',
+        Solana: 'INSERT_SOLANA_RPC_URL',
+      },
     };
     ```
 
@@ -83,14 +83,14 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 
     ```typescript
     const config: WormholeConnectConfig = {
-        env: 'testnet',
+      env: 'testnet',
     };
     ```
 === "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
-        network: 'Testnet',
+      network: 'Testnet',
     };
     ```
 
@@ -111,14 +111,14 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 
     ```typescript
     const config: WormholeConnectConfig = {
-        networks: ['solana', 'ethereum'],
+      networks: ['solana', 'ethereum'],
     };
     ```
 === "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
-        chains: ['Solana', 'Ethereum'],
+      chains: ['Solana', 'Ethereum'],
     };
     ```
 
@@ -217,27 +217,27 @@ Key Changes to `tokensConfig`:
     import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
-        tokensConfig: {
-            WETH: {
-                key: 'WETH',
-                symbol: 'WETH',
-                nativeChain: 'ethereum',
-                icon: Icon.ETH,
-                tokenId: {
-                    chain: 'ethereum',
-                    address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-                },
-                coinGeckoId: 'ethereum',
-                color: '#62688F',
-                decimals: { Ethereum: 18, default: 8 },
-                foreignAssets: {
-                    Solana: {
-                    address: '7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs',
-                    decimals: 8,
-                    },
-                },
+      tokensConfig: {
+        WETH: {
+          key: 'WETH',
+          symbol: 'WETH',
+          nativeChain: 'ethereum',
+          icon: Icon.ETH,
+          tokenId: {
+            chain: 'ethereum',
+            address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
             },
+          coinGeckoId: 'ethereum',
+          color: '#62688F',
+          decimals: { Ethereum: 18, default: 8 },
+          foreignAssets: {
+            Solana: {
+              address: '7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs',
+              decimals: 8,
+            },
+          },
         },
+      },
     };
     ```
 === "v1.x"
@@ -248,27 +248,27 @@ Key Changes to `tokensConfig`:
     import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
-        tokensConfig: {
-            WETH: {
-                key: 'WETH',
-                symbol: 'WETH',
-                nativeChain: 'Ethereum', // Chain name now capitalized
-                icon: Icon.ETH,
-                tokenId: {
-                    chain: 'Ethereum',
-                    address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-                },
-                coinGeckoId: 'ethereum',
-                color: '#62688F',
-                decimals: 18, // Simplified decimals field
-            },
+      tokensConfig: {
+        WETH: {
+          key: 'WETH',
+          symbol: 'WETH',
+          nativeChain: 'Ethereum', // Chain name now capitalized
+          icon: Icon.ETH,
+          tokenId: {
+            chain: 'Ethereum',
+            address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          },
+          coinGeckoId: 'ethereum',
+          color: '#62688F',
+          decimals: 18, // Simplified decimals field
         },
-        wrappedTokens: {
-            WETH: {
-                Solana: '7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs',
-                /* additional chains */
-            },
+      },
+      wrappedTokens: {
+        WETH: {
+          Solana: '7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs',
+          /* additional chains */
         },
+      },
     };
     ```
 
@@ -289,38 +289,38 @@ This change simplifies the configuration process by providing a cleaner, more fl
 
     ```typescript
     import WormholeConnect, {
-    nttRoutes,
+      nttRoutes,
     } from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
-        nttGroups: {
-            Lido_wstETH: {
-            nttManagers: [
+      nttGroups: {
+        Lido_wstETH: {
+          nttManagers: [
+            {
+              chainName: 'ethereum',
+              address: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
+              tokenKey: 'wstETH',
+              transceivers: [
                 {
-                chainName: 'ethereum',
-                address: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
-                tokenKey: 'wstETH',
-                transceivers: [
-                    {
-                    address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
-                    type: 'wormhole',
-                    },
-                ],
+                  address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
+                  type: 'wormhole',
                 },
-                {
-                chainName: 'bsc',
-                address: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
-                tokenKey: 'wstETH',
-                transceivers: [
-                    {
-                    address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
-                    type: 'wormhole',
-                    },
-                ],
-                },
-            ],
+              ],
             },
+            {
+              chainName: 'bsc',
+              address: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
+              tokenKey: 'wstETH',
+              transceivers: [
+                {
+                  address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
+                  type: 'wormhole',
+                },
+              ],
+            },
+          ],
         },
+      },
     };
     ```
 === "v1.x"
@@ -329,41 +329,41 @@ This change simplifies the configuration process by providing a cleaner, more fl
 
     ```typescript
     import WormholeConnect, {
-    nttRoutes,
+      nttRoutes,
     } from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
-    routes: [
+      routes: [
         ...nttRoutes({
-        tokens: {
+          tokens: {
             Lido_wstETH: [
-            {
+              {
                 chain: 'Ethereum',
                 manager: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
                 token: '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
                 transceiver: [
-                {
+                  {
                     address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
                     type: 'wormhole',
-                },
+                  },
                 ],
-            },
-            {
+              },
+              {
                 chain: 'Bsc',
                 manager: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
                 token: '0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C',
                 transceiver: [
-                {
+                  {
                     address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
                     type: 'wormhole',
-                },
+                  },
                 ],
-            },
+              },
             ],
-        },
+          },
         }),
         /* other routes */
-    ],
+      ],
     };
     ```
 
@@ -430,28 +430,28 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 
     ```typescript
     const config: WormholeConnectConfig = {
-        bridgeDefaults: {
-            fromNetwork: 'solana',
-            toNetwork: 'ethereum',
-            tokenKey: 'USDC',
-            requiredNetwork: 'solana',
-        },
-        showHamburgerMenu: true,
+      bridgeDefaults: {
+        fromNetwork: 'solana',
+        toNetwork: 'ethereum',
+        tokenKey: 'USDC',
+        requiredNetwork: 'solana',
+      },
+      showHamburgerMenu: true,
     };
     ```
 === "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
-        ui: {
-            defaultInputs: {
-            fromChain: 'Solana', // Chain names now capitalized
-            toChain: 'Ethereum',
-            tokenKey: 'USDC',
-            requiredChain: 'Solana',
-            },
-            showHamburgerMenu: true,
+      ui: {
+        defaultInputs: {
+          fromChain: 'Solana', // Chain names now capitalized
+          toChain: 'Ethereum',
+          tokenKey: 'USDC',
+          requiredChain: 'Solana',
         },
+        showHamburgerMenu: true,
+      },
     };
     ```
 
@@ -468,11 +468,11 @@ Important details:
 
     ```typescript
     const config: WormholeConnectConfig = {
-        customTheme: {
-            primaryColor: '#4266f5',
-            secondaryColor: '#ff5733',
-        },
-        mode: 'dark',
+      customTheme: {
+        primaryColor: '#4266f5',
+        secondaryColor: '#ff5733',
+      },
+      mode: 'dark',
     };
 
     <WormholeConnect config={config} />;
@@ -481,11 +481,11 @@ Important details:
 
     ```typescript
     const theme: WormholeConnectTheme = {
-        mode: 'dark', // Can be dynamically changed
-        font: 'Arial',
-        button: {
-            primary: '#4266f5',
-        },
+      mode: 'dark', // Can be dynamically changed
+      font: 'Arial',
+      button: {
+        primary: '#4266f5',
+      },
     };
 
     <WormholeConnect config={config} theme={theme} />;
