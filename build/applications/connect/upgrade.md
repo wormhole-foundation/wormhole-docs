@@ -52,7 +52,7 @@ These changes are explained in more detail below, with examples for easy referen
 
 In version 1.0, chain names are now consistent with the `Chain` type from the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, and must be capitalized. This affects all config properties where a chain is referenced, including `rpcs`, `rest`, `graphql`, and `chains`.
 
-=== "v0"
+=== "v0.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -79,7 +79,7 @@ You can find the complete list of supported chain names in the [Wormhole TypeScr
 
 The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure TestNet and MainNet environments.
 
-=== "v0"
+=== "v0.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -107,7 +107,7 @@ For more information, refer to the [network constants list](https://github.com/w
 
 The `networks` property, which allowed whitelisting chains, is now renamed `chains`, and the chain names are capitalized.
 
-=== "v0"
+=== "v0.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -209,7 +209,7 @@ Key Changes to `tokensConfig`:
  - **`wrappedTokens`** - this new key replaces `foreignAssets` and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure
  - **Simplified decimals** - instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain
 
-=== "v0"
+=== "v0.x"
 
     In the old structure, the `foreignAssets` field defined the token’s presence on other chains, and `decimals` were mapped across multiple chains.
 
@@ -283,7 +283,7 @@ Key changes:
 
 This change simplifies the configuration process by providing a cleaner, more flexible way to handle NTT routes across different chains.
 
-=== "v0"
+=== "v0.x"
 
     In the previous version, `nttGroups` defined the NTT managers and transceivers for different tokens across multiple chains.
 
@@ -426,7 +426,7 @@ const config: WormholeConnectConfig = {
 
 In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
 
-=== "v0"
+=== "v0.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -464,7 +464,7 @@ Important details:
  - The `theme` prop is not part of the `config` object and is passed separately to Wormhole Connect
  - `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes
 
-=== "v0"
+=== "v0.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
