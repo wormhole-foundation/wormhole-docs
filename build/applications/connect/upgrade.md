@@ -206,7 +206,7 @@ In Wormhole Connect version 1.0, the `tokensConfig` property has been updated to
 Key Changes to `tokensConfig`:
 
  - **Capitalized chain names** - all chain names, like `ethereum`, must now be capitalized, such as `Ethereum`, to maintain consistency with the rest of the Wormhole SDK
- - **`wrappedTokens`** - This new key replaces `foreignAssets` and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via token bridge routes.
+ - **`wrappedTokens`** - this new key replaces `foreignAssets` and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via token bridge routes
  - **Simplified decimals** - instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain
 
 === "v0.x"
