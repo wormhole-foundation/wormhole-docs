@@ -32,20 +32,20 @@ Below are some examples of different ways you can configure Connect. See `Wormho
 
 Specify supported networks, tokens, and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you don't provide your own.
 
-=== "MainNet"
+=== "Mainnet"
 
     ```js
     --8<-- 'code/build/applications/connect/configuration/custom-simple.jsx'
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```js
     --8<-- 'code/build/applications/connect/configuration/custom-simple-testnet.jsx'
     ```
 
 !!! note
-    For a complete list of TestNet chain names that can be manually added, see the [TestNet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}. 
+    For a complete list of Testnet chain names that can be manually added, see the [Testnet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}. 
 
 ### Fully Customized Theme {: #fully-customized-theme }
 
@@ -57,9 +57,9 @@ Wormhole Connect offers a high level of customizability that suits and integrate
 
 ### Environment {: #environment }
 
-You can configure Connect to be used in TestNet environments, too. You can toggle between MainNet and TestNet environments by defining the `WormholeConnectConfig` as follows:
+You can configure Connect to be used in Testnet environments, too. You can toggle between Mainnet and Testnet environments by defining the `WormholeConnectConfig` as follows:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```ts
     const config: WormholeConnectConfig = {
@@ -67,7 +67,7 @@ You can configure Connect to be used in TestNet environments, too. You can toggl
     }
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```ts
     const config: WormholeConnectConfig = {
@@ -107,7 +107,7 @@ See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connec
 
 By default, Connect will offer its complete built-in list of assets, but you can restrict the displayed assets by defining a subset of tokens under `tokens`. The default full list is as follows:
 
-|    MainNet     |              TestNet               |
+|    Mainnet     |              Testnet               |
 |:--------------:|:----------------------------------:|
 |      ETH       |          ETH, ETHsepolia           |
 |      WETH      |         WETH, WETHsepolia          |
@@ -161,7 +161,7 @@ By default, Connect will offer its complete built-in list of assets, but you can
 
 By default, Connect will offer its complete built-in list of routes, but you can restrict the possible route assets by defining a subset under `routes.` By default, Connect will offer its complete built-in list:
 
-|    Mainnet    |    TestNet    |
+|    Mainnet    |    Testnet    |
 |:-------------:|:-------------:|
 |    bridge     |    bridge     |
 |     relay     |     relay     |
@@ -232,9 +232,9 @@ Show a particular entry on the select tokens modal, redirecting the user to a di
 
 | Property |                                                                         Description                                                                         |
 |:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `label` |                                                                  **Required**. Display text                                                                 |
+| `label`  |                                                                 **Required**. Display text                                                                  |
 |  `href`  | **Required**. URL to redirect to. If present, the values `sourceChain` and `targetChain` are replaced with the currently selected chains before redirecting |
-| `target` |                                                               href target. Defaults to `_self`                                                              |
+| `target` |                                                              href target. Defaults to `_self`                                                               |
 
 ### Explorer {: #explorer }
 
@@ -242,6 +242,6 @@ Enable the explorer button to allow users to search for their transactions on a 
 
 | Property |                                                                                             Description                                                                                             |
 |:--------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `label` |                                                                               Display text. Defaults to `Transactions`                                                                              |
+| `label`  |                                                                              Display text. Defaults to `Transactions`                                                                               |
 |  `href`  | **Required**. URL of the explorer, for instance [https://wormholescan.io/](https://wormholescan.io/){target=\_blank}. If present, the value `address` is replaced with the connected wallet address |
 | `target` |                                                                                 `href` target. Defaults to `_blank`                                                                                 |

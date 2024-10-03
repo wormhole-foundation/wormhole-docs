@@ -77,7 +77,7 @@ You can find the complete list of supported chain names in the [Wormhole TypeScr
 
 ### Rename `env` to `network`
 
-The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure TestNet and MainNet environments.
+The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure Testnet and Mainnet environments.
 
 === "v0.x"
 
