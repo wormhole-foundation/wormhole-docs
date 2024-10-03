@@ -21,7 +21,7 @@ This page features various demos showcasing Wormhole's features, including start
 
 ### Native USDC Bridging
 
-The [Native USDC Bridging](https://github.com/wormhole-foundation/wormhole-circle-integration){target=\_blank} repo demonstrates an integration of Circle's Cross-Chain Transfer Protocol using Wormhole.  
+The [Native USDC Bridging](https://github.com/wormhole-foundation/wormhole-circle-integration){target=\_blank} repo demonstrates an integration of Circle's Cross-Chain Transfer Protocol using Wormhole.
 
 ### Reference Bridge UI
 
@@ -33,7 +33,7 @@ The [Native USDC Bridging](https://github.com/wormhole-foundation/wormhole-circl
 
 ### Wormhole NTT Connect Demo
 
-The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} demo configures a Vite-React TypeScript application using the Wormhole TypeScript SDK and, as an example, preconfigures the Wormhole Connect widget to allow transfers between Sepolia and Solana TestNet environments.
+The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} demo configures a Vite-React TypeScript application using the Wormhole TypeScript SDK and, as an example, preconfigures the Wormhole Connect widget to allow transfers between Sepolia and Solana Testnet environments.
 
 ### Wormhole Demo NTT TS SDK
 

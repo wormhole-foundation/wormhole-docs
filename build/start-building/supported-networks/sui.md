@@ -1,6 +1,6 @@
 ---
 title: Sui
-description: Learn how to work with Wormhole in the Sui ecosystem with dev tools, address formats, emitter details, and contract info for MainNet, TestNet, and local networks.
+description: Learn how to work with Wormhole in the Sui ecosystem with dev tools, address formats, emitter details, and contract info for Mainnet, Testnet, and local networks.
 ---
 
 # Sui
@@ -22,7 +22,7 @@ cargo install --locked \
 
 Because Wormhole works with many environments, the Wormhole address format is normalized. For Sui-based chains, no normalization is needed for standard addresses since they're already 32 bytes. E.g., `0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31` remains the same with no changes.
 
-## Emitter 
+## Emitter
 
 On Sui, the emitter is the object ID of the emitter capability.
 
@@ -30,9 +30,9 @@ On Sui, the emitter is the object ID of the emitter capability.
 
 ### Ecosystem
 
-- [Website](https://sui.io/){target=_blank}
-- [SuiVision Block Explorer](https://suivision.xyz/){target=_blank} | [Suiscan](https://suiscan.xyz/){target=_blank}
-- [Developer Docs](https://docs.sui.io/){target=_blank} | [Faucet](https://docs.sui.io/build/faucet){target=_blank}
+- [Website](https://sui.io/){target=\_blank}
+- [SuiVision Block Explorer](https://suivision.xyz/){target=\_blank} | [Suiscan](https://suiscan.xyz/){target=\_blank}
+- [Developer Docs](https://docs.sui.io/){target=\_blank} | [Faucet](https://docs.sui.io/build/faucet){target=\_blank}
 
 ### Wormhole Details
 
@@ -44,15 +44,15 @@ On Sui, the emitter is the object ID of the emitter capability.
 
 The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){target=\_blank} (i.e., finality) are:
 
-|Level|Value|
-|-----|-----|
-|Finalized|0|
+| Level     | Value |
+| --------- | ----- |
+| Finalized | 0     |
 
 This field may be ignored since the chain provides instant finality.
 
-For more information, see [the Sui consensus docs](https://docs.sui.io/concepts/sui-architecture/consensus){target=_blank}.
+For more information, see [the Sui consensus docs](https://docs.sui.io/concepts/sui-architecture/consensus){target=\_blank}.
 
-=== "MainNet `35834a8a`"
+=== "Mainnet `35834a8a`"
 
     |    Type    |                                                                                                                                         Contract                                                                                                                                         |
     |:----------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -60,7 +60,7 @@ For more information, see [the Sui consensus docs](https://docs.sui.io/concepts/
     | Token Bridge | [`0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9`](https://suivision.xyz/object/0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9){target=_blank} |
     | NFT Bridge   | N/A                                                                                                                                                              |
 
-=== "TestNet `4c78adac`"
+=== "Testnet `4c78adac`"
 
     |    Type    |                                                                                                                                                   Contract                                                                                                                                                   |
     |:----------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|

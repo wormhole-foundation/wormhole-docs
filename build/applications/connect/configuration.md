@@ -1,6 +1,6 @@
 ---
 title: Configure Your Connect Widget
-description: Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions. 
+description: Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions.
 ---
 
 ## Introduction {: #introduction }
@@ -24,28 +24,28 @@ Configure the Wormhole Connect React component by passing a `WormholeConnectConf
 Below are some examples of different ways you can configure Connect. See `WormholeConnectConfig` in the below file for a full view of the supported configuration parameters.
 
 ??? code "View `WormholeConnectConfig`"
-    ```ts
+`ts
     --8<-- 'code/build/applications/connect/configuration/index.ts'
-    ```
+    `
 
 ### Custom Networks and RPC Endpoints {: #custom-networks-and-rpc-endpoints }
 
 Specify supported networks, tokens, and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you don't provide your own.
 
-=== "MainNet"
+=== "Mainnet"
 
     ```js
     --8<-- 'code/build/applications/connect/configuration/custom-simple.jsx'
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```js
     --8<-- 'code/build/applications/connect/configuration/custom-simple-testnet.jsx'
     ```
 
 !!! note
-    For a complete list of TestNet chain names that can be manually added, see the [TestNet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}. 
+For a complete list of Testnet chain names that can be manually added, see the [Testnet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}.
 
 ### Fully Customized Theme {: #fully-customized-theme }
 
@@ -57,9 +57,9 @@ Wormhole Connect offers a high level of customizability that suits and integrate
 
 ### Environment {: #environment }
 
-You can configure Connect to be used in TestNet environments, too. You can toggle between MainNet and TestNet environments by defining the `WormholeConnectConfig` as follows:
+You can configure Connect to be used in Testnet environments, too. You can toggle between Mainnet and Testnet environments by defining the `WormholeConnectConfig` as follows:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```ts
     const config: WormholeConnectConfig = {
@@ -67,31 +67,33 @@ You can configure Connect to be used in TestNet environments, too. You can toggl
     }
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```ts
     const config: WormholeConnectConfig = {
       "env": "testnet"
     }
     ```
+
 ### Custom RPC Endpoint {: #custom-rpc-endpoint }
 
 You can define a custom RPC provider for your Connect widget to use. This can be especially helpful if you'd like to replace public endpoints with dedicated or private endpoints.
 
 ```ts
 const config: WormholeConnectConfig = {
-  "rpcs": {
-    "solana": "https://rpc.ankr.com/solana/ee827255553bb0fa9e0aaeab27e988707e60ea06ae36be0658b778072e94979e"
-  }
-}
+	rpcs: {
+		solana:
+			'https://rpc.ankr.com/solana/ee827255553bb0fa9e0aaeab27e988707e60ea06ae36be0658b778072e94979e',
+	},
+};
 ```
 
 ### Arbitrary Token {: #arbitrary-token }
 
-The following section shows how to add an arbitrary token to your deployment of Connect. 
+The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
+You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
 
 This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which isn't built in by default and provided under the `tokensConfig` key.
 
@@ -107,8 +109,8 @@ See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connec
 
 By default, Connect will offer its complete built-in list of assets, but you can restrict the displayed assets by defining a subset of tokens under `tokens`. The default full list is as follows:
 
-|    MainNet     |              TestNet               |
-|:--------------:|:----------------------------------:|
+|    Mainnet     |              Testnet               |
+| :------------: | :--------------------------------: |
 |      ETH       |          ETH, ETHsepolia           |
 |      WETH      |         WETH, WETHsepolia          |
 |    USDCeth     |              USDCeth               |
@@ -161,8 +163,8 @@ By default, Connect will offer its complete built-in list of assets, but you can
 
 By default, Connect will offer its complete built-in list of routes, but you can restrict the possible route assets by defining a subset under `routes.` By default, Connect will offer its complete built-in list:
 
-|    Mainnet    |    TestNet    |
-|:-------------:|:-------------:|
+|    Mainnet    |    Testnet    |
+| :-----------: | :-----------: |
 |    bridge     |    bridge     |
 |     relay     |     relay     |
 |  cctpManual   |  cctpManual   |
@@ -175,7 +177,7 @@ By default, Connect will offer its complete built-in list of routes, but you can
 | cosmosGateway | cosmosGateway |
 |     tBTC      |     tBTC      |
 
-### Wallet Connect Project ID  {: #wallet-connect-project-id }
+### Wallet Connect Project ID {: #wallet-connect-project-id }
 
 If you would like to offer WalletConnect as a supported wallet option, you'll need to obtain a project ID on the [WalletConnect cloud dashboard](https://cloud.walletconnect.com/){target=\_blank}.
 
@@ -188,7 +190,7 @@ By setting the `showHamburgerMenu` option to **false**, you can deactivate the h
 By setting the `showHamburgerMenu` option to `false,` you can add extra links. The following properties are accessed through the `menu[]` property (e.g., `menu[].label`):
 
 | Property |                 Description                 |
-|:--------:|:-------------------------------------------:|
+| :------: | :-----------------------------------------: |
 | `label`  |            Link name to show up             |
 |  `href`  |              Target URL or URN              |
 | `target` | Anchor standard target, by default `_blank` |
@@ -209,7 +211,7 @@ The CoinGecko API can be used to fetch token price data. If you have a [CoinGeck
 Specify a set of extra networks to be displayed on the network selection modal, each linking to a different page, dApp, or mobile app the user will be redirected to. The following properties are accessed through the `moreNetworks` property (e.g., `moreNetworks.href`):
 
 | <div style="width:15em">Property</div> |                                                                       Description                                                                       |
-|:--------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| :------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                 `href`                 |                                                  **Required**. Default value for missing network hrefs                                                  |
 |                `target`                |                                           Default value for missing network link targets. Defaults to `_self`                                           |
 |             `description`              | Brief description that should be displayed as a tooltip when the user hovers over a more network icon. Used as default for missing network descriptions |
@@ -222,26 +224,26 @@ Specify a set of extra networks to be displayed on the network selection modal, 
 |     `networks[].showOpenInNewIcon`     |                    Disable top right open in new icon. Defaults to **true** if target is `_blank` or **false** if target is `_self`                     |
 
 ??? code "View full configuration"
-    ```json
+`json
     --8<-- 'code/build/applications/connect/configuration/advanced-configuration.json'
-    ```
+    `
 
 ### More Tokens {: #more-tokens }
 
 Show a particular entry on the select tokens modal, redirecting the user to a different page, dApp, or mobile app. The following properties are accessed through the `moreTokens` property (e.g., `moreTokens.label`):
 
 | Property |                                                                         Description                                                                         |
-|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `label` |                                                                  **Required**. Display text                                                                 |
+| :------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `label`  |                                                                 **Required**. Display text                                                                  |
 |  `href`  | **Required**. URL to redirect to. If present, the values `sourceChain` and `targetChain` are replaced with the currently selected chains before redirecting |
-| `target` |                                                               href target. Defaults to `_self`                                                              |
+| `target` |                                                              href target. Defaults to `_self`                                                               |
 
 ### Explorer {: #explorer }
 
 Enable the explorer button to allow users to search for their transactions on a given explorer, filtering by their wallet address. The following properties are accessed through the `explorer` property (e.g., `explorer.label`):
 
 | Property |                                                                                             Description                                                                                             |
-|:--------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|  `label` |                                                                               Display text. Defaults to `Transactions`                                                                              |
+| :------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `label`  |                                                                              Display text. Defaults to `Transactions`                                                                               |
 |  `href`  | **Required**. URL of the explorer, for instance [https://wormholescan.io/](https://wormholescan.io/){target=\_blank}. If present, the value `address` is replaced with the connected wallet address |
 | `target` |                                                                                 `href` target. Defaults to `_blank`                                                                                 |

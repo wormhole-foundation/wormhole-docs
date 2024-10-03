@@ -8,7 +8,7 @@ description: Learn about Tilt, a Wormhole dev environment with a local Kubernete
 [Tilt](https://tilt.dev/){target=\_blank} is part of the official Docker ecosystem. It's a tool that allows developers to configure a Kubernetes environment for development easily.
 
 !!! note
-    Tilt is often referred to as "DevNet" in the Wormhole ecosystem, so any information labeled as "DevNet" also applies to Tilt.
+Tilt is often referred to as "Devnet" in the Wormhole ecosystem, so any information labeled as "Devnet" also applies to Tilt.
 
 However, in the context of Wormhole, "Tilt" refers to the development environment used by the [Wormhole Core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}. This environment stands up Docker images for all the tools necessary to build across multiple blockchains, including:
 
@@ -80,7 +80,7 @@ wget https://go.dev/dl/go1.18.1.linux-amd64.tar.gz &&
 rm -r /usr/local/go && tar -C /usr/local -xzf go1.18.1.linux-amd64.tar.gz
 ```
 
-#### Install Docker Desktop 
+#### Install Docker Desktop
 
 If you're using Linux with a windows manager, it's highly recommended that you install Docker Desktop, since it comes with built-in Kubernetes, and you won't need to download Minikube. It's recommended that you allocate Docker at least 4 CPUs and 16GB RAM. Also, make sure you set up Docker as a non-root user. You can refer to [this list of Docker installation methods](https://docs.docker.com/engine/install/ubuntu/#installation-methods){target=\_blank}.
 
@@ -108,16 +108,16 @@ curl -fsSL https://raw.githubusercontent.com/tilt-dev/tilt/master/scripts/instal
 
 ### Linux Experimental Instructions
 
-This is an experimental, single-command setup script. 
+This is an experimental, single-command setup script.
 
 !!! warning
-    This is only recommended if you're running headless Linux and unable to use Docker Desktop, as you can enable Kubernetes from Docker.
+This is only recommended if you're running headless Linux and unable to use Docker Desktop, as you can enable Kubernetes from Docker.
 
 This experimental single command setup script should install dependencies for you on Linux and configure everything properly. If it doesn't work as expected, refer to the [standard Linux installation steps above](#linux-instructions).
 
 ```bash
 curl $URL | sh install_linux.sh &&
-cd wormhole/ && 
+cd wormhole/ &&
 ./tilt.sh
 ```
 
@@ -145,9 +145,9 @@ tilt up -- --algorand --solana
 
 ## Using Tilt
 
-Tilt can be treated as an external environment or DevNet that you can easily spin up and tear down. If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints that are hosted in your Tilt environment, you should check out the Tilt dashboard, located at [http://localhost:10350/overview](http://localhost:10350/overview){target=\_blank}.
+Tilt can be treated as an external environment or Devnet that you can easily spin up and tear down. If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints that are hosted in your Tilt environment, you should check out the Tilt dashboard, located at [http://localhost:10350/overview](http://localhost:10350/overview){target=\_blank}.
 
-All the deployed contract addresses can be found under the DevNet section of the chain being used in the [Environments](/docs/build/start-building/supported-networks/){target=\_blank} pages. Useful information pertaining to funded wallets and private keys can also be found in the [`DevNet.md`](https://github.com/wormhole-foundation/wormhole/blob/main/docs/devnet.md){target=\_blank} file of the docs.
+All the deployed contract addresses can be found under the Devnet section of the chain being used in the [Environments](/docs/build/start-building/supported-networks/){target=\_blank} pages. Useful information pertaining to funded wallets and private keys can also be found in the [`Devnet.md`](https://github.com/wormhole-foundation/wormhole/blob/main/docs/devnet.md){target=\_blank} file of the docs.
 
 ## Shutting Down Tilt
 
@@ -161,11 +161,11 @@ tilt down -- --solana --algorand
 
 ### Where are Fantom, Celo, Polygon, and Other EVM Chains?
 
-The smart contract development environment is effectively the same for all chains that support EVM. For changes in gas costs and transaction times, consider testing contract logic on DevNet and then using TestNet environments to get chain-specific answers.
+The smart contract development environment is effectively the same for all chains that support EVM. For changes in gas costs and transaction times, consider testing contract logic on Devnet and then using Testnet environments to get chain-specific answers.
 
 ### Solana is Taking Forever
 
-Due to Solana's architecture, building the Solana pod often takes 25-40 minutes. Consider increasing the number of CPU cores assigned to DevNet for a faster build.
+Due to Solana's architecture, building the Solana pod often takes 25-40 minutes. Consider increasing the number of CPU cores assigned to Devnet for a faster build.
 
 ### Solana Program Deploy Doesn't Work
 
@@ -177,14 +177,14 @@ If you want to iterate quickly and don't want to bring Tilt down and back up, yo
 
 ## Contracts and Accounts
 
-The DevNet environment deploys the core layer and Token Bridge to each chain at the same addresses every time. It also provides funds to specific wallets.
+The Devnet environment deploys the core layer and Token Bridge to each chain at the same addresses every time. It also provides funds to specific wallets.
 
 ## Default Ports
 
-| Service            | Port |
-|:------------------:|:----:|
-| Guardian REST      | 7071 |
+|      Service       | Port |
+| :----------------: | :--: |
+|   Guardian REST    | 7071 |
 | Guardian gRPC Port | 7070 |
-| Eth0 RPC           | 8545 |
-| Eth1 RPC           | 8546 |
-| Solana RPC         | 8899 |
+|      Eth0 RPC      | 8545 |
+|      Eth1 RPC      | 8546 |
+|     Solana RPC     | 8899 |

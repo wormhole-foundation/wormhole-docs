@@ -15,7 +15,7 @@ For a more comprehensive understanding of the Spy and its role within the Wormho
 
 To start a Spy locally, run the following Docker command:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
     docker run --pull=always --platform=linux/amd64 \
@@ -27,7 +27,7 @@ To start a Spy locally, run the following Docker command:
         --env mainnet
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
     docker run --pull=always --platform=linux/amd64 \
@@ -41,18 +41,18 @@ To start a Spy locally, run the following Docker command:
 
 Optionally, add the following flags to skip any VAAs with invalid signatures:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
     --ethRPC https://eth.drpc.org
     --ethContract 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
     --ethRPC https://sepolia.drpc.org/
-    --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78    
+    --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78
     ```
 
 ## Subscribe to Filtered VAAs
@@ -62,7 +62,7 @@ Once running, a [gRPC](https://grpc.io/){target=\_blank} client (i.e., your prog
 Use this [proto-spec file](https://github.com/wormhole-foundation/wormhole/blob/main/proto/spy/v1/spy.proto){target=\_blank} to generate a client for the gRPC service.
 
 !!! note
-    If using JavaScript/TypeScript, the [Spydk](https://www.npmjs.com/package/@certusone/wormhole-spydk){target=\_blank} makes setting up a client easier.
+If using JavaScript/TypeScript, the [Spydk](https://www.npmjs.com/package/@certusone/wormhole-spydk){target=\_blank} makes setting up a client easier.
 
 ## Data Persistence
 

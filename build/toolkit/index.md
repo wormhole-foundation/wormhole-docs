@@ -11,37 +11,37 @@ Regardless of which network development environment you are using, there are a f
 
 <div class="grid cards" markdown>
 
--   :octicons-telescope-16:{ .lg .middle } **Wormholescan**
+- :octicons-telescope-16:{ .lg .middle } **Wormholescan**
 
-    ---
+  ***
 
-    Wormholescan is an explorer for looking at individual transfer statuses on MainNet and TestNet.
+  Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
 
-    [:octicons-arrow-right-16: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
+  [:octicons-arrow-right-16: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
 
--   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
+- :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
 
-    ---
+  ***
 
-    The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
+  The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
 
-    [:octicons-arrow-right-16: Get started with the CLI](/docs/build/toolkit/cli/)
+  [:octicons-arrow-right-16: Get started with the CLI](/docs/build/toolkit/cli/)
 
--   :octicons-file-code-16:{ .lg .middle } **Wormhole SDK**
+- :octicons-file-code-16:{ .lg .middle } **Wormhole SDK**
 
-    ---
+  ***
 
-    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
+  Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 
-    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
+  [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
 
--   :octicons-beaker-16:{ .lg .middle } **Tilt**
+- :octicons-beaker-16:{ .lg .middle } **Tilt**
 
-    ---
+  ***
 
-    Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
+  Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
-    [:octicons-arrow-right-16: Get started with Tilt](/docs/build/toolkit/tilt/)
+  [:octicons-arrow-right-16: Get started with Tilt](/docs/build/toolkit/tilt/)
 
 </div>
 
@@ -49,20 +49,20 @@ Regardless of which network development environment you are using, there are a f
 
 <div class="grid cards" markdown>
 
--   :octicons-file-code-16:{ .lg .middle } **Wormhole Spy SDK**
+- :octicons-file-code-16:{ .lg .middle } **Wormhole Spy SDK**
 
-    ---
+  ***
 
-    The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
+  The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
 
-    [:octicons-arrow-right-16: Check out the Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
+  [:octicons-arrow-right-16: Check out the Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
 
--   :octicons-pencil-16:{ .lg .middle } **VAA Parser**
+- :octicons-pencil-16:{ .lg .middle } **VAA Parser**
 
-    ---
+  ***
 
-    The VAA Parser is a resource for parsing out details of an encoded VAA.
+  The VAA Parser is a resource for parsing out details of an encoded VAA.
 
-    [:octicons-arrow-right-16: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
+  [:octicons-arrow-right-16: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
 
 </div>

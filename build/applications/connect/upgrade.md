@@ -11,9 +11,9 @@ The Wormhole Connect feature has been updated to **version 1.0**, introducing a 
 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
- - Update to the latest Connect package
- - Apply configuration changes to the **`WormholeConnectConfig`** object
- - Understand new routing capabilities and plugin options
+- Update to the latest Connect package
+- Apply configuration changes to the **`WormholeConnectConfig`** object
+- Understand new routing capabilities and plugin options
 
 These updates ensure better performance and a smoother integration experience.
 
@@ -62,6 +62,7 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
       },
     };
     ```
+
 === "v1.x"
 
     ```typescript
@@ -77,7 +78,7 @@ You can find the complete list of supported chain names in the [Wormhole TypeScr
 
 ### Rename `env` to `network`
 
-The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure TestNet and MainNet environments.
+The `env` property has been renamed to `network`, with capitalized values. This change affects how you configure Testnet and Mainnet environments.
 
 === "v0.x"
 
@@ -86,6 +87,7 @@ The `env` property has been renamed to `network`, with capitalized values. This 
       env: 'testnet',
     };
     ```
+
 === "v1.x"
 
     ```typescript
@@ -114,6 +116,7 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
       networks: ['solana', 'ethereum'],
     };
     ```
+
 === "v1.x"
 
     ```typescript
@@ -128,8 +131,8 @@ The `routes` property in Wormhole Connect version 1.0 has significantly improved
 
 By default, if no `routes` property is set, Wormhole Connect will provide routes for two core protocols:
 
- - [Wormhole Token Bridge](/docs/learn/messaging/token-nft-bridge/){target=\_blank}
- - [CCTP](/docs/learn/messaging/cctp/){target=\_blank}
+- [Wormhole Token Bridge](/docs/learn/messaging/token-nft-bridge/){target=\_blank}
+- [CCTP](/docs/learn/messaging/cctp/){target=\_blank}
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
 
@@ -137,19 +140,7 @@ For most use cases, integrators require more than the default routes. The new `r
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
-???- tip "`route` Plugins"
-    - **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
-    - **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
-    - **`CCTPRoute`** - manually redeemed CCTP route
-    - **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
-    - **`DEFAULT_ROUTES`** - array containing the four preceding routes (TokenBridgeRoute, AutomaticTokenBridgeRoute, CCTPRoute, AutomaticCCTPRoute)
-    - **`nttAutomaticRoute(nttConfig)`** - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
-    - **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route
-    - **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
-    - **`MayanRoute`** - route that offers multiple Mayan protocols
-    - **`MayanRouteSWIFT`** - route for Mayan’s Swift protocol only
-    - **`MayanRouteMCTP`** - route for Mayan’s MCTP protocol only
-    - **`MayanRouteWH`** - route for Mayan’s original Wormhole transfer protocol
+???- tip "`route` Plugins" - **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route - **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route - **`CCTPRoute`** - manually redeemed CCTP route - **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route - **`DEFAULT_ROUTES`** - array containing the four preceding routes (TokenBridgeRoute, AutomaticTokenBridgeRoute, CCTPRoute, AutomaticCCTPRoute) - **`nttAutomaticRoute(nttConfig)`** - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route - **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route - **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array - **`MayanRoute`** - route that offers multiple Mayan protocols - **`MayanRouteSWIFT`** - route for Mayan’s Swift protocol only - **`MayanRouteMCTP`** - route for Mayan’s MCTP protocol only - **`MayanRouteWH`** - route for Mayan’s original Wormhole transfer protocol
 
 In addition to these routes, developers can create custom routes for their own Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/example-native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
@@ -163,13 +154,13 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 
 ```typescript
 import {
-  AutomaticCCTPRoute,
-  WormholeConnectConfig,
-  WormholeConnect,
+	AutomaticCCTPRoute,
+	WormholeConnectConfig,
+	WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
-  routes: [AutomaticCCTPRoute],
+	routes: [AutomaticCCTPRoute],
 };
 
 <WormholeConnect config={config} />;
@@ -181,17 +172,17 @@ In this example, Wormhole Connect is configured with routes for both default pro
 
 ```typescript
 import {
-  DEFAULT_ROUTES,
-  nttRoutes,
-  MayanRouteSWIFT,
-  WormholeConnectConfig,
-  WormholeConnect,
+	DEFAULT_ROUTES,
+	nttRoutes,
+	MayanRouteSWIFT,
+	WormholeConnectConfig,
+	WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
 const config: WormholeConnectConfig = {
-  routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
+	routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
 <WormholeConnect config={config} />;
@@ -205,9 +196,9 @@ In Wormhole Connect version 1.0, the `tokensConfig` property has been updated to
 
 Key Changes to `tokensConfig`:
 
- - **Capitalized chain names** - all chain names, like `ethereum`, must now be capitalized, such as `Ethereum`, to maintain consistency with the rest of the Wormhole SDK
- - **`wrappedTokens`** - this new key replaces `foreignAssets` and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via token bridge routes
- - **Simplified decimals** - instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain
+- **Capitalized chain names** - all chain names, like `ethereum`, must now be capitalized, such as `Ethereum`, to maintain consistency with the rest of the Wormhole SDK
+- **`wrappedTokens`** - this new key replaces `foreignAssets` and defines the token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via token bridge routes
+- **Simplified decimals** - instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain
 
 === "v0.x"
 
@@ -240,6 +231,7 @@ Key Changes to `tokensConfig`:
       },
     };
     ```
+
 === "v1.x"
 
     In v1.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
@@ -278,8 +270,8 @@ In Wormhole Connect version 1.0, the `nttGroups` property, which was used to con
 
 Key changes:
 
- - **Removed `nttGroups`** - the `nttGroups` property has been removed from the configuration and is now passed as an argument to the `nttRoutes` function
- - **Direct NTT route configuration** - NTT routes are now defined more explicitly, allowing for a more organized structure when specifying tokens, chains, and managers
+- **Removed `nttGroups`** - the `nttGroups` property has been removed from the configuration and is now passed as an argument to the `nttRoutes` function
+- **Direct NTT route configuration** - NTT routes are now defined more explicitly, allowing for a more organized structure when specifying tokens, chains, and managers
 
 This change simplifies the configuration process by providing a cleaner, more flexible way to handle NTT routes across different chains.
 
@@ -323,6 +315,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
       },
     };
     ```
+
 === "v1.x"
 
     In v1.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
@@ -375,50 +368,50 @@ In Wormhole Connect version 1.0, the user interface configuration has been signi
 
 Key UI changes:
 
- - **Consolidated UI properties** - many UI-related properties moved under a new top-level ui key for better organization
- - **Removed `customTheme` and `mode`** - these properties have been removed in favor of a new top-level prop called `theme`, which simplifies theming and allows dynamic switching between themes
+- **Consolidated UI properties** - many UI-related properties moved under a new top-level ui key for better organization
+- **Removed `customTheme` and `mode`** - these properties have been removed in favor of a new top-level prop called `theme`, which simplifies theming and allows dynamic switching between themes
 
 #### UI Properties
 
 The following properties that were previously defined at the root level of the configuration are now part of the `ui` key:
 
- - `explorer` → `ui.explorer` - specifies the explorer to use for viewing transactions
- - `bridgeDefaults` → `ui.defaultInputs` - sets default input values for the bridge, such as the source and destination chains and token
- - `pageHeader` → `ui.pageHeader` - sets the title and header for the page
- - `menu` → `ui.menu` - defines the menu items displayed in the interface
- - `searchTx` → `ui.searchTx` - configures the transaction search functionality
- - `partnerLogo` → `ui.partnerLogo` - displays a partner's logo on the interface
- - `walletConnectProjectId` → `ui.walletConnectProjectId` - integrates WalletConnect into the UI
- - `showHamburgerMenu` → `ui.showHamburgerMenu` - enables or disables the hamburger menu for navigation
+- `explorer` → `ui.explorer` - specifies the explorer to use for viewing transactions
+- `bridgeDefaults` → `ui.defaultInputs` - sets default input values for the bridge, such as the source and destination chains and token
+- `pageHeader` → `ui.pageHeader` - sets the title and header for the page
+- `menu` → `ui.menu` - defines the menu items displayed in the interface
+- `searchTx` → `ui.searchTx` - configures the transaction search functionality
+- `partnerLogo` → `ui.partnerLogo` - displays a partner's logo on the interface
+- `walletConnectProjectId` → `ui.walletConnectProjectId` - integrates WalletConnect into the UI
+- `showHamburgerMenu` → `ui.showHamburgerMenu` - enables or disables the hamburger menu for navigation
 
 Additionally, there are two new properties under `ui`:
 
- - **`ui.title`** - sets the title rendered in the top left corner of the UI. The default is "Wormhole Connect"
- - **`ui.getHelpUrl`** - URL that Connect will render when an unknown error occurs, allowing users to seek help. This can link to a Discord server or any other support channel
+- **`ui.title`** - sets the title rendered in the top left corner of the UI. The default is "Wormhole Connect"
+- **`ui.getHelpUrl`** - URL that Connect will render when an unknown error occurs, allowing users to seek help. This can link to a Discord server or any other support channel
 
 ```typescript
 import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
-  ui: {
-    title: 'DonkeyCoin Bridge',
-    getHelpUrl: 'https://discord.gg/DonkeyCoinCommunity',
-    menu: [
-      {
-        label: 'Support',
-        href: 'https://donkeycoin.io/about',
-        target: '_blank',
-        order: 1, // Order of appearance in the menu
-      },
-      {
-        label: 'About',
-        href: 'https://donkeycoin.io/about',
-        target: '_blank',
-        order: 2,
-      },
-    ],
-    showHamburgerMenu: false,
-  },
+	ui: {
+		title: 'DonkeyCoin Bridge',
+		getHelpUrl: 'https://discord.gg/DonkeyCoinCommunity',
+		menu: [
+			{
+				label: 'Support',
+				href: 'https://donkeycoin.io/about',
+				target: '_blank',
+				order: 1, // Order of appearance in the menu
+			},
+			{
+				label: 'About',
+				href: 'https://donkeycoin.io/about',
+				target: '_blank',
+				order: 2,
+			},
+		],
+		showHamburgerMenu: false,
+	},
 };
 ```
 
@@ -439,6 +432,7 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
       showHamburgerMenu: true,
     };
     ```
+
 === "v1.x"
 
     ```typescript
@@ -461,8 +455,8 @@ In version 1.0, the `customTheme` and `mode` properties, which were previously u
 
 Important details:
 
- - The `theme` prop is not part of the `config` object and is passed separately to Wormhole Connect
- - `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes
+- The `theme` prop is not part of the `config` object and is passed separately to Wormhole Connect
+- `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes
 
 === "v0.x"
 
@@ -477,6 +471,7 @@ Important details:
 
     <WormholeConnect config={config} />;
     ```
+
 === "v1.x"
 
     ```typescript
@@ -497,15 +492,15 @@ Several configuration properties have been removed in Wormhole Connect version 1
 
 Removed config keys:
 
- - `cta`
- - `cctpWarning`
- - `pageSubHeader`
- - `moreTokens`
- - `moreChains`
- - `ethBridgeMaxAmount`
- - `wstETHBridgeMaxAmount`
- - `customTheme`
- - `mode`
+- `cta`
+- `cctpWarning`
+- `pageSubHeader`
+- `moreTokens`
+- `moreChains`
+- `ethBridgeMaxAmount`
+- `wstETHBridgeMaxAmount`
+- `customTheme`
+- `mode`
 
 If your current setup includes any of these properties, you can safely remove them, as they are no longer supported in v1.0.
 
@@ -517,19 +512,19 @@ For those using the CDN-hosted version of Wormhole Connect, the package's instal
 
 1. Install the Connect package via npm:
 
-    ```bash
-    npm install @wormhole-foundation/wormhole-connect@^0.1
-    ```
+   ```bash
+   npm install @wormhole-foundation/wormhole-connect@^0.1
+   ```
 
 2. After installing the package, you can embed Wormhole Connect into your page by adding the following code:
 
-    ```typescript
-    import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
+   ```typescript
+   import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
-    const container = document.getElementById('connect')!;
+   const container = document.getElementById('connect')!;
 
-    wormholeConnectHosted(container);
-    ```
+   wormholeConnectHosted(container);
+   ```
 
 ### Example: Custom Configuration for Hosted Version
 
@@ -537,24 +532,24 @@ The `wormholeConnectHosted` function accepts two parameters: `config` and `theme
 
 ```typescript
 import {
-  wormholeConnectHosted,
-  MayanRoute,
+	wormholeConnectHosted,
+	MayanRoute,
 } from '@wormhole-foundation/wormhole-connect';
 
 const container = document.getElementById('connect')!;
 
 wormholeConnectHosted(container, {
-  config: {
-    routes: [MayanRoute],
-    eventHandler: (e) => {
-      console.log('Connect event', e);
-    },
-  },
-  theme: {
-    background: {
-      default: '#004547',
-    },
-  },
+	config: {
+		routes: [MayanRoute],
+		eventHandler: (e) => {
+			console.log('Connect event', e);
+		},
+	},
+	theme: {
+		background: {
+			default: '#004547',
+		},
+	},
 });
 ```
 
