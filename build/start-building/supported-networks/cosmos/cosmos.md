@@ -27,7 +27,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4000`
 - Contract Source: No source file
 
-=== "MainNet `cosmoshub-4`"
+=== "Mainnet `cosmoshub-4`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -35,7 +35,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `theta-testnet-001`"
+=== "Testnet `theta-testnet-001`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -67,7 +67,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4001`
 - Contract Source: No source file
 
-=== "MainNet `evmos_9001-2`"
+=== "Mainnet `evmos_9001-2`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -75,7 +75,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `evmos_9000-4`"
+=== "Testnet `evmos_9000-4`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -105,7 +105,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4002`
 - Contract Source: No source file
 
-=== "MainNet `kaiyo-1`"
+=== "Mainnet `kaiyo-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -113,7 +113,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `harpoon-4`"
+=== "Testnet `harpoon-4`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -134,7 +134,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 ### Ecosystem
 
 - [Website](https://injective.com/){target=_blank}
-- [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective TestNet Explorer](https://testnet.explorer.injective.network/){target=_blank}
+- [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective Testnet Explorer](https://testnet.explorer.injective.network/){target=_blank}
 - [Developer Docs](https://docs.injective.network/){target=_blank} | [Injective TypeScript SDK docs](https://docs.ts.injective.network/){target=_blank} | [Injective trading docs](https://docs.trading.injective.network/){target=_blank}
 - [Faucet](https://testnet.faucet.injective.network/){target=/_blank}
 
@@ -144,7 +144,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `19`
 - Contract Source: No source file
 
-=== "MainNet `injective-1`"
+=== "Mainnet `injective-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -152,7 +152,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge | [`inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn`](https://explorer.injective.network/contract/inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn/){target=_blank} |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `injective-888`"
+=== "Testnet `injective-888`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -184,7 +184,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `20`
 - Contract Source: No source file
 
-=== "MainNet `osmosis-1`"
+=== "Mainnet `osmosis-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -192,7 +192,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `osmo-test-5`"
+=== "Testnet `osmo-test-5`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -222,7 +222,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `32`
 - Contract Source: No source file
 
-=== "MainNet `pacific-1`"
+=== "Mainnet `pacific-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -230,7 +230,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge | [`sei1smzlm9t79kur392nu9egl8p8je9j92q4gzguewj56a05kyxxra0qy0nuf3`](https://www.seiscan.app/pacific-1/contracts/sei1smzlm9t79kur392nu9egl8p8je9j92q4gzguewj56a05kyxxra0qy0nuf3){target=_blank} |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `atlantic-2`"
+=== "Testnet `atlantic-2`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -262,7 +262,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `3`
 - Contract Source: No source file
 
-=== "MainNet `columbus-5`"
+=== "Mainnet `columbus-5`"
 
     |    Type    | Contract                                       |
     |:----------:|:---------------------------------------------:|
@@ -270,7 +270,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge | `terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf` |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `bombay-12`"
+=== "Testnet `bombay-12`"
 
     |    Type    | Contract                                       |
     |:----------:|:---------------------------------------------:|
@@ -294,7 +294,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `18`
 - Contract Source: No source file
 
-=== "MainNet `phoenix-1`"
+=== "Mainnet `phoenix-1`"
 
     |    Type    | Contract                                                           |
     |:----------:|:-----------------------------------------------------------------:|
@@ -302,7 +302,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge | `terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9` |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `pisco-1`"
+=== "Testnet `pisco-1`"
 
     |    Type    | Contract                                                           |
     |:----------:|:-----------------------------------------------------------------:|
@@ -334,7 +334,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `28`
 - Contract Source: No source file
 
-=== "MainNet `dimension_37-1`"
+=== "Mainnet `dimension_37-1`"
 
     |    Type    | Contract                                                                                                                                                               |
     |:----------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -342,7 +342,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge | [`xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv`](https://explorer.xpla.io/mainnet/address/xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv){target=_blank} |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `cube_47-5`"
+=== "Testnet `cube_47-5`"
 
     |    Type    | Contract                                                                                                                                                               |
     |:----------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -372,7 +372,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4003`
 - Contract Source: No source file
 
-=== "MainNet `neutron-1`"
+=== "Mainnet `neutron-1`"
 
     |    Type    | Contract                                                                                                                                                                      |
     |:----------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -380,7 +380,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `pion-1`"
+=== "Testnet `pion-1`"
 
     |    Type    | Contract                                                                                                                                                                      |
     |:----------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -411,7 +411,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4004`
 - Contract Source: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/celestia.json)
 
-=== "MainNet `celestia`"
+=== "Mainnet `celestia`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -419,7 +419,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `mocha-4`"
+=== "Testnet `mocha-4`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -449,7 +449,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4007`
 - Contract Source: No source file
 
-=== "MainNet `dymension_1100-1`"
+=== "Mainnet `dymension_1100-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -457,7 +457,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet "
+=== "Testnet "
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -487,7 +487,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4005`
 - Contract Source: No source file
 
-=== "MainNet `stargaze-1`"
+=== "Mainnet `stargaze-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -495,7 +495,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet"
+=== "Testnet"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -526,7 +526,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4006`
 - Contract Source: No source file
 
-=== "MainNet"
+=== "Mainnet"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -534,7 +534,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet `seda-1-testnet`"
+=== "Testnet `seda-1-testnet`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -564,7 +564,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4008`
 - Contract Source: No source file
 
-=== "MainNet `pio-mainnet-1`"
+=== "Mainnet `pio-mainnet-1`"
 
     |    Type    | Contract |
     |:----------:|:--------:|
@@ -572,7 +572,7 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
     | Token Bridge |   N/A    |
     | NFT Bridge   |   N/A    |
 
-=== "TestNet"
+=== "Testnet"
 
     |    Type    | Contract |
     |:----------:|:--------:|

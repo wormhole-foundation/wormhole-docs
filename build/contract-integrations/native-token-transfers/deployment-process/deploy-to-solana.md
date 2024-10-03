@@ -24,13 +24,13 @@ cd my-ntt-deployment
 
 Initialize a new `deployment.json` file, specifying the network:
 
-=== "TestNet"
+=== "Testnet"
 
     ```bash
 	ntt init Testnet
     ```
 
-=== "MainNet"
+=== "Mainnet"
 
     ```bash
 	ntt init Mainnet
@@ -52,7 +52,7 @@ solana-keygen grind --starts-with w:1 --ignore-case
 solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
 ```
 
-3. Set the Solana configuration to use the default RPC URL for DevNet:
+3. Set the Solana configuration to use the default RPC URL for Devnet:
 ```bash
 solana config set -ud
 ```
@@ -188,7 +188,7 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
       }
       ```
 
-    For Sepolia (Ethereum TestNet), the limits are set with 18 decimal places:
+    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
       ```json
       "inbound": {
           "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia

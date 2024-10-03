@@ -41,7 +41,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 This field may be ignored since the chain provides instant finality. For more information, see [the Aptos Docs](https://aptos.dev/reference/glossary/#byzantine-fault-tolerance-bft){target=_blank}.
 
-### MainNet Contracts `1`
+### Mainnet Contracts `1`
 
 |    Type    |                                                                                                                                  Contract                                                                                                                                  |
 |:----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -49,7 +49,7 @@ This field may be ignored since the chain provides instant finality. For more in
 | Token Bridge | [0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f](https://explorer.aptoslabs.com/account/0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f?network=mainnet){target=_blank} |
 | NFT Bridge   | [0x1bdffae984043833ed7fe223f7af7a3f8902d04129b14f801823e64827da7130](https://explorer.aptoslabs.com/account/0x1bdffae984043833ed7fe223f7af7a3f8902d04129b14f801823e64827da7130?network=mainnet){target=_blank} |
 
-### TestNet Contracts `2`
+### Testnet Contracts `2`
 
 |    Type    |                                                                                                                                  Contract                                                                                                                                  |
 |:----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|

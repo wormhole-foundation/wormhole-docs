@@ -59,7 +59,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 For more information, see [the Solana Docs](https://docs.solana.com/cluster/commitments){target=_blank}.
 
-=== "MainNet"
+=== "Mainnet"
 
 	`Mainnet Beta - 5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d`
 	
@@ -69,9 +69,9 @@ For more information, see [the Solana Docs](https://docs.solana.com/cluster/comm
 	| Token Bridge | [`wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb`](https://explorer.solana.com/address/wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb){target=_blank} |
 	| NFT Bridge   | [`WnFt12ZrnzZrFZkt2xsNsaNWoQribnuQ5B5FrDbwDhD`](https://explorer.solana.com/address/WnFt12ZrnzZrFZkt2xsNsaNWoQribnuQ5B5FrDbwDhD){target=_blank} |
 
-=== "TestNet"
+=== "Testnet"
 
-	`DevNet - EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG`
+	`Devnet - EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG`
 
 	|    Type    |                                                                  Contract                                                                  |
 	|:----------:|:------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -101,7 +101,7 @@ For more information, see [the Solana Docs](https://docs.solana.com/cluster/comm
 - Chain ID: `26`
 - Contract Source: No source file
 
-=== "MainNet"
+=== "Mainnet"
 
 	|    Type    |                                                            Contract                                                            |
 	|:----------:|:------------------------------------------------------------------------------------------------------------------------------:|
@@ -109,7 +109,7 @@ For more information, see [the Solana Docs](https://docs.solana.com/cluster/comm
 	| Token Bridge |                                                              N/A                                                              |
 	| NFT Bridge   |                                                              N/A                                                              |
 
-=== "TestNet"
+=== "Testnet"
 
 	|    Type    |                                                                 Contract                                                                 |
 	|:----------:|:---------------------------------------------------------------------------------------------------------------------------------------:|

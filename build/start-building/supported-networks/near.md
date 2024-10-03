@@ -39,7 +39,7 @@ This field may be ignored since the chain provides instant finality.
 
 For more information, see [the NEAR Consensus docs](https://nomicon.io/ChainSpec/Consensus){target=_blank}.
 
-=== "MainNet"
+=== "Mainnet"
 
 	|    Type    |              Contract              |
 	|:----------:|:----------------------------------:|
@@ -47,7 +47,7 @@ For more information, see [the NEAR Consensus docs](https://nomicon.io/ChainSpec
 	| Token Bridge | `contract.portalbridge.near`     |
 	| NFT Bridge   |               N/A                |
 
-=== "TestNet"
+=== "Testnet"
 
 	|    Type    |            Contract            |
 	|:----------:|:------------------------------:|

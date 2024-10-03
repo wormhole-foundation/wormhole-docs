@@ -21,7 +21,7 @@ The emitter address on EVM chains is the contract address, normalized to the wor
 
 ## Ethereum
 
-Deployed contracts are also available on the [Sepolia](#sepolia) TestNet.
+Deployed contracts are also available on the [Sepolia](#sepolia) Testnet.
 
 ### Ecosystem
 
@@ -46,7 +46,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information,, see [https://www.alchemy.com/overviews/ethereum-commitment-levels](https://www.alchemy.com/overviews/ethereum-commitment-levels){target=_blank}.
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     |                                                                Contract                                                                |
 |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|
@@ -56,7 +56,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://etherscan.io/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 |     CCTP     | [`0xAaDA05BD399372f0b0463744C09113c137636f6a`](https://etherscan.io/address/0xAaDA05BD399372f0b0463744C09113c137636f6a){target=_blank} |
 
-=== "TestNet `Holesky - 17000`"
+=== "Testnet `Holesky - 17000`"
 
 |      Type       |                   Contract                   |
 |:---------------:|:--------------------------------------------:|
@@ -107,7 +107,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
 
-=== "MainNet `787`"
+=== "Mainnet `787`"
 
 |     Type     |                                                                      Contract                                                                      |
 |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -116,7 +116,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  | [`0xb91e3638F82A1fACb28690b37e3aAE45d2c33808`](https://blockscout.acala.network/address/0xb91e3638F82A1fACb28690b37e3aAE45d2c33808){target=_blank} |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://blockscout.acala.network/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `597`"
+=== "Testnet `597`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -158,7 +158,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://developer.arbitrum.io/tx-lifecycle){target=_blank}.
 
-=== "MainNet `Arbitrum One - 42161`"
+=== "Mainnet `Arbitrum One - 42161`"
 
 |     Type     |                                                               Contract                                                                |
 |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
@@ -168,7 +168,7 @@ For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://arbiscan.io/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 |     CCTP     | [`0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c`](https://arbiscan.io/address/0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c){target=_blank} |
 
-=== "TestNet `Sepolia - 421614`"
+=== "Testnet `Sepolia - 421614`"
 
 |      Type       |                                                                   Contract                                                                    |
 |:---------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -201,7 +201,7 @@ For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://
 - Chain ID: `9`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet `1313161554`"
+=== "Mainnet `1313161554`"
 
 |     Type     |                                                                   Contract                                                                    |
 |:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -209,7 +209,7 @@ For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://
 | Token Bridge | [`0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F`](https://explorer.aurora.dev/address/0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F){target=_blank} |
 |  NFT Bridge  | [`0x6dcC0484472523ed9Cdc017F711Bcbf909789284`](https://explorer.aurora.dev/address/0x6dcC0484472523ed9Cdc017F711Bcbf909789284){target=_blank} |
 
-=== "TestNet `1313161555`"
+=== "Testnet `1313161555`"
 
 |     Type     |                                                                       Contract                                                                        |
 |:------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -231,7 +231,7 @@ For more information,, see [https://developer.arbitrum.io/tx-lifecycle](https://
 
 - [Website](https://www.avax.network/){target=_blank}
 - [C-Chain Block Explorer](https://snowscan.xyz/){target=_blank} | [https://subnets.avax.network/](https://subnets.avax.network/){target=_blank}
-- [Developer docs](https://docs.avax.network/){target=_blank} | [Faucet](https://core.app/tools/TestNet-faucet/?subnet=c&token=c){target=_blank}
+- [Developer docs](https://docs.avax.network/){target=_blank} | [Faucet](https://core.app/tools/Testnet-faucet/?subnet=c&token=c){target=_blank}
 
 ### Wormhole Details
 
@@ -251,7 +251,7 @@ This field may be ignored since the chain provides instant finality.
 
 For more information, see [https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality](https://docs.avax.network/build/dapp/advanced/integrate-exchange#determining-finality){target=_blank}.
 
-=== "MainNet `C-Chain - 43114`"
+=== "Mainnet `C-Chain - 43114`"
 
 |     Type     |                                                                Contract                                                                |
 |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|
@@ -261,7 +261,7 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://snowscan.xyz/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 |     CCTP     | [`0x09Fb06A271faFf70A651047395AaEb6265265F13`](https://snowscan.xyz/address/0x09Fb06A271faFf70A651047395AaEb6265265F13){target=_blank} |
 
-=== "TestNet `Fuji - 43113`"
+=== "Testnet `Fuji - 43113`"
 
 |       Type       |                                                                    Contract                                                                    |
 |:----------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -295,7 +295,7 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 - Chain ID: `30`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet ` 8453`"
+=== "Mainnet ` 8453`"
 
 |     Type     |                                                                Contract                                                                |
 |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|
@@ -305,7 +305,7 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 |   Relayer    | [`0x706f82e9bb5b0813501714ab5974216704980e31`](https://basescan.org/address/0x706f82e9bb5b0813501714ab5974216704980e31){target=_blank} |
 |     CCTP     | [`0x03faBB06Fa052557143dC28eFCFc63FC12843f1D`](https://basescan.org/address/0x03faBB06Fa052557143dC28eFCFc63FC12843f1D){target=_blank} |
 
-=== "TestNet `Base Goerli - 84531`"
+=== "Testnet `Base Goerli - 84531`"
 
 |       Type       |                                                                    Contract                                                                    |
 |:----------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -331,7 +331,7 @@ For more information, see [https://docs.avax.network/build/dapp/advanced/integra
 
 - [Website](https://www.bnbchain.org/en/smartChain){target=_blank}
 - [Etherscan](https://bscscan.com/){target=_blank}
-- [Developer docs](https://docs.bnbchain.org/docs/learn/intro){target=_blank} | [Faucet](https://TestNet.binance.org/faucet-smart/){target=_blank}
+- [Developer docs](https://docs.bnbchain.org/docs/learn/intro){target=_blank} | [Faucet](https://Testnet.binance.org/faucet-smart/){target=_blank}
 
 ### Wormhole Details
 
@@ -350,7 +350,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.bnbchain.org/docs/learn/consensus](https://docs.bnbchain.org/docs/learn/consensus){target=_blank}.
 
-=== "MainNet `56`"
+=== "Mainnet `56`"
 
 |     Type     |                                                               Contract                                                                |
 |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
@@ -359,7 +359,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  | [`0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE`](https://bscscan.com/address/0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE){target=_blank} |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://bscscan.com/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `97`"
+=== "Testnet `97`"
 
 |       Type       |                                                                   Contract                                                                    |
 |:----------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -405,7 +405,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
-=== "MainNet `42220`"
+=== "Mainnet `42220`"
 
 |     Type     |                                                               Contract                                                                |
 |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
@@ -414,7 +414,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  | [`0xA6A377d75ca5c9052c9a77ED1e865Cc25Bd97bf3`](https://celoscan.io/address/0xA6A377d75ca5c9052c9a77ED1e865Cc25Bd97bf3){target=_blank} |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://celoscan.io/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet  `Alfajores - 44787`"
+=== "Testnet  `Alfajores - 44787`"
 
 |       Type       |                                                                    Contract                                                                     |
 |:----------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -457,7 +457,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
-=== "MainNet `250`"
+=== "Mainnet `250`"
 
 |     Type     |                                                               Contract                                                                |
 |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
@@ -466,7 +466,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  | [`0xA9c7119aBDa80d4a4E0C06C8F4d8cF5893234535`](https://ftmscan.com/address/0xA9c7119aBDa80d4a4E0C06C8F4d8cF5893234535){target=_blank} |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://ftmscan.com/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `4002`"
+=== "Testnet `4002`"
 
 |     Type     |                                                                   Contract                                                                    |
 |:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -496,7 +496,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `25`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet `100`"
+=== "Mainnet `100`"
 
 |     Type     |                                                                Contract                                                                 |
 |:------------:|:---------------------------------------------------------------------------------------------------------------------------------------:|
@@ -504,7 +504,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |                                                                   N/A                                                                   |
 |  NFT Bridge  |                                                                   N/A                                                                   |
 
-=== "TestNet `Chaido - 10200`"
+=== "Testnet `Chaido - 10200`"
 
 |     Type     |                                                                        Contract                                                                        |
 |:------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -544,7 +544,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://wiki.polkadot.network/docs/learn-consensus](https://wiki.polkadot.network/docs/learn-consensus){target=_blank}.
 
-=== "MainNet `686`"
+=== "Mainnet `686`"
 
 |     Type     |                                                                      Contract                                                                       |
 |:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -553,7 +553,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  | [`0xb91e3638F82A1fACb28690b37e3aAE45d2c33808`](https://blockscout.karura.network/address/0xb91e3638F82A1fACb28690b37e3aAE45d2c33808){target=_blank} |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://blockscout.karura.network/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `596`"
+=== "Testnet `596`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -593,7 +593,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
-=== "MainNet `8217`"
+=== "Mainnet `8217`"
 
 |     Type     |                                                               Contract                                                                |
 |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
@@ -602,7 +602,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  | [`0x3c3c561757BAa0b78c5C025CdEAa4ee24C1dFfEf`](https://kaiascan.io/address/0x3c3c561757BAa0b78c5C025CdEAa4ee24C1dFfEf){target=_blank} |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://kaiascan.io/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `Kairos - 1001`"
+=== "Testnet `Kairos - 1001`"
 
 |     Type     |                                                                   Contract                                                                   |
 |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -642,7 +642,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints](https://docs.moonbeam.network/builders/build/moonbeam-custom-api/#finality-rpc-endpoints){target=_blank}.
 
-=== "MainNet `1284`"
+=== "Mainnet `1284`"
 
 |     Type     |                                                               Contract                                                                |
 |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------:|
@@ -651,7 +651,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  | [`0x453cfbe096c0f8d763e8c5f24b441097d577bde2`](https://moonscan.io/address/0x453cfbe096c0f8d763e8c5f24b441097d577bde2){target=_blank} |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://moonscan.io/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `Moonbase-Alphanet - 1287`"
+=== "Testnet `Moonbase-Alphanet - 1287`"
 
 |      Type       |                                                                    Contract                                                                    |
 |:---------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -685,7 +685,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `17`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet `245022934`"
+=== "Mainnet `245022934`"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -693,7 +693,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `245022940`"
+=== "Testnet `245022940`"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -723,7 +723,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `7`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet `42262`"
+=== "Mainnet `42262`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -731,7 +731,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge | `0x5848C791e09901b40A9Ef749f2a6735b418d7564` |
 |  NFT Bridge  | `0x04952D522Ff217f40B5Ef3cbF659EcA7b952a6c1` |
 
-=== "TestNet `42261`"
+=== "Testnet `42261`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -771,7 +771,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
-=== "MainNet `10`"
+=== "Mainnet `10`"
 
 |     Type     |                                                                     Contract                                                                      |
 |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -781,7 +781,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://optimistic.etherscan.io/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 |     CCTP     | [`0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c`](https://optimistic.etherscan.io/address/0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c){target=_blank} |
 
-=== "TestNet `Optimism Goerli - 420`"
+=== "Testnet `Optimism Goerli - 420`"
 
 |      Type       |                                                                        Contract                                                                         |
 |:---------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -824,7 +824,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
-=== "MainNet `137`"
+=== "Mainnet `137`"
 
 |     Type     |                                                                 Contract                                                                  |
 |:------------:|:-----------------------------------------------------------------------------------------------------------------------------------------:|
@@ -834,7 +834,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://polygonscan.com/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 |     CCTP     | [`0x0FF28217dCc90372345954563486528aa865cDd6`](https://polygonscan.com/address/0x0FF28217dCc90372345954563486528aa865cDd6){target=_blank} |
 
-=== "TestNet `Mumbai - 80001`"
+=== "Testnet `Mumbai - 80001`"
 
 |      Type       |                   Contract                   |
 |:---------------:|:--------------------------------------------:|
@@ -868,7 +868,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `33`
 - Contract Source: No source file
 
-=== "MainNet `30`"
+=== "Mainnet `30`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -876,7 +876,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |                     N/A                      |
 |  NFT Bridge  |                     N/A                      |
 
-=== "TestNet `31`"
+=== "Testnet `31`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -894,7 +894,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 
 ## Ethereum Sepolia
 
-Sepolia is a TestNet-only chain that can be used as an alternative to Goerli. Note that a different chain ID is used for Sepolia.
+Sepolia is a Testnet-only chain that can be used as an alternative to Goerli. Note that a different chain ID is used for Sepolia.
 
 ### Wormhole Details
 
@@ -902,7 +902,7 @@ Sepolia is a TestNet-only chain that can be used as an alternative to Goerli. No
 - Chain ID: `10002`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet (N/A)"
+=== "Mainnet (N/A)"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -910,7 +910,7 @@ Sepolia is a TestNet-only chain that can be used as an alternative to Goerli. No
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `Sepolia - 11155111`"
+=== "Testnet `Sepolia - 11155111`"
 
 |      Type       |                                                                    Contract                                                                    |
 |:---------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -933,7 +933,7 @@ Sepolia is a TestNet-only chain that can be used as an alternative to Goerli. No
 
 ## Ethereum Holesky
 
-Holesky is a TestNet-only chain that can be used as an alternative to Goerli. Note that a different chain ID is used for Holesky.
+Holesky is a Testnet-only chain that can be used as an alternative to Goerli. Note that a different chain ID is used for Holesky.
 
 ### Wormhole Details
 
@@ -941,7 +941,7 @@ Holesky is a TestNet-only chain that can be used as an alternative to Goerli. No
 - Chain ID: `10006`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet (N/A)"
+=== "Mainnet (N/A)"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -949,7 +949,7 @@ Holesky is a TestNet-only chain that can be used as an alternative to Goerli. No
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `Holesky - 17000`"
+=== "Testnet `Holesky - 17000`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -979,7 +979,7 @@ Holesky is a TestNet-only chain that can be used as an alternative to Goerli. No
 - Chain ID: `10003`
 - Contract Source: No source file
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -987,7 +987,7 @@ Holesky is a TestNet-only chain that can be used as an alternative to Goerli. No
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `Sepolia - 421614`"
+=== "Testnet `Sepolia - 421614`"
 
 |      Type       |                                                                   Contract                                                                    |
 |:---------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1031,7 +1031,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized.
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -1039,7 +1039,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `Optimism Sepolia - 11155420`"
+=== "Testnet `Optimism Sepolia - 11155420`"
 
 |      Type       |                                                                        Contract                                                                         |
 |:---------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1073,7 +1073,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `10004`
 - Contract Source: [ethereum/contracts/bridge/Bridge.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=_blank}
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -1081,7 +1081,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `Base Sepolia - 84532`"
+=== "Testnet `Base Sepolia - 84532`"
 
 |      Type       |                                                                    Contract                                                                    |
 |:---------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1115,7 +1115,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `34`
 - Contract Source: No source file
 
-=== "MainNet `534352`"
+=== "Mainnet `534352`"
 
 |     Type     |                                                                 Contract                                                                 |
 |:------------:|:----------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1124,7 +1124,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  |                                                                   N/A                                                                    |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://scrollscan.com/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `Sepolia - 534351`"
+=== "Testnet `Sepolia - 534351`"
 
 |     Type     |                                                                     Contract                                                                     |
 |:------------:|:------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1154,7 +1154,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `35`
 - Contract Source: No source file
 
-=== "MainNet `5000`"
+=== "Mainnet `5000`"
 
 |     Type     |                                                                   Contract                                                                    |
 |:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1162,7 +1162,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge | [`0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d`](https://explorer.mantle.xyz/address/0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d){target=_blank} |
 |  NFT Bridge  |                                                                      N/A                                                                      |
 
-=== "TestNet `Sepolia - 5003`"
+=== "Testnet `Sepolia - 5003`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -1201,7 +1201,7 @@ The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){
 
 If a value is passed that isn't in the preceding set, it's assumed to mean finalized. For more information, see [https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/](https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/){target=_blank}.
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -1209,7 +1209,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `Sepolia - 80002`"
+=== "Testnet `Sepolia - 80002`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -1239,7 +1239,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `39`
 - Contract Source: No source file
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -1247,7 +1247,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `80084`"
+=== "Testnet `80084`"
 
 |     Type     |                                                                   Contract                                                                    |
 |:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1277,7 +1277,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `36`
 - Contract Source: No source file
 
-=== "MainNet `81457`"
+=== "Mainnet `81457`"
 
 |     Type     |                                                                Contract                                                                |
 |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1286,7 +1286,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 |  NFT Bridge  |                                                                  N/A                                                                   |
 |   Relayer    | [`0x27428DD2d3DD32A4D7f7C497eAaa23130d894911`](https://blastscan.io/address/0x27428DD2d3DD32A4D7f7C497eAaa23130d894911){target=_blank} |
 
-=== "TestNet `168587773`"
+=== "Testnet `168587773`"
 
 |     Type     |                                                                    Contract                                                                    |
 |:------------:|:----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1316,7 +1316,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `38`
 - Contract Source: No source file
 
-=== "MainNet `59144`"
+=== "Mainnet `59144`"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -1324,7 +1324,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet `59141`"
+=== "Testnet `59141`"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -1354,7 +1354,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `40`
 - Contract Source: No source file
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     | Contract |
 |:------------:|:--------:|
@@ -1362,7 +1362,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge |   N/A    |
 |  NFT Bridge  |   N/A    |
 
-=== "TestNet"
+=== "Testnet"
 
 |     Type     |                   Contract                   |
 |:------------:|:--------------------------------------------:|
@@ -1392,7 +1392,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 - Chain ID: `37`
 - Contract Source: No source file
 
-=== "MainNet"
+=== "Mainnet"
 
 |     Type     |                                                                    Contract                                                                     |
 |:------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -1400,7 +1400,7 @@ If a value is passed that isn't in the preceding set, it's assumed to mean final
 | Token Bridge | [`0x5537857664B0f9eFe38C9f320F75fEf23234D904`](https://www.oklink.com/xlayer/address/0x5537857664b0f9efe38c9f320f75fef23234d904){target=_blank} |
 |  NFT Bridge  |                                                                       N/A                                                                       |
 
-=== "TestNet `195`"
+=== "Testnet `195`"
 
 |     Type     |                                                                       Contract                                                                       |
 |:------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------:|

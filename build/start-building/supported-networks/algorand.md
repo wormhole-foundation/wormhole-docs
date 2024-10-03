@@ -47,7 +47,7 @@ This field may be ignored since the chain provides instant finality.
 
 For more information see [https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality](https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality){target=_blank}.
 
-### MainNet Contracts `mainnet-v1.0`
+### Mainnet Contracts `mainnet-v1.0`
 
 |   Type       |                                 Contract                                  |
 |:------------:|:------------------------------------------------------------------------:|
@@ -55,7 +55,7 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 | Token Bridge | [`842126029`](https://explorer.perawallet.app/application/842126029/){target=_blank} |
 | NFT Bridge   | N/A |
 
-### TestNet Contracts `testnet-v1.0`
+### Testnet Contracts `testnet-v1.0`
 
 |   Type       |                                 Contract                                        |
 |:------------:|:-------------------------------------------------------------------------------:|
