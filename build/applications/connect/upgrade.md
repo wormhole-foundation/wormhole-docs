@@ -62,7 +62,7 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
         },
     };
     ```
-=== "v1.0+"
+=== "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -86,7 +86,7 @@ The `env` property has been renamed to `network`, with capitalized values. This 
         env: 'testnet',
     };
     ```
-=== "v1.0"
+=== "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -114,7 +114,7 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
         networks: ['solana', 'ethereum'],
     };
     ```
-=== "v1.0"
+=== "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -240,7 +240,7 @@ Key Changes to `tokensConfig`:
         },
     };
     ```
-=== "v1.0+"
+=== "v1.x"
 
     In v1.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
 
@@ -323,7 +323,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
         },
     };
     ```
-=== "v1.0+"
+=== "v1.x"
 
     In v1.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
 
@@ -439,7 +439,7 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
         showHamburgerMenu: true,
     };
     ```
-=== "v1.0+"
+=== "v1.x"
 
     ```typescript
     const config: WormholeConnectConfig = {
@@ -477,7 +477,7 @@ Important details:
 
     <WormholeConnect config={config} />;
     ```
-=== "v1.0+"
+=== "v1.x"
 
     ```typescript
     const theme: WormholeConnectTheme = {
