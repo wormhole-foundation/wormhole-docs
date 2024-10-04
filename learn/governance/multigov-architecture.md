@@ -57,6 +57,8 @@ MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizi
 
 ## Detailed Architecture Diagram
 
+This architecture ensures that MultiGov can operate securely and efficiently across multiple chains, allowing for truly decentralized and cross-chain governance while maintaining a unified decision-making process.
+
+<!-- add diagram broken down in sections -->
 ![detailed multigov architecture diagram](/docs/images/learn/governance/multigov-detailed.webp)
 
-This architecture ensures that MultiGov can operate securely and efficiently across multiple chains, allowing for truly decentralized and cross-chain governance while maintaining a unified decision-making process.

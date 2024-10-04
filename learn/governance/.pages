@@ -1,6 +1,5 @@
-title: MultiGov
+title: Multichain Governance
 nav:
  - index.md
  - 'Overview': 'multigov-overview.md'
  - 'Architecture': 'multigov-architecture.md'
- - 'Getting Started': 'getting-started.md'
