@@ -1,28 +1,9 @@
 ---
-title: MultiGov FAQs
+title: MultiGov Technical FAQs
 description: Find answers to common questions about MultiGov, covering cross-chain governance, technical setup, security, proposal creation, and more.
 ---
 
 # FAQs
-
-## General Questions
-
-### What is MultiGov?
-
-MultiGov is a cross-chain governance system that extends traditional DAO governance across multiple blockchain networks. It leverages Wormhole's interoperability infrastructure for seamless voting and proposal mechanisms across various chains.
-
-### How does MultiGov differ from traditional DAO governance?
-
-Unlike traditional DAO governance, which typically operates on a single blockchain, MultiGov allows for coordinated decision-making and proposal execution across multiple chains. This enables more inclusive participation from token holders on different networks and more complex, cross-chain governance actions.
-
-### What are the main components of MultiGov?
-
-The main components of MultiGov include:
-
-- Hub Chain - central coordination point for governance activities
-- Spoke Chains - additional chains where token holders can participate in governance
-- Wormhole Integration - enables secure cross-chain message passing
-- Governance Token - allows holders to participate in governance across all integrated chains
 
 ## Technical Questions
 

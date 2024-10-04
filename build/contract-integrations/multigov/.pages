@@ -3,6 +3,4 @@ nav:
  - index.md
  - 'Deployment': 'deployment.md'
  - 'Upgrading': 'upgrading.md'
- - 'Guides': 'guides.md'
- - 'FAQs': 'faq.md'
- - 'Getting Started': 'getting-started.md'
+ - 'Technical FAQs': 'faq.md'

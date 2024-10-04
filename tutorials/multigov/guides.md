@@ -3,13 +3,11 @@ title: MultiGov Guides
 description: Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
 ---
 
-# Guides
-
-## Example: Cross-Chain Treasury Management Proposal
+# Cross-Chain Treasury Management Proposal
 
 This guide walks through creating and executing a cross-chain governance proposal to mint W token to the Optimism and Arbitrum treasuries.
 
-### Create a Proposal (Hub Chain - Ethereum Mainnet)
+## Create a Proposal (Hub Chain - Ethereum Mainnet)
 
 ```solidity
 HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
@@ -49,7 +47,7 @@ uint256 proposalId = governor.propose(
 )
 ```
 
-### Vote on the Proposal via Spoke
+## Vote on the Proposal via Spoke
 
 ```solidity
 // Connect to the SpokeVoteAggregator contract of the desired chain
@@ -59,14 +57,14 @@ uint8 support = 1; // 1 for 'For'
 uint256 weight = voteAggregator.castVote(proposalId, support);
 ```
 
-### Vote Aggregation (Background Process)
+## Vote Aggregation (Background Process)
 
 ```solidity
 // Aggregate votes sent to Hub (this would typically be done by a "crank turner" off-chain)
 hubVotePool.crossChainVote(queryResponseRaw, signatures);
 ```
 
-### Execute Proposal and Dispatch Cross-Chain Messages
+## Execute Proposal and Dispatch Cross-Chain Messages
 
 ```solidity
 HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
