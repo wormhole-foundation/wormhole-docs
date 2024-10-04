@@ -15,7 +15,7 @@ Regardless of which network development environment you are using, there are a f
 
     ---
 
-    Wormholescan is an explorer for looking at individual transfer statuses on MainNet and TestNet.
+    Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
 
     [:octicons-arrow-right-16: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
 

@@ -33,7 +33,7 @@ You can interact with the Wormhole CLI by typing `worm` and including the `comma
 | `worm aptos INSERT_COMMAND`                                                                                              | Aptos utilities                                                                                                 |
 | `worm edit-vaa INSERT_COMMAND`                                                                                           | Edits or generates a VAA                                                                                        |
 | `worm evm INSERT_COMMAND`                                                                                                | EVM utilities                                                                                                   |
-| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (DevNet and TestNet only)                                                                         |
+| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (DevNet and Testnet only)                                                                         |
 | `worm info INSERT_COMMAND`                                                                                               | Contract, chain, RPC, and address information utilities                                                         |
 | `worm near INSERT_NETWORK, INSERT_ACCOUNT`                                                                               | NEAR utilities                                                                                                  |
 | `worm parse INSERT_VAA`                                                                                                  | Parse a VAA (can be in either hex or base64 format)                                                             |
@@ -188,7 +188,7 @@ You can get the contract address for a module as follows:
 worm info rpc INSERT_NETWORK INSERT_CHAIN INSERT_MODULE
 ```
 
-To get the contract address for `NFTBridge` on BSC MainNet, for example, you can provide the following command:
+To get the contract address for `NFTBridge` on BSC Mainnet, for example, you can provide the following command:
 
 ```bash
 worm info contract mainnet bsc NFTBridge
@@ -200,7 +200,7 @@ You can get the RPC address for a chain as follows:
 worm info rpc INSERT_NETWORK INSERT_CHAIN
 ```
 
-To get the RPC address for BSC MainNet, for example, you can provide the following command: 
+To get the RPC address for BSC Mainnet, for example, you can provide the following command: 
 
 ```bash
 worm info rpc mainnet bsc

@@ -27,29 +27,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4000`
 - Contract Source: No source file
 
-=== "MainNet `cosmoshub-4`"
+=== "Mainnet `cosmoshub-4`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet `theta-testnet-001`"
+=== "Testnet `theta-testnet-001`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
   
 ## Evmos
@@ -67,29 +67,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4001`
 - Contract Source: No source file
 
-=== "MainNet `evmos_9001-2`"
+=== "Mainnet `evmos_9001-2`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet `evmos_9000-4`"
+=== "Testnet `evmos_9000-4`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 ## Kujira
 
@@ -105,36 +105,36 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4002`
 - Contract Source: No source file
 
-=== "MainNet `kaiyo-1`"
+=== "Mainnet `kaiyo-1`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet `harpoon-4`"
+=== "Testnet `harpoon-4`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    |    Core    |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
   
 ## Injective
 
 ### Ecosystem
 
 - [Website](https://injective.com/){target=_blank}
-- [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective TestNet Explorer](https://testnet.explorer.injective.network/){target=_blank}
+- [Injective Explorer](https://explorer.injective.network/){target=_blank} | [Injective Testnet Explorer](https://testnet.explorer.injective.network/){target=_blank}
 - [Developer Docs](https://docs.injective.network/){target=_blank} | [Injective TypeScript SDK docs](https://docs.ts.injective.network/){target=_blank} | [Injective trading docs](https://docs.trading.injective.network/){target=_blank}
 - [Faucet](https://testnet.faucet.injective.network/){target=/_blank}
 
@@ -144,29 +144,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `19`
 - Contract Source: No source file
 
-=== "MainNet `injective-1`"
+=== "Mainnet `injective-1`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         | [`inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d`](https://explorer.injective.network/contract/inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d/){target=_blank} |
+    |     Type     |                                                                        Contract                                                                        |
+    |:------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d`](https://explorer.injective.network/contract/inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d/){target=_blank} |
     | Token Bridge | [`inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn`](https://explorer.injective.network/contract/inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn/){target=_blank} |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                                                          N/A                                                                           |
 
-=== "TestNet `injective-888`"
+=== "Testnet `injective-888`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         | [`inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg`](https://testnet.explorer.injective.network/account/inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg/){target=_blank} |
+    |     Type     |                                                                           Contract                                                                            |
+    |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg`](https://testnet.explorer.injective.network/account/inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg/){target=_blank} |
     | Token Bridge | [`inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh`](https://testnet.explorer.injective.network/account/inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh/){target=_blank} |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                                                              N/A                                                                              |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
   
 ## Osmosis
@@ -184,29 +184,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `20`
 - Contract Source: No source file
 
-=== "MainNet `osmosis-1`"
+=== "Mainnet `osmosis-1`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet `osmo-test-5`"
+=== "Testnet `osmo-test-5`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         | `osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx` |
-    | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |     Type     |                             Contract                              |
+    |:------------:|:-----------------------------------------------------------------:|
+    |     Core     | `osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx` |
+    | Token Bridge |                                N/A                                |
+    |  NFT Bridge  |                                N/A                                |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 ## Sei
 
@@ -222,29 +222,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `32`
 - Contract Source: No source file
 
-=== "MainNet `pacific-1`"
+=== "Mainnet `pacific-1`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         | [`sei1gjrrme22cyha4ht2xapn3f08zzw6z3d4uxx6fyy9zd5dyr3yxgzqqncdqn`](https://www.seiscan.app/pacific-1/contracts/sei1gjrrme22cyha4ht2xapn3f08zzw6z3d4uxx6fyy9zd5dyr3yxgzqqncdqn){target=_blank} |
+    |     Type     |                                                                                           Contract                                                                                            |
+    |:------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`sei1gjrrme22cyha4ht2xapn3f08zzw6z3d4uxx6fyy9zd5dyr3yxgzqqncdqn`](https://www.seiscan.app/pacific-1/contracts/sei1gjrrme22cyha4ht2xapn3f08zzw6z3d4uxx6fyy9zd5dyr3yxgzqqncdqn){target=_blank} |
     | Token Bridge | [`sei1smzlm9t79kur392nu9egl8p8je9j92q4gzguewj56a05kyxxra0qy0nuf3`](https://www.seiscan.app/pacific-1/contracts/sei1smzlm9t79kur392nu9egl8p8je9j92q4gzguewj56a05kyxxra0qy0nuf3){target=_blank} |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                                                                              N/A                                                                                              |
 
-=== "TestNet `atlantic-2`"
+=== "Testnet `atlantic-2`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         | [`sei1nna9mzp274djrgzhzkac2gvm3j27l402s4xzr08chq57pjsupqnqaj0d5s`](https://www.seiscan.app/atlantic-2/contracts/sei1nna9mzp274djrgzhzkac2gvm3j27l402s4xzr08chq57pjsupqnqaj0d5s){target=_blank} |
+    |     Type     |                                                                                            Contract                                                                                            |
+    |:------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`sei1nna9mzp274djrgzhzkac2gvm3j27l402s4xzr08chq57pjsupqnqaj0d5s`](https://www.seiscan.app/atlantic-2/contracts/sei1nna9mzp274djrgzhzkac2gvm3j27l402s4xzr08chq57pjsupqnqaj0d5s){target=_blank} |
     | Token Bridge | [`sei1jv5xw094mclanxt5emammy875qelf3v62u4tl4lp5nhte3w3s9ts9w9az2`](https://www.seiscan.app/atlantic-2/contracts/sei1jv5xw094mclanxt5emammy875qelf3v62u4tl4lp5nhte3w3s9ts9w9az2){target=_blank} |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                                                                              N/A                                                                                               |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 
 ## Terra
@@ -262,29 +262,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `3`
 - Contract Source: No source file
 
-=== "MainNet `columbus-5`"
+=== "Mainnet `columbus-5`"
 
-    |    Type    | Contract                                       |
-    |:----------:|:---------------------------------------------:|
-    | Core         | `terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5` |
+    |     Type     |                    Contract                    |
+    |:------------:|:----------------------------------------------:|
+    |     Core     | `terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5` |
     | Token Bridge | `terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf` |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                      N/A                       |
 
-=== "TestNet `bombay-12`"
+=== "Testnet `bombay-12`"
 
-    |    Type    | Contract                                       |
-    |:----------:|:---------------------------------------------:|
-    | Core         | `terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v` |
+    |     Type     |                    Contract                    |
+    |:------------:|:----------------------------------------------:|
+    |     Core     | `terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v` |
     | Token Bridge | `terra1pseddrv0yfsn76u4zxrjmtf45kdlmalswdv39a` |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                      N/A                       |
 
 === "Local Network"
 
-    |    Type    | Contract                                                           |
-    |:----------:|:-----------------------------------------------------------------:|
-    | Core         | `terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au` |
+    |     Type     |                              Contract                              |
+    |:------------:|:------------------------------------------------------------------:|
+    |     Core     | `terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au` |
     | Token Bridge | `terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6` |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                N/A                                 |
 
 ## Terra2
 
@@ -294,29 +294,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `18`
 - Contract Source: No source file
 
-=== "MainNet `phoenix-1`"
+=== "Mainnet `phoenix-1`"
 
-    |    Type    | Contract                                                           |
-    |:----------:|:-----------------------------------------------------------------:|
-    | Core         | `terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnhp` |
+    |     Type     |                              Contract                              |
+    |:------------:|:------------------------------------------------------------------:|
+    |     Core     | `terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnhp` |
     | Token Bridge | `terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9` |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                N/A                                 |
 
-=== "TestNet `pisco-1`"
+=== "Testnet `pisco-1`"
 
-    |    Type    | Contract                                                           |
-    |:----------:|:-----------------------------------------------------------------:|
-    | Core         | `terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0` |
+    |     Type     |                              Contract                              |
+    |:------------:|:------------------------------------------------------------------:|
+    |     Core     | `terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0` |
     | Token Bridge | `terra1c02vds4uhgtrmcw7ldlg75zumdqxr8hwf7npseuf2h58jzhpgjxsgmwkvk` |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                N/A                                 |
 
 === "Local Network"
 
-    |    Type    | Contract                                                           |
-    |:----------:|:-----------------------------------------------------------------:|
-    | Core         | `terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au` |
+    |     Type     |                              Contract                              |
+    |:------------:|:------------------------------------------------------------------:|
+    |     Core     | `terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au` |
     | Token Bridge | `terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6` |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                N/A                                 |
 
   
 ## XPLA
@@ -334,29 +334,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `28`
 - Contract Source: No source file
 
-=== "MainNet `dimension_37-1`"
+=== "Mainnet `dimension_37-1`"
 
-    |    Type    | Contract                                                                                                                                                               |
-    |:----------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | Core         | [`xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w`](https://explorer.xpla.io/mainnet/address/xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w){target=_blank} |
+    |     Type     |                                                                                           Contract                                                                                           |
+    |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w`](https://explorer.xpla.io/mainnet/address/xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w){target=_blank} |
     | Token Bridge | [`xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv`](https://explorer.xpla.io/mainnet/address/xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv){target=_blank} |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                                                                             N/A                                                                                              |
 
-=== "TestNet `cube_47-5`"
+=== "Testnet `cube_47-5`"
 
-    |    Type    | Contract                                                                                                                                                               |
-    |:----------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | Core         | [`xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35`](https://explorer.xpla.io/testnet/address/xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35){target=_blank} |
+    |     Type     |                                                                                           Contract                                                                                           |
+    |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35`](https://explorer.xpla.io/testnet/address/xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35){target=_blank} |
     | Token Bridge | [`xpla1kek6zgdaxcsu35nqfsyvs2t9vs87dqkkq6hjdgczacysjn67vt8sern93x`](https://explorer.xpla.io/testnet/address/xpla1kek6zgdaxcsu35nqfsyvs2t9vs87dqkkq6hjdgczacysjn67vt8sern93x){target=_blank} |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |                                                                                             N/A                                                                                              |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 ## Neutron
 
@@ -372,29 +372,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4003`
 - Contract Source: No source file
 
-=== "MainNet `neutron-1`"
+=== "Mainnet `neutron-1`"
 
-    |    Type    | Contract                                                                                                                                                                      |
-    |:----------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | Core         | [`neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh`](https://neutron.celat.one/neutron-1/contracts/neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh){target=_blank} |
-    | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |     Type     |                                                                                                Contract                                                                                                 |
+    |:------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh`](https://neutron.celat.one/neutron-1/contracts/neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh){target=_blank} |
+    | Token Bridge |                                                                                                   N/A                                                                                                   |
+    |  NFT Bridge  |                                                                                                   N/A                                                                                                   |
 
-=== "TestNet `pion-1`"
+=== "Testnet `pion-1`"
 
-    |    Type    | Contract                                                                                                                                                                      |
-    |:----------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-    | Core         | [`neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4`](https://neutron.celat.one/pion-1/contracts/neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4){target=_blank} |
-    | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |     Type     |                                                                                               Contract                                                                                               |
+    |:------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+    |     Core     | [`neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4`](https://neutron.celat.one/pion-1/contracts/neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4){target=_blank} |
+    | Token Bridge |                                                                                                 N/A                                                                                                  |
+    |  NFT Bridge  |                                                                                                 N/A                                                                                                  |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 
 ## Celestia
@@ -411,29 +411,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4004`
 - Contract Source: No source file, update [here](https://github.com/wormhole-foundation/docs.wormhole.com/blob/main/scripts/src/chains/celestia.json)
 
-=== "MainNet `celestia`"
+=== "Mainnet `celestia`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet `mocha-4`"
+=== "Testnet `mocha-4`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 ## Dymension
 
@@ -449,29 +449,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4007`
 - Contract Source: No source file
 
-=== "MainNet `dymension_1100-1`"
+=== "Mainnet `dymension_1100-1`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet "
+=== "Testnet "
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 ## Stargaze
 
@@ -487,29 +487,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4005`
 - Contract Source: No source file
 
-=== "MainNet `stargaze-1`"
+=== "Mainnet `stargaze-1`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet"
+=== "Testnet"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
   
 ## SEDA
@@ -526,29 +526,29 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4006`
 - Contract Source: No source file
 
-=== "MainNet"
+=== "Mainnet"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet `seda-1-testnet`"
+=== "Testnet `seda-1-testnet`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 ## Provenance
 
@@ -564,26 +564,26 @@ The emitter address on Cosmos chains is the contract's canonical address, normal
 - Chain ID: `4008`
 - Contract Source: No source file
 
-=== "MainNet `pio-mainnet-1`"
+=== "Mainnet `pio-mainnet-1`"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
-=== "TestNet"
+=== "Testnet"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
 
 === "Local Network"
 
-    |    Type    | Contract |
-    |:----------:|:--------:|
-    | Core         |   N/A    |
+    |     Type     | Contract |
+    |:------------:|:--------:|
+    |     Core     |   N/A    |
     | Token Bridge |   N/A    |
-    | NFT Bridge   |   N/A    |
+    |  NFT Bridge  |   N/A    |
