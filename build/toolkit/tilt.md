@@ -1,6 +1,6 @@
 ---
 title: Tilt Introduction and Setup
-description: Learn about Tilt, a Wormhole dev environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development
+description: Learn about Tilt, a Wormhole dev environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 ---
 
 # Tilt
@@ -86,7 +86,7 @@ If you're using Linux with a windows manager, it's highly recommended that you i
 
 If you're using Docker Desktop, you can enable Kubernetes by going into Settings > Kubernetes and checking the checkbox to enable Kubernetes.
 
-![Enable Kubernetes](/images/build/toolkit/tilt/tilt-1.webp)
+![Enable Kubernetes](/docs/images/build/toolkit/tilt/tilt-1.webp)
 
 #### Minikube
 
@@ -147,7 +147,7 @@ tilt up -- --algorand --solana
 
 Tilt can be treated as an external environment or DevNet that you can easily spin up and tear down. If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints that are hosted in your Tilt environment, you should check out the Tilt dashboard, located at [http://localhost:10350/overview](http://localhost:10350/overview){target=\_blank}.
 
-All the deployed contract addresses can be found under the DevNet section of the chain being used in the [Environments](/build/start-building/supported-networks/) pages. Useful information pertaining to funded wallets and private keys can also be found in the [`DevNet.md`](https://github.com/wormhole-foundation/wormhole/blob/main/docs/devnet.md){target=\_blank} file of the docs. Additional helpful resources can be found in the [Tooling](/build/toolkit/tooling/) page.
+All the deployed contract addresses can be found under the DevNet section of the chain being used in the [Environments](/docs/build/start-building/supported-networks/){target=\_blank} pages. Useful information pertaining to funded wallets and private keys can also be found in the [`DevNet.md`](https://github.com/wormhole-foundation/wormhole/blob/main/docs/devnet.md){target=\_blank} file of the docs.
 
 ## Shutting Down Tilt
 
@@ -161,7 +161,7 @@ tilt down -- --solana --algorand
 
 ### Where are Fantom, Celo, Polygon, and Other EVM Chains?
 
-The smart contract development environment is effectively the same for all chains that support EVM. For changes in gas costs and transaction times, consider testing contract logic on DevNet and then using TestNet environments to get chain-specific answers.
+The smart contract development environment is effectively the same for all chains that support EVM. For changes in gas costs and transaction times, consider testing contract logic on DevNet and then using Testnet environments to get chain-specific answers.
 
 ### Solana is Taking Forever
 
@@ -181,10 +181,10 @@ The DevNet environment deploys the core layer and Token Bridge to each chain at 
 
 ## Default Ports
 
-| Service            | Port |
+|      Service       | Port |
 |:------------------:|:----:|
-| Guardian REST      | 7071 |
+|   Guardian REST    | 7071 |
 | Guardian gRPC Port | 7070 |
-| Eth0 RPC           | 8545 |
-| Eth1 RPC           | 8546 |
-| Solana RPC         | 8899 |
+|      Eth0 RPC      | 8545 |
+|      Eth1 RPC      | 8546 |
+|     Solana RPC     | 8899 |

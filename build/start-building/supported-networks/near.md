@@ -29,36 +29,36 @@ The emitter address on NEAR chains is the sha256 digest of the program address s
 
 ### Consistency Levels
 
-The options for [`consistencyLevel`](../../reference/components/core-contracts.md#consistencyLevel) (i.e finality) are:
+The options for [`consistencyLevel`](/docs/build/reference/consistency-levels/){target=\_blank} (i.e., finality) are:
 
-|Level|Value|
-|-----|-----|
-|Finalized|0|
+| Level     | Value |
+|-----------|-------|
+| Finalized | 0     |
 
 This field may be ignored since the chain provides instant finality.
 
 For more information, see [the NEAR Consensus docs](https://nomicon.io/ChainSpec/Consensus){target=_blank}.
 
-=== "MainNet"
+=== "Mainnet"
 
-	|    Type    |              Contract              |
-	|:----------:|:----------------------------------:|
-	|    Core    | `contract.wormhole_crypto.near`    |
-	| Token Bridge | `contract.portalbridge.near`     |
-	| NFT Bridge   |               N/A                |
+|     Type     |            Contract             |
+|:------------:|:-------------------------------:|
+|     Core     | `contract.wormhole_crypto.near` |
+| Token Bridge |  `contract.portalbridge.near`   |
+|  NFT Bridge  |               N/A               |
 
-=== "TestNet"
+=== "Testnet"
 
-	|    Type    |            Contract            |
-	|:----------:|:------------------------------:|
-	|    Core    | `wormhole.wormhole.testnet`    |
-	| Token Bridge | `token.wormhole.testnet`     |
-	| NFT Bridge   |             N/A              |
+|     Type     |          Contract           |
+|:------------:|:---------------------------:|
+|     Core     | `wormhole.wormhole.testnet` |
+| Token Bridge |  `token.wormhole.testnet`   |
+|  NFT Bridge  |             N/A             |
 
 === "Local Network"
 
-	|    Type    |       Contract       |
-	|:----------:|:--------------------:|
-	|    Core    | `wormhole.test.near` |
-	| Token Bridge | `token.test.near`  |
-	| NFT Bridge   |         N/A        |
+|     Type     |       Contract       |
+|:------------:|:--------------------:|
+|     Core     | `wormhole.test.near` |
+| Token Bridge |  `token.test.near`   |
+|  NFT Bridge  |         N/A          |

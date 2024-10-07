@@ -2,7 +2,7 @@ title: Build
 nav:
  - index.md
  - start-building
- - reference
+ - applications
+ - contract-integrations
  - toolkit
- - build-apps
- - build-a-custom-multichain-protocol
+ - reference

@@ -9,16 +9,16 @@ description: Learn how to run a Spy locally to listen for and forward messages (
 
 The Spy is a lightweight component in the Wormhole infrastructure designed to listen for and forward messages (Verifiable Action Approvals (VAAs)) published on the Wormhole network. Running a Spy locally allows developers to subscribe to a filtered stream of these messages, facilitating the development of custom relayers or other integrations with Wormhole.
 
-For a more comprehensive understanding of the Spy and its role within the Wormhole ecosystem, refer to the [Spy Documentation](/learn/infrastructure/spy/){target=\_blank}.
+For a more comprehensive understanding of the Spy and its role within the Wormhole ecosystem, refer to the [Spy Documentation](/docs/learn/infrastructure/spy/){target=\_blank}.
 
 ## How to Start a Spy
 
 To start a Spy locally, run the following Docker command:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
         -p 7073:7073 \
         --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
         spy \
@@ -27,10 +27,10 @@ To start a Spy locally, run the following Docker command:
         --env mainnet
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
         -p 7073:7073 \
         --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
         spy \
@@ -41,14 +41,14 @@ To start a Spy locally, run the following Docker command:
 
 Optionally, add the following flags to skip any VAAs with invalid signatures:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
     --ethRPC https://eth.drpc.org
     --ethContract 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
     --ethRPC https://sepolia.drpc.org/
@@ -68,10 +68,4 @@ Use this [proto-spec file](https://github.com/wormhole-foundation/wormhole/blob/
 
 The Spy does not have a built-in persistence layer, so it is typically paired with something like Redis or an SQL database to record relevant messages.
 
-The persistence layer needs to implement the appropriate interface. For example, you can check out the [Redis interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank} used by the Relayer Engine, a package that serves as a starting point for a custom relaying service.
-
-## See Also
-
-The [Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank} provides an alternate Spy implementation that is highly available for improved performance and reliability.
-
-The [Relayer Engine](https://github.com/wormhole-foundation/relayer-engine){target=\_blank} implements a client and persistence layer for messages received from a Spy subscription.
+The persistence layer needs to implement the appropriate interface. For example, you can check out the [Redis interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank} used by the Relayer Engine, a package that implements a client and persistence layer for messages received from a Spy subscription.

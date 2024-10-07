@@ -9,7 +9,7 @@ This page features various demos showcasing Wormhole's features, including start
 
 ### Scaffolding
 
-[Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank} is a starter application repository that contains example dApps that integrate with Wormhole messaging. It includes basic xdapp structures, tests, and walkthroughs for core components like Wormhole messaging and the portal token bridge.
+[Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank} is a starter application repository that contains example dApps that integrate with Wormhole messaging. It includes basic xDapp structures, tests, and walkthroughs for core components like Wormhole messaging and the portal token bridge.
 
 ### Wormhole Examples
 
@@ -29,4 +29,12 @@ The [Native USDC Bridging](https://github.com/wormhole-foundation/wormhole-circl
 
 ### Borrow Lend
 
-[Borrow Lend](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} contains two examples of cross-chain lending protocol implementations. The first example provides a basic lending skeleton for borrowing and lending between two chains. In contrast, the second example offers a more advanced cross-chain lending model using a hub-and-spoke approach. 
+[Borrow Lend](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} contains two examples of cross-chain lending protocol implementations. The first example provides a basic lending skeleton for borrowing and lending between two chains. In contrast, the second example offers a more advanced cross-chain lending model using a hub-and-spoke approach.
+
+### Wormhole NTT Connect Demo
+
+The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} demo configures a Vite-React TypeScript application using the Wormhole TypeScript SDK and, as an example, preconfigures the Wormhole Connect widget to allow transfers between Sepolia and Solana Testnet environments.
+
+### Wormhole Demo NTT TS SDK
+
+The [Demo NTT TS SDK Example](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} demonstrates the use of the Wormhole TS SDK to facilitate token transfers between different blockchain networks after performing a deployment of the Native Token Transfers framework.

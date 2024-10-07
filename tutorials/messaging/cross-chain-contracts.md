@@ -1,6 +1,6 @@
 ---
 title: Create Cross-Chain Contracts
-description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo TestNets and send messages across chains.
+description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo Testnets and send messages across chains.
 ---
 
 # Create Cross-Chain Contracts
@@ -9,19 +9,19 @@ description: Learn how to create cross-chain contracts using Wormhole's Solidity
 
 Wormhole's cross-chain messaging allows smart contracts to interact seamlessly across multiple blockchains. This enables developers to build decentralized applications that leverage the strengths of different networks, whether it's Avalanche, Celo, Ethereum, or beyond. In this tutorial, we'll explore using [Wormhole's Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} to create cross-chain contracts to send and receive messages across chains.
 
-Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two TestNets—Avalanche Fuji and Celo Alfajores—and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
+Wormhole's messaging infrastructure simplifies data transmission, event triggering, and transaction initiation across blockchains. In this tutorial, we'll guide you through a simple yet powerful hands-on demonstration that showcases this practical capability. We'll deploy contracts on two Testnets—Avalanche Fuji and Celo Alfajores—and send messages from one chain to another. This tutorial is perfect for those new to cross-chain development and seeking hands-on experience with Wormhole's powerful toolkit.
 
 By the end of this tutorial, you will have not only built a fully functioning cross-chain message sender and receiver using Solidity but also developed a comprehensive understanding of how to interact with the Wormhole relayer, manage cross-chain costs, and ensure your smart contracts are configured correctly on both source and target chains.
 
-This tutorial assumes a basic understanding of Solidity and smart contract development. Before diving in, it may be helpful to review [the basics of Wormhole](/learn){target=\_blank} to familiarize yourself with the protocol.
+This tutorial assumes a basic understanding of Solidity and smart contract development. Before diving in, it may be helpful to review [the basics of Wormhole](/docs/learn/){target=\_blank} to familiarize yourself with the protocol.
 
 ## Wormhole Overview
 
-We'll interact with two key Wormhole components: the [Wormhole relayer](/learn/infrastructure/relayer){target=\_blank} and the [Wormhole Core Contracts](/learn/messaging/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
+We'll interact with two key Wormhole components: the [Wormhole relayer](/docs/learn/infrastructure/relayer/){target=\_blank} and the [Wormhole Core Contracts](/docs/learn/infrastructure/core-contracts/){target=\_blank}. The relayer handles cross-chain message delivery and ensures the message is accurately received on the target chain. This allows smart contracts to communicate across blockchains without developers worrying about the underlying complexity.
 
 Additionally, we'll rely on the Wormhole relayer to automatically determine cross-chain transaction costs and facilitate payments. This feature simplifies cross-chain development by allowing you to specify only the target chain and the message. The relayer handles the rest, ensuring that the message is transmitted with the appropriate fee.
 
-![Wormhole architecture detailed diagram: source to target chain communication.](/images/learn/architecture/architecture-1.webp)
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/learn/fundamentals/architecture/architecture-1.webp)
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Before starting this tutorial, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
-- TestNet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
 - Wallet private key
 
 ## Build Cross-Chain Messaging Contracts
@@ -68,16 +68,29 @@ You can find the full code for the `MessageSender.sol` below.
 
 ### Receiver Contract: MessageReceiver
 
-The `MessageReceiver` contract handles incoming cross-chain messages. When a message arrives, it decodes the payload and logs the message content.
+The `MessageReceiver` contract handles incoming cross-chain messages. When a message arrives, it decodes the payload and logs the message content. It ensures that only authorized contracts can send and process messages, adding an extra layer of security in cross-chain communication.
 
-Key functions include:
+#### Emitter Validation and Registration
 
- - **`receiveWormholeMessages`** - the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages
+In cross-chain messaging, validating the sender is essential to prevent unauthorized contracts from sending messages. The `isRegisteredSender` modifier ensures that messages can only be processed if they come from the registered contract on the source chain. This guards against malicious messages and enhances security.
 
-Here's the core of the contract:
+Key implementation details include:
+
+ - **`registeredSender`** - stores the address of the registered sender contract
+ - **`setRegisteredSender`** - registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders
+ - **`isRegisteredSender`** - restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication
 
 ```solidity
---8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:17:39"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:12:13"
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:22:39"
+```
+
+#### Message Processing
+
+The `receiveWormholeMessages` is the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
+
+```solidity
+--8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-2.sol:42:64"
 ```
 
 You can find the full code for the `MessageReceiver.sol` below.
@@ -90,7 +103,7 @@ You can find the full code for the `MessageReceiver.sol` below.
 
 ## Deploy Contracts
 
-This section will guide you through deploying the cross-chain messaging contracts on the Avalanche Fuji and Celo Alfajores TestNets. Follow these steps to get your contracts up and running.
+This section will guide you through deploying the cross-chain messaging contracts on the Avalanche Fuji and Celo Alfajores Testnets. Follow these steps to get your contracts up and running.
 
 ### Deployment Tools
 We use _Foundry_ to deploy our smart contracts. However, you can use any tool you're comfortable with, such as:
@@ -99,11 +112,11 @@ We use _Foundry_ to deploy our smart contracts. However, you can use any tool yo
  - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation){target=\_blank} for a more extensive JavaScript/TypeScript workflow
  - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for a CLI-focused experience with built-in scripting and testing features
 
-The contracts and deployment steps remain the same regardless of your preferred tool. The key is to ensure you have the necessary TestNet funds and are deploying to the right networks.
+The contracts and deployment steps remain the same regardless of your preferred tool. The key is to ensure you have the necessary Testnet funds and are deploying to the right networks.
 
 ### Repository Setup
 
-To get started with cross-chain messaging using Wormhole, first clone the [GitHub repository](https://github.com/martin0995/cross-chain-messaging){target=\_blank}. This repository includes everything you need to deploy, interact, and test the message flow between chains.
+To get started with cross-chain messaging using Wormhole, first clone the [GitHub repository](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}. This repository includes everything you need to deploy, interact, and test the message flow between chains.
 
 This demo focuses on using the scripts, so it's best to take a look at them, starting with `deploySender.js`, `deployReceiver.js`, and `sendMessage.js`.
 
@@ -128,7 +141,7 @@ The repository includes:
 
 - Configuration files and ABI JSON files for easy deployment and interaction:
 
-    - **`chains.json`** - configuration file that stores key information for the supported TestNets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks
+    - **`chains.json`** - configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks
 
 ### Important Setup Steps
 
@@ -179,7 +192,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         ```
 
     !!! note
-        The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores TestNets. You can modify this file to add more networks if needed.
+        The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores Testnets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/build/reference/){target=\_blank}.
 
 2. **Set up provider and wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction
 
@@ -209,6 +222,13 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:39:42"
         ```
 
+4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
+
+    This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
+
+    ```javascript
+    --8<-- "code/tutorials/messaging/cross-chain-contracts/snippet-6.js:55:66"
+    ```
 
 You can find the full code for the `deploySender.js` and `deployReceiver.js` below.
 
@@ -262,7 +282,7 @@ Let's break down the script step by step.
 
 1. **Load configuration files**
 
-    1. **`chains.json`** - contains details about the supported TestNet chains, such as RPC URLs and relayer addresses
+    1. **`chains.json`** - contains details about the supported Testnet chains, such as RPC URLs and relayer addresses
     2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
 
     ```javascript
@@ -321,7 +341,7 @@ Let's break down the script step by step.
     npm run send:message
     ```
 
-If everything is set up correctly, the message will be sent from the Avalanche Fuji TestNet to the Celo Alfajores TestNet. You can monitor the transaction and verify that the message was received on Celo using the [Wormhole Explorer](https://wormholescan.io/#/?network=TESTNET){target=\_blank}.
+If everything is set up correctly, the message will be sent from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. You can monitor the transaction and verify that the message was received on Celo using the [Wormhole Explorer](https://wormholescan.io/#/?network=TESTNET){target=\_blank}.
 
 The console should output something similar to this:
 
@@ -339,6 +359,6 @@ You can find the full code for the `sendMessage.js` below.
 
 You're now fully equipped to build cross-chain contracts using the Wormhole protocol! With this tutorial, you've learned how to:
 
-- Deploy sender and receiver contracts on different TestNets
+- Deploy sender and receiver contracts on different Testnets
 - Send a cross-chain message from one blockchain to another
 - Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
