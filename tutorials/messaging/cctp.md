@@ -189,13 +189,13 @@ Once you initialize the transfer on the source chain, you must fetch the VAA fro
 
 Once you fetch the VAA correctly, the final step is to complete the transfer on the destination chain (Solana in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain.
 
-1. **Complete the transfer** - after successfully fetching the VAA, use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
+ - **Complete the transfer** - after successfully fetching the VAA, use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:49:55"
     ```
 
-    - The `dstTxIds` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
+    The `dstTxIds` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
 
 You can find the full code for the manual USDC transfer script below:
 
