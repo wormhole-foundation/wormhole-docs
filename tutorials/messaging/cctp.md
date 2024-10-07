@@ -237,7 +237,7 @@ This allows you to resume the transfer process by rebuilding the transfer object
 
 You can find the full code for the manual USDC transfer script below:
 
-???- tip "`partial-transfer.ts`"
+??? code "`partial-transfer.ts`"
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-4.ts"
     ```
@@ -274,7 +274,7 @@ After initiating the transfer, you can log the transaction IDs for both the sour
 
 You can find the full code for the automatic USDC transfer script below:
 
-???- tip "`automatic-transfer.ts`"
+??? code "`automatic-transfer.ts`"
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-3.ts"
     ```
