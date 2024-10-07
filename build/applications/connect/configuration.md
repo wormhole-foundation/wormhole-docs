@@ -73,7 +73,7 @@ The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` 
 
 In addition to these routes, developers can create custom routes for their own Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/example-native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
-For further details on available route plugins, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
+For further details on the Route plugin interface, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
 
 
 #### Example: Offer Only CCTP Transfers
@@ -126,7 +126,7 @@ The following section shows how to add an arbitrary token to your deployment of 
 !!! note
     You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
 
-This example configuration adds an the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
+This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
 
 See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
