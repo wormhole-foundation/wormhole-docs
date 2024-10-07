@@ -147,13 +147,6 @@ You can limit which tokens are offered in the UI by providing the `tokens` prope
 ```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
 ```
-### Fully Customized Theme {: #fully-customized-theme }
-
-Wormhole Connect offers a high level of customizability that suits and integrates with your application's design, including various options for buttons, backgrounds, popovers, fonts, and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [no code style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
-
-```jsx
---8<-- 'code/build/applications/connect/configuration/custom-full.jsx'
-```
 
 ## More Configuration Options {: #more-configuration-options }
 
