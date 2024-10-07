@@ -192,7 +192,7 @@ Once you fetch the VAA correctly, the final step is to complete the transfer on 
 Use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
 
 ```typescript
---8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:49:55"
+--8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:49:54"
 ```
 
 The `dstTxIds` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
