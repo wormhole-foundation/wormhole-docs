@@ -160,7 +160,7 @@ To begin the manual transfer process, you first need to create the transfer obje
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:27:32"
     ```
 
-2. **Start the transfer** - the `initiateTransfer` function sends the transaction on the source chain. It involves signing and sending the transaction using the source signer. This will return a list of transaction IDs (srcTxids) that you can use to track the transfer
+2. **Start the transfer** - the `initiateTransfer` function sends the transaction on the source chain. It involves signing and sending the transaction using the source signer. This will return a list of transaction IDs (`srcTxids`) that you can use to track the transfer
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:38:39"
