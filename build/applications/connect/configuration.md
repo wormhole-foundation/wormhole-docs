@@ -5,32 +5,32 @@ description: Configure Wormhole Connect for React or HTML, set themes, define to
 
 ## Introduction {: #introduction }
 
-Configure the Wormhole Connect React component by passing a `WormholeConnectConfig` object as the `config` attribute. If using the hosted version, provide `config` and `theme` as JSON-serialized strings on the mount point.
+Configure the Wormhole Connect React component by passing a `WormholeConnectConfig` object as the `config` prop.
 
-=== "React"
+=== "React integration"
 
     ```ts
     --8<-- 'code/build/applications/connect/configuration/configure-react.tsx'
     ```
 
-=== "HTML Tags"
+=== "Hosted integration"
 
-    ```html
-    --8<-- 'code/build/applications/connect/configuration/configure-html.html'
+    ```ts
+    --8<-- 'code/build/applications/connect/configuration/configure-hosted.tsx'
     ```
+
+!!! note
+    The full type definition of WormholeConnectConfig is available [here](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts).
+
+    Below we show a variety of common config examples.
+
 
 ## Examples {: #examples }
 
-Below are some examples of different ways you can configure Connect. See `WormholeConnectConfig` in the below file for a full view of the supported configuration parameters.
+### Configuring Chains and RPC Endpoints {: #chains-and-rpc-endpoints }
 
-??? code "View `WormholeConnectConfig`"
-    ```ts
-    --8<-- 'code/build/applications/connect/configuration/index.ts'
-    ```
-
-### Custom Networks and RPC Endpoints {: #custom-networks-and-rpc-endpoints }
-
-Specify supported networks, tokens, and custom RPC endpoints. Your users may encounter rate limits using public RPC endpoints if you don't provide your own.
+Connect allows you to narrow down which chains it offers, to focus on the ones your project needs. It's also good to provide your own RPC endpoints, because
+the public ones that Connect defaults to often don't support critical functions like fetching balances.
 
 === "Mainnet"
 
@@ -45,8 +45,108 @@ Specify supported networks, tokens, and custom RPC endpoints. Your users may enc
     ```
 
 !!! note
-    For a complete list of Testnet chain names that can be manually added, see the [Testnet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}. 
+    For a complete list of available chain names, see the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank}. 
 
+### Configuring Routes
+
+By default, Connect offers two bridging protocols: Token Bridge (for Wormhole wrapped tokens) and Circle's CCTP (for native USDC). 
+
+For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
+
+#### Available `route` Plugins
+
+The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
+
+???- tip "`route` Plugins"
+    - **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
+    - **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
+    - **`CCTPRoute`** - manually redeemed CCTP route
+    - **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
+    - **`DEFAULT_ROUTES`** - array containing the four preceding routes (TokenBridgeRoute, AutomaticTokenBridgeRoute, CCTPRoute, AutomaticCCTPRoute)
+    - **`nttAutomaticRoute(nttConfig)`** - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
+    - **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route
+    - **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
+    - **`MayanRoute`** - route that offers multiple Mayan protocols
+    - **`MayanRouteSWIFT`** - route for Mayan’s Swift protocol only
+    - **`MayanRouteMCTP`** - route for Mayan’s MCTP protocol only
+    - **`MayanRouteWH`** - route for Mayan’s original Wormhole transfer protocol
+
+In addition to these routes, developers can create custom routes for their own Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/example-native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
+
+For further details on available route plugins, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
+
+
+#### Example: Offer Only CCTP Transfers
+
+To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
+
+```typescript
+import {
+  AutomaticCCTPRoute,
+  WormholeConnectConfig,
+  WormholeConnect,
+} from '@wormhole-foundation/wormhole-connect';
+
+const config: WormholeConnectConfig = {
+  routes: [AutomaticCCTPRoute],
+};
+
+<WormholeConnect config={config} />;
+```
+
+#### Example: Offer All Default Routes and Third-Party Plugins
+
+In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+
+```typescript
+import {
+  DEFAULT_ROUTES,
+  nttRoutes,
+  MayanRouteSWIFT,
+  WormholeConnectConfig,
+  WormholeConnect,
+} from '@wormhole-foundation/wormhole-connect';
+
+import { myNttConfig } from './consts'; // Custom NTT configuration
+
+const config: WormholeConnectConfig = {
+  routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
+};
+
+<WormholeConnect config={config} />;
+```
+
+This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
+
+
+### Adding Custom Tokens {: #custom-tokens }
+
+The following section shows how to add an arbitrary token to your deployment of Connect. 
+
+!!! note
+    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
+
+This example configuration adds an the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
+
+See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
+
+
+```typescript
+--8<-- 'code/build/applications/connect/configuration/add-token.tsx'
+```
+
+### Whitelisting Tokens {: #whitelisting-tokens }
+
+Connect has a list of built-in tokens that it offers by default. You can see it here:
+
+- [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts)
+- [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts)
+
+You can limit which tokens are offered in the UI by providing the `tokens` property. This example builds on the previous one; we are adding a custom token, and limiting Connect to just that, as well as the native gas tokens ETH and SOL.
+
+```jsx
+--8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
+```
 ### Fully Customized Theme {: #fully-customized-theme }
 
 Wormhole Connect offers a high level of customizability that suits and integrates with your application's design, including various options for buttons, backgrounds, popovers, fonts, and more. The following example demonstrates a variety of appearance customizations. Remember, if you prefer a visual to aid in designing your widget, you can use the [no code style interface](https://connect-in-style.wormhole.com/){target=\_blank}.
@@ -55,125 +155,7 @@ Wormhole Connect offers a high level of customizability that suits and integrate
 --8<-- 'code/build/applications/connect/configuration/custom-full.jsx'
 ```
 
-### Environment {: #environment }
-
-You can configure Connect to be used in Testnet environments, too. You can toggle between Mainnet and Testnet environments by defining the `WormholeConnectConfig` as follows:
-
-=== "Mainnet"
-
-    ```ts
-    const config: WormholeConnectConfig = {
-      "env": "mainnet"
-    }
-    ```
-
-=== "Testnet"
-
-    ```ts
-    const config: WormholeConnectConfig = {
-      "env": "testnet"
-    }
-    ```
-### Custom RPC Endpoint {: #custom-rpc-endpoint }
-
-You can define a custom RPC provider for your Connect widget to use. This can be especially helpful if you'd like to replace public endpoints with dedicated or private endpoints.
-
-```ts
-const config: WormholeConnectConfig = {
-  "rpcs": {
-    "solana": "https://rpc.ankr.com/solana/ee827255553bb0fa9e0aaeab27e988707e60ea06ae36be0658b778072e94979e"
-  }
-}
-```
-
-### Arbitrary Token {: #arbitrary-token }
-
-The following section shows how to add an arbitrary token to your deployment of Connect. 
-
-!!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
-
-This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which isn't built in by default and provided under the `tokensConfig` key.
-
-See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
-
-```json
---8<-- 'code/build/applications/connect/configuration/arbitrary-token.json'
-```
-
 ## More Configuration Options {: #more-configuration-options }
-
-### Whitelisting Tokens {: #whitelisting-tokens }
-
-By default, Connect will offer its complete built-in list of assets, but you can restrict the displayed assets by defining a subset of tokens under `tokens`. The default full list is as follows:
-
-|    Mainnet     |              Testnet               |
-|:--------------:|:----------------------------------:|
-|      ETH       |          ETH, ETHsepolia           |
-|      WETH      |         WETH, WETHsepolia          |
-|    USDCeth     |              USDCeth               |
-|      WBTC      |                 -                  |
-|      USDT      |                 -                  |
-|      DAI       |                 -                  |
-|      BUSD      |                 -                  |
-|     MATIC      |               MATIC                |
-|     WMATIC     |               WMATIC               |
-|  USDCpolygon   |                 -                  |
-|      BNB       |                BNB                 |
-|      WBNB      |                WBNB                |
-|    USDCbnb     |                 -                  |
-|      AVAX      |                AVAX                |
-|     WAVAX      |               WAVAX                |
-|    USDCavax    |              USDCavax              |
-|      FTM       |                FTM                 |
-|      WFTM      |                WFTM                |
-|      CELO      |                CELO                |
-|      GLMR      |                GLMR                |
-|     WGLMR      |               WGLMR                |
-|      SOL       |                WSOL                |
-|      PYTH      |                 -                  |
-|      SUI       |                SUI                 |
-|    USDCsol     |                 -                  |
-|      APT       |                APT                 |
-|  ETHarbitrum   |  ETHarbitrum, ETHarbitrum_sepolia  |
-|  WETHarbitrum  | WETHarbitrum, WETHarbitrum_sepolia |
-|  USDCarbitrum  |            USDCarbitrum            |
-|  ETHoptimism   |  ETHoptimism, ETHoptimism_sepolia  |
-|  WETHoptimism  | WETHoptimism, WETHoptimism_sepolia |
-|  USDCoptimism  |            USDCoptimism            |
-|    ETHbase     |      ETHbase, ETHbase_sepolia      |
-|    WETHbase    |     WETHbase, WETHbase_sepolia     |
-|      tBTC      |                tBTC                |
-|  tBTCpolygon   |            tBTCpolygon             |
-|  tBTCoptimism  |            tBTCoptimism            |
-|  tBTCarbitrum  |            tBTCarbitrum            |
-|    tBTCbase    |              tBTCbase              |
-|    tBTCsol     |              tBTCsol               |
-|  WETHpolygon   |                 -                  |
-|    WETHbsc     |                 -                  |
-|     wstETH     |               wstETH               |
-| wstETHarbitrum |                 -                  |
-| wstETHoptimism |                 -                  |
-| wstETHpolygon  |                 -                  |
-|   wstETHbase   |                 -                  |
-
-### Routes {: #routes }
-
-By default, Connect will offer its complete built-in list of routes, but you can restrict the possible route assets by defining a subset under `routes.` By default, Connect will offer its complete built-in list:
-
-|    Mainnet    |    Testnet    |
-|:-------------:|:-------------:|
-|    bridge     |    bridge     |
-|     relay     |     relay     |
-|  cctpManual   |  cctpManual   |
-|   cctpRelay   |   cctpRelay   |
-|   nttManual   |   nttManual   |
-|   nttRelay    |   nttRelay    |
-|   ethBridge   |       -       |
-| wstETHBridge  |       -       |
-|  usdtBridge   |       -       |
-| cosmosGateway | cosmosGateway |
-|     tBTC      |     tBTC      |
 
 ### Wallet Connect Project ID  {: #wallet-connect-project-id }
 
@@ -194,54 +176,14 @@ By setting the `showHamburgerMenu` option to `false,` you can add extra links. T
 | `target` | Anchor standard target, by default `_blank` |
 | `order`  | Order where the new item should be injected |
 
-#### Sample Configuration {: #sample-configuration }
-
-```json
---8<-- 'code/build/applications/connect/configuration/sample-configuration.json'
+```jsx
+--8<-- 'code/build/applications/connect/configuration/custom-menu.jsx'
 ```
 
 ### CoinGecko API Key {: #coingecko-api-key }
 
-The CoinGecko API can be used to fetch token price data. If you have a [CoinGecko API Plan](https://apiguide.coingecko.com/getting-started/getting-started){target=\_blank}, you can include the API key in the configuration. Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
+The CoinGecko API can be used to fetch token price data. If you have a [CoinGecko API Plan](https://apiguide.coingecko.com/getting-started/getting-started){target=\_blank}, you can include the API key in the configuration.
 
-### More Networks {: #more-networks }
-
-Specify a set of extra networks to be displayed on the network selection modal, each linking to a different page, dApp, or mobile app the user will be redirected to. The following properties are accessed through the `moreNetworks` property (e.g., `moreNetworks.href`):
-
-| <div style="width:15em">Property</div> |                                                                       Description                                                                       |
-|:--------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|                 `href`                 |                                                  **Required**. Default value for missing network hrefs                                                  |
-|                `target`                |                                           Default value for missing network link targets. Defaults to `_self`                                           |
-|             `description`              | Brief description that should be displayed as a tooltip when the user hovers over a more network icon. Used as default for missing network descriptions |
-|           `networks[].icon`            |                                                     **Required**. URL data encoded icon to display                                                      |
-|           `networks[].href`            | Network href to redirect to. If present, the values `sourceChain` and `targetChain` are replaced with the currently selected chains before redirecting  |
-|           `networks[].label`           |                                                               **Required**. Display text                                                                |
-|           `networks[].name`            |                                            Unique network key. Defaults to a snake_case version of the label                                            |
-|        `networks[].description`        |                                                Description value. Defaults to `moreNetworks.description`                                                |
-|          `networks[].target`           |                                                  href target value. Defaults to `moreNetworks.target`                                                   |
-|     `networks[].showOpenInNewIcon`     |                    Disable top right open in new icon. Defaults to **true** if target is `_blank` or **false** if target is `_self`                     |
-
-??? code "View full configuration"
-    ```json
-    --8<-- 'code/build/applications/connect/configuration/advanced-configuration.json'
-    ```
-
-### More Tokens {: #more-tokens }
-
-Show a particular entry on the select tokens modal, redirecting the user to a different page, dApp, or mobile app. The following properties are accessed through the `moreTokens` property (e.g., `moreTokens.label`):
-
-| Property |                                                                         Description                                                                         |
-|:--------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| `label`  |                                                                 **Required**. Display text                                                                  |
-|  `href`  | **Required**. URL to redirect to. If present, the values `sourceChain` and `targetChain` are replaced with the currently selected chains before redirecting |
-| `target` |                                                              href target. Defaults to `_self`                                                               |
-
-### Explorer {: #explorer }
-
-Enable the explorer button to allow users to search for their transactions on a given explorer, filtering by their wallet address. The following properties are accessed through the `explorer` property (e.g., `explorer.label`):
-
-| Property |                                                                                             Description                                                                                             |
-|:--------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| `label`  |                                                                              Display text. Defaults to `Transactions`                                                                               |
-|  `href`  | **Required**. URL of the explorer, for instance [https://wormholescan.io/](https://wormholescan.io/){target=\_blank}. If present, the value `address` is replaced with the connected wallet address |
-| `target` |                                                                                 `href` target. Defaults to `_blank`                                                                                 |
+```jsx
+--8<-- 'code/build/applications/connect/configuration/custom-coingecko-key.jsx'
+```

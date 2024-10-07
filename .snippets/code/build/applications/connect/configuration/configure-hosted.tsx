@@ -1,4 +1,5 @@
 import WormholeConnect, {
+  wormholeConnectHosted,
   WormholeConnectConfig,
 } from '@wormhole-foundation/wormhole-connect';
 
@@ -11,4 +12,8 @@ const config: WormholeConnectConfig = {
   }
 }
 
-<WormholeConnect config={config} />
+const container = document.getElementById('bridge-container');
+
+wormholeConnectHosted(container, {
+  config
+});
