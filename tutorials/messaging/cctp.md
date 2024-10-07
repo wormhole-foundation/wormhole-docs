@@ -168,7 +168,7 @@ To begin the manual transfer process, you first need to create the transfer obje
 
 #### Fetch the Circle Attestation (VAA)
 
-Once you initialize the transfer on the source chain, you must fetch the VAA from Circle. The VAA serves as cryptographic proof that CCTP has successfully recognized the transfer. The transfer cannot be completed on the destination chain until this attestation is fetched
+Once you initialize the transfer on the source chain, you must fetch the VAA from Circle. The VAA serves as cryptographic proof that CCTP has successfully recognized the transfer. The transfer cannot be completed on the destination chain until this attestation is fetched.
 
 
 1. **Set a timeout** - fetching the attestation can take some time, so setting a timeout is common. In this example, we set the timeout to 60 seconds
