@@ -134,7 +134,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:14:15"
     ```
 
-3. **Configure the signers** - the `getSigner` function retrieves the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
+3. **Configure the signers** - use the `getSigner` function to retrieve the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:18:19"
