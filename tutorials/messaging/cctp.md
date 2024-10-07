@@ -154,7 +154,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 
 #### Initiate the Transfer
 
-To begin the manual transfer process, you first need to create the transfer object and then manually initiate the transfer on the source chain
+To begin the manual transfer process, you first need to create the transfer object and then manually initiate the transfer on the source chain.
 
 1. **Create the Circle transfer object** - the `wh.circleTransfer()` function creates an object with the  transfer details, such as the amount of USDC, the source and destination addresses, and the mode. However, this does not initiate the transfer itself
 
