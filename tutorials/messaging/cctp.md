@@ -187,7 +187,7 @@ Once you initialize the transfer on the source chain, you must fetch the VAA fro
 
 #### Complete the Transfer on the Destination Chain
 
-Once you fetch the VAA correctly, the final step is to complete the transfer on the destination chain (Solana in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain
+Once you fetch the VAA correctly, the final step is to complete the transfer on the destination chain (Solana in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain.
 
 1. **Complete the transfer** - after successfully fetching the VAA, use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
 
