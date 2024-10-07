@@ -25,7 +25,7 @@ Wormhole's cross-chain messaging infrastructure simplifies data transmission, ev
 
     Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
 
-    [:octicons-arrow-right-16: Get started](/docs/tutorials/messaging/cross-chain-token-transfers/)
+    [:octicons-arrow-right-16: Get started](/docs/tutorials/messaging/cross-chain-token-contracts/)
 
 -   :octicons-code-24:{ .lg .middle } **Transfer USDC via CCTP and Wormhole SDK**
 
@@ -33,6 +33,6 @@ Wormhole's cross-chain messaging infrastructure simplifies data transmission, ev
 
     Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. This guide supports manual, automatic, and partial transfer recovery.
 
-    [:octicons-arrow-right-16: Learn more](/docs/tutorials/messaging/transfer-usdc-cctp-sdk/)
+    [:octicons-arrow-right-16: Learn more](/docs/tutorials/messaging/cctp/)
 
 </div>
