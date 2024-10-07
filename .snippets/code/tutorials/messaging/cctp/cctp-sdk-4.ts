@@ -1,11 +1,7 @@
 import { CircleTransfer, wormhole } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
-import * as dotenv from 'dotenv';
 import { getSigner } from '../helpers/helpers';
-
-// Load environment variables
-dotenv.config();
 
 (async function () {
   // Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)

@@ -1,11 +1,7 @@
 import { wormhole } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
-import * as dotenv from 'dotenv';
 import { getSigner } from './helpers/helpers';
-
-// Load environment variables
-dotenv.config();
 
 (async function () {
   const wh = await wormhole('Testnet', [evm, solana]);
