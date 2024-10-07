@@ -1,11 +1,11 @@
 ---
 title: Configure Your Connect Widget
-description: Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions. 
+description: Configure Wormhole Connect with custom chains, tokens, routes, and more.
 ---
 
 ## Introduction {: #introduction }
 
-Configure the Wormhole Connect React component by passing a `WormholeConnectConfig` object as the `config` prop.
+Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `config` prop.
 
 === "React integration"
 
