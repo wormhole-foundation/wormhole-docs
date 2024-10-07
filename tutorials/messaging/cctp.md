@@ -109,8 +109,6 @@ In this section, you'll set up your project for transferring USDC across chains 
 
 In a manual USDC transfer, you perform each step of the cross-chain transfer process individually. This approach allows for greater control and flexibility over how the transfer is executed, which can be helpful in scenarios where you need to customize certain aspects of the transfer, such as gas management, specific chain selection, or signing transactions manually.
 
-Manual transfers give developers more control over each step, making them useful for custom setups, testing, or when automation isn't available.
-
 This section will guide you through performing a manual USDC transfer across chains using the Wormhole SDK and Circle’s Cross-Chain Transfer Protocol (CCTP).
 
 ### Set Up the Transfer Environment
