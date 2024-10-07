@@ -28,12 +28,12 @@ When bridging assets across chains, there are two primary approaches to handling
 Before you begin, ensure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
- - [USDC tokens](https://faucet.circle.com/){target=\_blank} on supported chains
- - A wallet with a private key, funded with native tokens (TestNet or MainNet) for gas fees
+ - [USDC tokens](https://faucet.circle.com/){target=\_blank} on supported chains. This tutorial uses Avalanche and Solana as examples
+ - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees
 
 ## Supported Chains
 
-The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=_blank}, which covers both TestNet and MainNet environments.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=_blank}, which covers both Testnet and Mainnet environments.
 
 ## Project Setup
 
@@ -124,7 +124,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     ```
     
     !!! note
-        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on MainNet.
+        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
 2. **Set up source and destination chains** - specify the source chain (Avalanche) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
 
