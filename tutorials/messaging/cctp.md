@@ -128,7 +128,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     !!! note
         You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on MainNet.
 
-2. **Set up source and destination chains** - we specify the source chain (Avalanche) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
+2. **Set up source and destination chains** - specify the source chain (Avalanche) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:14:15"
