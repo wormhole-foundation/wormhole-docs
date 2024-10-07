@@ -295,7 +295,7 @@ If you'd like to explore the complete project or need a reference while followin
 
 ## Conclusion
 
-In this tutorial, you’ve gained hands-on experience with Circle’s Cross-Chain Transfer Protocol (CCTP) and the Wormhole SDK. You’ve learned to perform manual and automatic USDC transfers across multiple chains and recover partial transfers if needed.
+In this tutorial, you’ve gained hands-on experience with Circle’s CCTP and the Wormhole SDK. You’ve learned to perform manual and automatic USDC transfers across multiple chains and recover partial transfers if needed.
 
 By following these steps, you've learned how to:
 
