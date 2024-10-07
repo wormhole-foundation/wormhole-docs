@@ -28,7 +28,7 @@ When bridging assets across chains, there are two primary approaches to handling
 Before you begin, ensure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
- - [USDC tokens](https://faucet.circle.com/){target=\_blank} on supported chains. This tutorial uses Avalanche and Solana as examples
+ - [USDC tokens](https://faucet.circle.com/){target=\_blank} on supported chains. This tutorial uses Avalanche and Sepolia as examples
  - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees
 
 ## Supported Chains
@@ -126,7 +126,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     !!! note
         You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
-2. **Set up source and destination chains** - specify the source chain (Avalanche) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
+2. **Set up source and destination chains** - specify the source chain (Avalanche) and the destination chain (Sepolia) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:10:11"
@@ -187,7 +187,7 @@ Once you initialize the transfer on the source chain, you must fetch the VAA fro
 
 #### Complete the Transfer on the Destination Chain
 
-Once you fetch the VAA correctly, the final step is to complete the transfer on the destination chain (Solana in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain.
+Once you fetch the VAA correctly, the final step is to complete the transfer on the destination chain (Sepolia in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain.
 
 Use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
 
@@ -212,7 +212,7 @@ To execute the manual transfer script, you can use `ts-node` to run the TypeScri
 npx ts-node manual-transfer.ts
 ```
 
-This will initiate the USDC transfer from the source chain (Avalanche) and complete it on the destination chain (Solana).
+This will initiate the USDC transfer from the source chain (Avalanche) and complete it on the destination chain (Sepolia).
 
 You can monitor the status of the transaction on the [Wormhole explorer](https://wormholescan.io/){target=\_blank}.
 

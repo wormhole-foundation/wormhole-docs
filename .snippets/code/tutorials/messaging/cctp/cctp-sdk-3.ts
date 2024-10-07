@@ -9,7 +9,7 @@ import { getSigner } from '../helpers/helpers';
 
   // Set up source and destination chains
   const sendChain = wh.getChain('Avalanche');
-  const rcvChain = wh.getChain('Solana');
+  const rcvChain = wh.getChain('Sepolia');
 
   // Configure the signers
   const source = await getSigner(sendChain);

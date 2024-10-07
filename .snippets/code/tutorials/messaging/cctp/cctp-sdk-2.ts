@@ -8,7 +8,7 @@ import { getSigner } from './helpers/helpers';
 
   // Set up source and destination chains
   const sendChain = wh.getChain('Avalanche');
-  const rcvChain = wh.getChain('Solana');
+  const rcvChain = wh.getChain('Sepolia');
 
   // Configure the signers
   const source = await getSigner(sendChain);
@@ -40,7 +40,7 @@ import { getSigner } from './helpers/helpers';
   const attestIds = await xfer.fetchAttestation(timeout);
   console.log(`Got Attestation: `, attestIds);
 
-  // Complete the transfer on the destination chain (Solana)
+  // Complete the transfer on the destination chain (Sepolia)
   console.log('Completing Transfer');
   const dstTxids = await xfer.completeTransfer(destination.signer);
   console.log(`Completed Transfer: `, dstTxids);

@@ -8,7 +8,7 @@ import { getSigner } from '../helpers/helpers';
   const wh = await wormhole('Testnet', [evm, solana]);
 
   // Grab chain Contexts -- these hold a reference to a cached rpc client
-  const rcvChain = wh.getChain('Solana');
+  const rcvChain = wh.getChain('Sepolia');
 
   // Get signer from local key
   const destination = await getSigner(rcvChain);
