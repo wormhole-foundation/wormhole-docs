@@ -160,7 +160,7 @@ To begin the manual transfer process, you first need to create the transfer obje
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:27:32"
     ```
 
-2. **Start the transfer** - the `initiateTransfer` function sends the transaction on the source chain. It involves signing and sending the transaction using the source signer. This will return a list of transaction IDs (`srcTxids`) that you can use to track the transfer
+2. **Start the transfer** - the `initiateTransfer` function sends the transaction on the source chain. It involves signing and sending the transaction using the source signer. This will return a list of transaction IDs (`srcTxIds`) that you can use to track the transfer
 
     ```typescript
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:38:39"
@@ -195,7 +195,7 @@ Once you fetch the VAA correctly, the final step is to complete the transfer on 
     --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:49:55"
     ```
 
-    - The `dstTxids` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
+    - The `dstTxIds` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
 
 You can find the full code for the manual USDC transfer script below:
 
