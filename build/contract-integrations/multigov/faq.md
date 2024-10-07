@@ -18,7 +18,7 @@ MultiGov leverages Wormhole's robust cross-chain communication protocol. It impl
 
 ### Can MultiGov integrate with any blockchain?
 
-MultiGov can potentially integrate with any blockchain supported by Wormhole. However, specific implementations may vary depending on the chain's compatibility with Ethereum Virtual Machine (EVM) and its smart contract capabilities. [Find all supported networks here](/docs/build/start-building/supported-networks/). The current implementation of MultiGov supports an EVM Hub and both the EVM and SVM for spokes.
+MultiGov can potentially integrate with any blockchain supported by Wormhole. However, specific implementations may vary depending on the chain's compatibility with the Ethereum Virtual Machine (EVM) and its smart contract capabilities. [See the full list of supported networks](/docs/build/start-building/supported-networks/). The current implementation of MultiGov supports an EVM hub and both the EVM and SVM for spokes.
 
 ### How are votes aggregated across different chains?
 
@@ -40,7 +40,7 @@ You can vote on proposals via the `SpokeVoteAggregator` contract on the respecti
 
 ### How are approved proposals executed across multiple chains?
 
-When a proposal is approved and the timelock period elapses, it's first executed on the hub chain. A proposal can include a cross-chain message by including a call to `dispatch` on the `HubMessageDispatcher` which sends a messages to the relevant spoke chains. On each spoke chain, the `SpokeMessageExecutor` receives, verifies, and automatically executes the instructions using the `SpokeAirlock` as the `msg.sender`.
+When a proposal is approved and the timelock period elapses, it's first executed on the hub chain. A proposal can include a cross-chain message by including a call to `dispatch` on the `HubMessageDispatcher`, which sends a message to the relevant spoke chains. On each spoke chain, the `SpokeMessageExecutor` receives, verifies, and automatically executes the instructions using the `SpokeAirlock` as the `msg.sender`.
 
 ## Implementation Questions
 
@@ -74,7 +74,7 @@ Remember to thoroughly test your MultiGov implementation on testnets before depl
 MultiGov includes several mechanisms to handle network issues or temporary chain unavailability:
 
 1. **Asynchronous vote aggregation** - votes are aggregated periodically, allowing the system to continue functioning even if one chain is temporarily unavailable
-2. **Proposal extension** - the HubGovernorProposalExtender allows trusted actors to extend voting periods if needed, which can help mitigate issues caused by temporary network problems
+2. **Proposal extension** - the `HubGovernorProposalExtender` allows trusted actors to extend voting periods if needed, which can help mitigate issues caused by temporary network problems
 3. **Wormhole retry mechanism** - Wormhole's infrastructure includes retry mechanisms for failed message deliveries, helping ensure cross-chain messages eventually get through
 4. **Decentralized relayer network** - Wormhole's decentralized network of relayers helps maintain system availability even if some relayers are offline
 

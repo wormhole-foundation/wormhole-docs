@@ -28,7 +28,7 @@ For developers looking to set up a local MultiGov environment:
    ```bash
    cp .env.example .env
    ```
-   Edit `.env` with your specific [configuration](/docs/build/multigov/deployment/#configuration){target=\_blank}
+   Edit `.env` with your specific [configuration](/docs/build/contract-integrations/multigov/deployment/#configuration){target=\_blank}
 
 5. Compile contracts:
    ```bash
@@ -51,14 +51,9 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
 
 ### `HubGovernor` Key Parameters
 
-1. `initialVotingDelay` - the delay before voting on a proposal begins
-    - Type: `uint256`
-    - Measured in _seconds_
-    - Example: `86400` (1 day)
+1. `initialVotingDelay` ++"uint256"++ - the delay in seconds before voting on a proposal begins. For example, `86400` is one day
 
-2. `initialProposalThreshold` - the number of tokens needed to create a proposal
-    - Type: `uint256`
-    - Measured in _tokens_
+2. `initialProposalThreshold`  ++"uint256"++ - the number of tokens needed to create a proposal
 
 3. `initialQuorum` - the number minimum number of votes needed for a proposal to be successful
     - Type: `uint256`

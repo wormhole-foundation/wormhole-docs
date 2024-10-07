@@ -1,13 +1,13 @@
 ---
-title: Guides
+title: Step-by-Step MultiGov Tutorials
 description: Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
 ---
 
-# Guides
+# MultiGov Tutorials
 
 Welcome to the MultiGov Guides section! Whether you're looking to execute cross-chain governance actions or manage treasury proposals, these step-by-step guides will walk you through the process using MultiGov and Wormhole. This page also offers resources to answer common technical questions related to setup, security, and proposal creation. Get started with the links below to dive deeper into MultiGov’s powerful governance features.
 
-## Start Building 
+## Get Started
 
 <div class="grid cards" markdown>
 

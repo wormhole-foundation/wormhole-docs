@@ -27,7 +27,7 @@ MultiGov is designed to be flexible but stable. Upgrades should be rare and care
     - Requires re-registering all spokes after redeployment
 
 5. **`HubProposalMetadata`**:
-    - Needs redeployment if HubGovernor changes, as it references HubGovernor as a parameter
+    - Needs redeployment if `HubGovernor` changes, as it references `HubGovernor` as a parameter
 
 6. **`SpokeMetadataCollector`**:
     - Requires redeployment if the hub chain ID changes or if `HubProposalMetadata` changes
@@ -35,7 +35,7 @@ MultiGov is designed to be flexible but stable. Upgrades should be rare and care
 ## Process for Major System Upgrade <!-- (e.g., New HubGovernor) i dont really like this eg being in the title -->
 
 1. **New `HubGovernor` Deployment**:
-    - Deploy the new HubGovernor contract
+    - Deploy the new `HubGovernor` contract
 1. **Component Redeployment**:
     - Redeploy `HubEvmSpokeAggregateProposer` with the new `HubGovernor` address
     - Redeploy `HubProposalMetadata` referencing the new `HubGovernor`
