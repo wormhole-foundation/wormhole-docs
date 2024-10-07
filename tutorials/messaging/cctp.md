@@ -122,7 +122,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 1. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM and Solana) to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
 
     ```typescript
-    --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:10:11"
+    --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:11:11"
     ```
     
     !!! note
