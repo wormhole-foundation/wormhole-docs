@@ -74,7 +74,7 @@ uint256 proposalId = governor.propose(
 
     `values` ++"uint256[]"++
 
-    An array containing the value of each transaction (in wei). In this case, both are set to zero because no ETH is being transferred.
+    An array containing the value of each transaction (in Wei). In this case, both are set to zero because no ETH is being transferred.
 
     ---
 
@@ -167,7 +167,7 @@ After the proposal passes and the votes are tallied, the next step is to execute
 Key actions:
 
 - Execute the proposal after the voting period ends and the proposal passes
-- The `execute` function finalizes the proposal execution by dispatching the cross-chain governance actions. The descriptionHash ensures that the executed proposal matches the one that was voted on.
+- The `execute` function finalizes the proposal execution by dispatching the cross-chain governance actions. The `descriptionHash` ensures that the executed proposal matches the one that was voted on.
 
 ```solidity
 HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
@@ -191,7 +191,7 @@ governor.execute(targets, values, calldatas, descriptionHash);
 
     `values` ++"uint256[]"++
 
-    An array of values (in wei) associated with each transaction (both are zero in this case).
+    An array of values (in Wei) associated with each transaction (both are zero in this case).
 
     ---
 
