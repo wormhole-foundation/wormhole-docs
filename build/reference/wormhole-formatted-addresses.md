@@ -62,9 +62,98 @@ These entries define how the `UniversalAddress` class handles different address 
 
 The `UniversalAddress` class is the central component for working with Wormhole formatted addresses. It allows developers to convert native blockchain addresses (e.g., from EVM, Solana, or Cosmos) into a consistent 32-byte hex format, which is used across all Wormhole operations.
 
-Purpose of the `UniversalAddress` class:
+Key functions:
 
- - Converts platform-specific addresses into the Wormhole formatted 32-byte address
- - Provides methods to convert between native formats and the universal Wormhole format
- - Ensures consistent handling of addresses across multiple blockchains in a cross-chain environment
+ - **`Constructor`** - use the UniversalAddress constructor to convert native addresses into the Wormhole format
+
+  ```typescript
+  const universalAddress = new UniversalAddress("0x123...", "hex");
+  ```
+ - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted 32-byte address. This ensures compatibility when interacting with Wormhole
+ - **`toNative()`** - converts the Wormhole formatted address back to a native address for a specific blockchain platform
+  ```typescript
+  const nativeAddress = universalAddress.toNative("Evm");
+  ```
+ - **`toString()`** - returns the Wormhole formatted address as a hex string, which can be used in various SDK operations
+  ```typescript
+  console.log(universalAddress.toString()); // Outputs the address as a hex string
+  ```
+
+When building cross-chain applications with Wormhole, you’ll often need to:
+
+ - Convert native addresses (like an EVM or Solana address) into a universal format to ensure cross-chain compatibility
+ - Convert Wormhole formatted addresses back into native addresses when you need to interact with platform-specific smart contracts or applications
+
+The `UniversalAddress` class simplifies this process by providing methods to handle these conversions smoothly.
+
+## Converting Between Native and Wormhole Formatted Addresses
+
+When building cross-chain applications with Wormhole, you’ll often need to convert addresses between their native formats (e.g., EVM’s hex or Solana’s base58) and the standardized 32-byte hex format (Wormhole formatted). The Wormhole SDK provides methods to easily perform these conversions.
+
+### Converting a Native Address to a Wormhole Formatted Address
+
+Using the `toUniversalAddress()` method, you can convert native addresses into Wormhole formatted addresses. Below are examples for both EVM and Solana addresses.
+
+ - **EVM Example**:
+  
+    ```typescript
+    import { toNative } from "@wormhole-foundation/sdk-core";
+
+    // Convert EVM (Ethereum) native address to Universal Address
+    const ethAddress: NativeAddress<"Evm"> = toNative("Ethereum", "0x123123123123...");
+    const universalAddress = ethAddress.toUniversalAddress().toString();
+
+    console.log("Universal Address (EVM):", universalAddress);
+    // Output: Universal Address (EVM): 0x00000000123123123..... (32-byte hex address)
+    ```
+
+  - **Solana Example**:
+    
+    ```typescript
+    // Convert Solana native address to Universal Address
+    const solAddress: NativeAddress<"Solana"> = toNative("Solana", "3972....");
+    const universalAddress = solAddress.toUniversalAddress().toString();
+
+    console.log("Universal Address (Solana):", universalAddress);
+    // Output: Universal Address (Solana): 0x1fc.... (32-byte hex address)
+    ```
+
+In both examples:
+
+ - **`toNative()`** - converts the native platform address (EVM or Solana) into a native address type
+ - **`toUniversalAddress()`** - then converts that address into the Wormhole formatted 32-byte hex address
+ - The result is a standardized address format, ready for use in cross-chain operations
+
+### Converting Back to Native Addresses
+
+If you need to convert a Wormhole formatted address back into its native format, use the toNative() method. Here’s how you can convert a Wormhole formatted address back to an EVM or Solana native address:
+
+```typescript
+const nativeAddressEvm = universalAddress.toNative("Evm");
+console.log("EVM Native Address:", nativeAddressEvm);
+
+const nativeAddressSolana = universalAddress.toNative("Solana");
+console.log("Solana Native Address:", nativeAddressSolana);
+```
+
+These conversions ensure that your cross-chain applications can seamlessly handle addresses across different ecosystems.
+
+## Use Cases for Wormhole Formatted Addresses
+
+### Cross-chain Token Transfers
+
+Cross-chain token transfers require addresses to be converted into a standard format. For example, when transferring tokens from Ethereum to Solana, the Ethereum address is converted into a Wormhole formatted address to ensure compatibility. After the transfer, the Wormhole formatted address is converted back into the Solana native format.
+
+### Smart Contract Interactions
+
+In smart contract interactions, especially when building dApps that communicate across multiple chains, Wormhole formatted addresses provide a uniform way to reference addresses. This ensures that addresses from different blockchains can interact seamlessly, whether you're sending messages or making cross-chain contract calls.
+
+### dApp Development
+
+For cross-chain dApp development, Wormhole formatted addresses simplify handling user wallet addresses across various blockchains. This allows developers to manage addresses consistently, regardless of whether they're working with EVM, Solana, or another supported platform.
+
+### Relayers and Infrastructure
+
+Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. Using a uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
+
 
