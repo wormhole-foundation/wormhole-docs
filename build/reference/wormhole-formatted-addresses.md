@@ -35,13 +35,13 @@ The Wormhole SDK provides mappings that associate each platform with its native 
 
 ```typescript
 const platformAddressFormatEntries = [
-  ["Evm", "hex"],
-  ["Solana", "base58"],
-  ["Cosmwasm", "bech32"],
-  ["Algorand", "algorandAppId"],
-  ["Sui", "hex"],
-  ["Aptos", "hex"],
-  ["Near", "sha256"]
+  ['Evm', 'hex'],
+  ['Solana', 'base58'],
+  ['Cosmwasm', 'bech32'],
+  ['Algorand', 'algorandAppId'],
+  ['Sui', 'hex'],
+  ['Aptos', 'hex'],
+  ['Near', 'sha256'],
 ];
 ```
 
@@ -56,20 +56,20 @@ Key functions:
  - **`Constructor`** - use the `UniversalAddress` constructor to convert native addresses into the Wormhole format
 
     ```typescript
-    const universalAddress = new UniversalAddress("0x123...", "hex");
+    const universalAddress = new UniversalAddress('0x123...', 'hex');
     ```
 
  - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted 32-byte address
 
     ```typescript
-    const ethAddress: NativeAddress<"Evm"> = toNative("Ethereum", "0x0C9...");
+    const ethAddress: NativeAddress<'Evm'> = toNative('Ethereum', '0x0C9...');
     const universalAddress = ethAddress.toUniversalAddress().toString();
     ```
 
  - **`toNative()`** - converts the Wormhole formatted address back to a native address for a specific blockchain platform
 
     ```typescript
-    const nativeAddress = universalAddress.toNative("Evm");
+    const nativeAddress = universalAddress.toNative('Evm');
     ```
 
  - **`toString()`** - returns the Wormhole formatted address as a hex string, which can be used in various SDK operations
@@ -92,14 +92,20 @@ Example conversions for EVM and Solana:
 import { toNative } from "@wormhole-foundation/sdk-core";
 
 // EVM Example
-const ethAddress: NativeAddress<"Evm"> = toNative("Ethereum", "0x0C99567DC6f8f1864cafb580797b4B56944EEd28");
+const ethAddress: NativeAddress<'Evm'> = toNative(
+  'Ethereum',
+  '0x0C99567DC6f8f1864cafb580797b4B56944EEd28'
+);
 const universalAddress = ethAddress.toUniversalAddress().toString();
-console.log("Universal Address (EVM):", universalAddress);
+console.log('Universal Address (EVM):', universalAddress);
 
 // Solana Example
-const solAddress: NativeAddress<"Solana"> = toNative("Solana", "6zZHv9EiqQYcdg52ueADRY6NbCXa37VKPngEHaokZq5J");
+const solAddress: NativeAddress<'Solana'> = toNative(
+  'Solana',
+  '6zZHv9EiqQYcdg52ueADRY6NbCXa37VKPngEHaokZq5J'
+);
 const universalAddressSol = solAddress.toUniversalAddress().toString();
-console.log("Universal Address (Solana):", universalAddressSol);
+console.log('Universal Address (Solana):', universalAddressSol);
 ```
 
 The result is a standardized address format, ready for cross-chain operations.
@@ -109,11 +115,11 @@ The result is a standardized address format, ready for cross-chain operations.
 Below is how you can convert a Wormhole formatted address back to an EVM or Solana native address:
 
 ```typescript
-const nativeAddressEvm = universalAddress.toNative("Evm");
-console.log("EVM Native Address:", nativeAddressEvm);
+const nativeAddressEvm = universalAddress.toNative('Evm');
+console.log('EVM Native Address:', nativeAddressEvm);
 
-const nativeAddressSolana = universalAddress.toNative("Solana");
-console.log("Solana Native Address:", nativeAddressSolana);
+const nativeAddressSolana = universalAddress.toNative('Solana');
+console.log('Solana Native Address:', nativeAddressSolana);
 ```
 
 These conversions ensure your cross-chain applications can seamlessly handle addresses across different ecosystems.
