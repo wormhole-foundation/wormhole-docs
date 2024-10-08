@@ -48,7 +48,7 @@ Before deploying applications using the Wormhole Solidity SDK, keep these consid
 
 The Wormhole Solidity SDK consists of key components that streamline cross-chain communication, allowing developers to securely and efficiently interact with Wormhole’s infrastructure. Below are the critical concepts and contracts you'll encounter when working with the SDK.
 
-### Cross-Chain Messaging with `WormholeRelayerSDK.sol`
+### Cross-Chain Messaging with the Wormhole Relayer SDK
 
 The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} contract simplifies cross-chain messaging and asset transfers by integrating several necessary modules, including the Wormhole relayer. By automating message delivery between chains, the Wormhole relayer removes the need for developers to manage relayer infrastructure or handle gas on the target chain. Delivery providers handle the message payload, ensuring secure and efficient communication.
 
@@ -76,7 +76,7 @@ Please refer to the complete `WormholeRelayerSDK.sol` file below for further det
 
 ### `Base.sol` Contract Overview
 
-The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Base.sol){target=\_blank} contract is a core part of the SDK, providing fundamental helper functions and modifiers to manage cross-chain messages securely. This contract integrates both the Wormhole relayer and the `TokenBridge`.
+The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Base.sol){target=\_blank} contract is a core part of the Wormhole Solidity SDK, providing essential helper functions and modifiers for managing cross-chain messages securely via the Wormhole Relayer. It handles sender registration and message validation, ensuring only authorized senders from specific chains can send messages.
 
  - **`onlyWormholeRelayer()`** - ensures only authorized messages from the Wormhole Relayer contract are processed
 
