@@ -61,4 +61,3 @@ This architecture ensures that MultiGov can operate securely and efficiently acr
 
 <!-- add diagram broken down in sections -->
 ![detailed multigov architecture diagram](/docs/images/learn/governance/multigov-detailed.webp)
-

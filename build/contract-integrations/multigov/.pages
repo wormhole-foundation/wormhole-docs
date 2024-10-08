@@ -2,5 +2,5 @@ title: MultiGov
 nav:
  - index.md
  - 'Deployment': 'deployment.md'
- - 'Upgrading': 'upgrading.md'
+ - 'Upgrade Contracts': 'upgrade.md'
  - 'Technical FAQs': 'faq.md'

@@ -3,7 +3,7 @@ title: Upgrading MultiGov
 description: Learn the process and key considerations for upgrading MultiGov, ensuring system integrity and careful planning across cross-chain components.
 ---
 
-# Upgrading
+# Upgrade MultiGov Contracts
 
 MultiGov is designed to be flexible but stable. Upgrades should be rare and carefully considered due to the system's complexity and cross-chain nature. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
 

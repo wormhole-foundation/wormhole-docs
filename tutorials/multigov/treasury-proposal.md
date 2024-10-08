@@ -1,6 +1,6 @@
 ---
 title: MultiGov Guides
-description: Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
+description: Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and finally execute the proposal using Wormhole's MultiGov.
 ---
 
 # Cross-Chain Treasury Management Proposal
@@ -10,6 +10,7 @@ This guide walks through the process of creating and executing a cross-chain gov
 ## Create a Proposal (Hub Chain - Ethereum Mainnet)
 
 The first step is to create a proposal on the Hub Chain, which in this case is Ethereum Mainnet. The proposal will contain instructions to mint 10 W tokens to the Optimism treasury and 15 ETH to the Arbitrum treasury.
+
 In the following code snippet, we initialize the proposal with two transactions, each targeting the Hub's Message Dispatcher contract. These transactions will relay the governance actions to the respective spoke chains via Wormhole.
 
 Key actions:
@@ -18,7 +19,6 @@ Key actions:
 - Set values for each transaction (in this case, both are 0 as we're not transferring any native ETH)
 - Encode the calldata for minting 10 W tokens on Optimism and sending 15 ETH to Arbitrum
 - Finally, we submit the proposal to the `HubGovernor` contract
-
 
 ```solidity
 HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
@@ -142,7 +142,6 @@ In the background, votes cast on the spoke chains are aggregated and sent back t
 Key actions:
 
 - Aggregate votes from different chains and submit them to the Hub Chain for tallying
-
 
 ```solidity
 // Aggregate votes sent to Hub (this would typically be done by a "crank turner" off-chain)
