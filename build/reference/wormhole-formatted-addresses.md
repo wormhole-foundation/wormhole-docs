@@ -80,11 +80,11 @@ Key functions:
 
 These methods allow developers to convert between native addresses and the Wormhole format, ensuring cross-chain compatibility.
 
-## Converting Between Native and Wormhole Formatted Addresses
+## Convert Between Native and Wormhole Formatted Addresses
 
 The Wormhole SDK allows developers to easily convert between native addresses and Wormhole formatted addresses when building cross-chain applications.
 
-### Converting a Native Address to a Wormhole Formatted Address
+### Convert a Native Address to a Wormhole Formatted Address
 
 Example conversions for EVM and Solana:
 
@@ -104,7 +104,7 @@ console.log("Universal Address (Solana):", universalAddressSol);
 
 The result is a standardized address format, ready for cross-chain operations.
 
-### Converting Back to Native Addresses
+### Convert Back to Native Addresses
 
 Below is how you can convert a Wormhole formatted address back to an EVM or Solana native address:
 
