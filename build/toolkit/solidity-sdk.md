@@ -55,7 +55,7 @@ The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-s
  - **Why it’s important?** - the relayer automates message delivery, removing manual intervention and ensuring secure, gas-efficient communication across chains
  - **Learn more** - refer to the [Wormhole Relayer documentation](/docs/build/contract-integrations/wormhole-relayers/){target=\_blank} for deeper details
 
- Key Modules in the SDK include:
+Key modules in the SDK include:
 
  - **`Base.sol`** - the core module for cross-chain messaging. It provides utility functions like `onlyWormholeRelayer()` and `setRegisteredSender()`, ensuring that only messages from trusted relayers are processed
 
