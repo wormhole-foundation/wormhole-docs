@@ -9,11 +9,11 @@ description: Explanation of Wormhole formatted 32-byte hex addresses, their conv
 
 Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 
-This uniform format is essential for smooth interoperability in activities like token transfers and messaging across chains. Wormhole formatted addresses are used throughout the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, especially in cross-chain transactions, such as the `transfer()` function in the NTT EVM contract, which utilizes the `bytes32` representation for recipient addresses.
+This uniform format is essential for smooth interoperability in token transfers and messaging across chains. Wormhole uses formatted addresses throughout the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, especially in cross-chain transactions, such as the `transfer()` function in the NTT EVM contract, which utilizes the `bytes32` representation for recipient addresses.
 
 ## Platform-Specific Address Formats
 
-Each blockchain ecosystem supported by Wormhole has its own method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized 32-byte hex format.
+Each blockchain ecosystem Wormhole supports has its method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized 32-byte hex format.
 
 Here’s an overview of the native address formats and how they are normalized to the Wormhole format:
 
@@ -27,7 +27,7 @@ Here’s an overview of the native address formats and how they are normalized t
 | Aptos           | `Hex`                            | `32-byte Hex `             |
 | Near            | `SHA-256 `                       | `32-byte Hex `             |
 
-These conversions allow Wormhole to interact seamlessly with a wide variety of chains while using a uniform format for all addresses.
+These conversions allow Wormhole to interact seamlessly with various chains using a uniform format for all addresses.
 
 ### Address Format Handling
 
@@ -102,7 +102,7 @@ const universalAddressSol = solAddress.toUniversalAddress().toString();
 console.log("Universal Address (Solana):", universalAddressSol);
 ```
 
-The result is a standardized address format, ready for use in cross-chain operations
+The result is a standardized address format, ready for cross-chain operations.
 
 ### Converting Back to Native Addresses
 
@@ -116,7 +116,7 @@ const nativeAddressSolana = universalAddress.toNative("Solana");
 console.log("Solana Native Address:", nativeAddressSolana);
 ```
 
-These conversions ensure that your cross-chain applications can seamlessly handle addresses across different ecosystems.
+These conversions ensure your cross-chain applications can seamlessly handle addresses across different ecosystems.
 
 ## Use Cases for Wormhole Formatted Addresses
 
@@ -130,10 +130,8 @@ In smart contract interactions, especially when building dApps that communicate 
 
 ### dApp Development
 
-For cross-chain dApp development, Wormhole formatted addresses simplify handling user wallet addresses across various blockchains. This allows developers to manage addresses consistently, regardless of whether they're working with EVM, Solana, or another supported platform.
+For cross-chain dApp development, Wormhole formatted addresses simplify handling user wallet addresses across various blockchains. This allows developers to manage addresses consistently, regardless of whether they work with EVM, Solana, or another supported platform.
 
 ### Relayers and Infrastructure
 
-Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. Using a uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
-
-
+Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
