@@ -100,7 +100,7 @@ These security measures ensure messages come from the correct source and are pro
 
 The Wormhole Solidity SDK interacts with the Wormhole Relayer for sending and receiving messages across EVM-compatible chains. The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} and [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interfaces are central to cross-chain communication, enabling secure and efficient message delivery.
 
-For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/build/contract-integrations/wormhole-relayers/){target=\_blank}. This section covers:
+For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/docs/build/contract-integrations/wormhole-relayers/#wormhole-relayer-interfaces){target=\_blank}. This section covers:
 
  - **`IWormholeRelayer`** – methods for sending cross-chain messages, VAAs, and token transfers
  - **`IWormholeReceiver`** – the required implementation for receiving cross-chain messages
