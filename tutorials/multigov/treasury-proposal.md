@@ -3,13 +3,13 @@ title: MultiGov Guides
 description: Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and finally execute the proposal using Wormhole's MultiGov.
 ---
 
-# Cross-Chain Treasury Management Proposal
+# Cross-Chain treasury management proposal
 
-This guide walks through the process of creating and executing a cross-chain governance proposal to mint W tokens to both the Optimism and Arbitrum treasuries. In this tutorial, we'll cover how to create a proposal on the Hub Chain (Ethereum Mainnet), cast votes from Spoke Chains (Optimism and Arbitrum), aggregate votes, and execute the proposal.
+This guide walks through the process of creating and executing a cross-chain governance proposal to mint W tokens to both the Optimism and Arbitrum treasuries. In this tutorial, we'll cover how to create a proposal on the hub chain (Ethereum Mainnet), cast votes from spoke chains (Optimism and Arbitrum), aggregate votes, and execute the proposal.
 
-## Create a Proposal (Hub Chain - Ethereum Mainnet)
+## Create a Proposal
 
-The first step is to create a proposal on the Hub Chain, which in this case is Ethereum Mainnet. The proposal will contain instructions to mint 10 W tokens to the Optimism treasury and 15 ETH to the Arbitrum treasury.
+The first step is to create a proposal on the hub chain, which in this case is Ethereum Mainnet. The proposal will contain instructions to mint 10 W tokens to the Optimism treasury and 15 ETH to the Arbitrum treasury.
 
 In the following code snippet, we initialize the proposal with two transactions, each targeting the Hub's Message Dispatcher contract. These transactions will relay the governance actions to the respective spoke chains via Wormhole.
 
@@ -92,15 +92,15 @@ uint256 proposalId = governor.propose(
 
     `proposalId` ++"uint256"++
 
-    The ID of the newly created proposal on the Hub Chain. 
+    The ID of the newly created proposal on the hub chain. 
 
 ## Vote on the Proposal via Spoke
 
-Once the proposal is created on the Hub Chain, stakeholders can cast their votes on the spoke chains. This snippet demonstrates how to connect to a spoke chain and cast a vote for the proposal. The voting power (weight) is calculated based on each stakeholder's token holdings on the spoke chain.
+Once the proposal is created on the hub chain, stakeholders can cast their votes on the spoke chains. This snippet demonstrates how to connect to a spoke chain and cast a vote for the proposal. The voting power (weight) is calculated based on each stakeholder's token holdings on the spoke chain.
 
 Key actions:
 
-- Connect to the `SpokeVoteAggregator` contract on the spoke chain. This contract aggregates votes from the spoke chains and relays them to the Hub Chain
+- Connect to the `SpokeVoteAggregator` contract on the spoke chain. This contract aggregates votes from the spoke chains and relays them to the hub chain
 - Cast a vote in support of the proposal
 
 ```solidity
@@ -121,7 +121,7 @@ uint256 weight = voteAggregator.castVote(proposalId, support);
 
     `proposalId` ++"uint256"++
 
-    The ID of the proposal created on the Hub Chain, which is being voted on.
+    The ID of the proposal created on the hub chain, which is being voted on.
 
     ---
 
@@ -135,13 +135,13 @@ uint256 weight = voteAggregator.castVote(proposalId, support);
 
     The weight of the vote, determined by the voter’s token holdings on the spoke chain.
 
-## Vote Aggregation (Background Process)
+## Vote Aggregation
 
-In the background, votes cast on the spoke chains are aggregated and sent back to the Hub Chain for final tallying. This is typically handled off-chain by a "crank turner" service, which periodically queries the vote status and updates the Hub Chain.
+In the background process, votes cast on the spoke chains are aggregated and sent back to the hub chain for final tallying. This is typically handled off-chain by a "crank turner" service, which periodically queries the vote status and updates the hub chain.
 
 Key actions:
 
-- Aggregate votes from different chains and submit them to the Hub Chain for tallying
+- Aggregate votes from different chains and submit them to the hub chain for tallying
 
 ```solidity
 // Aggregate votes sent to Hub (this would typically be done by a "crank turner" off-chain)

@@ -5,105 +5,94 @@ description: Set up and deploy MultiGov locally with step-by-step instructions f
 
 # Deployment 
 
-## Development Setup
-<!-- check out the getting started page first -->
-For developers looking to set up a local MultiGov environment:
+This guide provodes instructions to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project’s governance needs by following the steps for the [integration process](/docs/build/contract-integrations/multigov/){target=\_blank}.
 
-1. Install prerequisites:
-    - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
-    - [Git](https://git-scm.com/downloads){target=\_blank}
-   
-2. Clone the repository:
+Once your project is approved through the intake process and you’ve collaborated with the Tally team to tailor MultiGov to your requirements, use this guide to configure, compile, and deploy the necessary smart contracts across your desired blockchain networks. This deployment will enable decentralized governance across your hub and spoke chains.
+
+## Prerequisites 
+
+To interact with MultiGov, you'll need the following:
+
+- Install [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+- Install [Git](https://git-scm.com/downloads){target=\_blank}
+- Clone the repository:
    ```bash
    git clone [MultiGov Repository URL]
    cd evm # for evm testing/deploying
    ```
 
-3. Install dependencies:
+## Development Setup
+
+For developers looking to set up a local MultiGov environment:
+
+1. Install dependencies:
    ```bash
    forge install
    ```
 
-4. Set up environment variables:
+2. Set up environment variables:
    ```bash
    cp .env.example .env
    ```
    Edit `.env` with your specific [configuration](/docs/build/contract-integrations/multigov/deployment/#configuration){target=\_blank}
 
-5. Compile contracts:
+3. Compile contracts:
    ```bash
    forge build
    ```
 
-6. Deploy contracts (example for Sepolia testnet):
-   ```bash
-   forge script script/DeployHubContractsSepolia.s.sol --rpc-url $SEPOLIA_RPC_URL --broadcast
-   ```
+4. Deploy contracts (example for Sepolia testnet): <!-- would be nice to cover the contracts before the deployment step -->
 
-   For spoke chains (e.g., Optimism Sepolia):
-   ```bash
-   forge script script/DeploySpokeContractsOptimismSepolia.s.sol --rpc-url $OPTIMISM_SEPOLIA_RPC_URL --broadcast
-   ```
+    For hub chains:
+    ```bash
+    forge script script/DeployHubContractsSepolia.s.sol --rpc-url $SEPOLIA_RPC_URL --broadcast
+    ```
+
+    For spoke chains (e.g., Optimism Sepolia):
+    ```bash
+    forge script script/DeploySpokeContractsOptimismSepolia.s.sol --rpc-url $OPTIMISM_SEPOLIA_RPC_URL --broadcast
+    ```
 
 ## Configuration
 
 When deploying MultiGov, several key parameters need to be set. Here are the most important configuration points:
 
-### `HubGovernor` Key Parameters
+### Hub Governor Key Parameters
 
-1. `initialVotingDelay` ++"uint256"++ - the delay in seconds before voting on a proposal begins. For example, `86400` is one day
+- `initialVotingDelay` ++"uint256"++ - the delay measured in seconds before voting on a proposal begins. For example, `86400` is one day
+- `initialProposalThreshold`  ++"uint256"++ - the number of tokens needed to create a proposal
+- `initialQuorum` ++"uint256"++ - the minimum number of votes needed for a proposal to be successful, measured in votes
+- `initialVoteWeightWindow` ++"uint256"++ - a window where the minimum checkpointed voting weight is taken for a given address. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. Measured in seconds, e.g., `86400` is one day
 
-2. `initialProposalThreshold`  ++"uint256"++ - the number of tokens needed to create a proposal
-
-3. `initialQuorum` - the number minimum number of votes needed for a proposal to be successful
-    - Type: `uint256`
-    - Measured in _votes_
-
-4. `initialVoteWeightWindow` - a window where the minimum checkpointed voting weight is taken for a given address. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window
-    - Type: `uint256`
-    - Measured in _seconds_
-    - Example: `86400` (1 day)
     !!! note
         This helps mitigate cross-chain double voting.
 
-### `HubProposalExtender` Key Parameters
+### Hub Proposal Extender Key Parameters
 
-1. `extensionDuration` - the amount of time for which target proposals will be extended
-    - Type: `uint256`
-    - Measured in _seconds_
-    - Example: `10800` (3 hours)
+- `extensionDuration` ++"uint256"++ - the amount of time for which target proposals will be extended. Measured in seconds, for example, `10800` is three hours
+- `minimumExtensionDuration` ++"uint256"++ - lower limit for extension duration. Measured in seconds, e.g., `3600` is one hour
 
-2. `minimumExtensionDuration` - lower limit for extension duration
-    - Type: `uint256`
-    - Measured in: Seconds
-    - Example: `3600` (1 hour)
+#### Spoke Vote Aggregator Key Parameters
 
-#### `SpokeVoteAggregator` Key Parameters
+- `initialVoteWindow` ++"uint256"++ - the moving window for vote weight checkpoints. These checkpoints are taken whenever an address that is delegating sends or receives tokens. Measured in seconds, e.g., `86400` is one day
 
-1. `initialVoteWindow` - the moving window for vote weight checkpoints. These checkpoints are taken whenever an address that is delegating sends or receives tokens
-    - Type: `uint256`
-    - Measured in: Seconds
-    - Example: `86400` (1 day)
     !!! note
         This is crucial for mitigating cross-chain double voting
 
-### `HubEvmSpokeVoteAggregator` Key Parameters
-1. `maxQueryTimestampOffset` - the max timestamp difference between the requested target time in the query and the current block time on the hub
-    - Type: `uint256`
-    - Measure in: Seconds
-    - Example: `1800` (30 minutes)
+### Hub Evm Spoke Vote Aggregator Key Parameters
+- `maxQueryTimestampOffset` ++"uint256"++ - the max timestamp difference between the requested target time in the query and the current block time on the hub. Measured in seconds, e.g., `1800` is 30 minutes
 
 ### Updateable Governance Parameters
 
 The following key parameters can be updated through governance proposals:
 
-1. `votingDelay` - delay before voting starts (in seconds)
-2. `votingPeriod` - duration of the voting period (in seconds)
-3. `proposalThreshold` - threshold for creating proposals (in tokens)
-4. `quorum` - number of votes required for quorum
-5. `extensionDuration` - the amount of time for which target proposals will be extended (in seconds)
-6. `voteWeightWindow` - window for vote weight checkpoints (in seconds)
-7. `maxQueryTimestampOffset` - max timestamp difference allowed between a query's target time and the hub's block time
+- `votingDelay` - delay before voting starts (in seconds)
+- `votingPeriod` - duration of the voting period (in seconds)
+- `proposalThreshold` - threshold for creating proposals (in tokens)
+- `quorum` - number of votes required for quorum
+- `extensionDuration` - the amount of time for which target proposals will be extended (in seconds)
+- `voteWeightWindow` - window for vote weight checkpoints (in seconds)
+- `maxQueryTimestampOffset` - max timestamp difference allowed between a query's target time and the hub's block time
 
 These parameters can be queried using their respective getter functions on the applicable contract.
 

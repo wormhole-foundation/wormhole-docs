@@ -19,7 +19,7 @@ Unlike traditional DAO governance, which typically operates on a single blockcha
 
 The main components of MultiGov include:
 
-- Hub Chain - central coordination point for governance activities
-- Spoke Chains - additional chains where token holders can participate in governance
-- Wormhole Integration - enables secure cross-chain message passing
-- Governance Token - allows holders to participate in governance across all integrated chains
+- **Hub chain** - central coordination point for governance activities
+- **Spoke chains** - additional chains where token holders can participate in governance
+- **Wormhole integration** - enables secure cross-chain message passing
+- **Governance token** - allows holders to participate in governance across all integrated chains

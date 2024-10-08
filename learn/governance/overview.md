@@ -29,6 +29,9 @@ MultiGov is important because it:
 
 ### High-Level Architecture Diagram
 
-![high level multigov architecture diagram](/docs/images/learn/governance/multigov-high-level.webp)
+The diagram below represents MultiGov's high-level architecture, focusing on its hub-and-spoke model for decentralized governance across multiple chains. The Hub Chain acts as the central governance controller, managing proposal creation, vote tallying, and execution, while the Spoke Chains handle local voting and proposal execution on individual chains. The hub and spoke chains communicate via Wormhole's cross-chain messaging infrastructure, ensuring secure and efficient governance across multiple blockchain networks.
+
+For a deeper understanding of the system's structure and how the components interact, refer to the [MultiGov Architecture](/docs/learn/governance/architecture/){target=\_blank} page.
 
 <!-- simplify diagram -->
+![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/learn/governance/multigov-high-level.webp)
