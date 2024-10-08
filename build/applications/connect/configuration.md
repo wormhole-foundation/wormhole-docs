@@ -148,6 +148,40 @@ You can limit which tokens are offered in the UI by providing the `tokens` prope
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
 ```
 
+### Changing the Color Scheme
+
+You can customize Connect's color scheme by providing a `theme` prop.
+
+=== "React integration"
+
+    ```ts
+    --8<-- 'code/build/applications/connect/configuration/custom-colors.tsx'
+    ```
+
+=== "Hosted integration"
+
+    ```ts
+    --8<-- 'code/build/applications/connect/configuration/custom-colors-hosted.tsx'
+    ```
+
+
+The `WormholeConnectTheme` type supports the following properties:
+
+| Property        | Description                                                    | Example        |
+|:---------------:|:--------------------------------------------------------------:|:--------------:|
+| `mode`          | Dark mode or light mode. **Required**                           | `"dark"` or `"light"` |
+| `input`         | Color used for input fields, dropdowns                          | `"#AABBCC"`    |
+| `primary`       | Primary color used for buttons                                  | `"#AABBCC"`    |
+| `secondary`     | Secondary color used for some UI elements                       | `"#AABBCC"`    |
+| `text`          | Primary color used for text                                     | `"#AABBCC"`    |
+| `textSecondary` | Secondary color used for dimmer text                            | `"#AABBCC"`    |
+| `error`         | Color to display errors in, usually some shade of red           | `"#AABBCC"`    |
+| `success`       | Color to display success messages in                            | `"#AABBCC"`    |
+| `badge`         | Background color used for chain logos                           | `"#AABBCC"`    |
+| `font`          | Font used in the UI, can be custom font available in your application | `"Arial; sans-serif"` |
+
+
+
 ## More Configuration Options {: #more-configuration-options }
 
 ### Wallet Connect Project ID  {: #wallet-connect-project-id }
