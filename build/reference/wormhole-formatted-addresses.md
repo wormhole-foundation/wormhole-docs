@@ -7,13 +7,13 @@ description: Explanation of Wormhole formatted 32-byte hex addresses, their conv
 
 ## Introduction
 
-Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
+Wormhole formatted addresses are `32-byte hex` representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 
 This uniform format is essential for smooth interoperability in token transfers and messaging across chains. Wormhole uses formatted addresses throughout the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, especially in cross-chain transactions, such as the `transfer()` function in the NTT EVM contract, which utilizes the `bytes32` representation for recipient addresses.
 
 ## Platform-Specific Address Formats
 
-Each blockchain ecosystem Wormhole supports has its method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized 32-byte hex format.
+Each blockchain ecosystem Wormhole supports has its method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized `32-byte hex` format.
 
 Here’s an overview of the native address formats and how they are normalized to the Wormhole format:
 
@@ -49,7 +49,7 @@ These entries define how the [`UniversalAddress`](https://github.com/wormhole-fo
 
 ## Universal Address Methods
 
-The `UniversalAddress` class is essential for working with Wormhole formatted addresses. It converts native blockchain addresses into the standardized 32-byte hex format used across Wormhole operations.
+The `UniversalAddress` class is essential for working with Wormhole formatted addresses. It converts native blockchain addresses into the standardized `32-byte hex` format used across Wormhole operations.
 
 Key functions:
 
@@ -59,7 +59,7 @@ Key functions:
     const universalAddress = new UniversalAddress('0x123...', 'hex');
     ```
 
- - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted 32-byte address
+ - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted `32-byte hex` address
 
     ```typescript
     const ethAddress: NativeAddress<'Evm'> = toNative('Ethereum', '0x0C9...');
