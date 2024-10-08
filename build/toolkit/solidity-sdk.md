@@ -96,82 +96,17 @@ These security measures ensure messages come from the correct source and are pro
     --8<-- "code/build/toolkit/solidity-sdk/solidity-sdk-2.sol"
     ```
 
-### Interface for Sending Cross-Chain Messages
+### Interface for Cross-Chain Messages
 
-The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} interface provides key methods for sending messages across chains. It is integral for developers who want to pass instructions, token transfers, or any custom payload between EVM-compatible chains without maintaining their relaying infrastructure.
+The Wormhole Solidity SDK interacts with the Wormhole Relayer for sending and receiving messages across EVM-compatible chains. The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} and [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interfaces are central to cross-chain communication, enabling secure and efficient message delivery.
 
- - **`sendPayloadToEvm()`** - sends a message to a specific chain along with gas and value. Valid for general cross-chain messaging
+For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/build/contract-integrations/wormhole-relayers/){target=\_blank}. This section covers:
 
-    ```solidity
-    function sendPayloadToEvm(
-        uint16 targetChain,
-        address targetAddress,
-        bytes memory payload,
-        uint256 receiverValue,
-        uint256 gasLimit
-    ) external payable returns (uint64 sequence);
-    ```
+ - **`IWormholeRelayer`** – methods for sending cross-chain messages, VAAs, and token transfers
+ - **`IWormholeReceiver`** – the required implementation for receiving cross-chain messages
+ - **`quoteEVMDeliveryPrice()`** – how to estimate gas and fees for cross-chain transactions
 
- - **`sendVaasToEvm()`** - sends both a payload and any associated VAAs, such as those required for cross-chain token transfers, to another chain
-
-    ```solidity
-    function sendVaasToEvm(
-        uint16 targetChain,
-        address targetAddress,
-        bytes memory payload,
-        uint256 receiverValue,
-        uint256 gasLimit,
-        VaaKey[] memory vaaKeys
-    ) external payable returns (uint64 sequence);
-    ```
-
- - **`quoteEVMDeliveryPrice()`** - calculates the required gas for a cross-chain delivery to help developers avoid underfunded transactions
-
-    ```solidity
-    function quoteEVMDeliveryPrice(
-        uint16 targetChain,
-        uint256 receiverValue,
-        uint256 gasLimit
-    ) external view returns (uint256 nativePriceQuote, uint256 targetChainRefundPerGasUnused);
-    ```
-
- - **`sendToEvm()`** - supports cross-chain token transfers through the `TokenBridge` and Circle CCTP. It allows transferring tokens and other data between chains, handling both the messaging and token aspects of the transaction
-
-    ```solidity
-    function sendToEvm(
-        uint16 targetChain,
-        address targetAddress,
-        bytes memory payload,
-        uint256 receiverValue,
-        uint256 paymentForExtraReceiverValue,
-        uint256 gasLimit,
-        uint16 refundChain,
-        address refundAddress,
-        address deliveryProviderAddress,
-        MessageKey[] memory messageKeys,
-        uint8 consistencyLevel
-    ) external payable returns (uint64 sequence);
-    ```
-
-These functions enable seamless communication across chains, reducing the complexity of multi-chain dApp development. By using `quoteEVMDeliveryPrice()`, developers can calculate the gas fees required for cross-chain deliveries, ensuring the transaction is adequately funded.
-
-### Interface for Receiving Cross-Chain Messages
-
-The [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface defines the function your contract must implement to receive messages sent from other chains. This entry point for cross-chain messaging must be secured to accept messages only from the Wormhole relayer.
-
- - **`receiveWormholeMessages()`** - handles the incoming message, allowing your contract to process cross-chain payloads
-
-    ```solidity
-    function receiveWormholeMessages(
-        bytes memory payload,
-        bytes[] memory additionalMessages,
-        bytes32 sourceAddress,
-        uint16 sourceChain,
-        bytes32 deliveryHash
-    ) external payable;
-    ```
-
-    This function is the backbone of cross-chain message handling, ensuring payloads are processed correctly on the target chain.
+These interfaces reduce the complexity of cross-chain dApp development by abstracting away the details of relayer infrastructure, ensuring that message delivery is handled efficiently.
 
 ### Advanced Concepts
 
