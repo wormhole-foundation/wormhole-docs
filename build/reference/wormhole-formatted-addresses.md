@@ -9,7 +9,7 @@ description: Explanation of Wormhole formatted 32-byte hex addresses, their conv
 
 Wormhole formatted addresses are `32-byte hex` representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 
-This uniform format is essential for smooth interoperability in token transfers and messaging across chains. Wormhole uses formatted addresses throughout the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, especially in cross-chain transactions, such as the `transfer()` function in the NTT EVM contract, which utilizes the `bytes32` representation for recipient addresses.
+This uniform format is essential for smooth interoperability in token transfers and messaging across chains. Wormhole uses formatted addresses throughout the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, especially in cross-chain transactions, such as transfer functions that utilize the `bytes32` representation for recipient addresses.
 
 ## Platform-Specific Address Formats
 
