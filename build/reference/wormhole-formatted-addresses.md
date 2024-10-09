@@ -108,7 +108,7 @@ const universalAddressSol = solAddress.toUniversalAddress().toString();
 console.log('Universal Address (Solana):', universalAddressSol);
 ```
 
-The result is a standardized address format, ready for cross-chain operations.
+The result is a standardized address format that is ready for cross-chain operations.
 
 ### Convert Back to Native Addresses
 
