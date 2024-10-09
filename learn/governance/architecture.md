@@ -9,7 +9,7 @@ MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizi
 
 ## Key Components
 
-### Hub Chain
+### Hub Chain Contracts
 
 The hub chain is the central point for managing proposals, tallying votes, executing decisions, and coordinating governance across connected chains.
 
@@ -20,7 +20,7 @@ The hub chain is the central point for managing proposals, tallying votes, execu
    - **`HubProposalMetadata`** - helper contract returning `proposalId` and vote start for `HubGovernor` proposals
    - **`HubEvmSpokeAggregateProposer`** - aggregates cross-chain voting weight for an address and proposes via the `HubGovernor` if eligible
 
-### Spoke Chains
+### Spoke Chains Contracts
 
 Spoke chains handle local voting, forward votes to the hub, and execute approved proposals from the hub for decentralized governance.
 
