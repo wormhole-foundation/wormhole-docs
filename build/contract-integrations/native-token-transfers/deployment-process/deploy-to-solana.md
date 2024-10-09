@@ -67,12 +67,12 @@ Initialize a new `deployment.json` file, specifying the network:
 
     6. Create a new token with the SPL Token CLI using the `token-2022` program:
     ```bash
-    spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 
+    spl-token create-token
     ```
 
     7. Create a new account for the token:
     ```bash
-    spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
+    spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6
     ```
 
     8. Mint `1000` tokens to the created account:
@@ -90,7 +90,7 @@ Initialize a new `deployment.json` file, specifying the network:
 
     2. Set Solana config to use the new keypair:
     ```bash
-    solana config set --keypair <PATH_TO_KEYPAIR_STEP1>
+    solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
     ```
 
     3. Set the Solana configuration to use the default RPC URL for devnet:
@@ -115,12 +115,12 @@ Initialize a new `deployment.json` file, specifying the network:
 
     7. Create a new account for the token:
     ```bash
-    spl-token create-account <ADDRESS_CREATED_TOKEN_STEP6> --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
+    spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
     ```
 
     8. Mint 1000 tokens to the created account:
     ```bash
-    spl-token mint <ADDRESS_CREATED_TOKEN_STEP6> 1000
+    spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
     ```
 
 
