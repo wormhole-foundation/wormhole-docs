@@ -35,6 +35,14 @@ Regardless of which network development environment you are using, there are a f
 
     [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
 
+-   :octicons-file-code-16:{ .lg .middle } **Solidity SDK**
+
+    ---
+
+    Learn about Wormhole's Solidity SDK, including key components, interfaces, and tools for developing cross-chain decentralized applications on EVM-compatible blockchains.
+
+    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/solidity-sdk/)
+
 -   :octicons-beaker-16:{ .lg .middle } **Tilt**
 
     ---

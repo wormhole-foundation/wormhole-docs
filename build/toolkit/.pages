@@ -4,4 +4,5 @@ nav:
  - 'Wormholescan': 'https://wormholescan.io/'
  - 'Wormhole CLI' : 'cli.md'
  - 'Wormhole SDK' : '/docs/build/applications/wormhole-sdk/'
+ - 'Solidity SDK': 'solidity-sdk.md'
  - 'Tilt': 'tilt.md'
