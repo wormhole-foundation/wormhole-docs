@@ -122,7 +122,7 @@ const nativeAddressSolana = universalAddress.toNative('Solana');
 console.log('Solana Native Address:', nativeAddressSolana);
 ```
 
-These conversions ensure your cross-chain applications can seamlessly handle addresses across different ecosystems.
+These conversions ensure that your cross-chain applications can seamlessly handle addresses across different ecosystems.
 
 ## Use Cases for Wormhole Formatted Addresses
 
