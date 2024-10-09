@@ -48,7 +48,9 @@ In this section, you'll find reference information that is essential for develop
 
     ---
 
-    Learn how Wormhole formats addresses into a 32-byte hex format for cross-chain compatibility. This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
+    Learn how Wormhole formats addresses into a 32-byte hex format for cross-chain compatibility. 
+    
+    This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
 
     [:octicons-arrow-right-16: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
 

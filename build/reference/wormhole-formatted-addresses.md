@@ -19,13 +19,13 @@ Here’s an overview of the native address formats and how they are normalized t
 
 | Platform        | Native Address Format            | Wormhole Formatted Address |
 |-----------------|----------------------------------|----------------------------|
-| EVM             | `Hex (e.g., 0x...) `             | `32-byte Hex`              |
-| Solana          | `Base58`                         | `32-byte Hex `             |
-| CosmWasm        | `Bech32`                         | `32-byte Hex `             |
-| Algorand        | `Algorand App ID `               | `32-byte Hex `             |
-| Sui             | `Hex`                            | `32-byte Hex `             |
-| Aptos           | `Hex`                            | `32-byte Hex `             |
-| Near            | `SHA-256 `                       | `32-byte Hex `             |
+| EVM             |  Hex (e.g., 0x...)               |  32-byte Hex               |
+| Solana          |  Base58                          |  32-byte Hex               |
+| CosmWasm        |  Bech32                          |  32-byte Hex               |
+| Algorand        |  Algorand App ID                 |  32-byte Hex               |
+| Sui             |  Hex                             |  32-byte Hex               |
+| Aptos           |  Hex                             |  32-byte Hex               |
+| Near            |  SHA-256                         |  32-byte Hex               |
 
 These conversions allow Wormhole to interact seamlessly with various chains using a uniform format for all addresses.
 
@@ -88,25 +88,17 @@ The Wormhole SDK allows developers to easily convert between native addresses an
 
 Example conversions for EVM and Solana:
 
-```typescript
-import { toNative } from "@wormhole-foundation/sdk-core";
+=== "EVM"
 
-// EVM Example
-const ethAddress: NativeAddress<'Evm'> = toNative(
-  'Ethereum',
-  '0x0C99567DC6f8f1864cafb580797b4B56944EEd28'
-);
-const universalAddress = ethAddress.toUniversalAddress().toString();
-console.log('Universal Address (EVM):', universalAddress);
+    ```typescript
+    --8<-- 'code/build/reference/formatted-addresses/evm.ts'
+    ```
 
-// Solana Example
-const solAddress: NativeAddress<'Solana'> = toNative(
-  'Solana',
-  '6zZHv9EiqQYcdg52ueADRY6NbCXa37VKPngEHaokZq5J'
-);
-const universalAddressSol = solAddress.toUniversalAddress().toString();
-console.log('Universal Address (Solana):', universalAddressSol);
-```
+=== "Solana"
+
+    ```typescript
+    --8<-- 'code/build/reference/formatted-addresses/solana.ts'
+    ```
 
 The result is a standardized address format that is ready for cross-chain operations.
 
