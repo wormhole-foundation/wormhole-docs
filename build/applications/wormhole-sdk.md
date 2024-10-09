@@ -226,7 +226,7 @@ These components work together to create, sign, and submit a transaction to the 
     Handling private keys is unavoidable, so it’s crucial to manage them securely. Here are some best practices:
 
      - **Use environment variables** - avoid hardcoding private keys in your code. Use environment variables or secret management tools to inject private keys securely
-     - **Hardware Wallets** - for production environments, consider integrating hardware wallets to keep private keys secure while allowing programmatic access through the SDK
+     - **Hardware wallets** - for production environments, consider integrating hardware wallets to keep private keys secure while allowing programmatic access through the SDK
 
 ### Protocols
 
