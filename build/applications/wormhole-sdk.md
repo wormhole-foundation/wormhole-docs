@@ -206,7 +206,7 @@ Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to
 --8<-- 'code/build/applications/wormhole-sdk/signers.ts'
 ```
 
-#### Set Up a Signer with ethers.js
+#### Set Up a Signer with Ethers.js
 
 To sign transactions programmatically with the Wormhole SDK, you can use `ethers.js` to manage private keys and handle signing. Here's an example of setting up a signer using `ethers.js`:
 
