@@ -49,7 +49,7 @@ These entries define how the [`UniversalAddress`](https://github.com/wormhole-fo
 
 ## Universal Address Methods
 
-The `UniversalAddress` class is essential for working with Wormhole formatted addresses. It converts native blockchain addresses into the standardized `32-byte hex` format used across Wormhole operations.
+The `UniversalAddress` class is essential for working with Wormhole formatted addresses. It converts native blockchain addresses into the standardized 32-byte hex format used across Wormhole operations.
 
 Key functions:
 
