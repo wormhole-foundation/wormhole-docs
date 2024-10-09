@@ -59,7 +59,7 @@ Key functions:
     const universalAddress = new UniversalAddress('0x123...', 'hex');
     ```
 
- - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted `32-byte hex` address
+ - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted 32-byte hex address
 
     ```typescript
     const ethAddress: NativeAddress<'Evm'> = toNative('Ethereum', '0x0C9...');
