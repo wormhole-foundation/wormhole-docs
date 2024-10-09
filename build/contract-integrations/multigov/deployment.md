@@ -80,7 +80,8 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
         This is crucial for mitigating cross-chain double voting
 
 ### Hub Evm Spoke Vote Aggregator Key Parameters
-- `maxQueryTimestampOffset` ++"uint256"++ - the max timestamp difference between the requested target time in the query and the current block time on the hub. Measured in seconds, e.g., `1800` is 30 minutes
+
+- `maxQueryTimestampOffset` ++"uint256"++ - the max timestamp difference, in seconds, between the requested target time in the query and the current block time on the hub. For example, `1800` is 30 minutes
 
 ### Updateable Governance Parameters
 
