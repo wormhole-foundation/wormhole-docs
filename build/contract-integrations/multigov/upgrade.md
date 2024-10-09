@@ -10,7 +10,7 @@ MultiGov is designed to be flexible but stable. Upgrades should be rare and care
 ## Key Considerations for Upgrades
 
 - **`HubGovernor`**:
-    - Not upgradeable. A new deployment requires redeploying several components of the MultiGov system
+    - Not upgradeable. A new deployment requires redeploying several components of the MultiGov system. Refer to the [Process for Major System Upgrade](/docs/build/contract-integrations/multigov/upgrade/#process-for-major-system-upgrade) section for more details 
 
 - **`HubVotePool`**:
     - Can be replaced by setting a new `HubVotePool` on the `HubGovernor`

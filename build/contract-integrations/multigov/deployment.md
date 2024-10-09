@@ -72,7 +72,7 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
 - `extensionDuration` ++"uint256"++ - the amount of time, in seconds, for which target proposals will be extended. For example, `10800` is three hours
 - `minimumExtensionDuration` ++"uint256"++ - lower time limit, in seconds, for extension duration. For example, `3600` is one hour
 
-#### Spoke Vote Aggregator Key Parameters
+### Spoke Vote Aggregator Key Parameters
 
 - `initialVoteWindow` ++"uint256"++ - the moving window in seconds for vote weight checkpoints. These checkpoints are taken whenever an address that is delegating sends or receives tokens. For example, `86400` is one day
 
