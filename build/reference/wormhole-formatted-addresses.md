@@ -13,7 +13,7 @@ This uniform format is essential for smooth interoperability in token transfers 
 
 ## Platform-Specific Address Formats
 
-Each blockchain ecosystem Wormhole supports has its method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized `32-byte hex` format.
+Each blockchain ecosystem Wormhole supports has its method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized 32-byte hex format.
 
 Here’s an overview of the native address formats and how they are normalized to the Wormhole format:
 
