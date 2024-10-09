@@ -53,7 +53,7 @@ The `UniversalAddress` class is essential for working with Wormhole formatted ad
 
 Key functions:
 
- - **`Constructor`** - use the `UniversalAddress` constructor to convert native addresses into the Wormhole format
+ - **`new UniversalAddress()`** - use the `UniversalAddress` constructor to convert native addresses into the Wormhole format
 
     ```typescript
     const universalAddress = new UniversalAddress('0x123...', 'hex');
