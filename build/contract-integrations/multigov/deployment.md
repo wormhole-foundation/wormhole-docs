@@ -74,7 +74,7 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
 
 #### Spoke Vote Aggregator Key Parameters
 
-- `initialVoteWindow` ++"uint256"++ - the moving window for vote weight checkpoints. These checkpoints are taken whenever an address that is delegating sends or receives tokens. Measured in seconds, e.g., `86400` is one day
+- `initialVoteWindow` ++"uint256"++ - the moving window in seconds for vote weight checkpoints. These checkpoints are taken whenever an address that is delegating sends or receives tokens. For example, `86400` is one day
 
     !!! note
         This is crucial for mitigating cross-chain double voting
