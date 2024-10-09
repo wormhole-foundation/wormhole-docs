@@ -175,7 +175,14 @@ By default, Connect will offer its complete built-in list of routes, but you can
 | cosmosGateway | cosmosGateway |
 |     tBTC      |     tBTC      |
 
-### Wallet Connect Project ID  {: #wallet-connect-project-id }
+### Wallet Set Up  {: #wallet-connect-project-id }
+
+When using Wormhole Connect, your selected blockchain network determines the available wallet options.
+
+ - For EVM chains, wallets like MetaMask and WalletConnect are supported
+ - For Solana, you'll see options such as Phantom, Torus, and Coin98
+
+The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
 If you would like to offer WalletConnect as a supported wallet option, you'll need to obtain a project ID on the [WalletConnect cloud dashboard](https://cloud.walletconnect.com/){target=\_blank}.
 

@@ -206,6 +206,28 @@ Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to
 --8<-- 'code/build/applications/wormhole-sdk/signers.ts'
 ```
 
+#### Set Up a Signer with Ethers.js
+
+To sign transactions programmatically with the Wormhole SDK, you can use Ethers.js to manage private keys and handle signing. Here's an example of setting up a signer using Ethers.js:
+
+```javascript
+--8<-- 'code/build/applications/wormhole-sdk/ethers.js'
+```
+
+ - **`provider`** - responsible for connecting to the Ethereum network (or any EVM-compatible network). It acts as a bridge between your application and the blockchain, allowing you to fetch data, check the state of the blockchain, and submit transactions
+
+ - **`signer`** - represents the account that will sign the transaction. In this case, you’re creating a signer using the private key associated with the account. The signer is responsible for authorizing transactions by digitally signing them with the private key
+
+ - **`Wallet`** - combines both the provider (for blockchain interaction) and the signer (for transaction authorization), allowing you to sign and send transactions programmatically
+
+These components work together to create, sign, and submit a transaction to the blockchain.
+
+???- tip "Managing Private Keys Securely"
+    Handling private keys is unavoidable, so it’s crucial to manage them securely. Here are some best practices:
+
+     - **Use environment variables** - avoid hardcoding private keys in your code. Use environment variables or secret management tools to inject private keys securely
+     - **Hardware wallets** - for production environments, consider integrating hardware wallets to keep private keys secure while allowing programmatic access through the SDK
+
 ### Protocols
 
 While Wormhole is a Generic Message Passing (GMP) protocol, several protocols have been built to provide specific functionality. If available, each protocol will have a platform-specific implementation. These implementations provide methods to generate transactions or read state from the contract on-chain.
