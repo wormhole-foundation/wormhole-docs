@@ -69,8 +69,8 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
 
 ### Hub Proposal Extender Key Parameters
 
-- `extensionDuration` ++"uint256"++ - the amount of time for which target proposals will be extended. Measured in seconds, for example, `10800` is three hours
-- `minimumExtensionDuration` ++"uint256"++ - lower limit for extension duration. Measured in seconds, e.g., `3600` is one hour
+- `extensionDuration` ++"uint256"++ - the amount of time, in seconds, for which target proposals will be extended. For example, `10800` is three hours
+- `minimumExtensionDuration` ++"uint256"++ - lower time limit, in seconds, for extension duration. For example, `3600` is one hour
 
 #### Spoke Vote Aggregator Key Parameters
 
