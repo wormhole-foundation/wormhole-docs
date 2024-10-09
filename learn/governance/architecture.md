@@ -56,10 +56,10 @@ MultiGov relies on Wormhole's infrastructure for all cross-chain messaging, ensu
 
 ## Security Measures
 
-- **Vote Weight Window** - implements a moving window for vote weight checkpoints to mitigate cross-chain double voting
-    - **Proposal Extension** - `HubProposalExtender` allows for extending voting periods by a trusted actor in the case of network issues or high-stakes decisions
+- **Vote weight window** - implements a moving window for vote weight checkpoints to mitigate cross-chain double voting
+    - **Proposal extension** - `HubProposalExtender` allows for extending voting periods by a trusted actor in the case of network issues or high-stakes decisions
 - **Timelock** - a timelock period between proposal approval and execution allows for additional security checks and community review
-- **Wormhole Verification** - all cross-chain messages are verified using Wormhole's secure messaging protocol
+- **Wormhole verification** - all cross-chain messages are verified using Wormhole's secure messaging protocol
 
 ## Detailed Architecture Diagram
 

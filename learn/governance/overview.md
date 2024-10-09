@@ -20,10 +20,10 @@ MultiGov is important because it:
 
 ### Key Features
 
-- **Hub and Spoke model** - central coordination on a hub chain with participation from multiple spoke chains. A hub chain is where the governance state lives, while the spoke chains can be considered extensions of governance that allow for participation by token holders on other chains
-- **Cross-Chain voting** - token holders on any integrated chain can cast votes
+- **Hub and spoke model** - central coordination on a hub chain with participation from multiple spoke chains. A hub chain is where the governance state lives, while the spoke chains can be considered extensions of governance that allow for participation by token holders on other chains
+- **Cross-chain voting** - token holders on any integrated chain can cast votes
 - **Vote aggregation** - votes from all chains are collected and tallied on the hub
-- **Cross-Chain proposal execution** - approved proposals can be executed across multiple chains
+- **Cross-chain proposal execution** - approved proposals can be executed across multiple chains
 - **Wormhole integration** - secure and reliable cross-chain communication
 - **Flexible architecture** - can integrate with any Wormhole-supported blockchain
 
