@@ -1,11 +1,14 @@
 ---
 title: Configure Your Connect Widget
-description: Configure Wormhole Connect with custom chains, tokens, routes, and more.
+description: Configure Wormhole Connect v1 (latest) with custom chains, tokens, routes, and more for enhanced blockchain interoperability.
 ---
 
 ## Introduction {: #introduction }
 
 Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `config` prop.
+
+!!! note
+    If you are using an older version of Wormhole Connect (v0.x), please refer to the [configuration v0.x documentation](/docs/build/applications/connect/configuration-v0/){target=\_blank}.
 
 === "React integration"
 
