@@ -10,9 +10,9 @@ Wormhole Connect is a flexible React widget that streamlines cross-chain asset t
 This guide provides detailed instructions on configuring Wormhole Connect and highlights the many ways it can be customized to fit your specific needs, from integrating supported blockchains and tokens to tailoring the user interface.
 
 !!! note
-    If you're using an older version of Wormhole Connect (v0.x), please refer to the [v0.x configuration documentation](/docs/build/applications/connect/configuration-v0/){target=\_blank}.
-
     To upgrade from Wormhole Connect v0 to v1, please refer to the [migration guide](/docs/build/applications/connect/upgrade/){target=\_blank} for instructions.
+
+    If you're using an older version of Wormhole Connect (v0.x), please refer to the [v0.x configuration documentation](/docs/build/applications/connect/configuration-v0/){target=\_blank}.
 
 ## Get Started
 
