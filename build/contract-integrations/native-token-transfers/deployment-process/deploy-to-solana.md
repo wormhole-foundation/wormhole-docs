@@ -80,7 +80,7 @@ Initialize a new `deployment.json` file, specifying the network:
     spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
     ```
 
-???- code "Deploy a Token with the Token-2022 Program (Advanced)"
+???- interface "Deploy a Token with the Token-2022 Program (Advanced)"
 
     1. Generate a new Solana keypair in order to create a wallet:
 
