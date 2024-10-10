@@ -25,13 +25,13 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
     ```
 
 !!! note
-    The complete type definition of WormholeConnectConfig is available [here](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts).
+    The complete type definition of `WormholeConnectConfig` is available in the [Wormhole Connect repository](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank}.
 
 ## Examples {: #examples }
 
 ### Configuring Chains and RPC Endpoints {: #chains-and-rpc-endpoints }
 
-Connect allows you to narrow down which chains it offers and focus on your project needs. It's also good to provide your own RPC endpoints because the public ones that Connect defaults to often don't support critical functions like fetching balances.
+Connect lets you customize the available chains to match your project's needs. It is recommended that you provide your own RPC endpoints, as the default public ones may not support essential functions like balance fetching.
 
 === "Mainnet"
 
@@ -140,10 +140,10 @@ See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connec
 
 Connect offers a list of built-in tokens by default. You can see it below:
 
-- [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts)
-- [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts)
+- [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts){target=\_blank}
+- [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts){target=\_blank}
 
-You can limit the tokens in the UI by providing the `tokens` property. This example builds on the previous one; we are adding a custom token and limiting Connect to just that, as well as the native gas tokens ETH and SOL.
+Using the `tokens` property, you can customize the tokens shown in the UI. In the following example, we add a custom token and restrict Connect from displaying only that token, along with the native gas tokens ETH and SOL.
 
 ```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
