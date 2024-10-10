@@ -38,7 +38,7 @@ Initialize a new `deployment.json` file, specifying the network:
 
 ## Deploy Your Solana Token
 
-???- code "Deploy an SPL Token (Basic)"
+???- interface "Deploy an SPL Token (Basic)"
 
     1. Generate a new Solana key pair to create a wallet:
     ```bash
