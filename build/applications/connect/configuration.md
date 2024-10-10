@@ -5,12 +5,18 @@ description: Configure Wormhole Connect v1 (latest) with custom chains, tokens, 
 
 ## Introduction {: #introduction }
 
-Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `config` prop.
+Wormhole Connect is a flexible React widget that streamlines cross-chain asset transfers and enables seamless interoperability by leveraging Wormhole's powerful infrastructure. Designed for easy integration into decentralized applications (dApps), Wormhole Connect abstracts the complexities of cross-chain communication, providing a user-friendly experience for both developers and end users.
+
+This guide provides detailed instructions on configuring Wormhole Connect and highlights the many ways it can be customized to fit your specific needs, from integrating supported blockchains and tokens to tailoring the user interface.
 
 !!! note
+    If you're using an older version of Wormhole Connect (v0.x), please refer to the [v0.x configuration documentation](/docs/build/applications/connect/configuration-v0/){target=\_blank}.
+
     To upgrade from Wormhole Connect v0 to v1, please refer to the [migration guide](/docs/build/applications/connect/upgrade/){target=\_blank} for instructions.
 
-    If you're using an older version of Wormhole Connect (v0.x), please refer to the [v0.x configuration documentation](/docs/build/applications/connect/configuration-v0/){target=\_blank}.
+## Get Started
+
+Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `config` prop.
 
 === "React integration"
 
@@ -46,36 +52,32 @@ Connect lets you customize the available chains to match your project's needs. I
     ```
 
 !!! note
-    For a complete list of available chain names, see the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank}. 
+    For a complete list of available chain names, see the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank}.
 
 ### Configuring Routes
 
-By default, Connect offers two bridging protocols: Token Bridge (for Wormhole wrapped tokens) and Circle's CCTP (for native USDC). 
+By default, Connect offers two bridging protocols: Token Bridge (for Wormhole wrapped tokens) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
 
-For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
-
-#### Available `route` Plugins
+#### Available Route Plugins
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
-???- tip "`route` Plugins"
-    - **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
-    - **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
-    - **`CCTPRoute`** - manually redeemed CCTP route
-    - **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
-    - **`DEFAULT_ROUTES`** - array containing the four preceding routes (TokenBridgeRoute, AutomaticTokenBridgeRoute, CCTPRoute, AutomaticCCTPRoute)
-    - **`nttAutomaticRoute(nttConfig)`** - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
-    - **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route
-    - **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
-    - **`MayanRoute`** - route that offers multiple Mayan protocols
-    - **`MayanRouteSWIFT`** - route for Mayan’s Swift protocol only
-    - **`MayanRouteMCTP`** - route for Mayan’s MCTP protocol only
-    - **`MayanRouteWH`** - route for Mayan’s original Wormhole transfer protocol
+- **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
+- **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
+- **`CCTPRoute`** - manually redeemed CCTP route
+- **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
+- **`DEFAULT_ROUTES`** - array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`)
+- **`nttAutomaticRoute(nttConfig)`** - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
+- **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route
+- **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
+- **`MayanRoute`** - route that offers multiple Mayan protocols
+- **`MayanRouteSWIFT`** - route for Mayan’s Swift protocol only
+- **`MayanRouteMCTP`** - route for Mayan’s MCTP protocol only
+- **`MayanRouteWH`** - route for Mayan’s original Wormhole transfer protocol
 
 In addition to these routes, developers can create custom routes for their Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/example-native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
-For further details on the Route plugin interface, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
-
+For further details on the `route` plugin interface, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
 
 #### Example: Offer Only CCTP Transfers
 
@@ -97,7 +99,7 @@ const config: WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import {
@@ -119,10 +121,9 @@ const config: WormholeConnectConfig = {
 
 This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
 
-
 ### Adding Custom Tokens {: #custom-tokens }
 
-The following section shows how to add an arbitrary token to your deployment of Connect. 
+The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
     You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
@@ -130,7 +131,6 @@ The following section shows how to add an arbitrary token to your deployment of 
 This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
 
 See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
-
 
 ```typescript
 --8<-- 'code/build/applications/connect/configuration/add-token.tsx'
@@ -165,23 +165,20 @@ You can customize Connect's color scheme by providing a `theme` prop.
     --8<-- 'code/build/applications/connect/configuration/custom-colors-hosted.tsx'
     ```
 
-
 The `WormholeConnectTheme` type supports the following properties:
 
-| Property        | Description                                                    | Example        |
-|:---------------:|:--------------------------------------------------------------:|:--------------:|
-| `mode`          | Dark mode or light mode. **Required**                           | `"dark"` or `"light"` |
-| `input`         | Color used for input fields, dropdowns                          | `"#AABBCC"`    |
-| `primary`       | Primary color used for buttons                                  | `"#AABBCC"`    |
-| `secondary`     | Secondary color used for some UI elements                       | `"#AABBCC"`    |
-| `text`          | Primary color used for text                                     | `"#AABBCC"`    |
-| `textSecondary` | Secondary color used for dimmer text                            | `"#AABBCC"`    |
-| `error`         | Color to display errors in, usually some shade of red           | `"#AABBCC"`    |
-| `success`       | Color to display success messages in                            | `"#AABBCC"`    |
-| `badge`         | Background color used for chain logos                           | `"#AABBCC"`    |
-| `font`          | Font used in the UI, can be custom font available in your application | `"Arial; sans-serif"` |
-
-
+| <div style="width:10em">Property</div> |                              Description                              |        Example        |
+|:--------------------------------------:|:---------------------------------------------------------------------:|:---------------------:|
+|                 `mode`                 |                 Dark mode or light mode. **Required**                 | `"dark"` or `"light"` |
+|                `input`                 |                Color used for input fields, dropdowns                 |      `"#AABBCC"`      |
+|               `primary`                |                    Primary color used for buttons                     |      `"#AABBCC"`      |
+|              `secondary`               |               Secondary color used for some UI elements               |      `"#AABBCC"`      |
+|                 `text`                 |                      Primary color used for text                      |      `"#AABBCC"`      |
+|            `textSecondary`             |                 Secondary color used for dimmer text                  |      `"#AABBCC"`      |
+|                `error`                 |         Color to display errors in, usually some shade of red         |      `"#AABBCC"`      |
+|               `success`                |                 Color to display success messages in                  |      `"#AABBCC"`      |
+|                `badge`                 |                 Background color used for chain logos                 |      `"#AABBCC"`      |
+|                 `font`                 | Font used in the UI, can be custom font available in your application | `"Arial; sans-serif"` |
 
 ## More Configuration Options {: #more-configuration-options }
 

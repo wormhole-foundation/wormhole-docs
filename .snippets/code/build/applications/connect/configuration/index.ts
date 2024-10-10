@@ -188,10 +188,10 @@ export function buildConfig(
       customConfig?.nttGroups
     ),
 
-    // Guardian Set
+    // Guardian set
     guardianSet: networkData.guardianSet,
 
-    // Render Redesign views
+    // Render redesign views
     useRedesign: customConfig?.useRedesign,
   };
 }
@@ -297,7 +297,6 @@ export async function newWormholeContextV2(): Promise<WormholeV2<NetworkV2>> {
 }
 
 // setConfig can be called afterwards to override the default config with integrator-provided config
-
 export function setConfig(customConfig?: WormholeConnectConfig) {
   const newConfig: InternalConfig<NetworkV2> = buildConfig(customConfig);
 

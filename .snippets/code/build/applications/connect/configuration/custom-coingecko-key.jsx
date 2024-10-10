@@ -1,11 +1,11 @@
 import WormholeConnect, {
-	WormholeConnectConfig,
+  WormholeConnectConfig,
 } from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
-	coinGeckoApiKey: '...',
+  coinGeckoApiKey: 'INSERT_API_KEY',
 };
 
 function App() {
-	return <WormholeConnect config={config} />;
+  return <WormholeConnect config={config} />;
 }

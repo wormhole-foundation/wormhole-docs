@@ -1,16 +1,22 @@
 ---
-title: Configure Your Connect Widget
+title: Configure Your Connect Widget: v0
 description: Configure Wormhole Connect v0 for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for optimized blockchain interactions.
 ---
 
+# Configure Your Connect Widget
+
 ## Introduction {: #introduction }
 
-Configure the Wormhole Connect React component by passing a `WormholeConnectConfig` object as the `config` attribute. If using the hosted version, provide `config` and `theme` as JSON-serialized strings on the mount point.
+Wormhole Connect is a flexible React widget that streamlines cross-chain asset transfers and enables seamless interoperability by leveraging Wormhole's powerful infrastructure. Designed for easy integration into decentralized applications (dApps), Wormhole Connect abstracts the complexities of cross-chain communication, providing a user-friendly experience for both developers and end users.
+
+This guide provides detailed instructions on configuring Wormhole Connect and highlights the many ways it can be customized to fit your specific needs, from integrating supported blockchains and tokens to tailoring the user interface.
 
 !!! note
-    If you are looking to upgrade from Wormhole Connect v0 to v1, please refer to the [migration guide](/docs/build/applications/connect/upgrade/){target=\_blank} for detailed instructions.
+    For documentation on the latest version of Connect, please refer to the current [configuration documentation](/docs/build/applications/connect/configuration/){target=\_blank}. If you are looking to upgrade from Wormhole Connect v0 to v1, please refer to the [migration guide](/docs/build/applications/connect/upgrade/){target=\_blank} for detailed instructions.
 
-    For the latest version of Wormhole Connect, please refer to the current [configuration documentation](/docs/build/applications/connect/configuration/){target=\_blank}
+## Get Started
+
+Configure the Wormhole Connect React component by passing a `WormholeConnectConfig` object as the `config` attribute. If using the hosted version, provide `config` and `theme` as JSON-serialized strings on the mount point.
 
 === "React"
 
@@ -50,7 +56,7 @@ Specify supported networks, tokens, and custom RPC endpoints. Your users may enc
     ```
 
 !!! note
-    For a complete list of Testnet chain names that can be manually added, see the [Testnet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}. 
+    For a complete list of testnet chain names that can be manually added, see the [Testnet Chains List](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/tokenRegistry/src/scripts/importConnect.ts#L44-L55){target=\_blank}.
 
 ### Fully Customized Theme {: #fully-customized-theme }
 
@@ -68,16 +74,16 @@ You can configure Connect to be used in Testnet environments, too. You can toggl
 
     ```ts
     const config: WormholeConnectConfig = {
-      "env": "mainnet"
-    }
+      env: 'mainnet',
+    };
     ```
 
 === "Testnet"
 
     ```ts
     const config: WormholeConnectConfig = {
-      "env": "testnet"
-    }
+      env: 'testnet',
+    };
     ```
 ### Custom RPC Endpoint {: #custom-rpc-endpoint }
 
@@ -85,22 +91,22 @@ You can define a custom RPC provider for your Connect widget to use. This can be
 
 ```ts
 const config: WormholeConnectConfig = {
-  "rpcs": {
-    "solana": "https://rpc.ankr.com/solana/ee827255553bb0fa9e0aaeab27e988707e60ea06ae36be0658b778072e94979e"
-  }
-}
+  rpcs: {
+    solana: 'https://rpc.ankr.com/solana/ee827255553bb0fa9e0aaeab27e988707e60ea06ae36be0658b778072e94979e',
+  },
+};
 ```
 
 ### Arbitrary Token {: #arbitrary-token }
 
-The following section shows how to add an arbitrary token to your deployment of Connect. 
+The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
     You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
 
 This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which isn't built in by default and provided under the `tokensConfig` key.
 
-See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
+See [`src/config/types.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
 ```json
 --8<-- 'code/build/applications/connect/configuration/arbitrary-token.json'
