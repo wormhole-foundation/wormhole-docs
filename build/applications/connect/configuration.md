@@ -23,14 +23,13 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
     ```
 
 !!! note
-    The full type definition of WormholeConnectConfig is available [here](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts).
+    The complete type definition of WormholeConnectConfig is available [here](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts).
 
 ## Examples {: #examples }
 
 ### Configuring Chains and RPC Endpoints {: #chains-and-rpc-endpoints }
 
-Connect allows you to narrow down which chains it offers, to focus on the ones your project needs. It's also good to provide your own RPC endpoints, because
-the public ones that Connect defaults to often don't support critical functions like fetching balances.
+Connect allows you to narrow down which chains it offers and focus on your project needs. It's also good to provide your own RPC endpoints because the public ones that Connect defaults to often don't support critical functions like fetching balances.
 
 === "Mainnet"
 
@@ -51,7 +50,7 @@ the public ones that Connect defaults to often don't support critical functions 
 
 By default, Connect offers two bridging protocols: Token Bridge (for Wormhole wrapped tokens) and Circle's CCTP (for native USDC). 
 
-For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
+For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
 
 #### Available `route` Plugins
 
@@ -71,7 +70,7 @@ The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` 
     - **`MayanRouteMCTP`** - route for Mayan’s MCTP protocol only
     - **`MayanRouteWH`** - route for Mayan’s original Wormhole transfer protocol
 
-In addition to these routes, developers can create custom routes for their own Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/example-native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
+In addition to these routes, developers can create custom routes for their Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/example-native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
 For further details on the Route plugin interface, refer to the [Wormhole TypeScript SDK route code](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/route.ts){target=\_blank}.
 
@@ -137,12 +136,12 @@ See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connec
 
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
-Connect has a list of built-in tokens that it offers by default. You can see it here:
+Connect offers a list of built-in tokens by default. You can see it below:
 
 - [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts)
 - [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts)
 
-You can limit which tokens are offered in the UI by providing the `tokens` property. This example builds on the previous one; we are adding a custom token, and limiting Connect to just that, as well as the native gas tokens ETH and SOL.
+You can limit the tokens in the UI by providing the `tokens` property. This example builds on the previous one; we are adding a custom token and limiting Connect to just that, as well as the native gas tokens ETH and SOL.
 
 ```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
@@ -186,7 +185,7 @@ The `WormholeConnectTheme` type supports the following properties:
 
 ### Wallet Set Up  {: #wallet-connect-project-id }
 
-When using Wormhole Connect, your selected blockchain network determines the available wallet options.
+Your selected blockchain network determines the available wallet options when using Wormhole Connect.
 
  - For EVM chains, wallets like MetaMask and WalletConnect are supported
  - For Solana, you'll see options such as Phantom, Torus, and Coin98
@@ -197,7 +196,7 @@ If you would like to offer WalletConnect as a supported wallet option, you'll ne
 
 ### Toggle Hamburger Menu {: #toggle-hamburger-menu }
 
-By setting the `showHamburgerMenu` option to **false**, you can deactivate the hamburger menu, causing the links to be positioned at the bottom.
+By setting the `showHamburgerMenu` option to **false**, you can deactivate the hamburger menu, which will position the links at the bottom.
 
 #### Add Extra Menu Entry {: #add-extra-menu-entry }
 
