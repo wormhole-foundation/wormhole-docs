@@ -8,6 +8,8 @@ description: Configure Wormhole Connect v0 for React or HTML, set themes, define
 Configure the Wormhole Connect React component by passing a `WormholeConnectConfig` object as the `config` attribute. If using the hosted version, provide `config` and `theme` as JSON-serialized strings on the mount point.
 
 !!! note
+    If you are looking to upgrade from Wormhole Connect v0 to v1, please refer to the [migration guide](/docs/build/applications/connect/upgrade/){target=\_blank} for detailed instructions.
+
     For the latest version of Wormhole Connect, please refer to the current [configuration documentation](/docs/build/applications/connect/configuration/){target=\_blank}
 
 === "React"

@@ -8,7 +8,9 @@ description: Configure Wormhole Connect v1 (latest) with custom chains, tokens, 
 Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `config` prop.
 
 !!! note
-    If you are using an older version of Wormhole Connect (v0.x), please refer to the [configuration v0.x documentation](/docs/build/applications/connect/configuration-v0/){target=\_blank}.
+    To upgrade from Wormhole Connect v0 to v1, please refer to the [migration guide](/docs/build/applications/connect/upgrade/){target=\_blank} for instructions.
+
+    If you're using an older version of Wormhole Connect (v0.x), please refer to the [v0.x configuration documentation](/docs/build/applications/connect/configuration-v0/){target=\_blank}.
 
 === "React integration"
 
