@@ -10,7 +10,7 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
 === "React integration"
 
     ```ts
-    --8<-- 'code/build/applications/connect/configuration/configure-react.tsx'
+    --8<-- 'code/build/applications/connect/configuration/configure-react-v1.tsx'
     ```
 
 === "Hosted integration"
@@ -22,9 +22,6 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
 !!! note
     The full type definition of WormholeConnectConfig is available [here](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts).
 
-    Below we show a variety of common config examples.
-
-
 ## Examples {: #examples }
 
 ### Configuring Chains and RPC Endpoints {: #chains-and-rpc-endpoints }
@@ -35,13 +32,13 @@ the public ones that Connect defaults to often don't support critical functions 
 === "Mainnet"
 
     ```js
-    --8<-- 'code/build/applications/connect/configuration/custom-simple.jsx'
+    --8<-- 'code/build/applications/connect/configuration/custom-simple-v1.jsx'
     ```
 
 === "Testnet"
 
     ```js
-    --8<-- 'code/build/applications/connect/configuration/custom-simple-testnet.jsx'
+    --8<-- 'code/build/applications/connect/configuration/custom-simple-testnet-v1.jsx'
     ```
 
 !!! note

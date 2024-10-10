@@ -44,7 +44,7 @@ npm i @wormhole-foundation/wormhole-connect
 Now you can import the React component:
 
 ```ts
---8<-- 'code/build/applications/connect/overview/import.js'
+--8<-- 'code/build/applications/connect/overview/import-v1.js'
 ```
 
 ### Use Hosted Version via CDN {: #use-hosted-version-via-cdn}
