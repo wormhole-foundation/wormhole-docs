@@ -3,14 +3,12 @@ import WormholeConnect, {
 } from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
-  networks: ['ethereum', 'polygon', 'solana'],
+  chains: ['Ethereum', 'Polygon', 'Solana'],
   tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
   rpcs: {
-    ethereum: 'https://rpc.ankr.com/eth',
-    solana: 'https://rpc.ankr.com/solana',
+    Ethereum: 'https://rpc.ankr.com/eth',
+    Solana: 'https://rpc.ankr.com/solana',
   }
 }
-
-// ...
 
 <WormholeConnect config={config} />
