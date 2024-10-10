@@ -11,7 +11,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-16:{ .lg .middle } **Guides**
+-   :octicons-code-square-16:{ .lg .middle } **Cross-Chain Treasury Management Proposal**
 
     ---
 
