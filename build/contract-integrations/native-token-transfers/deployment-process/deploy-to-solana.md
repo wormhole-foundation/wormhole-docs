@@ -83,7 +83,6 @@ Initialize a new `deployment.json` file, specifying the network:
 ???- interface "Deploy a Token with the Token-2022 Program (Advanced)"
 
     1. Generate a new Solana keypair in order to create a wallet:
-
     ```bash
     solana-keygen grind --starts-with w:1 --ignore-case
     ```
