@@ -44,24 +44,30 @@ npm i @wormhole-foundation/wormhole-connect
 Now you can import the React component:
 
 ```ts
---8<-- 'code/build/applications/connect/overview/import.js'
+--8<-- 'code/build/applications/connect/overview/import-v1.js'
 ```
 
 ### Use Hosted Version via CDN {: #use-hosted-version-via-cdn}
 
-If you're not using React, you can still embed Connect on your website by using the hosted version. The sample code below uses the popular and free `unpkg.com` CDN from which your app will load the widget.
+If you're not using React, you can still embed Connect on your website by using the hosted version. This uses pre-built packages (which include React) served from NPM by jsdelivr.net.
 
-Simply copy and paste the following into your HTML body, and replace the ```INSERT_WORMHOLE_CONNECT_VERSION``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest){target=\_blank}.
+???+ code "v1.x"
+    ```ts
+    --8<-- 'code/build/applications/connect/overview/hosted.js'
+    ```
 
-```html
---8<-- 'code/build/applications/connect/overview/cdn.html'
-```
+???- code "v0.x"
+    Simply copy and paste the following into your HTML body, and replace the ```INSERT_WORMHOLE_CONNECT_VERSION``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest){target=\_blank}.
 
-For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/0.3.13){target=\_blank}:
+    ```html
+    --8<-- 'code/build/applications/connect/overview/cdn.html'
+    ```
 
-```html
---8<-- 'code/build/applications/connect/overview/cdn-with-version.html'
-```
+    For example, for [0.3.13](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/0.3.13){target=\_blank}:
+
+    ```html
+    --8<-- 'code/build/applications/connect/overview/cdn-with-version.html'
+    ```
 
 !!! note 
     It is important to periodically update your Wormhole Connect instance to the latest version, as there are frequent functionality and security releases.
@@ -72,10 +78,10 @@ This is just an overview of what's possible. Check the [Configuration docs](/doc
 
 The default configuration of Wormhole Connect may not be exactly what you're looking for. You may want to:
 
-- Use custom styles 
-- Restrict the chains that you allow in your app
-- Add support for your project's token, and eliminate tokens you don't want to reduce noise
-- Configuring custom RPC URLs (This is highly recommended as default public RPCs are heavily throttled)
-- Restrict the [routes](/docs/build/applications/connect/routes/){target=\_blank} that are available
+ - Use custom styles 
+ - Restrict the chains that you allow in your app
+ - Add support for your project's token, and eliminate tokens you don't want to reduce noise
+ - Configuring custom RPC URLs (This is highly recommended as default public RPCs are heavily throttled)
+ - Restrict the [routes](/docs/build/applications/connect/routes/){target=\_blank} that are available
 
 For additional information on the preceding options, check the [configuration options](/docs/build/applications/connect/configuration/){target=\_blank} and customize your widget however you like.

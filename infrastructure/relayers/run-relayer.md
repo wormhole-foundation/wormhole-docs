@@ -107,7 +107,7 @@ More details about the Spy are available in the [Spy Documentation](/docs/learn/
 
 For our relayer app to receive messages, a local Spy must be running that watches the Guardian network. Our relayer app will receive updates from this Spy.
 
-=== "MainNet Spy"
+=== "Mainnet Spy"
 
     ```bash
     docker run --pull=always --platform=linux/amd64 \
@@ -119,7 +119,7 @@ For our relayer app to receive messages, a local Spy must be running that watche
     --env mainnet
     ```
 
-=== "TestNet Spy"
+=== "Testnet Spy"
 
     ```bash
     docker run --pull=always --platform=linux/amd64 \

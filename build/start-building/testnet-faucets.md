@@ -1,13 +1,13 @@
 ---
-title: TestNet Faucets
-description: This page includes resources to quickly find the TestNet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
+title: Testnet Faucets
+description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
 ---
 
-# TestNet Faucets
+# Testnet Faucets
 
 ## Get Started
 
-Don't let the need for TestNet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the TestNet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
+Don't let the need for Testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the Testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
 ### EVM
 
@@ -145,10 +145,10 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="chains-list" markdown>
 
-**Klaytn**
+**Kaia**
 
-<a href="https://baobab.wallet.klaytn.foundation/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:90px;">
+<a href="https://faucet.kaia.io/" target= "\_blank">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/klaytn.webp" alt="Kaia" style="width:90px; height:90px;">
 </a>
 
 </div>
