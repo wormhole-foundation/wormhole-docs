@@ -38,7 +38,7 @@ Initialize a new `deployment.json` file, specifying the network:
 
 ## Deploy Your Solana Token
 
-???- interface "Deploy an SPL Token (Basic)"
+???- interface "Deploy an SPL Token"
 
     1. Generate a new Solana key pair to create a wallet:
     ```bash
@@ -80,47 +80,6 @@ Initialize a new `deployment.json` file, specifying the network:
     spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
     ```
 
-???- interface "Deploy a Token with the Token-2022 Program (Advanced)"
-
-    1. Generate a new Solana keypair in order to create a wallet:
-    ```bash
-    solana-keygen grind --starts-with w:1 --ignore-case
-    ```
-
-    2. Set Solana config to use the new keypair:
-    ```bash
-    solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
-    ```
-
-    3. Set the Solana configuration to use the default RPC URL for devnet:
-    ```bash
-    solana config set -ud
-    ```
-
-    4. Request an airdrop of 2 SOL and check the balance:
-    ```bash
-    solana airdrop 2 & solana balance
-    ```
-
-    5. Install or update the SPL Token CLI:
-    ```bash
-    cargo install spl-token-cli
-    ```
-
-    6. Create a new token with the SPL Token CLI using the token-2022 program:
-    ```bash
-    spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 
-    ```
-
-    7. Create a new account for the token:
-    ```bash
-    spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
-    ```
-
-    8. Mint 1000 tokens to the created account:
-    ```bash
-    spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
-    ```
 
 
 !!! note
