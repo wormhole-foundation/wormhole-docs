@@ -65,7 +65,7 @@ Initialize a new `deployment.json` file, specifying the network:
     cargo install spl-token-cli
     ```
 
-    6. Create a new token with the SPL Token CLI using the `token-2022` program:
+    6. Create a new token with the SPL Token CLI:
     ```bash
     spl-token create-token
     ```
