@@ -71,7 +71,7 @@ For more information, see [the Solana Docs](https://docs.solana.com/cluster/comm
 
 === "Testnet"
 
-	`DevNet - EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG`
+	`Devnet - EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG`
 
 |     Type     |                                                                             Contract                                                                             |
 |:------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------:|

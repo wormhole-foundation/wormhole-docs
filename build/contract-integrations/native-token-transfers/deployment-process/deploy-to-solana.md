@@ -50,7 +50,7 @@ Initialize a new `deployment.json` file, specifying the network:
     solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
     ```
 
-    3. Set the Solana configuration to use the default RPC URL for DevNet:
+    3. Set the Solana configuration to use the default RPC URL for Devnet:
     ```bash
     solana config set -ud
     ```
