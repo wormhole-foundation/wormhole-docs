@@ -35,7 +35,7 @@ Connect can be [fully customized](https://connect-in-style.wormhole.com/){target
 
 ### Which functions or events does Connect rely on for NTT integration? 
 
-Connect relies on the NTT SDK  for integration, with platform-specific implementations for Solana and EVM. The critical methods involved include initiate and redeem functions and rate capacity methods. These functions ensure Connect can handle token transfers and manage chain-rate limits.
+Connect relies on the NTT SDK for integration, with platform-specific implementations for Solana and EVM. The critical methods involved include initiate and redeem functions and rate capacity methods. These functions ensure Connect can handle token transfers and manage chain-rate limits.
 
 ### Do integrators need to enable wallets like Phantom or Backpack in Wormhole Connect?
 
