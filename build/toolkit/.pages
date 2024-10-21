@@ -5,3 +5,4 @@ nav:
  - 'Wormhole CLI' : 'cli.md'
  - 'Wormhole SDK' : '/docs/build/applications/wormhole-sdk/'
  - 'Tilt': 'tilt.md'
+ - 'FAQs': 'faq.md'

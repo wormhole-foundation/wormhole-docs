@@ -1,11 +1,11 @@
 ---
 title: Queries FAQs
-description: Common questions and answers about Wormhole Queries.
+description: Wormhole Queries FAQ covering available libraries, query examples, response formats, and details about running query proxy servers.
 ---
 
-## Wormhole Queries FAQs
+# Wormhole Queries FAQs
 
-### What libraries are available to handle queries?
+## What libraries are available to handle queries?
 
  - The [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses
 
@@ -18,7 +18,7 @@ description: Common questions and answers about Wormhole Queries.
 !!! note
     A Rust SDK for Solana is being actively investigated by the Wormhole contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repository as a proof of concept.
 
-### Are there any query examples?
+## Are there any query examples?
 
 Certainly. You can find a complete guide on the [Use Queries page](/docs/build/applications/queries/use-queries). Additionally, you can find full code examples in the following repositories:
 
@@ -27,7 +27,7 @@ Certainly. You can find a complete guide on the [Use Queries page](/docs/build/a
 - [Solana Program Derived Address (PDA) / Token Account Balance Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
 - [Solana Queries Verification Example](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
 
-### What is the format of the response signature?
+## What is the format of the response signature?
 
 The Guardian node calculates an ECDSA signature using [`Sign` function of the crypto package](https://pkg.go.dev/github.com/ethereum/go-ethereum@v1.10.21/crypto#Sign){target=\_blank} where the digest hash is:
 
@@ -38,7 +38,7 @@ See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blo
 !!! note
     If you are used to `ecrecover` you will notice that the `v` byte is `0` or `1` as opposed to `27` or `28`. The `signaturesToEvmStruct` method in the [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} accounts for this as well as structuring the signatures into an `IWormhole.SignatureStruct[]`.
 
-### Can anyone run a query proxy server?
+## Can anyone run a query proxy server?
 
 Permissions for Query Proxy are managed by the Guardians. The Guardian nodes are configured to only listen to a set of allow-listed proxies. However, it is possible that this restriction may be lifted in the future and/or more proxies could be added.
 

@@ -8,3 +8,4 @@ nav:
  - 'Cosmos Gateway' : 'gateway.md'
  - native-token-transfers
  - 'Development Environment': 'dev-env.md'
+ - 'FAQs': 'faq.md'
