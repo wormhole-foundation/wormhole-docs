@@ -1,5 +1,5 @@
 ---
-title: FAQs
+title: Connect FAQs
 description: Common questions and answers about Wormhole Connect.
 ---
 
