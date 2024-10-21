@@ -28,6 +28,7 @@ When bridging assets across chains, there are two primary approaches to handling
 Before you begin, ensure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
  - [USDC tokens](https://faucet.circle.com/){target=\_blank} on supported chains. This tutorial uses Avalanche and Sepolia as examples
  - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees
 
@@ -62,8 +63,8 @@ In this section, you'll set up your project for transferring USDC across chains 
     Inside the `.env` file, add your private key
 
     ```env
-    ETH_PRIVATE_KEY=INSERT_YOUR_PRIVATE_KEY
-    SOL_PRIVATE_KEY=INSERT_YOUR_PRIVATE_KEY
+    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
+    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
     ```
 
     !!! note
@@ -89,10 +90,10 @@ In this section, you'll set up your project for transferring USDC across chains 
 
 5. **Create the main script** - create a new file named `manual-transfer.ts` to hold your script for transferring USDC across chains
 
-    1. Create the helpers file
+    1. Create the `manual-transfer.ts` file in the `src` directory
 
         ```bash
-        touch manual-transfer.ts
+        touch src/manual-transfer.ts
         ```
 
     2. Open the `manual-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
@@ -209,7 +210,7 @@ You can find the full code for the manual USDC transfer script below:
 To execute the manual transfer script, you can use `ts-node` to run the TypeScript file directly
 
 ```bash
-npx ts-node manual-transfer.ts
+npx ts-node src/manual-transfer.ts
 ```
 
 This will initiate the USDC transfer from the source chain (Avalanche) and complete it on the destination chain (Sepolia).
@@ -281,10 +282,10 @@ You can find the full code for the automatic USDC transfer script below:
 
 ### Run Automatic Transfer
 
-To execute the automatic transfer script, you can use `ts-node` to run the TypeScript file directly:
+Assuming you have created a new `automatic-transfer.ts` file for automatic transfers under the `src` directory, use the following command to run it with `ts-node`:
 
 ```bash
-npx ts-node automatic-transfer.ts
+npx ts-node src/automatic-transfer.ts
 ```
 
 The automatic relayer will take care of fetching the attestation and completing the transfer for you.
