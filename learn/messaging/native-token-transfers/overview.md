@@ -55,3 +55,7 @@ The Token Bridge offers a secure, low-effort integration suitable for applicatio
 
 !!! note
     [Learn more](/docs/learn/infrastructure/vaas/){target=\_blank} about the core messaging primitives in the Wormhole network. 
+
+## Supported Token Standards
+
+Native Token Transfers (NTT) in Wormhole primarily support **ERC-20 tokens**, the most widely used standard for fungible tokens on the Ethereum network and other EVM-compatible blockchains. The NttManager contract leverages the IERC20 interface and SafeERC20 utility from OpenZeppelin to ensure secure and efficient token transfers. Additionally, it supports ERC-20 Burnable tokens, allowing tokens to be burned on the source chain when needed for cross-chain transfers. At this time, NTT focuses on ERC-20 tokens, and other token standards, such as ERC-721 (non-fungible tokens) or ERC-1155 (multi-token standard), are not natively supported.

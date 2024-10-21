@@ -65,8 +65,6 @@ Transceivers can be defined independently of the Wormhole core and modified to s
     ) external view returns (uint256) 
     ```
 
-#### Custom Transceivers
-
 ## Lifecycle of a Message
 
 ### EVM
