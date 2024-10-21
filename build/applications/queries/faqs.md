@@ -1,5 +1,5 @@
 ---
-title: FAQs
+title: Queries FAQs
 description: Common questions and answers about Wormhole Queries.
 ---
 
