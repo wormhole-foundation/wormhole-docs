@@ -292,7 +292,7 @@ The automatic relayer will take care of fetching the attestation and completing 
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [Wormhole SDK GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/develop/examples/src/cctp.ts){target=\_blank}. The repository includes all the example scripts and configurations needed to perform USDC cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK and Circle's CCTP.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-cctp-transfer){target=\_blank}. The repository includes all the example scripts and configurations needed to perform USDC cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK and Circle's CCTP.
 
 ## Conclusion
 
