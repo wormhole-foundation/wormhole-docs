@@ -43,6 +43,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with NTT](/docs/build/contract-integrations/native-token-transfers/)
 
+-   :octicons-arrow-switch-16:{ .lg .middle } **MultiGov**
+
+    ---
+
+    Discover how to start your MultiGov integration, from deploying and configuring essential contracts to managing your setup, including contract upgrades.
+
+    [:octicons-arrow-right-16: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
+
 -   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
     ---

@@ -86,7 +86,7 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 
 ## Mock a Query
 
-For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [DevNet](/docs/build/toolkit/tilt/) Guardian key. The `mock` call returns the same format as the Query Proxy.
+For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](/docs/build/toolkit/tilt/){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
 --8<-- 'code/build/applications/queries/use-queries/test-full.jsx:55:57'
@@ -111,15 +111,15 @@ Testing this all together might look like the following:
 
 ### Fork Testing
 
-It is common to test against a local fork of MainNet with something like
+It is common to test against a local fork of Mainnet with something like
 
 ```jsx
 anvil --fork-url https://ethereum.publicnode.com
 ```
 
-In order for mock requests to verify against the MainNet Core Contract, you need to replace the current Guardian set with the single DevNet key used by the mock.
+In order for mock requests to verify against the Mainnet Core Contract, you need to replace the current Guardian set with the single Devnet key used by the mock.
 
-Here's an example for Ethereum MainNet, where the `-a` parameter is the [Core Contract address](/docs/build/reference/contract-addresses/#core-contracts) on that chain.
+Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on that chain.
 
 ```jsx
 npx @wormhole-foundation/wormhole-cli evm hijack -a 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B -g 0xbeFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
@@ -137,9 +137,9 @@ The standardized means of making a `QueryRequest` with an API key is as follows:
 
 Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
 
-A TestNet Query Proxy is available at `https://testnet.query.wormhole.com/v1/query`
+A Testnet Query Proxy is available at `https://testnet.query.wormhole.com/v1/query`
 
-A MainNet Query Proxy is available at ` https://query.wormhole.com/v1/query`
+A Mainnet Query Proxy is available at `https://query.wormhole.com/v1/query`
 
 ## Verify a Query Response On-Chain
 
@@ -161,7 +161,7 @@ Broadly, using a query response on-chain comes down to three main steps:
     - Is the result of the expected length for the expected result type?
    4. Run `abi.decode` on the result 
 
-See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol) contract for an example and read the docstrings of the preceding methods for detailed usage instructions.
+See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract for an example and read the docstrings of the preceding methods for detailed usage instructions.
 
 ??? code "View the complete `QueryDemo`"
     ```solidity

@@ -15,7 +15,7 @@ Regardless of which network development environment you are using, there are a f
 
     ---
 
-    Wormholescan is an explorer for looking at individual transfer statuses on MainNet and TestNet.
+    Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
 
     [:octicons-arrow-right-16: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
 
@@ -34,6 +34,14 @@ Regardless of which network development environment you are using, there are a f
     Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
 
     [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
+
+-   :octicons-file-code-16:{ .lg .middle } **Solidity SDK**
+
+    ---
+
+    Learn about Wormhole's Solidity SDK, including key components, interfaces, and tools for developing cross-chain decentralized applications on EVM-compatible blockchains.
+
+    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/solidity-sdk/)
 
 -   :octicons-beaker-16:{ .lg .middle } **Tilt**
 
@@ -63,6 +71,6 @@ Regardless of which network development environment you are using, there are a f
 
     The VAA Parser is a resource for parsing out details of an encoded VAA.
 
-    [:octicons-arrow-right-16: Try the VAA Parser](https://vaa.dev/#/parse){target=\_blank}
+    [:octicons-arrow-right-16: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
 
 </div>

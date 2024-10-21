@@ -1,11 +1,11 @@
 {
-    "showHamburgerMenu":false,
-    "menu":[
+    "showHamburgerMenu": false,
+    "menu": [
         {
-            "label":"Advance Tools",
-            "href":"https://portalbridge.com",
-            "target":"_self",
-            "order":1
+            "label": "Advance Tools",
+            "href": "https://portalbridge.com",
+            "target": "_self",
+            "order": 1
         }
     ]
 }

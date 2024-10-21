@@ -42,7 +42,7 @@ import cosmwasm from '@wormhole-foundation/sdk/cosmwasm';
 import algorand from '@wormhole-foundation/sdk/algorand';
 
 export function buildConfig(
-  customConfig?: WormholeConnectConfig,
+  customConfig?: WormholeConnectConfig
 ): InternalConfig<NetworkV2> {
   const network = (
     customConfig?.network ||
@@ -58,7 +58,7 @@ export function buildConfig(
 
   const tokens = mergeCustomTokensConfig(
     networkData.tokens,
-    customConfig?.tokensConfig,
+    customConfig?.tokensConfig
   );
 
   const sdkConfig = WormholeContext.getConfig(network);
@@ -67,7 +67,7 @@ export function buildConfig(
     {},
     sdkConfig.rpcs,
     networkData.rpcs,
-    customConfig?.rpcs,
+    customConfig?.rpcs
   );
 
   const wh = getWormholeContext(network, sdkConfig, rpcs);
@@ -93,7 +93,7 @@ export function buildConfig(
       {},
       sdkConfig.rest,
       networkData.rest,
-      customConfig?.rest,
+      customConfig?.rest
     ),
     graphql: Object.assign({}, networkData.graphql, customConfig?.graphql),
     wormholeApi: {
@@ -137,7 +137,7 @@ export function buildConfig(
     // For token bridge ^_^
     wrappedTokenAddressCache: new WrappedTokenAddressCache(
       tokens,
-      sdkConverter,
+      sdkConverter
     ),
 
     gasEstimates: networkData.gasEstimates,
@@ -150,7 +150,7 @@ export function buildConfig(
         Route.NttRelay,
         Route.CCTPManual,
         Route.CCTPRelay,
-      ].includes(r as Route),
+      ].includes(r as Route)
     ),
 
     // UI details
@@ -185,13 +185,13 @@ export function buildConfig(
     nttGroups: mergeNttGroups(
       tokens,
       networkData.nttGroups,
-      customConfig?.nttGroups,
+      customConfig?.nttGroups
     ),
 
-    // Guardian Set
+    // Guardian set
     guardianSet: networkData.guardianSet,
 
-    // Render Redesign views
+    // Render redesign views
     useRedesign: customConfig?.useRedesign,
   };
 }
@@ -204,7 +204,7 @@ export default config;
 export function getWormholeContext(
   network: Network,
   sdkConfig: WormholeConfig,
-  rpcs: ChainResourceMap,
+  rpcs: ChainResourceMap
 ): WormholeContext {
   const wh: WormholeContext = new WormholeContext(network, {
     ...sdkConfig,
@@ -241,7 +241,7 @@ export async function newWormholeContextV2(): Promise<WormholeV2<NetworkV2>> {
     const chainContextV1 = chainConfigV1.context;
 
     const chainV2 = config.sdkConverter.toChainV2(
-      chainV1 as ChainName,
+      chainV1 as ChainName
     ) as ChainV2;
 
     const rpc = config.rpcs[chainV1];
@@ -292,12 +292,11 @@ export async function newWormholeContextV2(): Promise<WormholeV2<NetworkV2>> {
   return await getWormholeV2(
     config.v2Network,
     [evm, solana, aptos, cosmwasm, sui, algorand],
-    v2Config,
+    v2Config
   );
 }
 
 // setConfig can be called afterwards to override the default config with integrator-provided config
-
 export function setConfig(customConfig?: WormholeConnectConfig) {
   const newConfig: InternalConfig<NetworkV2> = buildConfig(customConfig);
 

@@ -1,19 +1,19 @@
 ---
-title: TestNet Faucets
-description: This page includes resources to quickly find the TestNet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
+title: Testnet Faucets
+description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
 ---
 
-# TestNet Faucets
+# Testnet Faucets
 
 ## Get Started
 
-Don't let the need for TestNet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the TestNet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
+Don't let the need for Testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the Testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
 ### EVM
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Ethereum Sepolia**
 
@@ -23,7 +23,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Ethereum Holesky**
 
@@ -33,7 +33,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Acala**
 
@@ -43,7 +43,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Arbitrum Sepolia**
 
@@ -53,7 +53,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Avalanche**
 
@@ -63,7 +63,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Base Sepolia**
 
@@ -73,7 +73,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Berachain**
 
@@ -83,7 +83,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Blast**
 
@@ -93,7 +93,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **BNB Smart Chain**
 
@@ -103,7 +103,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Celo**
 
@@ -113,7 +113,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Fantom**
 
@@ -123,7 +123,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Gnosis**
 
@@ -133,7 +133,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Karura**
 
@@ -143,17 +143,17 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
-**Klaytn**
+**Kaia**
 
-<a href="https://baobab.wallet.klaytn.foundation/faucet/" target= "\_blank">
-    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/klaytn.webp" alt="Klaytn" style="width:90px; height:90px;">
+<a href="https://faucet.kaia.io/" target= "\_blank">
+    <img class="no-lightbox" src="/docs/images/build/start-building/supported-networks/klaytn.webp" alt="Kaia" style="width:90px; height:90px;">
 </a>
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Linea**
 
@@ -163,7 +163,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Mantle**
 
@@ -173,7 +173,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Moonbeam**
 
@@ -183,7 +183,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Neon**
 
@@ -193,7 +193,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Oasis**
 
@@ -203,7 +203,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Optimism Sepolia**
 
@@ -213,7 +213,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Polygon**
 
@@ -223,7 +223,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Rootstock**
 
@@ -233,7 +233,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Scroll**
 
@@ -243,7 +243,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Sei**
 
@@ -253,7 +253,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **X Layer**
 
@@ -268,7 +268,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Algorand**
 
@@ -284,7 +284,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Aptos**
 
@@ -300,7 +300,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Celestia**
 
@@ -311,7 +311,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 </div>
 
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Cosmos Hub**
 
@@ -321,7 +321,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Evmos**
 
@@ -331,7 +331,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Injective**
 
@@ -341,7 +341,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Kujira**
 
@@ -351,7 +351,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Neutron**
 
@@ -361,7 +361,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Osmosis**
 
@@ -371,7 +371,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Provenance**
 
@@ -381,7 +381,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Sei**
 
@@ -391,7 +391,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Stargaze**
 
@@ -401,7 +401,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Terra**
 
@@ -411,7 +411,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 </div>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **XPLA**
 
@@ -427,7 +427,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **NEAR**
 
@@ -443,7 +443,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Solana**
 
@@ -459,7 +459,7 @@ Don't let the need for TestNet tokens get in the way of buildling your next grea
 
 <div class="card-container" markdown>
 
-<div class="faucet" markdown>
+<div class="chains-list" markdown>
 
 **Sui**
 

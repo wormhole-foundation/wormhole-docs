@@ -1,0 +1,6 @@
+title: Multichain Governance
+nav:
+ - index.md
+ - 'Overview': 'overview.md'
+ - 'Architecture': 'architecture.md'
+ - 'Theoretical FAQs': 'faq.md'

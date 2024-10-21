@@ -7,5 +7,6 @@ nav:
  - 'CCTP': 'cctp.md'
  - 'Cosmos Gateway' : 'gateway.md'
  - native-token-transfers
+ - multigov
  - 'Development Environment': 'dev-env.md'
  - 'FAQs': 'faq.md'

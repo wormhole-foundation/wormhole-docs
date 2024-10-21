@@ -24,7 +24,7 @@ The following flow outlines the key steps involved in a cross-chain transaction 
 5. **Finalization on target Cosmos chain** - the VAA is verified on the target Cosmos chain, enabling the execution of the corresponding transaction or operation
 6. **Global Accountant integration** - throughout the process, the Gateway works with the Global Accountant to maintain accurate asset tracking, ensuring the integrity of cross-chain transactions
 
-<!-- add diagram here -->
+![Gateway flow diagram](/docs/images/learn/messaging/gateway/gateway-diagram.webp)
 
 ## Inter-Blockchain Communication (IBC)
 

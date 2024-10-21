@@ -34,13 +34,13 @@ cd my-ntt-deployment
 
 Initialize a new `deployment.json` file, specifying the network:
 
-=== "TestNet"
+=== "Testnet"
 
     ```bash
     ntt init Testnet
     ```
 
-=== "MainNet"
+=== "Mainnet"
 
     ```bash
     ntt init Mainnet
@@ -73,9 +73,26 @@ The NTT CLI prints detailed logs and transaction hashes, so you can see exactly 
 
 The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
 
-- `ntt status` to check whether your `deployment.json` file is consistent with what is on-chain
-- `ntt pull` to sync your `deployment.json` file with the on-chain configuration
-- `ntt push` to sync the on-chain configuration with local changes made to your `deployment.json` file
+- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
+- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+
+    For Solana, the limits are set with 9 decimal places:
+      ```json
+      "inbound": {
+          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+      }
+      ```
+
+    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
+      ```json
+      "inbound": {
+          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+      }
+      ```
+
+    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
+  
+- `ntt push` - syncs the on-chain configuration with local changes made to your `deployment.json` file
 
 After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
 

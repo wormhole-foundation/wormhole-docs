@@ -24,63 +24,66 @@ cd my-ntt-deployment
 
 Initialize a new `deployment.json` file, specifying the network:
 
-=== "TestNet"
+=== "Testnet"
 
     ```bash
 	ntt init Testnet
     ```
 
-=== "MainNet"
+=== "Mainnet"
 
     ```bash
 	ntt init Mainnet
     ```
 
-## Deploy your SPL Token
+## Deploy Your Solana Token
 
-If you haven't already, deploy your SPL token to Solana.
+???- interface "Deploy an SPL Token"
 
-1. Generate a new Solana key pair to create a wallet:
-```bash
-solana-keygen grind --starts-with w:1 --ignore-case
-```
+    1. Generate a new Solana key pair to create a wallet:
+    ```bash
+    solana-keygen grind --starts-with w:1 --ignore-case
+    ```
 
-2. Set Solana configuration to use the new key pair:
-```bash
-solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
-```
+    2. Set Solana configuration to use the new key pair:
+    ```bash
+    solana config set --keypair INSERT_PATH_TO_KEYPAIR_CREATED_IN_STEP1
+    ```
 
-3. Set the Solana configuration to use the default RPC URL for DevNet:
-```bash
-solana config set -ud
-```
+    3. Set the Solana configuration to use the default RPC URL for Devnet:
+    ```bash
+    solana config set -ud
+    ```
 
-4. Request an airdrop of two SOL and check the balance:
-```bash
-solana airdrop 2 & solana balance
-```
+    4. Request an airdrop of two SOL and check the balance:
+    ```bash
+    solana airdrop 2 & solana balance
+    ```
 
-5. Install or update the SPL Token CLI:
-```bash
-cargo install spl-token-cli
-```
+    5. Install or update the SPL Token CLI:
+    ```bash
+    cargo install spl-token-cli
+    ```
 
-6. Create a new token with the SPL Token CLI using the `token-2022` program:
-```bash
-spl-token create-token --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb 
-```
+    6. Create a new token with the SPL Token CLI:
+    ```bash
+    spl-token create-token
+    ```
 
-7. Create a new account for the token:
-```bash
-spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 --program-id TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb
-```
+    7. Create a new account for the token:
+    ```bash
+    spl-token create-account INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6
+    ```
 
-8. Mint `1000` tokens to the created account:
-```bash
-spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
-```
+    8. Mint `1000` tokens to the created account:
+    ```bash
+    spl-token mint INSERT_ADDRESS_OF_TOKEN_CREATED_IN_STEP6 1000
+    ```
 
-NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
+
+
+!!! note
+    NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
 
 ## Configuration and Deployment
 
@@ -124,15 +127,26 @@ The NTT Solana program will then compile and deploy.
 
 ### Configure NTT
 
-As with other deployments, run the following commands to ensure that the on-chain configuration is correct and your local `deployment.json` file is synced with the on-chain state:
+The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
 
-```bash
-ntt status
-```
+- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
+- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
 
-```bash
-ntt pull
-```
+    For Solana, the limits are set with 9 decimal places:
+      ```json
+      "inbound": {
+          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+      }
+      ```
+
+    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
+      ```json
+      "inbound": {
+          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+      }
+      ```
+
+    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
 
 ### Deploy
 

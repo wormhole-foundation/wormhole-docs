@@ -15,10 +15,10 @@ For a more comprehensive understanding of the Spy and its role within the Wormho
 
 To start a Spy locally, run the following Docker command:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
         -p 7073:7073 \
         --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
         spy \
@@ -27,10 +27,10 @@ To start a Spy locally, run the following Docker command:
         --env mainnet
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
         -p 7073:7073 \
         --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
         spy \
@@ -41,14 +41,14 @@ To start a Spy locally, run the following Docker command:
 
 Optionally, add the following flags to skip any VAAs with invalid signatures:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
     --ethRPC https://eth.drpc.org
     --ethContract 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
     --ethRPC https://sepolia.drpc.org/

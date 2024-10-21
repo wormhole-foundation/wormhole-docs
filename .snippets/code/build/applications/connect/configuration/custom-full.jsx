@@ -52,7 +52,7 @@ const customTheme: WormholeConnectTheme = {
   font: {
     primary: 'Impact',
     header: 'Impact',
-  }
+  },
 };
 
 export default function App() {
