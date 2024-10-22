@@ -6,4 +6,4 @@ nav:
  - 'Wormhole SDK' : '/docs/build/applications/wormhole-sdk/'
  - 'Solidity SDK': 'solidity-sdk.md'
  - 'Tilt': 'tilt.md'
- - 'FAQs': 'faq.md'
+ - 'FAQs': 'faqs.md'

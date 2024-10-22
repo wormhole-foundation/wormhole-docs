@@ -27,4 +27,12 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 
     [:octicons-arrow-right-16: Get hands-on](/docs/build/applications/queries/use-queries/)
 
+-   :octicons-book-16:{ .lg .middle } **Query FAQs**
+
+    ---
+
+    Explore frequently asked questions about Wormhole Queries.
+
+    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/applications/queries/faqs/)
+
 </div>
