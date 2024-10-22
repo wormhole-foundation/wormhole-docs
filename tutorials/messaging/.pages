@@ -3,3 +3,4 @@ nav:
  - index.md
  - 'Create Cross-Chain Contracts': 'cross-chain-contracts.md'
  - 'Create Cross-Chain Token Transfers': 'cross-chain-token-contracts.md'
+ - 'Transfer USDC via Wormhole SDK': 'cctp.md'
