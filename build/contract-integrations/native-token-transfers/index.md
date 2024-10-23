@@ -27,4 +27,12 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 
     [:octicons-arrow-right-16: Configure your NTT deployment](/docs/build/contract-integrations/native-token-transfers/configuration/)
 
+-   :octicons-question-16:{ .lg .middle } **NTT FAQs**
+
+    ---
+
+    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
+
+    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/contract-integrations/native-token-transfers/faqs/)
+
 </div>

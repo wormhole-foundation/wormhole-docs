@@ -51,6 +51,14 @@ Regardless of which network development environment you are using, there are a f
 
     [:octicons-arrow-right-16: Get started with Tilt](/docs/build/toolkit/tilt/)
 
+-   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
+
+    ---
+
+    Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
+
+    [:octicons-arrow-right-16: Read Toolkit FAQs](/docs/build/toolkit/faqs/)
+
 </div>
 
 ## Additional Resources
