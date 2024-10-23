@@ -27,7 +27,7 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 
     [:octicons-arrow-right-16: Configure your NTT deployment](/docs/build/contract-integrations/native-token-transfers/configuration/)
 
--   :octicons-book-16:{ .lg .middle } **NTT FAQs**
+-   :octicons-question-16:{ .lg .middle } **NTT FAQs**
 
     ---
 
