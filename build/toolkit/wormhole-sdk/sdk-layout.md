@@ -26,7 +26,7 @@ At the core of the layout system is the concept of Layout Items, which describe 
  - **Primitive types** - simple data types like uint or bytes
  - **Composite types** - arrays or nested structures
 
-#### Example: Layout Item
+For example, a layout item could define:
 
  - Numbers (int, uint) – for signed/unsigned integers, specify byte size
 
@@ -50,13 +50,13 @@ Each layout item has associated properties:
 
 Serialization converts structured data into binary format; deserialization reverses this, reconstructing the original objects.
 
-#### Example: Serialization
+You can serialize data using the `serializeLayout` function:
 
 ```typescript
 const serialized = serializeLayout(fillLayout, exampleFill);
 ```
 
-#### Example: Deserialization
+To deserialize the binary data back into a structured object, use the `deserializeLayout` function:
 
 ```typescript
 const deserialized = deserializeLayout(fillLayout, serialized);
@@ -66,7 +66,7 @@ const deserialized = deserializeLayout(fillLayout, serialized);
 
 Layouts also allow for custom conversions, which help map complex or custom types (like chain IDs or universal addresses) into a more usable format. This is useful when serializing or deserializing data that doesn’t fit neatly into simple types like integers or byte arrays.
 
-#### Example: Custom conversion for a chain ID
+For example, consider a custom conversion for a chain ID:
 
 ```typescript
 const chainCustomConversion = {
@@ -75,7 +75,7 @@ const chainCustomConversion = {
 } satisfies CustomConversion<number, Chain>;
 ```
 
-This allows Wormhole to convert between human-readable formats and binary-encoded data used in payloads.
+This setup allows Wormhole to convert between human-readable formats and binary-encoded data used in payloads.
 
 ### Error Handling
 
@@ -97,7 +97,7 @@ In this section, we will focus on applying the concepts explained earlier throug
 
 To get started with layouts in Wormhole, you need to define your structure. A layout is simply a list of fields (layout items) that describe how each piece of data will be serialized.
 
-#### Example: Defining a Layout for a Payload
+Consider the following layout for a payload:
 
 ```typescript
 const exampleLayout = [
@@ -109,16 +109,15 @@ const exampleLayout = [
 ```
 
 In this example:
- - sourceChain is an unsigned integer (uint) of 2 bytes
- - orderSender is a 32-byte fixed-length byte array
- - redeemer is another 32-byte byte array
- - redeemerMessage is a length-prefixed byte array, with the length specified by a 4-byte integer
+
+ - `sourceChain` is an unsigned integer (uint) of 2 bytes
+ - `orderSender` is a 32-byte fixed-length byte array
+ - `redeemer` is another 32-byte byte array
+ - `redeemerMessage` is a length-prefixed byte array, with the length specified by a 4-byte integer
 
 ### Serialize Data
 
-Once a layout is defined, the next step is to serialize data according to that structure. This is done using the serializeLayout function from the Wormhole SDK.
-
-#### Example: Serializing a Payload
+Once a layout is defined, the next step is to serialize data according to that structure. This is done using the serializeLayout function from the Wormhole SDK. For example:
 
 ```typescript
 const examplePayload = {
@@ -136,9 +135,7 @@ This takes the data structure (examplePayload) and serializes it according to th
 
 ### Deserialize Data
 
-Deserialization is the reverse of serialization. Given a serialized Uint8Array, we can convert it back into its original structure using the deserializeLayout function.
-
-#### Example: Deserializing a Payload
+Deserialization is the reverse of serialization. Given a serialized Uint8Array, we can convert it back into its original structure using the deserializeLayout function. For example:
 
 ```typescript
 const deserializedPayload = deserializeLayout(exampleLayout, serializedData);
@@ -159,16 +156,13 @@ For instance, if you want to serialize or deserialize a message where the length
 
 This tells the SDK to first read or write the length of the message (in 4 bytes) and then handle the actual content.
 
-### Nested Layouts and Strong Typing
+## Nested Layouts and Strong Typing
 
 One of the benefits of using the Wormhole SDK in TypeScript is its support for strong typing, ensuring that serialized and deserialized data conforms to expected structures. This reduces errors during development by enforcing type checks at compile time.
 
-In complex protocols, layouts can contain nested structures. This is where nested layouts become essential, allowing you to represent hierarchical data (such as transactions or multi-part messages) in a clear and structured way.
+In complex protocols, layouts can contain nested structures. This is where nested layouts become essential, allowing you to represent hierarchical data (such as transactions or multi-part messages) in a clear and structured way. 
 
-
-#### Example: Nested Layout with Strong Typing
-
-Let's define a layout where a message contains nested fields:
+Refer to the following nested layout where a message contains nested fields:
 
 ```typescript
 const nestedLayout = [
@@ -196,7 +190,7 @@ In this layout:
  - source is an object with two fields: chainId and sender
  - redeemer is another object with two fields: address and a length-prefixed message
 
-#### Strong Typing
+### Strong Typing
 
 Using TypeScript, the LayoutToType utility provided by the SDK automatically generates a strongly typed structure based on the layout:
 
@@ -219,7 +213,7 @@ const message: NestedMessage = {
 };
 ```
 
-#### Serialization and Deserialization with Nested Layouts
+### Serialization and Deserialization with Nested Layouts
 
 You can serialize and deserialize nested structures in the same way as simpler layouts:
 
@@ -394,8 +388,6 @@ The layout system plays a critical role in ensuring seamless interaction with th
 
 Wormhole’s core functionality revolves around VAAs, which are signed messages that allow different chains to communicate. These VAAs contain complex data that must be encoded using layouts. The layout system in the Wormhole SDK simplifies this by providing structured serialization and deserialization tools.
 
-#### Example: Defining a VAA Layout
-
 Here’s how a typical VAA payload might be structured using the Wormhole SDK's layout system:
 
 ```typescript
@@ -444,7 +436,7 @@ This allows the application to easily interpret the incoming data and act accord
 
 In addition to predefined layouts, Wormhole integrators can define and register their own custom payloads. This is especially useful when integrating protocol-specific features, as in the case of the "Submit Your Protocol" feature in WormholeScan.
 
-#### Example: Custom Payload Registration
+Below's an example of a custom payload registration:
 
 ```typescript
 const customPayloadLayout = [
