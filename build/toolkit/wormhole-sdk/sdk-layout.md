@@ -65,10 +65,7 @@ Layouts also allow for custom conversions, which help map complex or custom type
 For example, consider a custom conversion for a chain ID:
 
 ```typescript
-const chainCustomConversion = {
-  to: (chainId: number) => toChain(chainId),
-  from: (chain: Chain) => chainToChainId(chain),
-} satisfies CustomConversion<number, Chain>;
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-1.ts"
 ```
 
 This setup allows Wormhole to convert between human-readable formats and binary-encoded data used in payloads.
@@ -78,11 +75,7 @@ This setup allows Wormhole to convert between human-readable formats and binary-
 The layout system performs error checks during serialization and deserialization. An error is thrown if data is incorrectly sized or in the wrong format. Refer to the below example:
 
 ```typescript
-try {
-  deserializeLayout(fillLayout, corruptedData);
-} catch (error) {
-  console.error("Error during deserialization:", error.message);
-}
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-2.ts"
 ```
 
 ## Application of Layouts
@@ -96,12 +89,7 @@ To get started with layouts in Wormhole, you need to define your structure. A la
 Consider the following layout for a payload:
 
 ```typescript
-const exampleLayout = [
-  { name: 'sourceChain', binary: 'uint', size: 2 },
-  { name: 'orderSender', binary: 'bytes', size: 32 },
-  { name: 'redeemer', binary: 'bytes', size: 32 },
-  { name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 },
-] as const;
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-3.ts"
 ```
 
 In this example:
@@ -116,15 +104,7 @@ In this example:
 Once a layout is defined, the next step is to serialize data according to that structure. You can accomplish this using the `serializeLayout` function from the Wormhole SDK.
 
 ```typescript
-const examplePayload = {
-  sourceChain: 6,
-  orderSender: new Uint8Array(32),
-  redeemer: new Uint8Array(32),
-  redeemerMessage: new Uint8Array([0x01, 0x02, 0x03]),
-};
-
-const serializedData = serializeLayout(exampleLayout, examplePayload);
-console.log(serializedData);
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-4.ts"
 ```
 
 This takes the data structure (`examplePayload`) and serializes it according to the rules defined in the layout (`exampleLayout`). The result is a `Uint8Array` representing the serialized binary data.
@@ -134,8 +114,7 @@ This takes the data structure (`examplePayload`) and serializes it according to 
 Deserialization is the reverse of serialization. Given a serialized `Uint8Array`, we can convert it back into its original structure using the `deserializeLayout` function.
 
 ```typescript
-const deserializedPayload = deserializeLayout(exampleLayout, serializedData);
-console.log(deserializedPayload);
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-5.ts"
 ```
 
 This will output the structured object, making it easy to work with data transmitted or received from another chain.
@@ -161,24 +140,7 @@ In complex protocols, layouts can contain nested structures. This is where neste
 Refer to the following nested layout where a message contains nested fields:
 
 ```typescript
-const nestedLayout = [
-  {
-    name: 'source',
-    binary: 'object',
-    layout: [
-      { name: 'chainId', binary: 'uint', size: 2 },
-      { name: 'sender', binary: 'bytes', size: 32 },
-    ],
-  },
-  {
-    name: 'redeemer',
-    binary: 'object',
-    layout: [
-      { name: 'address', binary: 'bytes', size: 32 },
-      { name: 'message', binary: 'bytes', lengthSize: 4 },
-    ],
-  },
-] as const satisfies Layout;
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-6.ts"
 ```
 
 In this layout:
@@ -197,16 +159,7 @@ type NestedMessage = LayoutToType<typeof nestedLayout>;
 This ensures that when you serialize or deserialize data, it matches the expected structure.
 
 ```typescript
-const message: NestedMessage = {
-  source: {
-    chainId: 6,
-    sender: new Uint8Array(32),
-  },
-  redeemer: {
-    address: new Uint8Array(32),
-    message: new Uint8Array([0x01, 0x02, 0x03]),
-  },
-};
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-7.ts"
 ```
 
 ### Serialization and Deserialization with Nested Layouts
@@ -214,10 +167,7 @@ const message: NestedMessage = {
 You can serialize and deserialize nested structures in the same way as simpler layouts:
 
 ```typescript
-const serializedNested = serializeLayout(nestedLayout, message);
-const deserializedNested = deserializeLayout(nestedLayout, serializedNested);
-
-console.log(deserializedNested);
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-8.ts"
 ```
 
 By enforcing strong typing, TypeScript helps ensure that the message object conforms to the nested layout structure, reducing the risk of data inconsistency during cross-chain communication.
@@ -266,11 +216,7 @@ These best practices and common pitfalls can help prevent bugs and improve the r
 Instead of hardcoding sizes and types across your codebase, define constants that can be reused across multiple layouts. This ensures consistency and reduces the chance of errors.
 
 ```typescript
-const SIZE_32 = 32;
-const UINT_TYPE = "uint";
-
-{ name: "orderSender", binary: "bytes", size: SIZE_32 }
-{ name: "sourceChain", binary: UINT_TYPE, size: 2 }
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-9.ts"
 ```
 
 #### Validate Data Before Serialization
@@ -278,12 +224,7 @@ const UINT_TYPE = "uint";
 Before calling `serializeLayout`, ensure your data matches the expected structure and types. Catching errors earlier in the process can save debugging time.
 
 ```typescript
-// Validate data structure before serialization
-const exampleFill = {
-  sourceChain: 6,
-  orderSender: new Uint8Array(32), // ensure correct size and type
-  // more fields...
-};
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-10.ts"
 ```
 
 #### Consistent Error Handling
@@ -291,11 +232,7 @@ const exampleFill = {
 Always handle errors during both serialization and deserialization. Catching exceptions allows you to log or resolve issues gracefully when working with potentially corrupted or invalid data.
 
 ```typescript
-try {
-  const deserialized = deserializeLayout(fillLayout, data);
-} catch (error) {
-  console.error('Deserialization failed:', error);
-}
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-11.ts"
 ```
 
 #### Leverage Reusable Layouts
@@ -303,12 +240,7 @@ try {
 Create reusable layout definitions for commonly used structures like chain IDs, addresses, and signatures whenever possible. This minimizes code duplication and helps keep your layouts maintainable.
 
 ```typescript
-const commonLayout = [
-  { name: 'chainId', binary: 'uint', size: 2 },
-  { name: 'address', binary: 'bytes', size: 32 },
-];
-
-// Reuse the common layout in different contexts
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-12.ts"
 ```
 
 ## Advanced Use Cases
@@ -322,15 +254,7 @@ The Wormhole SDK’s layout system is designed to handle various data structures
     For example, different message types can be identified using a payload ID, and the layout for each message can be determined at runtime:
 
     ```typescript
-    const switchLayout = {
-      binary: 'switch',
-      idSize: 1, // size of the payload ID
-      idTag: 'messageType', // tag to identify the type of message
-      layouts: [
-        [[1, 'messageType1'], fillLayout], // layout for type 1
-        [[2, 'messageType2'], fastFillLayout], // layout for type 2
-      ],
-    } as const satisfies Layout;
+    --8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-13.ts"
     ```
 
     The switch statement helps developers parse multiple payload types using the same structure, depending on a control field like an ID.
@@ -344,14 +268,7 @@ The Wormhole SDK’s layout system is designed to handle various data structures
     In some cases, a field may always contain a predefined value. The layout system supports fixed conversions, allowing developers to “hard-code” these values:
 
     ```typescript
-    const fixedConversionLayout = {
-      binary: 'uint',
-      size: 2,
-      custom: {
-        to: 'Ethereum',
-        from: chainToChainId('Ethereum'),
-      },
-    } as const satisfies Layout;
+    --8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-14.ts"
     ```
 
     **Example: Omitted Fields**
@@ -359,9 +276,7 @@ The Wormhole SDK’s layout system is designed to handle various data structures
     Omitted fields can be useful when padding or reserved fields exist that don’t need to be returned in the deserialized output:
 
     ```typescript
-    const omittedFieldLayout = [
-      { name: 'sourceChain', binary: 'uint', size: 2, omit: true }, // omitted from deserialization
-    ] as const satisfies Layout;
+    --8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-15.ts"
     ```
 
     In this case, `sourceChain` is omitted from the deserialized result but still considered during serialization.
@@ -377,15 +292,7 @@ Wormhole’s core functionality revolves around VAAs, which are signed messages 
 Here’s how a typical VAA payload might be structured using the Wormhole SDK's layout system:
 
 ```typescript
-const vaaLayout = [
-  { name: 'version', binary: 'uint', size: 1 },
-  { name: 'guardianSetIndex', binary: 'uint', size: 4 },
-  { name: 'timestamp', binary: 'uint', size: 4 },
-  { name: 'emitterChain', binary: 'uint', size: 2 },
-  { name: 'emitterAddress', binary: 'bytes', size: 32 },
-  { name: 'sequence', binary: 'uint', size: 8 },
-  { name: 'consistencyLevel', binary: 'uint', size: 1 },
-] as const satisfies Layout;
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-16.ts"
 ```
 
 This layout structure lets developers easily define and work with VAAs in their applications, ensuring the data conforms to Wormhole’s protocol requirements.
@@ -395,17 +302,7 @@ This layout structure lets developers easily define and work with VAAs in their 
 Developers can use the `serializeLayout` function to serialize a VAA message. This ensures that the message is correctly formatted before being transmitted between chains.
 
 ```typescript
-const vaaData = {
-  version: 1,
-  guardianSetIndex: 5,
-  timestamp: 1633000000,
-  emitterChain: 2, // Ethereum
-  emitterAddress: new Uint8Array(32).fill(0),
-  sequence: BigInt(1),
-  consistencyLevel: 1,
-};
-
-const serializedVAA = serializeLayout(vaaLayout, vaaData);
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-17.ts"
 ```
 
 ### Deserializing VAA Data
@@ -425,15 +322,7 @@ In addition to predefined layouts, Wormhole integrators can define and register 
 Below's an example of a custom payload registration:
 
 ```typescript
-const customPayloadLayout = [
-  { name: 'protocolId', binary: 'uint', size: 4 },
-  { name: 'payload', binary: 'bytes', lengthSize: 4 },
-] as const satisfies Layout;
-
-const serializedCustomPayload = serializeLayout(customPayloadLayout, {
-  protocolId: 1234,
-  payload: new Uint8Array([0x01, 0x02, 0x03]),
-});
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-18.ts"
 ```
 
 Custom payloads enable developers to extend the functionality of Wormhole's cross-chain messages, allowing for more specialized use cases.
@@ -491,10 +380,7 @@ This ensures that layout structures or discriminators are only created when requ
 When defining layouts, reuse common components (like chain IDs and addresses) across your project to avoid duplication. This not only improves code maintainability but also minimizes unnecessary memory use.
 
 ```typescript
-const commonLayouts = [
-  { name: 'chainId', binary: 'uint', size: 2 },
-  { name: 'address', binary: 'bytes', size: 32 },
-];
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-19.ts"
 ```
 
 ### Batch Serialization
