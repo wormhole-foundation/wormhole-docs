@@ -59,7 +59,7 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Set up a dev environment](/docs/build/contract-integrations/dev-env/)
 
--   :octicons-book-16:{ .lg .middle } **Contract Integrations FAQs**
+-   :octicons-question-16:{ .lg .middle } **Contract Integrations FAQs**
 
     ---
 
