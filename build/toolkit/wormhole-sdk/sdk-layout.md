@@ -97,10 +97,10 @@ Consider the following layout for a payload:
 
 ```typescript
 const exampleLayout = [
-  { name: "sourceChain", binary: "uint", size: 2 },
-  { name: "orderSender", binary: "bytes", size: 32 },
-  { name: "redeemer", binary: "bytes", size: 32 },
-  { name: "redeemerMessage", binary: "bytes", lengthSize: 4 }
+  { name: 'sourceChain', binary: 'uint', size: 2 },
+  { name: 'orderSender', binary: 'bytes', size: 32 },
+  { name: 'redeemer', binary: 'bytes', size: 32 },
+  { name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 },
 ] as const;
 ```
 
@@ -120,7 +120,7 @@ const examplePayload = {
   sourceChain: 6,
   orderSender: new Uint8Array(32),
   redeemer: new Uint8Array(32),
-  redeemerMessage: new Uint8Array([0x01, 0x02, 0x03])
+  redeemerMessage: new Uint8Array([0x01, 0x02, 0x03]),
 };
 
 const serializedData = serializeLayout(exampleLayout, examplePayload);
@@ -163,21 +163,21 @@ Refer to the following nested layout where a message contains nested fields:
 ```typescript
 const nestedLayout = [
   {
-    name: "source",
-    binary: "object",
+    name: 'source',
+    binary: 'object',
     layout: [
-      { name: "chainId", binary: "uint", size: 2 },
-      { name: "sender", binary: "bytes", size: 32 }
-    ]
+      { name: 'chainId', binary: 'uint', size: 2 },
+      { name: 'sender', binary: 'bytes', size: 32 },
+    ],
   },
   {
-    name: "redeemer",
-    binary: "object",
+    name: 'redeemer',
+    binary: 'object',
     layout: [
-      { name: "address", binary: "bytes", size: 32 },
-      { name: "message", binary: "bytes", lengthSize: 4 }
-    ]
-  }
+      { name: 'address', binary: 'bytes', size: 32 },
+      { name: 'message', binary: 'bytes', lengthSize: 4 },
+    ],
+  },
 ] as const satisfies Layout;
 ```
 
@@ -204,8 +204,8 @@ const message: NestedMessage = {
   },
   redeemer: {
     address: new Uint8Array(32),
-    message: new Uint8Array([0x01, 0x02, 0x03])
-  }
+    message: new Uint8Array([0x01, 0x02, 0x03]),
+  },
 };
 ```
 
@@ -294,7 +294,7 @@ Always handle errors during both serialization and deserialization. Catching exc
 try {
   const deserialized = deserializeLayout(fillLayout, data);
 } catch (error) {
-  console.error("Deserialization failed:", error);
+  console.error('Deserialization failed:', error);
 }
 ```
 
@@ -304,8 +304,8 @@ Create reusable layout definitions for commonly used structures like chain IDs, 
 
 ```typescript
 const commonLayout = [
-  { name: "chainId", binary: "uint", size: 2 },
-  { name: "address", binary: "bytes", size: 32 },
+  { name: 'chainId', binary: 'uint', size: 2 },
+  { name: 'address', binary: 'bytes', size: 32 },
 ];
 
 // Reuse the common layout in different contexts
@@ -323,13 +323,13 @@ The Wormhole SDK’s layout system is designed to handle various data structures
 
     ```typescript
     const switchLayout = {
-    binary: "switch",
-    idSize: 1, // size of the payload ID
-    idTag: "messageType", // tag to identify the type of message
-    layouts: [
-        [[1, "messageType1"], fillLayout], // layout for type 1
-        [[2, "messageType2"], fastFillLayout], // layout for type 2
-    ],
+      binary: 'switch',
+      idSize: 1, // size of the payload ID
+      idTag: 'messageType', // tag to identify the type of message
+      layouts: [
+        [[1, 'messageType1'], fillLayout], // layout for type 1
+        [[2, 'messageType2'], fastFillLayout], // layout for type 2
+      ],
     } as const satisfies Layout;
     ```
 
@@ -345,12 +345,12 @@ The Wormhole SDK’s layout system is designed to handle various data structures
 
     ```typescript
     const fixedConversionLayout = {
-    binary: "uint",
-    size: 2,
-    custom: {
-        to: "Ethereum",
-        from: chainToChainId("Ethereum"),
-    },
+      binary: 'uint',
+      size: 2,
+      custom: {
+        to: 'Ethereum',
+        from: chainToChainId('Ethereum'),
+      },
     } as const satisfies Layout;
     ```
 
@@ -360,7 +360,7 @@ The Wormhole SDK’s layout system is designed to handle various data structures
 
     ```typescript
     const omittedFieldLayout = [
-    { name: "sourceChain", binary: "uint", size: 2, omit: true }, // omitted from deserialization
+      { name: 'sourceChain', binary: 'uint', size: 2, omit: true }, // omitted from deserialization
     ] as const satisfies Layout;
     ```
 
@@ -378,13 +378,13 @@ Here’s how a typical VAA payload might be structured using the Wormhole SDK's 
 
 ```typescript
 const vaaLayout = [
-  { name: "version", binary: "uint", size: 1 },
-  { name: "guardianSetIndex", binary: "uint", size: 4 },
-  { name: "timestamp", binary: "uint", size: 4 },
-  { name: "emitterChain", binary: "uint", size: 2 },
-  { name: "emitterAddress", binary: "bytes", size: 32 },
-  { name: "sequence", binary: "uint", size: 8 },
-  { name: "consistencyLevel", binary: "uint", size: 1 },
+  { name: 'version', binary: 'uint', size: 1 },
+  { name: 'guardianSetIndex', binary: 'uint', size: 4 },
+  { name: 'timestamp', binary: 'uint', size: 4 },
+  { name: 'emitterChain', binary: 'uint', size: 2 },
+  { name: 'emitterAddress', binary: 'bytes', size: 32 },
+  { name: 'sequence', binary: 'uint', size: 8 },
+  { name: 'consistencyLevel', binary: 'uint', size: 1 },
 ] as const satisfies Layout;
 ```
 
@@ -426,8 +426,8 @@ Below's an example of a custom payload registration:
 
 ```typescript
 const customPayloadLayout = [
-  { name: "protocolId", binary: "uint", size: 4 },
-  { name: "payload", binary: "bytes", lengthSize: 4 },
+  { name: 'protocolId', binary: 'uint', size: 4 },
+  { name: 'payload', binary: 'bytes', lengthSize: 4 },
 ] as const satisfies Layout;
 
 const serializedCustomPayload = serializeLayout(customPayloadLayout, {
@@ -492,8 +492,8 @@ When defining layouts, reuse common components (like chain IDs and addresses) ac
 
 ```typescript
 const commonLayouts = [
-  { name: "chainId", binary: "uint", size: 2 },
-  { name: "address", binary: "bytes", size: 32 },
+  { name: 'chainId', binary: 'uint', size: 2 },
+  { name: 'address', binary: 'bytes', size: 32 },
 ];
 ```
 
