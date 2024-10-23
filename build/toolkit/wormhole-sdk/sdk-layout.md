@@ -11,7 +11,7 @@ In the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){ta
 
 By understanding the layout mechanism, you’ll be able to:
 
- - Define data structures (like numbers, arrays, and custom types)
+ - Define data structures (numbers, arrays, and custom types)
  - Efficiently serialize and deserialize data using the SDK’s utilities
  - Handle protocol-specific layouts with ease
 
@@ -21,30 +21,26 @@ This guide is essential for developers looking to integrate Wormhole into their 
 
 ### Layout Items
 
-At the core of the layout system is the concept of Layout Items, which describe how individual fields or sets of fields are encoded. Layout items can represent:
+At the core of the layout system is the concept of [Layout Items](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/utils/layout/items.ts){target=\_blank}, which describe how individual fields or sets of fields are encoded. Layout items can represent:
 
  - **Primitive types** - simple data types like uint or bytes
  - **Composite types** - arrays or nested structures
 
 For example, a layout item could be defined as:
 
- - Numbers (int, uint) – for signed/unsigned integers, specify byte size
+ - **Numbers (int, uint)** – signed/unsigned integers, with the size property specifying the byte length
 
     ```typescript
     { name: "sourceChain", binary: "uint", size: 2 }
     ```
 
- - Bytes – fixed or length-prefixed byte sequences
+ - **Bytes** – fixed or length-prefixed byte sequences
 
     ```typescript
     { name: "orderSender", binary: "bytes", size: 32 }
     ```
 
-Each layout item has associated properties:
-
- - **name** – the field name
- - **binary type** – describes the type (uint, bytes, etc.)
- - **size** – specifies the byte length for the item
+Each layout item includes properties like `name` (field name), `binary` (type such as uint or bytes), and `size` (byte length).
 
 ### Serialization and Deserialization
 
@@ -117,7 +113,7 @@ In this example:
 
 ### Serialize Data
 
-Once a layout is defined, the next step is to serialize data according to that structure. You can accomplish this using the `serializeLayout` function from the Wormhole SDK. For example:
+Once a layout is defined, the next step is to serialize data according to that structure. You can accomplish this using the `serializeLayout` function from the Wormhole SDK.
 
 ```typescript
 const examplePayload = {
@@ -131,11 +127,11 @@ const serializedData = serializeLayout(exampleLayout, examplePayload);
 console.log(serializedData);
 ```
 
-This takes the data structure (examplePayload) and serializes it according to the rules defined in the layout (exampleLayout). The result is a Uint8Array representing the serialized binary data.
+This takes the data structure (`examplePayload`) and serializes it according to the rules defined in the layout (`exampleLayout`). The result is a `Uint8Array` representing the serialized binary data.
 
 ### Deserialize Data
 
-Deserialization is the reverse of serialization. Given a serialized Uint8Array, we can convert it back into its original structure using the deserializeLayout function. For example:
+Deserialization is the reverse of serialization. Given a serialized `Uint8Array`, we can convert it back into its original structure using the `deserializeLayout` function.
 
 ```typescript
 const deserializedPayload = deserializeLayout(exampleLayout, serializedData);
@@ -187,18 +183,18 @@ const nestedLayout = [
 
 In this layout:
 
- - source is an object with two fields: chainId and sender
- - redeemer is another object with two fields: address and a length-prefixed message
+ - `source` is an object with two fields: `chainId` and `sender`
+ - `redeemer` is another object with two fields: `address` and a length-prefixed `message`
 
 ### Strong Typing
 
-Using TypeScript, the LayoutToType utility provided by the SDK automatically generates a strongly typed structure based on the layout:
+Using TypeScript, the `LayoutToType` utility provided by the SDK automatically generates a strongly typed structure based on the layout:
 
 ```typescript
 type NestedMessage = LayoutToType<typeof nestedLayout>;
 ```
 
-This ensures that when you serialize or deserialize data, it matches the expected structure. For example:
+This ensures that when you serialize or deserialize data, it matches the expected structure.
 
 ```typescript
 const message: NestedMessage = {
@@ -234,7 +230,7 @@ When working with the Wormhole SDK layout system, it's important to be aware of 
 
 #### Mismatched Types in Layouts
 
-Ensure that the type you define in your layout matches the actual data type used in serialization and deserialization. For example, if you define a field as binary: "uint", the corresponding data should be a `number` or `bigint`, not a `string` or `bytes`.
+Ensure that the type you define in your layout matches the actual data type used in serialization and deserialization. For example, if you define a field as `binary: "uint"`, the corresponding data should be a `number` or `bigint`, not a `string` or `bytes`.
 
 ```typescript
 // Incorrect: Passing a string where an unsigned integer is expected
@@ -244,7 +240,7 @@ Ensure that the type you define in your layout matches the actual data type used
 
 #### Incorrect Sizes for Bytes and Integers
 
-Be careful when specifying sizes for uint, int, and bytes types. For example, uint types need to match the size of bytes. If the size is too small or too large, it will cause serialization or deserialization failures.
+Be careful when specifying sizes for `uint`, `int`, and `bytes` types. For example, uint types need to match the size of bytes. If the size is too small or too large, it will cause serialization or deserialization failures.
 
 ```typescript
 // Pitfall: Mismatch between the size of data and the defined size in the layout
@@ -254,7 +250,7 @@ Be careful when specifying sizes for uint, int, and bytes types. For example, ui
 
 #### Incorrectly Defined Arrays
 
-Arrays can be fixed-length or length-prefixed, so it’s important to define them correctly. Fixed-length arrays must match the specified length, while length-prefixed arrays need a lengthSize field.
+Arrays can be fixed-length or length-prefixed, so it’s important to define them correctly. Fixed-length arrays must match the specified length, while length-prefixed arrays need a `lengthSize` field.
 
 ```typescript
 // Pitfall: Array length does not match the expected size
@@ -279,7 +275,7 @@ const UINT_TYPE = "uint";
 
 #### Validate Data Before Serialization
 
-Before calling serializeLayout, ensure your data matches the expected structure and types. Catching errors earlier in the process can save debugging time.
+Before calling `serializeLayout`, ensure your data matches the expected structure and types. Catching errors earlier in the process can save debugging time.
 
 ```typescript
 // Validate data structure before serialization
@@ -368,17 +364,7 @@ The Wormhole SDK’s layout system is designed to handle various data structures
     ] as const satisfies Layout;
     ```
 
-    In this case, sourceChain is omitted from the deserialized result but still considered during serialization.
-
-???- code "Lazy Instantiation"
-
-    Building large and complex layouts can sometimes be computationally expensive. The SDK provides the ability to easily instantiate certain layout features, which can improve performance when building complex structures.
-
-    ```typescript
-    const lazyDiscriminator = lazyInstantiate(() => layoutDiscriminator(layouts));
-    ```
-
-    By using lazy instantiation, layout structures or discriminators are only created when they are first needed, which can reduce the initial overhead when dealing with large datasets or layouts.
+    In this case, `sourceChain` is omitted from the deserialized result but still considered during serialization.
 
 ## Integration with Wormhole Protocol
 
@@ -406,7 +392,7 @@ This layout structure lets developers easily define and work with VAAs in their 
 
 ### Serializing VAA Data
 
-Developers can use the serializeLayout function to serialize a VAA message. This ensures that the message is correctly formatted before being transmitted between chains.
+Developers can use the `serializeLayout` function to serialize a VAA message. This ensures that the message is correctly formatted before being transmitted between chains.
 
 ```typescript
 const vaaData = {
@@ -424,7 +410,7 @@ const serializedVAA = serializeLayout(vaaLayout, vaaData);
 
 ### Deserializing VAA Data
 
-When a VAA message is received, it needs to be deserialized so that the application can work with it. The deserializeLayout function converts the binary VAA back into a structured object.
+When a VAA message is received, it needs to be deserialized so that the application can work with it. The `deserializeLayout` function converts the binary VAA back into a structured object.
 
 ```typescript
 const deserializedVAA = deserializeLayout(vaaLayout, serializedVAA);
@@ -434,7 +420,7 @@ This allows the application to interpret the incoming data and act accordingly q
 
 ### Registering Custom Payloads
 
-In addition to predefined layouts, Wormhole integrators can define and register their custom payloads. This is especially useful when integrating protocol-specific features, such as the "Submit Your Protocol" feature in WormholeScan.
+In addition to predefined layouts, Wormhole integrators can define and register their custom payloads. This is especially useful when integrating protocol-specific features, such as the ["Submit Your Protocol"](https://wormholescan.io/#/developers/submit){target=\_blank} feature in [WormholeScan](https://wormholescan.io/){target=\_blank}.
 
 Below's an example of a custom payload registration:
 
