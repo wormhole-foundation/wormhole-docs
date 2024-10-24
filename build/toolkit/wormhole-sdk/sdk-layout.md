@@ -21,7 +21,7 @@ This guide is essential for developers looking to integrate Wormhole into their 
 
 ### Layout Items
 
-At the core of the layout system is the concept of [Layout Items](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/utils/layout/items.ts){target=\_blank}, which describe how individual fields or sets of fields are encoded. Layout items can represent:
+At the core of the layout system is the concept of [layout items](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/utils/layout/items.ts){target=\_blank}, which describe how individual fields or sets of fields are encoded. Layout items can represent:
 
  - **Primitive types** - simple data types like uint or bytes
  - **Composite types** - arrays or nested structures
