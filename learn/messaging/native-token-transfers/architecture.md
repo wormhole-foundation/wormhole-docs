@@ -7,7 +7,7 @@ description: Explore Wormhole's Native Token Transfers architecture, which cover
 
 The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components that work together to manage cross-chain communication and token operations complexities.
 
-For the technical implementations of the functions refer to the [Managers and Transceivers](/docs/build/contract-integrations/native-token-transfers/managers-transceivers/){target=\_blank} page.
+For the technical implementations of the functions, refer to the [Managers and Transceivers](/docs/build/contract-integrations/native-token-transfers/managers-transceivers/){target=\_blank} page.
 
 ## System Components
 
@@ -91,8 +91,8 @@ In both cases, an event or log (e.g., `SendTransceiverMessage` on EVM or a simil
 
 Upon receiving the message on the destination chain, an off-chain relayer forwards the message to the destination Transceiver for verification. 
 
-- In EVM, the message is received by the `NttManager` on the destination chain, which verifies the message's authenticity. Depending on the M of N threshold set for the attestation process, the message may require attestations from multiple transceivers.
-- In Solana, the message is received via the `receive_message` instruction in the Wormhole Transceiver program. The message is verified and stored in a `VerifiedTransceiverMessage` account, after which it is placed in an Inbox for further processing.
+- In EVM, the message is received by the `NttManager` on the destination chain, which verifies the message's authenticity. Depending on the M of N threshold set for the attestation process, the message may require attestations from multiple transceivers
+- In Solana, the message is received via the `receive_message` instruction in the Wormhole Transceiver program. The message is verified and stored in a `VerifiedTransceiverMessage` account, after which it is placed in an Inbox for further processing
 
 In both chains, replay protection mechanisms ensure that a message cannot be executed more than once. Events or logs are emitted (e.g., `ReceivedMessage` on EVM or `ReceiveMessage` on Solana) to notify that the message has been successfully received.
 
@@ -100,7 +100,7 @@ In both chains, replay protection mechanisms ensure that a message cannot be exe
 
 Finally, after the message is verified and attested to, the tokens can be either minted (if they were burned on the source chain) or unlocked (if they were locked). The tokens are then transferred to the recipient on the destination chain, completing the cross-chain token transfer process. 
 
-- On EVM, tokens are either minted (if burned on the source chain) or unlocked (if locked on the source chain). The `TransferRedeemed` event signals that the tokens have been successfully transferred.
-- On Solana, the tokens are unlocked or minted depending on whether the program is in LOCKING or BURNING mode. The `release_inbound_unlock` or `release_inbound_mint` instruction is used to complete the transfer, and a corresponding log is produced.
+- On EVM, tokens are either minted (if burned on the source chain) or unlocked (if locked on the source chain). The `TransferRedeemed` event signals that the tokens have been successfully transferred
+- On Solana, the tokens are unlocked or minted depending on whether the program is in LOCKING or BURNING mode. The `release_inbound_unlock` or `release_inbound_mint` instruction is used to complete the transfer, and a corresponding log is produced
 
 In both cases, once the tokens have been released, the transfer process is complete, and the recipient receives the tokens. Events are emitted to indicate that the transfer has been fully redeemed.
