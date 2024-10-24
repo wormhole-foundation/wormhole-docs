@@ -339,7 +339,7 @@ Chain IDs are crucial for identifying cross-chain messages' source and destinati
 const chainIdLayout = { name: "chainId", binary: "uint", size: 2 } as const;
 ```
 
-This layout defines a 2-byte unsigned integer (uint) for Chain IDs. It is commonly used in VAAs and other payloads to identify which chain the message is originating from or targeting.
+This layout defines a 2-byte unsigned integer (uint) for chain IDs. It is commonly used in VAAs and other payloads to identify which chain the message is originating from or targeting.
 
 ### Address Layout
 
