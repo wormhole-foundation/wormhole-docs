@@ -283,7 +283,7 @@ The Wormhole SDK’s layout system is designed to handle various data structures
 
 ## Integration with Wormhole Protocol
 
-The layout system is critical in ensuring seamless interaction with the Wormhole Protocol, mainly when dealing with VAAs. These cross-chain messages must be serialized and deserialized to ensure they can be transmitted and processed accurately across different chains.
+The layout system is critical in ensuring seamless interaction with the Wormhole protocol, mainly when dealing with VAAs. These cross-chain messages must be serialized and deserialized to ensure they can be transmitted and processed accurately across different chains.
 
 ### VAAs and Payload Handling
 
