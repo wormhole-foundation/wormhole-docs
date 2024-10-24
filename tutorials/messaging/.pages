@@ -3,4 +3,4 @@ nav:
  - index.md
  - 'Create Cross-Chain Contracts': 'cross-chain-contracts.md'
  - 'Create Cross-Chain Token Transfers': 'cross-chain-token-contracts.md'
- - 'Use Connect with SUI': 'sui-connect.md'
+ - 'Cross-Chain Token Transfers with Wormhole Connect': 'sui-connect.md'
