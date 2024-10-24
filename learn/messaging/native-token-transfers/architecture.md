@@ -11,11 +11,11 @@ For the technical implementations of the functions, refer to the [Managers and T
 
 ## System Components
 
-The NTT framework is composed of Managers, which oversee the transfer process, and transceivers, which handle cross-chain messaging, ensuring smooth and reliable token transfers.
+The NTT framework is composed of managers, which oversee the transfer process, and transceivers, which handle cross-chain messaging, ensuring smooth and reliable token transfers.
 
 ### Managers
 
-_Managers_ are responsible for handling the flow of token transfers between different blockchains and ensuring that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. The main tasks of Managers include rate-limiting transactions, verifying message authenticity (message attestation), and managing the interaction between multiple transceivers, who are responsible for cross-chain communications.
+_Managers_ are responsible for handling the flow of token transfers between different blockchains and ensuring that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. The main tasks of managers include rate-limiting transactions, verifying message authenticity (message attestation), and managing the interaction between multiple transceivers, who are responsible for cross-chain communications.
 
 Each Manager is assigned to a specific token but can operate across multiple chains. Their key responsibility is to ensure that tokens are securely locked or burned on the source chain before being minted or unlocked on the destination chain. This provides the integrity of token transfers and prevents double-spending.
 
@@ -23,18 +23,18 @@ A Manager has three primary functions:
 
 - **Initiating token transfers** - managers initiate the transfer process, where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
 - **Quoting delivery costs** - managers also calculate the cost of sending messages across chains. They do this by querying the transceivers for estimates on message delivery fees, allowing users to know the cost before initiating a transfer
-- **Establishing trust across chains** - to maintain secure cross-chain communication, Managers establish trust relationships between different instances of their contract across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
+- **Establishing trust across chains** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of their contract across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
 
 ### Transceivers
 
-_Transceivers_ facilitate cross-chain token transfers by ensuring the accurate transmission of messages between different blockchains. They work in conjunction with Managers to route token transfers from the source chain to the recipient chain. Their primary function is to ensure that messages regarding the transfer process are delivered correctly, and that tokens are safely transferred across chains.
+_Transceivers_ facilitate cross-chain token transfers by ensuring the accurate transmission of messages between different blockchains. They work in conjunction with managers to route token transfers from the source chain to the recipient chain. Their primary function is to ensure that messages regarding the transfer process are delivered correctly, and that tokens are safely transferred across chains.
 
-While Transceivers operate closely with Wormhole's ecosystem, they can also be configured independently of Wormhole's core system, allowing for flexibility. This adaptability allows them to be integrated with various verification backends to accommodate different security needs or platform-specific requirements.
+While transceivers operate closely with Wormhole's ecosystem, they can also be configured independently of Wormhole's core system, allowing for flexibility. This adaptability allows them to be integrated with various verification backends to accommodate different security needs or platform-specific requirements.
 
 Transceivers are entrusted with several key responsibilities:
 
 - **Message routing** - transceivers handle the routing of token transfer messages between the chains. When a token transfer is initiated, the Transceiver ensures that the message, including all necessary details, is delivered to the appropriate Manager on the recipient chain
-- **Cross-chain coordination** - by working with Managers, Transceivers ensure that messages are processed correctly, facilitating a smooth token transfer process. This coordination guarantees that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain
+- **Cross-chain coordination** - by working with managers, transceivers ensure that messages are processed correctly, facilitating a smooth token transfer process. This coordination guarantees that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain
 - **Customizability and verification** - transceivers are flexible and can be customized to work with different verification backends. This means that they can be adapted to support the unique needs of different chains or security protocols
 
 ![NTT architecture diagram](/docs/images/learn/messaging/native-token-transfers/architecture/architecture-1.webp)
@@ -60,12 +60,12 @@ The lifecycle of a message in the Wormhole ecosystem for Native Token Transfers 
 
 ### Transfer
 
-The process begins when a client initiates a transfer. For EVM, this is done using the `transfer` function, whereas in Solana, the client uses either the `transfer_lock` or `transfer_burn` instruction, depending on whether the program is in LOCKING or BURNING mode. The client specifies the transfer amount, recipient chain ID, recipient address, and a flag (`should_queue` on both EVM and Solana) to decide whether the transfer should be queued if it hits the rate limit.
+The process begins when a client initiates a transfer. For EVM, this is done using the `transfer` function, whereas in Solana, the client uses either the `transfer_lock` or `transfer_burn` instruction, depending on whether the program is in locking or burning mode. The client specifies the transfer amount, recipient chain ID, recipient address, and a flag (`should_queue` on both EVM and Solana) to decide whether the transfer should be queued if it hits the rate limit.
 
 In both cases:
 
-- If the source chain is in LOCKING mode, the tokens are locked on the source chain to be unlocked on the destination chain
-- If the source chain is in BURNING mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain
+- If the source chain is in locking mode, the tokens are locked on the source chain to be unlocked on the destination chain
+- If the source chain is in burning mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain
 
 Once initiated, an event (such as `TransferSent` on EVM or a corresponding log on Solana) is emitted to signal that the transfer process has started.
 
@@ -82,7 +82,7 @@ Both chains emit events or logs when transfers are rate-limited or queued.
 
 After being forwarded to the Transceiver, the message is transmitted across the chain. Transceivers are responsible for delivering the message containing the token transfer details. Depending on the Transceiver's implementation, messages may be routed through different systems, such as Wormhole relayers or other custom relaying solutions. Once the message is transmitted, an event is emitted to signal successful transmission.
 
-- In EVM, the message is sent using the `sendMessage` function, which handles the transmission based on the Transceiver's implementation. The Transceiver may use Wormhole relayers or custom relaying solutions to forward the message.
+- In EVM, the message is sent using the `sendMessage` function, which handles the transmission based on the Transceiver's implementation. The Transceiver may use Wormhole relayers or custom relaying solutions to forward the message
 - In Solana, the transfer message is placed in an Outbox and released via the `release_outbound` instruction. The Solana transceiver, such as the Wormhole Transceiver, may send the message using the `post_message` instruction, which Wormhole Guardians observe for verification
 
 In both cases, an event or log (e.g., `SendTransceiverMessage` on EVM or a similar log on Solana) is emitted to signal that the message has been transmitted.
@@ -101,6 +101,6 @@ In both chains, replay protection mechanisms ensure that a message cannot be exe
 Finally, after the message is verified and attested to, the tokens can be either minted (if they were burned on the source chain) or unlocked (if they were locked). The tokens are then transferred to the recipient on the destination chain, completing the cross-chain token transfer process. 
 
 - On EVM, tokens are either minted (if burned on the source chain) or unlocked (if locked on the source chain). The `TransferRedeemed` event signals that the tokens have been successfully transferred
-- On Solana, the tokens are unlocked or minted depending on whether the program is in LOCKING or BURNING mode. The `release_inbound_unlock` or `release_inbound_mint` instruction is used to complete the transfer, and a corresponding log is produced
+- On Solana, the tokens are unlocked or minted depending on whether the program is in locking or burning mode. The `release_inbound_unlock` or `release_inbound_mint` instruction is used to complete the transfer, and a corresponding log is produced
 
 In both cases, once the tokens have been released, the transfer process is complete, and the recipient receives the tokens. Events are emitted to indicate that the transfer has been fully redeemed.
