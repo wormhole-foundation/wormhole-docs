@@ -179,76 +179,39 @@ You can serialize and deserialize nested structures in the same way as simpler l
 
 By enforcing strong typing, TypeScript helps ensure that the message object conforms to the nested layout structure, reducing the risk of data inconsistency during cross-chain communication.
 
-## Common Pitfalls & Best Practices
+## Commonly Used Layouts
 
-When working with the Wormhole SDK layout system, it's important to be aware of a few common issues that can arise. Below are some pitfalls to avoid and best practices to ensure smooth integration.
+Specific layouts appear frequently in cross-chain interactions when working with the Wormhole SDK. These common layouts include fields like chain IDs, addresses, and signatures, which are essential for Wormhole’s cross-chain messaging infrastructure.
 
-### Pitfalls to Avoid
+### Chain ID Layout
 
-#### Mismatched Types in Layouts
-
-Ensure that the type you define in your layout matches the actual data type used in serialization and deserialization. For example, if you define a field as `binary: 'uint'`, the corresponding data should be a `number` or `bigint`, not a `string` or `bytes`.
+Chain IDs are crucial for identifying cross-chain messages' source and destination chains. Wormhole uses layouts to handle chain IDs efficiently.
 
 ```typescript
-// Incorrect: Passing a string where an unsigned integer is expected
-{ name: 'sourceChain', binary: 'uint', size: 2 } 
-// Usage should be: { sourceChain: 6 } not { sourceChain: '6' }
+const chainIdLayout = { name: 'chainId', binary: 'uint', size: 2 } as const;
 ```
 
-#### Incorrect Sizes for Bytes and Integers
+This layout defines a 2-byte unsigned integer (uint) for chain IDs. It is commonly used in VAAs and other payloads to identify which chain the message is originating from or targeting.
 
-Be careful when specifying sizes for `uint`, `int`, and `bytes` types. For example, `uint` types need to match the size of `bytes`. If the size is too small or too large, it will cause serialization or deserialization failures.
+### Address Layout
+
+Addresses are used to reference contracts or wallets across chains. These layouts typically consist of a fixed byte size, often 32 bytes.
 
 ```typescript
-// Pitfall: Mismatch between the size of data and the defined size in the layout
-{ name: 'orderSender', binary: 'bytes', size: 32 }
-// If the provided data is not exactly 32 bytes, this will fail
+const addressLayout = { name: 'address', binary: 'bytes', size: 32 } as const;
 ```
 
-#### Incorrectly Defined Arrays
+This layout defines a 32-byte array representing an address, a standard format for smart contracts and user addresses.
 
-Arrays can be fixed-length or length-prefixed, so it’s important to define them correctly. Fixed-length arrays must match the specified length, while length-prefixed arrays need a `lengthSize` field.
+### Signature Layout
+
+Signatures, typically fixed-size byte arrays, verify the integrity and authenticity of messages in the Wormhole protocol.
 
 ```typescript
-// Pitfall: Array length does not match the expected size
-{ name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 }
+const signatureLayout = { name: 'signature', binary: 'bytes', size: 64 } as const;
 ```
 
-### Best Practices
-
-These best practices and common pitfalls can help prevent bugs and improve the reliability of your implementation when working with layouts in the Wormhole SDK.
-
-#### Use Constants for Sizes and Types
-
-Instead of hardcoding sizes and types across your codebase, define constants that can be reused across multiple layouts. This ensures consistency and reduces the chance of errors.
-
-```typescript
---8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-9.ts"
-```
-
-#### Validate Data Before Serialization
-
-Before calling `serializeLayout`, ensure your data matches the expected structure and types. Catching errors earlier in the process can save debugging time.
-
-```typescript
---8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-10.ts"
-```
-
-#### Consistent Error Handling
-
-Always handle errors during both serialization and deserialization. Catching exceptions allows you to log or resolve issues gracefully when working with potentially corrupted or invalid data.
-
-```typescript
---8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-11.ts"
-```
-
-#### Leverage Reusable Layouts
-
-Create reusable layout definitions for commonly used structures like chain IDs, addresses, and signatures whenever possible. This minimizes code duplication and helps keep your layouts maintainable.
-
-```typescript
---8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-12.ts"
-```
+This layout represents a 64-byte cryptographic signature commonly used for verifying VAAs.
 
 ## Advanced Use Cases
 
@@ -334,39 +297,76 @@ Below's an example of a custom payload registration:
 
 Custom payloads enable developers to extend the functionality of Wormhole's cross-chain messages, allowing for more specialized use cases.
 
-## Commonly Used Layouts
+## Common Pitfalls & Best Practices
 
-Specific layouts appear frequently in cross-chain interactions when working with the Wormhole SDK. These common layouts include fields like chain IDs, addresses, and signatures, which are essential for Wormhole’s cross-chain messaging infrastructure.
+When working with the Wormhole SDK layout system, it's important to be aware of a few common issues that can arise. Below are some pitfalls to avoid and best practices to ensure smooth integration.
 
-### Chain ID Layout
+### Pitfalls to Avoid
 
-Chain IDs are crucial for identifying cross-chain messages' source and destination chains. Wormhole uses layouts to handle chain IDs efficiently.
+#### Mismatched Types in Layouts
 
-```typescript
-const chainIdLayout = { name: 'chainId', binary: 'uint', size: 2 } as const;
-```
-
-This layout defines a 2-byte unsigned integer (uint) for chain IDs. It is commonly used in VAAs and other payloads to identify which chain the message is originating from or targeting.
-
-### Address Layout
-
-Addresses are used to reference contracts or wallets across chains. These layouts typically consist of a fixed byte size, often 32 bytes.
+Ensure that the type you define in your layout matches the actual data type used in serialization and deserialization. For example, if you define a field as `binary: 'uint'`, the corresponding data should be a `number` or `bigint`, not a `string` or `bytes`.
 
 ```typescript
-const addressLayout = { name: 'address', binary: 'bytes', size: 32 } as const;
+// Incorrect: Passing a string where an unsigned integer is expected
+{ name: 'sourceChain', binary: 'uint', size: 2 } 
+// Usage should be: { sourceChain: 6 } not { sourceChain: '6' }
 ```
 
-This layout defines a 32-byte array representing an address, a standard format for smart contracts and user addresses.
+#### Incorrect Sizes for Bytes and Integers
 
-### Signature Layout
-
-Signatures, typically fixed-size byte arrays, verify the integrity and authenticity of messages in the Wormhole protocol.
+Be careful when specifying sizes for `uint`, `int`, and `bytes` types. For example, `uint` types need to match the size of `bytes`. If the size is too small or too large, it will cause serialization or deserialization failures.
 
 ```typescript
-const signatureLayout = { name: 'signature', binary: 'bytes', size: 64 } as const;
+// Pitfall: Mismatch between the size of data and the defined size in the layout
+{ name: 'orderSender', binary: 'bytes', size: 32 }
+// If the provided data is not exactly 32 bytes, this will fail
 ```
 
-This layout represents a 64-byte cryptographic signature commonly used for verifying VAAs.
+#### Incorrectly Defined Arrays
+
+Arrays can be fixed-length or length-prefixed, so it’s important to define them correctly. Fixed-length arrays must match the specified length, while length-prefixed arrays need a `lengthSize` field.
+
+```typescript
+// Pitfall: Array length does not match the expected size
+{ name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 }
+```
+
+### Best Practices
+
+These best practices and common pitfalls can help prevent bugs and improve the reliability of your implementation when working with layouts in the Wormhole SDK.
+
+#### Use Constants for Sizes and Types
+
+Instead of hardcoding sizes and types across your codebase, define constants that can be reused across multiple layouts. This ensures consistency and reduces the chance of errors.
+
+```typescript
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-9.ts"
+```
+
+#### Validate Data Before Serialization
+
+Before calling `serializeLayout`, ensure your data matches the expected structure and types. Catching errors earlier in the process can save debugging time.
+
+```typescript
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-10.ts"
+```
+
+#### Consistent Error Handling
+
+Always handle errors during both serialization and deserialization. Catching exceptions allows you to log or resolve issues gracefully when working with potentially corrupted or invalid data.
+
+```typescript
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-11.ts"
+```
+
+#### Leverage Reusable Layouts
+
+Create reusable layout definitions for commonly used structures like chain IDs, addresses, and signatures whenever possible. This minimizes code duplication and helps keep your layouts maintainable.
+
+```typescript
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-12.ts"
+```
 
 ## Performance Considerations
 
