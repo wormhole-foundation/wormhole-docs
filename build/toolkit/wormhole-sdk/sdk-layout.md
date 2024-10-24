@@ -333,7 +333,7 @@ Specific layouts appear frequently in cross-chain interactions when working with
 
 ### Chain ID Layout
 
-Chain IDs are crucial for identifying cross-chain messages' source and destination chains. Wormhole uses layouts to handle Chain IDs efficiently.
+Chain IDs are crucial for identifying cross-chain messages' source and destination chains. Wormhole uses layouts to handle chain IDs efficiently.
 
 ```typescript
 const chainIdLayout = { name: "chainId", binary: "uint", size: 2 } as const;
