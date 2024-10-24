@@ -1,9 +1,9 @@
 ---
-title: Wormhole SDK Layouts
+title: Data Layouts
 description: Learn how to efficiently define, serialize, and deserialize data structures using Wormhole SDK's layout system for cross-chain communication.
 ---
 
-# Wormhole SDK Layouts
+# Data Layouts
 
 ## Introduction
 
