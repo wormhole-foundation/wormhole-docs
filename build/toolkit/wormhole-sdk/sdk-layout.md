@@ -21,26 +21,33 @@ This guide is essential for developers looking to integrate Wormhole into their 
 
 ### Layout Items
 
-At the core of the layout system is the concept of [layout items](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/utils/layout/items.ts){target=\_blank}, which describe how individual fields or sets of fields are encoded. Layout items can represent:
+A layout defines how data structures should be serialized (converted into binary format) and deserialized (converted back into their original structure). This ensures consistent data formatting when transmitting information across different blockchain environments.
 
- - **Primitive types** - simple data types like uint or bytes
- - **Composite types** - arrays or nested structures
+Layouts are composed of [layout items](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/utils/layout/items.ts){target=\_blank}, which describe individual fields or sets of fields in your data. Each layout item specifies:
 
-For example, a layout item could be defined as:
+ - **`name`** - name of the field
+ - **`binary`** - type of data (e.g., `uint`, `bytes`)
+ - **`size`** - byte length for fixed-size fields, or `lengthSize` for variable-length fields
 
- - **Numbers (int, uint)** – signed/unsigned integers, with the size property specifying the byte length
+Layout items can represent:
 
-    ```typescript
-    { name: "sourceChain", binary: "uint", size: 2 }
-    ```
+ - **Primitive types** - basic data types like unsigned integers (`uint`) or byte arrays (`bytes`)
+ - **Composite types** - more complex structures, such as arrays or nested objects
 
- - **Bytes** – fixed or length-prefixed byte sequences
+Below is an example of a layout that might be used to serialize a message across the Wormhole protocol:
 
-    ```typescript
-    { name: "orderSender", binary: "bytes", size: 32 }
-    ```
+```typescript
+--8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-0.ts"
+```
 
-Each layout item includes properties like `name` (field name), `binary` (type such as uint or bytes), and `size` (byte length).
+In this example:
+
+ - `sourceChain` is a 2-byte unsigned integer (`uint`) identifying the source blockchain
+ - `orderSender` is a fixed-length 32-byte array representing the sender's address
+ - `redeemer` is another 32-byte array used for the redeemer’s address
+ - `redeemerMessage` is a variable-length byte sequence, with its length specified by a 4-byte integer
+
+This layout definition ensures that all necessary data fields are consistently encoded and can be correctly interpreted when they are deserialized.
 
 ### Serialization and Deserialization
 
@@ -126,7 +133,7 @@ One of the most powerful aspects of Wormhole SDK's layout system is the ability 
 For instance, if you want to serialize or deserialize a message where the length of the content isn't known beforehand, you can define a layout item with a `lengthSize` field.
 
 ```typescript
-{ name: "message", binary: "bytes", lengthSize: 4 }
+{ name: 'message', binary: 'bytes', lengthSize: 4 }
 ```
 
 This tells the SDK to first read or write the message's length (in 4 bytes) and then handle the actual content.
@@ -180,21 +187,21 @@ When working with the Wormhole SDK layout system, it's important to be aware of 
 
 #### Mismatched Types in Layouts
 
-Ensure that the type you define in your layout matches the actual data type used in serialization and deserialization. For example, if you define a field as `binary: "uint"`, the corresponding data should be a `number` or `bigint`, not a `string` or `bytes`.
+Ensure that the type you define in your layout matches the actual data type used in serialization and deserialization. For example, if you define a field as `binary: 'uint'`, the corresponding data should be a `number` or `bigint`, not a `string` or `bytes`.
 
 ```typescript
 // Incorrect: Passing a string where an unsigned integer is expected
-{ name: "sourceChain", binary: "uint", size: 2 } 
-// Usage should be: { sourceChain: 6 } not { sourceChain: "6" }
+{ name: 'sourceChain', binary: 'uint', size: 2 } 
+// Usage should be: { sourceChain: 6 } not { sourceChain: '6' }
 ```
 
 #### Incorrect Sizes for Bytes and Integers
 
-Be careful when specifying sizes for `uint`, `int`, and `bytes` types. For example, uint types need to match the size of bytes. If the size is too small or too large, it will cause serialization or deserialization failures.
+Be careful when specifying sizes for `uint`, `int`, and `bytes` types. For example, `uint` types need to match the size of `bytes`. If the size is too small or too large, it will cause serialization or deserialization failures.
 
 ```typescript
 // Pitfall: Mismatch between the size of data and the defined size in the layout
-{ name: "orderSender", binary: "bytes", size: 32 }
+{ name: 'orderSender', binary: 'bytes', size: 32 }
 // If the provided data is not exactly 32 bytes, this will fail
 ```
 
@@ -204,7 +211,7 @@ Arrays can be fixed-length or length-prefixed, so it’s important to define the
 
 ```typescript
 // Pitfall: Array length does not match the expected size
-{ name: "redeemerMessage", binary: "bytes", lengthSize: 4 }
+{ name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 }
 ```
 
 ### Best Practices
@@ -336,7 +343,7 @@ Specific layouts appear frequently in cross-chain interactions when working with
 Chain IDs are crucial for identifying cross-chain messages' source and destination chains. Wormhole uses layouts to handle chain IDs efficiently.
 
 ```typescript
-const chainIdLayout = { name: "chainId", binary: "uint", size: 2 } as const;
+const chainIdLayout = { name: 'chainId', binary: 'uint', size: 2 } as const;
 ```
 
 This layout defines a 2-byte unsigned integer (uint) for chain IDs. It is commonly used in VAAs and other payloads to identify which chain the message is originating from or targeting.
@@ -346,7 +353,7 @@ This layout defines a 2-byte unsigned integer (uint) for chain IDs. It is common
 Addresses are used to reference contracts or wallets across chains. These layouts typically consist of a fixed byte size, often 32 bytes.
 
 ```typescript
-const addressLayout = { name: "address", binary: "bytes", size: 32 } as const;
+const addressLayout = { name: 'address', binary: 'bytes', size: 32 } as const;
 ```
 
 This layout defines a 32-byte array representing an address, a standard format for smart contracts and user addresses.
@@ -356,7 +363,7 @@ This layout defines a 32-byte array representing an address, a standard format f
 Signatures, typically fixed-size byte arrays, verify the integrity and authenticity of messages in the Wormhole protocol.
 
 ```typescript
-const signatureLayout = { name: "signature", binary: "bytes", size: 64 } as const;
+const signatureLayout = { name: 'signature', binary: 'bytes', size: 64 } as const;
 ```
 
 This layout represents a 64-byte cryptographic signature commonly used for verifying VAAs.
