@@ -59,4 +59,12 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Set up a dev environment](/docs/build/contract-integrations/dev-env/)
 
+-   :octicons-question-16:{ .lg .middle } **Contract Integrations FAQs**
+
+    ---
+
+    Frequently asked questions about integrating contracts with Wormhole, including ownership of wrapped tokens and developing custom relayers.
+
+    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/contract-integrations/faqs/)
+
 </div>
