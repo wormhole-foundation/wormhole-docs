@@ -76,6 +76,10 @@ Now, we need to modify the default `App.js` to integrate Wormhole Connect.
 - env: 'testnet': This ensures that Wormhole Connect uses the testnet environment, which is perfect for your demonstration.
 - networks: ['sepolia', 'sui']: You are setting up Ethereum Sepolia and Sui as the two networks for token transfer. This config is passed directly to the WormholeConnect component
 
+### Customizing Wormhole Connect
+
+To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Customization Guide](/docs/build/applications/connect/configuration/#introduction){target=\_blank}. 
+
 ### Run the App
 
 Make sure you’re in the root directory of your React app, and run the following command to start the application:
@@ -84,8 +88,36 @@ Make sure you’re in the root directory of your React app, and run the followin
 npm start
 ```
 
-<!--
-connect react app: https://github.com/martin0995/WH-connect 
+Your app will start on [http://localhost:3000/](http://localhost:3000/){target=\_blank}
 
-connect configuration page - e.g. select only sui network to show 
--->
+## Transfer Tokens
+
+After running `npm start`, your React app should be up and running, and Wormhole Connect should be visible on [http://localhost:3000/](http://localhost:3000/){target=\_blank}. 
+
+### Access the App
+
+Open Your Browser and go to [http://localhost:3000/](http://localhost:3000/){target=\_blank}. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
+
+### Select Source and Destination Networks
+
+In the Wormhole Connect interface:
+
+- Select Sui as the source network and connect your Sui wallet
+- Choose Sepolia as the destination network and connect your wallet with the Sepolia network
+
+### Initiate a Test Transfer
+
+- Enter the amount of SUI tokens you wish to transfer. Since you're on testnet, ensure you have some testnet SUI tokens to cover gas fees
+- Enter the destination address on Sepolia where the wrapped SUI tokens should be sent
+- Submit the Transfer by following the prompts in the UI.
+
+### Monitor the Transfer Status
+
+Once initiated, Wormhole Connect will display the transfer’s status. You can:
+
+- Check the progress and wait for confirmation that the tokens have successfully bridged from Sui to Sepolia
+- Explore any transaction details provided by Wormhole Connect
+
+### Verify the Tokens on Sepolia
+
+Once confirmed, you can check the Sepolia wallet to verify that the wrapped tokens arrived.
