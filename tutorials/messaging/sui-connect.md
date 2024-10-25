@@ -9,17 +9,17 @@ description:
 
 In this tutorial, we’ll explore how to integrate [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank} to enable cross-chain token transfers and interactions. Wormhole Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Wormhole Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
-While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any blockchain supported by Wormhole. In this example, we’ll work with Sui as our target blockchain.
+While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any blockchain supported by Wormhole. In this example, we’ll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
 
 ## Prerequisites
 
 To get started with Wormhole Connect, we'll first need to set up a basic environment that allows for cross-chain token transfers.
-
 Before starting this tutorial, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- A [Sui wallet](https://suiwallet.com/){target=\_blank} set up and ready for use <!-- private key? -->
-- Testnet tokens for [Sui](https://github.com/MystenLabs/mysten-app-docs/blob/main/mysten-sui-wallet.md#get-sui-tokens-for-testing){target=\_blank} <!-- and ??? --> to cover gas fees <!-- review -->
+- A [Sui wallet](https://suiwallet.com/){target=\_blank} set up and ready for use
+- A compatible wallet for Avalanche Fuji, such as MetaMask 
+- Testnet tokens for [Sui](https://github.com/MystenLabs/mysten-app-docs/blob/main/mysten-sui-wallet.md#get-sui-tokens-for-testing){target=\_blank} and [Fuji](https://faucets.chain.link/fuji){target=\_blank} to cover gas fees 
 
 ## Setting Up Connect for SUI Transfers
 
@@ -62,7 +62,7 @@ Now, we need to modify the default `App.js` to integrate Wormhole Connect.
 
     const config = {
         env: 'testnet',
-        networks: ['sepolia', 'sui'],
+        networks: ['sui', 'fuji'],
     };
 
     function App() {
@@ -72,9 +72,13 @@ Now, we need to modify the default `App.js` to integrate Wormhole Connect.
     export default App;
     ```
 
-<!-- fix this -->
-- env: 'testnet': This ensures that Wormhole Connect uses the testnet environment, which is perfect for your demonstration.
-- networks: ['sepolia', 'sui']: You are setting up Ethereum Sepolia and Sui as the two networks for token transfer. This config is passed directly to the WormholeConnect component
+??? interface "Parameters"
+
+    `env` 
+    set to 'testnet': This ensures that Wormhole Connect uses the testnet environment, which is perfect for your demonstration.
+
+    `networks` 
+    set to ['suji', 'sui']: Configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
 ### Customizing Wormhole Connect
 
@@ -94,30 +98,43 @@ Your app will start on [http://localhost:3000/](http://localhost:3000/){target=\
 
 After running `npm start`, your React app should be up and running, and Wormhole Connect should be visible on [http://localhost:3000/](http://localhost:3000/){target=\_blank}. 
 
-### Access the App
+### Select Networks
 
 Open Your Browser and go to [http://localhost:3000/](http://localhost:3000/){target=\_blank}. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
-
-### Select Source and Destination Networks
 
 In the Wormhole Connect interface:
 
 - Select Sui as the source network and connect your Sui wallet
-- Choose Sepolia as the destination network and connect your wallet with the Sepolia network
+- Choose Fuji as the destination network and connect your wallet with the Fuji network
+- Enter the amount of SUI tokens you wish to transfer
+- Ensure you have enough testnet SUI tokens to cover the gas fees for the transfer.
 
-### Initiate a Test Transfer
+![img description](/docs/images/tutorials/connect/connect-1.webp)
 
-- Enter the amount of SUI tokens you wish to transfer. Since you're on testnet, ensure you have some testnet SUI tokens to cover gas fees
-- Enter the destination address on Sepolia where the wrapped SUI tokens should be sent
-- Submit the Transfer by following the prompts in the UI.
+### Select Route 
 
-### Monitor the Transfer Status
+Choose the **Manual Bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
 
-Once initiated, Wormhole Connect will display the transfer’s status. You can:
+![img description](/docs/images/tutorials/connect/connect-2.webp)
 
-- Check the progress and wait for confirmation that the tokens have successfully bridged from Sui to Sepolia
-- Explore any transaction details provided by Wormhole Connect
+### Approve and Proceed with Transaction
 
-### Verify the Tokens on Sepolia
+- Confirm the transfer on Sui. This will lock your tokens on the Sui chain
+- Follow the on-screen prompts to approve the transaction. You will be asked to approve with your Sui wallet
+- You can track the process on your transaction on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}
 
-Once confirmed, you can check the Sepolia wallet to verify that the wrapped tokens arrived.
+![img description](/docs/images/tutorials/connect/connect-3.webp)
+
+Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain.
+
+### Claim Tokens on Fuji
+
+After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
+
+![img description](/docs/images/tutorials/connect/connect-4.webp)
+
+### Transaction Complete
+
+Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
+
+![img description](/docs/images/tutorials/connect/connect-5.webp)
