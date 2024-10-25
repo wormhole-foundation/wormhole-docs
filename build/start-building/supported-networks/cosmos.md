@@ -5,7 +5,7 @@ description: Learn how to work with Wormhole in the Cosmos ecosystem with addres
 
 # Cosmos
 
-This page includes details for working with Cosmos environment chains. 
+This page includes details for working with Cosmos environment chains.
 
 ## Addresses
 
