@@ -49,38 +49,31 @@ npm install @wormhole-foundation/wormhole-connect
 
 ### Update the App Component
 
-Now, we need to modify the default `App.js` file to integrate Wormhole Connect:
+Now, we need to modify the default `App.js` file to integrate Wormhole Connect. Open `src/App.js` and replace the content with the following code:
 
-1. Open `src/App.js` and replace the content with the following code:
+```js
+import logo from './logo.svg';
+import './App.css';
+import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
-    ```js
-    import logo from './logo.svg';
-    import './App.css';
-    import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+const config = {
+    env: 'testnet',
+    networks: ['sui', 'fuji'],
+};
 
-    const config = {
-        env: 'testnet',
-        networks: ['sui', 'fuji'],
-    };
+function App() {
+    return <WormholeConnect config={config}/>;
+}
 
-    function App() {
-        return <WormholeConnect config={config}/>;
-    }
+export default App;
+``` 
 
-    export default App;
-    ```
-
-??? interface "Parameters"
-
-    `env` 
-    set to 'testnet': This ensures that Wormhole Connect uses the testnet environment, which is perfect for your demonstration.
-
-    `networks` 
-    set to ['suji', 'sui']: Configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
+- set `env` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
+- set `networks` to `['suji', 'sui']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
 ### Customizing Wormhole Connect
 
-To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Customization Guide](/docs/build/applications/connect/configuration/#introduction){target=\_blank}. 
+To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Configuration guide](/docs/build/applications/connect/configuration/#introduction){target=\_blank}. 
 
 ### Run the App
 
