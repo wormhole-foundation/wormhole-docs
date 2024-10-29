@@ -21,11 +21,11 @@ Before starting this tutorial, ensure you have the following:
 - A compatible wallet for Avalanche Fuji, such as MetaMask 
 - Testnet tokens for [Sui](https://github.com/MystenLabs/mysten-app-docs/blob/main/mysten-sui-wallet.md#get-sui-tokens-for-testing){target=\_blank} and [Fuji](https://faucets.chain.link/fuji){target=\_blank} to cover gas fees 
 
-## Setting Up Connect for SUI Transfers
+## Setting Up Connect for Sui Transfers
 
-### Creat a react projecy
+### Create a React Project
 
-Start by setting up your React app. 
+Start by setting up your React app:
 
 1. Open your terminal and run the following command to create a new React app:
 
@@ -41,9 +41,7 @@ Start by setting up your React app.
 
 ### Install Wormhole Connect
 
-Next, install the Wormhole Connect package as a dependency.
-
-- Run the following command inside your project directory:
+Next, install the Wormhole Connect package as a dependency by running the following command inside your project directory:
 
     ```bash
     npm install @wormhole-foundation/wormhole-connect
@@ -51,7 +49,7 @@ Next, install the Wormhole Connect package as a dependency.
 
 ### Update the App Component
 
-Now, we need to modify the default `App.js` to integrate Wormhole Connect.
+Now, we need to modify the default `App.js` file to integrate Wormhole Connect:
 
 1. Open `src/App.js` and replace the content with the following code:
 
@@ -92,7 +90,7 @@ Make sure you’re in the root directory of your React app, and run the followin
 npm start
 ```
 
-Your app will start on [http://localhost:3000/](http://localhost:3000/){target=\_blank}
+Your app will start on [http://localhost:3000/](http://localhost:3000/){target=\_blank}.
 
 ## Transfer Tokens
 
@@ -113,7 +111,7 @@ In the Wormhole Connect interface:
 
 ### Select Route 
 
-Choose the **Manual Bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
+Choose the **Manual Bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji).
 
 ![img description](/docs/images/tutorials/connect/connect-2.webp)
 
