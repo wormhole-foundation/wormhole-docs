@@ -47,9 +47,9 @@ Next, install the Wormhole Connect package as a dependency by running the follow
 npm install @wormhole-foundation/wormhole-connect
 ```
 
-### Update the App Component
+### Integrate Connect into the Application
 
-Now, we need to modify the default `App.js` file to integrate Wormhole Connect. Open `src/App.js` and replace the content with the following code:
+Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/build/applications/connect/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
 
 ```js
 import logo from './logo.svg';
@@ -57,8 +57,8 @@ import './App.css';
 import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
 const config = {
-    env: 'testnet',
-    networks: ['sui', 'fuji'],
+    network: 'testnet',
+    chains: ['sui', 'fuji'],
 };
 
 function App() {
@@ -68,14 +68,14 @@ function App() {
 export default App;
 ``` 
 
-- set `env` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
-- set `networks` to `['suji', 'sui']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
+- set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
+- set `chains` to `['suji', 'sui']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
 ### Customizing Wormhole Connect
 
 To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Configuration guide](/docs/build/applications/connect/configuration/#introduction){target=\_blank}. 
 
-### Run the App
+### Run the Application
 
 Make sure you’re in the root directory of your React app, and run the following command to start the application:
 
@@ -83,42 +83,42 @@ Make sure you’re in the root directory of your React app, and run the followin
 npm start
 ```
 
-Your app will start on [http://localhost:3000/](http://localhost:3000/){target=\_blank}.
+Now your React app should be up and running, and Wormhole Connect should be visible on [http://localhost:3000/](http://localhost:3000/){target=\_blank}. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
 
 ## Transfer Tokens from Sui to Fuji
 
-After running `npm start`, your React app should be up and running, and Wormhole Connect should be visible on [http://localhost:3000/](http://localhost:3000/){target=\_blank}. 
+Before transferring token ensure you have enough testnet SUI and Fuji tokens to cover the gas fees for the transfer. 
 
-Open Your Browser and go to [http://localhost:3000/](http://localhost:3000/){target=\_blank}. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
+To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 
-In the Wormhole Connect interface:
+1. Select Sui as the source network and connect your Sui wallet
+2. Select SUI as the asset you wish to transfer
+3. Choose Fuji as the destination network and connect your wallet with the Fuji network
+4. Enter the amount of SUI tokens you wish to transfer
 
-- Select Sui as the source network and connect your Sui wallet
-- Choose Fuji as the destination network and connect your wallet with the Fuji network
-- Enter the amount of SUI tokens you wish to transfer
-- Ensure you have enough testnet SUI tokens to cover the gas fees for the transfer.
+    ![](/docs/images/tutorials/connect/connect-1.webp)
 
-![img description](/docs/images/tutorials/connect/connect-1.webp)
+5. Choose the **Manual Bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji).
+    
+    ![](/docs/images/tutorials/connect/connect-2.webp)
 
-- Choose the **Manual Bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji).
+6. Confirm the transfer on Sui. This will lock your tokens on the Sui chain
+7. Follow the on-screen prompts to approve the transaction. You will be asked to approve with your Sui wallet
 
-![img description](/docs/images/tutorials/connect/connect-2.webp)
+Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
-- Confirm the transfer on Sui. This will lock your tokens on the Sui chain
-- Follow the on-screen prompts to approve the transaction. You will be asked to approve with your Sui wallet
-- You can track the process on your transaction on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}
+![](/docs/images/tutorials/connect/connect-3.webp)
 
-![img description](/docs/images/tutorials/connect/connect-3.webp)
-
-Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain.
 
 ## Claim Tokens on Fuji
 
 After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
 
-![img description](/docs/images/tutorials/connect/connect-4.webp)
+![](/docs/images/tutorials/connect/connect-4.webp)
 
 
 Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
 
-![img description](/docs/images/tutorials/connect/connect-5.webp)
+![](/docs/images/tutorials/connect/connect-5.webp)
+
+## Resources
