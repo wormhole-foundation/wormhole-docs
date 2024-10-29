@@ -4,4 +4,4 @@ nav:
  - 'Create Cross-Chain Contracts': 'cross-chain-contracts.md'
  - 'Create Cross-Chain Token Transfers': 'cross-chain-token-contracts.md'
  - 'Transfer USDC via Wormhole SDK': 'cctp.md'
- - 'Cross-Chain Token Transfers with Wormhole Connect': 'sui-connect.md'
+ - 'Transfer Tokens Cross-Chain with Connect': 'sui-connect.md'
