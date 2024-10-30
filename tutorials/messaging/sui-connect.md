@@ -21,7 +21,7 @@ Before starting this tutorial, ensure you have the following:
 - A [compatible wallet](https://support.avax.network/en/articles/5520938-what-are-the-official-avalanche-wallets){target=\_blank} for Avalanche Fuji, such as [MetaMask](https://metamask.io/){target=\_blank} 
 - Testnet tokens for [Sui](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank} and [Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} to cover gas fees 
 
-## Setting Up Connect for Sui Transfers
+## Set Up Connect for Sui Transfers
 
 ### Create a React Project
 
@@ -69,10 +69,10 @@ export default App;
 ``` 
 <!-- eventually for this code we can have both js and ts options-->
 
-- set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
-- set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
+- Set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
+- Set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
-### Customizing Wormhole Connect
+### Customize Wormhole Connect
 
 To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Configuration guide](/docs/build/applications/connect/configuration/#introduction){target=\_blank}. 
 
@@ -92,8 +92,8 @@ Before transferring token ensure you have enough testnet SUI and Fuji tokens to 
 
 To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 
-1. Select Sui as the source network, connect your Sui wallet and choose SUI as the asset you wish to transfer
-2. Choose Fuji as the destination network and connect your wallet with the Fuji network
+1. Select **Sui** as the source network, connect your Sui wallet and choose **SUI** as the asset you wish to transfer
+2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
 3. Enter the amount of SUI tokens you wish to transfer
 
     ![](/docs/images/tutorials/connect/connect-1.webp)
