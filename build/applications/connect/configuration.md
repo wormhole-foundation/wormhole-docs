@@ -84,10 +84,9 @@ For further details on the `route` plugin interface, refer to the [Wormhole Type
 To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
 ```typescript
-import {
+import WormholeConnect, {
   AutomaticCCTPRoute,
   WormholeConnectConfig,
-  WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
@@ -102,12 +101,11 @@ const config: WormholeConnectConfig = {
 In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
-import {
+import WormholeConnect, {
   DEFAULT_ROUTES,
   nttRoutes,
   MayanRouteSWIFT,
   WormholeConnectConfig,
-  WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
