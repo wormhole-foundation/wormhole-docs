@@ -57,8 +57,8 @@ import './App.css';
 import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
 const config = {
-    network: 'testnet',
-    chains: ['sui', 'fuji'],
+    network: 'Testnet',
+    chains: ['Sui', 'Avalanche'],
 };
 
 function App() {
@@ -67,9 +67,10 @@ function App() {
 
 export default App;
 ``` 
+<!-- eventually for this code we can have both js and ts options-->
 
 - set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
-- set `chains` to `['suji', 'sui']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
+- set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
 ### Customizing Wormhole Connect
 
@@ -91,34 +92,42 @@ Before transferring token ensure you have enough testnet SUI and Fuji tokens to 
 
 To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 
-1. Select Sui as the source network and connect your Sui wallet
-2. Select SUI as the asset you wish to transfer
-3. Choose Fuji as the destination network and connect your wallet with the Fuji network
-4. Enter the amount of SUI tokens you wish to transfer
+1. Select Sui as the source network, connect your Sui wallet and choose SUI as the asset you wish to transfer
+2. Choose Fuji as the destination network and connect your wallet with the Fuji network
+3. Enter the amount of SUI tokens you wish to transfer
 
     ![](/docs/images/tutorials/connect/connect-1.webp)
 
-5. Choose the **Manual Bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji).
+4. Choose to view other routes 
     
     ![](/docs/images/tutorials/connect/connect-2.webp)
 
-6. Confirm the transfer on Sui. This will lock your tokens on the Sui chain
-7. Follow the on-screen prompts to approve the transaction. You will be asked to approve with your Sui wallet
+5. Select the **manual bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
+
+    !!! note
+        We recommend using the manual bridge option for this tutorial. The automatic bridge feature is currently experiencing issues, while the manual bridge ensures that transfers complete successfully.
+
+    ![](/docs/images/tutorials/connect/connect-3.webp)
+
+6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain
+
+    ![](/docs/images/tutorials/connect/connect-4.webp)
+
+7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet
+
+    ![](/docs/images/tutorials/connect/connect-5.webp)
 
 Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
-
-![](/docs/images/tutorials/connect/connect-3.webp)
-
 
 ## Claim Tokens on Fuji
 
 After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
 
-![](/docs/images/tutorials/connect/connect-4.webp)
-
+![](/docs/images/tutorials/connect/connect-6.webp)
 
 Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
 
-![](/docs/images/tutorials/connect/connect-5.webp)
+![](/docs/images/tutorials/connect/connect-7.webp)
 
 ## Resources
+<!-- martin is creating the repo for the app -->
