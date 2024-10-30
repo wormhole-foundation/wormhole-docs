@@ -51,23 +51,54 @@ npm install @wormhole-foundation/wormhole-connect
 
 Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/build/applications/connect/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
 
-```js
-import logo from './logo.svg';
-import './App.css';
-import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+=== "Javascript"
 
-const config = {
-    network: 'Testnet',
-    chains: ['Sui', 'Avalanche'],
-};
+    ```js
+    import logo from './logo.svg';
+    import './App.css';
+    import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
-function App() {
-    return <WormholeConnect config={config}/>;
-}
+    const config = {
+        network: 'Testnet',
+        chains: ['Sui', 'Avalanche'],
+    };
 
-export default App;
-``` 
-<!-- eventually for this code we can have both js and ts options-->
+    function App() {
+        return <WormholeConnect config={config}/>;
+    }
+
+    export default App;
+    ``` 
+
+=== "Typescript"
+
+    ```ts
+    import './App.css';
+    import WormholeConnect, {
+        WormholeConnectConfig,
+        WormholeConnectTheme,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    function App() {
+        const config: WormholeConnectConfig = {
+            network: 'Testnet',
+            chains: ['Sui', 'Avalanche'],
+
+            ui: {
+                title: 'SUI Connect TS Demo',
+            },
+        };
+
+        const theme: WormholeConnectTheme = {
+            mode: 'dark',
+            primary: '#78c4b6',
+        };
+
+        return <WormholeConnect config={config} theme={theme} />;
+    }
+
+    export default App;
+    ```
 
 - Set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
 - Set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
@@ -129,5 +160,9 @@ Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens hav
 
 ![](/docs/images/tutorials/connect/connect-7.webp)
 
+<!-- will update once the repos are on the wormhole github
 ## Resources
-<!-- martin is creating the repo for the app -->
+
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [Sui-Connect GitHub repository](){target=\_blank}. 
+
+-->
