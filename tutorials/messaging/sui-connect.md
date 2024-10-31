@@ -123,7 +123,7 @@ Before transferring token ensure you have enough testnet SUI and Fuji tokens to 
 
 To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 
-1. Select **Sui** as the source network, connect your Sui wallet and choose **SUI** as the asset you wish to transfer
+1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer
 2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
 3. Enter the amount of SUI tokens you wish to transfer
 
