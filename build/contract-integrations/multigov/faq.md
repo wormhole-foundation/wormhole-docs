@@ -67,7 +67,7 @@ The current implementation is designed for EVM-compatible chains. However, Solan
 
 Voting parameters such as voting delay, voting period, proposal threshold, and quorum (and others) can be customized in the deployment scripts (`DeployHubContractsSepolia.s.sol` and `DeploySpokeContractsOptimismSepolia.s.sol` as examples for their respective chains). Make sure to adjust these parameters according to your DAO's specific needs before deployment.
 
-Remember to thoroughly test your MultiGov implementation on testnets before deploying to MainNet, and have your contracts audited for additional security.
+Remember to thoroughly test your MultiGov implementation on testnets before deploying to Mainnet, and have your contracts audited for additional security.
 
 ### How does MultiGov handle potential network issues or temporary chain unavailability?
 

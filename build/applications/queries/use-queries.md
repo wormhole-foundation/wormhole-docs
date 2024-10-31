@@ -86,7 +86,7 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 
 ## Mock a Query
 
-For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [DevNet](/docs/build/toolkit/tilt/){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
+For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](/docs/build/toolkit/tilt/){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
 --8<-- 'code/build/applications/queries/use-queries/test-full.jsx:55:57'
@@ -117,7 +117,7 @@ It is common to test against a local fork of Mainnet with something like
 anvil --fork-url https://ethereum.publicnode.com
 ```
 
-In order for mock requests to verify against the Mainnet Core Contract, you need to replace the current Guardian set with the single DevNet key used by the mock.
+In order for mock requests to verify against the Mainnet Core Contract, you need to replace the current Guardian set with the single Devnet key used by the mock.
 
 Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on that chain.
 

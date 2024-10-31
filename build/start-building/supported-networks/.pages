@@ -4,7 +4,7 @@ nav:
  - 'EVM': 'evm.md'
  - 'Algorand': 'algorand.md'
  - 'Aptos': 'aptos.md'
- - cosmos
+ - 'Cosmos': 'cosmos.md'
  - 'NEAR' : 'near.md'
  - 'Solana' : 'solana.md'
  - 'Sui' : 'sui.md'

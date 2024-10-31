@@ -42,6 +42,14 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     [:octicons-arrow-right-16: Configure for customization](/docs/build/applications/connect/configuration/)
 
+-   :octicons-question-16:{ .lg .middle } **Connect FAQs**
+
+    ---
+
+    Find answers to common questions about Wormhole Connect, including supported assets, chains, and integration options.
+
+    [:octicons-arrow-right-16: Read Connect FAQs](/docs/build/applications/connect/faqs/)
+
 </div>
 
 ## Additional Resources

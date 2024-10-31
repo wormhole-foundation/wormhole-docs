@@ -6,3 +6,4 @@ nav:
  - wormhole-sdk
  - 'Solidity SDK': 'solidity-sdk.md'
  - 'Tilt': 'tilt.md'
+ - 'FAQs': 'faqs.md'

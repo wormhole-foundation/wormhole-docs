@@ -162,10 +162,9 @@ Now that you know the available `route` plugins, let's explore some examples of 
 To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
 ```typescript
-import {
+import WormholeConnect, {
   AutomaticCCTPRoute,
   WormholeConnectConfig,
-  WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
@@ -180,12 +179,11 @@ const config: WormholeConnectConfig = {
 In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
-import {
+import WormholeConnect, {
   DEFAULT_ROUTES,
   nttRoutes,
   MayanRouteSWIFT,
   WormholeConnectConfig,
-  WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
@@ -214,7 +212,9 @@ Key Changes to `tokensConfig`:
     In the old structure, the `foreignAssets` field defined the token’s presence on other chains, and `decimals` were mapped across multiple chains.
 
     ```typescript
-    import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, {
+      WormholeConnectConfig,
+    } from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
       tokensConfig: {
@@ -226,7 +226,7 @@ Key Changes to `tokensConfig`:
           tokenId: {
             chain: 'ethereum',
             address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-            },
+          },
           coinGeckoId: 'ethereum',
           color: '#62688F',
           decimals: { Ethereum: 18, default: 8 },
@@ -245,7 +245,9 @@ Key Changes to `tokensConfig`:
     In v1.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
 
     ```typescript
-    import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, {
+      WormholeConnectConfig,
+    } from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
       tokensConfig: {
@@ -290,6 +292,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
     ```typescript
     import WormholeConnect, {
       nttRoutes,
+      WormholeConnectConfig,
     } from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
@@ -330,6 +333,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
     ```typescript
     import WormholeConnect, {
       nttRoutes,
+      WormholeConnectConfig,
     } from '@wormhole-foundation/wormhole-connect';
 
     const config: WormholeConnectConfig = {
@@ -397,7 +401,9 @@ Additionally, there are two new properties under `ui`:
  - **`ui.getHelpUrl`** - URL that Connect will render when an unknown error occurs, allowing users to seek help. This can link to a Discord server or any other support channel
 
 ```typescript
-import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, {
+  WormholeConnectConfig,
+} from '@wormhole-foundation/wormhole-connect';
 
 const config: WormholeConnectConfig = {
   ui: {
