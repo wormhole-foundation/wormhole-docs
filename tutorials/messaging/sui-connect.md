@@ -51,7 +51,7 @@ npm install @wormhole-foundation/wormhole-connect
 
 Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/build/applications/connect/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
 
-=== "Javascript"
+=== "JavaScript"
 
     ```js
     import logo from './logo.svg';
