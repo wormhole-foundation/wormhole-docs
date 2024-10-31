@@ -70,7 +70,7 @@ Now, we need to modify the default `App.js` file to integrate Wormhole Connect. 
     export default App;
     ``` 
 
-=== "Typescript"
+=== "TypeScript"
 
     ```ts
     import './App.css';
