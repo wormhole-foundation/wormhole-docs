@@ -27,14 +27,6 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
 
--   :octicons-arrow-switch-16:{ .lg .middle } **Gateway**
-
-    ---
-
-    Use the Wormhole Gateway, a Cosmos SDK chain enabling asset bridging into the Cosmos ecosystem, unifying liquidity, and supporting cross-chain transfers.
-
-    [:octicons-arrow-right-16: Get started with Gateway](/docs/build/contract-integrations/gateway/)
-
 -   :octicons-arrow-switch-16:{ .lg .middle } **Native Token Transfers**
 
     ---
