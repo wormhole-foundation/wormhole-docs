@@ -136,7 +136,7 @@ To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 5. Select the **manual bridge** option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
 
     !!! note
-        We recommend using the manual bridge option for this tutorial. The automatic bridge feature is currently experiencing issues, while the manual bridge ensures that transfers complete successfully.
+        It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
 
     ![](/docs/images/tutorials/connect/connect-3.webp)
 
