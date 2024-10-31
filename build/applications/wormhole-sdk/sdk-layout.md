@@ -27,7 +27,7 @@ Layouts are composed of [layout items](https://github.com/wormhole-foundation/wo
 
  - **`name`** - name of the field
  - **`binary`** - type of data (e.g., `uint`, `bytes`)
- - **`size`** - byte length for fixed-size fields, or `lengthSize` for variable-length fields
+ - **`size`** - byte length for fixed-size fields within uint and bytes items only
 
 Layout items can represent:
 
@@ -313,9 +313,12 @@ Ensure that the type you define in your layout matches the actual data type used
 // Usage should be: { sourceChain: 6 } not { sourceChain: '6' }
 ```
 
-#### Incorrect Sizes for Bytes and Integers
+#### Correct Sizes for `uint`, `int`, and `bytes`
 
-Be careful when specifying sizes for `uint`, `int`, and `bytes` types. For example, `uint` types need to match the size of `bytes`. If the size is too small or too large, it will cause serialization or deserialization failures.
+When defining sizes for each data type, make sure to match the actual data length to the specified size to prevent serialization and deserialization errors:
+
+ - `uint` and `int`: The specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure.
+ - `bytes`: The data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail.
 
 ```typescript
 // Pitfall: Mismatch between the size of data and the defined size in the layout
@@ -374,13 +377,13 @@ Efficient serialization and deserialization are crucial when handling large amou
 
 ### Lazy Instantiation
 
-Large, complex layouts can introduce overhead, especially when layouts are built eagerly. Using lazy instantiation, you can defer layout creation until needed, reducing the upfront cost.
+Building a discriminator can be resource-intensive for complex or large datasets. The layout structures do not incur significant upfront costs, but deferring the creation of discriminators until needed can improve efficiency.
 
 ```typescript
 const lazyDiscriminator = lazyInstantiate(() => layoutDiscriminator(layouts));
 ```
 
-This ensures that layout structures or discriminators are only created when required, improving overall performance, especially when dealing with complex or large datasets.
+This approach ensures that discriminators are only built when required, helping to optimize performance, especially for complex or conditional layouts.
 
 ### Minimize Layout Redundancy
 
@@ -389,13 +392,3 @@ When defining layouts, reuse common components (like chain IDs and addresses) ac
 ```typescript
 --8<-- "code/build/toolkit/wormhole-sdk/sdk-layout/layout-19.ts"
 ```
-
-### Batch Serialization
-
-Batch serialization and deserialization operations are more efficient when dealing with large amounts of data. This reduces the number of function calls and can improve performance by handling multiple layouts in a single operation.
-
-```typescript
-const batchSerialized = layouts.map(layout => serializeLayout(layout, data));
-```
-
-This approach is beneficial when working with multiple payloads or messages that must be processed together.
