@@ -5,3 +5,4 @@ nav:
  - 'Create Cross-Chain Token Transfers': 'cross-chain-token-contracts.md'
  - 'Transfer USDC via Wormhole SDK': 'cctp.md'
  - 'Transfer Tokens Cross-Chain with Connect': 'sui-connect.md'
+ - 'Portal Bridge': 'portal-bridge.md'
