@@ -65,14 +65,6 @@ Operating on the same technology as the ETH Bridge, this route can transfer USDT
 
 Only the relayed route is available due to the complexity of the transaction that needs to be executed on the destination. Enable the `usdtBridge` route in the configuration to offer this option.
 
-## Cosmos Gateway Route {: #cosmos-gateway-route}
-
-[Wormhole Gateway](https://docs.wormhole.com/wormhole/explore-wormhole/gateway){target=\_blank} is a Cosmos-SDK chain that bridges non-native assets into the Cosmos ecosystem and serves as a source for unified liquidity across Cosmos chains. This transfer method is offered when the destination is an [IBC-compatible](https://cosmos.network/ibc/){target=\_blank} Cosmos chain (e.g., Osmosis, CosmosHub, Evmos, Kujira, or Injective).
-
-#### Automatic Route {: #automatic-route-cosmos}
-
-The Wormhole Guardian Network automatically delivers messages to Wormhole Gateway if the tokens are destined for IBC-compatible Cosmos chains, requiring no input or extra "Gateway gas" from the user. When the Wormhole-wrapped tokens are minted on Gateway, they are automatically transferred to their intended destination via a network of IBC relayers. Enable the `cosmosGateway` route in the configuration to offer this option.
-
 ## tBTC Route {: #tbtc-route}
 
 You can bridge [Threshold's Bitcoin](https://threshold.network/){target=\_blank} via this hybrid solution that combines the Token Bridge and Threshold's contracts. Native tBTC is first locked in the Wormhole Token Bridge, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (e.g., Solana, Polygon, Arbitrum, Optimism, or Base).

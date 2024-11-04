@@ -29,10 +29,6 @@ The emitter contract makes the call to the Wormhole Core Contract. The published
 
 The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
 
-## Gateway
-
-The [Gateway](/docs/learn/messaging/gateway/){target=\_blank}, previously referred to as Wormchain, is the Cosmos-SDK chain Wormhole uses to facilitate communication with the Cosmos ecosystem.
-
 ## Guardian
 
 A [Guardian](/docs/learn/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.

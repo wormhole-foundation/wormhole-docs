@@ -1,6 +1,6 @@
 ---
 title: Wormhole TS SDK 
-description: Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
+description: Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC.
 ---
 
 # Wormhole TypeScript SDK
@@ -279,7 +279,7 @@ The `WormholeTransfer` interface provides a convenient abstraction to encapsulat
 
 ### Token Transfers
 
-Performing a token transfer is trivial for any source and destination chains. You can create a new `Wormhole` object to make objects like `TokenTransfer`, `CircleTransfer`, and `GatewayTransfer`, to transfer tokens between chains.
+Performing a token transfer is trivial for any source and destination chains. You can create a new `Wormhole` object to make objects like `TokenTransfer`, and `CircleTransfer`, to transfer tokens between chains.
 
 The following example demonstrates the process of initiating and completing a token transfer. It starts by creating a `TokenTransfer` object, which tracks the transfer's state throughout its lifecycle. The code then obtains a quote for the transfer, ensuring the amount is sufficient to cover fees and any requested native gas.
 
@@ -319,25 +319,6 @@ When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amou
 ??? code "View the complete script"
     ```ts
     --8<-- 'code/build/applications/wormhole-sdk/cctp.ts'
-    ```
-
-### Gateway Transfers
-
-Gateway transfers are passed through the Wormhole Gateway to or from Cosmos chains. A transfer into Cosmos from outside Cosmos will be automatically delivered to the destination via IBC from the Gateway chain. A transfer within Cosmos will use IBC to transfer from the origin to the Gateway chain and then out from the Gateway to the destination chain.
-
-```ts
---8<-- 'code/build/applications/wormhole-sdk/cosmos.ts:152:172'
-```
-
-A transfer leaving Cosmos will produce a VAA from the Gateway that must be manually redeemed on the destination chain.
-
-```ts
---8<-- 'code/build/applications/wormhole-sdk/cosmos.ts:184:207'
-```
-
-??? code "View the complete script"
-    ```ts
-    --8<-- 'code/build/applications/wormhole-sdk/cosmos.ts'
     ```
 
 ### Recovering Transfers
