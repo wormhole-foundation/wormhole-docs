@@ -19,14 +19,6 @@ This section covers various aspects and services related to communication protoc
 
     [:octicons-arrow-right-16: Learn more about Token Bridges](/docs/learn/messaging/token-nft-bridge/)
 
--   :octicons-book-16:{ .lg .middle } **Cosmos Gateway**
-
-    ---
-
-    Wormhole Gateway is a Cosmos-SDK chain designed to bridge non-native assets into the Cosmos ecosystem, offering unified liquidity across Cosmos chains.
-
-    [:octicons-arrow-right-16: Learn more about Gateway](/docs/learn/messaging/gateway/)
-
 -   :octicons-book-16:{ .lg .middle } **Circle's CCTP Bridge**
 
     ---
