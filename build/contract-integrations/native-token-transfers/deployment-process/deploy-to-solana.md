@@ -123,6 +123,9 @@ Generate or export your payer key pair, then run:
 ntt add-chain Solana --latest --mode burning --token INSERT_YOUR_SPL_TOKEN --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
 ```
 
+!!! note
+    The add-chain command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is 50000.
+
 The NTT Solana program will then compile and deploy.
 
 ### Configure NTT
