@@ -124,7 +124,7 @@ ntt add-chain Solana --latest --mode burning --token INSERT_YOUR_SPL_TOKEN --pay
 ```
 
 !!! note
-    The add-chain command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is 50000.
+    The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
 
 The NTT Solana program will then compile and deploy.
 
