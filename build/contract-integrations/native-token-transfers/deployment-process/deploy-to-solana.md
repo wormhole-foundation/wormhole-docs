@@ -113,6 +113,9 @@ In this step, you'll set SPL token mint authority to the newly generated token a
 spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
 ```
 
+!!! note
+    Please ensure that you are using Anchor CLI version `0.29.0`. Running the deployment with a different version may cause compatibility issues.
+
 If deploying to Solana in `burning` mode, set the mint authority for your SPL token to the NTT program ID you generated in the previous step.
 
 ### Deploy NTT
