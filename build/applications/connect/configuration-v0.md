@@ -183,7 +183,6 @@ By default, Connect will offer its complete built-in list of routes, but you can
 |   ethBridge   |       -       |
 | wstETHBridge  |       -       |
 |  usdtBridge   |       -       |
-| cosmosGateway | cosmosGateway |
 |     tBTC      |     tBTC      |
 
 ### Wallet Set Up  {: #wallet-connect-project-id }

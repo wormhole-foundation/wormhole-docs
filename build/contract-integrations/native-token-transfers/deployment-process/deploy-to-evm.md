@@ -100,7 +100,14 @@ After you deploy the NTT contracts, ensure that the deployment is properly confi
 
 The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub-and-spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
 
+!!! note
+    The required NTT Manager address can be found in the `deployment.json` file.
+
 - If you followed the [`INttToken`](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
+    ```json
+    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
+    ```
+
 - If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
 
 By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.

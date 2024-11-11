@@ -6,4 +6,4 @@ nav:
  - 'Features': features.md
  - 'Configuration': configuration.md
  - 'v1 Migration': upgrade.md
- 
+ - 'FAQS': faqs.md

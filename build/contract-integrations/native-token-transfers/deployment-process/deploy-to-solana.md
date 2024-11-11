@@ -113,6 +113,9 @@ In this step, you'll set SPL token mint authority to the newly generated token a
 spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
 ```
 
+!!! note
+    Please ensure that you are using Anchor CLI version `0.29.0`. Running the deployment with a different version may cause compatibility issues.
+
 If deploying to Solana in `burning` mode, set the mint authority for your SPL token to the NTT program ID you generated in the previous step.
 
 ### Deploy NTT
@@ -122,6 +125,9 @@ Generate or export your payer key pair, then run:
 ```bash
 ntt add-chain Solana --latest --mode burning --token INSERT_YOUR_SPL_TOKEN --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
 ```
+
+!!! note
+    The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
 
 The NTT Solana program will then compile and deploy.
 
