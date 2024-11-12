@@ -160,9 +160,19 @@ Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens hav
 
 ![](/docs/images/tutorials/connect/connect-7.webp)
 
-<!-- will update once the repos are on the wormhole github
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [Sui-Connect GitHub repository](){target=\_blank}. 
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the entire codebase in the [Sui-Connect GitHub repository](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}. The repository includes an integration of Wormhole Connect in a React app for bridging tokens between the Sui and Fuji (Avalanche Testnet) networks.
 
--->
+## Conclusion
+
+In this tutorial, you’ve gained hands-on experience with integrating Wormhole Connect to enable cross-chain token transfers. You’ve learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
+
+By following these steps, you've learned how to:
+
+- Set up a React project tailored for cross-chain transfers
+- Install and configure Wormhole Connect to support multiple blockchains
+- Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers
+- Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
+
+With these tools and knowledge, you’re now equipped to build powerful cross-chain applications using Wormhole Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.

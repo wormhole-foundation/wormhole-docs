@@ -28,10 +28,6 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 |   Scroll    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 |    Blast    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 |   X Layer   |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|   Osmosis   |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
-|  CosmosHub  |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
-|    Evmos    |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
-|   Kujira    |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
 
 ## Feature Explanation {: #feature-explanation}
 
