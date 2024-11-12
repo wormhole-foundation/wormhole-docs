@@ -48,7 +48,7 @@ In this section, we’ll guide you through initializing the project, installing 
 2. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
 
     ```bash
-    npm install @wormhole-foundation/sdk dotenv
+    npm install @wormhole-foundation/sdk dotenv tsx
     ```
 
 3. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
@@ -73,8 +73,8 @@ In this section, we’ll guide you through initializing the project, installing 
     1. Create the helpers file
 
         ```bash
-        mkdir helpers
-        touch helpers/helpers.ts
+        mkdir -p src/helpers
+        touch src/helpers/helpers.ts
         ```
 
     2. Open the `helpers.ts` file and add the following code
@@ -98,7 +98,8 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 1. Create the `native-transfer.ts` file in the `src` directory to hold your script for transferring native tokens across chains
 
     ```bash
-    touch src/native-transfer.ts
+    mkdir -p src/scripts
+    touch src/scripts/native-transfer.ts
     ```
 
 2. Open the `native-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
@@ -240,10 +241,10 @@ You can find the complete native token transfer script below:
 
 ### Run the Native Token Transfer
 
-Now that you’ve set up the project and defined the transfer logic, you can execute the script to transfer native tokens from the Sui chain to Solana. You can use `ts-node` to run the TypeScript file directly:
+Now that you’ve set up the project and defined the transfer logic, you can execute the script to transfer native tokens from the Sui chain to Solana. You can use `tsx` to run the TypeScript file directly:
 
 ```bash
-npx ts-node src/native-transfer.ts
+npx tsx src/scripts/native-transfer.ts
 ```
 
 This initiates the native token transfer from the source chain (Sui) and completes it on the destination chain (Solana).
