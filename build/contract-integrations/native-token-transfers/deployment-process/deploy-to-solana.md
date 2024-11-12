@@ -87,7 +87,7 @@ Initialize a new `deployment.json` file, specifying the network:
 
 ## Configuration and Deployment
 
-#### Generate NTT Program Key Pair
+### Generate NTT Program Key Pair
 
 When you deploy a Solana program, you need to hardcode the program ID (a Pubkey) into the program code. The NTT CLI allows you to do this seamlessly.
 
@@ -97,7 +97,7 @@ Generate a new NTT program key pair using:
 solana-keygen grind --starts-with ntt:1 --ignore-case
 ```
 
-#### Derive Token Authority
+### Derive Token Authority
 
 In this step, you'll derive the token authority Program Derived Address (PDA) of the newly generated NTT program ID:
 
@@ -107,7 +107,7 @@ ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
 
 This script will output the derived PDA, which you will use in the next step.
 
-#### Set SPL Token Mint Authority
+### Set SPL Token Mint Authority
 
 In this step, you'll set SPL token mint authority to the newly generated token authority PDA:
 
@@ -156,7 +156,7 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
 
     This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
 
-### Deploy
+### Deploy NTT to Solana
 
 You can now push the deployment to the Solana network, specifying the key pair that will cover the gas fees:
 
