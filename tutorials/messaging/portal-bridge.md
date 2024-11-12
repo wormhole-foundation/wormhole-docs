@@ -1,13 +1,13 @@
 ---
 title: Portal Bridge
-description: 
+description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
 ---
 
 # Portal Bridge
 
 ## Introduction
 
-This tutorial guides you through building a cross-chain token transfer application using the [Wormhole Typescript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its Portal Bridge method. The Portal Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly, including native tokens and USDC.
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole Typescript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its Portal Bridge method. The Portal Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
 By leveraging Wormhole’s Portal Bridge, this guide shows you how to build an application that supports multiple transfer types:
 
@@ -35,7 +35,7 @@ The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you t
 
 ## Project Setup
 
-In this section, you'll set up your project for transferring native tokens across chains using Wormhole's SDK and Portal Bridge. We’ll guide you through initializing the project, installing dependencies, and preparing your environment for cross-chain transfers.
+In this section, we’ll guide you through initializing the project, installing dependencies, and preparing your environment for cross-chain transfers.
 
 1. **Initialize the project** - start by creating a new directory for your project and initializing it with `npm`, which will create the `package.json` file for your project
 
@@ -57,7 +57,7 @@ In this section, you'll set up your project for transferring native tokens acros
     touch .env
     ```
 
-    Inside the `.env` file, add your private key
+    Inside the `.env` file, add your private keys.
 
     ```env
     ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
@@ -68,7 +68,7 @@ In this section, you'll set up your project for transferring native tokens acros
     !!! note
         Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
 
-4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays
+4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
 
     1. Create the helpers file
 
@@ -85,21 +85,167 @@ In this section, you'll set up your project for transferring native tokens acros
 
         - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
         - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
+        - **`getTokenDecimals`** - this function fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers
 
-5. **Create the main script** - create a new file named `native-transfer.ts` to hold your script for transferring USDC across chains
+## Native Token Transfers
 
-    1. Create the `native-transfer.ts` file in the `src` directory
+In this section, you'll create a script to transfer native tokens across chains using Wormhole's Portal Bridge method. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
 
-        ```bash
-        touch src/native-transfer.ts
-        ```
+### Configure Transfer Details
 
-    2. Open the `native-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
+Before initiating a cross-chain transfer, you must set up the chain context and signers for both the source and destination chains.
 
-        ```typescript
-        --8<-- "code/tutorials/messaging/cctp/cctp-sdk-2.ts:1:4"
-        ```
+1. Create the `native-transfer.ts` file in the `src` directory to hold your script for transferring native tokens across chains
 
-        - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
-        - **`solana`** - this adds support for Solana, a non-EVM chain
-        - **`getSigner`** - utility function from the helper file that retrieves the signer to sign transactions
+    ```bash
+    touch src/native-transfer.ts
+    ```
+
+2. Open the `native-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:1:14"
+    ```
+
+     - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
+     - **`solana`** - this adds support for Solana, a non-EVM chain
+     - **`sui`** - support for Sui chain, another non-EVM chain
+     - `helpers.ts` methods defined in the previous section
+
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana and Sui
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:15:16"
+    ```
+        
+    !!! note
+        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
+
+4. **Set up source and destination chains** - specify the source chain (Sui) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the native tokens and where to receive them
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:19:20"
+    ```
+
+5. **Configure the signers** - use the `getSigner` function to retrieve the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:23:24"
+    ```
+
+6. **Define the token to transfer** - specify the native token on the source chain (Sui in this example) by creating a `TokenId` object
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:27:27"
+    ```
+
+7. **Define the transfer amount** - the amount of native tokens to transfer is specified. In this case, we're transferring 1 unit
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:30:30"
+    ```
+
+8. **Set transfer mode** - specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:33:33"
+    ```
+
+    !!! note
+        Automatic transfers are only supported for EVM chains. For non-EVM chains like Solana and Sui, you must manually handle the attestation and finalization steps.
+    
+9. **Define decimals** - fetch the number of decimals for the token on the source chain (Sui) using the `getTokenDecimals` function
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:36:36"
+    ```
+
+10. **Perform the token transfer and exit the process** - initiate the transfer by calling the `tokenTransfer` function, which we’ll define in the next step. This function takes an object containing all required details for executing the transfer, including the `source` and `destination` chains, `token`, `mode`, and transfer `amount`
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:39:45"
+    ```
+
+    Finally, we use `process.exit(0);` to close the script once the transfer completes
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:47:48"
+    ```
+
+### Token Transfer Logic
+
+This section defines the `tokenTransfer` function, which manages the core steps for cross-chain transfer execution. This function will handle initiating the transfer on the source chain, retrieving the attestation, and completing the transfer on the destination chain.
+
+#### Defining the tokenTransfer Function
+
+The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK.
+
+```typescript
+--8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:50:61"
+--8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:96"
+```
+
+#### Steps to Transfer Tokens
+
+The `tokenTransfer` function consists of several key steps to facilitate the cross-chain transfer. Let’s break down each step:
+
+1. **Initialize the transfer object** - the `tokenTransfer` function begins by creating a `TokenTransfer` object, `xfer`, which tracks the state of the transfer process and provides access to relevant methods for each transfer step
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:63:70"
+    ```
+
+2. **Estimate transfer fees and validate amount** - we obtain a fee quote for the transfer before proceeding. This step is significant in automatic mode, where the quote will include additional fees for relaying
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:72:80"
+    ```
+
+3. **Submit the transaction to the source chain** - initiate the transfer on the source chain by submitting the transaction using `route.source.signer`, starting the token transfer process
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:84:85"
+    ```
+
+     - **`srcTxids`** - The resulting transaction IDs are printed to the console. These IDs can be used to track the transfer’s progress on the source chain and [Wormhole network](https://wormholescan.io/#/?network=Testnet){target=\_blank}
+
+4. **Wait for the attestation** - retrieve the Wormhole attestation (VAA), which serves as cryptographic proof of the transfer. In manual mode, you must wait for the VAA before redeeming the transfer on the destination chain
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:90:90"
+    ```
+
+5. **Complete the transfer on the destination chain** - redeem the VAA on the destination chain to finalize the transfer
+
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:94:95"
+    ```
+
+You can find the complete native token transfer script below:
+
+??? code "`native-transfer.ts`"
+    ```typescript
+    --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts"
+    ```
+
+### Run the Native Token Transfer
+
+Now that you’ve set up the project and defined the transfer logic, you can execute the script to transfer native tokens from the Sui chain to Solana. You can use `ts-node` to run the TypeScript file directly:
+
+```bash
+npx ts-node src/native-transfer.ts
+```
+
+This initiates the native token transfer from the source chain (Sui) and completes it on the destination chain (Solana).
+
+You can monitor the status of the transaction on the [Wormhole explorer](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+
+## Resources
+
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}. The repository includes all the example scripts and configurations needed to perform native token cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK.
+
+## Conclusion
+
+You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the Portal Bridge method. This guide took you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains like Sui and Solana.
+
+The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
