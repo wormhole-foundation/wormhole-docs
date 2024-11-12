@@ -7,7 +7,7 @@ description: Learn to build a cross-chain native token transfer app using Wormho
 
 ## Introduction
 
-This tutorial guides you through building a cross-chain token transfer application using the [Wormhole Typescript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its Portal Bridge method. The Portal Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole Typescript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=_blank} and its [Portal Bridge](https://wormhole.com/docs/learn/messaging/token-nft-bridge/){target=_blank} method. The Portal Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
 By leveraging Wormhole’s Portal Bridge, this guide shows you how to build an application that supports multiple transfer types:
 
@@ -24,8 +24,8 @@ At the end of this guide, you’ll have a fully functional setup for transferrin
 
 Before you begin, ensure you have the following:
 
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
- - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=_blank} installed on your machine
+ - [TypeScript](https://www.typescriptlang.org/download/){target=_blank} installed globally
  - Native tokens (Testnet or Mainnet) in Solana and Sui wallets
  - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees
 
@@ -178,7 +178,7 @@ This section defines the `tokenTransfer` function, which manages the core steps 
 
 #### Defining the tokenTransfer Function
 
-The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK.
+The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK. This function uses types from the SDK and our `helpers.ts` file to ensure chain compatibility.
 
 ```typescript
 --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:50:61"
@@ -195,7 +195,7 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
     --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:63:70"
     ```
 
-2. **Estimate transfer fees and validate amount** - we obtain a fee quote for the transfer before proceeding. This step is significant in automatic mode, where the quote will include additional fees for relaying
+2. **Estimate transfer fees and validate amount** - we obtain a fee quote for the transfer before proceeding. This step is significant in automatic mode (`automatic = true`), where the quote will include additional fees for relaying
 
     ```typescript
     --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:72:80"
@@ -207,7 +207,17 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
     --8<-- "code/tutorials/messaging/portal-bridge/portal-bridge-2.ts:84:85"
     ```
 
-     - **`srcTxids`** - The resulting transaction IDs are printed to the console. These IDs can be used to track the transfer’s progress on the source chain and [Wormhole network](https://wormholescan.io/#/?network=Testnet){target=\_blank}
+     - **`srcTxids`** - the resulting transaction IDs are printed to the console. These IDs can be used to track the transfer’s progress on the source chain and [Wormhole network](https://wormholescan.io/#/?network=Testnet){target=_blank}
+
+    ???- note "How Cross-Chain Transfers Work in the Background"
+        When `xfer.initiateTransfer(route.source.signer)` is called, it initiates the transfer on the source chain. Here’s what happens in the background:
+
+         - **Token lock or burn** - tokens are either locked in a smart contract or burned on the source chain, representing the transfer amount
+         - **VAA creation** - Wormhole’s network of Guardians generates a Verifiable Action Approval (VAA)—a signed proof of the transaction, which ensures it’s recognized across chains
+         - **Tracking the transfer** - the returned transaction IDs allow you to track the transfer's progress both on the source chain and within Wormhole’s network
+         - **Redemption on destination** - once detected, the VAA is used to release or mint the corresponding token amount on the destination chain, completing the transfer
+
+        This process ensures a secure and verifiable transfer across chains, from locking tokens on the source chain to redeeming them on the destination chain.
 
 4. **Wait for the attestation** - retrieve the Wormhole attestation (VAA), which serves as cryptographic proof of the transfer. In manual mode, you must wait for the VAA before redeeming the transfer on the destination chain
 
@@ -238,11 +248,11 @@ npx ts-node src/native-transfer.ts
 
 This initiates the native token transfer from the source chain (Sui) and completes it on the destination chain (Solana).
 
-You can monitor the status of the transaction on the [Wormhole explorer](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+You can monitor the status of the transaction on the [Wormhole explorer](https://wormholescan.io/#/?network=Testnet){target=_blank}.
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}. The repository includes all the example scripts and configurations needed to perform native token cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=_blank}. The repository includes all the example scripts and configurations needed to perform native token cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK.
 
 ## Conclusion
 
