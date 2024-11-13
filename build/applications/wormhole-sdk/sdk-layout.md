@@ -313,7 +313,7 @@ Ensure that the type you define in your layout matches the actual data type used
 // Usage should be: { sourceChain: 6 } not { sourceChain: '6' }
 ```
 
-#### Correct Sizes for `uint`, `int`, and `bytes`
+#### Defining Sizes for Data Types
 
 When defining sizes for each data type, make sure to match the actual data length to the specified size to prevent serialization and deserialization errors:
 
