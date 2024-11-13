@@ -79,17 +79,17 @@ async function tokenTransfer<N extends Network>(
   if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
     throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
-  // 1) Submit the transactions to the source chain, passing a signer to sign any txns
+  // Submit the transactions to the source chain, passing a signer to sign any txns
   console.log('Starting transfer');
   const srcTxids = await xfer.initiateTransfer(route.source.signer);
   console.log(`Source Trasaction ID: ${srcTxids[0]}`);
   console.log(`Wormhole Trasaction ID: ${srcTxids[1] ?? srcTxids[0]}`);
 
-  // 2) Wait for the VAA to be signed and ready (not required for auto transfer)
+  // Wait for the VAA to be signed and ready (not required for auto transfer)
   console.log('Getting Attestation');
   await xfer.fetchAttestation(60_000);
 
-  // 3) Redeem the VAA on the dest chain
+  // Redeem the VAA on the dest chain
   console.log('Completing Transfer');
   const destTxids = await xfer.completeTransfer(route.destination.signer);
   console.log(`Completed Transfer: `, destTxids);
