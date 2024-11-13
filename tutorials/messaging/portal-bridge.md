@@ -177,7 +177,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 
 This section defines the `tokenTransfer` function, which manages the core steps for cross-chain transfer execution. This function will handle initiating the transfer on the source chain, retrieving the attestation, and completing the transfer on the destination chain.
 
-#### Defining the tokenTransfer Function
+#### Defining the Token Transfer Function
 
 The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK. This function uses types from the SDK and our `helpers.ts` file to ensure chain compatibility.
 
