@@ -27,7 +27,7 @@ Before you begin, ensure you have the following:
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=_blank} installed on your machine
  - [TypeScript](https://www.typescriptlang.org/download/){target=_blank} installed globally
  - Native tokens (testnet or mainnet) in Solana and Sui wallets
- - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees
+ - A wallet with a private key, funded with native tokens (testnet or mainnet) for gas fees
 
 ## Supported Chains
 
