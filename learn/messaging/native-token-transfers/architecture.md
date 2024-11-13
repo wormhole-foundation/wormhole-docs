@@ -19,11 +19,17 @@ _Managers_ are responsible for handling the flow of token transfers between diff
 
 Each Manager is assigned to a specific token but can operate across multiple chains. Their key responsibility is to ensure that tokens are securely locked or burned on the source chain before being minted or unlocked on the destination chain. This provides the integrity of token transfers and prevents double-spending.
 
-A Manager has three primary functions:
+A Manager is responsible for:
 
-- **Initiating token transfers** - managers initiate the transfer process, where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
-- **Quoting delivery costs** - managers also calculate the cost of sending messages across chains. They do this by querying the transceivers for estimates on message delivery fees, allowing users to know the cost before initiating a transfer
-- **Establishing trust across chains** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of their contract across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
+- **Handling token transfer flow** - upon a transfer request, `NttManager` either locks or burns tokens depending on the configuration, emits a `TransferSent` event, and ensures tokens can’t be accessed on the source chain before leasing them on the destination chain. This process safeguards against double-spending and maintains a secure transfer
+- **Rate-limiting** - the `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers
+    - Outbound - transfers exceeding the outbound limit are queued (if `shouldQueue` is true) or reverted
+    - Inbound - similar limits apply on the destination chain, delaying transfers if capacity is exceeded
+
+    Rate limit duration and queuing are customizable per chain, and events notify users when transfers hit the limit
+
+- **Message authenticity verification** - the `NttManager` ensures transfer security by verifying message authenticity through multiple attestations from transceivers. For each transfer, a threshold number of attestation signatures must be gathered from transceivers. Once verified, `NttManager` releases tokens on the destination chain, ensuring only authenticated transfers are processed
+- **Interaction with transceivers** - `NttManager` collaborates with transceivers, forwarding transfer messages between chains and handling message verification. Transceivers route messages with transfer details to the destination chain, coordinating with `NttManager` to verify that tokens are locked or burned before releasing them on the other side. Transceivers can be customized to work with different security protocols, adding flexibility
 
 ### Transceivers
 
@@ -31,11 +37,17 @@ _Transceivers_ facilitate cross-chain token transfers by ensuring the accurate t
 
 While transceivers operate closely with Wormhole's ecosystem, they can also be configured independently of Wormhole's core system, allowing for flexibility. This adaptability allows them to be integrated with various verification backends to accommodate different security needs or platform-specific requirements.
 
-Transceivers are entrusted with several key responsibilities:
+Transceivers are entrusted with several responsibilities:
 
-- **Message routing** - transceivers handle the routing of token transfer messages between the chains. When a token transfer is initiated, the Transceiver ensures that the message, including all necessary details, is delivered to the appropriate Manager on the recipient chain
-- **Cross-chain coordination** - by working with managers, transceivers ensure that messages are processed correctly, facilitating a smooth token transfer process. This coordination guarantees that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain
-- **Customizability and verification** - transceivers are flexible and can be customized to work with different verification backends. This means that they can be adapted to support the unique needs of different chains or security protocols
+- **Message transmission** - transceivers handle the routing of transfer messages between chains. When a transfer is initiated, the transceiver sends the message (including transfer details like recipient and amount) to the destination chain’s manager for verification and processing
+- **Manager coordination** - transceivers work with managers to ensure tokens are locked or burned on the source chain before issuance on the destination chain, reinforcing the security of each transfer
+- **Custom verification support** - transceivers can integrate with custom verification backends, allowing flexibility to adapt to different security protocols or chain requirements. This customization enables protocols to use different attestation standards as needed
+
+How it Works:
+
+1. The transceiver receives instructions from the manager to send messages across chains
+2. It quotes delivery fees, handles cross-chain message relaying, and verifies delivery to ensure tokens are safely transferred
+3. For each message, the transceiver coordinates with managers, ensuring only authorized transfers are processed on the destination chain
 
 ![NTT architecture diagram](/docs/images/learn/messaging/native-token-transfers/architecture/architecture-1.webp)
 

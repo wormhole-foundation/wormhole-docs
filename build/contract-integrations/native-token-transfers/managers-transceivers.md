@@ -9,7 +9,7 @@ description: Explore the roles of Managers and Transceivers in NTT cross-chain t
 
 _Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
 
-- **`transfer`** - initiates a token transfer process involving token locking or burning on the source chain
+- **`transfer`** - initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
 
     ```solidity
     function transfer(
@@ -19,7 +19,7 @@ _Managers_ oversee the token transfer process and handle rate-limiting and messa
     ) external payable nonReentrant whenNotPaused returns (uint64)
     ```
 
-- **`quoteDeliveryPrice`** - quotes the fee for delivering a message to a specific target chain by querying and aggregating quotes from the transceiver contracts
+- **`quoteDeliveryPrice`** - calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer
 
     ```solidity
     function quoteDeliveryPrice(
@@ -28,7 +28,7 @@ _Managers_ oversee the token transfer process and handle rate-limiting and messa
     ) public view returns (uint256[] memory, uint256)
     ```
 
-- **`setPeer`** - establishes trust between different instances of NTT manager contracts across chains by cross-registering them as peers, ensuring secure communication
+- **`setPeer`** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
 
     ```solidity
     function setPeer(
