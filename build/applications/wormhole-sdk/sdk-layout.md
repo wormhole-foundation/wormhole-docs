@@ -287,7 +287,7 @@ This allows the application to interpret the incoming data and act accordingly q
 
 ### Registering Custom Payloads
 
-In addition to predefined layouts, Wormhole integrators can define and register their custom payloads. This is especially useful when integrating protocol-specific features, such as the ["Submit Your Protocol"](https://wormholescan.io/#/developers/submit){target=\_blank} feature in [WormholeScan](https://wormholescan.io/){target=\_blank}.
+In addition to predefined layouts, Wormhole integrators can define and register their custom payloads. This is especially useful when integrating protocol-specific features, such as the [**Submit Your Protocol**](https://wormholescan.io/#/developers/submit){target=\_blank} feature in [WormholeScan](https://wormholescan.io/){target=\_blank}.
 
 Below's an example of a custom payload registration:
 
