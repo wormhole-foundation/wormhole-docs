@@ -25,6 +25,6 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 
     Discover how to define, serialize, and deserialize data structures using the Wormhole SDK's layout system, ensuring efficient cross-chain communication.
 
-    [:octicons-arrow-right-16: Learn about Layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
+    [:octicons-arrow-right-16: Learn about layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
 
 </div>
