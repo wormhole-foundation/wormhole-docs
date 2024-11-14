@@ -17,14 +17,14 @@ The NTT framework is composed of managers, which oversee the transfer process, a
 
 _Managers_ are responsible for handling the flow of token transfers between different blockchains and ensuring that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. The main tasks of managers include rate-limiting transactions, verifying message authenticity (message attestation), and managing the interaction between multiple transceivers, who are responsible for cross-chain communications.
 
-Each Manager is assigned to a specific token but can operate across multiple chains. Their key responsibility is to ensure that tokens are securely locked or burned on the source chain before being minted or unlocked on the destination chain. This provides the integrity of token transfers and prevents double-spending.
+Each manager is assigned to a specific token but can operate across multiple chains. Their key responsibility is to ensure that tokens are securely locked or burned on the source chain before being minted or unlocked on the destination chain. This provides the integrity of token transfers and prevents double-spending.
 
-A Manager is responsible for:
+A manager is responsible for:
 
 - **Handling token transfer flow** - upon a transfer request, `NttManager` either locks or burns tokens depending on the configuration, emits a `TransferSent` event, and ensures tokens can’t be accessed on the source chain before leasing them on the destination chain. This process safeguards against double-spending and maintains a secure transfer
 - **Rate-limiting** - the `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers
-    - Outbound - transfers exceeding the outbound limit are queued (if `shouldQueue` is true) or reverted
-    - Inbound - similar limits apply on the destination chain, delaying transfers if capacity is exceeded
+    - **Outbound** - transfers exceeding the outbound limit are queued (if `shouldQueue` is true) or reverted
+    - **Inbound** - similar limits apply on the destination chain, delaying transfers if capacity is exceeded
 
     Rate limit duration and queuing are customizable per chain, and events notify users when transfers hit the limit
 
@@ -43,7 +43,7 @@ Transceivers are entrusted with several responsibilities:
 - **Manager coordination** - transceivers work with managers to ensure tokens are locked or burned on the source chain before issuance on the destination chain, reinforcing the security of each transfer
 - **Custom verification support** - transceivers can integrate with custom verification backends, allowing flexibility to adapt to different security protocols or chain requirements. This customization enables protocols to use different attestation standards as needed
 
-How it Works:
+How it works:
 
 1. The transceiver receives instructions from the manager to send messages across chains
 2. It quotes delivery fees, handles cross-chain message relaying, and verifies delivery to ensure tokens are safely transferred
