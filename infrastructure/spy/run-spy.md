@@ -39,6 +39,8 @@ To start a Spy locally, run the following Docker command:
         --env testnet
     ```
 
+If you want to run the spy built from source, change `ghcr.io/wormhole-foundation/guardiand:latest` to `guardian` after building the `guardian` image.
+
 Optionally, add the following flags to skip any VAAs with invalid signatures:
 
 === "Mainnet"
