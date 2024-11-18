@@ -31,7 +31,7 @@ Regardless of which network development environment you are using, there are a f
 
     ---
 
-    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
 
     [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
 

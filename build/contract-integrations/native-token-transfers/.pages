@@ -3,4 +3,5 @@ nav:
  - index.md
  - deployment-process
  - configuration
+ - 'Managers and Transceivers': 'managers-transceivers.md'
  - 'FAQS': faqs.md
