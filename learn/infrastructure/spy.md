@@ -21,13 +21,13 @@ Spies can access the following categories of messages shared over the gossip pro
 - [Observations](/docs/learn/fundamentals/glossary/#observation){target=\_blank} - emitted by Wormhole’s core contracts, observations are picked up by the Guardians and relayed across the network. Spies allow users to monitor these messages, adding transparency and insight into blockchain events
 - [Guardian heartbeats](/docs/learn/fundamentals/glossary/#heartbeat){target=\_blank} - heartbeat messages represent Guardian node statusn. By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network
 
-### Integrator Use Case
+## Integrator Use Case
 
 The Spy provides a valuable mechanism for integrators to observe real-time network activity in the Guardian Network without directly engaging in validation or consensus. By running a Spy, integrators can track cross-chain events, and message flows — such as VAAs, observations, and Guardian heartbeats — to monitor network activity essential to their applications.
 
 This monitoring capability is especially beneficial for applications that need immediate insights into cross-chain data events. Integrators can run a Spy to ensure their applications are promptly informed of message approvals, observations, or Guardian liveness signals, supporting timely and responsive app behavior without additional overhead on network resources.
 
-## Source Code
+## Resources
 
 For more information, you can check out the following resources:
 
