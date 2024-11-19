@@ -181,37 +181,118 @@ By enforcing strong typing, TypeScript helps ensure that the message object conf
 
 ## Commonly Used Layouts
 
-Specific layouts appear frequently in cross-chain interactions when working with the Wormhole SDK. These common layouts include fields like chain IDs, addresses, and signatures, which are essential for Wormhole’s cross-chain messaging infrastructure.
+The Wormhole SDK includes predefined layouts frequently used in cross-chain messaging. These layouts are optimized for standard fields such as chain IDs, addresses, and signatures. You can explore the complete set of predefined layouts in the [layout-items directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/layout-items){target=\_blank} of the Wormhole SDK.
 
-### Chain ID Layout
+### Chain ID Layouts
 
-Chain IDs are crucial for identifying cross-chain messages' source and destination chains. Wormhole uses layouts to handle chain IDs efficiently.
+Chain ID layouts in the Wormhole SDK derive from a common foundation: `chainItemBase`. This structure defines the binary representation of a chain ID as a 2-byte unsigned integer, ensuring consistency across serialization and deserialization processes.
+
+#### Base Structure
+
+This simple structure is the blueprint for more specific layouts by standardizing the binary format and size.
 
 ```typescript
-const chainIdLayout = { name: 'chainId', binary: 'uint', size: 2 } as const;
+const chainItemBase = { binary: "uint", size: 2 } as const;
 ```
 
-This layout defines a 2-byte unsigned integer (uint) for chain IDs. It is commonly used in VAAs and other payloads to identify which chain the message is originating from or targeting.
+#### Dynamic Chain ID Layout
+
+The dynamic chain ID layout, [`chainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/chain.ts#L13-L40){target=\_blank}, extends `chainItemBase` by adding flexible custom conversion logic. It enables runtime validation of chain IDs, supports optional null values, and restricts chain IDs to a predefined set when needed.
+
+```typescript
+export const chainItem = <
+  const C extends readonly Chain[] = typeof chains,
+  const N extends boolean = false,
+>(opts?: {
+  allowedChains?: C;
+  allowNull?: N;
+}) =>
+  ({
+    ...chainItemBase, // Builds on the base structure
+    custom: {
+      to: (val: number): AllowNull<C[number], N> => { ... },
+      from: (val: AllowNull<C[number], N>): number => { ... },
+    },
+  });
+```
+
+This layout is versatile. It allows the serialization of human-readable chain names (e.g., `Ethereum`) to numeric IDs (e.g., `1`) and vice versa. This is particularly useful when working with dynamic configurations or protocols supporting multiple chains.
+
+#### Fixed Chain ID Layout
+
+The fixed chain ID layout, [`fixedChainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/chain.ts#L42-L49){target=\_blank}, is more rigid. It also extends `chainItemBase`, but the custom field is hardcoded for a single chain. This eliminates runtime validation and enforces strict adherence to a specific chain.
+
+```typescript
+export const fixedChainItem = <const C extends Chain>(chain: C) =>
+  ({
+    ...chainItemBase, // Builds on the base structure
+    custom: {
+      to: chain,
+      from: chainToChainId(chain),
+    },
+  });
+```
+
+This layout allows developers to efficiently serialize and deserialize messages involving a single, fixed chain ID.
 
 ### Address Layout
 
-Addresses are used to reference contracts or wallets across chains. These layouts typically consist of a fixed byte size, often 32 bytes.
+The Wormhole SDK uses a Universal Address Layout to serialize and deserialize blockchain addresses into a standardized format. This layout ensures that addresses are always represented as fixed 32-byte binary values, enabling seamless cross-chain communication.
+
+#### Base Structure
+
+The [`universalAddressItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/universalAddress.ts#L7-L14){target=\_blank} defines the layout for addresses. It uses the binary type bytes and enforces a fixed size of 32 bytes for consistency.
 
 ```typescript
-const addressLayout = { name: 'address', binary: 'bytes', size: 32 } as const;
+export const universalAddressItem = {
+  binary: "bytes",
+  size: 32,
+  custom: {
+    to: (val: Uint8Array): UniversalAddress => new UniversalAddress(val),
+    from: (val: UniversalAddress): Uint8Array => val.toUint8Array(),
+  } satisfies CustomConversion<Uint8Array, UniversalAddress>,
+} as const satisfies LayoutItem;
 ```
 
-This layout defines a 32-byte array representing an address, a standard format for smart contracts and user addresses.
+This layout ensures consistent address handling by defining the following:
+
+ - **Serialization** - converts a high-level `UniversalAddress` object into raw binary (32 bytes) for efficient storage or transmission
+ - **Deserialization** - converts raw binary back into a `UniversalAddress` object, enabling further interaction in a human-readable or programmatic format
 
 ### Signature Layout
 
-Signatures, typically fixed-size byte arrays, verify the integrity and authenticity of messages in the Wormhole protocol.
+In the Wormhole SDK, the Signature Layout defines how serial and deserialize cryptographic signatures. These signatures are critical for verifying message authenticity and ensuring data integrity, particularly in Guardian-signed VAAs.
+
+#### Base Structure
+
+The `signatureLayout` specifies the binary structure of a secp256k1 signature. It divides the signature into three components:
 
 ```typescript
-const signatureLayout = { name: 'signature', binary: 'bytes', size: 64 } as const;
+const signatureLayout = [
+  { name: "r", binary: "uint", size: 32 },
+  { name: "s", binary: "uint", size: 32 },
+  { name: "v", binary: "uint", size: 1 },
+] as const satisfies Layout;
 ```
 
-This layout represents a 64-byte cryptographic signature commonly used for verifying VAAs.
+This layout provides a clear binary format for the secp256k1 signature, making it efficient to process within the Wormhole protocol.
+
+#### Layout with Custom Conversion
+
+The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level Signature object and vice versa.
+
+```typescript
+export const signatureItem = {
+  binary: "bytes",
+  layout: signatureLayout,
+  custom: {
+    to: (val: LayoutToType<typeof signatureLayout>) => new Signature(val.r, val.s, val.v),
+    from: (val: Signature) => ({ r: val.r, s: val.s, v: val.v }),
+  } satisfies CustomConversion<LayoutToType<typeof signatureLayout>, Signature>,
+} as const satisfies BytesLayoutItem;
+```
+
+The `custom` field ensures seamless integration of raw binary data with the Signature class, encapsulating signature-specific logic.
 
 ## Advanced Use Cases
 
