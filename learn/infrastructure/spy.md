@@ -29,8 +29,7 @@ This monitoring capability is especially beneficial for applications that need i
 
 ## Source Code
 
-The source code for the Go implementation of the Spy is available on [GitHub](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}.
+For more information, you can check out the following resources:
 
-Check out the infrastructure section to find out how to [start and run a Spy](/docs/infrastructure/spy/run-spy/){target=\_blank}.
-
-This setup enables integrators to create a custom endpoint that applications can use to observe message flows in the Guardian Network, providing greater flexibility and control over cross-chain monitoring.
+- The source code for the Go implementation of the Spy is available on [GitHub](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}
+- To find out how to [start and run a Spy](/docs/infrastructure/spy/run-spy/){target=\_blank}, refer to the infrastructure section. This setup enables integrators to create a custom endpoint that applications can use to observe message flows in the Guardian Network, providing greater flexibility and control over cross-chain monitoring
