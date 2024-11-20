@@ -140,9 +140,11 @@ This tells the SDK to first read or write the message's length (in 4 bytes) and 
 
 ## Nested Layouts and Strong Typing
 
-One of the benefits of using the Wormhole SDK in TypeScript is its support for strong typing. This ensures that serialized and deserialized data conform to expected structures, reducing errors during development by enforcing type checks at compile time.
+The Wormhole SDK simplifies handling complex structures with nested layouts and strong typing. Nested layouts represent hierarchical data clearly, while strong typing ensures data consistency and catches errors during development.
 
-In complex protocols, layouts can contain nested structures. This is where nested layouts become relevant, allowing you to represent hierarchical data (such as transactions or multi-part messages) clearly and structured.
+### Nested Layout
+
+In complex protocols, layouts can contain nested structures. This is where nested layouts become relevant, allowing you to represent hierarchical data (such as transactions or multi-part messages) in a structured format.
 
 Refer to the following nested layout where a message contains nested fields:
 
@@ -157,6 +159,8 @@ In this layout:
 
 ### Strong Typing
 
+One of the benefits of using the Wormhole SDK in TypeScript is its support for strong typing. This ensures that serialized and deserialized data conform to expected structures, reducing errors during development by enforcing type checks at compile time.
+
 Using TypeScript, the `LayoutToType` utility provided by the SDK automatically generates a strongly typed structure based on the layout:
 
 ```typescript
@@ -169,6 +173,8 @@ This ensures that when you serialize or deserialize data, it matches the expecte
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-7.ts"
 ```
 
+Attempting to assign data of incorrect types will result in a compile-time error. By enforcing strong types, the Wormhole SDK's layout system reduces runtime errors and improves code reliability.
+
 ### Serialization and Deserialization with Nested Layouts
 
 You can serialize and deserialize nested structures in the same way as simpler layouts:
@@ -177,7 +183,7 @@ You can serialize and deserialize nested structures in the same way as simpler l
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-8.ts"
 ```
 
-By enforcing strong typing, TypeScript helps ensure that the message object conforms to the nested layout structure, reducing the risk of data inconsistency during cross-chain communication.
+Strong typing in TypeScript ensures that the message object conforms to the nested layout structure. This reduces the risk of data inconsistency during cross-chain communication.
 
 ## Commonly Used Layouts
 
