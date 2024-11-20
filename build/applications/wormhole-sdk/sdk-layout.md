@@ -128,7 +128,7 @@ This will output the structured object, making it easy to work with data transmi
 
 ### Handling Variable-Length Fields
 
-One of the most powerful aspects of Wormhole SDK's layout system is the ability to handle variable-length fields, such as arrays and length-prefixed byte sequences.
+One relevant aspect of Wormhole SDK's layout system is the ability to handle variable-length fields, such as arrays and length-prefixed byte sequences.
 
 For instance, if you want to serialize or deserialize a message where the length of the content isn't known beforehand, you can define a layout item with a `lengthSize` field.
 
@@ -136,15 +136,15 @@ For instance, if you want to serialize or deserialize a message where the length
 { name: 'message', binary: 'bytes', lengthSize: 4 }
 ```
 
-This tells the SDK to first read or write the message's length (in 4 bytes) and then handle the actual content.
+This tells the SDK to read or write the message's length (in 4 bytes) and then handle the content.
 
 ## Nested Layouts and Strong Typing
 
-The Wormhole SDK simplifies handling complex structures with nested layouts and strong typing. Nested layouts represent hierarchical data clearly, while strong typing ensures data consistency and catches errors during development.
+The Wormhole SDK simplifies handling complex structures with nested layouts and strong typing. Nested layouts clearly represent hierarchical data, while strong typing ensures data consistency and catches errors during development.
 
 ### Nested Layout
 
-In complex protocols, layouts can contain nested structures. This is where nested layouts become relevant, allowing you to represent hierarchical data (such as transactions or multi-part messages) in a structured format.
+In complex protocols, layouts can contain nested structures. Nested layouts become relevant here, allowing you to represent hierarchical data (such as transactions or multi-part messages) in a structured format.
 
 Refer to the following nested layout where a message contains nested fields:
 
@@ -173,7 +173,7 @@ This ensures that when you serialize or deserialize data, it matches the expecte
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-7.ts"
 ```
 
-Attempting to assign data of incorrect types will result in a compile-time error. By enforcing strong types, the Wormhole SDK's layout system reduces runtime errors and improves code reliability.
+Attempting to assign data of incorrect types will result in a compile-time error. The Wormhole SDK's layout system enforces strong types, reducing runtime errors and improving code reliability.
 
 ### Serialization and Deserialization with Nested Layouts
 
@@ -267,7 +267,7 @@ This layout ensures consistent address handling by defining the following:
 
 ### Signature Layout
 
-In the Wormhole SDK, the Signature Layout defines how serial and deserialize cryptographic signatures. These signatures verify message authenticity and ensures data integrity, particularly in Guardian-signed VAAs.
+In the Wormhole SDK, the Signature Layout defines how to serialize and deserialize cryptographic signatures. These signatures verify message authenticity and ensure data integrity, particularly in Guardian-signed VAAs.
 
 #### Base Structure
 
@@ -338,7 +338,7 @@ The Wormhole SDK’s layout system is designed to handle various data structures
 
     In this example, `reserved` is a padding field with a fixed, non-dynamic value that serves no functional purpose. It is omitted from the deserialized result but still considered during serialization to maintain the correct binary format.
 
-    Only fields with a fixed, known value, such as padding or reserved fields, should be marked as `omit: true`. Fields that hold meaningful or dynamic information, such as `sourceChain` or `version`, must remain in the deserialized structure to ensure data integrity and allow seamless round-trip conversions between serialized and deserialized representations.
+    Only fields with a fixed, known value, such as padding or reserved fields, should be marked as `omit: true`. Fields with meaningful or dynamic information, such as `sourceChain` or `version`, must remain in the deserialized structure to ensure data integrity and allow seamless round-trip conversions between serialized and deserialized representations.
 
 ## Integration with Wormhole Protocol
 
@@ -371,11 +371,11 @@ export const headerLayout = [
 ] as const satisfies Layout;
 ```
 
-The header defines metadata for validating and processing the VAA, such as the Guardian set index and their signatures. Each signature is represented using the `signatureItem` layout, ensuring consistency and compatibility across different platforms.
+The header defines metadata for validating and processing the VAA, such as the Guardian set index and signatures. Each signature is represented using the `signatureItem` layout, ensuring consistency and compatibility across different platforms.
 
 !!! note "Signature Standard Compliance"
 
-    The signature field uses the `signatureItem` layout, which is explicitly defined as 65 bytes. This is aligned with widely-used standards such as EIP-2612 and Uniswap's Permit2, ensuring compatibility with cryptographic protocols and applications.
+    The signature field uses the `signatureItem` layout, which is explicitly defined as 65 bytes. This layout is aligned with widely used standards such as EIP-2612 and Uniswap's Permit2, ensuring compatibility with cryptographic protocols and applications.
 
 **Envelope layout:**
 
@@ -405,8 +405,8 @@ const examplePayloadLayout = [
 
 This example demonstrates a payload containing:
 
- - A type field, specifying the operation type (e.g., transfer or governance action).
- - A data field, which is length-prefixed and can store the operation-specific information.
+ - A type field specifying the operation type (e.g., transfer or governance action)
+ - A data field that is length-prefixed and can store operation-specific information
 
 Dynamic payload layouts are selected at runtime using the `payloadLiteral` field, which maps to a predefined layout in the Wormhole SDK.
 
@@ -422,17 +422,15 @@ At runtime, the payload layout is appended to the `baseLayout` to form the compl
 
 #### Serializing VAA Data
 
-The Wormhole SDK provides the [`serialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/functions.ts#L48-L54){target=\_blank} function to serialize a VAA message. This function combines the base layout (header and envelope) with the appropriate payload layout, ensuring that the message is correctly formatted for transmission across chains.
+The Wormhole SDK provides the [`serialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/functions.ts#L48-L54){target=\_blank} function to serialize a VAA message. This function combines the base layout (header and envelope) with the appropriate payload layout, ensuring the message’s format is correct for transmission across chains.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-17.ts"
 ```
 
-This ensures the VAA is correctly formatted for transmission across the Wormhole network.
-
 ???- note "How does it work?"
 
-    Internally, the serialize function dynamically combines the `baseLayout` (header and envelope) with the payload layout defined by the `payloadLiteral`. The full layout is then passed to the `serializeLayout` function, which converts the data into binary format.
+    Internally, the serialize function dynamically combines the `baseLayout` (header and envelope) with the payload layout defined by the `payloadLiteral`. The complete layout is then passed to the `serializeLayout` function, which converts the data into binary format.
 
     ```typescript
     const layout = [
@@ -552,7 +550,7 @@ import { UniversalAddress } from '@wormhole-foundation/sdk-core';
 const deserializedAddress = new UniversalAddress(someBinaryData);
 ```
 
-By focusing on reusing predefined layout items and converting deserialized data into higher-level abstractions, you can ensure a more robust and maintainable implementation.
+Focusing on reusing predefined layout items and converting deserialized data into higher-level abstractions can ensure a more robust and maintainable implementation.
 
 #### Consistent Error Handling
 
