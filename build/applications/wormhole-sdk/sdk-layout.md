@@ -554,14 +554,6 @@ const deserializedAddress = new UniversalAddress(someBinaryData);
 
 By focusing on reusing predefined layout items and converting deserialized data into higher-level abstractions, you can ensure a more robust and maintainable implementation.
 
-#### Validate Data Before Serialization
-
-Before calling `serializeLayout`, ensure your data matches the expected structure and types. Catching errors earlier in the process can save debugging time.
-
-```typescript
---8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-10.ts"
-```
-
 #### Consistent Error Handling
 
 Always handle errors during both serialization and deserialization. Catching exceptions allows you to log or resolve issues gracefully when working with potentially corrupted or invalid data.
@@ -572,11 +564,15 @@ Always handle errors during both serialization and deserialization. Catching exc
 
 #### Leverage Reusable Layouts
 
-Create reusable layout definitions for commonly used structures like chain IDs, addresses, and signatures whenever possible. This minimizes code duplication and helps keep your layouts maintainable.
+Creating reusable layouts for commonly repeated structures improves code maintainability and reduces duplication. These layouts can represent fields or combinations of fields frequently encountered in cross-chain communication, such as chain IDs, addresses, and signatures.
+
+For example, define a reusable layout for chain IDs and addresses:
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-12.ts"
 ```
+
+By abstracting common elements into a single layout, you ensure consistency across different parts of your application and simplify future updates.
 
 ## Performance Considerations
 
@@ -594,8 +590,20 @@ This approach ensures that discriminators are only built when required, helping 
 
 ### Minimize Layout Redundancy
 
-When defining layouts, reuse common components (like chain IDs and addresses) across your project to avoid duplication. This not only improves code maintainability but also minimizes unnecessary memory use.
+Avoid defining custom layouts for fields already provided by the Wormhole SDK. Instead, reuse predefined layout items like chainItem or universalAddressItem to maintain compatibility with Wormhole standards and ensure strong typing.
+
+For example, instead of manually defining layouts for chain IDs or addresses, leverage the SDK’s built-in items:
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-19.ts"
 ```
+
+Reusing SDK-provided layouts eliminates redundancy, reduces maintenance, and ensures your code aligns with established standards.
+
+## Resources
+
+For further learning and practical experience, explore the following resources:
+
+ - **Wormhole TypeScript SDK** - the [Wormhole SDK repository](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} contains the core implementation of layouts, including predefined layout items and utilities like `serializeLayout` and `deserializeLayout`
+
+ - **Layout tests repository** - for hands-on experimentation, check out this [layout tests repository](https://github.com/nonergodic/layout){target=\_blank}, which provides examples and unit tests to help you better understand serialization, deserialization, and the strong typing mechanism. Running these tests locally is a great way to deepen your understanding of how layouts function in real-world scenarios
