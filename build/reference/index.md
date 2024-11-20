@@ -40,7 +40,6 @@ In this section, you'll find reference information that is essential for develop
     - NFT Bridge
     - Wormhole relayer
     - CCTP
-    - Gateway
 
     [:octicons-arrow-right-16: View list of contract addresses](/docs/build/reference/contract-addresses/)
 
