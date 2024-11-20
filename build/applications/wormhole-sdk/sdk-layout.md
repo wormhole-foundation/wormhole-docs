@@ -498,16 +498,6 @@ When working with the Wormhole SDK layout system, it's important to be aware of 
 
 ### Pitfalls to Avoid
 
-#### Mismatched Types in Layouts
-
-Ensure that the type you define in your layout matches the actual data type used in serialization and deserialization. For example, if you define a field as `binary: 'uint'`, the corresponding data should be a `number` or `bigint`, not a `string` or `bytes`.
-
-```typescript
-// Incorrect: Passing a string where an unsigned integer is expected
-{ name: 'sourceChain', binary: 'uint', size: 2 } 
-// Usage should be: { sourceChain: 6 } not { sourceChain: '6' }
-```
-
 #### Defining Sizes for Data Types
 
 When defining sizes for each data type, make sure to match the actual data length to the specified size to prevent serialization and deserialization errors:
