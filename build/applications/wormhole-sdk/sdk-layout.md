@@ -336,35 +336,147 @@ The Wormhole SDK’s layout system is designed to handle various data structures
 
 The layout system is critical in ensuring seamless interaction with the Wormhole protocol, mainly when dealing with VAAs. These cross-chain messages must be serialized and deserialized to ensure they can be transmitted and processed accurately across different chains.
 
-### VAAs and Payload Handling
+### VAAs and Layouts
 
-Wormhole’s core functionality revolves around VAAs, which are signed messages that allow different chains to communicate. These VAAs contain complex data that must be encoded using layouts. The layout system in the Wormhole SDK simplifies this by providing structured serialization and deserialization tools.
+VAAs are the backbone of Wormhole’s cross-chain communication. Each VAA is a signed message encapsulating critical information such as the originating chain, the emitter address, a sequence number, and Guardian signatures. The Wormhole SDK leverages its layout system to define, serialize, and deserialize VAAs, ensuring data integrity and chain compatibility.
 
-Here’s how a typical VAA payload might be structured using the Wormhole SDK's layout system:
+#### Base VAA Structure
+
+The Wormhole SDK organizes the VAA structure into three key components:
+
+ - [**Header**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank} - contains metadata such as the Guardian set index and an array of Guardian signatures
+ - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and consistency level
+ - **Payload** - provides application-specific data, such as the actual message or operation being performed
+
+**Header layout:**
 
 ```typescript
---8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-16.ts"
+const guardianSignatureLayout = [
+  { name: "guardianIndex", binary: "uint", size: 1 },
+  { name: "signature", ...signatureItem },
+] as const satisfies Layout;
+
+export const headerLayout = [
+  { name: "version", binary: "uint", size: 1, custom: 1, omit: true },
+  { name: "guardianSet", ...guardianSetItem },
+  { name: "signatures", binary: "array", lengthSize: 1, layout: guardianSignatureLayout },
+] as const satisfies Layout;
 ```
 
-This layout structure lets developers easily define and work with VAAs in their applications, ensuring the data conforms to Wormhole’s protocol requirements.
+The header defines essential metadata for validating and processing the VAA, such as the Guardian set index and their signatures. Each signature is represented using the `signatureItem` layout, ensuring consistency and compatibility across different platforms.
 
-### Serializing VAA Data
+!!! note "Signature Standard Compliance"
 
-Developers can use the `serializeLayout` function to serialize a VAA message. This ensures that the message is correctly formatted before being transmitted between chains.
+    The signature field uses the `signatureItem` layout, which is explicitly defined as 65 bytes. This is aligned with widely-used standards such as EIP-2612 and Uniswap's Permit2, ensuring compatibility with cryptographic protocols and applications.
+
+**Envelope layout:**
+
+```typescript
+export const envelopeLayout = [
+  { name: "timestamp", binary: "uint", size: 4 },
+  { name: "nonce", binary: "uint", size: 4 },
+  { name: "emitterChain", ...chainItem() },
+  { name: "emitterAddress", ...universalAddressItem },
+  { name: "sequence", ...sequenceItem },
+  { name: "consistencyLevel", binary: "uint", size: 1 },
+] as const satisfies Layout;
+```
+
+The envelope encapsulates the VAA's core message data, including chain-specific information like the emitter address and sequence number. This structured layout ensures that the VAA can be securely transmitted across chains.
+
+**Payload Layout:**
+
+The Payload contains the user-defined data specific to the application or protocol, such as a token transfer message, governance action, or other cross-chain operation. The layout of the payload is dynamic and depends on the payload type, identified by the `payloadLiteral` field.
+
+```typescript
+const examplePayloadLayout = [
+  { name: "type", binary: "uint", size: 1 },
+  { name: "data", binary: "bytes", lengthSize: 2 },
+] as const satisfies Layout;
+```
+
+This example demonstrates a payload containing:
+
+ - A type field, specifying the operation type (e.g., transfer or governance action).
+ - A data field, which is length-prefixed and can store the operation-specific information.
+
+Dynamic payload layouts are selected at runtime using the `payloadLiteral` field, which maps to a predefined layout in the Wormhole SDK.
+
+**Combined Base Layout:**
+
+The base VAA layout combines the header, envelope, and dynamically selected payload layout:
+
+```typescript
+export const baseLayout = [...headerLayout, ...envelopeLayout] as const;
+```
+
+At runtime, the payload layout is appended to the `baseLayout` to form the complete structure.
+
+#### Serializing VAA Data
+
+The Wormhole SDK provides the [`serialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/functions.ts#L48-L54){target=\_blank} function to serialize a VAA message. This function combines the base layout (header and envelope) with the appropriate payload layout, ensuring that the message is correctly formatted for transmission across chains.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-17.ts"
 ```
 
-### Deserializing VAA Data
+This ensures the VAA is correctly formatted for transmission across the Wormhole network.
 
-When a VAA message is received, it needs to be deserialized so that the application can work with it. The `deserializeLayout` function converts the binary VAA back into a structured object.
+???- note "How does it work?"
+
+    Internally, the serialize function dynamically combines the `baseLayout` (header and envelope) with the payload layout defined by the `payloadLiteral`. The full layout is then passed to the `serializeLayout` function, which converts the data into binary format.
+
+    ```typescript
+    const layout = [
+    ...baseLayout, // Header and envelope layout
+    payloadLiteralToPayloadItemLayout(vaa.payloadLiteral), // Payload layout
+    ] as const;
+
+    return serializeLayout(layout, vaa as LayoutToType<typeof layout>);
+    ```
+
+#### Deserializing VAA Data
+
+The Wormhole SDK provides the [`deserialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/functions.ts#L162-L200){target=\_blank} function to parse a VAA from its binary format back into a structured object. This function uses the `baseLayout` and payload discriminator logic to ensure the VAA is correctly interpreted.
 
 ```typescript
-const deserializedVAA = deserializeLayout(vaaLayout, serializedVAA);
+import { deserialize } from '@wormhole-foundation/sdk-core/vaa/functions';
+
+const serializedVAA = new Uint8Array([
+  /* Serialized VAA binary data */
+]);
+
+const vaaPayloadType = 'SomePayloadType'; // The payload type expected for this VAA
+const deserializedVAA = deserialize(vaaPayloadType, serializedVAA);
 ```
 
-This allows the application to interpret the incoming data and act accordingly quickly.
+???- note "How does it work?"
+
+    Internally, the `deserialize` function uses the `baseLayout` (header and envelope) to parse the main VAA structure. It then identifies the appropriate payload layout using the provided payload type or discriminator.
+
+    ```typescript
+    const [header, envelopeOffset] = deserializeLayout(headerLayout, data, { consumeAll: false });
+
+    const [envelope, payloadOffset] = deserializeLayout(envelopeLayout, data, {
+    offset: envelopeOffset,
+    consumeAll: false,
+    });
+
+    const [payloadLiteral, payload] =
+    typeof payloadDet === 'string'
+        ? [
+            payloadDet as PayloadLiteral,
+            deserializePayload(payloadDet as PayloadLiteral, data, payloadOffset),
+        ]
+        : deserializePayload(payloadDet as PayloadDiscriminator, data, payloadOffset);
+
+    return {
+    ...header,
+    ...envelope,
+    payloadLiteral,
+    payload,
+    } satisfies VAA;
+    ```
 
 ### Registering Custom Payloads
 
