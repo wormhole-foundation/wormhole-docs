@@ -1,9 +1,9 @@
-const switchLayout = {
-  binary: 'switch',
-  idSize: 1, // size of the payload ID
-  idTag: 'messageType', // tag to identify the type of message
-  layouts: [
-    [[1, 'messageType1'], fillLayout], // layout for type 1
-    [[2, 'messageType2'], fastFillLayout], // layout for type 2
-  ],
-} as const satisfies Layout;
+export const signatureItem = {
+  binary: 'bytes',
+  layout: signatureLayout,
+  custom: {
+    to: (val: LayoutToType<typeof signatureLayout>) =>
+      new Signature(val.r, val.s, val.v),
+    from: (val: Signature) => ({ r: val.r, s: val.s, v: val.v }),
+  } satisfies CustomConversion<LayoutToType<typeof signatureLayout>, Signature>,
+} as const satisfies BytesLayoutItem;

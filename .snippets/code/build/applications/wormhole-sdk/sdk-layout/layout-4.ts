@@ -6,4 +6,3 @@ const examplePayload = {
 };
 
 const serializedData = serializeLayout(exampleLayout, examplePayload);
-console.log(serializedData);
