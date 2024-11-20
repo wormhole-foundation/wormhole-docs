@@ -530,13 +530,29 @@ Arrays can be fixed-length or length-prefixed, so it’s important to define the
 
 These best practices and common pitfalls can help prevent bugs and improve the reliability of your implementation when working with layouts in the Wormhole SDK.
 
-#### Use Constants for Sizes and Types
+#### Reuse Predefined Layout Items
 
-Instead of hardcoding sizes and types across your codebase, define constants that can be reused across multiple layouts. This ensures consistency and reduces the chance of errors.
+Rather than defining sizes or types manually, reuse the predefined layout items provided by the Wormhole SDK. These items ensure consistent formatting and enforce strong typing.
+
+For instance, use the `chainItem` layout for chain IDs or `universalAddressItem` for blockchain addresses:
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-9.ts"
 ```
+
+By leveraging predefined layout items, you reduce redundancy, maintain consistency, and ensure compatibility with Wormhole’s standards.
+
+#### Use Class Instances
+
+Whenever possible, convert deserialized data into higher-level class instances. This makes it easier to validate, manipulate, and interact with structured data. For example, the [`UniversalAddress`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/universalAddress.ts#L17-L59){target=\_blank} class ensures consistent address handling:
+
+```typescript
+import { UniversalAddress } from '@wormhole-foundation/sdk-core';
+
+const deserializedAddress = new UniversalAddress(someBinaryData);
+```
+
+By focusing on reusing predefined layout items and converting deserialized data into higher-level abstractions, you can ensure a more robust and maintainable implementation.
 
 #### Validate Data Before Serialization
 

@@ -1,8 +1,9 @@
-const SIZE_32 = 32;
-const UINT_TYPE = 'uint';
+import {
+  chainItem,
+  universalAddressItem,
+} from '@wormhole-foundation/sdk-core/layout-items';
 
-// Example layout using constants
 const exampleLayout = [
-  { name: 'orderSender', binary: 'bytes', size: SIZE_32 },
-  { name: 'sourceChain', binary: UINT_TYPE, size: 2 },
+  { name: 'sourceChain', ...chainItem() }, // Use predefined chain ID layout
+  { name: 'senderAddress', ...universalAddressItem }, // Use universal address layout
 ] as const;
