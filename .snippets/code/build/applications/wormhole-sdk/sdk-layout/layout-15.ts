@@ -1,3 +1,3 @@
 const omittedFieldLayout = [
-  { name: 'sourceChain', binary: 'uint', size: 2, omit: true }, // omitted from deserialization
+  { name: 'reserved', binary: 'uint', size: 2, omit: true },
 ] as const satisfies Layout;

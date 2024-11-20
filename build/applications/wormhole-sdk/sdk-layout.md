@@ -324,13 +324,15 @@ The Wormhole SDK’s layout system is designed to handle various data structures
 
     **Example: Omitted Fields**
 
-    Omitted fields can be useful when padding or reserved fields exist that don’t need to be returned in the deserialized output:
+    Omitted fields are useful for handling padding or reserved fields that do not carry meaningful information and can safely be excluded from the deserialized output:
 
     ```typescript
     --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-15.ts"
     ```
 
-    In this case, `sourceChain` is omitted from the deserialized result but still considered during serialization.
+    In this example, `reserved` is a padding field with a fixed, non-dynamic value that serves no functional purpose. It is omitted from the deserialized result but still considered during serialization to maintain the correct binary format.
+
+    Only fields with a fixed, known value, such as padding or reserved fields, should be marked as `omit: true`. Fields that hold meaningful or dynamic information, such as `sourceChain` or `version`, must remain in the deserialized structure to ensure data integrity and allow seamless round-trip conversions between serialized and deserialized representations.
 
 ## Integration with Wormhole Protocol
 
