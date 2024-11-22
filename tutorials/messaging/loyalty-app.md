@@ -131,9 +131,110 @@ you can check the module itself and check the comments
 really helpful 
 parse_and_verify 
 in the code we'll be using take_payload
-in a production code you will get ke_emitter_infor_and_payload which gives u the emitter chain, emitter address and payload itself
+in a production code you will get take_emitter_info_and_payload which gives u the emitter chain, emitter address and payload itself
 what we actually get is a vector so we need parse_and_verify along with the state and the clock
+parse_and_verify returns the vaa
+once u have the vaa you call the take_emitter_info_and_payload with the vaa and you get the info that u actually need 
+then u get the payload which u have to deserialize to use
 
+one more thing we care about is publish_message.move
+publish_message emits a message as a sui event 
+`publish_message` emits a message as a Sui event. This method uses the input `EmitterCap` as the registered sender of the `WormholeMessage`. It also produces a new sequence for this emitter.
+
+It is important for integrators to refrain from calling this method within their contracts. This method is meant to be called in a transaction block after receiving a `MessageTicket` from calling `prepare_message` within a contract. 
+
+prepare_message is the methd we want, which will retunr a message ticket which is needed inside the publish_message
+you call prepare_message get the result and put it inside publish_message
+
+these are the main fnctions that we will use 
+
+- receive_message method
+for receive_message im expecting to be given the raw_vaa which is the vector from before 
+i will need the state and clock to be able to parse and verify
+when we have the vector we call parse_and_verify with all the necessary arguments and we get the vaa
+then we extrate the payload, we use take_payload but its suggested that u use take_emitter_info_and_payload in order to actuall do checks 
+we're not doing any checks 
+
+we expect to be getting an operations code, 0 add points 1 remove points 
+for user we are using the public key of the user to identify it
+
+```
+public fun receive_message (
+    raw_vaa: vector<u8>,
+    wormhole_state: &State,
+    clock: &Clock,
+    data: &mut LoyaltyData
+)
+{
+
+    let vaa: VAA = vaa::parse_and_verify(wormhole_state, raw_vaa, clock);
+    let payload = vaa::take_payload(vaa);
+    let (op, _chain, user, amount) = parse_payload(payload);
+
+    // gain points
+    if (op == 0) {
+        loyalty::add_points(data, user, amount);
+    } 
+    // use points
+    else if (op == 1) {
+       loyalty::remove_points(data, user, amount); 
+    } else {
+        abort(EInexistentOpCode)
+    }
+
+}
+```
+
+- new_message method
+how to create a new message 
+msg will contain user address as bytes and amount of points 
+amount of points is in data loyaltydata 
+i get the points inside the table data.points
+for every user im keeping their points
+i create prepare_payload which returns a vector of bytes
+then i publich message i use the wormhole publish_message::prepare_message to retunr the message ticket 
+were supposed to use it in a ptb ?? and then call the publich message:: publich message from wormhole
+
+```
+// suggested way is to call wormhole::publish_message::publish_message in a PTB
+public fun new_message(
+    data: &LoyaltyData,
+    user: vector<u8>,
+    nonce: u32,
+    emitter_cap: &mut EmitterCap
+): MessageTicket
+{
+    let payload = prepare_payload(data.points(user), user);
+    publish_message::prepare_message(emitter_cap, nonce, payload)
+}
+```
+
+at the end put the whole script messages.move
+
+this is how u use sui move code that interacts with wormhole now we go over the full example
+
+
+SO NOW WE START
+
+so in Sui you have a a package which usually is indicated by a big a folder that contains usually a sources and contains a lot of move files which are called modules - some of them may be test modules and the test modules are indicated by a test_only above them 
+
+we go to our file contacts/sources/contracts.move
+we write the package name and module name 
+we change the module name to make it more clear 
+so we rename contracts.move to into.move
+
+so our intro.move file now contains
+```
+module contracts::intro;
+```
+
+where contracts is the name of the package (main folder) and intro the name of the module (pur file)
+
+```
+```
+
+```
+```
 
 ## Resources 
 
