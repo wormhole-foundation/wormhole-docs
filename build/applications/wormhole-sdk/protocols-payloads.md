@@ -74,16 +74,7 @@ Protocol registration involves two key tasks:
 For example, here's the `TokenBridge` protocol registration:
 
 ```typescript
-declare module "../../registry.js" {
-  export namespace WormholeRegistry {
-    interface ProtocolToInterfaceMapping<N, C> {
-      TokenBridge: TokenBridge<N, C>
-    }
-    interface ProtocolToPlatformMapping {
-      TokenBridge: EmptyPlatformMap<"TokenBridge">
-    }
-  }
-}
+--8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-1.ts"
 ```
 
 This code snippet:
@@ -98,15 +89,7 @@ You can view the full implementation in the [`TokenBridge` protocol file](https:
 Some protocols require platform-specific behavior. For instance, the EVM-compatible Wormhole Registry maps native addresses for Ethereum-based chains:
 
 ```typescript
-declare module "@wormhole-foundation/sdk-connect" {
-  export namespace WormholeRegistry {
-    interface PlatformToNativeAddressMapping {
-      Evm: EvmAddress
-    }
-  }
-}
-
-registerNative(_platform, EvmAddress)
+--8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-2.ts"
 ```
 
 This ensures `EvmAddress` is registered as the native address type for EVM-compatible platforms. See the [EVM platform address file](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/platforms/evm/src/address.ts#L98-L106){target=\_blank} for details.
@@ -132,15 +115,7 @@ Payload registration involves:
 1. **Defining payload layouts** - create layouts to structure your payloads. For instance, a protocol might use a `TransferWithPayload` layout:
 
     ```typescript
-    export const transferWithPayloadLayout = <const P extends CustomizableBytes = undefined>(
-    customPayload?: P,
-    ) =>
-    [
-        payloadIdItem(3),
-        ...transferCommonLayout,
-        { name: "from", ...universalAddressItem },
-        customizableBytes({ name: "payload" }, customPayload),
-    ] as const
+    --8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-3.ts"
     ```
 
 2. **Registering payloads** - use `registerPayloadTypes` to map payload literals to their layouts:
@@ -164,15 +139,7 @@ These steps establish the link between payload literals and their layouts, enabl
 At the core of the payload registration process is the `payloadFactory`, a registry that manages the mapping between payload literals and layouts:
 
 ```typescript
-export const payloadFactory = new Map<LayoutLiteral, Layout>();
-
-export function registerPayloadType(protocol: ProtocolName, name: string, layout: Layout) {
-  const payloadLiteral = composeLiteral(protocol, name);
-  if (payloadFactory.has(payloadLiteral)) {
-    throw new Error(`Payload type ${payloadLiteral} already registered`);
-  }
-  payloadFactory.set(payloadLiteral, layout);
-}
+--8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-4.ts"
 ```
 
  - The `payloadFactory` ensures each payload literal maps to its layout uniquely
@@ -200,25 +167,7 @@ This system ensures:
 Below is an example of how the Wormhole SDK builds a discriminator to distinguish between payload layouts:
 
 ```typescript
-export function buildDiscriminator<B extends boolean = false>(
-  layouts: readonly Layout[],
-  allowAmbiguous?: B
-): Discriminator<B> {
-  // Internal logic to determine distinguishable layouts
-  const [distinguishable, discriminator] = internalBuildDiscriminator(layouts);
-  if (!distinguishable && !allowAmbiguous) {
-    throw new Error("Cannot uniquely distinguish the given layouts");
-  }
-
-  return (
-    !allowAmbiguous
-      ? (encoded: BytesType) => {
-          const layout = discriminator(encoded);
-          return layout.length === 0 ? null : layout[0];
-        }
-      : discriminator
-  ) as Discriminator<B>;
-}
+--8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-5.ts"
 ```
 
  - `buildDiscriminator` takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload
@@ -240,15 +189,7 @@ Payloads are registered to the `TokenBridge` protocol via the `PayloadLiteralToL
 Additionally, the protocol uses reusable layouts like [`transferCommonLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts#L29C7-L47){target=\_blank} and extends them in more specialized layouts such as [`transferWithPayloadLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts#L49-L57){target=\_blank}:
 
 ```typescript
-export const transferWithPayloadLayout = <const P extends CustomizableBytes = undefined>(
-  customPayload?: P,
-) =>
-[
-  payloadIdItem(3),
-  ...transferCommonLayout,
-  { name: "from", ...universalAddressItem },
-  customizableBytes({ name: "payload" }, customPayload),
-] as const;
+--8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-6.ts"
 ```
 
 This layout includes:
@@ -262,11 +203,7 @@ This layout includes:
 To manage multiple payloads, the `TokenBridge` protocol utilizes a discriminator to dynamically distinguish between payload types. For example:
 
 ```typescript
-const tokenBridgePayloads = ["Transfer", "TransferWithPayload"] as const;
-
-export const getTransferDiscriminator = lazyInstantiate(() =>
-  payloadDiscriminator([_protocol, tokenBridgePayloads]),
-);
+--8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-7.ts"
 ```
 
  - The [`getTransferDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dbbbc7c365db602dd3b534f6d615ac80c3d2aaf1/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L67-L70){target=\_blank} function dynamically evaluates payloads using predefined layouts
@@ -277,14 +214,7 @@ export const getTransferDiscriminator = lazyInstantiate(() =>
 Here’s how the `TokenBridge` protocol connects its payloads to the Wormhole SDK:
 
 ```typescript
-declare module "../../registry.js" {
-  export namespace WormholeRegistry {
-    interface PayloadLiteralToLayoutMapping
-      extends RegisterPayloadTypes<"TokenBridge", typeof tokenBridgeNamedPayloads> {}
-  }
-}
-
-registerPayloadTypes("TokenBridge", tokenBridgeNamedPayloads);
+--8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-8.ts"
 ```
 
 This registration links the `TokenBridge` payload literals to their respective layouts, enabling serialization and deserialization at runtime.
