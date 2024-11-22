@@ -353,24 +353,40 @@ public fun init_for_tests(ctx: &mut TxContext) {
 }
 ```
 
-<!-- ----- TRANSCRIPT ----- -->
-<!-- messages.move -->
+## Implementing the messages contract
 
-sources/messages.move
-how u send a message 
+Start by creating a new file in the `sources` directory called `messages.move`. This file will handle sending and receiving messages using Wormhole's functionality.
 
-we create another file messages.move 
-then we go to messages.move 
+### Setup dependencies
 
-- receive_message method from messages.move
-for receive_message im expecting to be given the raw_vaa which is the vector from before 
-i will need the state and clock to be able to parse and verify
-when we have the vector we call parse_and_verify with all the necessary arguments and we get the vaa
-then we extrate the payload, we use take_payload but its suggested that u use take_emitter_info_and_payload in order to actuall do checks 
-we're not doing any checks 
+At the top of the file, include the necessary imports for using Wormhole, handling payloads, and working with the loyalty contract:
 
-we expect to be getting an operations code, 0 add points 1 remove points 
-for user we are using the public key of the user to identify it
+```
+module loyalty_contracts::messages;
+
+use sui::bcs;
+use sui::coin::Coin;
+use sui::clock::Clock;
+use sui::sui::SUI;
+
+use wormhole::vaa::{Self, VAA};
+use wormhole::state::State;
+use wormhole::publish_message::{Self, MessageTicket};
+use wormhole::emitter::EmitterCap;
+
+use loyalty_contracts::loyalty::{Self, LoyaltyData};
+```
+
+Then add error codes:
+
+```
+const EInvalidPayload: u64 = 404;
+const EInexistentOpCode: u64 = 407;
+```
+
+### Implement the receive_message Function
+
+The `receive_message` function processes incoming messages by verifying their authenticity and extracting their payloads. It then updates the loyalty program’s state based on the operation code. <!-- add better description here-->
 
 ```
 public fun receive_message (
@@ -399,15 +415,9 @@ public fun receive_message (
 }
 ```
 
-- new_message method
-how to create a new message 
-msg will contain user address as bytes and amount of points 
-amount of points is in data loyaltydata 
-i get the points inside the table data.points
-for every user im keeping their points
-i create prepare_payload which returns a vector of bytes
-then i publich message i use the wormhole publish_message::prepare_message to retunr the message ticket 
-were supposed to use it in a ptb ?? and then call the publich message:: publich message from wormhole
+### Implement the new_message function
+
+This function creates a new message containing user points and prepares it for sending via Wormhole. <!-- add better description here-->
 
 ```
 // suggested way is to call wormhole::publish_message::publish_message in a PTB
@@ -423,15 +433,210 @@ public fun new_message(
 }
 ```
 
+### Implement helper functions
+
+`prepare_payload` function constructs the payload for outgoing messages, which includes the user’s points and address.
+
+```
+fun prepare_payload(points: u64, user: vector<u8>): vector<u8> {
+    let mut payload: vector<u8> = bcs::to_bytes(&points);
+    vector::append(&mut payload, user);
+    payload
+}
+```
+
+`parse_payload` function decodes an incoming payload to extract its components.
+```
+fun parse_payload(mut payload: vector<u8>): (u8, u8, vector<u8>, u64) {
+    let operation = vector::pop_back(&mut payload);
+    let chain = vector::pop_back(&mut payload);
+    let mut user_address: vector<u8> = vector[];
+    let mut i = 0;
+    while(i < 32) {
+        vector::push_back(&mut user_address, vector::pop_back(&mut payload));
+        i = i + 1;
+    };
+    vector::reverse(&mut user_address);
+
+    // Ensure remaining payload contains exactly 8 bytes for the u64 points
+    assert!(vector::length(&payload) == 8, EInvalidPayload);
+
+    let mut amount_bcs = bcs::new(payload);
+    let amount = amount_bcs.peel_u64();
+    (operation, chain, user_address, amount)
+}
+```
+
+### Include a Testing Method (Optional)
+
+The `emit_message_` function is primarily for testing. It demonstrates how to directly send a message using Wormhole’s publish_message.
+
+```
+public fun emit_message_(
+    wormhole_state: &mut State,
+    message_fee: Coin<SUI>,
+    clock: &Clock,
+    data: &LoyaltyData,
+    user: vector<u8>,
+    nonce: u32,
+    emitter_cap: &mut EmitterCap
+) {
+    let msg_ticket = new_message(data, user, nonce, emitter_cap);
+    publish_message::publish_message(wormhole_state, message_fee, msg_ticket, clock);
+}
+
+```
+
+### Full messages.move code
+
+Here’s the complete file:
+
+```
+module loyalty_contracts::messages;
+
+use sui::bcs;
+use sui::coin::Coin;
+use sui::clock::Clock;
+use sui::sui::SUI;
+
+use wormhole::vaa::{Self, VAA};
+use wormhole::state::State;
+use wormhole::publish_message::{Self, MessageTicket};
+use wormhole::emitter::EmitterCap;
+
+use loyalty_contracts::loyalty::{Self, LoyaltyData};
+
+const EInvalidPayload: u64 = 404;
+const EInexistentOpCode: u64 = 407;
+
+public fun receive_message (
+    raw_vaa: vector<u8>,
+    wormhole_state: &State,
+    clock: &Clock,
+    data: &mut LoyaltyData
+)
+{
+
+    let vaa: VAA = vaa::parse_and_verify(wormhole_state, raw_vaa, clock);
+    let payload = vaa::take_payload(vaa);
+    let (op, _chain, user, amount) = parse_payload(payload);
+
+    // gain points
+    if (op == 0) {
+        loyalty::add_points(data, user, amount);
+    } 
+    // use points
+    else if (op == 1) {
+       loyalty::remove_points(data, user, amount); 
+    } else {
+        abort(EInexistentOpCode)
+    }
+
+}
+
+// suggested way is to call wormhole::publish_message::publish_message in a PTB
+public fun new_message(
+    data: &LoyaltyData,
+    user: vector<u8>,
+    nonce: u32,
+    emitter_cap: &mut EmitterCap
+): MessageTicket
+{
+    let payload = prepare_payload(data.points(user), user);
+    publish_message::prepare_message(emitter_cap, nonce, payload)
+}
+
+// not suggested, useful_for tests
+public fun emit_message_(
+    wormhole_state: &mut State,
+    message_fee: Coin<SUI>,
+    clock: &Clock,
+    data: &LoyaltyData,
+    user: vector<u8>,
+    nonce: u32,
+    emitter_cap: &mut EmitterCap
+) 
+{
+    let msg_ticket = new_message(data, user, nonce, emitter_cap);
+    publish_message::publish_message(wormhole_state, message_fee, msg_ticket, clock);
+}
+
+// The emitted messages will contain the points a user has
+fun prepare_payload(points: u64, user: vector<u8>): vector<u8> {
+    let mut payload: vector<u8> = bcs::to_bytes(&points);
+    vector::append(&mut payload, user);
+    payload
+}
+
+
+// We expect a payload to be an array of u8 types
+// The last element is the operation (spend or consume)
+// Then the second to last is a u8 denoting the chain
+// Next 32 u8's are the public key
+// First 8 are bcs encoded u64 value of the points gained
+fun parse_payload(mut payload: vector<u8>): (u8, u8, vector<u8>, u64) {
+    let operation = vector::pop_back(&mut payload);
+    let chain = vector::pop_back(&mut payload);
+    let mut user_address: vector<u8> = vector[];
+    let mut i = 0;
+    while(i < 32) {
+        vector::push_back(&mut user_address, vector::pop_back(&mut payload));
+        i = i + 1;
+    };
+    // we wrote it backwards
+    vector::reverse(&mut user_address);
+    // We expect 8 u8s in the payload since a u64 encoded in bcs is 8 bytes.
+    assert!(vector::length(&payload) == 8, EInvalidPayload);
+
+    let mut amount_bcs = bcs::new(payload);
+    let amount = amount_bcs.peel_u64();
+    (operation, chain, user_address, amount)
+}
+```
+
+```
+```
+
+```
+```
+
+
+<!-- ----- TRANSCRIPT ----- -->
+<!-- messages.move -->
+
+
+- receive_message method from messages.move
+for receive_message im expecting to be given the raw_vaa which is the vector from before 
+i will need the state and clock to be able to parse and verify
+when we have the vector we call parse_and_verify with all the necessary arguments and we get the vaa
+then we extrate the payload, we use take_payload but its suggested that u use take_emitter_info_and_payload in order to actuall do checks 
+we're not doing any checks 
+
+we expect to be getting an operations code, 0 add points 1 remove points 
+for user we are using the public key of the user to identify it
+
+
+- new_message method
+how to create a new message 
+msg will contain user address as bytes and amount of points 
+amount of points is in data loyaltydata 
+i get the points inside the table data.points
+for every user im keeping their points
+i create prepare_payload which returns a vector of bytes
+then i publich message i use the wormhole publish_message::prepare_message to retunr the message ticket 
+were supposed to use it in a ptb ?? and then call the publich message:: publich message from wormhole
+
+
 at the end put the whole script messages.move
 
 this is how u use sui move code that interacts with wormhole now we go over the full example
 
-<!-- web2 part -->
+
+## web2
 
 create a folder web2 at the same level of the contracts 
 
-<!-- utils.ts -->
+## utils.ts
 utils.ts creates a signer 
 you will need an environment .env for the private key
 
@@ -448,12 +653,12 @@ sui keytool convert -b64 string-
 ```
 use suiprivkey
 
-<!-- scripts.ts -->
+## scripts.ts
 
 in here the payload is hardcoded 
 getting the vaa directly from wormhole
 
-<!-- contants.ts -->
+## costants.ts
 the users and all of that are inside costants 
 you need to use your own solana public key and will have to create an emitter cap 
 the code on how to create that is in scripts.ts getEmitterCap - u can create as many as u want but one is enough 
