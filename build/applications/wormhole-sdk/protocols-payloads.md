@@ -25,7 +25,7 @@ In the Wormhole SDK, a protocol represents a significant feature or functionalit
 Examples of Protocols:
 
  - **`TokenBridge`** - enables cross-chain token transfers, including operations like transferring tokens and relaying payloads
- - **`NTT` (Native Token Transfers)** - manages native token movements across chains
+ - **`NTT (Native Token Transfers)`** - manages native token movements across chains
 
 Protocols are defined by:
 
