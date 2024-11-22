@@ -87,9 +87,9 @@ create folder, navigate to it
 
 it will create a folder and we'll have almost everything ready
 
-- removed comments from move.toml
-
+removed comments from move.toml
 in our move.toml file we're gonna add these dependencies
+replace with this code 
 
 ```
 [package]
@@ -101,16 +101,38 @@ edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 [dependencies.Sui]
 git = "https://github.com/MystenLabs/sui.git"
 subdir = "crates/sui-framework/packages/sui-framework"
-rev = "041c5f2bae2fe52079e44b70514333532d69f4e6"
+rev = "041c5f2bae2fe52079e44b70514333532d69f4e6" 
 
 [dependencies.Wormhole]
 git = "https://github.com/wormhole-foundation/wormhole.git"
 subdir = "sui/wormhole"
-rev = "sui-upgrade-testnet"
+rev = "sui-upgrade-testnet" 
 
 [addresses]
 loyalty_contracts = "0x0"
 ```
+// rev by default it would be framework/testnet but we use the same revision as wormhole does to avoid errors when building
+
+sui move build
+to find out which revision wormhole uses [link](https://github.com/wormhole-foundation/wormhole/blob/sui-upgrade-testnet/sui/wormhole/Move.testnet.toml){target=\_blank}
+
+then we build 
+- cd contracts 
+- sui move build
+when we build the surces will be downloaded 
+
+sources/messages.move
+how u send a message
+loyalty contracts > sources 
+you can find in the sources dependencies downloaded 
+we are going to be using the vaa a lot 
+vaa.move 
+you can check the module itself and check the comments 
+really helpful 
+parse_and_verify 
+in the code we'll be using take_payload
+in a production code you will get ke_emitter_infor_and_payload which gives u the emitter chain, emitter address and payload itself
+what we actually get is a vector so we need parse_and_verify along with the state and the clock
 
 
 ## Resources 
