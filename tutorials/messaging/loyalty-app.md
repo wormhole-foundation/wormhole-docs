@@ -59,20 +59,23 @@ Before starting, ensure you have the following tools installed:
 - Sui CLI - install the Sui CLI by following the [Sui installation guide](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank}
 - Homebrew (MacOS) - install with `brew install sui`
 
-## Tutorial
+## Building the Loyalty App
 
-create folder, navigate to it 
+### Setting up your project 
 
-- mkdir wormhole-sui
-- cd wormhole-sui
-- sui move new contracts
+Create a new project folder for your loyalty app and initialize a Sui Move contract template:
 
-it will create a folder and we'll have almost everything ready
+```sh
+mkdir wormhole-sui
+cd wormhole-sui
+sui move new contracts
+```
 
-<!-- move.toml -->
-removed comments from move.toml
-in our move.toml file we're gonna add these dependencies
-replace with this code 
+This command sets up the initial project structure, including the `move.toml` file and a basic contracts folder.
+
+### Configuring move.toml
+
+Update your `move.toml` file to include the necessary dependencies. Replace the default content with the following:
 
 ```
 [package]
@@ -94,39 +97,33 @@ rev = "sui-upgrade-testnet"
 [addresses]
 loyalty_contracts = "0x0"
 ```
-// rev by default it would be framework/testnet but we use the same revision as wormhole does to avoid errors when building
 
+!!! note
+    The revision (`rev`) for Wormhole dependencies is set to match Wormhole’s sui-upgrade-testnet branch. This ensures compatibility when building the project. For the latest revision, refer to the [Move.testnet.toml](https://github.com/wormhole-foundation/wormhole/blob/sui-upgrade-testnet/sui/wormhole/Move.testnet.toml){target=\_blank} 
+
+### Build your project 
+
+Navigate to the contracts folder and build the project:
+
+```sh
+cd contracts
 sui move build
-to find out which revision wormhole uses [link](https://github.com/wormhole-foundation/wormhole/blob/sui-upgrade-testnet/sui/wormhole/Move.testnet.toml){target=\_blank}
+```
+Building the project downloads the necessary dependencies and prepares the source files. You can now find downloaded dependencies in the `sources` folder.
 
-then we build 
-- cd contracts 
-- sui move build
-when we build the surces will be downloaded 
+### Key Wormhole modules in use
 
-loyalty contracts > sources 
-you can find in the sources dependencies downloaded 
-we are going to be using the vaa a lot 
-vaa.move 
-you can check the module itself and check the comments 
-really helpful 
-parse_and_verify 
-in the code we'll be using take_payload
-in a production code you will get take_emitter_info_and_payload which gives u the emitter chain, emitter address and payload itself
-what we actually get is a vector so we need parse_and_verify along with the state and the clock
-parse_and_verify returns the vaa
-once u have the vaa you call the take_emitter_info_and_payload with the vaa and you get the info that u actually need 
-then u get the payload which u have to deserialize to use
+Wormhole’s Move modules provide the core functionality for handling cross-chain messages. Two key modules are essential for this process: `vaa.move`, which is used to verify and extract information from incoming messages, and `publish_message.move`, which facilitates sending messages from Sui to other chains.
 
-one more thing we care about is publish_message.move
-publish_message emits a message as a sui event 
-`publish_message` emits a message as a Sui event. This method uses the input `EmitterCap` as the registered sender of the `WormholeMessage`. It also produces a new sequence for this emitter.
+The `vaa.move` module plays a crucial role in processing incoming Wormhole messages, also known as VAAs (Verifiable Action Approvals). The first step is to verify the VAA using the `parse_and_verify` function, which ensures the message is authentic and untampered. Once the VAA is verified, the `take_emitter_info_and_payload` function can be used to extract important details, such as the emitter's chain, address, and the message payload. These details allow your application to understand the origin and content of the message. Afterward, the payload must be deserialized to make it usable for the application’s logic.
 
-It is important for integrators to refrain from calling this method within their contracts. This method is meant to be called in a transaction block after receiving a `MessageTicket` from calling `prepare_message` within a contract. 
+On the other hand, the `publish_message.move` module is used for sending messages from Sui to other chains. However, integrators are advised not to call the `publish_message` function directly in their contracts. Instead, the process involves two key steps. First, the `prepare_message` function is used to create a `MessageTicket`, which acts as a placeholder for the message you want to send. Once you have the ticket, it can be passed into `publish_message` within a transaction block, allowing the message to be emitted as a Sui event. This process also generates a unique sequence number for the emitter.
 
-prepare_message is the methd we want, which will retunr a message ticket which is needed inside the publish_message
-you call prepare_message get the result and put it inside publish_message
-these are the main fnctions that we will use 
+By combining these modules, you can effectively manage both incoming and outgoing messages in your cross-chain application. The `vaa.move` module ensures that messages from other chains are verified and processed securely, while `publish_message.move` handles the seamless emission of messages from Sui to the Wormhole network.
+
+
+<!-- ----- TRANSCRIPT ----- -->
+
 
 <!-- START -->
 SO NOW WE START
