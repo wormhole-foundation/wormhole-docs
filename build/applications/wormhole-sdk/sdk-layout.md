@@ -417,8 +417,8 @@ When working with the Wormhole SDK layout system, it's important to be aware of 
 
 When defining sizes for each data type, make sure to match the actual data length to the specified size to prevent serialization and deserialization errors:
 
- - `uint` and `int` - the specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure
- - `bytes` - the data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail
+ - **`uint` and `int`** - the specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure
+ - **`bytes`** - the data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail
 
 ```typescript
 // Pitfall: Mismatch between the size of data and the defined size in the layout
