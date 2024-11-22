@@ -187,7 +187,7 @@ Strong typing in TypeScript ensures that the message object conforms to the nest
 
 ## Commonly Used Layouts
 
-The Wormhole SDK includes predefined layouts frequently used in cross-chain messaging. These layouts are optimized for standard fields such as chain IDs, addresses, and signatures. You can explore the complete set of predefined layouts in the [layout-items directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/layout-items){target=\_blank} of the Wormhole SDK.
+The Wormhole SDK includes predefined layouts frequently used in cross-chain messaging. These layouts are optimized for standard fields such as chain IDs, addresses, and signatures. You can explore the complete set of predefined layouts in the [`layout-items` directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/layout-items){target=\_blank} of the Wormhole SDK.
 
 ### Chain ID Layouts
 
@@ -198,7 +198,7 @@ Chain ID layouts in the Wormhole SDK derive from a common foundation: `chainItem
 This simple structure is the blueprint for more specific layouts by standardizing the binary format and size.
 
 ```typescript
-const chainItemBase = { binary: "uint", size: 2 } as const;
+const chainItemBase = { binary: 'uint', size: 2 } as const;
 ```
 
 #### Dynamic Chain ID Layout
@@ -254,13 +254,13 @@ This layout provides a clear binary format for the secp256k1 signature, making i
 
 #### Layout with Custom Conversion
 
-The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level Signature object and vice versa.
+The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level `Signature` object and vice versa.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-13.ts"
 ```
 
-The `custom` field ensures seamless integration of raw binary data with the Signature class, encapsulating signature-specific logic.
+The `custom` field ensures seamless integration of raw binary data with the `Signature` class, encapsulating signature-specific logic.
 
 ## Advanced Use Cases
 
@@ -417,8 +417,8 @@ When working with the Wormhole SDK layout system, it's important to be aware of 
 
 When defining sizes for each data type, make sure to match the actual data length to the specified size to prevent serialization and deserialization errors:
 
- - `uint` and `int` - the specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure
- - `bytes` - the data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail
+ - **`uint` and `int`** - the specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure
+ - **`bytes`** - the data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail
 
 ```typescript
 // Pitfall: Mismatch between the size of data and the defined size in the layout
