@@ -7,11 +7,10 @@ description: Build a loyalty app that connects across networks, enabling seamles
 
 ## Introduction
 
-Sui Workshop #2: End-to-End Example – Cross-chain Loyalty App
-
+Cross-chain Loyalty App
 Sending and receiving messages from another chain
 
-Join us for a hands-on session where we’ll build a loyalty app that spans multiple blockchains. Learn how to leverage cross-chain interoperability to enhance user experiences and unlock new business opportunities.
+we’ll build a loyalty app that spans multiple blockchains. Learn how to leverage cross-chain interoperability to enhance user experiences and unlock new business opportunities.
 
 <!-- transcription -->
 
@@ -52,25 +51,14 @@ OUTGOING PAYLOAD from sui
 - BSC u64 representation of actual points 
 - user address as uuid
 
-LIBRARIES
-WEB 3 8:44
+LIBRARIES WEB 3
 - [move-stdlib](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/move-stdlib){target=\_blank}
 - [sui-frameworks](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources){target=\_blank}
 - [wormhole address and testnet](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui){target=\_blank}
 
-ISSUES
-sui evolves too fast - code is a bit outdated
-
 WEB2 LIBRARIES
 - pnpm i @wormhole-foundation/sdk
 - pnpm i @mysten/sui - to create transactions and show how to interact with the chain
-
-ADDITIONAL EXAMPLES
-- [sui example for sending tokens](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui/examples){target=\_blank}
-
-CODE REPOSITORY
-- [TUTORIAL REPO](https://github.com/Eis-D-Z/wormhole_sui){target=\_blank}
-
 
 ## Prerequisites
 
@@ -87,6 +75,7 @@ create folder, navigate to it
 
 it will create a folder and we'll have almost everything ready
 
+<!-- move.toml -->
 removed comments from move.toml
 in our move.toml file we're gonna add these dependencies
 replace with this code 
@@ -121,8 +110,6 @@ then we build
 - sui move build
 when we build the surces will be downloaded 
 
-sources/messages.move
-how u send a message
 loyalty contracts > sources 
 you can find in the sources dependencies downloaded 
 we are going to be using the vaa a lot 
@@ -145,10 +132,135 @@ It is important for integrators to refrain from calling this method within their
 
 prepare_message is the methd we want, which will retunr a message ticket which is needed inside the publish_message
 you call prepare_message get the result and put it inside publish_message
-
 these are the main fnctions that we will use 
 
-- receive_message method
+<!-- START -->
+SO NOW WE START
+
+so in Sui you have a a package which usually is indicated by a big a folder that contains usually a sources and contains a lot of move files which are called modules - some of them may be test modules and the test modules are indicated by a test_only above them 
+
+we go to our file contacts/sources/contracts.move
+we write the package name and module name 
+we change the module name to make it more clear 
+so we rename contracts.move to into.move
+
+so our loyalty.move file now contains:
+
+```
+module contracts::loyalty;
+```
+
+where contracts is the name of the package (main folder) and intro the name of the module (our file)
+when this gets publiched on chain the contracts will disappear and we'll get a full address
+the intro will remain to be able to call functions
+so it will be like 0x1234565aabb...::intro::function 
+this would be the full path of any items inside the module, wether its a function or struct
+
+<!-- loyalty.move -->
+
+we create a shared object LoyaltyData - in sui you have shared and known objects - known objects are inside addresses and shared objects are inside the global storage everyone can access them can can be inputted as arguments to a tx - owned objects can only be inputted as arguments to the transaction only by the address owner 
+so we have LoyaltyData shared object 
+we have admin address id and the user points - we are using a table which is the map with key of the user depending on the chain as a vector and amount of points u64
+
+```
+public struct LoyaltyData has key {
+    id: UID,
+    user_points: Table<vector<u8>, u64>,
+    admin_address: address,
+}
+```
+
+init function that crerates only one loyalty data and then shares it with transfer shareobject
+
+```
+fun init(ctx: &mut TxContext) {
+    let data = LoyaltyData {
+        id: object::new(ctx),
+        user_points: table::new<vector<u8>, u64>(ctx),
+        admin_address: ctx.sender(),
+    };
+    transfer::share_object(data);
+}
+```
+
+function that allows me to change an admin - if my private key gets compromised i can change it to an uncompromised one and save the day
+
+```
+public fun change_admin_address(
+    data: &mut LoyaltyData,
+    new_admin: address,
+    ctx: &mut TxContext,
+) {
+    assert!(ctx.sender() == data.admin_address, EWrongSigner);
+    data.admin_address = new_admin;
+}
+```
+
+add and remove points functions
+public(package) means that this function cant be called - can only be called from another module inside the package 
+HERE WE HAVE THE BASIC LOGIC on how i want to manipulate loyalty data
+
+*data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points; how we change the value on a table 
+otherwise we add to the table a new user data.user_points.add(user, loyalty_points);
+
+remove points same idea but we asser that the user indeed exists 
+
+
+```
+public(package) fun add_points(
+    data: &mut LoyaltyData,
+    user: vector<u8>,
+    loyalty_points: u64,
+) {
+    if (loyalty_points > 0) {
+        if(data.user_points.contains(user)) {
+            *data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points;
+        } else {
+            data.user_points.add(user, loyalty_points);
+        };
+    };
+}
+
+public(package) fun remove_points(
+    data: &mut LoyaltyData,
+    user: vector<u8>,
+    loyalty_points: u64,
+) {
+    assert!(data.user_points.contains(user), EInexistentUser);
+    let current_points = *data.user_points.borrow(user);
+    if(current_points > loyalty_points) {
+        *data.user_points.borrow_mut(user) = current_points - loyalty_points;
+    } else {
+        *data.user_points.borrow_mut(user) = 0;
+    };
+}
+```
+
+then we need some getters - how many points a user has 
+
+```
+// getters
+
+public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
+    *data.user_points.borrow(user)
+}
+
+
+#[test_only]
+public fun init_for_tests(ctx: &mut TxContext) {
+    init(ctx);
+}
+```
+
+<!-- messages.move -->
+
+sources/messages.move
+how u send a message 
+
+we create another file messages.move 
+then we go to messages.move 
+
+- receive_message method from messages.move
 for receive_message im expecting to be given the raw_vaa which is the vector from before 
 i will need the state and clock to be able to parse and verify
 when we have the vector we call parse_and_verify with all the necessary arguments and we get the vaa
@@ -213,142 +325,55 @@ at the end put the whole script messages.move
 
 this is how u use sui move code that interacts with wormhole now we go over the full example
 
+<!-- web2 part -->
 
-SO NOW WE START
+create a folder web2 at the same level of the contracts 
 
-so in Sui you have a a package which usually is indicated by a big a folder that contains usually a sources and contains a lot of move files which are called modules - some of them may be test modules and the test modules are indicated by a test_only above them 
+<!-- utils.ts -->
+utils.ts creates a signer 
+you will need an environment .env for the private key
 
-we go to our file contacts/sources/contracts.move
-we write the package name and module name 
-we change the module name to make it more clear 
-so we rename contracts.move to into.move
+create a new private key with new-address Generate new address and keypair with keypair 
 
-so our intro.move file now contains:
-
-```
-module contracts::intro;
-```
-
-where contracts is the name of the package (main folder) and intro the name of the module (our file)
-when this gets publiched on chain the contracts will disappear and we'll get a full address
-the intro will remain to be able to call functions
-so it will be like 0x1234565aabb...::intro::function 
-this would be the full path of any items inside the module, wether its a function or struct
-
-
-- loyalty.move
-
-
-we create a shared object LoyaltyData - in sui you have shared and known objects - known objects are inside addresses and shared objects are inside the global storage everyone can access them can can be inputted as arguments to a tx - owned objects can only be inputted as arguments to the transaction only by the address owner 
-so we have LoyaltyData shared object 
-we have admin address id and the user points - we are using a table which is the map with key of the user depending on the chain as a vector and amount of points u64
+once u install sui  to find your keys 
 
 ```
-public struct LoyaltyData has key {
-    id: UID,
-    user_points: Table<vector<u8>, u64>,
-    admin_address: address,
-}
-```
-
-init function that crerates only one loyalty data and then shares it with transfer shareobject
-
-```
-fun init(ctx: &mut TxContext) {
-    let data = LoyaltyData {
-        id: object::new(ctx),
-        user_points: table::new<vector<u8>, u64>(ctx),
-        admin_address: ctx.sender(),
-    };
-    transfer::share_object(data);
-}
-```
-
-function that allows me to change an admin - if my private key gets compromised i can change it to an uncompromised one and save the day
-
-```
-public fun change_admin_address(
-    data: &mut LoyaltyData,
-    new_admin: address,
-    ctx: &mut TxContext,
-) {
-    assert!(ctx.sender() == data.admin_address, EWrongSigner);
-    data.admin_address = new_admin;
-}
-```
-
-add and remove points functions
-public(package) means that this function cant be called - can only be called from another module inside the package 
-HERE WE HAVE THE BASIC LOGIC on how i want to manipulate loyalty data
-
-```
-public(package) fun add_points(
-    data: &mut LoyaltyData,
-    user: vector<u8>,
-    loyalty_points: u64,
-) {
-    if (loyalty_points > 0) {
-        if(data.user_points.contains(user)) {
-            *data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points;
-        } else {
-            data.user_points.add(user, loyalty_points);
-        };
-    };
-}
-
-public(package) fun remove_points(
-    data: &mut LoyaltyData,
-    user: vector<u8>,
-    loyalty_points: u64,
-) {
-    assert!(data.user_points.contains(user), EInexistentUser);
-    let current_points = *data.user_points.borrow(user);
-    if(current_points > loyalty_points) {
-        *data.user_points.borrow_mut(user) = current_points - loyalty_points;
-    } else {
-        *data.user_points.borrow_mut(user) = 0;
-    };
-}
-```
-
-then we need some getters - how many points a user has 
-
-```
-// getters
-
-public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
-    *data.user_points.borrow(user)
-}
-
-
-#[test_only]
-public fun init_for_tests(ctx: &mut TxContext) {
-    init(ctx);
-}
+cat ~/.sui/sui_config/sui.keystore
 ```
 
 ```
+sui keytool convert -b64 string-
+```
+use suiprivkey
+
+<!-- scripts.ts -->
+
+in here the payload is hardcoded 
+getting the vaa directly from wormhole
+
+<!-- contants.ts -->
+the users and all of that are inside costants 
+you need to use your own solana public key and will have to create an emitter cap 
+the code on how to create that is in scripts.ts getEmitterCap - u can create as many as u want but one is enough 
+after u got it check the response and put the address of the item in the var  
+
+to get package id
+```
+sui client publish --skip-dependency-verification
 ```
 
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
-
-```
-```
+<!-- for web2 theres also a package.json and pnpm-lock.yaml files not sure how to get those-->
 
 
 ## Resources 
 
-[intro to move code](https://github.com/Eis-D-Z/wormhole_sui/tree/intro_branch){target=\_blank}
+- [intro to move code](https://github.com/Eis-D-Z/wormhole_sui/tree/intro_branch){target=\_blank}
+
+ADDITIONAL EXAMPLES
+- [sui example for sending tokens](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui/examples){target=\_blank}
+
+CODE REPOSITORY <!-- to be changed with our repo -->
+- [TUTORIAL REPO](https://github.com/Eis-D-Z/wormhole_sui){target=\_blank}
 
 ## Conclusion
 
