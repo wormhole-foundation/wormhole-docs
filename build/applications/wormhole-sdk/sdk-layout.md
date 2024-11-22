@@ -260,7 +260,7 @@ The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blo
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-13.ts"
 ```
 
-The `custom` field ensures seamless integration of raw binary data with the Signature class, encapsulating signature-specific logic.
+The `custom` field ensures seamless integration of raw binary data with the `Signature` class, encapsulating signature-specific logic.
 
 ## Advanced Use Cases
 
