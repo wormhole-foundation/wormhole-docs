@@ -223,20 +223,132 @@ we write the package name and module name
 we change the module name to make it more clear 
 so we rename contracts.move to into.move
 
-so our intro.move file now contains
+so our intro.move file now contains:
+
 ```
 module contracts::intro;
 ```
 
-where contracts is the name of the package (main folder) and intro the name of the module (pur file)
+where contracts is the name of the package (main folder) and intro the name of the module (our file)
+when this gets publiched on chain the contracts will disappear and we'll get a full address
+the intro will remain to be able to call functions
+so it will be like 0x1234565aabb...::intro::function 
+this would be the full path of any items inside the module, wether its a function or struct
+
+
+- loyalty.move
+
+
+we create a shared object LoyaltyData - in sui you have shared and known objects - known objects are inside addresses and shared objects are inside the global storage everyone can access them can can be inputted as arguments to a tx - owned objects can only be inputted as arguments to the transaction only by the address owner 
+so we have LoyaltyData shared object 
+we have admin address id and the user points - we are using a table which is the map with key of the user depending on the chain as a vector and amount of points u64
+
+```
+public struct LoyaltyData has key {
+    id: UID,
+    user_points: Table<vector<u8>, u64>,
+    admin_address: address,
+}
+```
+
+init function that crerates only one loyalty data and then shares it with transfer shareobject
+
+```
+fun init(ctx: &mut TxContext) {
+    let data = LoyaltyData {
+        id: object::new(ctx),
+        user_points: table::new<vector<u8>, u64>(ctx),
+        admin_address: ctx.sender(),
+    };
+    transfer::share_object(data);
+}
+```
+
+function that allows me to change an admin - if my private key gets compromised i can change it to an uncompromised one and save the day
+
+```
+public fun change_admin_address(
+    data: &mut LoyaltyData,
+    new_admin: address,
+    ctx: &mut TxContext,
+) {
+    assert!(ctx.sender() == data.admin_address, EWrongSigner);
+    data.admin_address = new_admin;
+}
+```
+
+add and remove points functions
+public(package) means that this function cant be called - can only be called from another module inside the package 
+HERE WE HAVE THE BASIC LOGIC on how i want to manipulate loyalty data
+
+```
+public(package) fun add_points(
+    data: &mut LoyaltyData,
+    user: vector<u8>,
+    loyalty_points: u64,
+) {
+    if (loyalty_points > 0) {
+        if(data.user_points.contains(user)) {
+            *data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points;
+        } else {
+            data.user_points.add(user, loyalty_points);
+        };
+    };
+}
+
+public(package) fun remove_points(
+    data: &mut LoyaltyData,
+    user: vector<u8>,
+    loyalty_points: u64,
+) {
+    assert!(data.user_points.contains(user), EInexistentUser);
+    let current_points = *data.user_points.borrow(user);
+    if(current_points > loyalty_points) {
+        *data.user_points.borrow_mut(user) = current_points - loyalty_points;
+    } else {
+        *data.user_points.borrow_mut(user) = 0;
+    };
+}
+```
+
+then we need some getters - how many points a user has 
+
+```
+// getters
+
+public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
+    *data.user_points.borrow(user)
+}
+
+
+#[test_only]
+public fun init_for_tests(ctx: &mut TxContext) {
+    init(ctx);
+}
+```
 
 ```
 ```
 
 ```
 ```
+
+```
+```
+
+```
+```
+
+```
+```
+
+```
+```
+
 
 ## Resources 
+
+[intro to move code](https://github.com/Eis-D-Z/wormhole_sui/tree/intro_branch){target=\_blank}
 
 ## Conclusion
 
