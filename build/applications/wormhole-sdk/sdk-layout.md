@@ -254,7 +254,7 @@ This layout provides a clear binary format for the secp256k1 signature, making i
 
 #### Layout with Custom Conversion
 
-The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level Signature object and vice versa.
+The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level `Signature` object and vice versa.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-13.ts"
