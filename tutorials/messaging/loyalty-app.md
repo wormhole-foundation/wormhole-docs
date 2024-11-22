@@ -3,6 +3,8 @@ title: Build a loyalty app with message transfers
 description: Build a loyalty app that connects across networks, enabling seamless message transfers and unlocking unique user engagement opportunities.
 ---
 
+<!-- need to properly style all the variables etc -->
+
 # Build a loyalty app with message transfers 
 
 ## Introduction
@@ -122,36 +124,44 @@ On the other hand, the `publish_message.move` module is used for sending message
 By combining these modules, you can effectively manage both incoming and outgoing messages in your cross-chain application. The `vaa.move` module ensures that messages from other chains are verified and processed securely, while `publish_message.move` handles the seamless emission of messages from Sui to the Wormhole network.
 
 
-<!-- ----- TRANSCRIPT ----- -->
+## Implementing the loyalty contract 
 
+### Import dependencies and define errors
 
-<!-- START -->
-SO NOW WE START
+We start by importing the necessary modules and declaring custom error codes that will be used throughout the contract.
 
-so in Sui you have a a package which usually is indicated by a big a folder that contains usually a sources and contains a lot of move files which are called modules - some of them may be test modules and the test modules are indicated by a test_only above them 
+```
+use sui::table::{Self, Table};
+```
 
-we go to our file contacts/sources/contracts.move
-we write the package name and module name 
-we change the module name to make it more clear 
-so we rename contracts.move to into.move
+This import provides access to the `Table` type, a mapping structure in Sui Move, which we’ll use to store user points. It also allows us to use the `Table` module’s associated functions.
 
-so our loyalty.move file now contains:
+```
+const EInexistentUser: u64 = 1;
+const EWrongSigner: u64 = 2;
+```
+
+- `EInexistentUser`: This error will be triggered if a function attempts to interact with a non-existent user in the points table
+- `EWrongSigner`: This error ensures only the admin can perform certain restricted actions, such as changing the admin address
+
+### Project structure and module naming
+
+In Sui, a package represents a folder that contains the Move modules (`.move` files) you’ll write. Within the package, there’s a sources folder where these modules reside. Each module typically defines related functionality, and some may include test-only modules indicated by the `#[test_only]` attribute.
+
+For this project, navigate to `contracts/sources` and rename the default module file to make its purpose clear. For instance, rename `contracts.move` to `loyalty.move`. Then, update the module declaration to reflect the package and module name:
 
 ```
 module contracts::loyalty;
 ```
 
-where contracts is the name of the package (main folder) and intro the name of the module (our file)
-when this gets publiched on chain the contracts will disappear and we'll get a full address
-the intro will remain to be able to call functions
-so it will be like 0x1234565aabb...::intro::function 
-this would be the full path of any items inside the module, wether its a function or struct
+- `contracts` - the name of the package (main folder)
+- `loyalty` - the name of the module (file)
 
-<!-- loyalty.move -->
+When deployed on-chain, the package name (`contracts`) will disappear, leaving the module name (`loyalty`) prefixed with the contract’s full address. For example, functions or structures in this module will be accessible using a path like `0x1234565aabb...::loyalty::function_name`.
 
-we create a shared object LoyaltyData - in sui you have shared and known objects - known objects are inside addresses and shared objects are inside the global storage everyone can access them can can be inputted as arguments to a tx - owned objects can only be inputted as arguments to the transaction only by the address owner 
-so we have LoyaltyData shared object 
-we have admin address id and the user points - we are using a table which is the map with key of the user depending on the chain as a vector and amount of points u64
+### Defining the LoyaltyData struct
+
+The loyalty program revolves around the `LoyaltyData` shared object, which stores user points and admin information. Shared objects are accessible globally and can be passed as arguments in transactions, unlike owned objects, which are tied to specific addresses.
 
 ```
 public struct LoyaltyData has key {
@@ -161,7 +171,15 @@ public struct LoyaltyData has key {
 }
 ```
 
-init function that crerates only one loyalty data and then shares it with transfer shareobject
+- `id` - UID: A unique identifier for this object, automatically generated when created.
+- `user_points` - Table<vector<u8>, u64>: A mapping of user identifiers (as byte vectors) to their corresponding points (as u64 integers).
+- `admin_address` - address: The address of the admin who can manage this object.
+
+The `has key` attribute ensures that the struct can be stored on-chain as an object.
+
+### Initializing the shared object
+
+The `init` function creates the `LoyaltyData` object, initializes its fields, and registers it as a shared object that can be accessed globally.
 
 ```
 fun init(ctx: &mut TxContext) {
@@ -174,7 +192,9 @@ fun init(ctx: &mut TxContext) {
 }
 ```
 
-function that allows me to change an admin - if my private key gets compromised i can change it to an uncompromised one and save the day
+### Admin management
+
+The admin plays a critical role in managing the loyalty program. To ensure flexibility and security, the contract allows the admin to update their address if needed, such as in the case of a compromised private key.
 
 ```
 public fun change_admin_address(
@@ -187,17 +207,113 @@ public fun change_admin_address(
 }
 ```
 
-add and remove points functions
-public(package) means that this function cant be called - can only be called from another module inside the package 
-HERE WE HAVE THE BASIC LOGIC on how i want to manipulate loyalty data
+### Adding and Removing Points
 
-*data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points; how we change the value on a table 
-otherwise we add to the table a new user data.user_points.add(user, loyalty_points);
+Managing loyalty points is a core function of the program. This is handled with two functions: one to add points and another to remove them.
 
-remove points same idea but we asser that the user indeed exists 
+The `add_points` function increases the loyalty points for a user. If the user already exists in the points table, their current points are retrieved, updated, and saved back into the table. If the user doesn’t exist yet, a new entry is created with the provided points value.
+
+- Existing user - Check if the user is in the table, retrieve their current points, and increment the value by the specified amount
+- New user - If the user doesn’t exist in the table, add them with the specified points
+
+```
+public(package) fun add_points(
+    data: &mut LoyaltyData,
+    user: vector<u8>,
+    loyalty_points: u64,
+) {
+    if (loyalty_points > 0) {
+        if(data.user_points.contains(user)) {
+            *data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points;
+        } else {
+            data.user_points.add(user, loyalty_points);
+        };
+    };
+}
+```
+
+The `remove_points` function decreases the loyalty points for a user. It first ensures the user exists in the table. Then it retrieves their current points and deducts the specified amount. If the points to be removed exceed the user’s total, their points are set to zero.
+
+- Validation - confirm the user exists in the table before proceeding
+- Deduction - subtract points from the user’s total. If the requested deduction is larger than the current total, set the user’s points to zero
 
 
 ```
+public(package) fun remove_points(
+    data: &mut LoyaltyData,
+    user: vector<u8>,
+    loyalty_points: u64,
+) {
+    assert!(data.user_points.contains(user), EInexistentUser);
+    let current_points = *data.user_points.borrow(user);
+    if(current_points > loyalty_points) {
+        *data.user_points.borrow_mut(user) = current_points - loyalty_points;
+    } else {
+        *data.user_points.borrow_mut(user) = 0;
+    };
+}
+```
+
+### Fetching user points
+
+To enable other modules or users to query the number of loyalty points a user has, the contract includes a getter function.
+
+```
+public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
+    *data.user_points.borrow(user)
+}
+```
+
+### Testing Support
+
+During development and testing, initializing shared objects can be challenging. The contract provides a test-only function to initialize the `LoyaltyData` object.
+
+```
+#[test_only]
+public fun init_for_tests(ctx: &mut TxContext) {
+    init(ctx);
+}
+```
+
+### Full loyalty.move code recap
+
+Here is the complete code, now with all steps integrated:
+
+```
+#[allow(implicit_const_copy)]
+module loyalty_contracts::loyalty;
+
+use sui::table::{Self, Table};
+
+// errors
+const EInexistentUser: u64 = 1;
+const EWrongSigner: u64 = 2;
+
+
+public struct LoyaltyData has key {
+    id: UID,
+    user_points: Table<vector<u8>, u64>,
+    admin_address: address,
+}
+
+fun init(ctx: &mut TxContext) {
+    let data = LoyaltyData {
+        id: object::new(ctx),
+        user_points: table::new<vector<u8>, u64>(ctx),
+        admin_address: ctx.sender(),
+    };
+    transfer::share_object(data);
+}
+
+public fun change_admin_address(
+    data: &mut LoyaltyData,
+    new_admin: address,
+    ctx: &mut TxContext,
+) {
+    assert!(ctx.sender() == data.admin_address, EWrongSigner);
+    data.admin_address = new_admin;
+}
+
 public(package) fun add_points(
     data: &mut LoyaltyData,
     user: vector<u8>,
@@ -225,17 +341,11 @@ public(package) fun remove_points(
         *data.user_points.borrow_mut(user) = 0;
     };
 }
-```
 
-then we need some getters - how many points a user has 
-
-```
 // getters
-
 public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
     *data.user_points.borrow(user)
 }
-
 
 #[test_only]
 public fun init_for_tests(ctx: &mut TxContext) {
@@ -243,6 +353,7 @@ public fun init_for_tests(ctx: &mut TxContext) {
 }
 ```
 
+<!-- ----- TRANSCRIPT ----- -->
 <!-- messages.move -->
 
 sources/messages.move
