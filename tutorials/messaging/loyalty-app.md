@@ -7,63 +7,57 @@ description: Build a loyalty app that connects across networks, enabling seamles
 
 ## Introduction
 
-Cross-chain Loyalty App
-Sending and receiving messages from another chain
+### Overview 
 
-we’ll build a loyalty app that spans multiple blockchains. Learn how to leverage cross-chain interoperability to enhance user experiences and unlock new business opportunities.
+In this tutorial, we will build a loyalty app that spans multiple blockchains, leveraging Wormhole's cross-chain messaging capabilities. The app will enable users to earn loyalty points across various blockchain-based marketplaces and manage their points on a governance layer powered by Sui. By the end of this tutorial, you'll understand how to send and receive cross-chain messages using Wormhole and gain insights into Sui and its Move programming language.
+
+### Objectives
+
+- Receive and send messages - focus on the mechanics of transferring data between chains, with Sui as the source and recipient
+- Design a loyalty program - create a program where users earn points across chains and transmit these points to Sui for centralized management and governance
+
+### Application Context
+
+The loyalty app assumes multiple business marketplaces operate on different blockchains. Each time a user purchases something on any of these chains, they earn points. These points are sent to Sui, which acts as a governance layer. The app ensures:
+
+- Chains can inquire about a user’s available points
+- Sui can notify all chains about user points
+
+## Data Handling 
+
+Incoming Payload (to Sui)
+
+- Points earned - encoded as a BSC u64 (Binary Canonical Serialization)
+- User address - represented as a UUID (Universally Unique Identifier). While reusing addresses as unique identifiers across chains might pose risks of collisions, it serves as a suitable example for this use case
+- Chain code - omitted because the Wormhole message already includes the emitter's chain address and the sending function
+- Operation code - specifies whether to add or remove points (0 for addition, 1 for removal)
+
+Outgoing Payload (from Sui)
+
+- Points to be deducted or transferred - encoded as a BSC u64
+- User address - represented as a UUID
 
 <!-- transcription -->
 
-deeper dive on sui and move and how do you use the Wormhole part of the move 
-first we cover the move part for who is new to that 
-then we will cover the wormhole part 
-the main focus will be how do you receive and send messages 
-we'll explain how actually sui move works 
+## Libraries
 
-presentation:
-Sending and receiving Wormhole messages
+### Web3 libraries 
 
-how does wormhole work? we can skip this part on the docs
-wormhole facilitates messaging between two different blockchains
-they also have some guarantees to make sure the message wasnt tampered with during transportation
-
-on todays workshop we will assume that the source chain is sui 
-dealing with receiving and sending messages 
-
-The idea was to do a loyalty app project where we assume we have different busness marketpplaces on different chains 
-and we want to start doing loyalty programs for our users
-sui as a governance layer 
-everytime on any chain a user buys something they will gain points
-transmit a message to sui
-every chain can ask sui or sui can inform everyone that x user has n many points available for spending
-
-OUR FOCUS
-receive messages on sui
-send messages from sui
-
-INCOMING PAYLOAD 
-- BSC u64 representation of points earned - Binary Canonical Serialization (BCS) a binary encoding format for structured data - library is rust and sui has one as well that allows to serialize and deserialize - sui works really welll with BCS 
-- user address as uuid (Universally Unique Identifier - 128-bit label) (vulnerability - if im using the user address in every chain there is a probability that two users can have the same address on different chains --> in this case I'm not sure how probable that is and if it's safe or not to use that as a as a unique identifier for your users across chains but in this case it was just suitable)
-- chain code (not needed because whenever you get a VAA the emitter is present - address that sent it, chain that came from and fucntion that called it)
-- operations code (0 - add or remove points)
-
-OUTGOING PAYLOAD from sui
-- BSC u64 representation of actual points 
-- user address as uuid
-
-LIBRARIES WEB 3
 - [move-stdlib](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/move-stdlib){target=\_blank}
 - [sui-frameworks](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources){target=\_blank}
 - [wormhole address and testnet](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui){target=\_blank}
 
-WEB2 LIBRARIES
-- pnpm i @wormhole-foundation/sdk
-- pnpm i @mysten/sui - to create transactions and show how to interact with the chain
+### Web2 libraries 
+
+- @wormhole-foundation/sdk - install with `pnpm i @wormhole-foundation/sdk`
+- @mysten/sui - install with `pnpm i @mysten/sui` to create transactions and interact with the chain
 
 ## Prerequisites
 
-- sui cli installed [install sui](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank}
-- brew install sui
+Before starting, ensure you have the following tools installed:
+
+- Sui CLI - install the Sui CLI by following the [Sui installation guide](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank}
+- Homebrew (MacOS) - install with `brew install sui`
 
 ## Tutorial
 
