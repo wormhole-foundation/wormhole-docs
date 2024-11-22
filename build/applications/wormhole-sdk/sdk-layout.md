@@ -198,7 +198,7 @@ Chain ID layouts in the Wormhole SDK derive from a common foundation: `chainItem
 This simple structure is the blueprint for more specific layouts by standardizing the binary format and size.
 
 ```typescript
-const chainItemBase = { binary: "uint", size: 2 } as const;
+const chainItemBase = { binary: 'uint', size: 2 } as const;
 ```
 
 #### Dynamic Chain ID Layout
