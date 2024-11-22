@@ -38,12 +38,6 @@ Each protocol is registered in the Wormhole SDK, allowing developers to leverage
 
 A payload is a structured piece of data that encapsulates the details of a specific operation within a protocol. It defines the format, fields, and types of data used in a message or transaction. Payloads ensure consistency and type safety when handling complex cross-chain operations.
 
-Examples of payloads:
-
- - **`Transfer`** - used in the `tokenBridge` protocol to represent a basic token transfer
- - **`TransferWithPayload`** - extends the `Transfer` payload with additional custom data
- - **`WormholeTransfer`** - an NTT payload used for transferring tokens via Wormhole
-
 Each payload is defined as:
 
  - A `layout` - describes the binary format of the payload fields
