@@ -563,10 +563,16 @@ public fun receive_message (
 
 This function updates the `LoyaltyData` object based on the operation code in the payload. For `0`, points are added to the user’s account; for `1`, points are removed.  
 
-
 ### Define the new_message function
 
 This function creates a new message containing user points and prepares it for sending via Wormhole. <!-- add better description here-->
+
+The `new_message` function generates a Wormhole message containing the user's points and prepares it for transmission. This function integrates with Wormhole's `publish_message` module to create a `MessageTicket`, representing the message in a structured format. The function is designed to be used within a transaction block (PTB) to ensure proper message publishing.
+
+- **Data preparation** - the function retrieves the user's current points from the `LoyaltyData` object using the `data.points(user)` method. This ensures that the message reflects the most up-to-date information about the user's points
+- **Payload creation** - the `prepare_payload` helper function encodes the user's points and address into a binary format (`vector<u8>`), which serves as the message's payload
+- **Message ticket creation** - the payload, along with the emitter capability (`EmitterCap`) and a nonce for unique identification, is passed to Wormhole's `publish_message::prepare_message` function. This step returns a M`essageTicket`, which encapsulates the message data and metadata required for publishing
+- **Publishing messages** - while `new_message` creates the `MessageTicket`, the actual message broadcasting should be performed using `publish_message::publish_message` in a transaction block.
 
 ```
 // suggested way is to call wormhole::publish_message::publish_message in a PTB
@@ -582,43 +588,123 @@ public fun new_message(
 }
 ```
 
+??? interface "Parameters"
+
+    `data` ++"&LoyaltyData"++  
+
+    A reference to the `LoyaltyData` shared object, containing user points and related data.  
+
+    ---
+
+    `user` ++"vector<u8>"++  
+
+    The identifier of the user, represented as a byte vector, whose points will be included in the message.  
+
+    ---
+
+    `nonce` ++"u32"++  
+
+    A unique value used to identify the message and ensure it is not duplicated.  
+
+    ---
+
+    `emitter_cap` ++"&mut EmitterCap"++  
+
+    A mutable reference to the Wormhole emitter capability, which authorizes the contract to emit messages.  
+
+??? interface "Returns"
+
+    `MessageTicket`  
+
+    A structured object representing the prepared message, ready for publishing through Wormhole.  
+
+
 ### Implement helper functions
 
-`prepare_payload` function constructs the payload for outgoing messages, which includes the user’s points and address.
+- The `prepare_payload` function constructs a binary payload for outgoing messages. The payload includes the user’s points and address, ensuring the message contains all necessary information for the receiving chain.
 
-```
-fun prepare_payload(points: u64, user: vector<u8>): vector<u8> {
-    let mut payload: vector<u8> = bcs::to_bytes(&points);
-    vector::append(&mut payload, user);
-    payload
-}
-```
+    ```
+    fun prepare_payload(points: u64, user: vector<u8>): vector<u8> {
+        let mut payload: vector<u8> = bcs::to_bytes(&points);
+        vector::append(&mut payload, user);
+        payload
+    }
+    ```
 
-`parse_payload` function decodes an incoming payload to extract its components.
-```
-fun parse_payload(mut payload: vector<u8>): (u8, u8, vector<u8>, u64) {
-    let operation = vector::pop_back(&mut payload);
-    let chain = vector::pop_back(&mut payload);
-    let mut user_address: vector<u8> = vector[];
-    let mut i = 0;
-    while(i < 32) {
-        vector::push_back(&mut user_address, vector::pop_back(&mut payload));
-        i = i + 1;
-    };
-    vector::reverse(&mut user_address);
+    ??? interface "Parameters"
 
-    // Ensure remaining payload contains exactly 8 bytes for the u64 points
-    assert!(vector::length(&payload) == 8, EInvalidPayload);
+        `points` ++"u64"++  
 
-    let mut amount_bcs = bcs::new(payload);
-    let amount = amount_bcs.peel_u64();
-    (operation, chain, user_address, amount)
-}
-```
+        The user’s points to include in the message payload.  
+
+        ---
+
+        `user` ++"vector<u8>"++  
+
+        The user’s address, represented as a byte vector, to include in the message payload.  
+
+    ??? interface "Returns"
+
+        `vector<u8>`  
+
+        A binary representation of the payload, including the user’s points and address.  
+
+- The `parse_payload` function decodes an incoming payload to extract its components. This includes the operation code, chain identifier, user address, and points. It ensures that the payload matches the expected format and structure.
+
+    ```
+    fun parse_payload(mut payload: vector<u8>): (u8, u8, vector<u8>, u64) {
+        let operation = vector::pop_back(&mut payload);
+        let chain = vector::pop_back(&mut payload);
+        let mut user_address: vector<u8> = vector[];
+        let mut i = 0;
+        while(i < 32) {
+            vector::push_back(&mut user_address, vector::pop_back(&mut payload));
+            i = i + 1;
+        };
+        vector::reverse(&mut user_address);
+
+        // Ensure remaining payload contains exactly 8 bytes for the u64 points
+        assert!(vector::length(&payload) == 8, EInvalidPayload);
+
+        let mut amount_bcs = bcs::new(payload);
+        let amount = amount_bcs.peel_u64();
+        (operation, chain, user_address, amount)
+    }
+    ```
+
+    ??? interface "Parameters"
+
+        `payload` ++"vector<u8>"++  
+
+        The raw binary payload to be decoded, containing the operation code, chain ID, user address, and points.  
+
+    ??? interface "Returns"
+
+        `operation` ++"u8"++  
+
+        The operation code indicating the action (`0` for adding points, `1` for removing points).  
+
+        ---
+
+        `chain` ++"u8"++  
+
+        The chain identifier from which the message originated.  
+
+        ---
+
+        `user_address` ++"vector<u8>"++  
+
+        The user’s address, represented as a byte vector.  
+
+        ---
+
+        `amount` ++"u64"++  
+
+        The number of points included in the message.  
 
 ### Include a testing method (Optional)
 
-The `emit_message_` function is primarily for testing. It demonstrates how to directly send a message using Wormhole’s publish_message.
+The `emit_message_` function is primarily for testing. It demonstrates how to directly send a message using Wormhole’s `publish_message` functionality. This method integrates the creation of a `MessageTicket` through the `new_message` function and completes the process by publishing the message to Wormhole within the same function.
 
 ```
 public fun emit_message_(
@@ -635,6 +721,49 @@ public fun emit_message_(
 }
 ```
 
+??? interface "Parameters"
+
+    `wormhole_state` ++"&mut State"++  
+
+    A mutable reference to the Wormhole state object, required for managing the contract’s state and validating the message.  
+
+    ---
+
+    `message_fee` ++"Coin<SUI>"++  
+
+    The fee paid in SUI tokens to cover the cost of publishing the message.  
+
+    ---
+
+    `clock` ++"&Clock"++  
+
+    A reference to the blockchain’s current time, required for message validation.  
+
+    ---
+
+    `data` ++"&LoyaltyData"++  
+
+    A reference to the `LoyaltyData` shared object containing user data and loyalty points.  
+
+    ---
+
+    `user` ++"vector<u8>"++  
+
+    The identifier of the user, represented as a byte vector, whose points are included in the message.  
+
+    ---
+
+    `nonce` ++"u32"++  
+
+    A unique number that identifies the message and ensures no duplicate messages are processed.  
+
+    ---
+
+    `emitter_cap` ++"&mut EmitterCap"++  
+
+    A mutable reference to the Wormhole emitter capability, used to authorize the message emission.  
+
+
 ### Full messages.move code recap
 
 Find the complete code for `messages.move` below:
@@ -646,21 +775,6 @@ Find the complete code for `messages.move` below:
     ```
 
 <!-- ----- TRANSCRIPT ----- -->
-<!-- messages.move -->
-
-
-- new_message method
-how to create a new message 
-msg will contain user address as bytes and amount of points 
-amount of points is in data loyaltydata 
-i get the points inside the table data.points
-for every user im keeping their points
-i create prepare_payload which returns a vector of bytes
-then i publich message i use the wormhole publish_message::prepare_message to retunr the message ticket 
-were supposed to use it in a ptb ?? and then call the publich message:: publich message from wormhole
-
-
-at the end put the whole script messages.move
 
 this is how u use sui move code that interacts with wormhole now we go over the full example
 
