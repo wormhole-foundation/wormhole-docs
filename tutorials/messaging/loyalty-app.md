@@ -77,7 +77,7 @@ This command sets up the initial project structure, including the `move.toml` fi
 
 Update your `move.toml` file to include the necessary dependencies. Replace the default content with the following:
 
-```
+```toml
 [package]
 name = "loyalty_contracts"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
@@ -123,13 +123,15 @@ These modules together enable effective management of incoming and outgoing mess
 
 ## Implement the loyalty contract 
 
+### Set-up 
+
 1. **Project structure and module naming**
 
     In Sui, a package represents a folder that contains the Move modules (`.move` files) you’ll write. Within the package, there’s a sources folder where these modules reside. Each module typically defines related functionality, and some may include test-only modules indicated by the `#[test_only]` attribute.
 
     For this project, navigate to `contracts/sources` and rename the default module file to make its purpose clear. For instance, rename `contracts.move` to `loyalty.move`. Then, update the module declaration to reflect the package and module name:
 
-    ```
+    ```move
     module contracts::loyalty;
     ```
 
@@ -140,7 +142,7 @@ These modules together enable effective management of incoming and outgoing mess
 
 2. **Import dependencies** - start by importing the necessary modules
 
-    ```
+    ```move
     use sui::table::{Self, Table};
     ```
 
@@ -148,7 +150,7 @@ These modules together enable effective management of incoming and outgoing mess
 
 3. **Define errors** - declare custom error codes that will be used throughout the contract
 
-    ```
+    ```move
     const EInexistentUser: u64 = 1;
     const EWrongSigner: u64 = 2;
     ```
@@ -165,9 +167,9 @@ These modules together enable effective management of incoming and outgoing mess
 
         This error ensures only the admin can perform certain restricted actions, such as changing the admin address
 
-4. **Defining the LoyaltyData struct** - the loyalty program revolves around the `LoyaltyData` shared object, which stores user points and admin information. Shared objects are accessible globally and can be passed as arguments in transactions, unlike owned objects, which are tied to specific addresses
+4. **Define the LoyaltyData struct** - the loyalty program revolves around the `LoyaltyData` shared object, which stores user points and admin information. Shared objects are accessible globally and can be passed as arguments in transactions, unlike owned objects, which are tied to specific addresses
 
-    ```
+    ```move
     public struct LoyaltyData has key {
         id: UID,
         user_points: Table<vector<u8>, u64>,
@@ -196,98 +198,179 @@ These modules together enable effective management of incoming and outgoing mess
     !!!note
         The `has key` attribute ensures that the struct can be stored on-chain as an object.
 
-### Initializing the shared object
+### Define functions
 
-The `init` function creates the `LoyaltyData` object, initializes its fields, and registers it as a shared object that can be accessed globally.
+1. **Initialize the shared object** - the `init` function creates the `LoyaltyData` object, initializes its fields, and registers it as a shared object that can be accessed globally
 
-```
-fun init(ctx: &mut TxContext) {
-    let data = LoyaltyData {
-        id: object::new(ctx),
-        user_points: table::new<vector<u8>, u64>(ctx),
-        admin_address: ctx.sender(),
-    };
-    transfer::share_object(data);
-}
-```
-
-### Admin management
-
-The admin plays a critical role in managing the loyalty program. To ensure flexibility and security, the contract allows the admin to update their address if needed, such as in the case of a compromised private key.
-
-```
-public fun change_admin_address(
-    data: &mut LoyaltyData,
-    new_admin: address,
-    ctx: &mut TxContext,
-) {
-    assert!(ctx.sender() == data.admin_address, EWrongSigner);
-    data.admin_address = new_admin;
-}
-```
-
-### Adding and Removing Points
-
-Managing loyalty points is a core function of the program. This is handled with two functions: one to add points and another to remove them.
-
-The `add_points` function increases the loyalty points for a user. If the user already exists in the points table, their current points are retrieved, updated, and saved back into the table. If the user doesn’t exist yet, a new entry is created with the provided points value.
-
-- Existing user - Check if the user is in the table, retrieve their current points, and increment the value by the specified amount
-- New user - If the user doesn’t exist in the table, add them with the specified points
-
-```
-public(package) fun add_points(
-    data: &mut LoyaltyData,
-    user: vector<u8>,
-    loyalty_points: u64,
-) {
-    if (loyalty_points > 0) {
-        if(data.user_points.contains(user)) {
-            *data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points;
-        } else {
-            data.user_points.add(user, loyalty_points);
+    ```move
+    fun init(ctx: &mut TxContext) {
+        let data = LoyaltyData {
+            id: object::new(ctx),
+            user_points: table::new<vector<u8>, u64>(ctx),
+            admin_address: ctx.sender(),
         };
-    };
-}
-```
+        transfer::share_object(data);
+    }
+    ```
 
-The `remove_points` function decreases the loyalty points for a user. It first ensures the user exists in the table. Then it retrieves their current points and deducts the specified amount. If the points to be removed exceed the user’s total, their points are set to zero.
+    ??? interface "Parameters"
 
-- Validation - confirm the user exists in the table before proceeding
-- Deduction - subtract points from the user’s total. If the requested deduction is larger than the current total, set the user’s points to zero
+        `ctx` ++"&mut TxContext"++
+
+        The transaction context used to create and initialize the shared `LoyaltyData` object.  
+
+    ??? interface "Emits"
+
+        `LoyaltyData` ++"Shared Object"++
+
+        The initialized `LoyaltyData` object, registered as a shared object in the global storage.
+
+2. **Admin management** - the admin plays a critical role in managing the loyalty program. To ensure flexibility and security, the contract allows the admin to update their address if needed, such as in the case of a compromised private key.
+
+    ```move
+    public fun change_admin_address(
+        data: &mut LoyaltyData,
+        new_admin: address,
+        ctx: &mut TxContext,
+    ) {
+        assert!(ctx.sender() == data.admin_address, EWrongSigner);
+        data.admin_address = new_admin;
+    }
+    ```
+
+    ??? interface "Parameters"
+
+        `data` ++"&mut LoyaltyData"++  
+
+        The mutable reference to the `LoyaltyData` shared object where the admin address will be updated.  
+
+        ---
+
+        `new_admin` ++"address"++  
+
+        The new address to set as the admin for the `LoyaltyData` object.  
+
+        ---
+
+        `ctx` ++"&mut TxContext"++  
+
+        The transaction context used to validate the sender's address and execute the admin change.  
+
+    The function updates the `admin_address` field of the `LoyaltyData` object to the provided `new_admin` address.
+
+### Define application logic 
+
+1. **Add and remove points** - managing loyalty points is a core function of the program. This is handled with two functions: one to add points and another to remove them. 
+
+    - The `add_points` function increases the loyalty points for a user. If the user already exists in the points table, their current points are retrieved, updated, and saved back into the table. If the user doesn’t exist yet, a new entry is created with the provided points value
+
+        - Existing user - Check if the user is in the table, retrieve their current points, and increment the value by the specified amount
+        - New user - If the user doesn’t exist in the table, add them with the specified points
+
+        ```move
+        public(package) fun add_points(
+            data: &mut LoyaltyData,
+            user: vector<u8>,
+            loyalty_points: u64,
+        ) {
+            if (loyalty_points > 0) {
+                if(data.user_points.contains(user)) {
+                    *data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points;
+                } else {
+                    data.user_points.add(user, loyalty_points);
+                };
+            };
+        }
+        ```
+
+        ??? interface "Parameters"
+
+            `data` ++"&mut LoyaltyData"++  
+
+            The mutable reference to the `LoyaltyData` shared object where the user's points are stored and updated.  
+
+            ---
+
+            `user` ++"vector<u8>"++  
+
+            The identifier for the user, represented as a byte vector, used as the key in the points table.  
+
+            ---
+
+            `loyalty_points` ++"u64"++  
+
+            The number of loyalty points to add to the user's account.  
 
 
-```
-public(package) fun remove_points(
-    data: &mut LoyaltyData,
-    user: vector<u8>,
-    loyalty_points: u64,
-) {
-    assert!(data.user_points.contains(user), EInexistentUser);
-    let current_points = *data.user_points.borrow(user);
-    if(current_points > loyalty_points) {
-        *data.user_points.borrow_mut(user) = current_points - loyalty_points;
-    } else {
-        *data.user_points.borrow_mut(user) = 0;
-    };
-}
-```
+        The function updates the `user_points` table in the `LoyaltyData` object, either incrementing the points for an existing user or adding a new entry for a new user.  
 
-### Fetching user points
+    - The `remove_points` function decreases the loyalty points for a user. It first ensures the user exists in the table. Then it retrieves their current points and deducts the specified amount. If the points to be removed exceed the user’s total, their points are set to zero.
 
-To enable other modules or users to query the number of loyalty points a user has, the contract includes a getter function.
+        - Validation - confirm the user exists in the table before proceeding
+        - Deduction - subtract points from the user’s total. If the requested deduction is larger than the current total, set the user’s points to zero
 
-```
-public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
-    *data.user_points.borrow(user)
-}
-```
+        ```move
+        public(package) fun remove_points(
+            data: &mut LoyaltyData,
+            user: vector<u8>,
+            loyalty_points: u64,
+        ) {
+            assert!(data.user_points.contains(user), EInexistentUser);
+            let current_points = *data.user_points.borrow(user);
+            if(current_points > loyalty_points) {
+                *data.user_points.borrow_mut(user) = current_points - loyalty_points;
+            } else {
+                *data.user_points.borrow_mut(user) = 0;
+            };
+        }
+        ```
+
+        ??? interface "Parameters"
+
+            `data` ++"&mut LoyaltyData"++  
+
+            The mutable reference to the `LoyaltyData` shared object where the user's points are stored and updated.  
+
+            ---
+
+            `user` ++"vector<u8>"++  
+
+            The identifier for the user, represented as a byte vector, used as the key in the points table.  
+
+            ---
+
+            `loyalty_points` ++"u64"++  
+
+            The number of loyalty points to remove from the user's account.  
+
+        The function updates the `user_points` table in the `LoyaltyData` object, decrementing the user's points or setting the points to zero if the specified amount exceeds the current balance.  
+
+2. **Fetch user points** - to enable other modules or users to query the number of loyalty points a user has, the contract includes a getter function
+
+    ```move
+    public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
+        *data.user_points.borrow(user)
+    }
+    ```
+
+    ??? interface "Parameters"
+
+        `data` ++"&LoyaltyData"++  
+
+        The reference to the `LoyaltyData` shared object from which the user's points will be retrieved.  
+
+        ---
+
+        `user` ++"vector<u8>"++  
+
+        The identifier for the user, represented as a byte vector, used as the key in the points table.  
+
 
 ### Testing Support
 
 During development and testing, initializing shared objects can be challenging. The contract provides a test-only function to initialize the `LoyaltyData` object.
 
-```
+```move
 #[test_only]
 public fun init_for_tests(ctx: &mut TxContext) {
     init(ctx);
@@ -296,81 +379,13 @@ public fun init_for_tests(ctx: &mut TxContext) {
 
 ### Full loyalty.move code recap
 
-Here is the complete code, now with all steps integrated:
+Find the complete code for `loyalty.move` below:
 
-```
-#[allow(implicit_const_copy)]
-module loyalty_contracts::loyalty;
+??? code "loyalty.move"
 
-use sui::table::{Self, Table};
-
-// errors
-const EInexistentUser: u64 = 1;
-const EWrongSigner: u64 = 2;
-
-
-public struct LoyaltyData has key {
-    id: UID,
-    user_points: Table<vector<u8>, u64>,
-    admin_address: address,
-}
-
-fun init(ctx: &mut TxContext) {
-    let data = LoyaltyData {
-        id: object::new(ctx),
-        user_points: table::new<vector<u8>, u64>(ctx),
-        admin_address: ctx.sender(),
-    };
-    transfer::share_object(data);
-}
-
-public fun change_admin_address(
-    data: &mut LoyaltyData,
-    new_admin: address,
-    ctx: &mut TxContext,
-) {
-    assert!(ctx.sender() == data.admin_address, EWrongSigner);
-    data.admin_address = new_admin;
-}
-
-public(package) fun add_points(
-    data: &mut LoyaltyData,
-    user: vector<u8>,
-    loyalty_points: u64,
-) {
-    if (loyalty_points > 0) {
-        if(data.user_points.contains(user)) {
-            *data.user_points.borrow_mut(user) = *data.user_points.borrow(user) + loyalty_points;
-        } else {
-            data.user_points.add(user, loyalty_points);
-        };
-    };
-}
-
-public(package) fun remove_points(
-    data: &mut LoyaltyData,
-    user: vector<u8>,
-    loyalty_points: u64,
-) {
-    assert!(data.user_points.contains(user), EInexistentUser);
-    let current_points = *data.user_points.borrow(user);
-    if(current_points > loyalty_points) {
-        *data.user_points.borrow_mut(user) = current_points - loyalty_points;
-    } else {
-        *data.user_points.borrow_mut(user) = 0;
-    };
-}
-
-// getters
-public fun points(data: &LoyaltyData, user: vector<u8>): u64 {
-    *data.user_points.borrow(user)
-}
-
-#[test_only]
-public fun init_for_tests(ctx: &mut TxContext) {
-    init(ctx);
-}
-```
+    ```move
+    --8<-- "code/tutorials/messaging/loyalty/loyalty.move"
+    ```
 
 ## Implementing the messages contract
 
