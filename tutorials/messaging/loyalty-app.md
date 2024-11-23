@@ -9,47 +9,45 @@ description: Build a loyalty app that connects across networks, enabling seamles
 
 ## Introduction
 
-### Overview 
+This tutorial guides you through building a loyalty app that spans multiple blockchains, leveraging Wormhole's cross-chain messaging capabilities. The app will enable users to earn loyalty points across various blockchain-based marketplaces and manage their points on a governance layer powered by Sui. The tutorial focuses on sending and receiving cross-chain messages using Wormhole and provides insights into Sui and its Move programming language.
 
-In this tutorial, we will build a loyalty app that spans multiple blockchains, leveraging Wormhole's cross-chain messaging capabilities. The app will enable users to earn loyalty points across various blockchain-based marketplaces and manage their points on a governance layer powered by Sui. By the end of this tutorial, you'll understand how to send and receive cross-chain messages using Wormhole and gain insights into Sui and its Move programming language.
+This tutorial aims to achieve the following:
 
-### Objectives
-
-- Receive and send messages - focus on the mechanics of transferring data between chains, with Sui as the source and recipient
-- Design a loyalty program - create a program where users earn points across chains and transmit these points to Sui for centralized management and governance
-
-### Application Context
+- **Receive and send messages** - focus on the mechanics of transferring data between chains, with Sui as the source and recipient chains
+- **Design a loyalty program** - create a program where users earn points across chains and transmit these points to Sui for centralized management and governance
 
 The loyalty app assumes multiple business marketplaces operate on different blockchains. Each time a user purchases something on any of these chains, they earn points. These points are sent to Sui, which acts as a governance layer. The app ensures:
 
 - Chains can inquire about a user’s available points
 - Sui can notify all chains about user points
 
-## Data Handling 
+### Data handling 
 
-Incoming Payload (to Sui)
+The app processes data in the form of payloads to facilitate cross-chain communication. Incoming payloads sent to Sui include:
 
-- Points earned - encoded as a BSC u64 (Binary Canonical Serialization)
-- User address - represented as a UUID (Universally Unique Identifier). While reusing addresses as unique identifiers across chains might pose risks of collisions, it serves as a suitable example for this use case
-- Chain code - omitted because the Wormhole message already includes the emitter's chain address and the sending function
-- Operation code - specifies whether to add or remove points (0 for addition, 1 for removal)
+- **Points earned** - encoded as a BSC u64 (Binary Canonical Serialization)
+- **User address** - represented as a UUID (Universally Unique Identifier). 
 
-Outgoing Payload (from Sui)
+    !!!note
+        Reusing addresses as unique identifiers across chains might pose risks of collisions, however it serves as a suitable example for this use case
 
-- Points to be deducted or transferred - encoded as a BSC u64
-- User address - represented as a UUID
+- **Chain code** - omitted because the Wormhole message already includes the emitter's chain address and the sending function
+- **Operation code** - specifies whether to add or remove points (0 for addition, 1 for removal)
 
-<!-- transcription -->
+Outgoing payloads from Sui contain:
+
+- **Points to be deducted or transferred** - encoded as a BSC u64
+- **User address** - represented as a UUID
 
 ## Libraries
 
-### Web3 libraries 
+The implementation relies on several libraries to handle blockchain interactions and message processing. For blockchain-specific functionalities, key libraries include:
 
 - [move-stdlib](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/move-stdlib){target=\_blank}
 - [sui-frameworks](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources){target=\_blank}
 - [wormhole address and testnet](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui){target=\_blank}
 
-### Web2 libraries 
+Additionally, tools for integrating with the blockchain and handling transactions include:
 
 - @wormhole-foundation/sdk - install with `pnpm i @wormhole-foundation/sdk`
 - @mysten/sui - install with `pnpm i @mysten/sui` to create transactions and interact with the chain
@@ -61,9 +59,9 @@ Before starting, ensure you have the following tools installed:
 - Sui CLI - install the Sui CLI by following the [Sui installation guide](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank}
 - Homebrew (MacOS) - install with `brew install sui`
 
-## Building the Loyalty App
+## Build the Loyalty App
 
-### Setting up your project 
+### Set-up your project 
 
 Create a new project folder for your loyalty app and initialize a Sui Move contract template:
 
@@ -75,7 +73,7 @@ sui move new contracts
 
 This command sets up the initial project structure, including the `move.toml` file and a basic contracts folder.
 
-### Configuring move.toml
+### Configure move.toml
 
 Update your `move.toml` file to include the necessary dependencies. Replace the default content with the following:
 
@@ -117,65 +115,86 @@ Building the project downloads the necessary dependencies and prepares the sourc
 
 Wormhole’s Move modules provide the core functionality for handling cross-chain messages. Two key modules are essential for this process: `vaa.move`, which is used to verify and extract information from incoming messages, and `publish_message.move`, which facilitates sending messages from Sui to other chains.
 
-The `vaa.move` module plays a crucial role in processing incoming Wormhole messages, also known as VAAs (Verifiable Action Approvals). The first step is to verify the VAA using the `parse_and_verify` function, which ensures the message is authentic and untampered. Once the VAA is verified, the `take_emitter_info_and_payload` function can be used to extract important details, such as the emitter's chain, address, and the message payload. These details allow your application to understand the origin and content of the message. Afterward, the payload must be deserialized to make it usable for the application’s logic.
+The `vaa.move` module plays a crucial role in processing incoming Wormhole messages, also known as [VAAs (Verifiable Action Approvals)](/docs/learn/infrastructure/vaas/){target=\_blank}. The first step is to verify the VAA using the `parse_and_verify` function, which ensures the message is authentic and untampered. Once the VAA is verified, the `take_emitter_info_and_payload` function can be used to extract important details, such as the emitter's chain, address, and the message payload. These details help determine the origin and content of the message. Afterward, the payload must be deserialized to make it usable for the application’s logic.
 
-On the other hand, the `publish_message.move` module is used for sending messages from Sui to other chains. However, integrators are advised not to call the `publish_message` function directly in their contracts. Instead, the process involves two key steps. First, the `prepare_message` function is used to create a `MessageTicket`, which acts as a placeholder for the message you want to send. Once you have the ticket, it can be passed into `publish_message` within a transaction block, allowing the message to be emitted as a Sui event. This process also generates a unique sequence number for the emitter.
+The `publish_message.move` module facilitates sending messages from Sui to other chains. However, integrators are advised not to call the `publish_message` function directly in their contracts. Instead, the process involves two key steps. First, the `prepare_message` function creates a `MessageTicket`, which acts as a placeholder for the message you want to send. The ticket is then passed into `publish_message` within a transaction block, allowing the message to be emitted as a Sui event. This process also generates a unique sequence number for the emitter.
 
-By combining these modules, you can effectively manage both incoming and outgoing messages in your cross-chain application. The `vaa.move` module ensures that messages from other chains are verified and processed securely, while `publish_message.move` handles the seamless emission of messages from Sui to the Wormhole network.
+These modules together enable effective management of incoming and outgoing messages in cross-chain applications. The `vaa.move` module ensures that messages from other chains are verified and processed securely, while `publish_message.move` handles the seamless emission of messages from Sui to the Wormhole network.
 
+## Implement the loyalty contract 
 
-## Implementing the loyalty contract 
+1. **Project structure and module naming**
 
-### Import dependencies and define errors
+    In Sui, a package represents a folder that contains the Move modules (`.move` files) you’ll write. Within the package, there’s a sources folder where these modules reside. Each module typically defines related functionality, and some may include test-only modules indicated by the `#[test_only]` attribute.
 
-We start by importing the necessary modules and declaring custom error codes that will be used throughout the contract.
+    For this project, navigate to `contracts/sources` and rename the default module file to make its purpose clear. For instance, rename `contracts.move` to `loyalty.move`. Then, update the module declaration to reflect the package and module name:
 
-```
-use sui::table::{Self, Table};
-```
+    ```
+    module contracts::loyalty;
+    ```
 
-This import provides access to the `Table` type, a mapping structure in Sui Move, which we’ll use to store user points. It also allows us to use the `Table` module’s associated functions.
+    - `contracts` - the name of the package (main folder)
+    - `loyalty` - the name of the module (file)
 
-```
-const EInexistentUser: u64 = 1;
-const EWrongSigner: u64 = 2;
-```
+    When deployed on-chain, the package name (`contracts`) will disappear, leaving the module name (`loyalty`) prefixed with the contract’s full address. For example, functions or structures in this module will be accessible using a path like `0x1234565aabb...::loyalty::function_name`.
 
-- `EInexistentUser`: This error will be triggered if a function attempts to interact with a non-existent user in the points table
-- `EWrongSigner`: This error ensures only the admin can perform certain restricted actions, such as changing the admin address
+2. **Import dependencies** - start by importing the necessary modules
 
-### Project structure and module naming
+    ```
+    use sui::table::{Self, Table};
+    ```
 
-In Sui, a package represents a folder that contains the Move modules (`.move` files) you’ll write. Within the package, there’s a sources folder where these modules reside. Each module typically defines related functionality, and some may include test-only modules indicated by the `#[test_only]` attribute.
+    This import provides access to the `Table` type, a mapping structure in Sui Move, which we’ll use to store user points. It also allows us to use the `Table` module’s associated functions.
 
-For this project, navigate to `contracts/sources` and rename the default module file to make its purpose clear. For instance, rename `contracts.move` to `loyalty.move`. Then, update the module declaration to reflect the package and module name:
+3. **Define errors** - declare custom error codes that will be used throughout the contract
 
-```
-module contracts::loyalty;
-```
+    ```
+    const EInexistentUser: u64 = 1;
+    const EWrongSigner: u64 = 2;
+    ```
 
-- `contracts` - the name of the package (main folder)
-- `loyalty` - the name of the module (file)
+    ??? interface "Errors"
 
-When deployed on-chain, the package name (`contracts`) will disappear, leaving the module name (`loyalty`) prefixed with the contract’s full address. For example, functions or structures in this module will be accessible using a path like `0x1234565aabb...::loyalty::function_name`.
+        `EInexistentUser` ++"u64"++
 
-### Defining the LoyaltyData struct
+        This error will be triggered if a function attempts to interact with a non-existent user in the points table
 
-The loyalty program revolves around the `LoyaltyData` shared object, which stores user points and admin information. Shared objects are accessible globally and can be passed as arguments in transactions, unlike owned objects, which are tied to specific addresses.
+        ---
 
-```
-public struct LoyaltyData has key {
-    id: UID,
-    user_points: Table<vector<u8>, u64>,
-    admin_address: address,
-}
-```
+        `EWrongSigner` ++"u64"++
 
-- `id` - UID: A unique identifier for this object, automatically generated when created.
-- `user_points` - Table<vector<u8>, u64>: A mapping of user identifiers (as byte vectors) to their corresponding points (as u64 integers).
-- `admin_address` - address: The address of the admin who can manage this object.
+        This error ensures only the admin can perform certain restricted actions, such as changing the admin address
 
-The `has key` attribute ensures that the struct can be stored on-chain as an object.
+4. **Defining the LoyaltyData struct** - the loyalty program revolves around the `LoyaltyData` shared object, which stores user points and admin information. Shared objects are accessible globally and can be passed as arguments in transactions, unlike owned objects, which are tied to specific addresses
+
+    ```
+    public struct LoyaltyData has key {
+        id: UID,
+        user_points: Table<vector<u8>, u64>,
+        admin_address: address,
+    }
+    ```
+
+    ??? interface "Parameters"
+
+        `id` ++"UID"++
+
+        A unique identifier for this object, automatically generated when created.
+
+        ---
+
+        `user_points` ++"Table<vector<u8>, u64>"++
+
+        A mapping of user identifiers (as byte vectors) to their corresponding points (as u64 integers).
+
+        ---
+
+        `admin_address` ++"address"++
+
+        The address of the admin who can manage this object.
+
+    !!!note
+        The `has key` attribute ensures that the struct can be stored on-chain as an object.
 
 ### Initializing the shared object
 
