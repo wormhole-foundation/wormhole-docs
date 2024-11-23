@@ -387,11 +387,19 @@ Find the complete code for `loyalty.move` below:
     --8<-- "code/tutorials/messaging/loyalty/loyalty.move"
     ```
 
-## Implementing the messages contract
+## Implement the messages contract
+
+This section focuses on the `messages` module, designed to handle cross-chain messaging in the loyalty app using Wormhole. The module includes functions for processing incoming messages, creating new messages, and managing payloads. It is central to blockchain interoperability by securely transmitting and receiving loyalty program data.
+
+This section provides explanations of:
+
+- **Receiving messages** - validating and processing incoming Wormhole messages to update loyalty data on Sui
+- **Creating messages** - generating and preparing outgoing messages that contain user data and points
+- **Payload management** - encoding and decoding message payloads for seamless communication between chains
 
 Start by creating a new file in the `sources` directory called `messages.move`. This file will handle sending and receiving messages using Wormhole's functionality.
 
-### Setup dependencies
+### Set-up
 
 At the top of the file, include the necessary imports for using Wormhole, handling payloads, and working with the loyalty contract:
 
@@ -411,6 +419,62 @@ use wormhole::emitter::EmitterCap;
 use loyalty_contracts::loyalty::{Self, LoyaltyData};
 ```
 
+??? interface "Imports"
+
+    `sui::bcs`  
+
+    Provides functions for encoding and decoding data in Binary Canonical Serialization (BCS), used for structuring payloads in messages.  
+
+    ---
+
+    `sui::coin::Coin`  
+
+    Enables interaction with the native SUI coin, which is used for handling message fees when publishing messages.  
+
+    ---
+
+    `sui::clock::Clock`  
+
+    Provides access to the current blockchain time, which is necessary for validating Wormhole messages.  
+
+    ---
+
+    `sui::sui::SUI`  
+
+    Represents the SUI token, used in operations that involve fees or transactions.  
+
+    ---
+
+    `wormhole::vaa::{Self, VAA}`  
+
+    Imports Wormhole's Verifiable Action Approval (VAA) module, which provides tools for verifying, parsing, and interacting with messages received through Wormhole.  
+
+    ---
+
+    `wormhole::state::State`  
+
+    Represents Wormhole's state object, which is used for validating messages and managing the Wormhole contract state.  
+
+    ---
+
+    `wormhole::publish_message::{Self, MessageTicket}`  
+
+    Provides functions for creating and publishing Wormhole messages, including the `MessageTicket` type for representing prepared messages.  
+
+    ---
+
+    `wormhole::emitter::EmitterCap`  
+
+    Represents the authorization needed to emit messages from this module using Wormhole.  
+
+    ---
+
+    `loyalty_contracts::loyalty::{Self, LoyaltyData}`  
+
+    Imports the loyalty module and the `LoyaltyData` struct to interact with the loyalty program’s state.  
+
+
+
 Then add error codes:
 
 ```
@@ -418,9 +482,33 @@ const EInvalidPayload: u64 = 404;
 const EInexistentOpCode: u64 = 407;
 ```
 
-### Implement the receive_message Function
+??? interface "Errors"
 
-The `receive_message` function processes incoming messages by verifying their authenticity and extracting their payloads. It then updates the loyalty program’s state based on the operation code. <!-- add better description here-->
+    `EInvalidPayload` ++"404"++  
+
+    Indicates that the provided payload is malformed or does not match the expected format.  
+
+    ---
+
+    `EInexistentOpCode` ++"407"++  
+
+    Indicates that the operation code extracted from the payload is invalid or unsupported.  
+
+
+### Define the receive_message function
+
+The `receive_message` function handles incoming Wormhole messages by verifying their validity and extracting the contained payload. This payload is used to update the loyalty program's state based on the specified operation code.
+
+- **Inputs and verification** - the function expects a raw VAA (Verifiable Action Approval) as a binary vector (`vector<u8>`), the Wormhole state, and the current blockchain clock. These inputs are passed to `vaa::parse_and_verify`, which validates the VAA's authenticity and integrity. If the VAA is valid, it is returned as a structured object
+- **Extracting the payload** - the payload is extracted using `vaa::take_payload`, which retrieves the core message data. While this function directly extracts the payload, `vaa::take_emitter_info_and_payload` should be used for additional checks, such as validating the emitter's address and chain. No such checks are performed in this implementation
+- **Decoding the payload** - the extracted payload is parsed into its components using `parse_payload`. This function splits the payload into:
+    - **Operation code (op)** - indicates the action to perform (0 for adding points, 1 for removing points)
+    - **User identifier** - the user's public key, represented as a byte vector, is used as their unique identifier
+    - **Amount** - the number of loyalty points involved in the operation
+- **Performing the operation** - based on the operation code:
+    - For 0, the points are added to the user's account using `loyalty::add_points`
+    - For 1, the points are removed using `loyalty::remove_points`
+    - If the operation code is invalid, the function aborts with `EInexistentOpCode`
 
 ```
 public fun receive_message (
@@ -449,7 +537,34 @@ public fun receive_message (
 }
 ```
 
-### Implement the new_message function
+??? interface "Parameters"
+
+    `raw_vaa` ++"vector<u8>"++  
+
+    The raw Wormhole message (VAA) in binary format, containing the encoded payload and metadata.  
+
+    ---
+
+    `wormhole_state` ++"&State"++  
+
+    A reference to the Wormhole state object, used to verify the VAA’s authenticity.  
+
+    ---
+
+    `clock` ++"&Clock"++  
+
+    A reference to the blockchain’s current time, used for message validation.  
+
+    ---
+
+    `data` ++"&mut LoyaltyData"++  
+
+    A mutable reference to the `LoyaltyData` shared object, which stores the loyalty program’s user data.  
+
+This function updates the `LoyaltyData` object based on the operation code in the payload. For `0`, points are added to the user’s account; for `1`, points are removed.  
+
+
+### Define the new_message function
 
 This function creates a new message containing user points and prepares it for sending via Wormhole. <!-- add better description here-->
 
@@ -501,7 +616,7 @@ fun parse_payload(mut payload: vector<u8>): (u8, u8, vector<u8>, u64) {
 }
 ```
 
-### Include a Testing Method (Optional)
+### Include a testing method (Optional)
 
 The `emit_message_` function is primarily for testing. It demonstrates how to directly send a message using Wormhole’s publish_message.
 
@@ -518,136 +633,20 @@ public fun emit_message_(
     let msg_ticket = new_message(data, user, nonce, emitter_cap);
     publish_message::publish_message(wormhole_state, message_fee, msg_ticket, clock);
 }
-
 ```
 
-### Full messages.move code
+### Full messages.move code recap
 
-Here’s the complete file:
+Find the complete code for `messages.move` below:
 
-```
-module loyalty_contracts::messages;
+??? code "loyalty.move"
 
-use sui::bcs;
-use sui::coin::Coin;
-use sui::clock::Clock;
-use sui::sui::SUI;
-
-use wormhole::vaa::{Self, VAA};
-use wormhole::state::State;
-use wormhole::publish_message::{Self, MessageTicket};
-use wormhole::emitter::EmitterCap;
-
-use loyalty_contracts::loyalty::{Self, LoyaltyData};
-
-const EInvalidPayload: u64 = 404;
-const EInexistentOpCode: u64 = 407;
-
-public fun receive_message (
-    raw_vaa: vector<u8>,
-    wormhole_state: &State,
-    clock: &Clock,
-    data: &mut LoyaltyData
-)
-{
-
-    let vaa: VAA = vaa::parse_and_verify(wormhole_state, raw_vaa, clock);
-    let payload = vaa::take_payload(vaa);
-    let (op, _chain, user, amount) = parse_payload(payload);
-
-    // gain points
-    if (op == 0) {
-        loyalty::add_points(data, user, amount);
-    } 
-    // use points
-    else if (op == 1) {
-       loyalty::remove_points(data, user, amount); 
-    } else {
-        abort(EInexistentOpCode)
-    }
-
-}
-
-// suggested way is to call wormhole::publish_message::publish_message in a PTB
-public fun new_message(
-    data: &LoyaltyData,
-    user: vector<u8>,
-    nonce: u32,
-    emitter_cap: &mut EmitterCap
-): MessageTicket
-{
-    let payload = prepare_payload(data.points(user), user);
-    publish_message::prepare_message(emitter_cap, nonce, payload)
-}
-
-// not suggested, useful_for tests
-public fun emit_message_(
-    wormhole_state: &mut State,
-    message_fee: Coin<SUI>,
-    clock: &Clock,
-    data: &LoyaltyData,
-    user: vector<u8>,
-    nonce: u32,
-    emitter_cap: &mut EmitterCap
-) 
-{
-    let msg_ticket = new_message(data, user, nonce, emitter_cap);
-    publish_message::publish_message(wormhole_state, message_fee, msg_ticket, clock);
-}
-
-// The emitted messages will contain the points a user has
-fun prepare_payload(points: u64, user: vector<u8>): vector<u8> {
-    let mut payload: vector<u8> = bcs::to_bytes(&points);
-    vector::append(&mut payload, user);
-    payload
-}
-
-
-// We expect a payload to be an array of u8 types
-// The last element is the operation (spend or consume)
-// Then the second to last is a u8 denoting the chain
-// Next 32 u8's are the public key
-// First 8 are bcs encoded u64 value of the points gained
-fun parse_payload(mut payload: vector<u8>): (u8, u8, vector<u8>, u64) {
-    let operation = vector::pop_back(&mut payload);
-    let chain = vector::pop_back(&mut payload);
-    let mut user_address: vector<u8> = vector[];
-    let mut i = 0;
-    while(i < 32) {
-        vector::push_back(&mut user_address, vector::pop_back(&mut payload));
-        i = i + 1;
-    };
-    // we wrote it backwards
-    vector::reverse(&mut user_address);
-    // We expect 8 u8s in the payload since a u64 encoded in bcs is 8 bytes.
-    assert!(vector::length(&payload) == 8, EInvalidPayload);
-
-    let mut amount_bcs = bcs::new(payload);
-    let amount = amount_bcs.peel_u64();
-    (operation, chain, user_address, amount)
-}
-```
-
-```
-```
-
-```
-```
-
+    ```move
+    --8<-- "code/tutorials/messaging/loyalty/messages.move"
+    ```
 
 <!-- ----- TRANSCRIPT ----- -->
 <!-- messages.move -->
-
-
-- receive_message method from messages.move
-for receive_message im expecting to be given the raw_vaa which is the vector from before 
-i will need the state and clock to be able to parse and verify
-when we have the vector we call parse_and_verify with all the necessary arguments and we get the vaa
-then we extrate the payload, we use take_payload but its suggested that u use take_emitter_info_and_payload in order to actuall do checks 
-we're not doing any checks 
-
-we expect to be getting an operations code, 0 add points 1 remove points 
-for user we are using the public key of the user to identify it
 
 
 - new_message method
