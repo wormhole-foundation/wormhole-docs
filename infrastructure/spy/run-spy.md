@@ -57,6 +57,13 @@ Optionally, add the following flags to skip any VAAs with invalid signatures:
     --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78    
     ```
 
+Optionally, add the following flags to prevent unbounded log growth:
+
+```sh
+--log-opt max-size=10m \
+--log-opt max-file=3
+```
+
 ## Subscribe to Filtered VAAs
 
 Once running, a [gRPC](https://grpc.io/){target=\_blank} client (i.e., your program) can subscribe to a filtered stream of messages (VAAs).
