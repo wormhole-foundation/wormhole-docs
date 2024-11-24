@@ -784,9 +784,24 @@ The Web2 layer enables interaction with the blockchain and Wormhole from a Node.
 
 2. **Environment variables** - create a `.env` file to securely store sensitive information, such as the private key. Example `.env` file:
     ```
-    secretKey="YOUR_PRIVATE_SUI_KEY"
+    SUI_SK="YOUR_PRIVATE_SUI_KEY"
     ```
-    <!-- need to come back to this -->
+
+#### Steps to Create a Private Key
+
+1. Generate a new address and keypair using the `sui` CLI:
+    ```sh
+    sui keytool generate ed25519
+    ```
+2. Locate the Private Key:
+    ```sh
+    cat ~/.sui/sui_config/sui.keystore
+    ```
+3. Convert your key 
+    ```sh
+    sui keytool convert [the key from step 2]
+    ```
+4. Take the `bech32WithFlag` format and copy the private key into your `.env` file
 
 After Installing the dependencies you should have a `package.json` and a `pnpm-lock.yaml`. Now in that same folder we will create three typescript files:  
 
@@ -854,45 +869,96 @@ This section walks through the creation of the three main files in the Web2 laye
 
         To find the `DATA_OBJ`, inspect the object changes in the response when deploying the `LoyaltyData` shared object in your Sui contract. This object reference represents the shared `LoyaltyData` instance used to manage user points.
 
-- `utils.ts`
+- `utils.ts` - this file provides utility functions for creating a signer and connecting to the Sui blockchain. Its primary purpose is to handle private key management and set up a client connection to the blockchain. These utilities are used throughout the Web2 integration layer
 
     ```ts
     --8<-- "code/tutorials/messaging/loyalty/utils.ts"
     ```
 
-??? code "scripts.ts"
+    The `getSigner` function creates a signer using the private key stored in the `.env` file.
+
+    ??? interface "Parameters"
+
+        `SUI_SK` ++"string"++  
+
+        The private key stored in the `.env` file, used to create the Ed25519 keypair.  
+
+    ??? interface "Returns"
+
+        `Ed25519Keypair`  
+
+        An Ed25519 keypair used for signing transactions on Sui.  
+
+    The `client` instance connects to the Sui testnet using the `SuiClient`.
+
+    ??? interface "Parameters"
+
+        `url` ++"string"++  
+
+        The URL of the Sui testnet node, fetched using `getFullnodeUrl`.  
+
+    ??? interface "Returns"
+
+        `SuiClient`  
+
+        A client instance for sending transactions and querying blockchain data.  
+
+- `scripts.ts` - this file handles key operations for interacting with Sui and Wormhole, including emitting messages, updating contracts, and reading VAAs. This file integrates the logic for cross-chain messaging
+
     ```ts
     --8<-- "code/tutorials/messaging/loyalty/scripts.ts"
     ```
 
-<!-- ----- TRANSCRIPT ----- -->
+    The `emit_sol_msg` function simulates sending a message from Solana and returns the Verifiable Action Approval (VAA).
 
+    - Initializes the Wormhole instance for Solana
+    - Encodes a payload with user data (e.g., points and address)
+    - Publishes the message on Solana using the Wormhole core bridge
+    - Retrieves the VAA for the published message and writes it to a file (`vaa_result.json`) for further use
 
-<!-- utils.ts -->
- 
-utils.ts creates a signer 
-you will need an environment .env for the private key
+    The `updateSuiContract` function processes a received VAA and updates the Sui contract accordingly.
 
-create a new private key with new-address Generate new address and keypair with keypair 
+    - Decodes the VAA and sends it to the Sui contract via the `receive_message` function in the messages module
+    - Uses a transaction to pass the VAA, along with the contract state, clock, and shared `LoyaltyData` object
 
-once u install sui  to find your keys 
+    The `getEmitterCap` function creates an emitter capability object, enabling the contract to emit messages.
 
-```
-cat ~/.sui/sui_config/sui.keystore
-```
+    - Calls the `emitter::new` function in the Wormhole package to create a new emitter capability
+    - Transfers the newly created emitter object to the signer’s address
+    - Logs the created object’s ID for future use
 
-```
-sui keytool convert -b64 string-
-```
-use suiprivkey
+    The `sendSuiMsg` function sends a new message from the Sui contract to Wormhole.
 
-<!-- scripts.ts -->
+    - Calls the `new_message` function in the messages module to prepare the message
+    - Publishes the message via the Wormhole `publish_message` function
+    - Logs the transaction digest
 
-in here the payload is hardcoded 
-getting the vaa directly from wormhole
+    The `readSuiMsg` function reads and parses a message sent from the Sui contract.
 
+    - Parses the transaction to extract the VAA
+    - Decodes the VAA payload to retrieve the points and verify the data
 
-<!-- for web2 theres also a package.json and pnpm-lock.yaml files not sure how to get those-->
+    The `receiveMsg` function simulates the entire message flow from Solana to Sui.
+
+    - Calls `emit_sol_msg` to create a mock message from Solana
+    - Processes the resulting VAA using `updateSuiContract`
+
+    The `sendMsg` function simulates the entire message flow from Sui to Solana.
+
+    - Calls `sendSuiMsg` to emit a message from the Sui contract
+    - Reads and parses the resulting transaction using `readSuiMsg`
+
+    !!!important 
+
+        Hardcoded data: The Solana private key and the payload in `emit_sol_msg` are hardcoded for testing purposes. Replace them with dynamic inputs for production.
+
+        ---
+
+        Configuration: Ensure all constants in constants.ts (e.g., `PKG_ID`, `DATA_OBJ`, and `EMITTER_CAP`) are correctly set up before running the scripts.
+
+        ---
+
+        Debugging: Use the transaction digests and logged responses to debug issues during deployment or testing.
 
 ## Resources 
 
