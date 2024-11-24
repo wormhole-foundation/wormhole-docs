@@ -3,8 +3,6 @@ title: Build a loyalty app with message transfers
 description: Build a loyalty app that connects across networks, enabling seamless message transfers and unlocking unique user engagement opportunities.
 ---
 
-<!-- need to properly style all the variables etc -->
-
 # Build a loyalty app with message transfers 
 
 ## Introduction
@@ -47,17 +45,13 @@ The implementation relies on several libraries to handle blockchain interactions
 - [sui-frameworks](https://github.com/MystenLabs/sui/tree/main/crates/sui-framework/packages/sui-framework/sources){target=\_blank}
 - [wormhole address and testnet](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui){target=\_blank}
 
-Additionally, tools for integrating with the blockchain and handling transactions include:
-
-- @wormhole-foundation/sdk - install with `pnpm i @wormhole-foundation/sdk`
-- @mysten/sui - install with `pnpm i @mysten/sui` to create transactions and interact with the chain
-
 ## Prerequisites
 
 Before starting, ensure you have the following tools installed:
 
 - Sui CLI - install the Sui CLI by following the [Sui installation guide](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank}
-- Homebrew (MacOS) - install with `brew install sui`
+- @wormhole-foundation/sdk - install with `pnpm i @wormhole-foundation/sdk`
+- @mysten/sui - install with `pnpm i @mysten/sui` to create transactions and interact with the chain
 
 ## Build the Loyalty App
 
@@ -774,16 +768,108 @@ Find the complete code for `messages.move` below:
     --8<-- "code/tutorials/messaging/loyalty/messages.move"
     ```
 
+
+## Web2 Integration
+
+The Web2 layer enables interaction with the blockchain and Wormhole from a Node.js environment. This section demonstrates how to set up the environment, manage dependencies, and execute key operations such as sending messages, receiving VAAs, and updating contracts.
+
+### Environment Setup
+
+1. **Dependencies** - initialize the Web2 folder and install dependencies at the same level of the loyalty contracts folder
+    ```sh
+    mkdir web2 && cd web2
+    pnpm init
+    pnpm install @mysten/sui @wormhole-foundation/sdk bs58 dotenv
+    ```
+
+2. **Environment variables** - create a `.env` file to securely store sensitive information, such as the private key. Example `.env` file:
+    ```
+    secretKey="YOUR_PRIVATE_SUI_KEY"
+    ```
+    <!-- need to come back to this -->
+
+After Installing the dependencies you should have a `package.json` and a `pnpm-lock.yaml`. Now in that same folder we will create three typescript files:  
+
+- `constants.ts` - to define constants such as package IDs and public keys
+- `utils.ts` - to provide utility functions, such as signing transactions
+- `scripts.ts` -  to contain the main functions for sending and receiving messages
+
+### Scripts
+
+This section walks through the creation of the three main files in the Web2 layer: `constants.ts`, `scripts.ts`, and `utils.ts`. These files contain configuration, utility functions, and logic for interacting with the blockchain and Wormhole.
+
+- `constants.ts` - this file defines constants such as package IDs, public keys, and object references required for the application. These constants are used throughout the Web2 layer to identify contracts, emitters, and users
+
+    ```ts
+    --8<-- "code/tutorials/messaging/loyalty/constants.ts"
+    ```
+
+    ??? interface "Parameters"
+
+        `STATE_OBJ` ++"string"++  
+
+        Represents the state object of the Sui contract, used to maintain the application's state.  
+
+        ---
+
+        `WORMHOLE_PKG_ID` ++"string"++  
+
+        The Wormhole package ID, required to access Wormhole-specific modules for messaging and interaction.  
+
+        ---
+
+        `PKG_ID` ++"string"++  
+
+        The package ID for the deployed loyalty app contracts. This must be updated with your own package ID obtained from the Sui client after deployment.  
+
+        ---
+
+        `DATA_OBJ` ++"string"++  
+
+        The object reference to the shared `LoyaltyData` object within the Sui contract.  
+
+        ---
+
+        `EMITTER_CAP` ++"string"++  
+
+        The reference to the emitter capability created through Wormhole, which enables the emission of messages.  
+
+        ---
+
+        `SOLANA_PUBLIC_KEY` ++"Array<number>"++  
+
+        The Solana public key to which messages are sent, represented as an array of bytes. Update this with your own Solana public key.  
+
+    !!!important
+        To get your package ID, run:
+        ```sh
+        sui client publish --skip-dependency-verification
+        ```
+        
+        ---
+
+        To create an `EMITTER_CAP`, use the `getEmitterCap` function in `scripts.ts`. After you do, check the response and use the address of the item for the variable.
+
+        ---
+
+        To find the `DATA_OBJ`, inspect the object changes in the response when deploying the `LoyaltyData` shared object in your Sui contract. This object reference represents the shared `LoyaltyData` instance used to manage user points.
+
+- `utils.ts`
+
+    ```ts
+    --8<-- "code/tutorials/messaging/loyalty/utils.ts"
+    ```
+
+??? code "scripts.ts"
+    ```ts
+    --8<-- "code/tutorials/messaging/loyalty/scripts.ts"
+    ```
+
 <!-- ----- TRANSCRIPT ----- -->
 
-this is how u use sui move code that interacts with wormhole now we go over the full example
 
-
-## web2
-
-create a folder web2 at the same level of the contracts 
-
-## utils.ts
+<!-- utils.ts -->
+ 
 utils.ts creates a signer 
 you will need an environment .env for the private key
 
@@ -800,34 +886,19 @@ sui keytool convert -b64 string-
 ```
 use suiprivkey
 
-## scripts.ts
+<!-- scripts.ts -->
 
 in here the payload is hardcoded 
 getting the vaa directly from wormhole
 
-## costants.ts
-the users and all of that are inside costants 
-you need to use your own solana public key and will have to create an emitter cap 
-the code on how to create that is in scripts.ts getEmitterCap - u can create as many as u want but one is enough 
-after u got it check the response and put the address of the item in the var  
-
-to get package id
-```
-sui client publish --skip-dependency-verification
-```
 
 <!-- for web2 theres also a package.json and pnpm-lock.yaml files not sure how to get those-->
 
-
 ## Resources 
 
-- [intro to move code](https://github.com/Eis-D-Z/wormhole_sui/tree/intro_branch){target=\_blank}
-
-ADDITIONAL EXAMPLES
-- [sui example for sending tokens](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui/examples){target=\_blank}
-
-CODE REPOSITORY <!-- to be changed with our repo -->
-- [TUTORIAL REPO](https://github.com/Eis-D-Z/wormhole_sui){target=\_blank}
+- [Introduction to move code](https://github.com/Eis-D-Z/wormhole_sui/tree/intro_branch){target=\_blank}
+- [Sui example for sending tokens](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui/examples){target=\_blank}
+- [TUTORIAL REPO](https://github.com/Eis-D-Z/wormhole_sui){target=\_blank} <!-- to be changed with our repo -->
 
 ## Conclusion
 
