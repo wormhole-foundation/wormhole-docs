@@ -962,9 +962,20 @@ This section walks through the creation of the three main files in the Web2 laye
 
 ## Resources 
 
+To deepen your understanding of the concepts covered in this tutorial, the following resources provide additional insights and practical examples:
+
 - [Introduction to move code](https://github.com/Eis-D-Z/wormhole_sui/tree/intro_branch){target=\_blank}
 - [Sui example for sending tokens](https://github.com/wormhole-foundation/wormhole/tree/sui-upgrade-testnet/sui/examples){target=\_blank}
 - [TUTORIAL REPO](https://github.com/Eis-D-Z/wormhole_sui){target=\_blank} <!-- to be changed with our repo -->
 
 ## Conclusion
+
+This tutorial has guided you through the development of a cross-chain loyalty application using Sui and Wormhole. By leveraging Sui Move for contract development and integrating Wormhole for cross-chain messaging, the application enables seamless point transfers across blockchains. Key highlights include:
+
+- Designing and implementing the `LoyaltyData` contract for managing user points
+- Utilizing Wormhole's messaging modules to facilitate secure and verifiable communication between chains
+- Integrating a Web2 layer to handle interactions with Sui and Wormhole from a Node.js environment
+
+With these tools and concepts, you are now equipped to build sophisticated cross-chain applications. For further exploration, review the resources provided and expand on this foundation to develop additional features and integrations.
+
 
