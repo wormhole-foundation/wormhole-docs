@@ -25,7 +25,7 @@ By importing this package, the Wormhole SDK can register and utilize the require
 
 ## How can I transfer ownership of NTT to a multisig?
 
-Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin.rs#L16-L60){target=\_blank} to initiate the transfer.
+Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin.rs#L16-L60){target=\_blank} to initiate the transfer.
 
 1. **Initiate transfer** - use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig)
 2. **Claim ownership** - the multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer
@@ -75,7 +75,7 @@ Yes, the NTT manager acts like an escrow account for non-transferable tokens on 
 
 ## Which functions or events does Connect rely on for NTT integration?
 
-Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=\_blank}. The key methods involved include:
+Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=\_blank}. The key methods involved include:
 
 - **Initiate and redeem functions** - these functions are essential for initiating token transfers and redeeming them on the destination chain
 - **Rate capacity methods** - methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion
