@@ -30,13 +30,13 @@ jobs:
       - name: Install pip requirements
         run: |
           cd wormhole-mkdocs
-          # upgrade pip
+          # Upgrade pip and setuptools
           pip3 install --upgrade pip setuptools==65.7.0
-          # Install testresources to satisfy launchpadlib dependency
+          # Install testresources first to satisfy launchpadlib dependency
           pip3 install testresources
-          # install dependencies quietly
-          pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
-
+          # Now install the rest of the dependencies
+          pip3 install -r requirements.txt && echo "Dependencies installed successfully" || echo "Error while installing dependencies"
+          
       - name: Build mkdocs
         run: |
           cd wormhole-mkdocs
