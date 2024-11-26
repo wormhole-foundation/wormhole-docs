@@ -14,7 +14,7 @@ Tokens integrated with `NttManager` in `burning` mode require the following two 
 - `burn(uint256 amount)`
 - `mint(address account, uint256 amount)`
 
-These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
+These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
 
 ??? code "View the complete `INttToken` Interface`"
     ```solidity
@@ -103,7 +103,7 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 !!! note
     The required NTT Manager address can be found in the `deployment.json` file.
 
-- If you followed the [`INttToken`](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
+- If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
     ```json
     cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
     ```

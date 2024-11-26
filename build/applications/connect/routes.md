@@ -39,7 +39,7 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 
 ## Native Token Transfers (NTT) Routes {: #native-token-transfers-ntt-routes}
 
-[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/example-native-token-transfers/){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/docs/build/applications/connect/configuration/){target=\_blank} with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repository](https://github.com/wormhole-foundation/example-native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
+[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/native-token-transfers/){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/docs/build/applications/connect/configuration/){target=\_blank} with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repository](https://github.com/wormhole-foundation/native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
 
 #### Manual Route {: #manual-route-ntt}
 
