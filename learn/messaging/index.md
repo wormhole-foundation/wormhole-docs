@@ -17,7 +17,7 @@ This section covers various aspects and services related to communication protoc
 
     The Token Bridge provides a secure, low-lift integration for cross-chain transfers of fungible tokens.
 
-    [:octicons-arrow-right-16: Learn more about Token Bridges](/docs/learn/messaging/token-nft-bridge/)
+    [:octicons-arrow-right-16: Learn more about Token Bridges](/docs/learn/messaging/token-bridge/)
 
 -   :octicons-book-16:{ .lg .middle } **Circle's CCTP Bridge**
 

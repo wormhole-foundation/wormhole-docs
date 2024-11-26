@@ -7,7 +7,7 @@ description: Frequently asked questions about integrating contracts with Wormhol
 
 ## Can ownership of wrapped tokens be transferred from the Token Bridge?
 
-No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/learn/messaging/token-nft-bridge/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
+No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
 
  - **On EVM chains** - when you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself
  - **On Solana** - the Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge
