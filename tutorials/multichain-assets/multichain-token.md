@@ -70,14 +70,15 @@ Upon successful creation, you will see a confirmation screen displaying key deta
 
 After creating your Multichain Token, there are a few optional but highly recommended steps to ensure the best experience for users interacting with your token.
 
-### Add Your Token to the Wormhole Token List
+### Add Your Token to the Wormhole Metadata List (Legacy)
 
-Adding your token to the official Wormhole Token List ensures visibility in the Wormhole ecosystem and on the Portal Bridge user interface.
+For legacy compatibility in the Advanced Tools section of Portal Bridge, you can request updates to your token metadata. Follow these steps:
 
-1. Submit a pull request to the [Wormhole Token List repository](https://github.com/wormhole-foundation/wormhole-token-list){target=\_blank}
-2. Notify a Wormhole contributor to review and merge your request
+1. Join the [Wormhole Discord server](https://discord.com/invite/wormholecrypto){target=\_blank}
+2. Submit a request for metadata updates in the appropriate support channel
 
-For an example of a pull request, refer to [this link](https://github.com/wormhole-foundation/wormhole-token-list/pull/191){target=\_blank}.
+!!! note
+    These updates only apply to the Advanced Tools section of Portal Bridge and will not update how your token appears in other Wormhole-powered apps or on blockchain explorers like Etherscan
 
 ### Update Metadata on Blockchain Explorers
 
