@@ -384,7 +384,7 @@ See the `router.ts` example in the [examples directory](https://github.com/wormh
 
 ### Routes as Plugins
 
-Routes can be imported from any npm package that exports them and configured with the resolver. Custom routes must extend [Route](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L21-L64) and implement [StaticRouteMethods](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L101).
+Routes can be imported from any npm package that exports them and configured with the resolver. Custom routes must extend [`Route`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L21-L64){target=\_blank} and implement [`StaticRouteMethods`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L101){target=\_blank}.
 
 ```ts
 --8 <--"code/build/applications/wormhole-sdk/custom-route.ts";
