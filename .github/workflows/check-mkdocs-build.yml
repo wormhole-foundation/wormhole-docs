@@ -20,6 +20,8 @@ jobs:
         run: |
           # clone mkdocs repo locally
           git clone https://${{ secrets.REPO_SCOPED_TOKEN }}@github.com/papermoonio/wormhole-mkdocs.git
+          cd wormhole-mkdocs
+          git checkout martinh/update-requirements
 
       - name: Update wormhole-docs content in the mkdocs-repository
         run: |
