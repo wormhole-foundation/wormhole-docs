@@ -15,7 +15,7 @@ This section covers various aspects and services related to communication protoc
 
     ---
 
-    The Token and NFT Bridges provide a secure, low-lift integration for cross-chain transfers of fungible and non-fungible tokens (NFTs).
+    The Token Bridge provides a secure, low-lift integration for cross-chain transfers of fungible tokens.
 
     [:octicons-arrow-right-16: Learn more about Token Bridges](/docs/learn/messaging/token-nft-bridge/)
 
