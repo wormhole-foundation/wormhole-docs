@@ -5,7 +5,7 @@ description: Access step-by-step guides for creating multichain tokens, bridging
 
 # Multichain Token Tutorials
 
-Welcome to the Multichain Token tutorials section. In this section, you will find guides that walk you through the steps of bridging tokens across blockchains and ensuring proper token metadata management. These tutorials are designed to simplify complex processes, making it easy for you to expand your token’s reach across multiple chains.
+Welcome to the Multichain Token tutorials section. In this section, you will find guides that walk you through the steps of bridging tokens across blockchains and ensuring proper token metadata management. These tutorials are designed to simplify complex processes, making it easy to expand your token’s reach across multiple chains.
 
 ## Get Started
 
