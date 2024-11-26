@@ -30,6 +30,8 @@ jobs:
       - name: Install pip requirements
         run: |
           cd wormhole-mkdocs
+          # Install system-level testresources dependency
+          sudo apt-get update && sudo apt-get install -y python3-testresources
           # upgrade pip
           pip3 install --upgrade pip setuptools==65.7.0
           # install dependencies quietly
