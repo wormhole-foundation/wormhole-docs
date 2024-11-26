@@ -1,6 +1,6 @@
 ---
 title: Create Multichain Tokens
-description: Learn how to create an Multichain Token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability
+description: Learn how to create a Multichain Token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability
 ---
 
 # Create Multichain Tokens
@@ -9,19 +9,19 @@ description: Learn how to create an Multichain Token, bridge tokens across block
 
 Blockchain ecosystems are becoming increasingly interconnected, with assets often needing to exist across multiple networks to maximize their utility and reach. For example, tokens created on one chain may want to expand to others to tap into broader audiences and liquidity pools.
 
-This guide explains how to create an Multichain Token—a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
+This guide explains how to create a Multichain Token—a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
 
 By the end of this tutorial, you'll learn:
 
- - How to register your token for bridging
- - How to create a wrapped version of your token
- - How to ensure its visibility on blockchain explorers
+- How to register your token for bridging
+- How to create a wrapped version of your token
+- How to ensure its visibility on blockchain explorers
 
-Let’s get started with a straightforward, step-by-step process to help you create an Multichain Token and expand your token’s reach.
+Let’s begin with a straightforward, step-by-step process for creating a Multichain Token and expanding its reach.
 
 ## Step 1: Register the Token on the Source Chain
 
-The first step in creating an Multichain Token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
+The first step in creating a Multichain Token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
 
 1. Open the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank}
 2. Select the blockchain where your token is currently deployed (source chain)
@@ -36,13 +36,13 @@ The first step in creating an Multichain Token is registering your token on its 
 After registering your token on the source chain, the next step is to select the target chain—the blockchain where you want the wrapped version of your token to exist. This step connects your token to its destination network.
 
 1. Choose the blockchain where you want the token to be bridged (target chain)
-2. Connect your wallet for the target chain
+2. Connect your wallet to the target chain
 3. Click **Next** to finalize the registration process
 
 <img src="/docs/images/tutorials/multichain-tokens/multichain-token-2.webp" alt="Target Chain Registration Screen" style="width: 80%;">
 
 ## Step 3: Send an Attestation
-Attestation is a key step in the process. It verifies your token’s metadata, ensuring it is properly recognized on the target chain’s blockchain explorer (e.g., [Etherscan](https://etherscan.io/){target=\_blank}).
+Attestation is a key step in the process. It verifies your token’s metadata, ensuring it is correctly recognized on the target chain’s blockchain explorer (e.g., [Etherscan](https://etherscan.io/){target=\_blank}).
 
 1. Click **Attest** to initiate the attestation process
 2. Approve the transaction in your wallet when prompted
@@ -81,11 +81,11 @@ For an example of a pull request, refer to [this link](https://github.com/wormho
 
 ### Update Metadata on Blockchain Explorers
 
-To build trust and improve user confidence, it’s recommended to update your token’s metadata on blockchain explorers such as Etherscan. This includes adding details like the token logo, price, and contract verification.
+It is recommended that you update your token’s metadata on blockchain explorers such as Etherscan. This includes adding details like the token logo, price, and contract verification.
 
 1. Create an account on the relevant scanner and go to the [token update section](https://etherscan.io/tokenupdate){target=\_blank} (or the relevant scanner that you would like to update metadata on)
 2. Copy and paste the wrapped contract address in the **Token Update Application Form**
 3. Before proceeding to the next step, you will need to verify as the contract address owner on [Etherscan’s address verification tool](https://etherscan.io/verifyAddress/){target=\_blank}
 4. Follow the directions to verify contract address ownership via MetaMask by reviewing the [guide on verifying address ownership](https://info.etherscan.com/how-to-verify-address-ownership/){target=\_blank}
-    1. Given that Wormhole may be the contract owner, use the manual verification process by reaching out through the [Etherscan contact form](https://etherscan.io/contactus){target=\_blank}. The team will provide support as needed
+   1. Given that Wormhole may be the contract owner, use the manual verification process by reaching out through the [Etherscan contact form](https://etherscan.io/contactus){target=\_blank}. The team will provide support as needed
 5. Once the step above is completed, follow the [instructions to update token information](https://info.etherscan.com/how-to-update-token-information-on-token-page/){target=\_blank}
