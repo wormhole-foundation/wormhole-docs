@@ -390,7 +390,7 @@ Routes can be imported from any npm package that exports them and configured wit
 --8 <--"code/build/applications/wormhole-sdk/custom-route.ts";
 ```
 
-A noteworthy example of a route exported from a separate npm package is Wormhole Native Token Transfers (NTT). See the `NttAutomaticRoute` implementation [here](https://github.com/wormhole-foundation/native-token-transfers/blob/66f8e414223a77f5c736541db0a7a85396cab71c/sdk/route/src/automatic.ts#L48).
+A noteworthy example of a route exported from a separate npm package is Wormhole Native Token Transfers (NTT). See the [`NttAutomaticRoute` implementation](https://github.com/wormhole-foundation/native-token-transfers/blob/66f8e414223a77f5c736541db0a7a85396cab71c/sdk/route/src/automatic.ts#L48){target=\_blank}.
 
 ## See Also
 
