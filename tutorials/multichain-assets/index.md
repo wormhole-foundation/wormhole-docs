@@ -1,22 +1,22 @@
 ---
-title: Step-by-Step MultiGov Tutorials
-description: Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
+title: Step-by-Step Multichain Token Tutorials
+description: Access step-by-step guides for creating multichain tokens, bridging assets across chains, and managing token metadata with Wormhole.
 ---
 
-# MultiGov Tutorials
+# Multichain Token Tutorials
 
-Welcome to the MultiGov tutorials section. In this section, you will find tutorials that walk you through the key steps of working with MultiGov, providing clear instructions to help you get started. As you explore, you'll gain a deeper understanding of MultiGov's features and functionality.
+Welcome to the Multichain Token tutorials section. In this section, you will find guides that walk you through the steps of bridging tokens across blockchains and ensuring proper token metadata management. These tutorials are designed to simplify complex processes, making it easy for you to expand your token’s reach across multiple chains.
 
 ## Get Started
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-16:{ .lg .middle } **Cross-Chain Treasury Management Proposal**
+-   :octicons-code-square-16:{ .lg .middle } **Creating a Multichain Token**
 
     ---
 
-    Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and execute the proposal using MultiGov.
+    Learn how to register your token on the source chain, create a wrapped token on the target chain, and update its metadata for cross-chain compatibility.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/multigov/treasury-proposal/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/multichain-assets/multichain-token/)
 
 </div>
