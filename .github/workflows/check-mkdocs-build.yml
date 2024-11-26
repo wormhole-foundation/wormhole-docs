@@ -34,6 +34,8 @@ jobs:
           sudo apt-get update && sudo apt-get install -y python3-testresources
           # upgrade pip
           pip3 install --upgrade pip setuptools==65.7.0
+          # Install MkDocs explicitly
+          pip3 install mkdocs --quiet
           # install dependencies quietly
           pip3 install -r requirements.txt &> /dev/null && echo "Dependencies installed" || echo "Error while installing dependencies"
 
