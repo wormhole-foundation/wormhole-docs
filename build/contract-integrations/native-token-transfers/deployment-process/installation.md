@@ -15,7 +15,7 @@ The fastest way to deploy Native Token Transfers (NTT) is using the NTT CLI. As 
 Install the NTT CLI:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/example-native-token-transfers/main/cli/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
 ```
 
 Verify the NTT CLI is installed:
