@@ -1,4 +1,4 @@
-export function buildDiscriminator<B extends boolean = false>(
+export function layoutDiscriminator<B extends boolean = false>(
   layouts: readonly Layout[],
   allowAmbiguous?: B
 ): Discriminator<B> {

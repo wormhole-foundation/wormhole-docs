@@ -116,10 +116,10 @@ Payload registration involves:
     registerPayloadTypes("ProtocolName", protocolNamedPayloads)
     ```
 
-3. **Access registered payloads** - dynamically use the `payloadFactory` to fetch registered layouts. For example:
+3. **Access registered payloads** - use the [`getPayloadLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/definitions/src/vaa/functions.ts#L19-L23){target=\_blank} function to fetch the layout for a specific payload literal. This method ensures that the correct layout is retrieved dynamically and safely:
 
     ```typescript
-    const layout = payloadFactory.get("ProtocolName:PayloadName")
+    const layout = getPayloadLayout("ProtocolName:PayloadName");
     ```
 
 These steps link payload literals and their layouts, enabling seamless runtime handling.
@@ -160,7 +160,7 @@ Below is an example of how the Wormhole SDK builds a discriminator to distinguis
 --8<-- "code/build/applications/wormhole-sdk/protocols-payloads/pl-5.ts"
 ```
 
- - `buildDiscriminator` takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload
+ - [`layoutDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/base/src/utils/layout.ts#L16){target=\_blank} takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload
  - The `allowAmbiguous` parameter determines whether layouts with overlapping characteristics are permitted
 
 ### Real-World Example: TokenBridge Protocol
