@@ -1,6 +1,6 @@
 title: Build Frontend Applications
 nav:
  - index.md
- - 'Wormhole SDK': 'wormhole-sdk.md'
+ - wormhole-sdk
  - queries
  - connect
