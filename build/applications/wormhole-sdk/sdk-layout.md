@@ -491,18 +491,6 @@ const lazyDiscriminator = lazyInstantiate(() => layoutDiscriminator(layouts));
 
 This approach ensures that discriminators are only built when required, helping to optimize performance, especially for complex or conditional layouts.
 
-### Minimize Layout Redundancy
-
-Avoid defining custom layouts for fields already provided by the Wormhole SDK. Instead, reuse predefined layout items like chainItem or universalAddressItem to maintain compatibility with Wormhole standards and ensure strong typing.
-
-For example, instead of manually defining layouts for chain IDs or addresses, leverage the SDK’s built-in items:
-
-```typescript
---8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-28.ts"
-```
-
-Reusing SDK-provided layouts eliminates redundancy, reduces maintenance, and ensures your code aligns with established standards.
-
 ## Resources
 
 For further learning and practical experience, explore the following resources:
