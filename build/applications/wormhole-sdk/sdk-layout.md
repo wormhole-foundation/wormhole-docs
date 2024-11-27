@@ -397,15 +397,9 @@ The Wormhole SDK provides the [`deserialize`](https://github.com/wormhole-founda
 
 ### Registering Custom Payloads
 
-In addition to predefined layouts, Wormhole integrators can define and register their custom payloads. This is especially useful when integrating protocol-specific features, such as the [**Submit Your Protocol**](https://wormholescan.io/#/developers/submit){target=\_blank} feature in [WormholeScan](https://wormholescan.io/){target=\_blank}.
+In the Wormhole SDK, payloads rely on layouts to define their binary structure, ensuring consistency and type safety across protocols. Custom payloads extend this functionality, allowing developers to handle protocol-specific features or unique use cases.
 
-Below's an example of a custom payload registration:
-
-```typescript
---8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-24.ts"
-```
-
-Custom payloads enable developers to extend the functionality of Wormhole's cross-chain messages, allowing for more specialized use cases.
+To learn how to define and register payloads using layouts, refer to the [Building Protocols and Payloads](/docs/build/applications/wormhole-sdk/protocols-payloads/){target=\_blank} page for a detailed guide.
 
 ## Common Pitfalls & Best Practices
 
