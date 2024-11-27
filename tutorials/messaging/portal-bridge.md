@@ -7,7 +7,7 @@ description: Learn to build a cross-chain native token transfer app using Wormho
 
 ## Introduction
 
-This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Portal Bridge](https://wormhole.com/docs/learn/messaging/token-nft-bridge/){target=\_blank} method. The Portal Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Portal Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} method. The Portal Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
 By leveraging Wormhole’s Portal Bridge, this guide shows you how to build an application that supports multiple transfer types:
 

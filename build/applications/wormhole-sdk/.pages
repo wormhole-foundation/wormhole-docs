@@ -4,4 +4,3 @@ nav:
  - 'TypeScript SDK' : 'wormhole-sdk.md'
  - 'Data Layouts': 'sdk-layout.md'
  - 'Building Protocols and Payloads': 'protocols-payloads.md'
-

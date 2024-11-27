@@ -58,7 +58,6 @@ For more information, see [the Sui consensus docs](https://docs.sui.io/concepts/
     |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |     Core     | [`0xaeab97f96cf9877fee2883315d459552b2b921edc16d7ceac6eab944dd88919c`](https://suivision.xyz/object/0xaeab97f96cf9877fee2883315d459552b2b921edc16d7ceac6eab944dd88919c){target=_blank} |
     | Token Bridge | [`0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9`](https://suivision.xyz/object/0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9){target=_blank} |
-    |  NFT Bridge  |                                                                                          N/A                                                                                           |
 
 === "Testnet `4c78adac`"
 
@@ -66,7 +65,6 @@ For more information, see [the Sui consensus docs](https://docs.sui.io/concepts/
     |:------------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
     |     Core     | [`0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790`](https://suiscan.xyz/testnet/object/0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790){target=_blank} |
     | Token Bridge | [`0x6fb10cdb7aa299e9a4308752dadecb049ff55a892de92992a1edbd7912b3d6da`](https://suiscan.xyz/testnet/object/0x6fb10cdb7aa299e9a4308752dadecb049ff55a892de92992a1edbd7912b3d6da){target=_blank} |
-    |  NFT Bridge  |                                                                                             N/A                                                                                              |
 
 === "Local Network"
 
@@ -74,4 +72,3 @@ For more information, see [the Sui consensus docs](https://docs.sui.io/concepts/
     |:------------:|:--------------------------------------------------------------------:|
     |     Core     | `0x12253210c90f89e7a8525e6c52d41309ff5bfb31f43f561b5fe6f50cd72f9668` |
     | Token Bridge | `0x830ed228c6f1bcb40003bb49af3277df2cbf933d63a6bcdcb0ba4580a1a7654e` |
-    |  NFT Bridge  |                                 N/A                                  |
