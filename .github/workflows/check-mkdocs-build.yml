@@ -25,6 +25,7 @@ jobs:
         run: |
           # update the wormhole-docs submodule
           # running this command on the branch associated with the PR will test the workflow using the latest commits
+          cd wormhole-mkdocs
           git submodule update --remote
 
       - name: Install pip requirements
