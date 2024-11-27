@@ -1,6 +1,6 @@
 ---
 title: Contract Addresses
-description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, NFTBridge, TokenBridge, and more.
+description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, TokenBridge, and more.
 ---
 
 # Contract Addresses
@@ -12,10 +12,6 @@ description: This page documents the deployed contract addresses of the Wormhole
 ## Token Bridge
 
 --8<-- 'text/build/reference/contract-addresses/token-bridge.md'
-
-## NFT Bridge
-
---8<-- 'text/build/reference/contract-addresses/nft-bridge.md'
 
 ## Wormhole Relayer
 

@@ -128,7 +128,7 @@ The `routes` property in Wormhole Connect version 1.0 has significantly improved
 
 By default, if no `routes` property is set, Wormhole Connect will provide routes for two core protocols:
 
- - [Wormhole Token Bridge](/docs/learn/messaging/token-nft-bridge/){target=\_blank}
+ - [Wormhole Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank}
  - [CCTP](/docs/learn/messaging/cctp/){target=\_blank}
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
