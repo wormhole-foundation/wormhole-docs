@@ -7,18 +7,29 @@ description: Discover Wormhole's Spy daemon, which subscribes to gossiped messag
 
 ## Introduction
 
-In the Wormhole context, a _Spy_ is a daemon that subscribes to the gossiped messages in the Guardian Network.
+In Wormhole’s ecosystem, the _Spy_ is a daemon, a continuously running background process that monitors messages within the Guardian Network. Unlike Guardians, Spies don’t perform validation; instead, they serve as an interface for observing the network’s message traffic, enabling applications and users to access live data transmitted over Wormhole.
 
-They don’t do any validation work. Instead, they watch the Guardian Network and act as an interface to allow users and applications to check on the Spy-accessible messages.
+The primary purpose of a Spy is to subscribe to the gossiped messages across the Guardian Network, tracking key message types that allow integrators and applications to monitor real-time network activity without directly engaging in consensus operations.
 
-## Spy-Accessible Messages
+## Key Features of the Spy
 
-The messages available over gossip are things like:
+### Monitor Spy-Accessible Messages
 
-- [Verifiable Action Approvals (VAAs)](/learn/infrastructure/vaas/){target=\_blank} - packets of cross-chain data. A Spy can see whether a VAA has been approved by the Guardian Network
-- [Observations](/learn/fundamentals/glossary/#observation){target=\_blank} - messages emitted by Core Contracts that the Guardians have picked up
-- [Guardian heartbeats](/learn/fundamentals/glossary/#heartbeat){target=\_blank} - the liveness of a Guardian
+Spies can access the following categories of messages shared over the gossip protocol::
 
-## Source Code
+- [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank} - packets of cross-chain data. The Spy can detect whether a VAA has been approved by the Guardian Network, making it a valuable tool for applications needing real-time cross-chain verification
+- [Observations](/docs/learn/fundamentals/glossary/#observation){target=\_blank} - emitted by Wormhole’s core contracts, observations are picked up by the Guardians and relayed across the network. Spies allow users to monitor these messages, adding transparency and insight into blockchain events
+- [Guardian heartbeats](/docs/learn/fundamentals/glossary/#heartbeat){target=\_blank} - heartbeat messages represent Guardian node statusn. By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network
 
-The source code for the Spy is available on [GitHub](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}.
+## Integrator Use Case
+
+The Spy provides a valuable mechanism for integrators to observe real-time network activity in the Guardian Network without directly engaging in validation or consensus. By running a Spy, integrators can track cross-chain events, and message flows — such as VAAs, observations, and Guardian heartbeats — to monitor network activity essential to their applications.
+
+This monitoring capability is especially beneficial for applications that need immediate insights into cross-chain data events. Integrators can run a Spy to ensure their applications are promptly informed of message approvals, observations, or Guardian liveness signals, supporting timely and responsive app behavior without additional overhead on network resources.
+
+## Resources
+
+For more information, you can check out the following resources:
+
+- The source code for the Go implementation of the Spy is available on [GitHub](https://github.com/wormhole-foundation/wormhole/blob/main/node/cmd/spy/spy.go){target=\_blank}
+- To find out how to [start and run a Spy](/docs/infrastructure/spy/run-spy/){target=\_blank}, refer to the infrastructure section. This setup enables integrators to create a custom endpoint that applications can use to observe message flows in the Guardian Network, providing greater flexibility and control over cross-chain monitoring

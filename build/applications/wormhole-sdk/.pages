@@ -1,5 +1,6 @@
-title: Wormhole TS SDK
+title: Wormhole SDK
 nav:
  - index.md
- - 'Example SDK Usage': 'example-usage.md'
- - 'SDK Reference': 'reference.md'
+ - 'TypeScript SDK' : 'wormhole-sdk.md'
+ - 'Data Layouts': 'sdk-layout.md'
+ - 'Building Protocols and Payloads': 'protocols-payloads.md'

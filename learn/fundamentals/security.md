@@ -7,14 +7,14 @@ description: Explore Wormhole's security features, including the Guardian networ
 
 ## Core Security Assumptions
 
-At its core, Wormhole is secured by a network of [Guardian](/learn/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
+At its core, Wormhole is secured by a network of [Guardian](/docs/learn/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
 
-- Wormhole's core security primitive is its signed messages (signed [VAAs](/learn/fundamentals/glossary/#vaa){target=\_blank})
+- Wormhole's core security primitive is its signed messages (signed [VAAs](/docs/learn/fundamentals/glossary/#vaa){target=\_blank})
 - The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}
 - Guardians produce signed state attestations (signed VAAs) when requested by a Core Contract integrator
 - Every Guardian runs full nodes (rather than light nodes) of every blockchain in the Wormhole network, so if a blockchain suffers a consensus attack or hard fork, the blockchain will disconnect from the network rather than potentially produce invalid signed VAAs
 - Any Signed VAA can be verified as authentic by the Core Contract of any other chain
-- [Relayers](/learn/fundamentals/glossary/#relayer){target=\_blank} are considered untrusted in the Wormhole ecosystem
+- [Relayers](/docs/learn/fundamentals/glossary/#relayer){target=\_blank} are considered untrusted in the Wormhole ecosystem
 
 In summary:
 
@@ -56,17 +56,13 @@ Guardians monitor:
 
 - Block production and consensus of each blockchain - if a blockchain's consensus is violated, it will be disconnected from the network until the Guardians resolve the issue
 - Smart contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
-- Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain ([Gateway](/learn/messaging/gateway/){target=\_blank})
+- Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, ensuring independent security measures across its validators
 
-## Gateway And Asset Layer Protections
+## Asset Layer Protections
 
-One of the most powerful aspects of the Wormhole ecosystem is that Guardians effectively have the entire state of DeFi available to them.
+One key strength of the Wormhole ecosystem is the Guardians’ ability to validate and protect the integrity of assets across multiple blockchains.
 
-Gateway is a Cosmos-based blockchain that runs internally to the Guardian network, whereby the Guardians can effectively execute smart contracts against the current state of all blockchains rather than just one blockchain.
-
-This enables additional protection for the Wormhole Asset Layer in addition to the core assumptions:
-
-- **Global Accountant** - the accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant
+To enforce the Wormhole Asset Layer’s core protections, the Global Accountant tracks the total circulating supply of all Wormhole assets across all chains, preventing any blockchain from bridging assets that could violate the supply invariant.
 
 In addition to the Global Accountant, Guardians may only sign transfers that do not violate the requirements of the Governor. The [Governor](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md){target=\_blank} tracks inflows and outflows of all blockchains and delays suspicious transfers that may indicate an exploit.
 
@@ -76,7 +72,7 @@ Wormhole builds in the open and is always open source.
 
 - **[Wormhole core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}**
 - **[Wormhole Foundation GitHub organization](https://github.com/wormhole-foundation){target=\_blank}**
-- **[Wormhole contract deployments](/learn/infrastructure/core-contracts/){target=\_blank}**
+- **[Wormhole contract deployments](/docs/learn/infrastructure/core-contracts/){target=\_blank}**
 
 ## Audits
 

@@ -2,9 +2,10 @@ title: Build Contract Integrations
 nav:
  - index.md
  - 'Wormhole Relayer': 'wormhole-relayers.md'
-#  - 'Core Contract': 'core-contracts.md'
-#  - 'Token Bridge': 'token-bridge.md'
-#  - 'CCTP': 'cctp.md'
- - 'Gateway' : 'gateway.md'
+ - 'Core Contracts': 'core-contracts.md'
+ # - 'Token Bridge': 'token-bridge.md'
+ - 'CCTP': 'cctp.md'
  - native-token-transfers
- - 'Set Up a Dev Environment': 'dev-env.md'
+ - multigov
+ - 'Development Environment': 'dev-env.md'
+ - 'FAQs': 'faqs.md'

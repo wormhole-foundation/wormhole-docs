@@ -17,8 +17,8 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
-- TestNet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
-- [USDC TestNet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
+- [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
 - Wallet private key
 
 ## Valid Tokens for Transfer
@@ -28,9 +28,9 @@ It's important to note that this tutorial leverages [Wormhole's TokenBridge](htt
 To simplify this process, we've included a tool for verifying if a token has an attestation on the target chain. This tool uses the [`wrappedAsset`](https://github.com/wormhole-foundation/wormhole/blob/6130bbb6f456b42b789a71f7ea2fd049d632d2fb/ethereum/contracts/bridge/BridgeGetters.sol#L50-L52){target=\_blank} function from the `TokenBridge` contract. If the token has an attestation, the `wrappedAsset` function returns the address of the wrapped token on the target chain; otherwise, it returns the zero address.
 
 ???- tip "Check Token Attestation"
-    1. Clone the [repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank} and navigate to the project directory:
+    1. Clone the [repository](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank} and navigate to the project directory:
         ```bash
-        git clone https://github.com/martin0995/cross-chain-token-transfers.git
+        git clone https://github.com/wormhole-foundation/demo-cross-chain-token-transfer.git
         cd cross-chain-token-transfers
         ```
     2. Install the dependencies:
@@ -170,7 +170,7 @@ Let's start writing the `CrossChainReceiver` contract:
 2. Open the file. First, we'll start with the imports and the contract setup:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:1:13"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:1:14"
     ```
 
     Similar to the `CrossChainSender` contract, this sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
@@ -178,12 +178,18 @@ Let's start writing the `CrossChainReceiver` contract:
 3. Next, let's add a function to handle receiving the payload and tokens:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:16:32"
+    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:17:40"
     ```
 
-    This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address and transfers the tokens to them using the Wormhole protocol.
+    This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address, and transfers the tokens to them using the Wormhole protocol. This function also validates the emitter (`sourceAddress`) to ensure the message comes from a trusted sender.
 
-After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes through the standard Wormhole message lifecycle. Once a [VAA (Verifiable Action Approval)](/learn/infrastructure/vaas/){target=\_blank} is available, the delivery provider will call `receivePayloadAndTokens` on the target chain and target address specified, with the appropriate inputs.
+    This function ensures that:
+
+    - It only processes one token transfer at a time
+    - The `sourceAddress` is checked against a list of registered senders using the `isRegisteredSender` modifier, which verifies if the emitter is allowed to send tokens to this contract
+    - The recipient address is decoded from the payload, and the received tokens are transferred to them using the ERC-20 interface
+
+After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes through the standard Wormhole message lifecycle. Once a [VAA (Verifiable Action Approval)](/docs/learn/infrastructure/vaas/){target=\_blank} is available, the delivery provider will call `receivePayloadAndTokens` on the target chain and target address specified, with the appropriate inputs.
 
 ??? tip "Understanding the `TokenReceived` Struct"
 
@@ -237,10 +243,10 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core Contract.
 
-        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/build/reference/contract-addresses/){target=_blank}.
+        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/build/reference/contract-addresses/){target=_blank}.
 
         !!! note
-            You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores TestNets.
+            You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores Testnets.
 
     4. Create a `contracts.json` file in the `deploy-config` directory:
 
@@ -392,19 +398,29 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         You may display the deployed contract addresses in the terminal or save them to a JSON file for future reference.
 
-    12. Save the deployment details:
+    12. Register the `CrossChainSender` address on the target chain:
+
+        ```typescript
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:128:139"
+        ```
+
+        After you deploy the `CrossChainReceiver` contract on the target network, the sender contract address from the source chain needs to be registered. This ensures that only messages from the registered `CrossChainSender` contract are processed.
+
+        This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `CrossChainReceiver` contract.
+
+    13. Save the deployment details:
 
         ???- example "Save Deployment Details Example"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:124:164"
+            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:145:185"
             ```
         
         Add your desired logic to save the deployed contract addresses in a JSON file (or another format). This will be important later when transferring tokens, as you'll need these addresses to interact with the deployed contracts.
 
-    13. Handle errors and finalize the script:
+    14. Handle errors and finalize the script:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:165:180"
+        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:186:201"
         ```
 
         The try-catch block wraps the deployment logic to catch any errors that may occur.
@@ -570,11 +586,11 @@ If you followed the logic provided in the `transfer.ts` file above, your termina
 --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-8.html"
 
 !!! note
-    In this example, we demonstrated a token transfer from the Avalanche Fuji TestNet to the Celo Alfajores TestNet. We sent two units of USDC TestNet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
+    In this example, we demonstrated a token transfer from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. We sent two units of USDC Testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [Cross-Chain Token Transfers GitHub repository](https://github.com/martin0995/cross-chain-token-transfers){target=\_blank}. The repository includes all the scripts, contracts, and configurations needed to deploy and transfer tokens across chains using the Wormhole protocol.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in the [Cross-Chain Token Transfers GitHub repository](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank}. The repository includes all the scripts, contracts, and configurations needed to deploy and transfer tokens across chains using the Wormhole protocol.
 
 ## Conclusion
 

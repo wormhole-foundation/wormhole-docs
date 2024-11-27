@@ -8,7 +8,7 @@ description: Explore Wormhole Queries, offering real-time access to verified blo
 Wormhole Guardians, who run full nodes for various connected chains, facilitate a new cross-chain query service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
 !!! note
-	Queries are currently in closed beta, though you can start developing today. Check out [Use Queries](/build/applications/queries/use-queries) and reach out to [Join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
+	Queries are currently in closed beta, though you can start developing today. Check out [Use Queries](/docs/build/applications/queries/use-queries/){target=\_blank} and reach out to [Join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
 Wormhole Queries offers on-demand access to Guardian-attested on-chain data. The current implementation provides integrators with a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute query requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [white paper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
 
@@ -16,7 +16,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data. The
 
 The general overview of a query's flow is as follows: an off-chain process sends HTTPS query requests to a Query Proxy, which validates and forwards them to the Guardians; these Guardians independently validate, sign, and return the response, with the entire process typically taking less than a second.
 
-![The architecture flow of a query](/images/build/applications/queries/overview/overview-1.webp)
+![The architecture flow of a query](/docs/images/build/applications/queries/overview/overview-1.webp)
 
 The step-by-step flow of a query is as follows:
 
@@ -62,26 +62,26 @@ This query is used to read data for one or more [Program Derived Addresses(PDA)]
 
 The following table provides expected support based on testing. However, the success of any given query is based on the success of the underlying call on each Guardian’s RPC node.
 
-For example, many chains have implementations forked from [Geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which keeps 128 blocks of state in memory by default (without running in archive mode). While this is good for about 25 minutes of history on Ethereum MainNet, it is only about three minutes on Optimism. While Guardian nodes can be expected to have access to recent state, there are currently no guarantees of how far back in history they have access to.
+For example, many chains have implementations forked from [Geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which keeps 128 blocks of state in memory by default (without running in archive mode). While this is good for about 25 minutes of history on Ethereum Mainnet, it is only about three minutes on Optimism. While Guardian nodes can be expected to have access to recent state, there are currently no guarantees of how far back in history they have access to.
 
-### MainNet {: #mainnet}
+### Mainnet {: #mainnet}
 
-|      Chain      | Wormhole Chain ID | eth_call |    By Timestamp    | With Finality | Expected History |
-|:---------------:|:-----------------:|:--------:|:------------------:|:-------------:|:----------------:|
-| Ethereum      | 2                 | ✅        | ✅                  | ✅             | 128 blocks       |
-| BSC           | 4                 | ✅        | ✅                  | ✅             | 128 blocks       |
-| Polygon       | 5                 | ✅        | ✅                  | ✅             | 128 blocks       |
-| Avalanche     | 6                 | ✅        | ✅                  | ✅             | 32 blocks        |
-| Oasis Emerald | 7                 | ✅        | ✅                  | ✅             | archive          |
-| Fantom        | 10                | ✅        | ✅                  | ✅             | 16 blocks        |
-| Karura        | 11                | ✅        | ✅                  | ✅             | archive          |
-| Acala         | 12                | ✅        | ✅                  | ✅             | archive          |
-| Klaytn        | 13                | ✅        | ✅                  | ✅             | 128 blocks       |
-| Celo          | 14                | ✅        | ℹ️ hints required\* | ✅             | 128 blocks       |
-| Moonbeam      | 16                | ✅        | ℹ️ hints required\* | ✅             | 256 blocks       |
-| Arbitrum One  | 23                | ✅        | ✅                  | ✅             | ~6742 blocks    |
-| Optimism      | 24                | ✅        | ✅                  | ❌             | 128 blocks       |
-| Base          | 30                | ✅        | ✅                  | ✅             | archive          |
+|     Chain     | Wormhole Chain ID | eth_call |    By Timestamp    | With Finality | Expected History |
+|:-------------:|:-----------------:|:--------:|:------------------:|:-------------:|:----------------:|
+|   Ethereum    |         2         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|      BSC      |         4         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|    Polygon    |         5         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|   Avalanche   |         6         |    ✅     |         ✅          |       ✅       |    32 blocks     |
+| Oasis Emerald |         7         |    ✅     |         ✅          |       ✅       |     archive      |
+|    Fantom     |        10         |    ✅     |         ✅          |       ✅       |    16 blocks     |
+|    Karura     |        11         |    ✅     |         ✅          |       ✅       |     archive      |
+|     Acala     |        12         |    ✅     |         ✅          |       ✅       |     archive      |
+|     Kaia      |        13         |    ✅     |         ✅          |       ✅       |    128 blocks    |
+|     Celo      |        14         |    ✅     | ℹ️ hints required\* |       ✅       |    128 blocks    |
+|   Moonbeam    |        16         |    ✅     | ℹ️ hints required\* |       ✅       |    256 blocks    |
+| Arbitrum One  |        23         |    ✅     |         ✅          |       ✅       |   ~6742 blocks   |
+|   Optimism    |        24         |    ✅     |         ✅          |       ❌       |    128 blocks    |
+|     Base      |        30         |    ✅     |         ✅          |       ✅       |     archive      |
 
 \*`EthCallByTimestamp` arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
 
@@ -89,7 +89,7 @@ For example, many chains have implementations forked from [Geth](https://github.
 
 Remember that Wormhole Queries are currently in beta. You can [register to join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
 
-Be sure to check out the [FAQs](/build/applications/queries/faqs) and the [Use Queries guide](/build/applications/queries/use-queries).
+Be sure to check out the [FAQs](/docs/build/applications/queries/faqs/){target=\_blank} and the [Use Queries guide](/docs/build/applications/queries/use-queries/){target=\_blank}.
 
 You can also check out the following examples of applications that make use of Wormhole Queries: 
 

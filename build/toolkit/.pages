@@ -3,5 +3,7 @@ nav:
  - index.md
  - 'Wormholescan': 'https://wormholescan.io/'
  - 'Wormhole CLI' : 'cli.md'
- - 'Wormhole SDK' : '/build/applications/wormhole-sdk/'
+ - wormhole-sdk
+ - 'Solidity SDK': 'solidity-sdk.md'
  - 'Tilt': 'tilt.md'
+ - 'FAQs': 'faqs.md'

@@ -15,7 +15,7 @@ Regardless of which network development environment you are using, there are a f
 
     ---
 
-    Wormholescan is an explorer for looking at individual transfer statuses on MainNet and TestNet.
+    Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
 
     [:octicons-arrow-right-16: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
 
@@ -25,15 +25,23 @@ Regardless of which network development environment you are using, there are a f
 
     The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
 
-    [:octicons-arrow-right-16: Get started with the CLI](/build/toolkit/cli/)
+    [:octicons-arrow-right-16: Get started with the CLI](/docs/build/toolkit/cli/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Wormhole SDK**
 
     ---
 
-    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
 
-    [:octicons-arrow-right-16: Get started with the SDK](/build/applications/wormhole-sdk/)
+    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
+
+-   :octicons-file-code-16:{ .lg .middle } **Solidity SDK**
+
+    ---
+
+    Learn about Wormhole's Solidity SDK, including key components, interfaces, and tools for developing cross-chain decentralized applications on EVM-compatible blockchains.
+
+    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/solidity-sdk/)
 
 -   :octicons-beaker-16:{ .lg .middle } **Tilt**
 
@@ -41,7 +49,15 @@ Regardless of which network development environment you are using, there are a f
 
     Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
-    [:octicons-arrow-right-16: Get started with Tilt](/build/toolkit/tilt/)
+    [:octicons-arrow-right-16: Get started with Tilt](/docs/build/toolkit/tilt/)
+
+-   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
+
+    ---
+
+    Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
+
+    [:octicons-arrow-right-16: Read Toolkit FAQs](/docs/build/toolkit/faqs/)
 
 </div>
 
@@ -63,6 +79,6 @@ Regardless of which network development environment you are using, there are a f
 
     The VAA Parser is a resource for parsing out details of an encoded VAA.
 
-    [:octicons-arrow-right-16: Try the VAA Parser](https://vaa.dev/#/parse){target=\_blank}
+    [:octicons-arrow-right-16: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
 
 </div>

@@ -9,16 +9,16 @@ description: Learn how to run a Spy locally to listen for and forward messages (
 
 The Spy is a lightweight component in the Wormhole infrastructure designed to listen for and forward messages (Verifiable Action Approvals (VAAs)) published on the Wormhole network. Running a Spy locally allows developers to subscribe to a filtered stream of these messages, facilitating the development of custom relayers or other integrations with Wormhole.
 
-For a more comprehensive understanding of the Spy and its role within the Wormhole ecosystem, refer to the [Spy Documentation](/learn/infrastructure/spy/){target=\_blank}.
+For a more comprehensive understanding of the Spy and its role within the Wormhole ecosystem, refer to the [Spy Documentation](/docs/learn/infrastructure/spy/){target=\_blank}.
 
 ## How to Start a Spy
 
 To start a Spy locally, run the following Docker command:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
         -p 7073:7073 \
         --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
         spy \
@@ -27,10 +27,10 @@ To start a Spy locally, run the following Docker command:
         --env mainnet
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
-    docker run --platform=linux/amd64 \
+    docker run --pull=always --platform=linux/amd64 \
         -p 7073:7073 \
         --entrypoint /guardiand ghcr.io/wormhole-foundation/guardiand:latest \
         spy \
@@ -39,21 +39,30 @@ To start a Spy locally, run the following Docker command:
         --env testnet
     ```
 
+If you want to run the Spy built from source, change `ghcr.io/wormhole-foundation/guardiand:latest` to `guardian` after building the `guardian` image.
+
 Optionally, add the following flags to skip any VAAs with invalid signatures:
 
-=== "MainNet"
+=== "Mainnet"
 
     ```sh
     --ethRPC https://eth.drpc.org
     --ethContract 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B
     ```
 
-=== "TestNet"
+=== "Testnet"
 
     ```sh
     --ethRPC https://sepolia.drpc.org/
     --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78    
     ```
+
+Optionally, add the following flags to prevent unbounded log growth:
+
+```sh
+--log-opt max-size=10m \
+--log-opt max-file=3
+```
 
 ## Subscribe to Filtered VAAs
 

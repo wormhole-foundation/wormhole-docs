@@ -15,7 +15,7 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 |   Polygon   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |  Avalanche  |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |   Fantom    |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|   Klaytn    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|    Kaia     |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 |    Celo     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Moonbeam   |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Injective  |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
@@ -28,10 +28,6 @@ description: Explore a comprehensive Feature Support matrix and explain Wormhole
 |   Scroll    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 |    Blast    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 |   X Layer   |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|   Osmosis   |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
-|  CosmosHub  |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
-|    Evmos    |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
-|   Kujira    |   ✅ (Gateway)    |         ✅ (IBC)          |        ❌        |       ❌        |        ❌         |
 
 ## Feature Explanation {: #feature-explanation}
 
@@ -46,7 +42,7 @@ This route appears if both of the following conditions are satisfied:
 
 ### Token Bridge Relayer {: #token-bridge-relayer}
 
-On the [routes](/build/applications/connect/routes) page, this is referred to as the automatic route in the Token Bridge section.
+On the [routes](/docs/build/applications/connect/routes/){target=\_blank} page, this is referred to as the automatic route in the Token Bridge section.
 
 Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee.
 
