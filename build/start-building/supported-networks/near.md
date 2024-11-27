@@ -45,7 +45,6 @@ For more information, see [the NEAR Consensus docs](https://nomicon.io/ChainSpec
 |:------------:|:-------------------------------:|
 |     Core     | `contract.wormhole_crypto.near` |
 | Token Bridge |  `contract.portalbridge.near`   |
-|  NFT Bridge  |               N/A               |
 
 === "Testnet"
 
@@ -53,7 +52,6 @@ For more information, see [the NEAR Consensus docs](https://nomicon.io/ChainSpec
 |:------------:|:---------------------------:|
 |     Core     | `wormhole.wormhole.testnet` |
 | Token Bridge |  `token.wormhole.testnet`   |
-|  NFT Bridge  |             N/A             |
 
 === "Local Network"
 
@@ -61,4 +59,3 @@ For more information, see [the NEAR Consensus docs](https://nomicon.io/ChainSpec
 |:------------:|:--------------------:|
 |     Core     | `wormhole.test.near` |
 | Token Bridge |  `token.test.near`   |
-|  NFT Bridge  |         N/A          |

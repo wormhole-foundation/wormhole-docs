@@ -53,7 +53,6 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 |:------------:|:------------------------------------------------------------------------------------:|
 |     Core     | [`842125965`](https://explorer.perawallet.app/application/842125965/){target=_blank} |
 | Token Bridge | [`842126029`](https://explorer.perawallet.app/application/842126029/){target=_blank} |
-|  NFT Bridge  |                                         N/A                                          |
 
 ### Testnet Contracts `testnet-v1.0`
 
@@ -61,7 +60,6 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 |:------------:|:------------------------------------------------------------------------------------------:|
 |     Core     | [`86525623`](https://testnet.explorer.perawallet.app/application/86525623/){target=_blank} |
 | Token Bridge | [`86525641`](https://testnet.explorer.perawallet.app/application/86525641/){target=_blank} |
-|  NFT Bridge  |                                            N/A                                             |
 
 ### Local Network Contract
 
@@ -69,4 +67,3 @@ For more information see [https://developer.algorand.org/docs/get-started/basics
 |:------------:|:--------:|
 |     Core     |  `1004`  |
 | Token Bridge |  `1006`  |
-|  NFT Bridge  |   N/A    |
