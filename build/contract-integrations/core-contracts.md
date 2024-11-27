@@ -32,7 +32,7 @@ While the implementation details of the Core Contracts vary by network, the core
 
 ### Sending Messages
 
-To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/learn/fundamentals/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/learn/messaging/token-nft-bridge/#token-bridge){target=\_blank} or [NFT Bridge](/docs/learn/messaging/token-nft-bridge/#nft-bridge){target=\_blank}.
+To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/learn/fundamentals/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/learn/messaging/token-bridge/#token-bridge){target=\_blank}.
 
 === "EVM"
 
