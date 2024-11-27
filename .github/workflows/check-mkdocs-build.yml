@@ -41,5 +41,6 @@ jobs:
           cd wormhole-mkdocs
           # change destination build folder in mkdocs YAML to local site/
           sed -i 's/site_dir.*/site_dir: site/' mkdocs.yml
+          echo "Files: $(ls)"
           # build project
           python3 -m mkdocs build
