@@ -39,6 +39,8 @@ To start a Spy locally, run the following Docker command:
         --env testnet
     ```
 
+If you want to run the Spy built from source, change `ghcr.io/wormhole-foundation/guardiand:latest` to `guardian` after building the `guardian` image.
+
 Optionally, add the following flags to skip any VAAs with invalid signatures:
 
 === "Mainnet"
@@ -54,6 +56,13 @@ Optionally, add the following flags to skip any VAAs with invalid signatures:
     --ethRPC https://sepolia.drpc.org/
     --ethContract 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78    
     ```
+
+Optionally, add the following flags to prevent unbounded log growth:
+
+```sh
+--log-opt max-size=10m \
+--log-opt max-file=3
+```
 
 ## Subscribe to Filtered VAAs
 
