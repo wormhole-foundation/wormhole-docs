@@ -7,7 +7,7 @@ description: Learn how to efficiently define, serialize, and deserialize data st
 
 ## Introduction
 
-In the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, the [layout system](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/base/src/utils/layout){target=\_blank} is important for efficient cross-chain communication. It allows developers to define, serialize, and deserialize data structures, ensuring consistency and reusability across different blockchain environments.
+The [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} uses the [layout package](https://www.npmjs.com/package/binary-layout){target=\_blank} to define, serialize, and deserialize data structures efficiently. This modular system ensures consistent data formatting and cross-environment compatibility, benefiting projects that require robust handling of structured data.
 
 By understanding the layout mechanism, you’ll be able to:
 
@@ -23,7 +23,7 @@ This guide is beneficial for developers looking to integrate Wormhole into their
 
 A layout defines how data structures should be serialized (converted into binary format) and deserialized (converted back into their original structure). This ensures consistent data formatting when transmitting information across different blockchain environments.
 
-Layouts are composed of [layout items](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/utils/layout/items.ts){target=\_blank}, which describe individual fields or sets of fields in your data. Each layout item specifies:
+Layouts are composed of [layout items](https://github.com/nonergodic/layout/blob/main/src/items.ts){target=\_blank}, which describe individual fields or sets of fields in your data. Each layout item specifies:
 
  - **`name`** - name of the field
  - **`binary`** - type of data (e.g., `uint`, `bytes`)
@@ -203,7 +203,7 @@ const chainItemBase = { binary: 'uint', size: 2 } as const;
 
 #### Dynamic Chain ID Layout
 
-The dynamic chain ID layout, [`chainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/chain.ts#L13-L40){target=\_blank}, extends `chainItemBase` by adding flexible custom conversion logic. It enables runtime validation of chain IDs, supports optional null values, and restricts chain IDs to a predefined set when needed.
+The dynamic chain ID layout, [`chainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/chain.ts#L13-L40){target=\_blank}, extends `chainItemBase` by adding flexible custom conversion logic. It enables runtime validation of chain IDs, supports optional null values, and restricts chain IDs to a predefined set when needed.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-9.ts"
@@ -213,7 +213,7 @@ This layout is versatile. It allows the serialization of human-readable chain na
 
 #### Fixed Chain ID Layout
 
-The fixed chain ID layout, [`fixedChainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/chain.ts#L42-L49){target=\_blank}, is more rigid. It also extends `chainItemBase`, but the custom field is hardcoded for a single chain. This eliminates runtime validation and enforces strict adherence to a specific chain.
+The fixed chain ID layout, [`fixedChainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/chain.ts#L42-L49){target=\_blank}, is more rigid. It also extends `chainItemBase`, but the custom field is hardcoded for a single chain. This eliminates runtime validation and enforces strict adherence to a specific chain.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-10.ts"
@@ -227,7 +227,7 @@ The Wormhole SDK uses a Universal Address Layout to serialize and deserialize bl
 
 #### Base Structure
 
-The [`universalAddressItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/universalAddress.ts#L7-L14){target=\_blank} defines the layout for addresses. It uses the binary type bytes and enforces a fixed size of 32 bytes for consistency.
+The [`universalAddressItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/universalAddress.ts#L7-L14){target=\_blank} defines the layout for addresses. It uses the binary type bytes and enforces a fixed size of 32 bytes for consistency.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-11.ts"
@@ -254,7 +254,7 @@ This layout provides a clear binary format for the secp256k1 signature, making i
 
 #### Layout with Custom Conversion
 
-The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level `Signature` object and vice versa.
+The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level `Signature` object and vice versa.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-13.ts"
@@ -314,8 +314,8 @@ VAAs are the backbone of Wormhole’s cross-chain communication. Each VAA is a s
 
 The Wormhole SDK organizes the VAA structure into three key components:
 
- - [**Header**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank} - contains metadata such as the Guardian set index and an array of Guardian signatures
- - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and consistency level
+ - [**Header**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank} - contains metadata such as the Guardian set index and an array of Guardian signatures
+ - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and consistency level
  - **Payload** - provides application-specific data, such as the actual message or operation being performed
 
 **Header layout:**
@@ -365,7 +365,7 @@ At runtime, the payload layout is appended to the `baseLayout` to form the compl
 
 #### Serializing VAA Data
 
-The Wormhole SDK provides the [`serialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/functions.ts#L48-L54){target=\_blank} function to serialize a VAA message. This function combines the base layout (header and envelope) with the appropriate payload layout, ensuring the message’s format is correct for transmission across chains.
+The Wormhole SDK provides the [`serialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/functions.ts#L48-L54){target=\_blank} function to serialize a VAA message. This function combines the base layout (header and envelope) with the appropriate payload layout, ensuring the message’s format is correct for transmission across chains.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-20.ts"
@@ -381,7 +381,7 @@ The Wormhole SDK provides the [`serialize`](https://github.com/wormhole-foundati
 
 #### Deserializing VAA Data
 
-The Wormhole SDK provides the [`deserialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/vaa/functions.ts#L162-L200){target=\_blank} function to parse a VAA from its binary format back into a structured object. This function uses the `baseLayout` and payload discriminator logic to ensure the VAA is correctly interpreted.
+The Wormhole SDK provides the [`deserialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/functions.ts#L162-L200){target=\_blank} function to parse a VAA from its binary format back into a structured object. This function uses the `baseLayout` and payload discriminator logic to ensure the VAA is correctly interpreted.
 
 ```typescript
 --8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-22.ts"
@@ -397,15 +397,9 @@ The Wormhole SDK provides the [`deserialize`](https://github.com/wormhole-founda
 
 ### Registering Custom Payloads
 
-In addition to predefined layouts, Wormhole integrators can define and register their custom payloads. This is especially useful when integrating protocol-specific features, such as the [**Submit Your Protocol**](https://wormholescan.io/#/developers/submit){target=\_blank} feature in [WormholeScan](https://wormholescan.io/){target=\_blank}.
+In the Wormhole SDK, payloads rely on layouts to define their binary structure, ensuring consistency and type safety across protocols. Custom payloads extend this functionality, allowing developers to handle protocol-specific features or unique use cases.
 
-Below's an example of a custom payload registration:
-
-```typescript
---8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-24.ts"
-```
-
-Custom payloads enable developers to extend the functionality of Wormhole's cross-chain messages, allowing for more specialized use cases.
+To learn how to define and register payloads using layouts, refer to the [Building Protocols and Payloads](/docs/build/applications/wormhole-sdk/protocols-payloads/){target=\_blank} page for a detailed guide.
 
 ## Common Pitfalls & Best Practices
 
@@ -453,7 +447,7 @@ By leveraging predefined layout items, you reduce redundancy, maintain consisten
 
 #### Use Class Instances
 
-Whenever possible, convert deserialized data into higher-level class instances. This makes it easier to validate, manipulate, and interact with structured data. For example, the [`UniversalAddress`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/universalAddress.ts#L17-L59){target=\_blank} class ensures consistent address handling:
+Whenever possible, convert deserialized data into higher-level class instances. This makes it easier to validate, manipulate, and interact with structured data. For example, the [`UniversalAddress`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/universalAddress.ts#L17-L59){target=\_blank} class ensures consistent address handling:
 
 ```typescript
 import { UniversalAddress } from '@wormhole-foundation/sdk-core';
@@ -497,22 +491,10 @@ const lazyDiscriminator = lazyInstantiate(() => layoutDiscriminator(layouts));
 
 This approach ensures that discriminators are only built when required, helping to optimize performance, especially for complex or conditional layouts.
 
-### Minimize Layout Redundancy
-
-Avoid defining custom layouts for fields already provided by the Wormhole SDK. Instead, reuse predefined layout items like chainItem or universalAddressItem to maintain compatibility with Wormhole standards and ensure strong typing.
-
-For example, instead of manually defining layouts for chain IDs or addresses, leverage the SDK’s built-in items:
-
-```typescript
---8<-- "code/build/applications/wormhole-sdk/sdk-layout/layout-28.ts"
-```
-
-Reusing SDK-provided layouts eliminates redundancy, reduces maintenance, and ensures your code aligns with established standards.
-
 ## Resources
 
 For further learning and practical experience, explore the following resources:
 
  - **Wormhole TypeScript SDK** - the [Wormhole SDK repository](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} contains the core implementation of layouts, including predefined layout items and utilities like `serializeLayout` and `deserializeLayout`
 
- - **Layout tests repository** - for hands-on experimentation, check out this [layout tests repository](https://github.com/nonergodic/layout){target=\_blank}, which provides examples and unit tests to help you better understand serialization, deserialization, and the strong typing mechanism. Running these tests locally is a great way to deepen your understanding of how layouts function in real-world scenarios
+ - **Layout tests repository** - for hands-on experimentation, check out this [layout package repository](https://github.com/nonergodic/layout){target=\_blank}, which provides examples and unit tests to help you better understand serialization, deserialization, and the strong typing mechanism. Running these tests locally is a great way to deepen your understanding of how layouts function in real-world scenarios
