@@ -88,5 +88,5 @@ It is recommended that you update your token’s metadata on blockchain explorer
 2. Copy and paste the wrapped contract address in the **Token Update Application Form**
 3. Before proceeding to the next step, you will need to verify as the contract address owner on [Etherscan’s address verification tool](https://etherscan.io/verifyAddress/){target=\_blank}
 4. Follow the directions to verify contract address ownership via MetaMask by reviewing the [guide on verifying address ownership](https://info.etherscan.com/how-to-verify-address-ownership/){target=\_blank}
-   1. Given that Wormhole may be the contract owner, use the manual verification process by reaching out through the [Etherscan contact form](https://etherscan.io/contactus){target=\_blank}. The team will provide support as needed
+   - Given that Wormhole may be the contract owner, use the manual verification process by reaching out through the [Etherscan contact form](https://etherscan.io/contactus){target=\_blank}. The team will provide support as needed
 5. Once the step above is completed, follow the [instructions to update token information](https://info.etherscan.com/how-to-update-token-information-on-token-page/){target=\_blank}
