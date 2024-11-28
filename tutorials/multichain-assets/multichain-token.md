@@ -72,7 +72,7 @@ After creating your multichain token, there are a few optional but highly recomm
 
 ### Add Your Token to the Wormhole Metadata List (Legacy)
 
-For legacy compatibility in the Advanced Tools section of Portal Bridge, you can request updates to your token metadata. Follow these steps:
+For legacy compatibility in the [**Advanced Tools**](https://portalbridge.com/advanced-tools/){target=\_blank} section of Portal Bridge, you can request updates to your token metadata. Follow these steps:
 
 1. Join the [Wormhole Discord server](https://discord.com/invite/wormholecrypto){target=\_blank}
 2. Submit a request for metadata updates in the appropriate support channel
