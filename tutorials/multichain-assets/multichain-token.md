@@ -1,6 +1,6 @@
 ---
 title: Create Multichain Tokens
-description: Learn how to create a Multichain Token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability.
+description: Learn how to create a multichain token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability.
 ---
 
 # Create Multichain Tokens
@@ -9,7 +9,7 @@ description: Learn how to create a Multichain Token, bridge tokens across blockc
 
 Blockchain ecosystems are becoming increasingly interconnected, with assets often needing to exist across multiple networks to maximize their utility and reach. For example, tokens created on one chain may want to expand to others to tap into broader audiences and liquidity pools.
 
-This guide explains how to create a Multichain Token—a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
+This guide explains how to create a multichain token—a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
 
 By the end of this tutorial, you'll learn:
 
@@ -17,11 +17,11 @@ By the end of this tutorial, you'll learn:
 - How to create a wrapped version of your token
 - How to ensure its visibility on blockchain explorers
 
-Let’s begin with a straightforward, step-by-step process for creating a Multichain Token and expanding its reach.
+Let’s begin with a straightforward, step-by-step process for creating a multichain token and expanding its reach.
 
 ## Step 1: Register the Token on the Source Chain
 
-The first step in creating a Multichain Token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
+The first step in creating a multichain token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
 
 1. Open the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank}
 2. Select the blockchain where your token is currently deployed (source chain)
@@ -68,7 +68,7 @@ Upon successful creation, you will see a confirmation screen displaying key deta
 
 ## Additional Steps and Recommendations
 
-After creating your Multichain Token, there are a few optional but highly recommended steps to ensure the best experience for users interacting with your token.
+After creating your multichain token, there are a few optional but highly recommended steps to ensure the best experience for users interacting with your token.
 
 ### Add Your Token to the Wormhole Metadata List (Legacy)
 
