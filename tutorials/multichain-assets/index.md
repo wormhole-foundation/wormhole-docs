@@ -11,7 +11,7 @@ Welcome to the Multichain Token tutorials section. In this section, you will fin
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-16:{ .lg .middle } **Creating a Multichain Token**
+-   :octicons-code-square-16:{ .lg .middle } **Create Multichain Tokens**
 
     ---
 
