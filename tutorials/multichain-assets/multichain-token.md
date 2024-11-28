@@ -19,7 +19,7 @@ By the end of this tutorial, you'll learn:
 
 Let’s begin with a straightforward, step-by-step process for creating a multichain token and expanding its reach.
 
-## Step 1: Register the Token on the Source Chain
+## Register the Token on the Source Chain
 
 The first step in creating a multichain token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
 
@@ -31,7 +31,7 @@ The first step in creating a multichain token is registering your token on its s
 
 <img src="/docs/images/tutorials/multichain-tokens/multichain-token-1.webp" alt="Source Chain Registration Screen" style="width: 80%;">
 
-## Step 2: Register the Token on the Target Chain
+## Register the Token on the Target Chain
 
 After registering your token on the source chain, the next step is to select the target chain—the blockchain where you want the wrapped version of your token to exist. This step connects your token to its destination network.
 
@@ -53,7 +53,7 @@ Attestation is a key step in the process. It verifies your token’s metadata, e
     - Attestation is crucial for token metadata to appear correctly on blockchain explorers like Etherscan, allowing users to identify and trust your token
     - Ensure you have sufficient funds to cover transaction fees on the target chain
 
-## Step 4: Create the Wrapped Token
+## Create the Wrapped Token
 
 The final step is to create the wrapped token on the target chain. This token represents the original asset and enables its use within the target blockchain.
 
