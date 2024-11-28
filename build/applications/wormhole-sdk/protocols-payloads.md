@@ -1,6 +1,6 @@
 ---
 title: Building Protocols and Payloads
-description: Learn how to build, register, and integrate protocols and payloads in the Wormhole TypeScript SDK with type-safe layouts
+description: Learn how to build, register, and integrate protocols and payloads in the Wormhole TypeScript SDK with type-safe layouts.
 ---
 
 # Building Protocols and Payloads
@@ -29,8 +29,8 @@ Examples of Protocols:
 
 Protocols are defined by:
 
- - A `name` - a string identifier (e.g., `TokenBridge`, `Ntt`)
- - A set of `payloads` - these represent the specific actions or messages supported by the protocol, such as `Transfer` or `TransferWithPayload`
+ - **A `name`** - a string identifier (e.g., `TokenBridge`, `Ntt`)
+ - **A set of `payloads`** - these represent the specific actions or messages supported by the protocol, such as `Transfer` or `TransferWithPayload`
 
 Each protocol is registered in the Wormhole SDK, allowing developers to leverage its predefined features or extend it with custom payloads.
 
@@ -40,8 +40,8 @@ A payload is a structured piece of data that encapsulates the details of a speci
 
 Each payload is defined as:
 
- - A `layout` - describes the binary format of the payload fields
- - A `literal` - combines the protocol name and payload name into a unique identifier (e.g., `TokenBridge:Transfer`)
+ - **A `layout`** - describes the binary format of the payload fields
+ - **A `literal`** - combines the protocol name and payload name into a unique identifier (e.g., `TokenBridge:Transfer`)
 
 By registering payloads, developers can enforce type safety and enable serialization and deserialization for specific protocol operations.
 
@@ -90,7 +90,7 @@ This ensures that `EvmAddress` is registered as the native address type for EVM-
 
 ### Register Payloads
 
-[Payload registration](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dbbbc7c365db602dd3b534f6d615ac80c3d2aaf1/core/definitions/src/vaa/registration.ts){target=\_balnk} enables developers to define, serialize, and handle custom message types within their protocols. It establishes the connection between a protocol and its payloads, ensuring seamless integration, type enforcement, and runtime efficiency.
+[Payload registration](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dbbbc7c365db602dd3b534f6d615ac80c3d2aaf1/core/definitions/src/vaa/registration.ts){target=\_blank} enables developers to define, serialize, and handle custom message types within their protocols. It establishes the connection between a protocol and its payloads, ensuring seamless integration, type enforcement, and runtime efficiency.
 
 This process ties a protocol to its payloads using a combination of:
 
@@ -113,13 +113,13 @@ Payload registration involves:
 2. **Register payloads** - use `registerPayloadTypes` to map payload literals to their layouts:
 
     ```typescript
-    registerPayloadTypes("ProtocolName", protocolNamedPayloads)
+    registerPayloadTypes('ProtocolName', protocolNamedPayloads);
     ```
 
 3. **Access registered payloads** - use the [`getPayloadLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/definitions/src/vaa/functions.ts#L19-L23){target=\_blank} function to fetch the layout for a specific payload literal. This method ensures that the correct layout is retrieved dynamically and safely:
 
     ```typescript
-    const layout = getPayloadLayout("ProtocolName:PayloadName");
+    const layout = getPayloadLayout('ProtocolName:PayloadName');
     ```
 
 These steps link payload literals and their layouts, enabling seamless runtime handling.
@@ -163,7 +163,7 @@ Below is an example of how the Wormhole SDK builds a discriminator to distinguis
  - [`layoutDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/base/src/utils/layout.ts#L16){target=\_blank} takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload
  - The `allowAmbiguous` parameter determines whether layouts with overlapping characteristics are permitted
 
-### Real-World Example: TokenBridge Protocol
+### Real-World Example: Token Bridge Protocol
 
 Integrating protocols with their respective payloads exemplifies how the Wormhole SDK leverages layouts and type-safe registration mechanisms to ensure efficient cross-chain communication. This section focuses on how protocols like `TokenBridge` use payloads to facilitate specific operations.
 
