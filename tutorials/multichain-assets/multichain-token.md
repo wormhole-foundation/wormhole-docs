@@ -1,6 +1,6 @@
 ---
 title: Create Multichain Tokens
-description: Learn how to create a Multichain Token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability
+description: Learn how to create a Multichain Token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability.
 ---
 
 # Create Multichain Tokens
