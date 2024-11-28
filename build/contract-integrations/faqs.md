@@ -16,9 +16,9 @@ The logic behind deploying these token contracts involves submitting an attestat
 
 Relevant contracts:
 
- - [Ethereum ERC-20](https://github.com/wormhole-foundation/wormhole/blob/gateway-integration/ethereum/contracts/bridge/token/Token.sol){target=\_blank}
- - [Solana SPL](https://github.com/wormhole-foundation/wormhole/blob/gateway-integration/solana/modules/token_bridge/program/src/api/create_wrapped.rs#L128-L145){target=\_blank}
- - [Attestation VAA and Token Contract Deployment Logic](https://github.com/wormhole-foundation/wormhole/blob/gateway-integration/ethereum/contracts/bridge/Bridge.sol#L385-L431){target=\_blank}
+ - [Ethereum ERC-20](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/token/Token.sol){target=\_blank}
+ - [Solana SPL](https://github.com/wormhole-foundation/wormhole/blob/main/solana/modules/token_bridge/program/src/api/create_wrapped.rs#L128-L145){target=\_blank}
+ - [Attestation VAA and Token Contract Deployment Logic](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L385-L431){target=\_blank}
 
 ## How do I start developing a custom relayer?
 
