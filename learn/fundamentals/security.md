@@ -56,17 +56,13 @@ Guardians monitor:
 
 - Block production and consensus of each blockchain - if a blockchain's consensus is violated, it will be disconnected from the network until the Guardians resolve the issue
 - Smart contract level data - via processes like the Governor, Guardians constantly monitor the circulating supply and token movements across all supported blockchains
-- Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, complete with its blockchain ([Gateway](/docs/learn/messaging/gateway/){target=\_blank})
+- Guardian level activity - the Guardian Network functions as an autonomous decentralized computing network, ensuring independent security measures across its validators
 
-## Gateway And Asset Layer Protections
+## Asset Layer Protections
 
-One of the most powerful aspects of the Wormhole ecosystem is that Guardians effectively have the entire state of DeFi available to them.
+One key strength of the Wormhole ecosystem is the Guardians’ ability to validate and protect the integrity of assets across multiple blockchains.
 
-Gateway is a Cosmos-based blockchain that runs internally to the Guardian network, whereby the Guardians can effectively execute smart contracts against the current state of all blockchains rather than just one blockchain.
-
-This enables additional protection for the Wormhole Asset Layer in addition to the core assumptions:
-
-- **Global Accountant** - the accountant tracks the total circulating supply of all Wormhole assets across all chains and prevents any blockchain from bridging assets which would violate the supply invariant
+To enforce the Wormhole Asset Layer’s core protections, the Global Accountant tracks the total circulating supply of all Wormhole assets across all chains, preventing any blockchain from bridging assets that could violate the supply invariant.
 
 In addition to the Global Accountant, Guardians may only sign transfers that do not violate the requirements of the Governor. The [Governor](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0007_governor.md){target=\_blank} tracks inflows and outflows of all blockchains and delays suspicious transfers that may indicate an exploit.
 

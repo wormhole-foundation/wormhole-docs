@@ -31,7 +31,7 @@ Regardless of which network development environment you are using, there are a f
 
     ---
 
-    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, USDC, and Gateway transfers.
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
 
     [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
 
@@ -50,6 +50,14 @@ Regardless of which network development environment you are using, there are a f
     Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
     [:octicons-arrow-right-16: Get started with Tilt](/docs/build/toolkit/tilt/)
+
+-   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
+
+    ---
+
+    Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
+
+    [:octicons-arrow-right-16: Read Toolkit FAQs](/docs/build/toolkit/faqs/)
 
 </div>
 

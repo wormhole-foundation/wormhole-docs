@@ -15,17 +15,9 @@ This section covers various aspects and services related to communication protoc
 
     ---
 
-    The Token and NFT Bridges provide a secure, low-lift integration for cross-chain transfers of fungible and non-fungible tokens (NFTs).
+    The Token Bridge provides a secure, low-lift integration for cross-chain transfers of fungible tokens.
 
-    [:octicons-arrow-right-16: Learn more about Token Bridges](/docs/learn/messaging/token-nft-bridge/)
-
--   :octicons-book-16:{ .lg .middle } **Cosmos Gateway**
-
-    ---
-
-    Wormhole Gateway is a Cosmos-SDK chain designed to bridge non-native assets into the Cosmos ecosystem, offering unified liquidity across Cosmos chains.
-
-    [:octicons-arrow-right-16: Learn more about Gateway](/docs/learn/messaging/gateway/)
+    [:octicons-arrow-right-16: Learn more about Token Bridges](/docs/learn/messaging/token-bridge/)
 
 -   :octicons-book-16:{ .lg .middle } **Circle's CCTP Bridge**
 
