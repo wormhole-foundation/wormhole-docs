@@ -78,7 +78,7 @@ For legacy compatibility in the Advanced Tools section of Portal Bridge, you can
 2. Submit a request for metadata updates in the appropriate support channel
 
 !!! note
-    These updates only apply to the Advanced Tools section of Portal Bridge and will not update how your token appears in other Wormhole-powered apps or on blockchain explorers like Etherscan
+    These updates only apply to the **Advanced Tools** section of Portal Bridge and will not update how your token appears in other Wormhole-powered apps or on blockchain explorers like Etherscan.
 
 ### Update Metadata on Blockchain Explorers
 
