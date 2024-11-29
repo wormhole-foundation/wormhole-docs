@@ -6,3 +6,4 @@ nav:
  - 'Transfer USDC via Wormhole SDK': 'cctp.md'
  - 'Transfer Tokens Cross-Chain with Connect': 'sui-connect.md'
  - 'Transfer Tokens via Portal Bridge': 'portal-bridge.md'
+ - 'Build a loyalty app with message transfers': 'loyalty-app.md'
