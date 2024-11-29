@@ -70,19 +70,3 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 ## Validator
 
 A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
-
-## xChain
-
-A term that refers to the full range of cross-blockchain interoperability.
-
-## xAssets
-
-A chain-and-path agnostic token on a layer outside the blockchain ecosystem that can conduct transactions on any blockchain.
-
-## xDapp
-
-A decentralized application that enables users to create and/or use [xData](#xdata).
-
-## xData
-
-Data that exists in a layer outside of Layer 1 blockchains, which is accessible by all chains.
