@@ -86,7 +86,9 @@ When a transfer exceeds the rate limit, it is held in a queue and can be release
 
 - **Sending** - if an outbound transfer violates rate limits, users can either revert and try again later or queue their transfer. Users must return after the queue duration has expired to complete sending their transfer
 - **Receiving** - if an inbound transfer violates rate limits, it is held in a queue. Users or relayers must return after the queue duration has expired to complete receiving their transfer on the destination chain
-    
+
+Queuing is configured dynamically during each transfer by passing the `shouldQueue` parameter to the [transfer function](https://github.com/wormhole-foundation/native-token-transfers/blob/5e7ceaef9a5e7eaa13e823a67c611dc684cc0c1d/evm/src/NttManager/NttManager.sol#L171-L182){target=\_blank} in the `NttManager` contract.
+
 ## Cancel Flows
 
 If users bridge frequently between a given source chain and destination chain, the capacity could be exhausted quickly. Loss of capacity can leave other users rate-limited, potentially delaying their transfers.  The outbound transfer cancels the inbound rate limit on the source chain to avoid unintentional delays. This allows for refilling the inbound rate limit by an amount equal to the outbound transfer amount and vice-versa, with the inbound transfer canceling the outbound rate limit on the destination chain and refilling the outbound rate limit with an amount.
