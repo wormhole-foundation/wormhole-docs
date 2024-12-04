@@ -16,6 +16,70 @@ You can configure the following limits on every chain where NTT is deployed dire
 
 Rate limits are replenished every second over a fixed duration. While the default duration is 24 hours, the value is configurable at contract creation. Rate-limited transfers on the destination chain are added to an inbound queue with a similar release delay.
 
+## Update Rate Limits
+
+To configure or update the sending and receiving rate limits, follow these steps:
+
+1. **Locate the deployment file** - open the `deployment.json` file in your NTT project directory. This file contains the configuration for your deployed contracts
+
+2. **Modify the limits section** - for each chain, locate the limits field and update the outbound and inbound values as needed
+
+    ```json
+    "limits": {
+        "outbound": "1000.000000000000000000",
+        "inbound": {
+            "Ethereum": "100.000000000000000000",
+            "Arbitrum": "50.000000000000000000"
+        }
+    }
+    ```
+
+     - `outbound` - sets the maximum tokens allowed to leave the chain
+     - `inbound` - configures per-chain receiving limits for tokens arriving from specific chains
+
+3. **Push the configuration** - use the NTT CLI to synchronize the updated configuration with the blockchain
+
+    ```bash
+    ntt push
+    ```
+
+4. **Verify the changes** - after pushing, confirm the new rate limits by checking the deployment status
+
+    ```bash
+    ntt status
+    ```
+
+???- note "`deployment.json` example"
+    ```json
+    {
+        "network": "Testnet",
+        "chains": {
+            "Sepolia": {
+                "version": "1.1.0",
+                "mode": "burning",
+                "paused": false,
+                "owner": "0x0088DFAC40029f266e0FF62B82E47A07467A0345",
+                "manager": "0x5592809cf5352a882Ad5E9d435C6B7355B716357",
+                "token": "0x5CF5D6f366eEa7123BeECec1B7c44B2493569995",
+                "transceivers": {
+                    "threshold": 1,
+                    "wormhole": {
+                        "address": "0x91D4E9629545129D427Fd416860696a9659AD6a1",
+                        "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
+                    }
+                },
+                "limits": {
+                    "outbound": "184467440737.095516150000000000",
+                    "inbound": {
+                        "ArbitrumSepolia": "500.000000000000000000"
+                    }
+                },
+                "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
+            }
+        }
+    }
+    ```
+
 ## Queuing Mechanism
 
 When a transfer exceeds the rate limit, it is held in a queue and can be released after the set rate limit duration has expired. The sending and receiving queuing behavior is as follows:
