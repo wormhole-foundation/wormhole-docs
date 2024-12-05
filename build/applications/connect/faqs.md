@@ -48,3 +48,22 @@ In [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){t
 To control the priority fee applied to your transactions, you can modify the `feePercentile` and `minPriorityFee` parameters in the `addComputeBudget` and `determineComputeBudget` functions.
 
 The relevant file can be found in the Connect codebase: [`computeBudget/index.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/62f1ba8ee5502ac6fd405680e6b3816c9aa54325/sdk/src/contexts/solana/utils/computeBudget/index.ts){target=\_blank}.
+
+## Is there a minimum amount for bridging with CCTP or the Connect SDK?
+
+There is no minimum amount for bridging via CCTP if the user covers the gas fees on both the source and destination chains. However, if the transfer is automatically relayed, there is a minimum amount required to cover relay fees on the destination chain. These fees are charged at cost by the relay provider.
+
+Current relay fees:
+
+- Ethereum L1: ~4.2 USDC
+- Base, Optimism, Arbitrum, Avalanche: 0.3 USDC
+
+Additional notes:
+
+- **USDC to Solana** - Wormhole's native CCTP route does not currently support automatic relaying of USDC to Solana. However, you can transfer USDC to Solana using the [Mayan plugin](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} for the SDK. Mayan is a protocol that integrates Wormhole and CCTP to enable this functionality
+- **Frontend integrations**
+    - **Connect** - A pre-built UI available via [@wormhole-foundation/wormhole-connect](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}
+    - **TypeScript SDK** - A lower-level integration option, available via [@wormhole-foundation/sdk](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank}, allowing developers to build custom UIs
+
+        !!!note
+            Note: The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
