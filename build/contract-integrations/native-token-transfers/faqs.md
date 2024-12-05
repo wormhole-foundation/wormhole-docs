@@ -87,11 +87,11 @@ These functions ensure Connect can handle token transfers and manage chain-rate 
 The source chain's transceiver includes the destination chain's transceiver in the message via the relayer contract. The admin configures each transceiver's mapping of its peers on other chains. This mapping allows the destination transceiver to verify that the message came from a trusted source.
 
 <!-- new questions from here -->
-## How do I create a verifier / transceiver?
+## How do I create a verifier or transceiver?
 
-To run your own verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
+To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
 
-For reference, you can review the [Axelar transceiver implementation](https://github.com/wormhole-foundation/example-wormhole-axelar-wsteth/blob/main/src/axelar/AxelarTransceiver.sol"){target=\_blank}.
+For reference, you can review the [Axelar transceiver implementation](https://github.com/wormhole-foundation/example-wormhole-axelar-wsteth/blob/main/src/axelar/AxelarTransceiver.sol){target=\_blank}.
 
 ## Can I use Hetzner for the NTT deployment?
 
@@ -99,9 +99,9 @@ No, using Hetzner servers for Solana deployments is not recommended. Hetzner has
 
 ## How can I transfer tokens with NTT with an additional payload?
 
-You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank} 
+You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank}.
 
-- On the source chain override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message
+- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message
 - On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message
 
 !!!Important
