@@ -43,4 +43,12 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     [:octicons-arrow-right-16: Explore next steps](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
 
+-   :octicons-alert-16:{ .lg .middle } **Troubleshooting**
+
+    ---
+
+    Resolve common issues in NTT deployment with this troubleshooting guide covering Solana, EVM, mint authority, decimals, and rate limits.
+
+    [:octicons-arrow-right-16: Explore next steps](/docs/build/contract-integrations/native-token-transfers/deployment-process/troubleshooting/)
+
 </div>
