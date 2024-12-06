@@ -29,3 +29,13 @@ Previously referred to as specialized relayers, custom relayers allow you to bui
  - [Run a Custom Relayer](/docs/infrastructure/relayers/run-relayer/){target=\_blank}
 
 These resources will guide you through building and deploying custom relayers tailored to your use case.
+
+## Is there a way to use NTT tokens with chains that don't currently support NTT?
+
+Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank}. For example:
+
+- **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
+- **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism
+- **Messaging consistency** - the Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT
+
+This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
