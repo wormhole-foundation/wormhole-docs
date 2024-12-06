@@ -86,7 +86,6 @@ These functions ensure Connect can handle token transfers and manage chain-rate 
 
 The source chain's transceiver includes the destination chain's transceiver in the message via the relayer contract. The admin configures each transceiver's mapping of its peers on other chains. This mapping allows the destination transceiver to verify that the message came from a trusted source.
 
-<!-- new questions from here -->
 ## How do I create a verifier or transceiver?
 
 To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
