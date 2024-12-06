@@ -10,8 +10,8 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 Ensure you have the following dependencies installed:
 
 -  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
--  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`v1.18.10`**
--  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`v0.29.0`**
+-  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+-  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 
 !!!Warning
     Ensure you are using the above versions of Solana and Anchor. Running the deployment with a different version may cause issues.

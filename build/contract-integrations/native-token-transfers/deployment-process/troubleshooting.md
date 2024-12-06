@@ -8,6 +8,8 @@ description: Resolve common issues in NTT deployment with this troubleshooting g
 If you encounter issues during the NTT deployment process, check the following common points:
 
 - **Solana and Anchor versions** - ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#install-dependencies){target=\_blank}
+    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+    -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 - **Token compliance on EVM** - verify that your token is an ERC20 token on the EVM chain
 - **Mint authority transfer**
     - **For burn or spoke tokens on Solana** - ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section
