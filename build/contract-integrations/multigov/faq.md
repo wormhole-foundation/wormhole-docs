@@ -44,6 +44,13 @@ When a proposal is approved and the timelock period elapses, it's first executed
 
 ## Implementation Questions
 
+### What are the requirements for using MultiGov?
+
+To use MultiGov, your DAO must meet the following requirements:
+
+- **ERC20Votes token** - your DAO's token must implement the `ERC20Votes` standard and support `CLOCK_MODE` timestamps for compatibility with cross-chain governance
+- **Flexible voting support** - your DAO's Governor must support Flexible Voting to function as the Hub Governor. If your existing Governor does not support Flexible Voting, you can upgrade it to enable this feature
+
 ### What do I need to set up MultiGov for my project?
 
 Get started by filling out the form below:
