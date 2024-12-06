@@ -51,7 +51,7 @@ The relevant file can be found in the Connect codebase: [`computeBudget/index.ts
 
 ## Is there a minimum amount for bridging with CCTP or the Connect SDK?
 
-There is no minimum amount for bridging via CCTP if the user covers the gas fees on both the source and destination chains. However, if the transfer is automatically relayed, there is a minimum amount required to cover relay fees on the destination chain. These fees are charged at cost by the relay provider.
+There is no minimum amount for bridging via CCTP if the user covers the gas fees on both the source and destination chains. However, if the transfer is automatically relayed, a minimum amount is required to cover relay fees on the destination chain. The relay provider charges these fees at cost.
 
 Current relay fees:
 
@@ -66,4 +66,4 @@ Additional notes:
     - **TypeScript SDK** - A lower-level integration option, available via [@wormhole-foundation/sdk](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank}, allowing developers to build custom UIs
 
         !!!note
-            Note: The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
+            The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
