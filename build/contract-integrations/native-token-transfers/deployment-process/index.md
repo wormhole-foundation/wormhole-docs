@@ -43,4 +43,12 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     [:octicons-arrow-right-16: Explore next steps](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
 
+-   :octicons-alert-16:{ .lg .middle } **Troubleshooting**
+
+    ---
+
+    Explore solutions and detailed guidance in our troubleshooting guide to resolve issues with NTT deployment.
+
+    [:octicons-arrow-right-16: Get help](/docs/build/contract-integrations/native-token-transfers/deployment-process/troubleshooting/)
+
 </div>
