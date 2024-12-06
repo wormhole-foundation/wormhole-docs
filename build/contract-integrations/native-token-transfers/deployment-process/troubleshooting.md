@@ -1,9 +1,9 @@
 ---
-title: Troubleshooting
+title: Troubleshooting NTT Deployment
 description: Resolve common issues in NTT deployment with this troubleshooting guide covering Solana, EVM, mint authority, decimals, and rate limits.
 ---
 
-# Troubleshooting
+# Troubleshooting NTT Deployment
 
 If you encounter issues during the NTT deployment process, check the following common points:
 
