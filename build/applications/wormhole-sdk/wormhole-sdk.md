@@ -387,7 +387,7 @@ See the `router.ts` example in the [examples directory](https://github.com/wormh
 Routes can be imported from any npm package that exports them and configured with the resolver. Custom routes must extend [`Route`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L21-L64){target=\_blank} and implement [`StaticRouteMethods`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L101){target=\_blank}.
 
 ```ts
---8 <--"code/build/applications/wormhole-sdk/custom-route.ts";
+--8<-- 'code/build/applications/wormhole-sdk/custom-route.ts'
 ```
 
 A noteworthy example of a route exported from a separate npm package is Wormhole Native Token Transfers (NTT). See the [`NttAutomaticRoute`](https://github.com/wormhole-foundation/native-token-transfers/blob/66f8e414223a77f5c736541db0a7a85396cab71c/sdk/route/src/automatic.ts#L48){target=\_blank} route implementation.

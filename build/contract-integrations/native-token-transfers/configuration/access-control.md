@@ -12,6 +12,25 @@ NTT can be paused on a particular chain by updating the `paused` parameter on th
 - **Owner** - full control over NTT contracts, can perform administrative functions. Has the ability to un-pause contracts if they have been paused
 - **Pauser** - can pause NTT contracts to halt token transfers temporarily. This role is crucial for responding quickly to adverse events without a prolonged governance process. Cannot un-pause contracts
 
+You may verify the current owner, pauser, and paused status of the NTT Manager contract on the `deployment.json` file in your NTT project directory.
+
+```json
+{
+    "network": "Testnet",
+    "chains": {
+        "Sepolia": {
+            "version": "1.1.0",
+            "mode": "burning",
+            "paused": true, // set to true to pause the contract
+            "owner": "0x0088DFAC40029f266e0FF62B82E47A07467A0345",
+            "manager": "0x5592809cf5352a882Ad5E9d435C6B7355B716357",
+            //...
+            "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
+        }
+    }
+}
+```
+
 !!! note
     While the `Pauser` can pause contracts, the ability to un-pause contracts is callable only by the `Owner`.
 
