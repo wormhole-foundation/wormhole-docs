@@ -17,6 +17,6 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and execute the proposal using MultiGov.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/multigov/treasury-proposal/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
 
 </div>

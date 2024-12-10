@@ -3,7 +3,7 @@ title: Cross-Chain Token Transfers
 description: Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
 ---
 
-# Cross-Chain Token Transfers
+# Create Cross-Chain Token Transfer Contracts
 
 ## Introduction
 
@@ -52,7 +52,7 @@ To simplify this process, we've included a tool for verifying if a token has an 
 
     5. The expected output when the token has an attestation:
         
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-10.html"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-10.html"
     
     Using this tool ensures that you only attempt to transfer tokens with verified attestations, avoiding any potential issues during the cross-chain transfer process.
 
@@ -109,7 +109,7 @@ Let's start writing the `CrossChainSender` contract:
 2. Open the file. First, we'll start with the imports and the contract setup:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:1:14"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-1.sol:1:14"
     ```
 
     This sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
@@ -117,7 +117,7 @@ Let's start writing the `CrossChainSender` contract:
 3. Next, let's add a function that estimates the cost of sending tokens across chains:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:17:28"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-1.sol:17:28"
     ```
 
     This function, `quoteCrossChainDeposit`, helps calculate the cost of transferring tokens to a different chain. It factors in the delivery cost and the cost of publishing a message via the Wormhole protocol.
@@ -125,7 +125,7 @@ Let's start writing the `CrossChainSender` contract:
 4. Finally, we'll add the function that sends the tokens across chains:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol:31:58"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-1.sol:31:58"
     ```
 
     This `sendCrossChainDeposit` function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
@@ -152,7 +152,7 @@ You can find the complete code for the `CrossChainSender.sol` below.
 ??? code "MessageSender.sol"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-1.sol"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-1.sol"
     ```
 
 ### Receiver Contract: CrossChainReceiver
@@ -170,7 +170,7 @@ Let's start writing the `CrossChainReceiver` contract:
 2. Open the file. First, we'll start with the imports and the contract setup:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:1:14"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-2.sol:1:14"
     ```
 
     Similar to the `CrossChainSender` contract, this sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
@@ -178,7 +178,7 @@ Let's start writing the `CrossChainReceiver` contract:
 3. Next, let's add a function to handle receiving the payload and tokens:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol:17:40"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-2.sol:17:40"
     ```
 
     This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address, and transfers the tokens to them using the Wormhole protocol. This function also validates the emitter (`sourceAddress`) to ensure the message comes from a trusted sender.
@@ -196,7 +196,7 @@ After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes 
     Let’s delve into the fields provided to us in the `TokenReceived` struct:
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-11.sol"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-11.sol"
     ```
 
     - **`tokenHomeAddress`** - the original address of the token on its native chain. This is the same as the token field in the call to `sendTokenWithPayloadToEvm` unless the original token sent is a Wormhole-wrapped token. In that case, this will be the address of the original version of the token (on its native chain) in Wormhole address format (left-padded with 12 zeros)
@@ -214,7 +214,7 @@ You can find the complete code for the `CrossChainReceiver.sol` contract below:
 ??? code "CrossChainReceiver.sol"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-2.sol"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-2.sol"
     ```
 
 ## Deploy the Contracts
@@ -238,7 +238,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     3. Open the `config.json` file and add the following configuration:
 
         ```json
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-3.json"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-3.json"
         ```
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core Contract.
@@ -284,7 +284,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
     The expected output should be similar to this:
 
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-6.html"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-6.html"
 
 4. **Write the deployment script** - you’ll need a script to automate the deployment of your contracts. Let’s create the deployment script
 
@@ -297,7 +297,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     2. Open the file and load imports and configuration:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:1:7"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:1:7"
         ```
 
         Import the required libraries and modules to interact with Ethereum, handle file paths, load environment variables, and enable user interaction via the terminal.
@@ -305,7 +305,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     3. Define interfaces to use for chain configuration and contract deployment:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:9:25"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:9:25"
         ```
 
         These interfaces define the structure of the chain configuration and the contract deployment details.
@@ -313,7 +313,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     4. Load and select the chains for deployment:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:27:47"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:27:47"
         ```
 
         The `loadConfig` function reads the chain configuration from the `config.json` file, and the `selectChain` function allows the user to choose the source and target chains for deployment interactively. The user is prompted in the terminal to select which chains to use, making the process interactive and user-friendly.
@@ -321,7 +321,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     5. Define the main function for deployment and load the chain configuration:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:48:53"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:48:53"
         ```
 
         - The `main` function is the entry point for the deployment script
@@ -330,7 +330,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     6. Set up provider and wallet: 
     
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:54:57"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:54:57"
         ```
         
         The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction on the source chain.
@@ -338,7 +338,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     7. Read the compiled contracts:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:58:66"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:58:66"
         ```
 
         - This code reads the `CrossChainSender.json` file, the compiled output of the `CrossChainSender.sol` contract
@@ -348,7 +348,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     8. Extract the contract ABI and bytecode:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:68:69"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:68:69"
         ```
 
         - **ABI (Application Binary Interface)** - defines the structure of the contract’s functions, events, and data types, allowing the front end to interact with the contract on the blockchain
@@ -357,7 +357,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     9. Create the Contract Factory:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:71:75"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:71:75"
         ```
 
         - **`ethers.ContractFactory`** - creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain
@@ -367,12 +367,12 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         === "`CrossChainSender`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:77:83"
+            --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:77:83"
             ```
 
         === "`CrossChainReceiver`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:91:115"
+            --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:91:115"
             ```
 
         Both functions deploy the respective contracts to the selected chains.
@@ -388,12 +388,12 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         === "`senderAddress`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:86:89"
+            --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:86:89"
             ```
 
         === "`receiverAddress`"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:118:121"
+            --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:118:121"
             ```
 
         You may display the deployed contract addresses in the terminal or save them to a JSON file for future reference.
@@ -401,7 +401,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     12. Register the `CrossChainSender` address on the target chain:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:128:139"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:128:139"
         ```
 
         After you deploy the `CrossChainReceiver` contract on the target network, the sender contract address from the source chain needs to be registered. This ensures that only messages from the registered `CrossChainSender` contract are processed.
@@ -412,7 +412,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         ???- example "Save Deployment Details Example"
             ```typescript
-            --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:145:185"
+            --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:145:185"
             ```
         
         Add your desired logic to save the deployed contract addresses in a JSON file (or another format). This will be important later when transferring tokens, as you'll need these addresses to interact with the deployed contracts.
@@ -420,7 +420,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     14. Handle errors and finalize the script:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts:186:201"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts:186:201"
         ```
 
         The try-catch block wraps the deployment logic to catch any errors that may occur.
@@ -435,7 +435,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     ??? code "deploy.ts"
 
         ```solidity
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-4.ts"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-4.ts"
         ```
 
 5. **Add your private key** - you'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf
@@ -469,7 +469,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
 If you followed the logic provided in the full code above, your terminal output should look something like this:
 
---8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-7.html"
+--8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-7.html"
 
 
 ## Transfer Tokens Across Chains
@@ -493,7 +493,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
     2. Open the file. Start with the necessary imports, interfaces and configurations:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:1:25"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts:1:25"
         ```
 
         These imports include the essential libraries for interacting with Ethereum, handling file paths, loading environment variables, and managing user input.
@@ -502,7 +502,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:27:47"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts:27:47"
         ```
 
         These functions load the network and contract details that were saved during deployment.
@@ -512,7 +512,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         Refer to the deployed contracts and create logic as desired. In our example, we made this process interactive, allowing users to select the source and target chains from all the historically deployed contracts. This interactive approach helps ensure the correct chains are selected for the token transfer.
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:49:101"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts:49:101"
         ```
 
 2. **Implement the token transfer logic**
@@ -520,7 +520,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
     1. Start the `main` function:
     
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:103:139"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts:103:139"
         ```
     
         The `main` function is where the token transfer logic will reside. It loads the chain and contract details, sets up the wallet and provider, and loads the `CrossChainSender` contract.
@@ -530,7 +530,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         You'll now ask the user for the token contract address, the recipient address on the target chain, and the amount of tokens to transfer.
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:147:171"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts:147:171"
         ```
 
         This section of the script prompts the user for the token contract address and the recipient's address, fetches the token's decimal value, and parses the amount accordingly.
@@ -540,7 +540,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
         Finally, initiate the cross-chain transfer and log the details.
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:174:204"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts:174:204"
         ```
 
         This part of the script first approves the token transfer, then initiates the cross-chain transfer using the `CrossChainSender` contract, and finally logs the transaction hash for the user to track.
@@ -548,7 +548,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
     4. Finalize the script:
 
         ```typescript
-        --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts:205:208"
+        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts:205:208"
         ```
 
         This section finalizes the script by calling the `main` function and handling any errors that may occur during the token transfer process.
@@ -558,7 +558,7 @@ You can find the full code for the `transfer.ts` file below:
 ??? code "transfer.ts"
 
     ```solidity
-    --8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-5.ts"
+    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-5.ts"
     ```
 
 ### Transfer Tokens
@@ -583,7 +583,7 @@ You can verify the transaction on the [Wormhole Explorer](https://wormholescan.i
 
 If you followed the logic provided in the `transfer.ts` file above, your terminal output should look something like this:
 
---8<-- "code/tutorials/messaging/cross-chain-token-transfers/snippet-8.html"
+--8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-token-transfers/snippet-8.html"
 
 !!! note
     In this example, we demonstrated a token transfer from the Avalanche Fuji Testnet to the Celo Alfajores Testnet. We sent two units of USDC Testnet tokens using the token contract address `0x5425890298aed601595a70ab815c96711a31bc65`. You can replace these details with those relevant to your project or use the same for testing purposes.
