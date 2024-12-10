@@ -20,7 +20,7 @@ This section contains step-by-step tutorials to help you build with Wormhole.
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/messaging/)
 
--   :octicons-checklist-16:{ .lg .middle } **MultiGov**
+-   :octicons-law-16:{ .lg .middle } **MultiGov**
 
     ---
 
