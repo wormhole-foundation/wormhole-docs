@@ -119,7 +119,7 @@ Without knowing a token's decimal precision, Chain B cannot correctly mint the n
 !!! note
     This VAA type is also referred to as a payload3 message or a Contract Controlled Transfer.
 
-The Token Transfer with Message data structure is identical to the token-only data structure with the addition of a `payload` field containing arbitrary bytes. In this arbitrary byte field, an app may include additional data in the transfer to inform some application-specific behavior.
+The Token Transfer with Message data structure is identical to the token-only data structure, with the exception of the `fee` field which is replaced with the `from_address` field, and the addition of a `payload` field containing arbitrary bytes. In this arbitrary byte field, an app may include additional data in the transfer to inform some application-specific behavior.
 
 - `payload_id` ++"u8"++ -  the ID of the payload. This should be set to `3` for a token transfer with message 
 - `amount` ++"u256"++ - amount of tokens being transferred
@@ -127,7 +127,7 @@ The Token Transfer with Message data structure is identical to the token-only da
 - `token_chain` ++"u16"++ - numeric ID for the source chain
 - `to` ++"u8[32]"++ - address on the destination chain
 - `to_chain` ++"u16"++ - numeric ID for the destination chain
-- `fee` ++"u256"++ - portion of amount paid to a relayer
+- `from_address` ++"u8[32]"++ - address that called the token bridge on the source chain
 - `payload` ++"[]byte"++ - message, arbitrary bytes, app specific
 
 ### Governance
