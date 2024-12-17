@@ -5,20 +5,15 @@ description: Learn how to integrate Wormhole's Token Bridge for seamless multich
 
 # Token Bridge
 
-<!-- 
-creating a contract that interacts with the token bridge directly 
-how to interact with the token bridge 
--->
-
 ## Introduction 
 
 Wormhole's Token Bridge offers a solution that enables token transfers across blockchain networks using a lock-and-mint mechanism. Leveraging Wormhole's [generic message-passing protocol](/docs/learn/fundamentals/introduction/){target=\_blank}, the Token Bridge allows assets to move across supported blockchains without native token swaps. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain, making the transfer process efficient and chain-agnostic. This approach is highly scalable and doesn't require each blockchain to understand the token transfer logic of other chains, making it a robust and flexible solution for multichain dApps. Additionally, the Token Bridge supports [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions.
 
-This page demonstrates how to interact with Wormhole’s Token Bridge at a practical level, leveraging the Wormhole SDK and various contract interfaces to send tokens across chains, attest new tokens, and attach arbitrary payloads for contract-controlled transfers. For more details on how the Token Bridge works, refer to the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} or [Native Token Transfers](/docs/learn/messaging/native-token-transfers/overview/#token-bridge){target=\_blank} pages in the Learn section.
+This page demonstrates how to practically interact with Wormhole's Token Bridge, leveraging the Wormhole SDK and various contract interfaces to send tokens across chains, attest new tokens, and attach arbitrary payloads for contract-controlled transfers. For more details on how the Token Bridge works, refer to the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} or [Native Token Transfers](/docs/learn/messaging/native-token-transfers/overview/#token-bridge){target=\_blank} pages in the Learn section.
 
 ## Prerequisites
 
-To interact with the Wormhole Token Bridge, you'll need to ensure you have the addresses and chain IDs for the Wormhole core and Token Bridge contracts on the networks you want to work with.
+To interact with the Wormhole Token Bridge, you must ensure you have the addresses and chain IDs for the Wormhole core and Token Bridge contracts on the networks you want to work with.
 
 - [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses#core-contracts) on the chains you're working with
 - [The Wormhole chain ID](/docs/build/reference/chain-ids/) of the chains you're you're targeting for token transfers
@@ -28,11 +23,11 @@ To interact with the Wormhole Token Bridge, you'll need to ensure you have the a
 The Wormhole Token Bridge SDK offers a set of TypeScript types and functions that make it easy to interact with the bridge. The main steps to interact with the Token Bridge are:
 
 - **Attest a token (if needed)** -  if the token has never been transferred to the target chain before, its metadata must be attested
-- **Transfer tokens (lock & mint)** - initiate a transfer on the source chain, emit a VAA, and redeem the tokens on the destination chain
+- **Transfer tokens (lock & mint)** - initiate a transfer on the source chain, emit a VAA and redeem the tokens on the destination chain
 - **Transfer tokens with payload** - include additional data that can trigger actions on the destination chain’s contracts
 - **Redeem transfers** - use the emitted VAA to complete the transfer and receive tokens on the target chain
 
-Below is an example flow demonstrating the four main actions—attesting a token, transferring tokens, transferring tokens with a payload, and redeeming transfers—using the Wormhole Token Bridge. Each step references the underlying smart contract methods and the SDK interface files that enable these operations.
+Below we demonstrate the four main actions—attesting a token, transferring tokens, transferring tokens with a payload, and redeeming transfers—using the Wormhole Token Bridge. Each step references the underlying smart contract methods and the SDK interface files that enable these operations.
 
 !!!note
     - The code snippets below are simplified and focus on the main calls.
@@ -43,7 +38,7 @@ Below is an example flow demonstrating the four main actions—attesting a token
 
 If you’re working with a token that has never been transferred to a particular target chain, you must attest it so the Token Bridge can recognize its metadata (decimals, name, symbol) and create a wrapped version if needed. 
 
-For tokens that do not exist on the target chain, you must attest their details, including metadata and `payload_id`, which must be set to `2` for an attestation. This ensures that the wrapped token on the destination chain preserves the original token’s properties. The attestation process records the token's metadata on the target chain to ensure consistency across chains. See the [Attestation section](/docs/learn/infrastructure/vaas/#attestation){target=\_blank} for more details.
+For tokens not existing on the target chain, you must attest their details, including metadata and `payload_id`, which must be set to `2` for an attestation. This ensures that the wrapped token on the destination chain preserves the original token’s properties. The attestation process records the token's metadata on the target chain to ensure consistency across chains. See the [Attestation section](/docs/learn/infrastructure/vaas/#attestation){target=\_blank} for more details.
 
 The attestation process does not require you to manually provide token details like name, symbol, or decimals directly in the code call. Instead, the Token Bridge contract queries these details from the token contract itself when you call the `attestToken()` method.
 
@@ -68,7 +63,7 @@ for await (const tx of tokenBridge.createAttestation(tokenAddress)) {
   await sendTransaction(tx);
 }
 
-// Once the attestation VAA is generated by Wormhole Guardians, you'll submit it on the target chain:
+// Once Wormhole Guardians generate the attestation VAA, you'll submit it on the target chain:
 const attestationVAA = ... // obtain from Wormhole Guardian network
 for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
   await sendTransaction(tx);
@@ -80,13 +75,13 @@ for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
 
 !!!important
     - Ensure the token contract on the source chain implements standard ERC-20 metadata functions (`decimals()`, `symbol()`, `name()`).
-    - Simply call `attestToken()` (via the Wormhole SDK or directly on the contract) for the token address.
-    - You don't have to put the token details anywhere in your code. If the token contract is a standard ERC-20, the Token Bridge will handle reading its metadata.
-    - If the token does not implement these standard functions, the attestation may fail or produce incomplete metadata. In that case, you would need to ensure the token is properly ERC-20 compliant.
+    - Call `attestToken()` (via the Wormhole SDK or directly on the contract) for the token address.
+    - You don't have to put the token details anywhere in your code. If the token contract is a standard ERC-20, the Token Bridge will read its metadata.
+    - The attestation may fail or produce incomplete metadata if the token does not implement these standard functions. In that case, you must ensure the token is ERC-20 compliant.
 
 ### Transferring Tokens (Lock & Mint)
 
-Once a token is attested (if that step was necessary), initiating a cross-chain token transfer follows the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they’re already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
+Once a token is attested (if necessary), a cross-chain token transfer is initiated, following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they’re already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
 
 Transferring tokens flow:
 
@@ -125,13 +120,13 @@ for await (const tx of tokenBridge.redeem(receiver, transferVAA)) {
 !!!note
     - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
     - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
-    - If the token is already attested and recognized on the destination chain, you can directly proceed with this step.
+    - If the token has already been attested and recognized on the destination chain, you can proceed directly with this step.
 
 Once you’ve completed these steps, the recipient on the destination chain will have the wrapped tokens corresponding to the locked tokens on the source chain, enabling cross-chain asset portability without direct liquidity pools or manual swaps.
 
 ### Transferring Tokens with a Payload (Contract Controlled Transfers)
 
-While a standard token transfer simply moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
+While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
 
 Transferring tokens with payload flow:
 
@@ -175,12 +170,12 @@ for await (const tx of tokenBridge.redeem(receiver, payloadVAA)) {
 ```
 
 !!!note
-    - Because only the intended `to` address can redeem a `TransferWithPayload` message, you ensure that the payload can’t be intercepted or misused by another address.
+    - Because only the intended `to` address can redeem a `TransferWithPayload` message, you ensure that another address can't intercept or misuse the payload.
     - The only difference from a standard transfer is the inclusion of the payload and the corresponding redemption call. Everything else—from acquiring the VAA to sending transactions—follows the same pattern.
 
 ### Redeeming Transfers
 
-Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA’s authenticity and releases (or mints) tokens to the specified recipient. This applies to both standard transfers and contract-controlled transfers with payloads, though the redemption method differs slightly for each.
+Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA’s authenticity and releases (or mints) tokens to the specified recipient. This applies to standard transfers and contract-controlled transfers with payloads, though the redemption method differs slightly for each.
 
 Redeeming transfers flow:
 
@@ -189,7 +184,7 @@ Redeeming transfers flow:
     - For standard transfers: `ITokenBridge.completeTransfer()`
     - For transfers with payload: `ITokenBridge.completeTransferWithPayload()`
 
-    The Wormhole SDK’s `tokenBridge.redeem()` method determines automatically which on-chain function to call based on the VAA payload type
+    The Wormhole SDK’s `tokenBridge.redeem()` method automatically determines which on-chain function to call based on the VAA payload type
 
 3. **Execution and token delivery** - on successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload’s logic at this time
 
@@ -210,16 +205,15 @@ for await (const tx of tokenBridge.redeem(receiver, transferVAA)) {
 ```
 
 !!!important 
-    - Ensure you’re using a VAA that is properly signed by the Guardian network. If the VAA is invalid or the network’s signatures are incomplete, redemption will fail.
-    - VAAs are guaranteed to be redeemable for at least 24 hours after being produced. After that, if the Guardian set changes, you may need to take additional steps (such as re-verification or signature collection) to redeem older VAAs.
+    - Ensure you’re using a VAA that is properly signed by the Guardian network. Redemption will fail if the VAA is invalid or the network's signatures are incomplete.
+    - VAAs are guaranteed to be redeemable for at least 24 hours after production. After that, if the Guardian set changes, you may need to take additional steps (such as re-verification or signature collection) to redeem older VAAs.
     - If redeeming a transfer with payload, remember that only the contract specified as the recipient in the VAA can redeem the tokens and execute the payload. Ensure the recipient address matches the intended contract before attempting redemption.
-    - Remember that token amounts might be normalized to 8 decimals for the bridging process. Confirm that the final amounts after redemption align with your expectations.
     - If you try to redeem a VAA that has already been processed, it will fail. Check if `isTransferCompleted()` (in the SDK or contract) returns `true` before retrying redemption.
-
-## Portal bridge
-
-A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
 
 ## Conclusion
 
 This page has highlighted the foundational steps involved in working with the Wormhole Token Bridge, including establishing recognition for a new token on the destination chain (if needed), moving assets across different chains without relying on native liquidity pools or swaps, embedding additional data to enable advanced, automated cross-chain operations, and finalizing the process to release or mint tokens for the intended recipient on the destination chain. Equipped with these fundamental workflows, developers can create multichain applications that seamlessly shift assets between ecosystems, implement custom logic upon token arrival, and deliver a smooth, user-friendly experience.
+
+## Portal bridge
+
+A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
