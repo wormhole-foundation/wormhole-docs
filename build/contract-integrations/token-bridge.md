@@ -85,11 +85,99 @@ for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
     - You don't have to put the token details anywhere in your code. If the token contract is a standard ERC-20, the Token Bridge will handle reading its metadata.
     - If the token does not implement these standard functions, the attestation may fail or produce incomplete metadata. In that case, you would need to ensure the token is properly ERC-20 compliant.
 
+### Transferring Tokens (Lock & Mint)
 
+Once a token is attested (if that step was necessary), initiating a cross-chain token transfer follows the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they’re already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
 
+Transferring tokens flow:
 
+- **Source chain** - call `ITokenBridge.transferTokens()` to lock/burn tokens. This produces a VAA with transfer details
+- **Guardian Network** - the Guardians sign the VAA, making it available for retrieval
+- **Destination chain** - use `ITokenBridge.completeTransfer()` with the signed VAA to mint/release tokens to the designated recipient
 
+Relevant methods and code references:
 
+- **Source chain initiation** - `ITokenBridge.transferTokens()` is defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L92){target=\_blank}. The underlying logic for logging transfers (and producing a VAA) can be found in [`Bridge.sol`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L302){target=\_blank}
+- **Destination chain redemption** - `ITokenBridge.completeTransfer()` is also defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L120){target=\_blank} and implemented in [`Bridge.sol`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L468){target=\_blank}. It verifies the VAA and mints or releases the tokens
+- **SDK integration** - The Wormhole SDK provides convenient methods like [`tokenBridge.transfer()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L215){target=\_blank} and [`tokenBridge.redeem()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L231){target=\_blank} in [`tokenBridge.ts`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}, abstracting away direct contract calls
+
+```ts
+// Assumes you have a tokenBridge instance from tokenBridge.ts set up
+const sender = "<SOURCE_CHAIN_SENDER_ADDRESS>";    // e.g., EVM address
+const recipient = "<TARGET_CHAIN_RECIPIENT_ADDRESS>"; // e.g., Solana address in wormhole format
+const tokenAddress = "<SOURCE_CHAIN_TOKEN_ADDRESS>";
+const amount = BigInt("1000"); // Example amount
+
+// 1. Initiate the transfer on the source chain:
+for await (const tx of tokenBridge.transfer(sender, recipient, tokenAddress, amount)) {
+  await sendTransaction(tx);
+}
+
+// 2. After the Guardians sign the VAA, obtain it from a Wormhole Guardian network source:
+const transferVAA = ... // Obtain from Guardian network
+
+// 3. On the destination chain, redeem the tokens:
+const receiver = "<YOUR_DESTINATION_CHAIN_ADDRESS>"; 
+for await (const tx of tokenBridge.redeem(receiver, transferVAA)) {
+  await sendTransaction(tx);
+}
+```
+
+!!!note
+    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
+    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
+    - If the token is already attested and recognized on the destination chain, you can directly proceed with this step.
+
+Once you’ve completed these steps, the recipient on the destination chain will have the wrapped tokens corresponding to the locked tokens on the source chain, enabling cross-chain asset portability without direct liquidity pools or manual swaps.
+
+### Transferring Tokens with a Payload (Contract Controlled Transfers)
+
+While a standard token transfer simply moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
+
+Transferring tokens with payload flow:
+
+- **Source chain**
+    - Call `ITokenBridge.transferTokensWithPayload()` instead of `transferTokens()`
+    - Include a custom payload (arbitrary bytes) with the token transfer
+- **Guardian Network** - as with any transfer, the Guardians sign the VAA produced by the Token Bridge
+- **Destination chain**
+    - On redemption, call `ITokenBridge.completeTransferWithPayload()` instead of `completeTransfer()`
+    - Only the designated recipient contract can redeem these tokens. This ensures the attached payload is securely handled by the intended contract
+
+Relevant methods and code references:
+
+- **Source Chain Initiation** - `ITokenBridge.transferTokensWithPayload()` is defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L101){target=\_blank}. Underlying logic for logging these payload-carrying transfers can be found in [`Bridge.sol` (`logTransferWithPayload`)](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L336){target=\_blank}
+- **Destination chain redemption** - [`ITokenBridge.completeTransferWithPayload()`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L114){target=\_blank} ensures that only the intended recipient address can redeem the tokens and process the payload.
+- **SDK Integration** - The Wormhole SDK provides a single [`tokenBridge.transfer()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L215){target=\_blank} method that can optionally take a payload parameter. If provided, the SDK uses `transferTokensWithPayload` under the hood. Likewise, redemption calls `completeTransferWithPayload()` when it detects a payload, which is handled by [`tokenBridge.redeem()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L231){target=\_blank}
+
+```ts
+// Similar setup to a normal transfer, but we include a payload
+const sender = "<SOURCE_CHAIN_SENDER_ADDRESS>";
+const recipient = "<TARGET_CHAIN_RECIPIENT_ADDRESS>";
+const tokenAddress = "<SOURCE_CHAIN_TOKEN_ADDRESS>";
+const amount = BigInt("50000"); // Example amount
+const customPayload = new Uint8Array([0x01, 0x02, 0x03]); // Arbitrary data
+
+// 1. Initiate a transfer with payload on the source chain:
+for await (const tx of tokenBridge.transfer(sender, recipient, tokenAddress, amount, customPayload)) {
+  await sendTransaction(tx);
+}
+
+// 2. After obtaining the payload-carrying VAA from the Guardians:
+const payloadVAA = ... // obtained from Wormhole Guardian network
+
+// 3. On the destination chain, redeem:
+const receiver = "<DESTINATION_CHAIN_CONTRACT_ADDRESS>";
+for await (const tx of tokenBridge.redeem(receiver, payloadVAA)) {
+  await sendTransaction(tx);
+}
+
+// The payload is now available on the destination chain's contract, allowing custom logic to execute upon token arrival.
+```
+
+!!!note
+    - Because only the intended `to` address can redeem a `TransferWithPayload` message, you ensure that the payload can’t be intercepted or misused by another address.
+    - The only difference from a standard transfer is the inclusion of the payload and the corresponding redemption call. Everything else—from acquiring the VAA to sending transactions—follows the same pattern.
 
 
 
@@ -98,14 +186,6 @@ for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
 <!--  ----------  -->
 ```ts
 ```
-
-## How to Interact with the Token Bridge Contracts
-
-The Wormhole Token Bridge SDK offers a set of TypeScript types and functions that make it easy to interact with the bridge. The key functionality revolves around:
-
-- **Token transfers** - locking tokens on the source chain and minting wrapped tokens on the destination chain
-- **Attestations** - submitting metadata about a token to other chains for wrapping
-- **Verifying wrapped assets** - checking if a token is wrapped and retrieving its original chain and asset details
 
 ### Check If a Token Is Wrapped
 
@@ -127,249 +207,7 @@ isWrappedAsset(nativeAddress: TokenAddress<C>): Promise<boolean>;
         
     True if the token is a wrapped version of a foreign token.
 
-### Retrieve the Original Asset of a Wrapped Token
 
-If a token is wrapped, you can retrieve its original asset and the chain it originated from using the `getOriginalAsset` function.
-
-```ts
-getOriginalAsset(nativeAddress: TokenAddress<C>): Promise<TokenId<Chain>>;
-```
-
-??? interface "Parameters"
-
-    `nativeAddress` ++"TokenAddress<C>"++
-        
-    The wrapped token's address.
-
-??? interface "Returns"
-
-    `Promise` ++"<TokenId<Chain>>"++
-        
-    The original asset's token ID and the chain it belongs to.
-
-### Get a Token's Universal Address
-
-The UniversalAddress represents a token in a cross-chain manner, allowing you to handle the same token on different chains. Use the `getTokenUniversalAddress` function to retrieve this address.
-
-```ts
-getTokenUniversalAddress(token: NativeAddress<C>): Promise<UniversalAddress>;
-```
-
-??? interface "Parameters"
-
-    `token` ++"TokenAddress<C>"++
-        
-    The wrapped token's address.
-
-??? interface "Returns"
-
-    `Promise` ++"<TokenId<Chain>>"++
-        
-    The original asset's token ID and the chain it belongs to.
-
-### Create a Token Attestation
-
-To transfer a token between chains, its metadata must be attested first. Use the `createAttestation` function to generate an attestation message for the token.
-
-```ts
-createAttestation(
-  token: TokenAddress<C>,
-  payer?: AccountAddress<C>
-): AsyncGenerator<UnsignedTransaction<N, C>>;
-```
-
-??? interface "Parameters"
-
-    `token` ++"TokenAddress<C>"++
-        
-    The address of the token you want to attest.
-
-    `payer` ++"AccountAddress<C>"++
-        
-    (Optional) The account paying for the transaction.
-
-??? interface "Returns"
-
-    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
-        
-    An asynchronous generator that produces transactions to sign and send.
-
-### Submit a Token Attestation
-
-Once you have an attestation message (VAA), you can submit it using the `submitAttestation` function to create the wrapped token on the target chain.
-
-```ts
-submitAttestation(
-  vaa: TokenBridge.AttestVAA,
-  payer?: AccountAddress<C>
-): AsyncGenerator<UnsignedTransaction<N, C>>;
-```
-
-??? interface "Parameters"
-
-    `vaa` ++"TokenBridge.AttestVAA"++
-        
-    The attestation VAA that contains the token metadata.
-
-    `payer` ++"AccountAddress<C>"++
-        
-    (Optional) The account paying for the transaction.
-
-??? interface "Returns"
-
-    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
-        
-    An asynchronous generator that produces transactions to sign and send.
-
-### Initiate a Token Transfer
-
-You can use the' transfer' function to transfer tokens from one chain to another. This function locks the tokens on the source chain and generates a transfer message.
-
-```ts
-transfer(
-  sender: AccountAddress<C>,
-  recipient: ChainAddress,
-  token: TokenAddress<C>,
-  amount: bigint,
-  payload?: Uint8Array
-): AsyncGenerator<UnsignedTransaction<N, C>>;
-```
-
-??? interface "Parameters"
-
-    `sender` ++"AccountAddress<C>"++
-        
-    The account initiating the transfer.
-
-    `recipient` ++"ChainAddress"++
-        
-    The recipient's address on the destination chain.
-
-    `token` ++"TokenAddress<C>"++
-        
-    The token being transferred.
-
-    `amount` ++"bigint"++
-        
-    The amount of the token to transfer.
-
-    `payload` ++"Uint8Array"++
-        
-    (Optional) A custom payload attached to the transfer
-
-??? interface "Returns"
-
-    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
-        
-    An asynchronous generator that produces transactions to sign and send.
-
-### Redeem a Token Transfer
-
-After transferring tokens between chains, the recipient can redeem the transfer using the `redeem` function. This function mints the wrapped tokens on the destination chain or unlocks them if they were previously locked.
-
-```ts
-redeem(
-  sender: AccountAddress<C>,
-  vaa: TokenBridge.TransferVAA,
-  unwrapNative?: boolean
-): AsyncGenerator<UnsignedTransaction<N, C>>;
-```
-
-??? interface "Parameters"
-
-    `sender` ++"AccountAddress<C>"++
-        
-    The account redeeming the transfer.
-
-    `vaa` ++"TokenBridge.TransferVAA"++
-        
-    The transfer VAA that contains the details of the token lockup on the source chain.
-
-    `unwrapNative` ++"boolean"++
-        
-    (Optional) Whether to unwrap the native token if it is a wrapped asset.
-
-??? interface "Returns"
-
-    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
-        
-    An asynchronous generator that produces transactions to sign and send.
-
-## Automatic Token Bridge
-
-The `AutomaticTokenBridge` interface offers additional functionality for automatic token transfers, including automatic redemption on the destination chain. This makes the transfer process more efficient by removing the need for manual redemption.
-
-### Initiate an Automatic Transfer
-
-To initiate a token transfer that includes automatic redemption on the destination chain, use the `transfer` method from the `AutomaticTokenBridge` interface.
-
-```ts
-transfer(
-  sender: AccountAddress<C>,
-  recipient: ChainAddress,
-  token: TokenAddress<C>,
-  amount: bigint,
-  nativeGas?: bigint
-): AsyncGenerator<UnsignedTransaction<N, C>>;
-```
-
-??? interface "Parameters"
-
-    `sender` ++"AccountAddress<C>"++
-        
-    The account initiating the transfer.
-
-    `recipient` ++"ChainAddress"++
-        
-    The recipient's address on the destination chain.
-
-    `token` ++"TokenAddress<C>"++
-        
-    The token being transferred.
-
-    `amount` ++"bigint"++
-        
-    The amount of the token to transfer.
-
-    `nativeGas` ++"bigint"++
-        
-    (Optional) The amount of native gas to include for the transfer.
-
-??? interface "Returns"
-
-    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
-        
-    An asynchronous generator that produces transactions to sign and send.
-
-### Manually Redeem a Transfer
-
-In rare cases where automatic redemption fails, you can manually redeem the transfer using the `AutomaticTokenBridge`'s `redeem` function.
-
-!!! note
-    This function should _only_ be used if it is necessary to take over some stalled transfer.
-
-```ts
-redeem(
-  sender: AccountAddress<C>,
-  vaa: AutomaticTokenBridge.VAA
-): AsyncGenerator<UnsignedTransaction<N, C>>;
-```
-
-??? interface "Parameters"
-
-    `sender` ++"AccountAddress<C>"++
-        
-    The account redeeming the transfer.
-
-    `vaa` ++"AutomaticTokenBridge.VAA"++
-        
-    The transfer VAA to redeem.
-
-??? interface "Returns"
-
-    `AsyncGenerator` ++"<UnsignedTransaction<N, C>>"++
-        
-    An asynchronous generator that produces transactions to sign and send.
 
 
 ## Portal bridge
