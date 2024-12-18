@@ -1,6 +1,7 @@
 ---
 title: Cross-Chain Contract Tutorials
-description: TODO
+description: Master cross-chain smart contracts with Wormhole. Learn messaging, token transfers, and secure, scalable dApp deployments across blockchains.
+template: root-index-page.html
 ---
 
 # Cross-Chain Contract Tutorials

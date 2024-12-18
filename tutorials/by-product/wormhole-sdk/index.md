@@ -1,7 +1,6 @@
 ---
 title: Wormhole SDK Tutorials
-description: TODO
-template: root-index-page.html
+description: Master the Wormhole SDK. Build robust cross-chain dApps with messaging, token bridging, and governance across multiple networks.
 ---
 
 # Wormhole SDK Tutorials

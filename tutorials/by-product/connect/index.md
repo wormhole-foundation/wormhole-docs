@@ -1,7 +1,6 @@
 ---
 title: Wormhole Connect Tutorials
-description: TODO
-template: root-index-page.html
+description: Enable cross-chain connectivity with Wormhole Connect. Learn integration and simplify user experiences across multiple blockchains.
 ---
 
 # Connect Tutorials
