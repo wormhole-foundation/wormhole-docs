@@ -6,26 +6,26 @@ template: root-index-page.html
 
 # Tutorials
 
-## Get Started
+Welcome to the Wormhole tutorials section! Whether you're just getting started or looking to build advanced cross-chain applications, this collection of step-by-step tutorials will help you leverage the full power of the Wormhole ecosystem. 
 
-This section contains step-by-step tutorials to help you build with Wormhole.
+These tutorials are designed to help you develop efficient, scalable, and innovative cross-chain applications, from integrating individual Wormhole products to creating comprehensive end-to-end solutions. Explore our tutorials to get hands-on experience with Wormhole!
 
 <div class="grid cards" markdown>
 
--   :octicons-checklist-16:{ .lg .middle } **Messaging**
+-   :octicons-apps-16:{ .lg .middle } **By Product**
 
     ---
 
-    Follow these tutorials to use Wormhole's cross-chain messaging infrastructure to simplify data transmission, event triggering, and transaction initiation, allowing smart contracts to interact seamlessly across multiple blockchains.
+    Explore tutorials tailored to specific Wormhole products. Each section contains tutorials on integrating and using a single product. Whether you want to understand Token Bridge, Wormhole Connect, or other Wormhole services, these tutorials will guide you through the setup and implementation process.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/messaging/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/)
 
--   :octicons-law-16:{ .lg .middle } **MultiGov**
+-   :octicons-flame-16:{ .lg .middle } **End-to-end**
 
     ---
 
-    Dive into the tutorials in this section to gain hands-on experience executing cross-chain governance actions, including treasury management proposals, using Wormhole's cross-chain governance solution, MultiGov.
+    Build full-fledged applications with these comprehensive, end-to-end tutorials. These guides cover complete use cases and demonstrate how multiple Wormhole products can work together to create powerful cross-chain solutions. Ideal for developers looking to create real-world applications that utilize the full range of Wormhole’s capabilities.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/multigov/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/end-to-end/)
 
 </div>
