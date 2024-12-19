@@ -41,6 +41,20 @@ Initialize a new `deployment.json` file, specifying the network:
 
 ## Deploy Your Solana Token
 
+Tokens used in Wormhole’s NTT can operate in burning mode or as hub chain tokens in hub-and-spoke mode. These modes differ in how tokens are managed and configured for cross-chain transfers.
+
+### Hub Chain Requirements
+
+For hub chain deployments on Solana, the token can be either an SPL token or a Token2022 token. No additional configuration, such as setting the mint authority, is required for hub chain tokens.
+
+This means you can deploy your token using the standard SPL or Token2022 creation process without needing to modify its mint authority or add custom functionality.
+
+### Burning Mode Requirements
+
+In burning mode, tokens require their mint authority to be assigned to the NTT program. This allows the NTT Manager to mint and burn tokens as needed during cross-chain transfers. 
+
+All necessary steps for configuring burning mode, including mint authority setup, are explained in the sections below.
+
 ???- interface "Deploy an SPL Token"
 
     1. Generate a new Solana key pair to create a wallet:
@@ -82,7 +96,6 @@ Initialize a new `deployment.json` file, specifying the network:
     ```bash
     spl-token mint INSERT_TOKEN_ADDRESS 1000
     ```
-
 
 
 !!! note
