@@ -43,7 +43,7 @@ For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), th
 
 This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
 
-For more detailed information about deployment models, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
+For more detailed information, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
 
 ### Key Differences Between Modes
 

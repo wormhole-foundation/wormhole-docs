@@ -90,7 +90,7 @@ Initialize a new `deployment.json` file specifying the network:
 
 For hub chain deployments on Solana, the token can be either an SPL or Token2022 token. No additional configuration, such as setting the mint authority, is required for hub chain tokens.
 
-For more detailed information about deployment models, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
+For more detailed information, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
 
 ### Burning Mode Requirements
 
