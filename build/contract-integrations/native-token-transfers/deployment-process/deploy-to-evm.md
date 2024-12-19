@@ -9,6 +9,12 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 
 If you still need to do so, deploy the token contract to the destination or spoke chains.
 
+### Requirements for Token Deployment
+
+Native Token Transfers (NTT) support two modes for deploying tokens across chains: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed and issued on destination chains.
+
+#### Burn-and-Mint Mode
+
 Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
 
 - `burn(uint256 amount)`
@@ -23,6 +29,27 @@ These functions aren't part of the standard ERC-20 interface. The [`INttToken` i
 
 Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
 
+#### Hub-and-Spoke Mode
+
+A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) use wrapped tokens representing burned tokens from the hub chain.
+
+Requirements:
+
+ - The token must be an ERC20 token deployed on the hub chain
+ - No additional functions (`mint` or `burn`) are required for the token contract
+
+For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager burns Ethereum tokens. In contrast, wrapped tokens representing the same amount are minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the wrapped tokens on Polygon and re-mints the original tokens on Ethereum.
+
+This process ensures the total token supply remains consistent, with the hub chain as the truth source.
+
+!!! note
+    Wrapped tokens must be properly deployed and configured on spoke chains to mint and burn tokens.
+
+### Key Differences Between Modes
+
+ - **Burn-and-Mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to independently manage token issuance
+ - **Hub-and-Spoke** - tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency
+
 ## Deploy NTT
 
 Create a new NTT project:
@@ -32,7 +59,7 @@ ntt new my-ntt-deployment
 cd my-ntt-deployment
 ```
 
-Initialize a new `deployment.json` file, specifying the network:
+Initialize a new `deployment.json` file specifying the network:
 
 === "Testnet"
 
