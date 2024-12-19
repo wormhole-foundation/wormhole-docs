@@ -38,12 +38,12 @@ Requirements:
  - The token must be an ERC20 token deployed on the hub chain
  - No additional functions (`mint` or `burn`) are required for the token contract
 
+!!! note
+    Beyond deploying the ERC20 token, no additional deployment steps are necessary on the hub chain. Steps like setting mint authority apply only to spoke chains.
+
 For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager burns Ethereum tokens. In contrast, wrapped tokens representing the same amount are minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the wrapped tokens on Polygon and re-mints the original tokens on Ethereum.
 
 This process ensures the total token supply remains consistent, with the hub chain as the truth source.
-
-!!! note
-    Wrapped tokens must be properly deployed and configured on spoke chains to mint and burn tokens.
 
 ### Key Differences Between Modes
 
