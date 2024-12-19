@@ -11,7 +11,7 @@ If you still need to do so, deploy the token contract to the destination or spok
 
 ### Requirements for Token Deployment
 
-Native Token Transfers (NTT) support two modes for deploying tokens across chains: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed and issued on destination chains.
+NTT support two modes for deploying tokens across chains: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed and issued on destination chains.
 
 #### Burn-and-Mint Mode
 
@@ -31,19 +31,19 @@ Later, you set mint authority to the corresponding `NttManager` contract. You ca
 
 #### Hub-and-Spoke Mode
 
-A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) use wrapped tokens representing burned tokens from the hub chain.
+A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) mint or burn tokens during cross-chain transfers, ensuring consistency with the locked tokens on the hub chain.
 
-Requirements:
-
- - The token must be an ERC20 token deployed on the hub chain
- - No additional functions (`mint` or `burn`) are required for the token contract
+ - **Hub chain** - tokens are locked on the hub chain when transferring to spoke chains
+ - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
 
 !!! note
     Beyond deploying the ERC20 token, no additional deployment steps are necessary on the hub chain. Steps like setting mint authority apply only to spoke chains.
 
-For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager burns Ethereum tokens. In contrast, wrapped tokens representing the same amount are minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the wrapped tokens on Polygon and re-mints the original tokens on Ethereum.
+For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
 
-This process ensures the total token supply remains consistent, with the hub chain as the truth source.
+This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
+
+For more detailed information about deployment models, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
 
 ### Key Differences Between Modes
 
