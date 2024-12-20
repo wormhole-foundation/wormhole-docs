@@ -11,12 +11,12 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-16:{ .lg .middle } **Cross-Chain Treasury Management Proposal**
+-   :octicons-repo-16:{ .lg .middle } **Cross-Chain Treasury Management Proposal**
 
     ---
 
-    Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and execute the proposal using MultiGov.
+    Learn how to propose governance actions on a hub chain, gather votes from spoke chains, aggregate the results, and carry out the final decision. Following these steps, you’ll master end-to-end governance workflows spanning multiple networks.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/multigov/treasury-proposal/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
 
 </div>
