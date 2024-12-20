@@ -37,7 +37,7 @@ A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-s
  - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
 
 !!! note
-    Beyond deploying the ERC20 token, no additional deployment steps are necessary on the hub chain. Steps like setting mint authority apply only to spoke chains.
+    The only requirement for using the NTT framework is an ERC20 token, which can be newly deployed or existing. Steps like setting mint authority apply only to spoke chains.
 
 For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
 
