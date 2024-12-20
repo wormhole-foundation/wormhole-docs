@@ -25,7 +25,7 @@ ntt new my-ntt-deployment
 cd my-ntt-deployment
 ```
 
-Initialize a new `deployment.json` file, specifying the network:
+Initialize a new `deployment.json` file specifying the network:
 
 === "Testnet"
 
@@ -48,7 +48,7 @@ Initialize a new `deployment.json` file, specifying the network:
     solana-keygen grind --starts-with w:1 --ignore-case
     ```
 
-    2. Set Solana configuration to use the new key pair create in step 1:
+    2. Set Solana configuration to use the new key pair created in step 1:
     ```bash
     solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
     ```
@@ -83,10 +83,20 @@ Initialize a new `deployment.json` file, specifying the network:
     spl-token mint INSERT_TOKEN_ADDRESS 1000
     ```
 
-
-
 !!! note
     NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
+
+### Hub Chain Requirements
+
+For hub chain deployments on Solana, the token can be either an SPL or Token2022. Hub chain tokens do not require additional configuration, such as setting the mint authority.
+
+For more detailed information, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
+
+### Burning Mode Requirements
+
+In burning mode, tokens require their mint authority to be assigned to the NTT program. This allows the NTT Manager to mint and burn tokens as needed during cross-chain transfers. 
+
+All necessary steps for configuring burning mode, including mint authority setup, are explained in the sections below.
 
 ## Configuration and Deployment
 
@@ -140,7 +150,7 @@ The NTT Solana program will then compile and deploy, returning the program ID.
 The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
 
 - `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
-- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and sets up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
 
     For Solana, the limits are set with 9 decimal places:
       ```json
@@ -156,7 +166,7 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
       }
       ```
 
-    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
+    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision.
 
 ### Deploy NTT to Solana
 
