@@ -3,7 +3,6 @@ nav:
  - index.md
  - connect
  - cross-chain-contracts
- # - native-token-transfers
+ - native-token-transfers
  - multigov
  - wormhole-sdk
- - multichain-assets
