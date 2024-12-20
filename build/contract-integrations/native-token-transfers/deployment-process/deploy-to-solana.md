@@ -88,7 +88,7 @@ Initialize a new `deployment.json` file specifying the network:
 
 ### Hub Chain Requirements
 
-For hub chain deployments on Solana, the token can be either an SPL or Token2022 token. No additional configuration, such as setting the mint authority, is required for hub chain tokens.
+For hub chain deployments on Solana, the token can be either an SPL or Token2022. Hub chain tokens do not require additional configuration, such as setting the mint authority.
 
 For more detailed information, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
 
