@@ -9,7 +9,7 @@ Learn to move native assets between different blockchains seamlessly. These tuto
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-16:{ .lg .middle } **Create Multichain Tokens**
+-   :octicons-repo-16:{ .lg .middle } **Create Multichain Tokens**
 
     ---
 
