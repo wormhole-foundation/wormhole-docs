@@ -1,6 +1,6 @@
 ---
 title: Native Token Transfers (NTT) Tutorials
-description: TODO
+description: Discover how to enable seamless native token transfers across chains, empowering dApps with secure, efficient cross-chain interoperability.
 ---
 
 # Native Token Transfers (NTT) Tutorials
