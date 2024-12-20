@@ -11,7 +11,7 @@ If you still need to do so, deploy the token contract to the destination or spok
 
 ### Requirements for Token Deployment
 
-NTT support two modes for deploying tokens across chains: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed and issued on destination chains.
+Wormhole’s NTT is an open framework that supports various deployment modes. The NTT CLI currently supports two deployment modes: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed across chains.
 
 #### Burn-and-Mint Mode
 
