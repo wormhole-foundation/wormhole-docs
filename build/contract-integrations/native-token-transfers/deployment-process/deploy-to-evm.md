@@ -47,7 +47,7 @@ For more detailed information, see the [Deployment Models](/docs/learn/messaging
 
 ### Key Differences Between Modes
 
- - **Burn-and-Mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to independently manage token issuance
+ - **Burn-and-Mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to manage token issuance independently
  - **Hub-and-Spoke** - tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency
 
 ## Deploy NTT
