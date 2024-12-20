@@ -10,8 +10,11 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 Ensure you have the following dependencies installed:
 
 -  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
--  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} v1.18.10
--  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} v0.29.0
+-  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+-  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+
+!!!Warning
+    Ensure you are using the above versions of Solana and Anchor. Running the deployment with a different version may cause issues.
 
 ## Deploy NTT
 
@@ -109,7 +112,7 @@ This script will output the derived PDA, which you will use in the next step.
 
 ### Set SPL Token Mint Authority
 
-In this step, you'll set SPL token mint authority to the newly generated token authority PDA:
+If deploying in `burning` mode, you'll set the SPL token mint authority to the newly generated token authority PDA:
 
 ```bash
 spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
@@ -118,7 +121,6 @@ spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
 !!! note
     Please ensure that you are using Anchor CLI version `0.29.0`. Running the deployment with a different version may cause compatibility issues.
 
-If deploying to Solana in `burning` mode, set the mint authority for your SPL token to the NTT program ID you generated in the previous step.
 
 ### Deploy NTT
 

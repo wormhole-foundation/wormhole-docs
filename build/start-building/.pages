@@ -1,6 +1,6 @@
 title: Start Building
 nav:
  - index.md
- - supported-networks
+ - 'Supported Networks': 'supported-networks.md'
  - 'Testnet Faucets': 'testnet-faucets.md'
  - 'Demos': 'demos.md'

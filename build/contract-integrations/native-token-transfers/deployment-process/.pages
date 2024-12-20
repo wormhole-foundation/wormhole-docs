@@ -5,3 +5,4 @@ nav:
  - 'Deploy to EVM': 'deploy-to-evm.md'
  - 'Deploy to Solana': 'deploy-to-solana.md'
  - 'Post Deployment': 'post-deployment.md'
+ - 'Troubleshooting': 'troubleshooting.md'
