@@ -19,7 +19,7 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with the Wormhole relayer](/docs/build/contract-integrations/wormhole-relayers/)
 
--   :octicons-arrow-switch-16:{ .lg .middle } **Core Contracts**
+-   :octicons-file-code-16:{ .lg .middle } **Core Contracts**
 
     ---
 
@@ -27,7 +27,15 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
 
--   :octicons-arrow-switch-16:{ .lg .middle } **Native Token Transfers**
+-   :octicons-arrow-switch-16:{ .lg .middle } **Token Bridge**
+
+    ---
+
+    Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+
+    [:octicons-arrow-right-16: Get started with Token Bridge](/docs/build/contract-integrations/token-bridge/)
+
+-   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
 
     ---
 
@@ -35,7 +43,7 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with NTT](/docs/build/contract-integrations/native-token-transfers/)
 
--   :octicons-arrow-switch-16:{ .lg .middle } **MultiGov**
+-   :octicons-people-16:{ .lg .middle } **MultiGov**
 
     ---
 
