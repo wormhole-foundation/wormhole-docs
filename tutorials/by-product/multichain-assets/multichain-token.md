@@ -41,7 +41,7 @@ After registering your token on the source chain, the next step is to select the
 
 <img src="/docs/images/tutorials/multichain-tokens/multichain-token-2.webp" alt="Target Chain Registration Screen">
 
-## Step 3: Send an Attestation
+## Send an Attestation
 Attestation is a key step in the process. It verifies your token’s metadata, ensuring it is correctly recognized on the target chain’s blockchain explorer (e.g., [Etherscan](https://etherscan.io/){target=\_blank}).
 
 1. Click **Attest** to initiate the attestation process

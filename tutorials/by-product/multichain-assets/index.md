@@ -17,6 +17,6 @@ Welcome to the Multichain Token tutorials section. In this section, you will fin
 
     Learn how to register your token on the source chain, create a wrapped token on the target chain, and update its metadata for cross-chain compatibility.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/multichain-assets/multichain-token/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multichain-assets/multichain-token.md)
 
 </div>
