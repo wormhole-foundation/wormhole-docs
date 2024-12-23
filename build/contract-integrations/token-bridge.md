@@ -13,7 +13,7 @@ This page demonstrates how to practically interact with Wormhole's Token Bridge,
 
 ## Prerequisites
 
-To interact with the Wormhole Token Bridge, you must ensure you have the addresses and chain IDs for the Wormhole core and Token Bridge contracts on the networks you want to work with.
+To interact with the Wormhole Token Bridge, you must ensure you have the addresses and chain IDs for the Wormhole Core and Token Bridge contracts on the networks you want to work with.
 
 - [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses#core-contracts) on the chains you're working with
 - [The Wormhole chain ID](/docs/build/reference/chain-ids/) of the chains you're you're targeting for token transfers
@@ -27,12 +27,12 @@ The Wormhole Token Bridge SDK offers a set of TypeScript types and functions tha
 - **Transfer tokens with payload** - include additional data that can trigger actions on the destination chain's contracts
 - **Redeem transfers** - use the emitted VAA to complete the transfer and receive tokens on the target chain
 
-Below, we demonstrate the four main actions—attesting a token, transferring tokens, transferring tokens with a payload, and redeeming transfers—using the Wormhole Token Bridge. Each step references the underlying smart contract methods and the SDK interface files that enable these operations.
+Below, the four main actions—attesting a token, transferring tokens, transferring tokens with a payload, and redeeming transfers— will be demonstrated using the Wormhole Token Bridge. Each step references the underlying smart contract methods and the SDK interface files that enable these operations.
 
 !!!note
-    - The code snippets below are simplified and focus on the main calls.
-    - For full implementations, refer to the provided contract source files (like [`bridge/Bridge.sol` ](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank} and [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}) and your integrated SDK code (e.g., `tokenBridge.ts`).
-    - The examples assume you have set up a project with `Node.js/TypeScript`, the Wormhole SDK, RPC endpoints, and private keys configured.
+    The code snippets below are simplified and focus on the main calls. For full implementations, refer to the provided contract source files (like [`bridge/Bridge.sol` ](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank} and [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}) and your integrated SDK code (e.g., `tokenBridge.ts`).
+    
+    The examples assume you have set up a project with TypeScript, the Wormhole SDK, RPC endpoints, and private keys configured.
 
 ### Attesting a Token
 
@@ -57,7 +57,7 @@ Under the hood, calling `tokenBridge.createAttestation()` uses Wormhole’s core
 // In your code, you might have a tokenBridge instance set up from tokenBridge.ts
 // This references the Wormhole SDK that internally calls `ITokenBridge.attestToken`.
 
-const tokenAddress = INSERT_YOUR_TOKEN_ADDRESS;
+const tokenAddress = 'INSERT_YOUR_TOKEN_ADDRESS';
 for await (const tx of tokenBridge.createAttestation(tokenAddress)) {
   // Sign and send the transaction (e.g., via your wallet or ethers.js)
   await sendTransaction(tx);
@@ -214,6 +214,6 @@ for await (const tx of tokenBridge.redeem(receiver, transferVAA)) {
 
 This page has highlighted the foundational steps involved in working with the Wormhole Token Bridge, including establishing recognition for a new token on the destination chain (if needed), moving assets across different chains without relying on native liquidity pools or swaps, embedding additional data to enable advanced, automated cross-chain operations, and finalizing the process to release or mint tokens for the intended recipient on the destination chain. Equipped with these fundamental workflows, developers can create multichain applications that seamlessly shift assets between ecosystems, implement custom logic upon token arrival, and deliver a smooth, user-friendly experience.
 
-## Portal bridge
+## Portal Bridge
 
 A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
