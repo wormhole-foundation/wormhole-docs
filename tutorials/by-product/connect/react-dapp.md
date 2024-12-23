@@ -5,7 +5,7 @@ description: Learn how to use Wormhole Connect to transfers tokens cross-chain s
 
 # Integrate Connect into a React DApp
 
-You can find the complete project code for this tutorial in the [Sui-Connect GitHub repository](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}.
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
 
 ## Introduction
 

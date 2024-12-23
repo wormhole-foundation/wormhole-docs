@@ -5,7 +5,7 @@ description: Learn how to create cross-chain token transfers using Wormhole's So
 
 # Create Cross-Chain Token Transfer Contracts
 
-You can find the complete project code for this tutorial in the [Cross-Chain Token Transfers GitHub repository](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank}.
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank}
 
 ## Introduction
 
