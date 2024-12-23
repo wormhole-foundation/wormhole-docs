@@ -5,6 +5,8 @@ description: Learn to build a cross-chain native token transfer app using Wormho
 
 # Transfer Tokens via the Token Bridge
 
+You can find the complete project code for this tutorial in the [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}.
+
 ## Introduction
 
 This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.

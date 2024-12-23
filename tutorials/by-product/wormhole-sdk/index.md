@@ -26,3 +26,25 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/)
 
 </div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole SDK Applications**
+
+    ---
+
+    Learn to build cross-chain dApps using the Wormhole SDK. Access detailed guides, reference code, and best practices for robust application development.
+
+    [:octicons-arrow-right-16: Start building](/docs/build/applications/wormhole-sdk/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole SDK Toolkit**
+
+    ---
+
+    Enhance your development workflow with Wormhole’s SDK Toolkit. Discover tools, utilities, and integrations to streamline cross-chain functionality in your projects.
+
+    [:octicons-arrow-right-16: Start building](/docs/build/toolkit/wormhole-sdk/)
+
+</div>

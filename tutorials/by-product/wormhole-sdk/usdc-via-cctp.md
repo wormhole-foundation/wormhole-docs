@@ -5,6 +5,8 @@ description: Learn how to perform USDC cross-chain transfers using Wormhole SDK 
 
 # Transfer USDC via CCTP and Wormhole SDK
 
+You can find the complete project code for this tutorial in the [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-cctp-transfer){target=\_blank}.
+
 ## Introduction
 
 In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/learn/messaging/cctp/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
