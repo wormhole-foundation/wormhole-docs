@@ -131,10 +131,6 @@ The [Verifiable Action Approval (VAA)](/docs/learn/infrastructure/vaas/){target=
     await tokenBridge.submitAttestation(vaa);
     ```
 
-
-
-
-
 ## Core Actions
 
 The Wormhole Token Bridge SDK offers a set of TypeScript types and functions that make it easy to interact with the bridge. The main steps to interact with the Token Bridge are:
@@ -169,7 +165,8 @@ When `attestToken()` is called, the contract:
 
 Under the hood, calling `tokenBridge.createAttestation()` uses Wormhole’s core method:
 
-- `ITokenBridge.attestToken()` from [`src/interfaces/ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+- The `createAttestation` method is defined in the Wormhole SDK's [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank}
+- On-chain, the `attestToken` method can be found in `bridge/Bridge.sol` and is part of the [`ITokenBridge` interface](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L38){target=\_blank}
 - The logic for creating the attestation VAA can be found in `bridge/Bridge.sol`, specifically in the [`attestToken`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L38){target=\_blank} function
 
 ```ts
@@ -187,9 +184,6 @@ for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
   await sendTransaction(tx);
 }
 ```
-
-- The `createAttestation` method is defined in the Wormhole SDK's [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank}
-- On-chain, the `attestToken` method can be found in `bridge/Bridge.sol` and is part of the [`ITokenBridge` interface](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L38){target=\_blank}
 
 !!!note
     - Ensure the token contract on the source chain implements standard ERC-20 metadata functions (`decimals()`, `symbol()`, `name()`)
