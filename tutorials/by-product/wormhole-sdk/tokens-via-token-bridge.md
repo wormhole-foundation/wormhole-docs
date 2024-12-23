@@ -5,7 +5,7 @@ description: Learn to build a cross-chain native token transfer app using Wormho
 
 # Transfer Tokens via the Token Bridge
 
-You can find the complete project code for this tutorial in the [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}.
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}
 
 ## Introduction
 

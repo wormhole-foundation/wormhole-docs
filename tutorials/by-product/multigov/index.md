@@ -39,6 +39,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Integrate MultiGov into your smart contracts. Access reference code, best practices, and guidance for deploying cross-chain governance systems.
 
+
     [:octicons-arrow-right-16: Build MultiGov](/docs/build/contract-integrations/multigov/)
 
 </div>
