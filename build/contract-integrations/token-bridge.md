@@ -197,14 +197,14 @@ Once a token is attested (if necessary), a cross-chain token transfer is initiat
 
 Transferring tokens flow:
 
-1. **Source chain** - call `ITokenBridge.transferTokens()` to lock/burn tokens and produce a VAA with transfer details
+1. **Source chain** - call `ITokenBridge.transferTokens()` defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L92){target=\_blank} to lock/burn tokens and produce a VAA with transfer details
 2. **Guardian Network** - the Guardians sign the VAA, making it available for retrieval
-3. **Destination chain** - use `ITokenBridge.completeTransfer()` with the signed VAA to mint/release tokens to the designated recipient
+3. **Destination chain** - use `ITokenBridge.completeTransfer()` defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L120){target=\_blank} and implemented in [`Bridge.sol`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L468){target=\_blank} with the signed VAA to mint/release tokens to the designated recipient
 
 Relevant methods and code references:
 
-- **Source chain initiation** - `ITokenBridge.transferTokens()` is defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L92){target=\_blank}. The underlying logic for logging transfers (and producing a VAA) can be found in [`Bridge.sol`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L302){target=\_blank}
-- **Destination chain redemption** - `ITokenBridge.completeTransfer()` is also defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L120){target=\_blank} and implemented in [`Bridge.sol`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L468){target=\_blank}. It verifies the VAA and mints or releases the tokens
+- **Source chain initiation** - The underlying logic for logging transfers (and producing a VAA) can be found in [`Bridge.sol`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L302){target=\_blank}
+- **Destination chain redemption** - `ITokenBridge.completeTransfer()` verifies the VAA and mints or releases the tokens
 - **SDK integration** - The Wormhole SDK provides convenient methods like [`tokenBridge.transfer()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L215){target=\_blank} and [`tokenBridge.redeem()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L231){target=\_blank} in [`tokenBridge.ts`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}, abstracting away direct contract calls
 
 ```ts
@@ -243,18 +243,18 @@ While a standard token transfer moves tokens between chains, a transfer with a p
 Transferring tokens with payload flow:
 
 1. **Source chain**
-    - Call `ITokenBridge.transferTokensWithPayload()` instead of `transferTokens()`
+    - Call `ITokenBridge.transferTokensWithPayload()` defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L101){target=\_blank} instead of `transferTokens()`
     - Include a custom payload (arbitrary bytes) with the token transfer
 2. **Guardian Network** - as with any transfer, the Guardians sign the VAA produced by the Token Bridge
 3. **Destination chain**
-    - On redemption, call `ITokenBridge.completeTransferWithPayload()` instead of `completeTransfer()`
+    - On redemption, call [`ITokenBridge.completeTransferWithPayload()`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L114){target=\_blank} instead of `completeTransfer()`
     - Only the designated recipient contract can redeem these tokens. This ensures that the intended contract securely handles the attached payload
 
 Relevant methods and code references:
 
-- **Source Chain Initiation** - `ITokenBridge.transferTokensWithPayload()` is defined in [`ITokenBridge.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L101){target=\_blank}. You can find the underlying logic for logging these payload-carrying transfers in [`Bridge.sol` (`logTransferWithPayload`)](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L336){target=\_blank}
-- **Destination chain redemption** - [`ITokenBridge.completeTransferWithPayload()`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol#L114){target=\_blank} ensures that only the intended recipient address can redeem the tokens and process the payload.
-- **SDK Integration** - The Wormhole SDK provides a single [`tokenBridge.transfer()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L215){target=\_blank} method that can optionally take a payload parameter. If provided, the SDK uses `transferTokensWithPayload` under the hood. Likewise, redemption calls `completeTransferWithPayload()` when it detects a payload, which is handled by [`tokenBridge.redeem()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L231){target=\_blank}
+- **Source chain initiation** - `ITokenBridge.transferTokensWithPayload()`. You can find the underlying logic for logging these payload-carrying transfers in [`Bridge.sol` (`logTransferWithPayload`)](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L336){target=\_blank}
+- **Destination chain redemption** - `ITokenBridge.completeTransferWithPayload()` ensures that only the intended recipient address can redeem the tokens and process the payload.
+- **SDK integration** - The Wormhole SDK provides a single [`tokenBridge.transfer()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L215){target=\_blank} method that can optionally take a payload parameter. If provided, the SDK uses `transferTokensWithPayload` under the hood. Likewise, redemption calls `completeTransferWithPayload()` when it detects a payload, which is handled by [`tokenBridge.redeem()`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L231){target=\_blank}
 
 ```ts
 // Similar setup to a normal transfer, but we include a payload
@@ -271,14 +271,6 @@ for await (const tx of tokenBridge.transfer(sender, recipient, tokenAddress, amo
 
 // 2. After obtaining the payload-carrying VAA from the Guardians:
 const payloadVAA = 'INSERT_VAA'; // obtained from Wormhole Guardian network
-
-// 3. On the destination chain, redeem:
-const receiver = 'INSERT_DESTINATION_CHAIN_CONTRACT_ADDRESS';
-for await (const tx of tokenBridge.redeem(receiver, payloadVAA)) {
-  await sendTransaction(tx);
-}
-
-// The payload is now available on the destination chain's contract, allowing custom logic to execute upon token arrival
 ```
 
 !!!note
