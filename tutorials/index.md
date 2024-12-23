@@ -6,7 +6,7 @@ template: root-index-page.html
 
 # Tutorials
 
-Welcome to the Wormhole tutorials section! Whether you're just getting started or looking to build advanced cross-chain applications, this collection of step-by-step tutorials will help you leverage the full power of the Wormhole ecosystem. 
+Welcome to the Wormhole tutorials section! Whether you're just getting started or looking to build advanced cross-chain applications, this collection of step-by-step tutorials will help you leverage the full power of the Wormhole ecosystem.
 
 These tutorials are designed to help you develop efficient, scalable, and innovative cross-chain applications, from integrating individual Wormhole products to creating comprehensive end-to-end solutions. Explore our tutorials to get hands-on experience with Wormhole!
 

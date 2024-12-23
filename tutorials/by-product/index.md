@@ -23,7 +23,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Learn to build smart contracts that communicate across multiple blockchains. These tutorials show you how to create robust cross-chain contracts, allowing your dApps to move beyond a single network and tap into global liquidity, functionality, and user bases.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/cross-chain-contracts/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/contract-integrations/)
 
 -   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
 

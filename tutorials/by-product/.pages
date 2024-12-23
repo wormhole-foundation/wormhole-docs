@@ -2,7 +2,7 @@ title: Tutorials by Product
 nav:
  - index.md
  - connect
- - cross-chain-contracts
+ - contract-integrations
  - native-token-transfers
  - multigov
  - wormhole-sdk

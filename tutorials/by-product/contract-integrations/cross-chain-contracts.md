@@ -55,7 +55,7 @@ Key functions include:
 Here's the core of the contract:
 
 ```solidity
---8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-1.sol:24:43"
+--8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-1.sol:24:43"
 ```
 
 You can find the full code for the `MessageSender.sol` below.
@@ -63,7 +63,7 @@ You can find the full code for the `MessageSender.sol` below.
 ??? code "MessageSender.sol"
 
     ```solidity
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-1.sol"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-1.sol"
     ```
 
 ### Receiver Contract: MessageReceiver
@@ -81,8 +81,8 @@ Key implementation details include:
  - **`isRegisteredSender`** - restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication
 
 ```solidity
---8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-2.sol:12:13"
---8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-2.sol:22:39"
+--8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-2.sol:12:13"
+--8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-2.sol:22:39"
 ```
 
 #### Message Processing
@@ -90,7 +90,7 @@ Key implementation details include:
 The `receiveWormholeMessages` is the core function that processes the received message. It checks that the Wormhole relayer sent the message, decodes the payload, and emits an event with the message content. It is essential to verify the message sender to prevent unauthorized messages.
 
 ```solidity
---8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-2.sol:42:64"
+--8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-2.sol:42:64"
 ```
 
 You can find the full code for the `MessageReceiver.sol` below.
@@ -98,7 +98,7 @@ You can find the full code for the `MessageReceiver.sol` below.
 ??? code "MessageReceiver.sol"
 
     ```solidity
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-2.sol"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-2.sol"
     ```
 
 ## Deploy Contracts
@@ -165,7 +165,7 @@ The repository includes:
 
 The expected output should be similar to this:
 
---8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-7.html"
+--8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-7.html"
 
 ### Deployment Process
 
@@ -176,19 +176,19 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     === "`chains.json`"
 
         ```json
-        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-9.json"
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-9.json"
         ```
 
     === "`deploySender.js`"
 
         ```javascript
-        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-5.js:7:15"
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js:7:15"
         ```
 
     === "`deployReceiver.js`"
 
         ```javascript
-        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-6.js:7:15"
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:7:15"
         ```
 
     !!! note
@@ -199,13 +199,13 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     === "`deploySender.js`"
 
         ```javascript
-        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-5.js:18:19"
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js:18:19"
         ```
 
     === "`deployReceiver.js`"
 
         ```javascript
-        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-6.js:18:19"
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:18:19"
         ```
 
 3. **Deploy the contract** - the contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on
@@ -213,13 +213,13 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     === "`deploySender.js`"
 
         ```javascript
-        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-5.js:36:39"
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js:36:39"
         ```
 
     === "`deployReceiver.js`"
 
         ```javascript
-        --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-6.js:39:42"
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:39:42"
         ```
 
 4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
@@ -227,7 +227,7 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
     This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-6.js:55:66"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:55:66"
     ```
 
 You can find the full code for the `deploySender.js` and `deployReceiver.js` below.
@@ -235,13 +235,13 @@ You can find the full code for the `deploySender.js` and `deployReceiver.js` bel
 ??? code "deploySender.js"
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-5.js"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js"
     ```
 
 ??? code "deployReceiver.js"
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-6.js"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js"
     ```
 
 ### Deploy the Sender Contract
@@ -256,7 +256,7 @@ The sender contract will handle quoting and sending messages cross-chain.
 
 2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}
 
---8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-8.html"
+--8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-8.html"
 
 
 ### Deploy the Receiver Contract
@@ -286,7 +286,7 @@ Let's break down the script step by step.
     2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:8:16"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:8:16"
     ```
 
 2. **Configure the provider and signer** - the script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider
@@ -294,31 +294,31 @@ Let's break down the script step by step.
     Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
         
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:34:35"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:34:35"
     ```
 
     After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:38:43"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:38:43"
     ```
 
 3. **Set up the message details** - the next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:55:56"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:55:56"
     ```
 
     You can customize the message that will be sent across chains:
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:59:59"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:59:59"
     ```
 
 4. **Estimate cross-chain cost** - before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:62:62"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:62:62"
     ```
 
     This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
@@ -326,13 +326,13 @@ Let's break down the script step by step.
 5. **Send a message** - with everything set up, the message is sent using the `sendMessage` function:
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:65:72"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:65:72"
     ```
 
     After sending, the script waits for the transaction to be confirmed:
 
     ```javascript
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js:75:75"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:75:75"
     ```
 
 6. **Run the script** - to send the message, run the following command:
@@ -345,14 +345,14 @@ If everything is set up correctly, the message will be sent from the Avalanche F
 
 The console should output something similar to this:
 
---8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-4.html"
+--8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-4.html"
 
 You can find the full code for the `sendMessage.js` below.
 
 ??? code "sendMessage.js"
 
     ```solidity
-    --8<-- "code/tutorials/by-product/cross-chain-contracts/cross-chain-contracts/snippet-3.js"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js"
     ```
 
 ## Conclusion
