@@ -9,6 +9,12 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 
 If you still need to do so, deploy the token contract to the destination or spoke chains.
 
+### Requirements for Token Deployment
+
+Wormhole’s NTT is an open framework that supports various deployment modes. The NTT CLI currently supports two deployment modes: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed across chains.
+
+#### Burn-and-Mint Mode
+
 Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
 
 - `burn(uint256 amount)`
@@ -23,6 +29,27 @@ These functions aren't part of the standard ERC-20 interface. The [`INttToken` i
 
 Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
 
+#### Hub-and-Spoke Mode
+
+A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) mint or burn tokens during cross-chain transfers, ensuring consistency with the locked tokens on the hub chain.
+
+ - **Hub chain** - tokens are locked on the hub chain when transferring to spoke chains
+ - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
+
+!!! note
+    The only requirement for using the NTT framework is an ERC20 token, which can be newly deployed or existing. Steps like setting mint authority apply only to spoke chains.
+
+For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
+
+This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
+
+For more detailed information, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
+
+### Key Differences Between Modes
+
+ - **Burn-and-mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to manage token issuance independently
+ - **Hub-and-spoke** - tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency
+
 ## Deploy NTT
 
 Create a new NTT project:
@@ -32,7 +59,7 @@ ntt new my-ntt-deployment
 cd my-ntt-deployment
 ```
 
-Initialize a new `deployment.json` file, specifying the network:
+Initialize a new `deployment.json` file specifying the network:
 
 === "Testnet"
 
