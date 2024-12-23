@@ -1,7 +1,6 @@
 ---
 title: Tutorials by Product
 description: Discover product-specific Wormhole tutorials. Learn setup, integration, and advanced features to develop cross-chain apps confidently.
-template: root-index-page.html
 ---
 
 # Tutorials by Product

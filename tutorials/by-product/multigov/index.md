@@ -31,7 +31,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Dive into Wormhole’s governance mechanisms. Understand how cross-chain governance works, proposal creation, voting, and execution.
 
-    [:octicons-arrow-right-16: Explore Governance](/docs/learn/governance/)
+    [:octicons-arrow-right-16: Explore governance](/docs/learn/governance/)
 
 -   :octicons-tools-16:{ .lg .middle } **Implement MultiGov**
 
@@ -40,6 +40,6 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
     Integrate MultiGov into your smart contracts. Access reference code, best practices, and guidance for deploying cross-chain governance systems.
 
 
-    [:octicons-arrow-right-16: Build MultiGov](/docs/build/contract-integrations/multigov/)
+    [:octicons-arrow-right-16: Build with MultiGov](/docs/build/contract-integrations/multigov/)
 
 </div>

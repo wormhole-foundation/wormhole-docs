@@ -1,7 +1,6 @@
 ---
 title: Cross-Chain Contract Tutorials
 description: Master cross-chain smart contracts with Wormhole. Learn messaging, token transfers, and secure, scalable dApp deployments across blockchains.
-template: root-index-page.html
 ---
 
 # Cross-Chain Contract Tutorials
@@ -48,6 +47,6 @@ Expand the reach of your decentralized applications by building smart contracts 
     Explore advanced contract integrations with Wormhole. Access reference code, best practices, and guidance for deploying robust cross-chain smart contracts.
 
 
-    [:octicons-arrow-right-16: Build Contract Integrations](/docs/build/contract-integrations/)
+    [:octicons-arrow-right-16: Build contract integrations](/docs/build/contract-integrations/)
 
 </div>
