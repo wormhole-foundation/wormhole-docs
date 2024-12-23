@@ -9,7 +9,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Transfer USDC via CCTP and Wormhole SDK**
+-   :octicons-repo-16:{ .lg .middle } **Transfer USDC via CCTP**
 
     ---
 
