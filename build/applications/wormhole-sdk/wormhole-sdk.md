@@ -308,7 +308,7 @@ You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/e
 
 In the following example, the `wh.circleTransfer` function is called with several parameters to set up the transfer. It takes the amount to be transferred (in the token's base units), the sender's chain and address, and the receiver's chain and address. The function also allows specifying whether the transfer should be automatic, meaning it will be completed without further user intervention.
 
-An optional payload can be included with the transfer, though it's set to undefined in this case . Finally, if the transfer is automatic, you can request that native gas (the blockchain's native currency used for transaction fees) be sent to the receiver along with the transferred tokens.
+An optional payload can be included with the transfer, though it's set to undefined in this case. Finally, if the transfer is automatic, you can request that native gas (the blockchain's native currency used for transaction fees) be sent to the receiver along with the transferred tokens.
 
 When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will [vary by network](https://developers.circle.com/stablecoins/docs/required-block-confirmations#mainnet){target=\_blank}.
 
