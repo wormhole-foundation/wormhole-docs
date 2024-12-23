@@ -15,8 +15,125 @@ This page demonstrates how to practically interact with Wormhole's Token Bridge,
 
 To interact with the Wormhole Token Bridge, you must ensure you have the addresses and chain IDs for the Wormhole Core and Token Bridge contracts on the networks you want to work with.
 
-- [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses#core-contracts) on the chains you're working with
+- [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses/#token-bridge) on the chains you're working with
 - [The Wormhole chain ID](/docs/build/reference/chain-ids/) of the chains you're you're targeting for token transfers
+
+## Setup and Installation
+
+Before you can start interacting with Wormhole's Token Bridge, you need to set up your development environment by installing the Wormhole SDK and configuring your project to use it. This section guides you through the necessary steps to get started.
+
+1. **Install the Wormhole SDK** 
+  
+    First, ensure that you have `Node.js` and `npm` installed on your machine. Then, install the Wormhole SDK packages:
+
+    ```sh
+    npm install @wormhole-foundation/wormhole-sdk @wormhole-foundation/sdk-base
+    ```
+
+    - `@wormhole-foundation/wormhole-sdk` - core Wormhole SDK for interacting with the Wormhole network
+    - `@wormhole-foundation/sdk-base` - Base SDK provides foundational types and interfaces
+
+2.  **Import the necessary modules**
+
+    In your TypeScript or JavaScript file (e.g., index.ts), import the required classes and functions from the SDK:
+
+    ```ts
+    import { TokenBridge, createTokenBridge } from '@wormhole-foundation/sdk-base';
+    import { Relayer, createRelayer } from '@wormhole-foundation/sdk-base'; // If using Relayer
+    // Import other necessary modules as needed
+    ```
+
+3. **Initialize the TokenBridge Interface**
+
+    To use methods like `createAttestation()`, `transfer()`, `redeem()`, and other, you need to instantiate the respective interfaces provided by the SDK. Here's how to set it up in a blockchain-agnostic manner:
+
+    ```ts
+    // Replace with your blockchain provider setup
+    // A provider connects your application to the blockchain network (e.g., via JSON-RPC, WebSocket)
+    const provider = /* Initialize your blockchain provider here */;
+
+    // Replace with your wallet or signer setup
+    // A signer is an object that can sign transactions and messages with your private key
+    // Ensure you handle private keys securely and do not expose them in your codebase
+    const signer = /* Initialize your signer here */;
+
+    // Token Bridge contract address on the source chain
+    const tokenBridgeAddress = 'TOKEN_BRIDGE_CONTRACT_ADDRESS';
+
+    // Create an instance of the TokenBridge
+    const tokenBridge: TokenBridge = createTokenBridge(
+      tokenBridgeAddress,
+      provider,
+      signer
+    );
+
+    // If using Relayer, initialize it similarly
+    const relayerAddress = 'RELAYER_CONTRACT_ADDRESS';
+    const relayer: Relayer = createRelayer(
+      relayerAddress,
+      provider,
+      signer
+    );
+    ```
+
+## Retrieving the Verifiable Action Approval (VAA)
+
+The [Verifiable Action Approval (VAA)](/docs/learn/infrastructure/vaas/){target=\_blank} is a crucial component in the Wormhole Token Bridge workflow. It proves that the Wormhole Guardians have observed and approved a specific action (such as attesting a token or initiating a transfer) on the source chain. This approval is necessary to execute actions on the destination chain.
+
+### Essential Steps to Retrieve a VAA
+
+1. **Initiate an action on the source chain**
+
+    Begin by performing an action that emits a VAA, such as attesting a token or transferring tokens. For example, when you call `tokenBridge.createAttestation(tokenAddress)`, it initiates the attestation process and emits a VAA once the transaction is mined.
+
+    ```ts
+    const tokenAddress = 'INSERT_YOUR_TOKEN_ADDRESS';
+    const attestationTx = await tokenBridge.createAttestation(tokenAddress);
+    await attestationTx.wait(); // Wait for the transaction to be mined
+    ```
+
+2. **Obtain the transaction hash**
+
+    After the transaction is mined, retrieve the transaction hash from the transaction receipt. This hash uniquely identifies the transaction on the blockchain.
+
+    ```ts
+    const receipt = await attestationTx.wait();
+    const transactionHash = receipt.transactionHash;
+    console.log('Transaction Hash:', transactionHash);
+    ```
+
+3. **Fetch the VAA from the Wormhole Guardians**
+
+    Use the Wormhole SDK or Wormhole's REST API to fetch the VAA associated with the transaction. The SDK provides utilities to simplify this process.
+
+    ```ts
+    import { getEmitterAddressEth, getSignedVAA } from '@wormhole-foundation/wormhole-sdk';
+
+    const emitterAddress = getEmitterAddressEth(tokenBridgeAddress);
+    const sequence = extractSequenceFromReceipt(receipt); // Implement based on your transaction logs
+
+    // Fetch the VAA using the Wormhole SDK
+    const vaa = await getSignedVAA('ETH', emitterAddress, sequence);
+    console.log('Attestation VAA:', vaa);
+    ```
+
+    !!!note
+        - Emitter address - typically the Token Bridge contract address on the source chain
+        - Sequence number - extracted from the transaction receipt by parsing the emitted events/logs
+        - API endpoint - ensure you're using the correct Wormhole API endpoint corresponding to your network
+
+4. **Use the retrieved VAA in Subsequent actions**
+    
+    Once you have the VAA, you can use it to complete actions on the destination chain, such as submitting the attestation or redeeming transferred tokens.
+
+    ```ts
+    // Example: Submitting the Attestation VAA on the target chain
+    await tokenBridge.submitAttestation(vaa);
+    ```
+
+
+
+
 
 ## Core Actions
 
@@ -36,16 +153,18 @@ Below, the four main actions—attesting a token, transferring tokens, transferr
 
 ### Attesting a Token
 
-Sometimes, the token you're working with has never been transferred to a particular target chain. In that case, you must attest it so the Token Bridge can recognize its metadata (decimals, name, symbol) and create a wrapped version if needed. 
+If a token has never been transferred to a target chain, it must be attested so the Token Bridge can recognize its metadata (decimals, name, symbol) and create a wrapped version if necessary.
 
-When a token is new to a target chain, you must attest its details, including metadata and `payload_id`, which must be set to `2` for an attestation. This attestation ensures that the wrapped token on the destination chain preserves the original token's properties. The attestation process records the token's metadata on the target chain to ensure consistency across chains. See the [Attestation section](/docs/learn/infrastructure/vaas/#attestation){target=\_blank} for more details.
+Attesting a new token involves providing its metadata and setting the `payload_id` to `2`. This ensures the wrapped token on the destination chain preserves the original token's properties and consistency across chains. For more details, see the [Attestation section](/docs/learn/infrastructure/vaas/#attestation){target=\_blank}.
 
-The attestation process does not require you to manually provide token details like name, symbol, or decimals directly in the code call. Instead, the Token Bridge contract queries these details from the token contract itself when you call the `attestToken()` method.
+The attestation process doesn’t require you to manually input token details like name, symbol, or decimals. The Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
 
-Behind the scenes, when `ITokenBridge.attestToken()` is called with a given token address, the Token Bridge contract:
+The `createAttestation()` method is part of the TokenBridge interface provided by the Wormhole SDK, which you initialized in the [setup and installation section](docs/build/contract-integrations/token-bridge/#setup-and-installation){target=\_blank} above. This method abstracts the underlying smart contract call to `ITokenBridge.attestToken()`, simplifying the attestation process.
+
+When `attestToken()` is called, the contract:
 
 - Calls the token contract’s `decimals()`, `symbol()`, and `name()` functions
-- Uses these values to create a metadata payload (`payload_id` set to `2`) that describes the token
+- Uses these values to create a metadata payload (`payload_id` set to `2`) 
 - Emits a VAA containing this metadata, which the Guardians sign and publish
 
 Under the hood, calling `tokenBridge.createAttestation()` uses Wormhole’s core method:
@@ -54,8 +173,7 @@ Under the hood, calling `tokenBridge.createAttestation()` uses Wormhole’s core
 - The logic for creating the attestation VAA can be found in `bridge/Bridge.sol`, specifically in the [`attestToken`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L38){target=\_blank} function
 
 ```ts
-// In your code, you might have a tokenBridge instance set up from tokenBridge.ts
-// This references the Wormhole SDK that internally calls `ITokenBridge.attestToken`.
+// Ensure tokenBridge is initialized as shown in the Setup and Installation section
 
 const tokenAddress = 'INSERT_YOUR_TOKEN_ADDRESS';
 for await (const tx of tokenBridge.createAttestation(tokenAddress)) {
@@ -64,7 +182,7 @@ for await (const tx of tokenBridge.createAttestation(tokenAddress)) {
 }
 
 // Once Wormhole Guardians generate the attestation VAA, you'll submit it on the target chain:
-const attestationVAA = ... // obtain from Wormhole Guardian network
+const attestationVAA = 'INSERT_VAA'; // obtain from Wormhole Guardian network 
 for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
   await sendTransaction(tx);
 }
@@ -73,7 +191,7 @@ for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
 - The `createAttestation` method is defined in the Wormhole SDK's [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank}
 - On-chain, the `attestToken` method can be found in `bridge/Bridge.sol` and is part of the [`ITokenBridge` interface](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L38){target=\_blank}
 
-!!!important
+!!!note
     - Ensure the token contract on the source chain implements standard ERC-20 metadata functions (`decimals()`, `symbol()`, `name()`)
     - Call `attestToken()` (via the Wormhole SDK or directly on the contract) for the token address
     - You don't have to put the token details anywhere in your code. If the token contract is a standard ERC-20, the Token Bridge will read its metadata
@@ -97,9 +215,9 @@ Relevant methods and code references:
 
 ```ts
 // Assumes you have a tokenBridge instance from tokenBridge.ts set up
-const sender = INSERT_SOURCE_CHAIN_SENDER_ADDRESS;    // e.g., EVM address
-const recipient = INSERT_TARGET_CHAIN_RECIPIENT_ADDRESS; // e.g., Solana address in wormhole format
-const tokenAddress = INSERT_SOURCE_CHAIN_TOKEN_ADDRESS;
+const sender = 'INSERT_SOURCE_CHAIN_SENDER_ADDRESS';    // e.g., EVM address
+const recipient = 'INSERT_TARGET_CHAIN_RECIPIENT_ADDRESS'; // e.g., Solana address in wormhole format
+const tokenAddress = 'INSERT_SOURCE_CHAIN_TOKEN_ADDRESS';
 const amount = BigInt("1000"); // Example amount
 
 // 1. Initiate the transfer on the source chain:
@@ -108,19 +226,19 @@ for await (const tx of tokenBridge.transfer(sender, recipient, tokenAddress, amo
 }
 
 // 2. After the Guardians sign the VAA, obtain it from a Wormhole Guardian network source:
-const transferVAA = ... // Obtain from Guardian network
+const transferVAA = 'INSERT_VAA'; // Obtain from Guardian network
 
 // 3. On the destination chain, redeem the tokens:
-const receiver = INSERT_YOUR_DESTINATION_CHAIN_ADDRESS; 
+const receiver = 'INSERT_YOUR_DESTINATION_CHAIN_ADDRESS'; 
 for await (const tx of tokenBridge.redeem(receiver, transferVAA)) {
   await sendTransaction(tx);
 }
 ```
 
 !!!note
-    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
-    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
-    - If the token has already been attested and recognized on the destination chain, you can proceed directly with this step.
+    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation
+    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain
+    - If the token has already been attested and recognized on the destination chain, you can proceed directly with this step
 
 Once you've completed these steps, the recipient on the destination chain will have the wrapped tokens corresponding to the locked tokens on the source chain, enabling cross-chain asset portability without direct liquidity pools or manual swaps.
 
@@ -146,9 +264,9 @@ Relevant methods and code references:
 
 ```ts
 // Similar setup to a normal transfer, but we include a payload
-const sender = INSERT_SOURCE_CHAIN_SENDER_ADDRESS;
-const recipient = INSERT_TARGET_CHAIN_RECIPIENT_ADDRESS;
-const tokenAddress = INSERT_SOURCE_CHAIN_TOKEN_ADDRESS;
+const sender = 'INSERT_SOURCE_CHAIN_SENDER_ADDRESS';
+const recipient = 'INSERT_TARGET_CHAIN_RECIPIENT_ADDRESS';
+const tokenAddress = 'INSERT_SOURCE_CHAIN_TOKEN_ADDRESS';
 const amount = BigInt("50000"); // Example amount
 const customPayload = new Uint8Array([0x01, 0x02, 0x03]); // Arbitrary data
 
@@ -158,20 +276,20 @@ for await (const tx of tokenBridge.transfer(sender, recipient, tokenAddress, amo
 }
 
 // 2. After obtaining the payload-carrying VAA from the Guardians:
-const payloadVAA = ... // obtained from Wormhole Guardian network
+const payloadVAA = 'INSERT_VAA'; // obtained from Wormhole Guardian network
 
 // 3. On the destination chain, redeem:
-const receiver = INSERT DESTINATION_CHAIN_CONTRACT_ADDRESS;
+const receiver = 'INSERT_DESTINATION_CHAIN_CONTRACT_ADDRESS';
 for await (const tx of tokenBridge.redeem(receiver, payloadVAA)) {
   await sendTransaction(tx);
 }
 
-// The payload is now available on the destination chain's contract, allowing custom logic to execute upon token arrival.
+// The payload is now available on the destination chain's contract, allowing custom logic to execute upon token arrival
 ```
 
 !!!note
-    - Because only the intended `to` address can redeem a `TransferWithPayload` message, you ensure another address can't intercept or misuse the payload.
-    - The only difference from a standard transfer is the inclusion of the payload and the corresponding redemption call. Everything else—from acquiring the VAA to sending transactions—follows the same pattern.
+    - Because only the intended `to` address can redeem a `TransferWithPayload` message, you ensure another address can't intercept or misuse the payload
+    - The only difference from a standard transfer is the inclusion of the payload and the corresponding redemption call. Everything else—from acquiring the VAA to sending transactions—follows the same pattern
 
 ### Redeeming Transfers
 
@@ -194,14 +312,14 @@ Relevant methods and code references:
 - **SDK integration** - The Wormhole SDK's `tokenBridge.redeem()` method (in [`tokenBridge.ts`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}) accepts the VAA and automatically handles calling the correct function on-chain
 
 ```ts
-const transferVAA = ...; // Obtained from Guardian network
-const receiver = INSERT_DESTINATION_CHAIN_ADDRESS;
+const transferVAA = 'INSERT_VAA'; // Obtained from Guardian network
+const receiver = 'INSERT_DESTINATION_CHAIN_ADDRESS';
 
 for await (const tx of tokenBridge.redeem(receiver, transferVAA)) {
   await sendTransaction(tx);
 }
 
-// Once redeemed, the tokens are now available at the receiver's address.
+// Once redeemed, the tokens are now available at the receiver's address
 ```
 
 !!!important 
@@ -209,10 +327,6 @@ for await (const tx of tokenBridge.redeem(receiver, transferVAA)) {
     - VAAs are guaranteed to be redeemable for at least 24 hours after production. After that, if the Guardian set changes, you may need to take additional steps (such as re-verification or signature collection) to redeem older VAAs.
     - If redeeming a transfer with payload, remember that only the contract specified as the recipient in the VAA can redeem the tokens and execute the payload. Ensure the recipient address matches the intended contract before attempting redemption.
     - If you try to redeem a VAA that has already been processed, it will fail. Check if `isTransferCompleted()` (in the SDK or contract) returns `true` before retrying redemption.
-
-## Conclusion
-
-This page has highlighted the foundational steps involved in working with the Wormhole Token Bridge, including establishing recognition for a new token on the destination chain (if needed), moving assets across different chains without relying on native liquidity pools or swaps, embedding additional data to enable advanced, automated cross-chain operations, and finalizing the process to release or mint tokens for the intended recipient on the destination chain. Equipped with these fundamental workflows, developers can create multichain applications that seamlessly shift assets between ecosystems, implement custom logic upon token arrival, and deliver a smooth, user-friendly experience.
 
 ## Portal Bridge
 
