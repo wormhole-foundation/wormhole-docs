@@ -163,6 +163,15 @@ When `attestToken()` is called, the contract:
 - Uses these values to create a metadata payload (`payload_id` set to `2`) 
 - Emits a VAA containing this metadata, which the Guardians sign and publish
 
+To attest a token, follow these steps:
+
+1. **Create an instance of the Token Bridge contract** - ensure you have initialized the `tokenBridge` instance as shown in the [Setup and Installation section](/docs/build/contract-integrations/token-bridge/#setup-and-installation){target=\_blank}
+2. **Call the `createAttestation` method, passing in the token's address** - use the createAttestation method to initiate the attestation process for your token
+3. **Send the transaction** - sign and send the transaction to execute the attestation
+4. **Obtain the attestation VAA from the Wormhole Guardians** - after the transaction is mined, retrieve the VAA which proves that the Guardians have approved the attestation
+5. **Call the `submitAttestation` function, passing in the VAA** - submit the obtained VAA on the target chain to finalize the attestation
+6. **Send the transaction to submit the attestation** - sign and send the transaction to complete the attestation process
+
 Under the hood, calling `tokenBridge.createAttestation()` uses Wormhole’s core method:
 
 - The `createAttestation` method is defined in the Wormhole SDK's [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank}
@@ -170,19 +179,31 @@ Under the hood, calling `tokenBridge.createAttestation()` uses Wormhole’s core
 - The logic for creating the attestation VAA can be found in `bridge/Bridge.sol`, specifically in the [`attestToken`](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L38){target=\_blank} function
 
 ```ts
-// Ensure tokenBridge is initialized as shown in the Setup and Installation section
+// 1. Ensure tokenBridge is initialized as shown in the Setup and Installation section
 
+// Define the token address you want to attest
 const tokenAddress = 'INSERT_YOUR_TOKEN_ADDRESS';
-for await (const tx of tokenBridge.createAttestation(tokenAddress)) {
-  // Sign and send the transaction (e.g., via your wallet or ethers.js)
-  await sendTransaction(tx);
-}
 
-// Once Wormhole Guardians generate the attestation VAA, you'll submit it on the target chain:
-const attestationVAA = 'INSERT_VAA'; // obtain from Wormhole Guardian network 
-for await (const tx of tokenBridge.submitAttestation(attestationVAA)) {
-  await sendTransaction(tx);
-}
+// 2. Call the createAttestation method to initiate attestation
+const attestationTx = await tokenBridge.createAttestation(tokenAddress);
+
+// 3. Send the attestation transaction and wait for it to be mined
+await sendTransaction(attestationTx);
+const receipt = await attestationTx.wait();
+console.log('Attestation transaction mined:', receipt.transactionHash);
+
+// 4. Extract the sequence number from the transaction receipt
+const sequence = extractSequenceFromReceipt(receipt); // Implement this function based on your transaction logs
+
+// 5. Fetch the signed VAA from the Wormhole Guardians
+const emitterAddress = getEmitterAddressEth(tokenBridgeAddress); // Ensure you have imported getEmitterAddressEth
+const vaa = await getSignedVAA('ETH', emitterAddress, sequence); // Replace 'ETH' with your source chain if different
+console.log('Attestation VAA:', vaa);
+
+// 6. Submit the attestation VAA on the target chain
+const submitTx = await tokenBridge.submitAttestation(vaa);
+await sendTransaction(submitTx);
+console.log('Attestation submitted on target chain:', submitTx.hash);
 ```
 
 !!!note
