@@ -20,12 +20,4 @@ These tutorials are designed to help you develop efficient, scalable, and innova
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/)
 
--   :octicons-flame-16:{ .lg .middle } **End-to-end**
-
-    ---
-
-    Build full-fledged applications with these comprehensive, end-to-end tutorials. These guides cover complete use cases and demonstrate how multiple Wormhole products can work together to create powerful cross-chain solutions. Ideal for developers looking to create real-world applications that utilize the full range of Wormhole’s capabilities.
-
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/end-to-end/)
-
 </div>

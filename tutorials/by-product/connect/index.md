@@ -18,3 +18,17 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/connect/react-dapp/)
 
 </div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Connect**
+
+    ---
+
+    Get deeper insights into setting up and customizing Wormhole Connect. Explore advanced guides, best practices, and configuration tips to streamline your cross-chain integrations.
+
+    [:octicons-arrow-right-16: Start building](/docs/build/applications/connect/)
+
+</div>
