@@ -2,6 +2,7 @@ title: Native Token Transfers
 nav:
  - index.md
  - deployment-process
+ - 'NTT CLI Commands': 'cli-commands.md'
  - configuration
  - 'Managers and Transceivers': 'managers-transceivers.md'
  - 'FAQS': faqs.md
