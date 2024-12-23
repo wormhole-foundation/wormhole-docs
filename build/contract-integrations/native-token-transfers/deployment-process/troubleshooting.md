@@ -16,7 +16,7 @@ If you encounter issues during the NTT deployment process, check the following c
     - **For EVM tokens** - confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details
 - **Decimal configuration** - run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#configure-ntt){target=\_blank} section
 - **Rate limit configuration** - increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/#configure-ntt){target=\_blank}
-- **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development** - run `docker compose up -d` to start the container in your terminal from the directory containing the docker-compose.yml file
+- **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development** - run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file
 
     ???- interface "Dockerfile"
 
