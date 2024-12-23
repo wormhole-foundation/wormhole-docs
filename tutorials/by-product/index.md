@@ -17,7 +17,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/connect/)
 
--   :octicons-file-code-16:{ .lg .middle } **Cross-Chain Contracts**
+-   :octicons-file-code-16:{ .lg .middle } **Contract Integrations**
 
     ---
 
