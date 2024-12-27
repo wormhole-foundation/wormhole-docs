@@ -5,6 +5,8 @@ description: Learn how to create cross-chain contracts using Wormhole's Solidity
 
 # Create Cross-Chain Messaging Contracts
 
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
+
 ## Introduction
 
 Wormhole's cross-chain messaging allows smart contracts to interact seamlessly across multiple blockchains. This enables developers to build decentralized applications that leverage the strengths of different networks, whether it's Avalanche, Celo, Ethereum, or beyond. In this tutorial, we'll explore using [Wormhole's Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} to create cross-chain contracts to send and receive messages across chains.
