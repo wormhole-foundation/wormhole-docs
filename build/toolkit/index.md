@@ -27,7 +27,7 @@ Regardless of which network development environment you are using, there are a f
 
     [:octicons-arrow-right-16: Get started with the CLI](/docs/build/toolkit/cli/)
 
--   :octicons-file-code-16:{ .lg .middle } **Wormhole SDK**
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
 
     ---
 
@@ -35,7 +35,7 @@ Regardless of which network development environment you are using, there are a f
 
     [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
 
--   :octicons-file-code-16:{ .lg .middle } **Solidity SDK**
+-   :octicons-code-square-16:{ .lg .middle } **Solidity SDK**
 
     ---
 
@@ -65,7 +65,7 @@ Regardless of which network development environment you are using, there are a f
 
 <div class="grid cards" markdown>
 
--   :octicons-file-code-16:{ .lg .middle } **Wormhole Spy SDK**
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole Spy SDK**
 
     ---
 

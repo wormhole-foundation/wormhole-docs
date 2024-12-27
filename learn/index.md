@@ -20,7 +20,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     [:octicons-arrow-right-16: Get started](/docs/learn/fundamentals/)
 
--   :octicons-book-16:{ .lg .middle } **Infrastructure Components**
+-   :octicons-inbox-16:{ .lg .middle } **Infrastructure Components**
 
     ---
 
@@ -28,7 +28,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     [:octicons-arrow-right-16: Understand Wormhole's infrastructure](/docs/learn/infrastructure/)
 
--   :octicons-book-16:{ .lg .middle } **Messaging**
+-   :octicons-mail-16:{ .lg .middle } **Messaging**
 
     ---
 
@@ -36,7 +36,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     [:octicons-arrow-right-16: Explore messaging protocols](/docs/learn/messaging/)
 
--   :octicons-book-16:{ .lg .middle } **Multichain Governance**
+-   :octicons-people-16:{ .lg .middle } **Multichain Governance**
 
     ---
 
