@@ -11,7 +11,7 @@ Wormhole offers multiple tools to make your user-facing application integrations
 
 <div class="grid cards" markdown>
 
--   :octicons-file-code-16:{ .lg .middle } **Wormhole TypeScript SDK**
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole TypeScript SDK**
 
     ---
 
@@ -23,7 +23,7 @@ Wormhole offers multiple tools to make your user-facing application integrations
 
 <div class="grid cards" markdown>
 
--   :octicons-download-16:{ .lg .middle } **Wormhole Queries**
+-   :octicons-codescan-16:{ .lg .middle } **Wormhole Queries**
 
     ---
 
