@@ -13,7 +13,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
 <div class="grid cards" markdown>
 
--   :octicons-code-16:{ .lg .middle } **Build Frontend Applications**
+-   :octicons-browser-16:{ .lg .middle } **Build Frontend Applications**
 
     ---
 
@@ -21,7 +21,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     [:octicons-arrow-right-16: Build frontend applications](/docs/build/applications/)
 
--   :octicons-checklist-16:{ .lg .middle } **Build Contract Integrations**
+-   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
 
     ---
 
@@ -35,7 +35,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
 <div class="grid cards" markdown>
 
--   :octicons-book-16:{ .lg .middle } **Tutorials**
+-   :octicons-repo-16:{ .lg .middle } **Tutorials**
 
     ---
 
@@ -65,7 +65,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     [:octicons-arrow-right-16: Discover supported networks](/docs/build/start-building/supported-networks/)
 
--   :octicons-code-16:{ .lg .middle } **Reference**
+-   :octicons-list-unordered-16:{ .lg .middle } **Reference**
 
     ---
 

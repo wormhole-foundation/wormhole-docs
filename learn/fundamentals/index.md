@@ -27,7 +27,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     [:octicons-arrow-right-16: Review security measures](/docs/learn/fundamentals/security/)
 
--   :octicons-book-16:{ .lg .middle } **Architecture Overview**
+-   :octicons-stack-16:{ .lg .middle } **Architecture Overview**
 
     ---
 
