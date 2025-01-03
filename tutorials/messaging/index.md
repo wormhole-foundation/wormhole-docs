@@ -51,4 +51,12 @@ Wormhole's cross-chain messaging infrastructure simplifies data transmission, ev
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/messaging/portal-bridge/)
 
+-   :octicons-tools-16:{ .lg .middle } **Build a Loyalty App with Message Transfers**
+
+    ---
+
+    Build a loyalty app that connects across networks, enabling seamless message transfers and unlocking unique user engagement opportunities.
+
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/messaging/loyalty-app/)
+
 </div>
