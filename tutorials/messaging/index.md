@@ -43,7 +43,7 @@ Wormhole's cross-chain messaging infrastructure simplifies data transmission, ev
 
     [:octicons-arrow-right-16: Learn more](/docs/tutorials/messaging/cctp/)
 
--   :octicons-arrow-switch-16:{ .lg .middle } **Native Token Transfer with Portal Bridge**
+-   :octicons-arrow-switch-16:{ .lg .middle } **Transfer Native Tokens with Portal Bridge**
 
     ---
 
