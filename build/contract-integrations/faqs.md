@@ -47,3 +47,9 @@ Because wrapped tokens are deployed and controlled by the Token Bridge program, 
 ## How do I calculate the current gas costs for Ethereum Mainnet VAA verification?
 
 You can refer to the [core-bridge repository](https://github.com/nonergodic/core-bridge){target=\_blank} for guidance on how to calculate the current gas costs associated with verifying VAAs on Ethereum Mainnet. This repository provides up-to-date references and examples to help you gauge costs accurately.
+
+## How can I update my wrapped token image on Solscan?
+
+Updating the metadata (such as the token image, name, or symbol) of a wrapped token on Solscan requires contacting the Solscan team directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the Token Bridge, not individual developers or projects.
+
+To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
