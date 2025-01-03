@@ -19,7 +19,7 @@ Wormhole's cross-chain messaging infrastructure simplifies data transmission, ev
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/messaging/cross-chain-contracts/)
 
--   :octicons-rocket-16:{ .lg .middle } **Cross-Chain Token Transfers**
+-   :octicons-rocket-16:{ .lg .middle } **Transfer Tokens Cross-Chain**
 
     ---
 
