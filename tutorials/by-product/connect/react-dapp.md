@@ -1,9 +1,11 @@
 ---
-title: Transfer Tokens Cross-Chain with Connect
+title: Integrate Connect into a React DApp Tutorial
 description: Learn how to use Wormhole Connect to transfers tokens cross-chain seamlessly between Sui and Avalanche Fuji with this step-by-step guide.
 ---
 
-# Cross-Chain Token Transfers with Wormhole Connect
+# Integrate Connect into a React DApp
+
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
 
 ## Introduction
 
@@ -127,26 +129,26 @@ To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
 3. Enter the amount of SUI tokens you wish to transfer
 
-    ![](/docs/images/tutorials/connect/connect-1.webp)
+    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-1.webp)
 
 4. Choose to view other routes 
     
-    ![](/docs/images/tutorials/connect/connect-2.webp)
+    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-2.webp)
 
 5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
 
     !!! note
         It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
 
-    ![](/docs/images/tutorials/connect/connect-3.webp)
+    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-3.webp)
 
 6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain
 
-    ![](/docs/images/tutorials/connect/connect-4.webp)
+    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-4.webp)
 
 7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet
 
-    ![](/docs/images/tutorials/connect/connect-5.webp)
+    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-5.webp)
 
 Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
@@ -154,11 +156,11 @@ Once the transaction has been submitted, Wormhole Connect will display the progr
 
 After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
 
-![](/docs/images/tutorials/connect/connect-6.webp)
+![](/docs/images/tutorials/by-product/connect/react-dapp/connect-6.webp)
 
 Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
 
-![](/docs/images/tutorials/connect/connect-7.webp)
+![](/docs/images/tutorials/by-product/connect/react-dapp/connect-7.webp)
 
 ## Resources
 
