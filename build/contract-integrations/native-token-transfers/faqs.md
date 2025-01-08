@@ -120,10 +120,6 @@ Shortcomings of xERC20:
 
 While xERC20 is an extension of the ERC20 standard, NTT is designed as a framework rather than a rigid standard. It is compatible with any token that supports `burn` and `mint` functions and allows the NTT manager to act as a minter. 
 
-## Can I set `IsSpecializedRelayer` to true via the CLI?
-
-Not currently. However, we are working on enabling this functionality. Once the latest CLI version is released and you have upgraded, you will be able to set `IsSpecializedRelayer` to `true` via the CLI.
-
 ## How can I start transferring tokens to a chain that is in burning mode, if no tokens are locked yet?
 
 To begin transferring tokens to a chain in burning mode when no tokens are locked, you must first send tokens to the NTT manager to back the supply. The address of the NTT manager can be found in the `deployment.json` file.
