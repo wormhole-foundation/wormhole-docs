@@ -2,8 +2,6 @@ title: Toolkit
 nav:
  - index.md
  - 'Wormholescan': 'https://wormholescan.io/'
- - 'Wormhole CLI' : 'cli.md'
  - wormhole-sdk
  - 'Solidity SDK': 'solidity-sdk.md'
- - 'Tilt': 'tilt.md'
  - 'FAQs': 'faqs.md'
