@@ -27,7 +27,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Leverage Wormhole's powerful messaging protocols to create contracts that can communicate and interact across multiple blockchains. By using Wormhole’s core infrastructure, you can enable secure and seamless messaging, asset transfers, and more between supported networks.
 
-    [:octicons-arrow-right-16: Integrate with contracts](/docs/build/applications/connect/)
+    [:octicons-arrow-right-16: Integrate with contracts](/docs/build/contract-integrations/)
 
 </div>
 
