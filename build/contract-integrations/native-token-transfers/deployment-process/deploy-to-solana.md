@@ -186,3 +186,6 @@ ntt push --payer INSERT_YOUR_KEYPAIR_JSON
 ```
 
 By default, NTT transfers to Solana support manual relaying, which requires the user to perform a transaction on Solana to complete the transfer. UI components such as Wormhole Connect support this out of the box. For automatic Wormhole relaying support on Solana, [contact](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} Wormhole contributors.
+
+!!!important
+    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/){target=\_blank} page.
