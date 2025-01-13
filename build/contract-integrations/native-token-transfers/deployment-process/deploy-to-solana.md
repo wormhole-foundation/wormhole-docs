@@ -68,7 +68,7 @@ Initialize a new `deployment.json` file specifying the network:
     cargo install spl-token-cli
     ```
 
-    6. Create a new token with the SPL Token CLI:
+    6. Create a new token with the SPL Token CLI (make sure you have enough balance to pay for the transaction):
     ```bash
     spl-token create-token
     ```
@@ -86,17 +86,18 @@ Initialize a new `deployment.json` file specifying the network:
 !!! note
     NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
 
-### Hub Chain Requirements
+### Deployment Mode Requirements
 
-For hub chain deployments on Solana, the token can be either an SPL or Token2022. Hub chain tokens do not require additional configuration, such as setting the mint authority.
+The NTT CLI supports two deployment models: **Hub-and-Spoke** and **Burn-and-Mint**.  
+For a detailed explanation of these models, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
 
-For more detailed information, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
+#### Hub-and-Spoke
 
-### Burning Mode Requirements
+No additional configuration is required for hub-and-spoke deployments. Tokens retain their original mint authority, so the steps below are not necessary. You can [generate a new NTT program key pair](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#generate-ntt-program-key-pair) and [deploy the NTT program](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#__tabbed_2_2) directly.
 
-In burning mode, tokens require their mint authority to be assigned to the NTT program. This allows the NTT Manager to mint and burn tokens as needed during cross-chain transfers. 
+#### Burn-and-Mint
 
-All necessary steps for configuring burning mode, including mint authority setup, are explained in the sections below.
+For burn-and-mint deployments, you must configure the token's mint authority to enable cross-chain transfers. To complete the required setup, follow the steps in the following sections.
 
 ## Configuration and Deployment
 
@@ -136,9 +137,17 @@ spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
 
 Generate or export your payer key pair, then run:
 
-```bash
-ntt add-chain Solana --latest --mode burning --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
-```
+=== "Burn-and-Mint"
+
+    ```bash
+    ntt add-chain Solana --latest --mode burning --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+    ```
+
+=== "Hub-and-Spoke"
+
+    ```bash
+    ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+    ```
 
 !!! note
     The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
