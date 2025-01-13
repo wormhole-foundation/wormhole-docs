@@ -24,7 +24,7 @@ Before you can start interacting with Wormhole's Token Bridge, you need to set u
 
 1. **Install the Wormhole SDK** 
   
-    First, ensure that you have `Node.js` and `npm` installed on your machine. Then, install the Wormhole SDK packages:
+    First, ensure you have `Node.js` and `npm` installed on your machine. Then, install the Wormhole SDK packages:
 
     ```sh
     npm install @wormhole-foundation/wormhole-sdk @wormhole-foundation/sdk-base
@@ -104,7 +104,7 @@ The [Verifiable Action Approval (VAA)](/docs/learn/infrastructure/vaas/){target=
 
 3. **Fetch the VAA from the Wormhole Guardians**
 
-    Use the Wormhole SDK or Wormhole's REST API to fetch the VAA associated with the transaction. The SDK provides utilities to simplify this process.
+    Fetch the VAA associated with the transaction using the Wormhole SDK or Wormhole's REST API. The SDK provides utilities to simplify this process.
 
     ```ts
     import { getEmitterAddressEth, getSignedVAA } from '@wormhole-foundation/wormhole-sdk';
@@ -153,7 +153,7 @@ If a token has never been transferred to a target chain, it must be attested so 
 
 Attesting a new token involves providing its metadata and setting the `payload_id` to `2`. This ensures the wrapped token on the destination chain preserves the original token's properties and consistency across chains. For more details, see the [Attestation section](/docs/learn/infrastructure/vaas/#attestation){target=\_blank}.
 
-The attestation process doesn’t require you to manually input token details like name, symbol, or decimals. The Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+The attestation process doesn't require you to manually input token details like name, symbol, or decimals. The Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
 
 The `createAttestation()` method is part of the TokenBridge interface provided by the Wormhole SDK, which you initialized in the [setup and installation section](docs/build/contract-integrations/token-bridge/#setup-and-installation){target=\_blank} above. This method abstracts the underlying smart contract call to `ITokenBridge.attestToken()`, simplifying the attestation process.
 
