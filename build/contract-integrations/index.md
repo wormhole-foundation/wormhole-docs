@@ -27,6 +27,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
 
+-   :octicons-code-square-16:{ .lg .middle } **CCTP**
+
+    ---
+
+    Learn how to interact directly with Circle's CCTP Bridge contracts, including TokenMessenger, TokenMinter, and MessageTransmitter. 
+
+    [:octicons-arrow-right-16: Get started with CCTP](/docs/build/contract-integrations/cctp/)
+
 -   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
 
     ---
