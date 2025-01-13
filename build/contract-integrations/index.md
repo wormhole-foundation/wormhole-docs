@@ -31,7 +31,7 @@ The content in this section will teach you how to create smart contracts that in
 
     ---
 
-    Learn how to interact directly with Circle's CCTP Bridge contracts, including TokenMessenger, TokenMinter, and MessageTransmitter. 
+    Learn how to interact directly with Circle's CCTP Bridge contracts, including Token Messenger, Token Minter, and Message Transmitter. 
 
     [:octicons-arrow-right-16: Get started with CCTP](/docs/build/contract-integrations/cctp/)
 
