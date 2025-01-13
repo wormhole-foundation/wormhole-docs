@@ -91,12 +91,13 @@ Initialize a new `deployment.json` file specifying the network:
 The NTT CLI supports two deployment models: **Hub-and-Spoke** and **Burn-and-Mint**.  
 For a detailed explanation of these models, see the [Deployment Models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank} page.
 
-!!! tip "Hub-and-Spoke Requirements"
-    No additional configuration is required for Hub-and-Spoke deployments. Tokens retain their original mint authority, so the steps below are not necessary. You can [generate a new NTT program key pair](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#generate-ntt-program-key-pair) and [deploy the NTT program](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#__tabbed_2_2) directly.
+#### Hub-and-Spoke
 
-!!! tip "Burn-and-Mint Requirements"
-    For Burn-and-Mint deployments, you must configure the token's mint authority to enable cross-chain transfers. To complete the required setup, follow the steps in the following sections.
+No additional configuration is required for hub-and-spoke deployments. Tokens retain their original mint authority, so the steps below are not necessary. You can [generate a new NTT program key pair](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#generate-ntt-program-key-pair) and [deploy the NTT program](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/#__tabbed_2_2) directly.
 
+#### Burn-and-Mint
+
+For burn-and-mint deployments, you must configure the token's mint authority to enable cross-chain transfers. To complete the required setup, follow the steps in the following sections.
 
 ## Configuration and Deployment
 
