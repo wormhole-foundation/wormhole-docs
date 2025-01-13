@@ -5,6 +5,12 @@ description: Explore Wormhole's Native Token Transfers for flexible cross-chain 
 
 # Native Token Transfers
 
+!!!tip "Looking to deploy NTT?"
+    If you're ready to deploy NTT or access the CLI, follow the detailed [NTT Deployment Section](/docs/build/contract-integrations/native-token-transfers/deployment-process/){target=\_blank}.  
+
+     - For deployment steps on EVM, visit the [Deploy to EVM page](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}  
+     - For deployment steps on Solana, visit the [Deploy to Solana page](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank}
+
 ## Introduction
 
 Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. Integrators have complete control over how their tokens that use NTT behave on each chain, including the token standard, metadata, ownership, upgradeability, and custom features.
