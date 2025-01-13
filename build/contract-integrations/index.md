@@ -27,6 +27,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:octicons-arrow-right-16: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
 
+-   :octicons-arrow-switch-16:{ .lg .middle } **Token Bridge**
+
+    ---
+
+    Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+
+    [:octicons-arrow-right-16: Get started with Token Bridge](/docs/build/contract-integrations/token-bridge/)
+
 -   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
 
     ---
