@@ -28,7 +28,6 @@ For more details about the features of Wormhole Connect and a breakdown of suppo
 Wormhole Connect is deployed live in several production apps. Here are a few:
 
 - [Portal Bridge](https://portalbridge.com/){target=\_blank}
-- [Jupiter](https://jup.ag/bridge/cctp){target=\_blank}
 - [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
 
 ## Integrate Connect {: #integrate-connect }
