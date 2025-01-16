@@ -22,6 +22,18 @@ For deeper insights into serialization, deserialization, and protocol design, re
 
 With this guide, you'll gain a practical understanding of handling VAAs and protocol messages in off-chain and on-chain scenarios.
 
+## VAA Structure
+
+A VAA consists of three main components:
+
+| Section  | Description                                                                                              | 
+|----------|----------------------------------------------------------------------------------------------------------|
+| Header   |  Includes the version and guardian signature information required to verify the VAA.                     |
+| Envelope |  Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp. |
+| Payload  |  Represents the actual message, in raw bytes, without a length prefix.                                   |
+
+The Body of the VAA is the combination of the Envelope and Payload. It is the core data signed by the Wormhole Guardians and is hashed (using `keccak256`) to generate the VAA's unique identifier.
+
 ## VAAs in Protocol Contexts
 
 ### How VAAs Enable Protocol-Specific Messaging
