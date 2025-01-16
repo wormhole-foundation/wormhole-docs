@@ -24,7 +24,7 @@ With this guide, you'll gain a practical understanding of handling VAAs and prot
 
 ## VAA Structure
 
-A VAA consists of three main components:
+Understanding the structure of VAAs is fundamental to working with Wormhole’s SDKs. Each section of the VAA—Header, Envelope, and Payload—serves a specific role:
 
 | Section  | Description                                                                                              | 
 |----------|----------------------------------------------------------------------------------------------------------|
@@ -33,6 +33,11 @@ A VAA consists of three main components:
 | Payload  |  Represents the actual message, in raw bytes, without a length prefix.                                   |
 
 The Body of the VAA is the combination of the Envelope and Payload. It is the core data signed by the Wormhole Guardians and is hashed (using `keccak256`) to generate the VAA's unique identifier.
+
+When integrating protocols like Token Bridge or Wormhole Relayer:
+
+ - The TypeScript SDK handles VAAs off-chain, focusing on deserialization, validation, and payload extraction before submission
+ - The Solidity SDK processes VAAs on-chain, using libraries like `VaaLib` to decode and execute protocol actions
 
 ## VAAs in Protocol Contexts
 
