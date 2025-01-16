@@ -16,10 +16,7 @@ The diagram outlines the end-to-end flow of cross-chain communication through Wo
 1. **Source chain** - a source contract emits a message by interacting with the [Wormhole Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs
 2. **Guardian Network** - [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank}
 3. **Relayers** - off-chain relayers or applications fetch the VAA and relay it to the target chain
-4. **Target chain** - on the target chain, the message is consumed by the appropriate contract. This contract interacts with the Wormhole Core Contract to verify the VAA and execute the intended cross-chain operation
-
-!!!note
-    The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case. 
+4. **Target chain** - on the target chain, the message is consumed by the appropriate contract. This contract interacts with the Wormhole Core Contract to verify the VAA and execute the intended cross-chain operation. The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case. 
 
     - In some applications, the target contract acts as the entry point and performs verification via the Core Contract
     - In products like the Token Bridge, the Token Bridge contract itself interacts with the Core Contract
