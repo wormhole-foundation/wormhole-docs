@@ -56,21 +56,7 @@ The TypeScript SDK is designed for off-chain operations like reading, validating
 In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole’s TS SDK to deserialize and extract essential information like the emitter chain, sequence, and consistency level:
 
 ```typescript
-import { deserializeLayout } from "@wormhole-foundation/sdk-base";
-import { universalAddressItem, sequenceItem } from "@wormhole-foundation/core/layout-items/index.js";
-
-export const envelopeLayout = [
- { name: "timestamp", binary: "uint", size: 4 },
- { name: "nonce", binary: "uint", size: 4 },
- { name: "emitterChain", binary: "uint", size: 2 },
- { name: "emitterAddress", ...universalAddressItem },
- { name: "sequence", ...sequenceItem },
- { name: "consistencyLevel", binary: "uint", size: 1 },
-] as const satisfies Layout;
-
-
-const encodedEnvelope = new Uint8Array([/* binary envelope data */]);
-const deserializedEnvelope = deserializeLayout(envelopeLayout, encodedEnvelope);
+--8<-- "code/build/applications/wormhole-sdk/vaas-protocols/ts-sdk.ts"
 ```
 
 For more details, you can refer to the [parseVAA example](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/parseVaa.ts){target=\_blank} in the Wormhole SDK repository.
@@ -82,28 +68,5 @@ The Solidity SDK enables on-chain processing of VAAs directly within smart contr
 Below is an example of parsing an envelope on-chain using the Solidity SDK:
 
 ```solidity
-// SPDX-License-Identifier: Apache 2
-pragma solidity ^0.8.19;
-
-
-import {VaaLib} from "wormhole-sdk/libraries/VaaLib.sol";
-
-
-contract EnvelopeParser {
-   using VaaLib for bytes;
-
-
-   function parseEnvelope(bytes memory encodedVaa) public pure returns (
-       uint32 timestamp,
-       uint32 nonce,
-       uint16 emitterChainId,
-       bytes32 emitterAddress,
-       uint64 sequence,
-       uint8 consistencyLevel
-   ) {
-       // Skip the header and decode the envelope
-       uint offset = VaaLib.skipVaaHeaderMemUnchecked(encodedVaa, 0);
-       return VaaLib.decodeVaaEnvelopeMemUnchecked(encodedVaa, offset);
-   }
-}
+--8<-- "code/build/applications/wormhole-sdk/vaas-protocols/solidity-sdk.sol"
 ```
