@@ -11,7 +11,7 @@ Wormhole has several noteworthy components. Before discussing each component in 
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/learn/fundamentals/architecture/architecture-1.webp)
 
-The diagram outlines the end-to-end flow of cross-chain communication through Wormhole's architecture.
+The diagram outlines the end-to-end flow of cross-chain communication through Wormhole's architecture:
 
 1. **Source chain** - a source contract emits a message by interacting with the [Wormhole Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs
 2. **Guardian Network** - [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank}
