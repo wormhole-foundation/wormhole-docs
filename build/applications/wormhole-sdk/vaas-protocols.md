@@ -1,19 +1,13 @@
 ---
-title: VAAs and Protocol Messages
+title: VAAs and Protocols
 description: 
 ---
 
-# VAAs and Protocol Messages
+# VAAs and Protocols
 
 ## Introduction
 
 Wormhole’s core functionality revolves around [Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs), which are signed messages enabling secure and decentralized communication across chains. This guide focuses on their practical usage within the Wormhole ecosystem, specifically when working with protocol-specific messages in the [TypeScript](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and [Solidity](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} SDKs.
-
-This page will help you understand:
-
- - How VAAs encapsulate protocol-specific payloads, such as Token Bridge transfers, Wormhole Relayer delivery instructions, or CCTP messages
- - The role of serialization and deserialization for handling VAAs and their messages across both off-chain and on-chain environments
- - How to leverage Wormhole’s SDKs for integrating these protocols into your dApps and contracts
 
 For deeper insights into serialization, deserialization, and protocol design, refer to:
 
@@ -28,9 +22,9 @@ Understanding the structure of VAAs is fundamental to working with Wormhole’s 
 
 | Section  | Description                                                                                              | 
 |----------|----------------------------------------------------------------------------------------------------------|
-| Header   |  Includes the version and guardian signature information required to verify the VAA.                     |
-| Envelope |  Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp. |
-| Payload  |  Represents the actual message, in raw bytes, without a length prefix.                                   |
+| Header   |  Includes the version and guardian signature information required to verify the VAA                      |
+| Envelope |  Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp  |
+| Payload  |  Represents the actual message, in raw bytes, without a length prefix                                    |
 
 The Body of the VAA is the combination of the Envelope and Payload. It is the core data signed by the Wormhole Guardians and is hashed (using `keccak256`) to generate the VAA's unique identifier.
 
@@ -59,7 +53,7 @@ Each protocol integrates its payload format into the VAA structure, ensuring con
 
 The TypeScript SDK is designed for off-chain operations like reading, validating, and manipulating VAAs before they are submitted to a chain. Developers can easily deserialize VAAs to extract protocol payloads and prepare actions such as initiating token transfers or constructing delivery instructions.
 
-In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole’s SDK to deserialize and extract essential information like the emitter chain, sequence, and consistency level:
+In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole’s TS SDK to deserialize and extract essential information like the emitter chain, sequence, and consistency level:
 
 ```typescript
 import { deserializeLayout } from "@wormhole-foundation/sdk-base";
@@ -109,6 +103,4 @@ contract EnvelopeParser {
     }
 }
 ```
-
-
 
