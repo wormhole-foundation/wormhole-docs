@@ -37,7 +37,7 @@ When integrating protocols like Token Bridge or Wormhole Relayer:
 
 ### How VAAs Enable Protocol-Specific Messaging
 
-VAAs are the backbone of Wormhole’s cross-chain communication, encapsulating critical protocol payloads that drive actions on different blockchains. Each protocol—such as [Token Bridge](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/tokenBridge){target=\_blank}, [Wormhole Relayer](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/relayer){target=\_blank}, or [Circle CCTP](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/circleBridge){target=\_blank}—uses VAAs to securely transmit its messages across chains.
+VAAs are the backbone of Wormhole's cross-chain communication, encapsulating critical protocol payloads that drive actions on different blockchains. Each protocol—such as [Token Bridge](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/tokenBridge){target=\_blank}, [Wormhole Relayer](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/relayer){target=\_blank}, or [Circle CCTP](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/circleBridge){target=\_blank}—uses VAAs to securely transmit its messages across chains.
 
 Examples of mapping protocols to VAAs:
 
