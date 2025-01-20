@@ -18,7 +18,7 @@ This guide will help you understand how to handle VAAs and protocol messages in 
 
 ## VAA Structure
 
-Understanding the structure of VAAs is fundamental to working with Wormhole’s SDKs. Each section of the VAA—Header, Envelope, and Payload—serves a specific role:
+Understanding the structure of VAAs is fundamental to working with Wormhole's SDKs. Each section of the VAA—Header, Envelope, and Payload—serves a specific role:
 
 | Section  | Description                                                                                              |
 |----------|----------------------------------------------------------------------------------------------------------|
