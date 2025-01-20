@@ -117,7 +117,7 @@ Make sure you’re in the root directory of your React app, and run the followin
 npm start
 ```
 
-Now your React app should be up and running, and Wormhole Connect should be visible on [http://localhost:3000/](http://localhost:3000/){target=\_blank}. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
+Now your React app should be up and running, and Wormhole Connect should be visible on `http://localhost:3000/`. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
 
 ## Transfer Tokens from Sui to Fuji
 
