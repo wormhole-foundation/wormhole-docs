@@ -5,7 +5,7 @@ description: Configure Wormhole Connect v1 (latest) with custom chains, tokens, 
 
 ## Data Configuration
 
-This page explains how to configure Wormhole Connect’s core functionality, from choosing supported chains and tokens to bridging routes to setting up wallets and enabling price lookups. By the end, you’ll know how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+This page explains how to configure Wormhole Connect's core functionality, from choosing supported chains and tokens to bridging routes to setting up wallets and enabling price lookups. By the end, you'll know how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
 
 ## Get Started
 
@@ -30,7 +30,7 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
 
 ### Configuring Chains and RPC Endpoints {: #chains-and-rpc-endpoints }
 
-Connect lets you customize the available chains to match your project's needs. It is recommended that you provide your own RPC endpoints, as the default public ones may not support essential functions like balance fetching.
+Connect lets you customize the available chains to match your project's needs. You should provide your own RPC endpoints, as the default public ones may not support essential functions like balance fetching.
 
 === "Mainnet"
 
@@ -49,7 +49,7 @@ Connect lets you customize the available chains to match your project's needs. I
 
 ### Configuring Routes
 
-By default, Connect offers two bridging protocols: Token Bridge (for Wormhole wrapped tokens) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
+By default, Connect offers two bridging protocols: Token Bridge (for Wormhole-wrapped tokens) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
 
 #### Available Route Plugins
 
@@ -64,9 +64,9 @@ The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` 
 - **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route
 - **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
 - **`MayanRoute`** - route that offers multiple Mayan protocols
-- **`MayanRouteSWIFT`** - route for Mayan’s Swift protocol only
-- **`MayanRouteMCTP`** - route for Mayan’s MCTP protocol only
-- **`MayanRouteWH`** - route for Mayan’s original Wormhole transfer protocol
+- **`MayanRouteSWIFT`** - route for Mayan's Swift protocol only
+- **`MayanRouteMCTP`** - route for Mayan's MCTP protocol only
+- **`MayanRouteWH`** - route for Mayan's original Wormhole transfer protocol
 
 In addition to these routes, developers can create custom routes for their Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
@@ -104,7 +104,7 @@ import WormholeConnect, {
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
 const config: WormholeConnectConfig = {
-  routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
+  routes: [...INSERT_DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
 <WormholeConnect config={config} />;
@@ -121,7 +121,7 @@ The following section shows how to add an arbitrary token to your deployment of 
 
 This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
 
-See [src/config/types.ts](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
+See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
 ```typescript
 --8<-- 'code/build/applications/connect/configuration/add-token.tsx'
@@ -134,22 +134,22 @@ Connect offers a list of built-in tokens by default. You can see it below:
 - [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts){target=\_blank}
 - [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts){target=\_blank}
 
-Using the `tokens` property, you can customize the tokens shown in the UI. In the following example, we add a custom token and restrict Connect from displaying only that token, along with the native gas tokens ETH and SOL.
+You can customize the tokens shown in the UI using the' tokens' property. In the following example, we add a custom token and restrict Connect to displaying only that token, along with the native gas tokens ETH and SOL.
 
 ```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
 ```
 
-### Wallet Set Up  {: #wallet-connect-project-id }
+### Wallet Set Up  {: #reown-cloud-project-id }
 
 Your selected blockchain network determines the available wallet options when using Wormhole Connect.
 
- - For EVM chains, wallets like MetaMask and WalletConnect are supported
+ - For EVM chains, wallets like MetaMask and Reown Cloud (formerly WalletConnect) are supported
  - For Solana, you'll see options such as Phantom, Torus, and Coin98
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
-If you would like to offer WalletConnect as a supported wallet option, you'll need to obtain a project ID on the [WalletConnect cloud dashboard](https://cloud.walletconnect.com/){target=\_blank}.
+If you would like to offer Reown Cloud (formerly WalletConnect) as a supported wallet option, you'll need to obtain a project ID on the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}.
 
 ### CoinGecko API Key {: #coingecko-api-key }
 
