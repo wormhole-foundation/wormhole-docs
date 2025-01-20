@@ -63,7 +63,7 @@ For more details, you can refer to the [parseVAA example](https://github.com/wor
 
 ### Solidity SDK: On-Chain Handling of VAAs
 
-The Solidity SDK enables on-chain processing of VAAs directly within smart contracts. This is essential for real-time validation, decoding, and execution of protocol-specific payloads. Developers can use libraries like [`VaaLib`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/e19013d08d1fdf5af9e6344c637e36a270422dd9/src/libraries/VaaLib.sol){target=\_blank} to parse the VAA header and payload, ensuring the message is authentic and consistent with Wormhole’s validation.
+The Solidity SDK enables on-chain processing of VAAs directly within smart contracts. This is essential for real-time validation, decoding, and execution of protocol-specific payloads. Developers can use libraries like [`VaaLib`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/e19013d08d1fdf5af9e6344c637e36a270422dd9/src/libraries/VaaLib.sol){target=\_blank} to parse the VAA header and payload, ensuring the message is authentic and consistent with Wormhole's validation.
 
 Below is an example of parsing an envelope on-chain using the Solidity SDK:
 
