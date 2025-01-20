@@ -26,7 +26,7 @@ Understanding the structure of VAAs is fundamental to working with Wormhole's SD
 | Envelope |  Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp  |
 | Payload  |  Represents the actual message, in raw bytes, without a length prefix                                    |
 
-The Body of the VAA combines the Envelope and Payload. It is the core data signed by the Wormhole Guardians and hashed (using `keccak256`) to generate the VAA's unique identifier.
+The VAA's body combines the Envelope and Payload. The Wormhole Guardians signed the core data and hashed (using `keccak256`) to generate the VAA's unique identifier.
 
 When integrating protocols like Token Bridge or Wormhole Relayer:
 
