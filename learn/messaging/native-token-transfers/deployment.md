@@ -16,7 +16,7 @@ This model is ideal for existing token deployments that don't want to alter exis
 - **Hub chain** - tokens are locked when initiating a transfer
 - **Spoke chains** - Equivalent tokens are minted on the destination chain
 
-When transferring back to the original hub chain, tokens are burned on the source spoke chain and unlocked on the hub chain. When transferring between spoke chains, tokens are burned on the source spoke chain and minted on the destination spoke chain.
+When transferring tokens back to the original hub chain, the tokens on the source spoke chain are burned, and the previously locked tokens on the hub chain are unlocked. However, when transferring tokens directly between spoke chains, the tokens are burned on the source spoke chain and minted on the destination spoke chain.
 
 ## Burn-and-Mint
 
