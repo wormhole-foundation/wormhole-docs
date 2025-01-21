@@ -123,6 +123,9 @@ This script will output the derived PDA, which you will use in the next step.
 
 ### Set SPL Token Mint Authority
 
+!!!Warning
+    You must create your token's metadata before delegating mint authority. [See an example on how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
+
 If deploying in `burning` mode, you'll set the SPL token mint authority to the newly generated token authority PDA:
 
 ```bash
