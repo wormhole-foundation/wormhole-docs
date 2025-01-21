@@ -73,7 +73,7 @@ Update your `move.toml` file to include the necessary dependencies. Replace the 
 
 ```toml
 [package]
-name = "loyalty_contracts"
+name = "contracts"
 edition = "2024.beta" # edition = "legacy" to use legacy (pre-2024) Move
 # license = ""           # e.g., "MIT", "GPL", "Apache 2.0"
 # authors = ["..."]      # e.g., ["Joe Smith (joesmith@noemail.com)", "John Snow (johnsnow@noemail.com)"]
@@ -89,7 +89,7 @@ subdir = "sui/wormhole"
 rev = "sui-upgrade-testnet" 
 
 [addresses]
-loyalty_contracts = "0x0"
+contracts = "0x0"
 ```
 
 !!! note
@@ -398,7 +398,7 @@ Start by creating a new file in the `sources` directory called `messages.move`. 
 At the top of the file, include the necessary imports for using Wormhole, handling payloads, and working with the loyalty contract:
 
 ```
-module loyalty_contracts::messages;
+module contracts::messages;
 
 use sui::bcs;
 use sui::coin::Coin;
@@ -410,7 +410,7 @@ use wormhole::state::State;
 use wormhole::publish_message::{Self, MessageTicket};
 use wormhole::emitter::EmitterCap;
 
-use loyalty_contracts::loyalty::{Self, LoyaltyData};
+use contracts::loyalty::{Self, LoyaltyData};
 ```
 
 ??? interface "Imports"
@@ -463,7 +463,7 @@ use loyalty_contracts::loyalty::{Self, LoyaltyData};
 
     ---
 
-    `loyalty_contracts::loyalty::{Self, LoyaltyData}`  
+    `contracts::loyalty::{Self, LoyaltyData}`  
 
     Imports the loyalty module and the `LoyaltyData` struct to interact with the loyalty program’s state.  
 
