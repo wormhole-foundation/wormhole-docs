@@ -62,7 +62,7 @@ The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` 
 - **`DEFAULT_ROUTES`** - array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`)
 - [**`nttAutomaticRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank} - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
 - [**`nttManualRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}- function that returns the manually-redeemed NTT route
-- [**`NttRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/types.ts#L17){target=\_blank} - function that returns both NTT routes as an array
+- **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
 - [**`MayanRoute`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank} - route that offers multiple Mayan protocols
 - [**`MayanRouteSWIFT`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank} - route for Mayan's Swift protocol only
 - [**`MayanRouteMCTP`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank} - route for Mayan's MCTP protocol only
