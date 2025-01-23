@@ -55,18 +55,18 @@ By default, Connect offers two bridging protocols: Token Bridge (for Wormhole-wr
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
-- **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
-- **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
-- **`CCTPRoute`** - manually redeemed CCTP route
-- **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
+- [**`TokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank} - manually redeemed Wormhole Token Bridge route
+- [**`AutomaticTokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank} - automatically redeemed (relayed) Token Bridge route
+- [**`CCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank} - manually redeemed CCTP route
+- [**`AutomaticCCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank} - automatically redeemed (relayed) CCTP route
 - **`DEFAULT_ROUTES`** - array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`)
-- **`nttAutomaticRoute(nttConfig)`** - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
-- **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route
-- **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
-- **`MayanRoute`** - route that offers multiple Mayan protocols
-- **`MayanRouteSWIFT`** - route for Mayan's Swift protocol only
-- **`MayanRouteMCTP`** - route for Mayan's MCTP protocol only
-- **`MayanRouteWH`** - route for Mayan's original Wormhole transfer protocol
+- [**`nttAutomaticRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank} - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
+- [**`nttManualRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}- function that returns the manually-redeemed NTT route
+- [**`NttRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/types.ts#L17){target=\_blank} - function that returns both NTT routes as an array
+- [**`MayanRoute`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank} - route that offers multiple Mayan protocols
+- [**`MayanRouteSWIFT`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank} - route for Mayan's Swift protocol only
+- [**`MayanRouteMCTP`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank} - route for Mayan's MCTP protocol only
+- [**`MayanRouteWH`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L550){target=\_blank} - route for Mayan's original Wormhole transfer protocol
 
 In addition to these routes, developers can create custom routes for their Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
