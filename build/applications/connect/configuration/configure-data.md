@@ -77,16 +77,7 @@ For further details on the `route` plugin interface, refer to the [Wormhole Type
 To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
 ```typescript
-import WormholeConnect, {
-  AutomaticCCTPRoute,
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
-
-const config: WormholeConnectConfig = {
-  routes: [AutomaticCCTPRoute],
-};
-
-<WormholeConnect config={config} />;
+--8<-- 'code/build/applications/connect/configuration/example-cctp.ts'
 ```
 
 #### Example: Offer All Default Routes and Third-Party Plugins
@@ -94,20 +85,7 @@ const config: WormholeConnectConfig = {
 In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
-import WormholeConnect, {
-  DEFAULT_ROUTES,
-  nttRoutes,
-  MayanRouteSWIFT,
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
-
-import { myNttConfig } from './consts'; // Custom NTT configuration
-
-const config: WormholeConnectConfig = {
-  routes: [...INSERT_DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
-};
-
-<WormholeConnect config={config} />;
+--8<-- 'code/build/applications/connect/configuration/example-all-routes.ts'
 ```
 
 This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
