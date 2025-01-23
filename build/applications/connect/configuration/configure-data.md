@@ -104,7 +104,7 @@ import WormholeConnect, {
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
 const config: WormholeConnectConfig = {
-  routes: [...INSERT_DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
+  routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
 <WormholeConnect config={config} />;
