@@ -140,12 +140,32 @@ You can customize the tokens shown in the UI using the' tokens' property. In the
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
 ```
 
-### Transaction Settings
+You can whitelist tokens either by symbol by specifying tuples of [chain, address]. For example, this would show only BONK token (on all chains you've whitelisted)
+as well as [EPjFW...TDt1v](https://solscan.io/token/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v) on Solana, which is USDC.
 
-Landing transactions on Solana requires finely tuned priority fees. You can tweak how Connect determines these with `transactionSettings`:
+```jsx
+--8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist-advanced.jsx'
+```
+
+### User-inputted Tokens {: #user-inputted-tokens }
+
+As of version 2.0, Connect allows users to paste token addresses in to bridge any token they want. As an integrator, you may want to disable
+this feature if you are deploying Connect for use only with a specific token(s).
+
+If you provide a token whitelist (see above), this is turned off automatically. However, you can also disable it explicitly like this:
+
+```jsx
+--8<-- 'code/build/applications/connect/configuration/custom-disable-arbitrary-tokens.jsx'
+```
+
+Setting `ui.disableArbitraryTokens` to `true` will disable the ability to paste in arbitrary token addresses.
+
+### Transaction Settings {: #transaction-settings }
+
+Landing transactions on Solana can require finely tuned priority fees, when there is congestion. You can tweak how Connect determines these with `transactionSettings`.
 All of the parameters in this config are optional; you can provide any combination of them.
 
-```ts
+```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tx-settings-solana.jsx'
 ```
 
