@@ -166,7 +166,7 @@ const config: WormholeConnectConfig = {
         min: 200_000,
 
         // Maximum fee you want to use in microlamports, regardless of recent transactions.
-        // Defaults to 1,000,000,000.
+        // Defaults to 100,000,000.
         max: 5_000_000,
       }
     }
