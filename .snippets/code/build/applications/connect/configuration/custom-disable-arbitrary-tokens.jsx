@@ -4,7 +4,7 @@ import WormholeConnect, {
 
 const config: WormholeConnectConfig = {
   ui: {
-    disableArbitraryTokens: true
+    disableUserInputtedTokens: true
   }
 };
 

@@ -158,7 +158,7 @@ If you provide a token whitelist (see above), this is turned off automatically. 
 --8<-- 'code/build/applications/connect/configuration/custom-disable-arbitrary-tokens.jsx'
 ```
 
-Setting `ui.disableArbitraryTokens` to `true` will disable the ability to paste in arbitrary token addresses.
+Setting `ui.disableUserInputtedTokens` to `true` will disable the ability to paste in token addresses.
 
 ### Transaction Settings {: #transaction-settings }
 
