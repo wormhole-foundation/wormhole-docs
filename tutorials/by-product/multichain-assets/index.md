@@ -9,7 +9,7 @@ This section provides step-by-step instructions for creating multichain tokens, 
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Create a Multichain Tokens**
+-   :octicons-repo-16:{ .lg .middle } **Create Multichain Tokens**
 
     ---
 
