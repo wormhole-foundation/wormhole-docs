@@ -145,7 +145,7 @@ tilt up -- --algorand --solana
 
 ## Using Tilt
 
-Tilt can be treated as an external environment or Devnet that you can easily spin up and tear down. If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints that are hosted in your Tilt environment, you should check out the Tilt dashboard, located at [http://localhost:10350/overview](http://localhost:10350/overview){target=\_blank}.
+Tilt can be treated as an external environment or Devnet that you can easily spin up and tear down. If you've followed the standard setup, all your resources will be bound to various ports on localhost. To see all the endpoints that are hosted in your Tilt environment, you should check out the Tilt dashboard, located at `http://localhost:10350/overview`.
 
 All the deployed contract addresses can be found under the Devnet section of the chain being used in the [Environments](/docs/build/start-building/supported-networks/){target=\_blank} pages. Useful information pertaining to funded wallets and private keys can also be found in the [`Devnet.md`](https://github.com/wormhole-foundation/wormhole/blob/main/docs/devnet.md){target=\_blank} file of the docs.
 
