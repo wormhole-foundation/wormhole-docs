@@ -55,8 +55,6 @@
   :material-file-document: <a href="https://docs.mantle.xyz/network/introduction/overview" target="_blank">Developer Docs</a><br>
   :octicons-package-16: <a href="https://mantlescan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>Monad</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://www.monad.xyz/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.monad.xyz/" target="_blank">Developer Docs</a><br></td></tr><tr><td>MonadDevnet</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.monad.xyz/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.monad.xyz/" target="_blank">Developer Docs</a><br></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://moonbeam.network/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.moonbeam.network/" target="_blank">Developer Docs</a><br>
