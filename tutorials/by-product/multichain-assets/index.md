@@ -1,11 +1,11 @@
 ---
-title: Multichain Assets Guide
-description: description: Learn how to create multichain tokens, register wrapped tokens, and manage their metadata for seamless multichain interoperability.
+title: Multichain Assets Tutorials
+description: Explore comprehensive, step-by-step tutorials on how to register, manage, and work with multichain assets within the Wormhole ecosystem.
 ---
 
-# Multichain Assets Guide
+# Multichain Assets
 
-This section provides step-by-step instructions for creating multichain tokens, registering them on multiple blockchains, and ensuring their metadata is correctly configured. This guide will ensure your token is visible, usable, and trusted across networks.
+Multichain assets, often represented as wrapped tokens, enable seamless cross-chain interoperability. This section provides step-by-step tutorials for registering, managing, and working with these assets across different blockchains.
 
 <div class="grid cards" markdown>
 
@@ -13,8 +13,8 @@ This section provides step-by-step instructions for creating multichain tokens, 
 
     ---
 
-    Learn how to register your token on a source chain, register it on a target chain, and create a wrapped version for seamless interoperability.
+    Learn how to register your token on both a source and target chain, and create a wrapped version for seamless interoperability.
 
-    [:octicons-arrow-right-16: Start creating](/docs/tutorials/by-product/multichain-assets/multichain-token/)
+    [:octicons-arrow-right-16: Register your assets now](/docs/tutorials/by-product/multichain-assets/multichain-token/)
 
 </div>
