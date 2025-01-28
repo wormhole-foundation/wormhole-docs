@@ -1,25 +1,38 @@
-const { ethers } = require('ethers');
-const fs = require('fs');
-const path = require('path');
-require('dotenv').config();
+import { ethers } from 'ethers';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+import {
+  ChainsConfig,
+  DeployedContracts,
+  MessageReceiverJson,
+} from './interfaces';
 
-async function main() {
+dotenv.config();
+
+async function main(): Promise<void> {
   // Load the chain configuration from the JSON file
-  const chains = JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, '../deploy-config/chains.json'))
+  const chains: ChainsConfig = JSON.parse(
+    fs.readFileSync(
+      path.resolve(__dirname, '../deploy-config/chains.json'),
+      'utf8'
+    )
   );
 
   // Get the Celo Testnet configuration
   const celoChain = chains.chains.find((chain) =>
     chain.description.includes('Celo Testnet')
   );
+  if (!celoChain) {
+    throw new Error('Celo Testnet configuration not found.');
+  }
 
   // Set up the provider and wallet
   const provider = new ethers.JsonRpcProvider(celoChain.rpc);
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
   // Load the ABI and bytecode of the MessageReceiver contract
-  const messageReceiverJson = JSON.parse(
+  const messageReceiverJson: MessageReceiverJson = JSON.parse(
     fs.readFileSync(
       path.resolve(
         __dirname,
@@ -29,8 +42,7 @@ async function main() {
     )
   );
 
-  const abi = messageReceiverJson.abi;
-  const bytecode = messageReceiverJson.bytecode;
+  const { abi, bytecode } = messageReceiverJson;
 
   // Create a ContractFactory for MessageReceiver
   const MessageReceiver = new ethers.ContractFactory(abi, bytecode, wallet);
@@ -48,18 +60,21 @@ async function main() {
     __dirname,
     '../deploy-config/deployedContracts.json'
   );
-  const deployedContracts = JSON.parse(
+  const deployedContracts: DeployedContracts = JSON.parse(
     fs.readFileSync(deployedContractsPath, 'utf8')
   );
 
   // Retrieve the address of the MessageSender from the deployedContracts.json file
-  const avalancheSenderAddress = deployedContracts.avalanche.MessageSender;
+  const avalancheSenderAddress = deployedContracts.avalanche?.MessageSender;
+  if (!avalancheSenderAddress) {
+    throw new Error('Avalanche MessageSender address not found.');
+  }
 
   // Define the source chain ID for Avalanche Fuji
   const sourceChainId = 6;
 
   // Call setRegisteredSender on the MessageReceiver contract
-  const tx = await receiverContract.setRegisteredSender(
+  const tx = await (receiverContract as any).setRegisteredSender(
     sourceChainId,
     ethers.zeroPadValue(avalancheSenderAddress, 32)
   );
@@ -70,7 +85,7 @@ async function main() {
   );
 
   deployedContracts.celo = {
-    MessageReceiver: receiverContract.target,
+    MessageReceiver: receiverContract.target as any,
     deployedAt: new Date().toISOString(),
   };
 
