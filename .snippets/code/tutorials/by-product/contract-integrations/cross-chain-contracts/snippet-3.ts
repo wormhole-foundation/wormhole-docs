@@ -1,17 +1,24 @@
-const { ethers } = require('ethers');
-const fs = require('fs');
-const path = require('path');
-require('dotenv').config();
+import { ethers } from 'ethers';
+import fs from 'fs';
+import path from 'path';
+import dotenv from 'dotenv';
+import { ChainsConfig, DeployedContracts } from './interfaces';
 
-async function main() {
+dotenv.config();
+
+async function main(): Promise<void> {
   // Load the chain configuration and deployed contract addresses
-  const chains = JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, '../deploy-config/chains.json'))
+  const chains: ChainsConfig = JSON.parse(
+    fs.readFileSync(
+      path.resolve(__dirname, '../deploy-config/chains.json'),
+      'utf8'
+    )
   );
 
-  const deployedContracts = JSON.parse(
+  const deployedContracts: DeployedContracts = JSON.parse(
     fs.readFileSync(
-      path.resolve(__dirname, '../deploy-config/deployedContracts.json')
+      path.resolve(__dirname, '../deploy-config/deployedContracts.json'),
+      'utf8'
     )
   );
 
@@ -30,6 +37,12 @@ async function main() {
     chain.description.includes('Avalanche testnet')
   );
 
+  if (!avalancheChain) {
+    throw new Error(
+      'Avalanche testnet configuration not found in chains.json.'
+    );
+  }
+
   // Set up the provider and wallet
   const provider = new ethers.JsonRpcProvider(avalancheChain.rpc);
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
@@ -46,7 +59,7 @@ async function main() {
 
   // Create a contract instance for MessageSender
   const MessageSender = new ethers.Contract(
-    deployedContracts.avalanche.MessageSender,
+    deployedContracts.avalanche.MessageSender, // Automatically use the deployed address
     abi,
     wallet
   );
