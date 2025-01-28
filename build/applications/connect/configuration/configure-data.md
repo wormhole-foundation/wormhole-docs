@@ -55,18 +55,18 @@ By default, Connect offers two bridging protocols: Token Bridge (for Wormhole-wr
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
-- **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
-- **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
-- **`CCTPRoute`** - manually redeemed CCTP route
-- **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
+- [**`TokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank} - manually redeemed Wormhole Token Bridge route
+- [**`AutomaticTokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank} - automatically redeemed (relayed) Token Bridge route
+- [**`CCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank} - manually redeemed CCTP route
+- [**`AutomaticCCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank} - automatically redeemed (relayed) CCTP route
 - **`DEFAULT_ROUTES`** - array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`)
-- **`nttAutomaticRoute(nttConfig)`** - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
-- **`nttManualRoute(nttConfig)`** - function that returns the manually-redeemed NTT route
+- [**`nttAutomaticRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank} - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
+- [**`nttManualRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}- function that returns the manually-redeemed NTT route
 - **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
-- **`MayanRoute`** - route that offers multiple Mayan protocols
-- **`MayanRouteSWIFT`** - route for Mayan's Swift protocol only
-- **`MayanRouteMCTP`** - route for Mayan's MCTP protocol only
-- **`MayanRouteWH`** - route for Mayan's original Wormhole transfer protocol
+- [**`MayanRoute`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank} - route that offers multiple Mayan protocols
+- [**`MayanRouteSWIFT`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank} - route for Mayan's Swift protocol only
+- [**`MayanRouteMCTP`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank} - route for Mayan's MCTP protocol only
+- [**`MayanRouteWH`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L550){target=\_blank} - route for Mayan's original Wormhole transfer protocol
 
 In addition to these routes, developers can create custom routes for their Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
@@ -77,16 +77,7 @@ For further details on the `route` plugin interface, refer to the [Wormhole Type
 To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
 ```typescript
-import WormholeConnect, {
-  AutomaticCCTPRoute,
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
-
-const config: WormholeConnectConfig = {
-  routes: [AutomaticCCTPRoute],
-};
-
-<WormholeConnect config={config} />;
+--8<-- 'code/build/applications/connect/configuration/example-cctp.ts'
 ```
 
 #### Example: Offer All Default Routes and Third-Party Plugins
@@ -94,20 +85,7 @@ const config: WormholeConnectConfig = {
 In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
-import WormholeConnect, {
-  DEFAULT_ROUTES,
-  nttRoutes,
-  MayanRouteSWIFT,
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
-
-import { myNttConfig } from './consts'; // Custom NTT configuration
-
-const config: WormholeConnectConfig = {
-  routes: [...INSERT_DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
-};
-
-<WormholeConnect config={config} />;
+--8<-- 'code/build/applications/connect/configuration/example-all-routes.ts'
 ```
 
 This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
