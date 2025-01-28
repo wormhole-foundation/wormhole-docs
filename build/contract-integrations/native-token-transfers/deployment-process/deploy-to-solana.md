@@ -157,6 +157,9 @@ Generate or export your payer key pair, then run:
 
 The NTT Solana program will then compile and deploy, returning the program ID.
 
+!!! note
+    Refer to the [Solana docs](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for failed deployments, which provide instructions on finding buffer accounts and closing them to reclaim allocated SOL.
+
 ### Configure NTT
 
 The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
