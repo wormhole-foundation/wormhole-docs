@@ -47,6 +47,6 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Learn how to create, register, and manage wrapped multichain assets across multiple chains. These tutorials will guide you through the process of enabling asset transfers between supported networks.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multichain-assets/multichain-token/)
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multichain-assets/)
 
 </div>
