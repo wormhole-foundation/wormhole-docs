@@ -3,14 +3,14 @@ import re
 
 # Set the base directory to the root of wormhole-docs
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+docs_dir = os.path.join(base_dir, 'wormhole-docs')
+output_file = os.path.join(docs_dir, 'llms.txt')
+snippet_dir = os.path.join(docs_dir, '.snippets')
 
-# Check if base_dir already contains "wormhole-docs"
-if not base_dir.endswith('wormhole-docs'):
-    # If not, make sure to adjust it to include "wormhole-docs"
-    base_dir = os.path.join(base_dir, 'wormhole-docs')
-
-output_file = os.path.join(base_dir, 'llms.txt')
-snippet_dir = os.path.join(base_dir, '.snippets')
+print(f"Base directory: {base_dir}")
+print(f"Docs directory: {docs_dir}")
+print(f"Output file: {output_file}")
+print(f"Snippet directory: {snippet_dir}")
 
 # Regex to find lines like: --8<-- 'code/build/applications/...'
 SNIPPET_REGEX = r"--8<--\s*['\"]([^'\"]+)['\"]"
@@ -41,7 +41,7 @@ def get_all_markdown_files(directory):
 def build_index_section(files):
     section = "# List of doc pages:\n"
     for file in files:
-        relative_path = os.path.relpath(file, base_dir)
+        relative_path = os.path.relpath(file, docs_dir)
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/{doc_url_path}"
         section += f"Doc-Page: {doc_url}\n"
@@ -85,7 +85,7 @@ def build_content_section(files):
     section = "\n# Full content for each doc page\n\n"
 
     for file in files:
-        relative_path = os.path.relpath(file, base_dir)
+        relative_path = os.path.relpath(file, docs_dir)
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/learn/{doc_url_path}"
 
@@ -104,7 +104,7 @@ def build_content_section(files):
 
 
 def main():
-    files = get_all_markdown_files(base_dir)
+    files = get_all_markdown_files(docs_dir)
 
     # Header
     llms_content = "# llms.txt\n"
