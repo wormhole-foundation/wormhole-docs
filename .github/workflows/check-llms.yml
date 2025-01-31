@@ -40,8 +40,8 @@ jobs:
         id: generated_llms_hash
         run: |
           # Full path to the generated llms.txt file
-          llms_file="/home/runner/work/wormhole-docs/llms.txt"
-          
+          llms_file="/home/runner/work/wormhole-docs/wormhole-docs/llms.txt"
+
           # Check if the file exists before calculating the hash
           if [ -f "$llms_file" ]; then
             sha256sum "$llms_file" | awk '{ print $1 }' > generated_sha256.txt
