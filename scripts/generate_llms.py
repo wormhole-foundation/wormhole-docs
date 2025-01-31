@@ -7,11 +7,6 @@ docs_dir = os.path.join(base_dir, 'wormhole-docs')
 output_file = os.path.join(docs_dir, 'llms.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
 
-print(f"Base directory: {base_dir}")
-print(f"Docs directory: {docs_dir}")
-print(f"Output file: {output_file}")
-print(f"Snippet directory: {snippet_dir}")
-
 # Regex to find lines like: --8<-- 'code/build/applications/...'
 SNIPPET_REGEX = r"--8<--\s*['\"]([^'\"]+)['\"]"
 
