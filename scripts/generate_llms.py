@@ -41,7 +41,7 @@ def get_all_markdown_files(directory):
 def build_index_section(files):
     section = "# List of doc pages:\n"
     for file in files:
-        relative_path = os.path.relpath(file, docs_dir)
+        relative_path = os.path.relpath(file, base_dir)
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/{doc_url_path}"
         section += f"Doc-Page: {doc_url}\n"
@@ -85,7 +85,7 @@ def build_content_section(files):
     section = "\n# Full content for each doc page\n\n"
 
     for file in files:
-        relative_path = os.path.relpath(file, docs_dir)
+        relative_path = os.path.relpath(file, base_dir)
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/learn/{doc_url_path}"
 
@@ -104,7 +104,7 @@ def build_content_section(files):
 
 
 def main():
-    files = get_all_markdown_files(docs_dir)
+    files = get_all_markdown_files(base_dir)
 
     # Header
     llms_content = "# llms.txt\n"
