@@ -35,6 +35,8 @@ def get_all_markdown_files(directory):
             if file.endswith(('.md', '.mdx')):
                 results.append(os.path.join(root, file))
 
+     # Sort the files to ensure consistent order
+    results.sort()  # Sorting alphabetically
     return results
 
 
