@@ -3,7 +3,7 @@
 
 Documentation: https://wormhole.com/docs
 
-# List of doc pages (from learn/):
+# List of doc pages:
 Doc-Page: https://wormhole.com/docs/infrastructure/index
 Doc-Page: https://wormhole.com/docs/infrastructure/relayers/index
 Doc-Page: https://wormhole.com/docs/infrastructure/relayers/run-relayer
