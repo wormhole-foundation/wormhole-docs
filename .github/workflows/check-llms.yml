@@ -28,9 +28,8 @@ jobs:
           if [ -f "llms.txt" ]; then
             # Calculate SHA256 hash of the llms.txt file in the PR branch (checked out by default)
             sha256sum llms.txt | awk '{ print $1 }' > pr_sha256.txt
-            cat pr_sha256.txt
           else
-            echo "0x" > pr_sha256.txt
+            echo "0000" > pr_sha256.txt
           fi
           cat pr_sha256.txt
 
@@ -50,6 +49,7 @@ jobs:
 
           if [ "$generated_hash" != "$pr_hash" ]; then
             echo "Error: SHA256 hashes do not match. The generated llms.txt file differs from the one in the PR."
+            echo "You need to run the generate LLMS script. Check README."
             exit 1
           else
             echo "SHA256 hashes match. The llms.txt file is consistent."
