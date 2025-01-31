@@ -1,0 +1,119 @@
+import os
+import re
+
+# Define paths
+docs_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'wormhole-docs')
+output_file = os.path.join(docs_dir, 'llms.txt')
+snippet_dir = os.path.join(docs_dir, '.snippets')
+
+# Regex to find lines like: --8<-- 'code/build/applications/...'
+SNIPPET_REGEX = r"--8<--\s*['\"]([^'\"]+)['\"]"
+
+
+def get_all_markdown_files(directory):
+    """
+    Recursively collect all markdown (.md, .mdx) files from the given directory.
+    """
+    results = []
+    if not os.path.exists(directory):
+        print(f"Docs directory not found: {directory}")
+        return results
+
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.endswith(('.md', '.mdx')):
+                results.append(os.path.join(root, file))
+
+    return results
+
+
+def build_index_section(files):
+    section = "# List of doc pages (from learn/):\n"
+    for file in files:
+        relative_path = os.path.relpath(file, docs_dir)
+        doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
+        doc_url = f"https://wormhole.com/docs/{doc_url_path}"
+        section += f"Doc-Page: {doc_url}\n"
+    return section
+
+
+def parse_line_range(snippet_path):
+    """
+    Parse snippet paths to extract file and line ranges if available.
+    """
+    parts = snippet_path.split(':')
+    file_only = parts[0]
+    if len(parts) >= 3:
+        line_start = int(parts[1])
+        line_end = int(parts[2])
+        return file_only, line_start, line_end
+    return file_only, None, None
+
+
+def replace_snippet_placeholders(markdown, snippet_directory):
+    def replacement(match):
+        snippet_ref = match.group(1)
+        file_only, line_start, line_end = parse_line_range(snippet_ref)
+        absolute_snippet_path = os.path.join(snippet_directory, file_only)
+
+        if not os.path.exists(absolute_snippet_path):
+            print(f"Snippet file not found: {absolute_snippet_path}. Leaving placeholder unchanged.")
+            return match.group(0)
+
+        with open(absolute_snippet_path, 'r', encoding='utf-8') as snippet_file:
+            snippet_content = snippet_file.read()
+
+        if line_start and line_end:
+            lines = snippet_content.split('\n')
+            snippet_content = '\n'.join(lines[line_start:line_end])
+
+        return snippet_content.strip()
+
+    return re.sub(SNIPPET_REGEX, replacement, markdown)
+
+
+def build_content_section(files):
+    section = "\n# Full content for each doc page\n\n"
+
+    for file in files:
+        relative_path = os.path.relpath(file, docs_dir)
+        doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
+        doc_url = f"https://wormhole.com/docs/learn/{doc_url_path}"
+
+        with open(file, 'r', encoding='utf-8') as file_content:
+            content = file_content.read()
+
+        # Replace snippet placeholders
+        content = replace_snippet_placeholders(content, snippet_dir)
+
+        section += f"Doc-Content: {doc_url}\n"
+        section += "--- BEGIN CONTENT ---\n"
+        section += content.strip()
+        section += "\n--- END CONTENT ---\n\n"
+
+    return section
+
+
+def main():
+    files = get_all_markdown_files(docs_dir)
+
+    # Header
+    llms_content = "# llms.txt\n"
+    llms_content += "# Generated automatically. Do not edit directly.\n\n"
+    llms_content += "Documentation: https://wormhole.com/docs\n\n"
+
+    # Add the index of pages
+    llms_content += build_index_section(files)
+
+    # Add the full content
+    llms_content += build_content_section(files)
+
+    # Write to llms.txt
+    with open(output_file, 'w', encoding='utf-8') as output:
+        output.write(llms_content)
+
+    print(f"llms.txt created or updated at: {output_file}")
+
+
+if __name__ == "__main__":
+    main()
