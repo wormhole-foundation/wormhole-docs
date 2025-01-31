@@ -1,8 +1,9 @@
 import os
 import re
 
-# Define paths
-docs_dir = os.path.join(os.path.dirname(__file__), '..', '..', 'wormhole-docs')
+# Set the base directory to the root of wormhole-docs
+base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+docs_dir = os.path.join(base_dir, 'wormhole-docs')
 output_file = os.path.join(docs_dir, 'llms.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
 
@@ -12,7 +13,8 @@ SNIPPET_REGEX = r"--8<--\s*['\"]([^'\"]+)['\"]"
 
 def get_all_markdown_files(directory):
     """
-    Recursively collect all markdown (.md, .mdx) files from the given directory.
+    Recursively collect all markdown (.md, .mdx) files from subdirectories of the given directory,
+    skipping files directly in the root of "wormhole-docs".
     """
     results = []
     if not os.path.exists(directory):
@@ -20,6 +22,10 @@ def get_all_markdown_files(directory):
         return results
 
     for root, _, files in os.walk(directory):
+        # Skip the root directory
+        if root == directory:
+            continue
+
         for file in files:
             if file.endswith(('.md', '.mdx')):
                 results.append(os.path.join(root, file))
@@ -43,11 +49,9 @@ def parse_line_range(snippet_path):
     """
     parts = snippet_path.split(':')
     file_only = parts[0]
-    if len(parts) >= 3:
-        line_start = int(parts[1])
-        line_end = int(parts[2])
-        return file_only, line_start, line_end
-    return file_only, None, None
+    line_start = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else None
+    line_end = int(parts[2]) if len(parts) > 2 and parts[2].isdigit() else None
+    return file_only, line_start, line_end
 
 
 def replace_snippet_placeholders(markdown, snippet_directory):
@@ -63,7 +67,7 @@ def replace_snippet_placeholders(markdown, snippet_directory):
         with open(absolute_snippet_path, 'r', encoding='utf-8') as snippet_file:
             snippet_content = snippet_file.read()
 
-        if line_start and line_end:
+        if line_start is not None and line_end is not None:
             lines = snippet_content.split('\n')
             snippet_content = '\n'.join(lines[line_start:line_end])
 
