@@ -1,9 +1,7 @@
-name: Validate llms.txt
+name: Checks llms.txt
 
 on:
   pull_request:
-    paths:
-      - 'wormhole-docs/llms.txt'
     branches:
       - main
 
@@ -24,14 +22,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
 
-      - name: Generate llms.txt using the Python script
-        run: python3 scripts/generate_llms.py
-
       - name: Get SHA256 hash of the PR's llms.txt file
         id: pr_llms_hash
         run: |
-          # Calculate SHA256 hash of the llms.txt file in the PR branch (checked out by default)
-          sha256sum wormhole-docs/llms.txt | awk '{ print $1 }' > pr_sha256.txt
+          if [ -f "llms.txt" ]; then
+            # Calculate SHA256 hash of the llms.txt file in the PR branch (checked out by default)
+            sha256sum llms.txt | awk '{ print $1 }' > pr_sha256.txt
+          else
+            echo "0000" > pr_sha256.txt
+          fi
           cat pr_sha256.txt
 
       - name: Generate llms.txt using the Python script
@@ -40,7 +39,7 @@ jobs:
       - name: Calculate SHA256 hash of the generated llms.txt
         id: generated_llms_hash
         run: |
-          sha256sum wormhole-docs/llms.txt | awk '{ print $1 }' > generated_sha256.txt
+          sha256sum llms.txt | awk '{ print $1 }' > generated_sha256.txt
           cat generated_sha256.txt
 
       - name: Compare the SHA256 hashes
@@ -50,6 +49,7 @@ jobs:
 
           if [ "$generated_hash" != "$pr_hash" ]; then
             echo "Error: SHA256 hashes do not match. The generated llms.txt file differs from the one in the PR."
+            echo "You need to run the generate LLMS script. Check README."
             exit 1
           else
             echo "SHA256 hashes match. The llms.txt file is consistent."
