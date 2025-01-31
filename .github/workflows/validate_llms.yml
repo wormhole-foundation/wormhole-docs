@@ -2,8 +2,6 @@ name: Validate llms.txt
 
 on:
   pull_request:
-    paths:
-      - 'wormhole-docs/llms.txt'
     branches:
       - main
 
