@@ -11840,7 +11840,7 @@ description: FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScr
 
 ## Why does the `toNative` function in the TypeScript SDK return an error?
 
-The `toNative` function may return an error if the platform-specific module (such as Solana or EVM) is not correctly imported or passed into the Wormhole constructor.
+Test Test The `toNative` function may return an error if the platform-specific module (such as Solana or EVM) is not correctly imported or passed into the Wormhole constructor.
 
 To fix this, ensure the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
 
