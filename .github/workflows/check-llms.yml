@@ -44,6 +44,7 @@ jobs:
 
           # Check if the file exists before calculating the hash
           if [ -f "$llms_file" ]; then
+            cat $llms_file
             sha256sum "$llms_file" | awk '{ print $1 }' > generated_sha256.txt
           else
             echo "Error: llms.txt not found at $llms_file"
