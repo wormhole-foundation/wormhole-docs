@@ -3,9 +3,14 @@ import re
 
 # Set the base directory to the root of wormhole-docs
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-docs_dir = os.path.join(base_dir, 'wormhole-docs')
+
+# Check if base_dir already contains "wormhole-docs"
+if not base_dir.endswith('wormhole-docs'):
+    # If not, make sure to adjust it to include "wormhole-docs"
+    base_dir = os.path.join(base_dir, 'wormhole-docs')
+
 output_file = os.path.join(base_dir, 'llms.txt')
-snippet_dir = os.path.join(docs_dir, '.snippets')
+snippet_dir = os.path.join(base_dir, '.snippets')
 
 # Regex to find lines like: --8<-- 'code/build/applications/...'
 SNIPPET_REGEX = r"--8<--\s*['\"]([^'\"]+)['\"]"
