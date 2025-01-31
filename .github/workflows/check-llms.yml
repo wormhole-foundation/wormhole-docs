@@ -25,7 +25,7 @@ jobs:
       - name: Get SHA256 hash of the PR's llms.txt file
         id: pr_llms_hash
         run: |
-          if [ -f "wormhole-docs/llms.txt" ]; then
+          if [ -f "llms.txt" ]; then
             # Calculate SHA256 hash of the llms.txt file in the PR branch (checked out by default)
             sha256sum llms.txt | awk '{ print $1 }' > pr_sha256.txt
             cat pr_sha256.txt
