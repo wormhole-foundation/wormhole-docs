@@ -34,7 +34,7 @@ def get_all_markdown_files(directory):
 
 
 def build_index_section(files):
-    section = "# List of doc pages (from learn/):\n"
+    section = "# List of doc pages:\n"
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
