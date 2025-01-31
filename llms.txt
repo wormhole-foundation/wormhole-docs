@@ -12739,7 +12739,7 @@ description: Learn how to install and use the Wormhole CLI, including commands a
 
 # Wormhole CLI
 
-This tool is a command-line interface to Wormhole, allowing you to perform various actions, such as querying a transaction's status or submitting token transfers.
+Test Test This tool is a command-line interface to Wormhole, allowing you to perform various actions, such as querying a transaction's status or submitting token transfers.
 
 ## Installation
 
