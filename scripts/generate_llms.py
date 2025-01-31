@@ -4,7 +4,7 @@ import re
 # Set the base directory to the root of wormhole-docs
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 docs_dir = os.path.join(base_dir, 'wormhole-docs')
-output_file = os.path.join(base_dir, 'llms.txt')
+output_file = os.path.join(docs_dir, 'llms.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
 
 # Regex to find lines like: --8<-- 'code/build/applications/...'
@@ -30,6 +30,8 @@ def get_all_markdown_files(directory):
             if file.endswith(('.md', '.mdx')):
                 results.append(os.path.join(root, file))
 
+     # Sort the files to ensure consistent order
+    results.sort()  # Sorting alphabetically
     return results
 
 
