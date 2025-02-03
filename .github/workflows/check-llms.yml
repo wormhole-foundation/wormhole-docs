@@ -58,7 +58,8 @@ jobs:
 
           if [ "$generated_hash" != "$pr_hash" ]; then
             echo "Error: SHA256 hashes do not match. The generated llms.txt file differs from the one in the PR."
-            echo "You need to run the generate LLMS script. Check README."
+            echo "You need to run the generate LLMS script:"
+            echo "python3 scripts/generate_llms.py"
             exit 1
           else
             echo "SHA256 hashes match. The llms.txt file is consistent."
