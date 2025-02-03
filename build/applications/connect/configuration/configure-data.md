@@ -118,8 +118,7 @@ You can customize the tokens shown in the UI using the' tokens' property. In the
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
 ```
 
-You can whitelist tokens either by symbol by specifying tuples of [chain, address]. For example, this would show only BONK token (on all chains you've whitelisted)
-as well as [EPjFW...TDt1v](https://solscan.io/token/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v) on Solana, which is USDC.
+You can whitelist tokens by symbol or by specifying tuples of [chain, address]. For example, this would show only BONK token (on all chains you've whitelisted) as well as [`EPjFW...TDt1v`](https://solscan.io/token/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v){target=\_blank} on Solana, which is USDC.
 
 ```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist-advanced.jsx'
@@ -127,8 +126,7 @@ as well as [EPjFW...TDt1v](https://solscan.io/token/EPjFWdd5AufqSSqeM2qN1xzybapC
 
 ### User-inputted Tokens {: #user-inputted-tokens }
 
-As of version 2.0, Connect allows users to paste token addresses in to bridge any token they want. As an integrator, you may want to disable
-this feature if you are deploying Connect for use only with a specific token(s).
+As of version 2.0, Connect allows users to paste token addresses to bridge any token they want. As an integrator, you may want to disable this feature if you are deploying Connect for use only with a specific token(s).
 
 If you provide a token whitelist (see above), this is turned off automatically. However, you can also disable it explicitly like this:
 
@@ -140,15 +138,14 @@ Setting `ui.disableUserInputtedTokens` to `true` will disable the ability to pas
 
 ### Transaction Settings {: #transaction-settings }
 
-Landing transactions on Solana can require finely tuned priority fees, when there is congestion. You can tweak how Connect determines these with `transactionSettings`.
-All of the parameters in this config are optional; you can provide any combination of them.
+Landing transactions on Solana can require finely tuned priority fees when there is congestion. You can tweak how Connect determines these with `transactionSettings`. All of the parameters in this configuration are optional; you can provide any combination of them.
 
 ```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tx-settings-solana.jsx'
 ```
 
 !!! note
-    Connect can calculate fees more accurately if you are using a [Triton](https://triton.one) RPC endpoint.
+    Connect can calculate fees more accurately if you are using a [Triton](https://triton.one){target=\_blank} RPC endpoint.
 
 ### Wallet Set Up  {: #reown-cloud-project-id }
 
