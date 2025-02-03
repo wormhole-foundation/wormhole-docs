@@ -13,6 +13,9 @@ The message is wrapped up in a structure called a VAA, which combines the messag
 
 VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. To obtain a VAA, one can query the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank} with this information.
 
+!!!note
+    The `sequence` field, in particular, depends on the final ordering of blocks on the emitter chain. When a lower consistency level is chosen (i.e., not waiting for finality), there is a slight chance that chain reorganizations could lead to multiple, slightly different VAAs appearing for what looks like the “same” message on the user side. The tuple (`emitter_chain`, `emitter_address`, `sequence`) is guaranteed unique only after the transaction that emitted the message has reached the chosen level of finality.
+
 These VAAs are ultimately what a smart contract on a receiving chain must process to receive a Wormhole message.
 
 ## VAA Format
@@ -36,6 +39,11 @@ Where each `signature` is:
 ### Body
 
 The body is _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body. This requirement exists so that there is always a one-to-one relationship between VAAs and messages to avoid double-processing messages.
+
+!!!note
+    While the body is deterministically derived from the on-chain message, this is strictly true once the chain’s state is finalized (i.e., no further reorgs). If a reorg occurs and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the “same” message.
+
+    This scenario is rare on highly secure chains, but it is possible if you choose a faster (less finalized) consistency level.
 
 - `timestamp` ++"u32"++ - the timestamp of the block this message was published in
 - `nonce` ++"u32"++
@@ -168,3 +176,12 @@ With the concepts now defined, it is possible to illustrate what a full flow for
 3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload; to complete the final step, the VAA itself is submitted (or relayed) to the target chain to be processed by a receiving contract
 
 ![Lifetime of a message diagram](/docs/images/learn/infrastructure/vaas/lifetime-vaa-diagram.webp)
+
+## Consistency and Finality
+
+The consistency level you set on the emitting contract determines how many confirmations the Guardians await before attesting a message. Higher consistency levels reduce the likelihood of reorgs invalidating or duplicating your message but may increase the time to produce a final VAA.
+
+- **High consistency (finalized)** – minimizes the risk of receiving multiple VAAs for the same message. `(emitter_chain, emitter_address, sequence)` is truly unique once the chain is finalized
+- **Lower consistency** – a faster but riskier approach. If a reorg occurs, Guardians on different forks might attest slightly different versions of the message, leading to multiple VAAs
+
+In most scenarios, applications can safely rely on a single VAA once finality has been reached. However, if your use case strictly requires guaranteed uniqueness for each emitted message, configure a higher consistency level even in the event of reorgs. 
