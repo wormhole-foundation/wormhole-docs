@@ -58,6 +58,15 @@ The body contains relevant information for entities, such as contracts, or other
 !!! note
     Because VAAs have no destination, they are effectively multicast. Any Core Contract on any chain in the network will verify them as authentic. If a VAA has a specific destination, relayers are entirely responsible for completing that delivery appropriately.
 
+## Consistency and Finality
+
+The consistency level you set on the emitting contract determines how many confirmations the Guardians await before attesting a message. Higher consistency levels reduce the likelihood of reorgs invalidating or duplicating your message but may increase the time to produce a final VAA.
+
+- **High consistency** – minimizes the risk of receiving multiple VAAs for the same message. `(emitter_chain, emitter_address, sequence)` is truly unique once the chain is finalized
+- **Lower consistency** – a faster but riskier approach. If a reorg occurs, Guardians on different forks might attest slightly different versions of the message, leading to multiple VAAs
+
+In most scenarios, applications can safely rely on a single VAA once finality has been reached. However, if your use case strictly requires guaranteed uniqueness for each emitted message, configure a higher consistency level even in the event of reorgs. 
+
 ## Signatures
 
 The body of the VAA is hashed twice with `keccak256` to produce the signed digest message.
@@ -176,12 +185,3 @@ With the concepts now defined, it is possible to illustrate what a full flow for
 3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload; to complete the final step, the VAA itself is submitted (or relayed) to the target chain to be processed by a receiving contract
 
 ![Lifetime of a message diagram](/docs/images/learn/infrastructure/vaas/lifetime-vaa-diagram.webp)
-
-## Consistency and Finality
-
-The consistency level you set on the emitting contract determines how many confirmations the Guardians await before attesting a message. Higher consistency levels reduce the likelihood of reorgs invalidating or duplicating your message but may increase the time to produce a final VAA.
-
-- **High consistency (finalized)** – minimizes the risk of receiving multiple VAAs for the same message. `(emitter_chain, emitter_address, sequence)` is truly unique once the chain is finalized
-- **Lower consistency** – a faster but riskier approach. If a reorg occurs, Guardians on different forks might attest slightly different versions of the message, leading to multiple VAAs
-
-In most scenarios, applications can safely rely on a single VAA once finality has been reached. However, if your use case strictly requires guaranteed uniqueness for each emitted message, configure a higher consistency level even in the event of reorgs. 
