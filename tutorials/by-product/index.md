@@ -25,14 +25,6 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/contract-integrations/)
 
--   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
-
-    ---
-
-    Discover how to move native assets across different chains. These tutorials will help you set up and execute cross-chain token transfers, ensuring secure, efficient, and scalable bridging solutions for your users and applications.
-
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/native-token-transfers/)
-
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
     ---
@@ -48,5 +40,13 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
     Master the tools to build cross-chain applications with the Wormhole SDK. These tutorials cover installation to advanced functionality, helping you streamline development, reduce complexity, and quickly bring your ideas to life. 
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/)
+
+-   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
+
+    ---
+
+    Learn how to create, register, and manage wrapped multichain assets across multiple chains. These tutorials will guide you through the process of enabling asset transfers between supported networks.
+
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multichain-assets/)
 
 </div>
