@@ -104,12 +104,12 @@ The following section shows how to add an arbitrary token to your deployment of 
 !!! note
     You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
 
-This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which isn't built in by default and provided under the `tokensConfig` key.
+This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which isn't built in by default and provided under the `tokensConfig` key.
 
 See [`src/config/types.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
 ```json
---8<-- 'code/build/applications/connect/configuration/arbitrary-token.json'
+--8<-- 'code/build/applications/connect/configuration/arbitrary-token.tsx'
 ```
 
 ## More Configuration Options {: #more-configuration-options }
@@ -172,18 +172,18 @@ By default, Connect will offer its complete built-in list of assets, but you can
 
 By default, Connect will offer its complete built-in list of routes, but you can restrict the possible route assets by defining a subset under `routes.` By default, Connect will offer its complete built-in list:
 
-|    Mainnet    |    Testnet    |
-|:-------------:|:-------------:|
-|    bridge     |    bridge     |
-|     relay     |     relay     |
-|  cctpManual   |  cctpManual   |
-|   cctpRelay   |   cctpRelay   |
-|   nttManual   |   nttManual   |
-|   nttRelay    |   nttRelay    |
-|   ethBridge   |       -       |
-| wstETHBridge  |       -       |
-|  usdtBridge   |       -       |
-|     tBTC      |     tBTC      |
+|   Mainnet    |  Testnet   |
+|:------------:|:----------:|
+|    bridge    |   bridge   |
+|    relay     |   relay    |
+|  cctpManual  | cctpManual |
+|  cctpRelay   | cctpRelay  |
+|  nttManual   | nttManual  |
+|   nttRelay   |  nttRelay  |
+|  ethBridge   |     -      |
+| wstETHBridge |     -      |
+|  usdtBridge  |     -      |
+|     tBTC     |    tBTC    |
 
 ### Wallet Set Up  {: #wallet-connect-project-id }
 
