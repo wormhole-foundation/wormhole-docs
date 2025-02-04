@@ -13,7 +13,7 @@ description: Explore Wormhole's Native Token Transfers for flexible cross-chain 
 
 ## Introduction
 
-Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. Integrators have complete control over how their tokens that use NTT behave on each chain, including the token standard, metadata, ownership, upgradeability, and custom features.
+Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. By eliminating wrapped assets, NTT preserves each token’s native properties across chains, letting you maintain complete control over metadata, ownership, upgrade authority, and other custom features.
 
 The framework offers two modes of operation for existing token deployments. In locking mode, the original token supply is preserved on a single chain. In contrast, the burning mode enables the deployment of multichain tokens, distributing the supply across various chains.
 
@@ -21,6 +21,7 @@ The framework offers two modes of operation for existing token deployments. In l
 
 Wormhole's Native Token Transfers (NTT) framework offers a comprehensive and flexible solution for seamless token transfers across blockchains. Below are some of the key features that make this framework stand out:
 
+- **No wrapped tokens** – tokens remain native on every chain where NTT is deployed. All token properties and metadata remain consistent, avoiding any confusion or overhead introduced by wrapped tokens
 - **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience
 - **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
 - **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
@@ -53,7 +54,7 @@ The following example projects demonstrate the use of the Wormhole NTT framework
 
 The Token Bridge offers a secure, low-effort integration suitable for applications like a Web3 game that wants to make its token tradable across multiple chains.
 
-- **Mechanism** - solely utilizes a lock and mint model
+- **Mechanism** - solely utilizes a lock and mint model. Unlike NTT, the Token Bridge issues a wrapped asset on the destination chain, rather than preserving the original token contract
 - **Security** - preconfigured rate limiting and integrated Global Accountant
 - **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/docs/learn/fundamentals/security/){target=\_blank}
 - **Token contracts** - wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
