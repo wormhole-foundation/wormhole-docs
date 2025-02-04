@@ -112,7 +112,7 @@ Connect offers a list of built-in tokens by default. You can see it below:
 - [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts){target=\_blank}
 - [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts){target=\_blank}
 
-You can customize the tokens shown in the UI using the' tokens' property. In the following example, we add a custom token and restrict Connect to displaying only that token, along with the native gas tokens ETH and SOL.
+You can customize the tokens shown in the UI using the tokens property. The following example adds a custom token and limits Connect to showing only that token, along with the native gas tokens ETH and SOL.
 
 ```jsx
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist.jsx'
