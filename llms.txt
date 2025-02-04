@@ -119,7 +119,7 @@ Doc-Page: https://wormhole.com/docs/tutorials/index
 
 # Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/learn/.github/pull-request-template
+Doc-Content: https://wormhole.com/docs/.github/pull-request-template
 --- BEGIN CONTENT ---
 ### Description
 
@@ -132,7 +132,7 @@ Please explain the changes this PR addresses here.
 - [ ] If pages have been moved, I have created redirects in the `wormhole-mkdocs` repo
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/contract-integrations/cctp/DepositForBurn-event
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/contract-integrations/cctp/DepositForBurn-event
 --- BEGIN CONTENT ---
 ??? child "Event Arguments"
 
@@ -183,7 +183,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/contract-integ
     Authorized caller of the `receiveMessage` function on the destination domain, if not equal to `bytes32(0)`. If equal to `bytes32(0)`, any address can call `receiveMessage`.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/contract-integrations/cctp/MessageSent-event
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/contract-integrations/cctp/MessageSent-event
 --- BEGIN CONTENT ---
 `MessageSent` - event emitted when a new message is dispatched
 
@@ -194,7 +194,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/contract-integ
     The raw bytes of the message.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/chain-ids/chain-ids
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/reference/chain-ids/chain-ids
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CHAIN_IDS-->
@@ -210,7 +210,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/chai
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/consistency-levels/consistency-levels
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/reference/consistency-levels/consistency-levels
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CONSISTENCY_LEVELS-->
@@ -218,7 +218,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/cons
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/contract-addresses/cctp
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/cctp
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CCTP_ADDRESS-->
@@ -238,7 +238,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/cont
 <!--CCTP_ADDRESS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/contract-addresses/core-contracts
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/core-contracts
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CORE_ADDRESS-->
@@ -258,7 +258,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/cont
 <!--CORE_ADDRESS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/contract-addresses/relayer
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/relayer
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--RELAYER_BRIDGE_ADDRESS-->
@@ -278,7 +278,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/cont
 <!--RELAYER_BRIDGE_ADDRESS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/contract-addresses/token-bridge
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/token-bridge
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--TOKEN_BRIDGE_ADDRESS-->
@@ -298,7 +298,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/reference/cont
 <!--TOKEN_BRIDGE_ADDRESS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/start-building/testnet-faucets/testnet-faucets
+Doc-Content: https://wormhole.com/docs/.snippets/text/build/start-building/testnet-faucets/testnet-faucets
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 
@@ -337,7 +337,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/build/start-building
 <!--TESTNET_FAUCETS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/.snippets/text/supported-networks
+Doc-Content: https://wormhole.com/docs/.snippets/text/supported-networks
 --- BEGIN CONTENT ---
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
@@ -498,7 +498,7 @@ Doc-Content: https://wormhole.com/docs/learn/.snippets/text/supported-networks
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/configuration/configure-data
+Doc-Content: https://wormhole.com/docs/build/applications/connect/configuration/configure-data
 --- BEGIN CONTENT ---
 ---
 title: Connect Data Configuration
@@ -721,7 +721,7 @@ Connect offers a list of built-in tokens by default. You can see it below:
 - [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts){target=\_blank}
 - [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts){target=\_blank}
 
-You can customize the tokens shown in the UI using the' tokens' property. In the following example, we add a custom token and restrict Connect to displaying only that token, along with the native gas tokens ETH and SOL.
+You can customize the tokens shown in the UI using the `tokens` property. The following example adds a custom token and limits Connect to showing only that token, along with the native gas tokens ETH and SOL.
 
 ```jsx
 import WormholeConnect, {
@@ -739,13 +739,11 @@ const config: WormholeConnectConfig = {
     BONK: {
       key: 'BONK',
       symbol: 'BONK',
-      nativeChain: 'Ethereum',
-      icon: Icon.ETH,
+      icon: 'https://assets.coingecko.com/coins/images/28600/large/bonk.jpg?1696527587',
       tokenId: {
         chain: 'Ethereum',
         address: '0x1151CB3d861920e07a38e03eEAd12C32178567F6',
       },
-      coinGeckoId: 'bonk',
       decimals: 18,
     },
   },
@@ -760,6 +758,97 @@ function App() {
   return <WormholeConnect config={config} />;
 }
 ```
+
+You can whitelist tokens by symbol or by specifying tuples of [chain, address]. For example, this would show only BONK token (on all chains you've whitelisted) as well as [`EPjFW...TDt1v`](https://solscan.io/token/EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v){target=\_blank} on Solana, which is USDC.
+
+```jsx
+import WormholeConnect, {
+  WormholeConnectConfig,
+} from '@wormhole-foundation/wormhole-connect';
+
+const config: WormholeConnectConfig = {
+  chains: ['Ethereum', 'Solana'],
+  tokens: [
+    // Whitelist BONK on every whitelisted chain
+    'BONK',
+    // Also whitelist USDC, specifically on Solana
+    ['Solana', 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v']
+  ],
+  ...
+};
+
+function App() {
+  return <WormholeConnect config={config} />;
+}
+```
+
+### User-Inputted Tokens {: #user-inputted-tokens }
+
+As of version 2.0, Connect allows users to paste token addresses to bridge any token they want. As an integrator, you may want to disable this feature if you are deploying Connect for use only with a specific token(s).
+
+If you provide a token whitelist (see above), this is turned off automatically. However, you can also disable it explicitly like this:
+
+```jsx
+import WormholeConnect, {
+  WormholeConnectConfig,
+} from '@wormhole-foundation/wormhole-connect';
+
+const config: WormholeConnectConfig = {
+  ui: {
+    disableUserInputtedTokens: true
+  }
+};
+
+function App() {
+  return <WormholeConnect config={config} />;
+}
+```
+
+Setting `ui.disableUserInputtedTokens` to `true` will disable the ability to paste in token addresses.
+
+### Transaction Settings {: #transaction-settings }
+
+Landing transactions on Solana can require finely tuned priority fees when there is congestion. You can tweak how Connect determines these with `transactionSettings`. All of the parameters in this configuration are optional; you can provide any combination of them.
+
+```jsx
+import WormholeConnect, {
+  WormholeConnectConfig,
+} from '@wormhole-foundation/wormhole-connect';
+
+const config: WormholeConnectConfig = {
+  transactionSettings: {
+    Solana: {
+      priorityFee: {
+        // Number between 0-1, defaults to 0.9. Higher percentile yields higher fees.
+        // For example, you can set percentile to 0.95 to make Connect compute the
+        // 95th percentile priority fee amount based on recent transactions
+        percentile: 0.95,
+
+        // Any number, defaults to 1.0. The fee amount is multiplied by this number.
+        // This can be used to further raise or lower the fees Connect is using.
+        // For example, percentile=0.95 and percentileMultiple=1.1 would use
+        // the 95th percentile fee, with a 10% increase
+        percentileMultiple: 1.1,
+
+        // Minimum fee you want to use in microlamports, regardless of recent transactions
+        // Defaults to 1
+        min: 200_000,
+
+        // Maximum fee you want to use in microlamports, regardless of recent transactions
+        // Defaults to 100,000,000
+        max: 5_000_000,
+      }
+    }
+  }
+};
+
+function App() {
+  return <WormholeConnect config={config} />;
+}
+```
+
+!!! note
+    Connect can calculate fees more accurately if you are using a [Triton](https://triton.one){target=\_blank} RPC endpoint.
 
 ### Wallet Set Up  {: #reown-cloud-project-id }
 
@@ -791,7 +880,7 @@ function App() {
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/configuration/configure-theme
+Doc-Content: https://wormhole.com/docs/build/applications/connect/configuration/configure-theme
 --- BEGIN CONTENT ---
 ---
 title: Connect Theme & UI Customization
@@ -868,7 +957,6 @@ The `WormholeConnectTheme` type supports the following properties:
 |            `textSecondary`             |                 Secondary color used for dimmer text                  |      `"#AABBCC"`      |
 |                `error`                 |         Color to display errors in, usually some shade of red         |      `"#AABBCC"`      |
 |               `success`                |                 Color to display success messages in                  |      `"#AABBCC"`      |
-|                `badge`                 |                 Background color used for chain logos                 |      `"#AABBCC"`      |
 |                 `font`                 | Font used in the UI, can be custom font available in your application | `"Arial; sans-serif"` |
 
 ### Toggle Hamburger Menu {: #toggle-hamburger-menu }
@@ -911,7 +999,7 @@ function App() {
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/configuration/index
+Doc-Content: https://wormhole.com/docs/build/applications/connect/configuration/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Connect
@@ -953,7 +1041,7 @@ This guide provides detailed instructions on configuring Wormhole Connect and hi
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/faqs
+Doc-Content: https://wormhole.com/docs/build/applications/connect/faqs
 --- BEGIN CONTENT ---
 ---
 title: Connect FAQs
@@ -1026,7 +1114,7 @@ Additional notes:
             The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/features
+Doc-Content: https://wormhole.com/docs/build/applications/connect/features
 --- BEGIN CONTENT ---
 ---
 title: Features
@@ -1112,7 +1200,7 @@ This route appears if all of the following conditions are satisfied:
 - The relayer accepts the selected token to swap into the gas token
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/index
+Doc-Content: https://wormhole.com/docs/build/applications/connect/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Connect
@@ -1191,7 +1279,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/overview
+Doc-Content: https://wormhole.com/docs/build/applications/connect/overview
 --- BEGIN CONTENT ---
 ---
 title: Overview
@@ -1313,7 +1401,7 @@ The default configuration of Wormhole Connect may not be exactly what you're loo
 For additional information on the preceding options, check the [configuration options](/docs/build/applications/connect/configuration/){target=\_blank} and customize your widget however you like.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/routes
+Doc-Content: https://wormhole.com/docs/build/applications/connect/routes
 --- BEGIN CONTENT ---
 ---
 title: Routes
@@ -1393,7 +1481,7 @@ Note that if native tBTC is transferred out of these chains to any other outside
 This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To provide this option, enable the `tbtc` route in the configuration.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/connect/upgrade
+Doc-Content: https://wormhole.com/docs/build/applications/connect/upgrade
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Connect v1.0 Migration Guide
@@ -1964,7 +2052,7 @@ wormholeConnectHosted(container, {
 In this example, the `config` object defines the routes (in this case, using the Mayan route), while the `theme` object allows customization of the Connect interface (e.g., background color).
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/index
+Doc-Content: https://wormhole.com/docs/build/applications/index
 --- BEGIN CONTENT ---
 ---
 title: Building Frontend Applications
@@ -2014,7 +2102,7 @@ Wormhole offers multiple tools to make your user-facing application integrations
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/queries/faqs
+Doc-Content: https://wormhole.com/docs/build/applications/queries/faqs
 --- BEGIN CONTENT ---
 ---
 title: Queries FAQs
@@ -2067,7 +2155,7 @@ It is also important to note that the proxies don't impact the verifiability of 
 Wormhole Queries provides on-demand, attested, on-chain, verifiable RPC results. Each Guardian independently executes the specified query and returns the result and their signature. The proxy handles aggregating the results and signatures, giving you a single result (all within one REST call) with a quorum of signatures suitable for on-chain submission, parsing, and verification using one of our examples or SDKs.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/queries/index
+Doc-Content: https://wormhole.com/docs/build/applications/queries/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Queries
@@ -2109,7 +2197,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/queries/overview
+Doc-Content: https://wormhole.com/docs/build/applications/queries/overview
 --- BEGIN CONTENT ---
 ---
 title: Queries Overview
@@ -2212,7 +2300,7 @@ You can also check out the following examples of applications that make use of W
 - [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/queries/use-queries
+Doc-Content: https://wormhole.com/docs/build/applications/queries/use-queries
 --- BEGIN CONTENT ---
 ---
 title: Use Queries
@@ -2631,7 +2719,7 @@ const tx = await contract.updateCounters(
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/wormhole-sdk/index
+Doc-Content: https://wormhole.com/docs/build/applications/wormhole-sdk/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole SDK
@@ -2665,7 +2753,7 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/wormhole-sdk/protocols-payloads
+Doc-Content: https://wormhole.com/docs/build/applications/wormhole-sdk/protocols-payloads
 --- BEGIN CONTENT ---
 ---
 title: Building Protocols and Payloads
@@ -2982,7 +3070,7 @@ While this guide focuses on the `TokenBridge` protocol, other protocols, like NT
 For more details, you can explore the [NTT implementation in the SDK](https://github.com/wormhole-foundation/example-native-token-transfers/blob/00f83aa215338b1b8fd66f522bd0f45be3e98a5a/sdk/definitions/src/ntt.ts){target=\_blank}.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/wormhole-sdk/sdk-layout
+Doc-Content: https://wormhole.com/docs/build/applications/wormhole-sdk/sdk-layout
 --- BEGIN CONTENT ---
 ---
 title: Data Layouts
@@ -3690,7 +3778,7 @@ For further learning and practical experience, explore the following resources:
  - **Layout tests repository** - for hands-on experimentation, check out this [layout package repository](https://github.com/nonergodic/layout){target=\_blank}, which provides examples and unit tests to help you better understand serialization, deserialization, and the strong typing mechanism. Running these tests locally is a great way to deepen your understanding of how layouts function in real-world scenarios
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/wormhole-sdk/vaas-protocols
+Doc-Content: https://wormhole.com/docs/build/applications/wormhole-sdk/vaas-protocols
 --- BEGIN CONTENT ---
 ---
 title: VAAs and Protocols
@@ -3810,7 +3898,7 @@ contract EnvelopeParser {
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/applications/wormhole-sdk/wormhole-sdk
+Doc-Content: https://wormhole.com/docs/build/applications/wormhole-sdk/wormhole-sdk
 --- BEGIN CONTENT ---
 ---
 title: Wormhole TS SDK 
@@ -5211,7 +5299,7 @@ A noteworthy example of a route exported from a separate npm package is Wormhole
 The TSdoc is available [on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/cctp
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/cctp
 --- BEGIN CONTENT ---
 ---
 title: Interacting with CCTP Contracts
@@ -7834,7 +7922,7 @@ function receivePayloadAndUSDC(
 To view a complete example of creating a contract that integrates with Wormhole's CCTP contracts to send and receive USDC cross-chain, check out the [Hello USDC](https://github.com/wormhole-foundation/hello-usdc){target=\_blank} repository on GitHub.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/core-contracts
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/core-contracts
 --- BEGIN CONTENT ---
 ---
 title: Get Started with Core Contracts
@@ -8210,7 +8298,7 @@ For a deeper understanding of the Core Contract implementation for a specific bl
 - [Terra Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/terra/contracts/wormhole){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/dev-env
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/dev-env
 --- BEGIN CONTENT ---
 ---
 title: Local Dev Environment
@@ -8274,7 +8362,7 @@ https://api.wormholescan.io
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/faqs
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/faqs
 --- BEGIN CONTENT ---
 ---
 title: Contract Integrations FAQs
@@ -8333,7 +8421,7 @@ Updating the metadata (such as the token image, name, or symbol) of a wrapped to
 To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/index
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/index
 --- BEGIN CONTENT ---
 ---
 title: Smart Contract Integrations
@@ -8407,7 +8495,7 @@ The content in this section will teach you how to create smart contracts that in
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/multigov/deployment
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/multigov/deployment
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Deployment
@@ -8511,7 +8599,7 @@ These parameters can be queried using their respective getter functions on the a
 To update these parameters, a governance proposal must be created, voted on, and executed through the standard MultiGov process.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/multigov/faq
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/multigov/faq
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Technical FAQs
@@ -8603,7 +8691,7 @@ MultiGov includes several mechanisms to handle network issues or temporary chain
 However, prolonged outages on the hub chain or critical spoke chains could potentially disrupt governance activities. Projects should have contingency plans for such scenarios.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/multigov/index
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/multigov/index
 --- BEGIN CONTENT ---
 ---
 title: Getting Started with MultiGov
@@ -8674,7 +8762,7 @@ Take the following steps to get started with a MultiGov integration:
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/multigov/upgrade
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/multigov/upgrade
 --- BEGIN CONTENT ---
 ---
 title: Upgrading MultiGov
@@ -8743,7 +8831,7 @@ MultiGov is designed to be flexible but stable. Upgrades should be rare and care
 - Always test upgrades extensively on testnets before implementing in production
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/cli-commands
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/cli-commands
 --- BEGIN CONTENT ---
 ---
 title: NTT CLI Commands
@@ -8794,7 +8882,7 @@ The following table lists the available NTT CLI commands, descriptions, and exam
 | `ntt solana ata <mint> <owner> <tokenProgram>`| print the token authority address for a given program ID| `ntt solana ata Mint123... Owner123... token22`|
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/configuration/access-control
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/configuration/access-control
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Access Control
@@ -8837,7 +8925,7 @@ The `Owner` and the `Pauser` addresses can each pause the contract. Since the co
 Consider separating `Owner` and `Pauser` roles for your multichain deployment. `Owner` and `Pauser` roles are defined directly on the `NttManager` contract.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/configuration/index
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/configuration/index
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers (NTT) - Configuration
@@ -8871,7 +8959,7 @@ This section contains information on configuring Native Token Transfers (NTT), i
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/configuration/rate-limiting
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/configuration/rate-limiting
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Rate Limiting
@@ -8969,7 +9057,7 @@ Queuing is configured dynamically during each transfer by passing the `shouldQue
 If users bridge frequently between a given source chain and destination chain, the capacity could be exhausted quickly. Loss of capacity can leave other users rate-limited, potentially delaying their transfers.  The outbound transfer cancels the inbound rate limit on the source chain to avoid unintentional delays. This allows for refilling the inbound rate limit by an amount equal to the outbound transfer amount and vice-versa, with the inbound transfer canceling the outbound rate limit on the destination chain and refilling the outbound rate limit with an amount.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers EVM Deployment
@@ -9158,7 +9246,7 @@ By default, NTT transfers to EVM blockchains support automatic relaying via the 
     To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/){target=\_blank} page.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Solana Deployment
@@ -9359,7 +9447,7 @@ By default, NTT transfers to Solana support manual relaying, which requires the 
     To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/){target=\_blank} page.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/deployment-process/index
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/deployment-process/index
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers (NTT) - Deployment
@@ -9417,7 +9505,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/deployment-process/installation
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/deployment-process/installation
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Installation
@@ -9476,7 +9564,7 @@ ntt update --path path/to/ntt/repo
 Git branch and local installations enable a fast iteration loop as changes to the CLI code will immediately be reflected in the running binary without having to run any build steps.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/deployment-process/post-deployment
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Post Deployment
@@ -9519,7 +9607,7 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/deployment-process/troubleshooting
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/deployment-process/troubleshooting
 --- BEGIN CONTENT ---
 ---
 title: Troubleshooting NTT Deployment
@@ -9627,7 +9715,7 @@ If you encounter issues during the NTT deployment process, check the following c
         ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/faqs
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/faqs
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers FAQs
@@ -9756,7 +9844,7 @@ While xERC20 is an extension of the ERC20 standard, NTT is designed as a framewo
 To begin transferring tokens to a chain in burning mode when no tokens are locked, you must first send tokens to the NTT manager to back the supply. The address of the NTT manager can be found in the `deployment.json` file.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/index
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/index
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers (NTT)
@@ -9798,7 +9886,7 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/native-token-transfers/managers-transceivers
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/managers-transceivers
 --- BEGIN CONTENT ---
 ---
 title: Managers and Transceivers
@@ -10095,7 +10183,7 @@ Program log: Instruction: ReleaseInboundUnlock
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/contract-integrations/wormhole-relayers
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/wormhole-relayers
 --- BEGIN CONTENT ---
 ---
 title: Wormhole-Deployed Relayers
@@ -10296,7 +10384,7 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/index
+Doc-Content: https://wormhole.com/docs/build/index
 --- BEGIN CONTENT ---
 ---
 title: Build with Wormhole
@@ -10355,7 +10443,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/reference/chain-ids
+Doc-Content: https://wormhole.com/docs/build/reference/chain-ids
 --- BEGIN CONTENT ---
 ---
 title: Chain IDs
@@ -10383,7 +10471,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/reference/consistency-levels
+Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels
 --- BEGIN CONTENT ---
 ---
 title: Consistency Levels
@@ -10400,7 +10488,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/reference/contract-addresses
+Doc-Content: https://wormhole.com/docs/build/reference/contract-addresses
 --- BEGIN CONTENT ---
 ---
 title: Contract Addresses
@@ -10486,7 +10574,7 @@ description: This page documents the deployed contract addresses of the Wormhole
 <!--CCTP_ADDRESS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/reference/index
+Doc-Content: https://wormhole.com/docs/build/reference/index
 --- BEGIN CONTENT ---
 ---
 title: Reference
@@ -10546,7 +10634,7 @@ In this section, you'll find reference information that is essential for develop
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/reference/wormhole-formatted-addresses
+Doc-Content: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Formatted Addresses
@@ -10699,7 +10787,7 @@ For cross-chain dApp development, Wormhole formatted addresses simplify handling
 Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/start-building/demos
+Doc-Content: https://wormhole.com/docs/build/start-building/demos
 --- BEGIN CONTENT ---
 ---
 title: Example Demo Code Repos
@@ -10743,7 +10831,7 @@ The [Wormhole NTT Connect](https://github.com/wormhole-foundation/demo-ntt-conne
 The [Demo NTT TS SDK Example](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} demonstrates the use of the Wormhole TS SDK to facilitate token transfers between different blockchain networks after performing a deployment of the Native Token Transfers framework.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/start-building/index
+Doc-Content: https://wormhole.com/docs/build/start-building/index
 --- BEGIN CONTENT ---
 ---
 title: Start Building
@@ -10833,7 +10921,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/start-building/supported-networks
+Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks
 --- BEGIN CONTENT ---
 ---
 title: Supported Networks
@@ -11015,7 +11103,7 @@ Wormhole supports several different blockchains and environments. Since many of 
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/start-building/testnet-faucets
+Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets
 --- BEGIN CONTENT ---
 ---
 title: Testnet Faucets
@@ -11065,7 +11153,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 <!--TESTNET_FAUCETS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/toolkit/cli
+Doc-Content: https://wormhole.com/docs/build/toolkit/cli
 --- BEGIN CONTENT ---
 ---
 title: Wormhole CLI
@@ -11829,7 +11917,7 @@ worm info rpc mainnet bsc
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/toolkit/faqs
+Doc-Content: https://wormhole.com/docs/build/toolkit/faqs
 --- BEGIN CONTENT ---
 ---
 title: Toolkit FAQs
@@ -11885,7 +11973,7 @@ To manually submit a VAA (Verifiable Action Approval) to a destination chain, fo
 Following these steps, you can manually submit a VAA in the proper format to a destination chain.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/toolkit/index
+Doc-Content: https://wormhole.com/docs/build/toolkit/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Tooling
@@ -11973,7 +12061,7 @@ Regardless of which network development environment you are using, there are a f
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/toolkit/solidity-sdk
+Doc-Content: https://wormhole.com/docs/build/toolkit/solidity-sdk
 --- BEGIN CONTENT ---
 ---
 title: Solidity SDK
@@ -12286,7 +12374,7 @@ For a detailed example, check out the below repositories:
  - [Cross chain token transfer](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/toolkit/tilt
+Doc-Content: https://wormhole.com/docs/build/toolkit/tilt
 --- BEGIN CONTENT ---
 ---
 title: Tilt Introduction and Setup
@@ -12480,7 +12568,7 @@ The Devnet environment deploys the core layer and Token Bridge to each chain at 
 |     Solana RPC     | 8899 |
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/build/toolkit/wormhole-sdk/index
+Doc-Content: https://wormhole.com/docs/build/toolkit/wormhole-sdk/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole SDK
@@ -12514,7 +12602,7 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/index
+Doc-Content: https://wormhole.com/docs/infrastructure/index
 --- BEGIN CONTENT ---
 ---
 title: Run Infrastructure Services
@@ -12553,7 +12641,7 @@ Follow the guides in this section to learn how to run off-chain infrastructure s
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/relayers/index
+Doc-Content: https://wormhole.com/docs/infrastructure/relayers/index
 --- BEGIN CONTENT ---
 ---
 title: Relayers
@@ -12616,7 +12704,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/relayers/run-relayer
+Doc-Content: https://wormhole.com/docs/infrastructure/relayers/run-relayer
 --- BEGIN CONTENT ---
 ---
 title: Run a Relayer
@@ -12936,7 +13024,7 @@ await connection.confirmTransaction(txid);
     ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/spy/index
+Doc-Content: https://wormhole.com/docs/infrastructure/spy/index
 --- BEGIN CONTENT ---
 ---
 title: Spy
@@ -12990,7 +13078,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/spy/run-spy
+Doc-Content: https://wormhole.com/docs/infrastructure/spy/run-spy
 --- BEGIN CONTENT ---
 ---
 title: Run a Spy
@@ -13074,7 +13162,7 @@ The Spy does not have a built-in persistence layer, so it is typically paired wi
 The persistence layer needs to implement the appropriate interface. For example, you can check out the [Redis interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank} used by the Relayer Engine, a package that implements a client and persistence layer for messages received from a Spy subscription.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/fundamentals/architecture
+Doc-Content: https://wormhole.com/docs/learn/fundamentals/architecture
 --- BEGIN CONTENT ---
 ---
 title: Architecture
@@ -13117,7 +13205,7 @@ The diagram outlines the end-to-end flow of cross-chain communication through Wo
     - **Custom relayers** - relayers that only handle VAAs for a specific protocol or cross-chain application. They can execute custom logic off-chain, reducing gas costs and increasing cross-chain compatibility. Currently, cross-chain application developers are responsible for developing and hosting custom relayers
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/fundamentals/glossary
+Doc-Content: https://wormhole.com/docs/learn/fundamentals/glossary
 --- BEGIN CONTENT ---
 ---
 title: Glossary
@@ -13193,7 +13281,7 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/fundamentals/index
+Doc-Content: https://wormhole.com/docs/learn/fundamentals/index
 --- BEGIN CONTENT ---
 ---
 title: Learn about the Fundamentals
@@ -13249,7 +13337,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/fundamentals/introduction
+Doc-Content: https://wormhole.com/docs/learn/fundamentals/introduction
 --- BEGIN CONTENT ---
 ---
 title: Introduction to Wormhole
@@ -13490,7 +13578,7 @@ Wormhole supports a growing number of blockchains.
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/fundamentals/security
+Doc-Content: https://wormhole.com/docs/learn/fundamentals/security
 --- BEGIN CONTENT ---
 ---
 title: Security
@@ -13600,7 +13688,7 @@ For more information about submitting to the bug bounty programs, refer to the [
 The [SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank} from the official repository has the latest security policies and updates.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/governance/architecture
+Doc-Content: https://wormhole.com/docs/learn/governance/architecture
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Architecture
@@ -13673,7 +13761,7 @@ This architecture ensures that MultiGov can operate securely and efficiently acr
 ![detailed multigov architecture diagram](/docs/images/learn/governance/multigov-detailed.webp)
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/governance/faq
+Doc-Content: https://wormhole.com/docs/learn/governance/faq
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Theoretical FAQs
@@ -13702,7 +13790,7 @@ The main components of MultiGov include:
 - **Governance token** - allows holders to participate in governance across all integrated chains
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/governance/index
+Doc-Content: https://wormhole.com/docs/learn/governance/index
 --- BEGIN CONTENT ---
 ---
 title: Learn about MultiGov
@@ -13782,7 +13870,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/governance/overview
+Doc-Content: https://wormhole.com/docs/learn/governance/overview
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Overview
@@ -13823,7 +13911,7 @@ For a deeper understanding of the system's structure and how the components inte
 ![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/learn/governance/multigov-high-level.webp)
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/index
+Doc-Content: https://wormhole.com/docs/learn/index
 --- BEGIN CONTENT ---
 ---
 title: Learn about Wormhole
@@ -13874,7 +13962,7 @@ This section offers informational content on Wormhole, covering its architecture
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/infrastructure/core-contracts
+Doc-Content: https://wormhole.com/docs/learn/infrastructure/core-contracts
 --- BEGIN CONTENT ---
 ---
 title: Core Contracts
@@ -13938,7 +14026,7 @@ This doesn't mean an application _cannot_ specify a destination address or cha
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/infrastructure/guardians
+Doc-Content: https://wormhole.com/docs/learn/infrastructure/guardians
 --- BEGIN CONTENT ---
 ---
 title: Guardians
@@ -14012,7 +14100,7 @@ However, once all the full nodes are running, the Guardian Network's actual comp
 Over time, the Guardian Set can be expanded beyond 19 using threshold signatures. Various relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well-supported. The cross-chain application ecosystem will grow, and cross-chain applications will become increasingly intermingled. There are very few APIs in Wormhole, and most items are implementation details from the integrator perspective. This creates a clear pathway towards a fully trustless interoperability layer that spans decentralized computing.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/infrastructure/index
+Doc-Content: https://wormhole.com/docs/learn/infrastructure/index
 --- BEGIN CONTENT ---
 ---
 title: Infrastructure Components
@@ -14089,7 +14177,7 @@ This section provides a closer look at the core components that power Wormhole's
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/infrastructure/relayer
+Doc-Content: https://wormhole.com/docs/learn/infrastructure/relayer
 --- BEGIN CONTENT ---
 ---
 title: Relayers
@@ -14206,7 +14294,7 @@ The Wormhole relayer integration involves two key steps:
 - Support may not be available for all chains
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/infrastructure/spy
+Doc-Content: https://wormhole.com/docs/learn/infrastructure/spy
 --- BEGIN CONTENT ---
 ---
 title: Spy
@@ -14245,7 +14333,7 @@ For more information, you can check out the following resources:
 - To find out how to [start and run a Spy](/docs/infrastructure/spy/run-spy/){target=\_blank}, refer to the infrastructure section. This setup enables integrators to create a custom endpoint that applications can use to observe message flows in the Guardian Network, providing greater flexibility and control over cross-chain monitoring
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/infrastructure/vaas
+Doc-Content: https://wormhole.com/docs/learn/infrastructure/vaas
 --- BEGIN CONTENT ---
 ---
 title: VAAs
@@ -14425,7 +14513,7 @@ With the concepts now defined, it is possible to illustrate what a full flow for
 ![Lifetime of a message diagram](/docs/images/learn/infrastructure/vaas/lifetime-vaa-diagram.webp)
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/cctp
+Doc-Content: https://wormhole.com/docs/learn/messaging/cctp
 --- BEGIN CONTENT ---
 ---
 title: Circle's CCTP Bridge
@@ -14474,7 +14562,7 @@ The ability to perform native gas drop off addresses the common issue where a us
 -->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/index
+Doc-Content: https://wormhole.com/docs/learn/messaging/index
 --- BEGIN CONTENT ---
 ---
 title: Messaging Protocols
@@ -14516,7 +14604,7 @@ This section covers various aspects and services related to communication protoc
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/native-token-transfers/architecture
+Doc-Content: https://wormhole.com/docs/learn/messaging/native-token-transfers/architecture
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Architecture
@@ -14638,7 +14726,7 @@ Finally, after the message is verified and attested to, the tokens can be either
 In both cases, once the tokens have been released, the transfer process is complete, and the recipient receives the tokens. Events are emitted to indicate that the transfer has been fully redeemed.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/native-token-transfers/deployment
+Doc-Content: https://wormhole.com/docs/learn/messaging/native-token-transfers/deployment
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers - Deployment Models
@@ -14670,7 +14758,7 @@ This model best suits new token deployments or projects willing to upgrade exist
 - **Destination chain** - equivalent tokens are minted on the destination chain
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/native-token-transfers/index
+Doc-Content: https://wormhole.com/docs/learn/messaging/native-token-transfers/index
 --- BEGIN CONTENT ---
 ---
 title: A Quick Look at Native Token Transfers
@@ -14744,7 +14832,7 @@ Ready to dive in and start building? Check out the following resources to begin 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/native-token-transfers/overview
+Doc-Content: https://wormhole.com/docs/learn/messaging/native-token-transfers/overview
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Overview
@@ -14761,7 +14849,7 @@ description: Explore Wormhole's Native Token Transfers for flexible cross-chain 
 
 ## Introduction
 
-Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. Integrators have complete control over how their tokens that use NTT behave on each chain, including the token standard, metadata, ownership, upgradeability, and custom features.
+Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. By eliminating wrapped assets, NTT preserves each token’s native properties across chains, letting you maintain complete control over metadata, ownership, upgrade authority, and other custom features.
 
 The framework offers two modes of operation for existing token deployments. In locking mode, the original token supply is preserved on a single chain. In contrast, the burning mode enables the deployment of multichain tokens, distributing the supply across various chains.
 
@@ -14769,6 +14857,7 @@ The framework offers two modes of operation for existing token deployments. In l
 
 Wormhole's Native Token Transfers (NTT) framework offers a comprehensive and flexible solution for seamless token transfers across blockchains. Below are some of the key features that make this framework stand out:
 
+- **No wrapped tokens** – tokens remain native on every chain where NTT is deployed. All token properties and metadata remain consistent, avoiding any confusion or overhead introduced by wrapped tokens
 - **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience
 - **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
 - **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
@@ -14801,7 +14890,7 @@ The following example projects demonstrate the use of the Wormhole NTT framework
 
 The Token Bridge offers a secure, low-effort integration suitable for applications like a Web3 game that wants to make its token tradable across multiple chains.
 
-- **Mechanism** - solely utilizes a lock and mint model
+- **Mechanism** - solely utilizes a lock and mint model. Unlike NTT, the Token Bridge issues a wrapped asset on the destination chain, rather than preserving the original token contract
 - **Security** - preconfigured rate limiting and integrated Global Accountant
 - **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/docs/learn/fundamentals/security/){target=\_blank}
 - **Token contracts** - wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
@@ -14815,7 +14904,7 @@ The Token Bridge offers a secure, low-effort integration suitable for applicatio
 Native Token Transfers (NTT) in Wormhole primarily support **ERC-20 tokens**, the most widely used standard for fungible tokens on the Ethereum network and other EVM-compatible blockchains. The NttManager contract leverages the IERC20 interface and SafeERC20 utility from OpenZeppelin to ensure secure and efficient token transfers. Additionally, it supports ERC-20 Burnable tokens, allowing tokens to be burned on the source chain when needed for cross-chain transfers. At this time, NTT focuses on ERC-20 tokens, and other token standards, such as ERC-721 (non-fungible tokens) or ERC-1155 (multi-token standard), are not natively supported.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/native-token-transfers/security
+Doc-Content: https://wormhole.com/docs/learn/messaging/native-token-transfers/security
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers Security
@@ -14846,7 +14935,7 @@ The registry component of the NTT system is crucial for maintaining a trusted li
 This governance model ensures that the system remains secure while being adaptable to new requirements in any environment where it is deployed.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/learn/messaging/token-bridge
+Doc-Content: https://wormhole.com/docs/learn/messaging/token-bridge
 --- BEGIN CONTENT ---
 ---
 title: Token Bridge 
@@ -14915,7 +15004,7 @@ The [Wormhole Guardian Network](/docs/learn/infrastructure/guardians/#guardian-n
 A real-world example of Wormhole's Token Bridge in action is the [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides users with a simple interface to transfer tokens across multiple blockchains. Using the Wormhole infrastructure, Portal Bridge guarantees secure and seamless cross-chain transfers, making it easier for users to move assets between different blockchain ecosystems.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/connect/index
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/connect/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Connect Tutorials
@@ -14953,7 +15042,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/connect/react-dapp
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/connect/react-dapp
 --- BEGIN CONTENT ---
 ---
 title: Integrate Connect into a React DApp Tutorial
@@ -15137,7 +15226,7 @@ By following these steps, you've learned how to:
 With these tools and knowledge, you’re now equipped to build powerful cross-chain applications using Wormhole Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/contract-integrations/cross-chain-contracts
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/contract-integrations/cross-chain-contracts
 --- BEGIN CONTENT ---
 ---
 title: Create Cross-Chain Contracts
@@ -16070,7 +16159,7 @@ You're now fully equipped to build cross-chain contracts using the Wormhole prot
 - Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/contract-integrations/cross-chain-token-contracts
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts
 --- BEGIN CONTENT ---
 ---
 title: Cross-Chain Token Transfers
@@ -17678,7 +17767,7 @@ Congratulations! You've successfully built and deployed a cross-chain token tran
  - Write deployment scripts to manage and deploy contracts on different networks
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/contract-integrations/index
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/contract-integrations/index
 --- BEGIN CONTENT ---
 ---
 title: Cross-Chain Contract Integration Tutorials
@@ -17734,7 +17823,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/index
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/index
 --- BEGIN CONTENT ---
 ---
 title: Tutorials by Product
@@ -17763,14 +17852,6 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/contract-integrations/)
 
--   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
-
-    ---
-
-    Discover how to move native assets across different chains. These tutorials will help you set up and execute cross-chain token transfers, ensuring secure, efficient, and scalable bridging solutions for your users and applications.
-
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/native-token-transfers/)
-
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
     ---
@@ -17787,10 +17868,18 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/)
 
+-   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
+
+    ---
+
+    Learn how to create, register, and manage wrapped multichain assets across multiple chains. These tutorials will guide you through the process of enabling asset transfers between supported networks.
+
+    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multichain-assets/)
+
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/multichain-assets/index
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/multichain-assets/index
 --- BEGIN CONTENT ---
 ---
 title: Multichain Assets Tutorials
@@ -17814,7 +17903,7 @@ Multichain assets, often represented as wrapped tokens, enable seamless cross-ch
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/multichain-assets/multichain-token
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/multichain-assets/multichain-token
 --- BEGIN CONTENT ---
 ---
 title: Create Multichain Tokens
@@ -17910,7 +17999,7 @@ It is recommended that you update your token’s metadata on blockchain explorer
 5. Once the step above is completed, follow the [instructions to update token information](https://info.etherscan.com/how-to-update-token-information-on-token-page/){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/multigov/index
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/multigov/index
 --- BEGIN CONTENT ---
 ---
 title: Step-by-Step MultiGov Tutorials
@@ -17959,7 +18048,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/multigov/treasury-proposal
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/multigov/treasury-proposal
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Guides
@@ -18175,7 +18264,7 @@ governor.execute(targets, values, calldatas, descriptionHash);
 Once the proposal is executed, the encoded messages will be dispatched via Wormhole to the spoke chains, where the Optimism and Arbitrum treasuries will receive their respective funds.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/wormhole-sdk/index
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/index
 --- BEGIN CONTENT ---
 ---
 title: Wormhole SDK Tutorials
@@ -18221,7 +18310,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge
 --- BEGIN CONTENT ---
 ---
 title: Transfer Tokens via Token Bridge Tutorial
@@ -18795,7 +18884,7 @@ You've successfully built a cross-chain token transfer application using Wormhol
 The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/by-product/wormhole-sdk/usdc-via-cctp
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp
 --- BEGIN CONTENT ---
 ---
 title: Transfer USDC via CCTP and Wormhole SDK
@@ -19309,7 +19398,7 @@ By following these steps, you've learned how to:
 - Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/tutorials/index
+Doc-Content: https://wormhole.com/docs/tutorials/index
 --- BEGIN CONTENT ---
 ---
 title: Tutorials

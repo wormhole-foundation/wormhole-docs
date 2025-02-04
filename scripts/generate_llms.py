@@ -84,7 +84,7 @@ def build_content_section(files):
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
-        doc_url = f"https://wormhole.com/docs/learn/{doc_url_path}"
+        doc_url = f"https://wormhole.com/docs/{doc_url_path}"
 
         with open(file, 'r', encoding='utf-8') as file_content:
             content = file_content.read()
