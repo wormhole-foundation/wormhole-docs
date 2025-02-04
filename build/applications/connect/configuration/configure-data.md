@@ -124,7 +124,7 @@ You can whitelist tokens by symbol or by specifying tuples of [chain, address]. 
 --8<-- 'code/build/applications/connect/configuration/custom-tokens-whitelist-advanced.jsx'
 ```
 
-### User-inputted Tokens {: #user-inputted-tokens }
+### User-Inputted Tokens {: #user-inputted-tokens }
 
 As of version 2.0, Connect allows users to paste token addresses to bridge any token they want. As an integrator, you may want to disable this feature if you are deploying Connect for use only with a specific token(s).
 
