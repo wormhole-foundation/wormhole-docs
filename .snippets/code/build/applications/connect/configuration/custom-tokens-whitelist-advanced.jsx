@@ -7,7 +7,7 @@ const config: WormholeConnectConfig = {
   tokens: [
     // Whitelist BONK on every whitelisted chain
     'BONK',
-    // Also whitelist USDC, specifically on Solana:
+    // Also whitelist USDC, specifically on Solana
     ['Solana', 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v']
   ],
   ...
