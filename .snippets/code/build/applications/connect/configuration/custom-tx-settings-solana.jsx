@@ -14,7 +14,7 @@ const config: WormholeConnectConfig = {
         // Any number, defaults to 1.0. The fee amount is multiplied by this number.
         // This can be used to further raise or lower the fees Connect is using.
         // For example, percentile=0.95 and percentileMultiple=1.1 would use
-        // the 95th percentile fee, with a 10% increase.
+        // the 95th percentile fee, with a 10% increase
         percentileMultiple: 1.1,
 
         // Minimum fee you want to use in microlamports, regardless of recent transactions.
