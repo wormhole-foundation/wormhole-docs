@@ -175,7 +175,6 @@ The `WormholeConnectTheme` type supports the following properties:
 |            `textSecondary`             |                 Secondary color used for dimmer text                  |      `"#AABBCC"`      |
 |                `error`                 |         Color to display errors in, usually some shade of red         |      `"#AABBCC"`      |
 |               `success`                |                 Color to display success messages in                  |      `"#AABBCC"`      |
-|                `badge`                 |                 Background color used for chain logos                 |      `"#AABBCC"`      |
 |                 `font`                 | Font used in the UI, can be custom font available in your application | `"Arial; sans-serif"` |
 
 ## More Configuration Options {: #more-configuration-options }

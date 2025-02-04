@@ -13,13 +13,11 @@ const config: WormholeConnectConfig = {
     BONK: {
       key: 'BONK',
       symbol: 'BONK',
-      nativeChain: 'Ethereum',
-      icon: Icon.ETH,
+      icon: 'https://assets.coingecko.com/coins/images/28600/large/bonk.jpg?1696527587',
       tokenId: {
         chain: 'Ethereum',
         address: '0x1151CB3d861920e07a38e03eEAd12C32178567F6',
       },
-      coinGeckoId: 'bonk',
       decimals: 18,
     },
   },
