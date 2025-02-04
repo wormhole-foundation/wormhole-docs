@@ -60,12 +60,9 @@ The body contains relevant information for entities, such as contracts, or other
 
 ## Consistency and Finality
 
-The consistency level you set on the emitting contract determines how many confirmations the Guardians await before attesting a message. Higher consistency levels reduce the likelihood of reorgs invalidating or duplicating your message but may increase the time to produce a final VAA.
+The consistency level determines whether Guardians wait for a chain’s final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
 
-- **High consistency** – minimizes the risk of receiving multiple VAAs for the same message. `(emitter_chain, emitter_address, sequence)` is truly unique once the chain is finalized
-- **Lower consistency** – a faster but riskier approach. If a reorg occurs, Guardians on different forks might attest slightly different versions of the message, leading to multiple VAAs
-
-In most scenarios, applications can safely rely on a single VAA once finality has been reached. However, if your use case strictly requires guaranteed uniqueness for each emitted message, configure a higher consistency level even in the event of reorgs. 
+Guardian watchers are specialized processes that monitor each blockchain in real time. They enforce the selected consistency level by deciding whether enough commitment has been reached before signing and emitting a VAA. Some chains allow only one commitment level (effectively final), while others let integrators pick between near-final or fully finalized states. Choosing a faster option speeds up VAA production but increases reorg risk; choosing a more conservative option takes longer but reduces the likelihood of rollback.
 
 ## Signatures
 
