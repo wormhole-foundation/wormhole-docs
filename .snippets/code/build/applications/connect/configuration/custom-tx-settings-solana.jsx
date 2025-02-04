@@ -8,7 +8,7 @@ const config: WormholeConnectConfig = {
       priorityFee: {
         // Number between 0-1, defaults to 0.9. Higher percentile yields higher fees.
         // For example, you can set percentile to 0.95 to make Connect compute the
-        // 95th percentile priority fee amount based on recent transactions.
+        // 95th percentile priority fee amount based on recent transactions
         percentile: 0.95,
 
         // Any number, defaults to 1.0. The fee amount is multiplied by this number.
