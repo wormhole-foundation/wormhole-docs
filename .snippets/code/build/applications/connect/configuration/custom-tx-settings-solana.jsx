@@ -17,8 +17,8 @@ const config: WormholeConnectConfig = {
         // the 95th percentile fee, with a 10% increase
         percentileMultiple: 1.1,
 
-        // Minimum fee you want to use in microlamports, regardless of recent transactions.
-        // Defaults to 1.
+        // Minimum fee you want to use in microlamports, regardless of recent transactions
+        // Defaults to 1
         min: 200_000,
 
         // Maximum fee you want to use in microlamports, regardless of recent transactions.
