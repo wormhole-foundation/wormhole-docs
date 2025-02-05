@@ -26,8 +26,9 @@ def get_all_markdown_files(directory):
         if root == directory:
             continue
 
-        # Skip .github folder - (remove them from dirs so os.walk won't recurse into them)
-        dirs[:] = [d for d in dirs if d not in ['.github']]
+        # Skip '.github'
+        if '.github' in root.split(os.sep):
+            continue
 
         for file in files:
             if file.endswith(('.md', '.mdx')):

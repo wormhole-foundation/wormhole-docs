@@ -4,7 +4,6 @@
 Documentation: https://wormhole.com/docs
 
 # List of doc pages:
-Doc-Page: https://wormhole.com/docs/.github/pull-request-template
 Doc-Page: https://wormhole.com/docs/build/applications/connect/configuration-v0
 Doc-Page: https://wormhole.com/docs/build/applications/connect/configuration/configure-data
 Doc-Page: https://wormhole.com/docs/build/applications/connect/configuration/configure-theme
@@ -109,19 +108,6 @@ Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/usdc-via-c
 Doc-Page: https://wormhole.com/docs/tutorials/index
 
 # Full content for each doc page
-
-Doc-Content: https://wormhole.com/docs/.github/pull-request-template
---- BEGIN CONTENT ---
-### Description
-
-Please explain the changes this PR addresses here.
-
-### Checklist
-
-- [ ] **Required** - I have added a label to this PR 🏷️
-- [ ] **Required** - I have run my changes through Grammarly
-- [ ] If pages have been moved, I have created redirects in the `wormhole-mkdocs` repo
---- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/.snippets/text/build/contract-integrations/cctp/DepositForBurn-event
 --- BEGIN CONTENT ---
