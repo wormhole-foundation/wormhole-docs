@@ -26,6 +26,10 @@ def get_all_markdown_files(directory):
         if root == directory:
             continue
 
+        # Skip '.github'
+        if '.github' in root.split(os.sep):
+            continue
+
         for file in files:
             if file.endswith(('.md', '.mdx')):
                 results.append(os.path.join(root, file))
@@ -37,8 +41,14 @@ def get_all_markdown_files(directory):
 
 def build_index_section(files):
     section = "# List of doc pages:\n"
+
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
+
+        # Skip .snippets from the index
+        if '.snippets' in relative_path.split(os.sep):
+            continue
+
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/{doc_url_path}"
         section += f"Doc-Page: {doc_url}\n"
@@ -83,6 +93,11 @@ def build_content_section(files):
 
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
+
+        # Skip printing .snippets individually
+        if '.snippets' in relative_path.split(os.sep):
+            continue
+
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/{doc_url_path}"
 
