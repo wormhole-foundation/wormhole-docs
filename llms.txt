@@ -1,7 +1,7 @@
 # llms.txt
 # Generated automatically. Do not edit directly.
 
-Documentation: https://wormhole.com/docs
+Documentation: https://wormhole.com/docs/
 
 # List of doc pages:
 Doc-Page: https://wormhole.com/docs/build/applications/connect/configuration-v0
