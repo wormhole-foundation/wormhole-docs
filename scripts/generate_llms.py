@@ -21,7 +21,7 @@ def get_all_markdown_files(directory):
         print(f"Docs directory not found: {directory}")
         return results
 
-    for root, dirs, files in os.walk(directory):
+    for root, _, files in os.walk(directory):
         # Skip the root directory
         if root == directory:
             continue
