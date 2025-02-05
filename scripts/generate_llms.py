@@ -44,6 +44,8 @@ def build_index_section(files):
 
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
+
+        # Skip .snippets from the index
         if '.snippets' in relative_path.split(os.sep):
             continue
 
@@ -91,6 +93,11 @@ def build_content_section(files):
 
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
+
+        # Skip printing .snippets individually
+        if '.snippets' in relative_path.split(os.sep):
+            continue
+
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/{doc_url_path}"
 
