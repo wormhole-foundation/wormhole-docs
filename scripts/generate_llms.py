@@ -21,10 +21,13 @@ def get_all_markdown_files(directory):
         print(f"Docs directory not found: {directory}")
         return results
 
-    for root, _, files in os.walk(directory):
+    for root, dirs, files in os.walk(directory):
         # Skip the root directory
         if root == directory:
             continue
+
+        # Skip .github folder - (remove them from dirs so os.walk won't recurse into them)
+        dirs[:] = [d for d in dirs if d not in ['.github']]
 
         for file in files:
             if file.endswith(('.md', '.mdx')):
@@ -37,8 +40,12 @@ def get_all_markdown_files(directory):
 
 def build_index_section(files):
     section = "# List of doc pages:\n"
+
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
+        if '.snippets' in relative_path.split(os.sep):
+            continue
+
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"https://wormhole.com/docs/{doc_url_path}"
         section += f"Doc-Page: {doc_url}\n"

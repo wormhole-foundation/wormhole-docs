@@ -5,16 +5,6 @@ Documentation: https://wormhole.com/docs
 
 # List of doc pages:
 Doc-Page: https://wormhole.com/docs/.github/pull-request-template
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/contract-integrations/cctp/DepositForBurn-event
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/contract-integrations/cctp/MessageSent-event
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/reference/chain-ids/chain-ids
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/reference/consistency-levels/consistency-levels
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/cctp
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/core-contracts
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/relayer
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/reference/contract-addresses/token-bridge
-Doc-Page: https://wormhole.com/docs/.snippets/text/build/start-building/testnet-faucets/testnet-faucets
-Doc-Page: https://wormhole.com/docs/.snippets/text/supported-networks
 Doc-Page: https://wormhole.com/docs/build/applications/connect/configuration-v0
 Doc-Page: https://wormhole.com/docs/build/applications/connect/configuration/configure-data
 Doc-Page: https://wormhole.com/docs/build/applications/connect/configuration/configure-theme
