@@ -4,52 +4,26 @@ description: Learn how to start building multichain solutions on Wormhole, with 
 template: root-index-page.html 
 ---
 
-# Build
+# Build Multichain
 
-## Get Started
+This section includes guides for selecting and using Wormhole products, tools, and contracts to connect your users to the leading multichain network consisting of more than 25 supported blockchains.
 
-Whether you’re developing front-end applications using Wormhole's application-layer tools or building smart contract integrations on top of Wormhole’s messaging protocols, learn how Wormhole can help you achieve seamless, multichain interoperability.
+## Start Building
 
-<div class="grid cards" markdown>
+- See [Supported Networks](/build/start-building/supported-networks/) for a list of Wormhole supported chains
+- Visit [Testnet Faucets](/build/start-building/testnet-faucets/) for a one-stop source to obtain tokens for testing your integrations
+- Get inspired and jumpstart your build with [Demos](/build/start-building/demos/) including starter apps and example code
 
--   :octicons-tools-16:{ .lg .middle } **Start Building**
+## Explore Products, Tools, and Use Cases
 
-    ---
+- Use the [Product Comparision Guide](#) to find the best combination of Wormhole products and tools to meet your user's needs
+- See [Use Cases](#) for a look at what Wormhole makes possible
 
-    Get equipped with everything you need to start developing with Wormhole, including an overview of supported networks and a list of demo projects.
+## Move Messages, Transfer Tokens
 
-    [:octicons-arrow-right-16: Get started](/docs/build/start-building/)
+- To learn how to integrate smart contracts that send messages and data payloads or transfer tokens across chains, see [Transfer Protocols](/build/contract-integrations/) 
 
--   :octicons-browser-16:{ .lg .middle } **Build Frontend Applications**
+## Enhance Your Applications
 
-    ---
+- Explore the [Application Toolkit](/build/applications/) for tools to abstract away development complexity, integrate user and developer-friendly UI elements, and securely query on-chain data
 
-    Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build applications with seamless interoperability.
-
-    [:octicons-arrow-right-16: Build applications](/docs/build/applications/)
-
--   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
-
-    ---
-
-    Begin your journey by creating smart contracts that harness the power of Wormhole's advanced messaging protocols.
-
-    [:octicons-arrow-right-16: Build contract integrations](/docs/build/contract-integrations/)
-
--   :octicons-gear-16:{ .lg .middle } **Toolkit**
-
-    ---
-
-    Discover essential developer tools for managing and sending cross-chain transfers, including the Wormholescan explorer, Wormhole CLI, Wormhole SDKs, and more.
-
-    [:octicons-arrow-right-16: Discover tools](/docs/build/toolkit/)
-
--   :octicons-book-16:{ .lg .middle } **Reference**
-
-    ---
-
-    Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
-
-    [:octicons-arrow-right-16: Explore reference](/docs/build/reference/)
-
-</div>
