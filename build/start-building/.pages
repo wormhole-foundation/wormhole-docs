@@ -3,4 +3,5 @@ nav:
  - index.md
  - 'Supported Networks': 'supported-networks.md'
  - 'Testnet Faucets': 'testnet-faucets.md'
+ - 'Products and Use Cases': products-and-use-cases.md
  - 'Demos': 'demos.md'
