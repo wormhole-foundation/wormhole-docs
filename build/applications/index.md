@@ -1,9 +1,9 @@
 ---
-title: Building Frontend Applications
+title: Application Toolkit
 description: Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build frontend applications with seamless interoperability.
 ---
 
-# Build Frontend Applications
+# Application Toolkit
 
 ## Get Started
 

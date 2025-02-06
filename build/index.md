@@ -6,7 +6,7 @@ template: root-index-page.html
 
 # Build Multichain
 
-This section includes guides for selecting and using Wormhole products, tools, and contracts to connect your users to the leading multichain network consisting of more than 25 supported blockchains.
+This section includes guides for selecting and using Wormhole products, tools, and contracts to connect your users to the leading multichain network of over 25 supported blockchains.
 
 ## Start Building
 
