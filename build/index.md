@@ -21,9 +21,9 @@ This section includes guides for selecting and using Wormhole products, tools, a
 
 ## Move Messages, Transfer Tokens
 
-- To learn how to integrate smart contracts that send messages and data payloads or transfer tokens across chains, see [Transfer Protocols](/build/contract-integrations/) 
+- To learn how to integrate smart contracts that send messages and data payloads or transfer tokens across chains, see [Build Contract Integrations](/build/contract-integrations/) 
 
 ## Enhance Your Applications
 
-- Explore the [Application Toolkit](/build/applications/) for tools to abstract away development complexity, integrate user and developer-friendly UI elements, and securely query on-chain data
+- Explore the [Build Frontend Applications](/build/applications/) for tools to abstract away development complexity, integrate user and developer-friendly UI elements, and securely query on-chain data
 

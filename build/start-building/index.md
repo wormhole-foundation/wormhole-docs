@@ -5,82 +5,28 @@ description: This section has all you need to start developing with Wormhole, in
 
 # Start Building
 
-## Introduction
+Begin your Wormhole builder journey here. This section includes essential information for supported networks and testnet faucets, product comparison and use cases to help you select the best tools to meet your user's needs, and demo applications to inspire and jumpstart your project.
 
-Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates interoperability across multiple areas of project development. The following sections will help you locate the tools most relevant to your development needs whether you are focused on building frontend user interfaces or smart contracts and protocols. This section also links to developer resources like references and code examples which are helpful for all builders looking to integrate with Wormhole. 
+## Networks and Faucets
 
-## Choose Your Development Pathway
+- To review supported blockchains by environment, with links to block explorers and documentation resources for each network, see [Supported Networks](/start-building/supported-networks/)
+- For help finding testnet tokens for a supported network, see [Testnet Faucets](/build/start-building/testnet-faucets/)
 
-<div class="grid cards" markdown>
+## Tools and Development Environment
 
--   :octicons-browser-16:{ .lg .middle } **Build Frontend Applications**
+- The [Wormholescan](https://wormholescan.io/) transaction explorer gives you access to realtime Wormhole analytics and transaction data
+- The [Wormhole CLI](/build/toolkit/cli/) is a Swiss-Army knife utility command line tool for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more
+- Kubernetes developers can use [Tilt](/build/toolkit/tilt/) for cross-chain testing with Guardian nodes and relayers
 
-    ---
+## Products and Use Cases
 
-    Build user-friendly frontends that interact with Wormhole's existing integrations, enabling your users to transfer assets, query information, and monitor cross-chain activity.
+The following table compares Wormhole tools and products to help you select the best fit for your project needs. For a more detailed look at each product, see the [Product Comparison Guide](#).
 
-    [:octicons-arrow-right-16: Build frontend applications](/docs/build/applications/)
+TODO: place product table here
 
--   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
-
-    ---
-
-    Leverage Wormhole's powerful messaging protocols to create contracts that can communicate and interact across multiple blockchains. By using Wormhole’s core infrastructure, you can enable secure and seamless messaging, asset transfers, and more between supported networks.
-
-    [:octicons-arrow-right-16: Integrate with contracts](/docs/build/contract-integrations/)
-
-</div>
-
-## Get Hands-On 
-
-<div class="grid cards" markdown>
-
--   :octicons-repo-16:{ .lg .middle } **Tutorials**
-
-    ---
-
-    Follow in-depth, step-by-step tutorials to learn how to build cross-chain contracts, integrate Wormhole's SDK, and more.
-
-    [:octicons-arrow-right-16: Explore tutorials](/docs/tutorials/)
-
--   :octicons-code-16:{ .lg .middle } **Demos**
-
-    ---
-
-    Explore pre-built reference applications that demonstrate real-world use cases of Wormhole’s messaging protocols and token bridges.
-
-    [:octicons-arrow-right-16: Get inspired with demos](/docs/build/start-building/demos/)
-
-</div>
+See [Use Cases](#) for examples of applying Wormhole products to solve specific problems.
 
 ## Essential Resources for Development
 
-<div class="grid cards" markdown>
-
--   :octicons-broadcast-16:{ .lg .middle } **Supported Networks**
-
-    ---
-
-    Explore the blockchains supported by Wormhole for cross-chain communication and asset transfers. Understand which networks are available for both Testnet and Mainnet environments.
-
-    [:octicons-arrow-right-16: Discover supported networks](/docs/build/start-building/supported-networks/)
-
--   :octicons-list-unordered-16:{ .lg .middle } **Reference**
-
-    ---
-
-    Access the essential Wormhole chain IDs and smart contract addresses for messaging protocols, token bridges, and other key components.
-
-    [:octicons-arrow-right-16: Explore Reference](/docs/build/reference/){target=\_blank}
-
-
-
--   :octicons-goal-16:{ .lg .middle } **Testnet Faucets**
-
-    ---
-
-    Get Testnet tokens to start experimenting with cross-chain transfers and contract deployment.
-
-    [:octicons-arrow-right-16: Find Testnet faucets](/docs/build/start-building/testnet-faucets/)
-
-</div>
+- Visit the [Reference](/build/reference/) section for information about chain IDs, contract addresses, consistency levels, and address formats
+- To explore a collection of demo Wormhole projects, including starter apps, cross-chain examples, and UI components see [Demos](/build/start-building/demos/)
