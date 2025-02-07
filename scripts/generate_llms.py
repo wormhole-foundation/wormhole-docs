@@ -1,9 +1,13 @@
 import os
 import re
 
-# Set the base directory to the root of wormhole-docs
+# Wormhole-specific input
+docs_repo = 'wormhole-docs'
+docs_url = 'https://wormhole.com/docs/'
+
+# Set the base directory to the root of docs
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-docs_dir = os.path.join(base_dir, 'wormhole-docs')
+docs_dir = os.path.join(base_dir, docs_repo)
 output_file = os.path.join(docs_dir, 'llms.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
 
@@ -14,7 +18,7 @@ SNIPPET_REGEX = r"--8<--\s*['\"]([^'\"]+)['\"]"
 def get_all_markdown_files(directory):
     """
     Recursively collect all markdown (.md, .mdx) files from subdirectories of the given directory,
-    skipping files directly in the root of "wormhole-docs".
+    skipping files directly in the root of docs.
     """
     results = []
     if not os.path.exists(directory):
@@ -50,7 +54,7 @@ def build_index_section(files):
             continue
 
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
-        doc_url = f"https://wormhole.com/docs/{doc_url_path}"
+        doc_url = f"{docs_url}{doc_url_path}"
         section += f"Doc-Page: {doc_url}\n"
     return section
 
@@ -99,7 +103,7 @@ def build_content_section(files):
             continue
 
         doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
-        doc_url = f"https://wormhole.com/docs/{doc_url_path}"
+        doc_url = f"{docs_url}{doc_url_path}"
 
         with open(file, 'r', encoding='utf-8') as file_content:
             content = file_content.read()
@@ -121,7 +125,7 @@ def main():
     # Header
     llms_content = "# llms.txt\n"
     llms_content += "# Generated automatically. Do not edit directly.\n\n"
-    llms_content += "Documentation: https://wormhole.com/docs\n\n"
+    llms_content += f"Documentation: {docs_url}\n\n"
 
     # Add the index of pages
     llms_content += build_index_section(files)
