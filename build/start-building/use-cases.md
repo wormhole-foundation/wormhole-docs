@@ -7,7 +7,7 @@ description:
 
 <div markdown class="card">
 
-## Cross-chain swaps and liquidity aggregation
+## Swaps and liquidity aggregation
 
 💡 **Enable seamless swaps between chains with real-time liquidity routing.**  
 
@@ -37,7 +37,7 @@ description:
 
 <div markdown class="card">
 
-## Real-Time price feeds and trading strategies
+## Real-time price feeds and trading
 
 💡 **Fetch price feeds across multiple chains for DeFi applications.**
 
