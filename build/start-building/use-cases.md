@@ -6,7 +6,8 @@ description:
 # Wormhole Use Cases
 
 <div markdown class="card">
-## Cross-chain swaps & liquidity sggregation
+
+## Cross-chain swaps & liquidity aggregation
 
 💡 **Enable seamless swaps between chains with real-time liquidity routing.**  
 
@@ -20,6 +21,7 @@ description:
 </div>
 
 <div markdown class="card">
+
 ## Borrowing & lending across chains
 
 💡 **Let users borrow assets on one chain using collateral from another.**  
@@ -34,6 +36,7 @@ description:
 </div>
 
 <div markdown class="card">
+
 ## Real-Time price feeds & trading strategies
 
 💡 **Fetch price feeds across multiple chains for DeFi applications.**
@@ -48,6 +51,7 @@ description:
 
 
 <div markdown class="card">
+
 ## Asset movement between Bitcoin & other chains
 
 💡 **Enable direct BTC transfers without wrapped assets.**
@@ -61,6 +65,7 @@ description:
 
 
 <div markdown class="card">
+
 ## Decentralized social platforms
 
 💡 **Enable seamless communication and asset transfer across decentralized social networks.**
