@@ -7,7 +7,7 @@ description:
 
 <div markdown class="card">
 
-## Cross-chain swaps & liquidity aggregation
+## Cross-chain swaps and liquidity aggregation
 
 💡 **Enable seamless swaps between chains with real-time liquidity routing.**  
 
@@ -22,7 +22,7 @@ description:
 
 <div markdown class="card">
 
-## Borrowing & lending across chains
+## Borrowing and lending across chains
 
 💡 **Let users borrow assets on one chain using collateral from another.**  
 
@@ -37,7 +37,7 @@ description:
 
 <div markdown class="card">
 
-## Real-Time price feeds & trading strategies
+## Real-Time price feeds and trading strategies
 
 💡 **Fetch price feeds across multiple chains for DeFi applications.**
 
@@ -52,7 +52,7 @@ description:
 
 <div markdown class="card">
 
-## Asset movement between Bitcoin & other chains
+## Asset movement between Bitcoin and other chains
 
 💡 **Enable direct BTC transfers without wrapped assets.**
 
