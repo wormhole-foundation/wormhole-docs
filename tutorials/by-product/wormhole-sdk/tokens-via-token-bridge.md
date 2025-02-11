@@ -89,6 +89,120 @@ In this section, we’ll guide you through initializing the project, installing 
         - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
         - **`getTokenDecimals`** - this function fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers
 
+## Check and Create Wrapped Tokens
+
+Before transferring a token across chains, you must verify whether it is wrapped on the destination chain. If a token is not native to the target blockchain, Wormhole wraps it into a compatible representation for receiving and using on that chain.
+
+In this section, you'll create a script that checks if a token is wrapped on the destination chain. If it isn't, the script will generate an attestation and complete the wrapping process. This example checks explicitly whether Arbitrum Sepolia has a wrapped version on Base Sepolia and, if not, registers it on the destination chain.
+
+1. Create the `create-wrapped.ts` file in the `src` directory
+
+    ```bash
+    mkdir -p src/scripts
+    touch src/scripts/create-wrapped.ts
+    ```
+
+2. Open `create-wrapped.ts` and import the required modules
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:1:6"
+    ```
+
+     - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
+     - **`solana`** - this adds support for Solana, a non-EVM chain
+     - **`sui`** - support for Sui chain, another non-EVM chain
+     - `helpers.ts` methods defined in the previous section
+
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:8:9"
+    ```
+
+    !!! note
+        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
+
+
+4. **Define the source chain and retrieve the native token ID** - retrieve the source chain and obtain the native token ID. This token will be checked and, if necessary, wrapped on the destination chain
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:12:14"
+    ```
+
+     - `origChain` - specifies the source chain, in this case, Arbitrum Sepolia
+     - `token` - retrieves the native token ID on the source chain
+     - `origSigner` - fetches the signer for the source chain, allowing the script to authorize transactions
+
+5. **Create an attestation transaction** - before wrapping a token, an attestation must be created. This step ensures that Wormhole recognizes the token and allows it to be wrapped on the destination chain
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:17:30"
+    ```
+
+     - `createAttestation` - generates an attestation for the token on the source chain
+     - `signSendWait` - submits the attestation transaction and waits for confirmation
+     - `txid` - stores the transaction ID, which can be used later to verify the attestation
+
+6. **Retrieve the signed VAA** - once the attestation transaction is confirmed, retrieve the signed VAA. This serves as cryptographic proof that the Wormhole network recognizes the attestation
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:33:42"
+    ```
+
+     - `parseTransaction(txid)` - extracts Wormhole messages from the attestation transaction
+     - `getVaa` - retrieves the signed VAA for the attestation
+     - `timeout` - defines how long to wait for the VAA before failing
+
+7. **Set up the destination chain** - specify the destination chain and configure the signer
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:47:50"
+    ```
+
+    `gasLimit` - defines an optional gas limit for EVM chains
+
+8. **Check if the token is already wrapped on the destination chain** - if the token is wrapped on the destination chain, you  may proceed to the [next section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#native-token-transfers)
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:52:61"
+    ```
+
+     - `getTokenBridge()` - retrieves the Token Bridge instance for the destination chain
+     - `getWrappedAsset(token)` - checks if the token already exists as a wrapped asset  
+
+9. **Submit the attestation on the destination chain** - if the token is not already wrapped, submit the attestation to create the wrapped version on the destination chain
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:66:72"
+    ```
+
+     - `submitAttestation(vaa, recipient)` - submits the signed VAA to wrap the token
+     - `signSendWait(destChain, subAttestation, signer)` - sends the attestation transaction and waits for confirmation
+
+
+10. **Wait for the wrapped asset to be available** - after submitting the attestation, poll until the wrapped token is available on the destination chain
+
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:77:91"
+    ```
+
+     If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
+
+You can find the complete create-wrapped token script below:
+
+??? code "`create-wrapped.ts`"
+    ```typescript
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts"
+    ```
+
+### Run the Wrapped Token Creation
+
+Once the script is ready, execute it with:
+
+```bash
+npx tsx src/scripts/create-wrapped.ts
+```
+
 ## Native Token Transfers
 
 In this section, you'll create a script to transfer native tokens across chains using Wormhole's Token Bridge method. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
@@ -100,7 +214,6 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 1. Create the `native-transfer.ts` file in the `src` directory to hold your script for transferring native tokens across chains
 
     ```bash
-    mkdir -p src/scripts
     touch src/scripts/native-transfer.ts
     ```
 
@@ -110,19 +223,13 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:1:14"
     ```
 
-     - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
-     - **`solana`** - this adds support for Solana, a non-EVM chain
-     - **`sui`** - support for Sui chain, another non-EVM chain
-     - `helpers.ts` methods defined in the previous section
+    The required imports are the same as in the [Wrapped Tokens section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#check-and-create-wrapped-tokens).
 
-3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana and Sui
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:15:16"
     ```
-        
-    !!! note
-        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
 4. **Set up source and destination chains** - specify the source chain (Sui) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the native tokens and where to receive them
 
