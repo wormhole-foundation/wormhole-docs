@@ -79,7 +79,7 @@
   :octicons-package-16: <a href="https://scrollscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Seievm</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td></td></tr><tr><td>SNAXchain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://synthetix.io/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.synthetix.io/v3/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.snaxchain.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :octicons-package-16: <a href="https://explorer.snaxchain.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://www.unichain.org/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.unichain.org/docs" target="_blank">Developer Docs</a><br>
   :octicons-package-16: <a href="https://sepolia.uniscan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>World Chain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
