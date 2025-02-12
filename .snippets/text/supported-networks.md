@@ -19,7 +19,7 @@
   :octicons-package-16: <a href="https://snowtrace.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Base</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://base.org/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.base.org/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://goerli.basescan.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :octicons-package-16: <a href="https://goerli.basescan.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://www.berachain.com/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.berachain.com/" target="_blank">Developer Docs</a><br>
   :octicons-package-16: <a href="https://bartio.beratrail.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Blast</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
