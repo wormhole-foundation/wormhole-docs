@@ -203,7 +203,7 @@ Once the script is ready, execute it with:
 npx tsx src/scripts/create-wrapped.ts
 ```
 
-## Native Token Transfers
+## Token Transfers
 
 In this section, you'll create a script to transfer native tokens across chains using Wormhole's Token Bridge method. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
 
