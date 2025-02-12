@@ -18877,7 +18877,7 @@ import { getSigner } from '../helpers/helpers';
      - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
      - **`solana`** - this adds support for Solana, a non-EVM chain
      - **`sui`** - support for Sui chain, another non-EVM chain
-     - `helpers.ts` methods defined in the previous section
+     - `helpers.ts` - methods defined in the previous section
 
 3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana
 
