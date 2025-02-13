@@ -119,15 +119,11 @@ In this section, you'll create a script that automates this process by checking 
     !!! note
         You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
-4. **Define the source and destination chains** - specify the source chain and destination chain, and retrieve the token ID
+4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain, Base Sepolia as the destination, and retrieve the token ID from the source chain for transfer
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:12:14"
     ```
-
-     - `srcChain` - specifies the source chain, in this case, Arbitrum Sepolia
-     - `destChain` - specifies the destination chain, in this case, Base Sepolia
-     - `token` - retrieves the native token ID on the source chain
 
 5. **Set up the destination chain signer** - configure the signer for the destination chain and retrieve the Token Bridge instance
 
