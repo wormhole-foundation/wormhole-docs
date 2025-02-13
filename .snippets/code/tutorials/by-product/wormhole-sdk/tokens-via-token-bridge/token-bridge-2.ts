@@ -8,77 +8,75 @@ import { getSigner } from '../helpers/helpers';
 (async function () {
   const wh = await wormhole('Testnet', [evm, solana, sui]);
 
-  // Get the source chain and signer
+  // Define the source and destination chains
   const origChain = wh.getChain('ArbitrumSepolia');
+  const destChain = wh.getChain('BaseSepolia');
   const token = await origChain.getNativeWrappedTokenId();
-  const { signer: origSigner } = await getSigner(origChain);
 
-  // Transaction ID (txid) - If attestation was previously created, set txid manually
-  let txid = undefined;
+  // Destination chain signer setup
+  const gasLimit = BigInt(2_500_000); // Optional for EVM Chains
+  const { signer: destSigner } = await getSigner(destChain, gasLimit);
+  const tbDest = await destChain.getTokenBridge();
 
-  if (!txid) {
-    const tb = await origChain.getTokenBridge();
-    const attestTxns = tb.createAttestation(
-      token.address,
-      Wormhole.parseAddress(origSigner.chain(), origSigner.address())
+  // Check if the token is already wrapped on the destination chain
+  try {
+    const wrapped = await tbDest.getWrappedAsset(token);
+    console.log(
+      `Token already wrapped on ${destChain.chain}. Skipping attestation.`
     );
-
-    const txids = await signSendWait(origChain, attestTxns, origSigner);
-    console.log('txids: ', inspect(txids, { depth: null }));
-    txid = txids[0]!.txid;
-    console.log('Created attestation (save this): ', txid);
+    return { chain: destChain.chain, address: wrapped };
+  } catch (e) {
+    console.log(
+      `No wrapped token found on ${destChain.chain}. Proceeding with attestation.`
+    );
   }
 
-  // Parse transaction logs to retrieve the Wormhole message ID
+  // Source chain signer setup
+  const { signer: origSigner } = await getSigner(origChain);
+
+  // Create an attestation transaction on the source chain
+  const tbOrig = await origChain.getTokenBridge();
+  const attestTxns = tbOrig.createAttestation(
+    token.address,
+    Wormhole.parseAddress(origSigner.chain(), origSigner.address())
+  );
+
+  const txids = await signSendWait(origChain, attestTxns, origSigner);
+  console.log('txids: ', inspect(txids, { depth: null }));
+  const txid = txids[0]!.txid;
+  console.log('Created attestation (save this): ', txid);
+
+  // Retrieve the Wormhole message ID from the attestation transaction
   const msgs = await origChain.parseTransaction(txid);
   console.log('Parsed Messages:', msgs);
 
-  // Retrieve the Signed VAA from the API
   const timeout = 25 * 60 * 1000;
   const vaa = await wh.getVaa(msgs[0]!, 'TokenBridge:AttestMeta', timeout);
-  if (!vaa)
+  if (!vaa) {
     throw new Error(
-      'VAA not found after retries exhausted, try extending the timeout'
-    );
-
-  console.log('Token Address: ', vaa.payload.token.address);
-
-  // Destination chain setup
-  const chain = 'BaseSepolia';
-  const destChain = wh.getChain(chain);
-  const gasLimit = BigInt(2_500_000); // Optional for EVM Chains
-  const { signer } = await getSigner(destChain, gasLimit);
-
-  const tb = await destChain.getTokenBridge();
-  try {
-    const wrapped = await tb.getWrappedAsset(token);
-    console.log(`Token already wrapped on ${chain}`);
-    return { chain, address: wrapped };
-  } catch (e) {
-    console.log(
-      `No wrapped token found on ${chain}, proceeding with attestation.`
+      'VAA not found after retries exhausted. Try extending the timeout.'
     );
   }
 
-  // Submit the attestation on the destination chain
-  console.log('Attesting asset...');
+  console.log('Token Address: ', vaa.payload.token.address);
 
-  const subAttestation = tb.submitAttestation(
+  // Submit the attestation on the destination chain
+  console.log('Attesting asset on destination chain...');
+
+  const subAttestation = tbDest.submitAttestation(
     vaa,
-    Wormhole.parseAddress(signer.chain(), signer.address())
+    Wormhole.parseAddress(destSigner.chain(), destSigner.address())
   );
 
-  // Send attestation transaction and log the transaction hash
-  const tsx = await signSendWait(destChain, subAttestation, signer);
-
+  const tsx = await signSendWait(destChain, subAttestation, destSigner);
   console.log('Transaction hash: ', tsx);
 
   // Poll for the wrapped asset until it's available
   async function waitForIt() {
     do {
       try {
-        const wrapped = await tb.getWrappedAsset(token);
-        return { chain, address: wrapped };
+        const wrapped = await tbDest.getWrappedAsset(token);
+        return { chain: destChain.chain, address: wrapped };
       } catch (e) {
         console.error('Wrapped asset not found yet. Retrying...');
       }
