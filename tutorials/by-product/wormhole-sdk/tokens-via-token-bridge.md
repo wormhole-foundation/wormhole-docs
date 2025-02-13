@@ -95,14 +95,14 @@ Before transferring tokens across chains, check if a wrapped version exists on t
 
 In this section, you'll create a script to automate these steps. This example checks explicitly whether Arbitrum Sepolia has a wrapped version on Base Sepolia and, if not, registers it on the destination chain.
 
-1. Create the `create-wrapped.ts` file in the `src` directory
+1. **Create the `create-wrapped.ts` file** - set up the script file that will handle checking and wrapping tokens in the `src` directory
 
     ```bash
     mkdir -p src/scripts
     touch src/scripts/create-wrapped.ts
     ```
 
-2. Open `create-wrapped.ts` and import the required modules
+2. **Open `create-wrapped.ts` and import the required modules** - include the necessary SDK modules to interact with Wormhole and different blockchain platforms
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:1:6"
