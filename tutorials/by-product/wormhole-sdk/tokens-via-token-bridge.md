@@ -91,9 +91,9 @@ In this section, we’ll guide you through initializing the project, installing 
 
 ## Check and Create Wrapped Tokens
 
-Before transferring a token across chains, you must check whether a wrapped version of the token already exists on the destination chain. If the token has never been transferred to that chain before, Wormhole requires an attestation process to verify and register it before wrapping.
+Before transferring tokens across chains, check if a wrapped version exists on the destination chain. If not, you need to generate an attestation to register and wrap the token so it can be sent and received on that chain.
 
-In this section, you'll create a script that checks whether a token is wrapped on the destination chain. If it isn't, the script will generate an attestation, obtain verification from Wormhole, and complete the wrapping process. This example checks explicitly whether Arbitrum Sepolia has a wrapped version on Base Sepolia and, if not, registers it on the destination chain.
+In this section, you'll create a script to automate these steps. This example checks explicitly whether Arbitrum Sepolia has a wrapped version on Base Sepolia and, if not, registers it on the destination chain.
 
 1. Create the `create-wrapped.ts` file in the `src` directory
 
