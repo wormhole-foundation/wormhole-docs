@@ -102,16 +102,11 @@ In this section, you'll create a script to automate these steps. This example ch
     touch src/scripts/create-wrapped.ts
     ```
 
-2. **Open `create-wrapped.ts` and import the required modules** - include the necessary SDK modules to interact with Wormhole and different blockchain platforms
+2. **Open `create-wrapped.ts` and import the required modules** - import the necessary SDK modules to interact with Wormhole, EVM, Solana, and Sui chains, as well as helper functions for signing and sending transactions
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:1:6"
     ```
-
-     - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
-     - **`solana`** - this adds support for Solana, a non-EVM chain
-     - **`sui`** - support for Sui chain, another non-EVM chain
-     - `helpers.ts` - methods defined in the previous section
 
 3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana
 
@@ -121,7 +116,6 @@ In this section, you'll create a script to automate these steps. This example ch
 
     !!! note
         You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
-
 
 4. **Define the source chain and retrieve the native token ID** - retrieve the source chain and obtain the native token ID. This token will be checked and, if necessary, wrapped on the destination chain
 
