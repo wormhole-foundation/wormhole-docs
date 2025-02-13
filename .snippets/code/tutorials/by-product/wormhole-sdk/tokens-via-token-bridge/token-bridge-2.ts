@@ -9,9 +9,9 @@ import { getSigner } from '../helpers/helpers';
   const wh = await wormhole('Testnet', [evm, solana, sui]);
 
   // Define the source and destination chains
-  const origChain = wh.getChain('ArbitrumSepolia');
+  const srcChain = wh.getChain('ArbitrumSepolia');
   const destChain = wh.getChain('BaseSepolia');
-  const token = await origChain.getNativeWrappedTokenId();
+  const token = await srcChain.getNativeWrappedTokenId();
 
   // Destination chain signer setup
   const gasLimit = BigInt(2_500_000); // Optional for EVM Chains
@@ -32,22 +32,22 @@ import { getSigner } from '../helpers/helpers';
   }
 
   // Source chain signer setup
-  const { signer: origSigner } = await getSigner(origChain);
+  const { signer: origSigner } = await getSigner(srcChain);
 
   // Create an attestation transaction on the source chain
-  const tbOrig = await origChain.getTokenBridge();
+  const tbOrig = await srcChain.getTokenBridge();
   const attestTxns = tbOrig.createAttestation(
     token.address,
     Wormhole.parseAddress(origSigner.chain(), origSigner.address())
   );
 
-  const txids = await signSendWait(origChain, attestTxns, origSigner);
+  const txids = await signSendWait(srcChain, attestTxns, origSigner);
   console.log('txids: ', inspect(txids, { depth: null }));
   const txid = txids[0]!.txid;
   console.log('Created attestation (save this): ', txid);
 
   // Retrieve the Wormhole message ID from the attestation transaction
-  const msgs = await origChain.parseTransaction(txid);
+  const msgs = await srcChain.parseTransaction(txid);
   console.log('Parsed Messages:', msgs);
 
   const timeout = 25 * 60 * 1000;

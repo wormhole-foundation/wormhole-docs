@@ -95,6 +95,8 @@ Before transferring tokens across chains, check if a wrapped version exists on t
 
 In this section, you'll create a script to automate these steps. This example checks explicitly whether Arbitrum Sepolia has a wrapped version on Base Sepolia and, if not, registers it on the destination chain.
 
+### Configure the Wrapped Token Script
+
 1. **Create the `create-wrapped.ts` file** - set up the script file that will handle checking and wrapping tokens in the `src` directory
 
    ```bash
@@ -108,7 +110,7 @@ In this section, you'll create a script to automate these steps. This example ch
    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:1:6"
    ```
 
-3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
 
    ```typescript
    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:8:9"
@@ -123,7 +125,7 @@ In this section, you'll create a script to automate these steps. This example ch
    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:12:14"
    ```
 
-    - `origChain` - specifies the source chain, in this case, Arbitrum Sepolia
+    - `srcChain` - specifies the source chain, in this case, Arbitrum Sepolia
     - `destChain` - specifies the destination chain, in this case, Base Sepolia
     - `token` - retrieves the native token ID on the source chain
 
@@ -190,7 +192,7 @@ In this section, you'll create a script to automate these steps. This example ch
 
 You can find the complete create-wrapped token script below:
 
-??? code "`create-wrapped.ts`"
+??? code "Complete script"
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts"
     ```
