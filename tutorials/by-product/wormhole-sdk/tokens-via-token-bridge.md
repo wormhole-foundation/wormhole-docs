@@ -119,69 +119,56 @@ In this section, you'll create a script that automates this process by checking 
     !!! note
         You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
-4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain, Base Sepolia as the destination, and retrieve the token ID from the source chain for transfer
+4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain Base Sepolia as the destination, and retrieve the token ID from the source chain for transfer, and set the gas limit (optional)
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:12:14"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:12:15"
     ```
 
-5. **Set up the destination chain signer** - configure the signer for the destination chain and retrieve the Token Bridge instance
+5. **Set up the destination chain signer** -  the signer authorizes transactions, such as submitting the attestation
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:17:19"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:18:19"
     ```
 
-     - `gasLimit` - defines an optional gas limit for EVM chains
      - `getSigner(destChain, gasLimit)` - retrieves the signer for the destination chain
-     - `getTokenBridge()` - retrieves the Token Bridge instance for the destination chain
 
-6. **Check if the token is already wrapped on the destination chain** - before creating an attestation, first verify if the token already exists as a wrapped asset
+6. **Check if the token is wrapped on the destination chain** - verify if the token already exists as a wrapped asset before creating an attestation
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:22:32"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:19:31"
     ```
 
     If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#token-transfers). Otherwise, an attestation must be generated.
 
-7. **Set up the source chain signer** - configure the signer for the source chain
+7. **Set up the source chain signer** -  the signer creates and submits the attestation transaction
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:35:35"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:34:34"
     ```
 
-8. **Create an attestation transaction** - if the token is not already wrapped, generate an attestation to allow it to be registered on the destination chain
+8. **Create an attestation transaction** - generate and send an attestation for the token on the source chain to register it on the destination chain, then save the transaction ID to verify the attestation in the next step
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:38:47"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:37:46"
     ```
 
-     - `createAttestation` - generates an attestation for the token on the source chain
-     - `signSendWait` - submits the attestation transaction and waits for confirmation
-     - `txid` - stores the transaction ID, which can be used later to verify the attestation
-
-9. **Retrieve the signed VAA** - once the attestation transaction is confirmed, retrieve the signed VAA. This serves as cryptographic proof that the Wormhole network recognizes the attestation
+9. **Retrieve the signed VAA** - once the attestation transaction is confirmed, use `parseTransaction(txid)` to extract Wormhole messages, then retrieve the signed VAA from the messages. The timeout defines how long to wait for the VAA before failure
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:50:59"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:49:58"
     ```
 
-     - `parseTransaction(txid)` - extracts Wormhole messages from the attestation transaction
-     - `timeout` - defines how long to wait for the VAA before failing
-     - `getVaa` - retrieves the signed VAA for the attestation
-
-10. **Submit the attestation on the destination chain** - if the token is not already wrapped, submit the attestation to create the wrapped version on the destination chain
+10. **Submit the attestation on the destination chain** - submit the signed VAA using `submitAttestation(vaa, recipient)` to create the wrapped token on the destination chain, then send the transaction and await confirmation
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:66:71"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:65:70"
     ```
 
-     - `submitAttestation(vaa, recipient)` - submits the signed VAA to wrap the token
-     - `signSendWait(destChain, subAttestation, signer)` - sends the attestation transaction and waits for confirmation
-
-11. **Wait for the wrapped asset to be available** - after submitting the attestation, poll until the wrapped token is available on the destination chain
+11. **Wait for the wrapped asset to be available** - poll until the wrapped token is available on the destination chain
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:75:89"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:74:88"
     ```
 
     If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
@@ -198,6 +185,8 @@ Once the script is ready, execute it with:
 ```bash
 npx tsx src/scripts/create-wrapped.ts
 ```
+
+If the token is already wrapped, the script exits. Otherwise, it generates an attestation and submits it. Once complete, you can proceed to the next section.
 
 ## Token Transfers
 

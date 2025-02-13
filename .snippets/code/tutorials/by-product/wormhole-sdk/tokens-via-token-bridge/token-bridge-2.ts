@@ -12,13 +12,12 @@ import { getSigner } from '../helpers/helpers';
   const srcChain = wh.getChain('ArbitrumSepolia');
   const destChain = wh.getChain('BaseSepolia');
   const token = await srcChain.getNativeWrappedTokenId();
+  const gasLimit = BigInt(2_500_000);
 
   // Destination chain signer setup
-  const gasLimit = BigInt(2_500_000); // Optional for EVM Chains
   const { signer: destSigner } = await getSigner(destChain, gasLimit);
   const tbDest = await destChain.getTokenBridge();
 
-  // Check if the token is already wrapped on the destination chain
   try {
     const wrapped = await tbDest.getWrappedAsset(token);
     console.log(
