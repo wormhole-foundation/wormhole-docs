@@ -18853,9 +18853,9 @@ export async function getTokenDecimals<
 
 ## Check and Create Wrapped Tokens
 
-Before transferring tokens across chains, check if a wrapped version exists on the destination chain. If not, generate an attestation to register and wrap the token so it can be sent and received on that chain.
+Before tokens are transferred across chains, it should be checked whether a wrapped version exists on the destination chain. If not, an attestation must be generated to wrap it so it can be sent and received on that chain.
 
-In this section, you'll create a script to automate these steps. This example checks explicitly whether Arbitrum Sepolia has a wrapped version on Base Sepolia and, if not, registers it on the destination chain.
+In this section, you'll create a script that automates this process by checking whether Arbitrum Sepolia has a wrapped version on Base Sepolia and registering it if needed.
 
 ### Configure the Wrapped Token Script
 
@@ -18885,31 +18885,26 @@ import { getSigner } from '../helpers/helpers';
     !!! note
         You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
-4. **Define the source and destination chains** - specify the source chain and destination chain, and retrieve the token ID
+4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain Base Sepolia as the destination, and retrieve the token ID from the source chain for transfer, and set the gas limit (optional)
 
     ```typescript
     const destChain = wh.getChain('BaseSepolia');
   const token = await srcChain.getNativeWrappedTokenId();
+  const gasLimit = BigInt(2_500_000);
     ```
 
-     - `srcChain` - specifies the source chain, in this case, Arbitrum Sepolia
-     - `destChain` - specifies the destination chain, in this case, Base Sepolia
-     - `token` - retrieves the native token ID on the source chain
-
-5. **Set up the destination chain signer** - configure the signer for the destination chain and retrieve the Token Bridge instance
+5. **Set up the destination chain signer** -  the signer authorizes transactions, such as submitting the attestation
 
     ```typescript
-    const { signer: destSigner } = await getSigner(destChain, gasLimit);
-  const tbDest = await destChain.getTokenBridge();
+    const tbDest = await destChain.getTokenBridge();
     ```
 
-     - `gasLimit` - defines an optional gas limit for EVM chains
      - `getSigner(destChain, gasLimit)` - retrieves the signer for the destination chain
-     - `getTokenBridge()` - retrieves the Token Bridge instance for the destination chain
 
-6. **Check if the token is already wrapped on the destination chain** - before creating an attestation, first verify if the token already exists as a wrapped asset
+6. **Check if the token is wrapped on the destination chain** - verify if the token already exists as a wrapped asset before creating an attestation
 
     ```typescript
+    try {
     const wrapped = await tbDest.getWrappedAsset(token);
     console.log(
       `Token already wrapped on ${destChain.chain}. Skipping attestation.`
@@ -18924,13 +18919,13 @@ import { getSigner } from '../helpers/helpers';
 
     If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#token-transfers). Otherwise, an attestation must be generated.
 
-7. **Set up the source chain signer** - configure the signer for the source chain
+7. **Set up the source chain signer** -  the signer creates and submits the attestation transaction
 
     ```typescript
     
     ```
 
-8. **Create an attestation transaction** - if the token is not already wrapped, generate an attestation to allow it to be registered on the destination chain
+8. **Create an attestation transaction** - generate and send an attestation for the token on the source chain to register it on the destination chain, then save the transaction ID to verify the attestation in the next step
 
     ```typescript
     const attestTxns = tbOrig.createAttestation(
@@ -18944,11 +18939,7 @@ import { getSigner } from '../helpers/helpers';
   console.log('Created attestation (save this): ', txid);
     ```
 
-     - `createAttestation` - generates an attestation for the token on the source chain
-     - `signSendWait` - submits the attestation transaction and waits for confirmation
-     - `txid` - stores the transaction ID, which can be used later to verify the attestation
-
-9. **Retrieve the signed VAA** - once the attestation transaction is confirmed, retrieve the signed VAA. This serves as cryptographic proof that the Wormhole network recognizes the attestation
+9. **Retrieve the signed VAA** - once the attestation transaction is confirmed, use `parseTransaction(txid)` to extract Wormhole messages, then retrieve the signed VAA from the messages. The timeout defines how long to wait for the VAA before failure
 
     ```typescript
     console.log('Parsed Messages:', msgs);
@@ -18962,11 +18953,7 @@ import { getSigner } from '../helpers/helpers';
   }
     ```
 
-     - `parseTransaction(txid)` - extracts Wormhole messages from the attestation transaction
-     - `timeout` - defines how long to wait for the VAA before failing
-     - `getVaa` - retrieves the signed VAA for the attestation
-
-10. **Submit the attestation on the destination chain** - if the token is not already wrapped, submit the attestation to create the wrapped version on the destination chain
+10. **Submit the attestation on the destination chain** - submit the signed VAA using `submitAttestation(vaa, recipient)` to create the wrapped token on the destination chain, then send the transaction and await confirmation
 
     ```typescript
     vaa,
@@ -18976,10 +18963,7 @@ import { getSigner } from '../helpers/helpers';
   const tsx = await signSendWait(destChain, subAttestation, destSigner);
     ```
 
-     - `submitAttestation(vaa, recipient)` - submits the signed VAA to wrap the token
-     - `signSendWait(destChain, subAttestation, signer)` - sends the attestation transaction and waits for confirmation
-
-11. **Wait for the wrapped asset to be available** - after submitting the attestation, poll until the wrapped token is available on the destination chain
+11. **Wait for the wrapped asset to be available** - poll until the wrapped token is available on the destination chain
 
     ```typescript
     do {
@@ -19000,8 +18984,6 @@ import { getSigner } from '../helpers/helpers';
 
     If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
 
-You can find the complete create-wrapped token script below:
-
 ??? code "Complete script"
     ```typescript
     import { Wormhole, signSendWait, wormhole } from '@wormhole-foundation/sdk';
@@ -19018,13 +19000,12 @@ import { getSigner } from '../helpers/helpers';
   const srcChain = wh.getChain('ArbitrumSepolia');
   const destChain = wh.getChain('BaseSepolia');
   const token = await srcChain.getNativeWrappedTokenId();
+  const gasLimit = BigInt(2_500_000);
 
   // Destination chain signer setup
-  const gasLimit = BigInt(2_500_000); // Optional for EVM Chains
   const { signer: destSigner } = await getSigner(destChain, gasLimit);
   const tbDest = await destChain.getTokenBridge();
 
-  // Check if the token is already wrapped on the destination chain
   try {
     const wrapped = await tbDest.getWrappedAsset(token);
     console.log(
@@ -19102,6 +19083,8 @@ Once the script is ready, execute it with:
 ```bash
 npx tsx src/scripts/create-wrapped.ts
 ```
+
+If the token is already wrapped, the script exits. Otherwise, it generates an attestation and submits it. Once complete, you can proceed to the next section.
 
 ## Token Transfers
 
@@ -19372,8 +19355,6 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
     ```typescript
     console.log(`Completed Transfer: `, destTxids);
     ```
-
-You can find the complete native token transfer script below:
 
 ??? code "Complete script"
     ```typescript
