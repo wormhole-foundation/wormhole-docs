@@ -225,8 +225,6 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:1:14"
     ```
 
-    The required imports are the same as in the [Wrapped Tokens section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#check-and-create-wrapped-tokens).
-
 3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
 
     ```typescript
