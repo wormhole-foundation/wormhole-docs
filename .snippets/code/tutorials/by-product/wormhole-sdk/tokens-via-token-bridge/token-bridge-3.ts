@@ -1,91 +1,96 @@
-import { Wormhole, signSendWait, wormhole } from '@wormhole-foundation/sdk';
+import {
+  Chain,
+  Network,
+  Wormhole,
+  amount,
+  wormhole,
+  TokenId,
+  TokenTransfer,
+} from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import sui from '@wormhole-foundation/sdk/sui';
-import { inspect } from 'util';
-import { getSigner } from '../helpers/helpers';
+import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
 
 (async function () {
   const wh = await wormhole('Testnet', [evm, solana, sui]);
 
-  // Get the source chain and signer
-  const origChain = wh.getChain('ArbitrumSepolia');
-  const token = await origChain.getNativeWrappedTokenId();
-  const { signer: origSigner } = await getSigner(origChain);
+  // Set up source and destination chains
+  const sendChain = wh.getChain('Sui');
+  const rcvChain = wh.getChain('Solana');
 
-  // Transaction ID (txid) - If attestation was previously created, set txid manually
-  let txid = undefined;
+  // Get signer from local key but anything that implements
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
 
-  if (!txid) {
-    const tb = await origChain.getTokenBridge();
-    const attestTxns = tb.createAttestation(
-      token.address,
-      Wormhole.parseAddress(origSigner.chain(), origSigner.address())
-    );
+  // Shortcut to allow transferring native gas token
+  const token = Wormhole.tokenId(sendChain.chain, 'native');
 
-    const txids = await signSendWait(origChain, attestTxns, origSigner);
-    console.log('txids: ', inspect(txids, { depth: null }));
-    txid = txids[0]!.txid;
-    console.log('Created attestation (save this): ', txid);
+  // Define the amount of tokens to transfer
+  const amt = '1';
+
+  // Set automatic transfer to false for manual transfer
+  const automatic = false;
+
+  // Used to normalize the amount to account for the tokens decimals
+  const decimals = await getTokenDecimals(wh, token, sendChain);
+
+  // Perform the token transfer if no recovery transaction ID is provided
+  const xfer = await tokenTransfer(wh, {
+    token,
+    amount: amount.units(amount.parse(amt, decimals)),
+    source,
+    destination,
+    automatic,
+  });
+
+  process.exit(0);
+})();
+
+async function tokenTransfer<N extends Network>(
+  wh: Wormhole<N>,
+  route: {
+    token: TokenId;
+    amount: bigint;
+    source: SignerStuff<N, Chain>;
+    destination: SignerStuff<N, Chain>;
+    automatic: boolean;
+    payload?: Uint8Array;
   }
-
-  // Parse transaction logs to retrieve the Wormhole message ID
-  const msgs = await origChain.parseTransaction(txid);
-  console.log('Parsed Messages:', msgs);
-
-  // Retrieve the Signed VAA from the API
-  const timeout = 25 * 60 * 1000;
-  const vaa = await wh.getVaa(msgs[0]!, 'TokenBridge:AttestMeta', timeout);
-  if (!vaa)
-    throw new Error(
-      'VAA not found after retries exhausted, try extending the timeout'
-    );
-
-  console.log('Token Address: ', vaa.payload.token.address);
-
-  // Destination chain setup
-  const chain = 'BaseSepolia';
-  const destChain = wh.getChain(chain);
-  const gasLimit = BigInt(2_500_000); // Optional for EVM Chains
-  const { signer } = await getSigner(destChain, gasLimit);
-
-  const tb = await destChain.getTokenBridge();
-  try {
-    const wrapped = await tb.getWrappedAsset(token);
-    console.log(`Token already wrapped on ${chain}`);
-    return { chain, address: wrapped };
-  } catch (e) {
-    console.log(
-      `No wrapped token found on ${chain}, proceeding with attestation.`
-    );
-  }
-
-  // Submit the attestation on the destination chain
-  console.log('Attesting asset...');
-
-  const subAttestation = tb.submitAttestation(
-    vaa,
-    Wormhole.parseAddress(signer.chain(), signer.address())
+) {
+  // Token Transfer Logic
+  // Create a TokenTransfer object to track the state of the transfer over time
+  const xfer = await wh.tokenTransfer(
+    route.token,
+    route.amount,
+    route.source.address,
+    route.destination.address,
+    route.automatic ?? false,
+    route.payload
   );
 
-  // Send attestation transaction and log the transaction hash
-  const tsx = await signSendWait(destChain, subAttestation, signer);
+  const quote = await TokenTransfer.quoteTransfer(
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    xfer.transfer
+  );
 
-  console.log('Transaction hash: ', tsx);
+  if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
 
-  // Poll for the wrapped asset until it's available
-  async function waitForIt() {
-    do {
-      try {
-        const wrapped = await tb.getWrappedAsset(token);
-        return { chain, address: wrapped };
-      } catch (e) {
-        console.error('Wrapped asset not found yet. Retrying...');
-      }
-      console.log('Waiting before checking again...');
-      await new Promise((r) => setTimeout(r, 2000));
-    } while (true);
-  }
+  // Submit the transactions to the source chain, passing a signer to sign any txns
+  console.log('Starting transfer');
+  const srcTxids = await xfer.initiateTransfer(route.source.signer);
+  console.log(`Source Trasaction ID: ${srcTxids[0]}`);
+  console.log(`Wormhole Trasaction ID: ${srcTxids[1] ?? srcTxids[0]}`);
 
-  console.log('Wrapped Asset: ', await waitForIt());
-})().catch((e) => console.error(e));
+  // Wait for the VAA to be signed and ready (not required for auto transfer)
+  console.log('Getting Attestation');
+  await xfer.fetchAttestation(60_000);
+
+  // Redeem the VAA on the dest chain
+  console.log('Completing Transfer');
+  const destTxids = await xfer.completeTransfer(route.destination.signer);
+  console.log(`Completed Transfer: `, destTxids);
+}

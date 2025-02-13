@@ -105,7 +105,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 2. Open `create-wrapped.ts` and import the required modules
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:1:6"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:1:6"
     ```
 
      - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
@@ -116,7 +116,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:8:9"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:8:9"
     ```
 
     !!! note
@@ -126,7 +126,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 4. **Define the source chain and retrieve the native token ID** - retrieve the source chain and obtain the native token ID. This token will be checked and, if necessary, wrapped on the destination chain
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:12:14"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:12:14"
     ```
 
      - `origChain` - specifies the source chain, in this case, Arbitrum Sepolia
@@ -136,7 +136,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 5. **Create an attestation transaction** - before wrapping a token, an attestation must be created. This step ensures that Wormhole recognizes the token and allows it to be wrapped on the destination chain
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:17:30"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:17:30"
     ```
 
      - `createAttestation` - generates an attestation for the token on the source chain
@@ -146,7 +146,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 6. **Retrieve the signed VAA** - once the attestation transaction is confirmed, retrieve the signed VAA. This serves as cryptographic proof that the Wormhole network recognizes the attestation
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:33:42"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:33:42"
     ```
 
      - `parseTransaction(txid)` - extracts Wormhole messages from the attestation transaction
@@ -156,7 +156,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 7. **Set up the destination chain** - specify the destination chain and configure the signer
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:47:50"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:47:50"
     ```
 
     `gasLimit` - defines an optional gas limit for EVM chains
@@ -164,7 +164,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 8. **Check if the token is already wrapped on the destination chain** - if the token is wrapped on the destination chain, you  may proceed to the [next section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#native-token-transfers)
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:52:61"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:52:61"
     ```
 
      - `getTokenBridge()` - retrieves the Token Bridge instance for the destination chain
@@ -173,7 +173,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 9. **Submit the attestation on the destination chain** - if the token is not already wrapped, submit the attestation to create the wrapped version on the destination chain
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:66:72"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:66:72"
     ```
 
      - `submitAttestation(vaa, recipient)` - submits the signed VAA to wrap the token
@@ -183,7 +183,7 @@ In this section, you'll create a script that checks if a token is wrapped on the
 10. **Wait for the wrapped asset to be available** - after submitting the attestation, poll until the wrapped token is available on the destination chain
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:77:91"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:77:91"
     ```
 
      If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
@@ -192,7 +192,7 @@ You can find the complete create-wrapped token script below:
 
 ??? code "`create-wrapped.ts`"
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts"
     ```
 
 ### Run the Wrapped Token Creation
@@ -220,7 +220,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 2. Open the `native-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:1:14"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:1:14"
     ```
 
     The required imports are the same as in the [Wrapped Tokens section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#check-and-create-wrapped-tokens).
@@ -228,37 +228,37 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:15:16"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:15:16"
     ```
 
 4. **Set up source and destination chains** - specify the source chain (Sui) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the native tokens and where to receive them
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:19:20"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:19:20"
     ```
 
 5. **Configure the signers** - use the `getSigner` function to retrieve the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:23:24"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:23:24"
     ```
 
 6. **Define the token to transfer** - specify the native token on the source chain (Sui in this example) by creating a `TokenId` object
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:27:27"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:27:27"
     ```
 
 7. **Define the transfer amount** - the amount of native tokens to transfer is specified. In this case, we're transferring 1 unit
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:30:30"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:30:30"
     ```
 
 8. **Set transfer mode** - specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:33:33"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:33:33"
     ```
 
     !!! note
@@ -267,19 +267,19 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 9. **Define decimals** - fetch the number of decimals for the token on the source chain (Sui) using the `getTokenDecimals` function
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:36:36"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:36:36"
     ```
 
 10. **Perform the token transfer and exit the process** - initiate the transfer by calling the `tokenTransfer` function, which we’ll define in the next step. This function takes an object containing all required details for executing the transfer, including the `source` and `destination` chains, `token`, `mode`, and transfer `amount`
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:39:45"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:39:45"
     ```
 
     Finally, we use `process.exit(0);` to close the script once the transfer completes
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:47:48"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:47:48"
     ```
 
 ### Token Transfer Logic
@@ -291,8 +291,8 @@ This section defines the `tokenTransfer` function, which manages the core steps 
 The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK. This function uses types from the SDK and our `helpers.ts` file to ensure chain compatibility.
 
 ```typescript
---8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:50:61"
---8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:96"
+--8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:50:61"
+--8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:96"
 ```
 
 #### Steps to Transfer Tokens
@@ -302,19 +302,19 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
 1. **Initialize the transfer object** - the `tokenTransfer` function begins by creating a `TokenTransfer` object, `xfer`, which tracks the state of the transfer process and provides access to relevant methods for each transfer step
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:63:70"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:63:70"
     ```
 
 2. **Estimate transfer fees and validate amount** - we obtain a fee quote for the transfer before proceeding. This step is significant in automatic mode (`automatic = true`), where the quote will include additional fees for relaying
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:72:80"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:72:80"
     ```
 
 3. **Submit the transaction to the source chain** - initiate the transfer on the source chain by submitting the transaction using `route.source.signer`, starting the token transfer process
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:84:85"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:84:85"
     ```
 
      - **`srcTxids`** - the resulting transaction IDs are printed to the console. These IDs can be used to track the transfer’s progress on the source chain and [Wormhole network](https://wormholescan.io/#/?network=Testnet){target=\_blank}
@@ -332,20 +332,20 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
 4. **Wait for the attestation** - retrieve the Wormhole attestation (VAA), which serves as cryptographic proof of the transfer. In manual mode, you must wait for the VAA before redeeming the transfer on the destination chain
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:90:90"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:90:90"
     ```
 
 5. **Complete the transfer on the destination chain** - redeem the VAA on the destination chain to finalize the transfer
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:94:95"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:94:95"
     ```
 
 You can find the complete native token transfer script below:
 
 ??? code "`native-transfer.ts`"
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts"
     ```
 
 ### Run the Native Token Transfer
