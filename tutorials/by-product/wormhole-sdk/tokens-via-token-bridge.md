@@ -119,7 +119,7 @@ In this section, you'll create a script that automates this process by checking 
     !!! note
         You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
-4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain Base Sepolia as the destination, and retrieve the token ID from the source chain for transfer, and set the gas limit (optional)
+4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain and Base Sepolia as the destination, retrieve the token ID from the source chain for transfer, and set the gas limit (optional)
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:12:15"
@@ -130,8 +130,6 @@ In this section, you'll create a script that automates this process by checking 
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:18:19"
     ```
-
-     - `getSigner(destChain, gasLimit)` - retrieves the signer for the destination chain
 
 6. **Check if the token is wrapped on the destination chain** - verify if the token already exists as a wrapped asset before creating an attestation
 
@@ -186,7 +184,7 @@ Once the script is ready, execute it with:
 npx tsx src/scripts/create-wrapped.ts
 ```
 
-If the token is already wrapped, the script exits. Otherwise, it generates an attestation and submits it. Once complete, you can proceed to the next section.
+If the token is already wrapped, the script exits. Otherwise, it generates an attestation and submits it. Once complete, you’re ready to transfer tokens across chains.
 
 ## Token Transfers
 
