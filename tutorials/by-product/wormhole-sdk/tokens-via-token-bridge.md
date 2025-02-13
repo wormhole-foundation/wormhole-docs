@@ -186,8 +186,6 @@ In this section, you'll create a script that automates this process by checking 
 
     If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
 
-You can find the complete create-wrapped token script below:
-
 ??? code "Complete script"
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts"
@@ -336,8 +334,6 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:94:95"
     ```
-
-You can find the complete native token transfer script below:
 
 ??? code "Complete script"
     ```typescript
