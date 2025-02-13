@@ -18896,7 +18896,7 @@ import { getSigner } from '../helpers/helpers';
 5. **Set up the destination chain signer** -  the signer authorizes transactions, such as submitting the attestation
 
     ```typescript
-    const tbDest = await destChain.getTokenBridge();
+    
     ```
 
 6. **Check if the token is wrapped on the destination chain** - verify if the token already exists as a wrapped asset before creating an attestation
