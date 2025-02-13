@@ -128,7 +128,7 @@ In this section, you'll create a script that automates this process by checking 
 5. **Set up the destination chain signer** -  the signer authorizes transactions, such as submitting the attestation
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:18:19"
+    --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-2.ts:18:18"
     ```
 
 6. **Check if the token is wrapped on the destination chain** - verify if the token already exists as a wrapped asset before creating an attestation
