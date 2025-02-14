@@ -20,7 +20,7 @@ You can use Wormhole's CCTP-powered USDC bridging by embedding the [Connect Widg
 
 ## Automatic Relaying
 
-To complete a CCTP transfer, the [Circle Attestation](https://developers.circle.com/stablecoins/reference/getattestation){target=\_blank} must be delivered to the destination chain.
+To complete a CCTP transfer, the [Circle Attestation](https://developers.circle.com/api-reference/stablecoins/common/get-attestation){target=\_blank} must be delivered to the destination chain.
 
 This attestation delivery may be difficult or impossible in some contexts. For example, in a browser context, the user doesn't wish to wait for finality to deliver the attestation. To address this difficulty, the Wormhole CCTP relayer may be used either with the [Wormhole Connect Widget](/docs/build/applications/connect/overview/){target=\_blank} or more directly with the [Wormhole TypeScript SDK](/docs/build/applications/wormhole-sdk/){target=\_blank}.
 
