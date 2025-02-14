@@ -18768,6 +18768,7 @@ In this section, we’ll guide you through initializing the project, installing 
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import sui from '@wormhole-foundation/sdk/sui';
+import aptos from '@wormhole-foundation/sdk/aptos';
 import { config } from 'dotenv';
 config();
 
@@ -18786,7 +18787,8 @@ function getEnv(key: string): string {
 
 // Signer setup function for different blockchain platforms
 export async function getSigner<N extends Network, C extends Chain>(
-  chain: ChainContext<N, C>
+  chain: ChainContext<N, C>,
+  gasLimit?: bigint
 ): Promise<{
   chain: ChainContext<N, C>;
   signer: Signer<N, C>;
@@ -18802,14 +18804,24 @@ export async function getSigner<N extends Network, C extends Chain>(
       ).getSigner(await chain.getRpc(), getEnv('SOL_PRIVATE_KEY'));
       break;
     case 'Evm':
+      const evmSignerOptions = gasLimit ? { gasLimit } : {};
       signer = await (
         await evm()
-      ).getSigner(await chain.getRpc(), getEnv('ETH_PRIVATE_KEY'));
+      ).getSigner(
+        await chain.getRpc(),
+        getEnv('ETH_PRIVATE_KEY'),
+        evmSignerOptions
+      );
       break;
     case 'Sui':
       signer = await (
         await sui()
-      ).getSigner(await chain.getRpc(), getEnv('SUI_PRIVATE_KEY'));
+      ).getSigner(await chain.getRpc(), getEnv('SUI_MNEMONIC'));
+      break;
+    case 'Aptos':
+      signer = await (
+        await aptos()
+      ).getSigner(await chain.getRpc(), getEnv('APTOS_PRIVATE_KEY'));
       break;
     default:
       throw new Error('Unsupported platform: ' + platform);
@@ -18839,7 +18851,240 @@ export async function getTokenDecimals<
         - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
         - **`getTokenDecimals`** - this function fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers
 
-## Native Token Transfers
+## Check and Create Wrapped Tokens
+
+Before tokens are transferred across chains, it should be checked whether a wrapped version exists on the destination chain. If not, an attestation must be generated to wrap it so it can be sent and received on that chain.
+
+In this section, you'll create a script that automates this process by checking whether Arbitrum Sepolia has a wrapped version on Base Sepolia and registering it if needed.
+
+### Configure the Wrapped Token Script
+
+1. **Create the `create-wrapped.ts` file** - set up the script file that will handle checking and wrapping tokens in the `src` directory
+
+    ```bash
+    mkdir -p src/scripts
+    touch src/scripts/create-wrapped.ts
+    ```
+
+2. **Open `create-wrapped.ts` and import the required modules** - import the necessary SDK modules to interact with Wormhole, EVM, Solana, and Sui chains, as well as helper functions for signing and sending transactions
+
+    ```typescript
+    import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { inspect } from 'util';
+import { getSigner } from '../helpers/helpers';
+    ```
+
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
+
+    ```typescript
+    const wh = await wormhole('Testnet', [evm, solana, sui]);
+    ```
+
+    !!! note
+        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
+
+4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain and Base Sepolia as the destination, retrieve the token ID from the source chain for transfer, and set the gas limit (optional)
+
+    ```typescript
+    const destChain = wh.getChain('BaseSepolia');
+  const token = await srcChain.getNativeWrappedTokenId();
+  const gasLimit = BigInt(2_500_000);
+    ```
+
+5. **Set up the destination chain signer** -  the signer authorizes transactions, such as submitting the attestation
+
+    ```typescript
+    
+    ```
+
+6. **Check if the token is wrapped on the destination chain** - verify if the token already exists as a wrapped asset before creating an attestation
+
+    ```typescript
+    try {
+    const wrapped = await tbDest.getWrappedAsset(token);
+    console.log(
+      `Token already wrapped on ${destChain.chain}. Skipping attestation.`
+    );
+    return { chain: destChain.chain, address: wrapped };
+  } catch (e) {
+    console.log(
+      `No wrapped token found on ${destChain.chain}. Proceeding with attestation.`
+    );
+  }
+    ```
+
+    If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/#token-transfers). Otherwise, an attestation must be generated.
+
+7. **Set up the source chain signer** -  the signer creates and submits the attestation transaction
+
+    ```typescript
+    
+    ```
+
+8. **Create an attestation transaction** - generate and send an attestation for the token on the source chain to register it on the destination chain, then save the transaction ID to verify the attestation in the next step
+
+    ```typescript
+    const attestTxns = tbOrig.createAttestation(
+    token.address,
+    Wormhole.parseAddress(origSigner.chain(), origSigner.address())
+  );
+
+  const txids = await signSendWait(srcChain, attestTxns, origSigner);
+  console.log('txids: ', inspect(txids, { depth: null }));
+  const txid = txids[0]!.txid;
+  console.log('Created attestation (save this): ', txid);
+    ```
+
+9. **Retrieve the signed VAA** - once the attestation transaction is confirmed, use `parseTransaction(txid)` to extract Wormhole messages, then retrieve the signed VAA from the messages. The timeout defines how long to wait for the VAA before failure
+
+    ```typescript
+    console.log('Parsed Messages:', msgs);
+
+  const timeout = 25 * 60 * 1000;
+  const vaa = await wh.getVaa(msgs[0]!, 'TokenBridge:AttestMeta', timeout);
+  if (!vaa) {
+    throw new Error(
+      'VAA not found after retries exhausted. Try extending the timeout.'
+    );
+  }
+    ```
+
+10. **Submit the attestation on the destination chain** - submit the signed VAA using `submitAttestation(vaa, recipient)` to create the wrapped token on the destination chain, then send the transaction and await confirmation
+
+    ```typescript
+    vaa,
+    Wormhole.parseAddress(destSigner.chain(), destSigner.address())
+  );
+
+  const tsx = await signSendWait(destChain, subAttestation, destSigner);
+    ```
+
+11. **Wait for the wrapped asset to be available** - poll until the wrapped token is available on the destination chain
+
+    ```typescript
+    do {
+      try {
+        const wrapped = await tbDest.getWrappedAsset(token);
+        return { chain: destChain.chain, address: wrapped };
+      } catch (e) {
+        console.error('Wrapped asset not found yet. Retrying...');
+      }
+      console.log('Waiting before checking again...');
+      await new Promise((r) => setTimeout(r, 2000));
+    } while (true);
+  }
+
+  console.log('Wrapped Asset: ', await waitForIt());
+})().catch((e) => console.error(e));
+    ```
+
+    If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
+
+??? code "Complete script"
+    ```typescript
+    import { Wormhole, signSendWait, wormhole } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { inspect } from 'util';
+import { getSigner } from '../helpers/helpers';
+
+(async function () {
+  const wh = await wormhole('Testnet', [evm, solana, sui]);
+
+  // Define the source and destination chains
+  const srcChain = wh.getChain('ArbitrumSepolia');
+  const destChain = wh.getChain('BaseSepolia');
+  const token = await srcChain.getNativeWrappedTokenId();
+  const gasLimit = BigInt(2_500_000);
+
+  // Destination chain signer setup
+  const { signer: destSigner } = await getSigner(destChain, gasLimit);
+  const tbDest = await destChain.getTokenBridge();
+
+  try {
+    const wrapped = await tbDest.getWrappedAsset(token);
+    console.log(
+      `Token already wrapped on ${destChain.chain}. Skipping attestation.`
+    );
+    return { chain: destChain.chain, address: wrapped };
+  } catch (e) {
+    console.log(
+      `No wrapped token found on ${destChain.chain}. Proceeding with attestation.`
+    );
+  }
+
+  // Source chain signer setup
+  const { signer: origSigner } = await getSigner(srcChain);
+
+  // Create an attestation transaction on the source chain
+  const tbOrig = await srcChain.getTokenBridge();
+  const attestTxns = tbOrig.createAttestation(
+    token.address,
+    Wormhole.parseAddress(origSigner.chain(), origSigner.address())
+  );
+
+  const txids = await signSendWait(srcChain, attestTxns, origSigner);
+  console.log('txids: ', inspect(txids, { depth: null }));
+  const txid = txids[0]!.txid;
+  console.log('Created attestation (save this): ', txid);
+
+  // Retrieve the Wormhole message ID from the attestation transaction
+  const msgs = await srcChain.parseTransaction(txid);
+  console.log('Parsed Messages:', msgs);
+
+  const timeout = 25 * 60 * 1000;
+  const vaa = await wh.getVaa(msgs[0]!, 'TokenBridge:AttestMeta', timeout);
+  if (!vaa) {
+    throw new Error(
+      'VAA not found after retries exhausted. Try extending the timeout.'
+    );
+  }
+
+  console.log('Token Address: ', vaa.payload.token.address);
+
+  // Submit the attestation on the destination chain
+  console.log('Attesting asset on destination chain...');
+
+  const subAttestation = tbDest.submitAttestation(
+    vaa,
+    Wormhole.parseAddress(destSigner.chain(), destSigner.address())
+  );
+
+  const tsx = await signSendWait(destChain, subAttestation, destSigner);
+  console.log('Transaction hash: ', tsx);
+
+  // Poll for the wrapped asset until it's available
+  async function waitForIt() {
+    do {
+      try {
+        const wrapped = await tbDest.getWrappedAsset(token);
+        return { chain: destChain.chain, address: wrapped };
+      } catch (e) {
+        console.error('Wrapped asset not found yet. Retrying...');
+      }
+      console.log('Waiting before checking again...');
+      await new Promise((r) => setTimeout(r, 2000));
+    } while (true);
+  }
+
+  console.log('Wrapped Asset: ', await waitForIt());
+})().catch((e) => console.error(e));
+    ```
+
+### Run the Wrapped Token Creation
+
+Once the script is ready, execute it with:
+
+```bash
+npx tsx src/scripts/create-wrapped.ts
+```
+
+If the token is already wrapped, the script exits. Otherwise, it generates an attestation and submits it. Once complete, you’re ready to transfer tokens across chains.
+
+## Token Transfers
 
 In this section, you'll create a script to transfer native tokens across chains using Wormhole's Token Bridge method. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
 
@@ -18850,7 +19095,6 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 1. Create the `native-transfer.ts` file in the `src` directory to hold your script for transferring native tokens across chains
 
     ```bash
-    mkdir -p src/scripts
     touch src/scripts/native-transfer.ts
     ```
 
@@ -18871,19 +19115,11 @@ import sui from '@wormhole-foundation/sdk/sui';
 import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     ```
 
-     - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
-     - **`solana`** - this adds support for Solana, a non-EVM chain
-     - **`sui`** - support for Sui chain, another non-EVM chain
-     - `helpers.ts` methods defined in the previous section
-
-3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support. This allows us to interact with both EVM-compatible chains like Ethereum and non-EVM chains like Solana and Sui
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
 
     ```typescript
     const wh = await wormhole('Testnet', [evm, solana, sui]);
     ```
-        
-    !!! note
-        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
 
 4. **Set up source and destination chains** - specify the source chain (Sui) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the native tokens and where to receive them
 
@@ -19118,9 +19354,7 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
     console.log(`Completed Transfer: `, destTxids);
     ```
 
-You can find the complete native token transfer script below:
-
-??? code "`native-transfer.ts`"
+??? code "Complete script"
     ```typescript
     import {
   Chain,
