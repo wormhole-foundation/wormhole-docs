@@ -18,7 +18,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Start with the basics to get a solid understanding of what Wormhole has to offer and how it works to provide secure cross-chain communication.
 
-    [:octicons-arrow-right-16: Get started](/docs/learn/fundamentals/)
+    [:custom-arrow: Get started](/docs/learn/fundamentals/)
 
 -   :octicons-inbox-16:{ .lg .middle } **Infrastructure Components**
 
@@ -26,7 +26,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Explore Wormhole's core infrastructure components and the unique roles each plays in enabling seamless message delivery across chains.
 
-    [:octicons-arrow-right-16: Understand Wormhole's infrastructure](/docs/learn/infrastructure/)
+    [:custom-arrow: Understand Wormhole's infrastructure](/docs/learn/infrastructure/)
 
 -   :octicons-mail-16:{ .lg .middle } **Messaging**
 
@@ -34,7 +34,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Discover Wormhole's messaging protocols and how each facilitates secure and efficient communication across blockchains.
 
-    [:octicons-arrow-right-16: Explore messaging protocols](/docs/learn/messaging/)
+    [:custom-arrow: Explore messaging protocols](/docs/learn/messaging/)
 
 -   :octicons-people-16:{ .lg .middle } **Multichain Governance**
 
@@ -42,6 +42,6 @@ This section offers informational content on Wormhole, covering its architecture
 
     Explore this section to gain a foundational understanding of MultiGov, Wormhole's approach to multichain governance.
 
-    [:octicons-arrow-right-16: Learn about MultiGov](/docs/learn/governance/)
+    [:custom-arrow: Learn about MultiGov](/docs/learn/governance/)
 
 </div>
