@@ -20,7 +20,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Find installation instructions for both the meta package and installing specific, individual packages
 
-    [:octicons-arrow-right-16: Install the SDK](#installation)
+    [:custom-arrow: Install the SDK](#installation)
 
 -   :octicons-book-16:{ .lg .middle } **Concepts**
 
@@ -28,7 +28,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Understand key concepts and how the SDK abstracts them away. Learn more about platforms, chain context, addresses, and signers
 
-    [:octicons-arrow-right-16: Explore concepts](#concepts)
+    [:custom-arrow: Explore concepts](#concepts)
 
 -   :octicons-file-code-16:{ .lg .middle } **Usage**
 
@@ -36,7 +36,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Guidance on using the SDK to add seamless interchain messaging to your application, including code examples
 
-    [:octicons-arrow-right-16: Use the SDK](#usage)
+    [:custom-arrow: Use the SDK](#usage)
 
 -   :octicons-code-square-16:{ .lg .middle } **TSdoc for SDK**
 
@@ -44,7 +44,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Review the TSdoc for the Wormhole TypeScript SDK for a detailed look at availabel methods, classes, interfaces, and definitions
 
-    [:octicons-arrow-right-16: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
+    [:custom-arrow: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
 
 </div>
 

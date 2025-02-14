@@ -36,7 +36,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     The Core Contracts are responsible for publishing and verifying all cross-chain messages.
 
-    [:octicons-arrow-right-16: Learn more about Core Contracts](/docs/learn/infrastructure/core-contracts/)
+    [:custom-arrow: Learn more about Core Contracts](/docs/learn/infrastructure/core-contracts/)
 
 -   :octicons-book-16:{ .lg .middle } **Verifiable Action Approvals (VAAs)**
 
@@ -44,7 +44,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     VAAs are Wormhole's core messaging primitive, consisting of cross-chain data packets.
 
-    [:octicons-arrow-right-16: Learn more about VAAs](/docs/learn/infrastructure/vaas/)
+    [:custom-arrow: Learn more about VAAs](/docs/learn/infrastructure/vaas/)
 
 -   :octicons-book-16:{ .lg .middle } **Guardians**
 
@@ -52,7 +52,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     Guardians are nodes responsible for observing messages and signing the corresponding payloads.
 
-    [:octicons-arrow-right-16: Learn more about Guardians](/docs/learn/infrastructure/guardians/)
+    [:custom-arrow: Learn more about Guardians](/docs/learn/infrastructure/guardians/)
 
 -   :octicons-book-16:{ .lg .middle } **Relayers**
 
@@ -60,7 +60,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     Relayers are processes that handle the delivery of VAAs to their intended destination.
 
-    [:octicons-arrow-right-16: Learn more about relayers](/docs/learn/infrastructure/relayer/)
+    [:custom-arrow: Learn more about relayers](/docs/learn/infrastructure/relayer/)
 
 -   :octicons-book-16:{ .lg .middle } **Spy**
 
@@ -68,6 +68,6 @@ This section provides a closer look at the core components that power Wormhole's
 
     A Spy watches the messages published by the Guardian Network and can forward network traffic.
 
-    [:octicons-arrow-right-16: Learn more about the Spy](/docs/learn/infrastructure/spy/)
+    [:custom-arrow: Learn more about the Spy](/docs/learn/infrastructure/spy/)
 
 </div>

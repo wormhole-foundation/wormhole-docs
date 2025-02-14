@@ -1373,7 +1373,7 @@ This guide provides detailed instructions on configuring Wormhole Connect and hi
     Learn how to configure the networks, tokens, and routes supported by Wormhole Connect. Set up RPC endpoints, whitelist tokens, and leverage multiple bridging protocols to meet your dApp's needs.
 
 
-    [:octicons-arrow-right-16: Get started](/docs/build/applications/connect/configuration/configure-data/)
+    [:custom-arrow: Get started](/docs/build/applications/connect/configuration/configure-data/)
 
 -   :octicons-apps-16:{ .lg .middle } **Theme**
 
@@ -1381,7 +1381,7 @@ This guide provides detailed instructions on configuring Wormhole Connect and hi
 
     Discover how to style the Wormhole Connect widget to align with your brand. Customize colors, fonts, and UI elements to deliver a seamless user experience.
 
-    [:octicons-arrow-right-16: Explore routes](/docs/build/applications/connect/configuration/configure-theme/)
+    [:custom-arrow: Explore routes](/docs/build/applications/connect/configuration/configure-theme/)
 
 </div>
 --- END CONTENT ---
@@ -1566,7 +1566,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Explore Wormhole Connect, the React widget that allows you to offer an easy-to-use UI for cross-chain asset transfers via Wormhole in a web application.
 
-    [:octicons-arrow-right-16: Get started](/docs/build/applications/connect/overview/)
+    [:custom-arrow: Get started](/docs/build/applications/connect/overview/)
 
 -   :octicons-code-16:{ .lg .middle } **Routes**
 
@@ -1574,14 +1574,14 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Explore Wormhole Connect's routing capabilities for asset transfers, featuring Token Bridge, CCTP, NTT, and various blockchain-specific routes for optimal UX.
 
-    [:octicons-arrow-right-16: Explore routes](/docs/build/applications/connect/routes/)
+    [:custom-arrow: Explore routes](/docs/build/applications/connect/routes/)
 
 -   :octicons-globe-16:{ .lg .middle } **Features**
 
     ---
     Learn which features of Connect are available for your network of choice.
 
-    [:octicons-arrow-right-16: Discover supported features](/docs/build/applications/connect/features/)
+    [:custom-arrow: Discover supported features](/docs/build/applications/connect/features/)
 
 -   :octicons-pencil-16:{ .lg .middle } **Configuration**
 
@@ -1589,7 +1589,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions.
 
-    [:octicons-arrow-right-16: Configure for customization](/docs/build/applications/connect/configuration/)
+    [:custom-arrow: Configure for customization](/docs/build/applications/connect/configuration/)
 
 -   :octicons-question-16:{ .lg .middle } **Connect FAQs**
 
@@ -1597,7 +1597,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Find answers to common questions about Wormhole Connect, including supported assets, chains, and integration options.
 
-    [:octicons-arrow-right-16: Read Connect FAQs](/docs/build/applications/connect/faqs/)
+    [:custom-arrow: Read Connect FAQs](/docs/build/applications/connect/faqs/)
 
 </div>
 
@@ -1611,7 +1611,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     Check out the codeless interface for an easy approach to styling and customizing a Connect widget for your multichain application.
 
-    [:octicons-arrow-right-16: Quickly get started](https://connect-in-style.wormhole.com/){target=\_blank}
+    [:custom-arrow: Quickly get started](https://connect-in-style.wormhole.com/){target=\_blank}
 
 -   :octicons-browser-16:{ .lg .middle } **A Live Example**
 
@@ -1619,7 +1619,7 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
     View an example of the Wormhole Connect widget live in a production application.
 
-    [:octicons-arrow-right-16: See Connect in action](https://portalbridge.com/){target=\_blank}
+    [:custom-arrow: See Connect in action](https://portalbridge.com/){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -2418,7 +2418,7 @@ Wormhole offers multiple tools to make your user-facing application integrations
 
     The Wormhole TypeScript SDK exposes constants, contract interfaces, basic types, VAA payload definitions, EVM-specific utilities, and the EVM Token Bridge protocol client, combining convenience with the peace of mind of TypeScript type safety out of the box.
 
-    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
+    [:custom-arrow: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
 
 </div>
 
@@ -2430,7 +2430,7 @@ Wormhole offers multiple tools to make your user-facing application integrations
 
     Wormhole Queries offers on-demand access to Guardian-attested on-chain data via a simple REST endpoint. Wormhole Guardians, who run full nodes for various connected chains, facilitate this cross-chain query service. This method is faster and more cost-effective, eliminating the need for gas payments and transaction finality wait times.
 
-    [:octicons-arrow-right-16: Get started with Queries](/docs/build/applications/queries/)
+    [:custom-arrow: Get started with Queries](/docs/build/applications/queries/)
 
 </div>
 
@@ -2442,7 +2442,7 @@ Wormhole offers multiple tools to make your user-facing application integrations
 
     Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application. Offering both code and no-code styling options, Wormhole Connect is highly customizable to meet the needs of your application.
 
-    [:octicons-arrow-right-16: Get started with Connect](/docs/build/applications/connect/)
+    [:custom-arrow: Get started with Connect](/docs/build/applications/connect/)
 
 </div>
 --- END CONTENT ---
@@ -2521,7 +2521,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 
     Explore Wormhole Queries, offering real-time access to verified blockchain data via a REST API endpoint, enabling secure cross-chain interactions and verifications.
 
-    [:octicons-arrow-right-16: Learn about Queries](/docs/build/applications/queries/overview/)
+    [:custom-arrow: Learn about Queries](/docs/build/applications/queries/overview/)
 
 -   :octicons-code-16:{ .lg .middle } **Use Queries**
 
@@ -2529,7 +2529,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 
     Explore a simple demo of interacting with Wormhole Queries using an `eth_call` request to query the supply of wETH on Ethereum using a Wormhole query.
 
-    [:octicons-arrow-right-16: Get hands-on](/docs/build/applications/queries/use-queries/)
+    [:custom-arrow: Get hands-on](/docs/build/applications/queries/use-queries/)
 
 -   :octicons-book-16:{ .lg .middle } **Query FAQs**
 
@@ -2537,7 +2537,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 
     Explore frequently asked questions about Wormhole Queries.
 
-    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/applications/queries/faqs/)
+    [:custom-arrow: Check out the FAQs](/docs/build/applications/queries/faqs/)
 
 </div>
 --- END CONTENT ---
@@ -3085,7 +3085,7 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 
     Learn about the core functionalities of the Wormhole SDK, including how to use its features for building cross-chain applications.
 
-    [:octicons-arrow-right-16: Explore the SDK](/docs/build/applications/wormhole-sdk/wormhole-sdk/)
+    [:custom-arrow: Explore the SDK](/docs/build/applications/wormhole-sdk/wormhole-sdk/)
 
 -   :octicons-code-16:{ .lg .middle } **Layouts**
 
@@ -3093,7 +3093,7 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 
     Discover how to define, serialize, and deserialize data structures using the Wormhole SDK's layout system, ensuring efficient cross-chain communication.
 
-    [:octicons-arrow-right-16: Learn about layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
+    [:custom-arrow: Learn about layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
 
 </div>
 --- END CONTENT ---
@@ -4267,7 +4267,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Find installation instructions for both the meta package and installing specific, individual packages
 
-    [:octicons-arrow-right-16: Install the SDK](#installation)
+    [:custom-arrow: Install the SDK](#installation)
 
 -   :octicons-book-16:{ .lg .middle } **Concepts**
 
@@ -4275,7 +4275,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Understand key concepts and how the SDK abstracts them away. Learn more about platforms, chain context, addresses, and signers
 
-    [:octicons-arrow-right-16: Explore concepts](#concepts)
+    [:custom-arrow: Explore concepts](#concepts)
 
 -   :octicons-file-code-16:{ .lg .middle } **Usage**
 
@@ -4283,7 +4283,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Guidance on using the SDK to add seamless interchain messaging to your application, including code examples
 
-    [:octicons-arrow-right-16: Use the SDK](#usage)
+    [:custom-arrow: Use the SDK](#usage)
 
 -   :octicons-code-square-16:{ .lg .middle } **TSdoc for SDK**
 
@@ -4291,7 +4291,7 @@ This section covers all you need to know about the functionality and ease of dev
 
     Review the TSdoc for the Wormhole TypeScript SDK for a detailed look at availabel methods, classes, interfaces, and definitions
 
-    [:octicons-arrow-right-16: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
+    [:custom-arrow: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
 
 </div>
 
@@ -8787,7 +8787,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Get familiar with the Wormhole relayer interfaces and learn the essential requirements for interacting with the relayer to send and receive cross-chain messages.
 
-    [:octicons-arrow-right-16: Get started with the Wormhole relayer](/docs/build/contract-integrations/wormhole-relayers/)
+    [:custom-arrow: Get started with the Wormhole relayer](/docs/build/contract-integrations/wormhole-relayers/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Core Contracts**
 
@@ -8795,7 +8795,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Discover how to develop or adapt your contracts to interact directly with Wormhole's Core Contracts for sending and receiving cross-chain messages.
 
-    [:octicons-arrow-right-16: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
+    [:custom-arrow: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
 
 -   :octicons-code-square-16:{ .lg .middle } **CCTP**
 
@@ -8803,7 +8803,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Learn how to interact directly with Circle's CCTP Bridge contracts, including Token Messenger, Token Minter, and Message Transmitter. 
 
-    [:octicons-arrow-right-16: Get started with CCTP](/docs/build/contract-integrations/cctp/)
+    [:custom-arrow: Get started with CCTP](/docs/build/contract-integrations/cctp/)
 
 -   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
 
@@ -8811,7 +8811,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Find guidance on how to get started with the Native Token Transfers (NTT) framework, including deploying and configuring NTT contracts.
 
-    [:octicons-arrow-right-16: Get started with NTT](/docs/build/contract-integrations/native-token-transfers/)
+    [:custom-arrow: Get started with NTT](/docs/build/contract-integrations/native-token-transfers/)
 
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
@@ -8819,7 +8819,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Discover how to start your MultiGov integration, from deploying and configuring essential contracts to managing your setup, including contract upgrades.
 
-    [:octicons-arrow-right-16: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
+    [:custom-arrow: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
 
 -   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
@@ -8827,7 +8827,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Learn how to set up a development environment for comprehensive testing, including VAA generation and relaying, to ensure full integration functionality.
 
-    [:octicons-arrow-right-16: Set up a dev environment](/docs/build/contract-integrations/dev-env/)
+    [:custom-arrow: Set up a dev environment](/docs/build/contract-integrations/dev-env/)
 
 -   :octicons-question-16:{ .lg .middle } **Contract Integrations FAQs**
 
@@ -8835,7 +8835,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Frequently asked questions about integrating contracts with Wormhole, including ownership of wrapped tokens and developing custom relayers.
 
-    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/contract-integrations/faqs/)
+    [:custom-arrow: Check out the FAQs](/docs/build/contract-integrations/faqs/)
 
 </div>
 --- END CONTENT ---
@@ -9064,7 +9064,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:octicons-arrow-right-16: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Upgrade Contracts**
 
@@ -9072,7 +9072,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Learn the process and key considerations for upgrading MultiGov contracts, ensuring system integrity and careful planning across cross-chain components.
 
-    [:octicons-arrow-right-16: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade/)
+    [:custom-arrow: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade/)
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 
@@ -9080,7 +9080,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
 
-    [:octicons-arrow-right-16: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
+    [:custom-arrow: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
 
 </div>
 
@@ -9094,7 +9094,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Need to familiarize yourself with MultiGov? Discover everything you need to know about MultiGov, Wormhole's cross-chain governance solution.
 
-    [:octicons-arrow-right-16: Learn the basics](/docs/learn/governance/)
+    [:custom-arrow: Learn the basics](/docs/learn/governance/)
 
 -   :octicons-checklist-16:{ .lg .middle } **Tutorials**
 
@@ -9102,7 +9102,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Access step-by-step tutorials for executing cross-chain governance actions, including treasury management proposals with MultiGov.
 
-    [:octicons-arrow-right-16: Learn by building](/docs/tutorials/multigov/)
+    [:custom-arrow: Learn by building](/docs/tutorials/multigov/)
 
 </div>
 --- END CONTENT ---
@@ -9291,7 +9291,7 @@ This section contains information on configuring Native Token Transfers (NTT), i
 
     Discover options for configuring rate limits and how queueing effects transaction flow.
 
-    [:octicons-arrow-right-16: Explore rate limit options](/docs/build/contract-integrations/native-token-transfers/configuration/rate-limiting/)
+    [:custom-arrow: Explore rate limit options](/docs/build/contract-integrations/native-token-transfers/configuration/rate-limiting/)
 
 -   :octicons-unlock-16:{ .lg .middle } **Access Control**
 
@@ -9299,7 +9299,7 @@ This section contains information on configuring Native Token Transfers (NTT), i
 
     Learn more about access control, including why you should consider setting a separate Pauser address as part of your development security plan.
 
-    [:octicons-arrow-right-16: Explore access control roles](/docs/build/contract-integrations/native-token-transfers/configuration/access-control/)
+    [:custom-arrow: Explore access control roles](/docs/build/contract-integrations/native-token-transfers/configuration/access-control/)
 
 </div>
 --- END CONTENT ---
@@ -9813,7 +9813,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Prerequisites and commands for installing the NTT CLI and working with the NTT framework.
 
-    [:octicons-arrow-right-16: Install the NTT CLI](/docs/build/contract-integrations/native-token-transfers/deployment-process/installation/)
+    [:custom-arrow: Install the NTT CLI](/docs/build/contract-integrations/native-token-transfers/deployment-process/installation/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM**
 
@@ -9821,7 +9821,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Find information on preparing for NTT deployment to EVM, including an example NTT token repository.
 
-    [:octicons-arrow-right-16: Deploy token and NTT contracts](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/)
+    [:custom-arrow: Deploy token and NTT contracts](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**
 
@@ -9829,7 +9829,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Your guide to NTT deployment to Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
 
-    [:octicons-arrow-right-16: Deploy token and NTT contracts](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/)
+    [:custom-arrow: Deploy token and NTT contracts](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/)
 
 -   :octicons-search-16:{ .lg .middle } **Post Deployment**
 
@@ -9837,7 +9837,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Learn how to best monitor and maintain your NTT deployment to get the most out of your Wormhole integration while providing security for users.
 
-    [:octicons-arrow-right-16: Explore next steps](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
+    [:custom-arrow: Explore next steps](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
 
 -   :octicons-alert-16:{ .lg .middle } **Troubleshooting**
 
@@ -9845,7 +9845,7 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     Explore solutions and detailed guidance in our troubleshooting guide to resolve issues with NTT deployment.
 
-    [:octicons-arrow-right-16: Get help](/docs/build/contract-integrations/native-token-transfers/deployment-process/troubleshooting/)
+    [:custom-arrow: Get help](/docs/build/contract-integrations/native-token-transfers/deployment-process/troubleshooting/)
 
 </div>
 --- END CONTENT ---
@@ -9939,7 +9939,7 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 
     Check out an example project that uses a Vite-React TypeScript application and integrates it with Wormhole Connect, a customizable widget for cross-chain asset transfers.
 
-    [:octicons-arrow-right-16: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
+    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
 
 -   :octicons-code-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
 
@@ -9947,7 +9947,7 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 
     Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
 
-    [:octicons-arrow-right-16: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
 
 </div>
 --- END CONTENT ---
@@ -10210,7 +10210,7 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 
     Guidance on installation, deployment to EVM and Solana, and maintaining your NTT after deployment.
 
-    [:octicons-arrow-right-16: Start the deployment process](/docs/build/contract-integrations/native-token-transfers/deployment-process/)
+    [:custom-arrow: Start the deployment process](/docs/build/contract-integrations/native-token-transfers/deployment-process/)
 
 -   :octicons-gear-16:{ .lg .middle } **Configure NTT**
 
@@ -10218,7 +10218,7 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 
     Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
 
-    [:octicons-arrow-right-16: Configure your NTT deployment](/docs/build/contract-integrations/native-token-transfers/configuration/)
+    [:custom-arrow: Configure your NTT deployment](/docs/build/contract-integrations/native-token-transfers/configuration/)
 
 -   :octicons-question-16:{ .lg .middle } **NTT FAQs**
 
@@ -10226,7 +10226,7 @@ This section provides comprehensive guidance on configuring, deploying, and mana
 
     Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
 
-    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/contract-integrations/native-token-transfers/faqs/)
+    [:custom-arrow: Check out the FAQs](/docs/build/contract-integrations/native-token-transfers/faqs/)
 
 </div>
 --- END CONTENT ---
@@ -10751,7 +10751,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Get equipped with everything you need to start developing with Wormhole, including an overview of supported networks and a list of demo projects.
 
-    [:octicons-arrow-right-16: Get started](/docs/build/start-building/)
+    [:custom-arrow: Get started](/docs/build/start-building/)
 
 -   :octicons-browser-16:{ .lg .middle } **Build Frontend Applications**
 
@@ -10759,7 +10759,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build applications with seamless interoperability.
 
-    [:octicons-arrow-right-16: Build applications](/docs/build/applications/)
+    [:custom-arrow: Build applications](/docs/build/applications/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
 
@@ -10767,7 +10767,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Begin your journey by creating smart contracts that harness the power of Wormhole's advanced messaging protocols.
 
-    [:octicons-arrow-right-16: Build contract integrations](/docs/build/contract-integrations/)
+    [:custom-arrow: Build contract integrations](/docs/build/contract-integrations/)
 
 -   :octicons-gear-16:{ .lg .middle } **Toolkit**
 
@@ -10775,7 +10775,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Discover essential developer tools for managing and sending cross-chain transfers, including the Wormholescan explorer, Wormhole CLI, Wormhole SDKs, and more.
 
-    [:octicons-arrow-right-16: Discover tools](/docs/build/toolkit/)
+    [:custom-arrow: Discover tools](/docs/build/toolkit/)
 
 -   :octicons-book-16:{ .lg .middle } **Reference**
 
@@ -10783,7 +10783,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
 
-    [:octicons-arrow-right-16: Explore reference](/docs/build/reference/)
+    [:custom-arrow: Explore reference](/docs/build/reference/)
 
 </div>
 --- END CONTENT ---
@@ -10940,7 +10940,7 @@ In this section, you'll find reference information that is essential for develop
 
     Find a mapping of Wormhole chain IDs to the names and network IDs of the supported blockchains.
 
-    [:octicons-arrow-right-16: View list of chain IDs](/docs/build/reference/chain-ids/)
+    [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
 
 -   :material-timer-sand:{ .lg .middle } **Consistency Levels**
 
@@ -10948,7 +10948,7 @@ In this section, you'll find reference information that is essential for develop
 
     See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
 
-    [:octicons-arrow-right-16: View list of consistency levels](/docs/build/reference/consistency-levels/)
+    [:custom-arrow: View list of consistency levels](/docs/build/reference/consistency-levels/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
 
@@ -10964,7 +10964,7 @@ In this section, you'll find reference information that is essential for develop
     - Wormhole relayer
     - CCTP
 
-    [:octicons-arrow-right-16: View list of contract addresses](/docs/build/reference/contract-addresses/)
+    [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
 
 -   :material-code-braces:{ .lg .middle } **Wormhole Formatted Addresses**
 
@@ -10974,7 +10974,7 @@ In this section, you'll find reference information that is essential for develop
     
     This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
 
-    [:octicons-arrow-right-16: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
+    [:custom-arrow: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
 
 </div>
 --- END CONTENT ---
@@ -11199,7 +11199,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Build user-friendly frontends that interact with Wormhole's existing integrations, enabling your users to transfer assets, query information, and monitor cross-chain activity.
 
-    [:octicons-arrow-right-16: Build frontend applications](/docs/build/applications/)
+    [:custom-arrow: Build frontend applications](/docs/build/applications/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
 
@@ -11207,7 +11207,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Leverage Wormhole's powerful messaging protocols to create contracts that can communicate and interact across multiple blockchains. By using Wormhole’s core infrastructure, you can enable secure and seamless messaging, asset transfers, and more between supported networks.
 
-    [:octicons-arrow-right-16: Integrate with contracts](/docs/build/contract-integrations/)
+    [:custom-arrow: Integrate with contracts](/docs/build/contract-integrations/)
 
 </div>
 
@@ -11221,7 +11221,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Follow in-depth, step-by-step tutorials to learn how to build cross-chain contracts, integrate Wormhole's SDK, and more.
 
-    [:octicons-arrow-right-16: Explore tutorials](/docs/tutorials/)
+    [:custom-arrow: Explore tutorials](/docs/tutorials/)
 
 -   :octicons-code-16:{ .lg .middle } **Demos**
 
@@ -11229,7 +11229,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Explore pre-built reference applications that demonstrate real-world use cases of Wormhole’s messaging protocols and token bridges.
 
-    [:octicons-arrow-right-16: Get inspired with demos](/docs/build/start-building/demos/)
+    [:custom-arrow: Get inspired with demos](/docs/build/start-building/demos/)
 
 </div>
 
@@ -11243,7 +11243,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Explore the blockchains supported by Wormhole for cross-chain communication and asset transfers. Understand which networks are available for both Testnet and Mainnet environments.
 
-    [:octicons-arrow-right-16: Discover supported networks](/docs/build/start-building/supported-networks/)
+    [:custom-arrow: Discover supported networks](/docs/build/start-building/supported-networks/)
 
 -   :octicons-list-unordered-16:{ .lg .middle } **Reference**
 
@@ -11251,7 +11251,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Access the essential Wormhole chain IDs and smart contract addresses for messaging protocols, token bridges, and other key components.
 
-    [:octicons-arrow-right-16: Explore Reference](/docs/build/reference/){target=\_blank}
+    [:custom-arrow: Explore Reference](/docs/build/reference/){target=\_blank}
 
 
 
@@ -11261,7 +11261,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Get Testnet tokens to start experimenting with cross-chain transfers and contract deployment.
 
-    [:octicons-arrow-right-16: Find Testnet faucets](/docs/build/start-building/testnet-faucets/)
+    [:custom-arrow: Find Testnet faucets](/docs/build/start-building/testnet-faucets/)
 
 </div>
 --- END CONTENT ---
@@ -12339,7 +12339,7 @@ Regardless of which network development environment you are using, there are a f
 
     Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
 
-    [:octicons-arrow-right-16: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
+    [:custom-arrow: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
 
 -   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
 
@@ -12347,7 +12347,7 @@ Regardless of which network development environment you are using, there are a f
 
     The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
 
-    [:octicons-arrow-right-16: Get started with the CLI](/docs/build/toolkit/cli/)
+    [:custom-arrow: Get started with the CLI](/docs/build/toolkit/cli/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
 
@@ -12355,7 +12355,7 @@ Regardless of which network development environment you are using, there are a f
 
     Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
 
-    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
+    [:custom-arrow: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Solidity SDK**
 
@@ -12363,7 +12363,7 @@ Regardless of which network development environment you are using, there are a f
 
     Learn about Wormhole's Solidity SDK, including key components, interfaces, and tools for developing cross-chain decentralized applications on EVM-compatible blockchains.
 
-    [:octicons-arrow-right-16: Get started with the SDK](/docs/build/toolkit/solidity-sdk/)
+    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/solidity-sdk/)
 
 -   :octicons-beaker-16:{ .lg .middle } **Tilt**
 
@@ -12371,7 +12371,7 @@ Regardless of which network development environment you are using, there are a f
 
     Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
-    [:octicons-arrow-right-16: Get started with Tilt](/docs/build/toolkit/tilt/)
+    [:custom-arrow: Get started with Tilt](/docs/build/toolkit/tilt/)
 
 -   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
 
@@ -12379,7 +12379,7 @@ Regardless of which network development environment you are using, there are a f
 
     Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
 
-    [:octicons-arrow-right-16: Read Toolkit FAQs](/docs/build/toolkit/faqs/)
+    [:custom-arrow: Read Toolkit FAQs](/docs/build/toolkit/faqs/)
 
 </div>
 
@@ -12393,7 +12393,7 @@ Regardless of which network development environment you are using, there are a f
 
     The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
 
-    [:octicons-arrow-right-16: Check out the Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
+    [:custom-arrow: Check out the Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
 
 -   :octicons-pencil-16:{ .lg .middle } **VAA Parser**
 
@@ -12401,7 +12401,7 @@ Regardless of which network development environment you are using, there are a f
 
     The VAA Parser is a resource for parsing out details of an encoded VAA.
 
-    [:octicons-arrow-right-16: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
+    [:custom-arrow: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -12934,7 +12934,7 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 
     Learn about the core functionalities of the Wormhole SDK, including how to use its features for building cross-chain applications.
 
-    [:octicons-arrow-right-16: Explore the SDK](/docs/build/applications/wormhole-sdk/wormhole-sdk/)
+    [:custom-arrow: Explore the SDK](/docs/build/applications/wormhole-sdk/wormhole-sdk/)
 
 -   :octicons-code-16:{ .lg .middle } **Layouts**
 
@@ -12942,7 +12942,7 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 
     Discover how to define, serialize, and deserialize data structures using the Wormhole SDK's layout system, ensuring efficient cross-chain communication.
 
-    [:octicons-arrow-right-16: Learn about layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
+    [:custom-arrow: Learn about layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
 
 </div>
 --- END CONTENT ---
@@ -12969,7 +12969,7 @@ Follow the guides in this section to learn how to run off-chain infrastructure s
 
     Learn how to develop your own custom off-chain relaying service, giving you greater control and flexibility than using Wormhole-deployed relayers.
 
-    [:octicons-arrow-right-16: Run a relayer](/docs/infrastructure/relayers/run-relayer/)
+    [:custom-arrow: Run a relayer](/docs/infrastructure/relayers/run-relayer/)
 
 </div>
 
@@ -12981,7 +12981,7 @@ Follow the guides in this section to learn how to run off-chain infrastructure s
 
     Learn how to run a Spy locally to listen for and forward messages (Verifiable Action Approvals, or VAAs) published on the Wormhole network.
 
-    [:octicons-arrow-right-16: Run a Spy](/docs/infrastructure/spy/run-spy/)
+    [:custom-arrow: Run a Spy](/docs/infrastructure/spy/run-spy/)
 
 </div>
 --- END CONTENT ---
@@ -13022,7 +13022,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     <br>
 
-    [:octicons-arrow-right-16: Get started now](/docs/infrastructure/relayers/run-relayer/)
+    [:custom-arrow: Get started now](/docs/infrastructure/relayers/run-relayer/)
 
 </div>
 
@@ -13036,7 +13036,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     Learn about what a relayer is, what role it plays in the delivery of cross-chain messages, and the different types of relayers in the Wormhole ecosystem.
 
-    [:octicons-arrow-right-16: Learn more about relayers](/docs/learn/infrastructure/relayer/)
+    [:custom-arrow: Learn more about relayers](/docs/learn/infrastructure/relayer/)
 
 -   :material-package-variant:{ .lg .middle } **Simplify the Development Process**
 
@@ -13044,7 +13044,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     Use the Wormhole Relayer Engine package as a foundational toolkit to develop your own customized off-chain relaying service, enabling tailored message handling.
 
-    [:octicons-arrow-right-16: Check out the Relayer Engine source code](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}
+    [:custom-arrow: Check out the Relayer Engine source code](https://github.com/wormhole-foundation/relayer-engine){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -13388,7 +13388,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     The content in this section shows you how you can run your own infrastructure and spin up a Spy daemon locally to subscribe to a stream of messages, also known as Verifiable Action Approvals (VAAs).
 
-    [:octicons-arrow-right-16: Get started now](/docs/infrastructure/spy/run-spy/)
+    [:custom-arrow: Get started now](/docs/infrastructure/spy/run-spy/)
 
 </div>
 
@@ -13402,7 +13402,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     Learn about what a Spy is and what role it plays in the delivery of cross-chain messages.
 
-    [:octicons-arrow-right-16: Learn more about Spies](/docs/learn/infrastructure/spy/)
+    [:custom-arrow: Learn more about Spies](/docs/learn/infrastructure/spy/)
 
 -   :material-package-variant:{ .lg .middle } **Interact with a Spy**
 
@@ -13410,7 +13410,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     Use the Wormhole Spy SDK to subscribe to the stream of signed messages.
 
-    [:octicons-arrow-right-16: Use the Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/blob/main/spydk/js/README.md){target=\_blank}
+    [:custom-arrow: Use the Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/blob/main/spydk/js/README.md){target=\_blank}
 
 -   :material-package-variant:{ .lg .middle } **Alternative Implementations**
 
@@ -13418,7 +13418,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     Check out Beacon, an alternative highly available version of the Wormhole Spy.
 
-    [:octicons-arrow-right-16: Use Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank}
+    [:custom-arrow: Use Pyth Beacon](https://github.com/pyth-network/beacon){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -13647,7 +13647,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     New to Wormhole? Check out the introduction to Wormhole to learn what Wormhole is, the problems it solves, and how it works to solve them.
 
-    [:octicons-arrow-right-16: Take a first glance at Wormhole](/docs/learn/fundamentals/introduction/)
+    [:custom-arrow: Take a first glance at Wormhole](/docs/learn/fundamentals/introduction/)
 
 -   :octicons-shield-lock-16:{ .lg .middle } **Security**
 
@@ -13655,7 +13655,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     Wormhole safeguards cross-chain communication with a strong focus on security, using proven technology and decentralized validation via Guardians.
 
-    [:octicons-arrow-right-16: Review security measures](/docs/learn/fundamentals/security/)
+    [:custom-arrow: Review security measures](/docs/learn/fundamentals/security/)
 
 -   :octicons-stack-16:{ .lg .middle } **Architecture Overview**
 
@@ -13663,7 +13663,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     Explore Wormhole's architecture to understand how its core components seamlessly work together to deliver cross-chain messages securely.
 
-    [:octicons-arrow-right-16: Discover how Wormhole works](/docs/learn/fundamentals/architecture/)
+    [:custom-arrow: Discover how Wormhole works](/docs/learn/fundamentals/architecture/)
 
 </div>
 
@@ -13677,7 +13677,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     Check out key terms and their definitions within the Wormhole ecosystem to better understand the concepts and language used throughout the platform.
 
-    [:octicons-arrow-right-16: Get to know the terms](/docs/learn/fundamentals/glossary/)
+    [:custom-arrow: Get to know the terms](/docs/learn/fundamentals/glossary/)
 
 </div>
 --- END CONTENT ---
@@ -14156,7 +14156,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Explore MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
 
-    [:octicons-arrow-right-16: Take a first glance at MultiGov](/docs/learn/governance/overview/)
+    [:custom-arrow: Take a first glance at MultiGov](/docs/learn/governance/overview/)
 
 -   :octicons-book-16:{ .lg .middle } **Architecture**
 
@@ -14164,7 +14164,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Discover an overview of MultiGov's hub-and-spoke architecture, including how it enables cross-chain governance by coordinating decision-making across blockchain.
 
-    [:octicons-arrow-right-16: Learn about MultiGov architecture](/docs/learn/governance/architecture/)
+    [:custom-arrow: Learn about MultiGov architecture](/docs/learn/governance/architecture/)
 
 -   :octicons-question-16:{ .lg .middle } **Theoretical FAQs**
 
@@ -14172,7 +14172,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Find answers to common theoretical questions about MultiGov.
 
-    [:octicons-arrow-right-16: Find the answer to your theoretical questions](/docs/learn/governance/faq/)  
+    [:custom-arrow: Find the answer to your theoretical questions](/docs/learn/governance/faq/)  
 
 </div>
 
@@ -14186,7 +14186,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Learn how to get started with MultiGov, from evaluating cross-chain governance needs to deploying with help from the Tally team.
 
-    [:octicons-arrow-right-16: Start the integration process now](/docs/build/contract-integrations/multigov/)
+    [:custom-arrow: Start the integration process now](/docs/build/contract-integrations/multigov/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deployment**
 
@@ -14194,7 +14194,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:octicons-arrow-right-16: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Tutorials**
 
@@ -14202,7 +14202,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
 
-    [:octicons-arrow-right-16: Create MultiGov solutions](/docs/tutorials/by-product/multigov/)
+    [:custom-arrow: Create MultiGov solutions](/docs/tutorials/by-product/multigov/)
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 
@@ -14210,7 +14210,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
 
-    [:octicons-arrow-right-16: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
+    [:custom-arrow: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
 
 </div>
 --- END CONTENT ---
@@ -14278,7 +14278,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Start with the basics to get a solid understanding of what Wormhole has to offer and how it works to provide secure cross-chain communication.
 
-    [:octicons-arrow-right-16: Get started](/docs/learn/fundamentals/)
+    [:custom-arrow: Get started](/docs/learn/fundamentals/)
 
 -   :octicons-inbox-16:{ .lg .middle } **Infrastructure Components**
 
@@ -14286,7 +14286,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Explore Wormhole's core infrastructure components and the unique roles each plays in enabling seamless message delivery across chains.
 
-    [:octicons-arrow-right-16: Understand Wormhole's infrastructure](/docs/learn/infrastructure/)
+    [:custom-arrow: Understand Wormhole's infrastructure](/docs/learn/infrastructure/)
 
 -   :octicons-mail-16:{ .lg .middle } **Messaging**
 
@@ -14294,7 +14294,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Discover Wormhole's messaging protocols and how each facilitates secure and efficient communication across blockchains.
 
-    [:octicons-arrow-right-16: Explore messaging protocols](/docs/learn/messaging/)
+    [:custom-arrow: Explore messaging protocols](/docs/learn/messaging/)
 
 -   :octicons-people-16:{ .lg .middle } **Multichain Governance**
 
@@ -14302,7 +14302,7 @@ This section offers informational content on Wormhole, covering its architecture
 
     Explore this section to gain a foundational understanding of MultiGov, Wormhole's approach to multichain governance.
 
-    [:octicons-arrow-right-16: Learn about MultiGov](/docs/learn/governance/)
+    [:custom-arrow: Learn about MultiGov](/docs/learn/governance/)
 
 </div>
 --- END CONTENT ---
@@ -14485,7 +14485,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     The Core Contracts are responsible for publishing and verifying all cross-chain messages.
 
-    [:octicons-arrow-right-16: Learn more about Core Contracts](/docs/learn/infrastructure/core-contracts/)
+    [:custom-arrow: Learn more about Core Contracts](/docs/learn/infrastructure/core-contracts/)
 
 -   :octicons-book-16:{ .lg .middle } **Verifiable Action Approvals (VAAs)**
 
@@ -14493,7 +14493,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     VAAs are Wormhole's core messaging primitive, consisting of cross-chain data packets.
 
-    [:octicons-arrow-right-16: Learn more about VAAs](/docs/learn/infrastructure/vaas/)
+    [:custom-arrow: Learn more about VAAs](/docs/learn/infrastructure/vaas/)
 
 -   :octicons-book-16:{ .lg .middle } **Guardians**
 
@@ -14501,7 +14501,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     Guardians are nodes responsible for observing messages and signing the corresponding payloads.
 
-    [:octicons-arrow-right-16: Learn more about Guardians](/docs/learn/infrastructure/guardians/)
+    [:custom-arrow: Learn more about Guardians](/docs/learn/infrastructure/guardians/)
 
 -   :octicons-book-16:{ .lg .middle } **Relayers**
 
@@ -14509,7 +14509,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     Relayers are processes that handle the delivery of VAAs to their intended destination.
 
-    [:octicons-arrow-right-16: Learn more about relayers](/docs/learn/infrastructure/relayer/)
+    [:custom-arrow: Learn more about relayers](/docs/learn/infrastructure/relayer/)
 
 -   :octicons-book-16:{ .lg .middle } **Spy**
 
@@ -14517,7 +14517,7 @@ This section provides a closer look at the core components that power Wormhole's
 
     A Spy watches the messages published by the Guardian Network and can forward network traffic.
 
-    [:octicons-arrow-right-16: Learn more about the Spy](/docs/learn/infrastructure/spy/)
+    [:custom-arrow: Learn more about the Spy](/docs/learn/infrastructure/spy/)
 
 </div>
 --- END CONTENT ---
@@ -14942,7 +14942,7 @@ This section covers various aspects and services related to communication protoc
 
     The Token Bridge provides a secure, low-lift integration for cross-chain transfers of fungible tokens.
 
-    [:octicons-arrow-right-16: Learn more about Token Bridges](/docs/learn/messaging/token-bridge/)
+    [:custom-arrow: Learn more about Token Bridges](/docs/learn/messaging/token-bridge/)
 
 -   :octicons-book-16:{ .lg .middle } **Circle's CCTP Bridge**
 
@@ -14950,7 +14950,7 @@ This section covers various aspects and services related to communication protoc
 
     The CCTP Bridge supports fast and cost-effective native USDC transfers across blockchains using Circle's Cross Chain Transfer Protocol (CCTP).
 
-    [:octicons-arrow-right-16: Learn more about CCTP](/docs/learn/messaging/cctp/)
+    [:custom-arrow: Learn more about CCTP](/docs/learn/messaging/cctp/)
 
 -   :octicons-book-16:{ .lg .middle } **Native Token Transfers**
 
@@ -14958,7 +14958,7 @@ This section covers various aspects and services related to communication protoc
 
     Wormhole's Native Token Transfers (NTT) offers an open source and flexible framework for cross-chain token transfers, providing full control over token behavior on each blockchain.
 
-    [:octicons-arrow-right-16: Learn more about NTT](/docs/learn/messaging/native-token-transfers/)
+    [:custom-arrow: Learn more about NTT](/docs/learn/messaging/native-token-transfers/)
 
 </div>
 --- END CONTENT ---
@@ -15138,7 +15138,7 @@ This section covers Wormhole's Native Token Transfers (NTT), an open source, fle
 
     Dive into an introduction to NTT and discover what NTT is, what its key features are, and the available integration paths.
 
-    [:octicons-arrow-right-16: Learn more about NTT](/docs/learn/messaging/native-token-transfers/overview/)
+    [:custom-arrow: Learn more about NTT](/docs/learn/messaging/native-token-transfers/overview/)
 
 -   :octicons-question-16:{ .lg .middle } **Architecture**
 
@@ -15146,7 +15146,7 @@ This section covers Wormhole's Native Token Transfers (NTT), an open source, fle
 
     Explore NTT's architecture to understand its core components and how they work together to manage cross-chain communication.
 
-    [:octicons-arrow-right-16: Discover how NTT works](/docs/learn/messaging/native-token-transfers/architecture/)
+    [:custom-arrow: Discover how NTT works](/docs/learn/messaging/native-token-transfers/architecture/)
 
 -   :octicons-book-16:{ .lg .middle } **Deployment Models**
 
@@ -15154,7 +15154,7 @@ This section covers Wormhole's Native Token Transfers (NTT), an open source, fle
 
     The NTT framework offers two deployment models for different token management needs: the hub-and-spoke and burn-and-mint models.
 
-    [:octicons-arrow-right-16: Check out the deployment models](/docs/learn/messaging/native-token-transfers/deployment/)
+    [:custom-arrow: Check out the deployment models](/docs/learn/messaging/native-token-transfers/deployment/)
 
 -   :octicons-shield-lock-16:{ .lg .middle } **Security**
 
@@ -15162,7 +15162,7 @@ This section covers Wormhole's Native Token Transfers (NTT), an open source, fle
 
     Explore NTT's security measures, including the Global Accountant and governance strategies for seamless token safety.
 
-    [:octicons-arrow-right-16: Review the security measures](/docs/learn/messaging/native-token-transfers/security/)
+    [:custom-arrow: Review the security measures](/docs/learn/messaging/native-token-transfers/security/)
 
 </div>
 
@@ -15178,7 +15178,7 @@ Ready to dive in and start building? Check out the following resources to begin 
 
     Explore detailed guides that walk you through the entire deployment process, from installing the NTT CLI to deploying NTT across supported chains.
 
-    [:octicons-arrow-right-16: Deploy now using the NTT CLI](/docs/build/contract-integrations/native-token-transfers/deployment-process/)
+    [:custom-arrow: Deploy now using the NTT CLI](/docs/build/contract-integrations/native-token-transfers/deployment-process/)
 
 -   :octicons-checklist-16:{ .lg .middle } **Post Deployment Recommendations**
 
@@ -15186,7 +15186,7 @@ Ready to dive in and start building? Check out the following resources to begin 
 
     Already deployed your NTT project? Check out these post deployment recommendations and integration demos to get the most out of your deployment.
 
-    [:octicons-arrow-right-16: Get the most of out your NTT deployment](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
+    [:custom-arrow: Get the most of out your NTT deployment](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/)
 
 </div>
 --- END CONTENT ---
@@ -15382,7 +15382,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
     Learn how to incorporate Wormhole Connect into a React application. This step-by-step tutorial guides you through enabling cross-chain token transfers and interactions, bridging assets between networks, and enhancing the user experience with streamlined blockchain connectivity.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/connect/react-dapp/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/connect/react-dapp/)
 
 </div>
 
@@ -15396,7 +15396,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
     Get deeper insights into setting up and customizing Wormhole Connect. Explore advanced guides, best practices, and configuration tips to streamline your cross-chain integrations.
 
-    [:octicons-arrow-right-16: Learn more](/docs/build/applications/connect/)
+    [:custom-arrow: Learn more](/docs/build/applications/connect/)
 
 </div>
 --- END CONTENT ---
@@ -18145,7 +18145,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
     Learn how to build and deploy smart contracts that communicate seamlessly across multiple blockchains. This tutorial walks you through using Wormhole’s Solidity SDK to send and receive messages between Avalanche Fuji and Celo Alfajores, helping you master emitter validation, relayer usage, and cross-chain cost management.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/)
 
 -   :octicons-repo-16:{ .lg .middle } **Create Cross-Chain Token Transfer Contracts**
 
@@ -18153,7 +18153,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
     Discover how to create a fully functional cross-chain token transfer system using Wormhole’s Solidity SDK. This tutorial guides you through token attestation, contract deployment, and secure transfers of ERC-20 tokens between test networks. By the end, you’ll know how to tap into global liquidity and enrich your dApps with seamless multi-chain asset movement.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/)
 
 </div>
 
@@ -18168,7 +18168,7 @@ Expand the reach of your decentralized applications by building smart contracts 
     Dive deeper into Wormhole’s foundational concepts for cross-chain contracts. Discover how messaging, guardians, and VAAs work together to enable secure, scalable dApps.
 
 
-    [:octicons-arrow-right-16: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
+    [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
 
 -   :octicons-tools-16:{ .lg .middle } **Build Contract Integrations**
 
@@ -18177,7 +18177,7 @@ Expand the reach of your decentralized applications by building smart contracts 
     Explore advanced contract integrations with Wormhole. Access reference code, best practices, and guidance for deploying robust cross-chain smart contracts.
 
 
-    [:octicons-arrow-right-16: Build contract integrations](/docs/build/contract-integrations/)
+    [:custom-arrow: Build contract integrations](/docs/build/contract-integrations/)
 
 </div>
 --- END CONTENT ---
@@ -18201,7 +18201,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     With Wormhole Connect, you can enable seamless connectivity between different blockchain ecosystems. These tutorials guide you through integrating Connect into your projects, allowing you to easily leverage cross-chain interactions, simplify onboarding, and improve user experience.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/connect/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/connect/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Contract Integrations**
 
@@ -18209,7 +18209,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Learn to build smart contracts that communicate across multiple blockchains. These tutorials show you how to create robust cross-chain contracts, allowing your dApps to move beyond a single network and tap into global liquidity, functionality, and user bases.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/contract-integrations/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/contract-integrations/)
 
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
@@ -18217,7 +18217,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Unleash the power of cross-chain governance with Multigov. These tutorials guide you through setting up and managing governance structures spanning multiple blockchains, enabling collective decision-making and coordinated upgrades across decentralized ecosystems.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multigov/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/multigov/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
 
@@ -18225,7 +18225,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Master the tools to build cross-chain applications with the Wormhole SDK. These tutorials cover installation to advanced functionality, helping you streamline development, reduce complexity, and quickly bring your ideas to life. 
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/wormhole-sdk/)
 
 -   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
 
@@ -18233,7 +18233,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Learn how to create, register, and manage wrapped multichain assets across multiple chains. These tutorials will guide you through the process of enabling asset transfers between supported networks.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multichain-assets/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
 
 </div>
 --- END CONTENT ---
@@ -18257,7 +18257,7 @@ Multichain assets, often represented as wrapped tokens, enable seamless cross-ch
 
     Learn how to register your token on both a source and target chain, and create a wrapped version for seamless interoperability.
 
-    [:octicons-arrow-right-16: Register your assets now](/docs/tutorials/by-product/multichain-assets/multichain-token/)
+    [:custom-arrow: Register your assets now](/docs/tutorials/by-product/multichain-assets/multichain-token/)
 
 </div>
 --- END CONTENT ---
@@ -18379,7 +18379,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Learn how to propose governance actions on a hub chain, gather votes from spoke chains, aggregate the results, and carry out the final decision. Following these steps, you’ll master end-to-end governance workflows spanning multiple networks.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
 
 </div>
 
@@ -18393,7 +18393,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Dive into Wormhole’s governance mechanisms. Understand how cross-chain governance works, proposal creation, voting, and execution.
 
-    [:octicons-arrow-right-16: Explore governance](/docs/learn/governance/)
+    [:custom-arrow: Explore governance](/docs/learn/governance/)
 
 -   :octicons-tools-16:{ .lg .middle } **Implement MultiGov**
 
@@ -18402,7 +18402,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
     Integrate MultiGov into your smart contracts. Access reference code, best practices, and guidance for deploying cross-chain governance systems.
 
 
-    [:octicons-arrow-right-16: Build with MultiGov](/docs/build/contract-integrations/multigov/)
+    [:custom-arrow: Build with MultiGov](/docs/build/contract-integrations/multigov/)
 
 </div>
 --- END CONTENT ---
@@ -18642,7 +18642,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     Learn how to move native USDC across chains using Circle’s CCTP and Wormhole’s TypeScript SDK. This tutorial shows you how to streamline transfers with automated attestation and finalization or take complete control with manual steps. Gain the skills to handle seamless USDC bridging, optimize user experience, and improve the reliability of your cross-chain applications.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/)
 
 -   :octicons-repo-16:{ .lg .middle } **Transfer Tokens via the Token Bridge**
 
@@ -18650,7 +18650,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     Learn how to build a versatile cross-chain token transfer application using Wormhole’s TypeScript SDK. This tutorial walks you through leveraging the Token Bridge to securely and efficiently move assets between EVM and non-EVM chains. By the end, you’ll understand how to transfer tokens between networks like Ethereum, Solana, Sui, and beyond, opening the door to an interconnected blockchain ecosystem.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/)
 
 </div>
 
@@ -18664,7 +18664,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     Learn to build cross-chain dApps using the Wormhole SDK. Access detailed guides, reference code, and best practices for robust application development.
 
-    [:octicons-arrow-right-16: Learn more](/docs/build/applications/wormhole-sdk/)
+    [:custom-arrow: Learn more](/docs/build/applications/wormhole-sdk/)
 
 </div>
 --- END CONTENT ---
@@ -19779,7 +19779,7 @@ These tutorials are designed to help you develop efficient, scalable, and innova
 
     Explore tutorials tailored to specific Wormhole products. Each section contains tutorials on integrating and using a single product. Whether you want to understand Token Bridge, Wormhole Connect, or other Wormhole services, these tutorials will guide you through the setup and implementation process.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/)
 
 </div>
 --- END CONTENT ---

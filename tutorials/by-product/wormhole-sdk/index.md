@@ -15,7 +15,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     Learn how to move native USDC across chains using Circle’s CCTP and Wormhole’s TypeScript SDK. This tutorial shows you how to streamline transfers with automated attestation and finalization or take complete control with manual steps. Gain the skills to handle seamless USDC bridging, optimize user experience, and improve the reliability of your cross-chain applications.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/)
 
 -   :octicons-repo-16:{ .lg .middle } **Transfer Tokens via the Token Bridge**
 
@@ -23,7 +23,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     Learn how to build a versatile cross-chain token transfer application using Wormhole’s TypeScript SDK. This tutorial walks you through leveraging the Token Bridge to securely and efficiently move assets between EVM and non-EVM chains. By the end, you’ll understand how to transfer tokens between networks like Ethereum, Solana, Sui, and beyond, opening the door to an interconnected blockchain ecosystem.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/)
 
 </div>
 
@@ -37,6 +37,6 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     Learn to build cross-chain dApps using the Wormhole SDK. Access detailed guides, reference code, and best practices for robust application development.
 
-    [:octicons-arrow-right-16: Learn more](/docs/build/applications/wormhole-sdk/)
+    [:custom-arrow: Learn more](/docs/build/applications/wormhole-sdk/)
 
 </div>

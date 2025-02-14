@@ -18,7 +18,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Get equipped with everything you need to start developing with Wormhole, including an overview of supported networks and a list of demo projects.
 
-    [:octicons-arrow-right-16: Get started](/docs/build/start-building/)
+    [:custom-arrow: Get started](/docs/build/start-building/)
 
 -   :octicons-browser-16:{ .lg .middle } **Build Frontend Applications**
 
@@ -26,7 +26,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Learn how tools like Queries, Wormhole Connect, and the Wormhole SDK come together to build applications with seamless interoperability.
 
-    [:octicons-arrow-right-16: Build applications](/docs/build/applications/)
+    [:custom-arrow: Build applications](/docs/build/applications/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
 
@@ -34,7 +34,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Begin your journey by creating smart contracts that harness the power of Wormhole's advanced messaging protocols.
 
-    [:octicons-arrow-right-16: Build contract integrations](/docs/build/contract-integrations/)
+    [:custom-arrow: Build contract integrations](/docs/build/contract-integrations/)
 
 -   :octicons-gear-16:{ .lg .middle } **Toolkit**
 
@@ -42,7 +42,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Discover essential developer tools for managing and sending cross-chain transfers, including the Wormholescan explorer, Wormhole CLI, Wormhole SDKs, and more.
 
-    [:octicons-arrow-right-16: Discover tools](/docs/build/toolkit/)
+    [:custom-arrow: Discover tools](/docs/build/toolkit/)
 
 -   :octicons-book-16:{ .lg .middle } **Reference**
 
@@ -50,6 +50,6 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
 
-    [:octicons-arrow-right-16: Explore reference](/docs/build/reference/)
+    [:custom-arrow: Explore reference](/docs/build/reference/)
 
 </div>

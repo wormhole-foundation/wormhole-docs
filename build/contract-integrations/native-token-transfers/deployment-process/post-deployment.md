@@ -26,7 +26,7 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 
     Check out an example project that uses a Vite-React TypeScript application and integrates it with Wormhole Connect, a customizable widget for cross-chain asset transfers.
 
-    [:octicons-arrow-right-16: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
+    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
 
 -   :octicons-code-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
 
@@ -34,6 +34,6 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 
     Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
 
-    [:octicons-arrow-right-16: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
 
 </div>

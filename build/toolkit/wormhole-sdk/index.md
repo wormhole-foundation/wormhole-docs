@@ -17,7 +17,7 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 
     Learn about the core functionalities of the Wormhole SDK, including how to use its features for building cross-chain applications.
 
-    [:octicons-arrow-right-16: Explore the SDK](/docs/build/applications/wormhole-sdk/wormhole-sdk/)
+    [:custom-arrow: Explore the SDK](/docs/build/applications/wormhole-sdk/wormhole-sdk/)
 
 -   :octicons-code-16:{ .lg .middle } **Layouts**
 
@@ -25,6 +25,6 @@ The Wormhole SDK provides developers with essential tools for cross-chain commun
 
     Discover how to define, serialize, and deserialize data structures using the Wormhole SDK's layout system, ensuring efficient cross-chain communication.
 
-    [:octicons-arrow-right-16: Learn about layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
+    [:custom-arrow: Learn about layouts](/docs/build/applications/wormhole-sdk/sdk-layout/)
 
 </div>

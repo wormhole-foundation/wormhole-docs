@@ -17,7 +17,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 
     Explore Wormhole Queries, offering real-time access to verified blockchain data via a REST API endpoint, enabling secure cross-chain interactions and verifications.
 
-    [:octicons-arrow-right-16: Learn about Queries](/docs/build/applications/queries/overview/)
+    [:custom-arrow: Learn about Queries](/docs/build/applications/queries/overview/)
 
 -   :octicons-code-16:{ .lg .middle } **Use Queries**
 
@@ -25,7 +25,7 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 
     Explore a simple demo of interacting with Wormhole Queries using an `eth_call` request to query the supply of wETH on Ethereum using a Wormhole query.
 
-    [:octicons-arrow-right-16: Get hands-on](/docs/build/applications/queries/use-queries/)
+    [:custom-arrow: Get hands-on](/docs/build/applications/queries/use-queries/)
 
 -   :octicons-book-16:{ .lg .middle } **Query FAQs**
 
@@ -33,6 +33,6 @@ Wormhole Queries offers on-demand access to Guardian-attested on-chain data via 
 
     Explore frequently asked questions about Wormhole Queries.
 
-    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/applications/queries/faqs/)
+    [:custom-arrow: Check out the FAQs](/docs/build/applications/queries/faqs/)
 
 </div>
