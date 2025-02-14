@@ -143,7 +143,7 @@ A Mainnet Query Proxy is available at `https://query.wormhole.com/v1/query`
 
 ## Verify a Query Response On-Chain
 
-A [`QueryResponse` abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
+A [`QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
 
 ```bash
 forge install wormhole-foundation/wormhole-solidity-sdk
