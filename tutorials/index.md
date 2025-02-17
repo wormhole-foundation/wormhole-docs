@@ -18,6 +18,6 @@ These tutorials are designed to help you develop efficient, scalable, and innova
 
     Explore tutorials tailored to specific Wormhole products. Each section contains tutorials on integrating and using a single product. Whether you want to understand Token Bridge, Wormhole Connect, or other Wormhole services, these tutorials will guide you through the setup and implementation process.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/)
 
 </div>

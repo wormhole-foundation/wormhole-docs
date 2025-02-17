@@ -15,7 +15,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
     Learn how to incorporate Wormhole Connect into a React application. This step-by-step tutorial guides you through enabling cross-chain token transfers and interactions, bridging assets between networks, and enhancing the user experience with streamlined blockchain connectivity.
 
-    [:octicons-arrow-right-16: Start building](/docs/tutorials/by-product/connect/react-dapp/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/connect/react-dapp/)
 
 </div>
 
@@ -29,6 +29,6 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
     Get deeper insights into setting up and customizing Wormhole Connect. Explore advanced guides, best practices, and configuration tips to streamline your cross-chain integrations.
 
-    [:octicons-arrow-right-16: Learn more](/docs/build/applications/connect/)
+    [:custom-arrow: Learn more](/docs/build/applications/connect/)
 
 </div>

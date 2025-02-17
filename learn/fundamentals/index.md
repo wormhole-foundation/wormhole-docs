@@ -17,7 +17,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     New to Wormhole? Check out the introduction to Wormhole to learn what Wormhole is, the problems it solves, and how it works to solve them.
 
-    [:octicons-arrow-right-16: Take a first glance at Wormhole](/docs/learn/fundamentals/introduction/)
+    [:custom-arrow: Take a first glance at Wormhole](/docs/learn/fundamentals/introduction/)
 
 -   :octicons-shield-lock-16:{ .lg .middle } **Security**
 
@@ -25,7 +25,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     Wormhole safeguards cross-chain communication with a strong focus on security, using proven technology and decentralized validation via Guardians.
 
-    [:octicons-arrow-right-16: Review security measures](/docs/learn/fundamentals/security/)
+    [:custom-arrow: Review security measures](/docs/learn/fundamentals/security/)
 
 -   :octicons-stack-16:{ .lg .middle } **Architecture Overview**
 
@@ -33,7 +33,7 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     Explore Wormhole's architecture to understand how its core components seamlessly work together to deliver cross-chain messages securely.
 
-    [:octicons-arrow-right-16: Discover how Wormhole works](/docs/learn/fundamentals/architecture/)
+    [:custom-arrow: Discover how Wormhole works](/docs/learn/fundamentals/architecture/)
 
 </div>
 
@@ -47,6 +47,6 @@ This section covers the fundamentals of Wormhole, including what Wormhole is, a 
 
     Check out key terms and their definitions within the Wormhole ecosystem to better understand the concepts and language used throughout the platform.
 
-    [:octicons-arrow-right-16: Get to know the terms](/docs/learn/fundamentals/glossary/)
+    [:custom-arrow: Get to know the terms](/docs/learn/fundamentals/glossary/)
 
 </div>

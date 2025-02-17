@@ -120,7 +120,7 @@ The contracts and deployment steps remain the same regardless of your preferred 
 
 To get started with cross-chain messaging using Wormhole, first clone the [GitHub repository](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}. This repository includes everything you need to deploy, interact, and test the message flow between chains.
 
-This demo focuses on using the scripts, so it's best to take a look at them, starting with `deploySender.js`, `deployReceiver.js`, and `sendMessage.js`.
+This demo focuses on using the scripts, so it's best to take a look at them, starting with `deploySender.ts`, `deployReceiver.ts`, and `sendMessage.ts`.
 
 To configure the dependencies properly, run the following command:
 
@@ -137,13 +137,20 @@ The repository includes:
 
 - Deployment scripts located in the `script` directory:
 
-    - **`deploySender.js`** - deploys the MessageSender contract to Avalanche
-    - **`deployReceiver.js`** - deploys the MessageReceiver contract to Celo
-    - **`sendMessage.js`** - sends a message from Avalanche to Celo
+    - **`deploySender.ts`** - deploys the `MessageSender` contract to Avalanche
+    - **`deployReceiver.ts`** - deploys the `MessageReceiver` contract to Celo
+    - **`sendMessage.ts`** - sends a message from Avalanche to Celo
 
 - Configuration files and ABI JSON files for easy deployment and interaction:
 
     - **`chains.json`** - configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks
+
+ - A dedicated `interfaces` directory inside the `src` folder for TypeScript type definitions:
+
+    - **`ChainsConfig.ts`** - defines the types for the `chains.json` configuration file
+    - **`DeployedContracts.ts`** - contains types for deployed contract addresses and related information
+    - **`MessageJsons.ts`** - includes types for ABI and bytecode JSONs used by the deployment scripts
+    - **`index.ts`** - serves as an export aggregator for the interfaces, simplifying imports in other files
 
 ### Important Setup Steps
 
@@ -171,7 +178,7 @@ The expected output should be similar to this:
 
 ### Deployment Process
 
-Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the following key tasks:
+Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the following key tasks:
 
 1. **Load configuration and contract details** - each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network
 
@@ -181,16 +188,16 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
         --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-9.json"
         ```
 
-    === "`deploySender.js`"
+    === "`deploySender.ts`"
 
-        ```javascript
-        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js:7:15"
+        ```typescript
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.ts:14:25"
         ```
 
-    === "`deployReceiver.js`"
+    === "`deployReceiver.ts`"
 
-        ```javascript
-        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:7:15"
+        ```typescript
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.ts:14:25"
         ```
 
     !!! note
@@ -198,52 +205,52 @@ Both deployment scripts, `deploySender.js` and `deployReceiver.js`, perform the 
 
 2. **Set up provider and wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction
 
-    === "`deploySender.js`"
+    === "`deploySender.ts`"
 
-        ```javascript
-        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js:18:19"
+        ```typescript
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.ts:33:34"
         ```
 
-    === "`deployReceiver.js`"
+    === "`deployReceiver.ts`"
 
-        ```javascript
-        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:18:19"
+        ```typescript
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.ts:31:32"
         ```
 
 3. **Deploy the contract** - the contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on
 
-    === "`deploySender.js`"
+    === "`deploySender.ts`"
 
-        ```javascript
-        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js:36:39"
+        ```typescript
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.ts:50:53"
         ```
 
-    === "`deployReceiver.js`"
+    === "`deployReceiver.ts`"
 
-        ```javascript
-        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:39:42"
+        ```typescript
+        --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.ts:51:54"
         ```
 
 4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
 
     This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js:55:66"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.ts:67:81"
     ```
 
-You can find the full code for the `deploySender.js` and `deployReceiver.js` below.
+You can find the full code for the `deploySender.ts` and `deployReceiver.ts` below.
 
-??? code "deploySender.js"
+??? code "deploySender.ts"
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.js"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-5.ts"
     ```
 
-??? code "deployReceiver.js"
+??? code "deployReceiver.ts"
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.js"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-6.ts"
     ```
 
 ### Deploy the Sender Contract
@@ -278,7 +285,7 @@ The receiver contract listens for cross-chain messages and logs them when receiv
 
 Now that both the sender and receiver contracts are deployed, let's move on to the next exciting step: sending a cross-chain message from Avalanche Fuji to Celo Alfajores.
 
-In this example, we will use the `sendMessage.js` script to transmit a message from the sender contract on Avalanche to the receiver contract on Celo. The script uses [Ethers.js](https://docs.ethers.org/v6/){target=\_blank} to interact with the deployed contracts, calculate the cross-chain cost dynamically, and handle the transaction.
+In this example, we will use the `sendMessage.ts` script to transmit a message from the sender contract on Avalanche to the receiver contract on Celo. The script uses [Ethers.js](https://docs.ethers.org/v6/){target=\_blank} to interact with the deployed contracts, calculate the cross-chain cost dynamically, and handle the transaction.
 
 Let's break down the script step by step.
 
@@ -287,54 +294,54 @@ Let's break down the script step by step.
     1. **`chains.json`** - contains details about the supported Testnet chains, such as RPC URLs and relayer addresses
     2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:8:16"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:11:23"
     ```
 
 2. **Configure the provider and signer** - the script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider
 
     Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
         
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:34:35"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:47:48"
     ```
 
     After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:38:43"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:51:56"
     ```
 
 3. **Set up the message details** - the next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:55:56"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:68:69"
     ```
 
     You can customize the message that will be sent across chains:
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:59:59"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:72:72"
     ```
 
 4. **Estimate cross-chain cost** - before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:62:62"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:75:75"
     ```
 
     This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
 
 5. **Send a message** - with everything set up, the message is sent using the `sendMessage` function:
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:65:72"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:78:85"
     ```
 
     After sending, the script waits for the transaction to be confirmed:
 
-    ```javascript
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js:75:75"
+    ```typescript
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts:88:88"
     ```
 
 6. **Run the script** - to send the message, run the following command:
@@ -349,12 +356,12 @@ The console should output something similar to this:
 
 --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-4.html"
 
-You can find the full code for the `sendMessage.js` below.
+You can find the full code for the `sendMessage.ts` below.
 
-??? code "sendMessage.js"
+??? code "sendMessage.ts"
 
     ```solidity
-    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.js"
+    --8<-- "code/tutorials/by-product/contract-integrations/cross-chain-contracts/snippet-3.ts"
     ```
 
 ## Conclusion
