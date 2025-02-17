@@ -7,20 +7,20 @@ description: Learn how to integrate Wormhole's Token Bridge for seamless multich
 
 ## Introduction 
 
-Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} page in the Learn section. 
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
-This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts.
+This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} page in the Learn section. 
 
 ## Prerequisites
 
 To interact with the Wormhole Token Bridge, you'll need the following:
 
-- [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses/#token-bridge) on the chains you're working with
-- [The Wormhole chain ID](/docs/build/reference/chain-ids/) of the chains you're you're targeting for token transfers
+- [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
+- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're you're targeting for token transfers
 
-## How to Interact with Token Bridge Contracts
+## How to interact with Token Bridge contracts
 
-The primary functions of the Token Bridge Contracts revolve around:
+The primary functions of the Token Bridge contracts revolve around:
 
 - **Attesting a token** - registering a new token for cross-chain transfers
 - **Transferring tokens** - locking and minting tokens across chains
@@ -28,7 +28,7 @@ The primary functions of the Token Bridge Contracts revolve around:
 
 ### Attest a token
 
-Before transferring a token cross-chain, if the token has never been transferred to the target chain before, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
+If a token has never been transferred to the target chain before transferring it cross-chain, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
 
 The attestation process doesn't require you to manually input token details like name, symbol, or decimals. The Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
 
@@ -57,9 +57,9 @@ function attestToken(
     
     A unique identifier for the attestation transaction.
 
-When `attestToken()` is called, the contract emits a VAA containing the token's metadata, which the Guardians sign and publish
+When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
-The attestation may fail or produce incomplete metadata if the token does not implement these standard functions. In that case, you must ensure the token is ERC-20 compliant.
+You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
 
 ### Transfer tokens 
 
@@ -185,7 +185,7 @@ function transferTokensWithPayload(
     
     A unique identifier for the transfer transaction.
 
-After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA from a Guardian-supported endpoint or service then call `completeTransferWithPayload()`. Only the designated recipient contract can redeem these tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time
+After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`. Only the designated recipient contract can redeem these tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
 
 ```solidity
 function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
@@ -204,8 +204,12 @@ function completeTransferWithPayload(bytes memory encodedVm) external returns (b
     The extracted payload data.
 
 
-## Code Refereces
+## Source code references
 
+For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+
+- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
 
 ## Portal Bridge
 
