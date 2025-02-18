@@ -20,3 +20,11 @@ description: This page documents the deployed contract addresses of the Wormhole
 ## CCTP
 
 --8<-- 'text/build/reference/contract-addresses/cctp.md'
+
+## Read-Only Deployments
+
+--8<-- 'text/build/reference/contract-addresses/read-only.md'
+
+!!!note  
+    Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
+
