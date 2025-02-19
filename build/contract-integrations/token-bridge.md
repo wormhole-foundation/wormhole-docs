@@ -16,7 +16,7 @@ This page outlines the core contract methods needed to integrate Token Bridge fu
 To interact with the Wormhole Token Bridge, you'll need the following:
 
 - [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
-- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're you're targeting for token transfers
+- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers
 
 ## How to interact with Token Bridge contracts
 
