@@ -37,16 +37,6 @@ Expand the reach of your decentralized applications by building smart contracts 
 
     Dive deeper into Wormhole’s foundational concepts for cross-chain contracts. Discover how messaging, guardians, and VAAs work together to enable secure, scalable dApps.
 
-
     [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
-
--   :octicons-tools-16:{ .lg .middle } **Build Contract Integrations**
-
-    ---
-
-    Explore advanced contract integrations with Wormhole. Access reference code, best practices, and guidance for deploying robust cross-chain smart contracts.
-
-
-    [:custom-arrow: Build contract integrations](/docs/build/contract-integrations/)
 
 </div>

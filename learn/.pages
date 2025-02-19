@@ -1,7 +1,12 @@
 title: Learn
 nav:
  - index.md
- - fundamentals
+ - 'Introduction to Wormhole': 'introduction.md'
+# TODO: Product Overview
  - infrastructure
- - messaging
+ - transfers
+# TODO: Queries
  - governance
+ - 'Security': 'security.md'
+ - 'Glossary': 'glossary.md'
+

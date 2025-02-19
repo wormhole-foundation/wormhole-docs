@@ -1,0 +1,5 @@
+title: Core Messaging
+nav:
+ - index.md
+ - 'Wormhole Relayer': 'wormhole-relayers.md'
+ - 'Core Contracts': 'core-contracts.md'

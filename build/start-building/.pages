@@ -1,6 +1,7 @@
 title: Start Building
 nav:
  - index.md
+# TODO: Products
  - 'Supported Networks': 'supported-networks.md'
  - 'Testnet Faucets': 'testnet-faucets.md'
- - 'Demos': 'demos.md'
+ - 'Explorer': 'https://wormholescan.io/'

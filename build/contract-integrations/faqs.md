@@ -7,7 +7,7 @@ description: Frequently asked questions about integrating contracts with Wormhol
 
 ## Can ownership of wrapped tokens be transferred from the Token Bridge?
 
-No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
+No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
 
  - **On EVM chains** - when you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself
  - **On Solana** - the Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge
@@ -32,7 +32,7 @@ These resources will guide you through building and deploying custom relayers ta
 
 ## Is there a way to use NTT tokens with chains that don't currently support NTT?
 
-Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank}. For example:
+Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. For example:
 
 - **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
 - **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism

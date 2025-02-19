@@ -22,7 +22,7 @@ This section provides a closer look at the core components that power Wormhole's
     3. The validated message is encapsulated in a VAA (Verifiable Action Approval), combining the message with Guardian signatures to create a proof
     4. A relayer relays the VAA to the target chain, which is then verified by the Wormhole Core Contract on the target chain
 
-    You can find more information about the infrastructure components and how they work together on the [Architecture Overview](/docs/learn/fundamentals/architecture/) page.
+    You can find more information about the infrastructure components and how they work together on the [Architecture Overview](/docs/learn/infrastructure/architecture/) page.
 
 </div>
 

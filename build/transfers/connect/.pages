@@ -1,0 +1,9 @@
+title: Connect UI Widget
+nav:
+ - index.md
+ - 'Overview': overview.md
+ - 'Routes': routes.md
+ - 'Features': features.md
+ - 'Configuration': configuration
+ - 'v1 Migration': upgrade.md
+ - 'FAQS': faqs.md

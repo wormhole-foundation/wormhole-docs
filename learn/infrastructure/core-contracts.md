@@ -31,7 +31,7 @@ Below is a simplified breakdown that focuses on the role of the Wormhole Core Co
 2. **Guardian verification** - the Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions, such as minting tokens, updating states, or calling specific smart contract functions
 
-For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/learn/fundamentals/architecture/) page.
+For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/learn/infrastructure/architecture/) page.
 
 ### Message Submission
 

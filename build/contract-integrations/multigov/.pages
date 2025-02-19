@@ -1,6 +1,0 @@
-title: MultiGov
-nav:
- - index.md
- - 'Deployment': 'deployment.md'
- - 'Upgrade Contracts': 'upgrade.md'
- - 'Technical FAQs': 'faq.md'
