@@ -10548,7 +10548,7 @@ description: Learn how to integrate Wormhole's Token Bridge for seamless multich
 
 ## Introduction 
 
-Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [contract controlled transfers (transfers with messages)](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
 This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} page in the Learn section. 
 
@@ -10556,10 +10556,10 @@ This page outlines the core contract methods needed to integrate Token Bridge fu
 
 To interact with the Wormhole Token Bridge, you'll need the following:
 
-- [The address of the Token Bridge Core Contract](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
-- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're you're targeting for token transfers
+- [The address of the Token Bridge contract](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
+- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers
 
-## How to interact with Token Bridge contracts
+## How to Interact with Token Bridge Contracts
 
 The primary functions of the Token Bridge contracts revolve around:
 
@@ -10569,9 +10569,9 @@ The primary functions of the Token Bridge contracts revolve around:
 
 ### Attest a token
 
-If a token has never been transferred to the target chain before transferring it cross-chain, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
+Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
 
-The attestation process doesn't require you to manually input token details like name, symbol, or decimals. The Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+The attestation process doesn't require you to manually input token details like name, symbol, or decimals. Instead, the Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
 
 ```solidity
 function attestToken(
@@ -10600,9 +10600,9 @@ function attestToken(
 
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
-You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
+You must ensure the token is ERC-20 compliant. The attestation may fail or produce incomplete metadata if it does not implement the standard functions.
 
-### Transfer tokens 
+### Transfer Tokens 
 
 Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
 
@@ -10726,7 +10726,9 @@ function transferTokensWithPayload(
     
     A unique identifier for the transfer transaction.
 
-After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`. Only the designated recipient contract can redeem these tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
+After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
+
+Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
 
 ```solidity
 function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
@@ -10744,8 +10746,7 @@ function completeTransferWithPayload(bytes memory encodedVm) external returns (b
 
     The extracted payload data.
 
-
-## Source code references
+## Source Code References
 
 For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
 
