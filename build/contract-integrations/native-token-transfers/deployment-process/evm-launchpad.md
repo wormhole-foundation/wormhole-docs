@@ -119,13 +119,13 @@ The dashboard provides a high-level view of your token across all deployed chain
 
  - Token addresses for each chain
  - Supply distribution visualization
- - List of deployed chains, including inbound and outbound transfer limits, which can be modified in "Settings"
+ - List of deployed chains, including inbound and outbound transfer limits, which can be modified in "[Settings](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#settings)"
 
 ## Settings
 
 The Settings page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
 
-### Select a Chain
+### Chain Management
 
 Use the drop-down menu at the top to select the chain you want to configure. The available options correspond to the chains where your token has already been deployed. Once selected, the page displays token details specific to that chain.
 
@@ -147,7 +147,7 @@ This section displays key roles involved in token governance. Users can view the
 
 ### Security Threshold
 
-This section defines security parameters related to transceivers:
+Determine how transceivers interact with the token. This includes:
 
  - **Registered Transceivers** – displays the number of registered transceivers and their addresses
  - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
@@ -156,7 +156,7 @@ This section defines security parameters related to transceivers:
 
 ### Peer Chains Limits
 
-This section manages cross-chain transfer limits for the selected chain:
+Define the transfer restrictions for each connected network. Users can adjust:
 
  - **Sending Limits** – defines the maximum amount of tokens that can be sent from this chain
  - **Receiving Limits** – lists the peer chains and their respective receiving limits
