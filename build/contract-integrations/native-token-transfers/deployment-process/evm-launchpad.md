@@ -63,7 +63,7 @@ Once ready, choose an option to proceed:
 6. Repeat the previous step to deploy the token on the second chain (Base)
 
     !!!note
-        This deployment will initialize the supply at zero.
+        The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
 7. Once both deployments are completed, proceed to the [**Dashboard**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#dashboard-overview) to manage your token.
 
@@ -98,7 +98,7 @@ Once ready, choose an option to proceed:
 6. Repeat the previous step to deploy the token on the second chain (Base)
 
     !!!note
-        This deployment will initialize the supply at zero.
+        The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
 7. Now that your token has been deployed on multiple chains, click [**Dashboard**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#dashboard-overview) to review its details
 
