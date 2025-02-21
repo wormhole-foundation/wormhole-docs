@@ -5,9 +5,10 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 # Wormhole Connect
 
-## Get Started
+Wormhole Connect is a prebuilt React widget offering an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
 
-Wormhole Connect is a React widget offering an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
+- **Why use connect?** Use Connect if you want a quick, straightforward integration and a user-friendly bridging experience right out of the box
+- **What can I build with Connect?** DEXs and CEXs, borrowing-lending platforms, gaming dapps, AMMs, and more
 
 <div class="grid cards" markdown>
 
@@ -52,24 +53,12 @@ Wormhole Connect is a React widget offering an easy-to-use interface to facilita
 
 </div>
 
-## Additional Resources
+## Related Resources
 
-<div class="grid cards" markdown>
+- For an easy approach to styling and customizing a Connect widget for your multichain application, To check out the [codeless interface](https://connect-in-style.wormhole.com/){target=\_blank}
+- Check out [Portal Bridge](https://portalbridge.com/){target=\_blank} to view an example of the Connect widget live in a production application
 
--   :octicons-browser-16:{ .lg .middle } **Codeless Interface**
+## Where to Go Next
 
-    ---
-
-    Check out the codeless interface for an easy approach to styling and customizing a Connect widget for your multichain application.
-
-    [:custom-arrow: Quickly get started](https://connect-in-style.wormhole.com/){target=\_blank}
-
--   :octicons-browser-16:{ .lg .middle } **A Live Example**
-
-    ---
-
-    View an example of the Wormhole Connect widget live in a production application.
-
-    [:custom-arrow: See Connect in action](https://portalbridge.com/){target=\_blank}
-
-</div>
+- For a guide to integrating Connect, see [How to Integrate Connect](/docs/build/transfers/connect/overview/#integrate-connect)
+- For a step-by-step walk-through of configuring Connect, see [Integrate Connect into a React DApp](/docs/tutorials/by-product/connect/react-dapp/)
