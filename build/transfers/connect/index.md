@@ -7,58 +7,79 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 Wormhole Connect is a prebuilt React widget offering an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
 
-- **Why use connect?** Use Connect if you want a quick, straightforward integration and a user-friendly bridging experience right out of the box
-- **What can I build with Connect?** DEXs and CEXs, borrowing-lending platforms, gaming dapps, AMMs, and more
+Use Connect if you want a quick, straightforward integration and a user-friendly bridging experience right out of the box.
+
+## How to Use Connect
+
+Using Connect is as simple as following these steps:
+
+1. [Install the Connect package]()
+2. [Integrate Connect into your web application using React or HTML]()
+3. [Configure Connect to support the chains and tokens you want]()
+4. [Customize the UI to fit your needs]()
+
+<<<use [timeline feature](https://www.neoteroi.dev/mkdocs-plugins/timeline/) from neoteroi plugin>>>
+
+## Use Cases
+
+These are just a few examples to get you started—Connect enables a wide variety of use cases depending on your needs:
+
+- DEXs and CEXs
+- Borrowing-lending platforms
+- Gaming dapps
+- AMMs
+- Wallets
+
+Check out Connect deployed live in production:
+
+- [Portal Bridge](https://portalbridge.com/){target=\_blank}
+- [Jupiter](https://jup.ag/onboard/cctp){target=\_blank}
+- [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
+
+## Key Features
+
+- Low-code solution for fast implementation without deep blockchain or technical knowledge
+- Support for multiple blockchains out of the box
+- Ability to configure any token to bridge via Wormhole
+- Multiple ways to bridge assets via [routes](/docs/build/transfers/connect/routes/){target=\_blank}
+- Simplifies wallet connection and transaction signing for end users
+- Customizable UI to match your application's branding and design
+- [Drop off gas]() tokens on the destination chain by swapping transferred assets for native gas
+
+Discover the available features for each network in the [feature matrix]().
+
+## Get Started
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-16:{ .lg .middle } **Overview**
+-   :octicons-rocket-16:{ .lg .middle } **Integrate Connect**
 
     ---
 
-    Explore Wormhole Connect, the React widget that allows you to offer an easy-to-use UI for cross-chain asset transfers via Wormhole in a web application.
+    Take the first steps to start building with Connect.
 
     [:custom-arrow: Get started](/docs/build/transfers/connect/overview/)
 
--   :octicons-code-16:{ .lg .middle } **Routes**
+-   :octicons-code-16:{ .lg .middle } **Build a Demo App with Connect**
 
     ---
 
-    Explore Wormhole Connect's routing capabilities for asset transfers, featuring Token Bridge, CCTP, NTT, and various blockchain-specific routes for optimal UX.
+    Follow a practical example to build a demo app using Connect.
 
-    [:custom-arrow: Explore routes](/docs/build/transfers/connect/routes/)
-
--   :octicons-globe-16:{ .lg .middle } **Features**
-
-    ---
-    Learn which features of Connect are available for your network of choice.
-
-    [:custom-arrow: Discover supported features](/docs/build/transfers/connect/features/)
-
--   :octicons-pencil-16:{ .lg .middle } **Configuration**
-
-    ---
-
-    Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions.
-
-    [:custom-arrow: Configure for customization](/docs/build/transfers/connect/configuration/)
-
--   :octicons-question-16:{ .lg .middle } **Connect FAQs**
-
-    ---
-
-    Find answers to common questions about Wormhole Connect, including supported assets, chains, and integration options.
-
-    [:custom-arrow: Read Connect FAQs](/docs/build/transfers/connect/faqs/)
+    [:custom-arrow: Get started](/docs/build/transfers/connect/routes/)
 
 </div>
 
 ## Related Resources
 
-- For an easy approach to styling and customizing a Connect widget for your multichain application, To check out the [codeless interface](https://connect-in-style.wormhole.com/){target=\_blank}
-- Check out [Portal Bridge](https://portalbridge.com/){target=\_blank} to view an example of the Connect widget live in a production application
+<div class="grid cards" markdown>
 
-## Where to Go Next
+-   :octicons-code-16:{ .lg .middle } **Codeless Interface**
 
-- For a guide to integrating Connect, see [How to Integrate Connect](/docs/build/transfers/connect/overview/#integrate-connect)
-- For a step-by-step walk-through of configuring Connect, see [Integrate Connect into a React DApp](/docs/tutorials/by-product/connect/react-dapp/)
+    ---
+
+    Use this web application to customize and generate the code for your Connect integration.
+
+    [:custom-arrow: Get started](/docs/build/transfers/connect/overview/)
+
+</div>
