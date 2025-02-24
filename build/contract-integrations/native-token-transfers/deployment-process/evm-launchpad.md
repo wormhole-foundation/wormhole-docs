@@ -60,22 +60,20 @@ Once ready, choose an option to proceed:
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-4.webp)
 
-5. Deploy on the first chain (Optimism)
-     - If your wallet is connected to Testnet, switch to Mainnet when prompted, then click **Deploy**
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
 
-     - Your wallet will open to confirm the transaction
-     - Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
 
-6. Repeat the previous step to deploy the token on the second chain (Base)
+7. Repeat the previous step to deploy the token on the second chain (Base)
 
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-7. Once both deployments are completed, proceed to the [**Dashboard**](#dashboard-overview) to manage your token.
+8. Once both deployments are completed, proceed to the [**Dashboard**](#dashboard-overview) to manage your token.
 
 ## Expand Your Existing Token
 
@@ -95,22 +93,20 @@ Once ready, choose an option to proceed:
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-9.webp)
 
-5. Deploy on the first chain (Optimism)
-     - If your wallet is connected to Testnet, switch to Mainnet when prompted, then click **Deploy**
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
 
-     - Your wallet will open to confirm the transaction
-     - Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
 
-6. Repeat the previous step to deploy the token on the second chain (Base)
+7. Repeat the previous step to deploy the token on the second chain (Base)
 
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-7. Now that your token has been deployed on multiple chains, click [**Dashboard**](#dashboard-overview) to review its details
+8. Now that your token has been deployed on multiple chains, click [**Dashboard**](#dashboard-overview) to review its details
 
 ## Dashboard Overview
 
