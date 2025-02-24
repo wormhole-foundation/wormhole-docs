@@ -6,5 +6,6 @@ nav:
  - 'CCTP': 'cctp.md'
  - native-token-transfers
  - multigov
+ - settlements
  - 'Development Environment': 'dev-env.md'
  - 'FAQS': 'faqs.md'
