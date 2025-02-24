@@ -5,7 +5,14 @@ description: Use the NTT Launchpad to deploy a new token or expand an existing o
 
 # Native Token Transfers Deploy via Launchpad
 
-The NTT Launchpad enables seamless deployment and management of cross-chain tokens. This guide covers new token launches and expansion of existing tokens across multiple blockchains.
+The [NTT Launchpad](){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying Native Token Transfers across multiple blockchains. Instead of manually setting up contracts and managing cross-chain communication, users can quickly launch or expand tokens with just a few clicks.
+
+The Launchpad automates deployment, reducing complexity and saving time.
+
+This guide covers:
+ - Launching a new cross-chain token
+ - Expanding an existing token for NTT
+ - Managing tokens via the dashboard and settings
 
 ## Prerequisites
 
