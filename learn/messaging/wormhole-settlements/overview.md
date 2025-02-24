@@ -5,20 +5,21 @@ description: Discover Wormhole Settlements, enabling fast, intent-based asset tr
 
 # Wormhole Settlements Overview
 
-Introducing fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
+## Introduction
 
-Swap, bridge, and build across multiple chains with Wormhole Settlement, an intent-based asset transfer for individual users and institutions.
-Builders will be able to implement cross-chain functionality within their dApps extremely simply and without compromising user experience, widening the horizons of their product offering and the number and type of users they can cater to.
+Wormhole Settlements is a fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
 
-The Settlement will support Ethereum, Ton, Optimism, Arbitrum, Base, Avalanche, Unichain, Polygon, Solana, and Sui, with many more on the horizon. It will be powered by Wormhole Messaging, Wormhole NTT, and Circle's CCTP, and built-in collaboration with the intent experts, Mayan Finance.
+With Wormhole Settlement, an intent-based asset transfer for individual users and institutions, you can swap, bridge, and build across multiple chains. You can implement cross-chain functionality within your dApps extremely simply and without compromising user experience, widening the horizons of your product offerings and the number and type of users you can cater to.
 
-This represents Wormhole's first step towards optimizing the bridging experience and building a product that users and institutions use daily. Whether it's to send assets between chains, allow institutions to rebalance inventories on-chain cheaply and quickly, or for builders to allow their application to be accessible by any user no matter what assets they hold or what chain they call home.
+The Settlement supports Ethereum, Ton, Optimism, Arbitrum, Base, Avalanche, Unichain, Polygon, Solana, and Sui, with many more on the horizon. It is powered by Wormhole Messaging, Wormhole Native Token Transfer (NTT), and Circle's CCTP and built in collaboration with the intent experts at Mayan Finance.
+
+Settlement represents Wormhole's first step towards optimizing the bridging experience and building a product that users and institutions use daily. Use it to send assets between chains, rebalance institutional inventories on-chain cheaply and quickly, or allow your application to be accessible by any user no matter what assets they hold or what chain they call home.
 
 ## Key Features
 
-- **Integrator flexibility** - apps, leveraging the SDK, have the ability to select any one of three potential routes surfaced — each with their own tradeoffs concerning time vs cost — they may extend this to users as well
-- **Scalable liquidity** - taking lessons for the last few months of idiosyncratic yet sharp inflows into the Solana ecosystem, the hub-spoke model of the Wormhole Liquidity Layer and the flexible design of Swift are designed for capital efficiency and meant to serve
-- **Arbitrary payload support** - integrators can bundle callData containing arbitrary protocol actions to enable seamless one-click user experiences, e.g., swap plus stake
+- **Integrator flexibility** - apps leveraging the SDK can select any one of three potential routes surfaced, each with its tradeoffs concerning time vs cost; they may extend this to users as well
+- **Scalable liquidity** - taking into account the sometimes idiosyncratic yet sharp inflows into the Solana ecosystem, the hub-spoke model of the Wormhole Liquidity Layer and the flexible design of Swift are designed for capital efficiency
+- **Arbitrary payload support** - integrators can bundle `callData` containing arbitrary protocol actions to enable seamless one-click user experiences, such as swap plus stake
 
 ## Integrator Paths
 
@@ -28,7 +29,7 @@ Wormhole provides an SDK that enables apps to abstract away the complexity of cr
 
 ### NTT Integrators
 
-NTT partners, current and future, can leverage Wormhole Settlement for near-instant NTT transfers from any chain, including Ethereum mainnet and its L2s. This eliminates the need to wait for slow source chain confirmation times (in some instances 15 minutes or more). If interested, please [fill out this interest form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
+NTT partners, current and future, can leverage Wormhole Settlement for near-instant NTT transfers from any chain, including Ethereum mainnet and its L2s. This eliminates waiting for slow source chain confirmation times (sometimes 15 minutes or more). If interested, please [fill out this interest form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
 ### Chain Integrators
 
@@ -36,3 +37,7 @@ Due to the hub-spoke model of liquidity, new chains without proven traction can 
 
 !!!tip
     Looking to integrate Wormhole Settlement? If you're ready, check out how to [integrate Wormhole Settlement Routes using the SDK](/docs/tutorials/by-product/settlements/settlement-routes/){target=\_blank}.
+
+## Related Resources
+
+- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/messaging/wormhole-settlements/architecture/){target=\_blank} page
