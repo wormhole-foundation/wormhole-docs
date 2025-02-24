@@ -8829,6 +8829,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:custom-arrow: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
 
+-   :octicons-code-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    TODO
+
+    [:custom-arrow: Get started with Settlements](/docs/build/contract-integrations/settlements/)
+
 -   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
     ---
@@ -10574,20 +10582,24 @@ Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlements/l
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Settlements
-description: Integrate seamlessly with Wormhole's Liquidity Layer—learn key EVM contract functions for fast and secure cross-chain transfers.
+description: Explore the Wormhole Liquidity Layer for cross-chain development. Learn about the EVM Token Router, `placeFastMarketOrder`, and `placeMarketOrder` functions.
 ---
 
-# Building on the Wormhole Liquidity Layer 
+# Build on the Wormhole Liquidity Layer
 
-The Wormhole Liquidity Layer serves as the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems by enabling protocols to bundle call data containing arbitrary protocol actions, which can be executed atomically alongside each transfer. This feature allows developers to create fully chain-abstracted user experiences, including the construction of natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer. The following section describes the key smart contract components for teams seeking to build atop Wormhole Settlement.
+## Introduction
+
+The Wormhole Liquidity Layer is the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems. It allows these protocols to bundle call data containing arbitrary actions that can be executed atomically alongside each transfer. This feature enables developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer. The following section describes the key smart contract components for teams seeking to build atop Wormhole Settlement.
+
+## EVM Functions
 
 The EVM Token Router is a simple interface against which to integrate. For an integrator, the contracts have two main entry points: `placeMarketOrder` and `placeFastMarketOrder`.
 
-## EVM placeFastMarketOrder
+### Fast Market Order
 
-The `placeFastMarketOrder` allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. This interface does _not_ guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`.
+The `placeFastMarketOrder` function allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. Using this interface does not guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`
 
-```solidity
+```solidity title="`placeFastMarketOrder` interface"
 function placeFastMarketOrder(
     uint128 amountIn,
     uint16 targetChain,
@@ -10626,21 +10638,21 @@ function placeFastMarketOrder(
 
     `maxFee` ++"uint128"++
 
-    The maximum fee that the user is willing to pay to execute a fast transfer.
+    The maximum fee the user wants to pay to execute a fast transfer.
 
     ---
 
     `deadline` ++"uint32"++
 
-    The deadline for the fast transfer auction to start. Note: This timestamp should be for the MatchingEngine chain (e.g. Solana) to avoid any clock drift issues between different blockchains. Integrators can set this value to 0 to opt out of using a deadline.
+    The deadline for the fast transfer auction to start. Note: This timestamp should be for the `MatchingEngine` chain (such as Solana) to avoid any clock drift issues between different blockchains. Integrators can set this value to `0` if they don't want to use a deadline.
 
-It returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
-   
-## EVM placeMarketOrder
+The `placeFastMarketOrder` function returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
 
-The `placeMarketOrder` function is a _wait-for-full-finality_ USDC transfer (with an arbitrary message payload). The Swap Layer, built on top of the Wormhole Settlement, uses this function if the auction on the matching engine for `placeFastMarketOrder` doesn't start within a specific deadline.
+### Market Order
 
-```solidity
+The `placeMarketOrder` function is a _wait-for-full-finality_ USDC transfer with an arbitrary message payload. The Swap Layer, built on top of the Wormhole Settlement, uses this function if the auction on the matching engine for `placeFastMarketOrder` doesn't start within a specific deadline.
+
+```solidity title="`placeMarketOrder` interface"
 function placeMarketOrder(
     uint128 amountIn,
     uint16 targetChain,
@@ -10673,7 +10685,7 @@ function placeMarketOrder(
 
     An arbitrary payload for the redeemer.
 
-It returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
+The `placeMarketOrder` function returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlements/solver/
@@ -10976,6 +10988,9 @@ function sendPayloadToEvm(
     uint64 sequence
 );
 ```
+
+!!! tip
+    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/2ea519c09e28bb9c0417cb3a5dfba525267af5a7/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
 
 The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
 
@@ -15335,6 +15350,14 @@ This section covers various aspects and services related to communication protoc
 
     [:custom-arrow: Learn more about NTT](/docs/learn/messaging/native-token-transfers/)
 
+-   :octicons-book-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    Learn about Wormhole Settlements, an intent-based solution enabling fast and efficient asset transfers across Ethereum, Solana, Sui, and more.
+
+    [:custom-arrow: Learn more about Wormhole Settlements](/docs/learn/messaging/wormhole-settlements/)
+
 </div>
 --- END CONTENT ---
 
@@ -18790,6 +18813,14 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
 
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    Learn how to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
+
+    [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
+
 </div>
 --- END CONTENT ---
 
@@ -19185,7 +19216,7 @@ title: Wormhole Settlements
 description: Follow step-by-step tutorials to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
 ---
 
-# Wormhole Settlements TUTORIAL
+# Wormhole Settlements
 
 This section provides hands-on tutorials to help you integrate Wormhole Settlement Routes into your application. Learn how to use the SDK to manage cross-chain swaps, optimize fees, and streamline transaction execution.
 

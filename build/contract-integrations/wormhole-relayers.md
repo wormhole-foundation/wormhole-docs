@@ -54,6 +54,9 @@ To send a message to a contract on another EVM chain, you can call the `sendPayl
 --8<-- 'code/build/contract-integrations/wormhole-relayers/sendPayloadToEvm.sol'
 ```
 
+!!! tip
+    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/2ea519c09e28bb9c0417cb3a5dfba525267af5a7/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
+
 The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
 
 ```solidity

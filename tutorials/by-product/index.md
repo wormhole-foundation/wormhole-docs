@@ -49,4 +49,12 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
 
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    Learn how to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
+
+    [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
+
 </div>
