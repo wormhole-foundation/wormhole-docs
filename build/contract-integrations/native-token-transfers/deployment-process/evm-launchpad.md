@@ -108,24 +108,19 @@ Once ready, choose an option to proceed:
 
 8. Now that your token has been deployed on multiple chains, click [**Dashboard**](#dashboard-overview) to review its details
 
-## Dashboard Overview
+## Explore the Launchpad Dashboard
 
-Once your token has been successfully deployed, you can access the Dashboard to manage and track its details. Here, you can view its deployment status, monitor supply across chains, and configure transfer settings.
-
-### Access the Dashboard
-
- - After deploying your token, click **Dashboard** on the final screen
- - You can also access it anytime from the [NTT Launchpad homepage](){target=\_blank}
+To access the **Dashboard** from the [Launchpad home page](){target=\_blank}, click on **Manage Deployment**. Here, you can view its deployment status, monitor supply across chains, and configure transfer settings.
 
 ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-10.webp)
 
-### Token Overview
-
-The dashboard provides a high-level view of your token across all deployed chains:
+The dashboard provides a high-level view of your token across all deployed chains, including:
 
  - Token addresses for each chain
  - Supply distribution visualization
  - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
+
+ <!-- INSERT_IMAGE_OF_THE_DASHBOARD -->
 
 ## Settings
 
