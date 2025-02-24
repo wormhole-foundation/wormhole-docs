@@ -139,7 +139,7 @@ From this section, you can also:
 
 ### Role Management
 
-This section displays key roles involved in token governance. Users can view and modify these roles by selecting a new address and confirming the update.
+This section displays key roles involved in token governance. Users can view and modify these roles by selecting a new address and confirming the update. More details are available in the [NTT managers page](/docs/build/contract-integrations/native-token-transfers/managers-transceivers/#managers){target=\_blank}.
 
  - **Manager’s Owner** – the owner through the `NTTOwner` proxy
  - **Pauser** – the address authorized to pause transfers
@@ -148,7 +148,7 @@ This section displays key roles involved in token governance. Users can view and
 
 ### Security Threshold
 
-Determine and update how transceivers interact with the token. This includes:
+Determine and update how transceivers interact with the token. Transceivers route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks. They work with managers to process messages and maintain secure, reliable cross-chain transfers. More details are available in the [transceivers page](/docs/build/contract-integrations/native-token-transfers/managers-transceivers/#transceivers){target=\_blank}.   
 
  - **Registered Transceivers** – displays the number of registered transceivers and their addresses
  - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
