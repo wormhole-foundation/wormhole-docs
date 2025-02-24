@@ -22,11 +22,7 @@ This guide covers:
  - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.)
  - Minimum ETH (or equivalent) for gas fees per deployment
 
-## Getting Started
-
-To begin, visit the [NTT Launchpad](){target=\_blank} and connect your wallet.
-
-### Supported Blockchains
+## Supported Blockchains
 
 The NTT Launchpad currently supports deployments on the following Mainnet chains:
 
@@ -35,7 +31,7 @@ The NTT Launchpad currently supports deployments on the following Mainnet chains
  - Arbitrum One
  - Base
 
-### Choose Your Path
+## Choose Your Path
 
 Once ready, choose an option to proceed:
 
