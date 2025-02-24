@@ -24,7 +24,7 @@ This guide covers:
 
 ## Supported Blockchains
 
-The NTT Launchpad currently supports deployments on the following Mainnet chains:
+The NTT Launchpad currently supports deployments on the following mainnet chains:
 
  - Ethereum
  - Optimism Mainnet
