@@ -9,7 +9,7 @@ This section provides hands-on tutorials to help you integrate Wormhole Settleme
 
 <div class="grid cards" markdown>
 
--   :octicons-question-16:{ .lg .middle } **Integrate Wormhole Settlement Routes using the SDK**
+-   :octicons-repo-16:{ .lg .middle } **Integrate Wormhole Settlement Routes using the SDK**
 
     ---
 
