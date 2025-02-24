@@ -1,5 +1,10 @@
 title: Wormhole Settlements
 nav:
  - index.md
+<<<<<<< HEAD
  - 'Build on the Wormhole Liquidity Layer ': 'liquidity-layer.md'
+=======
+ - 'Building on the Wormhole Liquidity Layer': 'liquidity-layer.md'
+ - 'Running a Wormhole Liquidity Layer Solver': 'solver.md'
+>>>>>>> 9fc4a2318f9b20fa6aa317d64ca9fcadb242f56b
 
