@@ -120,7 +120,7 @@ The dashboard provides a high-level view of your token across all deployed chain
  - Supply distribution visualization
  - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
 
- <!-- INSERT_IMAGE_OF_THE_DASHBOARD -->
+![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-11.webp)
 
 ## Settings
 
@@ -135,7 +135,7 @@ From this section, you can also:
  - **Pause the token** – temporarily turn off transfers on the selected chain
  - **Deploy to a new chain** – expand your token by deploying it to an additional chain
 
-![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-11.webp)
+![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-12.webp)
 
 ### Role Management
 
@@ -144,7 +144,7 @@ This section displays key roles involved in token governance. Users can view and
  - **Manager’s Owner** – the owner through the `NTTOwner` proxy
  - **Pauser** – the address authorized to pause transfers
 
-![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-12.webp)
+![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-13.webp)
 
 ### Security Threshold
 
@@ -153,7 +153,7 @@ Determine and update how transceivers interact with the token. Transceivers rout
  - **Registered Transceivers** – displays the number of registered transceivers and their addresses
  - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
 
-![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-13.webp)
+![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-14.webp)
 
 ### Peer Chains Limits
 
@@ -164,4 +164,4 @@ Define the transfer restrictions for each connected network. Users can adjust:
 
 Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
 
-![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-14.webp)
+![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-15.webp)
