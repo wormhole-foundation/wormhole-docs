@@ -1,6 +1,6 @@
 ---
 title: Wormhole Settlements
-description: TODO
+description: Integrate seamlessly with Wormhole's Liquidity Layer—learn key EVM contract functions for fast and secure cross-chain transfers.
 ---
 
 # Building on the Wormhole Liquidity Layer 
@@ -9,7 +9,7 @@ The Wormhole Liquidity Layer serves as the underlying chain abstraction infrastr
 
 The EVM Token Router is a simple interface against which to integrate. For an integrator, the contracts have two main entry points: `placeMarketOrder` and `placeFastMarketOrder`.
 
-## EVM placeFastMarketOrder <!-- this should go between `` but rn it looks horrible with the huge font -->
+## EVM placeFastMarketOrder
 
 The `placeFastMarketOrder` allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. This interface does _not_ guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`.
 

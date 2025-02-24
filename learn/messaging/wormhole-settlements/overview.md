@@ -1,6 +1,6 @@
 ---
 title: Wormhole Settlements Overview
-description: TODO
+description: Discover Wormhole Settlements, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
 ---
 
 # Wormhole Settlements Overview

@@ -1,6 +1,6 @@
 ---
 title: Wormhole Settlements
-description: TODO
+description: Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
 ---
 
 # Integrate Wormhole Settlement Routes using the SDK 
