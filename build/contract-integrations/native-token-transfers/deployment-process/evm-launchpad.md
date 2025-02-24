@@ -44,6 +44,8 @@ Once ready, choose an option to proceed:
 
 ## Launch a Cross-Chain Token
 
+Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
+
 1. Open the [NTT Launchpad](){target=\_blank}, connect your wallet and click **Get Started**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-1.webp)
