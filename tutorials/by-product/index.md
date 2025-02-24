@@ -55,6 +55,6 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Learn how to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
 
-    [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/settlements/)
 
 </div>

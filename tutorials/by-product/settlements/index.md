@@ -15,6 +15,6 @@ This section provides hands-on tutorials to help you integrate Wormhole Settleme
 
     Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
 
-    [:custom-arrow: TITLE](/docs/tutorials/by-product/settlements/settlement-routes/)
+    [:custom-arrow: Integrate Settlement Routes](/docs/tutorials/by-product/settlements/settlement-routes/)
 
 </div>

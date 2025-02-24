@@ -3,27 +3,38 @@ title: Wormhole Settlements
 description: Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
 ---
 
-# Integrate Wormhole Settlement Routes using the SDK 
+# Integrate Wormhole Settlement Routes Using the SDK
 
-This guide explains how to integrate Wormhole Settlement Routes from the Wormhole SDK into your application. These Routes abstract the complexity of cross-chain token swaps, handling route discovery, fee estimation, and transaction construction — useful Apps seeking to embed cross chain swaps. 
+## Introduction
 
-## Installation
+This guide explains integrating Wormhole Settlement Routes from the Wormhole SDK into your application. These Routes abstract the complexity of cross-chain token swaps by handling route discovery, fee estimation, and transaction construction, all useful for dApps seeking to embed cross-chain swaps. By following this tutorial you will install the Wormhole SDK Route package, configure and execute a swap, and explore error handling and troubleshooting.
 
-Install the Wormhole SDK Route package using your preferred package manager. If the package is published on npm, run:
+## Prerequisites
 
-```sh
-npm install @mayan-finance/wormhole-sdk-route
-```
+Before beginning this project, make sure you have the following:
 
-Alternatively, clone the repository and install dependencies:
+- **Wormhole SDK Route package** - installed using your preferred package manager
 
-```sh
-git clone https://github.com/mayan-finance/wormhole-sdk-route.git
-cd wormhole-sdk-route
-npm install
-```
+    To install the package with npm, run the following command in your terminal:
 
-## Configuration and Setup
+    ```sh
+    npm install @mayan-finance/wormhole-sdk-route
+    ```
+
+    Alternatively, clone the repository and install dependencies:
+
+    ```sh
+    git clone https://github.com/mayan-finance/wormhole-sdk-route.git
+    cd wormhole-sdk-route
+    npm install
+    ```
+
+- **Data for parameters** - you will need: 
+    
+    - [Chain IDs](/docs/build/reference/chain-ids/){target=|_blank} for the source and destination chains
+    - An contract address for the token you want to swap and the token you want to receive on the destination chain
+
+## Configure and Setup
 
 To initiate a swap, you must create a configuration object that specifies all required parameters. These typically include:
 
@@ -50,11 +61,11 @@ const config: SwapRouteConfig = {
 const swapRoute = new SwapRoute(config);
 ```
 
-## Executing a Swap
+## Execute a Swap
 
-Once the configuration is complete, follow these two primary steps: retrieving the optimal swap route and executing the transaction.
+Once the configuration is complete, the next steps are to retrieve the optimal swap route and execute the transaction.
 
-### Fetching the Swap Route
+### Fetch the Swap Route
 
 Before sending a transaction, fetch the optimal swap route to review details such as fees and expected outputs:
 
@@ -73,7 +84,7 @@ async function getSwapDetails() {
 getSwapDetails();
 ```
 
-### Executing the Swap Transaction
+### Execute the Swap Transaction
 
 Once the route is confirmed, execute the swap:
 
@@ -133,7 +144,7 @@ performSwap();
 
 - **Route fetching errors** - ensure all configuration parameters (chain IDs, token addresses, amounts) are correct and that network endpoints are reachable
 - **Transaction execution errors** - verify that the connected wallet has sufficient funds and that transaction parameters meet the network’s requirements. Detailed logging can assist with troubleshooting
-- **Miscellaneous** - to pass a `ReferrerAddress` to the initiation functions, you can create a class that extends the MayanRoute class. Override the `referrerAddress` method to return addresses by platform, as shown in this example:
+- **Miscellaneous** - to pass a `ReferrerAddress` to the initiation functions, you can create a class that extends the `MayanRoute` class. Override the `referrerAddress` method to return addresses by platform, as shown in this example:
 
     ```ts
     class MayanRefRoute<N extends Network> extends MayanRoute<N> {
