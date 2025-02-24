@@ -28,7 +28,7 @@ function placeFastMarketOrder(
 ) external payable returns (uint64 sequence, uint64 fastSequence);
 ```
 
-??? interface "Parameters"
+??? interface "Parameters `placeFastMarketOrder()`"
 
     `amountIn` ++"uint128"++
 
@@ -79,7 +79,7 @@ function placeMarketOrder(
 ) external payable returns (uint64 sequence, uint64 protocolSequence);
 ```
 
-??? interface "Parameters"
+??? interface "Parameters `placeMarketOrder()`"
 
     `amountIn` ++"uint128"++
 
