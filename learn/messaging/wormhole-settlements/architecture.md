@@ -1,6 +1,6 @@
 ---
 title: Protocol Architectures in Wormhole Settlement
-description: description
+description: TODO
 ---
 
 # Protocol Architectures
@@ -64,7 +64,7 @@ First, they lack a competitive price discovery mechanism—limit order prices ar
 
 Mayan Swift addresses these limitations by implementing competitive on-chain English auctions on Solana as an embedded price discovery mechanism, fundamentally shifting solver competition from speed-based to price-based execution. Through this architecture, the solver offering the best possible price secures the right to fulfill the order within pre-specified deadline parameters.
 
-![Mayan Swift - Intent-centric design](/docs/images/learn/messaging/wormhole-settlements/mayan-swift.webp)
+![Mayan Swift - Intent-centric design](/docs/images/learn/messaging/wormhole-settlements/mayan-swift.webp) <!-- to be replaced with wormhole graphic -->
 
 #### Summarizing the Protocol Flow: How It Works
 
@@ -83,7 +83,7 @@ Mayan Swift addresses these limitations by implementing competitive on-chain Eng
 
 Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains.
 
-![Mayan MCTP diagram](/docs/images/learn/messaging/wormhole-settlements/mayan-mctp.webp)
+![Mayan MCTP diagram](/docs/images/learn/messaging/wormhole-settlements/mayan-mctp.webp) <!-- to be replaced with wh graphic -->
 
 #### Summarizing the Protocol Flow: How It Works
 
@@ -93,7 +93,7 @@ Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross
         If the input asset is not USDC, it is converted into a primary asset within the same transaction before the order is submitted.
     
     The contract constructs a BridgeWithFeeMsg structure, which includes parameters such as the action type, payload type, nonce, destination address, gas drop, redeem fee, and an optional custom payload hash
-    
+
 2. **Intent submission** - the contract calls the CCTP messenger to deposit the tokens for bridging. A unique nonce is generated, and a corresponding fee-lock record is created in the contract's storage. This record includes the locked fee, gas drop parameters, and destination details. The constructed message is hashed and published through Wormhole. The protocol fee is deducted during this step, and the Wormhole message is broadcast with the specified consistency level
 3. **Fulfillment** - on the destination chain, the protocol receives a CCTP message (with corresponding signatures) and verifies the payload using Wormhole's verification mechanism. Once validated, the redeemed tokens are transferred to the intended recipient, deducting the redeem fee as per protocol rules
 

@@ -1,6 +1,6 @@
 ---
 title: Wormhole Settlements Overview
-description: description
+description: TODO
 ---
 
 # Wormhole Settlements Overview
@@ -35,4 +35,4 @@ NTT partners, current and future, can leverage Wormhole Settlement for near-inst
 Due to the hub-spoke model of liquidity, new chains without proven traction can access the same level of liquidity for cross-chain intent fulfillment from day one of mainnet launch as established ecosystems with clear evidence of adoption.
 
 !!!tip
-    Looking to integrate Wormhole Settlement? If you're ready, follow the [Link to Routes SDK Docs](#){target=\_blank}. <!-- waiting for maher to clarify what link is this -->
+    Looking to integrate Wormhole Settlement? If you're ready, follow the [Link to Routes SDK Docs](#){target=\_blank}.<!-- waiting for maher to clarify what link is this -->
