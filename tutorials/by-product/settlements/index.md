@@ -3,7 +3,7 @@ title: Wormhole Settlements
 description: Follow step-by-step tutorials to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
 ---
 
-# Wormhole Settlements TUTORIAL
+# Wormhole Settlements
 
 This section provides hands-on tutorials to help you integrate Wormhole Settlement Routes into your application. Learn how to use the SDK to manage cross-chain swaps, optimize fees, and streamline transaction execution.
 
