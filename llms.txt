@@ -9796,46 +9796,54 @@ By default, NTT transfers to Solana support manual relaying, which requires the 
 Doc-Content: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/
 --- BEGIN CONTENT ---
 ---
-title: Native Token Transfers (NTT) Deploy via Launchpad
-description: Easily deploy or expand your token across multiple chains using the NTT Launchpad.  
+title: Deploy Native Token Transfers with Launchpad
+description: Use the NTT Launchpad to deploy a new token or expand an existing one across multiple chains. Manage transfers, supply, and settings.  
 ---
 
-# Native Token Transfers (NTT) Deploy via Launchpad
+# Deploy Native Token Transfers with Launchpad
 
-The NTT Launchpad enables seamless deployment and management of cross-chain tokens. This guide covers new token launches and expansion of existing tokens across multiple blockchains.
+The [NTT Launchpad](){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying Native Token Transfers across multiple blockchains.
+
+Users can quickly launch or expand tokens with just a few clicks instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication.
+
+The Launchpad automates deployment, reducing complexity and saving time.
+
+This guide covers:
+
+ - Launching a new cross-chain token
+ - Expanding an existing token for NTT
+ - Managing tokens via the dashboard and settings
 
 ## Prerequisites
 
- - An EVM-compatible wallet (e.g., MetaMask, Phantom, etc.)
+ - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.)
  - Minimum ETH (or equivalent) for gas fees per deployment
 
-## Getting Started
+## Supported Blockchains
 
-To begin, visit the [NTT Launchpad](){target=\_blank} and connect your wallet.
-
-### Supported Blockchains
-
-The NTT Launchpad currently supports deployments on the following Mainnet chains:
+The NTT Launchpad currently supports deployments on the following mainnet chains:
 
  - Ethereum
  - Optimism Mainnet
  - Arbitrum One
  - Base
 
-### Choose Your Path
+## Choose Your Path
 
 Once ready, choose an option to proceed:
 
- - [**Launch a Cross-Chain Token**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
- - [**Expand Your Existing Token**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable native token transfers without modifying its original contract
+ - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
+ - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable native token transfers without modifying its original contract
 
 ## Launch a Cross-Chain Token
+
+Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
 
 1. Open the [NTT Launchpad](){target=\_blank}, connect your wallet and click **Get Started**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-1.webp)
     
-2. Select "**Launch a Cross-Chain Token**"
+2. Select **Launch a Cross-Chain Token**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-2.webp)
 
@@ -9847,24 +9855,24 @@ Once ready, choose an option to proceed:
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-4.webp)
 
-5. Deploy on the first chain (Optimism)
-     - If your wallet is connected to Testnet, switch to Mainnet when prompted, then click **Deploy**
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
 
-     - Your wallet will open to confirm the transaction
-     - Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
 
-6. Repeat the previous step to deploy the token on the second chain (Base)
+7. Repeat the previous step to deploy the token on the second chain (Base)
 
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-7. Once both deployments are completed, proceed to the [**Dashboard**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#dashboard-overview) to manage your token.
+8. Once both deployments are completed, proceed to the [**Dashboard**](#dashboard-overview) to manage your token.
 
 ## Expand Your Existing Token
+
+Expand an existing token to support Native Token Transfers across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
 
 1. Open the [NTT Launchpad](){target=\_blank}, connect your wallet and click **Get Started**
 
@@ -9882,45 +9890,38 @@ Once ready, choose an option to proceed:
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-9.webp)
 
-5. Deploy on the first chain (Optimism)
-     - If your wallet is connected to Testnet, switch to Mainnet when prompted, then click **Deploy**
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-5.webp)
 
-     - Your wallet will open to confirm the transaction
-     - Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
 
-        ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
+    ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
 
-6. Repeat the previous step to deploy the token on the second chain (Base)
+7. Repeat the previous step to deploy the token on the second chain (Base)
 
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-7. Now that your token has been deployed on multiple chains, click [**Dashboard**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#dashboard-overview) to review its details
+8. Now that your token has been deployed on multiple chains, click [**Dashboard**](#dashboard-overview) to review its details
 
-## Dashboard Overview
+## Explore the Launchpad Dashboard
 
-Once your token has been successfully deployed, you can access the Dashboard to manage and track its details. Here, you can view its deployment status, monitor supply across chains, and configure transfer settings.
-
-### Access the Dashboard
-
- - After deploying your token, click **Dashboard** on the final screen
- - You can also access it anytime from the [NTT Launchpad homepage](){target=\_blank}
+To access the **Dashboard** from the [Launchpad home page](){target=\_blank}, click on **Manage Deployment**. Here, you can view its deployment status, monitor supply across chains, and configure transfer settings.
 
 ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-10.webp)
 
-### Token Overview
-
-The dashboard provides a high-level view of your token across all deployed chains:
+The dashboard provides a high-level view of your token across all deployed chains, including:
 
  - Token addresses for each chain
  - Supply distribution visualization
- - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#settings)
+ - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
+
+ <!-- INSERT_IMAGE_OF_THE_DASHBOARD -->
 
 ## Settings
 
-The Settings page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
+The **Settings** page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
 
 ### Chain Management
 
@@ -9935,7 +9936,7 @@ From this section, you can also:
 
 ### Role Management
 
-This section displays key roles involved in token governance. Users can view and modify these roles by selecting a new address and confirming the update.
+This section displays key roles involved in token governance. Users can view and modify these roles by selecting a new address and confirming the update. More details are available in the [NTT managers page](/docs/build/contract-integrations/native-token-transfers/managers-transceivers/#managers){target=\_blank}.
 
  - **Manager’s Owner** – the owner through the `NTTOwner` proxy
  - **Pauser** – the address authorized to pause transfers
@@ -9944,7 +9945,7 @@ This section displays key roles involved in token governance. Users can view and
 
 ### Security Threshold
 
-Determine and update how transceivers interact with the token. This includes:
+Determine and update how transceivers interact with the token. Transceivers route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks. They work with managers to process messages and maintain secure, reliable cross-chain transfers. More details are available in the [transceivers page](/docs/build/contract-integrations/native-token-transfers/managers-transceivers/#transceivers){target=\_blank}.   
 
  - **Registered Transceivers** – displays the number of registered transceivers and their addresses
  - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
