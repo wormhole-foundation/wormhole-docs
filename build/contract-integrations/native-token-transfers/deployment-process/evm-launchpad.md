@@ -48,7 +48,7 @@ Once ready, choose an option to proceed:
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-1.webp)
     
-2. Select "**Launch a Cross-Chain Token**"
+2. Select **Launch a Cross-Chain Token**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-2.webp)
 
@@ -133,7 +133,7 @@ The dashboard provides a high-level view of your token across all deployed chain
 
 ## Settings
 
-The Settings page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
+The **Settings** page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
 
 ### Chain Management
 
