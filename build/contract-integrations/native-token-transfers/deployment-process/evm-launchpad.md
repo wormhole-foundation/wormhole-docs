@@ -19,7 +19,7 @@ This guide covers:
 
 ## Prerequisites
 
- - An EVM-compatible wallet (e.g., MetaMask, Phantom, etc.)
+ - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.)
  - Minimum ETH (or equivalent) for gas fees per deployment
 
 ## Getting Started
@@ -39,8 +39,8 @@ The NTT Launchpad currently supports deployments on the following Mainnet chains
 
 Once ready, choose an option to proceed:
 
- - [**Launch a Cross-Chain Token**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
- - [**Expand Your Existing Token**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable native token transfers without modifying its original contract
+ - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
+ - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable native token transfers without modifying its original contract
 
 ## Launch a Cross-Chain Token
 
@@ -75,7 +75,7 @@ Once ready, choose an option to proceed:
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-7. Once both deployments are completed, proceed to the [**Dashboard**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#dashboard-overview) to manage your token.
+7. Once both deployments are completed, proceed to the [**Dashboard**](#dashboard-overview) to manage your token.
 
 ## Expand Your Existing Token
 
@@ -110,7 +110,7 @@ Once ready, choose an option to proceed:
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-7. Now that your token has been deployed on multiple chains, click [**Dashboard**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#dashboard-overview) to review its details
+7. Now that your token has been deployed on multiple chains, click [**Dashboard**](#dashboard-overview) to review its details
 
 ## Dashboard Overview
 
@@ -129,7 +129,7 @@ The dashboard provides a high-level view of your token across all deployed chain
 
  - Token addresses for each chain
  - Supply distribution visualization
- - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](/docs/build/contract-integrations/native-token-transfers/deployment-process/evm-launchpad/#settings)
+ - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
 
 ## Settings
 
