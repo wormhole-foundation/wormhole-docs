@@ -51,6 +51,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:custom-arrow: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
 
+-   :octicons-code-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    TODO
+
+    [:custom-arrow: Get started with Settlements](/docs/build/contract-integrations/settlements/)
+
 -   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
     ---

@@ -1,19 +1,23 @@
 ---
 title: Wormhole Settlements
-description: TODO
+description: Explore the Wormhole Liquidity Layer for cross-chain development. Learn about the EVM Token Router, `placeFastMarketOrder`, and `placeMarketOrder` functions.
 ---
 
-# Building on the Wormhole Liquidity Layer 
+# Build on the Wormhole Liquidity Layer
 
-The Wormhole Liquidity Layer serves as the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems by enabling protocols to bundle call data containing arbitrary protocol actions, which can be executed atomically alongside each transfer. This feature allows developers to create fully chain-abstracted user experiences, including the construction of natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer. The following section describes the key smart contract components for teams seeking to build atop Wormhole Settlement.
+## Introduction
+
+The Wormhole Liquidity Layer is the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems. It allows these protocols to bundle call data containing arbitrary actions that can be executed atomically alongside each transfer. This feature enables developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer. The following section describes the key smart contract components for teams seeking to build atop Wormhole Settlement.
+
+## EVM Functions
 
 The EVM Token Router is a simple interface against which to integrate. For an integrator, the contracts have two main entry points: `placeMarketOrder` and `placeFastMarketOrder`.
 
-## EVM placeFastMarketOrder <!-- this should go between `` but rn it looks horrible with the huge font -->
+### Fast Market Order
 
-The `placeFastMarketOrder` allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. This interface does _not_ guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`.
+The `placeFastMarketOrder` function allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. Using this interface does not guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`
 
-```solidity
+```solidity title="`placeFastMarketOrder` interface"
 function placeFastMarketOrder(
     uint128 amountIn,
     uint16 targetChain,
@@ -52,21 +56,21 @@ function placeFastMarketOrder(
 
     `maxFee` ++"uint128"++
 
-    The maximum fee that the user is willing to pay to execute a fast transfer.
+    The maximum fee the user wants to pay to execute a fast transfer.
 
     ---
 
     `deadline` ++"uint32"++
 
-    The deadline for the fast transfer auction to start. Note: This timestamp should be for the MatchingEngine chain (e.g. Solana) to avoid any clock drift issues between different blockchains. Integrators can set this value to 0 to opt out of using a deadline.
+    The deadline for the fast transfer auction to start. Note: This timestamp should be for the `MatchingEngine` chain (such as Solana) to avoid any clock drift issues between different blockchains. Integrators can set this value to `0` if they don't want to use a deadline.
 
-It returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
-   
-## EVM placeMarketOrder
+The `placeFastMarketOrder` function returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
 
-The `placeMarketOrder` function is a _wait-for-full-finality_ USDC transfer (with an arbitrary message payload). The Swap Layer, built on top of the Wormhole Settlement, uses this function if the auction on the matching engine for `placeFastMarketOrder` doesn't start within a specific deadline.
+### Market Order
 
-```solidity
+The `placeMarketOrder` function is a _wait-for-full-finality_ USDC transfer with an arbitrary message payload. The Swap Layer, built on top of the Wormhole Settlement, uses this function if the auction on the matching engine for `placeFastMarketOrder` doesn't start within a specific deadline.
+
+```solidity title="`placeMarketOrder` interface"
 function placeMarketOrder(
     uint128 amountIn,
     uint16 targetChain,
@@ -99,5 +103,5 @@ function placeMarketOrder(
 
     An arbitrary payload for the redeemer.
 
-It returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
+The `placeMarketOrder` function returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
 
