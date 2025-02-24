@@ -10,21 +10,21 @@ Introducing fast, institutional-scale digital asset settlement — a new way to 
 Swap, bridge, and build across multiple chains with Wormhole Settlement, an intent-based asset transfer for individual users and institutions.
 Builders will be able to implement cross-chain functionality within their dApps extremely simply and without compromising user experience, widening the horizons of their product offering and the number and type of users they can cater to.
 
-Settlement will support Ethereum, Ton, Optimism, Arbitrum, Base, Avalanche, Unichain, Polygon, Solana, and Sui, with many more on the horizon. It will be powered by Wormhole Messaging, Wormhole NTT, and Circle's CCTP, and built-in collaboration with the intent experts, Mayan Finance.
+The Settlement will support Ethereum, Ton, Optimism, Arbitrum, Base, Avalanche, Unichain, Polygon, Solana, and Sui, with many more on the horizon. It will be powered by Wormhole Messaging, Wormhole NTT, and Circle's CCTP, and built-in collaboration with the intent experts, Mayan Finance.
 
-This represents Wormhole's first step towards optimizing the bridging experience and building a product that users and institutions use daily. Whether it's to send assets between chains, allow institutions to rebalance inventories on-chain cheaply and quickly, or for builders to allow their application to be accessible by any kind of user no matter what assets they hold or what chain they call home.
+This represents Wormhole's first step towards optimizing the bridging experience and building a product that users and institutions use daily. Whether it's to send assets between chains, allow institutions to rebalance inventories on-chain cheaply and quickly, or for builders to allow their application to be accessible by any user no matter what assets they hold or what chain they call home.
 
 ## Key Features
 
-- **Integrator flexibility** - apps, leveraging the SDK, have the ability to select any one of three potential routes surfaced — each with their own tradeoffs with respect to time vs cost — they may extend this to users as well
+- **Integrator flexibility** - apps, leveraging the SDK, have the ability to select any one of three potential routes surfaced — each with their own tradeoffs concerning time vs cost — they may extend this to users as well
 - **Scalable liquidity** - taking lessons for the last few months of idiosyncratic yet sharp inflows into the Solana ecosystem, the hub-spoke model of the Wormhole Liquidity Layer and the flexible design of Swift are designed for capital efficiency and meant to serve
-- **Arbitrary payload support** - integrators can bundle callData containing arbitrary protocol actions to enable seamless one-click user experiences, e.g., swap plus stake.
+- **Arbitrary payload support** - integrators can bundle callData containing arbitrary protocol actions to enable seamless one-click user experiences, e.g., swap plus stake
 
 ## Integrator Paths
 
 ### SDK Integrators
 
-Wormhole provides an SDK that enables apps to abstract away the complexity of cross-chain token swaps. The SDK handles route discovery, fee estimation, and transaction construction. Apps can embed this feature in their backend or create an interface for users to quickly bridge into their respective ecosystems.
+Wormhole provides an SDK that enables apps to abstract away the complexity of cross-chain token swaps. The SDK handles route discovery, fee estimation, and transaction construction. Apps can embed this feature in their backend or create an interface for users to bridge into their respective ecosystems quickly.
 
 ### NTT Integrators
 

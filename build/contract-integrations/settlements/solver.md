@@ -12,7 +12,7 @@ This page provides instructions on how to set up, configure, and run a Solver fo
 A central component of the protocol architecture is the permissionless English auction conducted on Solana, specifically the Matching Engine contract, allowing any third-party solver to interact with the matching engine to place bids or improve existing ones. The Matching Engine Contract includes four key instructions:
 
 - `initialize_auction` - creates a new auction account on-chain. This sets basic parameters like the auction's token mint, the amount required, and the bidding period details
-- `bid` - allows a solver to place or update a bid on the active auction. The solver transfers the bid amount to the program escrow account, which ensures they actually have the liquidity. With each successful call of `bid`, the program updates the auction to the new highest bidder and the prior bid is atomically sent back to the originating solver, allowing that solver to repurpose those funds if it so chooses to improve the bid once more
+- `bid` - allows a solver to place or update a bid on the active auction. The solver transfers the bid amount to the program escrow account, which ensures they have liquidity. With each successful call of `bid`, the program updates the auction to the new highest bidder, and the prior bid is atomically sent back to the originating solver, allowing that solver to repurpose those funds if it so chooses to improve the bid once more
 - `finalize_auction` - following the conclusion of the auction, this instruction completes the fast transfer by sending funds to the recipient on the target chain. This instruction may call the Circle CCTP contract or release an NTT contract in the future, depending on the shuttle asset in question. Failure to execute this message within a predefined grace period may result in a penalty for the winning bidder. 
 
     When placing a bid—whether initial or improved—the solver must deposit the required funds plus a security deposit into the matching engine contract. In this permissionless auction, the requirement of this principal amount plus the security deposit ensures a solver's credible commitment to fulfill the transfer. Malicious actors could place hollow bids without this safeguard, undermining the auction's credibility and hindering true price discovery.
@@ -51,7 +51,7 @@ make dependencies
 
 #### Setting up Config
 
-Here is an example `config.json` file for Solana devnet. The keys here are required for both the publisher and Example Solver processes.
+Here is an example of a `config.json` file for Solana devnet. The keys here are required for both the publisher and Example Solver processes.
 
 ```json
 {
@@ -176,7 +176,7 @@ At least one of these environment variables must be defined as a keypair encoded
 
 The example solver assumes that these payers own USDC Associated Token Accounts, which will be used to fulfill fast transfers. These ATAs must be funded with Solana Devnet USDC. If your ATAs need funds, request some at the [Circle testnet faucet](https://faucet.circle.com/){target=\_blank}.
 
-Wallets and their corresponding ATA will be disabled if there are not enough funds to pay for transactions or fulfill fast transfers. These constraints can be modified using the `updatePayerMinimumLamports` and `updateTokenMinimumBalance` methods.
+Wallets and their corresponding ATA will be disabled if there are insufficient funds to pay for transactions or fulfill fast transfers. These constraints can be modified using the `updatePayerMinimumLamports` and `updateTokenMinimumBalance` methods.
 
 An address lookup table is required to execute some transactions. Use the command below to create one.
 
@@ -184,7 +184,7 @@ An address lookup table is required to execute some transactions. Use the comman
 CONFIG=path/to/config.json make create-lut
 ```
 
-`SOLANA_PRIVATE_KEY_1` must be defined in order for this script to work.
+`SOLANA_PRIVATE_KEY_1` must be defined for this script to work.
 
 The example solver has the following toggles depending on which orders you want to fulfill:
 
