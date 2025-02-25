@@ -106,7 +106,7 @@ Expand an existing token to support Native Token Transfers across multiple chain
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-8. Now that your token has been deployed on multiple chains, click [**Dashboard**](#dashboard-overview) to review its details
+8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details
 
 ## Explore the Launchpad Dashboard
 
