@@ -48,7 +48,7 @@ description: Learn how to develop your own custom off-chain relaying service, gi
 
     [:custom-arrow: Learn more about relayers](/docs/learn/infrastructure/relayer/)
 
--   :material-package-variant:{ .lg .middle } **Simplify the Development Process**
+-   :octicons-gear-16:{ .lg .middle } **Simplify the Development Process**
 
     ---
 

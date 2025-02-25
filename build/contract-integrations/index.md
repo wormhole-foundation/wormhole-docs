@@ -35,6 +35,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:custom-arrow: Get started with CCTP](/docs/build/contract-integrations/cctp/)
 
+-   :octicons-arrow-switch-16:{ .lg .middle } **Token Bridge**
+
+    ---
+
+    Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+
+    [:octicons-arrow-right-16: Get started with Token Bridge](/docs/build/contract-integrations/token-bridge/)
+
 -   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
 
     ---
@@ -50,6 +58,14 @@ The content in this section will teach you how to create smart contracts that in
     Discover how to start your MultiGov integration, from deploying and configuring essential contracts to managing your setup, including contract upgrades.
 
     [:custom-arrow: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    Build with Wormhole Settlements, including integrating the Liquidity Layer into your application and running a Solver for efficient cross-chain asset transfers.
+
+    [:custom-arrow: Get started with Settlements](/docs/build/contract-integrations/settlements/)
 
 -   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
