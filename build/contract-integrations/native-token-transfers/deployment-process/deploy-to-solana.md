@@ -99,29 +99,30 @@ Once your SPL token is set up, deploy the NTT program on Solana.
         ntt init Mainnet
         ```
 
-    !!!note
-        The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, skip the below steps and proceed to [Deploy & Configure NTT](#deploy-configure-ntt).
+The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, skip the below steps and proceed to [Deploy & Configure NTT](#deploy-configure-ntt).
 
-3. **Generate an NTT Program Key Pair** - required for burn-and-mint mode
+???- interface "Burn-and-Mint Mode Only" 
 
-    ```bash
-    solana-keygen grind --starts-with ntt:1 --ignore-case
-    ```
+    1. **Generate an NTT program key pair** - create a unique key pair for the NTT program
 
-4. **Derive the token authority** - required for the burn-and-mint mode to generate the Program Derived Address (PDA) for the NTT program
+        ```bash
+        solana-keygen grind --starts-with ntt:1 --ignore-case
+        ```
 
-    ```bash
-    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
-    ```
+    2. **Derive the token authority** - generate the Program Derived Address (PDA), which will manage token minting
 
-5. **Set SPL token mint authority** - update the mint authority to allow cross-chain transfers for burn-and-mint mode
+        ```bash
+        ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
+        ```
 
-    ```bash
-    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
-    ```
+    3. **Set SPL token mint authority** - delegate minting control to the derived PDA 
 
-    !!!Warning
-        You must create your token's metadata before delegating mint authority. [See an example on how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
+        ```bash
+        spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+        ```
+
+        !!!Warning
+            You must create your token's metadata before delegating mint authority. [See an example on how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
 
 ## Deploy & Configure NTT
 
