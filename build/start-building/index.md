@@ -19,7 +19,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Build user-friendly frontends that interact with Wormhole's existing integrations, enabling your users to transfer assets, query information, and monitor cross-chain activity.
 
-    [:octicons-arrow-right-16: Build frontend applications](/docs/build/applications/)
+    [:custom-arrow: Build frontend applications](/docs/build/applications/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Build Contract Integrations**
 
@@ -27,7 +27,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Leverage Wormhole's powerful messaging protocols to create contracts that can communicate and interact across multiple blockchains. By using Wormhole’s core infrastructure, you can enable secure and seamless messaging, asset transfers, and more between supported networks.
 
-    [:octicons-arrow-right-16: Integrate with contracts](/docs/build/contract-integrations/)
+    [:custom-arrow: Integrate with contracts](/docs/build/contract-integrations/)
 
 </div>
 
@@ -41,7 +41,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Follow in-depth, step-by-step tutorials to learn how to build cross-chain contracts, integrate Wormhole's SDK, and more.
 
-    [:octicons-arrow-right-16: Explore tutorials](/docs/tutorials/)
+    [:custom-arrow: Explore tutorials](/docs/tutorials/)
 
 -   :octicons-code-16:{ .lg .middle } **Demos**
 
@@ -49,7 +49,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Explore pre-built reference applications that demonstrate real-world use cases of Wormhole’s messaging protocols and token bridges.
 
-    [:octicons-arrow-right-16: Get inspired with demos](/docs/build/start-building/demos/)
+    [:custom-arrow: Get inspired with demos](/docs/build/start-building/demos/)
 
 </div>
 
@@ -63,7 +63,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Explore the blockchains supported by Wormhole for cross-chain communication and asset transfers. Understand which networks are available for both Testnet and Mainnet environments.
 
-    [:octicons-arrow-right-16: Discover supported networks](/docs/build/start-building/supported-networks/)
+    [:custom-arrow: Discover supported networks](/docs/build/start-building/supported-networks/)
 
 -   :octicons-list-unordered-16:{ .lg .middle } **Reference**
 
@@ -71,7 +71,7 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Access the essential Wormhole chain IDs and smart contract addresses for messaging protocols, token bridges, and other key components.
 
-    [:octicons-arrow-right-16: Explore Reference](/docs/build/reference/){target=\_blank}
+    [:custom-arrow: Explore Reference](/docs/build/reference/){target=\_blank}
 
 
 
@@ -81,6 +81,6 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 
     Get Testnet tokens to start experimenting with cross-chain transfers and contract deployment.
 
-    [:octicons-arrow-right-16: Find Testnet faucets](/docs/build/start-building/testnet-faucets/)
+    [:custom-arrow: Find Testnet faucets](/docs/build/start-building/testnet-faucets/)
 
 </div>

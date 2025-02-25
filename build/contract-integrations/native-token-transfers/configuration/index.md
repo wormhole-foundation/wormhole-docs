@@ -17,7 +17,7 @@ This section contains information on configuring Native Token Transfers (NTT), i
 
     Discover options for configuring rate limits and how queueing effects transaction flow.
 
-    [:octicons-arrow-right-16: Explore rate limit options](/docs/build/contract-integrations/native-token-transfers/configuration/rate-limiting/)
+    [:custom-arrow: Explore rate limit options](/docs/build/contract-integrations/native-token-transfers/configuration/rate-limiting/)
 
 -   :octicons-unlock-16:{ .lg .middle } **Access Control**
 
@@ -25,6 +25,6 @@ This section contains information on configuring Native Token Transfers (NTT), i
 
     Learn more about access control, including why you should consider setting a separate Pauser address as part of your development security plan.
 
-    [:octicons-arrow-right-16: Explore access control roles](/docs/build/contract-integrations/native-token-transfers/configuration/access-control/)
+    [:custom-arrow: Explore access control roles](/docs/build/contract-integrations/native-token-transfers/configuration/access-control/)
 
 </div>

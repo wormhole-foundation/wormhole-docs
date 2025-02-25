@@ -17,7 +17,7 @@ In this section, you'll find reference information that is essential for develop
 
     Find a mapping of Wormhole chain IDs to the names and network IDs of the supported blockchains.
 
-    [:octicons-arrow-right-16: View list of chain IDs](/docs/build/reference/chain-ids/)
+    [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
 
 -   :material-timer-sand:{ .lg .middle } **Consistency Levels**
 
@@ -25,7 +25,7 @@ In this section, you'll find reference information that is essential for develop
 
     See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
 
-    [:octicons-arrow-right-16: View list of consistency levels](/docs/build/reference/consistency-levels/)
+    [:custom-arrow: View list of consistency levels](/docs/build/reference/consistency-levels/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
 
@@ -41,7 +41,7 @@ In this section, you'll find reference information that is essential for develop
     - Wormhole relayer
     - CCTP
 
-    [:octicons-arrow-right-16: View list of contract addresses](/docs/build/reference/contract-addresses/)
+    [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
 
 -   :material-code-braces:{ .lg .middle } **Wormhole Formatted Addresses**
 
@@ -51,6 +51,6 @@ In this section, you'll find reference information that is essential for develop
     
     This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
 
-    [:octicons-arrow-right-16: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
+    [:custom-arrow: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
 
 </div>

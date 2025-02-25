@@ -503,7 +503,7 @@ The functions provided by the Message Transmitter contract are as follows:
 
     ??? interface "Emits"
 
-        --8<-- 'text/build/contract-integrations/cctp/MessageSent-event.sol'
+        --8<-- 'text/build/contract-integrations/cctp/MessageSent-event.md'
 
 - **`sendMessageWithCaller`** —  sends a message to the destination domain and recipient, requiring a specific caller to trigger the message on the target chain. It increments the `nonce`, assigns a unique `nonce` to the message, and emits a `MessageSent` event
 
@@ -539,7 +539,7 @@ The functions provided by the Message Transmitter contract are as follows:
 
     ??? interface "Emits"
 
-        --8<-- 'text/build/contract-integrations/cctp/MessageSent-event.sol'
+        --8<-- 'text/build/contract-integrations/cctp/MessageSent-event.md'
 
 - **`replaceMessage`** — replaces an original message with a new message body and/or updates the destination caller. The replacement message reuses the `_nonce` created by the original message
 
@@ -573,7 +573,7 @@ The functions provided by the Message Transmitter contract are as follows:
 
     ??? interface "Emits"
 
-        --8<-- 'text/build/contract-integrations/cctp/MessageSent-event.sol'
+        --8<-- 'text/build/contract-integrations/cctp/MessageSent-event.md'
 
 ### Token Minter Contract
 
