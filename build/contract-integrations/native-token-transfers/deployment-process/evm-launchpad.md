@@ -5,9 +5,9 @@ description: Deploy a new token or extend an existing one across multiple chains
 
 # Deploy Native Token Transfers with Launchpad
 
-The [NTT Launchpad](){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying Native Token Transfers across multiple blockchains.
+The [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying Native Token Transfers across multiple blockchains.
 
-Users can quickly launch or expand tokens with just a few clicks instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication.
+Instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication, you can quickly launch or expand tokens with just a few clicks. 
 
 The Launchpad automates deployment, reducing complexity and saving time.
 
@@ -42,7 +42,7 @@ Once ready, choose an option to proceed:
 
 Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
 
-1. Open the [NTT Launchpad](){target=\_blank}, connect your wallet, and click **Get Started**
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-1.webp)
     
@@ -77,7 +77,7 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
 
 Expand an existing token to support Native Token Transfers across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
 
-1. Open the [NTT Launchpad](){target=\_blank}, connect your wallet, and click **Get Started**
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-1.webp)
 
@@ -110,7 +110,7 @@ Expand an existing token to support Native Token Transfers across multiple chain
 
 ## Explore the Launchpad Dashboard
 
-To access the **Dashboard** from the [Launchpad home page](){target=\_blank}, click on **Manage Deployment**. Here, you can view its deployment status, monitor supply across chains, and configure transfer settings.
+To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.com/){target=\_blank}, click on **Manage Deployment**. Here, you can view its deployment status, monitor supply across chains, and configure transfer settings.
 
 ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-10.webp)
 
