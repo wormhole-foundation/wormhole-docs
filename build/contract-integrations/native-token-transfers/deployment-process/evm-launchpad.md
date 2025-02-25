@@ -160,7 +160,7 @@ Determine and update how transceivers interact with the token. Transceivers rout
 Define the transfer restrictions for each connected network. You can adjust:
 
  - **Sending Limits** – the maximum amount of tokens that can be sent from the home chain
- - **Receiving Limits** – lists the peer chains and their respective receiving limits
+ - **Receiving Limits** – the maximum amount of tokens that can be received for each of the supported peer chains
 
 Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
 
