@@ -11922,14 +11922,14 @@ This page provides a comparison of Wormhole’s transfer products: Connect, Nati
 | Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark:   |
 |                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                  |
 |                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark:   |
-| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                  |
-|                                | User-Owned Contracts                  | :x:                | :white_check_mark: | :x:                  |
 | Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                  |
 |                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark:   |
-|                                | Integration with other products       | :white_check_mark: | :white_check_mark: | :white_check_mark:   |
 | Integration Details @span      |                                       |                    |                    |                      |
-| Ease of Integration            | Implementation Complexity             | :red_circle: :white_circle: :white_circle: | :red_circle: :red_circle: :white_circle: | :red_circle: :red_circle: :white_circle: |
-|                                | Supported Languages                   | JS/TS              | Solidity, Solana   | Solidity, Solana, TS |
+| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                  |
+|                                | User-Owned Contracts                  | :x:                | :white_check_mark: | :x:                  |
+| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark:   |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |
+| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity (Ethereum), Rust (Solana) | Solidity (Ethereum), Rust (Solana), TypeScript |
 
 ::end-spantable::
 
