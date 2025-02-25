@@ -8833,7 +8833,7 @@ The content in this section will teach you how to create smart contracts that in
 
     ---
 
-    TODO
+    Build with Wormhole Settlements, including integrating the Liquidity Layer into your application and running a Solver for efficient cross-chain asset transfers.
 
     [:custom-arrow: Get started with Settlements](/docs/build/contract-integrations/settlements/)
 
@@ -10548,7 +10548,7 @@ Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlements/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Settlements
-description: Start building with Wormhole Settlements: integrate with the Liquidity Layer and set up Solvers to enable seamless cross-chain asset transfers.
+description: Start building with Wormhole Settlements; integrate with the Liquidity Layer and set up Solvers to enable seamless cross-chain asset transfers.
 ---
 
 # Wormhole Settlements
@@ -10559,7 +10559,7 @@ This section provides resources to build with Wormhole Settlements, including in
 
 <div class="grid cards" markdown>
 
--   :octicons-question-16:{ .lg .middle } **Liquidity Layer**
+-   :octicons-code-16:{ .lg .middle } **Build on the Liquidity Layer**
 
     ---
 
@@ -10567,7 +10567,7 @@ This section provides resources to build with Wormhole Settlements, including in
 
     [:custom-arrow: Build on the Liquidity layer](/docs/build/contract-integrations/settlements/liquidity-layer/)
 
--   :octicons-question-16:{ .lg .middle } **Solver**
+-   :octicons-code-16:{ .lg .middle } **Run a Settlement Solver**
 
     ---
 
@@ -10610,7 +10610,7 @@ function placeFastMarketOrder(
 ) external payable returns (uint64 sequence, uint64 fastSequence);
 ```
 
-??? interface "Parameters"
+??? interface "Parameters `placeFastMarketOrder()`"
 
     `amountIn` ++"uint128"++
 
@@ -10661,7 +10661,7 @@ function placeMarketOrder(
 ) external payable returns (uint64 sequence, uint64 protocolSequence);
 ```
 
-??? interface "Parameters"
+??? interface "Parameters `placeMarketOrder()`"
 
     `amountIn` ++"uint128"++
 
@@ -10691,29 +10691,15 @@ The `placeMarketOrder` function returns a sequence number for the Wormhole Fill
 Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlements/solver/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Settlements
+title: Wormhole Settlement Solver
 description: Set up, configure, and run a Wormhole Settlement Solver on Solana's Matching Engine to fulfill cross-chain transfers efficiently and securely.
 ---
 
-# Running a Wormhole Settlement Solver
+# Run a Wormhole Settlement Solver
 
-This page provides instructions on how to set up, configure, and run a Solver for Wormhole Settlement using the [example solver](https://github.com/wormholelabs-xyz/example-liquidity-layer/tree/update-solver-example/solver){target=\_blank}.
+## Introduction
 
-## Understanding the Hub: Solana Matching Engine
-
-A central component of the protocol architecture is the permissionless English auction conducted on Solana, specifically the Matching Engine contract, allowing any third-party solver to interact with the matching engine to place bids or improve existing ones. The Matching Engine Contract includes four key instructions:
-
-- `initialize_auction` - creates a new auction account on-chain. This sets basic parameters like the auction's token mint, the amount required, and the bidding period details
-- `bid` - allows a solver to place or update a bid on the active auction. The solver transfers the bid amount to the program escrow account, which ensures they have liquidity. With each successful call of `bid`, the program updates the auction to the new highest bidder, and the prior bid is atomically sent back to the originating solver, allowing that solver to repurpose those funds if it so chooses to improve the bid once more
-- `finalize_auction` - following the conclusion of the auction, this instruction completes the fast transfer by sending funds to the recipient on the target chain. This instruction may call the Circle CCTP contract or release an NTT contract in the future, depending on the shuttle asset in question. Failure to execute this message within a predefined grace period may result in a penalty for the winning bidder. 
-
-    When placing a bid—whether initial or improved—the solver must deposit the required funds plus a security deposit into the matching engine contract. In this permissionless auction, the requirement of this principal amount plus the security deposit ensures a solver's credible commitment to fulfill the transfer. Malicious actors could place hollow bids without this safeguard, undermining the auction's credibility and hindering true price discovery.
-
-    Following the auction, the winning solver has to call an instruction on the matching engine to execute the intent. Suppose the winning solver fails to do so. In that case, other competing solvers may permissionlessly 'slash' the solver by executing the instruction on their behalf, collecting a portion of the original security deposit as a reward. In contrast, the remaining portion is routed to the user as compensation for the unanticipated delay. This mechanism properly incentivizes timely execution through solver redundancy and competition.
-
-- `cancel_auction` - cancels an open auction. It is intended for scenarios where the auction is no longer valid or was created by mistake. The program returns all locked funds to their respective owners.
-
-## Overview
+This page provides instructions on how to set up, configure, and run a Solver for Wormhole Settlement using the [example solver](https://github.com/wormholelabs-xyz/example-liquidity-layer/tree/update-solver-example/solver){target=\_blank}. 
 
 A Solver is an off-chain agent responsible for:
 
@@ -10724,26 +10710,49 @@ A Solver is an off-chain agent responsible for:
 
 For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/learn/messaging/wormhole-settlements/overview/){target=\_blank} page.
 
-### Testnet Example Solver
+## Background
 
-The following is an example solver to fulfill fast orders by interacting with the Matching Engine on Solana.
+The Solana Matching Engine's permissionless English auction is a central component of Wormhole Settlements protocol architecture. The Matching Engine contract allows any third-party solver to interact with the matching engine to place bids or improve existing ones. The contract includes four key instructions:
 
-!!!important
-    This example is not optimized for performance and has only been tested on Solana devnet. Any assumptions made in this example may not translate to mainnet.
+1. `initialize_auction` - creates a new auction account on-chain and sets basic parameters like the auction's token mint, the amount required, and the bidding period details
+2. `bid` - allows a solver to place or update a bid on the active auction
+3. `finalize_auction` - following the conclusion of the auction, this instruction completes the fast transfer by sending funds to the recipient on the target chain. This instruction may call the Circle CCTP contract or release an NTT contract in the future, depending on the shuttle asset in question. Failure to execute this message within a predefined grace period may result in a penalty for the winning bidder.
+4. `cancel_auction` - cancels an open auction when the auction is no longer valid or was created by mistake. The program returns all locked funds to their respective owners
 
-#### Getting Started
+These instructions work together to carry out the auction as follows:
 
-In order to build and install dependencies locally in this repo, you will need `node v20.18.1` and `npmv. Get started by installing `nvm` using this [installation guide](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating){target=\_blank}.
+- The solver transfers the bid amount to the program escrow account, which ensures they have liquidity 
+- With each successful call of `bid`, the program updates the auction to the new highest bidder, and the prior bid is atomically sent back to the originating solver 
+- The originating solver can repurpose the returned funds and use them to improve their bid
+- Following the auction, the winning solver has to call an instruction on the matching engine to execute the intent
 
-Run the command below to set up your environment. This installs node dependencies and the Matching Engine package.
+When placing a bid, whether initial or improved, the solver must deposit the required funds plus a security deposit into the matching engine contract. In this permissionless auction, the requirement of this principal amount plus the security deposit ensures a solver's credible commitment to fulfill the transfer. Malicious actors could place hollow bids without this safeguard, undermining the auction's credibility and hindering true price discovery.
+
+If the winning solver fails to call the `finalize_auction` instruction, other competing solvers may permissionlessly 'slash' the solver by executing the instruction on their behalf and collecting a portion of the original security deposit as a reward. The remaining portion is routed to the user as compensation for the unanticipated delay. This mechanism properly incentivizes timely execution through solver redundancy and competition.
+
+## Testnet Example Solver
+
+You can clone the Wormhole [`example-liquidity-layer`](https://github.com/wormholelabs-xyz/example-liquidity-layer){target=\_blank} repository to use the included [`solver`](https://github.com/wormholelabs-xyz/example-liquidity-layer/tree/main/solver){target=\_blank} directory as an example solver to fulfill fast orders by interacting with the Matching Engine on Solana.
+
+!!!warning
+    This example is not optimized for performance, has only been tested on Solana devnet, and is not intended for production use. Any assumptions made in this example may not translate to mainnet.
+
+### Prerequisites
+
+In order to build and install dependencies locally in this repo, you will need: 
+
+- node v20.18.1
+- npmv - get started by installing `nvm` using this [installation guide](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating){target=\_blank}
+
+Navigate into the `solver` directory, then run the command below to set up your environment and install the node dependencies and Matching Engine package:
 
 ```sh
 make dependencies
 ```
 
-#### Setting up Config
+### Set up Config
 
-Here is an example of a `config.json` file for Solana devnet. The keys here are required for both the publisher and Example Solver processes.
+The following is an example of a `config.json` file for Solana devnet. The keys here are required for both the publisher and example solver processes.
 
 ```json
 {
@@ -10825,9 +10834,9 @@ Here is an example of a `config.json` file for Solana devnet. The keys here are 
 }
 ```
 
-The rollback risks and offer edges configured in the sample config are arbitrary. Using historical data and your risk tolerance, it is your job to determine which makes sense.
+The rollback risks and offer edges configured in the sample config are arbitrary placeholders. You should use historical data and your risk tolerance, to determine appropriate values for your project.
 
-#### Listening to Activity
+### Listen to Activity
 
 The example solver listens to attested Wormhole messages (VAAs) published on the Wormhole Guardian gossip network. To listen to this gossip network and run the VAA publisher, run the command below. Docker compose is used to listen to the Pyth Beacon and start the [`publishActivity`](https://github.com/wormholelabs-xyz/example-liquidity-layer/blob/update-solver-example/solver/app/publishActivity.ts){target=\_blank} process.
 
@@ -10837,15 +10846,25 @@ NETWORK=testnet CONFIG=path/to/config.json make run-publisher
 
 You should see output resembling:
 
+<div id="termynal" data-termynal>
+	<span data-ty> Start logging with info level.</span>
+	<span data-ty> 2025-01-21 16:38:28.145 [publisher] info: Environment: Testnet</span>
+	<span data-ty> 2025-01-21 16:38:36.631 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33635, vaaTime=1737499116</span>
+	<span data-ty> 2025-01-21 16:38:51.044 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33637, vaaTime=1737499130</span>
+  <span data-ty> 2025-01-21 16:40:24.890 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33639, vaaTime=1737499224</span>
+</div>
+
+To set up the Pyth Beacon (which is run using make `run-publisher`), you may need to increase the UDP buffer size for the OS:
+
 ```sh
-Start logging with info level.
-2025-01-21 16:38:28.145 [publisher] info: Environment: Testnet
-2025-01-21 16:38:36.631 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33635, vaaTime=1737499116
-2025-01-21 16:38:51.044 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33637, vaaTime=1737499130
-2025-01-21 16:40:24.890 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33639, vaaTime=1737499224
+# for linux
+sudo sysctl -w net.core.rmem_max=2097152
+sudo sysctl -w net.core.rmem_default=2097152
+# for macos
+sudo sysctl -w net.inet.udp.recvspace=2097152
 ```
 
-#### Running the Example Solver
+### Running the Example Solver
 
 Using the same config for your publisher, run the example solver with the command below.
 
@@ -10853,7 +10872,8 @@ Using the same config for your publisher, run the example solver with the comman
 CONFIG=path/to/config.json make run-solver
 ```
 
-**We recommend writing log output to a file so errors can be tracked.** The example config above specifies an example log filename.
+It is recommended you write log output to a file so errors can be tracked. The example config above specifies an example log filename.
+
 This process reads the following environment variables:
 
 ```sh
@@ -10866,7 +10886,7 @@ SOLANA_PRIVATE_KEY_5=
 
 At least one of these environment variables must be defined as a keypair encoded in base64 format. These payers must have SOL to send transactions on Solana devnet. If they need funds, they can request them from the [Solana devnet faucet](https://faucet.solana.com/){target=\_blank}.
 
-The example solver assumes that these payers own USDC Associated Token Accounts, which will be used to fulfill fast transfers. These ATAs must be funded with Solana Devnet USDC. If your ATAs need funds, request some at the [Circle testnet faucet](https://faucet.circle.com/){target=\_blank}.
+The example solver assumes that these payers own USDC Associated Token Accounts(ATAs), which will be used to fulfill fast transfers. These ATAs must be funded with Solana Devnet USDC. If your ATAs need funds, request some at the [Circle testnet faucet](https://faucet.circle.com/){target=\_blank}.
 
 Wallets and their corresponding ATA will be disabled if there are insufficient funds to pay for transactions or fulfill fast transfers. These constraints can be modified using the `updatePayerMinimumLamports` and `updateTokenMinimumBalance` methods.
 
@@ -10892,18 +10912,6 @@ This example solver does NOT do the following:
 - Discriminate between the CCTP source networks. You must add logic to determine whether you want to constrain fulfilling orders from specific networks. This solver will try to fulfill all orders as long as `enableCctpOrderPipeline()` is called
 - Discriminate among fulfillment sizes. No logic determines how small or large fast order transfer sizes should be. This solver will try to fulfill anything as long as your balance can handle it
 - Add auctions to auction history. We recommend that after settling a complete auction (one that you have won), you write the auction pubkey to a database and have a separate process to add auction history entries to reclaim rent from these auction accounts. The auction history time delay is two hours after the VAA timestamp. This example does not prescribe any specific database, so add whichever you want
-
-#### Miscellaneous
-
-To set up the Pyth Beacon (which is run using make `run-publisher`), you may need to increase the UDP buffer size for the OS:
-
-```sh
-# for linux
-sudo sysctl -w net.core.rmem_max=2097152
-sudo sysctl -w net.core.rmem_default=2097152
-# for macos
-sudo sysctl -w net.inet.udp.recvspace=2097152
-```
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/contract-integrations/wormhole-relayers/
@@ -15764,46 +15772,45 @@ A real-world example of Wormhole's Token Bridge in action is the [Portal Bridge]
 Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlements/architecture/
 --- BEGIN CONTENT ---
 ---
-title: Protocol Architectures in Wormhole Settlement
+title: Settlement Protocol Architectures
 description: Explore Wormhole Settlement's native swap protocols—Liquidity Layer, Mayan Swift, and MCTP — for scalable, efficient cross-chain asset transfers.
 ---
 
-# Protocol Architectures
+# Settlement Protocol Architectures
 
-This page describes the high-level mechanics of the underlying native swap protocols in the Wormhole SDK. While built on Wormhole messaging, each protocol uses a novel architecture with unique price discovery, scalability, and latency tradeoffs. These designs enable redundancy to handle highly asymmetric flows and sharp volume changes.
+## Introduction
+
+This page describes the high-level mechanics of the underlying native swap protocols in the Wormhole SDK. While built on Wormhole messaging, each protocol uses a novel architecture with unique price discovery, scalability, and latency tradeoffs. These designs enable redundancy to handle highly asymmetric flows and sharp volume changes. These sections will cover the following:
+
+- **Wormhole Liquidity Layer** - a cross-chain transfer protocol that utilizes Solana as the central orchestration layer for cross-chain intents, allowing solvers to deploy liquidity from a single Solana-based hub rather than distributing it across each supported chain
+- **Mayan Swift** - a flexible cross-chain intent protocol that embeds a competitive on-chain price auction to determine the best possible execution for the expressed user intent
+- **Mayan MCTP** - a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains
 
 ## Wormhole Liquidity Layer
 
-The Wormhole Liquidity Layer is a cross-chain transfer protocol that utilizes Solana as the central orchestration layer for cross-chain intents. This enables solvers to deploy liquidity from a single hub (Solana) rather than distributing it across each supported chain.
+Wormhole Liquidity Layer is a cross-chain transfer protocol that enables faster-than-finality transfers across the Wormhole ecosystem through a novel, Solana-based hub-and-spoke architecture. The hub-and-spoke model leverages interoperable token standards like Circle's CCTP (and Wormhole's NTT), allowing the solver to natively mint and burn assets between chains for intent fulfillment. This architecture allows solvers to facilitate cross-chain transfers by fronting assets on the destination chain and assuming the finality risk of the originating source chain transaction. 
 
-The hub-spoke model leverages interoperable token standards like Circle's CCTP (and Wormhole's NTT), allowing the solver to natively mint and burn assets between chains for intent fulfillment. 
-
-### Overview
-
-Wormhole Liquidity Layer is a cross-chain transfer protocol designed to enable faster-than-finality transfers across the Wormhole ecosystem through a novel hub-and-spoke architecture centered on Solana. This architecture allows solvers to facilitate cross-chain transfers by fronting assets on the destination chain and assuming the finality risk of the originating source chain transaction. Solvers concentrate their liquidity entirely on Solana, where they participate in permissionless on-chain English auctions (open ascending-price auctions where bidders publicly raise bids until only one bidder remains) to fulfill each cross-chain transfer. Upon the conclusion of each auction, the winning solver initiates a transfer from Solana to the specified destination chain. The solver rebalances inventory once the originating source chain transaction reaches finality and arrives to Solana.
+Solvers concentrate their liquidity entirely on Solana, where they participate in permissionless on-chain English auctions (open ascending-price auctions where bidders publicly raise bids until only one bidder remains) to fulfill each cross-chain transfer. Upon the conclusion of each auction, the winning solver initiates a transfer from Solana to the specified destination chain. The solver rebalances inventory once the originating source chain transaction reaches finality and arrives to Solana.
 
 ![Wormhole Settlments Liquidity layer architecture diagram: source chain to hub to destination chain](/docs/images/learn/messaging/wormhole-settlements/settlements-overview.webp)
 
-The Wormhole Liquidity Layer is meant to serve as the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems by enabling protocols to bundle call data containing arbitrary protocol actions, which can be executed atomically alongside each transfer. This feature allows developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer.
+The Wormhole Liquidity Layer serves as the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems by enabling protocols to bundle call data containing arbitrary protocol actions, which can be executed atomically alongside each transfer. This feature allows developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer.
 
-### Architecture Motivation
-
-#### Solvers and Liquidity Fragmentation
+### Solvers and Liquidity Fragmentation
 
 Traditional intent-based protocols require solvers to distribute their capital across each supported chain in the network. This liquidity fragmentation leads to capital inefficiency and requires complex rebalancing to manage asymmetric flows between chains. As the number of chains increases, solvers face scalability challenges, which can result in market concentration, reducing competition and potentially impacting price discovery in intent execution.
 
 Using a hub-and-spoke model, the Wormhole Liquidity Layer solves these challenges by consolidating solver liquidity on a single chain, Solana. This model eliminates the need for complex cross-chain rebalancing and simplifies solvers' infrastructure requirements. Solvers only need to consider the finality risk of the originating source chain transaction and the payload size when bidding on transfers. By concentrating liquidity on Solana, the protocol can handle large transfer volumes with a smaller capital base, enhancing capital efficiency and lowering barriers to entry for solvers. This approach promotes competition, improves overall market efficiency, and ultimately benefits users with better prices while still preserving the speed of transactions.
 
-#### Transfer Rails: Enabling Unified Liquidity through Cross-Chain Fungibility
+### Enable Unified Liquidity
 
-The novel hub-and-spoke liquidity architecture relies on interoperable token standards that enable cross-chain token fungibility, such as Circle's Cross-Chain Transfer Protocol (CCTP) and Wormhole's Native Token Transfers (NTT). These protocols allow assets to move seamlessly between chains, making unified liquidity possible. 
-On the liquidity hub (Solana), solvers concentrate their liquidity in NTT or CCTP-supported assets, such as USDC. These assets act as the shuttle between chains but may not necessarily be the user's original or final asset.
+The novel hub-and-spoke liquidity architecture relies on interoperable token standards that enable cross-chain token fungibility, such as Circle's Cross-Chain Transfer Protocol (CCTP) and Wormhole's Native Token Transfers (NTT). These protocols allow assets to move seamlessly between chains, making unified liquidity possible. On the liquidity hub (Solana), solvers concentrate their liquidity in NTT or CCTP-supported assets, such as USDC. These assets act as the shuttle between chains but may not necessarily be the user's original or final asset.
 
 After the Solana auction concludes, the appropriate instructions are called on the CCTP or NTT contract, initiating the transfer from Solana to the destination chain by burning/locking the asset on Solana and sequentially minting on the destination chain. Solvers rebalance their inventory on Solana using these interoperable token standards as well. Once the originating source chain transaction reaches finality and arrives to Solana, the solver can redeem the NTT or CCTP message, minting the inventory for use once again.
 
 By leveraging interoperable token standards like NTT, this model of liquidity facilitation for cross-chain intents can arbitrarily scale to any chain or ecosystem while preserving fully unified liquidity—eliminating the need for solver "buy-in" for new chain expansion. Additionally, this means new chains, even without proven traction, can access the same amount of liquidity for cross-chain intent fulfillment from day one of mainnet launch as they would if they were long-standing ecosystems with clear evidence of adoption — commonly overlooked by solvers who must aggressively prioritize high flow chains to due high opportunity costs. This includes new ecosystems without Centralized Exchange (CEX) enabled withdrawals.
 
-#### Summarizing the Protocol Flow: How It Works
+### Protocol Flow: How It Works
 
 1. **Initiation** - users or protocols initiate a transfer via an interface or directly on-chain. They choose between a standard transfer (waiting for finality on the sending chain) or a fast transfer (triggering the auction process). For fast transfers, users or the protocol specify a maximum fee and an auction start deadline
 
@@ -15815,23 +15822,21 @@ By leveraging interoperable token standards like NTT, this model of liquidity fa
 4. **Fulfillment** - after the auction concludes, the winning solver must complete the transfer within a predefined grace period to earn their fee and reclaim their security deposit. Failure to do so may result in the security deposit being slashed, with the slashed amount compensating the user for delays. This mechanism incentivizes prompt execution. Upon successful completion, the Fast Transfer hub sends the USDC to the user's destination wallet, and the solver receives their security deposit and transfer fee
 5. **Settlement** - once the source chain transaction reaches finality, the winning solver can use the finalized Wormhole message to settle the auction with the matching engine and rebalance. This allows the solver to retrieve the original transfer amount into their wallet
 
-### Mayan Swift
+## Mayan Swift
 
 Mayan Swift is a flexible cross-chain intent protocol that embeds a competitive on-chain price auction to determine the best possible execution for the expressed user intent.
 
-#### Overview and Architecture Motivation
-
-**Embedding an On-Chain Competitive Price Discovery Mechanism**
+### On-Chain Competitive Price Discovery Mechanism
 
 Traditional intent-based protocols essentially function as cross-chain limit orders. If the order is profitable, solvers will compete to fulfill it, leading to MEV-like competition focused on speed. While functional, this methodology presents two clear inefficiencies and drawbacks.
 
-First, they lack a competitive price discovery mechanism—limit order prices are typically determined through centralized off-chain systems. Second, in this MEV-like market structure, only a single solver can, while the others lose out on transaction fees. This dynamic of deadweight loss results in solvers prioritizing high-margin orders, ultimately resulting in elevated fees for end-users without commensurate benefits.
+First, they lack a competitive price discovery mechanism as limit order prices are typically determined through centralized off-chain systems. Second, in this MEV-like market structure, only a single solver can win, while the others lose out on transaction fees. This dynamic of deadweight loss results in solvers prioritizing high-margin orders, ultimately resulting in elevated fees for end-users without commensurate benefits.
 
 Mayan Swift addresses these limitations by implementing competitive on-chain English auctions on Solana as an embedded price discovery mechanism, fundamentally shifting solver competition from speed-based to price-based execution. Through this architecture, the solver offering the best possible price secures the right to fulfill the order within pre-specified deadline parameters.
 
 ![Mayan Swift - Intent-centric design](/docs/images/learn/messaging/wormhole-settlements/mayan-swift.webp) <!-- to be replaced with wormhole graphic -->
 
-#### Summarizing the Protocol Flow: How It Works
+### Protocol Flow: How It Works
 
 1. **Initiation** - the user creates an order by signing a transaction that locks one of the primary assets (USDC or ETH) into the Mayan smart contract, specifying the desired outcome. 
 
@@ -15844,25 +15849,30 @@ Mayan Swift addresses these limitations by implementing competitive on-chain Eng
 3. **Fulfillment** - the auction ends three seconds after the initial bid. Once the auction ends, the winning solver can execute an instruction that passes their wallet address on the destination chain. This triggers a Wormhole message containing the order ID and the winner's wallet address. Wormhole Guardians then sign this message, allowing the winning solver to fulfill the order on the destination chain by submitting proof of their win and the promised amount to the Mayan contract before the deadline. The Mayan contract deducts a protocol fee (currently 3 basis points) and a referral fee (if applicable), transferring the remaining amount to the user's destination wallet. It also triggers a Wormhole message as proof of fulfillment
 4. **Settlement** - after the Wormhole Guardians sign the fulfillment message, the winning solver can submit this message on the source chain to unlock the user's funds and transfer them to their own wallet. Upon fulfillment, the solver has the option to delay triggering a Wormhole message immediately. Instead, they can batch the proofs and, once the batch reaches a certain threshold, issue a batched proof to unlock all orders simultaneously, saving on gas fees
 
-### Mayan MCTP
+## Mayan MCTP
 
 Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains.
 
 ![Mayan MCTP diagram](/docs/images/learn/messaging/wormhole-settlements/mayan-mctp.webp) <!-- to be replaced with wh graphic -->
 
-#### Summarizing the Protocol Flow: How It Works
+### Protocol Flow: How It Works
 
 1. **Initiation** - the user creates an order by signing a transaction that locks one USDC into the Mayan smart contract, specifying the desired outcome. 
 
     !!!note
         If the input asset is not USDC, it is converted into a primary asset within the same transaction before the order is submitted.
     
-    The contract constructs a BridgeWithFeeMsg structure, which includes parameters such as the action type, payload type, nonce, destination address, gas drop, redeem fee, and an optional custom payload hash
+    The contract constructs a `BridgeWithFeeMsg` structure, which includes parameters such as the action type, payload type, nonce, destination address, gas drop, redeem fee, and an optional custom payload hash
 
 2. **Intent submission** - the contract calls the CCTP messenger to deposit the tokens for bridging. A unique nonce is generated, and a corresponding fee-lock record is created in the contract's storage. This record includes the locked fee, gas drop parameters, and destination details. The constructed message is hashed and published through Wormhole. The protocol fee is deducted during this step, and the Wormhole message is broadcast with the specified consistency level
-3. **Fulfillment** - on the destination chain, the protocol receives a CCTP message (with corresponding signatures) and verifies the payload using Wormhole's verification mechanism. Once validated, the redeemed tokens are transferred to the intended recipient, deducting the redeem fee as per protocol rules
+3. **Fulfillment** - on the destination chain, the protocol receives a CCTP message with corresponding signatures and verifies the payload using Wormhole's verification mechanism. Once validated, the redeemed tokens are transferred to the intended recipient, deducting the redeem fee as per protocol rules
 
 The protocol provides mechanisms for unlocking the fee once the bridging process is completed. This can occur immediately upon fulfillment or be batched for efficiency. In the fee unlock flow, the contract verifies the unlock message via Wormhole and then releases the locked fee to the designated unlocker address.
+
+## Where to Go Next
+
+- To learn more about available EVM functions, see the [Build on the Wormhole Layer](/docs/build/contract-integrations/settlements/liquidity-layer/){target=\_blank} guide
+- To learn how ot integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](/docs/tutorials/by-product/settlements/settlement-routes/){target=\_blank} tutorial
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlements/
@@ -15908,20 +15918,21 @@ description: Discover Wormhole Settlements, enabling fast, intent-based asset tr
 
 # Wormhole Settlements Overview
 
-Introducing fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
+## Introduction
 
-Swap, bridge, and build across multiple chains with Wormhole Settlement, an intent-based asset transfer for individual users and institutions.
-Builders will be able to implement cross-chain functionality within their dApps extremely simply and without compromising user experience, widening the horizons of their product offering and the number and type of users they can cater to.
+Wormhole Settlements is a fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
 
-The Settlement will support Ethereum, Ton, Optimism, Arbitrum, Base, Avalanche, Unichain, Polygon, Solana, and Sui, with many more on the horizon. It will be powered by Wormhole Messaging, Wormhole NTT, and Circle's CCTP, and built-in collaboration with the intent experts, Mayan Finance.
+With Wormhole Settlement, an intent-based asset transfer for individual users and institutions, you can swap, bridge, and build across multiple chains. You can implement cross-chain functionality within your dApps extremely simply and without compromising user experience, widening the horizons of your product offerings and the number and type of users you can cater to.
 
-This represents Wormhole's first step towards optimizing the bridging experience and building a product that users and institutions use daily. Whether it's to send assets between chains, allow institutions to rebalance inventories on-chain cheaply and quickly, or for builders to allow their application to be accessible by any user no matter what assets they hold or what chain they call home.
+The Settlement supports Ethereum, Ton, Optimism, Arbitrum, Base, Avalanche, Unichain, Polygon, Solana, and Sui, with many more on the horizon. It is powered by Wormhole Messaging, Wormhole Native Token Transfer (NTT), and Circle's CCTP and built in collaboration with the intent experts at Mayan Finance.
+
+Settlement represents Wormhole's first step towards optimizing the bridging experience and building a product that users and institutions use daily. Use it to send assets between chains, rebalance institutional inventories on-chain cheaply and quickly, or allow your application to be accessible by any user no matter what assets they hold or what chain they call home.
 
 ## Key Features
 
-- **Integrator flexibility** - apps, leveraging the SDK, have the ability to select any one of three potential routes surfaced — each with their own tradeoffs concerning time vs cost — they may extend this to users as well
-- **Scalable liquidity** - taking lessons for the last few months of idiosyncratic yet sharp inflows into the Solana ecosystem, the hub-spoke model of the Wormhole Liquidity Layer and the flexible design of Swift are designed for capital efficiency and meant to serve
-- **Arbitrary payload support** - integrators can bundle callData containing arbitrary protocol actions to enable seamless one-click user experiences, e.g., swap plus stake
+- **Integrator flexibility** - apps leveraging the SDK can select any one of three potential routes surfaced, each with its tradeoffs concerning time vs cost; they may extend this to users as well
+- **Scalable liquidity** - taking into account the sometimes idiosyncratic yet sharp inflows into the Solana ecosystem, the hub-spoke model of the Wormhole Liquidity Layer and the flexible design of Swift are designed for capital efficiency
+- **Arbitrary payload support** - integrators can bundle `callData` containing arbitrary protocol actions to enable seamless one-click user experiences, such as swap plus stake
 
 ## Integrator Paths
 
@@ -15931,7 +15942,7 @@ Wormhole provides an SDK that enables apps to abstract away the complexity of cr
 
 ### NTT Integrators
 
-NTT partners, current and future, can leverage Wormhole Settlement for near-instant NTT transfers from any chain, including Ethereum mainnet and its L2s. This eliminates the need to wait for slow source chain confirmation times (in some instances 15 minutes or more). If interested, please [fill out this interest form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
+NTT partners, current and future, can leverage Wormhole Settlement for near-instant NTT transfers from any chain, including Ethereum mainnet and its L2s. This eliminates waiting for slow source chain confirmation times (sometimes 15 minutes or more). If interested, please [fill out this interest form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
 
 ### Chain Integrators
 
@@ -15939,6 +15950,10 @@ Due to the hub-spoke model of liquidity, new chains without proven traction can 
 
 !!!tip
     Looking to integrate Wormhole Settlement? If you're ready, check out how to [integrate Wormhole Settlement Routes using the SDK](/docs/tutorials/by-product/settlements/settlement-routes/){target=\_blank}.
+
+## Related Resources
+
+- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/messaging/wormhole-settlements/architecture/){target=\_blank} page
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/tutorials/by-product/connect/
@@ -18819,7 +18834,7 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     Learn how to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
 
-    [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/settlements/)
 
 </div>
 --- END CONTENT ---
@@ -19228,7 +19243,7 @@ This section provides hands-on tutorials to help you integrate Wormhole Settleme
 
     Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
 
-    [:custom-arrow: TITLE](/docs/tutorials/by-product/settlements/settlement-routes/)
+    [:custom-arrow: Integrate Settlement Routes](/docs/tutorials/by-product/settlements/settlement-routes/)
 
 </div>
 --- END CONTENT ---
@@ -19240,27 +19255,38 @@ title: Wormhole Settlements
 description: Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
 ---
 
-# Integrate Wormhole Settlement Routes using the SDK 
+# Integrate Wormhole Settlement Routes Using the SDK
 
-This guide explains how to integrate Wormhole Settlement Routes from the Wormhole SDK into your application. These Routes abstract the complexity of cross-chain token swaps, handling route discovery, fee estimation, and transaction construction — useful Apps seeking to embed cross chain swaps. 
+## Introduction
 
-## Installation
+This guide explains integrating Wormhole Settlement Routes from the Wormhole SDK into your application. These Routes abstract the complexity of cross-chain token swaps by handling route discovery, fee estimation, and transaction construction, all useful for dApps seeking to embed cross-chain swaps. By following this tutorial you will install the Wormhole SDK Route package, configure and execute a swap, and explore error handling and troubleshooting.
 
-Install the Wormhole SDK Route package using your preferred package manager. If the package is published on npm, run:
+## Prerequisites
 
-```sh
-npm install @mayan-finance/wormhole-sdk-route
-```
+Before beginning this project, make sure you have the following:
 
-Alternatively, clone the repository and install dependencies:
+- **Wormhole SDK Route package** - installed using your preferred package manager
 
-```sh
-git clone https://github.com/mayan-finance/wormhole-sdk-route.git
-cd wormhole-sdk-route
-npm install
-```
+    To install the package with npm, run the following command in your terminal:
 
-## Configuration and Setup
+    ```sh
+    npm install @mayan-finance/wormhole-sdk-route
+    ```
+
+    Alternatively, clone the repository and install dependencies:
+
+    ```sh
+    git clone https://github.com/mayan-finance/wormhole-sdk-route.git
+    cd wormhole-sdk-route
+    npm install
+    ```
+
+- **Data for parameters** - you will need: 
+    
+    - [Chain IDs](/docs/build/reference/chain-ids/){target=|_blank} for the source and destination chains
+    - An contract address for the token you want to swap and the token you want to receive on the destination chain
+
+## Configure and Setup
 
 To initiate a swap, you must create a configuration object that specifies all required parameters. These typically include:
 
@@ -19287,11 +19313,11 @@ const config: SwapRouteConfig = {
 const swapRoute = new SwapRoute(config);
 ```
 
-## Executing a Swap
+## Execute a Swap
 
-Once the configuration is complete, follow these two primary steps: retrieving the optimal swap route and executing the transaction.
+Once the configuration is complete, the next steps are to retrieve the optimal swap route and execute the transaction.
 
-### Fetching the Swap Route
+### Fetch the Swap Route
 
 Before sending a transaction, fetch the optimal swap route to review details such as fees and expected outputs:
 
@@ -19310,7 +19336,7 @@ async function getSwapDetails() {
 getSwapDetails();
 ```
 
-### Executing the Swap Transaction
+### Execute the Swap Transaction
 
 Once the route is confirmed, execute the swap:
 
@@ -19370,7 +19396,7 @@ performSwap();
 
 - **Route fetching errors** - ensure all configuration parameters (chain IDs, token addresses, amounts) are correct and that network endpoints are reachable
 - **Transaction execution errors** - verify that the connected wallet has sufficient funds and that transaction parameters meet the network’s requirements. Detailed logging can assist with troubleshooting
-- **Miscellaneous** - to pass a `ReferrerAddress` to the initiation functions, you can create a class that extends the MayanRoute class. Override the `referrerAddress` method to return addresses by platform, as shown in this example:
+- **Miscellaneous** - to pass a `ReferrerAddress` to the initiation functions, you can create a class that extends the `MayanRoute` class. Override the `referrerAddress` method to return addresses by platform, as shown in this example:
 
     ```ts
     class MayanRefRoute<N extends Network> extends MayanRoute<N> {
