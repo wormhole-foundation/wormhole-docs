@@ -164,13 +164,18 @@ You should see output resembling:
 
 To set up the Pyth Beacon (which is run using make `run-publisher`), you may need to increase the UDP buffer size for the OS:
 
-```sh
-# for linux
-sudo sysctl -w net.core.rmem_max=2097152
-sudo sysctl -w net.core.rmem_default=2097152
-# for macos
-sudo sysctl -w net.inet.udp.recvspace=2097152
-```
+=== "Linux"
+
+    ```sh
+    sudo sysctl -w net.core.rmem_max=2097152
+    sudo sysctl -w net.core.rmem_default=2097152
+    ```
+
+=== "MacOS"
+
+    ```sh
+    sudo sysctl -w net.inet.udp.recvspace=2097152
+    ```
 
 ### Running the Example Solver
 

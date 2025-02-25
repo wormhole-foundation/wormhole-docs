@@ -31,7 +31,7 @@ Before beginning this project, make sure you have the following:
 
 - **Data for parameters** - you will need: 
     
-    - [Chain IDs](/docs/build/reference/chain-ids/){target=|_blank} for the source and destination chains
+    - [Chain IDs](/docs/build/reference/chain-ids/){target=\_blank} for the source and destination chains
     - An contract address for the token you want to swap and the token you want to receive on the destination chain
 
 ## Configure and Setup

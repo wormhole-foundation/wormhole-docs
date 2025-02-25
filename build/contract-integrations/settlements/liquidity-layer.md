@@ -1,6 +1,6 @@
 ---
 title: Wormhole Settlements
-description: Explore the Wormhole Liquidity Layer for cross-chain development. Learn about the EVM Token Router, `placeFastMarketOrder`, and `placeMarketOrder` functions.
+description: Learn how to build on the Wormhole Liquidity Layer, the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems.
 ---
 
 # Build on the Wormhole Liquidity Layer
