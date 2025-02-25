@@ -139,7 +139,7 @@ From this section, you can also:
 
 ### Role Management
 
-This section displays key roles involved in token governance. Users can view and modify these roles by selecting a new address and confirming the update. More details are available in the [NTT managers page](/docs/build/contract-integrations/native-token-transfers/managers-transceivers/#managers){target=\_blank}.
+This section displays key [roles](/docs/build/contract-integrations/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
 
  - **Manager’s Owner** – the owner through the `NTTOwner` proxy
  - **Pauser** – the address authorized to pause transfers
