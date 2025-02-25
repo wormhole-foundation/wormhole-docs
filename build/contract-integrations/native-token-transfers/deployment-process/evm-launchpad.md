@@ -85,7 +85,7 @@ Expand an existing token to support Native Token Transfers across multiple chain
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-7.webp)
 
-3. Choose the network where your token is deployed and enter your token contract address, finally click **Next**
+3. Choose the network where your token is deployed, enter your token contract address, and click **Next**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-8.webp)
 
