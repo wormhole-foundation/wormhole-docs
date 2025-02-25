@@ -157,7 +157,7 @@ Determine and update how transceivers interact with the token. Transceivers rout
 
 ### Peer Chains Limits
 
-Define the transfer restrictions for each connected network. Users can adjust:
+Define the transfer restrictions for each connected network. You can adjust:
 
  - **Sending Limits** – defines the maximum amount of tokens that can be sent from this chain
  - **Receiving Limits** – lists the peer chains and their respective receiving limits
