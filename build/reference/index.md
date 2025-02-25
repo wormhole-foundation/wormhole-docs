@@ -19,7 +19,7 @@ In this section, you'll find reference information that is essential for develop
 
     [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
 
--   :material-timer-sand:{ .lg .middle } **Consistency Levels**
+-   :octicons-clock-16:{ .lg .middle } **Consistency Levels**
 
     ---
 
@@ -43,11 +43,11 @@ In this section, you'll find reference information that is essential for develop
 
     [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
 
--   :material-code-braces:{ .lg .middle } **Wormhole Formatted Addresses**
+-   :octicons-checkbox-16:{ .lg .middle } **Wormhole Formatted Addresses**
 
     ---
 
-    Learn how Wormhole formats addresses into a 32-byte hex format for cross-chain compatibility. 
+    Learn how Wormhole formats addresses into a 32-byte hex format for cross-chain compatibility.
     
     This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
 
