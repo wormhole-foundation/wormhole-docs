@@ -154,13 +154,13 @@ NETWORK=testnet CONFIG=path/to/config.json make run-publisher
 
 You should see output resembling:
 
-```sh
-Start logging with info level.
-2025-01-21 16:38:28.145 [publisher] info: Environment: Testnet
-2025-01-21 16:38:36.631 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33635, vaaTime=1737499116
-2025-01-21 16:38:51.044 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33637, vaaTime=1737499130
-2025-01-21 16:40:24.890 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33639, vaaTime=1737499224
-```
+<div id="termynal" data-termynal>
+	<span data-ty> Start logging with info level.</span>
+	<span data-ty> 2025-01-21 16:38:28.145 [publisher] info: Environment: Testnet</span>
+	<span data-ty> 2025-01-21 16:38:36.631 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33635, vaaTime=1737499116</span>
+	<span data-ty> 2025-01-21 16:38:51.044 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33637, vaaTime=1737499130</span>
+  <span data-ty> 2025-01-21 16:40:24.890 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33639, vaaTime=1737499224</span>
+</div>
 
 To set up the Pyth Beacon (which is run using make `run-publisher`), you may need to increase the UDP buffer size for the OS:
 
