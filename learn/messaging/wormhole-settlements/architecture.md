@@ -61,7 +61,7 @@ First, they lack a competitive price discovery mechanism as limit order prices a
 
 Mayan Swift addresses these limitations by implementing competitive on-chain English auctions on Solana as an embedded price discovery mechanism, fundamentally shifting solver competition from speed-based to price-based execution. Through this architecture, the solver offering the best possible price secures the right to fulfill the order within pre-specified deadline parameters.
 
-![Mayan Swift - Intent-centric design](/docs/images/learn/messaging/wormhole-settlements/mayan-swift.webp) <!-- to be replaced with wormhole graphic -->
+![Mayan Swift - Intent-centric design](/docs/images/learn/messaging/wormhole-settlements/mayan-swift.webp)
 
 ### Protocol Flow: How It Works
 
@@ -80,7 +80,7 @@ Mayan Swift addresses these limitations by implementing competitive on-chain Eng
 
 Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains.
 
-![Mayan MCTP diagram](/docs/images/learn/messaging/wormhole-settlements/mayan-mctp.webp) <!-- to be replaced with wh graphic -->
+![Mayan MCTP diagram](/docs/images/learn/messaging/wormhole-settlements/mayan-mctp.webp)
 
 ### Protocol Flow: How It Works
 
