@@ -59,6 +59,14 @@ The content in this section will teach you how to create smart contracts that in
 
     [:custom-arrow: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
 
+-   :octicons-code-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    Build with Wormhole Settlements, including integrating the Liquidity Layer into your application and running a Solver for efficient cross-chain asset transfers.
+
+    [:custom-arrow: Get started with Settlements](/docs/build/contract-integrations/settlements/)
+
 -   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
     ---
