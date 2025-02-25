@@ -71,7 +71,7 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
     !!!note
         The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-8. Once both deployments are completed, proceed to the [**Dashboard**](#dashboard-overview) to manage your token.
+8. Once both deployments are completed, proceed to the [**Dashboard**](#explore-the-launchpad-dashboard) to manage your token.
 
 ## Expand Your Existing Token
 
