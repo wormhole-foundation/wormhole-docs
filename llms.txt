@@ -108,8 +108,8 @@ Doc-Page: https://wormhole.com/docs/tutorials/by-product/multichain-assets/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/multichain-assets/multichain-token/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/multigov/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/multigov/treasury-proposal/
-Doc-Page: https://wormhole.com/docs/tutorials/by-product/settlements/
-Doc-Page: https://wormhole.com/docs/tutorials/by-product/settlements/settlement-routes/
+Doc-Page: https://wormhole.com/docs/tutorials/by-product/settlements/.index/
+Doc-Page: https://wormhole.com/docs/tutorials/by-product/settlements/.settlement-routes/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/
@@ -15953,8 +15953,9 @@ NTT partners, current and future, can leverage Wormhole Settlement for near-inst
 
 Due to the hub-spoke model of liquidity, new chains without proven traction can access the same level of liquidity for cross-chain intent fulfillment from day one of mainnet launch as established ecosystems with clear evidence of adoption.
 
+<!--
 !!!tip
-    Looking to integrate Wormhole Settlement? If you're ready, check out how to [integrate Wormhole Settlement Routes using the SDK](/docs/tutorials/by-product/settlements/settlement-routes/){target=\_blank}.
+    Looking to integrate Wormhole Settlement? If you're ready, check out how to [integrate Wormhole Settlement Routes using the SDK](/docs/tutorials/by-product/settlements/settlement-routes/){target=\_blank}.-->
 
 ## Related Resources
 
@@ -18833,14 +18834,6 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:custom-arrow: Start building](/docs/tutorials/by-product/multichain-assets/)
 
--   :octicons-code-square-16:{ .lg .middle } **Wormhole Settlements**
-
-    ---
-
-    Learn how to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
-
-    [:custom-arrow: Start building](/docs/tutorials/by-product/settlements/)
-
 </div>
 --- END CONTENT ---
 
@@ -19229,7 +19222,7 @@ governor.execute(targets, values, calldatas, descriptionHash);
 Once the proposal is executed, the encoded messages will be dispatched via Wormhole to the spoke chains, where the Optimism and Arbitrum treasuries will receive their respective funds.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/by-product/settlements/
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/settlements/.index/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Settlements
@@ -19253,7 +19246,7 @@ This section provides hands-on tutorials to help you integrate Wormhole Settleme
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/by-product/settlements/settlement-routes/
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/settlements/.settlement-routes/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Settlements
