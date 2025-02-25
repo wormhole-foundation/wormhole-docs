@@ -35,4 +35,12 @@ This section covers various aspects and services related to communication protoc
 
     [:custom-arrow: Learn more about NTT](/docs/learn/messaging/native-token-transfers/)
 
+-   :octicons-book-16:{ .lg .middle } **Wormhole Settlements**
+
+    ---
+
+    Learn about Wormhole Settlements, an intent-based solution enabling fast and efficient asset transfers across Ethereum, Solana, Sui, and more.
+
+    [:custom-arrow: Learn more about Wormhole Settlements](/docs/learn/messaging/wormhole-settlements/)
+
 </div>
