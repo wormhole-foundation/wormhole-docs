@@ -77,7 +77,7 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
 
 Expand an existing token to support Native Token Transfers across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
 
-1. Open the [NTT Launchpad](){target=\_blank}, connect your wallet and click **Get Started**
+1. Open the [NTT Launchpad](){target=\_blank}, connect your wallet, and click **Get Started**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-1.webp)
 
