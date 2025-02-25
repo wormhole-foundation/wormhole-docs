@@ -5,6 +5,8 @@ description: Deploy a new token or extend an existing one across multiple chains
 
 # Deploy Native Token Transfers with Launchpad
 
+## Introduction
+
 The [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying Native Token Transfers across multiple blockchains.
 
 Instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication, you can quickly launch or expand tokens with just a few clicks. 
@@ -66,10 +68,7 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
 
-7. Repeat the previous step to deploy the token on the second chain (Base)
-
-    !!!note
-        The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
 
 8. Once both deployments are completed, proceed to the [**Dashboard**](#explore-the-launchpad-dashboard) to manage your token.
 
@@ -101,16 +100,13 @@ Expand an existing token to support Native Token Transfers across multiple chain
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-6.webp)
 
-7. Repeat the previous step to deploy the token on the second chain (Base)
-
-    !!!note
-        The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
 
 8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details
 
 ## Explore the Launchpad Dashboard
 
-To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.com/){target=\_blank}, click on **Manage Deployment**. Here, you can view its deployment status, monitor supply across chains, and configure transfer settings.
+To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.com/){target=\_blank}, click on **Manage Deployment**. Here, you can view deployment status, monitor supply across chains, and configure transfer settings.
 
 ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-10.webp)
 
