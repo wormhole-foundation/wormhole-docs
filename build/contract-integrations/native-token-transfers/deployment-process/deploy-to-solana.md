@@ -26,7 +26,7 @@ Before deploying NTT on Solana, ensure you have the following:
 
 ## Token Setup
 
-You must create and configure an SPL token on Solana to enable cross-chain transfers. If you already have a deployed SPL token, you can [skip this section](#deploy-ntt).
+You must create and configure an SPL token on Solana to enable cross-chain transfers. If you already have a deployed SPL token, you can [skip this section](#set-up-ntt-deployment).
 
 ???- interface "Deploy an SPL Token"
 
@@ -99,7 +99,7 @@ Once your SPL token is set up, deploy the NTT program on Solana.
         ntt init Mainnet
         ```
 
-The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, skip the below steps and proceed to [Deploy & Configure NTT](#deploy-configure-ntt).
+The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, skip the below steps and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
 ???+ interface "Burn-and-Mint Required Steps" 
 
@@ -124,7 +124,7 @@ The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-
         !!!Warning
             You must create your token's metadata before delegating mint authority. [See an example on how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
 
-## Deploy & Configure NTT
+## Deploy and Configure NTT
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana.
 
@@ -189,14 +189,14 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
     ```  
 
-    By default, NTT transfers to Solana require manual relaying, meaning the user must perform a transaction on Solana to complete the transfer. UI components such as [Wormhole Connect](https://docs.wormhole.com/wormhole-connect/){target=\_blank} support this automatically.  
+    By default, NTT transfers to Solana require manual relaying, meaning the user must perform a transaction on Solana to complete the transfer. UI components such as [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this automatically.  
 
-## Next Steps & Resources  
+## Next Steps and Resources  
 
 Your NTT deployment on Solana is now complete! To proceed, explore the following:  
 
  - **Test your deployment** – follow the [NTT Post Deployment Guide](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/){target=\_blank} for integration examples and testing instructions
- - **Integrate NTT into your application** – use [Wormhole Connect](https://docs.wormhole.com/wormhole-connect/){target=\_blank} to enable seamless cross-chain transfers in your UI
+ - **Integrate NTT into your application** – use [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} to enable seamless cross-chain transfers in your UI
  - **Troubleshoot deployment issues** – if your deployment fails, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} to find and close buffer accounts
  - **Understand the NTT CLI** – the NTT CLI takes inspiration from [Git](https://git-scm.com/){target=\_blank}. Many commands work similarly, making version control and configuration updates intuitive 
  - **Get automatic relaying support** – for automatic Wormhole relaying support, [contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}
