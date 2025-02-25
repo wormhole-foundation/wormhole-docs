@@ -235,7 +235,12 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:30:30"
     ```
-
+**Troubleshooting Tip:**  
+If your transfer fails, ensure that:  
+- Your wallet contains enough funds for gas fees on both the source and destination chains.  
+- The recipient address is correct and supported on the target blockchain.  
+- You’re using the correct environment (`Testnet` vs. `Mainnet`).
+  
 8. **Set transfer mode** - specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself
 
     ```typescript
@@ -298,6 +303,12 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:84:85"
     ```
 
+### Handling Stuck Transactions  
+If your transaction is stuck, you can:  
+- Use the **blockchain explorer** (e.g., Etherscan, Solscan) to check if it’s pending.  
+- Increase gas fees and resubmit if necessary.  
+- Wait for network congestion to clear and retry later.  
+
      - **`srcTxids`** - the resulting transaction IDs are printed to the console. These IDs can be used to track the transfer’s progress on the source chain and [Wormhole network](https://wormholescan.io/#/?network=Testnet){target=\_blank}
 
     ???- note "How Cross-Chain Transfers Work in the Background"
@@ -315,7 +326,13 @@ The `tokenTransfer` function consists of several key steps to facilitate the cro
     ```typescript
     --8<-- "code/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/token-bridge-3.ts:90:90"
     ```
-
+    
+### Handling Missing VAAs
+If your transaction does not appear on the destination chain, the VAA may not have propagated.  
+- Use the **Guardian API** to fetch VAAs manually.  
+- Check Wormhole’s **Explorer** to verify transaction status.  
+- Retry submission if necessary.
+- 
 5. **Complete the transfer on the destination chain** - redeem the VAA on the destination chain to finalize the transfer
 
     ```typescript
