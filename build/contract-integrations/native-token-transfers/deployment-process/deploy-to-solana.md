@@ -108,7 +108,7 @@ Once your SPL token is set up, deploy the NTT program on Solana.
     solana-keygen grind --starts-with ntt:1 --ignore-case
     ```
 
-4. **Derive the token authority** - required for burn-and-mint mode to generate the Program Derived Address (PDA) for the NTT program
+4. **Derive the token authority** - required for the burn-and-mint mode to generate the Program Derived Address (PDA) for the NTT program
 
     ```bash
     ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
