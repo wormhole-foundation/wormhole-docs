@@ -101,7 +101,7 @@ Once your SPL token is set up, deploy the NTT program on Solana.
 
 The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, skip the below steps and proceed to [Deploy & Configure NTT](#deploy-configure-ntt).
 
-???- interface "Burn-and-Mint Mode Only" 
+???+ interface "Burn-and-Mint Required Steps" 
 
     1. **Generate an NTT program key pair** - create a unique key pair for the NTT program
 
