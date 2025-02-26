@@ -7,7 +7,7 @@ description: Deploy a new token or extend an existing one across multiple chains
 
 ## Introduction
 
-The [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying Native Token Transfers across multiple blockchains.
+The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
 
 Instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication, you can quickly launch or expand tokens with just a few clicks. 
 
@@ -38,7 +38,7 @@ The NTT Launchpad currently supports deployments on the following mainnet chains
 Once ready, choose an option to proceed:
 
  - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
- - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable native token transfers without modifying its original contract
+ - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract
 
 ## Launch a Cross-Chain Token
 
@@ -52,11 +52,19 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-2.webp)
 
-3. Set token details (home network, token name, token symbol, and initial supply) and click **Next**
+3. Set the token details:
+    1. Select the **home network** from the dropdown menu
+    2. Enter the **name** for the token
+    3. Enter the **symbol** of the token 
+    4. Provide the **initial supply**
+    5. To the token details, click **Next**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-3.webp)
 
-4. Select the deployment chains. Choose the networks where your token will be deployed (Optimism and Base for this example) and click **Next**
+4. Select the deployment chains:
+    1. The home network where your token will be deployed will be populated (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    3. To continue, click **Next**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-4.webp)
 
@@ -74,7 +82,7 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
 
 ## Expand Your Existing Token
 
-Expand an existing token to support Native Token Transfers across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
+Expand an existing token to support NTT across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
 
 1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
 
@@ -84,11 +92,17 @@ Expand an existing token to support Native Token Transfers across multiple chain
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-7.webp)
 
-3. Choose the network where your token is deployed, enter your token contract address, and click **Next**
+3. Enter the token details:
+    1. Choose the home network where your token is already deployed (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    3. To continue, click **Next**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-8.webp)
 
-4. Choose the networks where you want to expand your token (e.g., Base in this example), then click **Next**
+4. Select the chains to deploy your token to:
+    1. The home network where your token is already deployed will be populated (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    1. Click **Next**
 
     ![](/docs/images/build/contract-integrations/ntt/ntt-launchpad/ntt-launchpad-9.webp)
 
