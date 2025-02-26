@@ -47,9 +47,9 @@ Doc-Page: https://wormhole.com/docs/build/contract-integrations/native-token-tra
 Doc-Page: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/faqs/
 Doc-Page: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/
 Doc-Page: https://wormhole.com/docs/build/contract-integrations/native-token-transfers/managers-transceivers/
-Doc-Page: https://wormhole.com/docs/build/contract-integrations/settlements/
-Doc-Page: https://wormhole.com/docs/build/contract-integrations/settlements/liquidity-layer/
-Doc-Page: https://wormhole.com/docs/build/contract-integrations/settlements/solver/
+Doc-Page: https://wormhole.com/docs/build/contract-integrations/settlement/
+Doc-Page: https://wormhole.com/docs/build/contract-integrations/settlement/liquidity-layer/
+Doc-Page: https://wormhole.com/docs/build/contract-integrations/settlement/solver/
 Doc-Page: https://wormhole.com/docs/build/contract-integrations/token-bridge/
 Doc-Page: https://wormhole.com/docs/build/contract-integrations/wormhole-relayers/
 Doc-Page: https://wormhole.com/docs/build/
@@ -98,9 +98,9 @@ Doc-Page: https://wormhole.com/docs/learn/messaging/native-token-transfers/
 Doc-Page: https://wormhole.com/docs/learn/messaging/native-token-transfers/overview/
 Doc-Page: https://wormhole.com/docs/learn/messaging/native-token-transfers/security/
 Doc-Page: https://wormhole.com/docs/learn/messaging/token-bridge/
-Doc-Page: https://wormhole.com/docs/learn/messaging/wormhole-settlements/architecture/
-Doc-Page: https://wormhole.com/docs/learn/messaging/wormhole-settlements/
-Doc-Page: https://wormhole.com/docs/learn/messaging/wormhole-settlements/overview/
+Doc-Page: https://wormhole.com/docs/learn/messaging/wormhole-settlement/architecture/
+Doc-Page: https://wormhole.com/docs/learn/messaging/wormhole-settlement/
+Doc-Page: https://wormhole.com/docs/learn/messaging/wormhole-settlement/overview/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/connect/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/connect/react-dapp/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/
@@ -10746,18 +10746,18 @@ Program log: Instruction: ReleaseInboundUnlock
 ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlements/
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlement/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Settlements
-description: Start building with Wormhole Settlements; integrate with the Liquidity Layer and set up Solvers to enable seamless cross-chain asset transfers.
+title: Wormhole Settlement
+description: Start building with Wormhole Settlement; integrate with the Liquidity Layer and set up Solvers to enable seamless cross-chain asset transfers.
 ---
 
-# Wormhole Settlements
+# Wormhole Settlement
 
 ## Get Started
 
-This section provides resources to build with Wormhole Settlements, including integrating the Liquidity Layer into your application and running a Solver for efficient cross-chain asset transfers.
+This section provides resources to build with Wormhole Settlement, including integrating the Liquidity Layer into your application and running a Solver for efficient cross-chain asset transfers.
 
 <div class="grid cards" markdown>
 
@@ -10767,7 +10767,7 @@ This section provides resources to build with Wormhole Settlements, including in
 
     Integrate seamlessly with Wormhole's Liquidity Layer, learn key EVM contract functions for fast and secure cross-chain transfers.
 
-    [:custom-arrow: Build on the Liquidity layer](/docs/build/contract-integrations/settlements/liquidity-layer/)
+    [:custom-arrow: Build on the Liquidity layer](/docs/build/contract-integrations/settlement/liquidity-layer/)
 
 -   :octicons-code-16:{ .lg .middle } **Run a Settlement Solver**
 
@@ -10775,15 +10775,15 @@ This section provides resources to build with Wormhole Settlements, including in
 
     Set up, configure, and run a Wormhole Settlement Solver on Solana's Matching Engine to fulfill cross-chain transfers efficiently and securely.
 
-    [:custom-arrow: Run a Solver](/docs/build/contract-integrations/settlements/solver/)
+    [:custom-arrow: Run a Solver](/docs/build/contract-integrations/settlement/solver/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlements/liquidity-layer/
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlement/liquidity-layer/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Settlements
+title: Wormhole Settlement
 description: Learn how to build on the Wormhole Liquidity Layer, the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems.
 ---
 
@@ -10890,7 +10890,7 @@ function placeMarketOrder(
 The `placeMarketOrder` function returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlements/solver/
+Doc-Content: https://wormhole.com/docs/build/contract-integrations/settlement/solver/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Settlement Solver
@@ -10910,11 +10910,11 @@ A Solver is an off-chain agent responsible for:
 - Facilitating the actual cross-chain transfer by locking/burning assets on Solana and minting/unlocking them on the destination chain
 - Rebalancing once the origin chain transaction finalizes and is redeemed back on Solana
 
-For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/learn/messaging/wormhole-settlements/overview/){target=\_blank} page.
+For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} page.
 
 ## Background
 
-The Solana Matching Engine's permissionless English auction is a central component of Wormhole Settlements protocol architecture. The Matching Engine contract allows any third-party solver to interact with the matching engine to place bids or improve existing ones. The contract includes four key instructions:
+The Solana Matching Engine's permissionless English auction is a central component of Wormhole Settlement protocol architecture. The Matching Engine contract allows any third-party solver to interact with the matching engine to place bids or improve existing ones. The contract includes four key instructions:
 
 1. `initialize_auction` - creates a new auction account on-chain and sets basic parameters like the auction's token mint, the amount required, and the bidding period details
 2. `bid` - allows a solver to place or update a bid on the active auction
@@ -16233,7 +16233,7 @@ The [Wormhole Guardian Network](/docs/learn/infrastructure/guardians/#guardian-n
 A real-world example of Wormhole's Token Bridge in action is the [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides users with a simple interface to transfer tokens across multiple blockchains. Using the Wormhole infrastructure, Portal Bridge guarantees secure and seamless cross-chain transfers, making it easier for users to move assets between different blockchain ecosystems.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlements/architecture/
+Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlement/architecture/
 --- BEGIN CONTENT ---
 ---
 title: Settlement Protocol Architectures
@@ -16256,7 +16256,7 @@ Wormhole Liquidity Layer is a cross-chain transfer protocol that enables faster-
 
 Solvers concentrate their liquidity entirely on Solana, where they participate in permissionless on-chain English auctions (open ascending-price auctions where bidders publicly raise bids until only one bidder remains) to fulfill each cross-chain transfer. Upon the conclusion of each auction, the winning solver initiates a transfer from Solana to the specified destination chain. The solver rebalances inventory once the originating source chain transaction reaches finality and arrives to Solana.
 
-![Wormhole Settlments Liquidity layer architecture diagram: source chain to hub to destination chain](/docs/images/learn/messaging/wormhole-settlements/settlements-overview.webp)
+![Wormhole Settlments Liquidity layer architecture diagram: source chain to hub to destination chain](/docs/images/learn/messaging/wormhole-settlement/settlement-overview.webp)
 
 The Wormhole Liquidity Layer serves as the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems by enabling protocols to bundle call data containing arbitrary protocol actions, which can be executed atomically alongside each transfer. This feature allows developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer.
 
@@ -16298,7 +16298,7 @@ First, they lack a competitive price discovery mechanism as limit order prices a
 
 Mayan Swift addresses these limitations by implementing competitive on-chain English auctions on Solana as an embedded price discovery mechanism, fundamentally shifting solver competition from speed-based to price-based execution. Through this architecture, the solver offering the best possible price secures the right to fulfill the order within pre-specified deadline parameters.
 
-![Mayan Swift - Intent-centric design](/docs/images/learn/messaging/wormhole-settlements/mayan-swift.webp)
+![Mayan Swift - Intent-centric design](/docs/images/learn/messaging/wormhole-settlement/mayan-swift.webp)
 
 ### Protocol Flow: How It Works
 
@@ -16317,7 +16317,7 @@ Mayan Swift addresses these limitations by implementing competitive on-chain Eng
 
 Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains.
 
-![Mayan MCTP diagram](/docs/images/learn/messaging/wormhole-settlements/mayan-mctp.webp)
+![Mayan MCTP diagram](/docs/images/learn/messaging/wormhole-settlement/mayan-mctp.webp)
 
 ### Protocol Flow: How It Works
 
@@ -16335,22 +16335,22 @@ The protocol provides mechanisms for unlocking the fee once the bridging process
 
 ## Where to Go Next
 
-- To learn more about available EVM functions, see the [Build on the Wormhole Layer](/docs/build/contract-integrations/settlements/liquidity-layer/){target=\_blank} guide
-- To learn how ot integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](/docs/tutorials/by-product/settlements/settlement-routes/){target=\_blank} tutorial
+- To learn more about available EVM functions, see the [Build on the Wormhole Layer](/docs/build/contract-integrations/settlement/liquidity-layer/){target=\_blank} guide
+- To learn how ot integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank} tutorial
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlements/
+Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlement/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Settlements
-description: Learn about Wormhole Settlements, an intent-based solution enabling fast and efficient asset transfers across Ethereum, Solana, Sui, and more.
+title: Wormhole Settlement
+description: Learn about Wormhole Settlement, an intent-based solution enabling fast and efficient asset transfers across Ethereum, Solana, Sui, and more.
 ---
 
-# Wormhole Settlements
+# Wormhole Settlement
 
 ## Get Started
 
-This section covers Wormhole Settlements, an intent-based solution enabling fast and efficient asset transfers across Ethereum, Solana, Sui, and more.
+This section covers Wormhole Settlement, an intent-based solution enabling fast and efficient asset transfers across Ethereum, Solana, Sui, and more.
 
 <div class="grid cards" markdown>
 
@@ -16358,9 +16358,9 @@ This section covers Wormhole Settlements, an intent-based solution enabling fast
 
     ---
 
-    Discover Wormhole Settlements, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
+    Discover Wormhole Settlement, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
 
-    [:custom-arrow: Learn more about Wormhole Settlements](/docs/learn/messaging/wormhole-settlements/overview/)
+    [:custom-arrow: Learn more about Wormhole Settlement](/docs/learn/messaging/wormhole-settlement/overview/)
 
 -   :octicons-question-16:{ .lg .middle } **Protocol Architectures**
 
@@ -16368,23 +16368,23 @@ This section covers Wormhole Settlements, an intent-based solution enabling fast
 
     Explore Wormhole Settlement's native swap protocols—Liquidity Layer, Mayan Swift, and MCTP — for scalable, efficient cross-chain asset transfers.
 
-    [:custom-arrow: Discover protocol architectures](/docs/learn/messaging/wormhole-settlements/architecture/)
+    [:custom-arrow: Discover protocol architectures](/docs/learn/messaging/wormhole-settlement/architecture/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlements/overview/
+Doc-Content: https://wormhole.com/docs/learn/messaging/wormhole-settlement/overview/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Settlements Overview
-description: Discover Wormhole Settlements, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
+title: Wormhole Settlement Overview
+description: Discover Wormhole Settlement, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
 ---
 
-# Wormhole Settlements Overview
+# Wormhole Settlement Overview
 
 ## Introduction
 
-Wormhole Settlements is a fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
+Wormhole Settlement is a fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
 
 With Wormhole Settlement, an intent-based asset transfer for individual users and institutions, you can swap, bridge, and build across multiple chains. You can implement cross-chain functionality within your dApps extremely simply and without compromising user experience, widening the horizons of your product offerings and the number and type of users you can cater to.
 
@@ -16417,7 +16417,7 @@ Due to the hub-spoke model of liquidity, new chains without proven traction can 
 
 ## Related Resources
 
-- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/messaging/wormhole-settlements/architecture/){target=\_blank} page
+- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/messaging/wormhole-settlement/architecture/){target=\_blank} page
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/tutorials/by-product/connect/
