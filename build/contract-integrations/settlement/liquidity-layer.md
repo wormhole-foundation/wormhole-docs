@@ -1,5 +1,5 @@
 ---
-title: Wormhole Settlements
+title: Wormhole Settlement
 description: Learn how to build on the Wormhole Liquidity Layer, the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems.
 ---
 
