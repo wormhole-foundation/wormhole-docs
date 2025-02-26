@@ -16,11 +16,11 @@ A Solver is an off-chain agent responsible for:
 - Facilitating the actual cross-chain transfer by locking/burning assets on Solana and minting/unlocking them on the destination chain
 - Rebalancing once the origin chain transaction finalizes and is redeemed back on Solana
 
-For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/learn/messaging/wormhole-settlements/overview/){target=\_blank} page.
+For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} page.
 
 ## Background
 
-The Solana Matching Engine's permissionless English auction is a central component of Wormhole Settlements protocol architecture. The Matching Engine contract allows any third-party solver to interact with the matching engine to place bids or improve existing ones. The contract includes four key instructions:
+The Solana Matching Engine's permissionless English auction is a central component of Wormhole Settlement protocol architecture. The Matching Engine contract allows any third-party solver to interact with the matching engine to place bids or improve existing ones. The contract includes four key instructions:
 
 1. `initialize_auction` - creates a new auction account on-chain and sets basic parameters like the auction's token mint, the amount required, and the bidding period details
 2. `bid` - allows a solver to place or update a bid on the active auction
