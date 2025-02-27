@@ -3,8 +3,10 @@ nav:
  - index.md
  - 'Wormhole Relayer': 'wormhole-relayers.md'
  - 'Core Contracts': 'core-contracts.md'
+ - 'Token Bridge': 'token-bridge.md'
  - 'CCTP': 'cctp.md'
  - native-token-transfers
  - multigov
+ - settlement
  - 'Development Environment': 'dev-env.md'
- - 'FAQS': 'faqs.md'
+ - 'FAQs': 'faqs.md'

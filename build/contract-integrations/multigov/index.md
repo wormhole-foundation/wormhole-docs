@@ -24,7 +24,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:octicons-arrow-right-16: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Upgrade Contracts**
 
@@ -32,7 +32,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Learn the process and key considerations for upgrading MultiGov contracts, ensuring system integrity and careful planning across cross-chain components.
 
-    [:octicons-arrow-right-16: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade/)
+    [:custom-arrow: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade/)
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 
@@ -40,7 +40,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
 
-    [:octicons-arrow-right-16: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
+    [:custom-arrow: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
 
 </div>
 
@@ -54,7 +54,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Need to familiarize yourself with MultiGov? Discover everything you need to know about MultiGov, Wormhole's cross-chain governance solution.
 
-    [:octicons-arrow-right-16: Learn the basics](/docs/learn/governance/)
+    [:custom-arrow: Learn the basics](/docs/learn/governance/)
 
 -   :octicons-checklist-16:{ .lg .middle } **Tutorials**
 
@@ -62,6 +62,6 @@ Take the following steps to get started with a MultiGov integration:
 
     Access step-by-step tutorials for executing cross-chain governance actions, including treasury management proposals with MultiGov.
 
-    [:octicons-arrow-right-16: Learn by building](/docs/tutorials/multigov/)
+    [:custom-arrow: Learn by building](/docs/tutorials/multigov/)
 
 </div>

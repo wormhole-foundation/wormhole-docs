@@ -17,7 +17,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Get familiar with the Wormhole relayer interfaces and learn the essential requirements for interacting with the relayer to send and receive cross-chain messages.
 
-    [:octicons-arrow-right-16: Get started with the Wormhole relayer](/docs/build/contract-integrations/wormhole-relayers/)
+    [:custom-arrow: Get started with the Wormhole relayer](/docs/build/contract-integrations/wormhole-relayers/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Core Contracts**
 
@@ -25,7 +25,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Discover how to develop or adapt your contracts to interact directly with Wormhole's Core Contracts for sending and receiving cross-chain messages.
 
-    [:octicons-arrow-right-16: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
+    [:custom-arrow: Get started with Core Contracts](/docs/build/contract-integrations/core-contracts/)
 
 -   :octicons-code-square-16:{ .lg .middle } **CCTP**
 
@@ -33,7 +33,15 @@ The content in this section will teach you how to create smart contracts that in
 
     Learn how to interact directly with Circle's CCTP Bridge contracts, including Token Messenger, Token Minter, and Message Transmitter. 
 
-    [:octicons-arrow-right-16: Get started with CCTP](/docs/build/contract-integrations/cctp/)
+    [:custom-arrow: Get started with CCTP](/docs/build/contract-integrations/cctp/)
+
+-   :octicons-arrow-switch-16:{ .lg .middle } **Token Bridge**
+
+    ---
+
+    Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+
+    [:octicons-arrow-right-16: Get started with Token Bridge](/docs/build/contract-integrations/token-bridge/)
 
 -   :octicons-sync-16:{ .lg .middle } **Native Token Transfers**
 
@@ -41,7 +49,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Find guidance on how to get started with the Native Token Transfers (NTT) framework, including deploying and configuring NTT contracts.
 
-    [:octicons-arrow-right-16: Get started with NTT](/docs/build/contract-integrations/native-token-transfers/)
+    [:custom-arrow: Get started with NTT](/docs/build/contract-integrations/native-token-transfers/)
 
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
@@ -49,7 +57,15 @@ The content in this section will teach you how to create smart contracts that in
 
     Discover how to start your MultiGov integration, from deploying and configuring essential contracts to managing your setup, including contract upgrades.
 
-    [:octicons-arrow-right-16: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
+    [:custom-arrow: Get started with MultiGov](/docs/build/contract-integrations/multigov/)
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole Settlement**
+
+    ---
+
+    Build with Wormhole Settlement, including integrating the Liquidity Layer into your application and running a Solver for efficient cross-chain asset transfers.
+
+    [:custom-arrow: Get started with Settlement](/docs/build/contract-integrations/settlement/)
 
 -   :octicons-terminal-16:{ .lg .middle } **Development Environment**
 
@@ -57,7 +73,7 @@ The content in this section will teach you how to create smart contracts that in
 
     Learn how to set up a development environment for comprehensive testing, including VAA generation and relaying, to ensure full integration functionality.
 
-    [:octicons-arrow-right-16: Set up a dev environment](/docs/build/contract-integrations/dev-env/)
+    [:custom-arrow: Set up a dev environment](/docs/build/contract-integrations/dev-env/)
 
 -   :octicons-question-16:{ .lg .middle } **Contract Integrations FAQs**
 
@@ -65,6 +81,6 @@ The content in this section will teach you how to create smart contracts that in
 
     Frequently asked questions about integrating contracts with Wormhole, including ownership of wrapped tokens and developing custom relayers.
 
-    [:octicons-arrow-right-16: Check out the FAQs](/docs/build/contract-integrations/faqs/)
+    [:custom-arrow: Check out the FAQs](/docs/build/contract-integrations/faqs/)
 
 </div>

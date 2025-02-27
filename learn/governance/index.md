@@ -17,7 +17,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Explore MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
 
-    [:octicons-arrow-right-16: Take a first glance at MultiGov](/docs/learn/governance/overview/)
+    [:custom-arrow: Take a first glance at MultiGov](/docs/learn/governance/overview/)
 
 -   :octicons-book-16:{ .lg .middle } **Architecture**
 
@@ -25,7 +25,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Discover an overview of MultiGov's hub-and-spoke architecture, including how it enables cross-chain governance by coordinating decision-making across blockchain.
 
-    [:octicons-arrow-right-16: Learn about MultiGov architecture](/docs/learn/governance/architecture/)
+    [:custom-arrow: Learn about MultiGov architecture](/docs/learn/governance/architecture/)
 
 -   :octicons-question-16:{ .lg .middle } **Theoretical FAQs**
 
@@ -33,7 +33,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Find answers to common theoretical questions about MultiGov.
 
-    [:octicons-arrow-right-16: Find the answer to your theoretical questions](/docs/learn/governance/faq/)  
+    [:custom-arrow: Find the answer to your theoretical questions](/docs/learn/governance/faq/)  
 
 </div>
 
@@ -47,7 +47,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Learn how to get started with MultiGov, from evaluating cross-chain governance needs to deploying with help from the Tally team.
 
-    [:octicons-arrow-right-16: Start the integration process now](/docs/build/contract-integrations/multigov/)
+    [:custom-arrow: Start the integration process now](/docs/build/contract-integrations/multigov/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deployment**
 
@@ -55,7 +55,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:octicons-arrow-right-16: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Tutorials**
 
@@ -63,7 +63,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
 
-    [:octicons-arrow-right-16: Create MultiGov solutions](/docs/tutorials/by-product/multigov/)
+    [:custom-arrow: Create MultiGov solutions](/docs/tutorials/by-product/multigov/)
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 
@@ -71,6 +71,6 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
 
-    [:octicons-arrow-right-16: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
+    [:custom-arrow: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
 
 </div>

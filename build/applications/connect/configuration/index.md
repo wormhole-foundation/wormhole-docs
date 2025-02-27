@@ -25,7 +25,7 @@ This guide provides detailed instructions on configuring Wormhole Connect and hi
     Learn how to configure the networks, tokens, and routes supported by Wormhole Connect. Set up RPC endpoints, whitelist tokens, and leverage multiple bridging protocols to meet your dApp's needs.
 
 
-    [:octicons-arrow-right-16: Get started](/docs/build/applications/connect/configuration/configure-data/)
+    [:custom-arrow: Get started](/docs/build/applications/connect/configuration/configure-data/)
 
 -   :octicons-apps-16:{ .lg .middle } **Theme**
 
@@ -33,6 +33,6 @@ This guide provides detailed instructions on configuring Wormhole Connect and hi
 
     Discover how to style the Wormhole Connect widget to align with your brand. Customize colors, fonts, and UI elements to deliver a seamless user experience.
 
-    [:octicons-arrow-right-16: Explore routes](/docs/build/applications/connect/configuration/configure-theme/)
+    [:custom-arrow: Explore routes](/docs/build/applications/connect/configuration/configure-theme/)
 
 </div>
