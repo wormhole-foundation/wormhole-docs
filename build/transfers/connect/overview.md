@@ -51,10 +51,11 @@ Now you can import the React component:
 
 If you're not using React, you can still embed Connect on your website by using the hosted version. This uses pre-built packages (which include React) served from NPM by jsdelivr.net.
 
-???+ code "v1.x"
-    ```ts
-    --8<-- 'code/build/transfers/connect/overview/hosted.js'
-    ```
+```ts title="v1.x"
+--8<-- 'code/build/transfers/connect/overview/hosted.js'
+```
+
+For help migrating from Connect v0.x to v1.x, see the [v1 Migration](/docs/build/transfers/connect/upgrade/){target=\_blank} guide.
 
 ???- code "v0.x"
     Simply copy and paste the following into your HTML body, and replace the ```INSERT_WORMHOLE_CONNECT_VERSION``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest){target=\_blank}.
@@ -69,8 +70,7 @@ If you're not using React, you can still embed Connect on your website by using 
     --8<-- 'code/build/transfers/connect/overview/cdn-with-version.html'
     ```
 
-!!! note 
-    It is important to periodically update your Wormhole Connect instance to the latest version, as there are frequent functionality and security releases.
+It is important to periodically update your Wormhole Connect instance to the latest version, as there are frequent functionality and security releases.
 
 ## Configuration {: #configuration}
 
