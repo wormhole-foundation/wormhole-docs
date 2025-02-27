@@ -1,13 +1,13 @@
 ---
-title: Wormhole Settlements Overview
-description: Discover Wormhole Settlements, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
+title: Wormhole Settlement Overview
+description: Discover Wormhole Settlement, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
 ---
 
-# Wormhole Settlements Overview
+# Wormhole Settlement Overview
 
 ## Introduction
 
-Wormhole Settlements is a fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
+Wormhole Settlement is a fast, institutional-scale digital asset settlement — a new way to transfer assets across chains.
 
 With Wormhole Settlement, an intent-based asset transfer for individual users and institutions, you can swap, bridge, and build across multiple chains. You can implement cross-chain functionality within your dApps extremely simply and without compromising user experience, widening the horizons of your product offerings and the number and type of users you can cater to.
 
@@ -35,10 +35,9 @@ NTT partners, current and future, can leverage Wormhole Settlement for near-inst
 
 Due to the hub-spoke model of liquidity, new chains without proven traction can access the same level of liquidity for cross-chain intent fulfillment from day one of mainnet launch as established ecosystems with clear evidence of adoption.
 
-<!--
 !!!tip
-    Looking to integrate Wormhole Settlement? If you're ready, check out how to [integrate Wormhole Settlement Routes using the SDK](/docs/tutorials/by-product/settlements/settlement-routes/){target=\_blank}.-->
+    Looking to integrate Wormhole Settlement? If you're ready, check out how to [integrate Wormhole Settlement Routes using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}.
 
 ## Related Resources
 
-- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/messaging/wormhole-settlements/architecture/){target=\_blank} page
+- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/messaging/wormhole-settlement/architecture/){target=\_blank} page
