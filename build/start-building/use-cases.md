@@ -296,7 +296,7 @@ description:
 </div>
 <hr>
 
-🔗 **Used in:** Liquid staking, cross-chain governance and Proof-of-Stake networks - [Lido](https://lido.fi/){target=\_blank}
+🔗 **Used in:** Liquid staking, cross-chain governance and PoS networks - [Lido](https://lido.fi/){target=\_blank}
 
 </div>
 
