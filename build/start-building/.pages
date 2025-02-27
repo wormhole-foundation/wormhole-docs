@@ -2,7 +2,7 @@ title: Start Building
 nav:
  - index.md
  - 'Product Comparison': 'products.md'
- - 'Use cases': 'use-cases.md'
+ - 'Wormhole Use cases': 'use-cases.md'
  - 'Supported Networks': 'supported-networks.md'
  - 'Testnet Faucets': 'testnet-faucets.md'
  - 'Demos': 'demos.md'
