@@ -12384,7 +12384,7 @@ description:
 🛠 **Wormhole products used:**
 
 - **Wormhole Connect** – handles user-friendly asset transfers
-- **NTT** – moves native assets across chains
+- **Native Token Transfer** – moves native assets across chains
 - **Queries** – fetches real-time prices for optimal trade execution
 
 </div>
@@ -12407,7 +12407,7 @@ description:
 🛠 **Wormhole products used:**
 
 - **Messaging** – moves loan requests and liquidations across chains
-- **NTT** – transfers collateral as native assets
+- **Native Token Transfers** – transfers collateral as native assets
 - **Queries** – fetches interest rates and asset prices in real-time
 
 </div>
@@ -12451,7 +12451,7 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **NTT** – transfers BTC across chains
+- **Native Token Transfers** – transfers BTC across chains
 
 </div>
 <hr>
@@ -12473,7 +12473,7 @@ description:
 🛠 **Wormhole products used:**
 
 - **Messaging** – facilitates decentralized interactions
-- **Token bridge** – enables cross-chain tokenized rewards
+- **Token Bridge** – enables cross-chain tokenized rewards
 
 </div>
 <hr>
@@ -12494,7 +12494,7 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **NTT** – enables native asset transfers for seamless fundraising
+- **Native Token Transfers** – enables native asset transfers for seamless fundraising
 - **Messaging** – facilitates cross-chain token distribution and claim processes
 
 </div>
@@ -12541,7 +12541,7 @@ description:
 🛠 **Wormhole products used:**
 
 - **Messaging** – routes gas fee payments across chains
-- **NTT** – facilitates native token conversion for gas payments
+- **Native Token Transfers** – facilitates native token conversion for gas payments
 
 </div>
 <hr>
@@ -12610,7 +12610,7 @@ description:
 🛠 **Wormhole products used:**
 
 - **Wormhole Connect** – facilitates seamless payments in various tokens
-- **NTT** – ensures direct, native asset transfers
+- **Native Token Transfers** – ensures direct, native asset transfers
 
 </div>
 <hr>
@@ -12656,7 +12656,7 @@ description:
 🛠 **Wormhole products used:**
 
 - **Messaging** – moves staking rewards and governance signals across chains
-- **NTT** – transfers staked assets natively between networks
+- **Native Token Transfers** – transfers staked assets natively between networks
 
 </div>
 <hr>
