@@ -12095,13 +12095,22 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 Doc-Content: https://wormhole.com/docs/build/start-building/products/
 --- BEGIN CONTENT ---
 ---
-title: Product Comparison
-description: Compare Wormhole products—Connect, NTT, and Token Bridge—by features, asset support, integration complexity, and use cases.
+title: Products
+description: Compare Wormhole products by features, asset support, integration complexity, and use cases. Explore additional tools for data, governance, and execution.
 ---
 
-# Product Comparison
+# Products 
 
-This page provides a comparison of Wormhole’s transfer products: Connect, Native Token Transfers (NTT), and Token Bridge. Compare their supported transfer types, asset compatibility, integration requirements, and features to determine the best solution for your cross-chain needs.
+Wormhole provides a suite of cross-chain solutions tailored for different asset transfer needs, including Connect, Native Token Transfers (NTT), and Token Bridge. Whether you need a plug-and-play bridging UI, native token transfers without wrappers, or a robust lock-and-mint mechanism, this guide helps you choose the right solution. Beyond transfers, Wormhole also offers tools for cross-chain data retrieval, governance, and next-generation interoperability with Wormhole Settlement.
+
+## Transfer Products
+
+Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
+
+- [**Connect**](/docs/build/applications/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
+- [**Native Token Transfers (NTT)**](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without wrappers. Best for teams prioritizing native token movement without wrappers
+- [**Token Bridge**](/docs/learn/messaging/token-bridge/){target=\_blank} - a bridging solution that uses a lock & mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages 
+
 
 <div markdown class="full-width">
 
@@ -12126,6 +12135,14 @@ This page provides a comparison of Wormhole’s transfer products: Connect, Nati
 ::end-spantable::
 
 </div>
+
+## Other Products
+
+Beyond asset transfers, Wormhole provides additional tools for cross-chain data, governance, and advanced messaging.
+
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} - a data retrieval service to fetch on-chain data from multiple networks, powering analytics and dashboards. Best for applications that need to simplify multi-chain analytics, reporting, and data aggregation 
+- [**MultiGov**](/docs/learn/governance/overview/){target=\_blank} - a unified governance framework to manage multi-chain protocol governance through a single mechanism. Best for projects managing multi-chain governance and protocol updates
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - a next-generation suite of intent protocols enabling fast multi-chain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods. Best for institutional-scale volume and chain abstraction for application developers
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
