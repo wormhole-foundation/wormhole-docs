@@ -100,7 +100,10 @@ In this section, you will create the directory, initialize a Node.js project, in
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts"
     ```
 
-    These constants define the structure of the `parseAndVerifyVM` function used to validate VAAs, ensuring correct decoding and verification.
+    ???- tip "Understanding VAA Layouts"
+        This constant defines the structure of the `parseAndVerifyVM` function, which is essential for decoding and verifying VAAs. By specifying the expected input and output formats, they ensure that the validation process runs correctly.
+
+        For a deeper understanding of how layouts work in Wormhole, refer to the [layout documentation](/docs/build/applications/wormhole-sdk/sdk-layout/){target=\_blank}.  
 
 ## VAA Handling Functions
 
