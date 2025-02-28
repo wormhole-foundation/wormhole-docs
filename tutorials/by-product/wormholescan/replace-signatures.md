@@ -22,7 +22,7 @@ In this tutorial, you'll build a script from scratch to:
 - Replace outdated signatures using the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}
 - Output a valid VAA ready for submission
 
-By the end, you will have a fully automated tool for updating VAAs, preventing transaction failures due to expired signatures.
+By the end, you'll have a script that ensures VAAs remain valid and processable, avoiding transaction failures.
 
 ## Prerequisites
 
@@ -30,13 +30,12 @@ Before you begin, ensure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
  - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
- - Basic understanding of Wormhole VAAs
 
 ## Project Setup
 
 In this section, you will create the directory, initialize a Node.js project, install dependencies, and configure TypeScript.
 
-1. **Create the project** - create a new directory and navigate into it
+1. **Create the project** - set up the directory and navigate into it
 
     ```bash
     mkdir wormhole-scan-api-demo
@@ -91,7 +90,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
 ## VAA Handling Functions
 
-We need to process a VAA step by step to update it with valid signatures. This section covers retrieving the VAA, verifying its validity, fetching required signatures, and replacing outdated ones to generate a correctly signed VAA.
+This section covers retrieving the VAA, verifying its validity, fetching required signatures, and replacing outdated ones to generate a correctly signed VAA.
 
 ### Fetch a VAA ID from a Transaction
 
@@ -327,7 +326,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 
 ### Replace Outdated Signatures
 
-We can update the signatures now that we have the full VAA, its guardian signatures, and the latest guardian set. This involves removing outdated signatures, replacing them with valid ones from the current guardian set, and ensuring the total number of signatures remains unchanged.
+With the full VAA, guardian signatures, and the latest guardian set, we can now update outdated signatures while maintaining the required signature count.
 
 1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header
 
@@ -491,12 +490,12 @@ This completes the process of replacing outdated VAA signatures. You now have a 
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}. The repository includes all the example scripts and configurations needed to fetch, validate, and replace outdated VAA signatures using Wormholescan and the Wormhole SDK.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}. The repository contains all necessary scripts and configurations for working with VAAs using Wormholescan and the Wormhole SDK.
 
 Additionally, this repository provides a script to check the VAA redemption status on Ethereum and Solana, allowing you to verify whether a transaction has already been redeemed on the destination chain.
 
 ## Conclusion
 
-You've successfully built a script to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK. This guide walked you through setting up the project, retrieving VAAs, checking their validity, and updating their signatures to ensure they remain processable.
+You've successfully built a script to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK.
 
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for guardian approval to finalize the process.
