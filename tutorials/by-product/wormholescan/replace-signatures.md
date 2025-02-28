@@ -86,6 +86,11 @@ In this section, you will set up the project by creating the directory, initiali
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-2.ts"
     ```
 
+     - **`RPC`** - endpoint for interacting with an Ethereum RPC node
+     - **`ETH_CORE`** - [Ethereum contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
+     - **`WORMHOLE_SCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and guardian sets
+     - **`TXS`** - list of example transaction hashes that will be used for testing
+
 ## VAA Handling Functions
 
 To update a VAA with valid signatures, we need to process it step by step. This section covers retrieving the VAA, verifying its validity, fetching required signatures, and replacing outdated ones to generate a correctly signed VAA.
