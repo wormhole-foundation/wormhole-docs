@@ -30,15 +30,13 @@ Before you begin, ensure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
  - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
- - Basic understanding of Wormhole VAAs and how they work
-
-All required RPC endpoints, contract addresses, and example transactions will be provided in the tutorial.
+ - Basic understanding of Wormhole VAAs
 
 ## Project Setup
 
 In this section, you will create the directory, initialize a Node.js project, install dependencies, and configure TypeScript.
 
-1. **Create the project directory** - create a new directory and navigate into it
+1. **Create the project** - create a new directory and navigate into it
 
     ```bash
     mkdir wormhole-scan-api-demo
@@ -76,7 +74,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     touch src/config/constants.ts
     ```
 
-     - **`src/config/constants.ts`** - stores RPC endpoints and Wormhole contract addresses
+     - **`src/config/constants.ts`** - stores public configuration variables
      - **`src/helpers/`** - contains utility functions
      - **`src/scripts/`** - contains scripts for fetching and replacing signatures
 
@@ -99,13 +97,13 @@ We need to process a VAA step by step to update it with valid signatures. This s
 
 To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This ID allows us to fetch the full VAA later.
 
-1. **Create the helper function** - add a new file inside `src/helpers`
+1. **Create the helper file** - add a new file inside `src/helpers` to store VAA-related utility functions
 
     ```bash
     touch src/helpers/vaaHelper.ts
     ```
 
-2. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules: axios for making API requests, web3.eth for encoding and decoding Ethereum transactions, and constants from the configuration file
+2. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules: `axios` for making API requests, `web3` for encoding and decoding Ethereum transactions, `@wormhole-foundation/sdk` for handling VAAs, and `constants` from the configuration file
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts:1:15"
@@ -153,9 +151,9 @@ To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This
 
 ### Fetch the Full VAA
 
-Now that we have the VAA ID, we can use it to fetch the full VAA payload. This payload contains the VAA bytes, which will later be used for signature validation.
+Now that you have the VAA ID, we can use it to fetch the full VAA payload from the Wormholescan API. This payload contains the VAA bytes, which will later be used for signature validation.
 
- - **Create the helper function** - open `src/helpers/vaaHelper.ts` and add the following function to fetch the full VAA from the Wormholescan API. This function iterates through the provided VAA IDs, queries the API for each, and extracts the `vaaBytes` payload. If a request fails, the error is logged, and processing continues for the remaining IDs
+ - **Create the `fetchVaa()` function** - open `src/helpers/vaaHelper.ts` and add the below function. This function iterates through the provided VAA IDs, queries the API for each, and extracts the `vaaBytes` payload. If a request fails, the error is logged, and processing continues for the remaining IDs
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts:52:67"
@@ -196,9 +194,9 @@ Now that we have the VAA ID, we can use it to fetch the full VAA payload. This p
 
 ### Validate VAA Signatures
 
-Now that we have the full VAA, we must determine whether it's valid. A VAA is only considered valid if it contains signatures from currently active guardians and is correctly verified by the Wormhole Core contract.
+Now, we need to verify its validity. A VAA is only considered valid if it contains signatures from currently active guardians and is correctly verified by the Wormhole Core contract.
 
- - **Create the helper function** - add a new function inside `src/helpers/vaaHelper.ts` to validate VAAs. The below function sends the VAA to an Ethereum RPC node and calls the `parseAndVerifyVM` function on the Wormhole Core contract. The response will indicate whether the VAA is valid or contains outdated signatures that need replacing.
+ - **Create the `checkVaaValidity()` function** - add a new function inside `src/helpers/vaaHelper.ts` to validate VAAs. The below function sends the VAA to an Ethereum RPC node and calls the `parseAndVerifyVM` function on the Wormhole Core contract. The response will indicate whether the VAA is valid or contains outdated signatures that need replacing.
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts:69:107"
@@ -241,28 +239,11 @@ Now that we have the full VAA, we must determine whether it's valid. A VAA is on
 
 Before replacing outdated signatures, we need to fetch the original VAA signatures from Wormholescan. This allows us to compare them with the latest guardian set and determine which ones need updating.
 
- - **Create the helper function** - add a new function inside `src/helpers/vaaHelper.ts` to query the Wormholescan API for observations related to a given VAA. Then, format the response, converting guardian addresses to lowercase for consistency. If an error occurs, it returns an empty array.
+ - **Create the `fetchObservations()` function** - add a new function inside `src/helpers/vaaHelper.ts` to query the Wormholescan API for observations related to a given VAA. Then, format the response, converting guardian addresses to lowercase for consistency. If an error occurs, it returns an empty array.
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts:109:124"
     ```
-
-    ??? interface "Parameters"
-
-        `vaaId` ++"string"++
-
-        The VAA ID in format "chain/emitter/sequence"
-
-        ---
-
-    ??? interface "Returns"
-
-        `observations` ++"Promise<any[]>"++
-
-        Returns an array of formatted signatures
-
-        ---
-
 
 ???- note "Test Fetch Observations"
     If you want to test the function before moving forward, create a test file inside the `test` directory:  
@@ -304,7 +285,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
 
 Now that we have the original VAA signatures, we must fetch the latest guardian set from Wormholescan. This will allow us to compare the stored signatures with the current guardians and determine which signatures need replacing.
 
-1. **Create the helper function** - add a new function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set
+1. **Create the `fetchGuardianSet()` function** - add a new function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts:126:142"
@@ -348,7 +329,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 
 We can update the signatures now that we have the full VAA, its guardian signatures, and the latest guardian set. This involves removing outdated signatures, replacing them with valid ones from the current guardian set, and ensuring the total number of signatures remains unchanged.
 
-1. **Create the helper function** - open `src/helpers/vaaHelper.ts` and add the function header
+1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts:144:150"
@@ -380,13 +361,11 @@ We can update the signatures now that we have the full VAA, its guardian signatu
 
         ---
 
-2. **Validate input data** - ensure all required parameters are present before proceeding
+2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts:152:156"
     ```
-
-    If any required input is missing, the function throws an error to prevent execution with incomplete data.
 
 3. **Filter valid signatures** - remove signatures from inactive guardians, keeping only valid ones. If no valid signatures are found, execution is halted
 
@@ -470,18 +449,15 @@ Now that we have all the necessary helper functions, we will create a script to 
 
 Now that the script is set up, you can execute it to fetch, validate, and update outdated VAA signatures.
 
-1. **Run the script** - use the following command to execute the replacement process
+1. **Run the script** - use the following command to execute the replacement process. This will process each transaction in `TXS`, check its VAA, and update signatures if necessary
 
     ```bash
     npx tsx src/scripts/replaceSignatures.ts
     ```
 
-    This will process each transaction in TXS, check its VAA, and update signatures if necessary.
-
 2. **Expected output** - the script will print logs for each step
 
     ```bash
-    --------------------------------------------------------------------------------------------------------
 
     Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
 
@@ -517,7 +493,7 @@ This completes the process of replacing outdated VAA signatures. You now have a 
 
 If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}. The repository includes all the example scripts and configurations needed to fetch, validate, and replace outdated VAA signatures using Wormholescan and the Wormhole SDK.
 
-Additionally, this repository provides a script to check the VAA redemption status, allowing you to verify whether a transaction has already been redeemed on the destination chain.
+Additionally, this repository provides a script to check the VAA redemption status on Ethereum and Solana, allowing you to verify whether a transaction has already been redeemed on the destination chain.
 
 ## Conclusion
 
