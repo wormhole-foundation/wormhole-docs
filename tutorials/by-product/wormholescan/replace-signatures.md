@@ -101,7 +101,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     ```
 
     ???- tip "Understanding VAA Layouts"
-        This constant defines the structure of the `parseAndVerifyVM` function, which is essential for decoding and verifying VAAs. By specifying the expected input and output formats, they ensure that the validation process runs correctly.
+        This constant defines the structure of the `parseAndVerifyVM` function, which is essential for decoding and verifying VAAs. Specifying the expected input and output formats ensures that the validation process runs correctly.
 
         For a deeper understanding of how layouts work in Wormhole, refer to the [layout documentation](/docs/build/applications/wormhole-sdk/sdk-layout/){target=\_blank}.  
 
