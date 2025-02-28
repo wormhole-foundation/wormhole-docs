@@ -1,10 +1,15 @@
-import { fetchGuardianSet } from '../src/helpers/vaaHelper';
+import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
+import { TXS } from '../src/config/constants';
 
-const testFetchGuardianSet = async () => {
-  const [guardians, guardianSetIndex] = await fetchGuardianSet();
+const testFetchObservations = async () => {
+  const vaaIds = await fetchVaaId([TXS[0]]);
+  if (!vaaIds.length) {
+    console.log('No VAA IDs found.');
+    return;
+  }
 
-  console.log('Current Guardian Set Index:', guardianSetIndex);
-  console.log('Guardian Addresses:', guardians);
+  const observations = await fetchObservations(vaaIds[0]);
+  console.log('Observations:', observations);
 };
 
-testFetchGuardianSet();
+testFetchObservations();

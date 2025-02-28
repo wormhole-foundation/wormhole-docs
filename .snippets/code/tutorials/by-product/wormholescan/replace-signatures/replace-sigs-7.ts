@@ -1,15 +1,25 @@
-import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
+import {
+  fetchVaaId,
+  fetchVaa,
+  checkVaaValidity,
+} from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
-const testFetchObservations = async () => {
-  const vaaIds = await fetchVaaId([TXS[0]]);
-  if (!vaaIds.length) {
-    console.log('No VAA IDs found.');
+const testCheckVaaValidity = async () => {
+  const vaaId = await fetchVaaId(TXS[0]);
+  if (!vaaId) {
+    console.log('VAA ID not found.');
     return;
   }
 
-  const observations = await fetchObservations(vaaIds[0]);
-  console.log('Observations:', observations);
+  const vaaBytes = await fetchVaa(vaaId);
+  if (!vaaBytes) {
+    console.log('VAA not found.');
+    return;
+  }
+
+  const result = await checkVaaValidity(vaaBytes.toString('base64'));
+  console.log('VAA Validity:', result);
 };
 
-testFetchObservations();
+testCheckVaaValidity();
