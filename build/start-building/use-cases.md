@@ -77,7 +77,7 @@ description:
 
 <div markdown class="use-case-card">
 
-## Asset movement between Bitcoin and other chains
+## Asset Movement Between Bitcoin and Other Chains
 
 💡 **Enable direct BTC transfers without wrapped assets.**
 
