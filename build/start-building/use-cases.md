@@ -70,7 +70,7 @@ description:
 </div>
 <hr>
 
-🔗 **Used in:** Trading bots, arbitrage platforms and oracles - [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
+🔗 **Used in:** Trading bots, arbitrage platforms, and oracles - [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
 </div>
 
 <!----------------------------------->
@@ -135,7 +135,7 @@ description:
 </div>
 <hr>
 
-🔗 **Used in:** Token launchpads, IDOs and meme token ecosystems
+🔗 **Used in:** Token launchpads, IDOs, and meme token ecosystems
 
 </div>
 
@@ -153,7 +153,7 @@ description:
 🛠 **Wormhole products used:**
 
 - **Queries** – fetches real-time asset prices and manages position state across chains
-- **Wormhole Settlement** - for quick crosschain token execution, providing efficient and seamless user experiences
+- **Wormhole Settlement** - for quick cross-chain token execution, providing efficient and seamless user experiences
 
 </div>
 <hr>
@@ -181,7 +181,7 @@ description:
 </div>
 <hr>
 
-🔗 **Used in:** Wallets, dApps and multichain user experience improvements
+🔗 **Used in:** Wallets, dApps, and multichain user experience improvements
 
 </div>
 
@@ -204,7 +204,7 @@ description:
 </div>
 <hr>
 
-🔗 **Used in:** Bridging protocols, DeFi automations and smart contract libraries
+🔗 **Used in:** Bridging protocols, DeFi automation, and smart contract libraries
 
 </div>
 
@@ -273,7 +273,7 @@ description:
 </div>
 <hr>
 
-🔗 **Used in:** Price feeds, DeFi protocols and Smart Contract automation [PYTH](https://wormhole.com/case-studies/pyth){target=\_blank}
+🔗 **Used in:** Price feeds, DeFi protocols, and Smart Contract automation [PYTH](https://wormhole.com/case-studies/pyth){target=\_blank}
 
 </div>
 
@@ -296,7 +296,7 @@ description:
 </div>
 <hr>
 
-🔗 **Used in:** Liquid staking, cross-chain governance and PoS networks - [Lido](https://lido.fi/){target=\_blank}
+🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks - [Lido](https://lido.fi/){target=\_blank}
 
 </div>
 
