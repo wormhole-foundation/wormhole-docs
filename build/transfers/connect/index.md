@@ -5,8 +5,6 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 # Wormhole Connect
 
-<span class="badge product">Connect</span> | Best for: web developers, React apps, UI
-
 ## Introduction {: #introduction }
 
 Wormhole Connect is a customizable widget that brings native and wrapped token cross-chain asset transfers directly into your web applications in as few as 3 lines of code.
@@ -15,11 +13,7 @@ Wormhole Connect is a customizable widget that brings native and wrapped token c
 - Cross-chain transfers without the overhead of smart contract development or complicated configurations
 - Configure any token to bridge via Wormhole
 
-The pages in these sections cover features and benefits of Wormhole Connect, guidance on available token routes and when to use them, and configuration options to help you shape Connect to fit the needs of your application.
-
-## Features and Benefits {: #features-and-benefits }
-
-Wormhole Connect allows you to easily customize details such as:
+The pages in these sections cover features and benefits of Wormhole Connect, guidance on available token routes and when to use them, and configuration options to help you shape Connect to fit the needs of your application. Wormhole Connect allows you to easily customize details such as:
 
 - Supported assets and RPC endpoints
 - Multiple ways to bridge assets using ([routes](/docs/build/transfers/connect/routes/){target=\_blank})
@@ -43,4 +37,6 @@ Developers who want to implement cross-chain asset transfers with fully customiz
 
 ## Additional Resources
 
-- [**Integrate Connect with a React dApp**](/docs/tutorials/by-product/connect/react-dapp/) - this tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
+- [**Get Started Now**](#build-with-connect) - a series of how-to guides to integrate Connect into your React dApp and configure to fit your user's needs
+
+- [**Connect for Cross-chain Swapping**](/docs/tutorials/by-product/connect/react-dapp/) - this tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
