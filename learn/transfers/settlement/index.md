@@ -17,7 +17,7 @@ This section covers Wormhole Settlement, an intent-based solution enabling fast 
 
     Discover Wormhole Settlement, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
 
-    [:custom-arrow: Learn more about Wormhole Settlement](/docs/learn/messaging/wormhole-settlement/overview/)
+    [:custom-arrow: Learn more about Wormhole Settlement](/docs/learn/transfers/settlement/overview/)
 
 -   :octicons-question-16:{ .lg .middle } **Protocol Architectures**
 
@@ -25,6 +25,6 @@ This section covers Wormhole Settlement, an intent-based solution enabling fast 
 
     Explore Wormhole Settlement's native swap protocols—Liquidity Layer, Mayan Swift, and MCTP — for scalable, efficient cross-chain asset transfers.
 
-    [:custom-arrow: Discover protocol architectures](/docs/learn/messaging/wormhole-settlement/architecture/)
+    [:custom-arrow: Discover protocol architectures](/docs/learn/transfers/settlement/architecture/)
 
 </div>

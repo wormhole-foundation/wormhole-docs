@@ -40,4 +40,4 @@ Due to the hub-spoke model of liquidity, new chains without proven traction can 
 
 ## Related Resources
 
-- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/messaging/wormhole-settlement/architecture/){target=\_blank} page
+- To learn more about the architecture of Wormhole-native swap protocols, see the [Settlement Protocol Architectures](/docs/learn/transfers/settlement/architecture/){target=\_blank} page

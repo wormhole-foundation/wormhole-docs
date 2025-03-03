@@ -17,7 +17,7 @@ This section provides resources to build with Wormhole Settlement, including int
 
     Integrate seamlessly with Wormhole's Liquidity Layer, learn key EVM contract functions for fast and secure cross-chain transfers.
 
-    [:custom-arrow: Build on the Liquidity layer](/docs/build/contract-integrations/settlement/liquidity-layer/)
+    [:custom-arrow: Build on the Liquidity layer](/docs/build/transfers/settlement/liquidity-layer/)
 
 -   :octicons-code-16:{ .lg .middle } **Run a Settlement Solver**
 
@@ -25,6 +25,6 @@ This section provides resources to build with Wormhole Settlement, including int
 
     Set up, configure, and run a Wormhole Settlement Solver on Solana's Matching Engine to fulfill cross-chain transfers efficiently and securely.
 
-    [:custom-arrow: Run a Solver](/docs/build/contract-integrations/settlement/solver/)
+    [:custom-arrow: Run a Solver](/docs/build/transfers/settlement/solver/)
 
 </div>
