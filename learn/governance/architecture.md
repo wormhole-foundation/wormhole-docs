@@ -29,6 +29,30 @@ Spoke chains handle local voting, forward votes to the hub, and execute approved
    - **`SpokeMetadataCollector`** - fetches proposal metadata from the hub for spoke chain voters
    - **`SpokeAirlock`** - acts as governance's "admin" on the spoke, has permissions and its treasury
 
+### Spoke Solana Staking Program
+
+The **Spoke Solana Staking Program** handles local voting from users who have staked W tokens or have vests in the program, forwards votes to the hub, and executes approved proposals from the hub for decentralized governance.
+
+The program implements its functionality through instructions, using specialized PDA accounts where data is stored. Below are the key accounts in the program:
+
+ - **`GlobalConfig`** - global program configuration
+ - **`StakeAccountMetadata`** - stores user's staking information
+ - **`CustodyAuthority`** - PDA account managing custody and overseeing token operations related to stake accounts
+ - **`StakeAccountCustody`** - token account associated with a stake account for securely storing staked tokens
+ - **`CheckpointData`** - tracks delegation history
+ - **`SpokeMetadataCollector`** - collects and updates proposal metadata from the hub chain
+ - **`GuardianSignatures`** - stores guardian signatures for message verification
+ - **`ProposalData`** - stores data about a specific proposal, including votes and start time
+ - **`ProposalVotersWeightCast`** - tracks individual voter’s weight for a proposal
+ - **`SpokeMessageExecutor`** - processes messages from a spoke chain via the Wormhole protocol
+ - **`SpokeAirlock`** - manages PDA signing and seed validation for secure instruction execution
+ - **`VestingBalance`** - stores total vesting balance and related staking information of a vester
+ - **`VestingConfig`** - defines vesting configuration, including mint and admin details
+ - **`Vesting`** - represents individual vesting allocations with maturation data
+ - **`VoteWeightWindowLengths`** - tracks lengths of vote weight windows
+
+Each account is implemented as a Solana PDA (Program Derived Address) and utilizes Anchor's account framework for serialization and management.
+
 ## System Workflow
 
 The MultiGov system workflow details the step-by-step process for creating, voting on and executing governance proposals across connected chains, from proposal creation to final cross-chain execution.
