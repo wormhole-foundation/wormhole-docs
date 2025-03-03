@@ -29,31 +29,7 @@ For more details about the features of Wormhole Connect and a breakdown of suppo
 
 ## Build with Connect
 
-::timeline::
-
-[
-    {
-        "title": "[Integrate Connect](/docs/build/transfers/connect/overview/#integrate-connect)",
-        "content": "Install npm package or use hosted CDN.",
-        "icon": ":octicons-code-16:",
-        "sub_title": "Step 1"
-    },
-    {
-        "title": "[Configure data](/docs/build/transfers/connect/configuration/configure-data/)",
-        "content": "Specify networks, RPCs, supported tokens, and more.",
-        "icon": ":octicons-gear-16:",
-        "key": "cyan",
-        "sub_title": "Step 2"
-    },
-    {
-        "title": "[Customize styling](/docs/build/transfers/connect/configuration/configure-theme/)",
-        "content": "Style your widget with color schemes, fonts, and layout options.",
-        "icon": ":octicons-paintbrush-16:",
-        "sub_title": "Step 3"
-    },
-]
-
-::/timeline::
+[timeline left(wormhole-docs/.snippets/text/build/transfers/connect/connect-timeline.json)]
 
 ## See It In Action {: #see-it-in-action }
 
