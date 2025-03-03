@@ -2,10 +2,15 @@ import { fetchVaaId } from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
 const testFetchVaaId = async () => {
-  const vaaId = await fetchVaaId(TXS[0]);
+  for (const tx of TXS) {
+    const vaaIds = await fetchVaaId([tx]);
 
-  if (vaaId) {
-    console.log(`VAA ID: ${vaaId}`);
+    if (vaaIds.length > 0) {
+      console.log(`Transaction: ${tx}`);
+      vaaIds.forEach((vaaId) => console.log(`VAA ID: ${vaaId}`));
+    } else {
+      console.log(`No VAA ID found for transaction: ${tx}`);
+    }
   }
 };
 

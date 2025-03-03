@@ -6,20 +6,29 @@ import {
 import { TXS } from '../src/config/constants';
 
 const testCheckVaaValidity = async () => {
-  const vaaId = await fetchVaaId(TXS[0]);
-  if (!vaaId) {
-    console.log('VAA ID not found.');
-    return;
-  }
+  for (const tx of TXS) {
+    const vaaIds = await fetchVaaId([tx]);
 
-  const vaaBytes = await fetchVaa(vaaId);
-  if (!vaaBytes) {
-    console.log('VAA not found.');
-    return;
-  }
+    if (vaaIds.length === 0) {
+      console.log(`No VAA ID found for transaction: ${tx}`);
+      continue;
+    }
 
-  const result = await checkVaaValidity(vaaBytes.toString('base64'));
-  console.log('VAA Validity:', result);
+    for (const vaaId of vaaIds) {
+      const vaaData = await fetchVaa([vaaId]);
+
+      if (vaaData.length === 0 || !vaaData[0].vaaBytes) {
+        console.log(`VAA not found for ID: ${vaaId}`);
+        continue;
+      }
+
+      const result = await checkVaaValidity(vaaData[0].vaaBytes);
+      console.log(
+        `Transaction: ${tx}\nVAA ID: ${vaaId}\nVAA Validity:`,
+        result
+      );
+    }
+  }
 };
 
 testCheckVaaValidity();

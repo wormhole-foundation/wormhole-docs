@@ -157,13 +157,15 @@ To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This
         If successful, the output will be:  
 
         ```bash
-        VAA ID: 0000000001...
+        Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
+        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170
+        ...
         ```  
 
         If no VAA is found:  
 
         ```bash
-        No VAA found for this transaction.
+        No VAA found for transaction: 0x...
         ```  
 
 ### Fetch the Full VAA
@@ -200,13 +202,15 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
         If successful, the output will be:  
 
         ```bash
-        VAA Bytes: 01020304...
+        Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
+        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170
+        VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeM...
         ```  
 
         If no VAA is found:  
 
         ```bash
-        No VAA found for this ID.
+        No VAA ID found for transaction: 0x...
         ```  
 
 ### Validate VAA Signatures
@@ -240,7 +244,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
         npx tsx test/checkVaaValidity.test.ts
         ```  
 
-        If successful, the output will be:  
+        If the VAA is valid, the output will be:  
 
         ```bash
         ✅ VAA Valid: true
@@ -249,7 +253,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
         If invalid, the output will include the reason:  
 
         ```bash
-        ❌ VAA Valid: false, Reason: Guardian set mismatch
+        ❌ VAA Valid: false, Reason: VM signature invalid
         ```  
 
 ### Fetch Observations (VAA Signatures)
@@ -286,16 +290,25 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
         If successful, the output will be:  
 
         ```bash
+        Fetching observations
+        Transaction: 0x3c989a6bb40dcd4719453fbe7bbac420f23962c900ae75793124fc9cc614368c
+        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/156209
         Observations: [
-        { guardianAddr: '0xabc123...', signature: '0xabcdef...' },
-        { guardianAddr: '0xdef456...', signature: '0x123456...' }
-        ]
+        {
+            guardianAddr: '0xf93124b7c738843cbb89e864c862c38cddcccf95',
+            signature: 'Un3raUm0dUKWxq5BFgRdMd0d5tSYjBJ8L0/mqW4hFy405UQIrn55...'
+        },
+        {
+            guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811',
+            signature: 'ZjY4YzkzYjc2ODllMWI2N2ZlODQyYzIwZGIzM2NiYTUwYWViZGNl...'
+        },
+        ...
         ```  
 
         If no observations are found:  
 
         ```bash
-        ❌ No observations found.
+        No observations found for VAA ID: ...
         ```  
 
 ### Fetch the Latest Guardian Set
@@ -332,14 +345,19 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
         If successful, the output will be:  
 
         ```bash
-        Current Guardian Set Index: 5
-        Guardian Addresses: [ '0xabc123...', '0xdef456...', ... ]
+        Fetching current guardian set
+        Current Guardian Set Index: 4
+        Guardian Addresses: [
+        '0x5893b5a76c3f739645648...',
+        '0xff6cb952589bde862c25e...',
+        ...
+        ]
         ```  
 
         If there is an error fetching the data:  
 
         ```bash
-        ❌ Error fetching guardian set: Request failed with status 500
+        Error fetching guardian set: Request failed with status 500
         ```  
 
 ### Replace Outdated Signatures
