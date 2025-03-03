@@ -27,7 +27,7 @@ Spoke chains handle local voting, forward votes to the hub, and execute approved
    - **`SpokeVoteAggregator`** - collects votes on the spoke chain and forwards them to the hub
    - **`SpokeMessageExecutor`** - receives and executes approved proposals from the hub
    - **`SpokeMetadataCollector`** - fetches proposal metadata from the hub for spoke chain voters
-   - **`SpokeAirlock`** - acts as governance's "admin" on the spoke, has permissions and its treasury
+   - **`SpokeAirlock`** - acts as governance's "admin" on the spoke, has permissions, and its treasury
 
 ### Spoke Solana Staking Program
 
@@ -55,7 +55,7 @@ Each account is implemented as a Solana PDA (Program Derived Address) and utiliz
 
 ## System Workflow
 
-The MultiGov system workflow details the step-by-step process for creating, voting on and executing governance proposals across connected chains, from proposal creation to final cross-chain execution.
+The MultiGov system workflow details the step-by-step process for creating, voting on, and executing governance proposals across connected chains, from proposal creation to final cross-chain execution.
 
 ### EVM Governance Workflow
 
