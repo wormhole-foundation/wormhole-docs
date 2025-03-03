@@ -3,5 +3,6 @@ nav:
  - index.md
  - connect
  - native-token-transfers
+ - settlement
 # TODO: Token Bridge
  - 'CCTP Bridge': 'cctp.md'
