@@ -232,7 +232,7 @@ Allow merchants and platforms to accept payments in any token, auto-converting t
 - [**Wormhole Connect**](/docs/build/applications/connect/overview/){target=\_blank} – facilitates seamless payments in various tokens
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – ensures direct, native asset transfers
 
-🔗 **Used in:** eCommerce, Web3 payments and subscription models
+🔗 **Used in:** E-commerce, Web3 payments, and subscription models
 
 </div>
 </div>
@@ -253,7 +253,7 @@ Fetch and verify cross-chain data, enabling reliable, decentralized Oracle servi
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
 
-🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🚀 **Used by:** [PYTH](https://wormhole.com/case-studies/pyth){target=\_blank}
+🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🚀 **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
 
 </div>
 </div>
