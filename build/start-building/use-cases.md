@@ -1,11 +1,7 @@
 ---
 title: Use Cases
-description: 
+description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
 ---
-
-<!-- link each product ? 
-[link](#){target=\_blank}
--->
 
 # Wormhole Use Cases
 
@@ -26,10 +22,8 @@ description:
 
 </div>
 
-🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators - [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
+🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators  <br>🚀 **Used by:** [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -47,12 +41,9 @@ description:
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
 
 </div>
-<hr>
 
-🔗 **Used in:** Lending protocols and yield platforms - [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
+🔗 **Used in:** Lending protocols and yield platforms <br>🚀 **Used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -69,12 +60,9 @@ description:
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – sends signals to execute trades
 
 </div>
-<hr>
 
-🔗 **Used in:** Trading bots, arbitrage platforms, and oracles - [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
+🔗 **Used in:** Trading bots, arbitrage platforms, and oracles <br>🚀 **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -90,12 +78,9 @@ description:
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers BTC across chains
 
 </div>
-<hr>
 
-🔗 **Used in:** Bitcoin DeFi and lightning network integrations - [Synonym](https://wormhole.com/case-studies/synonym){target=\_blank}
+🔗 **Used in:** Bitcoin DeFi and lightning network integrations <br>🚀 **Used by:** [Synonym](https://wormhole.com/case-studies/synonym){target=\_blank}
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -112,12 +97,9 @@ description:
 - [**Token Bridge**](/docs/build/contract-integrations/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
 
 </div>
-<hr>
 
-🔗 **Used in:** Web3 social networks and content monetization - [Chingari](https://chingari.io/){target=\_blank}
+🔗 **Used in:** Web3 social networks and content monetization <br>🚀 **Used by:** [Chingari](https://chingari.io/){target=\_blank}
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -134,13 +116,10 @@ description:
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
 
 </div>
-<hr>
 
 🔗 **Used in:** Token launchpads, IDOs, and meme token ecosystems
 
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -157,13 +136,10 @@ description:
 - [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - for quick cross-chain token execution, providing efficient and seamless user experiences
 
 </div>
-<hr>
 
 🔗 **Used in:**  Perpetual DEXs, trading platforms and cross-chain derivatives
 
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -180,13 +156,10 @@ description:
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – facilitates native token conversion for gas payments
 
 </div>
-<hr>
 
 🔗 **Used in:** Wallets, dApps, and multichain user experience improvements
 
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -203,13 +176,10 @@ description:
 - [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - provides a framework for executing user-defined bridging intents
 
 </div>
-<hr>
 
 🔗 **Used in:** Bridging protocols, DeFi automation, and smart contract libraries
 
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -226,13 +196,10 @@ description:
 - [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} – automates token execution for efficient and seamless cross-chain prediction market interactions
 
 </div>
-<hr>
 
 🔗 **Used in:** Decentralized betting, prediction markets and cross-chain gaming
 
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -249,13 +216,10 @@ description:
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – ensures direct, native asset transfers
 
 </div>
-<hr>
 
 🔗 **Used in:** eCommerce, Web3 payments and subscription models
 
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -272,13 +236,10 @@ description:
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
 
 </div>
-<hr>
 
-🔗 **Used in:** Price feeds, DeFi protocols, and Smart Contract automation [PYTH](https://wormhole.com/case-studies/pyth){target=\_blank}
+🔗 **Used in:** Price feeds, DeFi protocols, and Smart Contract automation <br>🚀 **Used by:** [PYTH](https://wormhole.com/case-studies/pyth){target=\_blank}
 
 </div>
-
-<!----------------------------------->
 
 <div markdown class="use-case-card">
 
@@ -295,8 +256,7 @@ description:
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
 
 </div>
-<hr>
 
-🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks - [Lido](https://lido.fi/){target=\_blank}
+🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks <br>🚀 **Used by:** [Lido](https://lido.fi/){target=\_blank}
 
 </div>
