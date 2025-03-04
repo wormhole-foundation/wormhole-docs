@@ -5,9 +5,9 @@ description: Learn how to deploy the MultiGov Staking Program on Solana, includi
 
 # Deploy MultiGov on Solana  
 
-This guide provides instructions to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project’s governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.  
+This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project’s governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.
 
-Once your project setup is complete, follow this guide to configure, compile, and deploy the necessary **Solana programs** and supporting accounts. This deployment enables **decentralized governance participation** on Solana as a spoke chain within the **MultiGov system**.  
+Once your project setup is complete, follow this guide to configure, compile, and deploy the necessary Solana programs and supporting accounts. This deployment enables decentralized governance participation on Solana as a spoke chain within the MultiGov system.  
 
 ## Prerequisites 
 
@@ -87,7 +87,7 @@ If the account does not have enough SOL, use one of the following methods to add
 
 ???- tip "**Use a Solana Faucet (Devnet Only)**"  
 
-    You can use online faucets to receive free 10 SOL:
+    You can use online faucets to receive 10 free SOL:
 
     - [Solana Faucet](https://faucet.solana.com/){target=\_blank}
 
@@ -170,8 +170,8 @@ When deploying MultiGov on Solana, several key parameters need to be set. Here a
  - `maxCheckpointsAccountLimit` ++"u64"++ - the maximum number of checkpoints an account can have. For example, `654998` is used in production, while `15` might be used for testing
  - `hubChainId` `u16` - the chain ID of the hub network where proposals are primarily managed. For example, `10002` for Sepolia testnet
  - `hubProposalMetadata` ++"[u8; 20]"++ - an array of bytes representing the address of the Hub Proposal Metadata contract on Ethereum. This is used to identify proposals from the hub 
- - `voteWeightWindowLength` ++"u64"++ - specifies the length of the checkpoints window in seconds in which the minimum voting weight is taken. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The vote weight window helps solve problems such as manipulating votes in a chain 
+ - `voteWeightWindowLength` ++"u64"++ - specifies the length of the checkpoint window in seconds in which the minimum voting weight is taken. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The vote weight window helps solve problems such as manipulating votes in a chain 
  - `votingTokenMint` ++"Pubkey"++ - the mint address of the token used for voting  
- - `governanceAuthority` ++"Pubkey"++ - the public key of the account that has the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
- - `vestingAdmin` ++"Pubkey"++ - the public key of the account responsible for managing vesting operations. The `vestingAdmin` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
+ - `governanceAuthority` ++"Pubkey"++ - the account's public key that has the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
+ - `vestingAdmin` ++"Pubkey"++ - the account's public key responsible for managing vesting operations. The `vestingAdmin` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
  - `hubDispatcher` ++"Pubkey"++ - the Solana public key derived from an Ethereum address on the hub chain that dispatches messages to the spoke chains. This is crucial for ensuring that only authorized messages from the hub are executed on the spoke
