@@ -1,6 +1,6 @@
 ---
 title: MultiGov Deployment to Solana
-description: 
+description: Learn how to deploy the MultiGov Staking Program on Solana, including setup, funding, deployment, and configuration steps. 
 ---
 
 # Deploy MultiGov on Solana  
