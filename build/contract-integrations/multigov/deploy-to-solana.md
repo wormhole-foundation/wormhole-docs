@@ -103,7 +103,7 @@ With the deployer account set up and funded, you can deploy the MultiGov Staking
 
 ### Deploy the Program  
 
-Once the deployer account is funded, deploy the MultiGov Staking Program using **Anchor**:  
+Deploy the MultiGov Staking Program using **Anchor**:  
 
 ```bash
 anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet ./app/keypairs/deployer.json
