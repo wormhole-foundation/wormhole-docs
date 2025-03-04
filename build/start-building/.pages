@@ -1,7 +1,8 @@
 title: Start Building
 nav:
  - index.md
- - 'Products': 'products.md'
+ - 'Product Comparison': 'products.md'
+ - 'Use Cases': 'use-cases.md'
  - 'Supported Networks': 'supported-networks.md'
  - 'Testnet Faucets': 'testnet-faucets.md'
  - 'Demos': 'demos.md'

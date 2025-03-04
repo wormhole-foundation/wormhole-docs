@@ -70,10 +70,7 @@
   :octicons-package-16: <a href="https://optimistic.etherscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Polygon</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://polygon.technology/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.polygon.technology/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://polygonscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Rootstock</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://rootstock.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://dev.rootstock.io/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.rootstock.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :octicons-package-16: <a href="https://polygonscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://scroll.io/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.scroll.io/en/home/" target="_blank">Developer Docs</a><br>
   :octicons-package-16: <a href="https://scrollscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Seievm</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td></td></tr><tr><td>SNAXchain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
