@@ -49,12 +49,6 @@ To create a new keypair and save it to a file, run:
 solana-keygen new --outfile ./app/keypairs/deployer.json
 ```
 
-### Minimum Required Balance
-When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
-
- - 7.60219224 SOL for deployment costs
- - 0.00542 SOL for transaction fees
-
 ### Check the Deployer Account Address  
 
 To retrieve the public address of the newly created keypair, run:  
@@ -70,6 +64,12 @@ To verify the current balance of the deployer account, run:
 ```bash
 solana balance -k ./app/keypairs/deployer.json
 ```
+
+!!! important 
+    When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
+
+    - 7.60219224 SOL for deployment costs
+    - 0.00542 SOL for transaction fees
 
 ### Fund the Deployer Account  
 
