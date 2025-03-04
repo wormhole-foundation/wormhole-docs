@@ -5,7 +5,11 @@ description: Compare Wormhole products by features, asset support, integration c
 
 # Products 
 
-Wormhole provides a suite of cross-chain solutions tailored for different asset transfer needs, including Connect, Native Token Transfers (NTT), and Token Bridge. Whether you need a plug-and-play bridging UI, native token transfers without wrappers, or a robust lock-and-mint mechanism, this guide helps you choose the right solution. Beyond transfers, Wormhole also offers tools for cross-chain data retrieval, governance, and next-generation interoperability with Wormhole Settlement.
+Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
+
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+
+Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
 
 ## Transfer Products
 
