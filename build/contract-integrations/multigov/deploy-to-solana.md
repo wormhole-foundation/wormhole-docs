@@ -35,3 +35,59 @@ To create a verifiable build of the MultiGov Staking Program, run the following 
 
 Once the build is complete, the compiled artifacts will be available in the `target` folder.
 
+## Generate a New Keypair  
+
+To create a new keypair and save it to a file, run:  
+
+```bash
+solana-keygen new --outfile ./app/keypairs/deployer.json
+```
+
+## Minimum Required Balance
+When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
+
+ - 7.60219224 SOL for deployment costs
+ - 0.00542 SOL for transaction fees
+
+## Check the Deployer Account Address  
+
+To retrieve the public address of the newly created keypair, run:  
+
+```bash
+solana address -k ./app/keypairs/deployer.json
+```
+
+## Check the Deployer Account Balance  
+
+To verify the current balance of the deployer account, run:  
+
+```bash
+solana balance -k ./app/keypairs/deployer.json
+```
+
+## Fund the Deployer Account  
+
+If the account does not have enough SOL, use one of the following methods to add funds.  
+
+???- tip "**Transfer SOL from Another Account**"  
+
+    If you already have SOL in another account, transfer it using a wallet (Phantom, Solflare, etc.) or in the terminal:  
+
+    ```bash
+    solana transfer <deployer_account_address> <amount> --from /path/to/funder.json
+    ```
+
+???- tip "**Request an Airdrop (Devnet Only)**"  
+
+    If deploying to Devnet, you can request free SOL: 
+
+    ```bash
+    solana airdrop 2 -k ./app/keypairs/deployer.json
+    ```
+
+???- tip "**Use a Solana Faucet (Devnet Only)**"  
+
+    You can use online faucets to receive free 10 SOL:
+
+    [Solana Faucet](https://faucet.solana.com/){target=\_blank}
+
