@@ -25,4 +25,13 @@ To deploy MultiGov on Solana, ensure you have the following installed:
     cd multigov/solana/
     ```
 
+## Build the Project
+
+To create a verifiable build of the MultiGov Staking Program, run the following command:    
+
+```bash
+./scripts/build_verifiable_staking_program.sh
+```
+
+Once the build is complete, the compiled artifacts will be available in the `target` folder.
 
