@@ -211,7 +211,7 @@ Allow users to place bets, manage positions, and receive payouts seamlessly acro
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time market data, tracks collateral, and manages odds across chains
 - [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} – automates token execution for efficient and seamless cross-chain prediction market interactions
 
-🔗 **Used in:** Decentralized betting, prediction markets and cross-chain gaming
+🔗 **Used in:** Decentralized betting, prediction markets, and cross-chain gaming
 
 </div>
 </div>
@@ -253,7 +253,7 @@ Fetch and verify cross-chain data, enabling reliable, decentralized Oracle servi
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
 
-🔗 **Used in:** Price feeds, DeFi protocols, and Smart Contract automation <br>🚀 **Used by:** [PYTH](https://wormhole.com/case-studies/pyth){target=\_blank}
+🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🚀 **Used by:** [PYTH](https://wormhole.com/case-studies/pyth){target=\_blank}
 
 </div>
 </div>
