@@ -13,7 +13,7 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 - [**Connect**](/docs/build/applications/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
 - [**Native Token Transfers (NTT)**](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without wrappers. Best for teams prioritizing native token movement without wrappers
-- [**Token Bridge**](/docs/learn/messaging/token-bridge/){target=\_blank} - a bridging solution that uses a lock & mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages 
+- [**Token Bridge**](/docs/learn/messaging/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages 
 
 
 <div markdown class="full-width">
