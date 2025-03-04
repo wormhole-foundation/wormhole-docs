@@ -49,5 +49,5 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data, governance, and advanced messaging.
 
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} - a data retrieval service to fetch on-chain data from multiple networks, powering analytics and dashboards. Best for applications that need to simplify multi-chain analytics, reporting, and data aggregation 
-- [**MultiGov**](/docs/learn/governance/overview/){target=\_blank} - a unified governance framework to manage multi-chain protocol governance through a single mechanism. Best for projects managing multi-chain governance and protocol updates
+- [**MultiGov**](/docs/learn/governance/overview/){target=\_blank} - a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates
 - [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - a next-generation suite of intent protocols enabling fast multi-chain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods. Best for institutional-scale volume and chain abstraction for application developers 
