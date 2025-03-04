@@ -35,7 +35,13 @@ To create a verifiable build of the MultiGov Staking Program, run the following 
 
 Once the build is complete, the compiled artifacts will be available in the `target` folder.
 
-## Generate a New Keypair  
+## Set Up the Deployer Account
+
+For a successful deployment, you need a funded deployer account on Solana. This account will store the program and execute deployment transactions. 
+
+In this section, you will create a new keypair, check the account balance, and ensure it has enough SOL to cover deployment costs. If needed, you can fund the account using different methods before deploying. 
+
+### Generate a New Keypair  
 
 To create a new keypair and save it to a file, run:  
 
@@ -43,13 +49,13 @@ To create a new keypair and save it to a file, run:
 solana-keygen new --outfile ./app/keypairs/deployer.json
 ```
 
-## Minimum Required Balance
+### Minimum Required Balance
 When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
 
  - 7.60219224 SOL for deployment costs
  - 0.00542 SOL for transaction fees
 
-## Check the Deployer Account Address  
+### Check the Deployer Account Address  
 
 To retrieve the public address of the newly created keypair, run:  
 
@@ -57,7 +63,7 @@ To retrieve the public address of the newly created keypair, run:
 solana address -k ./app/keypairs/deployer.json
 ```
 
-## Check the Deployer Account Balance  
+### Check the Deployer Account Balance  
 
 To verify the current balance of the deployer account, run:  
 
@@ -65,11 +71,11 @@ To verify the current balance of the deployer account, run:
 solana balance -k ./app/keypairs/deployer.json
 ```
 
-## Fund the Deployer Account  
+### Fund the Deployer Account  
 
 If the account does not have enough SOL, use one of the following methods to add funds.  
 
-???- tip "**Transfer SOL from Another Account**"  
+???- interface "**Transfer SOL from Another Account**"  
 
     If you already have SOL in another account, transfer it using a wallet (Phantom, Solflare, etc.) or in the terminal:  
 
@@ -77,7 +83,7 @@ If the account does not have enough SOL, use one of the following methods to add
     solana transfer <deployer_account_address> <amount> --from /path/to/funder.json
     ```
 
-???- tip "**Request an Airdrop (Devnet Only)**"  
+???- interface "**Request an Airdrop (Devnet Only)**"  
 
     If deploying to Devnet, you can request free SOL: 
 
@@ -85,13 +91,17 @@ If the account does not have enough SOL, use one of the following methods to add
     solana airdrop 2 -k ./app/keypairs/deployer.json
     ```
 
-???- tip "**Use a Solana Faucet (Devnet Only)**"  
+???- interface "**Use a Solana Faucet (Devnet Only)**"  
 
     You can use online faucets to receive 10 free SOL:
 
     - [Solana Faucet](https://faucet.solana.com/){target=\_blank}
 
-## Deploy the Program  
+## Deploy the MultiGov Staking Program
+
+With the deployer account set up and funded, you can deploy the MultiGov Staking Program to the Solana blockchain. This step involves deploying the program, verifying the deployment, and ensuring the necessary storage and metadata are correctly configured. Once the IDL is initialized, the program will be ready for further setup and interaction.
+
+### Deploy the Program  
 
 Once the deployer account is funded, deploy the MultiGov Staking Program using **Anchor**:  
 
@@ -99,7 +109,7 @@ Once the deployer account is funded, deploy the MultiGov Staking Program using *
 anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet ./app/keypairs/deployer.json
 ```
 
-## Verify the Deployment  
+### Verify the Deployment  
 
 After deployment, check if the program is successfully deployed by running:  
 
@@ -107,7 +117,7 @@ After deployment, check if the program is successfully deployed by running:
 solana program show INSERT_PROGRAM_ID
 ```
 
-## Extend Program Storage  
+### Extend Program Storage  
 
 If the deployed program requires additional storage space for updates or functionality, extend the program storage using the following command:  
 
@@ -115,7 +125,7 @@ If the deployed program requires additional storage space for updates or functio
 solana program extend INSERT_PROGRAM_ID 800000
 ```
 
-## Initialize the IDL  
+### Initialize the IDL  
 
 To associate an IDL file with the deployed program, run:  
 
@@ -123,7 +133,11 @@ To associate an IDL file with the deployed program, run:
 anchor idl init --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json INSERT_PROGRAM_ID
 ```
 
-## Run Deployment Scripts  
+## Configure the Staking Program
+
+The final step after deploying the MultiGov Staking Program is configuring it for proper operation. This includes running a series of deployment scripts to initialize key components and set important governance parameters. These steps ensure that staking, governance, and cross-chain communication function as expected.
+
+### Run Deployment Scripts  
 
 After deploying the program and initializing the IDL, execute the following scripts **in order** to set up the staking environment and necessary accounts.  
 
@@ -163,7 +177,7 @@ After deploying the program and initializing the IDL, execute the following scri
     npx ts-node app/deploy/06_create_message_executor.ts
     ```
 
-## Set MultiGov Staking Program Key Parameters  
+### Set MultiGov Staking Program Key Parameters  
 
 When deploying MultiGov on Solana, several key parameters need to be set. Here are the most important configuration points:  
 
