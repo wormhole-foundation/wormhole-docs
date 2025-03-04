@@ -7,11 +7,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Cross-Chain Swaps and Liquidity Aggregation
 
-💡 **Enable seamless swaps between chains with real-time liquidity routing.**  
+Enable seamless swaps between chains with real-time liquidity routing.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -27,11 +29,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Borrowing and Lending Across Chains
 
-💡 **Let users borrow assets on one chain using collateral from another.**  
+Let users borrow assets on one chain using collateral from another.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -47,11 +51,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Real-Time Price Feeds and Trading Strategies
 
-💡 **Fetch price feeds across multiple chains for DeFi applications.**
+Fetch price feeds across multiple chains for DeFi applications.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -66,11 +72,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Asset Movement Between Bitcoin and Other Chains
 
-💡 **Enable direct BTC transfers without wrapped assets.**
+Enable direct BTC transfers without wrapped assets.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -84,11 +92,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Decentralized Social Platforms
 
-💡 **Enable seamless communication and asset transfer across decentralized social networks.**
+Enable seamless communication and asset transfer across decentralized social networks.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -103,11 +113,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Memecoin Launchpads
 
-💡 **Launch and distribute memecoins across multiple chains, enabling cross-chain fundraising and liquidity access.**
+Launch and distribute memecoins across multiple chains, enabling cross-chain fundraising and liquidity access.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -123,11 +135,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Cross-Chain Perpetuals
 
-💡 **Enable leveraged perpetual trading across chains with seamless collateral and liquidity management.**
+Enable leveraged perpetual trading across chains with seamless collateral and liquidity management.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -143,11 +157,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Gas Abstraction
 
-💡 **Allow users to pay gas fees with any token across different networks, removing friction in multichain interactions.**
+Allow users to pay gas fees with any token across different networks, removing friction in multichain interactions.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -163,11 +179,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Bridging Intent Library
 
-💡 **Provide developers with a library of bridging intents and automation functions, enabling plug-and-play interoperability logic.**
+Provide developers with a library of bridging intents and automation functions, enabling plug-and-play interoperability logic.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -183,11 +201,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Multichain Prediction Markets
 
-💡 **Enable users to participate in predictions across multiple chains, creating deeper liquidity pools and more competitive odds compared to single-chain markets. Allow users to place bets, manage positions, and receive payouts seamlessly across different networks.**
+Allow users to place bets, manage positions, and receive payouts seamlessly across different networks.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -203,11 +223,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Cross-Chain Payment Widgets
 
-💡 **Allow merchants and platforms to accept payments in any token, auto-converting them into a desired asset.**
+Allow merchants and platforms to accept payments in any token, auto-converting them into a desired asset.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -223,11 +245,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Oracle Networks
 
-💡 **Fetch and verify cross-chain data, enabling reliable, decentralized Oracle services for multichain applications.**
+Fetch and verify cross-chain data, enabling reliable, decentralized Oracle services for multichain applications.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
@@ -243,11 +267,13 @@ description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lendi
 
 <div markdown class="use-case-card">
 
+<div class="title" markdown>
+
 ## Cross-Chain Staking
 
-💡 **Enable users to stake assets on one chain while earning rewards or securing networks on another.**
+Enable users to stake assets on one chain while earning rewards or securing networks on another.
 
-<hr>
+</div>
 <div markdown>
 
 🛠 **Wormhole products used:**
