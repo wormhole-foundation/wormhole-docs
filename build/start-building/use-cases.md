@@ -3,7 +3,9 @@ title: Use Cases
 description: 
 ---
 
-<!-- link each product ? -->
+<!-- link each product ? 
+[link](#){target=\_blank}
+-->
 
 # Wormhole Use Cases
 
@@ -18,12 +20,11 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Wormhole Connect** – handles user-friendly asset transfers
-- **Native Token Transfer** – moves native assets across chains
-- **Queries** – fetches real-time prices for optimal trade execution
+- [**Wormhole Connect**](/docs/build/applications/connect/overview/){target=\_blank} – handles user-friendly asset transfers
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – moves native assets across chains
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time prices for optimal trade execution
 
 </div>
-<hr>
 
 🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators - [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
 </div>
@@ -41,9 +42,9 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Messaging** – moves loan requests and liquidations across chains
-- **Native Token Transfers** – transfers collateral as native assets
-- **Queries** – fetches interest rates and asset prices in real-time
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves loan requests and liquidations across chains
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers collateral as native assets
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
 
 </div>
 <hr>
@@ -64,8 +65,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Queries** – fetches price feeds from oracles and trading platforms
-- **Messaging** – sends signals to execute trades
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches price feeds from oracles and trading platforms
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – sends signals to execute trades
 
 </div>
 <hr>
@@ -86,7 +87,7 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Native Token Transfers** – transfers BTC across chains
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers BTC across chains
 
 </div>
 <hr>
@@ -107,8 +108,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Messaging** – facilitates decentralized interactions
-- **Token Bridge** – enables cross-chain tokenized rewards
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates decentralized interactions
+- [**Token Bridge**](/docs/build/contract-integrations/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
 
 </div>
 <hr>
@@ -129,8 +130,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Native Token Transfers** – enables native asset transfers for seamless fundraising
-- **Messaging** – facilitates cross-chain token distribution and claim processes
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – enables native asset transfers for seamless fundraising
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
 
 </div>
 <hr>
@@ -152,8 +153,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Queries** – fetches real-time asset prices and manages position state across chains
-- **Wormhole Settlement** - for quick cross-chain token execution, providing efficient and seamless user experiences
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time asset prices and manages position state across chains
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - for quick cross-chain token execution, providing efficient and seamless user experiences
 
 </div>
 <hr>
@@ -175,8 +176,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Messaging** – routes gas fee payments across chains
-- **Native Token Transfers** – facilitates native token conversion for gas payments
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – routes gas fee payments across chains
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – facilitates native token conversion for gas payments
 
 </div>
 <hr>
@@ -198,8 +199,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Messaging** – enables predefined cross-chain actions and triggers.
-- **Wormhole Settlement** - provides a framework for executing user-defined bridging intents
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – enables predefined cross-chain actions and triggers.
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - provides a framework for executing user-defined bridging intents
 
 </div>
 <hr>
@@ -221,8 +222,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Queries** – fetches real-time market data, tracks collateral, and manages odds across chains
-- **Wormhole Settlement** – automates token execution for efficient and seamless cross-chain prediction market interactions
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time market data, tracks collateral, and manages odds across chains
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} – automates token execution for efficient and seamless cross-chain prediction market interactions
 
 </div>
 <hr>
@@ -244,8 +245,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Wormhole Connect** – facilitates seamless payments in various tokens
-- **Native Token Transfers** – ensures direct, native asset transfers
+- [**Wormhole Connect**](/docs/build/applications/connect/overview/){target=\_blank} – facilitates seamless payments in various tokens
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – ensures direct, native asset transfers
 
 </div>
 <hr>
@@ -267,8 +268,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Queries** – fetches data from multiple chains and Oracle providers
-- **Messaging** – ensures tamper-proof data relay across networks
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
 
 </div>
 <hr>
@@ -290,8 +291,8 @@ description:
 
 🛠 **Wormhole products used:**
 
-- **Messaging** – moves staking rewards and governance signals across chains
-- **Native Token Transfers** – transfers staked assets natively between networks
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
 
 </div>
 <hr>
@@ -299,25 +300,3 @@ description:
 🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks - [Lido](https://lido.fi/){target=\_blank}
 
 </div>
-
-<!---------------------------------
-
-<div markdown class="use-case-card">
-
-##
-
-💡 ** **
-
-<hr>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-</div>
-<hr>
-
-🔗 **Used in:**  [link](#){target=\_blank}
-
-</div>
-
--->
