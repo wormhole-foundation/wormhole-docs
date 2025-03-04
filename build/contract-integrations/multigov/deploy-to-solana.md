@@ -89,5 +89,89 @@ If the account does not have enough SOL, use one of the following methods to add
 
     You can use online faucets to receive free 10 SOL:
 
-    [Solana Faucet](https://faucet.solana.com/){target=\_blank}
+    - [Solana Faucet](https://faucet.solana.com/){target=\_blank}
 
+## Deploy the Program  
+
+Once the deployer account is funded, deploy the MultiGov Staking Program using **Anchor**:  
+
+```bash
+anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet ./app/keypairs/deployer.json
+```
+
+## Verify the Deployment  
+
+After deployment, check if the program is successfully deployed by running:  
+
+```bash
+solana program show INSERT_PROGRAM_ID
+```
+
+## Extend Program Storage  
+
+If the deployed program requires additional storage space for updates or functionality, extend the program storage using the following command:  
+
+```bash
+solana program extend INSERT_PROGRAM_ID 800000
+```
+
+## Initialize the IDL  
+
+To associate an IDL file with the deployed program, run:  
+
+```bash
+anchor idl init --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json INSERT_PROGRAM_ID
+```
+
+## Run Deployment Scripts  
+
+After deploying the program and initializing the IDL, execute the following scripts **in order** to set up the staking environment and necessary accounts.  
+
+1. Initialize the MultiGov Staking Program with default settings:
+
+    ```bash
+    npx ts-node app/deploy/01_init_staking.ts
+    ```
+
+2. Create an Account Lookup Table (ALT) to optimize transaction processing:
+
+    ```bash
+    npx ts-node app/deploy/02_create_account_lookup_table.ts
+    ```
+
+3. Set up airlock accounts:
+
+    ```bash
+    npx ts-node app/deploy/03_create_airlock.ts
+    ```
+
+4. Deploy a metadata collector:
+
+    ```bash
+    npx ts-node app/deploy/04_create_spoke_metadata_collector.ts
+    ```
+
+5. Configure vote weight window lengths:
+
+    ```bash
+    npx ts-node app/deploy/05_initializeVoteWeightWindowLengths.ts
+    ```
+
+6. Deploy the message executor for handling governance messages:
+
+    ```bash
+    npx ts-node app/deploy/06_create_message_executor.ts
+    ```
+
+## Set MultiGov Staking Program Key Parameters  
+
+When deploying MultiGov on Solana, several key parameters need to be set. Here are the most important configuration points:  
+
+ - `maxCheckpointsAccountLimit` ++"u64"++ - the maximum number of checkpoints an account can have. For example, `654998` is used in production, while `15` might be used for testing
+ - `hubChainId` `u16` - the chain ID of the hub network where proposals are primarily managed. For example, `10002` for Sepolia testnet
+ - `hubProposalMetadata` ++"[u8; 20]"++ - an array of bytes representing the address of the Hub Proposal Metadata contract on Ethereum. This is used to identify proposals from the hub 
+ - `voteWeightWindowLength` ++"u64"++ - specifies the length of the checkpoints window in seconds in which the minimum voting weight is taken. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The vote weight window helps solve problems such as manipulating votes in a chain 
+ - `votingTokenMint` ++"Pubkey"++ - the mint address of the token used for voting  
+ - `governanceAuthority` ++"Pubkey"++ - the public key of the account that has the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
+ - `vestingAdmin` ++"Pubkey"++ - the public key of the account responsible for managing vesting operations. The `vestingAdmin` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
+ - `hubDispatcher` ++"Pubkey"++ - the Solana public key derived from an Ethereum address on the hub chain that dispatches messages to the spoke chains. This is crucial for ensuring that only authorized messages from the hub are executed on the spoke
