@@ -1,6 +1,6 @@
 ---
-title: Products
-description: Compare Wormhole products by features, asset support, integration complexity, and use cases. Explore additional tools for data, governance, and execution.
+title: Compare Wormhole's Cross-Chain Solutions
+description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 ---
 
 # Products 
@@ -16,8 +16,9 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
 - [**Connect**](/docs/build/applications/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
-- [**Native Token Transfers (NTT)**](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without wrappers. Best for teams prioritizing native token movement without wrappers
-- [**Token Bridge**](/docs/learn/messaging/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages 
+- [**Native Token Transfers (NTT)**](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Token Bridge**](/docs/learn/messaging/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods. Best for institutional-scale volume and chain abstraction for application developers
 
 
 <div markdown class="full-width">
@@ -44,10 +45,9 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 </div>
 
-## Other Products
+## More Products
 
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data, governance, and advanced messaging.
 
-- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} - a data retrieval service to fetch on-chain data from multiple networks, powering analytics and dashboards. Best for applications that need to simplify multi-chain analytics, reporting, and data aggregation 
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} - a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation
 - [**MultiGov**](/docs/learn/governance/overview/){target=\_blank} - a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates
-- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods. Best for institutional-scale volume and chain abstraction for application developers 
