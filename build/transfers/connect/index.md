@@ -5,11 +5,11 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 # Wormhole Connect
 
-Wormhole Connect is a customizable widget that brings native and wrapped token cross-chain asset transfers directly into your web applications in as few as 3 lines of code.
+Wormhole Connect is a customizable widget that brings wrapped and native token cross-chain asset transfers directly into your web applications in as few as 3 lines of code.
 
 - Available as React component or hosted version via CDN
 - Cross-chain transfers without the overhead of smart contract development or complicated configurations
-- Configure any token to bridge via Wormhole - wrapped tokens or Native Token Transfer
+- Configure any token to bridge via Wormhole - wrapped tokens or [Native Token Transfer](/docs/build/transfers/native-token-transfers/){target=\_blank}
 - Customize supported assets and RPC endpoints, configurable bridge routing, and gas drop-off
 
 For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/docs/build/transfers/connect/features/){target=\_blank}.
