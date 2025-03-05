@@ -14,7 +14,11 @@ Wormhole Connect is a customizable widget that brings wrapped and native token c
 
 For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/docs/build/transfers/connect/features/){target=\_blank}.
 
-The pages in these sections cover features and benefits of Wormhole Connect, guidance on available token routes and when to use them, and configuration options to help you shape Connect to fit the needs of your application.
+In these sections you'll find:
+
+- Features and benefits of Wormhole Connect
+- Guidance on available token routes and when to use them
+- Configuration options to help you shape Connect to fit the needs of your application.
 
 ## Build with Connect
 
@@ -28,10 +32,29 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 - [Jupiter](https://jup.ag/onboard/cctp){target=\_blank}
 - [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
 
-Developers who want to implement cross-chain asset transfers with fully customized UI elements should visit the [Wormhole TypeScript SDK](https://docs.wormhole.com/wormhole/reference/sdk-docs){target=\_blank} documentation for guidance on using the SDK rather than Connect.
 
-## Additional Resources
+## Next Steps
 
-- [**Get Started Now**](#build-with-connect) - a series of how-to guides to integrate Connect into your React dApp and configure to fit your user's needs
+<div class="grid cards" markdown >
 
-- [**Connect for Cross-chain Swapping**](/docs/tutorials/by-product/connect/react-dapp/) - this tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
+-   :octicons-tools-16:{ .lg .middle} **Get Started Now**
+
+    ---
+
+    Follow this series of how-to guides to integrate Connect into your React dApp and configure options to fit your user's needs.
+
+    [:custom-arrow: Get started](#build-with-connect)
+
+-   :octicons-tools-16:{ .lg .middle } **Cross-chain Swap with Connect**
+
+    ---
+
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
+
+    [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
+
+
+</div>
+
+
+
