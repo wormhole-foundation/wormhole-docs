@@ -63,6 +63,7 @@ Doc-Page: https://wormhole.com/docs/build/start-building/
 Doc-Page: https://wormhole.com/docs/build/start-building/products/
 Doc-Page: https://wormhole.com/docs/build/start-building/supported-networks/
 Doc-Page: https://wormhole.com/docs/build/start-building/testnet-faucets/
+Doc-Page: https://wormhole.com/docs/build/start-building/use-cases/
 Doc-Page: https://wormhole.com/docs/build/toolkit/cli/
 Doc-Page: https://wormhole.com/docs/build/toolkit/faqs/
 Doc-Page: https://wormhole.com/docs/build/toolkit/
@@ -11744,7 +11745,7 @@ description: This page documents the deployed contract addresses of the Wormhole
 
 === "Mainnet"
 
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Corn</td><td><code>0xa683c66045ad16abb1bCE5ad46A64d95f9A25785</code></td></tr><tr><td>Gnosis</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Goat</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Rootstock</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Sonic</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Telos</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr></tbody></table>
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Corn</td><td><code>0xa683c66045ad16abb1bCE5ad46A64d95f9A25785</code></td></tr><tr><td>Gnosis</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Goat</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>LightLink</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Rootstock</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Sonic</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Telos</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr></tbody></table>
 
 !!!note  
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
@@ -12100,13 +12101,27 @@ Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates
 Doc-Content: https://wormhole.com/docs/build/start-building/products/
 --- BEGIN CONTENT ---
 ---
-title: Product Comparison
-description: Compare Wormhole products—Connect, NTT, and Token Bridge—by features, asset support, integration complexity, and use cases.
+title: Compare Wormhole's Cross-Chain Solutions
+description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 ---
 
-# Product Comparison
+# Products 
 
-This page provides a comparison of Wormhole’s transfer products: Connect, Native Token Transfers (NTT), and Token Bridge. Compare their supported transfer types, asset compatibility, integration requirements, and features to determine the best solution for your cross-chain needs.
+Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
+
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+
+Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
+
+## Transfer Products
+
+Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
+
+- [**Connect**](/docs/build/applications/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
+- [**Native Token Transfers (NTT)**](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Token Bridge**](/docs/learn/messaging/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods. Best for institutional-scale volume and chain abstraction for application developers
+
 
 <div markdown class="full-width">
 
@@ -12131,6 +12146,16 @@ This page provides a comparison of Wormhole’s transfer products: Connect, Nati
 ::end-spantable::
 
 </div>
+
+Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Real-time Data
+
+[**Queries**](/docs/build/applications/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation.
+
+## Multichain Governance
+
+[**MultiGov**](/docs/learn/governance/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
@@ -12360,6 +12385,290 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 </div>
 <!--TESTNET_FAUCETS-->
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/start-building/use-cases/
+--- BEGIN CONTENT ---
+---
+title: Use Cases
+description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+---
+
+# Wormhole Use Cases
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Cross-Chain Swaps and Liquidity Aggregation
+
+Enable seamless swaps between chains with real-time liquidity routing.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Wormhole Connect**](/docs/build/applications/connect/overview/){target=\_blank} – handles user-friendly asset transfers
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – moves native assets across chains
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time prices for optimal trade execution
+
+🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators  <br>🚀 **Used by:** [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Borrowing and Lending Across Chains
+
+Let users borrow assets on one chain using collateral from another.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves loan requests and liquidations across chains
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers collateral as native assets
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
+
+🔗 **Used in:** Lending protocols and yield platforms <br>🚀 **Used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Real-Time Price Feeds and Trading Strategies
+
+Fetch price feeds across multiple chains for DeFi applications.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches price feeds from oracles and trading platforms
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – sends signals to execute trades
+
+🔗 **Used in:** Trading bots, arbitrage platforms, and oracles <br>🚀 **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Asset Movement Between Bitcoin and Other Chains
+
+Enable direct BTC transfers without wrapped assets.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers BTC across chains
+
+🔗 **Used in:** Bitcoin DeFi and lightning network integrations <br>🚀 **Used by:** [Synonym](https://wormhole.com/case-studies/synonym){target=\_blank}
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Decentralized Social Platforms
+
+Enable seamless communication and asset transfer across decentralized social networks.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates decentralized interactions
+- [**Token Bridge**](/docs/build/contract-integrations/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
+
+🔗 **Used in:** Web3 social networks and content monetization <br>🚀 **Used by:** [Chingari](https://chingari.io/){target=\_blank}
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Memecoin Launchpads
+
+Launch and distribute memecoins across multiple chains, enabling cross-chain fundraising and liquidity access.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – enables native asset transfers for seamless fundraising
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
+
+🔗 **Used in:** Token launchpads, IDOs, and meme token ecosystems
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Cross-Chain Perpetuals
+
+Enable leveraged perpetual trading across chains with seamless collateral and liquidity management.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time asset prices and manages position state across chains
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - for quick cross-chain token execution, providing efficient and seamless user experiences
+
+🔗 **Used in:**  Perpetual DEXs, trading platforms and cross-chain derivatives
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Gas Abstraction
+
+Allow users to pay gas fees with any token across different networks, removing friction in multichain interactions.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – routes gas fee payments across chains
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – facilitates native token conversion for gas payments
+
+🔗 **Used in:** Wallets, dApps, and multichain user experience improvements
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Bridging Intent Library
+
+Provide developers with a library of bridging intents and automation functions, enabling plug-and-play interoperability logic.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – enables predefined cross-chain actions and triggers.
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - provides a framework for executing user-defined bridging intents
+
+🔗 **Used in:** Bridging protocols, DeFi automation, and smart contract libraries
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Multichain Prediction Markets
+
+Allow users to place bets, manage positions, and receive payouts seamlessly across different networks.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time market data, tracks collateral, and manages odds across chains
+- [**Wormhole Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} – automates token execution for efficient and seamless cross-chain prediction market interactions
+
+🔗 **Used in:** Decentralized betting, prediction markets, and cross-chain gaming
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Cross-Chain Payment Widgets
+
+Allow merchants and platforms to accept payments in any token, auto-converting them into a desired asset.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Wormhole Connect**](/docs/build/applications/connect/overview/){target=\_blank} – facilitates seamless payments in various tokens
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – ensures direct, native asset transfers
+
+🔗 **Used in:** E-commerce, Web3 payments, and subscription models
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Oracle Networks
+
+Fetch and verify cross-chain data, enabling reliable, decentralized Oracle services for multichain applications.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
+
+🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🚀 **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+
+<div class="title" markdown>
+
+## Cross-Chain Staking
+
+Enable users to stake assets on one chain while earning rewards or securing networks on another.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
+- [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
+
+🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks <br>🚀 **Used by:** [Lido](https://lido.fi/){target=\_blank}
+
+</div>
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/toolkit/cli/
