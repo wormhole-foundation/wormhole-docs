@@ -1,0 +1,4 @@
+title: WormholeScan
+nav:
+ - index.md
+ - 'Replace VAA Signatures': 'replace-signatures.md'
