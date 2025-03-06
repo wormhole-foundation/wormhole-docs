@@ -32,7 +32,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Learn the process and key considerations for upgrading MultiGov contracts, ensuring system integrity and careful planning across cross-chain components.
 
-    [:custom-arrow: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade/)
+    [:custom-arrow: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade-evm/)
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 
