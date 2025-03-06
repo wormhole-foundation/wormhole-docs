@@ -10331,21 +10331,20 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 # Wormhole Connect
 
-## Introduction {: #introduction }
-
-Wormhole Connect is a customizable widget that brings native and wrapped token cross-chain asset transfers directly into your web applications in as few as 3 lines of code.
+Wormhole Connect is a customizable widget that brings wrapped and native token cross-chain asset transfers directly into your web applications in as few as 3 lines of code.
 
 - Available as React component or hosted version via CDN
 - Cross-chain transfers without the overhead of smart contract development or complicated configurations
-- Configure any token to bridge via Wormhole
-
-The pages in these sections cover features and benefits of Wormhole Connect, guidance on available token routes and when to use them, and configuration options to help you shape Connect to fit the needs of your application. Wormhole Connect allows you to easily customize details such as:
-
-- Supported assets and RPC endpoints
-- Multiple ways to bridge assets using ([routes](/docs/build/transfers/connect/routes/){target=\_blank})
-- [Ability to drop off some gas](/docs/build/transfers/connect/features/#gas-drop-off){target=\_blank} at the destination
+- Configure any token to bridge via Wormhole - wrapped tokens or [Native Token Transfer](/docs/build/transfers/native-token-transfers/){target=\_blank}
+- Customize supported assets and RPC endpoints, configurable bridge routing, and gas drop-off
 
 For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/docs/build/transfers/connect/features/){target=\_blank}.
+
+In these sections you'll find:
+
+- Features and benefits of Wormhole Connect
+- Guidance on available token routes and when to use them
+- Configuration options to help you shape Connect to fit the needs of your application.
 
 ## Build with Connect
 
@@ -10359,13 +10358,29 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 - [Jupiter](https://jup.ag/onboard/cctp){target=\_blank}
 - [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
 
-Developers who want to implement cross-chain asset transfers with fully customized UI elements should visit the [Wormhole TypeScript SDK](https://docs.wormhole.com/wormhole/reference/sdk-docs){target=\_blank} documentation for guidance on using the SDK rather than Connect.
 
-## Additional Resources
+## Next Steps
 
-- [**Get Started Now**](#build-with-connect) - a series of how-to guides to integrate Connect into your React dApp and configure to fit your user's needs
+<div class="grid cards" markdown >
 
-- [**Connect for Cross-chain Swapping**](/docs/tutorials/by-product/connect/react-dapp/) - this tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/)
+-   :octicons-tools-16:{ .lg .middle} **Get Started Now**
+
+    ---
+
+    Follow this series of how-to guides to integrate Connect into your React dApp and configure options to fit your user's needs.
+
+    [:custom-arrow: Get started](#build-with-connect)
+
+-   :octicons-tools-16:{ .lg .middle } **Cross-chain Swap with Connect**
+
+    ---
+
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
+
+    [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
+
+
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/transfers/connect/overview
@@ -11149,6 +11164,79 @@ description: This section guides you through using Wormhole products to securely
 ---
 
 # Multichain Transfers
+
+Wormhole transfer products offer multiple asset transfer options to meet developer needs and use cases. These sections include guides to integrate and use Wormhole transfer products to securely and efficiently transfer assets and messages across multiple blockchains.
+
+Use the following links to jump directly to each Wormhole transfer product page or continue on for a feature-based product comparison.
+
+- [**Connect**](/docs/build/transfers/connect/) - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup
+- [**Native Token Transfers (NTT)**](/docs/build/transfers/native-token-transfers/) - a mechanism to transfer native tokens cross-chain seamlessly without converting to a wrapped asset
+- [**Token Bridge**](/docs/learn/transfers/token-bridge/) - a bridging solution that uses a lock and mint mechanism
+- [**Wormhole Settlement**](/docs/build/transfers/wormhole-docs/build/transfers/settlement/) - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
+
+## Products By Feature
+
+While all of these products handle token transfers, there are additional features to consider when selecting the best fit for your project needs.
+
+<div class="grid cards" markdown>
+
+-   :octicons-gear-16:{ .lg .middle } **Message Payload**
+
+    ---
+
+    Send message payloads for social platforms and NFTs with Token Bridge's lock and mint wrapped token mechanism.
+
+    [:custom-arrow: Discover Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}
+
+-   :octicons-gear-16:{ .lg .middle } **Native Assets**
+
+    ---
+
+    Eliminate the need for wrapped tokens and issue native multichain assets with Native Token Transfer (NTT).
+
+    [:custom-arrow: Discover Native Token Transfer](/docs/build/transfers/native-token-transfers/)
+
+
+-   :octicons-gear-16:{ .lg .middle } **Speed at Scale**
+
+    ---
+
+    Unleash institutional-scale digital asset settlement with Wormhole Settlement's intent-based asset transfers and liquidity layer.
+
+    [:custom-arrow: Discover Settlement](/docs/build/transfers/wormhole-docs/build/transfers/settlement/)
+
+-   :octicons-gear-16:{ .lg .middle } **Plug and Play UI**
+
+    ---
+
+    Add Wormhole token transfer UI to your dApp, no smart contract development required, with Connect.
+
+    [:custom-arrow: Discover Connect](/docs/build/transfers/connect/)
+
+</div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Product Comparison**
+
+    ---
+
+    Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+
+    [:custom-arrow: Compare Products](/docs/build/start-building/products/){target=\_blank}
+
+-   :octicons-book-16:{ .lg .middle } **Use Cases**
+
+    ---
+
+    Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+
+    [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/)
+
+
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/cli-commands
