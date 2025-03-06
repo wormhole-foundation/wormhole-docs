@@ -15386,7 +15386,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     ---
 
-    Discover an overview of MultiGov's hub-and-spoke architecture, including how it enables cross-chain governance by coordinating decision-making across blockchain.
+    Discover MultiGov's hub-and-spoke architecture, enabling EVM and Solana cross-chain governance through coordinated decision-making.
 
     [:custom-arrow: Learn about MultiGov architecture](/docs/learn/governance/architecture/)
 
