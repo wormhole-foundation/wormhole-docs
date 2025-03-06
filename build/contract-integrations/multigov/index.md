@@ -18,13 +18,21 @@ Take the following steps to get started with a MultiGov integration:
 
 <div class="grid cards" markdown>
 
--   :octicons-rocket-16:{ .lg .middle } **Deployment**
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM**
 
     ---
 
-    Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+    Set up and deploy MultiGov on EVM with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deploy-to-evm/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
+
+    ---  
+
+    Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.  
+
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/contract-integrations/multigov/deploy-to-solana/)  
 
 -   :octicons-file-code-16:{ .lg .middle } **Upgrade Contracts**
 
