@@ -21,7 +21,7 @@ This guide covers the key considerations and step-by-step process for upgrading 
 - **Cross-chain compatibility** - ensure any changes to the Solana program do not break compatibility with the Ethereum-based `HubGovernor` 
     - Test upgrades thoroughly on devnet before deploying to mainnet
 
-## Process for Upgrading the MultiGov Program
+## Upgrade the MultiGov Program
 
 Follow these steps to upgrade the MultiGov Staking Program on Solana.  
 
