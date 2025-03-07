@@ -9260,10 +9260,10 @@ Follow these steps to upgrade the MultiGov Staking Program on Solana.
     anchor upgrade --program-id INSERT_PROGRAM_ID --provider.cluster INSERT_CLUSTER_URL INSERT_PATH_TO_PROGRAM_BINARY
     ```
 
-    ???- note "Example"
-        ```bash
-        anchor upgrade --program-id DgCSKsLDXXufYeEkvf21YSX5DMnFK89xans5WdSsUbeY --provider.cluster https://api.devnet.solana.com ./target/deploy/staking.so
-        ```
+    Your completed anchor upgrade command should resemble the following:
+    ```bash
+    anchor upgrade --program-id DgCSKsLDXXufYeEkvf21YSX5DMnFK89xans5WdSsUbeY --provider.cluster https://api.devnet.solana.com ./target/deploy/staking.so
+    ```
 
 3. **Update the IDL** - after upgrading the program, update the IDL to reflect any changes in the program's interface
 
@@ -9271,10 +9271,10 @@ Follow these steps to upgrade the MultiGov Staking Program on Solana.
     anchor idl upgrade INSERT_PROGRAM_ID --filepath INSERT_PATH_TO_IDL_FILE
     ```
 
-    ???- note "Example"
-        ```bash
-        anchor idl upgrade --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json DgCSKsLDXXufYeEkvf21YSX5DMnFK89xans5WdSsUbeY
-        ```
+    Your completed IDL upgrade command should resemble the following:
+    ```bash
+    anchor idl upgrade --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json DgCSKsLDXXufYeEkvf21YSX5DMnFK89xans5WdSsUbeY
+    ```
 
 4. **Update `HubProposalMetadata`** - if `HubProposalMetadata` requires an update, run the following script to invoke the `updateHubProposalMetadata` instruction and apply the changes
 
