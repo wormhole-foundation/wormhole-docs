@@ -59,7 +59,7 @@ solana address -k ./app/keypairs/deployer.json
 
 ### Check the Deployer Account Balance  
 
-To verify the current balance of the deployer account, run:  
+To verify the current balance of the deployer account, run the following command:  
 
 ```bash
 solana balance -k ./app/keypairs/deployer.json
