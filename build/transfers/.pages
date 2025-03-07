@@ -4,5 +4,5 @@ nav:
  - connect
  - native-token-transfers
  - settlement
-# TODO: Token Bridge
+ - 'Token Bridge': 'token-bridge.md'
  - 'CCTP Bridge': 'cctp.md'
