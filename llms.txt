@@ -8907,7 +8907,7 @@ For developers looking to set up a local MultiGov environment:
    ```bash
    cp .env.example .env
    ```
-   Edit `.env` with your specific [configuration](/docs/build/contract-integrations/multigov/deployment/#configuration){target=\_blank}
+   Edit `.env` with your specific [configuration](/docs/build/contract-integrations/multigov/deploy-to-evm/#configuration)
 
 3. Compile contracts:
    ```bash
@@ -9052,25 +9052,19 @@ solana balance -k ./app/keypairs/deployer.json
 
 If the account does not have enough SOL, use one of the following methods to add funds.  
 
-???- interface "**Transfer SOL from Another Account**"  
-
-    If you already have SOL in another account, transfer it using a wallet (Phantom, Solflare, etc.) or in the terminal:  
+ - **Transfer SOL from another account** - if you already have SOL in another account, transfer it using a wallet (Phantom, Solflare, etc.) or in the terminal 
 
     ```bash
     solana transfer <deployer_account_address> <amount> --from /path/to/funder.json
     ```
 
-???- interface "**Request an Airdrop (Devnet Only)**"  
-
-    If deploying to Devnet, you can request free SOL: 
+ - **Request an airdrop (devnet only)** - if deploying to devnet, you can request free SOL
 
     ```bash
     solana airdrop 2 -k ./app/keypairs/deployer.json
     ```
 
-???- interface "**Use a Solana Faucet (Devnet Only)**"  
-
-    You can use online faucets to receive 10 free SOL:
+ - **Use a Solana faucet (devnet only)** - you can use online faucets to receive 10 free SOL
 
     - [Solana Faucet](https://faucet.solana.com/){target=\_blank}
 
