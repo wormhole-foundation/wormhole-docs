@@ -5,7 +5,7 @@ description: Learn how to deploy the MultiGov Staking Program on Solana, includi
 
 # Deploy MultiGov on Solana  
 
-This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project’s governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.
+This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project's governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.
 
 Once your project setup is complete, follow this guide to configure, compile, and deploy the necessary Solana programs and supporting accounts. This deployment enables decentralized governance participation on Solana as a spoke chain within the MultiGov system.  
 
