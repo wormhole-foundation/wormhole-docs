@@ -1,6 +1,7 @@
 title: MultiGov
 nav:
  - index.md
- - 'Deployment': 'deployment.md'
+ - 'Deploy to EVM': 'deploy-to-evm.md'
+ - 'Deploy to Solana': 'deploy-to-solana.md'
  - 'Upgrade Contracts': 'upgrade.md'
  - 'Technical FAQs': 'faq.md'
