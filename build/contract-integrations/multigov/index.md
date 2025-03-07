@@ -34,13 +34,21 @@ Take the following steps to get started with a MultiGov integration:
 
     [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/contract-integrations/multigov/deploy-to-solana/)  
 
--   :octicons-file-code-16:{ .lg .middle } **Upgrade Contracts**
+-   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM**
 
     ---
 
     Learn the process and key considerations for upgrading MultiGov contracts, ensuring system integrity and careful planning across cross-chain components.
 
-    [:custom-arrow: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade/)
+    [:custom-arrow: Discover how to upgrade MultiGov](/docs/build/contract-integrations/multigov/upgrade-evm/)
+
+-   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on Solana**  
+
+    ---  
+
+    Learn how to upgrade the MultiGov Staking Program on Solana, including updating the program binary, IDL, and more.  
+
+    [:custom-arrow: Discover how to upgrade MultiGov on Solana](/docs/build/contract-integrations/multigov/upgrade-solana/)  
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 

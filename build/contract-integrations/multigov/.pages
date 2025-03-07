@@ -3,5 +3,6 @@ nav:
  - index.md
  - 'Deploy to EVM': 'deploy-to-evm.md'
  - 'Deploy to Solana': 'deploy-to-solana.md'
- - 'Upgrade Contracts': 'upgrade.md'
+ - 'Upgrade Contracts on EVM': 'upgrade-evm.md'
+ - 'Upgrade Contracts on Solana': 'upgrade-solana.md'
  - 'Technical FAQs': 'faq.md'
