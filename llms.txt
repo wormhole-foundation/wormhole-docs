@@ -15233,7 +15233,7 @@ Spoke chains handle local voting, forward votes to the hub, and execute approved
 
 ### Spoke Solana Staking Program
 
-The **Spoke Solana Staking Program** handles local voting from users who have staked W tokens or have vests in the program, forwards votes to the hub, and executes approved proposals from the hub for decentralized governance.
+The Spoke Solana Staking Program handles local voting from users who have staked W tokens or are vested in the program, forwards votes to the hub, and executes approved proposals from the hub for decentralized governance.
 
 The program implements its functionality through instructions, using specialized PDA accounts where data is stored. Below are the key accounts in the program:
 
@@ -15245,7 +15245,7 @@ The program implements its functionality through instructions, using specialized
  - **`SpokeMetadataCollector`** - collects and updates proposal metadata from the hub chain
  - **`GuardianSignatures`** - stores guardian signatures for message verification
  - **`ProposalData`** - stores data about a specific proposal, including votes and start time
- - **`ProposalVotersWeightCast`** - tracks individual voter’s weight for a proposal
+ - **`ProposalVotersWeightCast`** - tracks individual voter's weight for a proposal
  - **`SpokeMessageExecutor`** - processes messages from a spoke chain via the Wormhole protocol
  - **`SpokeAirlock`** - manages PDA signing and seed validation for secure instruction execution
  - **`VestingBalance`** - stores total vesting balance and related staking information of a vester
