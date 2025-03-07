@@ -34,7 +34,7 @@ For developers looking to set up a local MultiGov environment:
    ```bash
    cp .env.example .env
    ```
-   Edit `.env` with your specific [configuration](/docs/build/contract-integrations/multigov/deployment/#configuration){target=\_blank}
+   Edit `.env` with your specific [configuration](/docs/build/contract-integrations/multigov/deploy-to-evm/#configuration)
 
 3. Compile contracts:
    ```bash
