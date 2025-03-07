@@ -51,7 +51,7 @@ solana-keygen new --outfile ./app/keypairs/deployer.json
 
 ### Check the Deployer Account Address  
 
-To retrieve the public address of the newly created keypair, run:  
+To retrieve the public address of the newly created keypair, run the following command:  
 
 ```bash
 solana address -k ./app/keypairs/deployer.json
