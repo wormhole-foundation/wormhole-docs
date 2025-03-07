@@ -111,7 +111,7 @@ anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet
 
 ### Verify the Deployment  
 
-After deployment, check if the program is successfully deployed by running:  
+After deployment, check if the program is successfully deployed by running the following command:  
 
 ```bash
 solana program show INSERT_PROGRAM_ID
