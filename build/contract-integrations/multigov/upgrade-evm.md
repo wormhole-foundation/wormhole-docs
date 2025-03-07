@@ -5,7 +5,7 @@ description: Learn the process and key considerations for upgrading MultiGov on 
 
 # Upgrade MultiGov Contracts on EVM
 
-MultiGov is designed to be flexible but stable. Upgrades should be rare and carefully considered due to the system's complexity and cross-chain nature. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
+MultiGov is designed to be flexible but stable. Due to the system's complexity and cross-chain nature, upgrades should be rare and carefully considered. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
 
 ## Key Considerations for Upgrades
 
