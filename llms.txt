@@ -8878,7 +8878,7 @@ description: Set up and deploy MultiGov to EVM locally with step-by-step instruc
 
 # Deploy MultiGov on EVM
 
-This guide provodes instructions to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project’s governance needs by following the steps for the [integration process](/docs/build/contract-integrations/multigov/){target=\_blank}.
+This guide provides instructions on how to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project's governance needs by following the steps for the [integration process](/docs/build/contract-integrations/multigov/){target=\_blank}.
 
 Once your project is approved through the intake process and you’ve collaborated with the Tally team to tailor MultiGov to your requirements, use this guide to configure, compile, and deploy the necessary smart contracts across your desired blockchain networks. This deployment will enable decentralized governance across your hub and spoke chains.
 
@@ -8982,7 +8982,7 @@ description: Learn how to deploy the MultiGov Staking Program on Solana, includi
 
 # Deploy MultiGov on Solana  
 
-This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project’s governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.
+This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project's governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.
 
 Once your project setup is complete, follow this guide to configure, compile, and deploy the necessary Solana programs and supporting accounts. This deployment enables decentralized governance participation on Solana as a spoke chain within the MultiGov system.  
 
@@ -9016,11 +9016,11 @@ Once the build is complete, the compiled artifacts will be available in the `tar
 
 For a successful deployment, you need a funded deployer account on Solana. This account will store the program and execute deployment transactions. 
 
-In this section, you will create a new keypair, check the account balance, and ensure it has enough SOL to cover deployment costs. If needed, you can fund the account using different methods before deploying. 
+In this section, you will create a new keypair, check the account balance, and ensure it has enough SOL tokens to cover deployment costs. If needed, you can fund the account using different methods before deploying. 
 
 ### Generate a New Keypair  
 
-To create a new keypair and save it to a file, run:  
+To create a new keypair and save it to a file, run the following command:  
 
 ```bash
 solana-keygen new --outfile ./app/keypairs/deployer.json
@@ -9028,7 +9028,7 @@ solana-keygen new --outfile ./app/keypairs/deployer.json
 
 ### Check the Deployer Account Address  
 
-To retrieve the public address of the newly created keypair, run:  
+To retrieve the public address of the newly created keypair, run the following command:  
 
 ```bash
 solana address -k ./app/keypairs/deployer.json
@@ -9036,7 +9036,7 @@ solana address -k ./app/keypairs/deployer.json
 
 ### Check the Deployer Account Balance  
 
-To verify the current balance of the deployer account, run:  
+To verify the current balance of the deployer account, run the following command:  
 
 ```bash
 solana balance -k ./app/keypairs/deployer.json
@@ -9088,7 +9088,7 @@ anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet
 
 ### Verify the Deployment  
 
-After deployment, check if the program is successfully deployed by running:  
+After deployment, check if the program is successfully deployed by running the following command:  
 
 ```bash
 solana program show INSERT_PROGRAM_ID
@@ -9104,7 +9104,7 @@ solana program extend INSERT_PROGRAM_ID 800000
 
 ### Initialize the IDL  
 
-To associate an IDL file with the deployed program, run:  
+To associate an IDL file with the deployed program, run the following command:  
 
 ```bash
 anchor idl init --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json INSERT_PROGRAM_ID
