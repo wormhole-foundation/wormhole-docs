@@ -127,7 +127,7 @@ solana program extend INSERT_PROGRAM_ID 800000
 
 ### Initialize the IDL  
 
-To associate an IDL file with the deployed program, run:  
+To associate an IDL file with the deployed program, run the following command:  
 
 ```bash
 anchor idl init --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json INSERT_PROGRAM_ID
