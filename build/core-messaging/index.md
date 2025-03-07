@@ -5,7 +5,7 @@ description: Learn to use Wormhole’s foundational messaging contracts to build
 
 # Core Messaging
 
-Wormhole-deployed relayers and Core Contracts are essential components for sending and receiving cross-chain messages. Learning to work directly with these building blocks offers a deeper understanding of Wormhole and increased control and customization options. 
+Wormhole-deployed relayers and Core Contracts are essential for sending and receiving cross-chain messages. Learning to work directly with these building blocks offers a deeper understanding of Wormhole and increased control and customization options. 
 
 Follow the links below for how-to guides about using Core Contracts and Wormhole-deployed relayers to send, receive, validate, and track cross-chain messages. 
 
@@ -39,9 +39,4 @@ Wormhole-deployed relayer support is limited to EVM environments. For a complete
 
     [:custom-arrow: Get started](/docs/build/core-messaging/wormhole-relayers/#get-started-with-the-wormhole-relayer)
 
-
 </div>
-
-
-
-
