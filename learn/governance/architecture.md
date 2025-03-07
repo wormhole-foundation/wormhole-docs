@@ -31,7 +31,7 @@ Spoke chains handle local voting, forward votes to the hub, and execute approved
 
 ### Spoke Solana Staking Program
 
-The **Spoke Solana Staking Program** handles local voting from users who have staked W tokens or have vests in the program, forwards votes to the hub, and executes approved proposals from the hub for decentralized governance.
+The Spoke Solana Staking Program handles local voting from users who have staked W tokens or are vested in the program, forwards votes to the hub, and executes approved proposals from the hub for decentralized governance.
 
 The program implements its functionality through instructions, using specialized PDA accounts where data is stored. Below are the key accounts in the program:
 
