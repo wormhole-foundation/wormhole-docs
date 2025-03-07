@@ -11,17 +11,14 @@ This guide covers the key considerations and step-by-step process for upgrading 
 
 ## Key Considerations for Upgrades
 
-- **Program upgradeability:**
-    - The MultiGov Staking Program on Solana is upgradeable using the `anchor upgrade` command 
-    - Upgrades require the program's new bytecode (`.so` file) and an updated IDL file to reflect any changes in the program's interface
+- **Program upgradeability** - you can upgrade the MultiGov Staking Program on Solana using the `anchor upgrade` command 
+    - You need the program's new bytecode (`.so` file) and an updated IDL file to reflect any changes in the program's interface to complete an upgrade
     - The program's authority (deployer) must execute the upgrade
 
-- **`HubProposalMetadata`:**
-    - The `HubProposalMetadata` can be updated without redeploying the entire program. This is done by invoking the `updateHubProposalMetadata` instruction
-    - Updates to `HubProposalMetadata` must be carefully validated to ensure compatibility with the existing system
+- **`HubProposalMetadata`** - can be updated without redeploying the entire program. You can do this by invoking the `updateHubProposalMetadata` instruction
+    - You must carefully validate updates to `HubProposalMetadata` to ensure compatibility with the existing system
 
-- **Cross-chain compatibility:**
-    - Ensure that any changes to the Solana program do not break compatibility with the Ethereum-based `HubGovernor` 
+- **Cross-chain compatibility** - ensure any changes to the Solana program do not break compatibility with the Ethereum-based `HubGovernor` 
     - Test upgrades thoroughly on devnet before deploying to mainnet
 
 ## Process for Upgrading the MultiGov Program
