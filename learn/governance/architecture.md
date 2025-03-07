@@ -43,7 +43,7 @@ The program implements its functionality through instructions, using specialized
  - **`SpokeMetadataCollector`** - collects and updates proposal metadata from the hub chain
  - **`GuardianSignatures`** - stores guardian signatures for message verification
  - **`ProposalData`** - stores data about a specific proposal, including votes and start time
- - **`ProposalVotersWeightCast`** - tracks individual voter’s weight for a proposal
+ - **`ProposalVotersWeightCast`** - tracks individual voter's weight for a proposal
  - **`SpokeMessageExecutor`** - processes messages from a spoke chain via the Wormhole protocol
  - **`SpokeAirlock`** - manages PDA signing and seed validation for secure instruction execution
  - **`VestingBalance`** - stores total vesting balance and related staking information of a vester
