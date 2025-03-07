@@ -43,7 +43,7 @@ In this section, you will create a new keypair, check the account balance, and e
 
 ### Generate a New Keypair  
 
-To create a new keypair and save it to a file, run:  
+To create a new keypair and save it to a file, run the following command:  
 
 ```bash
 solana-keygen new --outfile ./app/keypairs/deployer.json
