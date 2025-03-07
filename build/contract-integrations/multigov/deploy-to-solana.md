@@ -39,7 +39,7 @@ Once the build is complete, the compiled artifacts will be available in the `tar
 
 For a successful deployment, you need a funded deployer account on Solana. This account will store the program and execute deployment transactions. 
 
-In this section, you will create a new keypair, check the account balance, and ensure it has enough SOL to cover deployment costs. If needed, you can fund the account using different methods before deploying. 
+In this section, you will create a new keypair, check the account balance, and ensure it has enough SOL tokens to cover deployment costs. If needed, you can fund the account using different methods before deploying. 
 
 ### Generate a New Keypair  
 
