@@ -9153,7 +9153,7 @@ description: Learn the process and key considerations for upgrading MultiGov on 
 
 # Upgrade MultiGov Contracts on EVM
 
-MultiGov is designed to be flexible but stable. Upgrades should be rare and carefully considered due to the system's complexity and cross-chain nature. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
+MultiGov is designed to be flexible but stable. Due to the system's complexity and cross-chain nature, upgrades should be rare and carefully considered. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
 
 ## Key Considerations for Upgrades
 
@@ -9238,7 +9238,7 @@ This guide covers the key considerations and step-by-step process for upgrading 
 - **Cross-chain compatibility** - ensure any changes to the Solana program do not break compatibility with the Ethereum-based `HubGovernor` 
     - Test upgrades thoroughly on devnet before deploying to mainnet
 
-## Process for Upgrading the MultiGov Program
+## Upgrade the MultiGov Program
 
 Follow these steps to upgrade the MultiGov Staking Program on Solana.  
 
