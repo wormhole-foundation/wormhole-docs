@@ -8992,7 +8992,7 @@ To deploy MultiGov on Solana, ensure you have the following installed:
 
  - Install [Git](https://git-scm.com/downloads){target=\_blank}  
  - Install [Node.js](https://nodejs.org/){target=\_blank} **`v20.10.0`**
- - Install [Solana CLI](https://docs.solana.com/cli/install-solana-cli){target=\_blank} **`v1.18.20`**
+ - Install [Solana CLI](https://docs.anza.xyz/cli/install/){target=\_blank} **`v1.18.20`**
  - Install [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`v0.30.1`**
  - Install [Rust](https://www.rust-lang.org/tools/install){target=\_blank} **`v1.80.1`**
  - Install [Docker](https://www.docker.com/get-started/){target=\_blank}
@@ -9163,7 +9163,7 @@ When deploying MultiGov on Solana, several key parameters need to be set. Here a
  - `hubProposalMetadata` ++"[u8; 20]"++ - an array of bytes representing the address of the Hub Proposal Metadata contract on Ethereum. This is used to identify proposals from the hub 
  - `voteWeightWindowLength` ++"u64"++ - specifies the length of the checkpoint window in seconds in which the minimum voting weight is taken. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The vote weight window helps solve problems such as manipulating votes in a chain 
  - `votingTokenMint` ++"Pubkey"++ - the mint address of the token used for voting  
- - `governanceAuthority` ++"Pubkey"++ - the account's public key that has the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
+ - `governanceAuthority` ++"Pubkey"++ - the account's public key with the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
  - `vestingAdmin` ++"Pubkey"++ - the account's public key for managing vesting operations. The `vestingAdmin` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
  - `hubDispatcher` ++"Pubkey"++ - the Solana public key derived from an Ethereum address on the hub chain that dispatches messages to the spoke chains. This is crucial for ensuring that only authorized messages from the hub are executed on the spoke
 --- END CONTENT ---
