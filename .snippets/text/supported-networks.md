@@ -39,7 +39,7 @@
   :material-file-document: <a href="https://docs.gnosischain.com/" target="_blank">Developer Docs</a><br>
   :octicons-package-16: <a href="https://gnosisscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>HyperEVM</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://hyperfoundation.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://hyperliquid.gitbook.io/hyperliquid-docs" target="_blank">Developer Docs</a><br></td></tr><tr><td>Ink</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-file-document: <a href="https://hyperliquid.gitbook.io/hyperliquid-docs" target="_blank">Developer Docs</a><br></td></tr><tr><td>Ink</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://inkonchain.com/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.inkonchain.com/" target="_blank">Developer Docs</a><br>
   :octicons-package-16: <a href="https://explorer-sepolia.inkonchain.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Kaia</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
