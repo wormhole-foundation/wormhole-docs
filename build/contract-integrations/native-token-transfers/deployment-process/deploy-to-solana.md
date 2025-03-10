@@ -40,12 +40,21 @@ You must create and configure an SPL token on Solana to enable cross-chain trans
     solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
     ```
 
-    3. If deploying on Devnet, configure Solana to use the default RPC URL:
-    ```bash
-    solana config set -ud
-    ```
+    3. Configure Solana to use the default RPC URL:
+        - **Devnet**
+            ```bash
+            solana config set -ud
+            ```
+        - **Testnet**
+            ```bash
+            solana config set -ut
+            ```
+        - **Mainnet**
+            ```bash
+            solana config set -um
+            ```
 
-    4. Request an airdrop of two SOL and check the balance:
+    4. Ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop:
     ```bash
     solana airdrop 2
     solana balance
@@ -56,7 +65,7 @@ You must create and configure an SPL token on Solana to enable cross-chain trans
     cargo install spl-token-cli
     ```
 
-    6. Create a new token with the SPL Token CLI (make sure you have enough balance to pay for the transaction):
+    6. Create a new token with the SPL Token CLI:
     ```bash
     spl-token create-token
     ```
