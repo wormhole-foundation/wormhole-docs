@@ -5,6 +5,8 @@ description: Learn how to integrate Wormhole's Token Bridge for seamless multich
 
 # Token Bridge
 
+## Introduction
+ 
 Wormhole's Token Bridge offers a solution that enables token transfers across blockchain networks using a lock-and-mint mechanism. Leveraging Wormhole's [generic message-passing protocol](/docs/learn/fundamentals/introduction/){target=\_blank}, the Token Bridge allows assets to move across supported blockchains without native token swaps. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain, making the transfer process efficient and chain-agnostic. This approach is highly scalable and doesn't require each blockchain to understand the token transfer logic of other chains, making it a robust and flexible solution for multichain dApps. Additionally, the Token Bridge supports [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions.
 
 This page demonstrates how to practically interact with Wormhole's Token Bridge, leveraging the Wormhole SDK and various contract interfaces to send tokens across chains, attest new tokens, and attach arbitrary payloads for contract-controlled transfers. For more details on how the Token Bridge works, refer to the [Token Bridge](/docs/learn/messaging/token-bridge/){target=\_blank} or [Native Token Transfers](/docs/learn/messaging/native-token-transfers/overview/#token-bridge){target=\_blank} pages in the Learn section.
