@@ -97,9 +97,9 @@ Follow these steps to create an SPL token on Solana:
 !!! note
     NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
 
-## Set Up NTT Deployment
+## NTT Setup
 
-Once your SPL token is set up, deploy the NTT program on Solana.
+To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and generates key pairs if needed.
 
 1. **Create a new NTT project** - set up a deployment workspace
 
@@ -122,30 +122,34 @@ Once your SPL token is set up, deploy the NTT program on Solana.
         ntt init Mainnet
         ```
 
-The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, skip the below steps and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, you can skip the next section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
-???+ interface "Burn-and-Mint Required Steps" 
+### Token Authority (burn-and-mint)
 
-    1. **Generate an NTT program key pair** - create a unique key pair for the NTT program
+In burn-and-mint mode, the NTT program must be able to mint and burn tokens as they move between chains. To enable this, the program needs control over the SPL token’s minting authority.
 
-        ```bash
-        solana-keygen grind --starts-with ntt:1 --ignore-case
-        ```
+This section walks through deriving the Program Derived Address (PDA), which will act as the token authority, and updating the SPL token’s mint authority accordingly.
 
-    2. **Derive the token authority** - generate the Program Derived Address (PDA), which will manage token minting
+1. **Generate an NTT program key pair** - create a unique key pair for the NTT program
 
-        ```bash
-        ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
-        ```
+    ```bash
+    solana-keygen grind --starts-with ntt:1 --ignore-case
+    ```
 
-    3. **Set SPL token mint authority** - delegate minting control to the derived PDA 
+2. **Derive the token authority** - generate the PDA, which will manage token minting
 
-        ```bash
-        spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
-        ```
+    ```bash
+    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
+    ```
 
-        !!!Warning
-            You must create your token's metadata before delegating mint authority. [See an example on how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
+3. **Set SPL token mint authority** - delegate minting control to the derived PDA 
+
+    ```bash
+    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+    ```
+
+!!!Warning
+    You must create your token's metadata before delegating mint authority. [See an example on how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
 
 ## Deploy and Configure NTT
 
