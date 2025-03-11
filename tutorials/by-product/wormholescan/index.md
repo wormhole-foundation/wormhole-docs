@@ -29,7 +29,7 @@ Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain
 
     ---  
 
-    Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
+    Wormholescan is an explorer for looking at individual transfer statuses on mainnet and testnet.
 
     [:custom-arrow: Visit Wormholescan](https://wormholescan.io/){target=\_blank}  
 
