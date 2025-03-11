@@ -59,7 +59,7 @@ function attestToken(
 
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
-You must ensure the token is ERC-20 compliant. The attestation may fail or produce incomplete metadata if it does not implement the standard functions.
+You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
 
 ### Transfer Tokens 
 
