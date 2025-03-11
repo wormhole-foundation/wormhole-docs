@@ -7,7 +7,7 @@ description: Learn how to integrate Wormhole's Token Bridge for seamless multich
 
 ## Introduction 
 
-Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [contract controlled transfers (transfers with messages)](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [contract-controlled transfers (transfers with messages)](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
 This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} page in the Learn section. 
 
