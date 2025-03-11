@@ -16713,7 +16713,7 @@ description: Explore Wormhole's Native Token Transfers for flexible cross-chain 
     If you're ready to deploy NTT or access the CLI, follow the detailed [NTT Deployment Section](/docs/build/contract-integrations/native-token-transfers/deployment-process/){target=\_blank}.  
 
      - For deployment steps on EVM, visit the [Deploy to EVM page](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}  
-     - For deployment steps on Solana, visit the [Deploy to Solana page](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank}
+     - For deployment steps on Solana, visit the [Deploy to Solana page](/docs/build/contract-integrations/native-token-transfers/deployment-process/deploy-to-solana/){target=\_blank}
 
 ## Introduction
 
