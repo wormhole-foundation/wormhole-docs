@@ -9928,11 +9928,7 @@ Before deploying NTT on Solana, ensure you have the following:
 
 Before integrating your token with Wormhole’s NTT, it must be deployed and configured on Solana. This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
 
-If you already have an SPL token, skip to [Set Up NTT Deployment](#set-up-ntt-deployment).
-
-### Deploy a New SPL Token
-
-Follow these steps to create an SPL token on Solana:
+If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
 
 1. **Generate a Solana key pair** - create a new wallet
 
