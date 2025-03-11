@@ -22,7 +22,7 @@ Take the following steps to get started with a MultiGov integration:
 
     ---
 
-    Set up and deploy MultiGov on EVM with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
     [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deploy-to-evm/)
 

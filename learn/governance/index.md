@@ -49,13 +49,21 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     [:custom-arrow: Start the integration process now](/docs/build/contract-integrations/multigov/)
 
--   :octicons-rocket-16:{ .lg .middle } **Deployment**
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains**
 
     ---
 
-    Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deploy-to-evm/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
+
+    ---  
+
+    Set up and deploy NTT on Solana with step-by-step instructions for configuring, initializing, and deploying the required contracts.  
+
+    [:custom-arrow: Discover how to deploy NTT on Solana](/docs/build/contract-integrations/multigov/deploy-to-solana/)  
 
 -   :octicons-code-square-16:{ .lg .middle } **Tutorials**
 
