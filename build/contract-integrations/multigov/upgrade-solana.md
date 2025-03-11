@@ -23,7 +23,7 @@ This guide covers the key considerations and step-by-step process for upgrading 
 
 ## Upgrade the MultiGov Program
 
-Follow these steps to upgrade the MultiGov Staking Program on Solana.  
+Follow these steps to upgrade the MultiGov Staking Program on Solana:
 
 1. **Prepare the new program binary** - build the updated program using the provided script
 
