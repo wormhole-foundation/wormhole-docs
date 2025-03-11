@@ -213,7 +213,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
         }
         ```  
 
-4. **Push the final deployment** - once rate limits are set, push the deployment to Solana 
+4. **Push the final deployment** - once rate limits are set, push the deployment to Solana using the specified key pair to cover gas fees
 
     ```bash
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
