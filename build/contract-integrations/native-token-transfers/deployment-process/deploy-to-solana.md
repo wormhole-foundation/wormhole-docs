@@ -101,7 +101,7 @@ Follow these steps to create an SPL token on Solana:
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and generates key pairs if needed.
 
-The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/cli-commands/) is used to manage deployments, configure settings, and interact with the NTT system.
+The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/cli-commands/) manages deployments, configures settings, and interacts with the NTT system.
 
 1. **Create a new NTT project** - set up a deployment workspace
 
@@ -128,10 +128,10 @@ The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/cli-comma
 
 The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}:
 
- - **hub-and-spoke** - tokens are locked on a hub chain and minted on destination chains. Since the token supply remains controlled by the hub chain, no changes to minting authority are required.
- - **burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token’s minting authority to the Program Derived Address (PDA) controlled by the NTT program.
+ - **hub-and-spoke** - tokens are locked on a hub chain and minted on destination chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+ - **burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token’s minting authority to the Program Derived Address (PDA) controlled by the NTT program
 
-If you are using hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+If you use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
 This section walks through deriving the PDA, which will act as the token authority, and updating the SPL token’s mint authority.
 
@@ -154,7 +154,7 @@ This section walks through deriving the PDA, which will act as the token authori
     ```
 
 !!!Warning
-    You must create your token's metadata before delegating mint authority. [See an example on how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
+    You must create your token's metadata before delegating mint authority. [See an example of how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
 
 ## Deploy and Configure NTT
 
