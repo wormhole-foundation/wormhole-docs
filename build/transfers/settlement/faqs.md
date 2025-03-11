@@ -7,7 +7,7 @@ description: Frequently asked questions about Wormhole Settlement, including sma
 
 ## Can I use Wormhole Settlement from a smart contract? If so, how is a message signed and relayed?
 
-Yes, Wormhole Settlement can be used from a smart contract. The message is relayed by the composing protocol's relayer. For example, Mayan Shuttle (formerly Swap Layer) has a relayer that redeems the VAA on the destination chain to mint USDC and execute the `callData` contained in the payload.
+Yes, Wormhole Settlement can be used from a smart contract. The composing protocol's relayer relays the message. For example, Mayan Shuttle (formerly Swap Layer) has a relayer that redeems the VAA on the destination chain to mint USDC and execute the `callData` contained in the payload.
 
 ## What happens if no solver participates in the auction?
 
