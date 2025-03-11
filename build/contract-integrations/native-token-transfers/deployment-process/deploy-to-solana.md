@@ -26,56 +26,70 @@ Before deploying NTT on Solana, ensure you have the following:
 
 ## Token Setup
 
-You must create and configure an SPL token on Solana to enable cross-chain transfers. If you already have a deployed SPL token, you can [skip this section](#set-up-ntt-deployment).
+Before integrating your token with Wormhole’s NTT, it must be deployed and configured on Solana. This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
 
-???- interface "Deploy an SPL Token"
+If you already have an SPL token, skip to [Set Up NTT Deployment](#set-up-ntt-deployment).
 
-    1. Generate a new Solana key pair to create a wallet:
+### Deploy a New SPL Token
+
+Follow these steps to create an SPL token on Solana:
+
+1. **Generate a Solana key pair** - create a new wallet
+
     ```bash
     solana-keygen grind --starts-with w:1 --ignore-case
     ```
 
-    2. Set Solana configuration to use the new key pair created in step 1:
+2. **Set Solana configuration** - use the generated key pair
+
     ```bash
     solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
     ```
 
-    3. Configure Solana to use the default RPC URL:
-        - **Devnet**
-            ```bash
-            solana config set -ud
-            ```
-        - **Testnet**
-            ```bash
-            solana config set -ut
-            ```
-        - **Mainnet**
-            ```bash
-            solana config set -um
-            ```
+3. **Select an RPC URL** - configure Solana to use the appropriate network
 
-    4. Ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop:
+    === "Devnet"
+        ```bash
+        solana config set -ud
+        ```
+
+    === "Testnet"
+        ```bash
+        solana config set -ut
+        ```
+
+    === "Mainnet"
+        ```bash
+        solana config set -um
+        ```
+
+4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop
+
     ```bash
     solana airdrop 2
     solana balance
     ```
 
-    5. Install or update the SPL Token CLI:
+5. **Install SPL Token CLI** - install or update the required CLI tool
+
     ```bash
     cargo install spl-token-cli
     ```
 
-    6. Create a new token with the SPL Token CLI:
+6. **Create a new SPL token** - initialize the token on Solana
+
     ```bash
     spl-token create-token
     ```
 
-    7. Create a new account for the token created in step 6:
+7. **Create a token account** - generate an account to hold the token
+
     ```bash
     spl-token create-account INSERT_TOKEN_ADDRESS
     ```
 
-    8. Mint `1000` tokens to the created account:
+8. **Mint tokens** - send 1000 tokens to the created account
+
     ```bash
     spl-token mint INSERT_TOKEN_ADDRESS 1000
     ```
