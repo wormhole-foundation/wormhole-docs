@@ -11172,7 +11172,7 @@ Use the following links to jump directly to each Wormhole transfer product page 
 - [**Connect**](/docs/build/transfers/connect/) - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup
 - [**Native Token Transfers (NTT)**](/docs/build/transfers/native-token-transfers/) - a mechanism to transfer native tokens cross-chain seamlessly without converting to a wrapped asset
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/) - a bridging solution that uses a lock and mint mechanism
-- [**Wormhole Settlement**](/docs/build/transfers/wormhole-docs/build/transfers/settlement/) - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
+- [**Wormhole Settlement**](/docs/build/transfers/wormhole-docs/build/transfers/settlement/) - an intent protocol suite for fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
 
 ## Products By Feature
 
@@ -11180,24 +11180,24 @@ While all of these products handle token transfers, there are additional feature
 
 <div class="grid cards" markdown>
 
--   :octicons-gear-16:{ .lg .middle } **Message Payload**
+-   :octicons-file-code-16:{ .lg .middle } **Message Payload**
 
     ---
 
-    Send message payloads for social platforms and NFTs with Token Bridge's lock and mint wrapped token mechanism.
+    Send message payloads for social platforms, NFTs, and more with Token Bridge's lock and mint wrapped token mechanism.
 
-    [:custom-arrow: Discover Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}
+    [:custom-arrow: Discover Token Bridge](/docs/learn/transfers/token-bridge/)
 
--   :octicons-gear-16:{ .lg .middle } **Native Assets**
+-   :octicons-file-code-16:{ .lg .middle } **Native Assets**
 
     ---
 
-    Eliminate the need for wrapped tokens and issue native multichain assets with Native Token Transfer (NTT).
+    Eliminate the need for wrapped tokens and issue native multichain assets with Native Token Transfers (NTT).
 
-    [:custom-arrow: Discover Native Token Transfer](/docs/build/transfers/native-token-transfers/)
+    [:custom-arrow: Discover Native Token Transfers](/docs/build/transfers/native-token-transfers/)
 
 
--   :octicons-gear-16:{ .lg .middle } **Speed at Scale**
+-   :octicons-file-code-16:{ .lg .middle } **Speed at Scale**
 
     ---
 
@@ -11205,11 +11205,11 @@ While all of these products handle token transfers, there are additional feature
 
     [:custom-arrow: Discover Settlement](/docs/build/transfers/wormhole-docs/build/transfers/settlement/)
 
--   :octicons-gear-16:{ .lg .middle } **Plug and Play UI**
+-   :octicons-gear-16:{ .lg .middle } **Plug-and-Play UI**
 
     ---
 
-    Add Wormhole token transfer UI to your dApp, no smart contract development required, with Connect.
+    Add Wormhole's bridge UI to your dApp, no smart contract development required, with Connect.
 
     [:custom-arrow: Discover Connect](/docs/build/transfers/connect/)
 
@@ -11223,9 +11223,9 @@ While all of these products handle token transfers, there are additional feature
 
     ---
 
-    Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+    Compare Wormhole's cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 
-    [:custom-arrow: Compare Products](/docs/build/start-building/products/){target=\_blank}
+    [:custom-arrow: Compare Products](/docs/build/start-building/products/)
 
 -   :octicons-book-16:{ .lg .middle } **Use Cases**
 
