@@ -122,13 +122,16 @@ To integrate your token with NTT on Solana, you must initialize the deployment a
         ntt init Mainnet
         ```
 
-The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}. If using hub-and-spoke, you can skip the next section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+### Token Authority
 
-### Token Authority (burn-and-mint)
+The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}:
 
-In burn-and-mint mode, the NTT program must be able to mint and burn tokens as they move between chains. To enable this, the program needs control over the SPL token’s minting authority.
+ - **hub-and-spoke** - tokens are locked on a hub chain and minted on destination chains. Since the token supply remains controlled by the hub chain, no changes to minting authority are required.
+ - **burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token’s minting authority to the Program Derived Address (PDA) controlled by the NTT program.
 
-This section walks through deriving the Program Derived Address (PDA), which will act as the token authority, and updating the SPL token’s mint authority accordingly.
+If you are using hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+
+This section walks through deriving the PDA, which will act as the token authority, and updating the SPL token’s mint authority.
 
 1. **Generate an NTT program key pair** - create a unique key pair for the NTT program
 
