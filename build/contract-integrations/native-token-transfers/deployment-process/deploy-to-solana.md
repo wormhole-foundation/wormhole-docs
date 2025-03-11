@@ -101,6 +101,8 @@ Follow these steps to create an SPL token on Solana:
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and generates key pairs if needed.
 
+The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/cli-commands/) is used to manage deployments, configure settings, and interact with the NTT system.
+
 1. **Create a new NTT project** - set up a deployment workspace
 
     ```bash
@@ -217,9 +219,10 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
 
     ```bash
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
-    ```  
+    ```
 
-    By default, NTT transfers to Solana require manual relaying, meaning the user must perform a transaction on Solana to complete the transfer. UI components such as [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this automatically.  
+???- note "Troubleshoot Deployment Issues"
+    If your deployment fails, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} to find and close buffer accounts.
 
 ## Next Steps and Resources  
 
@@ -227,6 +230,4 @@ Your NTT deployment on Solana is now complete! To proceed, explore the following
 
  - **Test your deployment** – follow the [NTT Post Deployment Guide](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/){target=\_blank} for integration examples and testing instructions
  - **Integrate NTT into your application** – use [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} to enable seamless cross-chain transfers in your UI
- - **Troubleshoot deployment issues** – if your deployment fails, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} to find and close buffer accounts
- - **Understand the NTT CLI** – the NTT CLI takes inspiration from [Git](https://git-scm.com/){target=\_blank}. Many commands work similarly, making version control and configuration updates intuitive 
  - **Get automatic relaying support** – for automatic Wormhole relaying support, [contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}
