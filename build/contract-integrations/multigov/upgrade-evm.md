@@ -3,7 +3,7 @@ title: Upgrading MultiGov on EVM
 description: Learn the process and key considerations for upgrading MultiGov on EVM, ensuring system integrity and careful planning across cross-chain components.
 ---
 
-# Upgrade MultiGov Contracts on EVM
+# Upgrade MultiGov Contracts on EVM Chains
 
 MultiGov is designed to be flexible but stable. Due to the system's complexity and cross-chain nature, upgrades should be rare and carefully considered. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
 

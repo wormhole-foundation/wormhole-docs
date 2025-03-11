@@ -34,7 +34,7 @@ Take the following steps to get started with a MultiGov integration:
 
     [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/contract-integrations/multigov/deploy-to-solana/)  
 
--   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM**
+-   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM Chains**
 
     ---
 
