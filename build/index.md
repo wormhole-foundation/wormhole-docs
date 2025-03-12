@@ -16,9 +16,43 @@ If you learn best by building, start here:
 
 ## Builder Essentials
 
-Use the following list to access essential information and tools quickly:
+Access essential information and tools quickly:
 
-[timeline left(wormhole-docs/.snippets/text/build/build-index-timeline.json)]
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Supported Networks**
+
+    ---
+
+    Supported blockchains by environment - main or testnet availability and quick links to the website, documentation, and block explorer for each network.
+
+    [:custom-arrow: Supported Networks](/docs/build/start-building/supported-networks/)
+
+-   :octicons-tools-16:{ .lg .middle } **Testnet Faucets**
+
+    ---
+
+    Links to testnet token faucets for supported networks.
+
+    [:custom-arrow: Get Testnet Tokens](/docs/build/start-building/testnet-faucets/)
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole TypeScript SDK**
+
+    ---
+
+    Your guide to Wormhole SDK installation and usage, concepts overview, and code samples.
+
+    [:custom-arrow: Wormhole TypeScript SDK](/docs/build/toolkit/typescript-sdk/wormhole-sdk/)
+
+-   :octicons-tools-16:{ .lg .middle } **Reference**
+
+    ---
+
+    Wormhole chain ID, contract address, address formatting and conversion, and consistency information.
+
+    [:custom-arrow: Reference](/docs/build/reference/)
+
+</div>
 
 ## Integrate Transfer Products 
 
