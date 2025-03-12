@@ -38,7 +38,7 @@ Get to know Wormhole through these informational sections. Start with the fundam
 
     ---
 
-    Explore this section to gain a foundational understanding of MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
+    Gain a foundational understanding of MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
 
     [:custom-arrow: Learn about MultiGov](/docs/learn/governance/)
 
