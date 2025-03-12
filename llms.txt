@@ -21927,7 +21927,7 @@ description: Learn how to fetch, validate, and replace outdated signatures in Wo
 
 Cross-chain transactions in Wormhole rely on [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank}, which contain signatures from a trusted set of validators called [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank}. These signatures prove that the network approved an action, such as a token transfer.
 
-However, the set of guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the guardian set may have already changed. This means the VAA will contain outdated signatures from guardians no longer part of the network, causing the transaction to fail.
+However, the set of Guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the Guardian set may have already changed. This means the VAA will contain outdated signatures from Guardians no longer part of the network, causing the transaction to fail.
 
 Instead of discarding these VAAs, we can fetch updated signatures and replace the outdated ones to ensure smooth processing.
 
@@ -21978,7 +21978,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     Then, add the following configuration:
 
-    ```json
+    ```json title="tsconfig.json"
     {
     "compilerOptions": {
         "target": "es2016",
@@ -22004,7 +22004,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
 6. **Set variables** - define key constants in `src/config/constants.ts`
 
-    ```bash
+    ```bash title="src/config/constants.ts"
     export const RPC = 'https://ethereum-rpc.publicnode.com';
 
 export const ETH_CORE =
@@ -22035,7 +22035,7 @@ export const TXS = [
 
     Then, add the following contents:
 
-    ```typescript
+    ```typescript title="src/config/layouts.ts"
     export const PARSE_AND_VERIFY_VM_ABI = {
   inputs: [{ internalType: 'bytes', name: 'encodedVM', type: 'bytes' }],
   name: 'parseAndVerifyVM',
@@ -22097,7 +22097,7 @@ To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This
 
 2. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules: `axios` for making API requests, `web3` for encoding and decoding Ethereum transactions, `@wormhole-foundation/sdk` for handling VAAs, and `constants` from the configuration file
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     import { eth } from 'web3';
 import {
   deserialize,
@@ -22116,7 +22116,7 @@ import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
 
 3. **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     const vaaIds: string[] = [];
 
   for (const tx of txHashes) {
@@ -22164,7 +22164,7 @@ import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchVaaId.test.ts"
         import { fetchVaaId } from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
@@ -22210,7 +22210,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
 
  - **Create the `fetchVaa()` function** - open `src/helpers/vaaHelper.ts` and add the below function. This function iterates through the provided VAA IDs, queries the API for each, and extracts the `vaaBytes` payload. If a request fails, the error is logged, and processing continues for the remaining IDs
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     vaaIds: string[]
 ): Promise<{ id: string; vaaBytes: string }[]> {
   const results: { id: string; vaaBytes: string }[] = [];
@@ -22239,7 +22239,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchVaa.test.ts"
         import { fetchVaaId, fetchVaa } from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
@@ -22293,7 +22293,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
 
  - **Create the `checkVaaValidity()` function** - add a new function inside `src/helpers/vaaHelper.ts` to validate VAAs. The below function sends the VAA to an Ethereum RPC node and calls the `parseAndVerifyVM` function on the Wormhole Core contract. The response will indicate whether the VAA is valid or contains outdated signatures that need replacing.
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     try {
     const vaa = Buffer.from(vaaBytes, 'base64');
     vaa[4] = 4; // Set guardian set index to 4
@@ -22345,7 +22345,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/checkVaaValidity.test.ts"
         import {
   fetchVaaId,
   fetchVaa,
@@ -22406,7 +22406,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
 
  - **Create the `fetchObservations()` function** - add a new function inside `src/helpers/vaaHelper.ts` to query the Wormholescan API for observations related to a given VAA. Then, format the response, converting guardian addresses to lowercase for consistency. If an error occurs, it returns an empty array.
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     try {
     console.log(`Fetching observations`);
     const response = await axios.get(
@@ -22435,7 +22435,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchObservations.test.ts"
         import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
@@ -22503,7 +22503,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 
 1. **Create the `fetchGuardianSet()` function** - add a new function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     try {
     console.log('Fetching current guardian set');
     const response = await axios.get(
@@ -22533,7 +22533,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchGuardianSet.test.ts"
         import { fetchGuardianSet } from '../src/helpers/vaaHelper';
 
 const testFetchGuardianSet = async () => {
@@ -22576,7 +22576,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
 1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     vaa: string | Uint8Array<ArrayBufferLike>,
   observations: { guardianAddr: string; signature: string }[],
   currentGuardians: string[],
@@ -22786,7 +22786,7 @@ Now that we have all the necessary helper functions, we will create a script to 
 
 2. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
 
-    ```typescript
+    ```typescript title="src/scripts/replaceSignatures.ts"
     fetchVaaId,
   fetchVaa,
   checkVaaValidity,
