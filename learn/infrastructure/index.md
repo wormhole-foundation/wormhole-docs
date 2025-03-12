@@ -36,25 +36,3 @@ Start here for an overview of Wormhole architecture components and security mech
 The relationship between individual components can be demonstrated through the simplified flow of a cross-chain message from a source-chain contract to a target-chain contract. Select the title of each step to learn more about that component:
 
 [timeline left(wormhole-docs/.snippets/text/learn/infrastructure/infrastructure-index-timeline.json)]
-
-## Additional Resources
-
-<div class="grid cards" markdown>
-
--   :octicons-question-16:{ .lg .middle } **Glossary**
-
-    ---
-
-    An index of technical term definitions for words commonly used in Wormhole documentation.
-    
-    [:custom-arrow: Wormhole Glossary](/docs/learn/glossary/)
-
--   :octicons-book-16:{ .lg .middle } **Spy**
-
-    ---
-
-    A Spy watches the messages published by the Guardian Network and can forward network traffic.
-
-    [:custom-arrow: Learn more about the Spy](/docs/learn/infrastructure/spy/)
-
-</div>
