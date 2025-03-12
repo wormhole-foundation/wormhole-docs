@@ -22,7 +22,7 @@ Enable seamless swaps between chains with real-time liquidity routing.
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – moves native assets across chains
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches real-time prices for optimal trade execution
 
-🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators  <br>🚀 **Used by:** [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
+🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators  <br>🏗️ **Used by:** [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
 
 </div>
 </div>
@@ -44,7 +44,7 @@ Let users borrow assets on one chain using collateral from another.
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers collateral as native assets
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
 
-🔗 **Used in:** Lending protocols and yield platforms <br>🚀 **Used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
+🔗 **Used in:** Lending protocols and yield platforms <br>🏗️ **Used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
 
 </div>
 </div>
@@ -65,7 +65,7 @@ Fetch price feeds across multiple chains for DeFi applications.
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches price feeds from oracles and trading platforms
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – sends signals to execute trades
 
-🔗 **Used in:** Trading bots, arbitrage platforms, and oracles <br>🚀 **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
+🔗 **Used in:** Trading bots, arbitrage platforms, and oracles <br>🏗️ **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
 
 </div>
 </div>
@@ -85,7 +85,7 @@ Enable direct BTC transfers without wrapped assets.
 
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers BTC across chains
 
-🔗 **Used in:** Bitcoin DeFi and lightning network integrations <br>🚀 **Used by:** [Synonym](https://wormhole.com/case-studies/synonym){target=\_blank}
+🔗 **Used in:** Bitcoin DeFi and lightning network integrations <br>🏗️ **Used by:** [Synonym](https://wormhole.com/case-studies/synonym){target=\_blank}
 
 </div>
 </div>
@@ -106,7 +106,7 @@ Enable seamless communication and asset transfer across decentralized social net
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates decentralized interactions
 - [**Token Bridge**](/docs/build/contract-integrations/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
 
-🔗 **Used in:** Web3 social networks and content monetization <br>🚀 **Used by:** [Chingari](https://chingari.io/){target=\_blank}
+🔗 **Used in:** Web3 social networks and content monetization <br>🏗️ **Used by:** [Chingari](https://chingari.io/){target=\_blank}
 
 </div>
 </div>
@@ -253,7 +253,7 @@ Fetch and verify cross-chain data, enabling reliable, decentralized Oracle servi
 - [**Queries**](/docs/build/applications/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
 
-🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🚀 **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
+🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🏗️ **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
 
 </div>
 </div>
@@ -274,7 +274,7 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 - [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
 - [**Native Token Transfer**](/docs/build/contract-integrations/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
 
-🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks <br>🚀 **Used by:** [Lido](https://lido.fi/){target=\_blank}
+🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks <br>🏗️ **Used by:** [Lido](https://lido.fi/){target=\_blank}
 
 </div>
 </div>
