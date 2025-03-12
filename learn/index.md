@@ -6,26 +6,42 @@ template: root-index-page.html
 
 # Learn
 
-## Get Started
-
-This section offers informational content on Wormhole, covering its architecture, messaging protocols, and the fundamentals of how it enables cross-chain communication and asset transfers.
+Get to know Wormhole through these informational sections. Start with the fundamentals of architecture components and basic communication flow. Once you've mastered the basics, discover Wormhole's multichain transfer products and governance system.
 
 <div class="grid cards" markdown>
 
--   :octicons-inbox-16:{ .lg .middle } **Infrastructure Components**
+-   :octicons-book-16:{ .lg .middle } **Introduction to Wormhole**
 
     ---
 
-    Explore Wormhole's core infrastructure components and the unique roles each plays in enabling seamless message delivery across chains.
+    Learn more about the problems Wormhole solves, explore use cases, and view a list of supported blockchains. 
+
+    [:custom-arrow: Introduction to Wormhole](/docs/learn/introduction/)
+
+-   :octicons-book-16:{ .lg .middle } **Messaging Infrastructure**
+
+    ---
+
+    Investigate the architecture of Wormhole's messaging protocol with an indepth exploration of the individual components powering Wormhole's infrastructure.   
 
     [:custom-arrow: Understand Wormhole's infrastructure](/docs/learn/infrastructure/)
 
--   :octicons-people-16:{ .lg .middle } **Multichain Governance**
+-   :octicons-book-16:{ .lg .middle } **Multichain Transfers**
 
     ---
 
-    Explore this section to gain a foundational understanding of MultiGov, Wormhole's approach to multichain governance.
+    Discover Wormhole's multichain transfer products supporting features like transferrable native tokens, bridging of wrapped assets, and intent-based asset transfer.
+
+    [:custom-arrow: Learn about Multichain Transfers](/docs/learn/transfers/)
+
+-   :octicons-book-16:{ .lg .middle } **Multichain Governance**
+
+    ---
+
+    Explore this section to gain a foundational understanding of MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
 
     [:custom-arrow: Learn about MultiGov](/docs/learn/governance/)
 
 </div>
+
+
