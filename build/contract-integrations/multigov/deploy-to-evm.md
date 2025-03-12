@@ -17,7 +17,7 @@ To interact with MultiGov, you'll need the following:
 - Install [Git](https://git-scm.com/downloads){target=\_blank}
 - Clone the repository:
    ```bash
-   git clone [MultiGov Repository URL]
+   git clone https://github.com/wormhole-foundation/multigov
    cd evm # for evm testing/deploying
    ```
 
