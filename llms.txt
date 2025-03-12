@@ -767,35 +767,63 @@ template: root-index-page.html
 
 # Build
 
-## Get Started
+## Quick Start
 
-Whether you’re developing front-end applications using Wormhole's application-layer tools or building smart contract integrations on top of Wormhole’s messaging protocols, learn how Wormhole can help you achieve seamless, multichain interoperability.
+If you learn best by building, start here:
+
+- [**Transfer Tokens via the Token Bridge**](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/){target=\_blank} - this tutorial takes you step-by-step through using the [Wormhole SDK's](/docs/build/toolkit/typescript-sdk/){target=\_blank} Token Bridge method to move wrapped assets across networks.
+
+- [**Transfer USDC via CCTP and Wormhole SDK**](docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/){target=\_blank} - this step-by-step tutorial combines [Wormhole SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} and Circle's Cross-Chain Transfer Protocol (CCTP) to bridge native USDC across networks.
+
+## Builder Essentials
+
+Use the following list to access essential information and tools quickly:
+
+::timeline::
+
+[
+    {
+        "title": "[Supported Networks](/docs/build/start-building/supported-networks/)",
+        "content": "Supported blockchains by environment - main or testnet availability and quick links to the website, documentation, and block explorer for each network.",
+        "icon": ":material-tools:",
+        
+    },
+    {
+        "title": "[Testnet Faucets](/docs/build/start-building/testnet-faucets/)",
+        "content": "Links to testnet token faucets for supported networks.",
+        "icon": ":material-tools:",
+        
+        
+    },
+    {
+        "title": "[Wormhole TypeScript SDK](/docs/build/toolkit/typescript-sdk/wormhole-sdk/)",
+        "content": "Your guide to the Wormhole SDK - installation and usage instructions, concepts overview, and code samples.",
+        "icon": ":material-tools:"
+    },
+    {
+        "title": "[Reference](/docs/build/reference/)",
+        "content": "Wormhole chain ID, contract address, address formatting and conversion, and consistency information.",
+        "icon": ":material-tools:"
+    }
+    
+]
+
+::/timeline::
+
+## Integrate Transfer Products 
 
 <div class="grid cards" markdown>
 
--   :octicons-tools-16:{ .lg .middle } **Start Building**
+-   :octicons-tools-16:{ .lg .middle } **Multichain Transfers**
 
     ---
 
-    Get equipped with everything you need to start developing with Wormhole, including an overview of supported networks and a list of demo projects.
+    - **Connect UI widget** - easy-to-use UI for cross-chain asset transfers via Wormhole in a web application
+    - **Native Token Transfers (NTT)** - native asset transfer, no wrappers required
+    - **Token Bridge** - transfer wrapped assets with optional message payloads
+    - **Wormhole Settlement** - intent-based solution enabling fast and efficient asset transfers across Ethereum, Solana, Sui, and more 
 
-    [:custom-arrow: Get started](/docs/build/start-building/)
-
--   :octicons-gear-16:{ .lg .middle } **Toolkit**
-
-    ---
-
-    Discover essential developer tools for managing and sending cross-chain transfers, including the Wormholescan explorer, Wormhole CLI, Wormhole SDKs, and more.
-
-    [:custom-arrow: Discover tools](/docs/build/toolkit/)
-
--   :octicons-book-16:{ .lg .middle } **Reference**
-
-    ---
-
-    Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
-
-    [:custom-arrow: Explore reference](/docs/build/reference/)
+    [:custom-arrow: Build Multichain Transfers](/docs/learn/transfers/)
 
 </div>
 --- END CONTENT ---
