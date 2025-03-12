@@ -62,7 +62,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     Then, add the following configuration:
 
-    ```json
+    ```json title="tsconfig.json"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-1.json"
     ```
 
@@ -79,7 +79,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
 6. **Set variables** - define key constants in `src/config/constants.ts`
 
-    ```bash
+    ```bash title="src/config/constants.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-2.ts"
     ```
 
@@ -97,7 +97,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
     Then, add the following contents:
 
-    ```typescript
+    ```typescript title="src/config/layouts.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts"
     ```
 
@@ -122,13 +122,13 @@ To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This
 
 2. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules: `axios` for making API requests, `web3` for encoding and decoding Ethereum transactions, `@wormhole-foundation/sdk` for handling VAAs, and `constants` from the configuration file
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:1:15"
     ```
 
 3. **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:17:50"
     ```
 
@@ -144,7 +144,7 @@ To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchVaaId.test.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-5.ts"
         ```  
 
@@ -174,7 +174,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
 
  - **Create the `fetchVaa()` function** - open `src/helpers/vaaHelper.ts` and add the below function. This function iterates through the provided VAA IDs, queries the API for each, and extracts the `vaaBytes` payload. If a request fails, the error is logged, and processing continues for the remaining IDs
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:52:67"
     ```
 
@@ -189,7 +189,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchVaa.test.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-6.ts"
         ```  
 
@@ -219,7 +219,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
 
  - **Create the `checkVaaValidity()` function** - add a new function inside `src/helpers/vaaHelper.ts` to validate VAAs. The below function sends the VAA to an Ethereum RPC node and calls the `parseAndVerifyVM` function on the Wormhole Core contract. The response will indicate whether the VAA is valid or contains outdated signatures that need replacing.
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:69:107"
     ```
 
@@ -234,7 +234,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/checkVaaValidity.test.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-7.ts"
         ```  
 
@@ -262,7 +262,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
 
  - **Create the `fetchObservations()` function** - add a new function inside `src/helpers/vaaHelper.ts` to query the Wormholescan API for observations related to a given VAA. Then, format the response, converting guardian addresses to lowercase for consistency. If an error occurs, it returns an empty array.
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:109:124"
     ```
 
@@ -277,7 +277,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchObservations.test.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-8.ts"
         ```  
 
@@ -317,7 +317,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 
 1. **Create the `fetchGuardianSet()` function** - add a new function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:126:142"
     ```
 
@@ -332,7 +332,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 
     2. **Add the test logic**  
 
-        ```typescript
+        ```typescript title="test/fetchGuardianSet.test.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-9.ts"
         ```  
 
@@ -366,7 +366,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
 1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header
 
-    ```typescript
+    ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:150"
     ```
 
@@ -464,7 +464,7 @@ Now that we have all the necessary helper functions, we will create a script to 
 
 2. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
 
-    ```typescript
+    ```typescript title="src/scripts/replaceSignatures.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-10.ts:1:9"
     ```
 
