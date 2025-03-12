@@ -44,4 +44,28 @@ Get to know Wormhole through these informational sections. Start with the fundam
 
 </div>
 
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Product Comparison**
+
+    ---
+
+    Compare Wormhole's cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+
+    [:custom-arrow: Compare Products](/docs/build/start-building/products/){target=\_blank}
+
+-   :octicons-book-16:{ .lg .middle } **Use Cases**
+
+    ---
+
+    Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+
+    [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/)
+
+
+</div>
+
+
 
