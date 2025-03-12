@@ -11,7 +11,7 @@ description: Learn how to fetch, validate, and replace outdated signatures in Wo
 
 Cross-chain transactions in Wormhole rely on [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank}, which contain signatures from a trusted set of validators called [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank}. These signatures prove that the network approved an action, such as a token transfer.
 
-However, the set of guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the guardian set may have already changed. This means the VAA will contain outdated signatures from guardians no longer part of the network, causing the transaction to fail.
+However, the set of Guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the Guardian set may have already changed. This means the VAA will contain outdated signatures from Guardians no longer part of the network, causing the transaction to fail.
 
 Instead of discarding these VAAs, we can fetch updated signatures and replace the outdated ones to ensure smooth processing.
 
