@@ -25,7 +25,7 @@ While there are multiple ways to use and combine Wormhole transfer products, the
 
     Use Wormhole Settlement to enable leveraged perpetual trading across chains with seamless collateral and liquidity management.
 
-    [:custom-arrow: Learn more about Settlement](/docs/learn/messaging/wormhole-settlement/overview/)
+    [:custom-arrow: Learn more about Settlement](/docs/learn/transfers/settlement/)
 
 -   :octicons-beaker-16:{ .lg .middle } **Gas Abstraction**
 
@@ -33,7 +33,7 @@ While there are multiple ways to use and combine Wormhole transfer products, the
 
     Use Native Token Transfer (NTT) to convert native tokens and allow users to pay gas fees with any token across different networks, removing friction in multichain interactions.
 
-    [:custom-arrow: Learn more about NTT](/docs/build/contract-integrations/native-token-transfers/)
+    [:custom-arrow: Learn more about NTT](/docs/learn/transfers/native-token-transfers/)
 
 -   :octicons-beaker-16:{ .lg .middle } **Decentralized Social Platforms**
 
@@ -41,7 +41,7 @@ While there are multiple ways to use and combine Wormhole transfer products, the
 
     Use Token Bridge to enable cross-chain tokenized rewards and asset transfer across decentralized social networks.
 
-    [:custom-arrow: Learn more about Token Bridge](/docs/build/contract-integrations/token-bridge/)
+    [:custom-arrow: Learn more about Token Bridge](/docs/learn/transfers/token-bridge/)
 
 - :octicons-beaker-16:{ .lg .middle } **Cross-Chain Native USDC**
 
