@@ -21934,7 +21934,7 @@ Instead of discarding these VAAs, we can fetch updated signatures and replace th
 In this tutorial, you'll build a script from scratch to:
 
 - Fetch a VAA from [Wormholescan](https://wormholescan.io/#/developers/api-doc){target=\_blank}
-- Validate its signatures against the latest guardian set
+- Validate its signatures against the latest Guardian set
 - Replace outdated signatures using the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}
 - Output a valid VAA ready for submission
 
@@ -22000,13 +22000,14 @@ In this section, you will create the directory, initialize a Node.js project, in
 5. **Create the project structure** - set up the required directories and files
 
     ```bash
-    mkdir -p src/config src/helpers src/scripts
-    touch src/config/constants.ts
+    mkdir -p src/config && touch src/config/constants.ts src/config/layouts.ts
+    mkdir -p src/helpers && touch src/helpers/vaaHelper.ts
+    mkdir -p src/scripts && touch scripts/replaceSignatures.ts
     ```
 
-     - **`src/config/constants.ts`** - stores public configuration variables
-     - **`src/helpers/`** - contains utility functions
-     - **`src/scripts/`** - contains scripts for fetching and replacing signatures
+     - **`src/config/*`** - stores public configuration variables and layouts for serializing and deserializing data structures
+     - **`src/helpers/*`** - contains utility functions
+     - **`src/scripts/*`** - contains scripts for fetching and replacing signatures
 
 6. **Set variables** - define key constants in `src/config/constants.ts`
 
@@ -22028,18 +22029,12 @@ export const TXS = [
     ```
 
      - **`RPC`** - endpoint for interacting with an Ethereum RPC node
-     - **`ETH_CORE`** - [Ethereum contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
+     - **`ETH_CORE`** - [Wormhole's Core Contract address on Ethereum](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
      - **`WORMHOLESCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and guardian sets
      - **`LOG_MESSAGE_PUBLISHED_TOPIC`** - the event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts
      - **`TXS`** - list of example transaction hashes that will be used for testing
 
-7. **Create the layouts file** - define the ABI structure for parsing and verifying VAAs
-
-    ```bash
-    touch src/config/layouts.ts
-    ```
-
-    Then, add the following contents:
+7. **Define data structure for working with VAAs** - specify the ABI for the Wormhole Core Contract's `parseAndVerifyVM` function, which parses and verifies VAAs. Defining the data structure, also referred to as a [layout](/docs/build/applications/wormhole-sdk/sdk-layout/){target=\_blank}, for this function ensures accurate decoding and validation of VAAs
 
     ```typescript title="src/config/layouts.ts"
     export const PARSE_AND_VERIFY_VM_ABI = {
@@ -22082,14 +22077,9 @@ export const TXS = [
 };
     ```
 
-    ???- tip "Understanding VAA Layouts"
-        This constant defines the structure of the `parseAndVerifyVM` function, which is essential for decoding and verifying VAAs. Specifying the expected input and output formats ensures that the validation process runs correctly.
+## Create VAA Handling Functions
 
-        For a deeper understanding of how layouts work in Wormhole, refer to the [layout documentation](/docs/build/applications/wormhole-sdk/sdk-layout/){target=\_blank}.  
-
-## VAA Handling Functions
-
-This section covers retrieving the VAA, verifying its validity, fetching required signatures, and replacing outdated ones to generate a correctly signed VAA.
+In this section, we'll create functions to retrieve and verify VAAs and fetch and replace outdated Guardian signatures to generate a correctly signed VAA.
 
 ### Fetch a VAA ID from a Transaction
 
@@ -22158,10 +22148,10 @@ import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
 }
     ```
 
-???- note "Test VAA ID retrieval"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+???- code "Test VAA ID retrieval"
+    If you want to try out the function before moving forward, create a test file inside the `test` directory:  
 
-    1. **Create the test directory and file**  
+    1. **Create the test directory and file**  - to add a test for the `fetchVaaId` function
 
         ```bash
         mkdir -p test
@@ -22778,7 +22768,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 }
     ```
 
-## VAA Signature Replacement Process
+## Create Script to Replace Outdated VAA Signatures
 
 Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for guardian approval.
 
@@ -22888,13 +22878,13 @@ The script logs each step, skipping valid VAAs, replacing outdated signatures fo
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}. The repository contains all necessary scripts and configurations for working with VAAs using Wormholescan and the Wormhole SDK.
+You can explore the complete project and find all necessary scripts and configurations in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=_blank}.
 
-Additionally, this repository provides a script to check the VAA redemption status on Ethereum and Solana, allowing you to verify whether a transaction has already been redeemed on the destination chain.
+The demo repository includes a bonus script to check the VAA redemption status on Ethereum and Solana, allowing you to verify whether a transaction has already been redeemed on the destination chain.
 
 ## Conclusion
 
-You've successfully built a script to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK.
+You've successfully built a script to fetch, validate, and replace outdated signatures in VAAs using Wormholescan and the Wormhole SDK.
 
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for guardian approval to finalize the process.
 --- END CONTENT ---
