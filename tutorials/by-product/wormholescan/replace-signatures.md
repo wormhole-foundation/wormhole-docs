@@ -142,20 +142,20 @@ We must assemble the ID correctly since this is the format the Wormholescan API 
 ???- code "Try it out: VAA ID retrieval"
     If you want to try out the function before moving forward, create a test file inside the `test` directory:  
 
-    1. **Create the test directory and file**  - to add a test for the `fetchVaaId` function
+    1. **Create the directory and file** - add a script to call `fetchVaaId` and print the result
 
         ```bash
         mkdir -p test
         touch test/fetchVaaId.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
         ```typescript title="test/fetchVaaId.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-5.ts"
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
         npx tsx test/fetchVaaId.run.ts
@@ -186,21 +186,21 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
     ```
 
 ???- note "Try it out: VAA retrieval"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
         touch test/fetchVaa.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
         ```typescript title="test/fetchVaa.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-6.ts"
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
         npx tsx test/fetchVaa.run.ts
@@ -231,21 +231,21 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
     ```
 
 ???- note "Try it out: VAA Validity"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
         touch test/checkVaaValidity.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
         ```typescript title="test/checkVaaValidity.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-7.ts"
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
         npx tsx test/checkVaaValidity.run.ts
@@ -274,21 +274,21 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
     ```
 
 ???- note "Try it out: Fetch Observations"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
         touch test/fetchObservations.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
         ```typescript title="test/fetchObservations.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-8.ts"
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
         npx tsx test/fetchObservations.run.ts
@@ -329,21 +329,21 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
     ```
 
 ???- note "Try it out: Fetch Guardian Set"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
         touch test/fetchGuardianSet.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
         ```typescript title="test/fetchGuardianSet.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-9.ts"
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
         npx tsx test/fetchGuardianSet.run.ts
