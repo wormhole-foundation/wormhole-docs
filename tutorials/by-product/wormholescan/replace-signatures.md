@@ -102,7 +102,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts"
     ```
 
-## VAA Handling Functions
+## Create VAA Handling Functions
 
 This section covers retrieving the VAA, verifying its validity, fetching required signatures, and replacing outdated ones to generate a correctly signed VAA.
 
