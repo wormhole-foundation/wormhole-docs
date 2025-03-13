@@ -21901,11 +21901,11 @@ Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain
 
 <div class="grid cards" markdown>  
 
--   :octicons-book-16:{ .lg .middle } **Wormholescan API Toolkit**  
+-   :octicons-book-16:{ .lg .middle } **Wormholescan**  
 
     ---  
 
-    Wormholescan is an explorer for looking at individual transfer statuses on mainnet and testnet.
+    Wormholescan is a blockchain explorer for tracking transactions, VAAs, and cross-chain activity. Its API provides programmatic access to transaction data, network analytics, and more.
 
     [:custom-arrow: Visit Wormholescan](https://wormholescan.io/){target=\_blank}  
 
@@ -21967,8 +21967,14 @@ In this section, you will create the directory, initialize a Node.js project, in
 3. **Install dependencies** - add the required packages
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx typescript @types/node eslint prettier
+    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
     ```
+
+     - `@wormhole-foundation/sdk` - handles VAAs and cross-chain interactions  
+     - `axios` - makes HTTP requests to the Wormholescan API  
+     - `web3` - interacts with Ethereum transactions and contracts  
+     - `tsx` - executes TypeScript files without compilation  
+     - `@types/node` - provides Node.js type definitions 
 
 4. **Set up TypeScript** - create a `tsconfig.json` file
 
@@ -22010,7 +22016,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 export const ETH_CORE =
   '0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B'.toLowerCase();
 
-export const WORMHOLE_SCAN_API = 'https://api.wormholescan.io/v1';
+export const WORMHOLESCAN_API = 'https://api.wormholescan.io/v1';
 
 export const LOG_MESSAGE_PUBLISHED_TOPIC =
   '0x6eb224fb001ed210e379b335e35efe88672a8ce935d981a6896b27ffdf52a3b2';
@@ -22023,7 +22029,7 @@ export const TXS = [
 
      - **`RPC`** - endpoint for interacting with an Ethereum RPC node
      - **`ETH_CORE`** - [Ethereum contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
-     - **`WORMHOLE_SCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and guardian sets
+     - **`WORMHOLESCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and guardian sets
      - **`LOG_MESSAGE_PUBLISHED_TOPIC`** - the event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts
      - **`TXS`** - list of example transaction hashes that will be used for testing
 
@@ -22109,7 +22115,7 @@ import {
   RPC,
   ETH_CORE,
   LOG_MESSAGE_PUBLISHED_TOPIC,
-  WORMHOLE_SCAN_API,
+  WORMHOLESCAN_API,
 } from '../config/constants';
 import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
     ```
@@ -22217,7 +22223,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
 
   for (const id of vaaIds) {
     try {
-      const response = await axios.get(`${WORMHOLE_SCAN_API}/signed_vaa/${id}`);
+      const response = await axios.get(`${WORMHOLESCAN_API}/signed_vaa/${id}`);
       const vaaBytes = response.data.vaaBytes;
       results.push({ id, vaaBytes });
     } catch (error) {
@@ -22507,7 +22513,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
     try {
     console.log('Fetching current guardian set');
     const response = await axios.get(
-      `${WORMHOLE_SCAN_API}/guardianset/current`
+      `${WORMHOLESCAN_API}/guardianset/current`
     );
     const guardians = response.data.guardianSet.addresses.map((addr: string) =>
       addr.toLowerCase()
@@ -22776,8 +22782,6 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
 Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for guardian approval.
 
-### Replacement Script
-
 1. **Create the script file** - add a new file inside `src/scripts/`
 
     ```bash
@@ -22848,17 +22852,11 @@ import { TXS } from '../config/constants';
     
     ```
 
-### Run the Script
-
-Now that the script is set up, you can execute it to fetch, validate, and update outdated VAA signatures.
-
-1. **Run the script** - use the following command to execute the replacement process. This will process each transaction in `TXS`, check its VAA, and update signatures if necessary
+    To run the script, use the following command:
 
     ```bash
     npx tsx src/scripts/replaceSignatures.ts
     ```
-
-2. **Expected output** - the script will print logs for each step
 
     ```bash
 
@@ -22886,11 +22884,7 @@ Now that the script is set up, you can execute it to fetch, validate, and update
     ✅ VAA is now valid
     ```
 
-     - If a VAA is already valid, it will skip updates
-     - If outdated signatures are found, they will be replaced and revalidated
-     - If an error occurs, it will be logged
-
-This completes the process of replacing outdated VAA signatures. You now have a valid VAA ready for submission.
+The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
 
 ## Resources
 
