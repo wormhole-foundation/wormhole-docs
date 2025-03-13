@@ -25,11 +25,11 @@ Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain
 
 <div class="grid cards" markdown>  
 
--   :octicons-book-16:{ .lg .middle } **Wormholescan API Toolkit**  
+-   :octicons-book-16:{ .lg .middle } **Wormholescan**  
 
     ---  
 
-    Wormholescan is an explorer for looking at individual transfer statuses on mainnet and testnet.
+    Wormholescan is a blockchain explorer for tracking transactions, VAAs, and cross-chain activity. Its API provides programmatic access to transaction data, network analytics, and more.
 
     [:custom-arrow: Visit Wormholescan](https://wormholescan.io/){target=\_blank}  
 
