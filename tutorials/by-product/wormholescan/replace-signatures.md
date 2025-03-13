@@ -110,19 +110,13 @@ In this section, we'll create functions to retrieve and verify VAAs and fetch an
 
 To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This ID allows us to fetch the full VAA later.
 
-1. **Create the helper file** - add a new file inside `src/helpers` to store VAA-related utility functions
-
-    ```bash
-    touch src/helpers/vaaHelper.ts
-    ```
-
-2. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules: `axios` for making API requests, `web3` for encoding and decoding Ethereum transactions, `@wormhole-foundation/sdk` for handling VAAs, and `constants` from the configuration file
+1. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules
 
     ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:1:15"
     ```
 
-3. **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
+2. **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
 
     ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:17:50"
