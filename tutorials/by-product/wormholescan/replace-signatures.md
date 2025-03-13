@@ -516,6 +516,6 @@ The demo repository includes a bonus script to check the VAA redemption status o
 
 ## Conclusion
 
-You've successfully built a script to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK.
+You've successfully built a script to fetch, validate, and replace outdated signatures in VAAs using Wormholescan and the Wormhole SDK.
 
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for guardian approval to finalize the process.
