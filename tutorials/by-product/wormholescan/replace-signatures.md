@@ -18,7 +18,7 @@ Instead of discarding these VAAs, we can fetch updated signatures and replace th
 In this tutorial, you'll build a script from scratch to:
 
 - Fetch a VAA from [Wormholescan](https://wormholescan.io/#/developers/api-doc){target=\_blank}
-- Validate its signatures against the latest guardian set
+- Validate its signatures against the latest Guardian set
 - Replace outdated signatures using the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}
 - Output a valid VAA ready for submission
 
