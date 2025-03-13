@@ -14731,51 +14731,39 @@ description: This section introduces the core messaging protocols that power sea
 
 These sections include information about Wormhole's transfer products to help you learn how they work and determine the best transfer product to fit your needs.
 
-Use the following links to jump directly to each Wormhole transfer product information page or continue for a use-case-based product comparison.
+Use the following links to jump directly to each Wormhole transfer product information page or continue for a product comparison:
 
 - [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/) - a mechanism to transfer native tokens multichain seamlessly without converting to a wrapped asset
 - [**Wormhole Settlement**](/docs/learn/transfers/settlement/) - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/) - a bridging solution that uses a lock and mint mechanism
 
-## Explore Use Cases
+## Compare Transfer Products
 
-While there are multiple ways to use and combine Wormhole transfer products, the following are some examples of popular usage.
+A few key comparisons can help you readily differentiate between Wormhole transfer product offerings. Use the following sections to help compare and select products:
 
-<div class="grid cards" markdown>
+### NTT vs. Token Bridge
 
--   :octicons-beaker-16:{ .lg .middle } **multichain Perpetuals**
+Compare the supported features of Native Token Transfer (NTT) and Token Bridge to understand how they differ.
 
-    ---
+<div markdown class="full-width">
 
-    Use Wormhole Settlement to enable leveraged perpetual trading across chains with seamless collateral and liquidity management.
+::spantable::
 
-    [:custom-arrow: Learn more about Settlement](/docs/learn/transfers/settlement/)
+| Supports                  | NTT                | Token Bridge       |
+|---------------------------|--------------------|--------------------|
+| Message Payload           | :x:                | :white_check_mark: |
+| Wrapped Assets            | :x:                | :white_check_mark: |
+| Native Assets             | :white_check_mark: | :x:                |
+| Contract-Free Development | :x:                | :white_check_mark: |
+| User-Owned Contracts      | :white_check_mark: | :x:                |
 
--   :octicons-beaker-16:{ .lg .middle } **Gas Abstraction**
-
-    ---
-
-    Use Native Token Transfer (NTT) to convert native tokens and allow users to pay gas fees with any token across different networks, removing friction in multichain interactions.
-
-    [:custom-arrow: Learn more about NTT](/docs/learn/transfers/native-token-transfers/)
-
--   :octicons-beaker-16:{ .lg .middle } **Decentralized Social Platforms**
-
-    ---
-
-    Use Token Bridge to enable multichain tokenized rewards and asset transfer across decentralized social networks.
-
-    [:custom-arrow: Learn more about Token Bridge](/docs/learn/transfers/token-bridge/)
-
-- :octicons-beaker-16:{ .lg .middle } **multichain Native USDC**
-
-    ---
-
-    Learn how Wormhole and Circle's Cross-Chain Transfer Protocol (CCTP) collaborate to support native USDC bridging between networks.
-
-    [:custom-arrow: Learn more about CCTP](/docs/learn/transfers/cctp/)
+::end-spantable::
 
 </div>
+
+<!--TODO: embed YouTube video-->
+
+### TODO Settlement
 
 ## Additional Resources
 
