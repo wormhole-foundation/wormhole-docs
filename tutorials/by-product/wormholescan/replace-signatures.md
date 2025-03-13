@@ -129,7 +129,7 @@ To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This
     ```
 
 ???- code "Test VAA ID retrieval"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+    If you want to try out the function before moving forward, create a test file inside the `test` directory:  
 
     1. **Create the test directory and file**  - to add a test for the `fetchVaaId` function
 
