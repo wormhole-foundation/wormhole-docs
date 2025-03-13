@@ -1,6 +1,6 @@
 ---
 title: Learn about Wormhole
-description: Learn the basics of Wormhole, covering its architecture, messaging protocols, and how it enables cross-chain communication and asset transfers.
+description: Learn the basics of Wormhole, covering its architecture, messaging protocols, and how it enables multichain communication and asset transfers.
 template: root-index-page.html
 ---
 
@@ -47,8 +47,8 @@ This method is likely familiar to you if you've previously built bridging projec
     ---
 
     - Use Wormhole deployed contracts to simplify development
-    - Cross-chain token transfers through lock-and-mint-mechanism
-    - Option to include message payload for NFTs, social platforms, and more
+    - Multichain token transfers through lock-and-mint-mechanism
+    - Option to include message payload for uses like social platforms
     
     [:custom-arrow: Learn about Token Bridge](/docs/learn/transfers/token-bridge/)
 
@@ -72,9 +72,27 @@ Eliminate wrapped assets to preserve your token's native properties across chain
 
 </div>
 
+### Intent-Based Transfers
+
+Institutional-scale digital asset settlement for individual users and insitutions.
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Wormhole Settlement**
+
+    ---
+
+    - Swap, bridge, and build across multiple chains
+    - Wormhole Liquidity Layer to reduce liquidity fragmentation
+    - Mayan Swift for competitive price discovery via on-chain English auctions
+
+    [:custom-arrow: Learn about Settlement](/docs/learn/transfers/settlement/)
+
+</div>
+
 ## Governance
 
-Explore MultiGov, Wormhole's cross-chain governance solution.
+Explore MultiGov, Wormhole's multichain governance solution.
 
 <div class="grid cards" markdown>
 
@@ -82,7 +100,7 @@ Explore MultiGov, Wormhole's cross-chain governance solution.
 
     ---
 
-    - Crosschain voting and proposal execution
+    - Multichain voting and proposal execution
     - Aggregates votes from all chains 
     - Can integrate with any Wormhole-supported blockchain
 
@@ -94,11 +112,11 @@ Explore MultiGov, Wormhole's cross-chain governance solution.
 
 <div class="grid cards" markdown>
 
--   :octicons-tools-16:{ .lg .middle } **Product Comparison**
+-   :octicons-book-16:{ .lg .middle } **Product Comparison**
 
     ---
 
-    Compare Wormhole's cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+    Compare Wormhole's multichain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 
     [:custom-arrow: Compare Products](/docs/build/start-building/products/){target=\_blank}
 
@@ -106,7 +124,7 @@ Explore MultiGov, Wormhole's cross-chain governance solution.
 
     ---
 
-    Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+    Explore Wormhole's use cases, from multichain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
 
     [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/)
 
