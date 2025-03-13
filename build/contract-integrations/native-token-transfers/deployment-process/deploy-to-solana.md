@@ -11,7 +11,7 @@ Native Token Transfers enable seamless cross-chain transfers of SPL tokens on So
 
 This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
-By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
+A fully deployed NTT will be set up by the end, allowing your token to transfer between Solana and other supported chains.
 
 ## Prerequisites
 
