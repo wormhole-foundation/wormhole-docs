@@ -104,23 +104,40 @@ In this section, you will create the directory, initialize a Node.js project, in
 
 ## Create VAA Handling Functions
 
-In this section, we'll create functions to retrieve and verify VAAs and fetch and replace outdated Guardian signatures to generate a correctly signed VAA.
+In this section, we'll create a series of helper functions in the `src/helpers/vaaHelper.ts` file that will retrieve and verify VAAs and fetch and replace outdated Guardian signatures to generate a correctly signed VAA. 
+
+To get started, import the necessary dependencies:
+
+```typescript title="src/helpers/vaaHelper.ts"
+--8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:1:15"
+```
 
 ### Fetch a VAA ID from a Transaction
 
 To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This ID allows us to fetch the full VAA later.
 
-1. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules
+The VAA ID is structured as follows:
 
-    ```typescript title="src/helpers/vaaHelper.ts"
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:1:15"
-    ```
+```bash
+chain/emitter/sequence
+```
 
-2. **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
+ - `chain` - the Wormhole chain ID (Ethereum is 2)
+ - `emitter` - the contract address that emitted the VAA
+ - `sequence` - a unique identifier for the event
+
+We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
+
+ - **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
 
     ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:17:50"
     ```
+
+     - **`log.address === ETH_CORE`** - ensures the event was emitted by the Wormhole contract
+     - **`log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC`** - filters for `LogMessagePublished` events, which indicate a VAA was created
+     - **`emitter`** - extracts the emitter address from `log.topics[1]`, removing the `0x` prefix
+     - **`seq`** - extracts the sequence number by reading the first 66 characters of `log.data`, converting it from hex to an integer
 
 ???- code "Test VAA ID retrieval"
     If you want to try out the function before moving forward, create a test file inside the `test` directory:  
