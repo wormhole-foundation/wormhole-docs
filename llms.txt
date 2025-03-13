@@ -14271,15 +14271,15 @@ The basic VAA consists of header and body components described as follows:
 - `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
 - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
 
-The body contains relevant information for entities, such as contracts, or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
+The body contains relevant information for entities, such as contracts or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
 
-Because VAAs have no destination, they are effectively multicast. Any Core Contract on any chain in the network will verify them as authentic. If a VAA has a specific destination, relayers are entirely responsible for completing that delivery appropriately.
+Because VAAs have no destination, they are effectively multicast. Any Core Contract on any chain in the network will verify VAAs as authentic. If a VAA has a specific destination, relayers are responsible for appropriately completing that delivery.
 
 ## Consistency and Finality
 
-The consistency level determines whether Guardians wait for a chain’s final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
+The consistency level determines whether Guardians wait for a chain's final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
 
-Guardian watchers are specialized processes that monitor each blockchain in real time. They enforce the selected consistency level by deciding whether enough commitment has been reached before signing and emitting a VAA. Some chains allow only one commitment level (effectively final), while others let integrators pick between near-final or fully finalized states. Choosing a faster option speeds up VAA production but increases reorg risk. A more conservative option takes longer but reduces the likelihood of rollback.
+Guardian watchers are specialized processes that monitor each blockchain in real-time. They enforce the selected consistency level by deciding whether enough commitment has been reached before signing and emitting a VAA. Some chains allow only one commitment level (effectively final), while others let integrators pick between near-final or fully finalized states. Choosing a faster option speeds up VAA production but increases reorg risk. A more conservative option takes longer but reduces the likelihood of rollback.
 
 ## Signatures
 
@@ -14292,7 +14292,7 @@ digest = keccak256(keccak256(body))
 signature = ecdsa_sign(digest, key)
 ```
 
-!!!tip "Hash vs double hash"
+!!!tip "Hash vs. double hash"
     Different implementations of the ECDSA signature validation may apply a keccak256 hash to the message passed, so care must be taken to pass the correct arguments.
     
     For example, the [Solana secp256k1 program](https://docs.solanalabs.com/runtime/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
@@ -14305,7 +14305,7 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Token Bridge is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
 
-Transfering tokens from Chain A to Chain B, requires the following steps:
+Transferring tokens from Chain A to Chain B requires the following steps:
 
 - Lock the token on Chain A
 - Chain A emits a message as proof the token lockup is complete
@@ -14349,7 +14349,7 @@ Be aware of the following considerations when working with attestations:
 
 - When sending an attestation VAA, it is recommended to send the longest UTF-8 prefix that doesn't truncate a character and then right-pad it with zero bytes
 
-- When parsing an attestation VAA, it is recommended to trim all trailing zero bytes and converting the remainder to UTF-8 via any lossy algorithm
+- When parsing an attestation VAA, it is recommended to trim all trailing zero bytes and convert the remainder to UTF-8 via any lossy algorithm
 
 - Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8
 
@@ -14371,15 +14371,15 @@ This VAA type is also referred to as a `payload3` message or a Contract Controll
 - `to` ++"u8[32]"++ - address on the destination chain
 - `to_chain` ++"u16"++ - numeric ID for the destination chain
 - `from_address` ++"u8[32]"++ - address that called the Token Bridge on the source chain
-- `payload` ++"[]byte"++ - message, arbitrary bytes, app specific
+- `payload` ++"[]byte"++ - message, arbitrary bytes, app-specific
 
 ### Governance
 
-Governance VAAs don't have a `payload_id` field like the preceding formats. They're used to trigger some action in the deployed contracts (for example, upgrade).
+Governance VAAs don't have a `payload_id` field like the preceding formats. Instead, they trigger an action in the deployed contracts (for example, an upgrade).
 
 #### Action Structure
 
-Governance messages contain pre-defined actions, which can target the various Wormhole modules currently deployed on-chain. The structure contains the following fields:
+Governance messages contain pre-defined actions, which can target the various Wormhole modules currently deployed on-chain. The structure includes the following fields:
 
 - `module` ++"u8[32]"++ - contains a right-aligned module identifier
 - `action` ++"u8"++ - predefined governance action to execute
@@ -14404,13 +14404,13 @@ The meaning of each numeric action is pre-defined and documented in the Wormhole
 
 ## Lifetime of a Message
 
-Anyone can submit the VAA to the target chain. The Guardians typically don't perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the Guardian RPC and make the submission in a separate flow.
+Anyone can submit the VAA to the target chain. The Guardians typically don't perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the Guardian RPC and submit it in a separate flow.
 
-With the concepts now defined, it is possible to illustrate what a full flow for message passing between two chains looks like. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
+With the concepts now defined, it is possible to illustrate a full flow for message passing between two chains. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
 
 1. **A message is emitted by a contract running on Chain A** - any contract can emit messages, and the Guardians are programmed to observe all chains for these events. Here, the Guardians are represented as a single entity to simplify the graphics, but the observation of the message must be performed individually by each of the 19 Guardians
-2. **Signatures are aggregated** - Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
-3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload; to complete the final step, the VAA itself is submitted (or relayed) to the target chain to be processed by a receiving contract
+2. **Signatures are aggregated** - Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
+3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload. The VAA is submitted (or relayed) to the target chain to be processed by a receiving contract and complete the final step
 
 ![Lifetime of a message diagram](/docs/images/learn/infrastructure/vaas/lifetime-vaa-diagram.webp)
 
@@ -14430,7 +14430,7 @@ With the concepts now defined, it is possible to illustrate what a full flow for
 
     ---
 
-    Explore this how-to guide to using Wormhole-deployed relayers to send and receive messages using VAAs.
+    Explore this guide to using Wormhole-deployed relayers to send and receive messages using VAAs.
 
     [:custom-arrow: Build with Wormhole Relayer](/docs/build/core-messaging/wormhole-relayers/)
 
