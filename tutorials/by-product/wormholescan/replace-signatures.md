@@ -128,7 +128,7 @@ To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:17:50"
     ```
 
-???- note "Test VAA ID retrieval"
+???- code "Test VAA ID retrieval"
     If you want to test the function before moving forward, create a test file inside the `test` directory:  
 
     1. **Create the test directory and file**  
