@@ -9911,7 +9911,7 @@ Native Token Transfers enable seamless cross-chain transfers of SPL tokens on So
 
 This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
-By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
+A fully deployed NTT will be set up by the end, allowing your token to transfer between Solana and other supported chains.
 
 ## Prerequisites
 
@@ -9926,7 +9926,7 @@ Before deploying NTT on Solana, ensure you have the following:
 
 ## Token Setup
 
-Before integrating your token with Wormhole’s NTT, it must be deployed and configured on Solana. This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+Before integrating your token with Wormhole’s NTT must be deployed and configured on Solana. This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
 
 If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
 
@@ -10453,8 +10453,8 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 - Implement a robust testing plan for your multichain token before launching
 - Ensure comprehensive, documented security measures are followed regarding custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/build/contract-integrations/native-token-transfers/configuration/){target=\_blank} for more details on ownership and rate limits
 - Consider a streamlined, customizable frontend such as [Wormhole Connect](https://connect-in-style.wormhole.com/){target=\_blank} for an optimized user experience
-- Alternatively the [Wormhole SDK](/docs/build/applications/wormhole-sdk/){target=\_blank} allows for a direct integration into your infrastructure
-- Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
+- Alternatively, the [Wormhole SDK](/docs/build/applications/wormhole-sdk/){target=\_blank} allows for a direct integration into your infrastructure
+- Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
 - Monitor and maintain your multichain deployment 
 
 ## Manual relaying for Solana transfers  
