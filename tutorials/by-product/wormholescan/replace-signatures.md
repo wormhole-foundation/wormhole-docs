@@ -91,7 +91,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
      - **`RPC`** - endpoint for interacting with an Ethereum RPC node
      - **`ETH_CORE`** - [Ethereum contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
-     - **`WORMHOLE_SCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and guardian sets
+     - **`WORMHOLESCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and guardian sets
      - **`LOG_MESSAGE_PUBLISHED_TOPIC`** - the event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts
      - **`TXS`** - list of example transaction hashes that will be used for testing
 
