@@ -460,8 +460,6 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
 Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for guardian approval.
 
-### Replacement Script
-
 1. **Create the script file** - add a new file inside `src/scripts/`
 
     ```bash
@@ -486,17 +484,13 @@ Now that we have all the necessary helper functions, we will create a script to 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-10.ts:53:53"
     ```
 
-### Run the Script
-
-Now that the script is set up, you can execute it to fetch, validate, and update outdated VAA signatures.
-
-1. **Run the script** - use the following command to execute the replacement process. This will process each transaction in `TXS`, check its VAA, and update signatures if necessary
+5. **Run the script** - use the following command to execute the replacement process. This will process each transaction in `TXS`, check its VAA, and update signatures if necessary
 
     ```bash
     npx tsx src/scripts/replaceSignatures.ts
     ```
 
-2. **Expected output** - the script will print logs for each step
+6. **Expected output** - the script will print logs for each step
 
     ```bash
 
