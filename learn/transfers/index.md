@@ -1,6 +1,6 @@
 ---
 title: Multichain Transfers
-description: This section introduces the core messaging protocols that power seamless cross-chain communication and asset transfer within the Wormhole ecosystem.
+description: This section introduces the core messaging protocols that power seamless multichain communication and asset transfer within the Wormhole ecosystem.
 ---
 
 # Multichain Transfers
@@ -9,7 +9,7 @@ These sections include information about Wormhole's transfer products to help yo
 
 Use the following links to jump directly to each Wormhole transfer product information page or continue for a use-case-based product comparison.
 
-- [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/) - a mechanism to transfer native tokens cross-chain seamlessly without converting to a wrapped asset
+- [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/) - a mechanism to transfer native tokens multichain seamlessly without converting to a wrapped asset
 - [**Wormhole Settlement**](/docs/learn/transfers/settlement/) - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/) - a bridging solution that uses a lock and mint mechanism
 
@@ -19,7 +19,7 @@ While there are multiple ways to use and combine Wormhole transfer products, the
 
 <div class="grid cards" markdown>
 
--   :octicons-beaker-16:{ .lg .middle } **Cross-Chain Perpetuals**
+-   :octicons-beaker-16:{ .lg .middle } **multichain Perpetuals**
 
     ---
 
@@ -39,11 +39,11 @@ While there are multiple ways to use and combine Wormhole transfer products, the
 
     ---
 
-    Use Token Bridge to enable cross-chain tokenized rewards and asset transfer across decentralized social networks.
+    Use Token Bridge to enable multichain tokenized rewards and asset transfer across decentralized social networks.
 
     [:custom-arrow: Learn more about Token Bridge](/docs/learn/transfers/token-bridge/)
 
-- :octicons-beaker-16:{ .lg .middle } **Cross-Chain Native USDC**
+- :octicons-beaker-16:{ .lg .middle } **multichain Native USDC**
 
     ---
 
@@ -61,7 +61,7 @@ While there are multiple ways to use and combine Wormhole transfer products, the
 
     ---
 
-    Compare Wormhole's cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+    Compare Wormhole's multichain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 
     [:custom-arrow: Compare Products](/docs/build/start-building/products/){target=\_blank}
 
@@ -69,7 +69,7 @@ While there are multiple ways to use and combine Wormhole transfer products, the
 
     ---
 
-    Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+    Explore Wormhole's use cases, from multichain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
 
     [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/)
 
