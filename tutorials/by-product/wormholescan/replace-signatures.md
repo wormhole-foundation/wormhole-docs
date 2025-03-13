@@ -104,7 +104,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
 ## Create VAA Handling Functions
 
-This section covers retrieving the VAA, verifying its validity, fetching required signatures, and replacing outdated ones to generate a correctly signed VAA.
+In this section, we'll create functions to retrieve and verify VAAs and fetch and replace outdated Guardian signatures to generate a correctly signed VAA.
 
 ### Fetch a VAA ID from a Transaction
 
