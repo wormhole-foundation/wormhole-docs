@@ -10322,11 +10322,6 @@ This route appears if all of the following conditions are satisfied:
 - The relayer accepts the selected token to swap into the gas token
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/transfers/connect/index
---- BEGIN CONTENT ---
-
---- END CONTENT ---
-
 Doc-Content: https://wormhole.com/docs/build/transfers/connect/overview
 --- BEGIN CONTENT ---
 ---
