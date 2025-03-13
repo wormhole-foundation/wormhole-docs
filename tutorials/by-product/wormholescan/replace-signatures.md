@@ -146,19 +146,19 @@ We must assemble the ID correctly since this is the format the Wormholescan API 
 
         ```bash
         mkdir -p test
-        touch test/fetchVaaId.test.ts
+        touch test/fetchVaaId.run.ts
         ```  
 
     2. **Add the test logic**  
 
-        ```typescript title="test/fetchVaaId.test.ts"
+        ```typescript title="test/fetchVaaId.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-5.ts"
         ```  
 
     3. **Run the test script**  
 
         ```bash
-        npx tsx test/fetchVaaId.test.ts
+        npx tsx test/fetchVaaId.run.ts
         ```  
 
         If successful, the output will be:  
@@ -191,19 +191,19 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
     1. **Create the test file**  
 
         ```bash
-        touch test/fetchVaa.test.ts
+        touch test/fetchVaa.run.ts
         ```  
 
     2. **Add the test logic**  
 
-        ```typescript title="test/fetchVaa.test.ts"
+        ```typescript title="test/fetchVaa.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-6.ts"
         ```  
 
     3. **Run the test script**  
 
         ```bash
-        npx tsx test/fetchVaa.test.ts
+        npx tsx test/fetchVaa.run.ts
         ```  
 
         If successful, the output will be:  
@@ -236,19 +236,19 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
     1. **Create the test file**  
 
         ```bash
-        touch test/checkVaaValidity.test.ts
+        touch test/checkVaaValidity.run.ts
         ```  
 
     2. **Add the test logic**  
 
-        ```typescript title="test/checkVaaValidity.test.ts"
+        ```typescript title="test/checkVaaValidity.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-7.ts"
         ```  
 
     3. **Run the test script**  
 
         ```bash
-        npx tsx test/checkVaaValidity.test.ts
+        npx tsx test/checkVaaValidity.run.ts
         ```  
 
         If the VAA is valid, the output will be:  
@@ -279,19 +279,19 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
     1. **Create the test file**  
 
         ```bash
-        touch test/fetchObservations.test.ts
+        touch test/fetchObservations.run.ts
         ```  
 
     2. **Add the test logic**  
 
-        ```typescript title="test/fetchObservations.test.ts"
+        ```typescript title="test/fetchObservations.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-8.ts"
         ```  
 
     3. **Run the test script**  
 
         ```bash
-        npx tsx test/fetchObservations.test.ts
+        npx tsx test/fetchObservations.run.ts
         ```  
 
         If successful, the output will be:  
@@ -334,19 +334,19 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
     1. **Create the test file**  
 
         ```bash
-        touch test/fetchGuardianSet.test.ts
+        touch test/fetchGuardianSet.run.ts
         ```  
 
     2. **Add the test logic**  
 
-        ```typescript title="test/fetchGuardianSet.test.ts"
+        ```typescript title="test/fetchGuardianSet.run.ts"
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-9.ts"
         ```  
 
     3. **Run the test script**  
 
         ```bash
-        npx tsx test/fetchGuardianSet.test.ts
+        npx tsx test/fetchGuardianSet.run.ts
         ```  
 
         If successful, the output will be:  
