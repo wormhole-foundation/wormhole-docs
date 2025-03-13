@@ -10,7 +10,7 @@ import {
   RPC,
   ETH_CORE,
   LOG_MESSAGE_PUBLISHED_TOPIC,
-  WORMHOLE_SCAN_API,
+  WORMHOLESCAN_API,
 } from '../config/constants';
 import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
 
@@ -56,7 +56,7 @@ export async function fetchVaa(
 
   for (const id of vaaIds) {
     try {
-      const response = await axios.get(`${WORMHOLE_SCAN_API}/signed_vaa/${id}`);
+      const response = await axios.get(`${WORMHOLESCAN_API}/signed_vaa/${id}`);
       const vaaBytes = response.data.vaaBytes;
       results.push({ id, vaaBytes });
     } catch (error) {
@@ -127,7 +127,7 @@ export async function fetchGuardianSet() {
   try {
     console.log('Fetching current guardian set');
     const response = await axios.get(
-      `${WORMHOLE_SCAN_API}/guardianset/current`
+      `${WORMHOLESCAN_API}/guardianset/current`
     );
     const guardians = response.data.guardianSet.addresses.map((addr: string) =>
       addr.toLowerCase()
