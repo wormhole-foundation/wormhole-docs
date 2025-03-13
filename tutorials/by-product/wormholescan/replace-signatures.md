@@ -51,8 +51,14 @@ In this section, you will create the directory, initialize a Node.js project, in
 3. **Install dependencies** - add the required packages
 
     ```bash
-    npm install @wormhole-foundation/sdk axios web3 tsx typescript @types/node eslint prettier
+    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
     ```
+
+     - `@wormhole-foundation/sdk` - handles VAAs and cross-chain interactions  
+     - `axios` - makes HTTP requests to the Wormholescan API  
+     - `web3` - interacts with Ethereum transactions and contracts  
+     - `tsx` - executes TypeScript files without compilation  
+     - `@types/node` - provides Node.js type definitions 
 
 4. **Set up TypeScript** - create a `tsconfig.json` file
 
