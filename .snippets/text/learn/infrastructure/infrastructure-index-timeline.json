@@ -18,10 +18,5 @@
         "title": "[Relayers](/docs/learn/infrastructure/relayer/)",
         "content": "A relayer relays the VAA to the target chain, which the Wormhole Core Contract then verifies on the target chain.",
         "icon": ":fontawesome-solid-4:"
-    },
-    {
-        "title": "[Spy](/docs/learn/infrastructure/spy/)",
-        "content": "A Spy watches the messages published by the Guardian Network and can forward network traffic.",
-        "icon": ":fontawesome-solid-5:"
     }
 ]
