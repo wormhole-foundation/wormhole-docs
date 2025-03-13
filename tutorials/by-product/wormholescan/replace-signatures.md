@@ -510,9 +510,9 @@ The script logs each step, skipping valid VAAs, replacing outdated signatures fo
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}. The repository contains all necessary scripts and configurations for working with VAAs using Wormholescan and the Wormhole SDK.
+You can explore the complete project and find all necessary scripts and configurations in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=_blank}.
 
-Additionally, this repository provides a script to check the VAA redemption status on Ethereum and Solana, allowing you to verify whether a transaction has already been redeemed on the destination chain.
+The demo repository includes a bonus script to check the VAA redemption status on Ethereum and Solana, allowing you to verify whether a transaction has already been redeemed on the destination chain.
 
 ## Conclusion
 
