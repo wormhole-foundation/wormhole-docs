@@ -11,7 +11,7 @@ Wormhole Connect is a customizable widget that brings wrapped and native token c
 
 [timeline left(wormhole-docs/.snippets/text/build/transfers/connect/connect-timeline.json)]
 
-## See It In Action {: #see-it-in-action }
+## See It In Action
 
 Wormhole Connect is deployed live in several production apps. Here are a few:
 
@@ -45,7 +45,8 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
 
     ---
 
-    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/).
+
 
     [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
 
@@ -55,7 +56,7 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
 
     Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
 
-    [:custom-arrow: Visit FAQ's](/docs/build/transfers/connect/faqs/)
+    [:custom-arrow: Visit FAQs](/docs/build/transfers/connect/faqs/)
 
 </div>
 
