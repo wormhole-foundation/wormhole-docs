@@ -56,7 +56,7 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
     Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
 
     [:custom-arrow: Visit FAQs](/docs/build/transfers/connect/faqs/)
-
+  
 </div>
 
 
