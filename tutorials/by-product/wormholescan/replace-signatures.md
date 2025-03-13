@@ -446,7 +446,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:277:283"
     ```
 
-## VAA Signature Replacement Process
+## Create Script to Replace Outdated VAA Signatures
 
 Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for guardian approval.
 
