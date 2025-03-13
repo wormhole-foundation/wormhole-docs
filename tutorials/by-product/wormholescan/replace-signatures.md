@@ -75,13 +75,14 @@ In this section, you will create the directory, initialize a Node.js project, in
 5. **Create the project structure** - set up the required directories and files
 
     ```bash
-    mkdir -p src/config src/helpers src/scripts
-    touch src/config/constants.ts
+    mkdir -p src/config && touch src/config/constants.ts src/config/layouts.ts
+    mkdir -p src/helpers && touch src/helpers/vaaHelper.ts
+    mkdir -p src/scripts && touch scripts/replaceSignatures.ts
     ```
 
-     - **`src/config/constants.ts`** - stores public configuration variables
-     - **`src/helpers/`** - contains utility functions
-     - **`src/scripts/`** - contains scripts for fetching and replacing signatures
+     - **`src/config/*`** - stores public configuration variables and layouts for serializing and deserializing data structures
+     - **`src/helpers/*`** - contains utility functions
+     - **`src/scripts/*`** - contains scripts for fetching and replacing signatures
 
 6. **Set variables** - define key constants in `src/config/constants.ts`
 
