@@ -484,13 +484,11 @@ Now that we have all the necessary helper functions, we will create a script to 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-10.ts:53:53"
     ```
 
-5. **Run the script** - use the following command to execute the replacement process. This will process each transaction in `TXS`, check its VAA, and update signatures if necessary
+    To run the script, use the following command:
 
     ```bash
     npx tsx src/scripts/replaceSignatures.ts
     ```
-
-6. **Expected output** - the script will print logs for each step
 
     ```bash
 
@@ -518,11 +516,7 @@ Now that we have all the necessary helper functions, we will create a script to 
     ✅ VAA is now valid
     ```
 
-     - If a VAA is already valid, it will skip updates
-     - If outdated signatures are found, they will be replaced and revalidated
-     - If an error occurs, it will be logged
-
-This completes the process of replacing outdated VAA signatures. You now have a valid VAA ready for submission.
+The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
 
 ## Resources
 
