@@ -35,7 +35,7 @@ Wormhole-deployed relayer support is limited to EVM environments. For a complete
 
     ---
 
-    Follow this series of how-to guides about using Wormhole-deployed Relayers to send, receive, and track the progress of messages.
+    Follow this series of how-to guides about using Wormhole-deployed relayers to send, receive, and track the progress of messages.
 
     [:custom-arrow: Get started](/docs/build/core-messaging/wormhole-relayers/#get-started-with-the-wormhole-relayer)
 
