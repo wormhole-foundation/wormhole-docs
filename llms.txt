@@ -10402,72 +10402,57 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 # Wormhole Connect
 
-## Get Started
+Wormhole Connect is a customizable widget that brings wrapped and native token cross-chain asset transfers into your dApp in as few as 3 lines of code. Connect is available as a React component or hosted version via CDN so you can easily configure any application to transfer tokens via Wormhole.
 
-Wormhole Connect is a React widget offering an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
+## Build with Connect
 
-<div class="grid cards" markdown>
+[timeline left(wormhole-docs/.snippets/text/build/transfers/connect/connect-timeline.json)]
 
--   :octicons-code-square-16:{ .lg .middle } **Overview**
+## See It In Action {: #see-it-in-action }
+
+Wormhole Connect is deployed live in several production apps. Here are a few:
+
+- [Portal Bridge](https://portalbridge.com/){target=\_blank}
+- [Jupiter](https://jup.ag/onboard/cctp){target=\_blank}
+- [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
+
+Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} page to learn how to combine Connect with other Wormhole products, including Native Token Transfer (NTT).
+
+## Next Steps
+
+<div class="grid cards" markdown >
+
+-   :octicons-tools-16:{ .lg .middle} **Get Started Now**
 
     ---
 
-    Explore Wormhole Connect, the React widget that allows you to offer an easy-to-use UI for cross-chain asset transfers via Wormhole in a web application.
+    Follow this series of how-to guides to integrate Connect into your React dApp and configure options to fit your user's needs.
 
     [:custom-arrow: Get started](/docs/build/transfers/connect/overview/)
 
--   :octicons-code-16:{ .lg .middle } **Routes**
+-   :octicons-tools-16:{ .lg .middle} **Supported Features by Chain**
 
     ---
 
-    Explore Wormhole Connect's routing capabilities for asset transfers, featuring Token Bridge, CCTP, NTT, and various blockchain-specific routes for optimal UX.
+    Get a more detailed look at Wormhole Connect features with a breakdown of supported features by chain.
+    
+    [:custom-arrow: Supported Features](/docs/build/transfers/connect/features/)
 
-    [:custom-arrow: Explore routes](/docs/build/transfers/connect/routes/)
-
--   :octicons-globe-16:{ .lg .middle } **Features**
-
-    ---
-    Learn which features of Connect are available for your network of choice.
-
-    [:custom-arrow: Discover supported features](/docs/build/transfers/connect/features/)
-
--   :octicons-pencil-16:{ .lg .middle } **Configuration**
+-   :octicons-tools-16:{ .lg .middle } **Cross-chain Swap with Connect**
 
     ---
 
-    Configure Wormhole Connect for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for enhanced blockchain interactions.
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
 
-    [:custom-arrow: Configure for customization](/docs/build/transfers/connect/configuration/)
+    [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
 
--   :octicons-question-16:{ .lg .middle } **Connect FAQs**
-
-    ---
-
-    Find answers to common questions about Wormhole Connect, including supported assets, chains, and integration options.
-
-    [:custom-arrow: Read Connect FAQs](/docs/build/transfers/connect/faqs/)
-
-</div>
-
-## Additional Resources
-
-<div class="grid cards" markdown>
-
--   :octicons-browser-16:{ .lg .middle } **Codeless Interface**
+-   :octicons-tools-16:{ .lg .middle } **Connect FAQs**
 
     ---
 
-    Check out the codeless interface for an easy approach to styling and customizing a Connect widget for your multichain application.
+    Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
 
-    [:custom-arrow: Quickly get started](https://connect-in-style.wormhole.com/){target=\_blank}
-
--   :octicons-browser-16:{ .lg .middle } **A Live Example**
-
-    ---
-
-    View an example of the Wormhole Connect widget live in a production application.
-
-    [:custom-arrow: See Connect in action](https://portalbridge.com/){target=\_blank}
+    [:custom-arrow: Visit FAQ's](/docs/build/transfers/connect/faqs/)
 
 </div>
 --- END CONTENT ---
@@ -10499,14 +10484,6 @@ Wormhole Connect is easy to customize to suit your application's needs. You can 
 
 For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/docs/build/transfers/connect/features/){target=\_blank}.
 
-## Production DApp Examples {: #production-dapp-examples }
-
-Wormhole Connect is deployed live in several production apps. Here are a few:
-
-- [Portal Bridge](https://portalbridge.com/){target=\_blank}
-- [Jupiter](https://jup.ag/onboard/cctp){target=\_blank}
-- [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
-
 ## Integrate Connect {: #integrate-connect }
 
 ### Import Directly into a React App  {: #import-directly-into-a-react-app}
@@ -10531,15 +10508,16 @@ function App() {
 
 If you're not using React, you can still embed Connect on your website by using the hosted version. This uses pre-built packages (which include React) served from NPM by jsdelivr.net.
 
-???+ code "v1.x"
-    ```ts
-    import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
+```ts title="v1.x"
+import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
 // Existing DOM element where you want to mount Connect
 const container = document.getElementById('bridge-container');
 
 wormholeConnectHosted(container);
-    ```
+```
+
+For help migrating from Connect v0.x to v1.x, see the [v1 Migration](/docs/build/transfers/connect/upgrade/){target=\_blank} guide.
 
 ???- code "v0.x"
     Simply copy and paste the following into your HTML body, and replace the ```INSERT_WORMHOLE_CONNECT_VERSION``` in the links with the most recent production version of Wormhole Connect. You can check what the most recent version is on [NPM](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/latest){target=\_blank}.
@@ -10576,8 +10554,7 @@ wormholeConnectHosted(container);
 />
     ```
 
-!!! note 
-    It is important to periodically update your Wormhole Connect instance to the latest version, as there are frequent functionality and security releases.
+It is important to periodically update your Wormhole Connect instance to the latest version, as there are frequent functionality and security releases.
 
 ## Configuration {: #configuration}
 
