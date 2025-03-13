@@ -139,7 +139,7 @@ We must assemble the ID correctly since this is the format the Wormholescan API 
      - **`emitter`** - extracts the emitter address from `log.topics[1]`, removing the `0x` prefix
      - **`seq`** - extracts the sequence number by reading the first 66 characters of `log.data`, converting it from hex to an integer
 
-???- code "Test VAA ID retrieval"
+???- code "Try it out: VAA ID retrieval"
     If you want to try out the function before moving forward, create a test file inside the `test` directory:  
 
     1. **Create the test directory and file**  - to add a test for the `fetchVaaId` function
@@ -185,7 +185,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:52:67"
     ```
 
-???- note "Test VAA retrieval"
+???- note "Try it out: VAA retrieval"
     If you want to test the function before moving forward, create a test file inside the `test` directory:  
 
     1. **Create the test file**  
@@ -230,7 +230,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:69:107"
     ```
 
-???- note "Test VAA Validity"
+???- note "Try it out: VAA Validity"
     If you want to test the function before moving forward, create a test file inside the `test` directory:  
 
     1. **Create the test file**  
@@ -273,7 +273,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:109:124"
     ```
 
-???- note "Test Fetch Observations"
+???- note "Try it out: Fetch Observations"
     If you want to test the function before moving forward, create a test file inside the `test` directory:  
 
     1. **Create the test file**  
@@ -328,7 +328,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:126:142"
     ```
 
-???- note "Test Fetch Guardian Set"
+???- note "Try it out: Fetch Guardian Set"
     If you want to test the function before moving forward, create a test file inside the `test` directory:  
 
     1. **Create the test file**  
