@@ -63,6 +63,7 @@ Doc-Page: https://wormhole.com/docs/build/transfers/native-token-transfers/manag
 Doc-Page: https://wormhole.com/docs/build/transfers/settlement/index
 Doc-Page: https://wormhole.com/docs/build/transfers/settlement/liquidity-layer
 Doc-Page: https://wormhole.com/docs/build/transfers/settlement/solver
+Doc-Page: https://wormhole.com/docs/build/transfers/token-bridge
 Doc-Page: https://wormhole.com/docs/infrastructure/index
 Doc-Page: https://wormhole.com/docs/infrastructure/relayers/index
 Doc-Page: https://wormhole.com/docs/infrastructure/relayers/run-relayer
@@ -10337,7 +10338,7 @@ Wormhole Connect is a customizable widget that brings wrapped and native token c
 
 [timeline left(wormhole-docs/.snippets/text/build/transfers/connect/connect-timeline.json)]
 
-## See It In Action {: #see-it-in-action }
+## See It In Action
 
 Wormhole Connect is deployed live in several production apps. Here are a few:
 
@@ -10371,7 +10372,7 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
 
     ---
 
-    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/).
 
     [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
 
@@ -10381,7 +10382,7 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
 
     Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
 
-    [:custom-arrow: Visit FAQ's](/docs/build/transfers/connect/faqs/)
+    [:custom-arrow: Visit FAQs](/docs/build/transfers/connect/faqs/)
 
 </div>
 --- END CONTENT ---
@@ -12888,6 +12889,227 @@ This example solver does NOT do the following:
 - Add auctions to auction history. We recommend that after settling a complete auction (one that you have won), you write the auction pubkey to a database and have a separate process to add auction history entries to reclaim rent from these auction accounts. The auction history time delay is two hours after the VAA timestamp. This example does not prescribe any specific database, so add whichever you want
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/build/transfers/token-bridge
+--- BEGIN CONTENT ---
+---
+title: Get Started with Token Bridge
+description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+---
+
+# Token Bridge
+
+## Introduction 
+
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [contract-controlled transfers (transfers with messages)](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+
+This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} page in the Learn section. 
+
+## Prerequisites
+
+To interact with the Wormhole Token Bridge, you'll need the following:
+
+- [The address of the Token Bridge contract](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
+- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers
+
+## How to Interact with Token Bridge Contracts
+
+The primary functions of the Token Bridge contracts revolve around:
+
+- **Attesting a token** - registering a new token for cross-chain transfers
+- **Transferring tokens** - locking and minting tokens across chains
+- **Transferring tokens with a payload** - including additional data for contract-controlled transfers
+
+### Attest a token
+
+Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
+
+The attestation process doesn't require you to manually input token details like name, symbol, or decimals. Instead, the Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+
+```solidity
+function attestToken(
+    address tokenAddress,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `tokenAddress` ++"address"++
+        
+    The contract address of the token to be attested.
+
+    ---
+
+    `nonce` ++"uint32"++  
+
+    An arbitrary value provided by the caller to ensure uniqueness.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the attestation transaction.
+
+When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
+
+You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
+
+### Transfer Tokens 
+
+Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
+
+Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
+
+```solidity
+function transferTokens(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint256 arbiterFee,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+        
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++  
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++  
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++  
+    The recipient's address on the destination chain.
+
+    ---
+
+    `arbiterFee` ++"uint256"++  
+    Optional fee to be paid to an arbiter for relaying the transfer.
+
+    ---
+
+    `nonce` ++"uint32"++  
+    A unique identifier for the transaction.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
+
+```solidity
+function completeTransfer(bytes memory encodedVm) external;
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+    
+    The signed VAA containing the transfer details.
+
+!!!note
+    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation
+    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain
+
+### Transfer tokens with payload
+
+While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
+
+Call `transferTokensWithPayload()` instead of `transferTokens()` to include a custom payload (arbitrary bytes) with the token transfer.
+
+```solidity
+function transferTokensWithPayload(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint32 nonce,
+    bytes memory payload
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+    
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++  
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++  
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++  
+    The recipient's address on the destination chain.
+
+    ---
+
+    `nonce` ++"uint32"++  
+    A unique identifier for the transaction.
+
+    ---
+
+    `payload` ++"bytes memory"++  
+    Arbitrary data payload attached to the transaction.
+
+??? interface "Returns"
+    
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
+
+Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
+
+```solidity
+function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+
+    The signed VAA containing the transfer details.
+
+??? interface "Returns"
+
+    `bytes memory`
+
+    The extracted payload data.
+
+## Source Code References
+
+For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+
+- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+
+## Portal Bridge
+
+A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/infrastructure/index
 --- BEGIN CONTENT ---
 ---
@@ -13829,64 +14051,89 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/core-contracts
 --- BEGIN CONTENT ---
 ---
 title: Core Contracts
-description: Discover Wormhole's Core Contracts, enabling cross-chain communication with message sending, receiving, and multicast features for efficient synchronization.
+description: Discover Wormhole's Core Contracts, which enable multichain communication with message sending, receiving, and multicast features for efficient synchronization.
 ---
 
 # Core Contracts
 
 ## Introduction
 
-The Wormhole Core Contract is a fundamental component of the Wormhole interoperability protocol deployed across each supported blockchain network. This contract acts as the foundational layer that enables secure and efficient cross-chain messaging, as all cross-chain applications either interact directly with the Core Contract or with another contract that does.
+The Wormhole Core Contract is deployed across each supported blockchain network. This contract is a fundamental component of the Wormhole interoperability protocol and acts as the foundational layer enabling secure and efficient multichain messaging. All multichain applications either interact directly with the Core Contract or with another contract that does.
 
-This guide summarizes the key functions of the Core Contract and outlines how the Core Contract works.
+This page summarizes the key functions of the Core Contract and outlines how the Core Contract works.
 
-## Key Functions of the Wormhole Core Contract
+## Key Functions 
 
-- **Cross-chain messaging** - the Core Contract enables the transfer of messages between different blockchain networks connected via Wormhole. It standardizes and secures the message format, ensuring consistent communication across multiple chains. This capability allows developers to build cross-chain applications that leverage the unique features of each network
+Key functions of the Wormhole Core Contract include the following:
 
-- **Verification and validation** - the Core Contract is responsible for verifying and validating all VAAs received on the target chain. When a message is transmitted from one blockchain, it is signed by the Wormhole Guardians (a decentralized set of validators). The Core Contract on the target chain checks this signature to confirm that the message is legitimate and has not been tampered with
+::spantable::
 
-- **Guardian Network coordination** - the Core Contract coordinates with Wormhole's Guardian Network to facilitate secure, trustless communication across chains. By relying on a quorum of Guardians to verify cross-chain messages and transactions, the contract ensures that only validated interactions are processed, enhancing the protocol's overall security and reliability
+| Function                            | Description                                                                                                                                                                                                                      |
+|-------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Multichain messaging @span          | Standardizes and secures the format of messages to facilitate consistent communication for message transfer between Wormhole-connected blockchain networks, allowing developers to leverage the unique features of each network. |
+| Verification and validation @span   | Verifies and validates all VAAs received on the target chain by confirming the Guardian signature to ensure the message is legitimate and has not been manipulated or altered.                                                   |
+| Guardian Network coordination @span | Coordinates with Wormhole's Guardian Network to facilitate secure, trustless communication across chains and ensure that only validated interactions are processed to enhance the protocol's overall security and reliability.   |
+| Event emission for monitoring @span | Emits events for every multichain message processed, allowing for network activity monitoring like tracking message statuses, debugging, and applications that can react to multichain events in real time.                      |
 
-- **Event emission for monitoring** - the Core Contract emits events for every cross-chain message it processes, allowing dApps and developers to monitor activity on the network. These events are critical for tracking message statuses, debugging, and building responsive applications that can react to cross-chain events in real time
+::end-spantable::
 
 ## How the Core Contract Works
 
-The Wormhole Core Contract is central in facilitating secure and efficient cross-chain transactions. It enables communication between different blockchain networks by packaging transaction data into standardized messages, verifying their authenticity, and ensuring they are executed correctly on the destination chain. This process involves several steps, from the initial message submission to final execution, all while leveraging the Wormhole Guardian network to maintain trust and security.
+The Wormhole Core Contract is central in facilitating secure and efficient multichain transactions. It enables communication between different blockchain networks by packaging transaction data into standardized messages, verifying their authenticity, and ensuring they are executed correctly on the destination chain.
 
-Below is a simplified breakdown that focuses on the role of the Wormhole Core Contract in these operations:
+The following describes the role of the Wormhole Core Contract in message transfers:
 
-1. **Message submission** - when a user initiates a cross-chain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification
-2. **Guardian verification** - the Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
-3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions, such as minting tokens, updating states, or calling specific smart contract functions
+1. **Message submission** - when a user initiates a multichain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification
+2. **Guardian verification** - the Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
+3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions
 
-For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/learn/infrastructure/architecture/) page.
+See the [Architecture Overview](/docs/learn/infrastructure/architecture/) page for a closer look at how messages flow between chains and the components involved.
 
 ### Message Submission
 
-When sending a cross-chain message from the source chain Core Contract, you'll call a function that publishes the message. The implementation strategy for publishing messages differs by chain. However, the general strategy consists of the Core Contract posting the following items to the blockchain logs:
+You can send multichain messages by calling a function against the source chain Core Contract, which then publishes the message. Message publishing strategies can differ by chain, however; generally, the Core Contract posts the following items to the blockchain logs:
 
 - `emitterAddress` - the contract which made the call to publish the message
 - `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
-- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page
+- `consistencyLevel`- the required level of finality to reach before the Guardians observe and attest the emitted event. See the options for finality for each chain in the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
 ### Message Reception
 
-When receiving a cross-chain message on the target chain Core Contract, the general approach involves parsing and verifying the [components of a VAA](/docs/learn/infrastructure/vaas#vaa-format).
-
-The process of receiving and verifying a VAA ensures that the message was properly attested by the Guardian Network, maintaining the integrity and authenticity of the data transmitted between chains.
+When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/learn/infrastructure/vaas#vaa-format). Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains.
 
 ## Multicast
 
-Multicast refers to simultaneously broadcasting a single message or transaction across different blockchains. This means there is no destination address or chain for the sending and receiving functions. This is possible because VAAs attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain where they are used.
+Multicast refers to simultaneously broadcasting a single message or transaction across different blockchains with no destination address or chain for the sending and receiving functions. VAAs attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain where they are used.
 
-This multicast-by-default model makes it easy to synchronize the state across the entire ecosystem because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
+This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the Token Bridge and Wormhole relayer contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Token Bridge](/docs/learn/transfers/token-bridge/) and [Wormhole relayer](/docs/learn/infrastructure/relayer/) contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Verified Action Approvals(VAA)**
+
+    ---
+
+    Learn about Verified Action Approvals (VAAs) in Wormhole, their structure, validation, and their role in multichain communication.
+
+    [:custom-arrow: Learn About VAAs](/docs/learn/infrastructure/vaas/)
+
+- :octicons-tools-16:{ .lg .middle } **Get Started with Core Contracts**
+
+    ---
+
+    This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your multichain contracts.
+
+    [:custom-arrow: Build with Core Contracts](/docs/build/core-messaging/core-contracts/)
+
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/learn/infrastructure/guardians
