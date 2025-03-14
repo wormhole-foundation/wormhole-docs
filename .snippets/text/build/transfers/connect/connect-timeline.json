@@ -1,20 +1,17 @@
 [
     {
         "title": "[Integrate Connect](/docs/build/transfers/connect/overview/#integrate-connect)",
-        "content": "Install npm package or use hosted CDN.",
-        "icon": ":fontawesome-solid-1:",
-        "sub_title": ""
+        "content": "How-to install via npm package or use hosted CDN.",
+        "icon": ":fontawesome-solid-1:"
     },
     {
         "title": "[Configure data](/docs/build/transfers/connect/configuration/configure-data/)",
-        "content": "Specify networks, RPCs, supported tokens, and more.",
-        "icon": ":fontawesome-solid-2:",
-        "key": "cyan"
-        
+        "content": "How-to specify networks, RPCs, supported tokens, and more.",
+        "icon": ":fontawesome-solid-2:"   
     },
     {
         "title": "[Customize styling](/docs/build/transfers/connect/configuration/configure-theme/)",
-        "content": "Style your widget with color schemes, fonts, and layout options.",
+        "content": "How-to style your widget with color schemes, fonts, and layout options.",
         "icon": ":fontawesome-solid-3:"
     }
 ]

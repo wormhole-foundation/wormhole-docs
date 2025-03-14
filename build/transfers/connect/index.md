@@ -5,26 +5,13 @@ description: Wormhole Connect is a React widget offering an easy-to-use interfac
 
 # Wormhole Connect
 
-Wormhole Connect is a customizable widget that brings wrapped and native token multichain asset transfers directly into your web applications in as few as 3 lines of code.
-
-- Available as React component or hosted version via CDN
-- multichain transfers without the overhead of smart contract development or complicated configurations
-- Configure any token to bridge via Wormhole - wrapped tokens or [Native Token Transfer](/docs/build/transfers/native-token-transfers/){target=\_blank}
-- Customize supported assets and RPC endpoints, configurable bridge routing, and gas drop-off
-
-For more details about the features of Wormhole Connect and a breakdown of supported features by chain, be sure to check [the features page](/docs/build/transfers/connect/features/){target=\_blank}.
-
-In these sections you'll find:
-
-- Features and benefits of Wormhole Connect
-- Guidance on available token routes and when to use them
-- Configuration options to help you shape Connect to fit the needs of your application.
+Wormhole Connect is a customizable widget that brings wrapped and native token cross-chain asset transfers into your dApp in as few as 3 lines of code. Connect is available as a React component or hosted version via CDN so you can easily configure any application to transfer tokens via Wormhole.
 
 ## Build with Connect
 
 [timeline left(wormhole-docs/.snippets/text/build/transfers/connect/connect-timeline.json)]
 
-## See It In Action {: #see-it-in-action }
+## See It In Action
 
 Wormhole Connect is deployed live in several production apps. Here are a few:
 
@@ -32,6 +19,7 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 - [Jupiter](https://jup.ag/onboard/cctp){target=\_blank}
 - [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
 
+Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} page to learn how to combine Connect with other Wormhole products, including Native Token Transfer (NTT).
 
 ## Next Steps
 
@@ -45,7 +33,7 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 
     [:custom-arrow: Get started](#build-with-connect)
 
--   :octicons-tools-16:{ .lg .middle } **multichain Swap with Connect**
+-   :octicons-tools-16:{ .lg .middle } **Multichain Swap with Connect**
 
     ---
 
@@ -53,6 +41,14 @@ Wormhole Connect is deployed live in several production apps. Here are a few:
 
     [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
 
+
+-   :octicons-tools-16:{ .lg .middle } **Connect FAQs**
+
+    ---
+
+    Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
+
+    [:custom-arrow: Visit FAQs](/docs/build/transfers/connect/faqs/)
 
 </div>
 
