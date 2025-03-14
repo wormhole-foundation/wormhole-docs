@@ -22079,22 +22079,12 @@ export const TXS = [
 
 ## Create VAA Handling Functions
 
-In this section, we'll create functions to retrieve and verify VAAs and fetch and replace outdated Guardian signatures to generate a correctly signed VAA.
+In this section, we'll create a series of helper functions in the `src/helpers/vaaHelper.ts` file that will retrieve and verify VAAs and fetch and replace outdated Guardian signatures to generate a correctly signed VAA. 
 
-### Fetch a VAA ID from a Transaction
+To get started, import the necessary dependencies:
 
-To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This ID allows us to fetch the full VAA later.
-
-1. **Create the helper file** - add a new file inside `src/helpers` to store VAA-related utility functions
-
-    ```bash
-    touch src/helpers/vaaHelper.ts
-    ```
-
-2. **Import dependencies** - open `src/helpers/vaaHelper.ts` and import the required modules: `axios` for making API requests, `web3` for encoding and decoding Ethereum transactions, `@wormhole-foundation/sdk` for handling VAAs, and `constants` from the configuration file
-
-    ```typescript title="src/helpers/vaaHelper.ts"
-    import { eth } from 'web3';
+```typescript title="src/helpers/vaaHelper.ts"
+import { eth } from 'web3';
 import {
   deserialize,
   serialize,
@@ -22108,9 +22098,25 @@ import {
   WORMHOLESCAN_API,
 } from '../config/constants';
 import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
-    ```
+```
 
-3. **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
+### Fetch a VAA ID from a Transaction
+
+To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This ID allows us to fetch the full VAA later.
+
+The VAA ID is structured as follows:
+
+```bash
+chain/emitter/sequence
+```
+
+ - `chain` - the Wormhole chain ID (Ethereum is 2)
+ - `emitter` - the contract address that emitted the VAA
+ - `sequence` - a unique identifier for the event
+
+We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
+
+ - **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
 
     ```typescript title="src/helpers/vaaHelper.ts"
     const vaaIds: string[] = [];
@@ -22148,19 +22154,24 @@ import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
 }
     ```
 
-???- code "Test VAA ID retrieval"
+     - **`log.address === ETH_CORE`** - ensures the event was emitted by the Wormhole contract
+     - **`log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC`** - filters for `LogMessagePublished` events, which indicate a VAA was created
+     - **`emitter`** - extracts the emitter address from `log.topics[1]`, removing the `0x` prefix
+     - **`seq`** - extracts the sequence number by reading the first 66 characters of `log.data`, converting it from hex to an integer
+
+???- code "Try it out: VAA ID retrieval"
     If you want to try out the function before moving forward, create a test file inside the `test` directory:  
 
-    1. **Create the test directory and file**  - to add a test for the `fetchVaaId` function
+    1. **Create the directory and file** - add a script to call `fetchVaaId` and print the result
 
         ```bash
         mkdir -p test
-        touch test/fetchVaaId.test.ts
+        touch test/fetchVaaId.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
-        ```typescript title="test/fetchVaaId.test.ts"
+        ```typescript title="test/fetchVaaId.run.ts"
         import { fetchVaaId } from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
@@ -22180,10 +22191,10 @@ const testFetchVaaId = async () => {
 testFetchVaaId();
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
-        npx tsx test/fetchVaaId.test.ts
+        npx tsx test/fetchVaaId.run.ts
         ```  
 
         If successful, the output will be:  
@@ -22224,18 +22235,18 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
 }
     ```
 
-???- note "Test VAA retrieval"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+???- note "Try it out: VAA retrieval"
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
-        touch test/fetchVaa.test.ts
+        touch test/fetchVaa.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
-        ```typescript title="test/fetchVaa.test.ts"
+        ```typescript title="test/fetchVaa.run.ts"
         import { fetchVaaId, fetchVaa } from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
@@ -22263,10 +22274,10 @@ const testFetchVaa = async () => {
 testFetchVaa();
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
-        npx tsx test/fetchVaa.test.ts
+        npx tsx test/fetchVaa.run.ts
         ```  
 
         If successful, the output will be:  
@@ -22330,18 +22341,18 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
 }
     ```
 
-???- note "Test VAA Validity"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+???- note "Try it out: VAA Validity"
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
-        touch test/checkVaaValidity.test.ts
+        touch test/checkVaaValidity.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
-        ```typescript title="test/checkVaaValidity.test.ts"
+        ```typescript title="test/checkVaaValidity.run.ts"
         import {
   fetchVaaId,
   fetchVaa,
@@ -22378,10 +22389,10 @@ const testCheckVaaValidity = async () => {
 testCheckVaaValidity();
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
-        npx tsx test/checkVaaValidity.test.ts
+        npx tsx test/checkVaaValidity.run.ts
         ```  
 
         If the VAA is valid, the output will be:  
@@ -22420,18 +22431,18 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
 }
     ```
 
-???- note "Test Fetch Observations"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+???- note "Try it out: Fetch Observations"
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
-        touch test/fetchObservations.test.ts
+        touch test/fetchObservations.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
-        ```typescript title="test/fetchObservations.test.ts"
+        ```typescript title="test/fetchObservations.run.ts"
         import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
 import { TXS } from '../src/config/constants';
 
@@ -22463,10 +22474,10 @@ const testFetchObservations = async () => {
 testFetchObservations();
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
-        npx tsx test/fetchObservations.test.ts
+        npx tsx test/fetchObservations.run.ts
         ```  
 
         If successful, the output will be:  
@@ -22497,7 +22508,7 @@ testFetchObservations();
 
 Now that we have the original VAA signatures, we must fetch the latest guardian set from Wormholescan. This will allow us to compare the stored signatures with the current guardians and determine which signatures need replacing.
 
-1. **Create the `fetchGuardianSet()` function** - add a new function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set
+ - **Create the `fetchGuardianSet()` function** - add a new function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set
 
     ```typescript title="src/helpers/vaaHelper.ts"
     try {
@@ -22518,18 +22529,18 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 }
     ```
 
-???- note "Test Fetch Guardian Set"
-    If you want to test the function before moving forward, create a test file inside the `test` directory:  
+???- note "Try it out: Fetch Guardian Set"
+    If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the test file**  
+    1. **Create the script file**  
 
         ```bash
-        touch test/fetchGuardianSet.test.ts
+        touch test/fetchGuardianSet.run.ts
         ```  
 
-    2. **Add the test logic**  
+    2. **Add the function call**  
 
-        ```typescript title="test/fetchGuardianSet.test.ts"
+        ```typescript title="test/fetchGuardianSet.run.ts"
         import { fetchGuardianSet } from '../src/helpers/vaaHelper';
 
 const testFetchGuardianSet = async () => {
@@ -22542,10 +22553,10 @@ const testFetchGuardianSet = async () => {
 testFetchGuardianSet();
         ```  
 
-    3. **Run the test script**  
+    3. **Run the script**  
 
         ```bash
-        npx tsx test/fetchGuardianSet.test.ts
+        npx tsx test/fetchGuardianSet.run.ts
         ```  
 
         If successful, the output will be:  
