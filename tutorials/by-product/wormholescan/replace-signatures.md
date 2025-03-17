@@ -374,16 +374,10 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:239:250"
     ```
 
-9. **Send the updated VAA for verification** - validate the updated VAA by submitting it to an Ethereum RPC node, ensuring it can be proposed for guardian approval
+9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:252:276"
-    ```
-
-10. **Handle errors** - catch any unexpected errors during VAA submission or signature replacement
-
-    ```typescript
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:277:283"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:252:283"
     ```
 
 ## Create Script to Replace Outdated VAA Signatures
