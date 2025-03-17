@@ -24,7 +24,6 @@ Understand the key differences between Native Token Transfers (NTT) and Token Br
 - Native Token Transfers (NTT) move tokens in their original form without wrapping them, ensuring compatibility with on-chain applications but requiring custom contracts on both the source and destination chains
 - Token Bridge locks tokens on the source chain and mints wrapped versions on the destination chain. This method does not require changes to existing token contracts and supports additional message payloads for more complex use cases
 
-<!--
 <div markdown class="full-width">
 
 | Supports                  | NTT                | Token Bridge       |
@@ -36,24 +35,15 @@ Understand the key differences between Native Token Transfers (NTT) and Token Br
 | User-Owned Contracts      | :white_check_mark: | :x:                |
 
 </div>
--->
-<!--TODO: embed YouTube video-->
+
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
+
 
 ### Settlement  
 
-Settlement enables fast and efficient multichain transfers by optimizing liquidity without relying on traditional bridging methods. Unlike NTT, which moves native assets directly between chains, and Token Bridge, which locks tokens and mints wrapped versions, Settlement uses intent-based execution. Users specify the desired transfer outcome, and solvers compete to fulfill it most efficiently. 
-
-<div markdown class="full-width">
-
-| Feature                 | Wormhole Settlement  | Native Token Transfer | Token Bridge       |
-|-------------------------|----------------------|-----------------------|--------------------|
-| Intent-Based Execution  | :white_check_mark:   | :x:                   | :x:                |
-| Fast Settlement         | :white_check_mark:   | :x:                   | :x:                |
-| Liquidity Optimization  | :white_check_mark:   | :x:                   | :x:                |
-| Native Asset Transfers  | :white_check_mark:   | :white_check_mark:    | :x:                |
-| Wrapped Assets          | :x:                  | :x:                   | :white_check_mark: |
-
-</div>
+Settlement enables fast and efficient multichain transfers by optimizing liquidity without relying on traditional bridging methods. Unlike NTT, which moves native assets directly between chains, and Token Bridge, which locks tokens and mints wrapped versions, Settlement uses intent-based execution. Users specify the desired transfer outcome, and solvers compete to fulfill it most efficiently.
 
 By leveraging a decentralized solver network, Settlement ensures efficient cross-chain liquidity without locking assets or requiring asset wrapping, providing a seamless and capital-efficient solution for multichain transactions.
 
@@ -67,7 +57,7 @@ By leveraging a decentralized solver network, Settlement ensures efficient cross
 
     Compare Wormhole's multichain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 
-    [:custom-arrow: Compare Products](/docs/build/start-building/products/){target=\_blank}
+    [:custom-arrow: Compare Products](/docs/build/start-building/products/#transfer-products){target=\_blank}
 
 -   :octicons-book-16:{ .lg .middle } **Use Cases**
 
@@ -75,7 +65,7 @@ By leveraging a decentralized solver network, Settlement ensures efficient cross
 
     Explore Wormhole's use cases, from multichain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
 
-    [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/)
+    [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/){target=\_blank}
 
 
 </div>
