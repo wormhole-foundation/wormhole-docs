@@ -135,6 +135,8 @@ The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-
 
 If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
+Before updating the mint authority, you must first create metadata for your SPL token. [See an example of how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
+
 In this section, you will derive the PDA as the token authority and update the SPL token’s mint authority to enable NTT functionality.
 
 1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
@@ -154,9 +156,6 @@ In this section, you will derive the PDA as the token authority and update the S
     ```bash
     spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
     ```
-
-!!!Warning
-    You must create your token's metadata before delegating mint authority. [See an example of how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata){target=\_blank}.
 
 ## Deploy and Configure NTT
 
