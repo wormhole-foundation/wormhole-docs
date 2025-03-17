@@ -91,7 +91,7 @@ If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
     ```
 
 !!! note
-    NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
+    NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
 ## Set Up NTT
 
