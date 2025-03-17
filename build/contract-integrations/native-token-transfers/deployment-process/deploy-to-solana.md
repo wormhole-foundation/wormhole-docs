@@ -30,8 +30,6 @@ If you don’t already have an SPL token deployed, you'll need to deploy and con
 
 If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
 
-If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
-
 1. **Generate a Solana key pair** - create a new wallet
 
     ```bash
@@ -46,9 +44,9 @@ If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
 
 3. **Select an RPC URL** - configure Solana to use the appropriate network
 
-    === "Devnet"
+    === "Mainnet"
         ```bash
-        solana config set -ud
+        solana config set -um
         ```
 
     === "Testnet"
@@ -56,9 +54,9 @@ If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
         solana config set -ut
         ```
 
-    === "Mainnet"
+    === "Devnet"
         ```bash
-        solana config set -um
+        solana config set -ud
         ```
 
 4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop
