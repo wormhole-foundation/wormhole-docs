@@ -3,11 +3,11 @@ title: Native Token Transfers Solana Deployment
 description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
 ---
 
-# Native Token Transfers (NTT) Solana Deployment
+# Deploy Native Token Transfers on Solana
 
 ## Introduction
 
-Native Token Transfers enable seamless cross-chain transfers of SPL tokens on Solana using Wormhole’s messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+[Native Token Transfers (NTT)](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} enable seamless cross-chain transfers of SPL tokens on Solana using Wormhole’s messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
@@ -24,9 +24,11 @@ Before deploying NTT on Solana, ensure you have the following:
 !!!Warning
     Ensure to use the Solana and Anchor versions listed above to avoid compatibility issues.
 
-## Token Setup
+## Create and Mint Tokens
 
-Before integrating your token with Wormhole’s NTT must be deployed and configured on Solana. This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+If you don’t already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT. This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
 
 If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
 
@@ -36,7 +38,7 @@ If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
     solana-keygen grind --starts-with w:1 --ignore-case
     ```
 
-2. **Set Solana configuration** - use the generated key pair
+2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair
 
     ```bash
     solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
@@ -93,7 +95,7 @@ If you already have an SPL token, skip to [NTT Setup](#ntt-setup).
 !!! note
     NTT versions `>=v2.0.0+solana` support SPL tokens with transfer hooks.
 
-## NTT Setup
+## Set Up NTT
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and generates key pairs if needed.
 
@@ -124,10 +126,10 @@ The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/cli-comma
 
 The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}:
 
- - **hub-and-spoke** - tokens are locked on a hub chain and minted on destination chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
- - **burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token’s minting authority to the Program Derived Address (PDA) controlled by the NTT program
+ - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+ - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token’s minting authority to the Program Derived Address (PDA) controlled by the NTT program
 
-If you use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
 This section walks through deriving the PDA, which will act as the token authority, and updating the SPL token’s mint authority.
 

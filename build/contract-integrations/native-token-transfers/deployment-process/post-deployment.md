@@ -16,7 +16,7 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
 - Monitor and maintain your multichain deployment 
 
-## Manual relaying for Solana transfers  
+## Manual Relaying for Solana Transfers  
 
 By default, NTT transfers to Solana require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
 
