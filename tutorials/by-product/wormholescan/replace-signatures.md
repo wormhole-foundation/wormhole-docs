@@ -338,7 +338,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:152:156"
     ```
 
-3. **Filter valid signatures** - remove signatures from inactive guardians, keeping only valid ones. If no valid signatures are found, execution is halted
+3. **Filter valid signatures** - remove signatures from inactive guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:158:163"
