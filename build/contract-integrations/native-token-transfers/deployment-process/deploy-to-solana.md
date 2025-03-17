@@ -223,8 +223,8 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
     ```
 
-???- note "Troubleshoot Deployment Issues"
-    If your deployment fails, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} to find and close buffer accounts.
+!!! note "Troubleshoot Deployment Issues"
+    If your deployment fails, it may be due to leftover program buffer accounts taking up storage on Solana. These temporary accounts are created during deployment but may persist if interrupted. To free up space and allow redeployment, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on finding and closing them.
 
 ## Next Steps and Resources  
 
