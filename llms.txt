@@ -194,7 +194,7 @@ To interact with the Wormhole Core Contract, you'll need the following:
 
 - The [address of the Core Contract](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
 - The [Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
-- The [Wormhole Finality (consistency)](/docs/build/reference/consistency-levels/){target=\_blank} levels (required finality) for the chains you're deploying your contract on
+- The [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on
 
 ## How to Interact with Core Contracts
 
