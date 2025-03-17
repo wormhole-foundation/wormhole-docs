@@ -33,11 +33,11 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
 
     [:custom-arrow: Get started](#build-with-connect)
 
--   :octicons-tools-16:{ .lg .middle } **Multichain Swap with Connect**
+-   :octicons-tools-16:{ .lg .middle } **Multichain Swap**
 
     ---
 
-    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/) 
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/){target=\_blank}.
 
     [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
 
