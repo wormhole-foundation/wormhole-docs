@@ -411,25 +411,19 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
 Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for guardian approval.
 
-1. **Create the script file** - add a new file inside `src/scripts/`
-
-    ```bash
-    touch src/scripts/replaceSignatures.ts
-    ```
-
-2. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
+1. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
 
     ```typescript title="src/scripts/replaceSignatures.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-16.ts:1:9"
     ```
 
-3. **Define the main execution function** - add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process
+2. **Define the main execution function** - add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-16.ts:11:51"
     ```
 
-4. **Make the script executable** - ensure it runs when executed
+3. **Make the script executable** - ensure it runs when executed
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-16.ts:53:53"
