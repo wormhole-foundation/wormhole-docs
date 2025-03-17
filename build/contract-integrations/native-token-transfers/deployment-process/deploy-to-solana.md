@@ -135,7 +135,7 @@ The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-
 
 If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
-This section walks through deriving the PDA, which will act as the token authority, and updating the SPL token’s mint authority.
+In this section, you will derive the PDA as the token authority and update the SPL token’s mint authority to enable NTT functionality.
 
 1. **Generate an NTT program key pair** - create a unique key pair for the NTT program
 
