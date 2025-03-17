@@ -10,7 +10,7 @@ These sections include information about Wormhole's transfer products to help yo
 Use the following links to jump directly to each Wormhole transfer product information page or continue for a product comparison:
 
 - [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/) - a mechanism to transfer native tokens multichain seamlessly without converting to a wrapped asset
-- [**Wormhole Settlement**](/docs/learn/transfers/settlement/) - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
+- [**Settlement**](/docs/learn/transfers/settlement/) - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/) - a bridging solution that uses a lock and mint mechanism
 
 ## Compare Transfer Products
@@ -27,8 +27,6 @@ Understand the key differences between Native Token Transfers (NTT) and Token Br
 <!--
 <div markdown class="full-width">
 
-::spantable::
-
 | Supports                  | NTT                | Token Bridge       |
 |---------------------------|--------------------|--------------------|
 | Message Payload           | :x:                | :white_check_mark: |
@@ -37,19 +35,15 @@ Understand the key differences between Native Token Transfers (NTT) and Token Br
 | Contract-Free Development | :x:                | :white_check_mark: |
 | User-Owned Contracts      | :white_check_mark: | :x:                |
 
-::end-spantable::
-
 </div>
 -->
 <!--TODO: embed YouTube video-->
 
 ### Settlement  
 
-Wormhole Settlement enables fast and efficient multichain transfers by optimizing liquidity without relying on traditional bridging methods. Unlike NTT, which moves native assets directly between chains, and Token Bridge, which locks tokens and mints wrapped versions, Settlement uses intent-based execution. Users specify the desired transfer outcome, and solvers compete to fulfill it most efficiently. 
+Settlement enables fast and efficient multichain transfers by optimizing liquidity without relying on traditional bridging methods. Unlike NTT, which moves native assets directly between chains, and Token Bridge, which locks tokens and mints wrapped versions, Settlement uses intent-based execution. Users specify the desired transfer outcome, and solvers compete to fulfill it most efficiently. 
 
 <div markdown class="full-width">
-
-::spantable::
 
 | Feature                 | Wormhole Settlement  | Native Token Transfer | Token Bridge       |
 |-------------------------|----------------------|-----------------------|--------------------|
@@ -58,8 +52,6 @@ Wormhole Settlement enables fast and efficient multichain transfers by optimizin
 | Liquidity Optimization  | :white_check_mark:   | :x:                   | :x:                |
 | Native Asset Transfers  | :white_check_mark:   | :white_check_mark:    | :x:                |
 | Wrapped Assets          | :x:                  | :x:                   | :white_check_mark: |
-
-::end-spantable::
 
 </div>
 
