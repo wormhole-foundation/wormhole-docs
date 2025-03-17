@@ -13,10 +13,9 @@ The message is wrapped up in a structure called a VAA, which combines the messag
 
 VAAs are uniquely indexed by the (`emitter_chain`, `emitter_address`, `sequence`) tuple. To obtain a VAA, one can query the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank} with this information.
 
-!!!tip "Sequence number"
-    The `sequence` field depends on the final ordering of blocks on the emitter chain. When a lower consistency level is chosen (i.e., not waiting for finality), there is a chance that chain reorganizations could lead to multiple, different VAAs appearing for what looks like the “same” message on the user side. 
+The `sequence` field depends on the final ordering of blocks on the emitter chain. When a lower consistency level is chosen (i.e., not waiting for finality), there is a chance that chain reorganizations could lead to multiple, different VAAs appearing for what looks like the “same” message on the user side. 
     
-    The tuple (`emitter_chain`, `emitter_address`, `sequence`) can only be considered unique if the chain does not undergo a reorg and the block containing the message has effectively reached finality. However, there is always a small chance of an extended reorg that could invalidate or alter a previously emitted sequence number.
+The tuple (`emitter_chain`, `emitter_address`, `sequence`) can only be considered unique if the chain does not undergo a reorg and the block containing the message has effectively reached finality. However, there is always a small chance of an extended reorg that could invalidate or alter a previously emitted sequence number.
 
 ## VAA Format
 
@@ -33,20 +32,20 @@ The basic VAA consists of header and body components described as follows:
     - `index` ++"u8"++ - the index of this Guardian in the Guardian set
     - `signature` ++"[65]byte"++ - the ECDSA signature
 
-- **Body** - _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body to maintain a one-to-one relationship between VAAs and messages to avoid double-processing messages
+- **Body** - _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body to maintain a one-to-one relationship between VAAs and messages to avoid double-processing messages. 
+    - The deterministic nature of the body is only strictly true once the chain's state is finalized
+    - If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message 
+    - This scenario is less likely once a block is sufficiently buried, but it can still happen if you choose a faster (less finalized) consistency level
 
-!!!tip "Consistency level"
-    This is only strictly true once the chain's state is finalized. If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message.
-    
-    This scenario is less likely once a block is sufficiently buried, but it can still happen if you choose a faster (less finalized) consistency level.
+    Elements of the body are as follows:
 
-- `timestamp` ++"u32"++ - the timestamp of the block this message was published in
-- `nonce` ++"u32"++
-- `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
-- `emitter_address` ++"[32]byte"++ - the contract address (Wormhole formatted) that called the Core Contract
-- `sequence` ++"u64"++ - the auto-incrementing integer that represents the number of messages published by this emitter
-- `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
-- `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
+    - `timestamp` ++"u32"++ - the timestamp of the block this message was published in
+    - `nonce` ++"u32"++
+    - `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
+    - `emitter_address` ++"[32]byte"++ - the contract address (Wormhole formatted) that called the Core Contract
+    - `sequence` ++"u64"++ - the auto-incrementing integer that represents the number of messages published by this emitter
+    - `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
+    - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
 
 The body contains relevant information for entities, such as contracts or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
 
@@ -79,14 +78,14 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Token Bridge is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
 
-Transferring tokens from Chain A to Chain B requires the following steps:
+Transferring tokens from the sending chain to the destination chain requires the following steps:
 
-- Lock the token on Chain A
-- Chain A emits a message as proof the token lockup is complete
-- Chain B receives the message confirming the lockup event on Chain A
-- Token is minted on Chain B
+1. Lock the token on the sending chain
+2. The sending chain emits a message as proof the token lockup is complete
+3. The destination chain receives the message confirming the lockup event on the sending chain
+4. The token is minted on the destination chain
 
-The message Chain A emits to verify the lockup is referred to as a transfer message and has the following structure:
+The message the sending chain emits to verify the lockup is referred to as a transfer message and has the following structure:
 
 - `payload_id` ++"u8"++ - the ID of the payload. This should be set to `1` for a token transfer
 - `amount` ++"u256"++ - amount of tokens being transferred
@@ -96,15 +95,15 @@ The message Chain A emits to verify the lockup is referred to as a transfer mess
 - `to_chain` ++"u16"++ - numeric ID for the destination chain
 - `fee` ++"u256"++ - portion of amount paid to a relayer
 
-This structure contains everything the receiving chain needs to learn about a lockup event. Once Chain B receives this payload, it can mint the corresponding asset.
+This structure contains everything the destination chain needs to learn about a lockup event. Once the destination chain receives this payload, it can mint the corresponding asset.
 
-Note that Chain B is agnostic regarding how the tokens on the sending side were locked. They could have been burned by a mint or locked in a custody account. The protocol relays the event once enough Guardians have attested to its existence.
+Note that the destination chain is agnostic regarding how the tokens on the sending side were locked. They could have been burned by a mint or locked in a custody account. The protocol relays the event once enough Guardians have attested to its existence.
 
 ### Attestation
 
-While Chain B can trust the message from Chain A to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, the Token Bridge supports token attestation.
+While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, the Token Bridge supports token attestation.
 
-To create a token attestation, Chain A emits a message containing metadata about a token, which Chain B may use to preserve the name, symbol, and decimal precision of a token address.
+To create a token attestation, the sending chain emits a message containing metadata about a token, which the destination chain may use to preserve the name, symbol, and decimal precision of a token address.
 
 The message format for token attestation is as follows:
 
@@ -121,13 +120,13 @@ Be aware of the following considerations when working with attestations:
 
 - Attestations use a fixed-length byte array to encode UTF8 token name and symbol data. Because the byte array is fixed length, the data contained may truncate multibyte Unicode characters
 
-- When sending an attestation VAA, it is recommended to send the longest UTF-8 prefix that doesn't truncate a character and then right-pad it with zero bytes
+- When sending an attestation VAA, it is recommended to send the longest UTF8 prefix that doesn't truncate a character and then right-pad it with zero bytes
 
 - When parsing an attestation VAA, it is recommended to trim all trailing zero bytes and convert the remainder to UTF-8 via any lossy algorithm
 
 - Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8
 
-- Without knowing a token's decimal precision, Chain B cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer
+- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer
 
 ### Token Transfer with Message
 
@@ -136,7 +135,7 @@ The Token Transfer with Message data structure is identical to the token-only da
 - **`fee` field** - replaced with the `from_address` field 
 - **`payload` field** - is added containing arbitrary bytes. A dApp may include additional data in this arbitrary byte field to inform some application-specific behavior
 
-This VAA type is also referred to as a `payload3` message or a Contract Controlled Transfer and has the following structure:
+This VAA type was previously known as Contract Controlled Transfer and is also sometimes referred to as a `payload3` message. The Token Transfer with Message data sructure is as follows:
 
 - `payload_id` ++"u8"++ -  the ID of the payload. This should be set to `3` for a token transfer with message 
 - `amount` ++"u256"++ - amount of tokens being transferred
@@ -175,7 +174,7 @@ The meaning of each numeric action is pre-defined and documented in the Wormhole
 
 ## Lifetime of a Message
 
-Anyone can submit the VAA to the target chain. The Guardians typically don't perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire the VAA via the Guardian RPC and submit it in a separate flow.
+Anyone can submit a VAA to the target chain. Guardians typically don't perform this step to avoid transaction fees. Instead, applications built on top of Wormhole can acquire a VAA via the Guardian RPC and submit it in a separate flow.
 
 With the concepts now defined, it is possible to illustrate a full flow for message passing between two chains. The following stages demonstrate each step of processing that the Wormhole network performs to route a message.
 
