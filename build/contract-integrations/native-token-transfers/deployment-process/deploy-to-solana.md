@@ -137,7 +137,7 @@ If you want to use hub-and-spoke, skip this section and proceed to [Deploy and C
 
 In this section, you will derive the PDA as the token authority and update the SPL token’s mint authority to enable NTT functionality.
 
-1. **Generate an NTT program key pair** - create a unique key pair for the NTT program
+1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
 
     ```bash
     solana-keygen grind --starts-with ntt:1 --ignore-case
