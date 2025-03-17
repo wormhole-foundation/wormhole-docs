@@ -246,7 +246,7 @@ The code then prepares a message for publication. This message includes:
 - The sender's address
 - The message payload (in this case, the encoded string `lol`)
 - A nonce (set to `0` here, but can be any user-defined value to uniquely identify the message)
-- A [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank} level (set to `0`, which determines the finality requirements for the message)
+- A [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank} (set to `0`, which determines the finality requirements for the message)
 
 After preparing the message, the next steps are to generate, sign, and send the transaction or transactions required to publish the message on the Solana blockchain. Once the transaction is confirmed, the Wormhole message ID is extracted from the transaction logs. This ID is crucial for tracking the message across chains.
 
