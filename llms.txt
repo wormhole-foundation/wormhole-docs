@@ -21927,7 +21927,7 @@ description: Learn how to fetch, validate, and replace outdated signatures in Wo
 
 Cross-chain transactions in Wormhole rely on [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank}, which contain signatures from a trusted set of validators called [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank}. These signatures prove that the network approved an action, such as a token transfer.
 
-However, the set of Guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the Guardian set may have already changed. This means the VAA will contain outdated signatures from Guardians no longer part of the network, causing the transaction to fail.
+However, the set of Guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the Guardian set may have already changed. This means the VAA will contain outdated signatures from Guardians, who are no longer part of the network, causing the transaction to fail.
 
 Instead of discarding these VAAs, we can fetch updated signatures and replace the outdated ones to ensure smooth processing.
 
@@ -22116,10 +22116,10 @@ chain/emitter/sequence
 
 We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
 
- - **Fetch the VAA ID** - add the function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`
+Add the `fetchVaaId()` function to extract the VAA ID from a transaction hash. Query the Ethereum node for a transaction receipt, check for a Wormhole message, and construct the VAA ID in the format `chain/emitter/sequence`.
 
-    ```typescript title="src/helpers/vaaHelper.ts"
-    const vaaIds: string[] = [];
+```typescript title="src/helpers/vaaHelper.ts"
+const vaaIds: string[] = [];
 
   for (const tx of txHashes) {
     try {
@@ -22152,12 +22152,12 @@ We must assemble the ID correctly since this is the format the Wormholescan API 
 
   return vaaIds;
 }
-    ```
+```
 
-     - **`log.address === ETH_CORE`** - ensures the event was emitted by the Wormhole contract
-     - **`log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC`** - filters for `LogMessagePublished` events, which indicate a VAA was created
-     - **`emitter`** - extracts the emitter address from `log.topics[1]`, removing the `0x` prefix
-     - **`seq`** - extracts the sequence number by reading the first 66 characters of `log.data`, converting it from hex to an integer
+ - **`log.address === ETH_CORE`** - ensures the event was emitted by the Wormhole contract
+ - **`log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC`** - filters for `LogMessagePublished` events, which indicate a VAA was created
+ - **`emitter`** - extracts the emitter address from `log.topics[1]`, removing the `0x` prefix
+ - **`seq`** - extracts the sequence number by reading the first 66 characters of `log.data`, converting it from hex to an integer
 
 ???- code "Try it out: VAA ID retrieval"
     If you want to try out the function before moving forward, create a test file inside the `test` directory:  
@@ -22199,26 +22199,28 @@ testFetchVaaId();
 
         If successful, the output will be:  
 
-        ```bash
-        Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
-        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170
-        ...
-        ```  
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaaId.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty
+		>VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170</span
+	>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
 
-        If no VAA is found:  
-
-        ```bash
-        No VAA found for transaction: 0x...
-        ```  
+        If no VAA ID is found, the script will log an error message.
 
 ### Fetch the Full VAA
 
 Now that you have the VAA ID, we can use it to fetch the full VAA payload from the Wormholescan API. This payload contains the VAA bytes, which will later be used for signature validation.
 
- - **Create the `fetchVaa()` function** - open `src/helpers/vaaHelper.ts` and add the below function. This function iterates through the provided VAA IDs, queries the API for each, and extracts the `vaaBytes` payload. If a request fails, the error is logged, and processing continues for the remaining IDs
+Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate through VAA IDs, query the API, and extract the `vaaBytes` payload. Log any errors and continue processing the remaining IDs to ensure all available VAAs are retrieved.
 
-    ```typescript title="src/helpers/vaaHelper.ts"
-    vaaIds: string[]
+```typescript title="src/helpers/vaaHelper.ts"
+vaaIds: string[]
 ): Promise<{ id: string; vaaBytes: string }[]> {
   const results: { id: string; vaaBytes: string }[] = [];
 
@@ -22233,7 +22235,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
   }
   return results;
 }
-    ```
+```
 
 ???- note "Try it out: VAA retrieval"
     If you want to try the function before moving forward, create a script inside the `test` directory  
@@ -22282,26 +22284,28 @@ testFetchVaa();
 
         If successful, the output will be:  
 
-        ```bash
-        Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
-        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170
-        VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeM...
-        ```  
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaa.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty
+		>VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeMaB9h...</span
+	>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
 
-        If no VAA is found:  
-
-        ```bash
-        No VAA ID found for transaction: 0x...
-        ```  
+        If no VAA is found, the script will log an error message.
 
 ### Validate VAA Signatures
 
 Now, we need to verify its validity. A VAA is only considered valid if it contains signatures from currently active guardians and is correctly verified by the Wormhole Core contract.
 
- - **Create the `checkVaaValidity()` function** - add a new function inside `src/helpers/vaaHelper.ts` to validate VAAs. The below function sends the VAA to an Ethereum RPC node and calls the `parseAndVerifyVM` function on the Wormhole Core contract. The response will indicate whether the VAA is valid or contains outdated signatures that need replacing.
+Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. Send the VAA to an Ethereum RPC node, call the `parseAndVerifyVM` function on the Wormhole Core contract, and determine whether the VAA is valid or contains outdated signatures that need replacing.
 
-    ```typescript title="src/helpers/vaaHelper.ts"
-    try {
+```typescript title="src/helpers/vaaHelper.ts"
+try {
     const vaa = Buffer.from(vaaBytes, 'base64');
     vaa[4] = 4; // Set guardian set index to 4
 
@@ -22339,7 +22343,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
     return { valid: false, reason: 'RPC error' };
   }
 }
-    ```
+```
 
 ???- note "Try it out: VAA Validity"
     If you want to try the function before moving forward, create a script inside the `test` directory  
@@ -22397,24 +22401,33 @@ testCheckVaaValidity();
 
         If the VAA is valid, the output will be:  
 
-        ```bash
-        ✅ VAA Valid: true
-        ```  
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>✅ VAA Valid: true</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
 
         If invalid, the output will include the reason:  
 
-        ```bash
-        ❌ VAA Valid: false, Reason: VM signature invalid
-        ```  
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
 
 ### Fetch Observations (VAA Signatures)
 
 Before replacing outdated signatures, we need to fetch the original VAA signatures from Wormholescan. This allows us to compare them with the latest guardian set and determine which ones need updating.
 
- - **Create the `fetchObservations()` function** - add a new function inside `src/helpers/vaaHelper.ts` to query the Wormholescan API for observations related to a given VAA. Then, format the response, converting guardian addresses to lowercase for consistency. If an error occurs, it returns an empty array.
+Inside `src/helpers/vaaHelper.ts`, create the `fetchObservations()` function to query the Wormholescan API for observations related to a given VAA. Format the response by converting guardian addresses to lowercase for consistency, and return an empty array if an error occurs.
 
-    ```typescript title="src/helpers/vaaHelper.ts"
-    try {
+```typescript title="src/helpers/vaaHelper.ts"
+try {
     console.log(`Fetching observations`);
     const response = await axios.get(
       `https://api.wormholescan.io/api/v1/observations/${vaaId}`
@@ -22429,7 +22442,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
     return [];
   }
 }
-    ```
+```
 
 ???- note "Try it out: Fetch Observations"
     If you want to try the function before moving forward, create a script inside the `test` directory  
@@ -22482,36 +22495,34 @@ testFetchObservations();
 
         If successful, the output will be:  
 
-        ```bash
-        Fetching observations
-        Transaction: 0x3c989a6bb40dcd4719453fbe7bbac420f23962c900ae75793124fc9cc614368c
-        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/156209
-        Observations: [
-        {
-            guardianAddr: '0xf93124b7c738843cbb89e864c862c38cddcccf95',
-            signature: 'Un3raUm0dUKWxq5BFgRdMd0d5tSYjBJ8L0/mqW4hFy405UQIrn55...'
-        },
-        {
-            guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811',
-            signature: 'ZjY4YzkzYjc2ODllMWI2N2ZlODQyYzIwZGIzM2NiYTUwYWViZGNl...'
-        },
-        ...
-        ```  
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchObservations.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>Fetching observations</span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty
+		>Observations: [ { guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811', signature:
+		'ZGFlMDYyOGNjZjFjMmE0ZTk5YzE2OThhZjAzMDM4NzZlYTM1OWMxMzczNDA3YzdlMDMxZTkyNzk0ODkwYjRiYjRiOWFmNzM3NjRiMzIyOTE0ZTQwYzNlMjllMWEzNmM2NTc3ZDc5ZTdhNTM2MzA5YjA4YjExZjE3YzE3MDViNWIwMQ=='
+		}, { guardianAddr: '0x74a3bf913953d695260d88bc1aa25a4eee363ef0', signature:
+		'MzAyOTU4OGU4MWU0ODc0OTAwNDU3N2EzMGZlM2UxMDJjOWYwMjM0NWVhY2VmZWQ0ZGJlNTFkNmI3YzRhZmQ5ZTNiODFjNTg3MDNmYzUzNmJiYWFiZjNlODc1YTY3OTQwMGE4MmE3ZjZhNGYzOGY3YmRmNDNhM2VhNGQyNWNlNGMwMA=='
+		},</span
+	>
+	<span data-ty>...]</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
 
-        If no observations are found:  
-
-        ```bash
-        No observations found for VAA ID: ...
-        ```  
+        If no observations are found, the script will log an error message.
 
 ### Fetch the Latest Guardian Set
 
 Now that we have the original VAA signatures, we must fetch the latest guardian set from Wormholescan. This will allow us to compare the stored signatures with the current guardians and determine which signatures need replacing.
 
- - **Create the `fetchGuardianSet()` function** - add a new function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set
+Create the `fetchGuardianSet()` function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set.
 
-    ```typescript title="src/helpers/vaaHelper.ts"
-    try {
+```typescript title="src/helpers/vaaHelper.ts"
+try {
     console.log('Fetching current guardian set');
     const response = await axios.get(
       `${WORMHOLESCAN_API}/guardianset/current`
@@ -22527,7 +22538,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
     return [];
   }
 }
-    ```
+```
 
 ???- note "Try it out: Fetch Guardian Set"
     If you want to try the function before moving forward, create a script inside the `test` directory  
@@ -22561,21 +22572,22 @@ testFetchGuardianSet();
 
         If successful, the output will be:  
 
-        ```bash
-        Fetching current guardian set
-        Current Guardian Set Index: 4
-        Guardian Addresses: [
-        '0x5893b5a76c3f739645648...',
-        '0xff6cb952589bde862c25e...',
-        ...
-        ]
-        ```  
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchGuardianSet.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>Fetching current guardian set</span>
+	<span data-ty>Current Guardian Set Index: 4</span>
+    <span data-ty>Guardian Addresses: [
+        '0x5893b5a76c3f739645648885bdccc06cd70a3cd3',
+        '0xff6cb952589bde862c25ef4392132fb9d4a42157',
+        '0x114de8460193bdf3a2fcf81f86a09765f4762fd1',
+        '0x107a0086b32d7a0977926a205131d8731d39cbeb',
+    </span>
+    <span data-ty>...]</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
 
-        If there is an error fetching the data:  
-
-        ```bash
-        Error fetching guardian set: Request failed with status 500
-        ```  
+        If an error occurs while fetching the guardian set, a `500` status error will be logged.
 
 ### Replace Outdated Signatures
 
@@ -22592,33 +22604,12 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
   console.log('Replacing Signatures...');
     ```
 
-    ??? interface "Parameters"
+     - **`vaa`** - original VAA bytes
+     - **`observations`** - observed signatures from the network
+     - **`currentGuardians`** - latest guardian set
+     - **`guardianSetIndex`** - current guardian set index
 
-        `vaa` ++"string | Uint8Array"++
-
-        The original VAA bytes.
-
-        ---
-
-        `observations` ++"{ guardianAddr: string; signature: string }[]"++
-
-        The observed signatures from the network.
-
-        ---
-
-        `currentGuardians` ++"string[]"++
-
-        The latest guardian set.
-
-        ---
-
-        `guardianSetIndex` ++"number"++
-
-        The current guardian set index.
-
-        ---
-
-2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data
+2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The guardian set should never be empty; if it is, this likely indicates an error in fetching the guardian set in a previous step
 
     ```typescript
     if (!vaa) throw new Error('VAA is undefined or empty.');
@@ -22627,7 +22618,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
     if (observations.length === 0) throw new Error('No observations provided.');
     ```
 
-3. **Filter valid signatures** - remove signatures from inactive guardians, keeping only valid ones. If no valid signatures are found, execution is halted
+3. **Filter valid signatures** - remove signatures from inactive guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA
 
     ```typescript
     currentGuardians.includes(sig.guardianAddr)
@@ -22739,7 +22730,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
     }
     ```
 
-9. **Send the updated VAA for verification** - validate the updated VAA by submitting it to an Ethereum RPC node, ensuring it can be proposed for guardian approval
+9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
 
     ```typescript
     if (!(patchedVaa instanceof Uint8Array))
@@ -22766,12 +22757,8 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
       const verificationResult = result.data.result;
       console.log('Updated VAA (hex):', vaaHex);
       return verificationResult;
-    ```
-
-10. **Handle errors** - catch any unexpected errors during VAA submission or signature replacement
-
-    ```typescript
-    throw new Error(`Error sending updated VAA to RPC: ${error}`);
+    } catch (error) {
+      throw new Error(`Error sending updated VAA to RPC: ${error}`);
     }
   } catch (error) {
     console.error('Unexpected error in replaceSignatures:', error);
@@ -22783,13 +22770,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
 Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for guardian approval.
 
-1. **Create the script file** - add a new file inside `src/scripts/`
-
-    ```bash
-    touch src/scripts/replaceSignatures.ts
-    ```
-
-2. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
+1. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
 
     ```typescript title="src/scripts/replaceSignatures.ts"
     fetchVaaId,
@@ -22802,7 +22783,7 @@ Now that we have all the necessary helper functions, we will create a script to 
 import { TXS } from '../config/constants';
     ```
 
-3. **Define the main execution function** - add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process
+2. **Define the main execution function** - add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process
 
     ```typescript
     try {
@@ -22847,7 +22828,7 @@ import { TXS } from '../config/constants';
 }
     ```
 
-4. **Make the script executable** - ensure it runs when executed
+3. **Make the script executable** - ensure it runs when executed
 
     ```typescript
     
@@ -22855,35 +22836,19 @@ import { TXS } from '../config/constants';
 
     To run the script, use the following command:
 
-    ```bash
-    npx tsx src/scripts/replaceSignatures.ts
-    ```
-
-    ```bash
-
-    Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
-
-    🛠 Fetching VAA ID...
-    ✅ VAA ID: 2/ec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5/123456
-
-    🛠 Fetching VAA...
-    ✅ VAA retrieved successfully
-
-    🛠 Checking VAA validity...
-    ❌ VAA is invalid - outdated signatures detected
-
-    🛠 Fetching observations...
-    ✅ 12 signatures found
-
-    🛠 Fetching current guardian set...
-    ✅ Guardian Set Index: 4
-
-    🔄 Replacing outdated signatures...
-    ✅ Updated VAA successfully
-
-    🛠 Sending updated VAA for verification...
-    ✅ VAA is now valid
-    ```
+    <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx src/scripts/replaceSignatures.ts</span>
+	<span data-ty> </span>
+	<span data-ty>Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+    <span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
+    <span data-ty>Fetching observations</span>
+    <span data-ty>Fetching current guardian set</span>
+    <span data-ty>Replacing Signatures...</span>
+    <span data-ty>Outdated Guardian Indexes: [ 0 ]</span>
+    <span data-ty>Sending updated VAA to RPC...</span>
+    <span data-ty>Updated VAA (hex): 0x01000000040d010019447b72d51e33923a3d6b28496ccd3722d5f1e33e2...</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
 
 The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
 
