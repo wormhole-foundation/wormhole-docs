@@ -332,7 +332,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
      - **`currentGuardians`** - latest guardian set
      - **`guardianSetIndex`** - current guardian set index
 
-2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data
+2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The guardian set should never be empty; if it is, this likely indicates an error in fetching the guardian set in a previous step
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:152:156"
