@@ -108,16 +108,22 @@ The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/deploymen
 
 2. **Initialize the deployment** - generate a `deployment.json` file with your deployment settings
 
+    === "Mainnet"
+
+        ```bash
+        ntt init Mainnet
+        ```
+
     === "Testnet"
 
         ```bash
         ntt init Testnet
         ```
-
-    === "Mainnet"
+    
+    === "Devnet"
 
         ```bash
-        ntt init Mainnet
+        ntt init Devnet
         ```
 
 ### Token Authority
