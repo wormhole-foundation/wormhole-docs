@@ -191,7 +191,9 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt pull
     ```
 
-3. **Configure inbound and outbound rate limits** - by default, the inbound and outbound limits are set to `0`. You must update them before pushing the deployment
+3. **Configure inbound and outbound rate limits** - by default, the inbound and outbound limits are set to `0`. You must update them before pushing the deployment. 
+
+    For EVM chains, values must be set using 18 decimals, while Solana uses 9 decimals.
 
     Open your `deployment.json` file and adjust the values based on your use case:  
 
