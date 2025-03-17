@@ -1,5 +1,5 @@
 ---
-title: Configure Your Connect Widget: v0
+title: Configure Your Connect Widget v0
 description: Configure Wormhole Connect v0 for React or HTML, set themes, define tokens, networks, and customize RPC endpoints for optimized blockchain interactions.
 ---
 
