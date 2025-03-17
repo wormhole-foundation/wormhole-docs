@@ -25,7 +25,7 @@ Start here for an overview of Wormhole architecture components and security mech
 
     ---
 
-    Explore Wormhole's security features, including the Guardian network, governance, monitoring, open-source development, and bug bounty programs.
+    Explore Wormhole's security features, including the Guardian network, governance, and monitoring.
 
     [:custom-arrow: Learn About Security](/docs/learn/infrastructure/architecture/)
 
