@@ -95,7 +95,7 @@ If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
 
 ## Set Up NTT
 
-To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and generates key pairs if needed.
+To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don’t exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
 
 The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/cli-commands/) manages deployments, configures settings, and interacts with the NTT system.
 
