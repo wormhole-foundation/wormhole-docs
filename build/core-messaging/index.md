@@ -9,15 +9,12 @@ Wormhole-deployed relayers and Core Contracts are essential for sending and rece
 
 Follow the links below for how-to guides about using Core Contracts and Wormhole-deployed relayers to send, receive, validate, and track multichain messages. 
 
-## Use Core Contracts
+## Simplified Message Flow
 
-[timeline left(wormhole-docs/.snippets/text/build/core-messaging/core-contracts-timeline.json)]
-
-## Use Wormhole Relayer
 
 Wormhole-deployed relayer support is limited to EVM environments. For a complete list of supported EVM environment blockchains, see the [Supported Networks](/docs/build/start-building/supported-networks/){target=\_blank} page.
 
-[timeline left(wormhole-docs/.snippets/text/build/core-messaging/relayer-timeline.json)]
+[timeline(.snippets/text/build/core-messaging/core-messaging-timeline.json)]
 
 ## Next Steps
 
