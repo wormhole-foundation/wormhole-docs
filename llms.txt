@@ -10585,7 +10585,7 @@ By importing this package, the Wormhole SDK can register and utilize the require
 
 ## How can I transfer ownership of NTT to a multisig?
 
-Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs){target=\_blank} to initiate the transfer.
+Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
 
 1. **Initiate transfer** - use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig)
 2. **Claim ownership** - the multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer
