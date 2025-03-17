@@ -1,5 +1,5 @@
 ntt:
-  anchor_version: v0.29.0
+  anchor_version: v0.31.0
   solana_cli_version: v1.18.26
 repositories:
   wormhole_sdk:
