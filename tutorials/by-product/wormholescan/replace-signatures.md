@@ -327,31 +327,10 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:150"
     ```
 
-    ??? interface "Parameters"
-
-        `vaa` ++"string | Uint8Array"++
-
-        The original VAA bytes.
-
-        ---
-
-        `observations` ++"{ guardianAddr: string; signature: string }[]"++
-
-        The observed signatures from the network.
-
-        ---
-
-        `currentGuardians` ++"string[]"++
-
-        The latest guardian set.
-
-        ---
-
-        `guardianSetIndex` ++"number"++
-
-        The current guardian set index.
-
-        ---
+     - **`vaa`** - original VAA bytes
+     - **`observations`** - observed signatures from the network
+     - **`currentGuardians`** - latest guardian set
+     - **`guardianSetIndex`** - current guardian set index
 
 2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data
 
