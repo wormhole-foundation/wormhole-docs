@@ -66,7 +66,7 @@ If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
     solana balance
     ```
 
-5. **Install SPL Token CLI** - install or update the required CLI tool
+5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
 
     ```bash
     cargo install spl-token-cli
