@@ -163,17 +163,9 @@ We must assemble the ID correctly since this is the format the Wormholescan API 
 
         If successful, the output will be:  
 
-        ```bash
-        Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
-        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170
-        ...
-        ```  
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-6.html"
 
-        If no VAA is found:  
-
-        ```bash
-        No VAA found for transaction: 0x...
-        ```  
+        If no VAA ID is found, the script will log an error message.
 
 ### Fetch the Full VAA
 
@@ -197,7 +189,7 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
     2. **Add the function call**  
 
         ```typescript title="test/fetchVaa.run.ts"
-        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-6.ts"
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-7.ts"
         ```  
 
     3. **Run the script**  
@@ -208,17 +200,9 @@ Now that you have the VAA ID, we can use it to fetch the full VAA payload from t
 
         If successful, the output will be:  
 
-        ```bash
-        Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
-        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170
-        VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeM...
-        ```  
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-8.html"
 
-        If no VAA is found:  
-
-        ```bash
-        No VAA ID found for transaction: 0x...
-        ```  
+        If no VAA is found, the script will log an error message.
 
 ### Validate VAA Signatures
 
@@ -242,7 +226,7 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
     2. **Add the function call**  
 
         ```typescript title="test/checkVaaValidity.run.ts"
-        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-7.ts"
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-9.ts"
         ```  
 
     3. **Run the script**  
@@ -253,15 +237,11 @@ Now, we need to verify its validity. A VAA is only considered valid if it contai
 
         If the VAA is valid, the output will be:  
 
-        ```bash
-        ✅ VAA Valid: true
-        ```  
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-10.html"
 
         If invalid, the output will include the reason:  
 
-        ```bash
-        ❌ VAA Valid: false, Reason: VM signature invalid
-        ```  
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-11.html"
 
 ### Fetch Observations (VAA Signatures)
 
@@ -285,7 +265,7 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
     2. **Add the function call**  
 
         ```typescript title="test/fetchObservations.run.ts"
-        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-8.ts"
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-12.ts"
         ```  
 
     3. **Run the script**  
@@ -296,27 +276,9 @@ Before replacing outdated signatures, we need to fetch the original VAA signatur
 
         If successful, the output will be:  
 
-        ```bash
-        Fetching observations
-        Transaction: 0x3c989a6bb40dcd4719453fbe7bbac420f23962c900ae75793124fc9cc614368c
-        VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/156209
-        Observations: [
-        {
-            guardianAddr: '0xf93124b7c738843cbb89e864c862c38cddcccf95',
-            signature: 'Un3raUm0dUKWxq5BFgRdMd0d5tSYjBJ8L0/mqW4hFy405UQIrn55...'
-        },
-        {
-            guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811',
-            signature: 'ZjY4YzkzYjc2ODllMWI2N2ZlODQyYzIwZGIzM2NiYTUwYWViZGNl...'
-        },
-        ...
-        ```  
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-13.html"
 
-        If no observations are found:  
-
-        ```bash
-        No observations found for VAA ID: ...
-        ```  
+        If no observations are found, the script will log an error message.
 
 ### Fetch the Latest Guardian Set
 
@@ -340,7 +302,7 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
     2. **Add the function call**  
 
         ```typescript title="test/fetchGuardianSet.run.ts"
-        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-9.ts"
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-14.ts"
         ```  
 
     3. **Run the script**  
@@ -351,21 +313,9 @@ Now that we have the original VAA signatures, we must fetch the latest guardian 
 
         If successful, the output will be:  
 
-        ```bash
-        Fetching current guardian set
-        Current Guardian Set Index: 4
-        Guardian Addresses: [
-        '0x5893b5a76c3f739645648...',
-        '0xff6cb952589bde862c25e...',
-        ...
-        ]
-        ```  
+        --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-15.html"
 
-        If there is an error fetching the data:  
-
-        ```bash
-        Error fetching guardian set: Request failed with status 500
-        ```  
+        If an error occurs while fetching the guardian set, a `500` status error will be logged.
 
 ### Replace Outdated Signatures
 
@@ -470,52 +420,24 @@ Now that we have all the necessary helper functions, we will create a script to 
 2. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
 
     ```typescript title="src/scripts/replaceSignatures.ts"
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-10.ts:1:9"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-16.ts:1:9"
     ```
 
 3. **Define the main execution function** - add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-10.ts:11:51"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-16.ts:11:51"
     ```
 
 4. **Make the script executable** - ensure it runs when executed
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-10.ts:53:53"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-16.ts:53:53"
     ```
 
     To run the script, use the following command:
 
-    ```bash
-    npx tsx src/scripts/replaceSignatures.ts
-    ```
-
-    ```bash
-
-    Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367
-
-    🛠 Fetching VAA ID...
-    ✅ VAA ID: 2/ec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5/123456
-
-    🛠 Fetching VAA...
-    ✅ VAA retrieved successfully
-
-    🛠 Checking VAA validity...
-    ❌ VAA is invalid - outdated signatures detected
-
-    🛠 Fetching observations...
-    ✅ 12 signatures found
-
-    🛠 Fetching current guardian set...
-    ✅ Guardian Set Index: 4
-
-    🔄 Replacing outdated signatures...
-    ✅ Updated VAA successfully
-
-    🛠 Sending updated VAA for verification...
-    ✅ VAA is now valid
-    ```
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-17.html"
 
 The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
 
