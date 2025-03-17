@@ -14052,13 +14052,13 @@ Institutional-scale digital asset settlement for individual users and insitution
 
 <div class="grid cards" markdown>
 
--   :octicons-book-16:{ .lg .middle } **Wormhole Settlement**
+-   :octicons-book-16:{ .lg .middle } **Settlement**
 
     ---
 
-    - Swap, bridge, and build across multiple chains
-    - Wormhole Liquidity Layer to reduce liquidity fragmentation
-    - Mayan Swift for competitive price discovery via on-chain English auctions
+    - Swap, bridge, and build across multiple chains 
+    - Chain-agnostic settlement system for wider asset adaptability
+    - English auction experience combining powerful protocols from Wormhole and Mayan
 
     [:custom-arrow: Learn about Settlement](/docs/learn/transfers/settlement/)
 
