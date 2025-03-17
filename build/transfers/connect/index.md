@@ -31,7 +31,7 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
 
     Follow this series of how-to guides to integrate Connect into your React dApp and configure options to fit your user's needs.
 
-    [:custom-arrow: Get started](#build-with-connect)
+    [:custom-arrow: Get started](/docs/build/transfers/connect/overview/#integrate-connect)
 
 -   :octicons-tools-16:{ .lg .middle } **Multichain Swap**
 
@@ -49,6 +49,14 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
     Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
 
     [:custom-arrow: Visit FAQs](/docs/build/transfers/connect/faqs/)
+
+-   :octicons-tools-16:{ .lg .middle } **Supported Features by Chain**
+
+    ---
+
+    Get a more detailed look at Wormhole Connect features with a breakdown of supported features by chain.
+
+    [:custom-arrow: Supported Features](/docs/build/transfers/connect/features/)
 
 </div>
 
