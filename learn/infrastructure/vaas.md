@@ -50,7 +50,7 @@ The body is _deterministically_ derived from an on-chain message. Any two Guardi
 - `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
 - `emitter_address` ++"[32]byte"++ - the contract address (Wormhole formatted) that called the Core Contract
 - `sequence` ++"u64"++ - the auto-incrementing integer that represents the number of messages published by this emitter
-- `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
+- `consistency_level` ++"u8"++ - the consistency level, also referred to as the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} level, required by this emitter
 - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
 
 The body contains relevant information for entities, such as contracts, or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
@@ -60,7 +60,7 @@ The body contains relevant information for entities, such as contracts, or other
 
 ## Consistency and Finality
 
-The consistency level determines whether Guardians wait for a chain’s final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
+The consistency level, also referred to as the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} level, determines whether Guardians wait for a chain’s final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
 
 Guardian watchers are specialized processes that monitor each blockchain in real time. They enforce the selected consistency level by deciding whether enough commitment has been reached before signing and emitting a VAA. Some chains allow only one commitment level (effectively final), while others let integrators pick between near-final or fully finalized states. Choosing a faster option speeds up VAA production but increases reorg risk; choosing a more conservative option takes longer but reduces the likelihood of rollback.
 

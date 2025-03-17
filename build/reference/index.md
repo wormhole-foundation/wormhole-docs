@@ -1,13 +1,13 @@
 ---
 title: Reference
-description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
+description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
 ---
 
 # Reference
 
 ## Get Started
 
-In this section, you'll find reference information that is essential for development. This includes Wormhole chain IDs, canonical contract addresses, and consistency levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
+In this section, you'll find reference information that is essential for development. This includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
 
 <div class="grid cards" markdown>
 
@@ -19,13 +19,13 @@ In this section, you'll find reference information that is essential for develop
 
     [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
 
--   :material-timer-sand:{ .lg .middle } **Consistency Levels**
+-   :material-timer-sand:{ .lg .middle } **Wormhole Finality**
 
     ---
 
     See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
 
-    [:custom-arrow: View list of consistency levels](/docs/build/reference/consistency-levels/)
+    [:custom-arrow: View list of finality levels](/docs/build/reference/consistency-levels/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
 

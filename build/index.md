@@ -32,7 +32,7 @@ Whether you’re developing front-end applications using Wormhole's application-
 
     ---
 
-    Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
+    Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
 
     [:custom-arrow: Explore reference](/docs/build/reference/)
 
