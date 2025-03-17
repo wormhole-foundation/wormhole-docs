@@ -14,7 +14,7 @@ Follow the links below for how-to guides about using Core Contracts and Wormhole
 
 Wormhole-deployed relayer support is limited to EVM environments. For a complete list of supported EVM environment blockchains, see the [Supported Networks](/docs/build/start-building/supported-networks/){target=\_blank} page.
 
-[timeline(.snippets/text/build/core-messaging/core-messaging-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/build/core-messaging/core-messaging-timeline.json)]
 
 ## Next Steps
 
