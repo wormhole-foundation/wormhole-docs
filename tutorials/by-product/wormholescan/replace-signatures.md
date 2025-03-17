@@ -128,7 +128,7 @@ chain/emitter/sequence
 
 We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
 
-Add the `fetchVaaId()` function to extract the VAA ID from a transaction hash. This function queries the Ethereum node for a transaction receipt, checks if the transaction emitted a Wormhole message, and constructs the VAA ID in the format `chain/emitter/sequence`.
+Add the `fetchVaaId()` function to extract the VAA ID from a transaction hash. Query the Ethereum node for a transaction receipt, check for a Wormhole message, and construct the VAA ID in the format `chain/emitter/sequence`.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:17:50"
@@ -171,7 +171,7 @@ Add the `fetchVaaId()` function to extract the VAA ID from a transaction hash. T
 
 Now that you have the VAA ID, we can use it to fetch the full VAA payload from the Wormholescan API. This payload contains the VAA bytes, which will later be used for signature validation.
 
-Open `src/helpers/vaaHelper.ts` and add the `fetchVaa()` function. This function iterates through the provided VAA IDs, queries the API for each, and extracts the `vaaBytes` payload. If a request fails, the error is logged, and processing continues for the remaining IDs.
+Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate through VAA IDs, query the API, and extract the `vaaBytes` payload. Log any errors and continue processing the remaining IDs to ensure all available VAAs are retrieved.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:52:67"
@@ -208,7 +208,7 @@ Open `src/helpers/vaaHelper.ts` and add the `fetchVaa()` function. This function
 
 Now, we need to verify its validity. A VAA is only considered valid if it contains signatures from currently active guardians and is correctly verified by the Wormhole Core contract.
 
-Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. This function sends the VAA to an Ethereum RPC node and calls the `parseAndVerifyVM` function on the Wormhole Core contract. The response will indicate whether the VAA is valid or contains outdated signatures that need replacing.
+Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. Send the VAA to an Ethereum RPC node, call the `parseAndVerifyVM` function on the Wormhole Core contract, and determine whether the VAA is valid or contains outdated signatures that need replacing.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:69:107"
@@ -247,7 +247,7 @@ Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. This 
 
 Before replacing outdated signatures, we need to fetch the original VAA signatures from Wormholescan. This allows us to compare them with the latest guardian set and determine which ones need updating.
 
-Inside `src/helpers/vaaHelper.ts` create a new `fetchObservations()` function to query the Wormholescan API for observations related to a given VAA. Then, format the response, converting guardian addresses to lowercase for consistency. If an error occurs, it returns an empty array.
+Inside `src/helpers/vaaHelper.ts`, create the `fetchObservations()` function to query the Wormholescan API for observations related to a given VAA. Format the response by converting guardian addresses to lowercase for consistency, and return an empty array if an error occurs.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:109:124"
