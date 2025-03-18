@@ -53,7 +53,7 @@ Each protocol integrates its payload format into the VAA structure, ensuring con
 
 The TypeScript SDK is designed for off-chain operations like reading, validating, and manipulating VAAs before submitting them to a chain. Developers can easily deserialize VAAs to extract protocol payloads and prepare actions such as initiating token transfers or constructing delivery instructions.
 
-In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole's TS SDK to deserialize and extract essential information like the emitter chain, sequence, and consistency level:
+In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole's TS SDK to deserialize and extract essential information like the emitter chain, sequence, and [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}:
 
 ```typescript
 --8<-- "code/build/toolkit/typescript-sdk/vaas-protocols/ts-sdk.ts"
