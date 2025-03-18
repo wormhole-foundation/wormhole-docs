@@ -1,0 +1,22 @@
+[
+    {
+        "title": "[Send Messages](/docs/build/core-messaging/core-contracts/#sending-messages)",
+        "content": "How-to send messages with Core Contracts.",
+        "icon": ":fontawesome-solid-1:"
+    },
+    {
+        "title": "[Interact with Wormhole Relayer](/docs/build/core-messaging/wormhole-relayers/#receive-a-message)",
+        "content": "How-to use Wormhole Relayer in your messaging workflow.",
+        "icon": ":fontawesome-solid-2:"
+    },
+    {
+        "title": "[Receive Messages](/docs/build/core-messaging/core-contracts/#receiving-messages)",
+        "content": "How-to verify and parse received messages.",
+        "icon": ":fontawesome-solid-3:"
+    },
+    {
+        "title": "[Validate the Emitter](/docs/build/core-messaging/core-contracts/#validating-the-emitter)",
+        "content": "How-to verify messages came from a trusted sender.",
+        "icon": ":fontawesome-solid-4:"
+    }
+]
