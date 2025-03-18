@@ -43,7 +43,7 @@ While all of these products handle token transfers, there are additional feature
 
     Unleash institutional-scale digital asset settlement with Wormhole Settlement's intent-based asset transfers and liquidity layer.
 
-    [:custom-arrow: Discover Settlement](/docs/build/transfers/wormhole-docs/build/transfers/settlement/)
+    [:custom-arrow: Discover Settlement](/docs/build/transfers/settlement/)
 
 -   :octicons-gear-16:{ .lg .middle } **Plug-and-Play UI**
 
