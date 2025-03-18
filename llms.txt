@@ -84,6 +84,7 @@ Doc-Page: https://wormhole.com/docs/learn/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/architecture/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/core-contracts/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/guardians/
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/relayer/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/spy/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/vaas/
@@ -10982,7 +10983,66 @@ This route appears if all of the following conditions are satisfied:
 
 Doc-Content: https://wormhole.com/docs/build/transfers/connect/
 --- BEGIN CONTENT ---
+---
+title: Wormhole Connect
+description: Wormhole Connect is a React widget offering an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
+---
 
+# Wormhole Connect
+
+Wormhole Connect is a customizable widget that brings wrapped and native token cross-chain asset transfers into your dApp in as few as 3 lines of code. Connect is available as a React component or hosted version via CDN so you can easily configure any application to transfer tokens via Wormhole.
+
+## Build with Connect
+
+[timeline left(wormhole-docs/.snippets/text/build/transfers/connect/connect-timeline.json)]
+
+## See It In Action
+
+Wormhole Connect is deployed live in several production apps. Here are a few:
+
+- [Portal Bridge](https://portalbridge.com/){target=\_blank}
+- [Jupiter](https://jup.ag/onboard/cctp){target=\_blank}
+- [Pancake Swap](https://bridge.pancakeswap.finance/wormhole){target=\_blank}
+
+Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} page to learn how to combine Connect with other Wormhole products, including Native Token Transfer (NTT).
+
+## Next Steps
+
+<div class="grid cards" markdown >
+
+-   :octicons-tools-16:{ .lg .middle} **Get Started Now**
+
+    ---
+
+    Follow this series of how-to guides to integrate Connect into your React dApp and configure options to fit your user's needs.
+
+    [:custom-arrow: Get started](/docs/build/transfers/connect/overview/)
+
+-   :octicons-tools-16:{ .lg .middle} **Supported Features by Chain**
+
+    ---
+
+    Get a more detailed look at Wormhole Connect features with a breakdown of supported features by chain.
+    
+    [:custom-arrow: Supported Features](/docs/build/transfers/connect/features/)
+
+-   :octicons-tools-16:{ .lg .middle } **Cross-chain Swap with Connect**
+
+    ---
+
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/).
+
+    [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
+
+-   :octicons-tools-16:{ .lg .middle } **Connect FAQs**
+
+    ---
+
+    Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
+
+    [:custom-arrow: Visit FAQs](/docs/build/transfers/connect/faqs/)
+  
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/transfers/connect/overview/
@@ -15055,6 +15115,72 @@ However, once all the full nodes are running, the Guardian Network's actual comp
 ### Upgradeable
 
 Over time, the Guardian Set can be expanded beyond 19 using threshold signatures. Various relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well-supported. The cross-chain application ecosystem will grow, and cross-chain applications will become increasingly intermingled. There are very few APIs in Wormhole, and most items are implementation details from the integrator perspective. This creates a clear pathway towards a fully trustless interoperability layer that spans decentralized computing.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/learn/infrastructure/
+--- BEGIN CONTENT ---
+---
+title: Infrastructure Components
+description: Explore Wormhole's infrastructure, including the key components that enable secure multichain communication and asset transfers across blockchain networks.
+---
+
+# Infrastructure Components
+
+This section examines the core components that power Wormhole's infrastructure, including Guardians, relayers, VAAs, and the Spy. 
+
+## Get Started
+
+Start here for an overview of Wormhole architecture components and security mechanisms:
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Architecture Overview**
+
+    ---
+
+    Overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
+
+    [:custom-arrow: Learn About Architecture](/docs/learn/infrastructure/architecture/)
+
+-   :octicons-book-16:{ .lg .middle } **Security**
+
+    ---
+
+    Explore Wormhole's security features, including the Guardian network, governance, and monitoring.
+
+    [:custom-arrow: Learn About Security](/docs/learn/security/)
+
+</div>
+
+## Explore Components
+
+The relationship between individual components can be demonstrated through the simplified flow of a multichain message from a source-chain contract to a target-chain contract. Select the title of each step to learn more about that component:
+
+[timeline left(wormhole-docs/.snippets/text/learn/infrastructure/infrastructure-index-timeline.json)]
+
+The [Spy](/docs/learn/infrastructure/spy/) continuously runs in the background to subscribe to gossiped messages across the Guardian Network and enable real-time network activity monitoring.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Messaging Components**
+
+    ---
+
+    Learn more about individual messaging components such as Core Contracts, VAAs, Guardians, and relayers
+
+    [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
+
+-   :octicons-people-16:{ .lg .middle } **Core Messaging Guides**
+
+    ---
+
+    Explore this section for guides to using Wormhole Relayer and Core Contracts in your project.
+
+    [:custom-arrow: Build with Core Messaging](/docs/build/core-messaging/)
+
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/learn/infrastructure/relayer/
