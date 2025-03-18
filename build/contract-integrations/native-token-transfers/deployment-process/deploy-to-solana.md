@@ -138,13 +138,13 @@ The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/deploymen
         ntt init Devnet
         ```
 
-### Token Authority
+### Set Mint Authority
+
+If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token’s minting permissions.
 
 If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
-Before updating the mint authority, you must first create metadata for your SPL token. [See an example of how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
-
-In this section, you will derive the PDA as the token authority and update the SPL token’s mint authority to enable NTT functionality.
+Before updating the mint authority, you must create metadata for your SPL token. [View an example of how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
 
 1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
 
