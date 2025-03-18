@@ -7,7 +7,7 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 
 ## Introduction
 
-[Native Token Transfers (NTT)](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} enable seamless cross-chain transfers of SPL tokens on Solana using Wormhole’s messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+[Native Token Transfers (NTT)](/docs/learn/messaging/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole’s messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
@@ -241,4 +241,4 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
 Your NTT deployment on Solana is now complete! To proceed, explore the following:  
 
  - **Test your deployment** – follow the [NTT Post Deployment Guide](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/){target=\_blank} for integration examples and testing instructions
- - **Integrate NTT into your application** – configure [Wormhole Connect](/docs/build/applications/connect/){target=\_blank}  a plug-and-play bridging UI, to enable cross-chain transfers for your token
+ - **Integrate NTT into your application** – configure [Wormhole Connect](/docs/build/applications/connect/){target=\_blank}  a plug-and-play bridging UI, to enable multichain transfers for your token
