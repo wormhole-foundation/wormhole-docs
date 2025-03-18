@@ -1,0 +1,22 @@
+[
+    {
+        "title": "[Core Contracts](/docs/learn/infrastructure/core-contracts/)",
+        "content": "Messages are sent from a source contract to the Wormhole Core Contract on the source chain, which publishes them on-chain.",
+        "icon": ":fontawesome-solid-1:"
+    },
+    {
+        "title": "[Guardians](/docs/learn/infrastructure/guardians/)",
+        "content": "Guardians validate these messages before forwarding them to the target chain.",
+        "icon": ":fontawesome-solid-2:"
+    },
+    {
+        "title": "[Verifiable Action Approval (VAA)](/docs/learn/infrastructure/vaas/)",
+        "content": "The validated message is encapsulated in a VAA (Verifiable Action Approval), combining the message with Guardian signatures to create a proof.",
+        "icon": ":fontawesome-solid-3:"
+    },
+    {
+        "title": "[Relayers](/docs/learn/infrastructure/relayer/)",
+        "content": "A relayer relays the VAA to the target chain, which the Wormhole Core Contract then verifies on the target chain.",
+        "icon": ":fontawesome-solid-4:"
+    }
+]
