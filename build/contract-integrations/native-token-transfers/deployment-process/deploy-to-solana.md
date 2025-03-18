@@ -24,9 +24,21 @@ Before deploying NTT on Solana, ensure you have the following:
 !!!Warning
     Ensure to use the Solana and Anchor versions listed above to avoid compatibility issues.
 
+## Overview of the Deployment Process
+
+There are two ways to deploy NTT on Solana:
+
+ - **Using an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
+ - **Creating a new SPL token** - if you don’t already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
+
+Additionally, the NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}:
+
+ - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+ - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token’s minting authority to the Program Derived Address (PDA) controlled by the NTT program
+
 ## Create and Mint Tokens
 
-If you don’t already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT. This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
 
 If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
 
@@ -127,11 +139,6 @@ The [NTT CLI](/docs/build/contract-integrations/native-token-transfers/deploymen
         ```
 
 ### Token Authority
-
-The NTT CLI supports two [deployment models](/docs/learn/messaging/native-token-transfers/deployment/){target=\_blank}:
-
- - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
- - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token’s minting authority to the Program Derived Address (PDA) controlled by the NTT program
 
 If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
