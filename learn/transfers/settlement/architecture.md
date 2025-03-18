@@ -1,9 +1,9 @@
 ---
-title: Settlement Protocol Architectures
+title: Settlement Protocol Architecture
 description: Explore Wormhole Settlement's native swap protocols—Liquidity Layer, Mayan Swift, and MCTP—for scalable, efficient cross-chain asset transfers.
 ---
 
-# Settlement Protocol Architectures
+# Settlement Protocol Architecture
 
 ## Introduction
 
@@ -19,7 +19,7 @@ Wormhole Liquidity Layer is a cross-chain transfer protocol that enables faster-
 
 Solvers concentrate their liquidity entirely on Solana, where they participate in permissionless on-chain English auctions (open ascending-price auctions where bidders publicly raise bids until only one bidder remains) to fulfill each cross-chain transfer. Upon the conclusion of each auction, the winning solver initiates a transfer from Solana to the specified destination chain. The solver rebalances inventory once the originating source chain transaction reaches finality and arrives to Solana.
 
-![Wormhole Settlments Liquidity layer architecture diagram: source chain to hub to destination chain](/docs/images/learn/transfers/settlement/settlement-overview.webp)
+![Wormhole Settlments Liquidity layer architecture diagram: source chain to hub to destination chain](/docs/images/learn/transfers/settlement/architecture/architecture-1.webp)
 
 The Wormhole Liquidity Layer serves as the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems by enabling protocols to bundle call data containing arbitrary protocol actions, which can be executed atomically alongside each transfer. This feature allows developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer.
 
@@ -61,7 +61,7 @@ First, they lack a competitive price discovery mechanism as limit order prices a
 
 Mayan Swift addresses these limitations by implementing competitive on-chain English auctions on Solana as an embedded price discovery mechanism, fundamentally shifting solver competition from speed-based to price-based execution. Through this architecture, the solver offering the best possible price secures the right to fulfill the order within pre-specified deadline parameters.
 
-![Mayan Swift - Intent-centric design](/docs/images/learn/transfers/settlement/mayan-swift.webp)
+![Mayan Swift - Intent-centric design](/docs/images/learn/transfers/settlement/architecture/architecture-2.webp)
 
 ### Protocol Flow: How It Works
 
@@ -80,7 +80,7 @@ Mayan Swift addresses these limitations by implementing competitive on-chain Eng
 
 Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains.
 
-![Mayan MCTP diagram](/docs/images/learn/transfers/settlement/mayan-mctp.webp)
+![Mayan MCTP diagram](/docs/images/learn/transfers/settlement/architecture/architecture-3.webp)
 
 ### Protocol Flow: How It Works
 
