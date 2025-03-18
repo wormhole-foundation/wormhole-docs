@@ -21,7 +21,7 @@
 
 ### Move VM
 
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>APT</td><td><a href="https://www.aptosfaucet.com/" target="_blank">Official Aptos Faucet</a></td></tr></tbody></table>
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>APT</td><td><a href="https://www.aptosfaucet.com/" target="_blank">Official Aptos Faucet</a></td></tr><tr><td>Movement</td><td>Move VM</td><td>undefined</td><td><a href="https://faucet.devnet.suzuka.movementnetwork.xyz/" target="_blank">Official Movement Faucet</a></td></tr></tbody></table>
 
 ### NEAR VM
 
