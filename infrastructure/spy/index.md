@@ -31,7 +31,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     [:custom-arrow: Learn more about Spies](/docs/learn/infrastructure/spy/)
 
--   :material-package-variant:{ .lg .middle } **Interact with a Spy**
+-   :octicons-code-16:{ .lg .middle } **Interact with a Spy**
 
     ---
 
@@ -39,7 +39,7 @@ description: Discover everything you need to about the Wormhole Spy, a daemon th
 
     [:custom-arrow: Use the Wormhole Spy SDK](https://github.com/wormhole-foundation/wormhole/blob/main/spydk/js/README.md){target=\_blank}
 
--   :material-package-variant:{ .lg .middle } **Alternative Implementations**
+-   :octicons-bookmark-16:{ .lg .middle } **Alternative Implementations**
 
     ---
 
