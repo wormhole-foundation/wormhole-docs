@@ -1,73 +1,62 @@
 ---
 title: Infrastructure Components
-description: Explore Wormhole's infrastructure, including the key components that enable secure cross-chain communication and asset transfers across blockchain networks.
+description: Explore Wormhole's infrastructure, including the key components that enable secure multichain communication and asset transfers across blockchain networks.
 ---
 
 # Infrastructure Components
 
+This section examines the core components that power Wormhole's infrastructure, including Guardians, relayers, VAAs, and the Spy. 
+
 ## Get Started
 
-This section provides a closer look at the core components that power Wormhole's infrastructure, including Guardians, relayers, VAAs, and the Spy.
+Start here for an overview of Wormhole architecture components and security mechanisms:
 
 <div class="grid cards" markdown>
 
--   :octicons-question-16:{ .lg .middle } **How Do Wormhole’s Infrastructure Components Work Together?**
+-   :octicons-book-16:{ .lg .middle } **Architecture Overview**
 
     ---
 
-    A simplified flow of a cross-chain message from a source-chain contract to a target-chain contract can be summarized as follows:
+    Overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
 
-    1. Messages are sent from a source contract to the Wormhole Core Contract on the source chain, which publishes them on-chain
-    2. Guardians then validate these messages before forwarding them to the target chain
-    3. The validated message is encapsulated in a VAA (Verifiable Action Approval), combining the message with Guardian signatures to create a proof
-    4. A relayer relays the VAA to the target chain, which is then verified by the Wormhole Core Contract on the target chain
+    [:custom-arrow: Learn About Architecture](/docs/learn/infrastructure/architecture/)
 
-    You can find more information about the infrastructure components and how they work together on the [Architecture Overview](/docs/learn/infrastructure/architecture/) page.
+-   :octicons-book-16:{ .lg .middle } **Security**
+
+    ---
+
+    Explore Wormhole's security features, including the Guardian network, governance, and monitoring.
+
+    [:custom-arrow: Learn About Security](/docs/learn/security/)
 
 </div>
 
-### Components
+## Explore Components
+
+The relationship between individual components can be demonstrated through the simplified flow of a multichain message from a source-chain contract to a target-chain contract. Select the title of each step to learn more about that component:
+
+[timeline left(wormhole-docs/.snippets/text/learn/infrastructure/infrastructure-index-timeline.json)]
+
+The [Spy](/docs/learn/infrastructure/spy/) continuously runs in the background to subscribe to gossiped messages across the Guardian Network and enable real-time network activity monitoring.
+
+## Next Steps
 
 <div class="grid cards" markdown>
 
--   :octicons-book-16:{ .lg .middle } **Wormhole Core Contracts**
+-   :octicons-book-16:{ .lg .middle } **Messaging Components**
 
     ---
 
-    The Core Contracts are responsible for publishing and verifying all cross-chain messages.
+    Learn more about individual messaging components such as Core Contracts, VAAs, Guardians, and relayers
 
-    [:custom-arrow: Learn more about Core Contracts](/docs/learn/infrastructure/core-contracts/)
+    [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
 
--   :octicons-book-16:{ .lg .middle } **Verifiable Action Approvals (VAAs)**
-
-    ---
-
-    VAAs are Wormhole's core messaging primitive, consisting of cross-chain data packets.
-
-    [:custom-arrow: Learn more about VAAs](/docs/learn/infrastructure/vaas/)
-
--   :octicons-book-16:{ .lg .middle } **Guardians**
+-   :octicons-people-16:{ .lg .middle } **Core Messaging Guides**
 
     ---
 
-    Guardians are nodes responsible for observing messages and signing the corresponding payloads.
+    Explore this section for guides to using Wormhole Relayer and Core Contracts in your project.
 
-    [:custom-arrow: Learn more about Guardians](/docs/learn/infrastructure/guardians/)
-
--   :octicons-book-16:{ .lg .middle } **Relayers**
-
-    ---
-
-    Relayers are processes that handle the delivery of VAAs to their intended destination.
-
-    [:custom-arrow: Learn more about relayers](/docs/learn/infrastructure/relayer/)
-
--   :octicons-book-16:{ .lg .middle } **Spy**
-
-    ---
-
-    A Spy watches the messages published by the Guardian Network and can forward network traffic.
-
-    [:custom-arrow: Learn more about the Spy](/docs/learn/infrastructure/spy/)
+    [:custom-arrow: Build with Core Messaging](/docs/build/core-messaging/)
 
 </div>
