@@ -1,9 +1,9 @@
 ---
-title: MultiGov Deployment
-description: Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+title: MultiGov Deployment to EVM
+description: Set up and deploy MultiGov to EVM locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 ---
 
-# Deployment 
+# Deploy MultiGov on EVM
 
 This guide provodes instructions to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project’s governance needs by following the steps for the [integration process](/docs/build/multigov/){target=\_blank}.
 
@@ -17,7 +17,7 @@ To interact with MultiGov, you'll need the following:
 - Install [Git](https://git-scm.com/downloads){target=\_blank}
 - Clone the repository:
    ```bash
-   git clone [MultiGov Repository URL]
+   git clone https://github.com/wormhole-foundation/multigov
    cd evm # for evm testing/deploying
    ```
 
@@ -34,6 +34,7 @@ For developers looking to set up a local MultiGov environment:
    ```bash
    cp .env.example .env
    ```
+
    Edit `.env` with your specific [configuration](/docs/build/multigov/deployment/#configuration){target=\_blank}
 
 3. Compile contracts:
