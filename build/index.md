@@ -12,7 +12,7 @@ If you learn best by building, start here to build with the Wormhole TypeScript 
 
 - [**Transfer Tokens via the Token Bridge**](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/){target=\_blank} - use the [Wormhole SDK's](/docs/build/toolkit/typescript-sdk/){target=\_blank} Token Bridge method to move wrapped assets across networks
 
-- [**Transfer USDC via CCTP and Wormhole SDK**](docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/){target=\_blank} - combine the [Wormhole SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} and Circle's Cross-Chain Transfer Protocol (CCTP) to bridge native USDC across networks
+- [**Transfer USDC via CCTP and Wormhole SDK**](/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/){target=\_blank} - combine the [Wormhole SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} and Circle's Cross-Chain Transfer Protocol (CCTP) to bridge native USDC across networks
 
 Alternatively, start here to work with Wormhole contracts directly:
 
