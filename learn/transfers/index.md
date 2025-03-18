@@ -28,7 +28,7 @@ Understand the key differences between Native Token Transfers (NTT) and Token Br
 
 | Supports                  | NTT                | Token Bridge       |
 |---------------------------|--------------------|--------------------|
-| Message Payload           | :x:                | :white_check_mark: |
+| Message Payload           | :white_check_mark: | :white_check_mark: |
 | Wrapped Assets            | :x:                | :white_check_mark: |
 | Native Assets             | :white_check_mark: | :x:                |
 | Contract-Free Development | :x:                | :white_check_mark: |
