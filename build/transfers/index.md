@@ -26,7 +26,7 @@ While all of these products handle token transfers, there are additional feature
 
     Send message payloads for social platforms, NFTs, and more with Token Bridge's lock and mint wrapped token mechanism.
 
-    [:custom-arrow: Discover Token Bridge](/docs/learn/transfers/token-bridge/)
+    [:custom-arrow: Discover Token Bridge](/docs/build/transfers/token-bridge/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Native Assets**
 
