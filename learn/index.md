@@ -82,9 +82,10 @@ Institutional-scale digital asset settlement for individual users and insitution
 
     ---
 
-    - Swap, bridge, and build across multiple chains 
-    - Chain-agnostic settlement system for wider asset adaptability
-    - English auction experience combining powerful protocols from Wormhole and Mayan
+    - Leverages three protocols, providing flexibility and redundancy
+    - Chain-agnostic to liquidity on chains, enabling broader chain support
+    - English auction determines the winning solver for settlement
+    - USDC as the shuttle asset for seamless cross-chain settlement
 
     [:custom-arrow: Learn about Settlement](/docs/learn/transfers/settlement/)
 
