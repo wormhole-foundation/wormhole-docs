@@ -4,7 +4,6 @@
 Documentation: https://wormhole.com/docs/
 
 # List of doc pages:
-Doc-Page: https://wormhole.com/docs/build/contract-integrations/faqs/
 Doc-Page: https://wormhole.com/docs/build/core-messaging/core-contracts/
 Doc-Page: https://wormhole.com/docs/build/core-messaging/
 Doc-Page: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/
@@ -120,65 +119,6 @@ Doc-Page: https://wormhole.com/docs/tutorials/
 
 # Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/build/contract-integrations/faqs/
---- BEGIN CONTENT ---
----
-title: Contract Integrations FAQs
-description: Frequently asked questions about integrating contracts with Wormhole, including ownership of wrapped tokens and developing custom relayers.
----
-
-# Contract Integrations FAQs
-
-## Can ownership of wrapped tokens be transferred from the Token Bridge?
-
-No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
-
- - **On EVM chains** - when you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself
- - **On Solana** - the Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge
-
-The logic behind deploying these token contracts involves submitting an attestation VAA, which allows the Token Bridge to verify and deploy the wrapped token contract on the destination chain.
-
-Relevant contracts:
-
- - [Ethereum ERC-20](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/token/Token.sol){target=\_blank}
- - [Solana SPL](https://github.com/wormhole-foundation/wormhole/blob/main/solana/modules/token_bridge/program/src/api/create_wrapped.rs#L128-L145){target=\_blank}
- - [Attestation VAA and Token Contract Deployment Logic](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L385-L431){target=\_blank}
-
-## How do I start developing a custom relayer?
-
-Previously referred to as specialized relayers, custom relayers allow you to build and tailor relayers to fit your specific use case. To get started, refer to the following resources:
-
- - [Custom Relayers documentation](/docs/learn/infrastructure/relayer/#custom-relayers){target=\_blank}
- - [Relayer Engine](/docs/infrastructure/relayers/run-relayer/#get-started-with-the-relayer-engine){target=\_blank}
- - [Run a Custom Relayer](/docs/infrastructure/relayers/run-relayer/){target=\_blank}
-
-These resources will guide you through building and deploying custom relayers tailored to your use case.
-
-## Is there a way to use NTT tokens with chains that don't currently support NTT?
-
-Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. For example:
-
-- **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
-- **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism
-- **Messaging consistency** - the Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT
-
-This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
-
-## How do I update the metadata of a wrapped token?
-
-Because wrapped tokens are deployed and controlled by the Token Bridge program, which is under the authority of the Wormhole Guardians, there is no direct way for you to update their metadata. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
-
-## How do I calculate the current gas costs for Ethereum Mainnet VAA verification?
-
-You can refer to the [core-bridge repository](https://github.com/nonergodic/core-bridge){target=\_blank} for guidance on how to calculate the current gas costs associated with verifying VAAs on Ethereum Mainnet. This repository provides up-to-date references and examples to help you gauge costs accurately.
-
-## How can I update my wrapped token image on Solscan?
-
-Updating the metadata (such as the token image, name, or symbol) of a wrapped token on Solscan requires contacting the Solscan team directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the Token Bridge, not individual developers or projects.
-
-To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
---- END CONTENT ---
-
 Doc-Content: https://wormhole.com/docs/build/core-messaging/core-contracts/
 --- BEGIN CONTENT ---
 ---
@@ -200,9 +140,9 @@ This guide will walk you through the variations and key methods of the Core Cont
 
 To interact with the Wormhole Core Contract, you'll need the following:
 
-- [The address of the Core Contract](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
-- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
-- [The consistency levels](/docs/build/reference/consistency-levels/){target=\_blank} (required finality) for the chains you're deploying your contract on
+- The [address of the Core Contract](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
+- The [Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
+- The [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on
 
 ## How to Interact with Core Contracts
 
@@ -538,7 +478,7 @@ await tx.wait();
 In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/learn/infrastructure/vaas/){target=\_blank}, including:
 
 - **Sequence** - is this the expected sequence number? How should out-of-order deliveries be handled?
-- **Consistency level** - for the chain this message came from, is the [consistency level](/docs/build/reference/consistency-levels/){target=\_blank} enough to guarantee the transaction won't be reverted after taking some action?
+- **Consistency level** - for the chain this message came from, is the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} level enough to guarantee the transaction won't be reverted after taking some action?
 
 The VAA digest is separate from the VAA body but is also relevant. It can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
 
@@ -2176,11 +2116,11 @@ The following table documents the chain IDs used by Wormhole and places them alo
 Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels/
 --- BEGIN CONTENT ---
 ---
-title: Consistency Levels
+title: Wormhole Finality | Consistency Levels
 description: This page documents how long to wait for finality before signing, based on each chain’s consistency (finality) level and consensus mechanism.
 ---
 
-# Consistency Levels
+# Wormhole Finality
 
 The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interpreted.
 
@@ -2289,14 +2229,14 @@ Doc-Content: https://wormhole.com/docs/build/reference/
 --- BEGIN CONTENT ---
 ---
 title: Reference
-description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and consistency levels for Guardians.
+description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
 ---
 
 # Reference
 
 ## Get Started
 
-In this section, you'll find reference information that is essential for development. This includes Wormhole chain IDs, canonical contract addresses, and consistency levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
+In this section, you'll find reference information that is essential for development. This includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
 
 <div class="grid cards" markdown>
 
@@ -2308,13 +2248,13 @@ In this section, you'll find reference information that is essential for develop
 
     [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
 
--   :octicons-clock-16:{ .lg .middle } **Consistency Levels**
+-   :material-timer-sand:{ .lg .middle } **Wormhole Finality**
 
     ---
 
     See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
 
-    [:custom-arrow: View list of consistency levels](/docs/build/reference/consistency-levels/)
+    [:custom-arrow: View list of finality levels](/docs/build/reference/consistency-levels/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
 
@@ -5189,7 +5129,7 @@ VAAs are the backbone of Wormhole’s cross-chain communication. Each VAA is a s
 The Wormhole SDK organizes the VAA structure into three key components:
 
  - [**Header**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank} - contains metadata such as the Guardian set index and an array of Guardian signatures
- - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and consistency level
+ - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/build/reference/consistency-levels/){target=\_blank}
  - **Payload** - provides application-specific data, such as the actual message or operation being performed
 
 **Header layout:**
@@ -5529,7 +5469,7 @@ Each protocol integrates its payload format into the VAA structure, ensuring con
 
 The TypeScript SDK is designed for off-chain operations like reading, validating, and manipulating VAAs before submitting them to a chain. Developers can easily deserialize VAAs to extract protocol payloads and prepare actions such as initiating token transfers or constructing delivery instructions.
 
-In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole's TS SDK to deserialize and extract essential information like the emitter chain, sequence, and consistency level:
+In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole's TS SDK to deserialize and extract essential information like the emitter chain, sequence, and [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}:
 
 ```typescript
 import { deserializeLayout } from '@wormhole-foundation/sdk-base';
@@ -6101,7 +6041,7 @@ The code then prepares a message for publication. This message includes:
 - The sender's address
 - The message payload (in this case, the encoded string `lol`)
 - A nonce (set to `0` here, but can be any user-defined value to uniquely identify the message)
-- A consistency level (set to `0`, which determines the finality requirements for the message)
+- A [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank} (set to `0`, which determines the finality requirements for the message)
 
 After preparing the message, the next steps are to generate, sign, and send the transaction or transactions required to publish the message on the Solana blockchain. Once the transaction is confirmed, the Wormhole message ID is extracted from the transaction logs. This ID is crucial for tracking the message across chains.
 
@@ -13168,6 +13108,16 @@ While xERC20 is an extension of the ERC20 standard, NTT is designed as a framewo
 ## How can I start transferring tokens to a chain that is in burning mode, if no tokens are locked yet?
 
 To begin transferring tokens to a chain in burning mode when no tokens are locked, you must first send tokens to the NTT manager to back the supply. The address of the NTT manager can be found in the `deployment.json` file.
+
+## Is there a way to use NTT tokens with chains that don't currently support NTT?
+
+Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. For example:
+
+- **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
+- **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism
+- **Messaging consistency** - the Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT
+
+This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/
@@ -14127,6 +14077,37 @@ For a deeper understanding of the Token Bridge implementation and to review the 
 ## Portal Bridge
 
 A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
+
+## FAQs
+
+### Can ownership of wrapped tokens be transferred from the Token Bridge?
+
+No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
+
+ - **On EVM chains** - when you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself
+ - **On Solana** - the Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge
+
+The logic behind deploying these token contracts involves submitting an attestation VAA, which allows the Token Bridge to verify and deploy the wrapped token contract on the destination chain.
+
+Relevant contracts:
+
+ - [Ethereum ERC-20](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/token/Token.sol){target=\_blank}
+ - [Solana SPL](https://github.com/wormhole-foundation/wormhole/blob/main/solana/modules/token_bridge/program/src/api/create_wrapped.rs#L128-L145){target=\_blank}
+ - [Attestation VAA and Token Contract Deployment Logic](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L385-L431){target=\_blank}
+
+### How do I update the metadata of a wrapped token?
+
+Because wrapped tokens are deployed and controlled by the Token Bridge program, which is under the authority of the Wormhole Guardians, there is no direct way for you to update their metadata. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
+
+### How do I calculate the current gas costs for Ethereum Mainnet VAA verification?
+
+You can refer to the [core-bridge repository](https://github.com/nonergodic/core-bridge){target=\_blank} for guidance on how to calculate the current gas costs associated with verifying VAAs on Ethereum Mainnet. This repository provides up-to-date references and examples to help you gauge costs accurately.
+
+### How can I update my wrapped token image on Solscan?
+
+Updating the metadata (such as the token image, name, or symbol) of a wrapped token on [Solscan](https://solscan.io/){target=\_blank} requires [contacting the Solscan team](https://solscan.io/contactus){target=\_blank} directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the Token Bridge, not individual developers or projects.
+
+To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/infrastructure/
@@ -14708,7 +14689,7 @@ You can find each chain ID documented on the [Wormhole Chain IDs](/docs/build/re
 
 ## Consistency Level
 
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page for details.
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page for details.
 
 ## Delivery Provider
 
@@ -15269,7 +15250,7 @@ When sending a cross-chain message from the source chain Core Contract, you'll c
 
 - `emitterAddress` - the contract which made the call to publish the message
 - `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
-- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page
+- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
@@ -15640,7 +15621,7 @@ The body is _deterministically_ derived from an on-chain message. Any two Guardi
 - `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
 - `emitter_address` ++"[32]byte"++ - the contract address (Wormhole formatted) that called the Core Contract
 - `sequence` ++"u64"++ - the auto-incrementing integer that represents the number of messages published by this emitter
-- `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
+- `consistency_level` ++"u8"++ - the [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}, required by this emitter
 - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
 
 The body contains relevant information for entities, such as contracts, or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
@@ -15650,7 +15631,7 @@ The body contains relevant information for entities, such as contracts, or other
 
 ## Consistency and Finality
 
-The consistency level determines whether Guardians wait for a chain’s final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
+The [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}, determines whether Guardians wait for a chain’s final commitment state or issue a VAA sooner under less-final conditions. This choice is especially relevant for blockchains without instant finality, where the risk of reorganization remains until a block is deeply confirmed. 
 
 Guardian watchers are specialized processes that monitor each blockchain in real time. They enforce the selected consistency level by deciding whether enough commitment has been reached before signing and emitting a VAA. Some chains allow only one commitment level (effectively final), while others let integrators pick between near-final or fully finalized states. Choosing a faster option speeds up VAA production but increases reorg risk; choosing a more conservative option takes longer but reduces the likelihood of rollback.
 
@@ -16495,7 +16476,7 @@ description: Explore Wormhole's Native Token Transfers for flexible cross-chain 
     If you're ready to deploy NTT or access the CLI, follow the detailed [NTT Deployment Section](/docs/build/transfers/native-token-transfers/deployment-process/){target=\_blank}.  
 
      - For deployment steps on EVM, visit the [Deploy to EVM page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}  
-     - For deployment steps on Solana, visit the [Deploy to Solana page](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank}
+     - For deployment steps on Solana, visit the [Deploy to Solana page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/){target=\_blank}
 
 ## Introduction
 
@@ -16680,7 +16661,7 @@ Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross
     
     The contract constructs a `BridgeWithFeeMsg` structure, which includes parameters such as the action type, payload type, nonce, destination address, gas drop, redeem fee, and an optional custom payload hash
 
-2. **Intent submission** - the contract calls the CCTP messenger to deposit the tokens for bridging. A unique nonce is generated, and a corresponding fee-lock record is created in the contract's storage. This record includes the locked fee, gas drop parameters, and destination details. The constructed message is hashed and published through Wormhole. The protocol fee is deducted during this step, and the Wormhole message is broadcast with the specified consistency level
+2. **Intent submission** - the contract calls the CCTP messenger to deposit the tokens for bridging. A unique nonce is generated, and a corresponding fee-lock record is created in the contract's storage. This record includes the locked fee, gas drop parameters, and destination details. The constructed message is hashed and published through Wormhole. The protocol fee is deducted during this step, and the Wormhole message is broadcast with the specified [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}
 3. **Fulfillment** - on the destination chain, the protocol receives a CCTP message with corresponding signatures and verifies the payload using Wormhole's verification mechanism. Once validated, the redeemed tokens are transferred to the intended recipient, deducting the redeem fee as per protocol rules
 
 The protocol provides mechanisms for unlocking the fee once the bridging process is completed. This can occur immediately upon fulfillment or be batched for efficiency. In the fee unlock flow, the contract verifies the unlock message via Wormhole and then releases the locked fee to the designated unlocker address.
