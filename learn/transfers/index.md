@@ -57,7 +57,7 @@ By leveraging a decentralized solver network, Settlement ensures efficient cross
 
     Compare Wormhole's multichain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
 
-    [:custom-arrow: Compare Products](/docs/build/start-building/products/#transfer-products){target=\_blank}
+    [:custom-arrow: Compare Products](/docs/build/start-building/products/#transfer-products)
 
 -   :octicons-book-16:{ .lg .middle } **Use Cases**
 
