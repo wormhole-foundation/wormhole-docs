@@ -242,4 +242,3 @@ Your NTT deployment on Solana is now complete! To proceed, explore the following
 
  - **Test your deployment** – follow the [NTT Post Deployment Guide](/docs/build/contract-integrations/native-token-transfers/deployment-process/post-deployment/){target=\_blank} for integration examples and testing instructions
  - **Integrate NTT into your application** – configure [Wormhole Connect](/docs/build/applications/connect/){target=\_blank}  a plug-and-play bridging UI, to enable cross-chain transfers for your token
- - **Get automatic relaying support** – for automatic Wormhole relaying support, [contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}
