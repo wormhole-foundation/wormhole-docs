@@ -3,14 +3,14 @@ title: Upgrading MultiGov on EVM
 description: Learn the process and key considerations for upgrading MultiGov on EVM, ensuring system integrity and careful planning across cross-chain components.
 ---
 
-# Upgrade MultiGov Contracts on EVM
+# Upgrade MultiGov Contracts on EVM Chains
 
 MultiGov is designed to be flexible but stable. Due to the system's complexity and cross-chain nature, upgrades should be rare and carefully considered. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
 
 ## Key Considerations for Upgrades
 
 - **`HubGovernor`**:
-    - Not upgradeable. A new deployment requires redeploying several components of the MultiGov system. Refer to the [Process for Major System Upgrade](/docs/build/contract-integrations/multigov/upgrade/#process-for-major-system-upgrade) section for more details 
+    - Not upgradeable. A new deployment requires redeploying several components of the MultiGov system. Refer to the [Process for Major System Upgrade](/docs/build/contract-integrations/multigov/upgrade-evm/#process-for-major-system-upgrade) section for more details 
 
 - **`HubVotePool`**:
     - Can be replaced by setting a new `HubVotePool` on the `HubGovernor`
