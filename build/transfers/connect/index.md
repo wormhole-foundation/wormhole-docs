@@ -1,6 +1,6 @@
 ---
 title: Wormhole Connect
-description: Wormhole Connect is a React widget offering an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application.
+description: Wormhole Connect is a React widget offering an easy-to-use interface to facilitate multichain asset transfers via Wormhole directly in a web application.
 ---
 
 # Wormhole Connect
@@ -31,23 +31,16 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
 
     Follow this series of how-to guides to integrate Connect into your React dApp and configure options to fit your user's needs.
 
-    [:custom-arrow: Get started](/docs/build/transfers/connect/overview/)
+    [:custom-arrow: Get started](/docs/build/transfers/connect/overview/#integrate-connect)
 
--   :octicons-tools-16:{ .lg .middle} **Supported Features by Chain**
-
-    ---
-
-    Get a more detailed look at Wormhole Connect features with a breakdown of supported features by chain.
-    
-    [:custom-arrow: Supported Features](/docs/build/transfers/connect/features/)
-
--   :octicons-tools-16:{ .lg .middle } **Cross-chain Swap with Connect**
+-   :octicons-tools-16:{ .lg .middle } **Multichain Swap**
 
     ---
 
-    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/).
+    This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/){target=\_blank}.
 
     [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
+
 
 -   :octicons-tools-16:{ .lg .middle } **Connect FAQs**
 
@@ -56,7 +49,15 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
     Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options. 
 
     [:custom-arrow: Visit FAQs](/docs/build/transfers/connect/faqs/)
-  
+
+-   :octicons-tools-16:{ .lg .middle } **Supported Features by Chain**
+
+    ---
+
+    Get a more detailed look at Wormhole Connect features with a breakdown of supported features by chain.
+
+    [:custom-arrow: Supported Features](/docs/build/transfers/connect/features/)
+
 </div>
 
 
