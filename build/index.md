@@ -105,7 +105,7 @@ Access essential information and tools quickly:
     - **Hub-and-spoke model** - spoke chain contracts handle local voting and proposals with results sent to the hub for vote aggregation and tallying, proposal management, and coordinating governance across connected chains
     - **Wormhole security** - moving vote weight checkpoints, timelocks, and Wormhole verification keep governance activity secure
 
-    [:custom-arrow: Build with MultiGov](/docs/build/transfers/)
+    [:custom-arrow: Build with MultiGov](/docs/build/multigov/)
 
 </div>
 
