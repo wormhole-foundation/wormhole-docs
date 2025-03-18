@@ -65,7 +65,7 @@ By leveraging a decentralized solver network, Settlement ensures efficient cross
 
     Explore Wormhole's use cases, from multichain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
 
-    [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/){target=\_blank}
+    [:custom-arrow: Discover Use Cases](/docs/build/start-building/use-cases/)
 
 
 </div>
