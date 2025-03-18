@@ -12,7 +12,7 @@ Use the following links to jump directly to each Wormhole transfer product page 
 - [**Connect**](/docs/build/transfers/connect/) - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup
 - [**Native Token Transfers (NTT)**](/docs/build/transfers/native-token-transfers/) - a mechanism to transfer native tokens cross-chain seamlessly without converting to a wrapped asset
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/) - a bridging solution that uses a lock and mint mechanism
-- [**Wormhole Settlement**](/docs/build/transfers/wormhole-docs/build/transfers/settlement/) - an intent protocol suite for fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
+- [**Settlement**](/docs/build/transfers/settlement/) - an intent protocol suite for fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods
 
 ## Products By Feature
 
