@@ -15,8 +15,7 @@ If you haven't installed the NTT CLI yet, follow the [NTT Installation Guide](/d
 
 The following table lists the available NTT CLI commands, descriptions, and examples.
 
-!!! note
-    To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
+To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
 
 ### General Commands
 
@@ -47,3 +46,26 @@ The following table lists the available NTT CLI commands, descriptions, and exam
 | `ntt solana key-base58 <keypair>`             | print private key in base58                             | `ntt solana key-base58 /path/to/keypair.json`|
 | `ntt solana token-authority <programId>`      | print the token authority address for a given program ID| `ntt solana token-authority Sol1234...`|
 | `ntt solana ata <mint> <owner> <tokenProgram>`| print the token authority address for a given program ID| `ntt solana ata Mint123... Owner123... token22`|
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+
+-   :octicons-gear-16:{ .lg .middle } **Configure NTT**
+
+    ---
+
+    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
+
+    [:custom-arrow: Configure your NTT deployment](/docs/build/transfers/native-token-transfers/configuration/)
+
+-   :octicons-question-16:{ .lg .middle } **NTT FAQs**
+
+    ---
+
+    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
+
+    [:custom-arrow: Check out the FAQs](/docs/build/transfers/native-token-transfers/faqs/)
+
+</div>
