@@ -15,7 +15,7 @@ You can find each chain ID documented on the [Wormhole Chain IDs](/docs/build/re
 
 ## Consistency Level
 
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page for details.
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page for details.
 
 ## Delivery Provider
 
