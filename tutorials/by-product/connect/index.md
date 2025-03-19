@@ -29,6 +29,6 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
     Get deeper insights into setting up and customizing Wormhole Connect. Explore advanced guides, best practices, and configuration tips to streamline your cross-chain integrations.
 
-    [:custom-arrow: Learn more](/docs/build/applications/connect/)
+    [:custom-arrow: Learn more](/docs/build/transfers/connect/)
 
 </div>

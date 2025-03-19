@@ -1,0 +1,77 @@
+{
+  "environment": "Testnet",
+  "zmqChannels": {
+    "fastVaa": "tcp://localhost:6001",
+    "finalizedVaa": "tcp://localhost:6002"
+  },
+  "publisher": {
+    "log": {
+      "level": "info"
+    },
+    "vaaSpy": {
+      "host": "localhost:7073",
+      "enableObservationCleanup": true,
+      "observationSeenThresholdMs": 1500000,
+      "observationCleanupIntervalMs": 500,
+      "observationsToRemovePerInterval": 5,
+      "delayedThresholdMs": 60000
+    }
+  },
+  "solver": {
+    "log": {
+      "level": "info",
+      "filename": "logs/solver.log"
+    },
+    "connection": {
+      "rpc": "<https://your-devnet-rpc-here/>",
+      "maxTransactionsPerSecond": 5,
+      "commitment": "processed",
+      "addressLookupTable": "YourAddressLookupTab1eHere11111111111111111",
+      "matchingEngine": "mPydpGUWxzERTNpyvTKdvS7v8kvw5sgwfiP8WQFrXVS",
+      "mint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
+      "knownAtaOwners": [
+        "Payer11111111111111111111111111111111111111",
+        "Payer11111111111111111111111111111111111112",
+        "Payer11111111111111111111111111111111111113"
+      ]
+    }
+  },
+  "routerEndpoints": [
+    {
+      "chain": "Sepolia",
+      "endpoint": "0xE57D917bf955FedE2888AAbD056202a6497F1882",
+      "rollbackRisk": 0.0069,
+      "offerEdge": 0.042
+    },
+    {
+      "chain": "Avalanche",
+      "endpoint": "0x8Cd7D7C980cd72eBD16737dC3fa04469dcFcf07A",
+      "rollbackRisk": 0.0069,
+      "offerEdge": 0.042
+    },
+    {
+      "chain": "OptimismSepolia",
+      "endpoint": "0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8",
+      "rollbackRisk": 0.0069,
+      "offerEdge": 0.042
+    },
+    {
+      "chain": "ArbitrumSepolia",
+      "endpoint": "0xe0418C44F06B0b0D7D1706E01706316DBB0B210E",
+      "rollbackRisk": 0.0069,
+      "offerEdge": 0.042
+    },
+    {
+      "chain": "BaseSepolia",
+      "endpoint": "0x824Ea687CD1CC2f2446235D33Ae764CbCd08e18C",
+      "rollbackRisk": 0.0069,
+      "offerEdge": 0.042
+    },
+    {
+      "chain": "Polygon",
+      "endpoint": "0xa098368AaaDc0FdF3e309cda710D7A5f8BDEeCD9",
+      "rollbackRisk": 0.0069,
+      "offerEdge": 0.042
+    }
+  ]
+}

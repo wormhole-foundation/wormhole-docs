@@ -1,6 +1,0 @@
-title: Wormhole SDK
-nav:
- - index.md
- - 'TypeScript SDK' : '/docs/build/applications/wormhole-sdk/wormhole-sdk/'
- - 'Data Layouts': '/docs/build/applications/wormhole-sdk/sdk-layout/'
-

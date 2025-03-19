@@ -23,7 +23,7 @@ We'll interact with two key Wormhole components: the [Wormhole relayer](/docs/le
 
 Additionally, we'll rely on the Wormhole relayer to automatically determine cross-chain transaction costs and facilitate payments. This feature simplifies cross-chain development by allowing you to specify only the target chain and the message. The relayer handles the rest, ensuring that the message is transmitted with the appropriate fee.
 
-![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/learn/fundamentals/architecture/architecture-1.webp)
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/learn/infrastructure/architecture/architecture-1.webp)
 
 ## Prerequisites
 

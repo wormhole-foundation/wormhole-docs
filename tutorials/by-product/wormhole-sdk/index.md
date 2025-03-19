@@ -37,6 +37,6 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     Learn to build cross-chain dApps using the Wormhole SDK. Access detailed guides, reference code, and best practices for robust application development.
 
-    [:custom-arrow: Learn more](/docs/build/applications/wormhole-sdk/)
+    [:custom-arrow: Learn more](/docs/build/toolkit/typescript-sdk/)
 
 </div>

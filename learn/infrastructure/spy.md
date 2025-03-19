@@ -18,8 +18,8 @@ The primary purpose of a Spy is to subscribe to the gossiped messages across the
 Spies can access the following categories of messages shared over the gossip protocol::
 
 - [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank} - packets of cross-chain data. The Spy can detect whether a VAA has been approved by the Guardian Network, making it a valuable tool for applications needing real-time cross-chain verification
-- [Observations](/docs/learn/fundamentals/glossary/#observation){target=\_blank} - emitted by Wormhole’s core contracts, observations are picked up by the Guardians and relayed across the network. Spies allow users to monitor these messages, adding transparency and insight into blockchain events
-- [Guardian heartbeats](/docs/learn/fundamentals/glossary/#heartbeat){target=\_blank} - heartbeat messages represent Guardian node statusn. By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network
+- [Observations](/docs/learn/glossary/#observation){target=\_blank} - emitted by Wormhole’s core contracts, observations are picked up by the Guardians and relayed across the network. Spies allow users to monitor these messages, adding transparency and insight into blockchain events
+- [Guardian heartbeats](/docs/learn/glossary/#heartbeat){target=\_blank} - heartbeat messages represent Guardian node statusn. By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network
 
 ## Integrator Use Case
 
