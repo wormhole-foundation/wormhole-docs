@@ -5,8 +5,6 @@ description: Deploy and configure Wormhole's Native Token Transfers (NTT) for So
 
 # Deploy Native Token Transfers on Solana
 
-## Introduction
-
 [Native Token Transfers (NTT)](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
@@ -21,8 +19,7 @@ Before deploying NTT on Solana, ensure you have the following:
 -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
 -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 
-!!!Warning
-    Ensure to use the Solana and Anchor versions listed above to avoid compatibility issues.
+Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
 
 ## Overview of the Deployment Process
 
@@ -44,19 +41,19 @@ This section walks you through generating a Solana wallet, deploying an SPL toke
 
 If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
 
-1. **Generate a Solana key pair** - create a new wallet
+1. **Generate a Solana key pair** - run the following command to create a new wallet:
 
     ```bash
     solana-keygen grind --starts-with w:1 --ignore-case
     ```
 
-2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair
+2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
 
     ```bash
     solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
     ```
 
-3. **Select an RPC URL** - configure Solana to use the appropriate network
+3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
 
     === "Mainnet"
         ```bash
@@ -73,7 +70,7 @@ If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
         solana config set -ud
         ```
 
-4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop
+4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
 
     ```bash
     solana airdrop 2
@@ -104,14 +101,13 @@ If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
     spl-token mint INSERT_TOKEN_ADDRESS 1000
     ```
 
-!!! note
-    NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
 ## Set Up NTT
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
 
-The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/) manages deployments, configures settings, and interacts with the NTT system.
+The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/) manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 1. **Create a new NTT project** - set up a deployment workspace
 
@@ -146,7 +142,9 @@ If you use burn-and-mint mode, follow these steps to enable the NTT program to m
 
 If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
 
-Before updating the mint authority, you must create metadata for your SPL token. [View an example of how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
+Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
+
+Follow these steps to set the mint authority using the NTT CLI:
 
 1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
 
@@ -168,7 +166,7 @@ Before updating the mint authority, you must create metadata for your SPL token.
 
 ## Deploy and Configure NTT
 
-After setting up your deployment, finalize the configuration and deploy the NTT program on Solana.
+After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
 
 1. **Deploy NTT to Solana** - run the appropriate command based on your deployment mode:
 
@@ -184,10 +182,10 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
         ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
         ```
 
-    !!! note
+    !!! tip
         The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
 
-2. **Verify deployment status** - after deployment, check if your deployment.json file matches the on-chain configuration
+2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
     ```bash
     ntt status
@@ -199,9 +197,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt pull
     ```
 
-3. **Configure inbound and outbound rate limits** - by default, the inbound and outbound limits are set to `0`. You must update them before pushing the deployment. 
-
-    For EVM chains, values must be set using 18 decimals, while Solana uses nine decimals.
+3. **Configure inbound and outbound rate limits** - by default, the inbound and outbound limits are set to `0` and must be updated before deployment. For EVM chains, values must be set using 18 decimals, while Solana uses nine decimals. 
 
     Open your `deployment.json` file and adjust the values based on your use case:  
 
