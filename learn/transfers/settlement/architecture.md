@@ -99,4 +99,4 @@ The protocol provides mechanisms for unlocking the fee once the bridging process
 ## Where to Go Next
 
 - To learn more about available EVM functions, see the [Build on the Wormhole Liquidity Layer](/docs/build/transfers/settlement/liquidity-layer/){target=\_blank} guide
-- To learn how ot integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank} tutorial
+- To learn how to integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank} tutorial
