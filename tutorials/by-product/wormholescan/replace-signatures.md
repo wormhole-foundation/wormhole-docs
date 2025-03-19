@@ -96,7 +96,7 @@ In this section, you will create the directory, initialize a Node.js project, in
      - **`LOG_MESSAGE_PUBLISHED_TOPIC`** - the event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts
      - **`TXS`** - list of example transaction hashes that will be used for testing
 
-7. **Define data structure for working with VAAs** - specify the ABI for the Wormhole Core Contract's `parseAndVerifyVM` function, which parses and verifies VAAs. Defining the data structure, also referred to as a [layout](/docs/build/applications/wormhole-sdk/sdk-layout/){target=\_blank}, for this function ensures accurate decoding and validation of VAAs
+7. **Define data structure for working with VAAs** - specify the ABI for the Wormhole Core Contract's `parseAndVerifyVM` function, which parses and verifies VAAs. Defining the data structure, also referred to as a [layout](/docs/build/toolkit/typescript-sdk/sdk-layout/){target=\_blank}, for this function ensures accurate decoding and validation of VAAs
 
     ```typescript title="src/config/layouts.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-3.ts"
