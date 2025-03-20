@@ -5,27 +5,43 @@ description: This section provides comprehensive guidance on configuring, deploy
 
 # Native Token Transfers
 
-## Get Started
+Native Token Transfers (NTT) simplify and enable seamless, flexible token transfers across blockchains. This section provides comprehensive guidance on configuring, deploying, and managing your NTT integration. It includes information relevant to both new token deployments and existing token management.
 
-This section provides comprehensive guidance on configuring, deploying, and managing your Native Token Transfers (NTT) integration. It includes information relevant to both new token deployments and existing token management.
+Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} and [Product Comparison](/docs/build/start-building/products/){target=\_blank} pages for help determining if NTT will meet the needs of your project.
+
+## Quickstart
+
+The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains. NTT Launchpad replaces manually deploying contracts or configuring relayers for each chain. Create new multichain tokens or integrate existing tokens with just a few clicks.
 
 <div class="grid cards" markdown>
 
--   :octicons-rocket-16:{ .lg .middle } **Deployment Process**
+-   :octicons-tools-16:{ .lg .middle } **Deploy Native Token Transfers with Launchpad**
 
     ---
 
-    Guidance on installation, deployment to EVM and Solana, and maintaining your NTT after deployment.
+    Follow this guide to launch a new multichain token or integrate existing tokens for multichain use using NTT Launchpad, a step-by-step UI for deploying NTT across multiple blockchains.
 
-    [:custom-arrow: Start the deployment process](/docs/build/transfers/native-token-transfers/deployment-process/)
+    [:custom-arrow: Deploy NTT with Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/)
 
--   :octicons-gear-16:{ .lg .middle } **Configure NTT**
+</div>
+
+## Deployment Process
+
+Visit the following guides if you prefer to code your NTT integration directly:
+
+[timeline left(wormhole-docs/.snippets/text/build/transfers/ntt/ntt-deployment-process-timeline.json)]
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-gear-16:{ .lg .middle } **NTT CLI Commands**
 
     ---
 
-    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
+    This page provides a comprehensive list of available NTT CLI commands, their descriptions, and examples to help you interact with and configure the NTT system effectively.
 
-    [:custom-arrow: Configure your NTT deployment](/docs/build/transfers/native-token-transfers/configuration/)
+    [:custom-arrow: NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/)
 
 -   :octicons-question-16:{ .lg .middle } **NTT FAQs**
 
