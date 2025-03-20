@@ -14454,13 +14454,7 @@ The basic VAA consists of header and body components described as follows:
     - `index` ++"u8"++ - the index of this Guardian in the Guardian set
     - `signature` ++"[65]byte"++ - the ECDSA signature
 
-- **Body** - _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body to maintain a one-to-one relationship between VAAs and messages to avoid double-processing messages. 
-    - The deterministic nature of the body is only strictly true once the chain's state is finalized
-    - If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message 
-    - This scenario is less likely once a block is sufficiently buried, but it can still happen if you choose a faster (less finalized) consistency level
-
-    Elements of the body are as follows:
-
+- **Body** - _deterministically_ derived from an on-chain message. Any two Guardians processing the same message must derive the same resulting body to maintain a one-to-one relationship between VAAs and messages to avoid double-processing messages
     - `timestamp` ++"u32"++ - the timestamp of the block this message was published in
     - `nonce` ++"u32"++
     - `emitter_chain` ++"u16"++ - the id of the chain that emitted the message
@@ -14468,6 +14462,8 @@ The basic VAA consists of header and body components described as follows:
     - `sequence` ++"u64"++ - the auto-incrementing integer that represents the number of messages published by this emitter
     - `consistency_level` ++"u8"++ - the consistency level (finality) required by this emitter
     - `payload` ++"[]byte"++ - arbitrary bytes containing the data to be acted on
+
+The deterministic nature of the body is only strictly true once the chain's state is finalized. If a reorg occurs, and a transaction that previously appeared in block X is replaced by block Y, Guardians observing different forks may generate different VAAs for what the emitter contract believes is the same message. This scenario is less likely once a block is sufficiently buried, but it can still happen if you choose a faster (less finalized) consistency level
 
 The body contains relevant information for entities, such as contracts or other systems, that process or utilize VAAs. When a function like `parseAndVerifyVAA` is called, the body is returned, allowing verification of the `emitterAddress` to determine if the VAA originated from a trusted contract.
 
