@@ -622,7 +622,7 @@ function sendPayloadToEvm(
 ```
 
 !!! tip
-    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/{{repositories.wormhole.version}}/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
+    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v{{repositories.wormhole.version}}/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
 
 The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
 
@@ -665,7 +665,7 @@ wormholeRelayer.sendPayloadToEvm{value: cost}(
 
 ### Receive a Message
 
-To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interacting-with-the-wormhole-relayer).
+To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interact-with-the-wormhole-relayer).
 
 ```solidity
 function receiveWormholeMessages(
@@ -895,7 +895,7 @@ For developers looking to set up a local MultiGov environment:
    cp .env.example .env
    ```
 
-   Edit `.env` with your specific [configuration](/docs/build/multigov/deployment/#configuration){target=\_blank}
+   Edit `.env` with your specific [configuration](#configuration){target=\_blank}
 
 3. Compile contracts:
    ```bash
@@ -1343,7 +1343,7 @@ MultiGov is designed to be flexible but stable. Due to the system's complexity a
 ## Key Considerations for Upgrades
 
 - **`HubGovernor`**:
-    - Not upgradeable. A new deployment requires redeploying several components of the MultiGov system. Refer to the [Process for Major System Upgrade](/docs/build/multigov/upgrade/#process-for-major-system-upgrade) section for more details 
+    - Not upgradeable. A new deployment requires redeploying several components of the MultiGov system. Refer to the [Process for Major System Upgrade](#process-for-major-system-upgrade) section for more details 
 
 - **`HubVotePool`**:
     - Can be replaced by setting a new `HubVotePool` on the `HubGovernor`
@@ -5136,7 +5136,7 @@ VAAs are the backbone of Wormhole’s cross-chain communication. Each VAA is a s
 The Wormhole SDK organizes the VAA structure into three key components:
 
  - [**Header**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank} - contains metadata such as the Guardian set index and an array of Guardian signatures
- - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/build/reference/consistency-levels/){target=\_blank}
+ - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}
  - **Payload** - provides application-specific data, such as the actual message or operation being performed
 
 **Header layout:**
@@ -13115,9 +13115,9 @@ description: Frequently asked questions about Wormhole Native Token Transfers, i
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
-Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/learn/transfers/token-nft-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in this [cross-chain lending example repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank}.
+Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
 
-Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/learn/transfers/native-token-transfers/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
+Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/docs/learn/transfers/native-token-transfers/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
 
 ## What causes the "No protocols registered for Evm" error in Wormhole SDK?
 
@@ -14862,7 +14862,7 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 
 ## VAA
 
-[Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain the messages emitted by [xDapps](#xdapp) along with information such as what contract emitted the message.
+[Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
 
 ## Validator
 
@@ -15083,13 +15083,21 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     [:custom-arrow: Start the integration process now](/docs/build/multigov/)
 
--   :octicons-rocket-16:{ .lg .middle } **Deployment**
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains**
 
     ---
 
-    Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
+
+    ---  
+
+    Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.
+
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/) 
 
 -   :octicons-code-square-16:{ .lg .middle } **Tutorials**
 
@@ -15602,7 +15610,7 @@ Users themselves carry out the three steps of the cross-chain process:
 
 Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use cases.
 
-The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/learn/infrastructure/spy/).
+The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/docs/learn/infrastructure/spy/).
 
 **Key Features**
 
@@ -21252,7 +21260,7 @@ description: Learn how to perform USDC cross-chain transfers using Wormhole SDK 
 
 ## Introduction
 
-In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/learn/transfers/cctp/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
+In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/docs/learn/transfers/cctp/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
 
 Traditionally, cross-chain transfers using CCTP involve multiple manual steps, such as initiating the transfer on the source chain, relaying messages between chains, and covering gas fees on both the source and destination chains. Without the TypeScript SDK, developers must handle these operations independently, adding complexity and increasing the chance for errors, mainly when dealing with gas payments on the destination chain and native gas token management.
 
