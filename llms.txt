@@ -12565,27 +12565,14 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
 
     Open your `deployment.json` file and adjust the values based on your use case:  
 
-    === "Solana (9 decimals)"  
-
-        ```json
-        "inbound": {
-            "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
-        },
-        "outbound": {
-            "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
-        }
-        ```  
-
-    === "Sepolia (18 decimals)"  
-
-        ```json
-        "inbound": {
-            "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
-        },
-        "outbound": {
-            "Solana": "1000.000000000000000000" // outbound limit from Sepolia to Solana
-        }
-        ```  
+    ```json
+    "inbound": {
+        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+    },
+    "outbound": {
+        "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
+    }
+    ```
 
 4. **Push the final deployment** - once rate limits are set, push the deployment to Solana using the specified key pair to cover gas fees
 
