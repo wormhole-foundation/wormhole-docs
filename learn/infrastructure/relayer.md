@@ -151,4 +151,12 @@ Developers should note that the choice of relayers depends on their project's sp
 
     [:custom-arrow: Get Started with Wormhole Relayers](/docs/build/core-messaging/wormhole-relayers/)
 
+-   :octicons-book-16:{ .lg .middle } **Run a Custom Relayer**
+
+    ---
+
+    Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
+
+    [:custom-arrow: Get Started with Custom Relayers](/docs/infrastructure/relayers/run-relayer/)
+
 </div>
