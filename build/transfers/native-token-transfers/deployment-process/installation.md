@@ -30,7 +30,7 @@ Follow these steps to install the NTT CLI:
     ntt --version
     ```
 
-3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI.
+3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI
 
 ## Update NTT CLI
 

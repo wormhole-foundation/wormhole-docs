@@ -9,8 +9,8 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 
 - Implement a robust testing plan for your multichain token before launching
 - Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/build/transfers/native-token-transfers/configuration/){target=\_blank} for more details on ownership and rate limits
-- Consider a streamlined, customizable frontend such as [Wormhole Connect](https://connect-in-style.wormhole.com/){target=\_blank} for an optimized user experience
-- Alternatively, the [Wormhole SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} allows for a direct integration into your infrastructure
+- Consider a streamlined, customizable frontend such as [Wormhole Connect](/docs/build/transfers/connect/){target=\_blank} for an optimized user experience
+- Alternatively, the [Wormhole TypeScript SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} allows for a direct integration into your infrastructure
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
 - Monitor and maintain your multichain deployment
 
@@ -20,7 +20,7 @@ By default, NTT transfers to Solana require manual relaying, meaning that after 
 
 This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
 
-UI components such as [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
+[Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
 
 ## Where to Go Next
 
