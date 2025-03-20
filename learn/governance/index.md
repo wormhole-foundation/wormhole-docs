@@ -49,13 +49,21 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     [:custom-arrow: Start the integration process now](/docs/build/multigov/)
 
--   :octicons-rocket-16:{ .lg .middle } **Deployment**
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains**
 
     ---
 
-    Set up and deploy MultiGov locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
+
+    ---  
+
+    Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.
+
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/) 
 
 -   :octicons-code-square-16:{ .lg .middle } **Tutorials**
 
