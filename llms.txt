@@ -12411,15 +12411,23 @@ Use the Solana and Anchor versions listed above to avoid compatibility issues wh
 
 ## Overview of the Deployment Process
 
-There are two ways to deploy NTT on Solana:
+Deploying NTT with the CLI on Solana follows a structured process:
 
- - **Using an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
- - **Creating a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
+1. Choose Your Token Setup:
 
-Additionally, the NTT CLI supports two [deployment models](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}:
+     - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
+     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
 
- - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
- - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
+2. Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}:
+
+     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
+
+3. Deploy and Configure NTT on Solana:
+
+     - Use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode.
+
+Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
 
 By default, NTT transfers to Solana require manual [relaying](/docs/learn/infrastructure/relayer/){target=\_blank}, meaning users must complete a transaction on Solana to finalize the transfer. For automatic relaying, where transactions are completed without user intervention, additional setup is required. [Contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to enable automatic relaying support for your deployment.
 
@@ -12495,7 +12503,7 @@ NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
 
-The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/) manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 1. **Create a new NTT project** - set up a deployment workspace
 
@@ -12624,6 +12632,14 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 ## Where to Go Next
 
 <div class="grid cards" markdown>
+
+-   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+
+    ---  
+
+    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+
+    [:custom-arrow: Deploy NTT on EVM](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
 
@@ -12910,7 +12926,6 @@ In this video, the Wormhole team walks you through installing the [Native Token 
 
 The fastest way to deploy Native Token Transfers (NTT) is using the NTT CLI. As prerequisites, ensure you have the following installed:
 
-- Install [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
 - Install [Bun](https://bun.sh/){target=\_blank}
 
 Follow these steps to install the NTT CLI:
@@ -12927,7 +12942,7 @@ Follow these steps to install the NTT CLI:
     ntt --version
     ```
 
-3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI.
+3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI
 
 ## Update NTT CLI
 
@@ -12991,8 +13006,8 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 
 - Implement a robust testing plan for your multichain token before launching
 - Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/build/transfers/native-token-transfers/configuration/){target=\_blank} for more details on ownership and rate limits
-- Consider a streamlined, customizable frontend such as [Wormhole Connect](https://connect-in-style.wormhole.com/){target=\_blank} for an optimized user experience
-- Alternatively, the [Wormhole SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} allows for a direct integration into your infrastructure
+- Consider a streamlined, customizable frontend such as [Wormhole Connect](/docs/build/transfers/connect/){target=\_blank} for an optimized user experience
+- Alternatively, the [Wormhole TypeScript SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} allows for a direct integration into your infrastructure
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
 - Monitor and maintain your multichain deployment
 
@@ -13002,7 +13017,7 @@ By default, NTT transfers to Solana require manual relaying, meaning that after 
 
 This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
 
-UI components such as [Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
+[Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
 
 ## Where to Go Next
 
