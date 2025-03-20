@@ -13,7 +13,6 @@ In this video, the Wormhole team walks you through installing the [Native Token 
 
 The fastest way to deploy Native Token Transfers (NTT) is using the NTT CLI. As prerequisites, ensure you have the following installed:
 
-- Install [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
 - Install [Bun](https://bun.sh/){target=\_blank}
 
 Follow these steps to install the NTT CLI:
