@@ -25,19 +25,18 @@ Use the Solana and Anchor versions listed above to avoid compatibility issues wh
 
 Deploying NTT with the CLI on Solana follows a structured process:
 
-1. Choose Your Token Setup:
+1. **Choose your token setup**:
 
      - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
      - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
 
-2. Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}:
+2. **Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}**:
 
      - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
      - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
 
-3. Deploy and Configure NTT on Solana:
+3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
 
-     - Use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode.
 
 Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
 
