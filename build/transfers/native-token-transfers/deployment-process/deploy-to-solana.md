@@ -237,6 +237,14 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
 <div class="grid cards" markdown>
 
+-   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+
+    ---  
+
+    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+
+    [:custom-arrow: Deploy NTT on EVM](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}
+
 -   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
 
     ---
