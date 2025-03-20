@@ -11,7 +11,7 @@ Guardians fulfill their role in the messaging protocol as follows:
 
 1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians
 2. Guardians combine the resulting collection of independent observations to form a multisig
-3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state. 
+3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state
 
 Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs).
 
@@ -23,7 +23,7 @@ The Guardian Network is designed to help Wormhole deliver on five key principles
 
 - **Decentralization** - control of the network is distributed across many parties
 - **Modularity** - independent components (e.g., oracle, relayer, applications) ensure flexibility and upgradeability
-- **Chain Agnosticism** - supports EVM, Solana, Cosmos, and other blockchains without relying on a single network
+- **Chain agnosticism** - supports EVM, Solana, and other blockchains without relying on a single network
 - **Scalability** - can handle large transaction volumes and high-value transfers
 - **Upgradeable** - can change the implementation of its existing modules without breaking integrators to adapt to changes in decentralized computing
 
@@ -41,21 +41,21 @@ Challenges with existing models include the following:
 
 Wormhole's approach differs in the following ways:
 
-Instead of relying on PoS or ZKPs alone, Wormhole employs a [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank} model to create a purpose-built Proof-of-Authority consensus mechanism. Proof-of-Authority strikes a balance between security, efficiency, and decentralization:
+Instead of relying on PoS or ZKPs alone, Wormhole employs a [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank} model to create a purpose-built Proof-of-Authority (PoA) consensus mechanism. PoA strikes a balance between security, efficiency, and decentralization:
 
-- **Guardian Set** – Wormhole currently has 19 trusted Guardians, each with equal authority. They are many of the largest and most widely known validator companies in cryptocurrency
-- **Consensus Threshold** – to validate a transaction, at least 13 Guardians must sign off, ensuring robust security
-- **Future Expansion** – as blockchain technology advances, the network can incorporate threshold signatures or ZKPs for even greater decentralization
+- **Guardian set** – Wormhole currently has 19 trusted Guardians, each with equal authority. They are many of the largest and most widely known validator companies in cryptocurrency
+- **Consensus threshold** – to validate a transaction, at least 13 Guardians must sign off, ensuring robust security
+- **Future expansion** – as blockchain technology advances, the network can incorporate threshold signatures or ZKPs for even greater decentralization
 
 Unlike token-based security, Wormhole relies on experienced, well-capitalized validator companies invested in DeFi's success. As threshold signatures become better supported, the Guardian Set can expand. Once ZKPs are ubiquitous, the Guardian Network will become fully trustless.
 
 ### Modularity
 
-Wormhole is designed with simple components that are very good at a single function. Separating security and consensus (Guardians) from message delivery (Relayers) allows for the flexibility to change or upgrade one component without disrupting the others.
+Wormhole is designed with simple components that are very good at a single function. Separating security and consensus (Guardians) from message delivery ([relayers](/docs/learn/infrastructure/relayer/){target=\_blank}) allows for the flexibility to change or upgrade one component without disrupting the others.
 
 ### Chain Agnosticism
 
-Today, Wormhole supports a broader range of ecosystems than any other interoperability protocol because it uses simple tech (t-schnorr signatures), an adaptable, heterogeneous relayer model, and a robust validator network. Wormhole can expand to new ecosystems as quickly as a Core Contract can be developed for the smart contract runtime.
+Today, Wormhole supports a broader range of ecosystems than any other interoperability protocol because it uses simple tech (t-schnorr signatures), an adaptable, heterogeneous relayer model, and a robust validator network. Wormhole can expand to new ecosystems as quickly as a [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} can be developed for the smart contract runtime.
 
 ### Scalability
 
@@ -69,8 +69,8 @@ Performance is generally limited by the speed of the underlying blockchains, not
 
 Wormhole is designed to adapt and evolve in the following ways:
 
-- **Guardian Set Expansion** – future updates may introduce threshold signatures to allow for more Guardians in the set
-- **ZKP Integration** - as Zero-Knowledge Proofs become more widely supported, the network can transition to a fully trustless model
+- **Guardian Set expansion** – future updates may introduce threshold signatures to allow for more Guardians in the set
+- **ZKP integration** - as Zero-Knowledge Proofs become more widely supported, the network can transition to a fully trustless model
 
 These principles combine to create a clear pathway towards a fully trustless interoperability layer that spans decentralized computing.
 
