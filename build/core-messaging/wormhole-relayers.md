@@ -73,7 +73,7 @@ In total, sending a message across EVM chains can be as simple as getting a fee 
 
 ### Receive a Message
 
-To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interacting-with-the-wormhole-relayer).
+To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interact-with-the-wormhole-relayer).
 
 ```solidity
 --8<-- 'code/build/core-messaging/wormhole-relayers/receiveWormholeMessages.sol'
