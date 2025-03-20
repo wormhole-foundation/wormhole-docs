@@ -3,6 +3,7 @@ nav:
  - index.md
  - 'Installation': 'installation.md'
  - 'Deploy to EVM': 'deploy-to-evm.md'
+ - 'Deploy to EVM via Launchpad': 'evm-launchpad.md'
  - 'Deploy to Solana': 'deploy-to-solana.md'
  - 'Post Deployment': 'post-deployment.md'
  - 'Troubleshooting': 'troubleshooting.md'

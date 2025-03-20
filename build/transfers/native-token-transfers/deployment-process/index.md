@@ -27,6 +27,14 @@ This section provides information on installing Wormhole's Native Token Transfer
 
     [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
 
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains via Launchpad**
+
+    ---
+
+    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
+
+    [:custom-arrow: Deploy via Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/)
+
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**
 
     ---

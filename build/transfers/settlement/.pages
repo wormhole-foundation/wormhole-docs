@@ -3,3 +3,4 @@ nav:
  - index.md
  - 'Build on the Wormhole Liquidity Layer': 'liquidity-layer.md'
  - 'Run a Wormhole Settlement Solver': 'solver.md'
+ - 'FAQs': 'faqs.md'
