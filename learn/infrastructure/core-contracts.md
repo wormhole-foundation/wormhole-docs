@@ -38,7 +38,7 @@ You can send multichain messages by calling a function against the source chain 
 
 - `emitterAddress` - the contract which made the call to publish the message
 - `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
-- `consistencyLevel`- - the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Consistency Levels](/docs/build/reference/consistency-levels/){target=\_blank} reference page
+- `consistencyLevel`- the level of finality to reach before Guardians will observe and attest the emitted event. This protects against reorgs and rollbacks by ensuring that once a transaction is considered "final," its state changes cannot be reversed. Different consensus mechanisms lead to varying finality assumptions, so this value differs across chains. See the finality options for each chain in the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
