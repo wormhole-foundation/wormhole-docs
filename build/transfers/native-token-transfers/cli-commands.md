@@ -9,12 +9,13 @@ description: A comprehensive guide to the Native Token Transfers (NTT) CLI, deta
 
 The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
 
+If you haven't installed the NTT CLI yet, follow the [NTT Installation Guide](/docs/build/transfers/native-token-transfers/deployment-process/installation/#installation){target=\_blank} to set it up before proceeding.
+
 ## Table of Commands
 
 The following table lists the available NTT CLI commands, descriptions, and examples.
 
-!!! note
-    To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
+To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
 
 ### General Commands
 
@@ -45,3 +46,26 @@ The following table lists the available NTT CLI commands, descriptions, and exam
 | `ntt solana key-base58 <keypair>`             | print private key in base58                             | `ntt solana key-base58 /path/to/keypair.json`|
 | `ntt solana token-authority <programId>`      | print the token authority address for a given program ID| `ntt solana token-authority Sol1234...`|
 | `ntt solana ata <mint> <owner> <tokenProgram>`| print the token authority address for a given program ID| `ntt solana ata Mint123... Owner123... token22`|
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+
+-   :octicons-gear-16:{ .lg .middle } **Configure NTT**
+
+    ---
+
+    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
+
+    [:custom-arrow: Configure your NTT deployment](/docs/build/transfers/native-token-transfers/configuration/)
+
+-   :octicons-question-16:{ .lg .middle } **NTT FAQs**
+
+    ---
+
+    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
+
+    [:custom-arrow: Check out the FAQs](/docs/build/transfers/native-token-transfers/faqs/)
+
+</div>

@@ -7,9 +7,9 @@ description: Frequently asked questions about Wormhole Native Token Transfers, i
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
-Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/learn/transfers/token-nft-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in this [cross-chain lending example repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank}.
+Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
 
-Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/learn/transfers/native-token-transfers/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
+Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/docs/learn/transfers/native-token-transfers/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
 
 ## What causes the "No protocols registered for Evm" error in Wormhole SDK?
 
@@ -25,7 +25,7 @@ By importing this package, the Wormhole SDK can register and utilize the require
 
 ## How can I transfer ownership of NTT to a multisig?
 
-Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin.rs#L16-L60){target=\_blank} to initiate the transfer.
+Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
 
 1. **Initiate transfer** - use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig)
 2. **Claim ownership** - the multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer
