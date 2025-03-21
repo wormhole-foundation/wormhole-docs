@@ -9,7 +9,7 @@ Transferring tokens across blockchain networks is challenging due to the lack of
 
 Wormhole’s Token Bridge addresses these challenges by providing a decentralized protocol for seamless cross-chain token transfers through a lock-and-mint mechanism. Using Wormhole’s message-passing protocol, the Token Bridge allows standards-compliant tokens, like ERC-20 on Ethereum or SPL on Solana, to be transferred between different blockchains while preserving their original attributes.
 
-Offering a more efficient, scalable, and secure alternative to traditional solutions, the Token Bridge ensures that assets retain their properties across multiple blockchain ecosystems. Additionally, it supports flexible features like [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, enabling custom interactions by allowing tokens to carry additional data for smart contract integration on the destination chain.
+Offering a more efficient, scalable, and secure alternative to traditional solutions, the Token Bridge ensures that assets retain their properties across multiple blockchain ecosystems. Additionally, it supports flexible features like [Token Transfers with Messages](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, enabling custom interactions by allowing tokens to carry additional data for smart contract integration on the destination chain.
 
 This page introduces the core concepts and functions of Wormhole’s Token Bridge, explaining how it operates, its key features, and how it enables secure and efficient cross-chain token transfers.
 
@@ -21,7 +21,7 @@ Before a token can be transferred to a new chain, the token’s metadata must be
 
 While the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the Token Bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
 
-In addition to standard token transfers, the Token Bridge supports [Contract Controlled Transfers](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}. This functionality allows users to attach additional data to token transfers, enabling more complex interactions with smart contracts on the destination chain. For instance, a token transfer can include a payload that triggers specific actions, such as interacting with a decentralized exchange (DEX) or automated market maker (AMM).
+In addition to standard token transfers, the Token Bridge supports [Token Transfers with Messages](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}. This functionality allows users to attach additional data to token transfers, enabling more complex interactions with smart contracts on the destination chain. For instance, a token transfer can include a payload that triggers specific actions, such as interacting with a decentralized exchange (DEX) or automated market maker (AMM).
 
 ### Token Transfer Flow
 
