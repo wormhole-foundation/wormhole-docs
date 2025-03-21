@@ -403,6 +403,10 @@ Now that we have all the necessary helper functions, we will create a script to 
 
     To run the script, use the following command:
 
+    ```bash
+    npx tsx src/scripts/replaceSignatures.ts
+    ```
+
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-17.html"
 
 The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
