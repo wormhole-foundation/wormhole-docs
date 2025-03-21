@@ -22005,7 +22005,7 @@ chain/emitter/sequence
 
 We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
 
-To retrieve a VAA, we need to extract its VAA ID from a transaction hash. Follow the below steps to process the transaction logs and construct the VAA ID:
+Follow the below steps to process the transaction logs and construct the VAA ID:
 
 1. **Get the transaction receipt** - iterate over the array of transaction hashes and fetch the receipt to access its logs
 
