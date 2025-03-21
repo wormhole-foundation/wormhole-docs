@@ -322,7 +322,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header
 
     ```typescript title="src/helpers/vaaHelper.ts"
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:150"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:149"
     ```
 
      - **`vaa`** - original VAA bytes
