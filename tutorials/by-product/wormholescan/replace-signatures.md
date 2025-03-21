@@ -319,10 +319,11 @@ Create the `fetchGuardianSet()` function inside `src/helpers/vaaHelper.ts` to fe
 
 With the full VAA, guardian signatures, and the latest guardian set, we can now update outdated signatures while maintaining the required signature count.
 
-1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header
+1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block.
 
     ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:149"
+      try {}
     ```
 
      - **`vaa`** - original VAA bytes
@@ -333,7 +334,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The guardian set should never be empty; if it is, this likely indicates an error in fetching the guardian set in a previous step
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:152:156"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:153:156"
     ```
 
 3. **Filter valid signatures** - remove signatures from inactive Guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA
@@ -375,7 +376,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:252:283"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:252:282"
     ```
 
 ## Create Script to Replace Outdated VAA Signatures
