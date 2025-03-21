@@ -209,7 +209,15 @@ Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate 
 
 Now, we need to verify its validity. A VAA is only considered valid if it contains signatures from currently active Guardians and is correctly verified by the Wormhole Core contract.
 
-Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. Send the VAA to an Ethereum RPC node, call the `parseAndVerifyVM` function on the Wormhole Core contract, and determine whether the VAA is valid or contains outdated signatures that need replacing.
+Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. This function verifies whether a VAA is valid by submitting it to an Ethereum RPC node and checking for outdated signatures.  
+
+Follow these steps to implement the function:  
+
+1. **Prepare the VAA for verification** - construct the VAA payload in a format that can be sent to the Wormhole Core contract
+
+2. **Send an `eth_call` request** - submit the VAA to an Ethereum RPC node, calling the `parseAndVerifyVM` function on the Wormhole Core contract
+
+3. **Decode the response** - check whether the VAA is valid. If it contains outdated signatures, further action will be required to replace them
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:69:107"
