@@ -92,7 +92,7 @@ In this section, you will create the directory, initialize a Node.js project, in
 
      - **`RPC`** - endpoint for interacting with an Ethereum RPC node
      - **`ETH_CORE`** - [Wormhole's Core Contract address on Ethereum](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
-     - **`WORMHOLESCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and guardian sets
+     - **`WORMHOLESCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and Guardian sets
      - **`LOG_MESSAGE_PUBLISHED_TOPIC`** - the event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts
      - **`TXS`** - list of example transaction hashes that will be used for testing
 
@@ -127,16 +127,19 @@ chain/emitter/sequence
 
 We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
 
-Add the `fetchVaaId()` function to extract the VAA ID from a transaction hash. Query the Ethereum node for a transaction receipt, check for a Wormhole message, and construct the VAA ID in the format `chain/emitter/sequence`.
+To retrieve a VAA, we need to extract its VAA ID from a transaction hash. Follow the below steps to process the transaction logs and construct the VAA ID:
+
+1. **Get the transaction receipt** - iterate over the array of transaction hashes and fetch the receipt to access its logs
+
+2. **Find the Wormhole event** - iterate over the transaction logs and check for events emitted by the Wormhole Core contract. Look specifically for `LogMessagePublished` events, which indicate a VAA was created
+
+3. **Extract the emitter and sequence number** - if a matching event is found, extract the emitter address from `log.topics[1]` and remove the `0x` prefix. Then, the sequence number from `log.data` is extracted, converting it from hex to an integer
+
+4. **Construct the VAA ID** - format the extracted data in `chain/emitter/sequence` format
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:17:50"
 ```
-
- - **`log.address === ETH_CORE`** - ensures the event was emitted by the Wormhole contract
- - **`log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC`** - filters for `LogMessagePublished` events, which indicate a VAA was created
- - **`emitter`** - extracts the emitter address from `log.topics[1]`, removing the `0x` prefix
- - **`seq`** - extracts the sequence number by reading the first 66 characters of `log.data`, converting it from hex to an integer
 
 ???- code "Try it out: VAA ID retrieval"
     If you want to try out the function before moving forward, create a test file inside the `test` directory: 
@@ -243,9 +246,9 @@ Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. Send 
 
 ### Fetch Observations (VAA Signatures)
 
-Before replacing outdated signatures, we need to fetch the original VAA signatures from Wormholescan. This allows us to compare them with the latest guardian set and determine which ones need updating.
+Before replacing outdated signatures, we need to fetch the original VAA signatures from Wormholescan. This allows us to compare them with the latest Guardian set and determine which ones need updating.
 
-Inside `src/helpers/vaaHelper.ts`, create the `fetchObservations()` function to query the Wormholescan API for observations related to a given VAA. Format the response by converting guardian addresses to lowercase for consistency, and return an empty array if an error occurs.
+Inside `src/helpers/vaaHelper.ts`, create the `fetchObservations()` function to query the Wormholescan API for observations related to a given VAA. Format the response by converting Guardian addresses to lowercase for consistency, and return an empty array if an error occurs.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:109:125"
@@ -280,9 +283,9 @@ Inside `src/helpers/vaaHelper.ts`, create the `fetchObservations()` function to 
 
 ### Fetch the Latest Guardian Set
 
-Now that we have the original VAA signatures, we must fetch the latest guardian set from Wormholescan. This will allow us to compare the stored signatures with the current Guardians and determine which signatures need replacing.
+Now that we have the original VAA signatures, we must fetch the latest Guardian set from Wormholescan. This will allow us to compare the stored signatures with the current Guardians and determine which signatures need replacing.
 
-Create the `fetchGuardianSet()` function inside `src/helpers/vaaHelper.ts` to fetch the latest guardian set.
+Create the `fetchGuardianSet()` function inside `src/helpers/vaaHelper.ts` to fetch the latest Guardian set.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:126:142"
@@ -313,11 +316,11 @@ Create the `fetchGuardianSet()` function inside `src/helpers/vaaHelper.ts` to fe
 
         --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-15.html"
 
-        If an error occurs while fetching the guardian set, a `500` status error will be logged.
+        If an error occurs while fetching the Guardian set, a `500` status error will be logged.
 
 ### Replace Outdated Signatures
 
-With the full VAA, guardian signatures, and the latest guardian set, we can now update outdated signatures while maintaining the required signature count.
+With the full VAA, Guardian signatures, and the latest Guardian set, we can now update outdated signatures while maintaining the required signature count.
 
 1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block.
 
@@ -328,10 +331,10 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
      - **`vaa`** - original VAA bytes
      - **`observations`** - observed signatures from the network
-     - **`currentGuardians`** - latest guardian set
-     - **`guardianSetIndex`** - current guardian set index
+     - **`currentGuardians`** - latest Guardian set
+     - **`guardianSetIndex`** - current Guardian set index
 
-2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The guardian set should never be empty; if it is, this likely indicates an error in fetching the guardian set in a previous step
+2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The Guardian set should never be empty; if it is, this likely indicates an error in fetching the Guardian set in a previous step
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:153:156"
@@ -373,7 +376,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:239:250"
     ```
 
-9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
+9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for Guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
 
     ```typescript
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:252:282"
@@ -381,7 +384,7 @@ With the full VAA, guardian signatures, and the latest guardian set, we can now 
 
 ## Create Script to Replace Outdated VAA Signatures
 
-Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for guardian approval.
+Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest Guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for Guardian approval.
 
 1. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
 
@@ -421,4 +424,4 @@ The demo repository includes a bonus script to check the VAA redemption status o
 
 You've successfully built a script to fetch, validate, and replace outdated signatures in VAAs using Wormholescan and the Wormhole SDK.
 
-It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for guardian approval to finalize the process.
+It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for Guardian approval to finalize the process.
