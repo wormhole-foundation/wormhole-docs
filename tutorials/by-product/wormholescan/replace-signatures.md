@@ -169,7 +169,7 @@ Add the `fetchVaaId()` function to extract the VAA ID from a transaction hash. Q
 
 Now that you have the VAA ID, we can use it to fetch the full VAA payload from the Wormholescan API. This payload contains the VAA bytes, which will later be used for signature validation.
 
-Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate through VAA IDs, query the API, and extract the `vaaBytes` payload. Log any errors and continue processing the remaining IDs to ensure all available VAAs are retrieved.
+Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate through VAA IDs and extract the `vaaBytes` payload.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:52:67"
