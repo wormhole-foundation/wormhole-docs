@@ -47,7 +47,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Learn how to get started with MultiGov, from evaluating cross-chain governance needs to deploying with help from the Tally team.
 
-    [:custom-arrow: Start the integration process now](/docs/build/contract-integrations/multigov/)
+    [:custom-arrow: Start the integration process now](/docs/build/multigov/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains**
 
@@ -55,15 +55,15 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/contract-integrations/multigov/deploy-to-evm/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
 
     ---  
 
-    Set up and deploy NTT on Solana with step-by-step instructions for configuring, initializing, and deploying the required contracts.  
+    Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.
 
-    [:custom-arrow: Discover how to deploy NTT on Solana](/docs/build/contract-integrations/multigov/deploy-to-solana/)  
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/) 
 
 -   :octicons-code-square-16:{ .lg .middle } **Tutorials**
 
@@ -79,6 +79,6 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
 
-    [:custom-arrow: Find the answer to your technical questions](/docs/build/contract-integrations/multigov/faq/)
+    [:custom-arrow: Find the answer to your technical questions](/docs/build/multigov/faq/)
 
 </div>

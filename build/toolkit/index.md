@@ -33,7 +33,7 @@ Regardless of which network development environment you are using, there are a f
 
     Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
 
-    [:custom-arrow: Get started with the SDK](/docs/build/applications/wormhole-sdk/)
+    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/typescript-sdk/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Solidity SDK**
 
@@ -51,13 +51,15 @@ Regardless of which network development environment you are using, there are a f
 
     [:custom-arrow: Get started with Tilt](/docs/build/toolkit/tilt/)
 
+<!-- TODO: revisit
+
 -   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
 
     ---
 
     Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
 
-    [:custom-arrow: Read Toolkit FAQs](/docs/build/toolkit/faqs/)
+    [:custom-arrow: Read Toolkit FAQs](/docs/build/toolkit/faqs/) -->
 
 </div>
 

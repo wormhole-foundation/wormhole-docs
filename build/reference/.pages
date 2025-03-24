@@ -3,5 +3,5 @@ nav:
  - index.md
  - 'Chain IDs' : 'chain-ids.md'
  - 'Contract Addresses' : 'contract-addresses.md'
- - 'Consistency Levels': 'consistency-levels.md'
+ - 'Wormhole Finality': 'consistency-levels.md'
  - 'Wormhole Formatted Addresses': 'wormhole-formatted-addresses.md'

@@ -53,9 +53,13 @@
   :octicons-package-16: <a href="https://docs.linea.build/get-started/build/block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Mantle</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://www.mantle.xyz/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.mantle.xyz/network/introduction/overview" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://mantlescan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>Monad</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :octicons-package-16: <a href="https://mantlescan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>Mezo</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://mezo.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://mezo.org/docs/developers/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.test.mezo.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Monad</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://www.monad.xyz/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.monad.xyz/" target="_blank">Developer Docs</a><br></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-file-document: <a href="https://docs.monad.xyz/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://testnet.monadexplorer.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://moonbeam.network/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://docs.moonbeam.network/" target="_blank">Developer Docs</a><br>
   :octicons-package-16: <a href="https://moonscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Neon</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
@@ -134,7 +138,10 @@
 <table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://aptosfoundation.org/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://aptos.dev/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.aptoslabs.com/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+  :octicons-package-16: <a href="https://explorer.aptoslabs.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Movement</td><td>Move VM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://movementlabs.xyz/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.movementnetwork.xyz/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.movementlabs.xyz/?network=mainnet" target="_blank">Block Explorer</a></td></tr></tbody></table>
 
 ### NEAR VM
 

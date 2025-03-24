@@ -1,7 +1,0 @@
-title: Messaging
-nav:
- - index.md
- - 'Token Bridge': 'token-bridge.md'
- - 'CCTP Bridge': 'cctp.md'
- - native-token-transfers
- - wormhole-settlement

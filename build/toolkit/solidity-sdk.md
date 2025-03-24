@@ -52,7 +52,7 @@ The Wormhole Solidity SDK consists of key components that streamline cross-chain
 
 The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} contract simplifies cross-chain messaging and asset transfers by integrating several necessary modules, including the Wormhole relayer. By automating message delivery between chains, the Wormhole relayer removes the need for developers to manage relayer infrastructure or handle gas on the target chain. Delivery providers handle the message payload, ensuring secure and efficient communication.
 
-You can refer to the [Wormhole relayer documentation](/docs/build/contract-integrations/wormhole-relayers/){target=\_blank} for more details.
+You can refer to the [Wormhole relayer documentation](/docs/build/core-messaging/wormhole-relayers/){target=\_blank} for more details.
 
 Key modules in the SDK include:
 
@@ -100,7 +100,7 @@ These security measures ensure messages come from the correct source and are pro
 
 The Wormhole Solidity SDK interacts with the Wormhole relayer for sending and receiving messages across EVM-compatible chains. The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} and [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interfaces are central to cross-chain communication, enabling secure and efficient message delivery.
 
-For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/docs/build/contract-integrations/wormhole-relayers/#wormhole-relayer-interfaces){target=\_blank}. This section covers:
+For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/docs/build/core-messaging/wormhole-relayers/#wormhole-relayer-interfaces){target=\_blank}. This section covers:
 
  - **`IWormholeRelayer`** – methods for sending cross-chain messages, VAAs, and token transfers
  - **`IWormholeReceiver`** – the required implementation for receiving cross-chain messages
@@ -154,7 +154,7 @@ To receive tokens on the target chain, implement a contract that inherits from `
 In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.
 
 !!! note
-    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](/docs/build/contract-integrations/core-contracts/#validating-the-emitter/){target=\_blank} section for more details.
+    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](/docs/build/core-messaging/core-contracts/#validating-the-emitter/){target=\_blank} section for more details.
 
 ## Testing Environment
 

@@ -51,7 +51,7 @@ npm install @wormhole-foundation/wormhole-connect
 
 ### Integrate Connect into the Application
 
-Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/build/applications/connect/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
+Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/build/transfers/connect/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
 
 === "JavaScript"
 
@@ -107,7 +107,7 @@ Now, we need to modify the default `App.js` file to integrate Wormhole Connect. 
 
 ### Customize Wormhole Connect
 
-To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Configuration guide](/docs/build/applications/connect/configuration/#introduction){target=\_blank}. 
+To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Configuration guide](/docs/build/transfers/connect/configuration/#introduction){target=\_blank}. 
 
 ### Run the Application
 
