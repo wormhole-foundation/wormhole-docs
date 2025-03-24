@@ -7,7 +7,7 @@ description: Learn how to integrate Wormhole's Token Bridge for seamless multich
 
 ## Introduction 
 
-Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [contract-controlled transfers (transfers with messages)](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Token Transfers with Messages](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
 This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} page in the Learn section. 
 
@@ -24,7 +24,7 @@ The primary functions of the Token Bridge contracts revolve around:
 
 - **Attesting a token** - registering a new token for cross-chain transfers
 - **Transferring tokens** - locking and minting tokens across chains
-- **Transferring tokens with a payload** - including additional data for contract-controlled transfers
+- **Transferring tokens with a payload** - including additional data with transfers
 
 ### Attest a token
 
@@ -245,4 +245,8 @@ You can refer to the [core-bridge repository](https://github.com/nonergodic/core
 
 Updating the metadata (such as the token image, name, or symbol) of a wrapped token on [Solscan](https://solscan.io/){target=\_blank} requires [contacting the Solscan team](https://solscan.io/contactus){target=\_blank} directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the Token Bridge, not individual developers or projects.
 
+<<<<<<< HEAD
 To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
+=======
+To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
+>>>>>>> 06c149c6b3dd8852812c1f9ca8ec51fe45107d96
