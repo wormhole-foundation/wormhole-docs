@@ -93,7 +93,8 @@ Deploying NTT with the CLI on Solana follows a structured process:
                 spl-token mint INSERT_TOKEN_ADDRESS 1000
                 ```
 
-            NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+            !!! note
+                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
 2. **Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}**:
 
