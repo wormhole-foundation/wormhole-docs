@@ -22501,7 +22501,13 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
   currentGuardians: string[],
   guardianSetIndex: number
 ) {
-      try {}
+  console.log('Replacing Signatures...');
+
+  try {
+        // Add logic in the following steps here
+    console.error('Unexpected error in replaceSignatures:', error);
+  }
+}
     ```
 
      - **`vaa`** - original VAA bytes
@@ -22659,9 +22665,6 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     } catch (error) {
       throw new Error(`Error sending updated VAA to RPC: ${error}`);
     }
-  } catch (error) {
-    console.error('Unexpected error in replaceSignatures:', error);
-  }
     ```
 
 ???- code "Complete Function"
