@@ -5,12 +5,12 @@ description: Explore Wormhole's Guardian Network, a decentralized system for sec
 
 ## Guardian
 
-Wormhole relies on distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
 Guardians fulfill their role in the messaging protocol as follows: 
 
 1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians
-2. Guardians combine the resulting collection of independent observations to form a multisig
+2. Guardians combine their indpendent signatures to form a multisig
 3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state
 
 Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs).
@@ -42,14 +42,14 @@ In the current De-Fi landscape, most major blockchains are secured by a small gr
 
 If a protocol could unite many of these top validator companies into a purpose-built consensus mechanism designed for interoperability, it would likely offer better performance and security than a token-incentivized network. The key question is: how many of them could Wormhole realistically involve?
 
-To answer that, we break down the key constraints and design decisions:
+To answer that, consider these key constraints and design decisions:
 
 - **Threshold signatures allow flexibility, but** - with threshold signatures, in theory, any number of validators could participate. However, threshold signatures are not yet widely supported across blockchains. Verifying them is expensive and complex, especially in a chain-agnostic system
 - **t-Schnorr multisig is more practical** - Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen
 - **19 validators is the optimal tradeoff** - a set of 19 participants presents a practical compromise between decentralization and efficiency. With a two-thirds consensus threshold, only 13 signatures must be verified on-chain—keeping gas costs reasonable while ensuring strong security
 - **Security through reputation, not tokens** - Wormhole relies on a network of established validator companies instead of token-based incentives. These 19 Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants
 
-This forms the foundation for a purpose-built Proof-of-Authority consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
+This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
 
 ### Modularity
 
