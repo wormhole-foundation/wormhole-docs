@@ -178,8 +178,6 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
 2. **Signatures are aggregated** - Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload. The VAA is submitted (or relayed) to the target chain to be processed by a receiving contract and complete the final step
 
-![Lifetime of a message diagram](/docs/images/learn/infrastructure/vaas/lifetime-vaa-diagram.webp)
-
 ## Next Steps
 
 <div class="grid cards" markdown>
