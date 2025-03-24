@@ -330,7 +330,7 @@ Create the `fetchGuardianSet()` function inside `src/helpers/vaaHelper.ts` to fe
 
 With the full VAA, Guardian signatures, and the latest Guardian set, we can now update outdated signatures while maintaining the required signature count.
 
-1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block.
+1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block
 
     ```typescript title="src/helpers/vaaHelper.ts"
     --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:152"
