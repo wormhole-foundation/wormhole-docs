@@ -131,7 +131,7 @@ Developers should note that the choice of relayers depends on their project's sp
 
 - Support may not be available for all chains
 
-## Where to Go Next 
+## Next Steps
 
 <div class="grid cards" markdown>
 
