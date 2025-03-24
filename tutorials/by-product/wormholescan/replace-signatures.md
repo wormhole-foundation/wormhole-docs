@@ -333,8 +333,9 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block.
 
     ```typescript title="src/helpers/vaaHelper.ts"
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:149"
-      try {}
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:144:152"
+        // Add logic in the following steps here
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:280:283"
     ```
 
      - **`vaa`** - original VAA bytes
@@ -387,7 +388,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for Guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:252:282"
+    --8<-- "code/tutorials/by-product/wormholescan/replace-signatures/replace-sigs-4.ts:252:279"
     ```
 
 ???- code "Complete Function"
