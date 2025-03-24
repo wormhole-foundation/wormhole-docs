@@ -18,27 +18,27 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 - [**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
 - [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
-- [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} - a next-generation suite of intent protocols enabling fast multichain transfers, optimizing liquidity flows and interoperability without relying on traditional bridging methods. Best for institutional-scale volume and chain abstraction for application developers
+- [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
 
 <div markdown class="full-width">
 
 ::spantable::
 
-|                                | Criteria                              | Connect            | NTT                | Token Bridge         |
-|--------------------------------|---------------------------------------|--------------------|--------------------|----------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark:   |
-|                                | Token Transfers with Message Payloads | :x:                | :x:                | :white_check_mark:   |
-| Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark:   |
-|                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                  |
-|                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark:   |
-| Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                  |
-|                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark:   |
-| Integration Details @span      |                                       |                    |                    |                      |
-| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                  |
-|                                | User-Owned Contracts                  | :x:                | :white_check_mark: | :x:                  |
-| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark:   |
+|                                | Criteria                              | Connect                                               | NTT                                                        | Token Bridge                                               |
+|--------------------------------|---------------------------------------|-------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark:                                    | :white_check_mark:                                         | :white_check_mark:                                         |
+|                                | Token Transfers with Message Payloads | :x:                                                   | :white_check_mark:                                         | :white_check_mark:                                         |
+| Supported Assets @span         | Wrapped Assets                        | :white_check_mark:                                    | :x:                                                        | :white_check_mark:                                         |
+|                                | Native Assets                         | :white_check_mark:                                    | :white_check_mark:                                         | :x:                                                        |
+|                                | ERC-721s (NFTs)                       | :white_check_mark:                                    | :x:                                                        | :white_check_mark:                                         |
+| Features @span                 | Out-of-the-Box UI                     | :white_check_mark:                                    | :x:                                                        | :x:                                                        |
+|                                | Event-Based Actions                   | :x:                                                   | :white_check_mark:                                         | :white_check_mark:                                         |
+| Integration Details @span      |                                       |                                                       |                                                            |                                                            |
+| Requirements @span             | Contract Deployment                   | :x:                                                   | :white_check_mark:                                         | :x:                                                        |
+|                                | User-Owned Contracts                  | :x:                                                   | :white_check_mark:                                         | :x:                                                        |
+| Ecosystem Support              | Integrates with Other Products        | :white_check_mark:                                    | :white_check_mark:                                         | :white_check_mark:                                         |
 | Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |
-| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity (Ethereum), Rust (Solana) | Solidity (Ethereum), Rust (Solana), TypeScript |
+| Technology @span               | Supported Languages                   | JavaScript, TypeScript                                | Solidity (Ethereum), Rust (Solana)                         | Solidity (Ethereum), Rust (Solana), TypeScript             |
 
 ::end-spantable::
 

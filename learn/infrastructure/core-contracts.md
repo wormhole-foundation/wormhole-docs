@@ -30,7 +30,7 @@ The following describes the role of the Wormhole Core Contract in message transf
 2. **Guardian verification** - the Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions
 
-See the [Architecture Overview](/docs/learn/infrastructure/architecture/){target=\_blank} page for a closer look at how messages flow between chains and the components involved.
+For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/learn/infrastructure/architecture/) page.
 
 ### Message Submission
 
@@ -38,7 +38,7 @@ You can send multichain messages by calling a function against the source chain 
 
 - `emitterAddress` - the contract which made the call to publish the message
 - `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
-- `consistencyLevel`- the level of finality to reach before Guardians will observe and attest the emitted event. This protects against reorgs and rollbacks by ensuring that once a transaction is considered "final," its state changes cannot be reversed. Different consensus mechanisms lead to varying finality assumptions, so this value differs across chains. See the finality options for each chain in the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page
+- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
