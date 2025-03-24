@@ -76,7 +76,7 @@ Wormhole is designed to adapt and evolve in the following ways:
 
 These principles combine to create a clear pathway towards a fully trustless interoperability layer that spans decentralized computing.
 
-## Where to Go Next
+## Next Steps
 
 <div class="grid cards" markdown>
 
