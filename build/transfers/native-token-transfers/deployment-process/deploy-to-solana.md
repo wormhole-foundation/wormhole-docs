@@ -133,12 +133,8 @@ The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/in
         ```bash
         ntt init Testnet
         ```
-    
-    === "Devnet"
-
-        ```bash
-        ntt init Devnet
-        ```
+!!! note
+    Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
 ### Set Mint Authority
 
