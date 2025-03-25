@@ -6,5 +6,6 @@ nav:
 #  - native-token-transfers
  - multigov
  - wormhole-sdk
+ - wormholescan
  - multichain-assets
 # - settlements
