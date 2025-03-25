@@ -9,7 +9,7 @@ description: Learn how to perform USDC cross-chain transfers using Wormhole SDK 
 
 ## Introduction
 
-In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/learn/transfers/cctp/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
+In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/docs/learn/transfers/cctp/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
 
 Traditionally, cross-chain transfers using CCTP involve multiple manual steps, such as initiating the transfer on the source chain, relaying messages between chains, and covering gas fees on both the source and destination chains. Without the TypeScript SDK, developers must handle these operations independently, adding complexity and increasing the chance for errors, mainly when dealing with gas payments on the destination chain and native gas token management.
 

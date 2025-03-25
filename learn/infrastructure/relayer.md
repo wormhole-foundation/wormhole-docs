@@ -75,7 +75,7 @@ Though simple, this type of relaying is generally not recommended if your aim is
 
 Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They can perform off-chain computations and can be customized to suit a variety of use cases.
 
-The primary method of setting up a custom relayer is to listen directly to the Guardian Network via a [Spy](/learn/infrastructure/spy/).
+The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/docs/learn/infrastructure/spy/).
 
 ### Key Features
 
