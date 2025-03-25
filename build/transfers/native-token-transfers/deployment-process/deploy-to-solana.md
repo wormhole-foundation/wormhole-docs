@@ -30,6 +30,72 @@ Deploying NTT with the CLI on Solana follows a structured process:
      - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
      - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
 
+        ???- interface "Create and Mint SPL Tokens"
+            This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+            1. **Generate a Solana key pair** - run the following command to create a new wallet:
+
+                ```bash
+                solana-keygen grind --starts-with w:1 --ignore-case
+                ```
+
+            2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
+
+                ```bash
+                solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+                ```
+
+            3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
+
+                === "Mainnet"
+                    ```bash
+                    solana config set -um
+                    ```
+
+                === "Testnet"
+                    ```bash
+                    solana config set -ut
+                    ```
+
+                === "Devnet"
+                    ```bash
+                    solana config set -ud
+                    ```
+
+            4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
+
+                ```bash
+                solana airdrop 2
+                solana balance
+                ```
+
+            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+
+                ```bash
+                cargo install spl-token-cli
+                ```
+
+            6. **Create a new SPL token** - initialize the token on Solana
+
+                ```bash
+                spl-token create-token
+                ```
+
+            7. **Create a token account** - generate an account to hold the token
+
+                ```bash
+                spl-token create-account INSERT_TOKEN_ADDRESS
+                ```
+
+            8. **Mint tokens** - send 1000 tokens to the created account
+
+                ```bash
+                spl-token mint INSERT_TOKEN_ADDRESS 1000
+                ```
+
+            !!! note
+                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+
 2. **Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}**:
 
      - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
@@ -40,74 +106,6 @@ Deploying NTT with the CLI on Solana follows a structured process:
 Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
 
 By default, NTT transfers to Solana require manual [relaying](/docs/learn/infrastructure/relayer/){target=\_blank}, meaning users must complete a transaction on Solana to finalize the transfer. For automatic relaying, where transactions are completed without user intervention, additional setup is required. [Contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to enable automatic relaying support for your deployment.
-
-## Create and Mint Tokens
-
-This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
-
-If you already have an SPL token, skip to [Set Up NTT](#set-up-ntt).
-
-1. **Generate a Solana key pair** - run the following command to create a new wallet:
-
-    ```bash
-    solana-keygen grind --starts-with w:1 --ignore-case
-    ```
-
-2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
-
-    ```bash
-    solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
-    ```
-
-3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
-
-    === "Mainnet"
-        ```bash
-        solana config set -um
-        ```
-
-    === "Testnet"
-        ```bash
-        solana config set -ut
-        ```
-
-    === "Devnet"
-        ```bash
-        solana config set -ud
-        ```
-
-4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
-
-    ```bash
-    solana airdrop 2
-    solana balance
-    ```
-
-5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
-
-    ```bash
-    cargo install spl-token-cli
-    ```
-
-6. **Create a new SPL token** - initialize the token on Solana
-
-    ```bash
-    spl-token create-token
-    ```
-
-7. **Create a token account** - generate an account to hold the token
-
-    ```bash
-    spl-token create-account INSERT_TOKEN_ADDRESS
-    ```
-
-8. **Mint tokens** - send 1000 tokens to the created account
-
-    ```bash
-    spl-token mint INSERT_TOKEN_ADDRESS 1000
-    ```
-
-NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
 ## Set Up NTT
 
