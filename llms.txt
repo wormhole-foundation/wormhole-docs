@@ -859,11 +859,11 @@ Access essential information and tools quickly:
 Doc-Content: https://wormhole.com/docs/build/multigov/deploy-to-evm/
 --- BEGIN CONTENT ---
 ---
-title: MultiGov Deployment to EVM
+title: Deploy MultiGov on EVM Chains
 description: Set up and deploy MultiGov to EVM locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 ---
 
-# Deploy MultiGov on EVM
+# Deploy MultiGov on EVM Chains
 
 This guide provodes instructions to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project’s governance needs by following the steps for the [integration process](/docs/build/multigov/){target=\_blank}.
 
@@ -1030,7 +1030,7 @@ To verify the current balance of the deployer account, run the following command
 solana balance -k ./app/keypairs/deployer.json
 ```
 
-!!! important 
+!!! warning 
     When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
 
     - 7.60219224 SOL for deployment costs
@@ -1062,7 +1062,7 @@ With the deployer account set up and funded, you can deploy the MultiGov Staking
 
 ### Deploy the Program  
 
-Deploy the MultiGov Staking Program using **Anchor**:  
+Deploy the MultiGov Staking Program using Anchor:  
 
 ```bash
 anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet ./app/keypairs/deployer.json
@@ -1268,7 +1268,7 @@ Take the following steps to get started with a MultiGov integration:
 
     ---
 
-    Set up and deploy MultiGov on EVM with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
     [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
 
@@ -1280,7 +1280,7 @@ Take the following steps to get started with a MultiGov integration:
 
     [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/)  
 
--   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM**
+-   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM Chains**
 
     ---
 
@@ -1336,7 +1336,7 @@ title: Upgrading MultiGov on EVM
 description: Learn the process and key considerations for upgrading MultiGov on EVM, ensuring system integrity and careful planning across cross-chain components.
 ---
 
-# Upgrade MultiGov Contracts on EVM
+# Upgrade MultiGov Contracts on EVM Chains
 
 MultiGov is designed to be flexible but stable. Due to the system's complexity and cross-chain nature, upgrades should be rare and carefully considered. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
 
@@ -1425,7 +1425,7 @@ This guide covers the key considerations and step-by-step process for upgrading 
 
 ## Upgrade the MultiGov Program
 
-Follow these steps to upgrade the MultiGov Staking Program on Solana.  
+Follow these steps to upgrade the MultiGov Staking Program on Solana:
 
 1. **Prepare the new program binary** - build the updated program using the provided script
 
