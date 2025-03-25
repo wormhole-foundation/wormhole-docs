@@ -52,12 +52,12 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
     [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
 
--   :octicons-book-16:{ .lg .middle } **Off-chain Infrastructure**
+-   :octicons-tools-16:{ .lg .middle } **Core Messaging**
 
     ---
 
-    Follow the guides in this section to learn how to run off-chain infrastructure services, such as running a spy or a customized relayer.
+    Follow the guides in this section to work directly with the building blocks of Wormhole messaging, Wormhole-deployed relayers and Core Contracts, to send, receive, validate, and track multichain messages.
 
-    [:custom-arrow: Get Started with Infrastructure](/docs/infrastructure/)
+    [:custom-arrow: Build with Core Messaging](/docs/build/core-messaging/)
 
 </div>
