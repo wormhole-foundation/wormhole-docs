@@ -5,66 +5,95 @@ description: Explore Wormhole's Guardian Network, a decentralized system for sec
 
 ## Guardian
 
-Wormhole relies on a set of distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
-It is the Guardians' role to observe messages and sign the corresponding payloads. Each Guardian performs this step in isolation, combining the resulting signatures with other Guardians as a final step. The resulting collection of independent observations forms a multisig, representing proof that the majority of the Wormhole network has observed and agreed upon a state. These multisigs are referred to as VAAs in Wormhole.
+Guardians fulfill their role in the messaging protocol as follows: 
+
+1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians
+2. Guardians combine their indpendent signatures to form a multisig
+3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state
+
+Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs).
 
 ## Guardian Network
 
-The Guardian Network is designed to serve as Wormhole's oracle component, and the entire Wormhole ecosystem is founded on its technical underpinnings. It is the most critical element of the Wormhole ecosystem and represents the most crucial component to learn about if you want a deep understanding of it.
+The Guardian Network functions as Wormhole's decentralized oracle, ensuring secure, cross-chain interoperability. Learning about this critical element of the Wormhole ecosystem will help you better understand the protocol. 
 
-To understand not just _how_ the Guardian Network works but _why_ it works the way it does, it is important to review the key design considerations. To become the best-in-class interoperability platform, Wormhole needed to have five critical features:
+The Guardian Network is designed to help Wormhole deliver on five key principles:
 
-- **Decentralization** - control of the network needs to be distributed amongst many parties
-- **Modularity** - disparate parts of the ecosystem, such as the oracle, relayer, applications, and others, should be kept as separate and modular as possible so they can be designed, modified, and upgraded independently
-- **Chain Agnosticism** - Wormhole should be able to support not only EVM but also chains like Solana, Algorand, Cosmos, and even platforms that still need to be created. It also shouldn't have any one chain as a single point of failure
-- **Scalability** - Wormhole should be able to secure a large amount of value immediately and be able to handle the large transaction volume
-- **Upgradeable** - as the decentralized computing ecosystem evolves, Wormhole will need to be able to change the implementation of its existing modules without breaking integrators
+- **Decentralization** - control of the network is distributed across many parties
+- **Modularity** - independent components (e.g., oracle, relayer, applications) ensure flexibility and upgradeability
+- **Chain agnosticism** - supports EVM, Solana, and other blockchains without relying on a single network
+- **Scalability** - can handle large transaction volumes and high-value transfers
+- **Upgradeable** - can change the implementation of its existing modules without breaking integrators to adapt to changes in decentralized computing
 
-Next, the ways by which Wormhole achieves this will be examined individually.
+The following sections explore each principle in detail. 
 
 ### Decentralization
 
-Decentralization is the biggest concern. Previous interoperability solutions have largely been entirely centralized, and even newer solutions utilizing things like adversarial relayers still tend to have single points of failure or collusion thresholds as low as one or two.
+Decentralization remains the core concern for interoperability protocols. Earlier solutions were fully centralized, and even newer models often rely on a single entity or just one or two actors, creating low thresholds for collusion or failure.
 
-When designing a decentralized oracle network, the first option to consider is likely a Proof-of-Stake (PoS) system however, this is a suboptimal solution. PoS is designed for blockchain consensus in smart contract-enabled environments, so it's less suitable when the network verifies the output of many blockchains and doesn't support its own smart contracts. While it looks appealing from a decentralization perspective, network security remains to be seen, and it can make some of the other outlined goals more challenging to achieve. Different options need to be explored.
+Two common approaches to decentralization have notable limitations:
 
-Another option is to use Zero-Knowledge Proofs (ZKP) to secure the network. This would be a good solution from a decentralization perspective, as it's trustless. However, ZKPs are still a nascent technology, and verifying them on-chain isn't feasible, especially on chains with limited computational environments. That means a form of multisig will be needed to secure the network.
+- **Proof-of-Stake (PoS)** - while PoS is often seen as a go-to model for decentralization, it's not well-suited for a network that verifies many blockchains and doesn't run its own smart contracts. Its security in this context is unproven, and it introduces complexities that make other design goals harder to achieve
+- **Zero-Knowledge Proofs (ZKPs)** - ZKPs offer a trustless and decentralized approach, but the technology is still early-stage. On-chain verification is often too computationally expensive—especially on less capable chains—so a multisig-based fallback is still required for practical deployment
 
-In the current De-Fi landscape, most of the top blockchains are secured by the same handful of validator companies. Currently, only a limited number of companies in the world have the skills and capital to run top-notch validator companies.
+In the current De-Fi landscape, most major blockchains are secured by a small group of validator companies. Only a limited number of companies worldwide have the expertise and capital to run high-performance validators.
 
-If a protocol could unite a large number of those validator companies into a purpose-built consensus mechanism optimized for chain interoperability, that design would likely be more performant and secure than a network bootstrapped by a tokenomics model. Assuming the validators would be on board, how many could Wormhole realistically utilize?
+If a protocol could unite many of these top validator companies into a purpose-built consensus mechanism designed for interoperability, it would likely offer better performance and security than a token-incentivized network. The key question is: how many of them could Wormhole realistically involve?
 
-If Wormhole used threshold signatures, the answer would be "as many as are willing to participate." However, threshold signatures need more support across the blockchain world, meaning verifying the signatures would be difficult and expensive, ultimately limiting scalability and chain agnosticism. Thus, a t-schnorr multisig presents itself as the best option: cheap and well-supported, even though its verification costs increase linearly with the number of signatures included.
+To answer that, consider these key constraints and design decisions:
 
-All these things considered, 19 seems to be the maximum number and a good tradeoff. If two-thirds of the signatures are needed for consensus, then 13 signatures must be verified on-chain, which remains reasonable from a gas-cost perspective.
+- **Threshold signatures allow flexibility, but** - with threshold signatures, in theory, any number of validators could participate. However, threshold signatures are not yet widely supported across blockchains. Verifying them is expensive and complex, especially in a chain-agnostic system
+- **t-Schnorr multisig is more practical** - Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen
+- **19 validators is the optimal tradeoff** - a set of 19 participants presents a practical compromise between decentralization and efficiency. With a two-thirds consensus threshold, only 13 signatures must be verified on-chain—keeping gas costs reasonable while ensuring strong security
+- **Security through reputation, not tokens** - Wormhole relies on a network of established validator companies instead of token-based incentives. These 19 Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants
 
-Rather than securing the network with tokenomics, it is better to initially secure the network by involving robust companies that are heavily invested in De-Fi's success. The 19 Guardians aren't anonymous or small, they are many of the largest and most widely known validator companies in cryptocurrency. 
-
-This led to a network of 19 Guardians, each with an equal stake, and joined in a purpose-built Proof-of-Authority consensus mechanism. As threshold signatures become better supported, the Guardian Set can expand, and once ZKPs are ubiquitous, the Guardian Network will become fully trustless.
-
-With the perspective on Decentralization laid out, the remaining elements fall into place.
+This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
 
 ### Modularity
 
-The Guardian Network is robust and trustworthy by itself, so there's no need for components like the relayer to contribute to the security model. That makes Wormhole able to have simple components that are very good at their one thing. Guardians only need to verify on-chain activity and produce VAAs, while relayers only need to interact with blockchains and deliver messages.
-
-The VAAs' signing scheme can be changed without affecting downstream users, and multiple relay mechanisms can exist independently. xAssets can be implemented purely at the application layer, and cross-chain applications can use whatever components suit them.
+Wormhole is designed with simple components that are very good at a single function. Separating security and consensus (Guardians) from message delivery ([relayers](/docs/learn/infrastructure/relayer/){target=\_blank}) allows for the flexibility to change or upgrade one component without disrupting the others.
 
 ### Chain Agnosticism
 
-Today, Wormhole supports a broader range of ecosystems than any other interoperability protocol because it uses simple tech (t-schnorr signatures), an adaptable, heterogeneous relayer model, and a robust validator network.
-
-Wormhole can expand to new ecosystems as quickly as a Core Contract can be developed for the smart contract runtime. Relayers don't need to be factored into the security model; they just need to be able to upload messages to the blockchain. The Guardians are able to observe every transaction on every chain without taking shortcuts.
+Today, Wormhole supports a broader range of ecosystems than any other interoperability protocol because it uses simple tech (t-schnorr signatures), an adaptable, heterogeneous relayer model, and a robust validator network. Wormhole can expand to new ecosystems as quickly as a [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} can be developed for the smart contract runtime.
 
 ### Scalability
 
-Wormhole scales well, as demonstrated by its ability to handle huge total value locked (TVL) and transaction volume even during tumultuous events.
+Wormhole scales well, as demonstrated by its ability to handle substantial total value locked (TVL) and transaction volume even during tumultuous events.
 
-The requirements for running a Guardian are relatively heavy, as they must run a full node for every single blockchain in the ecosystem. This is another reason why a limited number of robust validator companies are beneficial for this design.
+Every Guardian must run a full node for every blockchain in the ecosystem. This requirement can be computationally heavy to set up; however, once all the full nodes are running, the Guardian Network's actual computation needs become lightweight. 
 
-However, once all the full nodes are running, the Guardian Network's actual computation and network overheads become lightweight. The blockchains' performance tends to be the bottleneck in Wormhole rather than anything happening inside the Guardian Network.
+Performance is generally limited by the speed of the underlying blockchains, not the Guardian Network itself.
 
 ### Upgradeable
 
-Over time, the Guardian Set can be expanded beyond 19 using threshold signatures. Various relaying models will emerge, each with their own strengths and weaknesses. ZKPs can be used on chains where they are well-supported. The cross-chain application ecosystem will grow, and cross-chain applications will become increasingly intermingled. There are very few APIs in Wormhole, and most items are implementation details from the integrator perspective. This creates a clear pathway towards a fully trustless interoperability layer that spans decentralized computing.
+Wormhole is designed to adapt and evolve in the following ways:
+
+- **Guardian Set expansion** – future updates may introduce threshold signatures to allow for more Guardians in the set
+- **ZKP integration** - as Zero-Knowledge Proofs become more widely supported, the network can transition to a fully trustless model
+
+These principles combine to create a clear pathway towards a fully trustless interoperability layer that spans decentralized computing.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Relayers**
+
+    ---
+
+    Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
+
+    [:custom-arrow: Learn About Relayers](/docs/learn/infrastructure/relayer/)
+
+- :octicons-tools-16:{ .lg .middle } **Query Guardian Data**
+
+    ---
+
+    Learn how to use Wormhole Queries to add real-time access to Guardian-attested on-chain data via a REST endpoint to your dApp, enabling secure cross-chain interactions and verifications.
+
+    [:custom-arrow: Build with Queries](/docs/build/queries/overview/)
+
+</div>
