@@ -115,6 +115,8 @@ Doc-Page: https://wormhole.com/docs/tutorials/by-product/settlements/.settlement
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/
 Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/
+Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormholescan/
+Doc-Page: https://wormhole.com/docs/tutorials/by-product/wormholescan/replace-signatures/
 Doc-Page: https://wormhole.com/docs/tutorials/
 
 # Full content for each doc page
@@ -859,11 +861,11 @@ Access essential information and tools quickly:
 Doc-Content: https://wormhole.com/docs/build/multigov/deploy-to-evm/
 --- BEGIN CONTENT ---
 ---
-title: MultiGov Deployment to EVM
+title: Deploy MultiGov on EVM Chains
 description: Set up and deploy MultiGov to EVM locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 ---
 
-# Deploy MultiGov on EVM
+# Deploy MultiGov on EVM Chains
 
 This guide provodes instructions to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project’s governance needs by following the steps for the [integration process](/docs/build/multigov/){target=\_blank}.
 
@@ -1030,7 +1032,7 @@ To verify the current balance of the deployer account, run the following command
 solana balance -k ./app/keypairs/deployer.json
 ```
 
-!!! important 
+!!! warning 
     When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
 
     - 7.60219224 SOL for deployment costs
@@ -1062,7 +1064,7 @@ With the deployer account set up and funded, you can deploy the MultiGov Staking
 
 ### Deploy the Program  
 
-Deploy the MultiGov Staking Program using **Anchor**:  
+Deploy the MultiGov Staking Program using Anchor:  
 
 ```bash
 anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet ./app/keypairs/deployer.json
@@ -1268,7 +1270,7 @@ Take the following steps to get started with a MultiGov integration:
 
     ---
 
-    Set up and deploy MultiGov on EVM with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
     [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
 
@@ -1280,7 +1282,7 @@ Take the following steps to get started with a MultiGov integration:
 
     [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/)  
 
--   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM**
+-   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM Chains**
 
     ---
 
@@ -1336,7 +1338,7 @@ title: Upgrading MultiGov on EVM
 description: Learn the process and key considerations for upgrading MultiGov on EVM, ensuring system integrity and careful planning across cross-chain components.
 ---
 
-# Upgrade MultiGov Contracts on EVM
+# Upgrade MultiGov Contracts on EVM Chains
 
 MultiGov is designed to be flexible but stable. Due to the system's complexity and cross-chain nature, upgrades should be rare and carefully considered. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
 
@@ -1425,7 +1427,7 @@ This guide covers the key considerations and step-by-step process for upgrading 
 
 ## Upgrade the MultiGov Program
 
-Follow these steps to upgrade the MultiGov Staking Program on Solana.  
+Follow these steps to upgrade the MultiGov Staking Program on Solana:
 
 1. **Prepare the new program binary** - build the updated program using the provided script
 
@@ -12459,7 +12461,6 @@ Deploying NTT with the CLI on Solana follows a structured process:
 
 3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
 
-
 Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
 
 By default, NTT transfers to Solana require manual [relaying](/docs/learn/infrastructure/relayer/){target=\_blank}, meaning users must complete a transaction on Solana to finalize the transfer. For automatic relaying, where transactions are completed without user intervention, additional setup is required. [Contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to enable automatic relaying support for your deployment.
@@ -15340,42 +15341,41 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/core-contracts/
 --- BEGIN CONTENT ---
 ---
 title: Core Contracts
-description: Discover Wormhole's Core Contracts, enabling cross-chain communication with message sending, receiving, and multicast features for efficient synchronization.
+description: Discover Wormhole's Core Contracts, which enable multichain communication with message sending, receiving, and multicast features for efficient synchronization.
 ---
 
 # Core Contracts
 
 ## Introduction
 
-The Wormhole Core Contract is a fundamental component of the Wormhole interoperability protocol deployed across each supported blockchain network. This contract acts as the foundational layer that enables secure and efficient cross-chain messaging, as all cross-chain applications either interact directly with the Core Contract or with another contract that does.
+The Wormhole Core Contract is deployed across each supported blockchain network. This contract is a fundamental component of the Wormhole interoperability protocol and acts as the foundational layer enabling secure and efficient multichain messaging. All multichain applications either interact directly with the Core Contract or with another contract that does.
 
-This guide summarizes the key functions of the Core Contract and outlines how the Core Contract works.
+This page summarizes the key functions of the Core Contract and outlines how the Core Contract works.
 
-## Key Functions of the Wormhole Core Contract
+## Key Functions 
 
-- **Cross-chain messaging** - the Core Contract enables the transfer of messages between different blockchain networks connected via Wormhole. It standardizes and secures the message format, ensuring consistent communication across multiple chains. This capability allows developers to build cross-chain applications that leverage the unique features of each network
+Key functions of the Wormhole Core Contract include the following:
 
-- **Verification and validation** - the Core Contract is responsible for verifying and validating all VAAs received on the target chain. When a message is transmitted from one blockchain, it is signed by the Wormhole Guardians (a decentralized set of validators). The Core Contract on the target chain checks this signature to confirm that the message is legitimate and has not been tampered with
-
-- **Guardian Network coordination** - the Core Contract coordinates with Wormhole's Guardian Network to facilitate secure, trustless communication across chains. By relying on a quorum of Guardians to verify cross-chain messages and transactions, the contract ensures that only validated interactions are processed, enhancing the protocol's overall security and reliability
-
-- **Event emission for monitoring** - the Core Contract emits events for every cross-chain message it processes, allowing dApps and developers to monitor activity on the network. These events are critical for tracking message statuses, debugging, and building responsive applications that can react to cross-chain events in real time
+- **Multichain messaging** - standardizes and secures the format of messages to facilitate consistent communication for message transfer between Wormhole-connected blockchain networks, allowing developers to leverage the unique features of each network
+- **Verification and validation** - verifies and validates all VAAs received on the target chain by confirming the Guardian signature to ensure the message is legitimate and has not been manipulated or altered
+- **Guardian Network coordination** - coordinates with Wormhole's Guardian Network to facilitate secure, trustless communication across chains and ensure that only validated interactions are processed to enhance the protocol's overall security and reliability
+- **Event emission for monitoring**  - emits events for every multichain message processed, allowing for network activity monitoring like tracking message statuses, debugging, and applications that can react to multichain events in real time
 
 ## How the Core Contract Works
 
-The Wormhole Core Contract is central in facilitating secure and efficient cross-chain transactions. It enables communication between different blockchain networks by packaging transaction data into standardized messages, verifying their authenticity, and ensuring they are executed correctly on the destination chain. This process involves several steps, from the initial message submission to final execution, all while leveraging the Wormhole Guardian network to maintain trust and security.
+The Wormhole Core Contract is central in facilitating secure and efficient multichain transactions. It enables communication between different blockchain networks by packaging transaction data into standardized messages, verifying their authenticity, and ensuring they are executed correctly on the destination chain.
 
-Below is a simplified breakdown that focuses on the role of the Wormhole Core Contract in these operations:
+The following describes the role of the Wormhole Core Contract in message transfers:
 
-1. **Message submission** - when a user initiates a cross-chain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification
-2. **Guardian verification** - the Guardians observe and sign the message independently. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
-3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions, such as minting tokens, updating states, or calling specific smart contract functions
+1. **Message submission** - when a user initiates a multichain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification
+2. **Guardian verification** - the Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
+3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions
 
 For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/learn/infrastructure/architecture/) page.
 
 ### Message Submission
 
-When sending a cross-chain message from the source chain Core Contract, you'll call a function that publishes the message. The implementation strategy for publishing messages differs by chain. However, the general strategy consists of the Core Contract posting the following items to the blockchain logs:
+You can send multichain messages by calling a function against the source chain Core Contract, which then publishes the message. Message publishing strategies can differ by chain; however, generally, the Core Contract posts the following items to the blockchain logs:
 
 - `emitterAddress` - the contract which made the call to publish the message
 - `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
@@ -15385,19 +15385,39 @@ There are no fees to publish a message except when publishing on Solana, but thi
 
 ### Message Reception
 
-When receiving a cross-chain message on the target chain Core Contract, the general approach involves parsing and verifying the [components of a VAA](/docs/learn/infrastructure/vaas#vaa-format).
-
-The process of receiving and verifying a VAA ensures that the message was properly attested by the Guardian Network, maintaining the integrity and authenticity of the data transmitted between chains.
+When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/learn/infrastructure/vaas#vaa-format){target=\_blank}. Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains.
 
 ## Multicast
 
-Multicast refers to simultaneously broadcasting a single message or transaction across different blockchains. This means there is no destination address or chain for the sending and receiving functions. This is possible because VAAs attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain where they are used.
+Multicast refers to simultaneously broadcasting a single message or transaction across different blockchains with no destination address or chain for the sending and receiving functions. VAAs attest that "this contract on this chain said this thing." Therefore, VAAs are multicast by default and will be verified as authentic on any chain where they are used.
 
-This multicast-by-default model makes it easy to synchronize the state across the entire ecosystem because a single blockchain can make its data available to every chain in a single action with low latency. This reduces the complexity of the n^2 problems encountered by routing data to a large number of blockchains.
+This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the Token Bridge and Wormhole relayer contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} and [Wormhole relayer](/docs/learn/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Verified Action Approvals (VAA)**
+
+    ---
+
+    Learn about Verified Action Approvals (VAAs) in Wormhole, their structure, validation, and their role in multichain communication.
+
+    [:custom-arrow: Learn About VAAs](/docs/learn/infrastructure/vaas/)
+
+- :octicons-tools-16:{ .lg .middle } **Get Started with Core Contracts**
+
+    ---
+
+    This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your multichain contracts.
+
+    [:custom-arrow: Build with Core Contracts](/docs/build/core-messaging/core-contracts/)
+
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/learn/infrastructure/guardians/
@@ -15549,112 +15569,161 @@ description: Discover the role of relayers in the Wormhole network, including cl
 
 # Relayers
 
-This documentation provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating cross-chain processes.
+This page provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating cross-chain processes.
 
 Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only availability, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
 
 There are three primary types of relayers discussed:
 
 - **Client-side relaying** - a cost-efficient, no-backend-infrastructure approach relying on user-facing front ends. It provides a simple solution, although it can complicate the user experience due to the manual steps involved
+
 - **Custom relayers** - backend components that handle parts of the cross-chain process, offering a smoother user experience and allowing off-chain calculations to reduce gas costs. These relayers could operate through direct listening to the Guardian Network (Spy relaying)
+
 - **Wormhole-deployed relayers** - a decentralized relayer network that can deliver arbitrary VAAs, reducing the developer's need to develop, host, or maintain relayers. However, they require all calculations to be done on-chain and might be less gas-efficient
 
 ## Fundamentals
 
 This section highlights the crucial principles underpinning the operation and handling of relayers within the Wormhole network.
 
-Relayers are fundamentally trustless entities within the network. This means that while they don't require your trust, they shouldn't be trusted implicitly. They function as delivery mechanisms, transporting VAAs from their source to their destination.
+Relayers are fundamentally trustless entities within the network, meaning while they don't require your trust to operate, you also shouldn't trust them implicitly. Relayers function as delivery mechanisms, transporting VAAs from their source to their destination.
 
 Key characteristics of VAAs include:
 
 - Public emission from the Guardian Network
+
 - Authentication through signatures from the Guardian Network
+
 - Verifiability by any entity or any Wormhole Core Contract
-- As a result of these characteristics, anyone can pick up a VAA and deliver it anywhere, but no one can alter the VAA content without invalidating the signatures
 
-When designing contracts, it's crucial to only trust information contained within your contract or a VAA. Relying on information from a relayer could expose you to input attacks.
+These characteristics mean anyone can pick up a VAA and deliver it anywhere, but no one can alter the VAA content without invalidating the signatures. 
 
-Advanced strategies can involve relayers performing trustless off-chain computation passed into the destination contract. These strategies can optimize gas costs but also create attack vectors if not used correctly.
+Keep in mind the following security considerations around relayers:
 
-In summary, the design of a relayer should ensure that there's a single, deterministic way to process messages in your protocol. In an optimally designed protocol, relayers should have a "correct" implementation, mirroring "crank turner" processes used elsewhere in blockchain.
+- **Trusting information** - it is crucial not to trust information outside your contract or a VAA. Relying on information from a relayer could expose you to input attacks
+
+- **Gas optimization** - using relayers to perform trustless off-chain computation to pass into the destination contract can optimize gas costs but also risk creating attack vectors if not used correctly
+
+- **Deterministic by design** - the design of a relayer should ensure a single, deterministic way to process messages in your protocol. Relayers should have a "correct" implementation, mirroring "crank turner" processes used elsewhere in blockchain
 
 ## Client-Side Relaying
 
 Client-side relaying relies on user-facing front ends, such as a webpage or a wallet, to complete the cross-chain process.
 
-**Key Features**
+### Key Features
 
 - **Cost-efficiency** - users only pay the transaction fee for the second transaction, eliminating any additional costs
-- **No backend infrastructure** - the process is completely client-based, eliminating the need for a backend relaying infrastructure
 
-**Implementation**
+- **No backend infrastructure** - the process is wholly client-based, eliminating the need for a backend relaying infrastructure
+
+### Implementation
 
 Users themselves carry out the three steps of the cross-chain process:
 
 1. Perform an action on chain A
+
 2. Retrieve the resulting VAA from the Guardian Network
+
 3. Perform an action on chain B using the VAA
 
-**Considerations**
+### Considerations
 
-!!! note
-    Though simple, this type of relaying is generally not recommended if your aim is a highly polished user experience. It can, however, be useful for getting a Minimum Viable Product (MVP) up and running.
+Though simple, this type of relaying is generally not recommended if your aim is a highly polished user experience. It can, however, be useful for getting a Minimum Viable Product (MVP) up and running.
 
 - Users must sign all required transactions with their own wallet
+
 - Users must have funds to pay the transaction fees on every chain involved
+
 - The user experience may be cumbersome due to the manual steps involved
 
 ## Custom Relayers
 
-Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They are capable of performing off-chain computations and can be customized to suit a variety of use cases.
+Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They can perform off-chain computations and can be customized to suit a variety of use cases.
 
 The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/docs/learn/infrastructure/spy/).
 
-**Key Features**
+### Key Features
 
 - **Optimization** - capable of performing trustless off-chain computations which can optimize gas costs
+
 - **Customizability** - allows for specific strategies like batching, conditional delivery, multi-chain deliveries, and more
+
 - **Incentive structure** - developers have the freedom to design an incentive structure suitable for their application
+
 - **Enhanced UX** - the ability to retrieve a VAA from the Guardian Network and perform an action on the target chain using the VAA on behalf of the user can simplify the user experience
 
-**Implementation**
+### Implementation
 
-!!! note
-    To make the development of custom relayers easier, a plugin relayer is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
+A plugin relayer to make the development of custom relayers easier is available in the [main Wormhole repository](https://github.com/wormhole-foundation/wormhole/tree/main/relayer){target=\_blank}. This plugin sets up the basic infrastructure for relaying, allowing developers to focus on implementing the specific logic for their application.
 
-**Considerations**
+### Considerations
 
 Remember, despite their name, custom relayers still need to be considered trustless. VAAs are public and can be submitted by anyone, so developers shouldn't rely on off-chain relayers to perform any computation considered "trusted."
 
 - Development work and hosting of relayers are required
+
 - The fee-modeling can become complex, as relayers are responsible for paying target chain fees
-- Relayers are responsible for availability, adding dependency for the cross-chain application
+
+- Relayers are responsible for availability, and adding dependencies for the cross-chain application
 
 ## Wormhole Relayers
 
-Wormhole relayers are a component of a decentralized network in the Wormhole protocol, facilitating the delivery of VAAs to recipient contracts compatible with the standard relayer API.
+Wormhole relayers are a component of a decentralized network in the Wormhole protocol. They facilitate the delivery of VAAs to recipient contracts compatible with the standard relayer API.
 
-**Key Features**
+### Key Features
 
 - **Lower operational costs** - no need to develop, host, or maintain individual relayers
+
 - **Simplified integration** - because there is no need to run a relayer, integration is as simple as calling a function and implementing an interface
 
-**Implementation**
+### Implementation
 
 The Wormhole relayer integration involves two key steps:
 
 - **Delivery request** - request delivery from the ecosystem Wormhole relayer contract
+
 - **Relay reception** - implement a [`receiveWormholeMessages`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/bacbe82e6ae3f7f5ec7cdcd7d480f1e528471bbb/src/interfaces/IWormholeReceiver.sol#L44-L50){target=\_blank} function within their contracts. This function is invoked upon successful relay of the VAA
 
-**Considerations**
+### Considerations
 
-!!! note
-    Developers should note that the choice of relayers depends their project's specific requirements and constraints. Wormhole relayers offer simplicity and convenience but limit customization and optimization opportunities compared to custom relayers.
+Developers should note that the choice of relayers depends on their project's specific requirements and constraints. Wormhole relayers offer simplicity and convenience but limit customization and optimization opportunities compared to custom relayers.
 
 - All computations are performed on-chain
+
 - Potentially less gas-efficient compared to custom relayers
-- Optimization features like conditional delivery, batching, off-chain calculations might be restricted
+
+- Optimization features like conditional delivery, batching, and off-chain calculations might be restricted
+
 - Support may not be available for all chains
+
+## Next Steps
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Spy**
+
+    ---
+
+    Discover Wormhole's Spy daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions. 
+
+    [:custom-arrow: Learn More About the Spy](/docs/learn/infrastructure/spy/)
+
+-   :octicons-book-16:{ .lg .middle } **Build with Wormhole Relayers**
+
+    ---
+
+    Learn how to use Wormhole-deployed relayer configurations for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.   
+
+    [:custom-arrow: Get Started with Wormhole Relayers](/docs/build/core-messaging/wormhole-relayers/)
+
+-   :octicons-book-16:{ .lg .middle } **Run a Custom Relayer**
+
+    ---
+
+    Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
+
+    [:custom-arrow: Get Started with Custom Relayers](/docs/infrastructure/relayers/run-relayer/)
+
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/learn/infrastructure/spy/
@@ -21757,6 +21826,1157 @@ By following these steps, you've learned how to:
 - Set up cross-chain transfers for native USDC between supported chains
 - Handle both manual and automatic relaying of transactions
 - Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/wormholescan/
+--- BEGIN CONTENT ---
+---
+title: Wormholescan API Tutorials
+description: Explore step-by-step guides on using the Wormholescan API to fetch VAAs, validate signatures, check redemption status, and process cross-chain transactions.
+---
+
+# Wormholescan API Tutorials  
+
+Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain data, track transactions, validate VAAs, check redemption status, and more. 
+
+## Get Started  
+
+<div class="grid cards" markdown>  
+
+-   :octicons-repo-16:{ .lg .middle } **Replace Outdated Signatures in VAAs**  
+
+    ---  
+
+    Learn how to fetch VAAs, verify their validity, and replace outdated signatures using the Wormholescan API and Wormhole SDK.  
+
+    [:custom-arrow: Start tutorial](/docs/tutorials/by-product/wormholescan/replace-signatures/)  
+
+</div>  
+
+## Additional Resources  
+
+<div class="grid cards" markdown>  
+
+-   :octicons-book-16:{ .lg .middle } **Wormholescan**  
+
+    ---  
+
+    Wormholescan is a blockchain explorer for tracking transactions, VAAs, and cross-chain activity. Its API provides programmatic access to transaction data, network analytics, and more.
+
+    [:custom-arrow: Visit Wormholescan](https://wormholescan.io/){target=\_blank}  
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/wormholescan/replace-signatures/
+--- BEGIN CONTENT ---
+---
+title: Replace Outdated Signatures in VAAs
+description: Learn how to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK to ensure seamless processing.
+---
+
+# Replace Outdated Signatures in VAAs
+
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}
+
+## Introduction
+
+Cross-chain transactions in Wormhole rely on [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank}, which contain signatures from a trusted set of validators called [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank}. These signatures prove that the network approved an action, such as a token transfer.
+
+However, the set of Guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the Guardian set may have already changed. This means the VAA will contain outdated signatures from Guardians, who are no longer part of the network, causing the transaction to fail.
+
+Instead of discarding these VAAs, we can fetch updated signatures and replace the outdated ones to ensure smooth processing.
+
+In this tutorial, you'll build a script from scratch to:
+
+- Fetch a VAA from [Wormholescan](https://wormholescan.io/#/developers/api-doc){target=\_blank}
+- Validate its signatures against the latest Guardian set
+- Replace outdated signatures using the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}
+- Output a valid VAA ready for submission
+
+By the end, you'll have a script that ensures VAAs remain valid and processable, avoiding transaction failures.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
+
+## Project Setup
+
+In this section, you will create the directory, initialize a Node.js project, install dependencies, and configure TypeScript.
+
+1. **Create the project** - set up the directory and navigate into it
+
+    ```bash
+    mkdir wormhole-scan-api-demo
+    cd wormhole-scan-api-demo
+    ```
+
+2. **Initialize a Node.js project** - generate a `package.json` file
+
+    ```bash
+    npm init -y
+    ```
+
+3. **Set up TypeScript** - create a `tsconfig.json` file
+
+    ```bash
+    touch tsconfig.json
+    ```
+
+    Then, add the following configuration:
+
+    ```json title="tsconfig.json"
+    {
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true
+    }
+}
+    ```
+
+4. **Install dependencies** - add the required packages
+
+    ```bash
+    npm install @wormhole-foundation/sdk axios web3 tsx @types/node
+    ```
+
+     - `@wormhole-foundation/sdk` - handles VAAs and cross-chain interactions  
+     - `axios` - makes HTTP requests to the Wormholescan API  
+     - `web3` - interacts with Ethereum transactions and contracts  
+     - `tsx` - executes TypeScript files without compilation  
+     - `@types/node` - provides Node.js type definitions 
+
+5. **Create the project structure** - set up the required directories and files
+
+    ```bash
+    mkdir -p src/config && touch src/config/constants.ts src/config/layouts.ts
+    mkdir -p src/helpers && touch src/helpers/vaaHelper.ts
+    mkdir -p src/scripts && touch scripts/replaceSignatures.ts
+    ```
+
+     - **`src/config/*`** - stores public configuration variables and layouts for serializing and deserializing data structures
+     - **`src/helpers/*`** - contains utility functions
+     - **`src/scripts/*`** - contains scripts for fetching and replacing signatures
+
+6. **Set variables** - define key constants in `src/config/constants.ts`
+
+    ```bash title="src/config/constants.ts"
+    export const RPC = 'https://ethereum-rpc.publicnode.com';
+
+export const ETH_CORE =
+  '0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B'.toLowerCase();
+
+export const WORMHOLESCAN_API = 'https://api.wormholescan.io/v1';
+
+export const LOG_MESSAGE_PUBLISHED_TOPIC =
+  '0x6eb224fb001ed210e379b335e35efe88672a8ce935d981a6896b27ffdf52a3b2';
+
+export const TXS = [
+  '0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367',
+  '0x3c989a6bb40dcd4719453fbe7bbac420f23962c900ae75793124fc9cc614368c',
+];
+    ```
+
+     - **`RPC`** - endpoint for interacting with an Ethereum RPC node
+     - **`ETH_CORE`** - [Wormhole's Core Contract address on Ethereum](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
+     - **`WORMHOLESCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and Guardian sets
+     - **`LOG_MESSAGE_PUBLISHED_TOPIC`** - the event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts
+     - **`TXS`** - list of example transaction hashes that will be used for testing
+
+7. **Define data structure for working with VAAs** - specify the ABI for the Wormhole Core Contract's `parseAndVerifyVM` function, which parses and verifies VAAs. Defining the data structure, also referred to as a [layout](/docs/build/toolkit/typescript-sdk/sdk-layout/){target=\_blank}, for this function ensures accurate decoding and validation of VAAs
+
+    ```typescript title="src/config/layouts.ts"
+    export const PARSE_AND_VERIFY_VM_ABI = {
+  inputs: [{ internalType: 'bytes', name: 'encodedVM', type: 'bytes' }],
+  name: 'parseAndVerifyVM',
+  outputs: [
+    {
+      components: [
+        { internalType: 'uint8', name: 'version', type: 'uint8' },
+        { internalType: 'uint32', name: 'timestamp', type: 'uint32' },
+        { internalType: 'uint32', name: 'nonce', type: 'uint32' },
+        { internalType: 'uint16', name: 'emitterChainId', type: 'uint16' },
+        { internalType: 'bytes32', name: 'emitterAddress', type: 'bytes32' },
+        { internalType: 'uint64', name: 'sequence', type: 'uint64' },
+        { internalType: 'uint8', name: 'consistencyLevel', type: 'uint8' },
+        { internalType: 'bytes', name: 'payload', type: 'bytes' },
+        { internalType: 'uint32', name: 'guardianSetIndex', type: 'uint32' },
+        {
+          components: [
+            { internalType: 'bytes32', name: 'r', type: 'bytes32' },
+            { internalType: 'bytes32', name: 's', type: 'bytes32' },
+            { internalType: 'uint8', name: 'v', type: 'uint8' },
+            { internalType: 'uint8', name: 'guardianIndex', type: 'uint8' },
+          ],
+          internalType: 'struct Structs.Signature[]',
+          name: 'signatures',
+          type: 'tuple[]',
+        },
+        { internalType: 'bytes32', name: 'hash', type: 'bytes32' },
+      ],
+      internalType: 'struct Structs.VM',
+      name: 'vm',
+      type: 'tuple',
+    },
+    { internalType: 'bool', name: 'valid', type: 'bool' },
+    { internalType: 'string', name: 'reason', type: 'string' },
+  ],
+  stateMutability: 'view',
+  type: 'function',
+};
+    ```
+
+## Create VAA Handling Functions
+
+In this section, we'll create a series of helper functions in the `src/helpers/vaaHelper.ts` file that will retrieve and verify VAAs and fetch and replace outdated Guardian signatures to generate a correctly signed VAA.
+
+To get started, import the necessary dependencies:
+
+```typescript title="src/helpers/vaaHelper.ts"
+import { eth } from 'web3';
+import {
+  deserialize,
+  serialize,
+  VAA,
+  Signature,
+} from '@wormhole-foundation/sdk';
+import {
+  RPC,
+  ETH_CORE,
+  LOG_MESSAGE_PUBLISHED_TOPIC,
+  WORMHOLESCAN_API,
+} from '../config/constants';
+import { PARSE_AND_VERIFY_VM_ABI } from '../config/layouts';
+```
+
+### Fetch a VAA ID from a Transaction
+
+To retrieve a VAA, we first need to get its VAA ID from a transaction hash. This ID allows us to fetch the full VAA later.
+The VAA ID is structured as follows:
+
+```bash
+chain/emitter/sequence
+```
+
+ - `chain` - the [Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} (Ethereum is 2)
+ - `emitter` - the contract address that emitted the VAA
+ - `sequence` - a unique identifier for the event
+
+We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
+
+Follow the below steps to process the transaction logs and construct the VAA ID:
+
+1. **Get the transaction receipt** - iterate over the array of transaction hashes and fetch the receipt to access its logs
+
+2. **Find the Wormhole event** - iterate over the transaction logs and check for events emitted by the Wormhole Core contract. Look specifically for `LogMessagePublished` events, which indicate a VAA was created
+
+3. **Extract the emitter and sequence number** - if a matching event is found, extract the emitter address from `log.topics[1]` and remove the `0x` prefix. Then, the sequence number from `log.data` is extracted, converting it from hex to an integer
+
+4. **Construct the VAA ID** - format the extracted data in `chain/emitter/sequence` format
+
+```typescript title="src/helpers/vaaHelper.ts"
+const vaaIds: string[] = [];
+
+  for (const tx of txHashes) {
+    try {
+      const result = (
+        await axios.post(RPC, {
+          jsonrpc: '2.0',
+          id: 1,
+          method: 'eth_getTransactionReceipt',
+          params: [tx],
+        })
+      ).data.result;
+
+      if (!result)
+        throw new Error(`Unable to fetch transaction receipt for ${tx}`);
+
+      for (const log of result.logs) {
+        if (
+          log.address === ETH_CORE &&
+          log.topics?.[0] === LOG_MESSAGE_PUBLISHED_TOPIC
+        ) {
+          const emitter = log.topics[1].substring(2);
+          const seq = BigInt(log.data.substring(0, 66)).toString();
+          vaaIds.push(`2/${emitter}/${seq}`);
+        }
+      }
+    } catch (error) {
+      console.error(`Error processing ${tx}:`, error);
+    }
+  }
+
+  return vaaIds;
+}
+```
+
+???- code "Try it out: VAA ID retrieval"
+    If you want to try out the function before moving forward, create a test file inside the `test` directory: 
+
+    1. **Create the directory and file** - add a script to call `fetchVaaId` and print the result
+
+        ```bash
+        mkdir -p test
+        touch test/fetchVaaId.run.ts
+        ```  
+    2. **Add the function call**  
+
+        ```typescript title="test/fetchVaaId.run.ts"
+        import { fetchVaaId } from '../src/helpers/vaaHelper';
+import { TXS } from '../src/config/constants';
+
+const testFetchVaaId = async () => {
+  for (const tx of TXS) {
+    const vaaIds = await fetchVaaId([tx]);
+
+    if (vaaIds.length > 0) {
+      console.log(`Transaction: ${tx}`);
+      vaaIds.forEach((vaaId) => console.log(`VAA ID: ${vaaId}`));
+    } else {
+      console.log(`No VAA ID found for transaction: ${tx}`);
+    }
+  }
+};
+
+testFetchVaaId();
+        ```  
+
+    3. **Run the script**  
+
+        ```bash
+        npx tsx test/fetchVaaId.run.ts
+        ```  
+
+        If successful, the output will be:
+
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaaId.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty
+		>VAA ID: 2/0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585/164170</span
+	>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+        If no VAA ID is found, the script will log an error message.
+
+### Fetch the Full VAA
+
+Now that you have the VAA ID, we can use it to fetch the full VAA payload from the Wormholescan API. This payload contains the VAA bytes, which will later be used for signature validation.
+
+Open `src/helpers/vaaHelper.ts` and create the `fetchVaa()` function to iterate through VAA IDs and extract the `vaaBytes` payload.
+
+```typescript title="src/helpers/vaaHelper.ts"
+vaaIds: string[]
+): Promise<{ id: string; vaaBytes: string }[]> {
+  const results: { id: string; vaaBytes: string }[] = [];
+
+  for (const id of vaaIds) {
+    try {
+      const response = await axios.get(`${WORMHOLESCAN_API}/signed_vaa/${id}`);
+      const vaaBytes = response.data.vaaBytes;
+      results.push({ id, vaaBytes });
+    } catch (error) {
+      console.error(`Error fetching VAA for ${id}:`, error);
+    }
+  }
+  return results;
+}
+```
+
+???- code "Try it out: VAA retrieval"
+    If you want to try the function before moving forward, create a script inside the `test` directory  
+
+    1. **Create the script file**
+
+        ```bash
+        touch test/fetchVaa.run.ts
+        ```
+
+    2. **Add the function call**  
+
+        ```typescript title="test/fetchVaa.run.ts"
+        import { fetchVaaId, fetchVaa } from '../src/helpers/vaaHelper';
+import { TXS } from '../src/config/constants';
+
+const testFetchVaa = async () => {
+  for (const tx of TXS) {
+    const vaaIds = await fetchVaaId([tx]);
+
+    if (vaaIds.length === 0) {
+      console.log(`No VAA ID found for transaction: ${tx}`);
+      continue;
+    }
+
+    for (const vaaId of vaaIds) {
+      const vaaBytes = await fetchVaa([vaaId]);
+
+      console.log(
+        `Transaction: ${tx}\nVAA ID: ${vaaId}\nVAA Bytes: ${
+          vaaBytes.length > 0 ? vaaBytes[0].vaaBytes : 'Not found'
+        }`
+      );
+    }
+  }
+};
+
+testFetchVaa();
+        ```
+
+    3. **Run the script**  
+
+        ```bash
+        npx tsx test/fetchVaa.run.ts
+        ```
+
+        If successful, the output will be:
+
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchVaa.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty
+		>VAA Bytes: AQAAAAMNANQSwD/HRPcKp7Yxypl1ON8dZeMBzgYJrd2KYz6l9Tq9K9fj72fYJgkMeMaB9h...</span
+	>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+        If no VAA is found, the script will log an error message.
+
+### Validate VAA Signatures
+
+Now, we need to verify its validity. A VAA is only considered valid if it contains signatures from currently active Guardians and is correctly verified by the Wormhole Core contract.
+
+Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. This function verifies whether a VAA is valid by submitting it to an Ethereum RPC node and checking for outdated signatures.  
+
+Follow these steps to implement the function:  
+
+1. **Prepare the VAA for verification** - construct the VAA payload in a format that can be sent to the Wormhole Core contract
+
+2. **Send an `eth_call` request** - submit the VAA to an Ethereum RPC node, calling the `parseAndVerifyVM` function on the Wormhole Core contract
+
+3. **Decode the response** - check whether the VAA is valid. If it contains outdated signatures, further action will be required to replace them
+
+```typescript title="src/helpers/vaaHelper.ts"
+try {
+    const vaa = Buffer.from(vaaBytes, 'base64');
+    vaa[4] = 4; // Set guardian set index to 4
+
+    const result = (
+      await axios.post(RPC, {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'eth_call',
+        params: [
+          {
+            from: null,
+            to: ETH_CORE,
+            data: eth.abi.encodeFunctionCall(PARSE_AND_VERIFY_VM_ABI, [
+              `0x${vaa.toString('hex')}`,
+            ]),
+          },
+          'latest',
+        ],
+      })
+    ).data.result;
+
+    const decoded = eth.abi.decodeParameters(
+      PARSE_AND_VERIFY_VM_ABI.outputs,
+      result
+    );
+    console.log(
+      `${decoded.valid ? '✅' : '❌'} VAA Valid: ${decoded.valid}${
+        decoded.valid ? '' : `, Reason: ${decoded.reason}`
+      }`
+    );
+
+    return { valid: decoded.valid, reason: decoded.reason };
+  } catch (error) {
+    console.error(`Error checking VAA validity:`, error);
+    return { valid: false, reason: 'RPC error' };
+  }
+}
+```
+
+???- code "Try it out: VAA Validity"
+    If you want to try the function before moving forward, create a script inside the `test` directory
+
+    1. **Create the script file**
+
+        ```bash
+        touch test/checkVaaValidity.run.ts
+        ```
+
+    2. **Add the function call**
+
+        ```typescript title="test/checkVaaValidity.run.ts"
+        import {
+  fetchVaaId,
+  fetchVaa,
+  checkVaaValidity,
+} from '../src/helpers/vaaHelper';
+import { TXS } from '../src/config/constants';
+
+const testCheckVaaValidity = async () => {
+  for (const tx of TXS) {
+    const vaaIds = await fetchVaaId([tx]);
+
+    if (vaaIds.length === 0) {
+      console.log(`No VAA ID found for transaction: ${tx}`);
+      continue;
+    }
+
+    for (const vaaId of vaaIds) {
+      const vaaData = await fetchVaa([vaaId]);
+
+      if (vaaData.length === 0 || !vaaData[0].vaaBytes) {
+        console.log(`VAA not found for ID: ${vaaId}`);
+        continue;
+      }
+
+      const result = await checkVaaValidity(vaaData[0].vaaBytes);
+      console.log(
+        `Transaction: ${tx}\nVAA ID: ${vaaId}\nVAA Validity:`,
+        result
+      );
+    }
+  }
+};
+
+testCheckVaaValidity();
+        ```
+
+    3. **Run the script**
+
+        ```bash
+        npx tsx test/checkVaaValidity.run.ts
+        ```
+
+        If the VAA is valid, the output will be:  
+
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>✅ VAA Valid: true</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+        If invalid, the output will include the reason:
+
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/checkVaaValidity.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+### Fetch Observations (VAA Signatures)
+
+Before replacing outdated signatures, we need to fetch the original VAA signatures from Wormholescan. This allows us to compare them with the latest Guardian set and determine which ones need updating.
+
+Inside `src/helpers/vaaHelper.ts`, create the `fetchObservations()` function to query the Wormholescan API for observations related to a given VAA. Format the response by converting Guardian addresses to lowercase for consistency, and return an empty array if an error occurs.
+
+```typescript title="src/helpers/vaaHelper.ts"
+try {
+    console.log(`Fetching observations`);
+
+    const response = await axios.get(
+      `https://api.wormholescan.io/api/v1/observations/${vaaId}`
+    );
+
+    return response.data.map((obs: any) => ({
+      guardianAddr: obs.guardianAddr.toLowerCase(),
+      signature: obs.signature,
+    }));
+  } catch (error) {
+    console.error(`Error fetching observations:`, error);
+    return [];
+  }
+}
+```
+
+???- code "Try it out: Fetch Observations"
+    If you want to try the function before moving forward, create a script inside the `test` directory
+
+    1. **Create the script file**
+
+        ```bash
+        touch test/fetchObservations.run.ts
+        ```
+
+    2. **Add the function call**
+
+        ```typescript title="test/fetchObservations.run.ts"
+        import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
+import { TXS } from '../src/config/constants';
+
+const testFetchObservations = async () => {
+  for (const tx of TXS) {
+    const vaaIds = await fetchVaaId([tx]);
+
+    if (vaaIds.length === 0) {
+      console.log(`No VAA ID found for transaction: ${tx}`);
+      continue;
+    }
+
+    for (const vaaId of vaaIds) {
+      const observations = await fetchObservations(vaaId);
+
+      if (observations.length === 0) {
+        console.log(`No observations found for VAA ID: ${vaaId}`);
+        continue;
+      }
+
+      console.log(
+        `Transaction: ${tx}\nVAA ID: ${vaaId}\nObservations:`,
+        observations
+      );
+    }
+  }
+};
+
+testFetchObservations();
+        ```
+
+    3. **Run the script**
+
+        ```bash
+        npx tsx test/fetchObservations.run.ts
+        ```
+
+        If successful, the output will be:
+
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchObservations.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>Fetching observations</span>
+	<span data-ty
+		>Transaction: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span
+	>
+	<span data-ty
+		>Observations: [ { guardianAddr: '0xda798f6896a3331f64b48c12d1d57fd9cbe70811', signature:
+		'ZGFlMDYyOGNjZjFjMmE0ZTk5YzE2OThhZjAzMDM4NzZlYTM1OWMxMzczNDA3YzdlMDMxZTkyNzk0ODkwYjRiYjRiOWFmNzM3NjRiMzIyOTE0ZTQwYzNlMjllMWEzNmM2NTc3ZDc5ZTdhNTM2MzA5YjA4YjExZjE3YzE3MDViNWIwMQ=='
+		}, { guardianAddr: '0x74a3bf913953d695260d88bc1aa25a4eee363ef0', signature:
+		'MzAyOTU4OGU4MWU0ODc0OTAwNDU3N2EzMGZlM2UxMDJjOWYwMjM0NWVhY2VmZWQ0ZGJlNTFkNmI3YzRhZmQ5ZTNiODFjNTg3MDNmYzUzNmJiYWFiZjNlODc1YTY3OTQwMGE4MmE3ZjZhNGYzOGY3YmRmNDNhM2VhNGQyNWNlNGMwMA=='
+		},</span
+	>
+	<span data-ty>...]</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+        If no observations are found, the script will log an error message.
+
+### Fetch the Latest Guardian Set
+
+Now that we have the original VAA signatures, we must fetch the latest Guardian set from Wormholescan. This will allow us to compare the stored signatures with the current Guardians and determine which signatures need replacing.
+
+Create the `fetchGuardianSet()` function inside `src/helpers/vaaHelper.ts` to fetch the latest Guardian set.
+
+```typescript title="src/helpers/vaaHelper.ts"
+export async function fetchGuardianSet() {
+  try {
+    console.log('Fetching current guardian set');
+
+    const response = await axios.get(`${WORMHOLESCAN_API}/guardianset/current`);
+    const guardians = response.data.guardianSet.addresses.map((addr: string) =>
+      addr.toLowerCase()
+    );
+    const guardianSet = response.data.guardianSet.index;
+
+    return [guardians, guardianSet];
+  } catch (error) {
+    console.error('Error fetching guardian set:', error);
+    return [];
+  }
+}
+```
+
+???- code "Try it out: Fetch Guardian Set"
+    If you want to try the function before moving forward, create a script inside the `test` directory
+
+    1. **Create the script file**
+
+        ```bash
+        touch test/fetchGuardianSet.run.ts
+        ```
+
+    2. **Add the function call**
+
+        ```typescript title="test/fetchGuardianSet.run.ts"
+        import { fetchGuardianSet } from '../src/helpers/vaaHelper';
+
+const testFetchGuardianSet = async () => {
+  const [guardians, guardianSetIndex] = await fetchGuardianSet();
+
+  console.log('Current Guardian Set Index:', guardianSetIndex);
+  console.log('Guardian Addresses:', guardians);
+};
+
+testFetchGuardianSet();
+        ```
+
+    3. **Run the script**
+
+        ```bash
+        npx tsx test/fetchGuardianSet.run.ts
+        ```
+
+        If successful, the output will be:
+
+        <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx test/fetchGuardianSet.run.ts</span>
+	<span data-ty> </span>
+	<span data-ty>Fetching current guardian set</span>
+	<span data-ty>Current Guardian Set Index: 4</span>
+    <span data-ty>Guardian Addresses: [
+        '0x5893b5a76c3f739645648885bdccc06cd70a3cd3',
+        '0xff6cb952589bde862c25ef4392132fb9d4a42157',
+        '0x114de8460193bdf3a2fcf81f86a09765f4762fd1',
+        '0x107a0086b32d7a0977926a205131d8731d39cbeb',
+    </span>
+    <span data-ty>...]</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+        If an error occurs while fetching the Guardian set, a `500` status error will be logged.
+
+### Replace Outdated Signatures
+
+With the full VAA, Guardian signatures, and the latest Guardian set, we can now update outdated signatures while maintaining the required signature count.
+
+1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block
+
+    ```typescript title="src/helpers/vaaHelper.ts"
+    vaa: string | Uint8Array<ArrayBufferLike>,
+  observations: { guardianAddr: string; signature: string }[],
+  currentGuardians: string[],
+  guardianSetIndex: number
+) {
+  console.log('Replacing Signatures...');
+
+  try {
+        // Add logic in the following steps here
+    console.error('Unexpected error in replaceSignatures:', error);
+  }
+}
+    ```
+
+     - **`vaa`** - original VAA bytes
+     - **`observations`** - observed signatures from the network
+     - **`currentGuardians`** - latest Guardian set
+     - **`guardianSetIndex`** - current Guardian set index
+
+2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The Guardian set should never be empty; if it is, this likely indicates an error in fetching the Guardian set in a previous step
+
+    ```typescript
+    if (currentGuardians.length === 0)
+      throw new Error('Guardian set is empty.');
+    if (observations.length === 0) throw new Error('No observations provided.');
+    ```
+
+3. **Filter valid signatures** - remove signatures from inactive Guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA
+
+    ```typescript
+    currentGuardians.includes(sig.guardianAddr)
+    );
+
+    if (validSigs.length === 0)
+      throw new Error('No valid signatures found. Cannot proceed.');
+    ```
+
+4. **Convert valid signatures** - ensure signatures are correctly formatted for verification. Convert hex-encoded signatures if necessary and extract their components
+
+    ```typescript
+    .map((sig) => {
+        try {
+          const sigBuffer = Buffer.from(sig.signature, 'base64');
+          // If it's 130 bytes, it's hex-encoded and needs conversion
+          const sigBuffer1 =
+            sigBuffer.length === 130
+              ? Buffer.from(sigBuffer.toString(), 'hex')
+              : sigBuffer;
+
+          const r = BigInt('0x' + sigBuffer1.subarray(0, 32).toString('hex'));
+          const s = BigInt('0x' + sigBuffer1.subarray(32, 64).toString('hex'));
+          const vRaw = sigBuffer1[64];
+          const v = vRaw < 27 ? vRaw : vRaw - 27;
+
+          return {
+            guardianIndex: currentGuardians.indexOf(sig.guardianAddr),
+            signature: new Signature(r, s, v),
+          };
+        } catch (error) {
+          console.error(
+            `Failed to process signature for guardian: ${sig.guardianAddr}`,
+            error
+          );
+          return null;
+        }
+      })
+      .filter(
+        (sig): sig is { guardianIndex: number; signature: Signature } =>
+          sig !== null
+      ); // Remove null values
+    ```
+
+5. **Deserialize the VAA** - convert the raw VAA data into a structured format for further processing
+
+    ```typescript
+    try {
+      parsedVaa = deserialize('Uint8Array', vaa);
+    } catch (error) {
+      throw new Error(`Error deserializing VAA: ${error}`);
+    }
+    ```
+
+6. **Identify outdated signatures** - compare the current VAA signatures with the newly formatted ones to detect which signatures belong to outdated Guardians. Remove these outdated signatures to ensure only valid ones remain
+
+    ```typescript
+    .filter(
+        (vaaSig) =>
+          !formattedSigs.some(
+            (sig) => sig.guardianIndex === vaaSig.guardianIndex
+          )
+      )
+      .map((sig) => sig.guardianIndex);
+
+    console.log('Outdated Guardian Indexes:', outdatedGuardianIndexes);
+
+    let updatedSignatures = parsedVaa.signatures.filter(
+      (sig) => !outdatedGuardianIndexes.includes(sig.guardianIndex)
+    );
+    ```
+
+7. **Replace outdated signatures** - substitute outdated signatures with valid ones while maintaining the correct number of signatures. If there aren’t enough valid replacements, execution stops
+
+    ```typescript
+    (sig) =>
+        !updatedSignatures.some((s) => s.guardianIndex === sig.guardianIndex)
+    );
+
+    // Check if we have enough valid signatures to replace outdated ones**
+    if (outdatedGuardianIndexes.length > validReplacements.length) {
+      console.warn(
+        `Not enough valid replacement signatures! Need ${outdatedGuardianIndexes.length}, but only ${validReplacements.length} available.`
+      );
+      return;
+    }
+
+    updatedSignatures = [
+      ...updatedSignatures,
+      ...validReplacements.slice(0, outdatedGuardianIndexes.length),
+    ];
+
+    updatedSignatures.sort((a, b) => a.guardianIndex - b.guardianIndex);
+    ```
+
+8. **Serialize the updated VAA** - reconstruct the VAA with the updated signatures and convert it into a format suitable for submission
+
+    ```typescript
+    ...parsedVaa,
+      guardianSet: guardianSetIndex,
+      signatures: updatedSignatures,
+    };
+
+    let patchedVaa: Uint8Array;
+    try {
+      patchedVaa = serialize(updatedVaa);
+    } catch (error) {
+      throw new Error(`Error serializing updated VAA: ${error}`);
+    }
+    ```
+
+9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for Guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
+
+    ```typescript
+    if (!(patchedVaa instanceof Uint8Array))
+        throw new Error('Patched VAA is not a Uint8Array!');
+
+      const vaaHex = `0x${Buffer.from(patchedVaa).toString('hex')}`;
+
+      console.log('Sending updated VAA to RPC...');
+
+      const result = await axios.post(RPC, {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'eth_call',
+        params: [
+          {
+            from: null,
+            to: ETH_CORE,
+            data: eth.abi.encodeFunctionCall(PARSE_AND_VERIFY_VM_ABI, [vaaHex]),
+          },
+          'latest',
+        ],
+      });
+
+      const verificationResult = result.data.result;
+      console.log('Updated VAA (hex):', vaaHex);
+      return verificationResult;
+    } catch (error) {
+      throw new Error(`Error sending updated VAA to RPC: ${error}`);
+    }
+    ```
+
+???- code "Complete Function"
+    ```typescript
+    vaa: string | Uint8Array<ArrayBufferLike>,
+  observations: { guardianAddr: string; signature: string }[],
+  currentGuardians: string[],
+  guardianSetIndex: number
+) {
+  console.log('Replacing Signatures...');
+
+  try {
+    if (!vaa) throw new Error('VAA is undefined or empty.');
+    if (currentGuardians.length === 0)
+      throw new Error('Guardian set is empty.');
+    if (observations.length === 0) throw new Error('No observations provided.');
+
+    const validSigs = observations.filter((sig) =>
+      currentGuardians.includes(sig.guardianAddr)
+    );
+
+    if (validSigs.length === 0)
+      throw new Error('No valid signatures found. Cannot proceed.');
+
+    const formattedSigs = validSigs
+      .map((sig) => {
+        try {
+          const sigBuffer = Buffer.from(sig.signature, 'base64');
+          // If it's 130 bytes, it's hex-encoded and needs conversion
+          const sigBuffer1 =
+            sigBuffer.length === 130
+              ? Buffer.from(sigBuffer.toString(), 'hex')
+              : sigBuffer;
+
+          const r = BigInt('0x' + sigBuffer1.subarray(0, 32).toString('hex'));
+          const s = BigInt('0x' + sigBuffer1.subarray(32, 64).toString('hex'));
+          const vRaw = sigBuffer1[64];
+          const v = vRaw < 27 ? vRaw : vRaw - 27;
+
+          return {
+            guardianIndex: currentGuardians.indexOf(sig.guardianAddr),
+            signature: new Signature(r, s, v),
+          };
+        } catch (error) {
+          console.error(
+            `Failed to process signature for guardian: ${sig.guardianAddr}`,
+            error
+          );
+          return null;
+        }
+      })
+      .filter(
+        (sig): sig is { guardianIndex: number; signature: Signature } =>
+          sig !== null
+      ); // Remove null values
+
+    let parsedVaa: VAA<'Uint8Array'>;
+    try {
+      parsedVaa = deserialize('Uint8Array', vaa);
+    } catch (error) {
+      throw new Error(`Error deserializing VAA: ${error}`);
+    }
+
+    const outdatedGuardianIndexes = parsedVaa.signatures
+      .filter(
+        (vaaSig) =>
+          !formattedSigs.some(
+            (sig) => sig.guardianIndex === vaaSig.guardianIndex
+          )
+      )
+      .map((sig) => sig.guardianIndex);
+
+    console.log('Outdated Guardian Indexes:', outdatedGuardianIndexes);
+
+    let updatedSignatures = parsedVaa.signatures.filter(
+      (sig) => !outdatedGuardianIndexes.includes(sig.guardianIndex)
+    );
+
+    const validReplacements = formattedSigs.filter(
+      (sig) =>
+        !updatedSignatures.some((s) => s.guardianIndex === sig.guardianIndex)
+    );
+
+    // Check if we have enough valid signatures to replace outdated ones**
+    if (outdatedGuardianIndexes.length > validReplacements.length) {
+      console.warn(
+        `Not enough valid replacement signatures! Need ${outdatedGuardianIndexes.length}, but only ${validReplacements.length} available.`
+      );
+      return;
+    }
+
+    updatedSignatures = [
+      ...updatedSignatures,
+      ...validReplacements.slice(0, outdatedGuardianIndexes.length),
+    ];
+
+    updatedSignatures.sort((a, b) => a.guardianIndex - b.guardianIndex);
+
+    const updatedVaa: VAA<'Uint8Array'> = {
+      ...parsedVaa,
+      guardianSet: guardianSetIndex,
+      signatures: updatedSignatures,
+    };
+
+    let patchedVaa: Uint8Array;
+    try {
+      patchedVaa = serialize(updatedVaa);
+    } catch (error) {
+      throw new Error(`Error serializing updated VAA: ${error}`);
+    }
+
+    try {
+      if (!(patchedVaa instanceof Uint8Array))
+        throw new Error('Patched VAA is not a Uint8Array!');
+
+      const vaaHex = `0x${Buffer.from(patchedVaa).toString('hex')}`;
+
+      console.log('Sending updated VAA to RPC...');
+
+      const result = await axios.post(RPC, {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'eth_call',
+        params: [
+          {
+            from: null,
+            to: ETH_CORE,
+            data: eth.abi.encodeFunctionCall(PARSE_AND_VERIFY_VM_ABI, [vaaHex]),
+          },
+          'latest',
+        ],
+      });
+
+      const verificationResult = result.data.result;
+      console.log('Updated VAA (hex):', vaaHex);
+      return verificationResult;
+    } catch (error) {
+      throw new Error(`Error sending updated VAA to RPC: ${error}`);
+    }
+  } catch (error) {
+    console.error('Unexpected error in replaceSignatures:', error);
+  }
+}
+    ```
+
+## Create Script to Replace Outdated VAA Signatures
+
+Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest Guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for Guardian approval.
+
+1. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
+
+    ```typescript title="src/scripts/replaceSignatures.ts"
+    fetchVaaId,
+  fetchVaa,
+  checkVaaValidity,
+  fetchObservations,
+  fetchGuardianSet,
+  replaceSignatures,
+} from '../helpers/vaaHelper';
+import { TXS } from '../config/constants';
+    ```
+
+2. **Define the main execution function** - add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process
+
+    ```typescript
+    try {
+    for (const tx of TXS) {
+      console.log(`\nProcessing TX: ${tx}\n`);
+
+      // 1. Fetch Transaction VAA IDs:
+      const vaaIds = await fetchVaaId([tx]);
+      if (!vaaIds.length) continue;
+
+      // 2. Fetch VAA Data:
+      const vaaData = await fetchVaa(vaaIds);
+      if (!vaaData.length) continue;
+
+      const vaaBytes = vaaData[0].vaaBytes;
+      if (!vaaBytes) continue;
+
+      // 3. Check VAA Validity:
+      const { valid } = await checkVaaValidity(vaaBytes);
+      if (valid) continue;
+
+      // 4. Fetch Observations (VAA signatures):
+      const observations = await fetchObservations(vaaIds[0]);
+
+      // 5. Fetch Current Guardian Set:
+      const [currentGuardians, guardianSetIndex] = await fetchGuardianSet();
+
+      // 6. Replace Signatures:
+      const response = await replaceSignatures(
+        Buffer.from(vaaBytes, 'base64'),
+        observations,
+        currentGuardians,
+        guardianSetIndex
+      );
+
+      if (!response) continue;
+    }
+  } catch (error) {
+    console.error('❌ Error in execution:', error);
+    process.exit(1);
+  }
+}
+    ```
+
+3. **Make the script executable** - ensure it runs when executed
+
+    ```typescript
+    
+    ```
+
+    To run the script, use the following command:
+
+    ```bash
+    npx tsx src/scripts/replaceSignatures.ts
+    ```
+
+    <div id="termynal" data-termynal>
+	<span data-ty="input"><span class="file-path"></span>npx tsx src/scripts/replaceSignatures.ts</span>
+	<span data-ty> </span>
+	<span data-ty>Processing TX: 0x3ad91ec530187bb2ce3b394d587878cd1e9e037a97e51fbc34af89b2e0719367</span>
+    <span data-ty>❌ VAA Valid: false, Reason: VM signature invalid</span>
+    <span data-ty>Fetching observations</span>
+    <span data-ty>Fetching current guardian set</span>
+    <span data-ty>Replacing Signatures...</span>
+    <span data-ty>Outdated Guardian Indexes: [ 0 ]</span>
+    <span data-ty>Sending updated VAA to RPC...</span>
+    <span data-ty>Updated VAA (hex): 0x01000000040d010019447b72d51e33923a3d6b28496ccd3722d5f1e33e2...</span>
+	<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+The script logs each step, skipping valid VAAs, replacing outdated signatures for invalid VAAs, and logging any errors. It then completes with a valid VAA ready for submission.
+
+## Resources
+
+You can explore the complete project and find all necessary scripts and configurations in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}.
+
+The demo repository includes a bonus script to check the VAA redemption status on Ethereum and Solana, allowing you to verify whether a transaction has already been redeemed on the destination chain.
+
+## Conclusion
+
+You've successfully built a script to fetch, validate, and replace outdated signatures in VAAs using Wormholescan and the Wormhole SDK.
+
+It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for Guardian approval to finalize the process.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/tutorials/
