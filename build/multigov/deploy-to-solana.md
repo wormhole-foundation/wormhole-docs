@@ -65,7 +65,7 @@ To verify the current balance of the deployer account, run the following command
 solana balance -k ./app/keypairs/deployer.json
 ```
 
-!!! important 
+!!! warning 
     When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
 
     - 7.60219224 SOL for deployment costs
@@ -97,7 +97,7 @@ With the deployer account set up and funded, you can deploy the MultiGov Staking
 
 ### Deploy the Program  
 
-Deploy the MultiGov Staking Program using **Anchor**:  
+Deploy the MultiGov Staking Program using Anchor:  
 
 ```bash
 anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet ./app/keypairs/deployer.json
