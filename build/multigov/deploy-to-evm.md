@@ -1,9 +1,9 @@
 ---
-title: MultiGov Deployment to EVM
+title: Deploy MultiGov on EVM Chains
 description: Set up and deploy MultiGov to EVM locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 ---
 
-# Deploy MultiGov on EVM
+# Deploy MultiGov on EVM Chains
 
 This guide provodes instructions to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project’s governance needs by following the steps for the [integration process](/docs/build/multigov/){target=\_blank}.
 
