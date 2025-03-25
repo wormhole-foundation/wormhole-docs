@@ -1,22 +1,22 @@
 [
     {
-        "title": "[Installation](/docs/build/transfers/native-token-transfers/deployment-process/installation/)",
-        "content": "Includes video and text walk throughs to install the Native Token Transfers (NTT) CLI.",
+        "title": "[Install NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/)",
+        "content": "The NTT CLI tool provides a comprehensive set of commands for creating, configuring, deploying, and monitoring NTTs.",
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "[NTT Configuration](/docs/build/transfers/native-token-transfers/configuration/)",
-        "content": "How to configure NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.",
+        "title": "[Configure NTTs](/docs/build/transfers/native-token-transfers/configuration/)",
+        "content": "Set NTT configuration options to manage Owner and Pauser access control roles and  rate-limiting.",
         "icon": ":fontawesome-solid-2:"
     },
     {
-        "title": "[Deployment](/docs/build/transfers/native-token-transfers/deployment-process/)",
-        "content": "Includes guidance on deploying to EVM chains and Solana.",
-        "icon": ":fontawesome-solid-3:",
+        "title": "[Deploy NTTs](/docs/build/transfers/native-token-transfers/deployment-process/)",
+        "content": "Deploy your NTT to EVM chains and Solana.",
+        "icon": ":fontawesome-solid-3:"
     },
     {
-        "title": "[Post Deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)",
-        "content": "Best practices guidance for managing your NTT integration beyond deployment.",
+        "title": "[Beyond Deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)",
+        "content": "Important considerations for managing your NTT integration after deployment. Find links to projects demonstrating NTT integration.",
         "icon": ":fontawesome-solid-4:"
     }
 ]
