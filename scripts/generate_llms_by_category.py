@@ -31,9 +31,16 @@ def extract_category(category, core_content=None): # function that will look for
         if not category_line:
             continue
 
+        def infer_section_label(url):
+            for section in SECTION_PRIORITY:
+                if f"/{section}/" in url:
+                    return section
+            return "other"
+
         tags = [tag.strip().lower() for tag in category_line.group(1).split(',')] # splits tags by comma 
         if category.lower() in tags:
-            index_lines.append(f"Doc-Page: {url}") # store url
+            section_label = infer_section_label(url)
+            index_lines.append(f"Doc-Page: {url} [type: {section_label}]") # store url
             content_blocks.append(f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---") # store full page
 
     if not content_blocks:
@@ -45,8 +52,8 @@ def extract_category(category, core_content=None): # function that will look for
 
         # Intro context block
         f.write(f"# Wormhole Developer Documentation (LLMS Format)\n\n")
-        f.write(f"This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol.\n")
-        f.write("It is intended for use with large language models (LLMs) to assist developers integrating Wormhole.\n\n")
+        f.write("This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.\n")
+        f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
         f.write(f"This file includes documentation related to: {category}\n\n")
 
         # Sort index/content pairs using SECTION_PRIORITY
@@ -69,8 +76,8 @@ def extract_category(category, core_content=None): # function that will look for
 
         # Attach core content 
         if core_content and category.lower() != "core":
-            f.write("\n\n# Shared Core Concepts\n")
-            f.write("The following section contains shared core documentation relevant to all Wormhole products.\n")
+            f.write("\n\n# Core Concepts\n")
+            f.write("The following section contains core documentation relevant to all Wormhole products.\n")
             f.write("It includes essential messaging infrastructure concepts such as VAA structure, guardians, modules, and message flow.\n")
             f.write("\n---\n\n")
             f.write(core_content.strip())

@@ -1,23 +1,23 @@
 # Wormhole Developer Documentation (LLMS Format)
 
-This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol.
-It is intended for use with large language models (LLMs) to assist developers integrating Wormhole.
+This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.
+It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
 This file includes documentation related to: MultiGov
 
 # List of doc pages:
-Doc-Page: https://wormhole.com/docs/learn/governance/
-Doc-Page: https://wormhole.com/docs/learn/governance/architecture/
-Doc-Page: https://wormhole.com/docs/learn/governance/faq/
-Doc-Page: https://wormhole.com/docs/learn/governance/overview/
-Doc-Page: https://wormhole.com/docs/build/multigov/
-Doc-Page: https://wormhole.com/docs/build/multigov/deploy-to-evm/
-Doc-Page: https://wormhole.com/docs/build/multigov/deploy-to-solana/
-Doc-Page: https://wormhole.com/docs/build/multigov/faq/
-Doc-Page: https://wormhole.com/docs/build/multigov/upgrade-evm/
-Doc-Page: https://wormhole.com/docs/build/multigov/upgrade-solana/
-Doc-Page: https://wormhole.com/docs/tutorials/by-product/multigov/
-Doc-Page: https://wormhole.com/docs/tutorials/by-product/multigov/treasury-proposal/
+Doc-Page: https://wormhole.com/docs/learn/governance/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/governance/architecture/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/governance/faq/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/governance/overview/ [type: learn]
+Doc-Page: https://wormhole.com/docs/build/multigov/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/multigov/deploy-to-evm/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/multigov/deploy-to-solana/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/multigov/faq/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/multigov/upgrade-evm/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/multigov/upgrade-solana/ [type: build]
+Doc-Page: https://wormhole.com/docs/tutorials/by-product/multigov/ [type: tutorials]
+Doc-Page: https://wormhole.com/docs/tutorials/by-product/multigov/treasury-proposal/ [type: tutorials]
 
 # Full content for each doc page
 
@@ -1200,39 +1200,39 @@ governor.execute(targets, values, calldatas, descriptionHash);
 Once the proposal is executed, the encoded messages will be dispatched via Wormhole to the spoke chains, where the Optimism and Arbitrum treasuries will receive their respective funds.
 --- END CONTENT ---
 
-# Shared Core Concepts
-The following section contains shared core documentation relevant to all Wormhole products.
+# Core Concepts
+The following section contains core documentation relevant to all Wormhole products.
 It includes essential messaging infrastructure concepts such as VAA structure, guardians, modules, and message flow.
 
 ---
 
 # Wormhole Developer Documentation (LLMS Format)
 
-This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol.
-It is intended for use with large language models (LLMs) to assist developers integrating Wormhole.
+This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.
+It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
 This file includes documentation related to: Core
 
 # List of doc pages:
-Doc-Page: https://wormhole.com/docs/learn/glossary/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/architecture/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/core-contracts/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/guardians/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/relayer/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/spy/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/vaas/
-Doc-Page: https://wormhole.com/docs/learn/introduction/
-Doc-Page: https://wormhole.com/docs/learn/security/
-Doc-Page: https://wormhole.com/docs/build/core-messaging/core-contracts/
-Doc-Page: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/
-Doc-Page: https://wormhole.com/docs/build/reference/
-Doc-Page: https://wormhole.com/docs/build/reference/chain-ids/
-Doc-Page: https://wormhole.com/docs/build/reference/consistency-levels/
-Doc-Page: https://wormhole.com/docs/build/reference/contract-addresses/
-Doc-Page: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/
-Doc-Page: https://wormhole.com/docs/build/start-building/supported-networks/
-Doc-Page: https://wormhole.com/docs/build/start-building/testnet-faucets/
+Doc-Page: https://wormhole.com/docs/learn/glossary/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/architecture/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/core-contracts/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/guardians/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/relayer/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/spy/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/vaas/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/introduction/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/security/ [type: learn]
+Doc-Page: https://wormhole.com/docs/build/core-messaging/core-contracts/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/chain-ids/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/consistency-levels/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/contract-addresses/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/start-building/supported-networks/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/start-building/testnet-faucets/ [type: build]
 
 # Full content for each doc page
 

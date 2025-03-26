@@ -1,18 +1,18 @@
 # Wormhole Developer Documentation (LLMS Format)
 
-This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol.
-It is intended for use with large language models (LLMs) to assist developers integrating Wormhole.
+This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.
+It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
 This file includes documentation related to: Settlement
 
 # List of doc pages:
-Doc-Page: https://wormhole.com/docs/learn/transfers/settlement/
-Doc-Page: https://wormhole.com/docs/learn/transfers/settlement/architecture/
-Doc-Page: https://wormhole.com/docs/learn/transfers/settlement/overview/
-Doc-Page: https://wormhole.com/docs/build/transfers/settlement/
-Doc-Page: https://wormhole.com/docs/build/transfers/settlement/faqs/
-Doc-Page: https://wormhole.com/docs/build/transfers/settlement/liquidity-layer/
-Doc-Page: https://wormhole.com/docs/build/transfers/settlement/solver/
+Doc-Page: https://wormhole.com/docs/learn/transfers/settlement/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/transfers/settlement/architecture/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/transfers/settlement/overview/ [type: learn]
+Doc-Page: https://wormhole.com/docs/build/transfers/settlement/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/transfers/settlement/faqs/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/transfers/settlement/liquidity-layer/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/transfers/settlement/solver/ [type: build]
 
 # Full content for each doc page
 
@@ -609,39 +609,39 @@ This example solver does NOT do the following:
 - Add auctions to auction history. We recommend that after settling a complete auction (one that you have won), you write the auction pubkey to a database and have a separate process to add auction history entries to reclaim rent from these auction accounts. The auction history time delay is two hours after the VAA timestamp. This example does not prescribe any specific database, so add whichever you want
 --- END CONTENT ---
 
-# Shared Core Concepts
-The following section contains shared core documentation relevant to all Wormhole products.
+# Core Concepts
+The following section contains core documentation relevant to all Wormhole products.
 It includes essential messaging infrastructure concepts such as VAA structure, guardians, modules, and message flow.
 
 ---
 
 # Wormhole Developer Documentation (LLMS Format)
 
-This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol.
-It is intended for use with large language models (LLMs) to assist developers integrating Wormhole.
+This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.
+It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
 This file includes documentation related to: Core
 
 # List of doc pages:
-Doc-Page: https://wormhole.com/docs/learn/glossary/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/architecture/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/core-contracts/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/guardians/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/relayer/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/spy/
-Doc-Page: https://wormhole.com/docs/learn/infrastructure/vaas/
-Doc-Page: https://wormhole.com/docs/learn/introduction/
-Doc-Page: https://wormhole.com/docs/learn/security/
-Doc-Page: https://wormhole.com/docs/build/core-messaging/core-contracts/
-Doc-Page: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/
-Doc-Page: https://wormhole.com/docs/build/reference/
-Doc-Page: https://wormhole.com/docs/build/reference/chain-ids/
-Doc-Page: https://wormhole.com/docs/build/reference/consistency-levels/
-Doc-Page: https://wormhole.com/docs/build/reference/contract-addresses/
-Doc-Page: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/
-Doc-Page: https://wormhole.com/docs/build/start-building/supported-networks/
-Doc-Page: https://wormhole.com/docs/build/start-building/testnet-faucets/
+Doc-Page: https://wormhole.com/docs/learn/glossary/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/architecture/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/core-contracts/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/guardians/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/relayer/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/spy/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/infrastructure/vaas/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/introduction/ [type: learn]
+Doc-Page: https://wormhole.com/docs/learn/security/ [type: learn]
+Doc-Page: https://wormhole.com/docs/build/core-messaging/core-contracts/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/chain-ids/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/consistency-levels/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/contract-addresses/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/start-building/supported-networks/ [type: build]
+Doc-Page: https://wormhole.com/docs/build/start-building/testnet-faucets/ [type: build]
 
 # Full content for each doc page
 
