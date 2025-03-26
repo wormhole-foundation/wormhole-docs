@@ -1,14 +1,17 @@
 import re
 import os
 
+# Customize the order of sections as they appear in URLs
+SECTION_PRIORITY = ["learn", "build", "tutorials"]
+
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-llms_input_path = os.path.join(docs_dir, 'llms.txt') # points to the full llms.txt
+llms_input_path = os.path.join(docs_dir, 'full-llms.txt') # points to the full full-llms.txt
 output_dir = os.path.join(docs_dir, 'llms-download')  # where we store individual category llms files
 os.makedirs(output_dir, exist_ok=True) # makes the directory 
 
 def extract_category(category, core_content=None): # function that will look for all pages tagged with a specific category
     with open(llms_input_path, 'r', encoding='utf-8') as f:
-        llms = f.read() # opens and reads the full llms.txt 
+        llms = f.read() # opens and reads the full-llms.txt 
 
     blocks = re.findall(
         r"Doc-Content: (.*?)\n--- BEGIN CONTENT ---\n(.*?)\n--- END CONTENT ---", # uses regex to extract each full doc block
@@ -46,11 +49,23 @@ def extract_category(category, core_content=None): # function that will look for
         f.write("It is intended for use with large language models (LLMs) to assist developers integrating Wormhole.\n\n")
         f.write(f"This file includes documentation related to: {category}\n\n")
 
+        # Sort index/content pairs using SECTION_PRIORITY
+        def sort_key(pair):
+            url = pair[0]
+            for i, section in enumerate(SECTION_PRIORITY):
+                if f"/{section}/" in url:
+                    return (i, url)
+            return (len(SECTION_PRIORITY), url)  # fallback for anything not matching
+
+        combined = list(zip(index_lines, content_blocks))
+        combined.sort(key=sort_key)
+        sorted_index_lines, sorted_content_blocks = zip(*combined) if combined else ([], [])
+
         # Index section
         f.write(f"# List of doc pages:\n")
-        f.write('\n'.join(index_lines))
+        f.write('\n'.join(sorted_index_lines))
         f.write("\n\n# Full content for each doc page\n\n")
-        f.write('\n\n'.join(content_blocks))
+        f.write('\n\n'.join(sorted_content_blocks))
 
         # Attach core content 
         if core_content and category.lower() != "core":
