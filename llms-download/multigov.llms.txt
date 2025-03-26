@@ -4,6 +4,15 @@ This file contains documentation for Wormhole (https://wormhole.com), a cross-ch
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
 This file includes documentation related to: MultiGov
+Each listed page may include implementation guides, conceptual overviews, or reference material.
+
+# AI Prompt Template
+
+You are an AI developer assistant for Wormhole (https://wormhole.com). Your task is to assist developers in understanding and using the product described in this file.
+- Provide accurate answers based only on the included documentation.
+- Do not assume undocumented features, behaviors, or APIs.
+- If unsure, respond with “Not specified in the documentation.”
+- Prefer concise explanations and code snippets where appropriate.
 
 # List of doc pages:
 Doc-Page: https://wormhole.com/docs/learn/governance/ [type: learn]
@@ -1200,20 +1209,14 @@ governor.execute(targets, values, calldatas, descriptionHash);
 Once the proposal is executed, the encoded messages will be dispatched via Wormhole to the spoke chains, where the Optimism and Arbitrum treasuries will receive their respective funds.
 --- END CONTENT ---
 
-# Core Concepts
-The following section contains core documentation relevant to all Wormhole products.
-It includes essential messaging infrastructure concepts such as VAA structure, guardians, modules, and message flow.
+# Core Concepts [shared: true]
+The following section contains foundational documentation shared across all Wormhole products.
+It covers core messaging infrastructure concepts such as the Wormhole core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and cross-chain message flow.
+This context is critical to understanding how any Wormhole integration works.
 
 ---
 
-# Wormhole Developer Documentation (LLMS Format)
-
-This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.
-It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
-
-This file includes documentation related to: Core
-
-# List of doc pages:
+# List of core concept pages:
 Doc-Page: https://wormhole.com/docs/learn/glossary/ [type: learn]
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/ [type: learn]
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/architecture/ [type: learn]
@@ -1234,7 +1237,7 @@ Doc-Page: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses
 Doc-Page: https://wormhole.com/docs/build/start-building/supported-networks/ [type: build]
 Doc-Page: https://wormhole.com/docs/build/start-building/testnet-faucets/ [type: build]
 
-# Full content for each doc page
+# Full content for core concepts:
 
 Doc-Content: https://wormhole.com/docs/learn/glossary/
 --- BEGIN CONTENT ---

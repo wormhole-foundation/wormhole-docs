@@ -9,7 +9,7 @@ llms_input_path = os.path.join(docs_dir, 'full-llms.txt') # points to the full f
 output_dir = os.path.join(docs_dir, 'llms-download')  # where we store individual category llms files
 os.makedirs(output_dir, exist_ok=True) # makes the directory 
 
-def extract_category(category, core_content=None): # function that will look for all pages tagged with a specific category
+def extract_category(category, core_data=None): # function that will look for all pages tagged with a specific category
     with open(llms_input_path, 'r', encoding='utf-8') as f:
         llms = f.read() # opens and reads the full-llms.txt 
 
@@ -54,7 +54,16 @@ def extract_category(category, core_content=None): # function that will look for
         f.write(f"# Wormhole Developer Documentation (LLMS Format)\n\n")
         f.write("This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
-        f.write(f"This file includes documentation related to: {category}\n\n")
+        f.write(f"This file includes documentation related to: {category}\n")
+        f.write("Each listed page may include implementation guides, conceptual overviews, or reference material.\n\n")
+
+        # AI Prompt Template block
+        f.write("# AI Prompt Template\n\n")
+        f.write("You are an AI developer assistant for Wormhole (https://wormhole.com). Your task is to assist developers in understanding and using the product described in this file.\n")
+        f.write("- Provide accurate answers based only on the included documentation.\n")
+        f.write("- Do not assume undocumented features, behaviors, or APIs.\n")
+        f.write("- If unsure, respond with “Not specified in the documentation.”\n")
+        f.write("- Prefer concise explanations and code snippets where appropriate.\n\n")
 
         # Sort index/content pairs using SECTION_PRIORITY
         def sort_key(pair):
@@ -75,21 +84,43 @@ def extract_category(category, core_content=None): # function that will look for
         f.write('\n\n'.join(sorted_content_blocks))
 
         # Attach core content 
-        if core_content and category.lower() != "core":
-            f.write("\n\n# Core Concepts\n")
-            f.write("The following section contains core documentation relevant to all Wormhole products.\n")
-            f.write("It includes essential messaging infrastructure concepts such as VAA structure, guardians, modules, and message flow.\n")
+        if core_data and category.lower() != "core":
+            core_index, core_content = core_data  # unpack the tuple
+            f.write("\n\n# Core Concepts [shared: true]\n")
+            f.write("The following section contains foundational documentation shared across all Wormhole products.\n")
+            f.write("It covers core messaging infrastructure concepts such as the Wormhole core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and cross-chain message flow.\n")
+            f.write("This context is critical to understanding how any Wormhole integration works.\n")
             f.write("\n---\n\n")
-            f.write(core_content.strip())
-    print(f"[✓] Generated {output_file} with {len(content_blocks)} pages + core" if core_content and category.lower() != "core" else f"[✓] Generated {output_file} with {len(content_blocks)} pages")
+            f.write("# List of core concept pages:\n")
+            f.write(core_index + "\n\n")
+            f.write("# Full content for core concepts:\n\n")
+            f.write(core_content)
+    print(f"[✓] Generated {output_file} with {len(content_blocks)} pages")
 
 def generate_all_categories():
     # First, extract and store core content
     extract_category('Core')
 
     core_path = os.path.join(output_dir, 'core.llms.txt')
+
     with open(core_path, 'r', encoding='utf-8') as f:
-        core_content = f.read()
+        raw_core = f.read()
+
+    # Extract index block
+    core_index_match = re.search(r"# List of doc pages:\n(.*?)\n\n# Full content", raw_core, re.DOTALL)
+    core_index = core_index_match.group(1).strip() if core_index_match else ""
+
+    # Extract all content blocks
+    core_blocks = re.findall(
+        r"Doc-Content: (.*?)\n--- BEGIN CONTENT ---\n(.*?)\n--- END CONTENT ---",
+        raw_core, re.DOTALL
+    )
+
+    core_content = ""
+    for url, content in core_blocks:
+        core_content += f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---\n\n"
+
+    core_data = (core_index, core_content.strip())
 
     categories = [
         'NTT',
@@ -104,8 +135,7 @@ def generate_all_categories():
 
     # Now extract other categories and append core
     for cat in categories:
-        extract_category(cat, core_content)
-
+        extract_category(cat, core_data)
 
 # Only run this if script is executed directly
 if __name__ == "__main__":
