@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers - Deployment Models
 description: Explore Wormhole's Native Token Transfers deployment models——hub-and-spoke, burn-and-mint——for seamless cross-chain token transfers.
+categories: NTT, Transfer
 ---
 
 # Deployment Models

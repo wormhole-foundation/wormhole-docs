@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers FAQs
 description: Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
+categories: NTT, Transfer
 ---
 
 # Wormhole NTT FAQs

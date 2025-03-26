@@ -1,6 +1,7 @@
 ---
 title: Reference
 description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
+categories: Core
 ---
 
 # Reference

@@ -1,6 +1,7 @@
 ---
 title: Run a Relayer
 description: Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
+categories: Relayers
 ---
 
 # Run a Custom Relayer

@@ -1,6 +1,7 @@
 ---
 title: Infrastructure Components
 description: Explore Wormhole's infrastructure, including the key components that enable secure multichain communication and asset transfers across blockchain networks.
+categories: Core
 ---
 
 # Infrastructure Components

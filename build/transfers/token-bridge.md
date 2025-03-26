@@ -1,6 +1,7 @@
 ---
 title: Get Started with Token Bridge
 description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+categories: Token Bridge, Transfer
 ---
 
 # Token Bridge

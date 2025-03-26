@@ -236,3 +236,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+from generate_llms_by_category import generate_all_categories
+
+generate_all_categories()
