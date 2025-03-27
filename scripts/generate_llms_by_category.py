@@ -28,6 +28,8 @@ CORE_CONTEXT_DESCRIPTION = (
 
 # Define order in which sections sections should be prioritized when sorting pages
 SECTION_PRIORITY = ["learn", "build", "tutorials"]
+# Define the list of categories to extract from the full LLMS file
+categories = ['NTT', 'Connect', 'Token Bridge', 'Settlement', 'Relayers', 'MultiGov', 'Queries', 'Transfer']
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
 llms_input_path = os.path.join(docs_dir, 'full-llms.txt') # points to the full full-llms.txt
@@ -145,9 +147,6 @@ def generate_all_categories():
 
     # Bundle core info into a reusable tuple
     core_data = (core_index, core_content.strip())
-
-    # Define the list of categories to extract from the full LLMS file
-    categories = ['NTT', 'Connect', 'Token Bridge', 'Settlement', 'Relayers', 'MultiGov', 'Queries', 'Transfer']
 
     # # Generate each category file
     for cat in categories:
