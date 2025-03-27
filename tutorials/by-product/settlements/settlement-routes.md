@@ -27,6 +27,14 @@ Before you begin, ensure you have the following:
 
 To get started, you’ll first clone the repository, install dependencies, and configure environment variables. Once set up, you can initiate a cross-chain token swap using the Mayan Swift Route.
 
+1. **Initialize the project** - start by creating a new directory for your project and initializing it with `npm`, which will create the `package.json` file for your project
+
+    ```bash
+    mkdir demo-mayanswift
+    cd demo-mayanswift
+    npm init -y
+    ```
+
 1. **Clone the repository**
 
     ```bash
