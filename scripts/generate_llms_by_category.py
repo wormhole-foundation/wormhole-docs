@@ -1,6 +1,31 @@
 import re
 import os
 
+# --- Context Configuration ---
+PROJECT_NAME = "Wormhole"
+PROJECT_URL = "https://wormhole.com"
+PROJECT_DESCRIPTION = (
+    f"{PROJECT_NAME} ({PROJECT_URL}) is a cross-chain messaging protocol used to move data and assets between blockchains."
+)
+
+AI_PROMPT_TEMPLATE = f"""# AI Prompt Template
+
+You are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task is to assist developers in understanding and using the product described in this file.
+- Provide accurate answers based only on the included documentation.
+- Do not assume undocumented features, behaviors, or APIs.
+- If unsure, respond with “Not specified in the documentation.”
+- Prefer concise explanations and code snippets where appropriate.
+
+"""
+
+CORE_CONTEXT_DESCRIPTION = (
+    "The following section contains foundational documentation shared across all "
+    f"{PROJECT_NAME} products.\n"
+    "It covers core messaging infrastructure concepts such as the core contracts, VAA (Verifiable Action Approval) structure,"
+    "guardian set functionality, and cross-chain message flow.\n"
+    "This context is critical to understanding how any integration works.\n"
+)
+
 # Define order in which sections sections should be prioritized when sorting pages
 SECTION_PRIORITY = ["learn", "build", "tutorials"]
 
@@ -58,19 +83,14 @@ def extract_category(category, core_data=None):
     with open(output_file, 'w', encoding='utf-8') as f:
 
         # Intro context block to help LLMs understand purpose of the file
-        f.write(f"# Wormhole Developer Documentation (LLMS Format)\n\n")
-        f.write("This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.\n")
+        f.write(f"# {PROJECT_NAME} Developer Documentation (LLMS Format)\n\n")
+        f.write(f"This file contains documentation for {PROJECT_DESCRIPTION}\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
         f.write(f"This file includes documentation related to: {category}\n")
         f.write("Each listed page may include implementation guides, conceptual overviews, or reference material.\n\n")
 
         # Prompt block to guide the AI assistant's behavior
-        f.write("# AI Prompt Template\n\n")
-        f.write("You are an AI developer assistant for Wormhole (https://wormhole.com). Your task is to assist developers in understanding and using the product described in this file.\n")
-        f.write("- Provide accurate answers based only on the included documentation.\n")
-        f.write("- Do not assume undocumented features, behaviors, or APIs.\n")
-        f.write("- If unsure, respond with “Not specified in the documentation.”\n")
-        f.write("- Prefer concise explanations and code snippets where appropriate.\n\n")
+        f.write(AI_PROMPT_TEMPLATE)
 
         # Sort the documentation blocks by section priority
         def sort_key(pair):
@@ -94,9 +114,7 @@ def extract_category(category, core_data=None):
         if core_data and category.lower() != "core":
             core_index, core_content = core_data  # unpack the tuple
             f.write("\n\n# Core Concepts [shared: true]\n")
-            f.write("The following section contains foundational documentation shared across all Wormhole products.\n")
-            f.write("It covers core messaging infrastructure concepts such as the Wormhole core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and cross-chain message flow.\n")
-            f.write("This context is critical to understanding how any Wormhole integration works.\n")
+            f.write(CORE_CONTEXT_DESCRIPTION)
             f.write("\n---\n\n")
             f.write("# List of core concept pages:\n")
             f.write(core_index + "\n\n")
@@ -129,10 +147,7 @@ def generate_all_categories():
     core_data = (core_index, core_content.strip())
 
     # Define the list of categories to extract from the full LLMS file
-    categories = [
-        'NTT', 'Connect', 'Token Bridge', 'Settlement', 'Relayers',
-        'MultiGov', 'Queries', 'Transfer'
-    ]
+    categories = ['NTT', 'Connect', 'Token Bridge', 'Settlement', 'Relayers', 'MultiGov', 'Queries', 'Transfer']
 
     # # Generate each category file
     for cat in categories:

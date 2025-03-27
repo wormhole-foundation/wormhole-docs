@@ -1,6 +1,6 @@
 # Wormhole Developer Documentation (LLMS Format)
 
-This file contains documentation for Wormhole (https://wormhole.com), a cross-chain messaging protocol used to move data and assets between blockchains.
+This file contains documentation for Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
 This file includes documentation related to: Token Bridge
@@ -345,8 +345,8 @@ To request an update, contact Solscan via [support@solscan.io](mailto:support@so
 
 # Core Concepts [shared: true]
 The following section contains foundational documentation shared across all Wormhole products.
-It covers core messaging infrastructure concepts such as the Wormhole core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and cross-chain message flow.
-This context is critical to understanding how any Wormhole integration works.
+It covers core messaging infrastructure concepts such as the core contracts, VAA (Verifiable Action Approval) structure,guardian set functionality, and cross-chain message flow.
+This context is critical to understanding how any integration works.
 
 ---
 
