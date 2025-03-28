@@ -11,6 +11,8 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} and
 
 ## Quickstart
 
+These guides assume you have existing tokens you want to use with Native Token Transfers. For contracts to quickly create placeholder tokens you can use to test NTTs, see the [`example-ntt-token`](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} GitHub repository and follow the README instructions.
+
 The process for creating, deploying, and monitoring NTTs is as follows. Select the title of each step to view the associated guide:
 
 [timeline left(wormhole-docs/.snippets/text/build/transfers/ntt/ntt-deployment-process-timeline.json)]
