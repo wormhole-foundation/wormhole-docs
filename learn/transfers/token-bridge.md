@@ -1,7 +1,7 @@
 ---
 title: Token Bridge 
 description: Learn about Wormhole's Token Bridge for cross-chain transfers using lock and mint mechanisms, ensuring secure and efficient asset movement.
-categories: Token Bridge, Transfer
+categories: Token-Bridge, Transfer
 ---
 
 # Token Bridge

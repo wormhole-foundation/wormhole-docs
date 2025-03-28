@@ -717,7 +717,7 @@ Doc-Content: https://wormhole.com/docs/learn/transfers/token-bridge/
 ---
 title: Token Bridge 
 description: Learn about Wormhole's Token Bridge for cross-chain transfers using lock and mint mechanisms, ensuring secure and efficient asset movement.
-categories: Token Bridge, Transfer
+categories: Token-Bridge, Transfer
 ---
 
 # Token Bridge
@@ -7098,7 +7098,7 @@ Doc-Content: https://wormhole.com/docs/build/transfers/token-bridge/
 ---
 title: Get Started with Token Bridge
 description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
-categories: Token Bridge, Transfer
+categories: Token-Bridge, Transfer
 ---
 
 # Token Bridge
@@ -7572,8 +7572,8 @@ With these tools and knowledge, you’re now equipped to build powerful cross-ch
 
 # Core Concepts [shared: true]
 The following section contains foundational documentation shared across all Wormhole products.
-It covers core messaging infrastructure concepts such as the core contracts, VAA (Verifiable Action Approval) structure,guardian set functionality, and cross-chain message flow.
-This context is critical to understanding how any integration works.
+It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with {PROJECT_NAME}.This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
+This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
 
 ---
 

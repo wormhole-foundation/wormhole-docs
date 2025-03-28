@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:full-llms.txt
-# full-llms.txt
-========
 # llms-full.txt
->>>>>>>> eff75a6e64d0b5551c9d16e339f65198e46479ea:llms-full.txt
 # Generated automatically. Do not edit directly.
 
 Documentation: https://wormhole.com/docs/
@@ -14039,7 +14035,7 @@ Doc-Content: https://wormhole.com/docs/build/transfers/token-bridge/
 ---
 title: Get Started with Token Bridge
 description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
-categories: Token Bridge, Transfer
+categories: Token-Bridge, Transfer
 ---
 
 # Token Bridge
@@ -17116,7 +17112,7 @@ Doc-Content: https://wormhole.com/docs/learn/transfers/token-bridge/
 ---
 title: Token Bridge 
 description: Learn about Wormhole's Token Bridge for cross-chain transfers using lock and mint mechanisms, ensuring secure and efficient asset movement.
-categories: Token Bridge, Transfer
+categories: Token-Bridge, Transfer
 ---
 
 # Token Bridge

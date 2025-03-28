@@ -19,17 +19,17 @@ You are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task 
 """
 
 CORE_CONTEXT_DESCRIPTION = (
-    "The following section contains foundational documentation shared across all "
-    f"{PROJECT_NAME} products.\n"
-    "It covers core messaging infrastructure concepts such as the core contracts, VAA (Verifiable Action Approval) structure,"
-    "guardian set functionality, and cross-chain message flow.\n"
-    "This context is critical to understanding how any integration works.\n"
+    "The following section contains foundational documentation shared across all "f"{PROJECT_NAME} products.\n"
+    "It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with {PROJECT_NAME}."
+    "This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.\n"
+    "This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product "
+    "unless the user explicitly asks about the general architecture.\n"
 )
 
 # Define order in which sections sections should be prioritized when sorting pages
 SECTION_PRIORITY = ["learn", "build", "tutorials"]
 # Define the list of categories to extract from the full LLMS file
-categories = ['NTT', 'Connect', 'Token Bridge', 'Settlement', 'Relayers', 'MultiGov', 'Queries', 'Transfer']
+categories = ['NTT', 'Connect', 'Token-Bridge', 'Settlement', 'Relayers', 'MultiGov', 'Queries', 'Transfer']
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
 llms_input_path = os.path.join(docs_dir, 'llms-full.txt') # points to the full llms-full.txt
