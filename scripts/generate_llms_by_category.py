@@ -11,7 +11,7 @@ PROJECT_DESCRIPTION = (
 AI_PROMPT_TEMPLATE = f"""# AI Prompt Template
 
 You are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task is to assist developers in understanding and using the product described in this file.
-- Provide accurate answers based only on the included documentation.
+- Provide accurate answers based on the included documentation.
 - Do not assume undocumented features, behaviors, or APIs.
 - If unsure, respond with “Not specified in the documentation.”
 - Prefer concise explanations and code snippets where appropriate.
@@ -88,8 +88,7 @@ def extract_category(category, core_data=None):
         f.write(f"# {PROJECT_NAME} Developer Documentation (LLMS Format)\n\n")
         f.write(f"This file contains documentation for {PROJECT_DESCRIPTION}\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
-        f.write(f"This file includes documentation related to: {category}\n")
-        f.write("Each listed page may include implementation guides, conceptual overviews, or reference material.\n\n")
+        f.write(f"This file includes documentation related to the product: {category}\n\n")
 
         # Prompt block to guide the AI assistant's behavior
         f.write(AI_PROMPT_TEMPLATE)

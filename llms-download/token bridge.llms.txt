@@ -3,13 +3,12 @@
 This file contains documentation for Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation related to: Token Bridge
-Each listed page may include implementation guides, conceptual overviews, or reference material.
+This file includes documentation related to the product: Token Bridge
 
 # AI Prompt Template
 
 You are an AI developer assistant for Wormhole (https://wormhole.com). Your task is to assist developers in understanding and using the product described in this file.
-- Provide accurate answers based only on the included documentation.
+- Provide accurate answers based on the included documentation.
 - Do not assume undocumented features, behaviors, or APIs.
 - If unsure, respond with “Not specified in the documentation.”
 - Prefer concise explanations and code snippets where appropriate.
