@@ -11,7 +11,7 @@ import requests
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 docs_dir = os.path.join(base_dir, docs_repo)
 yaml_dir = os.path.join(base_dir, docs_repo, 'variables.yml')
-output_file = os.path.join(docs_dir, 'full-llms.txt')
+output_file = os.path.join(docs_dir, 'llms-full.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
 
 # Regex to find lines like: --8<-- 'code/build/applications/...' and --8<-- 'http....'
@@ -217,7 +217,7 @@ def main():
     yaml_file = load_yaml(yaml_dir)
 
     # Header
-    llms_content = "# full-llms.txt\n"
+    llms_content = "# llms-full.txt\n"
     llms_content += "# Generated automatically. Do not edit directly.\n\n"
     llms_content += f"Documentation: {docs_url}\n\n"
 
@@ -227,11 +227,11 @@ def main():
     # Add the full content
     llms_content += build_content_section(files, yaml_file)
 
-    # Write to full-llms.txt
+    # Write to llms-full.txt
     with open(output_file, 'w', encoding='utf-8') as output:
         output.write(llms_content)
 
-    print(f"full-llms.txt created or updated at: {output_file}")
+    print(f"llms-full.txt created or updated at: {output_file}")
 
 
 if __name__ == "__main__":
@@ -242,11 +242,11 @@ from generate_llms_by_category import generate_all_categories
 generate_all_categories()
 
 # Copy full-llms.txt into llms-download for consistency
-llms_source = os.path.join(docs_dir, 'full-llms.txt')
-llms_target = os.path.join(docs_dir, 'llms-download', 'full-llms.txt')
+llms_source = os.path.join(docs_dir, 'llms-full.txt')
+llms_target = os.path.join(docs_dir, 'llms-download', 'llms-full.txt')
 
 with open(llms_source, 'r', encoding='utf-8') as src:
     with open(llms_target, 'w', encoding='utf-8') as dst:
         dst.write(src.read())
 
-print(f"[✓] Copied full-llms.txt to llms-download/")
+print(f"[✓] Copied llms-full.txt to llms-download/")

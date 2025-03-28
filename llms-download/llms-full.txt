@@ -1,4 +1,4 @@
-# full-llms.txt
+# llms-full.txt
 # Generated automatically. Do not edit directly.
 
 Documentation: https://wormhole.com/docs/
