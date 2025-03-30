@@ -10,6 +10,8 @@ Welcome to the Wormhole tutorials section! Whether you're just getting started o
 
 These tutorials are designed to help you develop efficient, scalable, and innovative cross-chain applications, from integrating individual Wormhole products to creating comprehensive end-to-end solutions. Explore our tutorials to get hands-on experience with Wormhole!
 
+## Get Started
+
 <div class="grid cards" markdown>
 
 -   :octicons-apps-16:{ .lg .middle } **By Product**
