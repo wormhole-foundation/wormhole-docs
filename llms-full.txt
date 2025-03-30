@@ -19915,6 +19915,8 @@ description: Discover product-specific Wormhole tutorials. Learn setup, integrat
 
 In this section, you'll find tutorials focused on individual Wormhole products. Each product folder contains detailed guides to help you integrate and use specific Wormhole services, such as Token Bridge, Wormhole Connect, and more. Whether setting up your first product or diving deeper into advanced features, these tutorials will walk you through the entire process, from installation to implementation.
 
+## Get Started
+
 <div class="grid cards" markdown>
 
 -   :octicons-arrow-switch-16:{ .lg .middle } **Connect**
@@ -23060,6 +23062,8 @@ template: root-index-page.html
 Welcome to the Wormhole tutorials section! Whether you're just getting started or looking to build advanced cross-chain applications, this collection of step-by-step tutorials will help you leverage the full power of the Wormhole ecosystem.
 
 These tutorials are designed to help you develop efficient, scalable, and innovative cross-chain applications, from integrating individual Wormhole products to creating comprehensive end-to-end solutions. Explore our tutorials to get hands-on experience with Wormhole!
+
+## Get Started
 
 <div class="grid cards" markdown>
 
