@@ -13,13 +13,9 @@ PROJECT_URL = config["projectUrl"]
 PROJECT_DESCRIPTION = config["projectDescription"]
 SECTION_PRIORITY = config["sectionPriority"]
 categories = config["categories"]
-AI_PROMPT_TEMPLATE = config["aiPromptTemplate"].format(
-    PROJECT_NAME=PROJECT_NAME,
-    PROJECT_URL=PROJECT_URL
-)
-CORE_CONTEXT_DESCRIPTION = config["coreContextDescription"].format(
-    PROJECT_NAME=PROJECT_NAME
-)
+AI_PROMPT_TEMPLATE = config["aiPromptTemplate"].format(PROJECT_NAME=PROJECT_NAME, PROJECT_URL=PROJECT_URL)
+CORE_CONTEXT_DESCRIPTION = config["coreContextDescription"].format(PROJECT_NAME=PROJECT_NAME)
+REFERENCE_CONTEXT_DESCRIPTION = config["referenceContextDescription"].format(PROJECT_NAME=PROJECT_NAME)
 
 # Use raw GitHub links for source URLs
 RAW_BASE_URL = "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main"
@@ -30,7 +26,7 @@ output_dir = os.path.join(docs_dir, 'llms-files')  # path where we store individ
 os.makedirs(output_dir, exist_ok=True) # make the directory if it doesn't exist
 
 # Extracts and writes a per-category LLMS file 
-def extract_category(category, core_data=None): 
+def extract_category(category, shared_data=None): 
     with open(llms_input_path, 'r', encoding='utf-8') as f: # read the full LLMS input file
         llms = f.read() 
 
@@ -102,44 +98,48 @@ def extract_category(category, core_data=None):
         f.write('\n\n'.join(sorted_content_blocks))
 
         # Attach shared core documentation
-        if core_data and category.lower() != "core":
-            core_index, core_content = core_data  # unpack the tuple
-            f.write("\n\n# Core Concepts [shared: true]\n")
-            f.write(CORE_CONTEXT_DESCRIPTION)
-            f.write("\n---\n\n")
-            f.write("# List of core concept pages:\n")
-            f.write(core_index + "\n\n")
-            f.write("# Full content for core concepts:\n\n")
-            f.write(core_content)
+        if shared_data and category.lower() not in ["basics", "reference"]:
+            for label, (context_index, context_content) in shared_data.items():
+                context_title = "Basics" if label == "basics" else "Reference"
+                context_description = CORE_CONTEXT_DESCRIPTION if label == "basics" else REFERENCE_CONTEXT_DESCRIPTION
+
+                f.write(f"\n\n# {context_title} Concepts [shared: true]\n\n")
+                f.write(context_description)
+                f.write("\n---\n\n")
+                f.write("# List of shared concept pages:\n")
+                f.write(context_index + "\n\n")
+                f.write("# Full content for shared concepts:\n\n")
+                f.write(context_content)
     print(f"[✓] Generated {output_file} with {len(content_blocks)} pages")
 
 # Generate LLMS files for all categories including shared core content.
 def generate_all_categories():
    
-    extract_category('Basics') # generate and store the core concepts file
-    core_path = os.path.join(output_dir, 'basics-llms.txt')
-    with open(core_path, 'r', encoding='utf-8') as f:
-        raw_core = f.read()
+    shared_data = {}
 
-    # Extract just the index and content sections from the core file
-    core_index_match = re.search(r"# List of doc pages:\n(.*?)\n\n# Full content", raw_core, re.DOTALL)
-    core_index = core_index_match.group(1).strip() if core_index_match else ""
+    for shared in ['Basics', 'Reference']:
+        extract_category(shared)  # Generate the file
+        path = os.path.join(output_dir, f"{shared.lower()}-llms.txt")
+        with open(path, 'r', encoding='utf-8') as f:
+            raw = f.read()
 
-    core_blocks = re.findall(
-        r"Doc-Content: (.*?)\n--- BEGIN CONTENT ---\n(.*?)\n--- END CONTENT ---",
-        raw_core, re.DOTALL
-    )
+        index_match = re.search(r"# List of doc pages:\n(.*?)\n\n# Full content", raw, re.DOTALL)
+        index = index_match.group(1).strip() if index_match else ""
 
-    core_content = ""
-    for url, content in core_blocks:
-        core_content += f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---\n\n"
+        blocks = re.findall(
+            r"Doc-Content: (.*?)\n--- BEGIN CONTENT ---\n(.*?)\n--- END CONTENT ---",
+            raw, re.DOTALL
+        )
 
-    # Bundle core info into a reusable tuple
-    core_data = (core_index, core_content.strip())
+        content = ""
+        for url, block in blocks:
+            content += f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{block.strip()}\n--- END CONTENT ---\n\n"
+
+        shared_data[shared.lower()] = (index, content.strip())
 
     # Generate each category file
     for cat in categories:
-        extract_category(cat, core_data)
+        extract_category(cat, shared_data)
 
 # Only run this if script is executed directly
 if __name__ == "__main__":

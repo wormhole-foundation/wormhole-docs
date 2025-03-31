@@ -3497,15 +3497,17 @@ A noteworthy example of a route exported from a separate npm package is Wormhole
 The TSdoc is available [on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.
 --- END CONTENT ---
 
-# Core Concepts [shared: true]
+# Basics Concepts [shared: true]
+
 The following section contains foundational documentation shared across all Wormhole products.
 It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
 This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
 This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
 
+
 ---
 
-# List of core concept pages:
+# List of shared concept pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/glossary/ [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/ [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/architecture/ [type: learn]
@@ -3521,7 +3523,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/products/ [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/use-cases/ [type: build]
 
-# Full content for core concepts:
+# Full content for shared concepts:
 
 Doc-Content: https://wormhole.com/docs/learn/glossary/
 --- BEGIN CONTENT ---
@@ -5626,4 +5628,620 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 
 </div>
 </div>
+--- END CONTENT ---
+
+# Reference Concepts [shared: true]
+
+The following section contains reference material for Wormhole.
+It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
+While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
+
+
+---
+
+# List of shared concept pages:
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/chain-ids/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/consistency-levels/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/contract-addresses/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/wormhole-formatted-addresses/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/supported-networks/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/testnet-faucets/ [type: build]
+
+# Full content for shared concepts:
+
+Doc-Content: https://wormhole.com/docs/build/reference/
+--- BEGIN CONTENT ---
+---
+title: Reference
+description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
+categories: Reference
+---
+
+# Reference
+
+## Get Started
+
+In this section, you'll find reference information that is essential for development. This includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
+
+<div class="grid cards" markdown>
+
+-   :octicons-list-ordered-16:{ .lg .middle } **Chain IDs**
+
+    ---
+
+    Find a mapping of Wormhole chain IDs to the names and network IDs of the supported blockchains.
+
+    [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
+
+-   :material-timer-sand:{ .lg .middle } **Wormhole Finality**
+
+    ---
+
+    See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
+
+    [:custom-arrow: View list of finality levels](/docs/build/reference/consistency-levels/)
+
+-   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
+
+    ---
+
+    Discover the contract addresses for Wormhole-deployed contracts on each of the supported blockchains.
+
+    This includes the following protocol contracts:
+
+    - Core Contract
+    - Token Bridge
+    - NFT Bridge
+    - Wormhole relayer
+    - CCTP
+
+    [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
+
+-   :octicons-checkbox-16:{ .lg .middle } **Wormhole Formatted Addresses**
+
+    ---
+
+    Learn how Wormhole formats addresses into a 32-byte hex format for cross-chain compatibility.
+    
+    This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
+
+    [:custom-arrow: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/reference/chain-ids/
+--- BEGIN CONTENT ---
+---
+title: Chain IDs
+description: This page documents the Wormhole-specific chain IDs for each chain and contrasts them to the more commonly referenced EVM chain IDs originating in EIP-155.
+categories: Reference
+---
+
+# Chain IDs
+
+The following table documents the chain IDs used by Wormhole and places them alongside the more commonly referenced [EVM Chain IDs](https://chainlist.org/){target=\_blank}.
+
+!!! note
+    Please note, Wormhole chain IDs are different than the more commonly referenced EVM [chain IDs](https://eips.ethereum.org/EIPS/eip-155){target=\_blank}, specified in the Mainnet and Testnet ID columns.
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--CHAIN_IDS-->
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th style="width:26%">Wormhole Chain ID</th><th>Network ID</th></thead><tbody><tr><td>Ethereum</td><td><code>2</code></td><td><code>1</code></td></tr><tr><td>Solana</td><td><code>1</code></td><td><code>Mainnet Beta</code> - <code>5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d</code></td></tr><tr><td>Acala</td><td><code>12</code></td><td><code>787</code></td></tr><tr><td>Algorand</td><td><code>8</code></td><td><code>mainnet-v1.0</code></td></tr><tr><td>Aptos</td><td><code>22</code></td><td><code>1</code></td></tr><tr><td>Arbitrum</td><td><code>23</code></td><td><code>Arbitrum One</code> - <code>42161</code></td></tr><tr><td>Avalanche</td><td><code>6</code></td><td><code>C-Chain</code> - <code>43114</code></td></tr><tr><td>Base</td><td><code>30</code></td><td><code>Base</code> - <code>8453</code></td></tr><tr><td>Berachain</td><td><code>39</code></td><td></td></tr><tr><td>Blast</td><td><code>36</code></td><td><code>81457</code></td></tr><tr><td>BNB Smart Chain</td><td><code>4</code></td><td><code>56</code></td></tr><tr><td>Celestia</td><td><code>4004</code></td><td><code>celestia</code></td></tr><tr><td>Celo</td><td><code>14</code></td><td><code>42220</code></td></tr><tr><td>Cosmos Hub</td><td><code>4000</code></td><td><code>cosmoshub-4</code></td></tr><tr><td>Dymension</td><td><code>4007</code></td><td><code>dymension_1100-1</code></td></tr><tr><td>Evmos</td><td><code>4001</code></td><td><code>evmos_9001-2</code></td></tr><tr><td>Fantom</td><td><code>10</code></td><td><code>250</code></td></tr><tr><td>Gnosis</td><td><code>25</code></td><td><code>100</code></td></tr><tr><td>HyperEVM</td><td><code>47</code></td><td></td></tr><tr><td>Injective</td><td><code>19</code></td><td><code>injective-1</code></td></tr><tr><td>Ink</td><td><code>46</code></td><td></td></tr><tr><td>Kaia</td><td><code>13</code></td><td><code>8217</code></td></tr><tr><td>Karura</td><td><code>11</code></td><td><code>686</code></td></tr><tr><td>Kujira</td><td><code>4002</code></td><td><code>kaiyo-1</code></td></tr><tr><td>Linea</td><td><code>38</code></td><td><code>59144</code></td></tr><tr><td>Mantle</td><td><code>35</code></td><td><code>5000</code></td></tr><tr><td>Mezo</td><td><code>50</code></td><td></td></tr><tr><td>Monad</td><td><code>48</code></td><td></td></tr><tr><td>Moonbeam</td><td><code>16</code></td><td><code>1284</code></td></tr><tr><td>Movement</td><td><code>49</code></td><td><code>126</code></td></tr><tr><td>NEAR</td><td><code>15</code></td><td><code>mainnet</code></td></tr><tr><td>Neon</td><td><code>17</code></td><td><code>245022934</code></td></tr><tr><td>Neutron</td><td><code>4003</code></td><td><code>neutron-1</code></td></tr><tr><td>Noble</td><td><code>4009</code></td><td><code>noble-1</code></td></tr><tr><td>Oasis</td><td><code>7</code></td><td><code>42262</code></td></tr><tr><td>Optimism</td><td><code>24</code></td><td><code>10</code></td></tr><tr><td>Osmosis</td><td><code>20</code></td><td><code>osmosis-1</code></td></tr><tr><td>Polygon</td><td><code>5</code></td><td><code>137</code></td></tr><tr><td>Provenance</td><td><code>4008</code></td><td><code>pio-mainnet-1</code></td></tr><tr><td>Pythnet</td><td><code>26</code></td><td></td></tr><tr><td>Scroll</td><td><code>34</code></td><td><code>534352</code></td></tr><tr><td>SEDA</td><td><code>4006</code></td><td></td></tr><tr><td>Sei</td><td><code>32</code></td><td><code>pacific-1</code></td></tr><tr><td>Seievm</td><td><code>40</code></td><td></td></tr><tr><td>SNAXchain</td><td><code>43</code></td><td><code>2192</code></td></tr><tr><td>Stargaze</td><td><code>4005</code></td><td><code>stargaze-1</code></td></tr><tr><td>Sui</td><td><code>21</code></td><td><code>35834a8a</code></td></tr><tr><td>Terra</td><td><code>3</code></td><td><code>columbus-5</code></td></tr><tr><td>Terra 2.0</td><td><code>18</code></td><td><code>phoenix-1</code></td></tr><tr><td>Unichain</td><td><code>44</code></td><td><code></code></td></tr><tr><td>World Chain</td><td><code>45</code></td><td><code>480</code></td></tr><tr><td>X Layer</td><td><code>37</code></td><td><code>196</code></td></tr><tr><td>XPLA</td><td><code>28</code></td><td><code>dimension_37-1</code></td></tr></tbody></table>
+
+=== "Testnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th style="width:26%">Wormhole Chain ID</th><th>Network ID</th></thead><tbody><tr><td>Ethereum Holesky</td><td><code>10006</code></td><td><code>Holesky</code> - <code>17000</code></td></tr><tr><td>Ethereum Sepolia</td><td><code>10002</code></td><td><code>Sepolia</code> - <code>11155111</code></td></tr><tr><td>Solana</td><td><code>1</code></td><td><code>Devnet</code> - <code>EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG</code></td></tr><tr><td>Acala</td><td><code>12</code></td><td><code>597</code></td></tr><tr><td>Algorand</td><td><code>8</code></td><td><code>testnet-v1.0</code></td></tr><tr><td>Aptos</td><td><code>22</code></td><td><code>2</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>10003</code></td><td><code>Sepolia</code> - <code>421614</code></td></tr><tr><td>Avalanche</td><td><code>6</code></td><td><code>Fuji</code> - <code>43113</code></td></tr><tr><td>Base Sepolia</td><td><code>10004</code></td><td><code>Base Sepolia</code> - <code>84532</code></td></tr><tr><td>Berachain</td><td><code>39</code></td><td><code>80084</code></td></tr><tr><td>Blast</td><td><code>36</code></td><td><code>168587773</code></td></tr><tr><td>BNB Smart Chain</td><td><code>4</code></td><td><code>97</code></td></tr><tr><td>Celestia</td><td><code>4004</code></td><td><code>mocha-4</code></td></tr><tr><td>Celo</td><td><code>14</code></td><td><code>Alfajores</code> - <code>44787</code></td></tr><tr><td>Cosmos Hub</td><td><code>4000</code></td><td><code>theta-testnet-001</code></td></tr><tr><td>Dymension</td><td><code>4007</code></td><td></td></tr><tr><td>Evmos</td><td><code>4001</code></td><td><code>evmos_9000-4</code></td></tr><tr><td>Fantom</td><td><code>10</code></td><td><code>4002</code></td></tr><tr><td>Gnosis</td><td><code>25</code></td><td><code>Chiado</code> - <code>10200</code></td></tr><tr><td>HyperEVM</td><td><code>47</code></td><td><code>998</code></td></tr><tr><td>Injective</td><td><code>19</code></td><td><code>injective-888</code></td></tr><tr><td>Ink</td><td><code>46</code></td><td><code>763373</code></td></tr><tr><td>Kaia</td><td><code>13</code></td><td><code>Kairos</code> - <code>1001</code></td></tr><tr><td>Karura</td><td><code>11</code></td><td><code>596</code></td></tr><tr><td>Kujira</td><td><code>4002</code></td><td><code>harpoon-4</code></td></tr><tr><td>Linea</td><td><code>38</code></td><td><code>59141</code></td></tr><tr><td>Mantle</td><td><code>35</code></td><td><code>Sepolia</code> - <code>5003</code></td></tr><tr><td>Mezo</td><td><code>50</code></td><td><code>31611</code></td></tr><tr><td>Monad</td><td><code>48</code></td><td><code>10143</code></td></tr><tr><td>Moonbeam</td><td><code>16</code></td><td><code>Moonbase-Alphanet</code> - <code>1287</code></td></tr><tr><td>Movement</td><td><code>49</code></td><td><code>250</code></td></tr><tr><td>NEAR</td><td><code>15</code></td><td><code>testnet</code></td></tr><tr><td>Neon</td><td><code>17</code></td><td><code>245022940</code></td></tr><tr><td>Neutron</td><td><code>4003</code></td><td><code>pion-1</code></td></tr><tr><td>Noble</td><td><code>4009</code></td><td><code>grand-1</code></td></tr><tr><td>Oasis</td><td><code>7</code></td><td><code>42261</code></td></tr><tr><td>Optimism Sepolia</td><td><code>10005</code></td><td><code>Optimism Sepolia</code> - <code>11155420</code></td></tr><tr><td>Osmosis</td><td><code>20</code></td><td><code>osmo-test-5</code></td></tr><tr><td>Polygon Amoy</td><td><code>10007</code></td><td><code>Amoy</code> - <code>80002</code></td></tr><tr><td>Provenance</td><td><code>4008</code></td><td></td></tr><tr><td>Pythnet</td><td><code>26</code></td><td></td></tr><tr><td>Scroll</td><td><code>34</code></td><td><code>Sepolia</code> - <code>534351</code></td></tr><tr><td>SEDA</td><td><code>4006</code></td><td><code>seda-1-testnet</code></td></tr><tr><td>Sei</td><td><code>32</code></td><td><code>atlantic-2</code></td></tr><tr><td>Seievm</td><td><code>40</code></td><td></td></tr><tr><td>SNAXchain</td><td><code>43</code></td><td><code>13001</code></td></tr><tr><td>Stargaze</td><td><code>4005</code></td><td></td></tr><tr><td>Sui</td><td><code>21</code></td><td><code>4c78adac</code></td></tr><tr><td>Terra</td><td><code>3</code></td><td><code>bombay-12</code></td></tr><tr><td>Terra 2.0</td><td><code>18</code></td><td><code>pisco-1</code></td></tr><tr><td>Unichain</td><td><code>44</code></td><td><code>Unichain Sepolia</code> - <code>1301</code></td></tr><tr><td>World Chain</td><td><code>45</code></td><td><code>4801</code></td></tr><tr><td>X Layer</td><td><code>37</code></td><td><code>195</code></td></tr><tr><td>XPLA</td><td><code>28</code></td><td><code>cube_47-5</code></td></tr></tbody></table>
+
+<!--CHAIN_IDS-->
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels/
+--- BEGIN CONTENT ---
+---
+title: Wormhole Finality | Consistency Levels
+description: This page documents how long to wait for finality before signing, based on each chain’s consistency (finality) level and consensus mechanism.
+categories: Reference
+---
+
+# Wormhole Finality
+
+The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interpreted.
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--CONSISTENCY_LEVELS-->
+<table data-full-width="true" markdown><thead><th>Chain</th><th>Instant</th><th>Safe</th><th>Finalized</th><th>Otherwise</th><th>Time to Finalize</th><th>Details</th></thead><tbody><tr><td>Ethereum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 19min</td><td><a href="https://www.alchemy.com/overviews/ethereum-commitment-levels" target="_blank">Details</a></td></tr><tr><td>Solana</td><td></td><td>0</td><td>1</td><td></td><td>~ 14s</td><td><a href="https://docs.anza.xyz/consensus/commitments/" target="_blank">Details</a></td></tr><tr><td>Acala</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td></td></tr><tr><td>Algorand</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality" target="_blank">Details</a></td></tr><tr><td>Aptos</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://aptos.dev/en/network/glossary#byzantine-fault-tolerance-bft" target="_blank">Details</a></td></tr><tr><td>Arbitrum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td><a href="https://docs.arbitrum.io/how-arbitrum-works/transaction-lifecycle" target="_blank">Details</a></td></tr><tr><td>Avalanche</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 2s</td><td><a href="https://docs.avax.network/dapps/advanced-tutorials/exchange-integration#determining-finality" target="_blank">Details</a></td></tr><tr><td>Base</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Berachain</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 4s</td><td></td></tr><tr><td>Blast</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>BNB Smart Chain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 48s</td><td><a href="https://docs.bnbchain.org/bnb-smart-chain/introduction/?h=finality" target="_blank">Details</a></td></tr><tr><td>Celestia</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Celo</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 10s</td><td></td></tr><tr><td>Cosmos Hub</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Dymension</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Evmos</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Fantom</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 5s</td><td></td></tr><tr><td>Injective</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Ink</td><td></td><td></td><td>0</td><td></td><td>~ 9min</td><td></td></tr><tr><td>Kaia</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 1s</td><td></td></tr><tr><td>Karura</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td><a href="https://wiki.polkadot.network/docs/learn-consensus" target="_blank">Details</a></td></tr><tr><td>Kujira</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Mantle</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Mezo</td><td></td><td></td><td>0</td><td></td><td>~ 8s</td><td></td></tr><tr><td>Monad</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Moonbeam</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td><a href="https://docs.moonbeam.network/builders/ethereum/json-rpc/moonbeam-custom-api/#finality-rpc-endpoints" target="_blank">Details</a></td></tr><tr><td>Movement</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td></td></tr><tr><td>NEAR</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td><a href="https://nomicon.io/ChainSpec/Consensus" target="_blank">Details</a></td></tr><tr><td>Neutron</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Oasis</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 12s</td><td></td></tr><tr><td>Optimism</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Osmosis</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Polygon</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 66s</td><td><a href="https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/" target="_blank">Details</a></td></tr><tr><td>Scroll</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 16min</td><td></td></tr><tr><td>Sei</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Stargaze</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Sui</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td><a href="https://docs.sui.io/concepts/sui-architecture/consensus" target="_blank">Details</a></td></tr><tr><td>Terra</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Terra 2.0</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Unichain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>World Chain</td><td></td><td></td><td>0</td><td></td><td>~ 18min</td><td></td></tr><tr><td>X Layer</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 16min</td><td></td></tr><tr><td>XPLA</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr></tbody></table>
+<!--CONSISTENCY_LEVELS-->
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/reference/contract-addresses/
+--- BEGIN CONTENT ---
+---
+title: Contract Addresses
+description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, TokenBridge, and more.
+categories: Reference
+---
+
+# Contract Addresses
+
+## Core Contracts
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--CORE_ADDRESS-->
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B</code></td></tr><tr><td>Solana</td><td><code>worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth</code></td></tr><tr><td>Acala</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Algorand</td><td><code>842125965</code></td></tr><tr><td>Aptos</td><td><code>0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625</code></td></tr><tr><td>Arbitrum</td><td><code>0xa5f208e072434bC67592E4C49C1B991BA79BCA46</code></td></tr><tr><td>Avalanche</td><td><code>0x54a8e5f9c4CbA08F9943965859F6c34eAF03E26c</code></td></tr><tr><td>Base</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Berachain</td><td><code>0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D</code></td></tr><tr><td>Blast</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B</code></td></tr><tr><td>Celo</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Fantom</td><td><code>0x126783A6Cb203a3E35344528B26ca3a0489a1485</code></td></tr><tr><td>Gnosis</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Injective</td><td><code>inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d</code></td></tr><tr><td>Ink</td><td><code>0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D</code></td></tr><tr><td>Kaia</td><td><code>0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7</code></td></tr><tr><td>Karura</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Mantle</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Moonbeam</td><td><code>0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3</code></td></tr><tr><td>NEAR</td><td><code>contract.wormhole_crypto.near</code></td></tr><tr><td>Neutron</td><td><code>neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh</code></td></tr><tr><td>Oasis</td><td><code>0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585</code></td></tr><tr><td>Optimism</td><td><code>0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722</code></td></tr><tr><td>Polygon</td><td><code>0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7</code></td></tr><tr><td>Pythnet</td><td><code>H3fxXJ86ADW2PNuDDmZJg6mzTtPxkYCpNuQUTgmJ7AjU</code></td></tr><tr><td>Scroll</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Sei</td><td><code>sei1gjrrme22cyha4ht2xapn3f08zzw6z3d4uxx6fyy9zd5dyr3yxgzqqncdqn</code></td></tr><tr><td>SNAXchain</td><td><code>0xc1BA3CC4bFE724A08FbbFbF64F8db196738665f4</code></td></tr><tr><td>Sui</td><td><code>0xaeab97f96cf9877fee2883315d459552b2b921edc16d7ceac6eab944dd88919c</code></td></tr><tr><td>Terra</td><td><code>terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5</code></td></tr><tr><td>Terra 2.0</td><td><code>terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnhp</code></td></tr><tr><td>Unichain</td><td><code>0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D</code></td></tr><tr><td>World Chain</td><td><code>0xcbcEe4e081464A15d8Ad5f58BB493954421eB506</code></td></tr><tr><td>X Layer</td><td><code>0x194B123c5E96B9b2E49763619985790Dc241CAC0</code></td></tr><tr><td>XPLA</td><td><code>xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w</code></td></tr></tbody></table>
+
+=== "Testnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Holesky</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>Ethereum Sepolia</td><td><code>0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78</code></td></tr><tr><td>Solana</td><td><code>3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5</code></td></tr><tr><td>Acala</td><td><code>0x64fb09E405D2043ed7785a29E296C766D56F2056</code></td></tr><tr><td>Algorand</td><td><code>86525623</code></td></tr><tr><td>Aptos</td><td><code>0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35</code></td></tr><tr><td>Avalanche</td><td><code>0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C</code></td></tr><tr><td>Base Sepolia</td><td><code>0x79A1027a6A159502049F10906D333EC57E95F083</code></td></tr><tr><td>Berachain</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Blast</td><td><code>0x473e002D7add6fB67a4964F13bFd61280Ca46886</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x68605AD7b15c732a30b1BbC62BE8F2A509D74b4D</code></td></tr><tr><td>Celo</td><td><code>0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56</code></td></tr><tr><td>Fantom</td><td><code>0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7</code></td></tr><tr><td>Gnosis</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>HyperEVM</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Injective</td><td><code>inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg</code></td></tr><tr><td>Ink</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Kaia</td><td><code>0x1830CC6eE66c84D2F177B94D544967c774E624cA</code></td></tr><tr><td>Karura</td><td><code>0x64fb09E405D2043ed7785a29E296C766D56F2056</code></td></tr><tr><td>Linea</td><td><code>0x79A1027a6A159502049F10906D333EC57E95F083</code></td></tr><tr><td>Mantle</td><td><code>0x376428e7f26D5867e69201b275553C45B09EE090</code></td></tr><tr><td>Mezo</td><td><code>0x268557122Ffd64c85750d630b716471118F323c8</code></td></tr><tr><td>Monad</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Moonbeam</td><td><code>0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901</code></td></tr><tr><td>Movement</td><td><code>0xa7b37796439f725373fe4835793cd2eed7a1db639bbb220c72be8904ec5e2a7a</code></td></tr><tr><td>NEAR</td><td><code>wormhole.wormhole.testnet</code></td></tr><tr><td>Neon</td><td><code>0x268557122Ffd64c85750d630b716471118F323c8</code></td></tr><tr><td>Neutron</td><td><code>neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4</code></td></tr><tr><td>Oasis</td><td><code>0xc1C338397ffA53a2Eb12A7038b4eeb34791F8aCb</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x31377888146f3253211EFEf5c676D41ECe7D58Fe</code></td></tr><tr><td>Osmosis</td><td><code>osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx</code></td></tr><tr><td>Polygon Amoy</td><td><code>0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35</code></td></tr><tr><td>Pythnet</td><td><code>EUrRARh92Cdc54xrDn6qzaqjA77NRrCcfbr8kPwoTL4z</code></td></tr><tr><td>Scroll</td><td><code>0x055F47F1250012C6B20c436570a76e52c17Af2D5</code></td></tr><tr><td>Sei</td><td><code>sei1nna9mzp274djrgzhzkac2gvm3j27l402s4xzr08chq57pjsupqnqaj0d5s</code></td></tr><tr><td>Seievm</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>SNAXchain</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Sui</td><td><code>0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790</code></td></tr><tr><td>Terra</td><td><code>terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v</code></td></tr><tr><td>Terra 2.0</td><td><code>terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0</code></td></tr><tr><td>Unichain</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>World Chain</td><td><code>0xe5E02cD12B6FcA153b0d7fF4bF55730AE7B3C93A</code></td></tr><tr><td>X Layer</td><td><code>0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780</code></td></tr><tr><td>XPLA</td><td><code>xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35</code></td></tr></tbody></table>
+
+=== "Devnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0xC89Ce4735882C9F0f0FE26686c53074E09B0D550</code></td></tr><tr><td>Solana</td><td><code>Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o</code></td></tr><tr><td>Algorand</td><td><code>1004</code></td></tr><tr><td>Aptos</td><td><code>0xde0036a9600559e295d5f6802ef6f3f802f510366e0c23912b0655d972166017</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0xC89Ce4735882C9F0f0FE26686c53074E09B0D550</code></td></tr><tr><td>NEAR</td><td><code>wormhole.test.near</code></td></tr><tr><td>Sui</td><td><code>0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0</code></td></tr><tr><td>Terra</td><td><code>terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au</code></td></tr><tr><td>Terra 2.0</td><td><code>terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au</code></td></tr></tbody></table>
+  
+<!--CORE_ADDRESS-->
+
+## Token Bridge
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--TOKEN_BRIDGE_ADDRESS-->
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x3ee18B2214AFF97000D974cf647E7C347E8fa585</code></td></tr><tr><td>Solana</td><td><code>wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb</code></td></tr><tr><td>Acala</td><td><code>0xae9d7fe007b3327AA64A32824Aaac52C42a6E624</code></td></tr><tr><td>Algorand</td><td><code>842126029</code></td></tr><tr><td>Aptos</td><td><code>0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f</code></td></tr><tr><td>Arbitrum</td><td><code>0x0b2402144Bb366A632D14B83F244D2e0e21bD39c</code></td></tr><tr><td>Avalanche</td><td><code>0x0e082F06FF657D94310cB8cE8B0D9a04541d8052</code></td></tr><tr><td>Base</td><td><code>0x8d2de8d2f73F1F4cAB472AC9A881C9b123C79627</code></td></tr><tr><td>Berachain</td><td><code>0x3Ff72741fd67D6AD0668d93B41a09248F4700560</code></td></tr><tr><td>Blast</td><td><code>0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7</code></td></tr><tr><td>Celo</td><td><code>0x796Dff6D74F3E27060B71255Fe517BFb23C93eed</code></td></tr><tr><td>Fantom</td><td><code>0x7C9Fc5741288cDFdD83CeB07f3ea7e22618D79D2</code></td></tr><tr><td>Injective</td><td><code>inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn</code></td></tr><tr><td>Ink</td><td><code>0x3Ff72741fd67D6AD0668d93B41a09248F4700560</code></td></tr><tr><td>Kaia</td><td><code>0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F</code></td></tr><tr><td>Karura</td><td><code>0xae9d7fe007b3327AA64A32824Aaac52C42a6E624</code></td></tr><tr><td>Mantle</td><td><code>0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d</code></td></tr><tr><td>Moonbeam</td><td><code>0xb1731c586ca89a23809861c6103f0b96b3f57d92</code></td></tr><tr><td>NEAR</td><td><code>contract.portalbridge.near</code></td></tr><tr><td>Oasis</td><td><code>0x5848C791e09901b40A9Ef749f2a6735b418d7564</code></td></tr><tr><td>Optimism</td><td><code>0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b</code></td></tr><tr><td>Polygon</td><td><code>0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE</code></td></tr><tr><td>Scroll</td><td><code>0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d</code></td></tr><tr><td>Sei</td><td><code>sei1smzlm9t79kur392nu9egl8p8je9j92q4gzguewj56a05kyxxra0qy0nuf3</code></td></tr><tr><td>SNAXchain</td><td><code>0x8B94bfE456B48a6025b92E11Be393BAa86e68410</code></td></tr><tr><td>Sui</td><td><code>0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9</code></td></tr><tr><td>Terra</td><td><code>terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf</code></td></tr><tr><td>Terra 2.0</td><td><code>terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9</code></td></tr><tr><td>Unichain</td><td><code>0x3Ff72741fd67D6AD0668d93B41a09248F4700560</code></td></tr><tr><td>World Chain</td><td><code>0xc309275443519adca74c9136b02A38eF96E3a1f6</code></td></tr><tr><td>X Layer</td><td><code>0x5537857664B0f9eFe38C9f320F75fEf23234D904</code></td></tr><tr><td>XPLA</td><td><code>xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv</code></td></tr></tbody></table>
+
+=== "Testnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Holesky</td><td><code>0x76d093BbaE4529a342080546cAFEec4AcbA59EC6</code></td></tr><tr><td>Ethereum Sepolia</td><td><code>0xDB5492265f6038831E89f495670FF909aDe94bd9</code></td></tr><tr><td>Solana</td><td><code>DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe</code></td></tr><tr><td>Acala</td><td><code>0xe157115ef34c93145Fec2FE53706846853B07F42</code></td></tr><tr><td>Algorand</td><td><code>86525641</code></td></tr><tr><td>Aptos</td><td><code>0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e</code></td></tr><tr><td>Avalanche</td><td><code>0x61E44E506Ca5659E6c0bba9b678586fA2d729756</code></td></tr><tr><td>Base Sepolia</td><td><code>0x86F55A04690fd7815A3D802bD587e83eA888B239</code></td></tr><tr><td>Berachain</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>Blast</td><td><code>0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x9dcF9D205C9De35334D646BeE44b2D2859712A09</code></td></tr><tr><td>Celo</td><td><code>0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153</code></td></tr><tr><td>Fantom</td><td><code>0x599CEa2204B4FaECd584Ab1F2b6aCA137a0afbE8</code></td></tr><tr><td>HyperEVM</td><td><code>0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78</code></td></tr><tr><td>Injective</td><td><code>inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh</code></td></tr><tr><td>Ink</td><td><code>0x376428e7f26D5867e69201b275553C45B09EE090</code></td></tr><tr><td>Kaia</td><td><code>0xC7A13BE098720840dEa132D860fDfa030884b09A</code></td></tr><tr><td>Karura</td><td><code>0xe157115ef34c93145Fec2FE53706846853B07F42</code></td></tr><tr><td>Linea</td><td><code>0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e</code></td></tr><tr><td>Mantle</td><td><code>0x75Bfa155a9D7A3714b0861c8a8aF0C4633c45b5D</code></td></tr><tr><td>Mezo</td><td><code>0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780</code></td></tr><tr><td>Monad</td><td><code>0xF323dcDe4d33efe83cf455F78F9F6cc656e6B659</code></td></tr><tr><td>Moonbeam</td><td><code>0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96</code></td></tr><tr><td>Movement</td><td><code>0xda075f9cb681e291c17e65562bdd6d4196c7d2f86da1aa3917f2809ff8edb03d</code></td></tr><tr><td>NEAR</td><td><code>token.wormhole.testnet</code></td></tr><tr><td>Neon</td><td><code>0xEe3dB83916Ccdc3593b734F7F2d16D630F39F1D0</code></td></tr><tr><td>Oasis</td><td><code>0x88d8004A9BdbfD9D28090A02010C19897a29605c</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x99737Ec4B815d816c49A385943baf0380e75c0Ac</code></td></tr><tr><td>Polygon Amoy</td><td><code>0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e</code></td></tr><tr><td>Scroll</td><td><code>0x22427d90B7dA3fA4642F7025A854c7254E4e45BF</code></td></tr><tr><td>Sei</td><td><code>sei1jv5xw094mclanxt5emammy875qelf3v62u4tl4lp5nhte3w3s9ts9w9az2</code></td></tr><tr><td>Seievm</td><td><code>0x23908A62110e21C04F3A4e011d24F901F911744A</code></td></tr><tr><td>SNAXchain</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>Sui</td><td><code>0x6fb10cdb7aa299e9a4308752dadecb049ff55a892de92992a1edbd7912b3d6da</code></td></tr><tr><td>Terra</td><td><code>terra1pseddrv0yfsn76u4zxrjmtf45kdlmalswdv39a</code></td></tr><tr><td>Terra 2.0</td><td><code>terra1c02vds4uhgtrmcw7ldlg75zumdqxr8hwf7npseuf2h58jzhpgjxsgmwkvk</code></td></tr><tr><td>Unichain</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>World Chain</td><td><code>0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2</code></td></tr><tr><td>X Layer</td><td><code>0xdA91a06299BBF302091B053c6B9EF86Eff0f930D</code></td></tr><tr><td>XPLA</td><td><code>xpla1kek6zgdaxcsu35nqfsyvs2t9vs87dqkkq6hjdgczacysjn67vt8sern93x</code></td></tr></tbody></table>
+
+=== "Devnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x0290FB167208Af455bB137780163b7B7a9a10C16</code></td></tr><tr><td>Solana</td><td><code>B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE</code></td></tr><tr><td>Algorand</td><td><code>1006</code></td></tr><tr><td>Aptos</td><td><code>0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x0290FB167208Af455bB137780163b7B7a9a10C16</code></td></tr><tr><td>NEAR</td><td><code>token.test.near</code></td></tr><tr><td>Sui</td><td><code>0xa6a3da85bbe05da5bfd953708d56f1a3a023e7fb58e5a824a3d4de3791e8f690</code></td></tr><tr><td>Terra</td><td><code>terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6</code></td></tr><tr><td>Terra 2.0</td><td><code>terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6</code></td></tr></tbody></table>
+  
+<!--TOKEN_BRIDGE_ADDRESS-->
+
+## Wormhole Relayer
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--RELAYER_BRIDGE_ADDRESS-->
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Arbitrum</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Avalanche</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Base</td><td><code>0x706f82e9bb5b0813501714ab5974216704980e31</code></td></tr><tr><td>Berachain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Blast</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Celo</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Fantom</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Ink</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Kaia</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Mantle</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Moonbeam</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Optimism</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Polygon</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Scroll</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>SNAXchain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Unichain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>World Chain</td><td><code>0x1520cc9e779c56dab5866bebfb885c86840c33d3</code></td></tr><tr><td>X Layer</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr></tbody></table>
+
+=== "Testnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470</code></td></tr><tr><td>Avalanche</td><td><code>0xA3cF45939bD6260bcFe3D66bc73d60f19e49a8BB</code></td></tr><tr><td>Base Sepolia</td><td><code>0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE</code></td></tr><tr><td>Berachain</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x80aC94316391752A193C1c47E27D382b507c93F3</code></td></tr><tr><td>Celo</td><td><code>0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84</code></td></tr><tr><td>Fantom</td><td><code>0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470</code></td></tr><tr><td>Ink</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>Monad</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>Moonbeam</td><td><code>0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE</code></td></tr><tr><td>Seievm</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>Unichain</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr></tbody></table>
+
+=== "Devnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0xcC680D088586c09c3E0E099a676FA4b6e42467b4</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0xcC680D088586c09c3E0E099a676FA4b6e42467b4</code></td></tr></tbody></table>
+  
+<!--RELAYER_BRIDGE_ADDRESS-->
+
+## CCTP
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--CCTP_ADDRESS-->
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0xAaDA05BD399372f0b0463744C09113c137636f6a</code></td></tr><tr><td>Arbitrum</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Avalanche</td><td><code>0x09Fb06A271faFf70A651047395AaEb6265265F13</code></td></tr><tr><td>Base</td><td><code>0x03faBB06Fa052557143dC28eFCFc63FC12843f1D</code></td></tr><tr><td>Optimism</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Polygon</td><td><code>0x0FF28217dCc90372345954563486528aa865cDd6</code></td></tr></tbody></table>
+
+=== "Testnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Avalanche</td><td><code>0x58f4c17449c90665891c42e14d34aae7a26a472e</code></td></tr><tr><td>Base Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr></tbody></table>
+
+=== "Devnet"
+
+    N/A
+  
+<!--CCTP_ADDRESS-->
+
+## Read-Only Deployments
+
+=== "Mainnet"
+
+    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Corn</td><td><code>0xa683c66045ad16abb1bCE5ad46A64d95f9A25785</code></td></tr><tr><td>Gnosis</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Goat</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>LightLink</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Rootstock</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Sonic</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Telos</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr></tbody></table>
+
+!!!note  
+    Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/
+--- BEGIN CONTENT ---
+---
+title: Wormhole Formatted Addresses
+description: Explanation of Wormhole formatted 32-byte hex addresses, their conversion, and usage across different blockchain platforms.
+categories: Reference
+---
+
+# Wormhole Formatted Addresses
+
+## Introduction
+
+Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
+
+This uniform format is essential for smooth interoperability in token transfers and messaging across chains. Wormhole uses formatted addresses throughout the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, especially in cross-chain transactions, such as transfer functions that utilize the `bytes32` representation for recipient addresses.
+
+## Platform-Specific Address Formats
+
+Each blockchain ecosystem Wormhole supports has its method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized 32-byte hex format.
+
+Here’s an overview of the native address formats and how they are normalized to the Wormhole format:
+
+| Platform        | Native Address Format            | Wormhole Formatted Address |
+|-----------------|----------------------------------|----------------------------|
+| EVM             |  Hex (e.g., 0x...)               |  32-byte Hex               |
+| Solana          |  Base58                          |  32-byte Hex               |
+| CosmWasm        |  Bech32                          |  32-byte Hex               |
+| Algorand        |  Algorand App ID                 |  32-byte Hex               |
+| Sui             |  Hex                             |  32-byte Hex               |
+| Aptos           |  Hex                             |  32-byte Hex               |
+| Near            |  SHA-256                         |  32-byte Hex               |
+
+These conversions allow Wormhole to interact seamlessly with various chains using a uniform format for all addresses.
+
+### Address Format Handling
+
+The Wormhole SDK provides mappings that associate each platform with its native address format. You can find this mapping in the Wormhole SDK file [`platforms.ts`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/007f61b27c650c1cf0fada2436f79940dfa4f211/core/base/src/constants/platforms.ts#L93-L102){target=\_blank}:
+
+```typescript
+const platformAddressFormatEntries = [
+  ['Evm', 'hex'],
+  ['Solana', 'base58'],
+  ['Cosmwasm', 'bech32'],
+  ['Algorand', 'algorandAppId'],
+  ['Sui', 'hex'],
+  ['Aptos', 'hex'],
+  ['Near', 'sha256'],
+];
+```
+
+These entries define how the [`UniversalAddress`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/007f61b27c650c1cf0fada2436f79940dfa4f211/core/definitions/src/universalAddress.ts#L23){target=\_blank} class handles different address formats based on the platform.
+
+## Universal Address Methods
+
+The `UniversalAddress` class is essential for working with Wormhole formatted addresses. It converts native blockchain addresses into the standardized 32-byte hex format used across Wormhole operations.
+
+Key functions:
+
+ - **`new UniversalAddress()`** - use the `UniversalAddress` constructor to convert native addresses into the Wormhole format
+
+    ```typescript
+    const universalAddress = new UniversalAddress('0x123...', 'hex');
+    ```
+
+ - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted 32-byte hex address
+
+    ```typescript
+    const ethAddress: NativeAddress<'Evm'> = toNative('Ethereum', '0x0C9...');
+    const universalAddress = ethAddress.toUniversalAddress().toString();
+    ```
+
+ - **`toNative()`** - converts the Wormhole formatted address back to a native address for a specific blockchain platform
+
+    ```typescript
+    const nativeAddress = universalAddress.toNative('Evm');
+    ```
+
+ - **`toString()`** - returns the Wormhole formatted address as a hex string, which can be used in various SDK operations
+
+    ```typescript
+    console.log(universalAddress.toString());
+    ```
+
+These methods allow developers to convert between native addresses and the Wormhole format, ensuring cross-chain compatibility.
+
+## Convert Between Native and Wormhole Formatted Addresses
+
+The Wormhole SDK allows developers to easily convert between native addresses and Wormhole formatted addresses when building cross-chain applications.
+
+### Convert a Native Address to a Wormhole Formatted Address
+
+Example conversions for EVM and Solana:
+
+=== "EVM"
+
+    ```typescript
+    import { toNative } from '@wormhole-foundation/sdk-core';
+
+const ethAddress: NativeAddress<'Evm'> = toNative(
+  'Ethereum',
+  '0x0C99567DC6f8f1864cafb580797b4B56944EEd28'
+);
+const universalAddress = ethAddress.toUniversalAddress().toString();
+console.log('Universal Address (EVM):', universalAddress);
+    ```
+
+=== "Solana"
+
+    ```typescript
+    import { toNative } from '@wormhole-foundation/sdk-core';
+
+const solAddress: NativeAddress<'Solana'> = toNative(
+  'Solana',
+  '6zZHv9EiqQYcdg52ueADRY6NbCXa37VKPngEHaokZq5J'
+);
+const universalAddressSol = solAddress.toUniversalAddress().toString();
+console.log('Universal Address (Solana):', universalAddressSol);
+    ```
+
+The result is a standardized address format that is ready for cross-chain operations.
+
+### Convert Back to Native Addresses
+
+Below is how you can convert a Wormhole formatted address back to an EVM or Solana native address:
+
+```typescript
+const nativeAddressEvm = universalAddress.toNative('Evm');
+console.log('EVM Native Address:', nativeAddressEvm);
+
+const nativeAddressSolana = universalAddress.toNative('Solana');
+console.log('Solana Native Address:', nativeAddressSolana);
+```
+
+These conversions ensure that your cross-chain applications can seamlessly handle addresses across different ecosystems.
+
+## Use Cases for Wormhole Formatted Addresses
+
+### Cross-chain Token Transfers
+
+Cross-chain token transfers require addresses to be converted into a standard format. For example, when transferring tokens from Ethereum to Solana, the Ethereum address is converted into a Wormhole formatted address to ensure compatibility. After the transfer, the Wormhole formatted address is converted back into the Solana native format.
+
+### Smart Contract Interactions
+
+In smart contract interactions, especially when building dApps that communicate across multiple chains, Wormhole formatted addresses provide a uniform way to reference addresses. This ensures that addresses from different blockchains can interact seamlessly, whether you're sending messages or making cross-chain contract calls.
+
+### DApp Development
+
+For cross-chain dApp development, Wormhole formatted addresses simplify handling user wallet addresses across various blockchains. This allows developers to manage addresses consistently, regardless of whether they work with EVM, Solana, or another supported platform.
+
+### Relayers and Infrastructure
+
+Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
+--- BEGIN CONTENT ---
+---
+title: Supported Networks
+description: Learn about the compatible environments and individual networks that Wormhole supports. Readers can click on each of the blockchain logos for more information.
+categories: Reference
+---
+
+# Supported Networks
+
+Wormhole supports several different blockchains and environments. Since many of the concepts for using Wormhole within a given blockchain environment are the same, this section is organized by environment, and individual chains are detailed within the environment page.
+
+## Supported Environments
+
+- [EVM (Ethereum and compatible chains)](#evm)
+- [SVM (Solana and compatible chains)](#svm)
+- [CosmWasm (Cosmos ecosystem chains)](#cosmwasm)
+- [AVM (Algorand)](#avm)
+- [NEAR VM (NEAR)](#near-vm)
+- [Move VM (Aptos)](#move-vm)
+- [Sui Move VM (Sui)](#sui-move-vm)
+
+## Supported Blockchains by Environment
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_CARDS-->
+<div class="full-width" markdown>
+
+### EVM
+
+<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Ethereum</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://ethereum.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://ethereum.org/en/developers/docs/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://etherscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Acala</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://acala.network/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://evmdocs.acala.network/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://acala.subscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Arbitrum</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://arbitrum.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.arbitrum.io/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://arbiscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Avalanche</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.avax.network/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.avax.network/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://snowtrace.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Base</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://base.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.base.org/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://goerli.basescan.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.berachain.com/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.berachain.com/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://bartio.beratrail.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Blast</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://blast.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.blast.io/about-blast" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://docs.blast.io/tools/block-explorers#block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>BNB Smart Chain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.bnbchain.org/en/smartChain" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.bnbchain.org/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://bscscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Celo</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://celo.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.celo.org/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.celo.org/mainnet/" target="_blank">Block Explorer</a></td></tr><tr><td>Fantom</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://fantom.foundation/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.fantom.foundation/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://ftmscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Gnosis</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.gnosis.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.gnosischain.com/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://gnosisscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>HyperEVM</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://hyperfoundation.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://hyperliquid.gitbook.io/hyperliquid-docs" target="_blank">Developer Docs</a><br></td></tr><tr><td>Ink</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://inkonchain.com/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.inkonchain.com/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer-sepolia.inkonchain.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Kaia</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://kaia.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.kaia.io/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://kaiascan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Karura</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://acala.network/karura" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://evmdocs.acala.network/" target="_blank">Developer Docs</a><br></td></tr><tr><td>Linea</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://linea.build/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.linea.build/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://docs.linea.build/get-started/build/block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Mantle</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.mantle.xyz/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.mantle.xyz/network/introduction/overview" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://mantlescan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>Mezo</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://mezo.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://mezo.org/docs/developers/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.test.mezo.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Monad</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.monad.xyz/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.monad.xyz/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://testnet.monadexplorer.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://moonbeam.network/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.moonbeam.network/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://moonscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Neon</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://neonevm.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://neonevm.org/docs/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://neonscan.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Oasis</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://oasisprotocol.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.oasis.io/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://docs.oasis.io/dapp/cipher/#block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Optimism</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.optimism.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.optimism.io/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://optimistic.etherscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Polygon</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://polygon.technology/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.polygon.technology/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://polygonscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://scroll.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.scroll.io/en/home/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://scrollscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Seievm</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td></td></tr><tr><td>SNAXchain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://synthetix.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.synthetix.io/v3/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.snaxchain.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.unichain.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.unichain.org/docs" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://sepolia.uniscan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>World Chain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://world.org/world-chain" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.world.org/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://docs.world.org/world-chain/providers/explorers" target="_blank">Block Explorer</a></td></tr><tr><td>X Layer</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.okx.com/xlayer" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://www.okx.com/xlayer/docs/developer/build-on-xlayer/about-xlayer" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://zksync.l2scan.co/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+
+### SVM
+
+<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Solana</td><td>SVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://solana.com/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://solana.com/docs" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.solana.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Pythnet</td><td>SVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.pyth.network/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.pyth.network/home" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://sepolia-optimism.etherscan.io/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+
+### AVM
+
+<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Algorand</td><td>AVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://algorand.com" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://developer.algorand.org" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://allo.info/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+
+### CosmWasm
+
+<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Injective</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://injective.com/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.injective.network/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.injective.network/" target="_blank">Block Explorer</a></td></tr><tr><td>Neutron</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.neutron.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.neutron.org/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://docs.neutron.org/neutron/faq#where-is-the-block-explorer" target="_blank">Block Explorer</a></td></tr><tr><td>Osmosis</td><td>CosmWasm</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://osmosis.zone/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.osmosis.zone/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://docs.osmosis.zone/overview/endpoints#explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Sei</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.sei.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://www.docs.sei.io/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://www.docs.sei.io/dev-ecosystem-providers/explorers#sei-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Terra</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.terra.money/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://classic-docs.terra.money/docs/full-node/run-a-full-terra-node/join-a-network.html" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://classic-docs.terra.money/docs/ecosystem/explore.html?highlight=explorer#block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Terra 2.0</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.terra.money/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.terra.money/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://finder.terra.money/" target="_blank">Block Explorer</a></td></tr><tr><td>XPLA</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://www.xpla.io/en" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.xpla.io/develop/develop/get-started/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.xpla.io/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+
+### Move VM
+
+<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://aptosfoundation.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://aptos.dev/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.aptoslabs.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Movement</td><td>Move VM</td><td>:x:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://movementlabs.xyz/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.movementnetwork.xyz/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://explorer.movementlabs.xyz/?network=mainnet" target="_blank">Block Explorer</a></td></tr></tbody></table>
+
+### NEAR VM
+
+<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>NEAR</td><td>NEAR VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://near.org/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.near.org/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://nearblocks.io/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+
+### Sui Move VM
+
+<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Sui</td><td>Sui Move VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
+  :material-web: <a href="https://sui.io/" target="_blank">Website</a><br>
+  :material-file-document: <a href="https://docs.sui.io/" target="_blank">Developer Docs</a><br>
+  :octicons-package-16: <a href="https://suiscan.xyz/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+
+</div>
+<!--SUPPORTED_BLOCKCHAIN_CARDS-->
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets/
+--- BEGIN CONTENT ---
+---
+title: Testnet Faucets
+description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
+categories: Reference
+---
+
+# Testnet Faucets
+
+## Get Started
+
+Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+
+<!--TESTNET_FAUCETS-->
+<div class="full-width" markdown>
+
+### EVM
+
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Ethereum Holesky</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-holesky" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Ethereum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-sepolia" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Acala</td><td>EVM</td><td>ACA</td><td><a href="https://discord.gg/5JJgXKSznc" target="_blank">Discord Faucet</a></td></tr><tr><td>Arbitrum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.arbitrum.io/for-devs/dev-tools-and-resources/chain-info#faucets" target="_blank">List of Faucets</a></td></tr><tr><td>Avalanche</td><td>EVM</td><td>AVAX</td><td><a href="https://core.app/tools/testnet-faucet/?subnet=c&token=c" target="_blank">Official Avalanche Faucet</a></td></tr><tr><td>Base Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.base.org/docs/tools/network-faucets/" target="_blank">List of Faucets</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>BERA</td><td><a href="https://bartio.faucet.berachain.com/" target="_blank">Official Berachain Faucet</a></td></tr><tr><td>Blast</td><td>EVM</td><td>ETH</td><td><a href="https://docs.blast.io/tools/faucets#faucets" target="_blank">List of Faucets</a></td></tr><tr><td>BNB Smart Chain</td><td>EVM</td><td>BNB</td><td><a href="https://testnet.binance.org/faucet-smart/" target="_blank">Official BNB Faucet</a></td></tr><tr><td>Celo</td><td>EVM</td><td>CELO</td><td><a href="https://faucet.celo.org/alfajores" target="_blank">Official Celo Faucet</a></td></tr><tr><td>Fantom</td><td>EVM</td><td>FTM</td><td><a href="https://faucet.fantom.network/" target="_blank">Official Fantom Faucet</a></td></tr><tr><td>Gnosis</td><td>EVM</td><td>xDAI</td><td><a href="https://faucet.gnosischain.com/" target="_blank">Official Gnosis Faucet</a></td></tr><tr><td>HyperEVM</td><td>EVM</td><td>mock USDC</td><td><a href="https://app.hyperliquid-testnet.xyz/drip" target="_blank">Official Hyperliquid Faucet</a></td></tr><tr><td>Ink</td><td>EVM</td><td>ETH</td><td><a href="https://inkonchain.com/faucet" target="_blank">Official Ink Faucet</a></td></tr><tr><td>Kaia</td><td>EVM</td><td>KAIA</td><td><a href="https://faucet.kaia.io" target="_blank">Official Kaia Faucet</a></td></tr><tr><td>Karura</td><td>EVM</td><td>ACA</td><td><a href="https://discord.gg/5JJgXKSznc" target="_blank">Discord Faucet</a></td></tr><tr><td>Linea</td><td>EVM</td><td>ETH</td><td><a href="https://docs.linea.build/get-started/how-to/get-testnet-eth" target="_blank">List of Faucets</a></td></tr><tr><td>Mantle</td><td>EVM</td><td>MNT</td><td><a href="https://faucet.sepolia.mantle.xyz/" target="_blank">Official Mantle Faucet</a></td></tr><tr><td>Monad</td><td>EVM</td><td>MON</td><td><a href="https://testnet.monad.xyz/" target="_blank">Official Monad Faucet</a></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>DEV</td><td><a href="https://faucet.moonbeam.network/" target="_blank">Official Moonbeam Faucet</a></td></tr><tr><td>Neon</td><td>EVM</td><td>NEON</td><td><a href="https://neonfaucet.org/" target="_blank">Official Neon Faucet</a></td></tr><tr><td>Oasis</td><td>EVM</td><td>TEST</td><td><a href="https://faucet.testnet.oasis.io/" target="_blank">Official Oasis Faucet</a></td></tr><tr><td>Optimism Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://console.optimism.io/faucet" target="_blank">Superchain Faucet</a></td></tr><tr><td>Polygon Amoy</td><td>EVM</td><td>POL</td><td><a href="https://faucet.polygon.technology/" target="_blank">Official Polygon Faucet</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>ETH</td><td><a href="https://docs.scroll.io/en/user-guide/faucet/" target="_blank">List of Faucets</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>ETH</td><td><a href="https://faucet.quicknode.com/unichain/sepolia" target="_blank">QuickNode Faucet</a></td></tr><tr><td>World Chain</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/world-chain-sepolia" target="_blank">Alchemy Faucet</a></td></tr><tr><td>X Layer</td><td>EVM</td><td>OKB</td><td><a href="https://www.okx.com/xlayer/faucet" target="_blank">X Layer Official Faucet</a></td></tr></tbody></table>
+
+### SVM
+
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Pythnet</td><td>SVM</td><td>ETH</td><td><a href="https://console.optimism.io/faucet" target="_blank">Superchain Faucet</a></td></tr></tbody></table>
+
+### AVM
+
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Algorand</td><td>AVM</td><td>ALGO</td><td><a href="https://bank.testnet.algorand.network/" target="_blank">Official Algorand Faucet</a></td></tr></tbody></table>
+
+### CosmWasm
+
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Celestia</td><td>CosmWasm</td><td>TIA</td><td><a href="https://discord.gg/celestiacommunity" target="_blank">Discord Faucet</a></td></tr><tr><td>Cosmos Hub</td><td>CosmWasm</td><td>ATOM</td><td><a href="https://discord.com/invite/cosmosnetwork" target="_blank">Discord Faucet</a></td></tr><tr><td>Evmos</td><td>CosmWasm</td><td>TEVMOS</td><td><a href="https://faucet.evmos.dev/" target="_blank">Official Evmos Faucet</a></td></tr><tr><td>Injective</td><td>CosmWasm</td><td>INJ</td><td><a href="https://testnet.faucet.injective.network/" target="_blank">Official Injective Faucet</a></td></tr><tr><td>Kujira</td><td>CosmWasm</td><td>KUJI</td><td><a href="https://discord.com/channels/970650215801569330/1009931570263629854" target="_blank">Discord Faucet</a></td></tr><tr><td>Neutron</td><td>CosmWasm</td><td>NTRN</td><td><a href="https://docs.neutron.org/neutron/faq#where-is-the-testnet-faucet" target="_blank">List of Faucets</a></td></tr><tr><td>Noble</td><td>CosmWasm</td><td>USDC</td><td><a href="https://faucet.circle.com/" target="_blank">Circle Faucet</a></td></tr><tr><td>Osmosis</td><td>CosmWasm</td><td>OSMO</td><td><a href="https://faucet.testnet.osmosis.zone/" target="_blank">Official Osmosis Faucet</a></td></tr><tr><td>SEDA</td><td>CosmWasm</td><td>SEDA</td><td><a href="https://devnet.explorer.seda.xyz/faucet" target="_blank">Official SEDA Faucet</a></td></tr><tr><td>Sei</td><td>CosmWasm</td><td>SEI</td><td><a href="https://atlantic-2.app.sei.io/faucet" target="_blank">Sei Atlantic-2 Faucet</a></td></tr><tr><td>Terra</td><td>CosmWasm</td><td>LUNA</td><td><a href="https://faucet.terra.money/" target="_blank">Terra Official Faucet</a></td></tr><tr><td>Terra 2.0</td><td>CosmWasm</td><td>LUNA</td><td><a href="https://faucet.terra.money/" target="_blank">Terra Official Faucet</a></td></tr><tr><td>XPLA</td><td>CosmWasm</td><td>XPLA</td><td><a href="https://faucet.xpla.io/" target="_blank">XPLA Official Faucet</a></td></tr></tbody></table>
+
+### Move VM
+
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>APT</td><td><a href="https://www.aptosfaucet.com/" target="_blank">Official Aptos Faucet</a></td></tr><tr><td>Movement</td><td>Move VM</td><td>undefined</td><td><a href="https://faucet.devnet.suzuka.movementnetwork.xyz/" target="_blank">Official Movement Faucet</a></td></tr></tbody></table>
+
+### NEAR VM
+
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>NEAR</td><td>NEAR VM</td><td>NEAR</td><td><a href="https://near-faucet.io/" target="_blank">Official NEAR Faucet</a></td></tr></tbody></table>
+
+### Sui Move VM
+
+<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Sui</td><td>Sui Move VM</td><td>SUI</td><td><a href="https://docs.sui.io/build/faucet" target="_blank">List of Faucets</a></td></tr></tbody></table>
+
+</div>
+<!--TESTNET_FAUCETS-->
 --- END CONTENT ---
