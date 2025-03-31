@@ -1210,8 +1210,10 @@ Once the proposal is executed, the encoded messages will be dispatched via Wormh
 
 # Core Concepts [shared: true]
 The following section contains foundational documentation shared across all Wormhole products.
-It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with {PROJECT_NAME}.This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
+It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
+This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
 This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
+
 
 ---
 

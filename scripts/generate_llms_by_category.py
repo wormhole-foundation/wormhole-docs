@@ -1,34 +1,25 @@
 import re
 import os
 
-# --- Context Configuration ---
-PROJECT_NAME = "Wormhole"
-PROJECT_URL = "https://wormhole.com"
-PROJECT_DESCRIPTION = (
-    f"{PROJECT_NAME} ({PROJECT_URL}) is a cross-chain messaging protocol used to move data and assets between blockchains."
+import json
+
+# Load configuration from llms_config.json
+config_path = os.path.join(os.path.dirname(__file__), 'llms_config.json')
+with open(config_path, 'r', encoding='utf-8') as f:
+    config = json.load(f)
+
+PROJECT_NAME = config["projectName"]
+PROJECT_URL = config["projectUrl"]
+PROJECT_DESCRIPTION = config["projectDescription"]
+SECTION_PRIORITY = config["sectionPriority"]
+categories = config["categories"]
+AI_PROMPT_TEMPLATE = config["aiPromptTemplate"].format(
+    PROJECT_NAME=PROJECT_NAME,
+    PROJECT_URL=PROJECT_URL
 )
-
-AI_PROMPT_TEMPLATE = f"""# AI Prompt Template
-
-You are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task is to assist developers in understanding and using the product described in this file.
-- Provide accurate answers based on the included documentation.
-- Do not assume undocumented features, behaviors, or APIs.
-- If unsure, respond with “Not specified in the documentation.”
-- Prefer concise explanations and code snippets where appropriate.
-
-"""
-
-CORE_CONTEXT_DESCRIPTION = (
-    "The following section contains foundational documentation shared across all "f"{PROJECT_NAME} products.\n"
-    "It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with {PROJECT_NAME}."
-    "This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.\n"
-    "This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product "
-    "unless the user explicitly asks about the general architecture.\n"
+CORE_CONTEXT_DESCRIPTION = config["coreContextDescription"].format(
+    PROJECT_NAME=PROJECT_NAME
 )
-
-# Define order sections to prioritized when sorting pages and list of categories to extract from the full LLMS file
-SECTION_PRIORITY = ["learn", "build", "tutorials"]
-categories = ['NTT', 'Connect', 'Token-Bridge', 'Settlement', 'Relayers', 'MultiGov', 'Queries', 'Transfer']
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
 llms_input_path = os.path.join(docs_dir, 'llms-full.txt') # points to the full llms-full.txt
