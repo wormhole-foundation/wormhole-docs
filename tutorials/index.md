@@ -1,23 +1,53 @@
 ---
 title: Tutorials
-description: This section contains step-by-step tutorials to start developing with Wormhole, including creating cross-chain contracts and multichain transfers.
+description: Discover product-specific Wormhole tutorials. Learn setup, integration, and advanced features to develop cross-chain apps confidently.
 template: root-index-page.html
 ---
 
-# Tutorials
+# Tutorials by Product
 
-Welcome to the Wormhole tutorials section! Whether you're just getting started or looking to build advanced cross-chain applications, this collection of step-by-step tutorials will help you leverage the full power of the Wormhole ecosystem.
-
-These tutorials are designed to help you develop efficient, scalable, and innovative cross-chain applications, from integrating individual Wormhole products to creating comprehensive end-to-end solutions. Explore our tutorials to get hands-on experience with Wormhole!
+In this section, you'll find tutorials focused on individual Wormhole products. Each product folder contains detailed guides to help you integrate and use specific Wormhole services, such as Token Bridge, Wormhole Connect, and more. Whether setting up your first product or diving deeper into advanced features, these tutorials will walk you through the entire process, from installation to implementation.
 
 <div class="grid cards" markdown>
 
--   :octicons-apps-16:{ .lg .middle } **By Product**
+-   :octicons-arrow-switch-16:{ .lg .middle } **Connect**
 
     ---
 
-    Explore tutorials tailored to specific Wormhole products. Each section contains tutorials on integrating and using a single product. Whether you want to understand Token Bridge, Wormhole Connect, or other Wormhole services, these tutorials will guide you through the setup and implementation process.
+    With Wormhole Connect, you can enable seamless connectivity between different blockchain ecosystems. These tutorials guide you through integrating Connect into your projects, allowing you to easily leverage cross-chain interactions, simplify onboarding, and improve user experience.
 
-    [:custom-arrow: Start building](/docs/tutorials/by-product/)
+    [:custom-arrow: Start building](/docs/tutorials/connect/)
+
+-   :octicons-file-code-16:{ .lg .middle } **Contract Integrations**
+
+    ---
+
+    Learn to build smart contracts that communicate across multiple blockchains. These tutorials show you how to create robust cross-chain contracts, allowing your dApps to move beyond a single network and tap into global liquidity, functionality, and user bases.
+
+    [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/)
+
+-   :octicons-people-16:{ .lg .middle } **MultiGov**
+
+    ---
+
+    Unleash the power of cross-chain governance with Multigov. These tutorials guide you through setting up and managing governance structures spanning multiple blockchains, enabling collective decision-making and coordinated upgrades across decentralized ecosystems.
+
+    [:custom-arrow: Start building](/docs/tutorials/multigov/)
+
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
+
+    ---
+
+    Master the tools to build cross-chain applications with the Wormhole SDK. These tutorials cover installation to advanced functionality, helping you streamline development, reduce complexity, and quickly bring your ideas to life. 
+
+    [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/)
+
+-   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
+
+    ---
+
+    Learn how to create, register, and manage wrapped multichain assets across multiple chains. These tutorials will guide you through the process of enabling asset transfers between supported networks.
+
+    [:custom-arrow: Start building](/docs/tutorials/multichain-assets/)
 
 </div>
