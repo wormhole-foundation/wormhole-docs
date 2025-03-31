@@ -32,7 +32,7 @@ categories = ['NTT', 'Connect', 'Token-Bridge', 'Settlement', 'Relayers', 'Multi
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
 llms_input_path = os.path.join(docs_dir, 'llms-full.txt') # points to the full llms-full.txt
-output_dir = os.path.join(docs_dir, 'llms-download')  # path where we store individual category llms files
+output_dir = os.path.join(docs_dir, 'llms-files')  # path where we store individual category llms files
 os.makedirs(output_dir, exist_ok=True) # make the directory if it doesn't exist
 
 # Extracts and writes a per-category LLMS file 

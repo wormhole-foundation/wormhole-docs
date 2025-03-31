@@ -129,10 +129,6 @@ def fetch_remote_snippet(snippet_ref, yaml_data):
 
     # Resolve any template placeholders using the yaml_data
     url = resolve_placeholders(url, yaml_data)
-    #print(f"{url}")
-    #print(f"{line_start}")
-    #print(f"{line_end}")
-
 
     # Skip URLs containing unresolved template placeholders
     if "{{" in url:
@@ -167,7 +163,6 @@ def resolve_placeholders(text, data):
             break
         text = text.replace(match.group(0), str(value))
     return text
-
 
 def get_value_from_path(data, path):
     keys = path.split('.')
@@ -239,7 +234,6 @@ def get_ordered_files_from_mkdocs(mkdocs_path):
     extract_paths(nav)
     # Normalize to absolute paths
     return [os.path.join(docs_dir, path) for path in ordered_files]
-
 
 # generate lms.txt – a streamlined view of the documentation structure
 # Format: [Page Title](URL): description
@@ -323,12 +317,12 @@ if __name__ == "__main__":
 from generate_llms_by_category import generate_all_categories
 generate_all_categories()
 
-# Copy full-llms.txt into llms-download for consistency
+# Copy full-llms.txt into llms-files for consistency
 llms_source = os.path.join(docs_dir, 'llms-full.txt')
-llms_target = os.path.join(docs_dir, 'llms-download', 'llms-full.txt')
+llms_target = os.path.join(docs_dir, 'llms-files', 'llms-full.txt')
 
 with open(llms_source, 'r', encoding='utf-8') as src:
     with open(llms_target, 'w', encoding='utf-8') as dst:
         dst.write(src.read())
 
-print(f"[✓] Copied llms-full.txt to llms-download/")
+print(f"[✓] Copied llms-full.txt to llms-files/")
