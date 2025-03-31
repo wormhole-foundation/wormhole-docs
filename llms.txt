@@ -1,4 +1,6 @@
-# llms.txt – site structure for AI systems
+# Wormhole
+
+> A cross-chain messaging protocol used to move data and assets between blockchains.
 
 [Get Started with Core Contracts](https://wormhole.com/docs/build/core-messaging/core-contracts/): This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts
 [Core Messaging Layer Contracts](https://wormhole.com/docs/build/core-messaging/): Learn to use Wormhole’s foundational messaging contracts to build multichain apps with direct control over publishing, verifying, relaying, and more.

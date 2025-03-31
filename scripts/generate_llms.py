@@ -247,7 +247,12 @@ def generate_llms_structure_txt(files):
 
     structure_output = os.path.join(docs_dir, 'llms.txt')
     #os.makedirs(os.path.dirname(structure_output), exist_ok=True)
-    structure_lines = ["# llms.txt – site structure for AI systems\n"]
+    structure_lines = [
+        "# Wormhole",
+        "",
+        "> A cross-chain messaging protocol used to move data and assets between blockchains.",
+        "",  # spacer line
+    ]
 
     for file in files:
         if not os.path.exists(file) or '.snippets' in file:
