@@ -1,6 +1,5 @@
 import re
 import os
-
 import json
 
 # Load configuration from llms_config.json
@@ -8,6 +7,7 @@ config_path = os.path.join(os.path.dirname(__file__), 'llms_config.json')
 with open(config_path, 'r', encoding='utf-8') as f:
     config = json.load(f)
 
+# Configuration variables
 PROJECT_NAME = config["projectName"]
 PROJECT_URL = config["projectUrl"]
 PROJECT_DESCRIPTION = config["projectDescription"]
@@ -68,7 +68,7 @@ def extract_category(category, core_data=None):
         return
 
     # Output file for this category
-    output_file = os.path.join(output_dir, f"{category.lower()}.llms.txt") # write to output file
+    output_file = os.path.join(output_dir, f"{category.lower()}-llms.txt") # write to output file
     with open(output_file, 'w', encoding='utf-8') as f:
 
         # Intro context block to help LLMs understand purpose of the file
@@ -113,7 +113,7 @@ def extract_category(category, core_data=None):
 def generate_all_categories():
    
     extract_category('Core') # generate and store the core concepts file
-    core_path = os.path.join(output_dir, 'core.llms.txt')
+    core_path = os.path.join(output_dir, 'core-llms.txt')
     with open(core_path, 'r', encoding='utf-8') as f:
         raw_core = f.read()
 
