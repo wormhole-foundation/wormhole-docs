@@ -26,9 +26,8 @@ CORE_CONTEXT_DESCRIPTION = (
     "unless the user explicitly asks about the general architecture.\n"
 )
 
-# Define order in which sections sections should be prioritized when sorting pages
+# Define order sections to prioritized when sorting pages and list of categories to extract from the full LLMS file
 SECTION_PRIORITY = ["learn", "build", "tutorials"]
-# Define the list of categories to extract from the full LLMS file
 categories = ['NTT', 'Connect', 'Token-Bridge', 'Settlement', 'Relayers', 'MultiGov', 'Queries', 'Transfer']
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
@@ -36,14 +35,13 @@ llms_input_path = os.path.join(docs_dir, 'llms-full.txt') # points to the full l
 output_dir = os.path.join(docs_dir, 'llms-download')  # path where we store individual category llms files
 os.makedirs(output_dir, exist_ok=True) # make the directory if it doesn't exist
 
-# Extracts and writes a per-category LLMS file with optional shared core content.
+# Extracts and writes a per-category LLMS file 
 def extract_category(category, core_data=None): 
-    with open(llms_input_path, 'r', encoding='utf-8') as f: # Read the full LLMS input file
+    with open(llms_input_path, 'r', encoding='utf-8') as f: # read the full LLMS input file
         llms = f.read() 
 
-    # Extract all documentation blocks based on URL and content boundaries
     blocks = re.findall(
-        r"Doc-Content: (.*?)\n--- BEGIN CONTENT ---\n(.*?)\n--- END CONTENT ---", # regex 
+        r"Doc-Content: (.*?)\n--- BEGIN CONTENT ---\n(.*?)\n--- END CONTENT ---", # extract all documentation blocks
         llms, re.DOTALL
     )
 
@@ -61,8 +59,7 @@ def extract_category(category, core_data=None):
         if not category_line:
             continue
 
-        # Helper function to classify the doc page based on URL path
-        def infer_section_label(url):
+        def infer_section_label(url): # classify the doc page based on URL path
             for section in SECTION_PRIORITY:
                 if f"/{section}/" in url:
                     return section
@@ -75,8 +72,7 @@ def extract_category(category, core_data=None):
             index_lines.append(f"Doc-Page: {url} [type: {section_label}]") # store url
             content_blocks.append(f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---") # store full page
 
-    # If no pages matched the category, skip 
-    if not content_blocks:
+    if not content_blocks: # if no pages matched the category, skip 
         print(f"[!] Skipping {category} – no matching pages.")
         return
 
@@ -93,8 +89,7 @@ def extract_category(category, core_data=None):
         # Prompt block to guide the AI assistant's behavior
         f.write(AI_PROMPT_TEMPLATE)
 
-        # Sort the documentation blocks by section priority
-        def sort_key(pair):
+        def sort_key(pair): # sort the documentation blocks by section priority
             url = pair[0]
             for i, section in enumerate(SECTION_PRIORITY):
                 if f"/{section}/" in url:
@@ -121,7 +116,7 @@ def extract_category(category, core_data=None):
             f.write(core_index + "\n\n")
             f.write("# Full content for core concepts:\n\n")
             f.write(core_content)
-    print(f"[✓] Generated {output_file} with {len(content_blocks)} pages") # log successful generation
+    print(f"[✓] Generated {output_file} with {len(content_blocks)} pages")
 
 # Generate LLMS files for all categories including shared core content.
 def generate_all_categories():
@@ -147,7 +142,7 @@ def generate_all_categories():
     # Bundle core info into a reusable tuple
     core_data = (core_index, core_content.strip())
 
-    # # Generate each category file
+    # Generate each category file
     for cat in categories:
         extract_category(cat, core_data)
 

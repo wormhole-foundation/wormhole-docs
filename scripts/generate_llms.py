@@ -212,6 +212,80 @@ def load_yaml(yaml_file):
     with open(yaml_file, "r", encoding="utf-8") as file:
         return yaml.safe_load(file)
 
+# Parses mkdocs.yml and returns a list of doc file paths in the order defined by 'nav'
+def get_ordered_files_from_mkdocs(mkdocs_path):
+
+    # Preprocess to remove problematic YAML tags
+    with open(mkdocs_path, 'r', encoding='utf-8') as f:
+        raw_yaml = f.read()
+
+    # Strip any !!python/name tags (basic handling)
+    raw_yaml_cleaned = re.sub(r'!!python/name:[^\n]+', 'null', raw_yaml)
+
+    mkdocs_config = yaml.safe_load(raw_yaml_cleaned)
+
+    nav = mkdocs_config.get('nav', [])
+    ordered_files = []
+
+    def extract_paths(nav_items):
+        for item in nav_items:
+            if isinstance(item, dict):
+                for _, value in item.items():
+                    if isinstance(value, str):
+                        ordered_files.append(value)
+                    elif isinstance(value, list):
+                        extract_paths(value)
+
+    extract_paths(nav)
+    # Normalize to absolute paths
+    return [os.path.join(docs_dir, path) for path in ordered_files]
+
+
+# generate lms.txt – a streamlined view of the documentation structure
+# Format: [Page Title](URL): description
+def generate_llms_structure_txt(files):
+
+    structure_output = os.path.join(docs_dir, 'llms.txt')
+    #os.makedirs(os.path.dirname(structure_output), exist_ok=True)
+    structure_lines = ["# llms.txt – site structure for AI systems\n"]
+
+    for file in files:
+        if not os.path.exists(file) or '.snippets' in file:
+            continue
+
+        with open(file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        # Extract metadata frontmatter
+        metadata_match = re.search(r"---\n(.*?)\n---", content, re.DOTALL)
+        if metadata_match:
+            try:
+                metadata_yaml = yaml.safe_load(metadata_match.group(1))
+                title = metadata_yaml.get('title', 'Untitled')
+                description = metadata_yaml.get('description', 'No description available.')
+            except yaml.YAMLError:
+                title = 'Untitled'
+                description = 'No description available.'
+        else:
+            title = 'Untitled'
+            description = 'No description available.'
+
+        # Create doc URL
+        rel_path = os.path.relpath(file, docs_dir)
+        doc_url_path = re.sub(r'\.(md|mdx)$', '', rel_path)
+        doc_url = f"{docs_url}{doc_url_path}"
+        if doc_url.endswith('/index'):
+            doc_url = doc_url[:-6]
+
+        structure_lines.append(f"[{title}]({doc_url}/): {description}")
+
+    # Write output file
+    with open(structure_output, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(structure_lines))
+
+    print(f"[✓] Generated llms.txt at: {structure_output}")
+
+
 def main():
     files = get_all_markdown_files(docs_dir)
     yaml_file = load_yaml(yaml_dir)
@@ -233,12 +307,15 @@ def main():
 
     print(f"llms-full.txt created or updated at: {output_file}")
 
+    # Generate streamlined structure for AI systems
+    mkdocs_path = os.path.join(base_dir, 'mkdocs.yml')
+    ordered_files = get_ordered_files_from_mkdocs(mkdocs_path)
+    generate_llms_structure_txt(files)
 
 if __name__ == "__main__":
     main()
 
 from generate_llms_by_category import generate_all_categories
-
 generate_all_categories()
 
 # Copy full-llms.txt into llms-download for consistency
