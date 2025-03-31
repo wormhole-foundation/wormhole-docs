@@ -243,9 +243,11 @@ def generate_llms_structure_txt(files):
     #os.makedirs(os.path.dirname(structure_output), exist_ok=True)
     structure_lines = [
         "# Wormhole",
-        "",
+        "", # spacer line
         "> A cross-chain messaging protocol used to move data and assets between blockchains.",
-        "",  # spacer line
+        "",  
+        "## Docs",
+        ""
     ]
 
     for file in files:
@@ -276,7 +278,7 @@ def generate_llms_structure_txt(files):
         if doc_url.endswith('/index'):
             doc_url = doc_url[:-6]
 
-        structure_lines.append(f"[{title}]({doc_url}/): {description}")
+        structure_lines.append(f"- [{title}]({doc_url}/): {description}")
 
     # Write output file
     with open(structure_output, 'w', encoding='utf-8') as f:
