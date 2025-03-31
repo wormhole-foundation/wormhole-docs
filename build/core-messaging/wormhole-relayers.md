@@ -141,4 +141,4 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 
 ## Step-by-Step Tutorial
 
-For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/) tutorial.
+For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/solidity-sdk/cross-chain-contracts/) tutorial.

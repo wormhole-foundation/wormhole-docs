@@ -10,15 +10,15 @@ template: root-index-page.html
 
 If you learn best by building, start here to build with the Wormhole TypeScript SDK:
 
-- [**Transfer Tokens via the Token Bridge**](/docs/tutorials/by-product/wormhole-sdk/tokens-via-token-bridge/){target=\_blank} - use the [Wormhole SDK's](/docs/build/toolkit/typescript-sdk/){target=\_blank} Token Bridge method to move wrapped assets across networks
+- [**Transfer Tokens via the Token Bridge**](/docs/tutorials/typescript-sdk/tokens-via-token-bridge/){target=\_blank} - use the [Wormhole SDK's](/docs/build/toolkit/typescript-sdk/){target=\_blank} Token Bridge method to move wrapped assets across networks
 
-- [**Transfer USDC via CCTP and Wormhole SDK**](/docs/tutorials/by-product/wormhole-sdk/usdc-via-cctp/){target=\_blank} - combine the [Wormhole SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} and Circle's Cross-Chain Transfer Protocol (CCTP) to bridge native USDC across networks
+- [**Transfer USDC via CCTP and Wormhole SDK**](/docs/tutorials/typescript-sdk/usdc-via-cctp/){target=\_blank} - combine the [Wormhole SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} and Circle's Cross-Chain Transfer Protocol (CCTP) to bridge native USDC across networks
 
 Alternatively, start here to work with Wormhole contracts directly:
 
-- [**Create Multichain Messaging Contracts**](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/) - create mulitchain contracts using Wormhole's Solidity SDK. You will deploy smart contracts and send messages across chains
+- [**Create Multichain Messaging Contracts**](/docs/tutorials/solidity-sdk/cross-chain-contracts/) - create mulitchain contracts using Wormhole's Solidity SDK. You will deploy smart contracts and send messages across chains
 
-- [**Create Multichain Token Transfer Contracts**](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/) - create multichain token transfers using Wormhole's Solidity SDK. You will build and deploy smart contracts to send tokens from one blockchain to another
+- [**Create Multichain Token Transfer Contracts**](/docs/tutorials/solidity-sdk/cross-chain-token-contracts/) - create multichain token transfers using Wormhole's Solidity SDK. You will build and deploy smart contracts to send tokens from one blockchain to another
 
 ## Builder Essentials
 

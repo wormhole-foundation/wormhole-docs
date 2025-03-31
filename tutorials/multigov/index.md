@@ -17,7 +17,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Learn how to propose governance actions on a hub chain, gather votes from spoke chains, aggregate the results, and carry out the final decision. Following these steps, you’ll master end-to-end governance workflows spanning multiple networks.
 
-    [:custom-arrow: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
+    [:custom-arrow: Start building](/docs/tutorials/multigov/treasury-proposal/)
 
 </div>
 

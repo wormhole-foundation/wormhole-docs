@@ -71,7 +71,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
 
-    [:custom-arrow: Create MultiGov solutions](/docs/tutorials/by-product/multigov/)
+    [:custom-arrow: Create MultiGov solutions](/docs/tutorials/multigov/)
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 

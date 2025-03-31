@@ -17,7 +17,7 @@ Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain
 
     Learn how to fetch VAAs, verify their validity, and replace outdated signatures using the Wormholescan API and Wormhole SDK.  
 
-    [:custom-arrow: Start tutorial](/docs/tutorials/by-product/wormholescan/replace-signatures/)  
+    [:custom-arrow: Start tutorial](/docs/tutorials/wormholescan/replace-signatures/)  
 
 </div>  
 

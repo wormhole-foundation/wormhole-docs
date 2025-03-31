@@ -15,6 +15,6 @@ Multichain assets, often represented as wrapped tokens, enable seamless cross-ch
 
     Learn how to register your token on both a source and target chain, and create a wrapped version for seamless interoperability.
 
-    [:custom-arrow: Register your assets now](/docs/tutorials/by-product/multichain-assets/multichain-token/)
+    [:custom-arrow: Register your assets now](/docs/tutorials/multichain-assets/multichain-token/)
 
 </div>

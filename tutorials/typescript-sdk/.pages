@@ -1,4 +1,4 @@
-title: Wormhole SDK
+title: TypeScript SDK
 nav:
  - index.md
  - 'Transfer USDC via the CCTP Bridge': 'usdc-via-cctp.md'
