@@ -21,6 +21,9 @@ CORE_CONTEXT_DESCRIPTION = config["coreContextDescription"].format(
     PROJECT_NAME=PROJECT_NAME
 )
 
+# Use raw GitHub links for source URLs
+RAW_BASE_URL = "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main"
+
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
 llms_input_path = os.path.join(docs_dir, 'llms-full.txt') # points to the full llms-full.txt
 output_dir = os.path.join(docs_dir, 'llms-files')  # path where we store individual category llms files
@@ -60,7 +63,8 @@ def extract_category(category, core_data=None):
         tags = [tag.strip().lower() for tag in category_line.group(1).split(',')] # splits tags by comma 
         if category.lower() in tags:
             section_label = infer_section_label(url)
-            index_lines.append(f"Doc-Page: {url} [type: {section_label}]") # store url
+            raw_url = f"{RAW_BASE_URL}{url}"  # `url` already includes a leading slash
+            index_lines.append(f"Doc-Page: {raw_url} [type: {section_label}]")
             content_blocks.append(f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---") # store full page
 
     if not content_blocks: # if no pages matched the category, skip 
