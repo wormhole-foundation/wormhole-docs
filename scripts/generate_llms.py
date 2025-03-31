@@ -13,6 +13,8 @@ docs_dir = os.path.join(base_dir, docs_repo)
 yaml_dir = os.path.join(base_dir, docs_repo, 'variables.yml')
 output_file = os.path.join(docs_dir, 'llms-full.txt')
 snippet_dir = os.path.join(docs_dir, '.snippets')
+# GitHub raw URL base (instead of website)
+raw_base_url = "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main"
 
 # Regex to find lines like: --8<-- 'code/build/applications/...' and --8<-- 'http....'
 SNIPPET_REGEX = r"--8<--\s*['\"](https?://[^'\"]+|[^'\"]+)['\"]"
@@ -63,14 +65,11 @@ def build_index_section(files):
         if '.snippets' in relative_path.split(os.sep):
             continue
 
-        doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
-        doc_url = f"{docs_url}{doc_url_path}"
+        # Use the raw GitHub URL directly with the .md/.mdx file intact
+        rel_path = os.path.relpath(file, docs_dir)
+        raw_url = f"{raw_base_url}/{rel_path.replace(os.sep, '/')}"
+        section += f"Doc-Page: {raw_url}\n"
 
-        # Remove trailing /index from doc_url
-        if doc_url.endswith('/index'):
-            doc_url = doc_url[:-6]
-
-        section += f"Doc-Page: {doc_url}/\n"
     return section
 
 
@@ -271,12 +270,9 @@ def generate_llms_structure_txt(files):
             title = 'Untitled'
             description = 'No description available.'
 
-        # Create doc URL
+        # Use the raw GitHub URL directly with the .md/.mdx file intact
         rel_path = os.path.relpath(file, docs_dir)
-        doc_url_path = re.sub(r'\.(md|mdx)$', '', rel_path)
-        doc_url = f"{docs_url}{doc_url_path}"
-        if doc_url.endswith('/index'):
-            doc_url = doc_url[:-6]
+        doc_url = f"{raw_base_url}/{rel_path.replace(os.sep, '/')}"
 
         structure_lines.append(f"- [{title}]({doc_url}/): {description}")
 
