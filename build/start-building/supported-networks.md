@@ -1,7 +1,7 @@
 ---
 title: Supported Networks
 description: Learn about the compatible environments and individual networks that Wormhole supports. Readers can click on each of the blockchain logos for more information.
-categories: Core
+categories: Reference
 ---
 
 # Supported Networks

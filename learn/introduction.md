@@ -1,7 +1,7 @@
 ---
 title: Introduction to Wormhole
 description: Wormhole is a protocol for seamless communication between blockchains, enabling cross-chain applications and integrations.
-categories: Core
+categories: Basics
 ---
 
 # Introduction to Wormhole

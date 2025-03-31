@@ -1,7 +1,7 @@
 ---
 title: Compare Wormhole's Cross-Chain Solutions
 description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
-categories: Transfer
+categories: Transfer, Basics
 ---
 
 # Products 

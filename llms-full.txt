@@ -126,7 +126,7 @@ Doc-Content: https://wormhole.com/docs/build/core-messaging/core-contracts/
 ---
 title: Get Started with Core Contracts
 description: This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts
-categories: Core
+categories: Basics
 ---
 
 # Get Started with Core Contracts
@@ -546,7 +546,7 @@ Doc-Content: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/
 ---
 title: Wormhole-Deployed Relayers
 description: Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
-categories: Relayers, Core
+categories: Relayers, Basics
 ---
 
 # Wormhole Relayer
@@ -2104,7 +2104,7 @@ Doc-Content: https://wormhole.com/docs/build/reference/chain-ids/
 ---
 title: Chain IDs
 description: This page documents the Wormhole-specific chain IDs for each chain and contrasts them to the more commonly referenced EVM chain IDs originating in EIP-155.
-categories: Core
+categories: Reference
 ---
 
 # Chain IDs
@@ -2133,7 +2133,7 @@ Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels/
 ---
 title: Wormhole Finality | Consistency Levels
 description: This page documents how long to wait for finality before signing, based on each chain’s consistency (finality) level and consensus mechanism.
-categories: Core
+categories: Reference
 ---
 
 # Wormhole Finality
@@ -2151,7 +2151,7 @@ Doc-Content: https://wormhole.com/docs/build/reference/contract-addresses/
 ---
 title: Contract Addresses
 description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, TokenBridge, and more.
-categories: Core
+categories: Reference
 ---
 
 # Contract Addresses
@@ -2247,7 +2247,7 @@ Doc-Content: https://wormhole.com/docs/build/reference/
 ---
 title: Reference
 description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
-categories: Core
+categories: Reference
 ---
 
 # Reference
@@ -2308,7 +2308,7 @@ Doc-Content: https://wormhole.com/docs/build/reference/wormhole-formatted-addres
 ---
 title: Wormhole Formatted Addresses
 description: Explanation of Wormhole formatted 32-byte hex addresses, their conversion, and usage across different blockchain platforms.
-categories: Core
+categories: Reference
 ---
 
 # Wormhole Formatted Addresses
@@ -2520,7 +2520,7 @@ Doc-Content: https://wormhole.com/docs/build/start-building/products/
 ---
 title: Compare Wormhole's Cross-Chain Solutions
 description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
-categories: Transfer
+categories: Transfer, Basics
 ---
 
 # Products 
@@ -2580,7 +2580,7 @@ Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
 ---
 title: Supported Networks
 description: Learn about the compatible environments and individual networks that Wormhole supports. Readers can click on each of the blockchain logos for more information.
-categories: Core
+categories: Reference
 ---
 
 # Supported Networks
@@ -2767,7 +2767,7 @@ Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets/
 ---
 title: Testnet Faucets
 description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
-categories: Core
+categories: Reference
 ---
 
 # Testnet Faucets
@@ -2818,6 +2818,7 @@ Doc-Content: https://wormhole.com/docs/build/start-building/use-cases/
 ---
 title: Use Cases
 description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+categories: Basics
 ---
 
 # Wormhole Use Cases
@@ -3100,6 +3101,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/cli/
 ---
 title: Wormhole CLI
 description: Learn how to install and use the Wormhole CLI, including commands and examples for managing multichain deployments, generating VAAs, and querying contract info.
+categories: Solidity-SDK, Typescript-SDK
 ---
 
 # Wormhole CLI
@@ -3864,6 +3866,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/dev-env/
 ---
 title: Local Dev Environment
 description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more. 
+categories: Solidity-SDK, Typescript-SDK
 ---
 
 # Development Environment
@@ -3928,6 +3931,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/faqs/
 ---
 title: Toolkit FAQs
 description: FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScript, Solidity), Tilt, error handling, transaction history, and manual VAA submission.
+categories: Solidity-SDK, Typescript-SDK
 ---
 
 # Toolkit FAQs
@@ -3984,6 +3988,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/
 ---
 title: Wormhole Tooling
 description: This page lists key dev tools, including the WormholeScan Explorer, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
+categories: Solidity-SDK
 ---
 
 # Wormhole Tooling
@@ -4074,6 +4079,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/solidity-sdk/
 ---
 title: Solidity SDK
 description: How to use the Wormhole Solidity SDK for cross-chain messaging, token transfers, and integrating decentralized applications on EVM-compatible blockchains.
+categories: Solidity-SDK
 ---
 
 # Solidity SDK
@@ -4387,6 +4393,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/
 ---
 title: Wormhole SDK
 description: The Wormhole SDK provides tools for cross-chain communication, token bridges, and more, enabling developers to integrate with multiple blockchain environments.
+categories: Typescript-SDK
 ---
 
 # Wormhole SDK
@@ -4421,6 +4428,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/protocols-pa
 ---
 title: Building Protocols and Payloads
 description: Learn how to build, register, and integrate protocols and payloads in the Wormhole TypeScript SDK with type-safe layouts.
+categories: Typescript-SDK
 ---
 
 # Building Protocols and Payloads
@@ -4738,6 +4746,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/sdk-layout/
 ---
 title: Data Layouts
 description: Learn how to efficiently define, serialize, and deserialize data structures using Wormhole SDK's layout system for cross-chain communication.
+categories: Typescript-SDK
 ---
 
 # Data Layouts
@@ -5446,6 +5455,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/vaas-protoco
 ---
 title: VAAs and Protocols
 description: Understand how VAAs enable cross-chain messaging and how to handle them using Wormhole's TypeScript and Solidity SDKs.
+categories: Typescript-SDK
 ---
 
 # VAAs and Protocols
@@ -5566,6 +5576,7 @@ Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/wormhole-sdk
 ---
 title: Wormhole TS SDK 
 description: Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC.
+categories: Typescript-SDK
 ---
 
 # Wormhole TypeScript SDK
@@ -14850,7 +14861,7 @@ Doc-Content: https://wormhole.com/docs/learn/glossary/
 ---
 title: Glossary
 description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
-categories: Core
+categories: Basics
 ---
 
 # Glossary
@@ -15357,7 +15368,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/architecture/
 ---
 title: Architecture
 description: Overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
-categories: Core
+categories: Basics
 ---
 
 # Architecture
@@ -15425,7 +15436,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/core-contracts/
 ---
 title: Core Contracts
 description: Discover Wormhole's Core Contracts, which enable multichain communication with message sending, receiving, and multicast features for efficient synchronization.
-categories: Core
+categories: Basics
 ---
 
 # Core Contracts
@@ -15509,7 +15520,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/guardians/
 ---
 title: Guardians
 description: Explore Wormhole's Guardian Network, a decentralized system for secure, scalable cross-chain communication across various blockchain ecosystems.
-categories: Core
+categories: Basics
 ---
 
 ## Guardian
@@ -15613,7 +15624,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/
 ---
 title: Infrastructure Components
 description: Explore Wormhole's infrastructure, including the key components that enable secure multichain communication and asset transfers across blockchain networks.
-categories: Core
+categories: Basics
 ---
 
 # Infrastructure Components
@@ -15680,7 +15691,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/relayer/
 ---
 title: Relayers
 description: Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
-categories: Core
+categories: Basics
 ---
 
 # Relayers
@@ -15847,7 +15858,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/spy/
 ---
 title: Spy
 description: Discover Wormhole's Spy daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions.
-categories: Core
+categories: Basics
 ---
 
 # Spy
@@ -15887,7 +15898,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/vaas/
 ---
 title: VAAs
 description: Learn about Verified Action Approvals (VAAs) in Wormhole, their structure, validation, and role in cross-chain communication.
-categories: Core
+categories: Basics
 ---
 
 # Verified Action Approvals
@@ -16101,7 +16112,7 @@ Doc-Content: https://wormhole.com/docs/learn/introduction/
 ---
 title: Introduction to Wormhole
 description: Wormhole is a protocol for seamless communication between blockchains, enabling cross-chain applications and integrations.
-categories: Core
+categories: Basics
 ---
 
 # Introduction to Wormhole
@@ -16349,7 +16360,7 @@ Doc-Content: https://wormhole.com/docs/learn/security/
 ---
 title: Security
 description: Explore Wormhole's security features, including the Guardian network, governance, monitoring, open-source development, and bug bounty programs.
-categories: Core
+categories: Basics
 ---
 
 # Security

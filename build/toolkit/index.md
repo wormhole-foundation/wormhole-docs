@@ -1,6 +1,7 @@
 ---
 title: Wormhole Tooling
 description: This page lists key dev tools, including the WormholeScan Explorer, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
+categories: Solidity-SDK
 ---
 
 # Wormhole Tooling

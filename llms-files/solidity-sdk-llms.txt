@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation related to the product: Core
+This file includes documentation related to the product: Solidity-SDK
 
 # AI Prompt Template
 
@@ -14,6 +14,1315 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - Prefer concise explanations and code snippets where appropriate.
 
 # List of doc pages:
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/cli/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/dev-env/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/faqs/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/solidity-sdk/ [type: build]
+
+# Full content for each doc page
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/
+--- BEGIN CONTENT ---
+---
+title: Wormhole Tooling
+description: This page lists key dev tools, including the WormholeScan Explorer, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
+categories: Solidity-SDK
+---
+
+# Wormhole Tooling
+
+Regardless of which network development environment you are using, there are a few Wormhole-specific tools you should know about.
+
+## Get Started
+
+<div class="grid cards" markdown>
+
+-   :octicons-telescope-16:{ .lg .middle } **Wormholescan**
+
+    ---
+
+    Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
+
+    [:custom-arrow: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
+
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
+
+    ---
+
+    The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
+
+    [:custom-arrow: Get started with the CLI](/docs/build/toolkit/cli/)
+
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
+
+    ---
+
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
+
+    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/typescript-sdk/)
+
+-   :octicons-code-square-16:{ .lg .middle } **Solidity SDK**
+
+    ---
+
+    Learn about Wormhole's Solidity SDK, including key components, interfaces, and tools for developing cross-chain decentralized applications on EVM-compatible blockchains.
+
+    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/solidity-sdk/)
+
+-   :octicons-beaker-16:{ .lg .middle } **Tilt**
+
+    ---
+
+    Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
+
+    [:custom-arrow: Get started with Tilt](/docs/build/toolkit/tilt/)
+
+<!-- TODO: revisit
+
+-   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
+
+    ---
+
+    Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
+
+    [:custom-arrow: Read Toolkit FAQs](/docs/build/toolkit/faqs/) -->
+
+</div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole Spy SDK**
+
+    ---
+
+    The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
+
+    [:custom-arrow: Check out the Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
+
+-   :octicons-pencil-16:{ .lg .middle } **VAA Parser**
+
+    ---
+
+    The VAA Parser is a resource for parsing out details of an encoded VAA.
+
+    [:custom-arrow: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/cli/
+--- BEGIN CONTENT ---
+---
+title: Wormhole CLI
+description: Learn how to install and use the Wormhole CLI, including commands and examples for managing multichain deployments, generating VAAs, and querying contract info.
+categories: Solidity-SDK, Typescript-SDK
+---
+
+# Wormhole CLI
+
+This tool is a command-line interface to Wormhole, allowing you to perform various actions, such as querying a transaction's status or submitting token transfers.
+
+## Installation
+
+Clone the repository and change directories to the appropriate directory:
+
+```bash
+git clone https://github.com/wormhole-foundation/wormhole &&
+cd wormhole/clients/js
+```
+
+Build and install the CLI tool:
+
+```bash
+make install
+```
+
+This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. To use `worm`, set up `$HOME/.wormhole/.env` with your private keys, based on `.env.sample` in this folder.
+
+## Usage
+
+You can interact with the Wormhole CLI by typing `worm` and including the `command` and any necessary subcommands and parameters.  
+
+| Command                                                                                                                  | Description                                                                                                     |
+|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| `worm aptos INSERT_COMMAND`                                                                                              | Aptos utilities                                                                                                 |
+| `worm edit-vaa INSERT_COMMAND`                                                                                           | Edits or generates a VAA                                                                                        |
+| `worm evm INSERT_COMMAND`                                                                                                | EVM utilities                                                                                                   |
+| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (Devnet and Testnet only)                                                                         |
+| `worm info INSERT_COMMAND`                                                                                               | Contract, chain, RPC, and address information utilities                                                         |
+| `worm near INSERT_NETWORK, INSERT_ACCOUNT`                                                                               | NEAR utilities                                                                                                  |
+| `worm parse INSERT_VAA`                                                                                                  | Parse a VAA (can be in either hex or base64 format)                                                             |
+| `worm recover INSERT_DIGEST INSERT_SIGNATURE`                                                                            | Recover an address from a signature                                                                             |
+| `worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH`                                                              | Prints information about the automatic delivery initiated on the specified network, chain, and transaction hash |
+| `worm submit INSERT_VAA`                                                                                                 | Execute a VAA                                                                                                   |
+| `worm sui INSERT_COMMAND`                                                                                                | Sui utilities                                                                                                   |
+| `worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK` | Transfers a token                                                                                               |
+| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                                                                             | Verifies a VAA by querying the Core Contract on Ethereum                                                        |
+
+You can also refer to the below options, available with all `worm` commands:
+
+```bash
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+```
+
+### Subcommands
+
+??? code "Aptos"
+    ```bash
+    worm aptos INSERT_COMMAND
+
+Commands:
+  worm aptos init-token-bridge              Init token bridge contract
+  worm aptos init-wormhole                  Init Wormhole core contract
+  worm aptos deploy <package-dir>           Deploy an Aptos package
+  worm aptos deploy-resource <seed>         Deploy an Aptos package using a
+  <package-dir>                             resource account
+  worm aptos send-example-message           Send example message
+  <message>
+  worm aptos derive-resource-account        Derive resource account address
+  <account> <seed>
+  worm aptos derive-wrapped-address         Derive wrapped coin type
+  <chain> <origin-address>
+  worm aptos hash-contracts <package-dir>   Hash contract bytecodes for upgrade
+  worm aptos upgrade <package-dir>          Perform upgrade after VAA has been
+                                            submitted
+  worm aptos migrate                        Perform migration after contract
+                                            upgrade
+  worm aptos faucet                         Request money from the faucet for a
+                                            given account
+  worm aptos start-validator                Start a local aptos validator
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Edit VAA"
+    ```bash
+    worm edit-vaa INSERT_COMMAND
+
+Options:
+      --help                       Show help                           [boolean]
+      --version                    Show version number                 [boolean]
+  -v, --vaa                        vaa in hex format         [string] [required]
+  -n, --network                    Network
+                            [required] [choices: "mainnet", "testnet", "devnet"]
+      --guardian-set-index, --gsi  guardian set index                   [number]
+      --signatures, --sigs         comma separated list of signatures   [string]
+      --wormscanurl, --wsu         url to wormscan entry for the vaa that
+                                   includes signatures                  [string]
+      --wormscan, --ws             if specified, will query the wormscan entry
+                                   for the vaa to get the signatures   [boolean]
+      --emitter-chain-id, --ec     emitter chain id to be used in the vaa
+                                                                        [number]
+      --emitter-address, --ea      emitter address to be used in the vaa[string]
+      --nonce, --no                nonce to be used in the vaa          [number]
+      --sequence, --seq            sequence number to be used in the vaa[string]
+      --consistency-level, --cl    consistency level to be used in the vaa
+                                                                        [number]
+      --timestamp, --ts            timestamp to be used in the vaa in unix
+                                   seconds                              [number]
+  -p, --payload                    payload in hex format                [string]
+      --guardian-secret, --gs      Guardian's secret key                [string]
+    ```
+
+??? code "EVM"
+    ```bash
+    worm evm INSERT_COMMAND
+
+Commands:
+  worm evm address-from-secret <secret>  Compute a 20 byte eth address from a 32
+                                         byte private key
+  worm evm storage-update                Update a storage slot on an EVM fork
+                                         during testing (anvil or hardhat)
+  worm evm chains                        Return all EVM chains
+  worm evm info                          Query info about the on-chain state of
+                                         the contract
+  worm evm hijack                        Override the guardian set of the core
+                                         bridge contract during testing (anvil
+                                         or hardhat)
+  worm evm start-validator               Start a local EVM validator
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+  --rpc      RPC endpoint                                               [string]
+    ```
+
+??? code "Generate"
+    ```bash
+    worm generate INSERT_COMMAND
+
+Commands:
+  worm generate registration                Generate registration VAA
+  worm generate upgrade                     Generate contract upgrade VAA
+  worm generate attestation                 Generate a token attestation VAA
+  worm generate recover-chain-id            Generate a recover chain ID VAA
+  worm generate                             Sets the default delivery provider
+  set-default-delivery-provider             for the Wormhole Relayer contract
+
+Options:
+      --help             Show help                                     [boolean]
+      --version          Show version number                           [boolean]
+  -g, --guardian-secret  Guardians' secret keys (CSV)        [string] [required]
+    ```
+
+??? code "Info"
+    ```bash
+    worm info INSERT_COMMAND
+
+Commands:
+  worm info chain-id <chain>                Print the wormhole chain ID integer
+                                            associated with the specified chain
+                                            name
+  worm info contract <network> <chain>      Print contract address
+  <module>
+  worm info emitter <chain> <address>       Print address in emitter address
+                                            format
+  worm info origin <chain> <address>        Print the origin chain and address
+                                            of the asset that corresponds to the
+                                            given chain and address.
+  worm info registrations <network>         Print chain registrations
+  <chain> <module>
+  worm info rpc <network> <chain>           Print RPC address
+  worm info wrapped <origin-chain>          Print the wrapped address on the
+  <origin-address> <target-chain>           target chain that corresponds with
+                                            the specified origin chain and
+                                            address.
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "NEAR"
+    ```bash
+    worm near INSERT_COMMAND
+
+Commands:
+  worm near contract-update <file>  Submit a contract update using our specific
+                                    APIs
+  worm near deploy <file>           Submit a contract update using near APIs
+
+Options:
+      --help      Show help                                            [boolean]
+      --version   Show version number                                  [boolean]
+  -m, --module    Module to query  [choices: "Core", "NFTBridge", "TokenBridge"]
+  -n, --network   Network   [required] [choices: "mainnet", "testnet", "devnet"]
+      --account   Near deployment account                    [string] [required]
+      --attach    Attach some near                                      [string]
+      --target    Near account to upgrade                               [string]
+      --mnemonic  Near private keys                                     [string]
+      --key       Near private key                                      [string]
+  -r, --rpc       Override default rpc endpoint url                     [string]
+    ```
+
+??? code "Parse"
+    ```bash
+    worm parse INSERT_VAA
+
+Positionals:
+  vaa  vaa                                                              [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Recover"
+    ```bash
+    worm recover INSERT_DIGEST INSERT_SIGNATURE
+
+Positionals:
+  digest     digest                                                     [string]
+  signature  signature                                                  [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Status"
+    ```bash
+    worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH
+
+Positionals:
+  network  Network                     [choices: 
+  'mainnet', 
+  'testnet', 
+  'devnet']
+  chain    Source chain
+             [choices: 
+  'unset',
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  tx       Source transaction hash                                      [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Submit"
+    ```bash
+    worm submit INSERT_VAA
+
+Positionals:
+  vaa  vaa                                                              [string]
+
+Options:
+      --help              Show help                                    [boolean]
+      --version           Show version number                          [boolean]
+  -c, --chain             chain name
+[choices: 'unset',
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  -n, --network           Network
+                            [required] 
+  [choices: 
+  'mainnet', 
+  'testnet', 
+  'devnet']
+  -a, --contract-address  Contract to submit VAA to (override config)   [string]
+      --rpc               RPC endpoint                                  [string]
+      --all-chains, --ac  Submit the VAA to all chains except for the origin
+                          chain specified in the payload
+                                                      [boolean] [default: false]
+    ```
+
+??? code "Sui"
+    ```bash
+    worm sui INSERT_COMMAND
+
+Commands:
+  worm sui build-coin                    Build wrapped coin and dump bytecode.
+
+                                         Example:
+                                         worm sui build-coin -d 8 -v V__0_1_1 -n
+                                         testnet -r
+                                         "https://fullnode.testnet.sui.io:443"
+  worm sui deploy <package-dir>          Deploy a Sui package
+  worm sui init-example-message-app      Initialize example core message app
+  worm sui init-token-bridge             Initialize token bridge contract
+  worm sui init-wormhole                 Initialize wormhole core contract
+  worm sui publish-example-message       Publish message from example app via
+                                         core bridge
+  worm sui setup-devnet                  Setup devnet by deploying and
+                                         initializing core and token bridges and
+                                         submitting chain registrations.
+  worm sui objects <owner>               Get owned objects by owner
+  worm sui package-id <state-object-id>  Get package ID from State object ID
+  worm sui tx <transaction-digest>       Get transaction details
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Transfer"
+    ```bash
+    worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK
+
+Options:
+      --help        Show help                                          [boolean]
+      --version     Show version number                                [boolean]
+      --src-chain   source chain [required] [choices:
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  --dst-chain   destination chain
+           [required] [choices: 
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+      --dst-addr    destination address                      [string] [required]
+      --token-addr  token address               [string] [default: native token]
+      --amount      token amount                             [string] [required]
+  -n, --network     Network [required] [choices: "mainnet", "testnet", "devnet"]
+      --rpc         RPC endpoint                                        [string]
+    ```
+
+??? code "Verify VAA"
+    ```bash
+    worm verify-vaa INSERT_VAA, INSERT_NETWORK
+
+Options:
+      --help     Show help                                             [boolean]
+      --version  Show version number                                   [boolean]
+  -v, --vaa      vaa in hex format                           [string] [required]
+  -n, --network  Network    [required] [choices: "mainnet", "testnet", "devnet"]
+    ```
+
+
+## Examples
+
+### VAA generation
+
+Use `generate` to create VAAs for testing. For example, use the following command to create an NFT bridge registration VAA:
+
+```bash
+worm generate registration --module NFTBridge \
+    --chain bsc \
+    --contract-address 0x706abc4E45D419950511e474C7B9Ed348A4a716c \
+    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
+```
+
+The below example generates a token attestation VAA:
+
+```bash
+worm generate attestation --emitter-chain ethereum \
+    --emitter-address 11111111111111111111111111111115 \
+    --chain ethereum \
+    --token-address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 \
+    --decimals 6 \
+    --symbol USDC \
+    --name USDC \
+    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
+```
+
+### VAA parsing
+
+Use `parse` to parse a VAA into JSON:
+
+```bash
+worm parse $(worm-fetch-governance 13940208096455381020)
+```
+
+This example will fetch governance VAA `13940208096455381020` and print it as JSON: 
+
+```bash
+# ...signatures elided
+timestamp: 1651416474,
+nonce: 1570649151,
+emitterChain: 1,
+emitterAddress: '0000000000000000000000000000000000000000000000000000000000000004',
+sequence: 13940208096455381020n,
+consistencyLevel: 32,
+payload: {
+  module: 'Core',
+  type: 'GuardianSetUpgrade',
+  chain: 0,
+  newGuardianSetIndex: 2,
+  newGuardianSetLength: 19,
+  newGuardianSet: [
+    '58cc3ae5c097b213ce3c81979e1b9f9570746aa5',
+    'ff6cb952589bde862c25ef4392132fb9d4a42157',
+    '114de8460193bdf3a2fcf81f86a09765f4762fd1',
+    '107a0086b32d7a0977926a205131d8731d39cbeb',
+    '8c82b2fd82faed2711d59af0f2499d16e726f6b2',
+    '11b39756c042441be6d8650b69b54ebe715e2343',
+    '54ce5b4d348fb74b958e8966e2ec3dbd4958a7cd',
+    '66b9590e1c41e0b226937bf9217d1d67fd4e91f5',
+    '74a3bf913953d695260d88bc1aa25a4eee363ef0',
+    '000ac0076727b35fbea2dac28fee5ccb0fea768e',
+    'af45ced136b9d9e24903464ae889f5c8a723fc14',
+    'f93124b7c738843cbb89e864c862c38cddcccf95',
+    'd2cc37a4dc036a8d232b48f62cdd4731412f4890',
+    'da798f6896a3331f64b48c12d1d57fd9cbe70811',
+    '71aa1be1d36cafe3867910f99c09e347899c19c3',
+    '8192b6e7387ccd768277c17dab1b7a5027c0b3cf',
+    '178e21ad2e77ae06711549cfbb1f9c7a9d8096e8',
+    '5e1487f35515d02a92753504a8d75471b9f49edb',
+    '6fbebc898f403e4773e95feb15e80c9a99c8348d'
+  ]
+}
+```
+
+### Submitting VAAs
+
+Use `submit` to submit a VAA to a chain. It first parses the VAA and determines the destination chain and module. For example, a contract upgrade contains both the target chain and module, so the only required argument is the network moniker (`mainnet` or `testnet`):
+
+```bash
+worm submit $(cat my-nft-registration.txt) --network mainnet
+```
+
+The script will ask you to specify the target chain for VAAs that don't have a specific target chain (like registrations or Guardian set upgrades). For example, to submit a Guardian set upgrade on all chains, simply run:
+
+```bash
+worm-fetch-governance 13940208096455381020 > guardian-upgrade.txt
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain oasis
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain aurora
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain fantom
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain karura
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain acala
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain klaytn
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain avalanche
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain polygon
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain bsc
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain solana
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain terra
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain ethereum
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain celo
+```
+
+The VAA payload type (Guardian set upgrade) specifies that this VAA should go to the core bridge, and the tool directs it there.
+
+### Getting Info
+
+To get info about a contract (only EVM supported at this time), use the following command:
+
+```bash
+worm evm info -c bsc -n mainnet -m TokenBridge
+```
+
+Running this command generates the following output:
+
+```bash
+{
+  "address": "0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7",
+  "wormhole": "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B",
+  "implementation": "0x621199f6beB2ba6fbD962E8A52A320EA4F6D4aA3",
+  "isInitialized": true,
+  "tokenImplementation": "0x7f8C5e730121657E17E452c5a1bA3fA1eF96f22a",
+  "chainId": 4,
+  "finality": 15,
+  "evmChainId": "56",
+  "isFork": false,
+  "governanceChainId": 1,
+  "governanceContract": "0x0000000000000000000000000000000000000000000000000000000000000004",
+  "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+  "registrations": {
+    "Solana": "0xec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5",
+    "Ethereum": "0x0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585",
+    "Terra": "0x0000000000000000000000007cf7b764e38a0a5e967972c1df77d432510564e2",
+    "Polygon": "0x0000000000000000000000005a58505a96d1dbf8df91cb21b54419fc36e93fde",
+    "Avalanche": "0x0000000000000000000000000e082f06ff657d94310cb8ce8b0d9a04541d8052",
+    "Oasis": "0x0000000000000000000000005848c791e09901b40a9ef749f2a6735b418d7564",
+    "Algorand": "0x67e93fa6c8ac5c819990aa7340c0c16b508abb1178be9b30d024b8ac25193d45",
+    "Aurora": "0x00000000000000000000000051b5123a7b0f9b2ba265f9c4c8de7d78d52f510f",
+    "Fantom": "0x0000000000000000000000007c9fc5741288cdfdd83ceb07f3ea7e22618d79d2",
+    "Karura": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
+    "Acala": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
+    "Klaytn": "0x0000000000000000000000005b08ac39eaed75c0439fc750d9fe7e1f9dd0193f",
+    "Celo": "0x000000000000000000000000796dff6d74f3e27060b71255fe517bfb23c93eed",
+    "Near": "0x148410499d3fcda4dcfd68a1ebfcdddda16ab28326448d4aae4d2f0465cdfcb7",
+    "Moonbeam": "0x000000000000000000000000b1731c586ca89a23809861c6103f0b96b3f57d92",
+    "Neon": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Terra2": "0xa463ad028fb79679cfc8ce1efba35ac0e77b35080a1abe9bebe83461f176b0a3",
+    "Injective": "0x00000000000000000000000045dbea4617971d93188eda21530bc6503d153313",
+    "Osmosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Sui": "0xccceeb29348f71bdd22ffef43a2a19c1f5b5e17c5cca5411529120182672ade5",
+    "Aptos": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "Arbitrum": "0x0000000000000000000000000b2402144bb366a632d14b83f244d2e0e21bd39c",
+    "Optimism": "0x0000000000000000000000001d68124e65fafc907325e3edbf8c4d84499daa8b",
+    "Gnosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Pythnet": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Xpla": "0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c",
+    "Btc": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Base": "0x0000000000000000000000008d2de8d2f73f1f4cab472ac9a881c9b123c79627",
+    "Sei": "0x86c5fd957e2db8389553e1728f9c27964b22a8154091ccba54d75f4b10c61f5e",
+    "Rootstock": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Scroll": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Mantle": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Blast": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Xlayer": "0x0000000000000000000000005537857664b0f9efe38c9f320f75fef23234d904",
+    "Linea": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Berachain": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Seievm": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Snaxchain": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Wormchain": "0xaeb534c45c3049d380b9d9b966f9895f53abd4301bfaff407fa09dea8ae7a924",
+    "Cosmoshub": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Evmos": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Kujira": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Neutron": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Celestia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Stargaze": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Seda": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Dymension": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Provenance": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Sepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "ArbitrumSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "BaseSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "OptimismSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Holesky": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "PolygonSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}
+```
+
+### Additional Info Examples
+
+You can get the contract address for a module as follows:
+
+```bash
+worm info rpc INSERT_NETWORK INSERT_CHAIN INSERT_MODULE
+```
+
+To get the contract address for `NFTBridge` on BSC Mainnet, for example, you can provide the following command:
+
+```bash
+worm info contract mainnet bsc NFTBridge
+```
+
+You can get the RPC address for a chain as follows:
+
+```bash
+worm info rpc INSERT_NETWORK INSERT_CHAIN
+```
+
+To get the RPC address for BSC Mainnet, for example, you can provide the following command: 
+
+```bash
+worm info rpc mainnet bsc
+```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/dev-env/
+--- BEGIN CONTENT ---
+---
+title: Local Dev Environment
+description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more. 
+categories: Solidity-SDK, Typescript-SDK
+---
+
+# Development Environment
+
+Developers building for smart contract integration will want to set up a development environment to allow testing the full integration, possibly including VAA generation and relaying.
+
+## Tooling Installation
+
+The [Wormhole CLI Tool](/docs/build/toolkit/cli/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/build/start-building/supported-networks/){target=\_blank}.
+
+## Development Stages
+
+Different approaches to development and testing are recommended at various stages of application development.
+
+### Initial Development
+
+During the initial development of an on-chain application, the best option is to use the native tools available in the environment. You can visit the following resources for more information:
+
+- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset  
+- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received. 
+- **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}** - example mock Guardian test
+
+Relying on native tools when possible allows for more rapid prototyping and iteration.  
+
+### Integration
+
+For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/build/start-building/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](/docs/build/toolkit/tilt/){target=\_blank} is available to run local instances of all the chains Wormhole supports.
+
+!!! note
+    Variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make setting them up difficult or time-consuming. You may prefer Testnets for the simplest integration testing.
+
+### Prepare for Deployment
+
+Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](/docs/build/toolkit/tilt/){target=\_blank} since it allows you to spin up any chains supported by Wormhole in a consistent environment.
+
+## Validator Setup with Tilt
+
+### Tilt
+If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](/docs/build/toolkit/tilt/){target=\_blank} page for a complete guide to setting up and configuring Tilt.
+
+## Deploying to Public Networks
+
+### Testnet
+
+When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where 19 Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
+
+```text
+https://api.testnet.wormholescan.io
+```
+
+### Mainnet
+
+The Mainnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Mainnet endpoint:
+
+```text
+https://api.wormholescan.io
+```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/faqs/
+--- BEGIN CONTENT ---
+---
+title: Toolkit FAQs
+description: FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScript, Solidity), Tilt, error handling, transaction history, and manual VAA submission.
+categories: Solidity-SDK, Typescript-SDK
+---
+
+# Toolkit FAQs
+
+## Why does the `toNative` function in the TypeScript SDK return an error?
+
+The `toNative` function may return an error if the platform-specific module (such as Solana or EVM) is not correctly imported or passed into the Wormhole constructor.
+
+To fix this, ensure the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
+
+```typescript
+import solana from '@wormhole-foundation/sdk/solana';
+const wh = await wormhole('Testnet', [solana]);
+```
+
+## How can I retrieve the history of previously bridged transactions?
+
+To retrieve the history of previously bridged transactions, you can use the Wormholescan API. Use the following endpoint to query the transaction history for a specific address:
+
+```bash
+https://api.wormholescan.io/api/v1/operations?address=INSERT_ADDRESS
+```
+
+Simply replace `INSERT_ADDRESS_HERE` with the address you want to query. The API will return a list of operations, including details about previously bridged transactions.
+
+???- example "Fetch transaction history for a specific address"
+    ```bash
+    curl -X GET "https://api.wormholescan.io/api/v1/operations?address=0x05c009C4C1F1983d4B915C145F4E782de23d3A38" -H "accept: application/json"
+    ```
+
+## How can I manually submit a VAA to a destination chain in the correct format?
+
+To manually submit a VAA (Verifiable Action Approval) to a destination chain, follow these steps:
+
+1. **Obtain the VAA in Base64 format** - navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
+
+    ```bash
+    https://wormholescan.io/#/tx/INSERT_TX_HASH?view=advanced
+    ```
+
+2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
+
+3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
+
+    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/build/reference/contract-addresses/){target=\_blank} section
+
+    - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field
+
+Following these steps, you can manually submit a VAA in the proper format to a destination chain.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/solidity-sdk/
+--- BEGIN CONTENT ---
+---
+title: Solidity SDK
+description: How to use the Wormhole Solidity SDK for cross-chain messaging, token transfers, and integrating decentralized applications on EVM-compatible blockchains.
+categories: Solidity-SDK
+---
+
+# Solidity SDK
+
+## Introduction 
+
+The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} simplifies cross-chain messaging on EVM-compatible chains by providing essential Solidity interfaces, utility libraries, and testing tools. It allows developers to build secure and efficient cross-chain decentralized applications (dApps) without manually interacting with Wormhole’s core contracts across multiple chains.
+
+By abstracting away complex interactions, the SDK drastically reduces the overhead associated with cross-chain development. It provides:
+
+ - **Unified interfaces** - developers can use a standardized set of Solidity interfaces to handle cross-chain messaging, token transfers, and verifiable action approvals (VAAs) without needing to manage the underlying infrastructure
+ - **Automated message delivery** - the SDK leverages Wormhole’s relayer infrastructure, automatically delivering messages across chains, reducing the need for manual intervention, and simplifying gas management on the target chain
+ - **Seamless integration with Wormhole services** - the SDK integrates with Wormhole’s `TokenBridge` and Circle’s CCTP, providing built-in mechanisms for cross-chain asset transfers, making token bridges and cross-chain messaging easy to implement
+ - **Testing and development tools** - it comes with comprehensive tools for local testing and simulation, allowing developers to validate their cross-chain logic before deployment, minimizing the risk of errors in production environments
+
+These features significantly streamline the development workflow by reducing complexity and offering tools compatible with various EVM versions. This helps developers avoid issues that arise from differences in EVM equivalence across chains.
+
+This guide covers installation, key concepts, and usage examples to help you build secure cross-chain applications using the SDK, from token transfers to advanced message passing.
+
+## Installation
+
+To install the SDK, use [Foundry and Forge](https://book.getfoundry.sh/getting-started/installation){target=\_blank}. This pulls the necessary libraries into your project:
+
+```bash
+forge install wormhole-foundation/wormhole-solidity-sdk@v0.1.0
+```
+
+When developing cross-chain applications, ensure that the chains you target support the EVM version you’re using. For instance, the PUSH0 opcode (introduced in Solidity 0.8.20) may not be available on all chains. To avoid compatibility issues, you can set the EVM version in your `foundry.toml` file:
+
+```toml
+evm_version = "paris"
+```
+
+This ensures compatibility across all targeted chains, even if some do not yet support the latest EVM upgrades.
+
+## Key Considerations
+
+Before deploying applications using the Wormhole Solidity SDK, keep these considerations in mind:
+
+ - **Version compatibility** - the SDK is evolving, and using tagged releases for production is crucial, as the main branch may introduce breaking changes
+ - **IERC-20 remapping** - the SDK provides a remapping mechanism to handle potential conflicts between different implementations of IERC20, ensuring seamless integration with other libraries
+ - **Testing** - given the cross-chain dependencies, testing all integrations is critical to avoid issues in production environments
+
+## Concepts and Components
+
+The Wormhole Solidity SDK consists of key components that streamline cross-chain communication, allowing developers to securely and efficiently interact with Wormhole’s infrastructure. Below are the critical concepts and contracts you'll encounter when working with the SDK.
+
+### Cross-Chain Messaging with the Wormhole Relayer SDK
+
+The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} contract simplifies cross-chain messaging and asset transfers by integrating several necessary modules, including the Wormhole relayer. By automating message delivery between chains, the Wormhole relayer removes the need for developers to manage relayer infrastructure or handle gas on the target chain. Delivery providers handle the message payload, ensuring secure and efficient communication.
+
+You can refer to the [Wormhole relayer documentation](/docs/build/core-messaging/wormhole-relayers/){target=\_blank} for more details.
+
+Key modules in the SDK include:
+
+ - **`Base.sol`** - the core module for cross-chain messaging. It provides utility functions like `onlyWormholeRelayer()` and `setRegisteredSender()`, ensuring that only messages from trusted relayers are processed
+
+ - **`TokenBase.sol`** - this module extends the base messaging functionality to support cross-chain token transfers. It includes utilities for securely sending and receiving tokens between EVM-compatible chains
+
+ - **`CCTPBase.sol`** - designed for Circle’s Cross-Chain Transfer Protocol, this module manages asset transfers such as USDC between chains. It includes functionalities for both sending and receiving CCTP-based assets
+
+ - **`CCTPAndTokenBase.sol`** - a combined module that supports token and CCTP-based asset transfers in a single implementation. This module simplifies development for applications needing to handle both types of transfers
+
+The Wormhole Solidity SDK offers a unified framework for cross-chain communication. Developers can select specific modules based on their application’s requirements, whether for messaging, token transfers, or CCTP. Each module includes built-in security measures, ensuring that only authorized senders or relayers are accepted, thereby protecting the application from unauthorized interactions.
+
+Please refer to the complete `WormholeRelayerSDK.sol` file below for further details.
+
+???- code "`WormholeRelayerSDK.sol`"
+    ```solidity
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/constants/Chains.sol";
+import "wormhole-sdk/Utils.sol";
+
+import {Base} from "wormhole-sdk/WormholeRelayer/Base.sol";
+import {TokenBase, TokenReceiver, TokenSender} from "wormhole-sdk/WormholeRelayer/TokenBase.sol";
+import {CCTPBase, CCTPReceiver, CCTPSender} from "wormhole-sdk/WormholeRelayer/CCTPBase.sol";
+import {CCTPAndTokenBase, CCTPAndTokenReceiver, CCTPAndTokenSender} from "wormhole-sdk/WormholeRelayer/CCTPAndTokenBase.sol";
+    ```
+
+### Base Contract Overview
+
+The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Base.sol){target=\_blank} contract is a core part of the Wormhole Solidity SDK, providing essential helper functions and modifiers for managing cross-chain messages securely via the Wormhole Relayer. It handles sender registration and message validation, ensuring only authorized senders from specific chains can send messages.
+
+ - **`onlyWormholeRelayer()`** - a modifier that ensures only authorized messages from the Wormhole relayer contract are processed, restricting access to certain functions
+
+    ```solidity
+    require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
+        _;
+    }
+    ```
+
+ - **`setRegisteredSender()`** - restricts message acceptance to a registered sender from a specific chain, ensuring messages are only processed from trusted sources
+
+    ```solidity
+    uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
+    }
+    ```
+
+These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete `Base.sol` contract below for further details.
+
+???- code "`Base.sol`"
+    ```solidity
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/interfaces/IWormhole.sol";
+import "wormhole-sdk/Utils.sol";
+
+abstract contract Base {
+    IWormholeRelayer public immutable wormholeRelayer;
+    IWormhole public immutable wormhole;
+
+    address registrationOwner;
+    mapping(uint16 => bytes32) registeredSenders;
+
+    constructor(address _wormholeRelayer, address _wormhole) {
+        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
+        wormhole = IWormhole(_wormhole);
+        registrationOwner = msg.sender;
+    }
+
+    modifier onlyWormholeRelayer() {
+        require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
+        _;
+    }
+
+    modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
+        require(
+            registeredSenders[sourceChain] == sourceAddress,
+            "Not registered sender"
+        );
+        _;
+    }
+
+    /**
+     * Sets the registered address for 'sourceChain' to 'sourceAddress'
+     * So that for messages from 'sourceChain', only ones from 'sourceAddress' are valid
+     *
+     * Assumes only one sender per chain is valid
+     * Sender is the address that called 'send' on the Wormhole Relayer contract on the source chain)
+     */
+    function setRegisteredSender(
+        uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
+    }
+}
+    ```
+
+### Interface for Cross-Chain Messages
+
+The Wormhole Solidity SDK interacts with the Wormhole relayer for sending and receiving messages across EVM-compatible chains. The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} and [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interfaces are central to cross-chain communication, enabling secure and efficient message delivery.
+
+For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/docs/build/core-messaging/wormhole-relayers/#wormhole-relayer-interfaces){target=\_blank}. This section covers:
+
+ - **`IWormholeRelayer`** – methods for sending cross-chain messages, VAAs, and token transfers
+ - **`IWormholeReceiver`** – the required implementation for receiving cross-chain messages
+ - **`quoteEVMDeliveryPrice()`** – how to estimate gas and fees for cross-chain transactions
+
+These interfaces reduce the complexity of cross-chain dApp development by abstracting away the details of relayer infrastructure, ensuring that message delivery is handled efficiently.
+
+### Advanced Concepts
+
+For developers interested in exploring additional advanced topics, the following sections provide insights into key aspects of the SDK’s functionality.
+
+???- note "Error Handling and Reverts"
+    The SDK defines several custom errors to help developers handle common issues like incorrect gas fees, invalid senders, and more. For example, `InvalidMsgValue` is thrown when the message value for a relayed message is erroneous.
+
+    ```solidity
+    error InvalidMsgValue(uint256 msgValue, uint256 totalFee);
+    ```
+
+## Usage
+
+This section covers cross-chain messaging and token transfers and shows how to use the Wormhole Solidity SDK in real-world scenarios.
+
+### Send a Cross-Chain Message
+
+To send a cross-chain message, inherit from the base contract provided by the SDK and use its helper methods to define your message and sender address. Here’s a basic example:
+
+```solidity
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/Base.sol";
+
+contract CrossChainSender is Base {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) Base(_wormholeRelayer, _wormhole) {}
+
+    function sendMessage(
+        bytes memory message,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Register sender and send message through WormholeRelayer
+        setRegisteredSender(targetChain, msg.sender);
+        onlyWormholeRelayer().sendPayloadToEvm(
+            targetChain,
+            address(targetAddress),
+            message,
+            0,
+            500_000
+        );
+    }
+}
+```
+
+This contract extends `Base.sol` and allows sending cross-chain messages securely using the `WormholeRelayer`.
+
+### Send Tokens Across Chains
+
+The SDK enables seamless token transfers between EVM-compatible chains in addition to sending messages. To facilitate cross-chain token transfers, you can extend the SDK's `TokenSender` and `TokenReceiver` base contracts.
+
+```solidity
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
+
+contract CrossChainTokenSender is TokenSender {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenSender(_wormholeRelayer, _wormhole) {}
+
+    function sendToken(
+        address token,
+        uint256 amount,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Send tokens across chains
+        transferTokenToTarget(token, amount, targetChain, targetAddress);
+    }
+}
+```
+
+In this example, `TokenSender` initiates a token transfer to another chain. The SDK’s built-in utilities securely handle token transfers, ensuring proper VAAs are generated and processed.
+
+### Receive Tokens Across Chains
+
+To receive tokens on the target chain, implement a contract that inherits from `TokenReceiver` and overrides the `receiveWormholeMessages` function.
+
+```solidity
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
+
+contract CrossChainTokenReceiver is TokenReceiver {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenReceiver(_wormholeRelayer, _wormhole) {}
+
+    // Function to handle received tokens from another chain
+    function receiveWormholeMessages(
+        bytes memory payload,
+        bytes[] memory additionalMessages,
+        bytes32 sourceAddress,
+        uint16 sourceChain,
+        bytes32 deliveryHash
+    ) external payable override {
+        // Process the received tokens here
+        receiveTokens(payload);
+    }
+}
+```
+
+In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.
+
+!!! note
+    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](/docs/build/core-messaging/core-contracts/#validating-the-emitter/){target=\_blank} section for more details.
+
+## Testing Environment
+
+The SDK includes built-in support for Forge-based testing, which allows you to test your cross-chain applications locally before deploying them to production. Testing with the same Solidity compiler version and configuration you plan to use in production is highly recommended to catch any potential issues early.
+
+For a detailed example, check out the below repositories:
+
+ - [Cross chain messaging](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/){target=\_blank}
+ - [Cross chain token transfer](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/){target=\_blank}
+--- END CONTENT ---
+
+# Core Concepts [shared: true]
+The following section contains foundational documentation shared across all Wormhole products.
+It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
+This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
+This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
+
+---
+
+# List of core concept pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/glossary/ [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/ [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/architecture/ [type: learn]
@@ -26,22 +1335,17 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/security/ [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/core-messaging/core-contracts/ [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/core-messaging/wormhole-relayers/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/chain-ids/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/consistency-levels/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/contract-addresses/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/wormhole-formatted-addresses/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/supported-networks/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/testnet-faucets/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/products/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/use-cases/ [type: build]
 
-# Full content for each doc page
+# Full content for core concepts:
 
 Doc-Content: https://wormhole.com/docs/learn/glossary/
 --- BEGIN CONTENT ---
 ---
 title: Glossary
 description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
-categories: Core
+categories: Basics
 ---
 
 # Glossary
@@ -118,7 +1422,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/
 ---
 title: Infrastructure Components
 description: Explore Wormhole's infrastructure, including the key components that enable secure multichain communication and asset transfers across blockchain networks.
-categories: Core
+categories: Basics
 ---
 
 # Infrastructure Components
@@ -185,7 +1489,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/architecture/
 ---
 title: Architecture
 description: Overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
-categories: Core
+categories: Basics
 ---
 
 # Architecture
@@ -253,7 +1557,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/core-contracts/
 ---
 title: Core Contracts
 description: Discover Wormhole's Core Contracts, which enable multichain communication with message sending, receiving, and multicast features for efficient synchronization.
-categories: Core
+categories: Basics
 ---
 
 # Core Contracts
@@ -337,7 +1641,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/guardians/
 ---
 title: Guardians
 description: Explore Wormhole's Guardian Network, a decentralized system for secure, scalable cross-chain communication across various blockchain ecosystems.
-categories: Core
+categories: Basics
 ---
 
 ## Guardian
@@ -441,7 +1745,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/relayer/
 ---
 title: Relayers
 description: Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
-categories: Core
+categories: Basics
 ---
 
 # Relayers
@@ -608,7 +1912,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/spy/
 ---
 title: Spy
 description: Discover Wormhole's Spy daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions.
-categories: Core
+categories: Basics
 ---
 
 # Spy
@@ -648,7 +1952,7 @@ Doc-Content: https://wormhole.com/docs/learn/infrastructure/vaas/
 ---
 title: VAAs
 description: Learn about Verified Action Approvals (VAAs) in Wormhole, their structure, validation, and role in cross-chain communication.
-categories: Core
+categories: Basics
 ---
 
 # Verified Action Approvals
@@ -862,7 +2166,7 @@ Doc-Content: https://wormhole.com/docs/learn/introduction/
 ---
 title: Introduction to Wormhole
 description: Wormhole is a protocol for seamless communication between blockchains, enabling cross-chain applications and integrations.
-categories: Core
+categories: Basics
 ---
 
 # Introduction to Wormhole
@@ -1110,7 +2414,7 @@ Doc-Content: https://wormhole.com/docs/learn/security/
 ---
 title: Security
 description: Explore Wormhole's security features, including the Guardian network, governance, monitoring, open-source development, and bug bounty programs.
-categories: Core
+categories: Basics
 ---
 
 # Security
@@ -1221,7 +2525,7 @@ Doc-Content: https://wormhole.com/docs/build/core-messaging/core-contracts/
 ---
 title: Get Started with Core Contracts
 description: This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts
-categories: Core
+categories: Basics
 ---
 
 # Get Started with Core Contracts
@@ -1598,7 +2902,7 @@ Doc-Content: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/
 ---
 title: Wormhole-Deployed Relayers
 description: Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
-categories: Relayers, Core
+categories: Relayers, Basics
 ---
 
 # Wormhole Relayer
@@ -1798,598 +3102,345 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/
+Doc-Content: https://wormhole.com/docs/build/start-building/products/
 --- BEGIN CONTENT ---
 ---
-title: Reference
-description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
-categories: Core
+title: Compare Wormhole's Cross-Chain Solutions
+description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+categories: Transfer, Basics
 ---
 
-# Reference
+# Products 
 
-## Get Started
+Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
 
-In this section, you'll find reference information that is essential for development. This includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
 
-<div class="grid cards" markdown>
+Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
 
--   :octicons-list-ordered-16:{ .lg .middle } **Chain IDs**
+## Transfer Products
 
-    ---
+Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-    Find a mapping of Wormhole chain IDs to the names and network IDs of the supported blockchains.
+- [**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
+- [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
+- [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
 
-    [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
+<div markdown class="full-width">
 
--   :material-timer-sand:{ .lg .middle } **Wormhole Finality**
+::spantable::
 
-    ---
+|                                | Criteria                              | Connect                                               | NTT                                                        | Token Bridge                                               |
+|--------------------------------|---------------------------------------|-------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark:                                    | :white_check_mark:                                         | :white_check_mark:                                         |
+|                                | Token Transfers with Message Payloads | :x:                                                   | :white_check_mark:                                         | :white_check_mark:                                         |
+| Supported Assets @span         | Wrapped Assets                        | :white_check_mark:                                    | :x:                                                        | :white_check_mark:                                         |
+|                                | Native Assets                         | :white_check_mark:                                    | :white_check_mark:                                         | :x:                                                        |
+|                                | ERC-721s (NFTs)                       | :white_check_mark:                                    | :x:                                                        | :white_check_mark:                                         |
+| Features @span                 | Out-of-the-Box UI                     | :white_check_mark:                                    | :x:                                                        | :x:                                                        |
+|                                | Event-Based Actions                   | :x:                                                   | :white_check_mark:                                         | :white_check_mark:                                         |
+| Integration Details @span      |                                       |                                                       |                                                            |                                                            |
+| Requirements @span             | Contract Deployment                   | :x:                                                   | :white_check_mark:                                         | :x:                                                        |
+|                                | User-Owned Contracts                  | :x:                                                   | :white_check_mark:                                         | :x:                                                        |
+| Ecosystem Support              | Integrates with Other Products        | :white_check_mark:                                    | :white_check_mark:                                         | :white_check_mark:                                         |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |
+| Technology @span               | Supported Languages                   | JavaScript, TypeScript                                | Solidity (Ethereum), Rust (Solana)                         | Solidity (Ethereum), Rust (Solana), TypeScript             |
 
-    See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
-
-    [:custom-arrow: View list of finality levels](/docs/build/reference/consistency-levels/)
-
--   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
-
-    ---
-
-    Discover the contract addresses for Wormhole-deployed contracts on each of the supported blockchains.
-
-    This includes the following protocol contracts:
-
-    - Core Contract
-    - Token Bridge
-    - NFT Bridge
-    - Wormhole relayer
-    - CCTP
-
-    [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
-
--   :octicons-checkbox-16:{ .lg .middle } **Wormhole Formatted Addresses**
-
-    ---
-
-    Learn how Wormhole formats addresses into a 32-byte hex format for cross-chain compatibility.
-    
-    This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
-
-    [:custom-arrow: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
+::end-spantable::
 
 </div>
+
+Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Real-time Data
+
+[**Queries**](/docs/build/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation.
+
+## Multichain Governance
+
+[**MultiGov**](/docs/learn/governance/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/chain-ids/
+Doc-Content: https://wormhole.com/docs/build/start-building/use-cases/
 --- BEGIN CONTENT ---
 ---
-title: Chain IDs
-description: This page documents the Wormhole-specific chain IDs for each chain and contrasts them to the more commonly referenced EVM chain IDs originating in EIP-155.
-categories: Core
+title: Use Cases
+description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+categories: Basics
 ---
 
-# Chain IDs
+# Wormhole Use Cases
 
-The following table documents the chain IDs used by Wormhole and places them alongside the more commonly referenced [EVM Chain IDs](https://chainlist.org/){target=\_blank}.
+<div markdown class="use-case-card">
+<div class="title" markdown>
 
-!!! note
-    Please note, Wormhole chain IDs are different than the more commonly referenced EVM [chain IDs](https://eips.ethereum.org/EIPS/eip-155){target=\_blank}, specified in the Mainnet and Testnet ID columns.
+## Cross-Chain Swaps and Liquidity Aggregation
 
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--CHAIN_IDS-->
-
-=== "Mainnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th style="width:26%">Wormhole Chain ID</th><th>Network ID</th></thead><tbody><tr><td>Ethereum</td><td><code>2</code></td><td><code>1</code></td></tr><tr><td>Solana</td><td><code>1</code></td><td><code>Mainnet Beta</code> - <code>5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d</code></td></tr><tr><td>Acala</td><td><code>12</code></td><td><code>787</code></td></tr><tr><td>Algorand</td><td><code>8</code></td><td><code>mainnet-v1.0</code></td></tr><tr><td>Aptos</td><td><code>22</code></td><td><code>1</code></td></tr><tr><td>Arbitrum</td><td><code>23</code></td><td><code>Arbitrum One</code> - <code>42161</code></td></tr><tr><td>Avalanche</td><td><code>6</code></td><td><code>C-Chain</code> - <code>43114</code></td></tr><tr><td>Base</td><td><code>30</code></td><td><code>Base</code> - <code>8453</code></td></tr><tr><td>Berachain</td><td><code>39</code></td><td></td></tr><tr><td>Blast</td><td><code>36</code></td><td><code>81457</code></td></tr><tr><td>BNB Smart Chain</td><td><code>4</code></td><td><code>56</code></td></tr><tr><td>Celestia</td><td><code>4004</code></td><td><code>celestia</code></td></tr><tr><td>Celo</td><td><code>14</code></td><td><code>42220</code></td></tr><tr><td>Cosmos Hub</td><td><code>4000</code></td><td><code>cosmoshub-4</code></td></tr><tr><td>Dymension</td><td><code>4007</code></td><td><code>dymension_1100-1</code></td></tr><tr><td>Evmos</td><td><code>4001</code></td><td><code>evmos_9001-2</code></td></tr><tr><td>Fantom</td><td><code>10</code></td><td><code>250</code></td></tr><tr><td>Gnosis</td><td><code>25</code></td><td><code>100</code></td></tr><tr><td>HyperEVM</td><td><code>47</code></td><td></td></tr><tr><td>Injective</td><td><code>19</code></td><td><code>injective-1</code></td></tr><tr><td>Ink</td><td><code>46</code></td><td></td></tr><tr><td>Kaia</td><td><code>13</code></td><td><code>8217</code></td></tr><tr><td>Karura</td><td><code>11</code></td><td><code>686</code></td></tr><tr><td>Kujira</td><td><code>4002</code></td><td><code>kaiyo-1</code></td></tr><tr><td>Linea</td><td><code>38</code></td><td><code>59144</code></td></tr><tr><td>Mantle</td><td><code>35</code></td><td><code>5000</code></td></tr><tr><td>Mezo</td><td><code>50</code></td><td></td></tr><tr><td>Monad</td><td><code>48</code></td><td></td></tr><tr><td>Moonbeam</td><td><code>16</code></td><td><code>1284</code></td></tr><tr><td>Movement</td><td><code>49</code></td><td><code>126</code></td></tr><tr><td>NEAR</td><td><code>15</code></td><td><code>mainnet</code></td></tr><tr><td>Neon</td><td><code>17</code></td><td><code>245022934</code></td></tr><tr><td>Neutron</td><td><code>4003</code></td><td><code>neutron-1</code></td></tr><tr><td>Noble</td><td><code>4009</code></td><td><code>noble-1</code></td></tr><tr><td>Oasis</td><td><code>7</code></td><td><code>42262</code></td></tr><tr><td>Optimism</td><td><code>24</code></td><td><code>10</code></td></tr><tr><td>Osmosis</td><td><code>20</code></td><td><code>osmosis-1</code></td></tr><tr><td>Polygon</td><td><code>5</code></td><td><code>137</code></td></tr><tr><td>Provenance</td><td><code>4008</code></td><td><code>pio-mainnet-1</code></td></tr><tr><td>Pythnet</td><td><code>26</code></td><td></td></tr><tr><td>Scroll</td><td><code>34</code></td><td><code>534352</code></td></tr><tr><td>SEDA</td><td><code>4006</code></td><td></td></tr><tr><td>Sei</td><td><code>32</code></td><td><code>pacific-1</code></td></tr><tr><td>Seievm</td><td><code>40</code></td><td></td></tr><tr><td>SNAXchain</td><td><code>43</code></td><td><code>2192</code></td></tr><tr><td>Stargaze</td><td><code>4005</code></td><td><code>stargaze-1</code></td></tr><tr><td>Sui</td><td><code>21</code></td><td><code>35834a8a</code></td></tr><tr><td>Terra</td><td><code>3</code></td><td><code>columbus-5</code></td></tr><tr><td>Terra 2.0</td><td><code>18</code></td><td><code>phoenix-1</code></td></tr><tr><td>Unichain</td><td><code>44</code></td><td><code></code></td></tr><tr><td>World Chain</td><td><code>45</code></td><td><code>480</code></td></tr><tr><td>X Layer</td><td><code>37</code></td><td><code>196</code></td></tr><tr><td>XPLA</td><td><code>28</code></td><td><code>dimension_37-1</code></td></tr></tbody></table>
-
-=== "Testnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th style="width:26%">Wormhole Chain ID</th><th>Network ID</th></thead><tbody><tr><td>Ethereum Holesky</td><td><code>10006</code></td><td><code>Holesky</code> - <code>17000</code></td></tr><tr><td>Ethereum Sepolia</td><td><code>10002</code></td><td><code>Sepolia</code> - <code>11155111</code></td></tr><tr><td>Solana</td><td><code>1</code></td><td><code>Devnet</code> - <code>EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG</code></td></tr><tr><td>Acala</td><td><code>12</code></td><td><code>597</code></td></tr><tr><td>Algorand</td><td><code>8</code></td><td><code>testnet-v1.0</code></td></tr><tr><td>Aptos</td><td><code>22</code></td><td><code>2</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>10003</code></td><td><code>Sepolia</code> - <code>421614</code></td></tr><tr><td>Avalanche</td><td><code>6</code></td><td><code>Fuji</code> - <code>43113</code></td></tr><tr><td>Base Sepolia</td><td><code>10004</code></td><td><code>Base Sepolia</code> - <code>84532</code></td></tr><tr><td>Berachain</td><td><code>39</code></td><td><code>80084</code></td></tr><tr><td>Blast</td><td><code>36</code></td><td><code>168587773</code></td></tr><tr><td>BNB Smart Chain</td><td><code>4</code></td><td><code>97</code></td></tr><tr><td>Celestia</td><td><code>4004</code></td><td><code>mocha-4</code></td></tr><tr><td>Celo</td><td><code>14</code></td><td><code>Alfajores</code> - <code>44787</code></td></tr><tr><td>Cosmos Hub</td><td><code>4000</code></td><td><code>theta-testnet-001</code></td></tr><tr><td>Dymension</td><td><code>4007</code></td><td></td></tr><tr><td>Evmos</td><td><code>4001</code></td><td><code>evmos_9000-4</code></td></tr><tr><td>Fantom</td><td><code>10</code></td><td><code>4002</code></td></tr><tr><td>Gnosis</td><td><code>25</code></td><td><code>Chiado</code> - <code>10200</code></td></tr><tr><td>HyperEVM</td><td><code>47</code></td><td><code>998</code></td></tr><tr><td>Injective</td><td><code>19</code></td><td><code>injective-888</code></td></tr><tr><td>Ink</td><td><code>46</code></td><td><code>763373</code></td></tr><tr><td>Kaia</td><td><code>13</code></td><td><code>Kairos</code> - <code>1001</code></td></tr><tr><td>Karura</td><td><code>11</code></td><td><code>596</code></td></tr><tr><td>Kujira</td><td><code>4002</code></td><td><code>harpoon-4</code></td></tr><tr><td>Linea</td><td><code>38</code></td><td><code>59141</code></td></tr><tr><td>Mantle</td><td><code>35</code></td><td><code>Sepolia</code> - <code>5003</code></td></tr><tr><td>Mezo</td><td><code>50</code></td><td><code>31611</code></td></tr><tr><td>Monad</td><td><code>48</code></td><td><code>10143</code></td></tr><tr><td>Moonbeam</td><td><code>16</code></td><td><code>Moonbase-Alphanet</code> - <code>1287</code></td></tr><tr><td>Movement</td><td><code>49</code></td><td><code>250</code></td></tr><tr><td>NEAR</td><td><code>15</code></td><td><code>testnet</code></td></tr><tr><td>Neon</td><td><code>17</code></td><td><code>245022940</code></td></tr><tr><td>Neutron</td><td><code>4003</code></td><td><code>pion-1</code></td></tr><tr><td>Noble</td><td><code>4009</code></td><td><code>grand-1</code></td></tr><tr><td>Oasis</td><td><code>7</code></td><td><code>42261</code></td></tr><tr><td>Optimism Sepolia</td><td><code>10005</code></td><td><code>Optimism Sepolia</code> - <code>11155420</code></td></tr><tr><td>Osmosis</td><td><code>20</code></td><td><code>osmo-test-5</code></td></tr><tr><td>Polygon Amoy</td><td><code>10007</code></td><td><code>Amoy</code> - <code>80002</code></td></tr><tr><td>Provenance</td><td><code>4008</code></td><td></td></tr><tr><td>Pythnet</td><td><code>26</code></td><td></td></tr><tr><td>Scroll</td><td><code>34</code></td><td><code>Sepolia</code> - <code>534351</code></td></tr><tr><td>SEDA</td><td><code>4006</code></td><td><code>seda-1-testnet</code></td></tr><tr><td>Sei</td><td><code>32</code></td><td><code>atlantic-2</code></td></tr><tr><td>Seievm</td><td><code>40</code></td><td></td></tr><tr><td>SNAXchain</td><td><code>43</code></td><td><code>13001</code></td></tr><tr><td>Stargaze</td><td><code>4005</code></td><td></td></tr><tr><td>Sui</td><td><code>21</code></td><td><code>4c78adac</code></td></tr><tr><td>Terra</td><td><code>3</code></td><td><code>bombay-12</code></td></tr><tr><td>Terra 2.0</td><td><code>18</code></td><td><code>pisco-1</code></td></tr><tr><td>Unichain</td><td><code>44</code></td><td><code>Unichain Sepolia</code> - <code>1301</code></td></tr><tr><td>World Chain</td><td><code>45</code></td><td><code>4801</code></td></tr><tr><td>X Layer</td><td><code>37</code></td><td><code>195</code></td></tr><tr><td>XPLA</td><td><code>28</code></td><td><code>cube_47-5</code></td></tr></tbody></table>
-
-<!--CHAIN_IDS-->
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels/
---- BEGIN CONTENT ---
----
-title: Wormhole Finality | Consistency Levels
-description: This page documents how long to wait for finality before signing, based on each chain’s consistency (finality) level and consensus mechanism.
-categories: Core
----
-
-# Wormhole Finality
-
-The following table documents each chain's `consistencyLevel` values (i.e., finality reached before signing). The consistency level defines how long the Guardians should wait before signing a VAA. The finalization time depends on the specific chain's consensus mechanism. The consistency level is a `u8`, so any single byte may be used. However, a small subset has particular meanings. If the `consistencyLevel` isn't one of those specific values, the `Otherwise` column describes how it's interpreted.
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--CONSISTENCY_LEVELS-->
-<table data-full-width="true" markdown><thead><th>Chain</th><th>Instant</th><th>Safe</th><th>Finalized</th><th>Otherwise</th><th>Time to Finalize</th><th>Details</th></thead><tbody><tr><td>Ethereum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 19min</td><td><a href="https://www.alchemy.com/overviews/ethereum-commitment-levels" target="_blank">Details</a></td></tr><tr><td>Solana</td><td></td><td>0</td><td>1</td><td></td><td>~ 14s</td><td><a href="https://docs.anza.xyz/consensus/commitments/" target="_blank">Details</a></td></tr><tr><td>Acala</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td></td></tr><tr><td>Algorand</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://developer.algorand.org/docs/get-started/basics/why_algorand/#finality" target="_blank">Details</a></td></tr><tr><td>Aptos</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td><a href="https://aptos.dev/en/network/glossary#byzantine-fault-tolerance-bft" target="_blank">Details</a></td></tr><tr><td>Arbitrum</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td><a href="https://docs.arbitrum.io/how-arbitrum-works/transaction-lifecycle" target="_blank">Details</a></td></tr><tr><td>Avalanche</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 2s</td><td><a href="https://docs.avax.network/dapps/advanced-tutorials/exchange-integration#determining-finality" target="_blank">Details</a></td></tr><tr><td>Base</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Berachain</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 4s</td><td></td></tr><tr><td>Blast</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>BNB Smart Chain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 48s</td><td><a href="https://docs.bnbchain.org/bnb-smart-chain/introduction/?h=finality" target="_blank">Details</a></td></tr><tr><td>Celestia</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Celo</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 10s</td><td></td></tr><tr><td>Cosmos Hub</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Dymension</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Evmos</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Fantom</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 5s</td><td></td></tr><tr><td>Injective</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Ink</td><td></td><td></td><td>0</td><td></td><td>~ 9min</td><td></td></tr><tr><td>Kaia</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 1s</td><td></td></tr><tr><td>Karura</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td><a href="https://wiki.polkadot.network/docs/learn-consensus" target="_blank">Details</a></td></tr><tr><td>Kujira</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td></td></tr><tr><td>Mantle</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Mezo</td><td></td><td></td><td>0</td><td></td><td>~ 8s</td><td></td></tr><tr><td>Monad</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td></td></tr><tr><td>Moonbeam</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 24s</td><td><a href="https://docs.moonbeam.network/builders/ethereum/json-rpc/moonbeam-custom-api/#finality-rpc-endpoints" target="_blank">Details</a></td></tr><tr><td>Movement</td><td></td><td></td><td>0</td><td></td><td>~ 4s</td><td></td></tr><tr><td>NEAR</td><td></td><td></td><td>0</td><td></td><td>~ 2s</td><td><a href="https://nomicon.io/ChainSpec/Consensus" target="_blank">Details</a></td></tr><tr><td>Neutron</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Oasis</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 12s</td><td></td></tr><tr><td>Optimism</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>Osmosis</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Polygon</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 66s</td><td><a href="https://docs.polygon.technology/pos/architecture/heimdall/checkpoints/" target="_blank">Details</a></td></tr><tr><td>Scroll</td><td>200</td><td></td><td></td><td>finalized</td><td>~ 16min</td><td></td></tr><tr><td>Sei</td><td></td><td></td><td>0</td><td></td><td>~ 1s</td><td></td></tr><tr><td>Stargaze</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr><tr><td>Sui</td><td></td><td></td><td>0</td><td></td><td>~ 3s</td><td><a href="https://docs.sui.io/concepts/sui-architecture/consensus" target="_blank">Details</a></td></tr><tr><td>Terra</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Terra 2.0</td><td></td><td></td><td>0</td><td></td><td>~ 6s</td><td></td></tr><tr><td>Unichain</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 18min</td><td></td></tr><tr><td>World Chain</td><td></td><td></td><td>0</td><td></td><td>~ 18min</td><td></td></tr><tr><td>X Layer</td><td>200</td><td>201</td><td></td><td>finalized</td><td>~ 16min</td><td></td></tr><tr><td>XPLA</td><td></td><td></td><td>0</td><td></td><td>~ 5s</td><td></td></tr></tbody></table>
-<!--CONSISTENCY_LEVELS-->
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/reference/contract-addresses/
---- BEGIN CONTENT ---
----
-title: Contract Addresses
-description: This page documents the deployed contract addresses of the Wormhole contracts on each chain, including Core Contracts, TokenBridge, and more.
-categories: Core
----
-
-# Contract Addresses
-
-## Core Contracts
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--CORE_ADDRESS-->
-
-=== "Mainnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B</code></td></tr><tr><td>Solana</td><td><code>worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth</code></td></tr><tr><td>Acala</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Algorand</td><td><code>842125965</code></td></tr><tr><td>Aptos</td><td><code>0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625</code></td></tr><tr><td>Arbitrum</td><td><code>0xa5f208e072434bC67592E4C49C1B991BA79BCA46</code></td></tr><tr><td>Avalanche</td><td><code>0x54a8e5f9c4CbA08F9943965859F6c34eAF03E26c</code></td></tr><tr><td>Base</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Berachain</td><td><code>0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D</code></td></tr><tr><td>Blast</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B</code></td></tr><tr><td>Celo</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Fantom</td><td><code>0x126783A6Cb203a3E35344528B26ca3a0489a1485</code></td></tr><tr><td>Gnosis</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Injective</td><td><code>inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d</code></td></tr><tr><td>Ink</td><td><code>0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D</code></td></tr><tr><td>Kaia</td><td><code>0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7</code></td></tr><tr><td>Karura</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Mantle</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Moonbeam</td><td><code>0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3</code></td></tr><tr><td>NEAR</td><td><code>contract.wormhole_crypto.near</code></td></tr><tr><td>Neutron</td><td><code>neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh</code></td></tr><tr><td>Oasis</td><td><code>0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585</code></td></tr><tr><td>Optimism</td><td><code>0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722</code></td></tr><tr><td>Polygon</td><td><code>0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7</code></td></tr><tr><td>Pythnet</td><td><code>H3fxXJ86ADW2PNuDDmZJg6mzTtPxkYCpNuQUTgmJ7AjU</code></td></tr><tr><td>Scroll</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Sei</td><td><code>sei1gjrrme22cyha4ht2xapn3f08zzw6z3d4uxx6fyy9zd5dyr3yxgzqqncdqn</code></td></tr><tr><td>SNAXchain</td><td><code>0xc1BA3CC4bFE724A08FbbFbF64F8db196738665f4</code></td></tr><tr><td>Sui</td><td><code>0xaeab97f96cf9877fee2883315d459552b2b921edc16d7ceac6eab944dd88919c</code></td></tr><tr><td>Terra</td><td><code>terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5</code></td></tr><tr><td>Terra 2.0</td><td><code>terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnhp</code></td></tr><tr><td>Unichain</td><td><code>0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D</code></td></tr><tr><td>World Chain</td><td><code>0xcbcEe4e081464A15d8Ad5f58BB493954421eB506</code></td></tr><tr><td>X Layer</td><td><code>0x194B123c5E96B9b2E49763619985790Dc241CAC0</code></td></tr><tr><td>XPLA</td><td><code>xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w</code></td></tr></tbody></table>
-
-=== "Testnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Holesky</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>Ethereum Sepolia</td><td><code>0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78</code></td></tr><tr><td>Solana</td><td><code>3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5</code></td></tr><tr><td>Acala</td><td><code>0x64fb09E405D2043ed7785a29E296C766D56F2056</code></td></tr><tr><td>Algorand</td><td><code>86525623</code></td></tr><tr><td>Aptos</td><td><code>0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35</code></td></tr><tr><td>Avalanche</td><td><code>0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C</code></td></tr><tr><td>Base Sepolia</td><td><code>0x79A1027a6A159502049F10906D333EC57E95F083</code></td></tr><tr><td>Berachain</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Blast</td><td><code>0x473e002D7add6fB67a4964F13bFd61280Ca46886</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x68605AD7b15c732a30b1BbC62BE8F2A509D74b4D</code></td></tr><tr><td>Celo</td><td><code>0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56</code></td></tr><tr><td>Fantom</td><td><code>0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7</code></td></tr><tr><td>Gnosis</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>HyperEVM</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Injective</td><td><code>inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg</code></td></tr><tr><td>Ink</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Kaia</td><td><code>0x1830CC6eE66c84D2F177B94D544967c774E624cA</code></td></tr><tr><td>Karura</td><td><code>0x64fb09E405D2043ed7785a29E296C766D56F2056</code></td></tr><tr><td>Linea</td><td><code>0x79A1027a6A159502049F10906D333EC57E95F083</code></td></tr><tr><td>Mantle</td><td><code>0x376428e7f26D5867e69201b275553C45B09EE090</code></td></tr><tr><td>Mezo</td><td><code>0x268557122Ffd64c85750d630b716471118F323c8</code></td></tr><tr><td>Monad</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Moonbeam</td><td><code>0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901</code></td></tr><tr><td>Movement</td><td><code>0xa7b37796439f725373fe4835793cd2eed7a1db639bbb220c72be8904ec5e2a7a</code></td></tr><tr><td>NEAR</td><td><code>wormhole.wormhole.testnet</code></td></tr><tr><td>Neon</td><td><code>0x268557122Ffd64c85750d630b716471118F323c8</code></td></tr><tr><td>Neutron</td><td><code>neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4</code></td></tr><tr><td>Oasis</td><td><code>0xc1C338397ffA53a2Eb12A7038b4eeb34791F8aCb</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x31377888146f3253211EFEf5c676D41ECe7D58Fe</code></td></tr><tr><td>Osmosis</td><td><code>osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx</code></td></tr><tr><td>Polygon Amoy</td><td><code>0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35</code></td></tr><tr><td>Pythnet</td><td><code>EUrRARh92Cdc54xrDn6qzaqjA77NRrCcfbr8kPwoTL4z</code></td></tr><tr><td>Scroll</td><td><code>0x055F47F1250012C6B20c436570a76e52c17Af2D5</code></td></tr><tr><td>Sei</td><td><code>sei1nna9mzp274djrgzhzkac2gvm3j27l402s4xzr08chq57pjsupqnqaj0d5s</code></td></tr><tr><td>Seievm</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>SNAXchain</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>Sui</td><td><code>0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790</code></td></tr><tr><td>Terra</td><td><code>terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v</code></td></tr><tr><td>Terra 2.0</td><td><code>terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0</code></td></tr><tr><td>Unichain</td><td><code>0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd</code></td></tr><tr><td>World Chain</td><td><code>0xe5E02cD12B6FcA153b0d7fF4bF55730AE7B3C93A</code></td></tr><tr><td>X Layer</td><td><code>0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780</code></td></tr><tr><td>XPLA</td><td><code>xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35</code></td></tr></tbody></table>
-
-=== "Devnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0xC89Ce4735882C9F0f0FE26686c53074E09B0D550</code></td></tr><tr><td>Solana</td><td><code>Bridge1p5gheXUvJ6jGWGeCsgPKgnE3YgdGKRVCMY9o</code></td></tr><tr><td>Algorand</td><td><code>1004</code></td></tr><tr><td>Aptos</td><td><code>0xde0036a9600559e295d5f6802ef6f3f802f510366e0c23912b0655d972166017</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0xC89Ce4735882C9F0f0FE26686c53074E09B0D550</code></td></tr><tr><td>NEAR</td><td><code>wormhole.test.near</code></td></tr><tr><td>Sui</td><td><code>0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0</code></td></tr><tr><td>Terra</td><td><code>terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au</code></td></tr><tr><td>Terra 2.0</td><td><code>terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au</code></td></tr></tbody></table>
-  
-<!--CORE_ADDRESS-->
-
-## Token Bridge
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--TOKEN_BRIDGE_ADDRESS-->
-
-=== "Mainnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x3ee18B2214AFF97000D974cf647E7C347E8fa585</code></td></tr><tr><td>Solana</td><td><code>wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb</code></td></tr><tr><td>Acala</td><td><code>0xae9d7fe007b3327AA64A32824Aaac52C42a6E624</code></td></tr><tr><td>Algorand</td><td><code>842126029</code></td></tr><tr><td>Aptos</td><td><code>0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f</code></td></tr><tr><td>Arbitrum</td><td><code>0x0b2402144Bb366A632D14B83F244D2e0e21bD39c</code></td></tr><tr><td>Avalanche</td><td><code>0x0e082F06FF657D94310cB8cE8B0D9a04541d8052</code></td></tr><tr><td>Base</td><td><code>0x8d2de8d2f73F1F4cAB472AC9A881C9b123C79627</code></td></tr><tr><td>Berachain</td><td><code>0x3Ff72741fd67D6AD0668d93B41a09248F4700560</code></td></tr><tr><td>Blast</td><td><code>0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7</code></td></tr><tr><td>Celo</td><td><code>0x796Dff6D74F3E27060B71255Fe517BFb23C93eed</code></td></tr><tr><td>Fantom</td><td><code>0x7C9Fc5741288cDFdD83CeB07f3ea7e22618D79D2</code></td></tr><tr><td>Injective</td><td><code>inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn</code></td></tr><tr><td>Ink</td><td><code>0x3Ff72741fd67D6AD0668d93B41a09248F4700560</code></td></tr><tr><td>Kaia</td><td><code>0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F</code></td></tr><tr><td>Karura</td><td><code>0xae9d7fe007b3327AA64A32824Aaac52C42a6E624</code></td></tr><tr><td>Mantle</td><td><code>0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d</code></td></tr><tr><td>Moonbeam</td><td><code>0xb1731c586ca89a23809861c6103f0b96b3f57d92</code></td></tr><tr><td>NEAR</td><td><code>contract.portalbridge.near</code></td></tr><tr><td>Oasis</td><td><code>0x5848C791e09901b40A9Ef749f2a6735b418d7564</code></td></tr><tr><td>Optimism</td><td><code>0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b</code></td></tr><tr><td>Polygon</td><td><code>0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE</code></td></tr><tr><td>Scroll</td><td><code>0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d</code></td></tr><tr><td>Sei</td><td><code>sei1smzlm9t79kur392nu9egl8p8je9j92q4gzguewj56a05kyxxra0qy0nuf3</code></td></tr><tr><td>SNAXchain</td><td><code>0x8B94bfE456B48a6025b92E11Be393BAa86e68410</code></td></tr><tr><td>Sui</td><td><code>0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9</code></td></tr><tr><td>Terra</td><td><code>terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf</code></td></tr><tr><td>Terra 2.0</td><td><code>terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9</code></td></tr><tr><td>Unichain</td><td><code>0x3Ff72741fd67D6AD0668d93B41a09248F4700560</code></td></tr><tr><td>World Chain</td><td><code>0xc309275443519adca74c9136b02A38eF96E3a1f6</code></td></tr><tr><td>X Layer</td><td><code>0x5537857664B0f9eFe38C9f320F75fEf23234D904</code></td></tr><tr><td>XPLA</td><td><code>xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv</code></td></tr></tbody></table>
-
-=== "Testnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Holesky</td><td><code>0x76d093BbaE4529a342080546cAFEec4AcbA59EC6</code></td></tr><tr><td>Ethereum Sepolia</td><td><code>0xDB5492265f6038831E89f495670FF909aDe94bd9</code></td></tr><tr><td>Solana</td><td><code>DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe</code></td></tr><tr><td>Acala</td><td><code>0xe157115ef34c93145Fec2FE53706846853B07F42</code></td></tr><tr><td>Algorand</td><td><code>86525641</code></td></tr><tr><td>Aptos</td><td><code>0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e</code></td></tr><tr><td>Avalanche</td><td><code>0x61E44E506Ca5659E6c0bba9b678586fA2d729756</code></td></tr><tr><td>Base Sepolia</td><td><code>0x86F55A04690fd7815A3D802bD587e83eA888B239</code></td></tr><tr><td>Berachain</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>Blast</td><td><code>0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x9dcF9D205C9De35334D646BeE44b2D2859712A09</code></td></tr><tr><td>Celo</td><td><code>0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153</code></td></tr><tr><td>Fantom</td><td><code>0x599CEa2204B4FaECd584Ab1F2b6aCA137a0afbE8</code></td></tr><tr><td>HyperEVM</td><td><code>0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78</code></td></tr><tr><td>Injective</td><td><code>inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh</code></td></tr><tr><td>Ink</td><td><code>0x376428e7f26D5867e69201b275553C45B09EE090</code></td></tr><tr><td>Kaia</td><td><code>0xC7A13BE098720840dEa132D860fDfa030884b09A</code></td></tr><tr><td>Karura</td><td><code>0xe157115ef34c93145Fec2FE53706846853B07F42</code></td></tr><tr><td>Linea</td><td><code>0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e</code></td></tr><tr><td>Mantle</td><td><code>0x75Bfa155a9D7A3714b0861c8a8aF0C4633c45b5D</code></td></tr><tr><td>Mezo</td><td><code>0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780</code></td></tr><tr><td>Monad</td><td><code>0xF323dcDe4d33efe83cf455F78F9F6cc656e6B659</code></td></tr><tr><td>Moonbeam</td><td><code>0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96</code></td></tr><tr><td>Movement</td><td><code>0xda075f9cb681e291c17e65562bdd6d4196c7d2f86da1aa3917f2809ff8edb03d</code></td></tr><tr><td>NEAR</td><td><code>token.wormhole.testnet</code></td></tr><tr><td>Neon</td><td><code>0xEe3dB83916Ccdc3593b734F7F2d16D630F39F1D0</code></td></tr><tr><td>Oasis</td><td><code>0x88d8004A9BdbfD9D28090A02010C19897a29605c</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x99737Ec4B815d816c49A385943baf0380e75c0Ac</code></td></tr><tr><td>Polygon Amoy</td><td><code>0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e</code></td></tr><tr><td>Scroll</td><td><code>0x22427d90B7dA3fA4642F7025A854c7254E4e45BF</code></td></tr><tr><td>Sei</td><td><code>sei1jv5xw094mclanxt5emammy875qelf3v62u4tl4lp5nhte3w3s9ts9w9az2</code></td></tr><tr><td>Seievm</td><td><code>0x23908A62110e21C04F3A4e011d24F901F911744A</code></td></tr><tr><td>SNAXchain</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>Sui</td><td><code>0x6fb10cdb7aa299e9a4308752dadecb049ff55a892de92992a1edbd7912b3d6da</code></td></tr><tr><td>Terra</td><td><code>terra1pseddrv0yfsn76u4zxrjmtf45kdlmalswdv39a</code></td></tr><tr><td>Terra 2.0</td><td><code>terra1c02vds4uhgtrmcw7ldlg75zumdqxr8hwf7npseuf2h58jzhpgjxsgmwkvk</code></td></tr><tr><td>Unichain</td><td><code>0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a</code></td></tr><tr><td>World Chain</td><td><code>0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2</code></td></tr><tr><td>X Layer</td><td><code>0xdA91a06299BBF302091B053c6B9EF86Eff0f930D</code></td></tr><tr><td>XPLA</td><td><code>xpla1kek6zgdaxcsu35nqfsyvs2t9vs87dqkkq6hjdgczacysjn67vt8sern93x</code></td></tr></tbody></table>
-
-=== "Devnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x0290FB167208Af455bB137780163b7B7a9a10C16</code></td></tr><tr><td>Solana</td><td><code>B6RHG3mfcckmrYN1UhmJzyS1XX3fZKbkeUcpJe9Sy3FE</code></td></tr><tr><td>Algorand</td><td><code>1006</code></td></tr><tr><td>Aptos</td><td><code>0x84a5f374d29fc77e370014dce4fd6a55b58ad608de8074b0be5571701724da31</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x0290FB167208Af455bB137780163b7B7a9a10C16</code></td></tr><tr><td>NEAR</td><td><code>token.test.near</code></td></tr><tr><td>Sui</td><td><code>0xa6a3da85bbe05da5bfd953708d56f1a3a023e7fb58e5a824a3d4de3791e8f690</code></td></tr><tr><td>Terra</td><td><code>terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6</code></td></tr><tr><td>Terra 2.0</td><td><code>terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6</code></td></tr></tbody></table>
-  
-<!--TOKEN_BRIDGE_ADDRESS-->
-
-## Wormhole Relayer
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--RELAYER_BRIDGE_ADDRESS-->
-
-=== "Mainnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Arbitrum</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Avalanche</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Base</td><td><code>0x706f82e9bb5b0813501714ab5974216704980e31</code></td></tr><tr><td>Berachain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Blast</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Celo</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Fantom</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Ink</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Kaia</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Mantle</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Moonbeam</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Optimism</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Polygon</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Scroll</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>SNAXchain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>Unichain</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr><tr><td>World Chain</td><td><code>0x1520cc9e779c56dab5866bebfb885c86840c33d3</code></td></tr><tr><td>X Layer</td><td><code>0x27428DD2d3DD32A4D7f7C497eAaa23130d894911</code></td></tr></tbody></table>
-
-=== "Testnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470</code></td></tr><tr><td>Avalanche</td><td><code>0xA3cF45939bD6260bcFe3D66bc73d60f19e49a8BB</code></td></tr><tr><td>Base Sepolia</td><td><code>0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE</code></td></tr><tr><td>Berachain</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0x80aC94316391752A193C1c47E27D382b507c93F3</code></td></tr><tr><td>Celo</td><td><code>0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84</code></td></tr><tr><td>Fantom</td><td><code>0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470</code></td></tr><tr><td>Ink</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>Monad</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>Moonbeam</td><td><code>0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE</code></td></tr><tr><td>Seievm</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr><tr><td>Unichain</td><td><code>0x362fca37E45fe1096b42021b543f462D49a5C8df</code></td></tr></tbody></table>
-
-=== "Devnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0xcC680D088586c09c3E0E099a676FA4b6e42467b4</code></td></tr><tr><td>BNB Smart Chain</td><td><code>0xcC680D088586c09c3E0E099a676FA4b6e42467b4</code></td></tr></tbody></table>
-  
-<!--RELAYER_BRIDGE_ADDRESS-->
-
-## CCTP
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--CCTP_ADDRESS-->
-
-=== "Mainnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum</td><td><code>0xAaDA05BD399372f0b0463744C09113c137636f6a</code></td></tr><tr><td>Arbitrum</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Avalanche</td><td><code>0x09Fb06A271faFf70A651047395AaEb6265265F13</code></td></tr><tr><td>Base</td><td><code>0x03faBB06Fa052557143dC28eFCFc63FC12843f1D</code></td></tr><tr><td>Optimism</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Polygon</td><td><code>0x0FF28217dCc90372345954563486528aa865cDd6</code></td></tr></tbody></table>
-
-=== "Testnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Ethereum Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Avalanche</td><td><code>0x58f4c17449c90665891c42e14d34aae7a26a472e</code></td></tr><tr><td>Base Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x2703483B1a5a7c577e8680de9Df8Be03c6f30e3c</code></td></tr></tbody></table>
-
-=== "Devnet"
-
-    N/A
-  
-<!--CCTP_ADDRESS-->
-
-## Read-Only Deployments
-
-=== "Mainnet"
-
-    <table data-full-width="true" markdown><thead><th>Chain Name</th><th>Contract Address</th></thead><tbody><tr><td>Corn</td><td><code>0xa683c66045ad16abb1bCE5ad46A64d95f9A25785</code></td></tr><tr><td>Gnosis</td><td><code>0xa321448d90d4e5b0A732867c18eA198e75CAC48E</code></td></tr><tr><td>Goat</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>LightLink</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Rootstock</td><td><code>0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6</code></td></tr><tr><td>Sonic</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr><tr><td>Telos</td><td><code>0x352A86168e6988A1aDF9A15Cb00017AAd3B67155</code></td></tr></tbody></table>
-
-!!!note  
-    Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/
---- BEGIN CONTENT ---
----
-title: Wormhole Formatted Addresses
-description: Explanation of Wormhole formatted 32-byte hex addresses, their conversion, and usage across different blockchain platforms.
-categories: Core
----
-
-# Wormhole Formatted Addresses
-
-## Introduction
-
-Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
-
-This uniform format is essential for smooth interoperability in token transfers and messaging across chains. Wormhole uses formatted addresses throughout the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, especially in cross-chain transactions, such as transfer functions that utilize the `bytes32` representation for recipient addresses.
-
-## Platform-Specific Address Formats
-
-Each blockchain ecosystem Wormhole supports has its method for formatting native addresses. To enable cross-chain compatibility, Wormhole converts these native addresses into the standardized 32-byte hex format.
-
-Here’s an overview of the native address formats and how they are normalized to the Wormhole format:
-
-| Platform        | Native Address Format            | Wormhole Formatted Address |
-|-----------------|----------------------------------|----------------------------|
-| EVM             |  Hex (e.g., 0x...)               |  32-byte Hex               |
-| Solana          |  Base58                          |  32-byte Hex               |
-| CosmWasm        |  Bech32                          |  32-byte Hex               |
-| Algorand        |  Algorand App ID                 |  32-byte Hex               |
-| Sui             |  Hex                             |  32-byte Hex               |
-| Aptos           |  Hex                             |  32-byte Hex               |
-| Near            |  SHA-256                         |  32-byte Hex               |
-
-These conversions allow Wormhole to interact seamlessly with various chains using a uniform format for all addresses.
-
-### Address Format Handling
-
-The Wormhole SDK provides mappings that associate each platform with its native address format. You can find this mapping in the Wormhole SDK file [`platforms.ts`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/007f61b27c650c1cf0fada2436f79940dfa4f211/core/base/src/constants/platforms.ts#L93-L102){target=\_blank}:
-
-```typescript
-const platformAddressFormatEntries = [
-  ['Evm', 'hex'],
-  ['Solana', 'base58'],
-  ['Cosmwasm', 'bech32'],
-  ['Algorand', 'algorandAppId'],
-  ['Sui', 'hex'],
-  ['Aptos', 'hex'],
-  ['Near', 'sha256'],
-];
-```
-
-These entries define how the [`UniversalAddress`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/007f61b27c650c1cf0fada2436f79940dfa4f211/core/definitions/src/universalAddress.ts#L23){target=\_blank} class handles different address formats based on the platform.
-
-## Universal Address Methods
-
-The `UniversalAddress` class is essential for working with Wormhole formatted addresses. It converts native blockchain addresses into the standardized 32-byte hex format used across Wormhole operations.
-
-Key functions:
-
- - **`new UniversalAddress()`** - use the `UniversalAddress` constructor to convert native addresses into the Wormhole format
-
-    ```typescript
-    const universalAddress = new UniversalAddress('0x123...', 'hex');
-    ```
-
- - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted 32-byte hex address
-
-    ```typescript
-    const ethAddress: NativeAddress<'Evm'> = toNative('Ethereum', '0x0C9...');
-    const universalAddress = ethAddress.toUniversalAddress().toString();
-    ```
-
- - **`toNative()`** - converts the Wormhole formatted address back to a native address for a specific blockchain platform
-
-    ```typescript
-    const nativeAddress = universalAddress.toNative('Evm');
-    ```
-
- - **`toString()`** - returns the Wormhole formatted address as a hex string, which can be used in various SDK operations
-
-    ```typescript
-    console.log(universalAddress.toString());
-    ```
-
-These methods allow developers to convert between native addresses and the Wormhole format, ensuring cross-chain compatibility.
-
-## Convert Between Native and Wormhole Formatted Addresses
-
-The Wormhole SDK allows developers to easily convert between native addresses and Wormhole formatted addresses when building cross-chain applications.
-
-### Convert a Native Address to a Wormhole Formatted Address
-
-Example conversions for EVM and Solana:
-
-=== "EVM"
-
-    ```typescript
-    import { toNative } from '@wormhole-foundation/sdk-core';
-
-const ethAddress: NativeAddress<'Evm'> = toNative(
-  'Ethereum',
-  '0x0C99567DC6f8f1864cafb580797b4B56944EEd28'
-);
-const universalAddress = ethAddress.toUniversalAddress().toString();
-console.log('Universal Address (EVM):', universalAddress);
-    ```
-
-=== "Solana"
-
-    ```typescript
-    import { toNative } from '@wormhole-foundation/sdk-core';
-
-const solAddress: NativeAddress<'Solana'> = toNative(
-  'Solana',
-  '6zZHv9EiqQYcdg52ueADRY6NbCXa37VKPngEHaokZq5J'
-);
-const universalAddressSol = solAddress.toUniversalAddress().toString();
-console.log('Universal Address (Solana):', universalAddressSol);
-    ```
-
-The result is a standardized address format that is ready for cross-chain operations.
-
-### Convert Back to Native Addresses
-
-Below is how you can convert a Wormhole formatted address back to an EVM or Solana native address:
-
-```typescript
-const nativeAddressEvm = universalAddress.toNative('Evm');
-console.log('EVM Native Address:', nativeAddressEvm);
-
-const nativeAddressSolana = universalAddress.toNative('Solana');
-console.log('Solana Native Address:', nativeAddressSolana);
-```
-
-These conversions ensure that your cross-chain applications can seamlessly handle addresses across different ecosystems.
-
-## Use Cases for Wormhole Formatted Addresses
-
-### Cross-chain Token Transfers
-
-Cross-chain token transfers require addresses to be converted into a standard format. For example, when transferring tokens from Ethereum to Solana, the Ethereum address is converted into a Wormhole formatted address to ensure compatibility. After the transfer, the Wormhole formatted address is converted back into the Solana native format.
-
-### Smart Contract Interactions
-
-In smart contract interactions, especially when building dApps that communicate across multiple chains, Wormhole formatted addresses provide a uniform way to reference addresses. This ensures that addresses from different blockchains can interact seamlessly, whether you're sending messages or making cross-chain contract calls.
-
-### DApp Development
-
-For cross-chain dApp development, Wormhole formatted addresses simplify handling user wallet addresses across various blockchains. This allows developers to manage addresses consistently, regardless of whether they work with EVM, Solana, or another supported platform.
-
-### Relayers and Infrastructure
-
-Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
---- BEGIN CONTENT ---
----
-title: Supported Networks
-description: Learn about the compatible environments and individual networks that Wormhole supports. Readers can click on each of the blockchain logos for more information.
-categories: Core
----
-
-# Supported Networks
-
-Wormhole supports several different blockchains and environments. Since many of the concepts for using Wormhole within a given blockchain environment are the same, this section is organized by environment, and individual chains are detailed within the environment page.
-
-## Supported Environments
-
-- [EVM (Ethereum and compatible chains)](#evm)
-- [SVM (Solana and compatible chains)](#svm)
-- [CosmWasm (Cosmos ecosystem chains)](#cosmwasm)
-- [AVM (Algorand)](#avm)
-- [NEAR VM (NEAR)](#near-vm)
-- [Move VM (Aptos)](#move-vm)
-- [Sui Move VM (Sui)](#sui-move-vm)
-
-## Supported Blockchains by Environment
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--SUPPORTED_BLOCKCHAIN_CARDS-->
-<div class="full-width" markdown>
-
-### EVM
-
-<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Ethereum</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://ethereum.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://ethereum.org/en/developers/docs/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://etherscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Acala</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://acala.network/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://evmdocs.acala.network/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://acala.subscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Arbitrum</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://arbitrum.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.arbitrum.io/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://arbiscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Avalanche</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.avax.network/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.avax.network/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://snowtrace.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Base</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://base.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.base.org/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://goerli.basescan.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.berachain.com/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.berachain.com/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://bartio.beratrail.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Blast</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://blast.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.blast.io/about-blast" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://docs.blast.io/tools/block-explorers#block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>BNB Smart Chain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.bnbchain.org/en/smartChain" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.bnbchain.org/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://bscscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Celo</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://celo.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.celo.org/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.celo.org/mainnet/" target="_blank">Block Explorer</a></td></tr><tr><td>Fantom</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://fantom.foundation/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.fantom.foundation/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://ftmscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Gnosis</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.gnosis.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.gnosischain.com/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://gnosisscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>HyperEVM</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://hyperfoundation.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://hyperliquid.gitbook.io/hyperliquid-docs" target="_blank">Developer Docs</a><br></td></tr><tr><td>Ink</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://inkonchain.com/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.inkonchain.com/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer-sepolia.inkonchain.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Kaia</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://kaia.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.kaia.io/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://kaiascan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Karura</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://acala.network/karura" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://evmdocs.acala.network/" target="_blank">Developer Docs</a><br></td></tr><tr><td>Linea</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://linea.build/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.linea.build/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://docs.linea.build/get-started/build/block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Mantle</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.mantle.xyz/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.mantle.xyz/network/introduction/overview" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://mantlescan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>Mezo</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://mezo.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://mezo.org/docs/developers/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.test.mezo.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Monad</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.monad.xyz/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.monad.xyz/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://testnet.monadexplorer.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://moonbeam.network/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.moonbeam.network/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://moonscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Neon</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://neonevm.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://neonevm.org/docs/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://neonscan.org/" target="_blank">Block Explorer</a></td></tr><tr><td>Oasis</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://oasisprotocol.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.oasis.io/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://docs.oasis.io/dapp/cipher/#block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Optimism</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.optimism.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.optimism.io/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://optimistic.etherscan.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Polygon</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://polygon.technology/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.polygon.technology/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://polygonscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://scroll.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.scroll.io/en/home/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://scrollscan.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Seievm</td><td>EVM</td><td>:x:</td><td>:white_check_mark:</td><td></td></tr><tr><td>SNAXchain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://synthetix.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.synthetix.io/v3/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.snaxchain.io/" target="_blank">Block Explorer</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.unichain.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.unichain.org/docs" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://sepolia.uniscan.xyz/" target="_blank">Block Explorer</a></td></tr><tr><td>World Chain</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://world.org/world-chain" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.world.org/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://docs.world.org/world-chain/providers/explorers" target="_blank">Block Explorer</a></td></tr><tr><td>X Layer</td><td>EVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.okx.com/xlayer" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://www.okx.com/xlayer/docs/developer/build-on-xlayer/about-xlayer" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://zksync.l2scan.co/" target="_blank">Block Explorer</a></td></tr></tbody></table>
-
-### SVM
-
-<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Solana</td><td>SVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://solana.com/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://solana.com/docs" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.solana.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Pythnet</td><td>SVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.pyth.network/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.pyth.network/home" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://sepolia-optimism.etherscan.io/" target="_blank">Block Explorer</a></td></tr></tbody></table>
-
-### AVM
-
-<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Algorand</td><td>AVM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://algorand.com" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://developer.algorand.org" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://allo.info/" target="_blank">Block Explorer</a></td></tr></tbody></table>
-
-### CosmWasm
-
-<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Injective</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://injective.com/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.injective.network/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.injective.network/" target="_blank">Block Explorer</a></td></tr><tr><td>Neutron</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.neutron.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.neutron.org/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://docs.neutron.org/neutron/faq#where-is-the-block-explorer" target="_blank">Block Explorer</a></td></tr><tr><td>Osmosis</td><td>CosmWasm</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://osmosis.zone/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.osmosis.zone/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://docs.osmosis.zone/overview/endpoints#explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Sei</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.sei.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://www.docs.sei.io/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://www.docs.sei.io/dev-ecosystem-providers/explorers#sei-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Terra</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.terra.money/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://classic-docs.terra.money/docs/full-node/run-a-full-terra-node/join-a-network.html" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://classic-docs.terra.money/docs/ecosystem/explore.html?highlight=explorer#block-explorers" target="_blank">Block Explorer</a></td></tr><tr><td>Terra 2.0</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.terra.money/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.terra.money/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://finder.terra.money/" target="_blank">Block Explorer</a></td></tr><tr><td>XPLA</td><td>CosmWasm</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://www.xpla.io/en" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.xpla.io/develop/develop/get-started/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.xpla.io/" target="_blank">Block Explorer</a></td></tr></tbody></table>
-
-### Move VM
-
-<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://aptosfoundation.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://aptos.dev/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.aptoslabs.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Movement</td><td>Move VM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://movementlabs.xyz/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.movementnetwork.xyz/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.movementlabs.xyz/?network=mainnet" target="_blank">Block Explorer</a></td></tr></tbody></table>
-
-### NEAR VM
-
-<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>NEAR</td><td>NEAR VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://near.org/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.near.org/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://nearblocks.io/" target="_blank">Block Explorer</a></td></tr></tbody></table>
-
-### Sui Move VM
-
-<table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Sui</td><td>Sui Move VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://sui.io/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.sui.io/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://suiscan.xyz/" target="_blank">Block Explorer</a></td></tr></tbody></table>
+Enable seamless swaps between chains with real-time liquidity routing.
 
 </div>
-<!--SUPPORTED_BLOCKCHAIN_CARDS-->
---- END CONTENT ---
+<div markdown>
 
-Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets/
---- BEGIN CONTENT ---
----
-title: Testnet Faucets
-description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
-categories: Core
----
+🛠 **Wormhole products used:**
 
-# Testnet Faucets
+- [**Wormhole Connect**](/docs/build/transfers/connect/overview/){target=\_blank} – handles user-friendly asset transfers
+- [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – moves native assets across chains
+- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches real-time prices for optimal trade execution
 
-## Get Started
-
-Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-
-<!--TESTNET_FAUCETS-->
-<div class="full-width" markdown>
-
-### EVM
-
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Ethereum Holesky</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-holesky" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Ethereum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/ethereum-sepolia" target="_blank">Alchemy Faucet</a></td></tr><tr><td>Acala</td><td>EVM</td><td>ACA</td><td><a href="https://discord.gg/5JJgXKSznc" target="_blank">Discord Faucet</a></td></tr><tr><td>Arbitrum Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.arbitrum.io/for-devs/dev-tools-and-resources/chain-info#faucets" target="_blank">List of Faucets</a></td></tr><tr><td>Avalanche</td><td>EVM</td><td>AVAX</td><td><a href="https://core.app/tools/testnet-faucet/?subnet=c&token=c" target="_blank">Official Avalanche Faucet</a></td></tr><tr><td>Base Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://docs.base.org/docs/tools/network-faucets/" target="_blank">List of Faucets</a></td></tr><tr><td>Berachain</td><td>EVM</td><td>BERA</td><td><a href="https://bartio.faucet.berachain.com/" target="_blank">Official Berachain Faucet</a></td></tr><tr><td>Blast</td><td>EVM</td><td>ETH</td><td><a href="https://docs.blast.io/tools/faucets#faucets" target="_blank">List of Faucets</a></td></tr><tr><td>BNB Smart Chain</td><td>EVM</td><td>BNB</td><td><a href="https://testnet.binance.org/faucet-smart/" target="_blank">Official BNB Faucet</a></td></tr><tr><td>Celo</td><td>EVM</td><td>CELO</td><td><a href="https://faucet.celo.org/alfajores" target="_blank">Official Celo Faucet</a></td></tr><tr><td>Fantom</td><td>EVM</td><td>FTM</td><td><a href="https://faucet.fantom.network/" target="_blank">Official Fantom Faucet</a></td></tr><tr><td>Gnosis</td><td>EVM</td><td>xDAI</td><td><a href="https://faucet.gnosischain.com/" target="_blank">Official Gnosis Faucet</a></td></tr><tr><td>HyperEVM</td><td>EVM</td><td>mock USDC</td><td><a href="https://app.hyperliquid-testnet.xyz/drip" target="_blank">Official Hyperliquid Faucet</a></td></tr><tr><td>Ink</td><td>EVM</td><td>ETH</td><td><a href="https://inkonchain.com/faucet" target="_blank">Official Ink Faucet</a></td></tr><tr><td>Kaia</td><td>EVM</td><td>KAIA</td><td><a href="https://faucet.kaia.io" target="_blank">Official Kaia Faucet</a></td></tr><tr><td>Karura</td><td>EVM</td><td>ACA</td><td><a href="https://discord.gg/5JJgXKSznc" target="_blank">Discord Faucet</a></td></tr><tr><td>Linea</td><td>EVM</td><td>ETH</td><td><a href="https://docs.linea.build/get-started/how-to/get-testnet-eth" target="_blank">List of Faucets</a></td></tr><tr><td>Mantle</td><td>EVM</td><td>MNT</td><td><a href="https://faucet.sepolia.mantle.xyz/" target="_blank">Official Mantle Faucet</a></td></tr><tr><td>Monad</td><td>EVM</td><td>MON</td><td><a href="https://testnet.monad.xyz/" target="_blank">Official Monad Faucet</a></td></tr><tr><td>Moonbeam</td><td>EVM</td><td>DEV</td><td><a href="https://faucet.moonbeam.network/" target="_blank">Official Moonbeam Faucet</a></td></tr><tr><td>Neon</td><td>EVM</td><td>NEON</td><td><a href="https://neonfaucet.org/" target="_blank">Official Neon Faucet</a></td></tr><tr><td>Oasis</td><td>EVM</td><td>TEST</td><td><a href="https://faucet.testnet.oasis.io/" target="_blank">Official Oasis Faucet</a></td></tr><tr><td>Optimism Sepolia</td><td>EVM</td><td>ETH</td><td><a href="https://console.optimism.io/faucet" target="_blank">Superchain Faucet</a></td></tr><tr><td>Polygon Amoy</td><td>EVM</td><td>POL</td><td><a href="https://faucet.polygon.technology/" target="_blank">Official Polygon Faucet</a></td></tr><tr><td>Scroll</td><td>EVM</td><td>ETH</td><td><a href="https://docs.scroll.io/en/user-guide/faucet/" target="_blank">List of Faucets</a></td></tr><tr><td>Unichain</td><td>EVM</td><td>ETH</td><td><a href="https://faucet.quicknode.com/unichain/sepolia" target="_blank">QuickNode Faucet</a></td></tr><tr><td>World Chain</td><td>EVM</td><td>ETH</td><td><a href="https://www.alchemy.com/faucets/world-chain-sepolia" target="_blank">Alchemy Faucet</a></td></tr><tr><td>X Layer</td><td>EVM</td><td>OKB</td><td><a href="https://www.okx.com/xlayer/faucet" target="_blank">X Layer Official Faucet</a></td></tr></tbody></table>
-
-### SVM
-
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Pythnet</td><td>SVM</td><td>ETH</td><td><a href="https://console.optimism.io/faucet" target="_blank">Superchain Faucet</a></td></tr></tbody></table>
-
-### AVM
-
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Algorand</td><td>AVM</td><td>ALGO</td><td><a href="https://bank.testnet.algorand.network/" target="_blank">Official Algorand Faucet</a></td></tr></tbody></table>
-
-### CosmWasm
-
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Celestia</td><td>CosmWasm</td><td>TIA</td><td><a href="https://discord.gg/celestiacommunity" target="_blank">Discord Faucet</a></td></tr><tr><td>Cosmos Hub</td><td>CosmWasm</td><td>ATOM</td><td><a href="https://discord.com/invite/cosmosnetwork" target="_blank">Discord Faucet</a></td></tr><tr><td>Evmos</td><td>CosmWasm</td><td>TEVMOS</td><td><a href="https://faucet.evmos.dev/" target="_blank">Official Evmos Faucet</a></td></tr><tr><td>Injective</td><td>CosmWasm</td><td>INJ</td><td><a href="https://testnet.faucet.injective.network/" target="_blank">Official Injective Faucet</a></td></tr><tr><td>Kujira</td><td>CosmWasm</td><td>KUJI</td><td><a href="https://discord.com/channels/970650215801569330/1009931570263629854" target="_blank">Discord Faucet</a></td></tr><tr><td>Neutron</td><td>CosmWasm</td><td>NTRN</td><td><a href="https://docs.neutron.org/neutron/faq#where-is-the-testnet-faucet" target="_blank">List of Faucets</a></td></tr><tr><td>Noble</td><td>CosmWasm</td><td>USDC</td><td><a href="https://faucet.circle.com/" target="_blank">Circle Faucet</a></td></tr><tr><td>Osmosis</td><td>CosmWasm</td><td>OSMO</td><td><a href="https://faucet.testnet.osmosis.zone/" target="_blank">Official Osmosis Faucet</a></td></tr><tr><td>SEDA</td><td>CosmWasm</td><td>SEDA</td><td><a href="https://devnet.explorer.seda.xyz/faucet" target="_blank">Official SEDA Faucet</a></td></tr><tr><td>Sei</td><td>CosmWasm</td><td>SEI</td><td><a href="https://atlantic-2.app.sei.io/faucet" target="_blank">Sei Atlantic-2 Faucet</a></td></tr><tr><td>Terra</td><td>CosmWasm</td><td>LUNA</td><td><a href="https://faucet.terra.money/" target="_blank">Terra Official Faucet</a></td></tr><tr><td>Terra 2.0</td><td>CosmWasm</td><td>LUNA</td><td><a href="https://faucet.terra.money/" target="_blank">Terra Official Faucet</a></td></tr><tr><td>XPLA</td><td>CosmWasm</td><td>XPLA</td><td><a href="https://faucet.xpla.io/" target="_blank">XPLA Official Faucet</a></td></tr></tbody></table>
-
-### Move VM
-
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>APT</td><td><a href="https://www.aptosfaucet.com/" target="_blank">Official Aptos Faucet</a></td></tr><tr><td>Movement</td><td>Move VM</td><td>undefined</td><td><a href="https://faucet.devnet.suzuka.movementnetwork.xyz/" target="_blank">Official Movement Faucet</a></td></tr></tbody></table>
-
-### NEAR VM
-
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>NEAR</td><td>NEAR VM</td><td>NEAR</td><td><a href="https://near-faucet.io/" target="_blank">Official NEAR Faucet</a></td></tr></tbody></table>
-
-### Sui Move VM
-
-<table data-full-width="true" markdown><thead><th>Testnet</th><th>Environment</th><th>Token</th><th>Faucet</th></thead><tbody><tr><td>Sui</td><td>Sui Move VM</td><td>SUI</td><td><a href="https://docs.sui.io/build/faucet" target="_blank">List of Faucets</a></td></tr></tbody></table>
+🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators  <br>🏗️ **Used by:** [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
 
 </div>
-<!--TESTNET_FAUCETS-->
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Borrowing and Lending Across Chains
+
+Let users borrow assets on one chain using collateral from another.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves loan requests and liquidations across chains
+- [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – transfers collateral as native assets
+- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
+
+🔗 **Used in:** Lending protocols and yield platforms <br>🏗️ **Used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Real-Time Price Feeds and Trading Strategies
+
+Fetch price feeds across multiple chains for DeFi applications.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches price feeds from oracles and trading platforms
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – sends signals to execute trades
+
+🔗 **Used in:** Trading bots, arbitrage platforms, and oracles <br>🏗️ **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Asset Movement Between Bitcoin and Other Chains
+
+Enable direct BTC transfers without wrapped assets.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – transfers BTC across chains
+
+🔗 **Used in:** Bitcoin DeFi and lightning network integrations <br>🏗️ **Used by:** [Synonym](https://wormhole.com/case-studies/synonym){target=\_blank}
+
+</div>
+</div>
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Decentralized Social Platforms
+
+Enable seamless communication and asset transfer across decentralized social networks.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates decentralized interactions
+- [**Token Bridge**](/docs/build/transfers/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
+
+🔗 **Used in:** Web3 social networks and content monetization <br>🏗️ **Used by:** [Chingari](https://chingari.io/){target=\_blank}
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Memecoin Launchpads
+
+Launch and distribute memecoins across multiple chains, enabling cross-chain fundraising and liquidity access.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – enables native asset transfers for seamless fundraising
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
+
+🔗 **Used in:** Token launchpads, IDOs, and meme token ecosystems
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Cross-Chain Perpetuals
+
+Enable leveraged perpetual trading across chains with seamless collateral and liquidity management.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches real-time asset prices and manages position state across chains
+- [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} - for quick cross-chain token execution, providing efficient and seamless user experiences
+
+🔗 **Used in:**  Perpetual DEXs, trading platforms and cross-chain derivatives
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Gas Abstraction
+
+Allow users to pay gas fees with any token across different networks, removing friction in multichain interactions.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – routes gas fee payments across chains
+- [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – facilitates native token conversion for gas payments
+
+🔗 **Used in:** Wallets, dApps, and multichain user experience improvements
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Bridging Intent Library
+
+Provide developers with a library of bridging intents and automation functions, enabling plug-and-play interoperability logic.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – enables predefined cross-chain actions and triggers.
+- [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} - provides a framework for executing user-defined bridging intents
+
+🔗 **Used in:** Bridging protocols, DeFi automation, and smart contract libraries
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Multichain Prediction Markets
+
+Allow users to place bets, manage positions, and receive payouts seamlessly across different networks.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches real-time market data, tracks collateral, and manages odds across chains
+- [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} – automates token execution for efficient and seamless cross-chain prediction market interactions
+
+🔗 **Used in:** Decentralized betting, prediction markets, and cross-chain gaming
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Cross-Chain Payment Widgets
+
+Allow merchants and platforms to accept payments in any token, auto-converting them into a desired asset.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Wormhole Connect**](/docs/build/transfers/connect/overview/){target=\_blank} – facilitates seamless payments in various tokens
+- [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – ensures direct, native asset transfers
+
+🔗 **Used in:** E-commerce, Web3 payments, and subscription models
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Oracle Networks
+
+Fetch and verify cross-chain data, enabling reliable, decentralized Oracle services for multichain applications.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
+
+🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🏗️ **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
+
+</div>
+</div>
+
+
+<div markdown class="use-case-card">
+<div class="title" markdown>
+
+## Cross-Chain Staking
+
+Enable users to stake assets on one chain while earning rewards or securing networks on another.
+
+</div>
+<div markdown>
+
+🛠 **Wormhole products used:**
+
+- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
+- [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
+
+🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks <br>🏗️ **Used by:** [Lido](https://lido.fi/){target=\_blank}
+
+</div>
+</div>
 --- END CONTENT ---

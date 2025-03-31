@@ -1,7 +1,7 @@
 ---
 title: Wormhole Finality | Consistency Levels
 description: This page documents how long to wait for finality before signing, based on each chain’s consistency (finality) level and consensus mechanism.
-categories: Core
+categories: Reference
 ---
 
 # Wormhole Finality

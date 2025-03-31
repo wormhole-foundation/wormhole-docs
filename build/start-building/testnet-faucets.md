@@ -1,7 +1,7 @@
 ---
 title: Testnet Faucets
 description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
-categories: Core
+categories: Reference
 ---
 
 # Testnet Faucets

@@ -116,8 +116,8 @@ def extract_category(category, core_data=None):
 # Generate LLMS files for all categories including shared core content.
 def generate_all_categories():
    
-    extract_category('Core') # generate and store the core concepts file
-    core_path = os.path.join(output_dir, 'core-llms.txt')
+    extract_category('Basics') # generate and store the core concepts file
+    core_path = os.path.join(output_dir, 'basics-llms.txt')
     with open(core_path, 'r', encoding='utf-8') as f:
         raw_core = f.read()
 

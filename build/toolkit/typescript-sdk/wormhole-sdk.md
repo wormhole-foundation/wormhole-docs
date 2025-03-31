@@ -1,6 +1,7 @@
 ---
 title: Wormhole TS SDK 
 description: Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC.
+categories: Typescript-SDK
 ---
 
 # Wormhole TypeScript SDK
