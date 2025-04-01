@@ -50,7 +50,7 @@ def get_all_markdown_files(directory):
             if file.endswith(('.md', '.mdx')):
                 results.append(os.path.join(root, file))
 
-     # Sort the files to ensure consistent order
+    # Sort the files to ensure consistent order
     results.sort()  # Sorting alphabetically
     return results
 
@@ -72,11 +72,9 @@ def build_index_section(files):
 
     return section
 
-
+# Parse snippet paths to extract file and line ranges if available.
 def parse_line_range(snippet_path):
-    """
-    Parse snippet paths to extract file and line ranges if available.
-    """
+
     parts = snippet_path.split(':')
     file_only = parts[0]
     line_start = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else None
@@ -115,6 +113,7 @@ def fetch_local_snippet(snippet_ref, snippet_directory):
     return snippet_content.strip()
 
 def fetch_remote_snippet(snippet_ref, yaml_data):
+    
     # Match URL with optional line range (start:end)
     match = re.match(r'^(https?://[^:]+)(?::(\d+))?(?::(\d+))?$', snippet_ref)
 
@@ -126,8 +125,7 @@ def fetch_remote_snippet(snippet_ref, yaml_data):
     line_start = int(match.group(2)) if match.group(2) else None
     line_end = int(match.group(3)) if match.group(3) else None
 
-    # Resolve any template placeholders using the yaml_data
-    url = resolve_placeholders(url, yaml_data)
+    url = resolve_placeholders(url, yaml_data) # resolve any template placeholders using the yaml_data
 
     # Skip URLs containing unresolved template placeholders
     if "{{" in url:
@@ -206,40 +204,12 @@ def load_yaml(yaml_file):
     with open(yaml_file, "r", encoding="utf-8") as file:
         return yaml.safe_load(file)
 
-# Parses mkdocs.yml and returns a list of doc file paths in the order defined by 'nav'
-def get_ordered_files_from_mkdocs(mkdocs_path):
-
-    # Preprocess to remove problematic YAML tags
-    with open(mkdocs_path, 'r', encoding='utf-8') as f:
-        raw_yaml = f.read()
-
-    # Strip any !!python/name tags (basic handling)
-    raw_yaml_cleaned = re.sub(r'!!python/name:[^\n]+', 'null', raw_yaml)
-
-    mkdocs_config = yaml.safe_load(raw_yaml_cleaned)
-
-    nav = mkdocs_config.get('nav', [])
-    ordered_files = []
-
-    def extract_paths(nav_items):
-        for item in nav_items:
-            if isinstance(item, dict):
-                for _, value in item.items():
-                    if isinstance(value, str):
-                        ordered_files.append(value)
-                    elif isinstance(value, list):
-                        extract_paths(value)
-
-    extract_paths(nav)
-    # Normalize to absolute paths
-    return [os.path.join(docs_dir, path) for path in ordered_files]
-
 # generate lms.txt – a streamlined view of the documentation structure
 # Format: [Page Title](URL): description
 def generate_llms_structure_txt(files):
 
     structure_output = os.path.join(docs_dir, 'llms.txt')
-    #os.makedirs(os.path.dirname(structure_output), exist_ok=True)
+    
     structure_lines = [
         "# Wormhole",
         "", # spacer line
@@ -274,7 +244,7 @@ def generate_llms_structure_txt(files):
         rel_path = os.path.relpath(file, docs_dir)
         doc_url = f"{raw_base_url}/{rel_path.replace(os.sep, '/')}"
 
-        structure_lines.append(f"- [{title}]({doc_url}/): {description}")
+        structure_lines.append(f"- [{title}]({doc_url}): {description}")
 
     # Write output file
     with open(structure_output, 'w', encoding='utf-8') as f:
@@ -288,7 +258,8 @@ def main():
     yaml_file = load_yaml(yaml_dir)
 
     # Header
-    llms_content = "# llms-full.txt\n"
+    llms_content = "# Wormhole llms-full.txt\n"
+    llms_content += "# Wormhole is a cross-chain messaging protocol used to move data and assets between blockchains.\n\n"
     llms_content += "# Generated automatically. Do not edit directly.\n\n"
     llms_content += f"Documentation: {docs_url}\n\n"
 
@@ -304,9 +275,6 @@ def main():
 
     print(f"llms-full.txt created or updated at: {output_file}")
 
-    # Generate streamlined structure for AI systems
-    mkdocs_path = os.path.join(base_dir, 'mkdocs.yml')
-    ordered_files = get_ordered_files_from_mkdocs(mkdocs_path)
     generate_llms_structure_txt(files)
 
 if __name__ == "__main__":
@@ -315,7 +283,7 @@ if __name__ == "__main__":
 from generate_llms_by_category import generate_all_categories
 generate_all_categories()
 
-# Copy full-llms.txt into llms-files for consistency
+# Copy full-llms.txt into llms-files
 llms_source = os.path.join(docs_dir, 'llms-full.txt')
 llms_target = os.path.join(docs_dir, 'llms-files', 'llms-full.txt')
 

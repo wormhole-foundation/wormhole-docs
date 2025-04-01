@@ -14,11 +14,11 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - Prefer concise explanations and code snippets where appropriate.
 
 # List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/cli/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/dev-env/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/faqs/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/toolkit/solidity-sdk/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/cli.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/dev-env.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/faqs.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/solidity-sdk.md [type: build]
 
 # Full content for each doc page
 
@@ -1325,20 +1325,20 @@ This context is provided to help understand how the system works under the hood,
 ---
 
 # List of shared concept pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/glossary/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/architecture/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/core-contracts/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/guardians/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/relayer/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/spy/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/infrastructure/vaas/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/introduction/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/learn/security/ [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/core-messaging/core-contracts/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/core-messaging/wormhole-relayers/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/products/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/use-cases/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/glossary.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/architecture.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/core-contracts.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/guardians.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/relayer.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/spy.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/vaas.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/introduction.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/security.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/core-contracts.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/wormhole-relayers.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/products.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/use-cases.md [type: build]
 
 # Full content for shared concepts:
 
@@ -3454,13 +3454,13 @@ While it may not be required for all use cases, it offers a deeper technical lay
 ---
 
 # List of shared concept pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/chain-ids/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/consistency-levels/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/contract-addresses/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/reference/wormhole-formatted-addresses/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/supported-networks/ [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/mainhttps://wormhole.com/docs/build/start-building/testnet-faucets/ [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/chain-ids.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/consistency-levels.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/contract-addresses.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/wormhole-formatted-addresses.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/supported-networks.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/testnet-faucets.md [type: build]
 
 # Full content for shared concepts:
 

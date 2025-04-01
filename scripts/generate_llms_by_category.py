@@ -59,7 +59,13 @@ def extract_category(category, shared_data=None):
         tags = [tag.strip().lower() for tag in category_line.group(1).split(',')] # splits tags by comma 
         if category.lower() in tags:
             section_label = infer_section_label(url)
-            raw_url = f"{RAW_BASE_URL}{url}"  # `url` already includes a leading slash
+            #raw_url = f"{RAW_BASE_URL}{url}"  # `url` already includes a leading slash
+            # Fix: Convert /docs/.../page -> relative GitHub path
+            if "/docs/" in url:
+                rel_path = url.split("/docs/")[1].rstrip("/") + ".md"
+                raw_url = f"{RAW_BASE_URL}/{rel_path}"
+            else:
+                raw_url = url  # fallback
             index_lines.append(f"Doc-Page: {raw_url} [type: {section_label}]")
             content_blocks.append(f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---") # store full page
 
