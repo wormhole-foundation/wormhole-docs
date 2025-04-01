@@ -3979,6 +3979,14 @@ Regardless of which network development environment you are using, there are a f
 
     [:custom-arrow: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
 
+-   :octicons-plug-16:{ .lg .middle } **Wormholescan API**
+
+    ---
+
+    Leverage the Wormholescan API to programmatically access Wormhole network data, including transaction details and VAAs.
+
+    [:custom-arrow: Explore the Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank}
+
 -   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
 
     ---
