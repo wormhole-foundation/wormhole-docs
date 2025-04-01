@@ -36,12 +36,10 @@ For integration to Wormhole and with multiple chains, the simplest option is to 
 
 Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](https://tilt.dev/){target=\_blank} since it allows you to spin up any chains supported by Wormhole in a consistent environment.
 
-<!-- TODO: create tilt guide
-
 ## Validator Setup with Tilt
 
 ### Tilt
-If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](/docs/build/toolkit/tilt/){target=\_blank} page for a complete guide to setting up and configuring Tilt. -->
+If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} page for a complete guide to setting up and configuring Tilt.
 
 ## Deploying to Public Networks
 
