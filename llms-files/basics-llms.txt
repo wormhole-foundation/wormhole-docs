@@ -1077,10 +1077,7 @@ Wormhole supports a growing number of blockchains.
 <table data-full-width="true" markdown><thead><th>Blockchain</th><th>Environment</th><th>Mainnet</th><th>Testnet</th><th>Quick Links</th></thead><tbody><tr><td>Aptos</td><td>Move VM</td><td>:white_check_mark:</td><td>:white_check_mark:</td><td>
   :material-web: <a href="https://aptosfoundation.org/" target="_blank">Website</a><br>
   :material-file-document: <a href="https://aptos.dev/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.aptoslabs.com/" target="_blank">Block Explorer</a></td></tr><tr><td>Movement</td><td>Move VM</td><td>:x:</td><td>:white_check_mark:</td><td>
-  :material-web: <a href="https://movementlabs.xyz/" target="_blank">Website</a><br>
-  :material-file-document: <a href="https://docs.movementnetwork.xyz/" target="_blank">Developer Docs</a><br>
-  :octicons-package-16: <a href="https://explorer.movementlabs.xyz/?network=mainnet" target="_blank">Block Explorer</a></td></tr></tbody></table>
+  :octicons-package-16: <a href="https://explorer.aptoslabs.com/" target="_blank">Block Explorer</a></td></tr></tbody></table>
 
 ### NEAR VM
 
