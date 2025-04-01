@@ -57,7 +57,7 @@ Regardless of which network development environment you are using, there are a f
 
     Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
-    [:custom-arrow: Get started with Tilt](/docs/build/toolkit/tilt/)
+    [:custom-arrow: Get started with Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank}
 
 <!-- TODO: revisit
 
