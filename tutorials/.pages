@@ -2,10 +2,10 @@ title: Tutorials
 nav:
  - index.md
  - connect
- - solidity-sdk
-#  - native-token-transfers
+ - multichain-assets
  - multigov
+#  - native-token-transfers
+#  - settlement
+ - solidity-sdk
  - typescript-sdk
  - wormholescan
- - multichain-assets
-#  - settlement
