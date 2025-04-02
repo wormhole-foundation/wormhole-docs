@@ -37,7 +37,7 @@ For convenience, we provide LLM files grouped by product category. Each file inc
  - Foundational core concepts about the Wormhole architecture
  - Reference material such as chain IDs and contract addresses
 
-This ensures that each file is self-contained and provides the context for practical use.
+Each file is self-contained and includes the context for practical use with AI agents.
 
 | Category      | Download                     |
 |---------------|------------------------------|
