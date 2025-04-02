@@ -19,7 +19,7 @@ These resources are intended to help developers learn and understand the Wormhol
 
 ## Full Documentation Files
 
-Use these files to provide LLM access to all Wormhole documentation.
+Use these files to provide LLM access to the complete Wormhole documentation.
 
 | File name          | Description                                                  | Download               |
 |--------------------|--------------------------------------------------------------|------------------------|
