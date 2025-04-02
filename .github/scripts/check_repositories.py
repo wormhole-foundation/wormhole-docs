@@ -4,6 +4,11 @@ from urllib.parse import urlparse
 import sys
 import yaml
 
+def normalize_version(version):
+    """Normalize version strings by removing leading 'v' if present."""
+    if version.startswith("v"):
+        return version[1:]
+    return version
 
 def get_latest_release(repo_url):
     """Get the latest release tag from a GitHub repository."""
@@ -50,7 +55,10 @@ def check_releases(releases_source_file):
 
         latest_version = get_latest_release(repo_url)
 
-        if latest_version and latest_version != current_version:
+        normalized_current = normalize_version(current_version)
+        normalized_latest = normalize_version(latest_version)
+
+        if latest_version and normalized_latest != normalized_current:
             outdated_repos.append(
                 {
                     "repository": repo_url,
