@@ -32,12 +32,6 @@ Use these files to provide LLM access to the complete Wormhole documentation.
 
 For convenience, we provide LLM files grouped by product category. Each file is self-contained and includes the relevant documentation pages, shared foundational concepts, and reference material.
 
-Each file includes:
-
- - All documentation pages related to that category
- - Foundational concepts and reference material shared across all Wormhole products
-
-
 | Category      | Download                     |
 |---------------|------------------------------|
 | Basics        |  [basics-llms.txt]()         |
