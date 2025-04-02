@@ -5,11 +5,11 @@ description:
 
 # LLM Resources
 
-Wormhole provides `.txt` files containing the documentation content and navigation structure. These files are prepared specifically for use with Large Language Models (LLMs) and AI agents.
+Wormhole provides `.txt` files containing the documentation content and navigation structure. These files are prepared specifically for Large Language Models (LLMs) and AI agents.
 
 You can use these files to:
 
- - Enable custom AI agents trained on Wormhole documentation
+ - Enable custom AI agents trained on the Wormhole documentation
  - Assist local or private LLMs for quick reference and technical support
  - Improve query results by providing direct access to documentation content
 
@@ -17,7 +17,7 @@ These resources are intended to help developers learn and understand the Wormhol
 
 ## LLM Files
 
-The following files are available for download. You can choose to download the complete documentation files or category-specific files, depending on your needs.
+The following files are available for download. Depending on your needs, you can choose to download the complete documentation or category-specific files.
 
 ### Full Documentation Files
 
@@ -27,7 +27,7 @@ The following files are available for download. You can choose to download the c
 | `llms-full.txt`    |  Full content of all documentation pages in plain text format|  [llms-full.txt]()     |
 
 !!! note
-    The `llms-full.txt` file contains the entire documentation content and may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [category-specific files](#category-specific-files) instead.
+    The `llms-full.txt` file contains all the documentation content and may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [category-specific files](#category-specific-files).
 
 ### Category-Specific Files
 
@@ -37,7 +37,7 @@ For convenience, we provide LLM files grouped by product category. Each file inc
  - Foundational core concepts about the Wormhole architecture
  - Reference material such as chain IDs and contract addresses
 
-This ensures that each file is self-contained and provides the necessary context for effective use.
+This ensures that each file is self-contained and provides the context for practical use.
 
 | Category      | Download                     |
 |---------------|------------------------------|
