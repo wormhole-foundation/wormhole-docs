@@ -29,7 +29,7 @@ Use these files to provide LLM access to the complete Wormhole documentation.
 !!! note
     The `llms-full.txt` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [category-specific files](#category-specific-files).
 
-## Category-Specific Files
+## Files by Category
 
 For convenience, we provide LLM files grouped by product category. Each file includes:
 
