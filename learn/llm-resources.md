@@ -5,6 +5,8 @@ description: Download LLM-optimized files of the Wormhole documentation, includi
 
 # LLM Resources
 
+## Overview
+
 Wormhole provides `.txt` files containing the documentation content and navigation structure. These files are prepared specifically for Large Language Models (LLMs) and AI agents.
 
 You can use these files to:
@@ -15,11 +17,7 @@ You can use these files to:
 
 These resources are intended to help developers learn and understand the Wormhole Protocol. They contain documentation content only and do not include live data or protocol APIs.
 
-## LLM Files
-
-The following files are available for download. Depending on your needs, you can choose to download the complete documentation or category-specific files.
-
-### Full Documentation Files
+## Full Documentation Files
 
 Use these files to provide LLM access to all Wormhole documentation.
 
@@ -29,9 +27,9 @@ Use these files to provide LLM access to all Wormhole documentation.
 | `llms-full.txt`    |  Full content of all documentation pages in plain text format|  [llms-full.txt]()     |
 
 !!! note
-    The `llms-full.txt` file contains all the documentation content and may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [category-specific files](#category-specific-files).
+    The `llms-full.txt` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [category-specific files](#category-specific-files).
 
-### Category-Specific Files
+## Category-Specific Files
 
 For convenience, we provide LLM files grouped by product category. Each file includes:
 
