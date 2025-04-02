@@ -7,7 +7,7 @@ description: Learn how to Install Wormhole’s Native Token Transfers (NTT) fram
 
 In this video, the Wormhole team walks you through installing the [Native Token Transfers (NTT) CLI](https://github.com/wormhole-foundation/native-token-transfers/tree/main/cli){target=\_blank}. You’ll see a practical demonstration of running commands, verifying your installation, and addressing common issues that might arise. If you prefer to follow written instructions or want a quick reference for each step, scroll down for the detailed installation guide.
 
-These guides assume you have existing tokens you want to use with Native Token Transfers. For contracts to quickly create placeholder tokens you can use to test NTTs, see the [`example-ntt-token`](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} GitHub repository and follow the README instructions.
+To start using the NTT CLI, you can generate test tokens for development with the [`example-ntt-token`](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} GitHub repository by following the README instructions.
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
 
