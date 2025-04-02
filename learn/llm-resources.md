@@ -21,6 +21,8 @@ The following files are available for download. Depending on your needs, you can
 
 ### Full Documentation Files
 
+Use these files to provide LLM access to all Wormhole documentation.
+
 | File name          | Description                                                  | Download               |
 |--------------------|--------------------------------------------------------------|------------------------|
 | `llms.txt`         |  Navigation index of all Wormhole documentation pages        |  [llms.txt]()          |
