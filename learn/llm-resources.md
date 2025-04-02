@@ -26,16 +26,17 @@ Use these files to provide LLM access to the complete Wormhole documentation.
 | `llms-full.txt`    |  Full content of all documentation pages in plain text format|  [llms-full.txt]()     |
 
 !!! note
-    The `llms-full.txt` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [category-specific files](#category-specific-files).
+    The `llms-full.txt` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [files by category](#files-by-category).
 
 ## Files by Category
 
-For convenience, we provide LLM files grouped by product category. Each file includes:
+For convenience, we provide LLM files grouped by product category. Each file is self-contained and includes the relevant documentation pages, shared foundational concepts, and reference material.
+
+Each file includes:
 
  - All documentation pages related to that category
  - Foundational concepts and reference material shared across all Wormhole products
 
-Each file is self-contained and includes the context for practical use with AI agents.
 
 | Category      | Download                     |
 |---------------|------------------------------|
