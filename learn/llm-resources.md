@@ -12,8 +12,7 @@ Wormhole provides `.txt` files containing the documentation content and navigati
 You can use these files to:
 
  - Enable custom AI agents trained on the Wormhole documentation
- - Assist local or private LLMs for quick reference and technical support
- - Improve query results by providing direct access to documentation content
+ - Provide LLMs with reference material for technical support and accurate query responses
 
 These resources are intended to help developers learn and understand the Wormhole Protocol. They contain documentation content only and do not include live data or protocol APIs.
 
@@ -34,8 +33,7 @@ Use these files to provide LLM access to the complete Wormhole documentation.
 For convenience, we provide LLM files grouped by product category. Each file includes:
 
  - All documentation pages related to that category
- - Foundational core concepts about the Wormhole architecture
- - Reference material such as chain IDs and contract addresses
+ - Foundational concepts and reference material shared across all Wormhole products
 
 Each file is self-contained and includes the context for practical use with AI agents.
 
