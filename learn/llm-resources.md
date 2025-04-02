@@ -1,6 +1,6 @@
 ---
 title: LLM Resources
-description: 
+description: Download LLM-optimized files of the Wormhole documentation, including full content and category-specific resources for AI agents.
 ---
 
 # LLM Resources
