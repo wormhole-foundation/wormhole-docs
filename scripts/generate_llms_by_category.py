@@ -81,10 +81,16 @@ def extract_category(category, shared_data=None):
         f.write(f"# {PROJECT_NAME} Developer Documentation (LLMS Format)\n\n")
         f.write(f"This file contains documentation for {PROJECT_DESCRIPTION}\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
-        f.write(f"This file includes documentation related to the product: {category}\n\n")
 
-        # Prompt block to guide the AI assistant's behavior
-        f.write(AI_PROMPT_TEMPLATE)
+    
+
+        # Depending on category, write the correct line
+        if category.lower() in ["basics", "reference"]:
+            f.write(f"This file includes documentation related to the category: {category}\n\n")
+            # By request, do NOT include AI_PROMPT_TEMPLATE here.
+        else:
+            f.write(f"This file includes documentation related to the product: {category}\n\n")
+            f.write(AI_PROMPT_TEMPLATE)
 
         def sort_key(pair): # sort the documentation blocks by section priority
             url = pair[0]

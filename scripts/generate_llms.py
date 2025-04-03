@@ -282,13 +282,3 @@ if __name__ == "__main__":
 
 from generate_llms_by_category import generate_all_categories
 generate_all_categories()
-
-# Copy full-llms.txt into llms-files
-llms_source = os.path.join(docs_dir, 'llms-full.txt')
-llms_target = os.path.join(docs_dir, 'llms-files', 'llms-full.txt')
-
-with open(llms_source, 'r', encoding='utf-8') as src:
-    with open(llms_target, 'w', encoding='utf-8') as dst:
-        dst.write(src.read())
-
-print(f"[✓] Copied llms-full.txt to llms-files/")

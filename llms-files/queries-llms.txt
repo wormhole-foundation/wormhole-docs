@@ -333,7 +333,7 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 
 ## Mock a Query
 
-For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](/docs/build/toolkit/tilt/){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
+For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
 const mockData = await mock.mock(request);
