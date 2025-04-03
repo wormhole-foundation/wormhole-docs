@@ -36,16 +36,17 @@ For convenience, we provide LLM files grouped by product category. Each file is 
  - Shared foundational concepts such as the Wormhole architecture and messaging infrastructure
  - Reference material including chain IDs, contract addresses, and finality details
 
-| Category      | Download                     |
-|---------------|------------------------------|
-| Basics        |  [basics-llms.txt]()         |
-| Reference     |  [reference-llms.txt]()      |
-| NTT           |  [ntt-llms.txt]()            |
-| Connect       |  [connect-llms.txt]()        |
-| Token Bridge  |  [token-bridge-llms.txt]()   |
-| Settlement    |  [settlement-llms.txt]()     |
-| Relayers      |  [relayers-llms.txt]()       |
-| MultiGov      |  [multigov-llms.txt]()       |
-| Queries       |  [queries-llms.txt]()        |
-| Solidity SDK  |  [solidity-sdk-llms.txt]()   |
-| TypeScript SDK|  [typescript-sdk-llms.txt]() |
+
+| Category       | File                      | Actions                                                                                                                                                                                       |
+|----------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Basics         | `basics-llms.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="basics-llms.txt" } [:octicons-download-16:](/docs/llms-files/basics-llms.txt){ download="basics-llms.txt" }                           |
+| Reference      | `reference-llms.txt`      | [:octicons-copy-16:](){ .llms action="copy" data-value="reference-llms.txt"} [:octicons-download-16:](/docs/llms-files/reference-llms.txt){ download="reference-llms.txt" }                   |
+| NTT            | `ntt-llms.txt`            | [:octicons-copy-16:](){ .llms action="copy" data-value="ntt-llms.txt" } [:octicons-download-16:](/docs/llms-files/ntt-llms.txt){ download="ntt-llms.txt" }                                    |
+| Connect        | `connect-llms.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="connect-llms.txt" } [:octicons-download-16:](/docs/llms-files/connect-llms.txt){ download="connect-llms.txt" }                        |
+| Token Bridge   | `token-bridge-llms.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="token-bridge-llms.txt" }   [:octicons-download-16:](/docs/llms-files/token-bridge-llms.txt){ download="token-bridge-llms.txt" }       |
+| Settlement     | `settlement-llms.txt`     | [:octicons-copy-16:](){ .llms action="copy" data-value="settlement-llms.txt" } [:octicons-download-16:](/docs/llms-files/settlement-llms.txt){ download="settlement-llms.txt" }               |
+| Relayers       | `relayers-llms.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="relayers-llms.txt" } [:octicons-download-16:](/docs/llms-files/relayers-llms.txt){ download="relayers-llms.txt" }                     |
+| MultiGov       | `multigov-llms.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="multigov-llms.txt" } [:octicons-download-16:](/docs/llms-files/multigov-llms.txt){ download="multigov-llms.txt" }                     |
+| Queries        | `queries-llms.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="queries-llms.txt" } [:octicons-download-16:](/docs/llms-files/queries-llms.txt){ download="queries-llms.txt" }                        |
+| Solidity SDK   | `solidity-sdk-llms.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="solidity-sdk-llms.txt" } [:octicons-download-16:](/docs/llms-files/solidity-sdk-llms.txt){ download="solidity-sdk-llms.txt" }         |
+| TypeScript SDK | `typescript-sdk-llms.txt` | [:octicons-copy-16:](){ .llms action="copy" data-value="typescript-sdk-llms.txt" }   [:octicons-download-16:](/docs/llms-files/typescript-sdk-llms.txt){ download="typescript-sdk-llms.txt" } |
