@@ -74,15 +74,13 @@ def extract_category(category, shared_data=None):
         return
 
     # Output file for this category
-    output_file = os.path.join(output_dir, f"{category.lower()}-llms.txt") # write to output file
+    output_file = os.path.join(output_dir, f"llms-{category.lower()}.txt") # write to output file
     with open(output_file, 'w', encoding='utf-8') as f:
 
         # Intro context block to help LLMs understand purpose of the file
         f.write(f"# {PROJECT_NAME} Developer Documentation (LLMS Format)\n\n")
         f.write(f"This file contains documentation for {PROJECT_DESCRIPTION}\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
-
-    
 
         # Depending on category, write the correct line
         if category.lower() in ["basics", "reference"]:
@@ -131,7 +129,7 @@ def generate_all_categories():
 
     for shared in ['Basics', 'Reference']:
         extract_category(shared)  # Generate the file
-        path = os.path.join(output_dir, f"{shared.lower()}-llms.txt")
+        path = os.path.join(output_dir, f"llms-{shared.lower()}.txt")
         with open(path, 'r', encoding='utf-8') as f:
             raw = f.read()
 

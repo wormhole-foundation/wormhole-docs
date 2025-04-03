@@ -617,7 +617,6 @@ It describes the architecture and messaging infrastructure that serve as the bac
 This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
 This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
 
-
 ---
 
 # List of shared concept pages:
@@ -2745,7 +2744,6 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 The following section contains reference material for Wormhole.
 It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
 While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
-
 
 ---
 

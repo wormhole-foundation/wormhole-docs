@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation related to the product: NTT
+This file includes documentation related to the product: MultiGov
 
 # AI Prompt Template
 
@@ -14,2044 +14,1198 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - Prefer concise explanations and code snippets where appropriate.
 
 # List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/architecture.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/deployment.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/overview.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/security.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/cli-commands.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/configuration.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/configuration/access-control.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/configuration/rate-limiting.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/deploy-to-evm.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/deploy-to-solana.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/evm-launchpad.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/installation.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/post-deployment.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/troubleshooting.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/faqs.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/managers-transceivers.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance/architecture.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance/faq.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance/overview.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/deploy-to-evm.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/deploy-to-solana.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/faq.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/upgrade-evm.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/upgrade-solana.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/multigov.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/multigov/treasury-proposal.md [type: tutorials]
 
 # Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/
+Doc-Content: https://wormhole.com/docs/learn/governance/
 --- BEGIN CONTENT ---
 ---
-title: A Quick Look at Native Token Transfers
-description: This section covers Wormhole's Native Token Transfers (NTT), an open source, flexible, and composable framework for transferring tokens across blockchains.
-categories: NTT, Transfer
+title: Learn about MultiGov
+description: Explore the MultiGov documentation for a comprehensive guide covering architecture, deployment, upgrading, integration, and FAQs.
+categories: MultiGov
 ---
 
-# Native Token Transfers
+# MultiGov
+
+Discover everything you need to know about MultiGov, Wormhole's cross-chain governance solution. Get an introduction to the core concepts, explore how the system's components work together, and find answers to common questions to help you navigate the platform effectively.
 
 ## Get Started
 
-This section covers Wormhole's Native Token Transfers (NTT), an open source, flexible, and composable framework for transferring tokens across blockchains.
-
 <div class="grid cards" markdown>
 
--   :octicons-question-16:{ .lg .middle } **Overview**
+-   :octicons-book-16:{ .lg .middle } **Overview**
 
     ---
 
-    Dive into an introduction to NTT and discover what NTT is, what its key features are, and the available integration paths.
+    Explore MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
 
-    [:custom-arrow: Learn more about NTT](/docs/learn/transfers/native-token-transfers/overview/)
+    [:custom-arrow: Take a first glance at MultiGov](/docs/learn/governance/overview/)
 
--   :octicons-question-16:{ .lg .middle } **Architecture**
-
-    ---
-
-    Explore NTT's architecture to understand its core components and how they work together to manage cross-chain communication.
-
-    [:custom-arrow: Discover how NTT works](/docs/learn/transfers/native-token-transfers/architecture/)
-
--   :octicons-book-16:{ .lg .middle } **Deployment Models**
+-   :octicons-book-16:{ .lg .middle } **Architecture**
 
     ---
 
-    The NTT framework offers two deployment models for different token management needs: the hub-and-spoke and burn-and-mint models.
+    Discover MultiGov's hub-and-spoke architecture, enabling EVM and Solana cross-chain governance through coordinated decision-making.
 
-    [:custom-arrow: Check out the deployment models](/docs/learn/transfers/native-token-transfers/deployment/)
+    [:custom-arrow: Learn about MultiGov architecture](/docs/learn/governance/architecture/)
 
--   :octicons-shield-lock-16:{ .lg .middle } **Security**
+-   :octicons-question-16:{ .lg .middle } **Theoretical FAQs**
 
     ---
 
-    Explore NTT's security measures, including the Global Accountant and governance strategies for seamless token safety.
+    Find answers to common theoretical questions about MultiGov.
 
-    [:custom-arrow: Review the security measures](/docs/learn/transfers/native-token-transfers/security/)
+    [:custom-arrow: Find the answer to your theoretical questions](/docs/learn/governance/faq/)  
 
 </div>
 
 ## Next Steps
 
-Ready to dive in and start building? Check out the following resources to begin the deployment process and make the most of your deployment.
-
 <div class="grid cards" markdown>
 
--   :octicons-rocket-16:{ .lg .middle } **Deploy NTT**
+-   :octicons-checklist-16:{ .lg .middle } **Begin the MultiGov Integration Process**
 
     ---
 
-    Explore detailed guides that walk you through the entire deployment process, from installing the NTT CLI to deploying NTT across supported chains.
+    Learn how to get started with MultiGov, from evaluating cross-chain governance needs to deploying with help from the Tally team.
 
-    [:custom-arrow: Deploy now using the NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/)
+    [:custom-arrow: Start the integration process now](/docs/build/multigov/)
 
--   :octicons-checklist-16:{ .lg .middle } **Post Deployment Recommendations**
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains**
 
     ---
 
-    Already deployed your NTT project? Check out these post deployment recommendations and integration demos to get the most out of your deployment.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Get the most of out your NTT deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
+
+    ---  
+
+    Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.
+
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/) 
+
+-   :octicons-code-square-16:{ .lg .middle } **Tutorials**
+
+    ---
+
+    Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
+
+    [:custom-arrow: Create MultiGov solutions](/docs/tutorials/by-product/multigov/)
+
+-   :octicons-question-16:{ .lg .middle } **Technical FAQs**
+
+    ---
+
+    Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
+
+    [:custom-arrow: Find the answer to your technical questions](/docs/build/multigov/faq/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/architecture/
+Doc-Content: https://wormhole.com/docs/learn/governance/architecture/
 --- BEGIN CONTENT ---
 ---
-title: Native Token Transfers Architecture
-description: Explore Wormhole's Native Token Transfers architecture, which covers components, message flow, rate limiting, and custom transceivers.
-categories: NTT, Transfer
+title: MultiGov Architecture
+description: Discover MultiGov's hub-and-spoke architecture, enabling secure cross-chain governance with Wormhole’s interoperability and decentralized coordination.
+categories: MultiGov
 ---
 
-## Introduction
+# MultiGov Architecture
 
-The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components that work together to manage cross-chain communication and token operations complexities.
+MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizing Wormhole's interoperability infrastructure for secure cross-chain communication. This architecture allows coordinated decision-making across multiple blockchain networks while maintaining a central coordination point.
 
-For the technical implementations of the functions, refer to the [Managers and Transceivers](/docs/build/transfers/native-token-transfers/managers-transceivers/){target=\_blank} page.
+## Key Components
 
-## System Components
+### Hub Chain Contracts
 
-The NTT framework is composed of managers, which oversee the transfer process, and transceivers, which handle cross-chain messaging, ensuring smooth and reliable token transfers.
+The hub chain is the central point for managing proposals, tallying votes, executing decisions, and coordinating governance across connected chains.
 
-### Managers
+   - **`HubGovernor`** - central governance contract managing proposals and vote tallying
+   - **`HubVotePool`** - receives aggregated votes from spokes and submits them to `HubGovernor`
+   - **`HubMessageDispatcher`** - relays approved proposal executions to spoke chains
+   - **`HubProposalExtender`** - allows trusted actors to extend voting periods if needed
+   - **`HubProposalMetadata`** - helper contract returning `proposalId` and vote start for `HubGovernor` proposals
+   - **`HubEvmSpokeAggregateProposer`** - aggregates cross-chain voting weight for an address and proposes via the `HubGovernor` if eligible
 
-_Managers_ are responsible for handling the flow of token transfers between different blockchains and ensuring that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. The main tasks of managers include rate-limiting transactions, verifying message authenticity (message attestation), and managing the interaction between multiple transceivers, who are responsible for cross-chain communications.
+### Spoke Chains Contracts
 
-Each manager is assigned to a specific token but can operate across multiple chains. Their key responsibility is to ensure that tokens are securely locked or burned on the source chain before being minted or unlocked on the destination chain. This provides the integrity of token transfers and prevents double-spending.
+Spoke chains handle local voting, forward votes to the hub, and execute approved proposals from the hub for decentralized governance.
 
-A manager is responsible for:
+   - **`SpokeVoteAggregator`** - collects votes on the spoke chain and forwards them to the hub
+   - **`SpokeMessageExecutor`** - receives and executes approved proposals from the hub
+   - **`SpokeMetadataCollector`** - fetches proposal metadata from the hub for spoke chain voters
+   - **`SpokeAirlock`** - acts as governance's "admin" on the spoke, has permissions, and its treasury
 
-- **Handling token transfer flow** - upon a transfer request, `NttManager` either locks or burns tokens depending on the configuration, emits a `TransferSent` event, and ensures tokens can’t be accessed on the source chain before leasing them on the destination chain. This process safeguards against double-spending and maintains a secure transfer
-- **Rate-limiting** - the `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers
-    - **Outbound** - transfers exceeding the outbound limit are queued (if `shouldQueue` is true) or reverted
-    - **Inbound** - similar limits apply on the destination chain, delaying transfers if capacity is exceeded
+### Spoke Solana Staking Program
 
-    Rate limit duration and queuing are customizable per chain, and events notify users when transfers hit the limit
+The Spoke Solana Staking Program handles local voting from users who have staked W tokens or are vested in the program, forwards votes to the hub, and executes approved proposals from the hub for decentralized governance.
 
-- **Message authenticity verification** - the `NttManager` ensures transfer security by verifying message authenticity through multiple attestations from transceivers. For each transfer, a threshold number of attestation signatures must be gathered from transceivers. Once verified, `NttManager` releases tokens on the destination chain, ensuring only authenticated transfers are processed
-- **Interaction with transceivers** - `NttManager` collaborates with transceivers, forwarding transfer messages between chains and handling message verification. Transceivers route messages with transfer details to the destination chain, coordinating with `NttManager` to verify that tokens are locked or burned before releasing them on the other side. Transceivers can be customized to work with different security protocols, adding flexibility
+The program implements its functionality through instructions, using specialized PDA accounts where data is stored. Below are the key accounts in the program:
 
-### Transceivers
+ - **`GlobalConfig`** - global program configuration
+ - **`StakeAccountMetadata`** - stores user's staking information
+ - **`CustodyAuthority`** - PDA account managing custody and overseeing token operations related to stake accounts
+ - **`StakeAccountCustody`** - token account associated with a stake account for securely storing staked tokens
+ - **`CheckpointData`** - tracks delegation history
+ - **`SpokeMetadataCollector`** - collects and updates proposal metadata from the hub chain
+ - **`GuardianSignatures`** - stores guardian signatures for message verification
+ - **`ProposalData`** - stores data about a specific proposal, including votes and start time
+ - **`ProposalVotersWeightCast`** - tracks individual voter's weight for a proposal
+ - **`SpokeMessageExecutor`** - processes messages from a spoke chain via the Wormhole protocol
+ - **`SpokeAirlock`** - manages PDA signing and seed validation for secure instruction execution
+ - **`VestingBalance`** - stores total vesting balance and related staking information of a vester
+ - **`VestingConfig`** - defines vesting configuration, including mint and admin details
+ - **`Vesting`** - represents individual vesting allocations with maturation data
+ - **`VoteWeightWindowLengths`** - tracks lengths of vote weight windows
 
-_Transceivers_ facilitate cross-chain token transfers by ensuring the accurate transmission of messages between different blockchains. They work in conjunction with managers to route token transfers from the source chain to the recipient chain. Their primary function is to ensure that messages regarding the transfer process are delivered correctly, and that tokens are safely transferred across chains.
+Each account is implemented as a Solana PDA (Program Derived Address) and utilizes Anchor's account framework for serialization and management.
 
-While transceivers operate closely with Wormhole's ecosystem, they can also be configured independently of Wormhole's core system, allowing for flexibility. This adaptability allows them to be integrated with various verification backends to accommodate different security needs or platform-specific requirements.
+## System Workflow
 
-Transceivers are entrusted with several responsibilities:
+The MultiGov system workflow details the step-by-step process for creating, voting on, and executing governance proposals across connected chains, from proposal creation to final cross-chain execution.
 
-- **Message transmission** - transceivers handle the routing of transfer messages between chains. When a transfer is initiated, the transceiver sends the message (including transfer details like recipient and amount) to the destination chain’s manager for verification and processing
-- **Manager coordination** - transceivers work with managers to ensure tokens are locked or burned on the source chain before issuance on the destination chain, reinforcing the security of each transfer
-- **Custom verification support** - transceivers can integrate with custom verification backends, allowing flexibility to adapt to different security protocols or chain requirements. This customization enables protocols to use different attestation standards as needed
+### EVM Governance Workflow
 
-How it works:
+The EVM-based MultiGov workflow follows these steps:
 
-1. The transceiver receives instructions from the manager to send messages across chains
-2. It quotes delivery fees, handles cross-chain message relaying, and verifies delivery to ensure tokens are safely transferred
-3. For each message, the transceiver coordinates with managers, ensuring only authorized transfers are processed on the destination chain
+1. **Proposal creation**:
+    1. A user creates a proposal through the `HubEvmSpokeAggregateProposer`, which checks eligibility across chains, or directly on the `HubGovernor` via the `propose` method
+    2. The proposal is submitted to the `HubGovernor` if the user meets the proposal threshold
+2. **Proposal metadata distribution**:
+    1. `HubProposalMetadata` creates a custom view method to be queried for use in the `SpokeMetadataCollector`
+    2. `SpokeMetadataCollector` on each spoke chain queries `HubProposalMetadata` for proposal details
+3. **Voting process**:
+    1. Users on spoke chains vote through their respective `SpokeVoteAggregators`
+    2. `SpokeVoteAggregators` send aggregated votes to the `HubVotePool` via Wormhole
+    3. `HubVotePool` submits the aggregated votes to the `HubGovernor`
+4. **Vote tallying and proposal execution**:
+    1. `HubGovernor` tallies votes from all chains
+    2. If a quorum is reached and there are more for votes than against votes, the vote passes and is queued for execution
+    3. After the timelock delay, the proposal can be executed on the hub chain
+    4. For cross-chain actions, a proposal should call the `dispatch` method in the `HubMessageDispatcher`, which sends execution messages to the relevant spoke chains
+    5. `SpokeMessageExecutors` on each spoke chain receive and execute the approved actions through their respective `SpokeAirlocks`
 
-![NTT architecture diagram](/docs/images/learn/transfers/native-token-transfers/architecture/architecture-1.webp)
+### Solana Governance Workflow
 
-!!! note
-    [Learn more](/docs/learn/transfers/native-token-transfers/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
+The Solana-based MultiGov workflow follows these steps:
 
-#### Custom Transceivers
+1. **Proposal creation**:
+    1. A user creates a proposal on `HubGovernor` by calling the `propose` method, provided they meet the proposal threshold
+    2. For the proposal to be executed on the Solana blockchain, a `SolanaPayload` must be generated and included in the `calldata` parameter of the `propose` function
+    3. The `SolanaPayload` contains encoded details specifying which instructions will be executed and which Solana program is responsible for execution
 
-The NTT framework supports advanced features such as custom transceivers for specialized message verification, enhancing security and adaptability. The architecture includes detailed processes for initiating transfers, managing rate limits, and finalizing token operations, with specific instructions and events outlined for EVM-compatible chains and Solana.
+2. **Proposal metadata distribution**:
+    1. A user queries `getProposalMetadata` from `HubProposalMetadata` via the Wormhole query system to create a proposal on the **Spoke Solana Chain Staking Program**
+    2. The retrieved metadata is used in the `AddProposal` instruction in the Solana program
+    3. The proposal data is verified to ensure it matches the expected format
+    4. Guardian signatures are posted using the `PostSignatures` instruction
+    5. Once validated, the proposal is stored on-chain
 
-NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
+3. **Voting process**:
+    1. Users vote on proposals stored in the `ProposalData` account on Solana
+    2. The `CastVote` instruction records their choice (`for_votes`, `against_votes`, or `abstain_votes`)
+    3. Eligibility and vote weight are verified using historical voter checkpoint data
+    4. A **Query Wormhole** request retrieves vote data from a Solana PDA
+    5. The signed response from Wormhole guardians is submitted to the `HubVotePool` on Ethereum for verification
+    6. The `crossChainVote` function in `HubVotePool` processes the validated response and forwards the aggregated vote data to the `HubGovernor` to finalize the decision
 
-![Custom Attestation with NTT diagram](/docs/images/learn/transfers/native-token-transfers/architecture/architecture-2.webp)
+4. **Vote tallying and proposal execution**:
+    1. `HubGovernor` tallies votes from all chains
+    2. If a quorum is reached with more **for votes** than **against votes**, the proposal passes and is queued for execution
+    3. After the timelock delay, the proposal can be executed either on the hub chain or another chain
+    4. For cross-chain execution involving Solana, the proposal calls the `dispatch` method in `HubSolanaMessageDispatcher`, which sends execution messages to Solana
+    5. On Solana, the `ReceiveMessage` instruction processes the approved message, and the `SpokeAirlock` executes the corresponding instructions
 
-The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. The model includes an extra verifier in the bridging process, enhancing security and providing an added assurance of transaction integrity.
+## Cross-Chain Communication
 
-For more details, to collaborate, or to see examples of custom transceivers, [contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors.
+MultiGov relies on Wormhole's infrastructure for all cross-chain messaging, ensuring secure and reliable communication between chains. Wormhole's cross-chain state read system, known as Queries, is used for vote aggregation and proposal metadata. Additionally, cross-chain proposal execution messages are transmitted through Wormhole's custom relaying system, enabling seamless coordination across multiple blockchain networks.
 
-## Lifecycle of a Message
+## Security Measures
 
-The lifecycle of a message in the Wormhole ecosystem for Native Token Transfers (NTT) involves multiple steps to ensure secure and accurate cross-chain token transfers. This lifecycle can vary depending on the blockchain being used, and the following explanations focus on the EVM and Solana implementations. The key stages include initiating the transfer, handling rate limits, sending and receiving messages, and finally, minting or unlocking tokens on the destination chain.
+- **Vote weight window** - implements a moving window for vote weight checkpoints to mitigate cross-chain double voting
+    - **Proposal extension** - `HubProposalExtender` allows for extending voting periods by a trusted actor in the case of network issues or high-stakes decisions
+- **Timelock** - a timelock period between proposal approval and execution allows for additional security checks and community review
+- **Wormhole verification** - all cross-chain messages are verified using Wormhole's secure messaging protocol
 
-### Transfer
+## Detailed Architecture Diagram
 
-The process begins when a client initiates a transfer. For EVM, this is done using the `transfer` function, whereas in Solana, the client uses either the `transfer_lock` or `transfer_burn` instruction, depending on whether the program is in locking or burning mode. The client specifies the transfer amount, recipient chain ID, recipient address, and a flag (`should_queue` on both EVM and Solana) to decide whether the transfer should be queued if it hits the rate limit.
+This architecture ensures that MultiGov can operate securely and efficiently across multiple chains, allowing for truly decentralized and cross-chain governance while maintaining a unified decision-making process.
 
-In both cases:
-
-- If the source chain is in locking mode, the tokens are locked on the source chain to be unlocked on the destination chain
-- If the source chain is in burning mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain
-
-Once initiated, an event (such as `TransferSent` on EVM or a corresponding log on Solana) is emitted to signal that the transfer process has started.
-
-### Rate Limit
-
-Both EVM and Solana implement rate-limiting for transfers to prevent abuse or network overload. Rate limits apply to both the source and destination chains. If transfers exceed the current capacity, depending on whether the `shouldQueue` flag is set to true, they can be queued.
-
-- On EVM, the transfer is added to an outbound queue if it hits the rate limit, with a delay corresponding to the configured rate limit duration. If `shouldQueue` is set to false, the transfer is reverted with an error
-- On Solana, the transfer is added to an **Outbox** via the `insert_into_outbox method`, and if the rate limit is hit, the transfer is queued with a `release_timestamp`. If `shouldQueue` is false, the transfer is reverted with a `TransferExceedsRateLimit` error
-
-Both chains emit events or logs when transfers are rate-limited or queued.
-
-### Send
-
-After being forwarded to the Transceiver, the message is transmitted across the chain. Transceivers are responsible for delivering the message containing the token transfer details. Depending on the Transceiver's implementation, messages may be routed through different systems, such as Wormhole relayers or other custom relaying solutions. Once the message is transmitted, an event is emitted to signal successful transmission.
-
-- In EVM, the message is sent using the `sendMessage` function, which handles the transmission based on the Transceiver's implementation. The Transceiver may use Wormhole relayers or custom relaying solutions to forward the message
-- In Solana, the transfer message is placed in an Outbox and released via the `release_outbound` instruction. The Solana transceiver, such as the Wormhole Transceiver, may send the message using the `post_message` instruction, which Wormhole Guardians observe for verification
-
-In both cases, an event or log (e.g., `SendTransceiverMessage` on EVM or a similar log on Solana) is emitted to signal that the message has been transmitted.
-
-### Receive
-
-Upon receiving the message on the destination chain, an off-chain relayer forwards the message to the destination Transceiver for verification. 
-
-- In EVM, the message is received by the `NttManager` on the destination chain, which verifies the message's authenticity. Depending on the M of N threshold set for the attestation process, the message may require attestations from multiple transceivers
-- In Solana, the message is received via the `receive_message` instruction in the Wormhole Transceiver program. The message is verified and stored in a `VerifiedTransceiverMessage` account, after which it is placed in an Inbox for further processing
-
-In both chains, replay protection mechanisms ensure that a message cannot be executed more than once. Events or logs are emitted (e.g., `ReceivedMessage` on EVM or `ReceiveMessage` on Solana) to notify that the message has been successfully received.
-
-### Mint or Unlock
-
-Finally, after the message is verified and attested to, the tokens can be either minted (if they were burned on the source chain) or unlocked (if they were locked). The tokens are then transferred to the recipient on the destination chain, completing the cross-chain token transfer process. 
-
-- On EVM, tokens are either minted (if burned on the source chain) or unlocked (if locked on the source chain). The `TransferRedeemed` event signals that the tokens have been successfully transferred
-- On Solana, the tokens are unlocked or minted depending on whether the program is in locking or burning mode. The `release_inbound_unlock` or `release_inbound_mint` instruction is used to complete the transfer, and a corresponding log is produced
-
-In both cases, once the tokens have been released, the transfer process is complete, and the recipient receives the tokens. Events are emitted to indicate that the transfer has been fully redeemed.
+<!-- add diagram broken down in sections -->
+![detailed multigov architecture diagram](/docs/images/learn/governance/multigov-detailed.webp)
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/deployment/
+Doc-Content: https://wormhole.com/docs/learn/governance/faq/
 --- BEGIN CONTENT ---
 ---
-title: Native Token Transfers - Deployment Models
-description: Explore Wormhole's Native Token Transfers deployment models——hub-and-spoke, burn-and-mint——for seamless cross-chain token transfers.
-categories: NTT, Transfer
+title: MultiGov Theoretical FAQs
+description: Find answers to common questions about MultiGov, covering cross-chain governance, technical setup, security, proposal creation, and more.
+categories: MultiGov
 ---
 
-# Deployment Models
+# FAQs
 
-The Wormhole framework offers two deployment models, each catering to different token management needs: the hub-and-spoke model and the burn-and-mint model. These models provide flexible solutions for both existing token deployments and new projects looking to enable secure and seamless multichain token transfers.
+## General Questions
 
-## Hub-and-Spoke
+### What is MultiGov?
 
-The hub-and-spoke model involves locking tokens on a central hub chain and minting them on destination spoke chains. This model maintains the total supply on the hub chain and is backward-compatible with any existing token deployment.
+MultiGov is a cross-chain governance system that extends traditional DAO governance across multiple blockchain networks. It leverages Wormhole's interoperability infrastructure for seamless voting and proposal mechanisms across various chains.
 
-This model is ideal for existing token deployments that don't want to alter existing token contracts. It maintains the canonical balance on a hub chain while allowing for secure native deployment to new blockchains.
+### How does MultiGov differ from traditional DAO governance?
 
-- **Hub chain** - tokens are locked when initiating a transfer
-- **Spoke chains** - Equivalent tokens are minted on the destination chain
+Unlike traditional DAO governance, which typically operates on a single blockchain, MultiGov allows for coordinated decision-making and proposal execution across multiple chains. This enables more inclusive participation from token holders on different networks and more complex, cross-chain governance actions.
 
-When transferring tokens back to the original hub chain, the tokens on the source spoke chain are burned, and the previously locked tokens on the hub chain are unlocked. However, when transferring tokens directly between spoke chains, the tokens are burned on the source spoke chain and minted on the destination spoke chain.
+### What are the main components of MultiGov?
 
-## Burn-and-Mint
+The main components of MultiGov include:
 
-The burn-and-mint model involves burning tokens on the source chain and minting them on the destination chain. This results in a simplified multichain transfer process that distributes the total supply across multiple chains and produces a native multichain token.
-
-This model best suits new token deployments or projects willing to upgrade existing contracts.
-
-- **Source chain** - tokens are burned when initiating a transfer
-- **Destination chain** - equivalent tokens are minted on the destination chain
+- **Hub chain** - central coordination point for governance activities
+- **Spoke chains** - additional chains where token holders can participate in governance
+- **Wormhole integration** - enables secure cross-chain message passing
+- **Governance token** - allows holders to participate in governance across all integrated chains
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/overview/
+Doc-Content: https://wormhole.com/docs/learn/governance/overview/
 --- BEGIN CONTENT ---
 ---
-title: Native Token Transfers Overview
-description: Explore Wormhole's Native Token Transfers for flexible cross-chain transfers with full control over token behavior, security, and integration features.
-categories: NTT, Transfer
+title: MultiGov Overview
+description: Explore MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
+categories: MultiGov
 ---
 
-# Native Token Transfers
+# MultiGov: Cross-Chain Governance with Wormhole
 
-!!!tip "Looking to deploy NTT?"
-    If you're ready to deploy NTT or access the CLI, follow the detailed [NTT Deployment Section](/docs/build/transfers/native-token-transfers/deployment-process/){target=\_blank}.  
+## Overview
 
-     - For deployment steps on EVM, visit the [Deploy to EVM page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}  
-     - For deployment steps on Solana, visit the [Deploy to Solana page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/){target=\_blank}
+### What Is MultiGov and Why Is It Important?
 
-## Introduction
+MultiGov is a cross-chain governance system that extends traditional DAO governance across multiple blockchain networks. By leveraging Wormhole's interoperability infrastructure, MultiGov enables seamless voting and proposal mechanisms across various chains.
 
-Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. By eliminating wrapped assets, NTT preserves each token’s native properties across chains, letting you maintain complete control over metadata, ownership, upgrade authority, and other custom features.
+MultiGov is important because it:
 
-The framework offers two modes of operation for existing token deployments. In locking mode, the original token supply is preserved on a single chain. In contrast, the burning mode enables the deployment of multichain tokens, distributing the supply across various chains.
+- **Increases participation** by allowing token holders from multiple chains to engage in governance
+- **Enhances security** by leveraging Wormhole's robust cross-chain communication
+- **Improves scalability** by integrating any chain supported by Wormhole
+- **Enables unified governance** and coordinated decision-making across multiple networks
 
-## Key Features
+### Key Features
 
-Wormhole's Native Token Transfers (NTT) framework offers a comprehensive and flexible solution for seamless token transfers across blockchains. Below are some of the key features that make this framework stand out:
+- **Hub and spoke model** - central coordination on a hub chain with participation from multiple spoke chains. A hub chain is where the governance state lives, while the spoke chains can be considered extensions of governance that allow for participation by token holders on other chains
+- **Cross-chain voting** - token holders on any integrated chain can cast votes
+- **Vote aggregation** - votes from all chains are collected and tallied on the hub
+- **Cross-chain proposal execution** - approved proposals can be executed across multiple chains
+- **Wormhole integration** - secure and reliable cross-chain communication
+- **Flexible architecture** - can integrate with any Wormhole-supported blockchain
 
-- **No wrapped tokens** – tokens remain native on every chain where NTT is deployed. All token properties and metadata remain consistent, avoiding any confusion or overhead introduced by wrapped tokens
-- **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience
-- **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
-- **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
-- **Advanced rate limiting** - inbound and outbound rate limits are configurable per chain and over arbitrary periods, preventing abuse while managing network congestion and allowing for controlled deployments to new chains
-- **Global Accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
-- **Access control** - to prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions, such as the Pauser role, to a separate address from the owner
-- **Maximum composability** - open source and extensible for widespread adoption and integration with other protocols
-- **Custom attestation** - optionally add external verifiers and configure custom message attestation thresholds
+### High-Level Architecture Diagram
 
-## Integration Paths
+The diagram below represents MultiGov's high-level architecture, focusing on its hub-and-spoke model for decentralized governance across multiple chains. The hub chain acts as the central governance controller, managing proposal creation, vote tallying, and execution, while the spoke chains handle local voting and proposal execution on individual chains. The hub and spoke chains communicate via Wormhole's cross-chain messaging infrastructure, ensuring secure and efficient governance across multiple blockchain networks.
 
-Integrators looking to deploy their token to connected chains can use the NTT framework or the Token Bridge. Both options carry a distinct integration path and feature set depending on your requirements, as outlined in the following sections.
+For a deeper understanding of the system's structure and how the components interact, refer to the [MultiGov Architecture](/docs/learn/governance/architecture/){target=\_blank} page.
 
-### Native Token Transfers Framework
-
-The Native Token Transfers Framework is highly customizable and ideal for applications such as a DeFi governance token deployed across multiple chains, which seeks to achieve fungible multichain liquidity and direct integration into governance processes.
-
-- **Mechanism** - can entirely utilize a burn-and-mint mechanism or can be paired for a hub-and-spoke model
-- **Security** - fully configurable rate limiting, pausing, access control, and threshold attestations. Integrated with the Global Accountant
-- **Contract ownership** - retain ownership and upgrade authority of token contracts on each chain
-- **Token contracts** - native contracts owned by your protocol governance
-- **Integration** - streamlined, customizable framework allows for more sophisticated and bespoke deployments
-
-The following example projects demonstrate the use of the Wormhole NTT framework through Wormhole Connect and the TypeScript SDK:
-
-- [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} 
-- [NTT TS SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} 
-
-### Token Bridge
-
-The Token Bridge offers a secure, low-effort integration suitable for applications like a Web3 game that wants to make its token tradable across multiple chains.
-
-- **Mechanism** - solely utilizes a lock and mint model. Unlike NTT, the Token Bridge issues a wrapped asset on the destination chain, rather than preserving the original token contract
-- **Security** - preconfigured rate limiting and integrated Global Accountant
-- **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/docs/learn/security/){target=\_blank}
-- **Token contracts** - wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
-- **Integration** - straightforward and permissionless method to deploy on multiple chains
-
-!!! note
-    [Learn more](/docs/learn/infrastructure/vaas/){target=\_blank} about the core messaging primitives in the Wormhole network. 
-
-## Supported Token Standards
-
-Native Token Transfers (NTT) in Wormhole primarily support **ERC-20 tokens**, the most widely used standard for fungible tokens on the Ethereum network and other EVM-compatible blockchains. The NttManager contract leverages the IERC20 interface and SafeERC20 utility from OpenZeppelin to ensure secure and efficient token transfers. Additionally, it supports ERC-20 Burnable tokens, allowing tokens to be burned on the source chain when needed for cross-chain transfers. At this time, NTT focuses on ERC-20 tokens, and other token standards, such as ERC-721 (non-fungible tokens) or ERC-1155 (multi-token standard), are not natively supported.
+<!-- simplify diagram -->
+![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/learn/governance/multigov-high-level.webp)
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/security/
+Doc-Content: https://wormhole.com/docs/build/multigov/
 --- BEGIN CONTENT ---
 ---
-title: Native Token Transfers Security
-description: Explore the security measures of Native Token Transfers, including the Global Accountant and governance strategies for seamless token safety.
-categories: NTT, Transfer
+title: Getting Started with MultiGov
+description: Learn how to get started with MultiGov, from evaluating cross-chain governance needs to deploying with help from the Tally team.
+categories: MultiGov
 ---
 
-# Security
+# MultiGov
 
-## Global Accountant
+## Begin the MultiGov Integration Process
 
-The Global Accountant is a defense-in-depth security feature that checks the integrity of every token transfer. It ensures that chain balances remain isolated and more tokens cannot be burned and transferred out of a chain than were ever minted.
+Take the following steps to get started with a MultiGov integration:
 
-This feature ensures native asset fungibility remains in 1:1 parity. At no time will assets coming from a spoke chain exceed the number of native assets sent to that spoke chain. The Guardians, with their role in enforcing accounting transparency, provide a reassuring layer of security, attesting to a Native Token Transfer (NTT) only if it passes integrity checks.
+1. Evaluate if [MultiGov](/docs/learn/governance/) meets your cross-chain governance needs
+2. Fill out the intake form on the [Tally website](https://www.tally.xyz/get-started){target=\_blank}
+3. The Tally team will review your application and contact you to discuss implementation details
+4. Work with the Tally team to customize and deploy MultiGov for your specific use case
 
-[Contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors if you are interested in configuring the Global Accountant for your multichain deployment.
-
-## Governance and Upgradeability
-
-Integrators should implement governance mechanisms to manage the addition and removal of transceivers and to upgrade contracts using proxy patterns, as demonstrated in the upgrade functions in the `NttManager` contracts. These processes can also set thresholds and rules for attestation and message approval.
-
-The registry component of the NTT system is crucial for maintaining a trusted list of transceivers and managing their status. Governance processes for the following actions can be submitted directly to the corresponding contract on-chain, whether it is one or multiple of the bridging contracts or one of the token contracts:
-
-- Adding or removing a transceiver address from the registry
-- Setting the token contract address on a bridging contract
-- Setting the Wormhole Core Contract address on a bridging contract
-- Setting the registered bridging contract address on the token contract
-
-This governance model ensures that the system remains secure while being adaptable to new requirements in any environment where it is deployed.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers (NTT)
-description: This section provides comprehensive guidance on configuring, deploying, and managing your Native Token Transfers (NTT) integration. 
-categories: NTT, Transfer
----
-
-# Native Token Transfers
-
-Native Token Transfers (NTT) simplifies and enables seamless, flexible token transfers across blockchains. This section provides comprehensive guidance on configuring, deploying, and managing your NTT integration. It includes information relevant to both new token deployments and existing token management.
-
-Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} and [Product Comparison](/docs/build/start-building/products/){target=\_blank} pages for help determining if NTT will meet the needs of your project.
-
-## Quickstart
-
-The process for creating, deploying, and monitoring NTTs is as follows. Select the title of each step to view the associated guide:
-
-[timeline left(wormhole-docs/.snippets/text/build/transfers/ntt/ntt-deployment-process-timeline.json)]
-
-## Deploy NTTs with Launchpad
-
-If you are deploying to EVM blockchains, the [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT. NTT Launchpad replaces manually deploying contracts or configuring relayers for each supported EVM chain. 
-
-Follow the [Deploy NTT with Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/){target=\_blank} guide to create new multichain tokens or integrate existing tokens with just a few clicks.
-
-## Additional Resources
+## Start Building
 
 <div class="grid cards" markdown>
-
--   :octicons-gear-16:{ .lg .middle } **NTT CLI Commands**
-
-    ---
-
-    The NTT CLI tool provides a comprehensive set of commands for creating, configuring, deploying, and monitoring NTTs. This page provides a comprehensive list of available NTT CLI commands, their descriptions, and examples to help you interact effectively with the NTT system. 
-
-    [:custom-arrow: NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/)
-
--   :octicons-question-16:{ .lg .middle } **NTT FAQs**
-
-    ---
-
-    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
-
-    [:custom-arrow: Check out the FAQs](/docs/build/transfers/native-token-transfers/faqs/)
-
-</div>
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/cli-commands/
---- BEGIN CONTENT ---
----
-title: NTT CLI Commands
-description: A comprehensive guide to the Native Token Transfers (NTT) CLI, detailing commands for managing token transfers across chains within the Wormhole ecosystem.
-categories: NTT, Transfer
----
-
-# NTT CLI Commands
-
-## Introduction
-
-The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
-
-If you haven't installed the NTT CLI yet, follow the [NTT Installation Guide](/docs/build/transfers/native-token-transfers/deployment-process/installation/#installation){target=\_blank} to set it up before proceeding.
-
-## Table of Commands
-
-The following table lists the available NTT CLI commands, descriptions, and examples.
-
-To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
-
-### General Commands
-
-| Command                                 | Description                                           | Examples                 |
-|-----------------------------------------|-------------------------------------------------------|--------------------------|
-| `ntt update`                            | update the NTT CLI                                    | `ntt update`             |
-| `ntt new <path>`                        | create a new NTT project                              | `ntt new my-ntt-project` |
-| `ntt add-chain <chain>`                 | add a chain to the deployment file                    | `ntt add-chain Ethereum --token 0x1234... --mode burning --latest`|
-| `ntt upgrade <chain>`                   | upgrade the contract on a specific chain              | `ntt upgrade Solana --ver 1.1.0`|
-| `ntt clone <network> <chain> <address>` | initialize a deployment file from an existing contract| `ntt clone Mainnet Solana Sol5678...`|
-| `ntt init <network>`                    | initialize a deployment file                          | `ntt init devnet`        |
-| `ntt pull`                              | pull the remote configuration                         | `ntt pull`               |
-| `ntt push`                              | push the local configuration                          | `ntt push`               |
-| `ntt status`                            | check the status of the deployment                    | `ntt status`             |
-
-### Configuration Commands
-
-| Command                                     | Description                            | Examples                            |
-|---------------------------------------------|----------------------------------------|-------------------------------------|
-| `ntt config set-chain <chain> <key> <value>`| set a configuration value for a chain  | `ntt config set-chain Ethereum scan_api_key`|
-| `ntt config unset-chain <chain> <key>`      | unset a configuration value for a chain| `ntt config unset-chain Ethereum scan_api_key`|
-| `ntt config get-chain <chain> <key>`        | get a configuration value for a chain  | `ntt config get-chain Ethereum scan_api_key`|
-
-### Solana Commands
-
-| Command                                       | Description                                             | Examples         |
-|-----------------------------------------------|---------------------------------------------------------|------------------|
-| `ntt solana key-base58 <keypair>`             | print private key in base58                             | `ntt solana key-base58 /path/to/keypair.json`|
-| `ntt solana token-authority <programId>`      | print the token authority address for a given program ID| `ntt solana token-authority Sol1234...`|
-| `ntt solana ata <mint> <owner> <tokenProgram>`| print the token authority address for a given program ID| `ntt solana ata Mint123... Owner123... token22`|
-
-## Where to Go Next
-
-<div class="grid cards" markdown>
-
-
--   :octicons-gear-16:{ .lg .middle } **Configure NTT**
-
-    ---
-
-    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
-
-    [:custom-arrow: Configure your NTT deployment](/docs/build/transfers/native-token-transfers/configuration/)
-
--   :octicons-question-16:{ .lg .middle } **NTT FAQs**
-
-    ---
-
-    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
-
-    [:custom-arrow: Check out the FAQs](/docs/build/transfers/native-token-transfers/faqs/)
-
-</div>
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/configuration/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers (NTT) - Configuration
-description: This section contains information on configuring Native Token Transfers (NTT), including guidance on setting Owner and Pauser access control roles and management of rate-limiting. 
-categories: NTT, Transfer
----
-
-# Configure Native Token Transfers (NTT)
-
-## Get Started
-
-This section contains information on configuring Native Token Transfers (NTT), including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
-
-<div class="grid cards" markdown>
-
--   :octicons-clock-16:{ .lg .middle } **Rate Limiting**
-
-    ---
-
-    Discover options for configuring rate limits and how queueing effects transaction flow.
-
-    [:custom-arrow: Explore rate limit options](/docs/build/transfers/native-token-transfers/configuration/rate-limiting/)
-
--   :octicons-unlock-16:{ .lg .middle } **Access Control**
-
-    ---
-
-    Learn more about access control, including why you should consider setting a separate Pauser address as part of your development security plan.
-
-    [:custom-arrow: Explore access control roles](/docs/build/transfers/native-token-transfers/configuration/access-control/)
-
-</div>
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/configuration/access-control/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers Access Control
-description: Learn about the owner and pauser access roles for the NTT manager contract, which can be used to pause and un-pause token transfers.
-categories: NTT, Transfer
----
-
-## Owner and Pauser Roles
-
-Pausing the Native Toke Transfer (NTT) Manager Contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits if configured).
-
-NTT can be paused on a particular chain by updating the `paused` parameter on the deployment to `true` via the NTT CLI, then performing `ntt push` to sync the local configuration with the on-chain deployment.
-
-- **Owner** - full control over NTT contracts, can perform administrative functions. Has the ability to un-pause contracts if they have been paused
-- **Pauser** - can pause NTT contracts to halt token transfers temporarily. This role is crucial for responding quickly to adverse events without a prolonged governance process. Cannot un-pause contracts
-
-You may verify the current owner, pauser, and paused status of the NTT Manager contract on the `deployment.json` file in your NTT project directory.
-
-```json
-{
-    "network": "Testnet",
-    "chains": {
-        "Sepolia": {
-            "version": "1.1.0",
-            "mode": "burning",
-            "paused": true, // set to true to pause the contract
-            "owner": "0x0088DFAC40029f266e0FF62B82E47A07467A0345",
-            "manager": "0x5592809cf5352a882Ad5E9d435C6B7355B716357",
-            //...
-            "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
-        }
-    }
-}
-```
-
-!!! note
-    While the `Pauser` can pause contracts, the ability to un-pause contracts is callable only by the `Owner`.
-
-The `Owner` and the `Pauser` addresses can each pause the contract. Since the contract `Owner` address is typically a multisig or a more complex DAO governance contract, and pausing the contract only affects the availability of token transfers, protocols can choose to set the `Pauser` address to be a different address. Creating a separate `Pauser` helps protocols respond quickly to potential risks without going through a drawn-out process.
-
-Consider separating `Owner` and `Pauser` roles for your multichain deployment. `Owner` and `Pauser` roles are defined directly on the `NttManager` contract.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/configuration/rate-limiting/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers Rate Limiting
-description: Learn about rate limits in Wormhole NTT by configuring send/receive limits, queuing, and canceling flows to manage multichain token transfers efficiently.
-categories: NTT, Transfer
----
-
-## Introduction
-
-The Native Token Transfer (NTT) framework provides configurable per-chain rate limits for sending and receiving token transfers. Integrators can manage these limits via their own governance processes to quickly adapt to on-chain activity.
-
-If a transfer is rate-limited on the source chain and queueing is enabled via `shouldQueue = true`, the transfer is placed into an outbound queue and can be released after the rate limit expires.
-
-You can configure the following limits on every chain where NTT is deployed directly using the manager:
-
-- **Sending limit** - a single outbound limit for sending tokens from the chain
-- **Per-chain receiving limits** - the maximum receiving limit, which can be configured on a per-chain basis. For example, allowing 100 tokens to be received from Ethereum but only 50 tokens to be received from Arbitrum
-
-Rate limits are replenished every second over a fixed duration. While the default duration is 24 hours, the value is configurable at contract creation. Rate-limited transfers on the destination chain are added to an inbound queue with a similar release delay.
-
-## Update Rate Limits
-
-To configure or update the sending and receiving rate limits, follow these steps:
-
-1. **Locate the deployment file** - open the `deployment.json` file in your NTT project directory. This file contains the configuration for your deployed contracts
-
-2. **Modify the limits section** - for each chain, locate the limits field and update the outbound and inbound values as needed
-
-    ```json
-    "limits": {
-        "outbound": "1000.000000000000000000",
-        "inbound": {
-            "Ethereum": "100.000000000000000000",
-            "Arbitrum": "50.000000000000000000"
-        }
-    }
-    ```
-
-     - **`outbound`** - sets the maximum tokens allowed to leave the chain
-     - **`inbound`** - configures per-chain receiving limits for tokens arriving from specific chains
-
-3. **Push the configuration** - use the NTT CLI to synchronize the updated configuration with the blockchain
-
-    ```bash
-    ntt push
-    ```
-
-4. **Verify the changes** - after pushing, confirm the new rate limits by checking the deployment status
-
-    ```bash
-    ntt status
-    ```
-
-???- note "`deployment.json` example"
-    ```json
-    {
-        "network": "Testnet",
-        "chains": {
-            "Sepolia": {
-                "version": "1.1.0",
-                "mode": "burning",
-                "paused": false,
-                "owner": "0x0088DFAC40029f266e0FF62B82E47A07467A0345",
-                "manager": "0x5592809cf5352a882Ad5E9d435C6B7355B716357",
-                "token": "0x5CF5D6f366eEa7123BeECec1B7c44B2493569995",
-                "transceivers": {
-                    "threshold": 1,
-                    "wormhole": {
-                        "address": "0x91D4E9629545129D427Fd416860696a9659AD6a1",
-                        "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
-                    }
-                },
-                "limits": {
-                    "outbound": "184467440737.095516150000000000",
-                    "inbound": {
-                        "ArbitrumSepolia": "500.000000000000000000"
-                    }
-                },
-                "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
-            }
-        }
-    }
-    ```
-
-## Queuing Mechanism
-
-When a transfer exceeds the rate limit, it is held in a queue and can be released after the set rate limit duration has expired. The sending and receiving queuing behavior is as follows:
-
-- **Sending** - if an outbound transfer violates rate limits, users can either revert and try again later or queue their transfer. Users must return after the queue duration has expired to complete sending their transfer
-- **Receiving** - if an inbound transfer violates rate limits, it is in a queue. Users or relayers must return after the queue duration has expired to complete receiving their transfer on the destination chain
-
-Queuing is configured dynamically during each transfer by passing the `shouldQueue` parameter to the [`transfer` function](https://github.com/wormhole-foundation/native-token-transfers/blob/5e7ceaef9a5e7eaa13e823a67c611dc684cc0c1d/evm/src/NttManager/NttManager.sol#L171-L182){target=\_blank} in the `NttManager` contract.
-
-## Cancel Flows
-
-If users bridge frequently between a given source chain and destination chain, the capacity could be exhausted quickly. Loss of capacity can leave other users rate-limited, potentially delaying their transfers.  The outbound transfer cancels the inbound rate limit on the source chain to avoid unintentional delays. This allows for refilling the inbound rate limit by an amount equal to the outbound transfer amount and vice-versa, with the inbound transfer canceling the outbound rate limit on the destination chain and refilling the outbound rate limit with an amount.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers (NTT) - Deployment
-description: This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
-categories: NTT, Transfer
----
-
-# Deploy Native Token Transfers (NTT)
-
-## Get Started
-
-This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
-
-<div class="grid cards" markdown>
-
--   :octicons-download-16:{ .lg .middle } **Installation**
-
-    ---
-
-    Prerequisites and commands for installing the NTT CLI and working with the NTT framework.
-
-    [:custom-arrow: Install the NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM**
 
     ---
 
-    Find information on preparing for NTT deployment to EVM, including an example NTT token repository.
+    Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
 
--   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains via Launchpad**
-
-    ---
-
-    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
-
-    [:custom-arrow: Deploy via Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/)
-
--   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**
-
-    ---
-
-    Your guide to NTT deployment to Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
-
-    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)
-
--   :octicons-search-16:{ .lg .middle } **Post Deployment**
-
-    ---
-
-    Learn how to best monitor and maintain your NTT deployment to get the most out of your Wormhole integration while providing security for users.
-
-    [:custom-arrow: Explore next steps](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)
-
--   :octicons-alert-16:{ .lg .middle } **Troubleshooting**
-
-    ---
-
-    Explore solutions and detailed guidance in our troubleshooting guide to resolve issues with NTT deployment.
-
-    [:custom-arrow: Get help](/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/)
-
-</div>
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers EVM Deployment
-description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
-categories: NTT, Transfer
----
-
-# Native Token Transfers (NTT) EVM Development
-
-## Deploy Your Token and Ensure Compatibility
-
-If you still need to do so, deploy the token contract to the destination or spoke chains.
-
-### Requirements for Token Deployment
-
-Wormhole’s NTT is an open framework that supports various deployment modes. The NTT CLI currently supports two deployment modes: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed across chains.
-
-#### Burn-and-Mint Mode
-
-Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
-
-- `burn(uint256 amount)`
-- `mint(address account, uint256 amount)`
-
-These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
-
-??? code "View the complete `INttToken` Interface`"
-    ```solidity
-    // SPDX-License-Identifier: Apache 2
-pragma solidity >=0.8.8 <0.9.0;
-
-interface INttToken {
-    /// @notice Error when the caller is not the minter.
-    /// @dev Selector 0x5fb5729e.
-    /// @param caller The caller of the function.
-    error CallerNotMinter(address caller);
-
-    /// @notice Error when the minter is the zero address.
-    /// @dev Selector 0x04a208c7.
-    error InvalidMinterZeroAddress();
-
-    /// @notice Error when insufficient balance to burn the amount.
-    /// @dev Selector 0xcf479181.
-    /// @param balance The balance of the account.
-    /// @param amount The amount to burn.
-    error InsufficientBalance(uint256 balance, uint256 amount);
-
-    /// @notice The minter has been changed.
-    /// @dev Topic0
-    ///      0x0b5e7be615a67a819aff3f47c967d1535cead1b98db60fafdcbf22dcaa8fa5a9.
-    /// @param newMinter The new minter.
-    event NewMinter(address previousMinter, address newMinter);
-
-    // NOTE: the `mint` method is not present in the standard ERC20 interface.
-    function mint(address account, uint256 amount) external;
-
-    // NOTE: the `setMinter` method is not present in the standard ERC20 interface.
-    function setMinter(address newMinter) external;
-
-    // NOTE: NttTokens in `burn` mode require the `burn` method to be present.
-    //       This method is not present in the standard ERC20 interface, but is
-    //       found in the `ERC20Burnable` interface.
-    function burn(uint256 amount) external;
-}
-    ```
-
-Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
-
-#### Hub-and-Spoke Mode
-
-A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) mint or burn tokens during cross-chain transfers, ensuring consistency with the locked tokens on the hub chain.
-
- - **Hub chain** - tokens are locked on the hub chain when transferring to spoke chains
- - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
-
-!!! note
-    The only requirement for using the NTT framework is an ERC20 token, which can be newly deployed or existing. Steps like setting mint authority apply only to spoke chains.
-
-For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
-
-This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
-
-For more detailed information, see the [Deployment Models](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank} page.
-
-### Key Differences Between Modes
-
- - **Burn-and-mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to manage token issuance independently
- - **Hub-and-spoke** - tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency
-
-## Deploy NTT
-
-Create a new NTT project:
-
-```bash
-ntt new my-ntt-deployment
-cd my-ntt-deployment
-```
-
-Initialize a new `deployment.json` file specifying the network:
-
-=== "Testnet"
-
-    ```bash
-    ntt init Testnet
-    ```
-
-=== "Mainnet"
-
-    ```bash
-    ntt init Mainnet
-    ```
-
-Ensure you have set up your environment correctly: 
-
-```bash
-export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
-```
-
-Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
-
-```bash
-# Set scanner API Keys as environment variables
-export SEPOLIA_SCAN_API_KEY=INSERT_ETHERSCAN_SEPOLIA_API_KEY
-export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
-
-# Add each chain
-# The contracts will be automatically verified using the scanner API keys above
-ntt add-chain Sepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
-ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
-```
-
-While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
-
-The `ntt add-chain` command takes the following parameters:
-
-- Name of each chain
-- Version of NTT to deploy (use `--latest` for the latest contract versions)
-- Mode (either `burning` or `locking`)
-- Your token contract address
-
-The NTT CLI prints detailed logs and transaction hashes, so you can see exactly what's happening under the hood.
-
-## Configure NTT
-
-The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
-
-- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
-- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
-
-    For Solana, the limits are set with 9 decimal places:
-      ```json
-      "inbound": {
-          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
-      }
-      ```
-
-    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
-      ```json
-      "inbound": {
-          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
-      }
-      ```
-
-    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
-  
-- `ntt push` - syncs the on-chain configuration with local changes made to your `deployment.json` file
-
-After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
-
-## Set Token Minter to NTT Manager
-
-The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub-and-spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
-
-!!! note
-    The required NTT Manager address can be found in the `deployment.json` file.
-
-- If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
-    ```json
-    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
-    ```
-
-- If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
-
-By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
-
-!!!important
-    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/){target=\_blank} page.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers Solana Deployment
-description: Deploy and configure Wormhole's Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
-categories: NTT, Transfer
----
-
-# Deploy Native Token Transfers on Solana
-
-[Native Token Transfers (NTT)](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
-
-This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
-
-By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
-
-## Prerequisites
-
-Before deploying NTT on Solana, ensure you have the following:
-
--  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
--  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
--  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
-
-Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
-
-## Overview of the Deployment Process
-
-Deploying NTT with the CLI on Solana follows a structured process:
-
-1. **Choose your token setup**:
-
-     - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
-     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
-
-        ???- interface "Create and Mint SPL Tokens"
-            This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
-
-            1. **Generate a Solana key pair** - run the following command to create a new wallet:
-
-                ```bash
-                solana-keygen grind --starts-with w:1 --ignore-case
-                ```
-
-            2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
-
-                ```bash
-                solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
-                ```
-
-            3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
-
-                === "Mainnet"
-                    ```bash
-                    solana config set -um
-                    ```
-
-                === "Testnet"
-                    ```bash
-                    solana config set -ut
-                    ```
-
-                === "Devnet"
-                    ```bash
-                    solana config set -ud
-                    ```
-
-            4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
-
-                ```bash
-                solana airdrop 2
-                solana balance
-                ```
-
-            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
-
-                ```bash
-                cargo install spl-token-cli
-                ```
-
-            6. **Create a new SPL token** - initialize the token on Solana
-
-                ```bash
-                spl-token create-token
-                ```
-
-            7. **Create a token account** - generate an account to hold the token
-
-                ```bash
-                spl-token create-account INSERT_TOKEN_ADDRESS
-                ```
-
-            8. **Mint tokens** - send 1000 tokens to the created account
-
-                ```bash
-                spl-token mint INSERT_TOKEN_ADDRESS 1000
-                ```
-
-            !!! note
-                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
-
-2. **Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}**:
-
-     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
-     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
-
-3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
-
-Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
-
-By default, NTT transfers to Solana require manual [relaying](/docs/learn/infrastructure/relayer/){target=\_blank}, meaning users must complete a transaction on Solana to finalize the transfer. For automatic relaying, where transactions are completed without user intervention, additional setup is required. [Contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to enable automatic relaying support for your deployment.
-
-## Set Up NTT
-
-To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
-
-The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
-
-1. **Create a new NTT project** - set up a deployment workspace
-
-    ```bash
-    ntt new INSERT_PROJECT_NAME
-    cd INSERT_PROJECT_NAME
-    ```
-
-2. **Initialize the deployment** - generate a `deployment.json` file with your deployment settings
-
-    === "Mainnet"
-
-        ```bash
-        ntt init Mainnet
-        ```
-
-    === "Testnet"
-
-        ```bash
-        ntt init Testnet
-        ```
-!!! note
-    Testnet deployment settings work for both Solana Testnet and Devnet networks.
-
-### Set Mint Authority
-
-If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
-
-If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
-
-Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
-
-Follow these steps to set the mint authority using the NTT CLI:
-
-1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
-
-    ```bash
-    solana-keygen grind --starts-with ntt:1 --ignore-case
-    ```
-
-2. **Derive the token authority** - generate the PDA, which will manage token minting
-
-    ```bash
-    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
-    ```
-
-3. **Set SPL token mint authority** - delegate minting control to the derived PDA 
-
-    ```bash
-    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
-    ```
-
-## Deploy and Configure NTT
-
-After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
-
-1. **Deploy NTT to Solana** - run the appropriate command based on your deployment mode:
-
-    === "Burn-and-Mint"
-
-        ```bash
-        ntt add-chain Solana --latest --mode burning --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
-        ```
-
-    === "Hub-and-Spoke"
-
-        ```bash
-        ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
-        ```
-
-    !!! tip
-        The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
-
-2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
-
-    ```bash
-    ntt status
-    ```
-
-    If needed, sync your local configuration with the on-chain state:
-
-    ```bash
-    ntt pull
-    ```
-
-3. **Configure inbound and outbound rate limits** - by default, the inbound and outbound limits are set to `0` and must be updated before deployment. For EVM chains, values must be set using 18 decimals, while Solana uses nine decimals. 
-
-    Open your `deployment.json` file and adjust the values based on your use case:  
-
-    ```json
-    "inbound": {
-        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
-    },
-    "outbound": {
-        "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
-    }
-    ```
-
-4. **Push the final deployment** - once rate limits are set, push the deployment to Solana using the specified key pair to cover gas fees
-
-    ```bash
-    ntt push --payer INSERT_YOUR_KEYPAIR_JSON
-    ```
-
-### Troubleshoot Deployment Issues
-    
-If your deployment fails, it may be due to leftover program buffer accounts taking up storage on Solana. These temporary accounts are created during deployment but may persist if interrupted. Refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on finding and closing these buffer accounts to free up space and allow redeployment.
-
-## Where to Go Next
-
-<div class="grid cards" markdown>
-
--   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
 
     ---  
 
-    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+    Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.  
 
-    [:custom-arrow: Deploy NTT on EVM](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/)  
 
--   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
-
-    ---
-
-    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
-
-    [:custom-arrow: Test Your NTT deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/){target=\_blank}
-
--   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
+-   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM Chains**
 
     ---
 
-    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+    Learn the process and key considerations for upgrading MultiGov contracts, ensuring system integrity and careful planning across cross-chain components.
 
-    [:custom-arrow: Use Connect to Integrate NTT](/docs/build/transfers/connect/){target=\_blank}
+    [:custom-arrow: Discover how to upgrade MultiGov on EVM Chains](/docs/build/multigov/upgrade-evm/)
+
+-   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on Solana**  
+
+    ---  
+
+    Learn how to upgrade the MultiGov Staking Program on Solana, including updating the program binary, IDL, and more.  
+
+    [:custom-arrow: Discover how to upgrade MultiGov on Solana](/docs/build/multigov/upgrade-solana/)  
+
+-   :octicons-question-16:{ .lg .middle } **Technical FAQs**
+
+    ---
+
+    Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
+
+    [:custom-arrow: Find the answer to your technical questions](/docs/build/multigov/faq/)
 
 </div>
---- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/
---- BEGIN CONTENT ---
----
-title: Deploy Native Token Transfers with Launchpad
-description: Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
-categories: NTT, Transfer
----
-
-# Deploy Native Token Transfers with Launchpad
-
-## Introduction
-
-The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
-
-Instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication, you can quickly launch or expand tokens with just a few clicks. 
-
-The Launchpad automates deployment, reducing complexity and saving time.
-
-This guide covers:
-
- - Launching a new cross-chain token
- - Expanding an existing token for NTT
- - Managing tokens via the dashboard and settings
-
-## Prerequisites
-
- - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.)
- - Minimum ETH (or equivalent) for gas fees per deployment
-
-## Supported Blockchains
-
-The NTT Launchpad currently supports deployments on the following mainnet chains:
-
- - Ethereum
- - Optimism Mainnet
- - Arbitrum One
- - Base
-
-## Choose Your Path
-
-Once ready, choose an option to proceed:
-
- - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
- - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract
-
-## Launch a Cross-Chain Token
-
-Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
-
-1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-1.webp)
-    
-2. Select **Launch a Cross-Chain Token**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-2.webp)
-
-3. Set the token details:
-    1. Select the **home network** from the dropdown menu
-    2. Enter the **name** for the token
-    3. Enter the **symbol** of the token 
-    4. Provide the **initial supply**
-    5. To the token details, click **Next**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-3.webp)
-
-4. Select the deployment chains:
-    1. The home network where your token will be deployed will be populated (e.g., Optimism)
-    2. Choose any additional chains to deploy your token to (e.g., Base)
-    3. To continue, click **Next**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-4.webp)
-
-5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-5.webp)
-
-6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-6.webp)
-
-7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
-
-8. Once both deployments are completed, proceed to the [**Dashboard**](#explore-the-launchpad-dashboard) to manage your token.
-
-## Expand Your Existing Token
-
-Expand an existing token to support NTT across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
-
-1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-1.webp)
-
-2. Select **Expand Your Existing Token**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-7.webp)
-
-3. Enter the token details:
-    1. Choose the home network where your token is already deployed (e.g., Optimism)
-    2. Choose any additional chains to deploy your token to (e.g., Base)
-    3. To continue, click **Next**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-8.webp)
-
-4. Select the chains to deploy your token to:
-    1. The home network where your token is already deployed will be populated (e.g., Optimism)
-    2. Choose any additional chains to deploy your token to (e.g., Base)
-    1. Click **Next**
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-9.webp)
-
-5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-5.webp)
-
-6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
-
-    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-6.webp)
-
-7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
-
-8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details
-
-## Explore the Launchpad Dashboard
-
-To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.com/){target=\_blank}, click on **Manage Deployment**. Here, you can view deployment status, monitor supply across chains, and configure transfer settings.
-
-![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-10.webp)
-
-The dashboard provides a high-level view of your token across all deployed chains, including:
-
- - Token addresses for each chain
- - Supply distribution visualization
- - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
-
-![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-11.webp)
-
-## Settings
-
-The **Settings** page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
-
-### Chain Management
-
-Use the drop-down menu at the top to select the chain you want to configure. The available options correspond to the chains where your token has already been deployed. Once selected, the page displays token details specific to that chain.
-
-From this section, you can also:
-
- - **Pause the token** – temporarily turn off transfers on the selected chain
- - **Deploy to a new chain** – expand your token by deploying it to an additional chain
-
-![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-12.webp)
-
-### Role Management
-
-This section displays key [roles](/docs/build/transfers/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
-
- - **Manager’s Owner** – the owner through the `NTTOwner` proxy
- - **Pauser** – the address authorized to pause transfers
-
-![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-13.webp)
-
-### Security Threshold
-
-Determine and update how transceivers interact with the token. [Transceivers](/docs/build/transfers/native-token-transfers/managers-transceivers/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
-
-A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
-
- - **Registered Transceivers** – displays the number of registered transceivers and their addresses
- - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
-
-![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-14.webp)
-
-### Peer Chains Limits
-
-Define the transfer restrictions for each connected network. You can adjust:
-
- - **Sending Limits** – the maximum amount of tokens that can be sent from the home chain
- - **Receiving Limits** – the maximum amount of tokens that can be received for each of the supported peer chains
-
-Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
-
-![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-15.webp)
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/installation/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers Installation
-description: Learn how to Install Wormhole’s Native Token Transfers (NTT) framework, a flexible and composable framework for transferring tokens across blockchains.
-categories: NTT, Transfer
----
-
-# Install the Native Token Transfers CLI
-
-In this video, the Wormhole team walks you through installing the [Native Token Transfers (NTT) CLI](https://github.com/wormhole-foundation/native-token-transfers/tree/main/cli){target=\_blank}. You’ll see a practical demonstration of running commands, verifying your installation, and addressing common issues that might arise. If you prefer to follow written instructions or want a quick reference for each step, scroll down for the detailed installation guide.
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
-
-## Install NTT CLI
-
-The fastest way to deploy Native Token Transfers (NTT) is using the NTT CLI. As prerequisites, ensure you have the following installed:
-
-- Install [Bun](https://bun.sh/){target=\_blank}
-
-Follow these steps to install the NTT CLI:
-
-1. Run the installation command in your terminal:
-
-    ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
-    ```
-
-2. Verify the NTT CLI is installed:
-
-    ```bash
-    ntt --version
-    ```
-
-3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI
-
-## Update NTT CLI
-
-To update an existing NTT CLI installation, run the following command in your terminal:
-
-```bash
-ntt update
-```
-
-NTT CLI installations and updates will always pick up the latest tag with name vX.Y.Z+cli and verify that the underlying commit is included in main.
-
-For local development, you can update your CLI version from a specific branch or install from a local path.
-
-To install from a specific branch, run:
-
-```bash
-ntt update --branch foo
-```
-
-To install locally, run:
-```bash
-ntt update --path path/to/ntt/repo
-```
-
-Git branch and local installations enable a fast iteration loop as changes to the CLI code will immediately be reflected in the running binary without having to run any build steps.
-
-## Where to Go Next
+## Additional Resources
 
 <div class="grid cards" markdown>
 
-
--   :octicons-tools-16:{ .lg .middle } **Deploy to EVM Chains**
-
-    ---
-
-    Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
-
-    [:custom-arrow: Deploy NTT to EVM chains](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
-
--   :octicons-tools-16:{ .lg .middle } **Deploy to Solana**
+-   :octicons-book-16:{ .lg .middle } **What is MultiGov?**
 
     ---
 
-    Deploy and configure Wormhole's Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
+    Need to familiarize yourself with MultiGov? Discover everything you need to know about MultiGov, Wormhole's cross-chain governance solution.
 
-    [:custom-arrow: Deploy NTT to Solana](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)
+    [:custom-arrow: Learn the basics](/docs/learn/governance/)
+
+-   :octicons-checklist-16:{ .lg .middle } **Tutorials**
+
+    ---
+
+    Access step-by-step tutorials for executing cross-chain governance actions, including treasury management proposals with MultiGov.
+
+    [:custom-arrow: Learn by building](/docs/tutorials/multigov/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/
+Doc-Content: https://wormhole.com/docs/build/multigov/deploy-to-evm/
 --- BEGIN CONTENT ---
 ---
-title: Native Token Transfers Post Deployment
-description: Learn post-deployment guidelines for optimizing Wormhole NTT, which include testing, security, frontend integration, ecosystem coordination, and monitoring.
-categories: NTT, Transfer
+title: Deploy MultiGov on EVM Chains
+description: Set up and deploy MultiGov to EVM locally with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
+categories: MultiGov
 ---
 
-# Native Token Transfers Post Deployment
+# Deploy MultiGov on EVM Chains
 
-To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
+This guide provodes instructions to set up and deploy the MultiGov governance system locally. Before diving into the technical deployment, ensure that MultiGov is the right fit for your project’s governance needs by following the steps for the [integration process](/docs/build/multigov/){target=\_blank}.
 
-- Implement a robust testing plan for your multichain token before launching
-- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/build/transfers/native-token-transfers/configuration/){target=\_blank} for more details on ownership and rate limits
-- Consider a streamlined, customizable frontend such as [Wormhole Connect](/docs/build/transfers/connect/){target=\_blank} for an optimized user experience
-- Alternatively, the [Wormhole TypeScript SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} allows for a direct integration into your infrastructure
-- Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
-- Monitor and maintain your multichain deployment
+Once your project is approved through the intake process and you’ve collaborated with the Tally team to tailor MultiGov to your requirements, use this guide to configure, compile, and deploy the necessary smart contracts across your desired blockchain networks. This deployment will enable decentralized governance across your hub and spoke chains.
 
-## Manual Relaying for Solana Transfers  
+## Prerequisites 
 
-By default, NTT transfers to Solana require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
+To interact with MultiGov, you'll need the following:
 
-This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
+- Install [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+- Install [Git](https://git-scm.com/downloads){target=\_blank}
+- Clone the repository:
+   ```bash
+   git clone https://github.com/wormhole-foundation/multigov
+   cd evm # for evm testing/deploying
+   ```
 
-[Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
+## Development Setup
 
-## Where to Go Next
+For developers looking to set up a local MultiGov environment:
+
+1. Install dependencies:
+   ```bash
+   forge install
+   ```
+
+2. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit `.env` with your specific [configuration](#configuration){target=\_blank}
+
+3. Compile contracts:
+   ```bash
+   forge build
+   ```
+
+4. Deploy contracts (example for Sepolia testnet): <!-- would be nice to cover the contracts before the deployment step -->
+
+    For hub chains:
+    ```bash
+    forge script script/DeployHubContractsSepolia.s.sol --rpc-url $SEPOLIA_RPC_URL --broadcast
+    ```
+
+    For spoke chains (e.g., Optimism Sepolia):
+    ```bash
+    forge script script/DeploySpokeContractsOptimismSepolia.s.sol --rpc-url $OPTIMISM_SEPOLIA_RPC_URL --broadcast
+    ```
+
+## Configuration
+
+When deploying MultiGov, several key parameters need to be set. Here are the most important configuration points:
+
+### Hub Governor Key Parameters
+
+- `initialVotingDelay` ++"uint256"++ - the delay measured in seconds before voting on a proposal begins. For example, `86400` is one day
+- `initialProposalThreshold`  ++"uint256"++ - the number of tokens needed to create a proposal
+- `initialQuorum` ++"uint256"++ - the minimum number of votes needed for a proposal to be successful
+- `initialVoteWeightWindow` ++"uint256"++ - a window where the minimum checkpointed voting weight is taken for a given address. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The voting window is measured in seconds, e.g., `86400` is one day
+
+    !!! note
+        This helps mitigate cross-chain double voting.
+
+### Hub Proposal Extender Key Parameters
+
+- `extensionDuration` ++"uint256"++ - the amount of time, in seconds, for which target proposals will be extended. For example, `10800` is three hours
+- `minimumExtensionDuration` ++"uint256"++ - lower time limit, in seconds, for extension duration. For example, `3600` is one hour
+
+### Spoke Vote Aggregator Key Parameters
+
+- `initialVoteWindow` ++"uint256"++ - the moving window in seconds for vote weight checkpoints. These checkpoints are taken whenever an address that is delegating sends or receives tokens. For example, `86400` is one day
+
+    !!! note
+        This is crucial for mitigating cross-chain double voting
+
+### Hub Evm Spoke Vote Aggregator Key Parameters
+
+- `maxQueryTimestampOffset` ++"uint256"++ - the max timestamp difference, in seconds, between the requested target time in the query and the current block time on the hub. For example, `1800` is 30 minutes
+
+### Updateable Governance Parameters
+
+The following key parameters can be updated through governance proposals:
+
+- `votingDelay` - delay before voting starts (in seconds)
+- `votingPeriod` - duration of the voting period (in seconds)
+- `proposalThreshold` - threshold for creating proposals (in tokens)
+- `quorum` - number of votes required for quorum
+- `extensionDuration` - the amount of time for which target proposals will be extended (in seconds)
+- `voteWeightWindow` - window for vote weight checkpoints (in seconds)
+- `maxQueryTimestampOffset` - max timestamp difference allowed between a query's target time and the hub's block time
+
+These parameters can be queried using their respective getter functions on the applicable contract.
+
+To update these parameters, a governance proposal must be created, voted on, and executed through the standard MultiGov process.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/multigov/deploy-to-solana/
+--- BEGIN CONTENT ---
+---
+title: MultiGov Deployment to Solana
+description: Learn how to deploy the MultiGov Staking Program on Solana, including setup, funding, deployment, and configuration steps. 
+categories: MultiGov
+---
+
+# Deploy MultiGov on Solana  
+
+This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project's governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.
+
+Once your project setup is complete, follow this guide to configure, compile, and deploy the necessary Solana programs and supporting accounts. This deployment enables decentralized governance participation on Solana as a spoke chain within the MultiGov system.  
+
+## Prerequisites 
+
+To deploy MultiGov on Solana, ensure you have the following installed:  
+
+ - Install [Git](https://git-scm.com/downloads){target=\_blank}  
+ - Install [Node.js](https://nodejs.org/){target=\_blank} **`v20.10.0`**
+ - Install [Solana CLI](https://docs.anza.xyz/cli/install/){target=\_blank} **`v1.18.20`**
+ - Install [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`v0.30.1`**
+ - Install [Rust](https://www.rust-lang.org/tools/install){target=\_blank} **`v1.80.1`**
+ - Install [Docker](https://www.docker.com/get-started/){target=\_blank}
+ - Clone the repository:  
+    ```bash
+    git clone https://github.com/wormhole-foundation/multigov.git  
+    cd multigov/solana/
+    ```
+
+## Build the Project
+
+To create a verifiable build of the MultiGov Staking Program, run the following command:    
+
+```bash
+./scripts/build_verifiable_staking_program.sh
+```
+
+Once the build is complete, the compiled artifacts will be available in the `target` folder.
+
+## Set Up the Deployer Account
+
+For a successful deployment, you need a funded deployer account on Solana. This account will store the program and execute deployment transactions. 
+
+In this section, you will create a new keypair, check the account balance, and ensure it has enough SOL tokens to cover deployment costs. If needed, you can fund the account using different methods before deploying. 
+
+### Generate a New Keypair  
+
+To create a new keypair and save it to a file, run the following command:  
+
+```bash
+solana-keygen new --outfile ./app/keypairs/deployer.json
+```
+
+### Check the Deployer Account Address  
+
+To retrieve the public address of the newly created keypair, run the following command:  
+
+```bash
+solana address -k ./app/keypairs/deployer.json
+```
+
+### Check the Deployer Account Balance  
+
+To verify the current balance of the deployer account, run the following command:  
+
+```bash
+solana balance -k ./app/keypairs/deployer.json
+```
+
+!!! warning 
+    When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
+
+    - 7.60219224 SOL for deployment costs
+    - 0.00542 SOL for transaction fees
+
+### Fund the Deployer Account  
+
+If the account does not have enough SOL, use one of the following methods to add funds.  
+
+ - **Transfer SOL from another account** - if you already have SOL in another account, transfer it using a wallet (Phantom, Solflare, etc.) or in the terminal 
+
+    ```bash
+    solana transfer <deployer_account_address> <amount> --from /path/to/funder.json
+    ```
+
+ - **Request an airdrop (devnet only)** - if deploying to devnet, you can request free SOL
+
+    ```bash
+    solana airdrop 2 -k ./app/keypairs/deployer.json
+    ```
+
+ - **Use a Solana faucet (devnet only)** - you can use online faucets to receive 10 free SOL
+
+    - [Solana Faucet](https://faucet.solana.com/){target=\_blank}
+
+## Deploy the MultiGov Staking Program
+
+With the deployer account set up and funded, you can deploy the MultiGov Staking Program to the Solana blockchain. This step involves deploying the program, verifying the deployment, and ensuring the necessary storage and metadata are correctly configured. Once the IDL is initialized, the program will be ready for further setup and interaction.
+
+### Deploy the Program  
+
+Deploy the MultiGov Staking Program using Anchor:  
+
+```bash
+anchor deploy --provider.cluster https://api.devnet.solana.com --provider.wallet ./app/keypairs/deployer.json
+```
+
+### Verify the Deployment  
+
+After deployment, check if the program is successfully deployed by running the following command:  
+
+```bash
+solana program show INSERT_PROGRAM_ID
+```
+
+### Extend Program Storage  
+
+If the deployed program requires additional storage space for updates or functionality, extend the program storage using the following command:  
+
+```bash
+solana program extend INSERT_PROGRAM_ID 800000
+```
+
+### Initialize the IDL  
+
+To associate an IDL file with the deployed program, run the following command:  
+
+```bash
+anchor idl init --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json INSERT_PROGRAM_ID
+```
+
+## Configure the Staking Program
+
+The final step after deploying the MultiGov Staking Program is configuring it for proper operation. This includes running a series of deployment scripts to initialize key components and set important governance parameters. These steps ensure that staking, governance, and cross-chain communication function as expected.
+
+### Run Deployment Scripts  
+
+After deploying the program and initializing the IDL, execute the following scripts **in order** to set up the staking environment and necessary accounts.  
+
+1. Initialize the MultiGov Staking Program with default settings:
+
+    ```bash
+    npx ts-node app/deploy/01_init_staking.ts
+    ```
+
+2. Create an Account Lookup Table (ALT) to optimize transaction processing:
+
+    ```bash
+    npx ts-node app/deploy/02_create_account_lookup_table.ts
+    ```
+
+3. Set up airlock accounts:
+
+    ```bash
+    npx ts-node app/deploy/03_create_airlock.ts
+    ```
+
+4. Deploy a metadata collector:
+
+    ```bash
+    npx ts-node app/deploy/04_create_spoke_metadata_collector.ts
+    ```
+
+5. Configure vote weight window lengths:
+
+    ```bash
+    npx ts-node app/deploy/05_initializeVoteWeightWindowLengths.ts
+    ```
+
+6. Deploy the message executor for handling governance messages:
+
+    ```bash
+    npx ts-node app/deploy/06_create_message_executor.ts
+    ```
+
+### Set MultiGov Staking Program Key Parameters  
+
+When deploying MultiGov on Solana, several key parameters need to be set. Here are the most important configuration points:  
+
+ - `maxCheckpointsAccountLimit` ++"u64"++ - the maximum number of checkpoints an account can have. For example, `654998` is used in production, while `15` might be used for testing
+ - `hubChainId` `u16` - the chain ID of the hub network where proposals are primarily managed. For example, `10002` for Sepolia testnet
+ - `hubProposalMetadata` ++"[u8; 20]"++ - an array of bytes representing the address of the Hub Proposal Metadata contract on Ethereum. This is used to identify proposals from the hub 
+ - `voteWeightWindowLength` ++"u64"++ - specifies the length of the checkpoint window in seconds in which the minimum voting weight is taken. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The vote weight window helps solve problems such as manipulating votes in a chain 
+ - `votingTokenMint` ++"Pubkey"++ - the mint address of the token used for voting  
+ - `governanceAuthority` ++"Pubkey"++ - the account's public key with the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
+ - `vestingAdmin` ++"Pubkey"++ - the account's public key for managing vesting operations. The `vestingAdmin` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
+ - `hubDispatcher` ++"Pubkey"++ - the Solana public key derived from an Ethereum address on the hub chain that dispatches messages to the spoke chains. This is crucial for ensuring that only authorized messages from the hub are executed on the spoke
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/multigov/faq/
+--- BEGIN CONTENT ---
+---
+title: MultiGov Technical FAQs
+description: Find answers to common questions about MultiGov, covering cross-chain governance, technical setup, security, proposal creation, and more.
+categories: MultiGov
+---
+
+# FAQs
+
+## Technical Questions
+
+### How does MultiGov ensure security in cross-chain communication?
+
+MultiGov leverages Wormhole's robust cross-chain communication protocol. It implements several security measures:
+
+- Message origin verification to prevent unauthorized governance actions
+- Timely and consistent data checks to ensure vote aggregation is based on recent and synchronized chain states
+- Authorized participant validation to maintain the integrity of the governance process
+- Replay attack prevention by tracking executed messages
+
+### Can MultiGov integrate with any blockchain?
+
+MultiGov can potentially integrate with any blockchain supported by Wormhole. However, specific implementations may vary depending on the chain's compatibility with the Ethereum Virtual Machine (EVM) and its smart contract capabilities. [See the full list of supported networks](/docs/build/start-building/supported-networks/). The current implementation of MultiGov supports an EVM hub and both the EVM and SVM for spokes.
+
+### How are votes aggregated across different chains?
+
+Votes are collected on each spoke chain using each chain's `SpokeVoteAggregator`. These votes are then transmitted to the HubVotePool on the hub chain for aggregation and tabulation. The `HubEvmSpokeVoteDecoder` standardizes votes from different EVM chains to ensure consistent processing.
+
+### Can governance upgrade from a single chain to MultiGov?
+
+Yes! MultiGov can support progressively upgrading from a single-chain governance to MultiGov. Moving to MultiGov requires upgrading the token to NTT and adding Flexible Voting to the original Governor.
+
+## Usage Questions
+
+### How can I create a proposal in MultiGov?
+
+Proposals are created on the hub chain using the `HubEvmSpokeAggregateProposer` contract or by calling `propose` on the `HubGovernor`. You need to prepare the proposal details, including targets, values, and calldatas. The proposer's voting weight is aggregated across chains using Wormhole queries to determine eligibility.
+
+### How do I vote on a proposal if I hold tokens on a spoke chain?
+
+You can vote on proposals via the `SpokeVoteAggregator` contract on the respective spoke chain where you hold your tokens. The votes are then automatically forwarded to the hub chain for aggregation.
+
+### How are approved proposals executed across multiple chains?
+
+When a proposal is approved and the timelock period elapses, it's first executed on the hub chain. A proposal can include a cross-chain message by including a call to `dispatch` on the `HubMessageDispatcher`, which sends a message to the relevant spoke chains. On each spoke chain, the `SpokeMessageExecutor` receives, verifies, and automatically executes the instructions using the `SpokeAirlock` as the `msg.sender`.
+
+## Implementation Questions
+
+### What are the requirements for using MultiGov?
+
+To use MultiGov, your DAO must meet the following requirements:
+
+- **ERC20Votes token** - your DAO's token must implement the `ERC20Votes` standard and support `CLOCK_MODE` timestamps for compatibility with cross-chain governance
+- **Flexible voting support** - your DAO's Governor must support Flexible Voting to function as the Hub Governor. If your existing Governor does not support Flexible Voting, you can upgrade it to enable this feature
+
+### What do I need to set up MultiGov for my project?
+
+Get started by filling out the form below:
+
+https://www.tally.xyz/get-started
+
+Tally will reach out to help get your DAO set up with MultiGov.
+
+To set up testing MultiGov for your DAO, you'll need:
+
+- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} and [Git](https://git-scm.com/downloads){target=\_blank} installed
+- Test ETH on the testnets you plan to use (e.g., Sepolia for hub, Optimism Sepolia for spoke)
+- Modify and deploy the hub and spoke contracts using the provided scripts
+- Set up the necessary environment variables and configurations
+
+### Can MultiGov be used with non-EVM chains?
+
+The current implementation is designed for EVM-compatible chains. However, Solana (non-EVM) voting is currently in development and expected to go live after the EVM contracts.
+
+### How can I customize voting parameters in MultiGov?
+
+Voting parameters such as voting delay, voting period, proposal threshold, and quorum (and others) can be customized in the deployment scripts (`DeployHubContractsSepolia.s.sol` and `DeploySpokeContractsOptimismSepolia.s.sol` as examples for their respective chains). Make sure to adjust these parameters according to your DAO's specific needs before deployment.
+
+Remember to thoroughly test your MultiGov implementation on testnets before deploying to Mainnet, and have your contracts audited for additional security.
+
+### How does MultiGov handle potential network issues or temporary chain unavailability?
+
+MultiGov includes several mechanisms to handle network issues or temporary chain unavailability:
+
+1. **Asynchronous vote aggregation** - votes are aggregated periodically, allowing the system to continue functioning even if one chain is temporarily unavailable
+2. **Proposal extension** - the `HubGovernorProposalExtender` allows trusted actors to extend voting periods if needed, which can help mitigate issues caused by temporary network problems
+3. **Wormhole retry mechanism** - Wormhole's infrastructure includes retry mechanisms for failed message deliveries, helping ensure cross-chain messages eventually get through
+4. **Decentralized relayer network** - Wormhole's decentralized network of relayers helps maintain system availability even if some relayers are offline
+
+However, prolonged outages on the hub chain or critical spoke chains could potentially disrupt governance activities. Projects should have contingency plans for such scenarios.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/multigov/upgrade-evm/
+--- BEGIN CONTENT ---
+---
+title: Upgrading MultiGov on EVM
+description: Learn the process and key considerations for upgrading MultiGov on EVM, ensuring system integrity and careful planning across cross-chain components.
+categories: MultiGov
+---
+
+# Upgrade MultiGov Contracts on EVM Chains
+
+MultiGov is designed to be flexible but stable. Due to the system's complexity and cross-chain nature, upgrades should be rare and carefully considered. When upgrades are necessary, they must be meticulously planned and executed to ensure system integrity and continuity.
+
+## Key Considerations for Upgrades
+
+- **`HubGovernor`**:
+    - Not upgradeable. A new deployment requires redeploying several components of the MultiGov system. Refer to the [Process for Major System Upgrade](#process-for-major-system-upgrade) section for more details 
+
+- **`HubVotePool`**:
+    - Can be replaced by setting a new `HubVotePool` on the `HubGovernor`
+    - Requires re-registering all spokes on the new `HubVotePool`
+    - Must register the query type and implementation for vote decoding by calling `registerQueryType` on the new `HubVotePool` <!-- put registerQueryType link back in once repo is public https://github.com/wormhole-foundation/example-multigov/blob/main/evm/src/HubVotePool.sol#L84 -->
+    - A new proposal would have to authorize the governor to use the newly created hub vote pool and will also handle registering the appropriate query decoders and registering the appropriate spoke `SpokeVoteAggregators`
+
+- **`SpokeMessageExecutor`**:
+    - Upgradeable via [UUPS](https://www.rareskills.io/post/uups-proxy){target=\_blank} proxy pattern
+    - Stores critical parameters in `SpokeMessageExecutorStorage`
+
+- **`HubEvmSpokeAggregateProposer`**:
+    - Needs redeployment if `HubGovernor` changes
+    - Requires re-registering all spokes after redeployment
+
+- **`HubProposalMetadata`**:
+    - Needs redeployment if `HubGovernor` changes, as it references `HubGovernor` as a parameter
+
+- **`SpokeMetadataCollector`**:
+    - Requires redeployment if the hub chain ID changes or if `HubProposalMetadata` changes
+
+## Process for Major System Upgrade 
+
+1. **New `HubGovernor` deployment**:
+    - Deploy the new `HubGovernor` contract
+1. **Component redeployment**:
+    - Redeploy `HubEvmSpokeAggregateProposer` with the new `HubGovernor` address
+    - Redeploy `HubProposalMetadata` referencing the new `HubGovernor`
+    - If hub chain ID changes, redeploy `SpokeMetadataCollector` on all spoke chains
+1. **`HubVotePool` update**:
+    - Set the new `HubVotePool` on the new `HubGovernor`
+    - Register all spokes on the new `HubVotePool`
+    - Register the query type and implementation for vote decoding (`HubEvmSpokeVoteDecoder`)
+1. **Spoke re-registration**:
+    - Re-register all spokes on the new `HubEvmSpokeAggregateProposer`
+1. **Verification and testing**:
+    - Conduct thorough testing of the new system setup
+    - Verify all cross-chain interactions are functioning correctly
+1. **System transition and deprecation**:
+    - Create a proposal to switch the timelock to the new governor
+    - Communicate clearly to the community what changes were made
+1. **Monitoring**:
+    - Implement a transition period where the new system is closely monitored
+    - Address any issues that arise promptly
+
+## Important Considerations
+
+- Always prioritize system stability, upgrades should only be performed when absolutely necessary
+- Thoroughly audit all new contract implementations before proposing an upgrade
+- Account for all affected components across all chains in the upgrade plan
+- Provide comprehensive documentation for the community about the upgrade process and any changes in functionality
+- Always test upgrades extensively on testnets before implementing in production
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/multigov/upgrade-solana/
+--- BEGIN CONTENT ---
+---
+title: Upgrading MultiGov on Solana
+description: Learn the process and key considerations for upgrading MultiGov on Solana, ensuring system integrity and careful planning across cross-chain components.
+categories: MultiGov
+---
+
+# Upgrade MultiGov Contracts on Solana
+
+The MultiGov Staking Program on Solana is designed to be upgradeable while maintaining stability. Upgrades introduce improvements, bug fixes, and new features but must be carefully planned and executed to prevent disruptions. 
+
+This guide covers the key considerations and step-by-step process for upgrading the MultiGov Staking Program, including updating the program binary, Interface Description Language (IDL), and `HubProposalMetadata` while ensuring cross-chain compatibility.
+
+## Key Considerations for Upgrades
+
+- **Program upgradeability** - you can upgrade the MultiGov Staking Program on Solana using the `anchor upgrade` command 
+    - You need the program's new bytecode (`.so` file) and an updated IDL file to reflect any changes in the program's interface to complete an upgrade
+    - The program's authority (deployer) must execute the upgrade
+
+- **`HubProposalMetadata`** - can be updated without redeploying the entire program. You can do this by invoking the `updateHubProposalMetadata` instruction
+    - You must carefully validate updates to `HubProposalMetadata` to ensure compatibility with the existing system
+
+- **Cross-chain compatibility** - ensure any changes to the Solana program do not break compatibility with the Ethereum-based `HubGovernor` 
+    - Test upgrades thoroughly on devnet before deploying to mainnet
+
+## Upgrade the MultiGov Program
+
+Follow these steps to upgrade the MultiGov Staking Program on Solana:
+
+1. **Prepare the new program binary** - build the updated program using the provided script
+
+    ```bash
+    ./scripts/build_verifiable_staking_program.sh
+    ```
+
+    The new program binary will be located at:
+
+    ```bash
+    target/deploy/staking.so
+    ```
+
+2. **Upgrade the program** - use the anchor upgrade command to deploy the new program binary
+
+    ```bash
+    anchor upgrade --program-id INSERT_PROGRAM_ID --provider.cluster INSERT_CLUSTER_URL INSERT_PATH_TO_PROGRAM_BINARY
+    ```
+
+    Your completed anchor upgrade command should resemble the following:
+    ```bash
+    anchor upgrade --program-id DgCSKsLDXXufYeEkvf21YSX5DMnFK89xans5WdSsUbeY --provider.cluster https://api.devnet.solana.com ./target/deploy/staking.so
+    ```
+
+3. **Update the IDL** - after upgrading the program, update the IDL to reflect any changes in the program's interface
+
+    ```bash
+    anchor idl upgrade INSERT_PROGRAM_ID --filepath INSERT_PATH_TO_IDL_FILE
+    ```
+
+    Your completed IDL upgrade command should resemble the following:
+    ```bash
+    anchor idl upgrade --provider.cluster https://api.devnet.solana.com --filepath ./target/idl/staking.json DgCSKsLDXXufYeEkvf21YSX5DMnFK89xans5WdSsUbeY
+    ```
+
+4. **Update `HubProposalMetadata`** - if `HubProposalMetadata` requires an update, run the following script to invoke the `updateHubProposalMetadata` instruction and apply the changes
+
+    ```bash
+    npx ts-node app/deploy/07_update_HubProposalMetadata.ts
+    ```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/multigov/
+--- BEGIN CONTENT ---
+---
+title: Step-by-Step MultiGov Tutorials
+description: Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
+categories: MultiGov
+---
+
+# MultiGov Tutorials
+
+Welcome to the MultiGov tutorials section. In this section, you will find tutorials that walk you through the key steps of working with MultiGov, providing clear instructions to help you get started. As you explore, you'll gain a deeper understanding of MultiGov's features and functionality.
+
+## Get Started
 
 <div class="grid cards" markdown>
 
--   :octicons-code-16:{ .lg .middle } **Wormhole NTT Connect Demo**
+-   :octicons-repo-16:{ .lg .middle } **Cross-Chain Treasury Management Proposal**
 
     ---
 
-    Check out an example project that uses a Vite-React TypeScript application and integrates it with Wormhole Connect, a customizable widget for cross-chain asset transfers.
+    Learn how to propose governance actions on a hub chain, gather votes from spoke chains, aggregate the results, and carry out the final decision. Following these steps, you’ll master end-to-end governance workflows spanning multiple networks.
 
-    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
+    [:custom-arrow: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
 
--   :octicons-code-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
+</div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Governance Fundamentals**
 
     ---
 
-    Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
+    Dive into Wormhole’s governance mechanisms. Understand how cross-chain governance works, proposal creation, voting, and execution.
 
-    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+    [:custom-arrow: Explore governance](/docs/learn/governance/)
+
+-   :octicons-tools-16:{ .lg .middle } **Implement MultiGov**
+
+    ---
+
+    Integrate MultiGov into your smart contracts. Access reference code, best practices, and guidance for deploying cross-chain governance systems.
+
+
+    [:custom-arrow: Build with MultiGov](/docs/build/multigov/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/
+Doc-Content: https://wormhole.com/docs/tutorials/by-product/multigov/treasury-proposal/
 --- BEGIN CONTENT ---
 ---
-title: Troubleshooting NTT Deployment
-description: Resolve common issues in NTT deployment with this troubleshooting guide covering Solana, EVM, mint authority, decimals, and rate limits.
-categories: NTT, Transfer
+title: MultiGov Guides
+description: Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and finally execute the proposal using Wormhole's MultiGov.
+categories: MultiGov
 ---
 
-# Troubleshooting NTT Deployment
-
-If you encounter issues during the NTT deployment process, check the following common points:
-
-- **Solana and Anchor versions** - ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#install-dependencies){target=\_blank}
-    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
-    -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
-- **Token compliance on EVM** - verify that your token is an ERC20 token on the EVM chain
-- **Mint authority transfer**
-    - **For burn or spoke tokens on Solana** - ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section
-    - **For EVM tokens** - confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details
-- **Decimal configuration** - run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#configure-ntt){target=\_blank} section
-- **Rate limit configuration** - increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/#configure-ntt){target=\_blank}
-- **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development** - run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file
-
-    ???- interface "Dockerfile"
-
-        ```Dockerfile
-            FROM ubuntu:20.04
-            # Set environment variables to prevent interactive prompts during installation
-            ENV DEBIAN_FRONTEND=noninteractive
-
-            # Update and install necessary dependencies
-            RUN apt-get update && apt-get install -y \
-                curl \
-                wget \
-                git \
-                build-essential \
-                libssl-dev \
-                libudev-dev \
-                pkg-config \
-                python3 \
-                python3-pip \
-                software-properties-common \
-                ca-certificates \
-                unzip \
-                clang \
-                cmake \
-                protobuf-compiler \
-                && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-            # Install Rust
-            RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-            ENV PATH="/root/.cargo/bin:$PATH"
-
-            # Install Solana CLI ({{ntt.solana_cli_version}})
-            RUN sh -c "$(curl -sSfL https://release.solana.com/{{ntt.solana_cli_version}}/install)"
-            ENV PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
-
-            # Install Anchor using avm
-            RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force \
-                && avm install 0.29.0 \
-                && avm use 0.29.0
-            ENV PATH="/root/.avm/bin:$PATH"
-
-
-            ENV NVM_DIR=/root/.nvm
-            RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
-                && . "$NVM_DIR/nvm.sh" \
-                && nvm install 22 \
-                && nvm use 22 \
-                && nvm alias default 22
-            ENV PATH="$NVM_DIR/versions/node/v22.12.0/bin:$PATH"
-
-            # Install Bun
-            RUN curl -fsSL https://bun.sh/install | bash
-            ENV PATH="/root/.bun/bin:$PATH"
-
-            # Install Foundry
-            RUN curl -L https://foundry.paradigm.xyz | bash
-            ENV PATH="/root/.foundry/bin:${PATH}"
-            RUN /bin/bash -c "source /root/.bashrc && foundryup"
-
-            # Install Wormhole NTT CLI
-            RUN curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
-
-            # Add a default working directory
-            WORKDIR /app
-
-            # Expose port for development if needed
-            EXPOSE 8899
-
-            # Entry point for the container
-            CMD ["bash"]
-        ```
-
-    ???- interface "docker-compose.yml"
-        ```yml 
-            services:
-                portal-ntt:
-                    build:
-                        context: .
-                        dockerfile: Dockerfile
-                    platform: linux/amd64
-                    volumes:
-                        - ./src:/app
-                    working_dir: /app
-                    tty: true
-        ```
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/faqs/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers FAQs
-description: Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
-categories: NTT, Transfer
----
-
-# Wormhole NTT FAQs
-
-## Do you have an example of how cross-chain lending can be implemented using Wormhole?
-
-Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
-
-Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/docs/learn/transfers/native-token-transfers/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
-
-## What causes the "No protocols registered for Evm" error in Wormhole SDK?
-
-This error typically occurs when the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} cannot recognize or register the necessary EVM protocols, which are required for interacting with Ethereum-based networks. The most common reason for this error is that the relevant EVM package for Wormhole's NTT has not been imported correctly.
-
-To resolve this issue, ensure you have imported the appropriate Wormhole SDK package for EVM environments. The necessary package for handling NTT on EVM chains is `@wormhole-foundation/sdk-evm-ntt`. Here's the correct import statement:
-
-```rust
-import '@wormhole-foundation/sdk-evm-ntt';
-```
-
-By importing this package, the Wormhole SDK can register and utilize the required protocols for EVM chains, enabling cross-chain token transfers using the NTT framework. Ensure to include this import at the start of your code, especially before attempting any interactions with EVM chains in your project.
-
-## How can I transfer ownership of NTT to a multisig?
-
-Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
-
-1. **Initiate transfer** - use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig)
-2. **Claim ownership** - the multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer
-3. **Single-step transfer (Riskier)** - you can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA)
-
-For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
-
-## How can I specify a custom RPC for NTT?
-
-To specify a custom RPC for Wormhole's NTT, create an `overrides.json` file in the root of your deployment directory. This file allows you to define custom RPC endpoints, which can be helpful when you need to connect to specific nodes or networks for better performance, security, or control over the RPC connection.
-
-Below’s an example of how the `overrides.json` file should be structured:
-
-???- code "`overrides.json`"
-    ```json
-    {
-    "chains": {
-        "Bsc": {
-            "rpc": "http://127.0.0.1:8545"
-        },
-        "Sepolia": {
-            "rpc": "http://127.0.0.1:8546"
-        },
-        "Solana": {
-            "rpc": "http://127.0.0.1:8899"
-        }
-        }
-    }
-    ```
-
-## How can I redeem tokens if NTT rate limits block them on the target chain?
-
-If the rate limits on Wormhole's NTT block tokens from being received on the target chain, the transaction will typically be paused until the rate limits are adjusted. Rate limits are implemented to manage congestion and prevent chain abuse, but they can occasionally delay token redemptions.
-
-To resolve this:
-
-1. **Adjust rate limits** - the rate limits must be modified by an administrator or through the appropriate configuration tools to allow the blocked transaction to proceed
-2. **Resume transaction flow** - once the rate limits are adjusted, you can resume the flow, which should be visible in the UI. The tokens will then be redeemable on the target chain
-
-In most cases, the transaction will resume automatically once the rate limits are adjusted, and the UI will guide you through the redemption process.
-
-## What are the challenges of deploying NTT to non-EVM chains?
-
-NTT requires the same transceiver for all routes, limiting flexibility when deploying across EVM and non-EVM chains. For example, if you're deploying to Ethereum, Arbitrum, and Solana, you can't use Wormhole and Axelar as transceivers because Axelar doesn't support Solana. This constraint forces integrators to use a single transceiver (e.g., Wormhole) for all chains, reducing flexibility in optimizing cross-chain transfers.
-
-## Does the NTT manager function as an escrow account for a hub chain?
-
-Yes, the NTT manager acts like an escrow account for non-transferable tokens on a hub chain. To manage non-transferable tokens, you would add the NTT manager to the allowlist, ensuring that only the NTT manager can hold and control the tokens as they are transferred across chains.
-
-## Which functions or events does Connect rely on for NTT integration?
-
-Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=\_blank}. The key methods involved include:
-
-- **Initiate and redeem functions** - these functions are essential for initiating token transfers and redeeming them on the destination chain
-- **Rate capacity methods** - methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion
-
-These functions ensure Connect can handle token transfers and manage chain-rate limits.
-
-## How does the relayer contract determine which transceiver to call?
-
-The source chain's transceiver includes the destination chain's transceiver in the message via the relayer contract. The admin configures each transceiver's mapping of its peers on other chains. This mapping allows the destination transceiver to verify that the message came from a trusted source.
-
-## How do I create a verifier or transceiver?
-
-To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
-
-For reference, you can review the [Axelar transceiver implementation](https://github.com/wormhole-foundation/example-wormhole-axelar-wsteth/blob/main/src/axelar/AxelarTransceiver.sol){target=\_blank}.
-
-## Can I use Hetzner for the NTT deployment?
-
-No, using Hetzner servers for Solana deployments is not recommended. Hetzner has blocked Solana network activity on its servers, leading to connection issues. Hetzner nodes will return a `ConnectionRefused: Unable to connect` error for Solana deployments. Therefore, choosing alternative hosting providers that support Solana deployments is advisable to ensure seamless operation.
-
-## How can I transfer tokens with NTT with an additional payload?
-
-You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank}.
-
-- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message
-- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message
-
-!!!Important
-    You cannot pass the additional data as part of the entry point directly. Instead, the data must be queried on-chain via the `_handleMsg` method, ensuring the payload is properly included and processed.
-
-## Why use NTT over xERC20?
-
-Shortcomings of xERC20:
-
-- **Single point of failure** - xERC20 relies on multiple bridges, but a compromise in any single bridge can jeopardize the token. It enforces a 1-of-n design rather than a more robust m-of-n approach
-- **No pausing** - xERC20 lacks mechanisms to pause operations during emergencies
-- **No access control** - there are no built-in access controls for managing token transfers securely
-- **Limited rate limiting** - rate limits are bridge-specific and cannot be set per chain, reducing flexibility and security
-- **No integration with relaying systems** - xERC20 does not natively support relayer systems, limiting its usability in automated or dynamic setups
-
-While xERC20 is an extension of the ERC20 standard, NTT is designed as a framework rather than a rigid standard. It is compatible with any token that supports `burn` and `mint` functions and allows the NTT manager to act as a minter. 
-
-## How can I start transferring tokens to a chain that is in burning mode, if no tokens are locked yet?
-
-To begin transferring tokens to a chain in burning mode when no tokens are locked, you must first send tokens to the NTT manager to back the supply. The address of the NTT manager can be found in the `deployment.json` file.
-
-## Is there a way to use NTT tokens with chains that don't currently support NTT?
-
-Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. For example:
-
-- **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
-- **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism
-- **Messaging consistency** - the Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT
-
-This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/managers-transceivers/
---- BEGIN CONTENT ---
----
-title: Managers and Transceivers
-description: Explore the roles of Managers and Transceivers in NTT cross-chain token transfers, including key functions, lifecycle events, and rate-limiting mechanisms.
-categories: NTT, Transfer
----
-
-# Managers and Transceivers
-
-## Managers
-
-_Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
-
-- **`transfer`** - initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
-
-    ```solidity
-    function transfer(
-        uint256 amount, // amount (in atomic units)
-        uint16 recipientChain, // chain ID (Wormhole formatted) 
-        bytes32 recipient // recipient address (Wormhole formatted)
-    ) external payable nonReentrant whenNotPaused returns (uint64)
-    ```
-
-- **`quoteDeliveryPrice`** - calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer
-
-    ```solidity
-    function quoteDeliveryPrice(
-        uint16 recipientChain, // chain ID (Wormhole formatted) 
-        bytes memory transceiverInstructions // extra instructions for transceivers (Transceiver-dependent on whether extra instructions are used/accepted)
-    ) public view returns (uint256[] memory, uint256)
-    ```
-
-- **`setPeer`** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
-
-    ```solidity
-    function setPeer(
-        uint16 peerChainId, // chain ID (Wormhole formatted) 
-        bytes32 peerContract, // peer NTT Manager address (Wormhole formatted)
-        uint8 decimals, // token decimals on the peer chain
-        uint256 inboundLimit // inbound rate limit (in atomic units)
-    ) public onlyOwner
-    ```
-
-## Transceivers
-
-_Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers. Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
-
-- **`sendMessage`** - this external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
-
-    ```solidity
-    function sendMessage(
-        uint16 recipientChain,   // chain ID (Wormhole formatted)
-        TransceiverStructs.TransceiverInstruction memory instruction, // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
-        bytes memory nttManagerMessage, // serialized NTT Manager message, provided by the NTT Manager
-        bytes32 recipientNttManagerAddress, // NTT Manager address on the recipient chain (Wormhole formatted)
-        bytes32 refundAddress // address to receive refunds on the destination chain in case of excess quotes (Wormhole formatted)
-    ) external payable nonReentrant onlyNttManager
-    ```
-
-- **`quoteDeliveryPrice`** - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
-
-    ```solidity
-    function quoteDeliveryPrice(
-        uint16 targetChain,  // chain ID (Wormhole formatted) 
-        TransceiverStructs.TransceiverInstruction memory instruction // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
-    ) external view returns (uint256) 
-    ```
-
-## Lifecycle of a Message
-
-### EVM
-
-#### Transfer
-
-A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the transfer amount, the recipient chain, and the recipient address on the recipient chain. `transfer` also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the transceiver on the source chain. Depending on the mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned." Once the transfer has been forwarded to the transceiver, the `NttManager` emits the `TransferSent` event.
-
-**Events**
-
-```ts
-/// @notice Emitted when a message is sent from the nttManager.
-/// @dev Topic0
-/// 0x9716fe52fe4e02cf924ae28f19f5748ef59877c6496041b986fbad3dae6a8ecf
-/// @param recipient The recipient of the message.
-/// @param amount The amount transferred.
-/// @param fee The amount of ether sent along with the tx to cover the delivery fee.
-/// @param recipientChain The chain ID of the recipient.
-/// @param msgSequence The unique sequence ID of the message.
-event TransferSent(
-    bytes32 recipient, uint256 amount, uint256 fee, uint16 recipientChain, uint64 msgSequence
+# Cross-Chain treasury management proposal
+
+This guide walks through the process of creating and executing a cross-chain governance proposal to mint W tokens to both the Optimism and Arbitrum treasuries. In this tutorial, we'll cover how to create a proposal on the hub chain (Ethereum Mainnet), cast votes from spoke chains (Optimism and Arbitrum), aggregate votes, and execute the proposal.
+
+## Create a Proposal
+
+The first step is to create a proposal on the hub chain, which in this case is Ethereum Mainnet. The proposal will contain instructions to mint 10 W tokens to the Optimism treasury and 15 ETH to the Arbitrum treasury.
+
+In the following code snippet, we initialize the proposal with two transactions, each targeting the Hub's Message Dispatcher contract. These transactions will relay the governance actions to the respective spoke chains via Wormhole.
+
+Key actions:
+
+- Define the proposal targets (two transactions to the Message Dispatcher)
+- Set values for each transaction (in this case, both are 0 as we're not transferring any native ETH)
+- Encode the calldata for minting 10 W tokens on Optimism and sending 15 ETH to Arbitrum
+- Finally, we submit the proposal to the `HubGovernor` contract
+
+```solidity
+HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
+// Prepare proposal details
+address[] memory targets = new address[](2);
+targets[0] = HUB_MESSAGE_DISPATCHER_ADDRESS;
+targets[1] = HUB_MESSAGE_DISPATCHER_ADDRESS;
+uint256[] memory values = new uint256[](2);
+values[0] = 0;
+values[1] = 0;
+bytes[] memory calldatas = new bytes[](2);
+// Prepare message for Optimism to mint 10 W tokens
+// bytes created using abi.encodeWithSignature("mint(address,uint256)", 0xB0fFa8000886e57F86dd5264b9582b2Ad87b2b91, 10e18)
+calldatas[0] = abi.encodeWithSignature(
+    "dispatch(bytes)", 
+    abi.encode(
+        OPTIMISM_WORMHOLE_CHAIN_ID,
+        [OPTIMISM_WORMHOLE_TREASURY_ADDRESS],
+        [uint256(10 ether)],
+        [hex"0x40c10f19000000000000000000000000b0ffa8000886e57f86dd5264b9582b2ad87b2b910000000000000000000000000000000000000000000000008ac7230489e8000000000000000000000000000000000000000000000000000000000000"] 
+    )
 );
-```
-
-#### Rate Limit
-
-A transfer can be rate-limited on both the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
-
-If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
-
-Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
-
-If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
-
-To deactivate the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is deactivated, the inbound and outbound rate limits can be set to 0.
-
-**Events**
-
-```ts
-/// @notice Emitted whenn an outbound transfer is queued.
-/// @dev Topic0
-/// 0x69add1952a6a6b9cb86f04d05f0cb605cbb469a50ae916139d34495a9991481f.
-/// @param queueSequence The location of the transfer in the queue.
-event OutboundTransferQueued(uint64 queueSequence);
-```
-
-```ts
-/// @notice Emitted when an outbound transfer is rate limited.
-/// @dev Topic0
-/// 0x754d657d1363ee47d967b415652b739bfe96d5729ccf2f26625dcdbc147db68b.
-/// @param sender The initial sender of the transfer.
-/// @param amount The amount to be transferred.
-/// @param currentCapacity The capacity left for transfers within the 24-hour window.
-event OutboundTransferRateLimited(
-    address indexed sender, uint64 sequence, uint256 amount, uint256 currentCapacity
+// Prepare message for Arbitrum to receive 15 ETH
+calldatas[1] = abi.encodeWithSignature(
+    "dispatch(bytes)", 
+    abi.encode(
+        ARBITRUM_WORMHOLE_CHAIN_ID,
+        [ARBITRUM_WORMHOLE_TREASURY_ADDRESS],
+        [uint256(15 ether)],
+        [hex"0x40c10f19000000000000000000000000b0ffa8000886e57f86dd5264b9582b2ad87b2b910000000000000000000000000000000000000000000000008ac7230489e8000000000000000000000000000000000000000000000000000000000000"] 
+    )
 );
+string memory description = "Mint 10 W to Optimism treasury and 10 W to Arbitrum treasury via Wormhole";
+// Create the proposal
+uint256 proposalId = governor.propose(
+    targets, values, calldatas, description
+)
 ```
 
-```ts
-/// @notice Emitted when an inbound transfer is queued
-/// @dev Topic0
-/// 0x7f63c9251d82a933210c2b6d0b0f116252c3c116788120e64e8e8215df6f3162.
-/// @param digest The digest of the message.
-event InboundTransferQueued(bytes32 digest);
+??? interface "Parameters"
+
+    `GOVERNOR_ADDRESS` ++"address"++
+
+    The address of the `HubGovernor` contract on Ethereum Mainnet.
+
+    ---
+
+    `targets` ++"address[]"++
+
+    An array that specifies the addresses that will receive the proposal's actions. Here, both are set to the `HUB_MESSAGE_DISPATCHER_ADDRESS`.
+
+    ---
+
+    `values` ++"uint256[]"++
+
+    An array containing the value of each transaction (in Wei). In this case, both are set to zero because no ETH is being transferred.
+
+    ---
+
+    `calldatas` ++"bytes[]"++
+
+    The calldata for the proposal. These are encoded contract calls containing cross-chain dispatch instructions for minting tokens and sending ETH. The calldata specifies minting 10 W tokens to the Optimism treasury and sending 15 ETH to the Arbitrum treasury.
+
+    ---
+
+    `description` ++"string"++
+
+    A description of the proposal, outlining the intent to mint tokens to Optimism and send ETH to Arbitrum.
+
+??? interface "Returns"
+
+    `proposalId` ++"uint256"++
+
+    The ID of the newly created proposal on the hub chain. 
+
+## Vote on the Proposal via Spoke
+
+Once the proposal is created on the hub chain, stakeholders can cast their votes on the spoke chains. This snippet demonstrates how to connect to a spoke chain and cast a vote for the proposal. The voting power (weight) is calculated based on each stakeholder's token holdings on the spoke chain.
+
+Key actions:
+
+- Connect to the `SpokeVoteAggregator` contract on the spoke chain. This contract aggregates votes from the spoke chains and relays them to the hub chain
+- Cast a vote in support of the proposal
+
+```solidity
+// Connect to the SpokeVoteAggregator contract of the desired chain
+SpokeVoteAggregator voteAggregator = SpokeVoteAggregator(VOTE_AGGREGATOR_ADDRESS);
+// Cast a vote
+uint8 support = 1; // 1 for supporting, 0 for opposing
+uint256 weight = voteAggregator.castVote(proposalId, support);
 ```
 
-#### Send
+??? interface "Parameters"
 
-Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer, or manually published via the core bridge).
+    `VOTE_AGGREGATOR_ADDRESS` ++"address"++
 
-Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
+    The address of the `SpokeVoteAggregator` contract on the spoke chain (Optimism or Arbitrum).
 
-**Events**
+    ---
 
-```ts
-/// @notice Emitted when a message is sent from the transceiver.
-/// @dev Topic0
-/// 0x53b3e029c5ead7bffc739118953883859d30b1aaa086e0dca4d0a1c99cd9c3f5.
-/// @param recipientChain The chain ID of the recipient.
-/// @param message The message.
-event SendTransceiverMessage(
-    uint16 recipientChain, TransceiverStructs.TransceiverMessage message
-);
+    `proposalId` ++"uint256"++
+
+    The ID of the proposal created on the hub chain, which is being voted on.
+
+    ---
+
+    `support` ++"uint8"++
+
+    The vote being cast (`1` for supporting the proposal, `0` for opposing).
+
+??? interface "Returns"
+
+    `weight` ++"uint256"++
+
+    The weight of the vote, determined by the voter’s token holdings on the spoke chain.
+
+## Vote Aggregation
+
+In the background process, votes cast on the spoke chains are aggregated and sent back to the hub chain for final tallying. This is typically handled off-chain by a "crank turner" service, which periodically queries the vote status and updates the hub chain.
+
+Key actions:
+
+- Aggregate votes from different chains and submit them to the hub chain for tallying
+
+```solidity
+// Aggregate votes sent to Hub (this would typically be done by a "crank turner" off-chain)
+hubVotePool.crossChainVote(queryResponseRaw, signatures);
 ```
 
-#### Receive
+??? interface "Parameters"
 
-Once a message has been emitted by a transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding transceiver on the recipient chain. The relayer interacts with the transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
+    `queryResponseRaw` ++"bytes"++
 
-This method should also forward the message to the `NttManager` on the destination chain. Note that the transceiver interface doesn't declare a signature for this method because receiving messages is specific to each transceiver, and a one-size-fits-all solution would be overly restrictive.
+    The raw vote data from the spoke chains.
 
-The `NttManager` contract allows an M of N threshold for transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two transceivers deliver valid attestations. When a transceiver attests to a message, the contract emits the `MessageAttestedTo` event.
+    ---
 
-NTT implements replay protection, so if a given transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
+    `signatures` ++"bytes"++
 
-If a message has already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
+    Cryptographic signatures that verify the validity of the votes from the spoke chains.
 
-**Events**
+## Execute Proposal and Dispatch Cross-Chain Messages
 
-```ts
-/// @notice Emitted when a relayed message is received.
-/// @dev Topic0
-/// 0xf557dbbb087662f52c815f6c7ee350628a37a51eae9608ff840d996b65f87475
-/// @param digest The digest of the message.
-/// @param emitterChainId The chain ID of the emitter.
-/// @param emitterAddress The address of the emitter.
-event ReceivedRelayedMessage(bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress);
+After the proposal passes and the votes are tallied, the next step is to execute the proposal. The `HubGovernor` contract will dispatch the cross-chain messages to the spoke chains, where the respective treasuries will receive the tokens.
+
+Key actions:
+
+- Execute the proposal after the voting period ends and the proposal passes
+- The `execute` function finalizes the proposal execution by dispatching the cross-chain governance actions. The `descriptionHash` ensures that the executed proposal matches the one that was voted on.
+
+```solidity
+HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
+// Standard timelock execution
+governor.execute(targets, values, calldatas, descriptionHash);
 ```
 
-```ts
-/// @notice Emitted when a message is received.
-/// @dev Topic0
-/// 0xf6fc529540981400dc64edf649eb5e2e0eb5812a27f8c81bac2c1d317e71a5f0.
-/// @param digest The digest of the message.
-/// @param emitterChainId The chain ID of the emitter.
-/// @param emitterAddress The address of the emitter.
-/// @param sequence The sequence of the message.
-event ReceivedMessage(
-    bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress, uint64 sequence
-);
-```
+??? interface "Parameters"
 
-```ts
-/// @notice Emitted when a message has already been executed to notify client of against retries.
-/// @dev Topic0
-/// 0x4069dff8c9df7e38d2867c0910bd96fd61787695e5380281148c04932d02bef2.
-/// @param sourceNttManager The address of the source nttManager.
-/// @param msgHash The keccak-256 hash of the message.
-event MessageAlreadyExecuted(bytes32 indexed sourceNttManager, bytes32 indexed msgHash);
-```
+    `governor` ++"HubGovernor"++
 
-#### Mint or Unlock
+    The `HubGovernor` contract instance.
 
-Once a transfer has been successfully verified, the tokens can be minted (if the mode is "burning") or unlocked (if the mode is "locking") to the recipient on the destination chain. Note that the source token decimals are bounded between `0` and `TRIMMED_DECIMALS` as enforced in the wire format. The transfer amount is untrimmed (scaled-up) if the destination chain token decimals exceed `TRIMMED_DECIMALS`. Once the appropriate number of tokens have been minted or unlocked to the recipient, the `TransferRedeemed` event is emitted.
+    ---
 
-**Events**
+    `targets` ++"address[]"++
 
-```ts
-/// @notice Emitted when a transfer has been redeemed
-/// (either minted or unlocked on the recipient chain).
-/// @dev Topic0
-/// 0x504e6efe18ab9eed10dc6501a417f5b12a2f7f2b1593aed9b89f9bce3cf29a91.
-/// @param digest The digest of the message.
-event TransferRedeemed(bytes32 indexed digest);
-```
+    An array containing the target addresses for the proposal’s transactions (in this case, the `HUB_MESSAGE_DISPATCHER_ADDRESS` for both).
 
-### Solana
+    ---
 
-#### Transfer
+    `values` ++"uint256[]"++
 
-A client calls the `transfer_lock` or `transfer_burn` instruction based on whether the program is in `LOCKING` or `BURNING` mode. The program mode is set during initialization. When transferring, the client must specify the amount of the transfer, the recipient chain, the recipient address on the recipient chain, and the boolean flag `should_queue` to specify whether the transfer should be queued if it hits the outbound rate limit. If `should_queue` is set to false, the transfer reverts instead of queuing if the rate limit were to be hit.
+    An array of values (in Wei) associated with each transaction (both are zero in this case).
 
-!!! note
-    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in an `InvalidMode` error.
+    ---
 
-Depending on the mode and instruction, the following will be produced in the program logs:
+    `calldatas` ++"bytes[]"++
 
-```ts
-Program log: Instruction: TransferLock
-Program log: Instruction: TransferBurn
-```
+    The encoded transaction data to dispatch the governance actions (e.g., minting tokens and transferring ETH).
 
-Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
+    ---
 
-#### Rate Limit
+    `descriptionHash` ++"bytes32"++
 
-During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
+    A hash of the proposal’s description, used to verify the proposal before execution.
 
-If the transfer amount fits within the current capacity:
+??? interface "Returns"
 
-- Reduce the current capacity
-- Refill the inbound capacity for the destination chain
-- Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
+    No direct return, but executing this function finalizes the cross-chain governance actions by dispatching the encoded messages via Wormhole to the spoke chains.
 
-If the transfer amount doesn't fit within the current capacity:
-
-- If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
-- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
-
-#### Send
-
-The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
-
-For example, the Wormhole transceiver will send by calling `post_message` on the Wormhole program, so that the Wormhole Guardians can observe and verify the message.
-
-!!! note
-    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the outbound release isn't performed.
-
-The following will be produced in the program logs:
-
-```ts
-Program log: Instruction: ReleaseOutbound
-```
-
-#### Receive
-
-Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
-
-The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
-
-The following will be produced in the program logs:
-
-```ts
-Program log: Instruction: ReceiveMessage
-```
-
-`redeem` checks the inbound rate limit and places the message in an Inbox. Logic works the same as the outbound rate limit mentioned previously.
-
-The following will be produced in the program logs:
-
-```ts
-Program log: Instruction: Redeem
-```
-
-#### Mint or Unlock
-
-The inbound transfer is released and the tokens are unlocked or minted to the recipient through either `release_inbound_mint` if the mode is `BURNING`, or `release_inbound_unlock` if the mode is `LOCKING`. Similar to transfer, using the wrong transfer instruction (such as `release_inbound_mint` for a program that is in locking mode) will result in `InvalidMode` error.
-
-!!! note
-    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the minting/unlocking isn't performed.
-
-Depending on the mode and instruction, the following will be produced in the program logs:
-
-```ts
-Program log: Instruction: ReleaseInboundMint
-Program log: Instruction: ReleaseInboundUnlock
-```
+Once the proposal is executed, the encoded messages will be dispatched via Wormhole to the spoke chains, where the Optimism and Arbitrum treasuries will receive their respective funds.
 --- END CONTENT ---
 
 # Basics Concepts [shared: true]
@@ -2060,7 +1214,6 @@ The following section contains foundational documentation shared across all Worm
 It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
 This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
 This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
-
 
 ---
 
@@ -4189,7 +3342,6 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 The following section contains reference material for Wormhole.
 It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
 While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
-
 
 ---
 

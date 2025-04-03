@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation related to the product: Token-Bridge
+This file includes documentation related to the product: Typescript-SDK
 
 # AI Prompt Template
 
@@ -14,332 +14,3487 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - Prefer concise explanations and code snippets where appropriate.
 
 # List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/token-bridge.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/token-bridge.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/cli.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/dev-env.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/faqs.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/typescript-sdk.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/typescript-sdk/protocols-payloads.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/typescript-sdk/sdk-layout.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/typescript-sdk/vaas-protocols.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/typescript-sdk/wormhole-sdk.md [type: build]
 
 # Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/learn/transfers/token-bridge/
+Doc-Content: https://wormhole.com/docs/build/toolkit/cli/
 --- BEGIN CONTENT ---
 ---
-title: Token Bridge 
-description: Learn about Wormhole's Token Bridge for cross-chain transfers using lock and mint mechanisms, ensuring secure and efficient asset movement.
-categories: Token-Bridge, Transfer
+title: Wormhole CLI
+description: Learn how to install and use the Wormhole CLI, including commands and examples for managing multichain deployments, generating VAAs, and querying contract info.
+categories: Solidity-SDK, Typescript-SDK
 ---
 
-# Token Bridge
+# Wormhole CLI
 
-Transferring tokens across blockchain networks is challenging due to the lack of interoperability. Maintaining token properties such as value, name, and precision while ensuring security during transfers often requires complex and costly solutions like liquidity pools or native swaps, which can introduce inefficiencies and risks.
+This tool is a command-line interface to Wormhole, allowing you to perform various actions, such as querying a transaction's status or submitting token transfers.
 
-Wormhole’s Token Bridge addresses these challenges by providing a decentralized protocol for seamless cross-chain token transfers through a lock-and-mint mechanism. Using Wormhole’s message-passing protocol, the Token Bridge allows standards-compliant tokens, like ERC-20 on Ethereum or SPL on Solana, to be transferred between different blockchains while preserving their original attributes.
+## Installation
 
-Offering a more efficient, scalable, and secure alternative to traditional solutions, the Token Bridge ensures that assets retain their properties across multiple blockchain ecosystems. Additionally, it supports flexible features like [Token Transfers with Messages](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, enabling custom interactions by allowing tokens to carry additional data for smart contract integration on the destination chain.
+Clone the repository and change directories to the appropriate directory:
 
-This page introduces the core concepts and functions of Wormhole’s Token Bridge, explaining how it operates, its key features, and how it enables secure and efficient cross-chain token transfers.
+```bash
+git clone https://github.com/wormhole-foundation/wormhole &&
+cd wormhole/clients/js
+```
 
-### How Does It Work?
+Build and install the CLI tool:
 
-At the core of the Token Bridge lies the lock-and-mint mechanism, which uses the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} with a specific [payload](/docs/learn/infrastructure/vaas/#token-transfer){target=\_blank} to pass information about the transfer. Tokens on the source chain are locked, and wrapped tokens are minted on the destination chain. This approach guarantees that token transfers are secure and consistent, ensuring that token properties such as name, symbol, and decimal precision are preserved across chains.
+```bash
+make install
+```
 
-Before a token can be transferred to a new chain, the token’s metadata must be [attested](/docs/learn/infrastructure/vaas/#attestation){target=\_blank}. This process registers the token details (such as decimals and symbol) on the destination chain, enabling the creation of wrapped assets.
+This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. To use `worm`, set up `$HOME/.wormhole/.env` with your private keys, based on `.env.sample` in this folder.
 
-While the [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} has no specific receiver by default, transfers sent through the Token Bridge do have a specific receiver chain and address to ensure the tokens are minted to the expected recipient.
+## Usage
 
-In addition to standard token transfers, the Token Bridge supports [Token Transfers with Messages](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}. This functionality allows users to attach additional data to token transfers, enabling more complex interactions with smart contracts on the destination chain. For instance, a token transfer can include a payload that triggers specific actions, such as interacting with a decentralized exchange (DEX) or automated market maker (AMM).
+You can interact with the Wormhole CLI by typing `worm` and including the `command` and any necessary subcommands and parameters.  
 
-### Token Transfer Flow
+| Command                                                                                                                  | Description                                                                                                     |
+|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| `worm aptos INSERT_COMMAND`                                                                                              | Aptos utilities                                                                                                 |
+| `worm edit-vaa INSERT_COMMAND`                                                                                           | Edits or generates a VAA                                                                                        |
+| `worm evm INSERT_COMMAND`                                                                                                | EVM utilities                                                                                                   |
+| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (Devnet and Testnet only)                                                                         |
+| `worm info INSERT_COMMAND`                                                                                               | Contract, chain, RPC, and address information utilities                                                         |
+| `worm near INSERT_NETWORK, INSERT_ACCOUNT`                                                                               | NEAR utilities                                                                                                  |
+| `worm parse INSERT_VAA`                                                                                                  | Parse a VAA (can be in either hex or base64 format)                                                             |
+| `worm recover INSERT_DIGEST INSERT_SIGNATURE`                                                                            | Recover an address from a signature                                                                             |
+| `worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH`                                                              | Prints information about the automatic delivery initiated on the specified network, chain, and transaction hash |
+| `worm submit INSERT_VAA`                                                                                                 | Execute a VAA                                                                                                   |
+| `worm sui INSERT_COMMAND`                                                                                                | Sui utilities                                                                                                   |
+| `worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK` | Transfers a token                                                                                               |
+| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                                                                             | Verifies a VAA by querying the Core Contract on Ethereum                                                        |
 
-The transfer process is simple yet secure, involving a few key steps:
+You can also refer to the below options, available with all `worm` commands:
 
-1. **Attestation** - first, a token's metadata is attested on the source chain, ensuring that its properties are consistent across chains
-2. **Locking** - on the source chain, the native token is locked in a custody account
-3. **Message emission** - a message detailing the transfer is sent through Wormhole’s Guardian Network, which verifies the transfer and signs the message
-4. **Verification and minting** - on the destination chain, the transfer message is verified, and wrapped tokens are minted, or native tokens are released from custody
+```bash
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+```
 
-![Token Bridge detailed flow](/docs/images/learn/transfers/token-bridge/token-bridge-diagram.webp)
+### Subcommands
 
-### Key Features of the Token Bridge
+??? code "Aptos"
+    ```bash
+    worm aptos INSERT_COMMAND
 
-The Token Bridge creates wrapped versions when tokens are transferred to a different chain. These wrapped assets represent the locked tokens on the source chain and allow users to interact with them on the destination chain. This mechanism ensures seamless functionality without needing liquidity pools or native token swaps.
+Commands:
+  worm aptos init-token-bridge              Init token bridge contract
+  worm aptos init-wormhole                  Init Wormhole core contract
+  worm aptos deploy <package-dir>           Deploy an Aptos package
+  worm aptos deploy-resource <seed>         Deploy an Aptos package using a
+  <package-dir>                             resource account
+  worm aptos send-example-message           Send example message
+  <message>
+  worm aptos derive-resource-account        Derive resource account address
+  <account> <seed>
+  worm aptos derive-wrapped-address         Derive wrapped coin type
+  <chain> <origin-address>
+  worm aptos hash-contracts <package-dir>   Hash contract bytecodes for upgrade
+  worm aptos upgrade <package-dir>          Perform upgrade after VAA has been
+                                            submitted
+  worm aptos migrate                        Perform migration after contract
+                                            upgrade
+  worm aptos faucet                         Request money from the faucet for a
+                                            given account
+  worm aptos start-validator                Start a local aptos validator
 
-The Token Bridge employs a universal token representation that is compatible with various virtual machine (VM) data types. This allows the tokens to interact with decentralized applications (dApps) across different chains without issues related to differing token standards.
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
 
-### Message and Payload Structure
+??? code "Edit VAA"
+    ```bash
+    worm edit-vaa INSERT_COMMAND
 
-To facilitate cross-chain communication, the Token Bridge uses specialized payloads that carry the necessary information for token transfers and attestations. These payloads ensure that the correct tokens are minted or unlocked on the destination chain.
+Options:
+      --help                       Show help                           [boolean]
+      --version                    Show version number                 [boolean]
+  -v, --vaa                        vaa in hex format         [string] [required]
+  -n, --network                    Network
+                            [required] [choices: "mainnet", "testnet", "devnet"]
+      --guardian-set-index, --gsi  guardian set index                   [number]
+      --signatures, --sigs         comma separated list of signatures   [string]
+      --wormscanurl, --wsu         url to wormscan entry for the vaa that
+                                   includes signatures                  [string]
+      --wormscan, --ws             if specified, will query the wormscan entry
+                                   for the vaa to get the signatures   [boolean]
+      --emitter-chain-id, --ec     emitter chain id to be used in the vaa
+                                                                        [number]
+      --emitter-address, --ea      emitter address to be used in the vaa[string]
+      --nonce, --no                nonce to be used in the vaa          [number]
+      --sequence, --seq            sequence number to be used in the vaa[string]
+      --consistency-level, --cl    consistency level to be used in the vaa
+                                                                        [number]
+      --timestamp, --ts            timestamp to be used in the vaa in unix
+                                   seconds                              [number]
+  -p, --payload                    payload in hex format                [string]
+      --guardian-secret, --gs      Guardian's secret key                [string]
+    ```
 
-- `Transfer` - this payload initiates the transfer of tokens, either by minting wrapped tokens or releasing locked tokens
-- `TransferWithPayload` - in addition to transferring tokens, this payload carries additional data, allowing integration with smart contracts or dApps on the target chain
-- `AssetMeta` - before a token can be transferred for the first time, this payload is used to attest to the token’s metadata, including decimals, symbol, and name
-- `RegisterChain` - register the Token Bridge contract (emitter address) for a foreign chain
-- `UpgradeContract` - upgrade the contract
+??? code "EVM"
+    ```bash
+    worm evm INSERT_COMMAND
 
-Each payload type is designed to serve a specific function in the token transfer process, ensuring that the bridge operates efficiently and securely.
+Commands:
+  worm evm address-from-secret <secret>  Compute a 20 byte eth address from a 32
+                                         byte private key
+  worm evm storage-update                Update a storage slot on an EVM fork
+                                         during testing (anvil or hardhat)
+  worm evm chains                        Return all EVM chains
+  worm evm info                          Query info about the on-chain state of
+                                         the contract
+  worm evm hijack                        Override the guardian set of the core
+                                         bridge contract during testing (anvil
+                                         or hardhat)
+  worm evm start-validator               Start a local EVM validator
 
-One of the key challenges in cross-chain token transfers is maintaining the correct token precision. The Token Bridge addresses this using the `AssetMeta` payload to store token metadata. Before transferring a token to a new chain, metadata such as its decimal precision, name, and symbol must be attested. The bridge ensures token amounts are truncated to a maximum of 8 decimals, guaranteeing compatibility with chains that may not support higher decimal precision. For example, an 18-decimal token on Ethereum will be represented with only eight decimals on the destination chain, simplifying integration with various decentralized applications.
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+  --rpc      RPC endpoint                                               [string]
+    ```
 
-### Security and Authorization
+??? code "Generate"
+    ```bash
+    worm generate INSERT_COMMAND
 
-The Token Bridge uses an emitter chain and address authorization system to verify the validity of messages. Each Token Bridge endpoint is registered on its respective chain, ensuring only trusted contracts can send or receive transfer messages.
+Commands:
+  worm generate registration                Generate registration VAA
+  worm generate upgrade                     Generate contract upgrade VAA
+  worm generate attestation                 Generate a token attestation VAA
+  worm generate recover-chain-id            Generate a recover chain ID VAA
+  worm generate                             Sets the default delivery provider
+  set-default-delivery-provider             for the Wormhole Relayer contract
 
-The [Wormhole Guardian Network](/docs/learn/infrastructure/guardians/#guardian-network){target=\_blank} plays a critical role in verifying each transfer and ensuring that the message is signed and relayed securely between chains.
+Options:
+      --help             Show help                                     [boolean]
+      --version          Show version number                           [boolean]
+  -g, --guardian-secret  Guardians' secret keys (CSV)        [string] [required]
+    ```
 
-### Portal Bridge
+??? code "Info"
+    ```bash
+    worm info INSERT_COMMAND
 
-A real-world example of Wormhole's Token Bridge in action is the [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides users with a simple interface to transfer tokens across multiple blockchains. Using the Wormhole infrastructure, Portal Bridge guarantees secure and seamless cross-chain transfers, making it easier for users to move assets between different blockchain ecosystems.
+Commands:
+  worm info chain-id <chain>                Print the wormhole chain ID integer
+                                            associated with the specified chain
+                                            name
+  worm info contract <network> <chain>      Print contract address
+  <module>
+  worm info emitter <chain> <address>       Print address in emitter address
+                                            format
+  worm info origin <chain> <address>        Print the origin chain and address
+                                            of the asset that corresponds to the
+                                            given chain and address.
+  worm info registrations <network>         Print chain registrations
+  <chain> <module>
+  worm info rpc <network> <chain>           Print RPC address
+  worm info wrapped <origin-chain>          Print the wrapped address on the
+  <origin-address> <target-chain>           target chain that corresponds with
+                                            the specified origin chain and
+                                            address.
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "NEAR"
+    ```bash
+    worm near INSERT_COMMAND
+
+Commands:
+  worm near contract-update <file>  Submit a contract update using our specific
+                                    APIs
+  worm near deploy <file>           Submit a contract update using near APIs
+
+Options:
+      --help      Show help                                            [boolean]
+      --version   Show version number                                  [boolean]
+  -m, --module    Module to query  [choices: "Core", "NFTBridge", "TokenBridge"]
+  -n, --network   Network   [required] [choices: "mainnet", "testnet", "devnet"]
+      --account   Near deployment account                    [string] [required]
+      --attach    Attach some near                                      [string]
+      --target    Near account to upgrade                               [string]
+      --mnemonic  Near private keys                                     [string]
+      --key       Near private key                                      [string]
+  -r, --rpc       Override default rpc endpoint url                     [string]
+    ```
+
+??? code "Parse"
+    ```bash
+    worm parse INSERT_VAA
+
+Positionals:
+  vaa  vaa                                                              [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Recover"
+    ```bash
+    worm recover INSERT_DIGEST INSERT_SIGNATURE
+
+Positionals:
+  digest     digest                                                     [string]
+  signature  signature                                                  [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Status"
+    ```bash
+    worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH
+
+Positionals:
+  network  Network                     [choices: 
+  'mainnet', 
+  'testnet', 
+  'devnet']
+  chain    Source chain
+             [choices: 
+  'unset',
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  tx       Source transaction hash                                      [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Submit"
+    ```bash
+    worm submit INSERT_VAA
+
+Positionals:
+  vaa  vaa                                                              [string]
+
+Options:
+      --help              Show help                                    [boolean]
+      --version           Show version number                          [boolean]
+  -c, --chain             chain name
+[choices: 'unset',
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  -n, --network           Network
+                            [required] 
+  [choices: 
+  'mainnet', 
+  'testnet', 
+  'devnet']
+  -a, --contract-address  Contract to submit VAA to (override config)   [string]
+      --rpc               RPC endpoint                                  [string]
+      --all-chains, --ac  Submit the VAA to all chains except for the origin
+                          chain specified in the payload
+                                                      [boolean] [default: false]
+    ```
+
+??? code "Sui"
+    ```bash
+    worm sui INSERT_COMMAND
+
+Commands:
+  worm sui build-coin                    Build wrapped coin and dump bytecode.
+
+                                         Example:
+                                         worm sui build-coin -d 8 -v V__0_1_1 -n
+                                         testnet -r
+                                         "https://fullnode.testnet.sui.io:443"
+  worm sui deploy <package-dir>          Deploy a Sui package
+  worm sui init-example-message-app      Initialize example core message app
+  worm sui init-token-bridge             Initialize token bridge contract
+  worm sui init-wormhole                 Initialize wormhole core contract
+  worm sui publish-example-message       Publish message from example app via
+                                         core bridge
+  worm sui setup-devnet                  Setup devnet by deploying and
+                                         initializing core and token bridges and
+                                         submitting chain registrations.
+  worm sui objects <owner>               Get owned objects by owner
+  worm sui package-id <state-object-id>  Get package ID from State object ID
+  worm sui tx <transaction-digest>       Get transaction details
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Transfer"
+    ```bash
+    worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK
+
+Options:
+      --help        Show help                                          [boolean]
+      --version     Show version number                                [boolean]
+      --src-chain   source chain [required] [choices:
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  --dst-chain   destination chain
+           [required] [choices: 
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+      --dst-addr    destination address                      [string] [required]
+      --token-addr  token address               [string] [default: native token]
+      --amount      token amount                             [string] [required]
+  -n, --network     Network [required] [choices: "mainnet", "testnet", "devnet"]
+      --rpc         RPC endpoint                                        [string]
+    ```
+
+??? code "Verify VAA"
+    ```bash
+    worm verify-vaa INSERT_VAA, INSERT_NETWORK
+
+Options:
+      --help     Show help                                             [boolean]
+      --version  Show version number                                   [boolean]
+  -v, --vaa      vaa in hex format                           [string] [required]
+  -n, --network  Network    [required] [choices: "mainnet", "testnet", "devnet"]
+    ```
+
+
+## Examples
+
+### VAA generation
+
+Use `generate` to create VAAs for testing. For example, use the following command to create an NFT bridge registration VAA:
+
+```bash
+worm generate registration --module NFTBridge \
+    --chain bsc \
+    --contract-address 0x706abc4E45D419950511e474C7B9Ed348A4a716c \
+    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
+```
+
+The below example generates a token attestation VAA:
+
+```bash
+worm generate attestation --emitter-chain ethereum \
+    --emitter-address 11111111111111111111111111111115 \
+    --chain ethereum \
+    --token-address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 \
+    --decimals 6 \
+    --symbol USDC \
+    --name USDC \
+    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
+```
+
+### VAA parsing
+
+Use `parse` to parse a VAA into JSON:
+
+```bash
+worm parse $(worm-fetch-governance 13940208096455381020)
+```
+
+This example will fetch governance VAA `13940208096455381020` and print it as JSON: 
+
+```bash
+# ...signatures elided
+timestamp: 1651416474,
+nonce: 1570649151,
+emitterChain: 1,
+emitterAddress: '0000000000000000000000000000000000000000000000000000000000000004',
+sequence: 13940208096455381020n,
+consistencyLevel: 32,
+payload: {
+  module: 'Core',
+  type: 'GuardianSetUpgrade',
+  chain: 0,
+  newGuardianSetIndex: 2,
+  newGuardianSetLength: 19,
+  newGuardianSet: [
+    '58cc3ae5c097b213ce3c81979e1b9f9570746aa5',
+    'ff6cb952589bde862c25ef4392132fb9d4a42157',
+    '114de8460193bdf3a2fcf81f86a09765f4762fd1',
+    '107a0086b32d7a0977926a205131d8731d39cbeb',
+    '8c82b2fd82faed2711d59af0f2499d16e726f6b2',
+    '11b39756c042441be6d8650b69b54ebe715e2343',
+    '54ce5b4d348fb74b958e8966e2ec3dbd4958a7cd',
+    '66b9590e1c41e0b226937bf9217d1d67fd4e91f5',
+    '74a3bf913953d695260d88bc1aa25a4eee363ef0',
+    '000ac0076727b35fbea2dac28fee5ccb0fea768e',
+    'af45ced136b9d9e24903464ae889f5c8a723fc14',
+    'f93124b7c738843cbb89e864c862c38cddcccf95',
+    'd2cc37a4dc036a8d232b48f62cdd4731412f4890',
+    'da798f6896a3331f64b48c12d1d57fd9cbe70811',
+    '71aa1be1d36cafe3867910f99c09e347899c19c3',
+    '8192b6e7387ccd768277c17dab1b7a5027c0b3cf',
+    '178e21ad2e77ae06711549cfbb1f9c7a9d8096e8',
+    '5e1487f35515d02a92753504a8d75471b9f49edb',
+    '6fbebc898f403e4773e95feb15e80c9a99c8348d'
+  ]
+}
+```
+
+### Submitting VAAs
+
+Use `submit` to submit a VAA to a chain. It first parses the VAA and determines the destination chain and module. For example, a contract upgrade contains both the target chain and module, so the only required argument is the network moniker (`mainnet` or `testnet`):
+
+```bash
+worm submit $(cat my-nft-registration.txt) --network mainnet
+```
+
+The script will ask you to specify the target chain for VAAs that don't have a specific target chain (like registrations or Guardian set upgrades). For example, to submit a Guardian set upgrade on all chains, simply run:
+
+```bash
+worm-fetch-governance 13940208096455381020 > guardian-upgrade.txt
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain oasis
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain aurora
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain fantom
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain karura
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain acala
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain klaytn
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain avalanche
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain polygon
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain bsc
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain solana
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain terra
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain ethereum
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain celo
+```
+
+The VAA payload type (Guardian set upgrade) specifies that this VAA should go to the core bridge, and the tool directs it there.
+
+### Getting Info
+
+To get info about a contract (only EVM supported at this time), use the following command:
+
+```bash
+worm evm info -c bsc -n mainnet -m TokenBridge
+```
+
+Running this command generates the following output:
+
+```bash
+{
+  "address": "0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7",
+  "wormhole": "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B",
+  "implementation": "0x621199f6beB2ba6fbD962E8A52A320EA4F6D4aA3",
+  "isInitialized": true,
+  "tokenImplementation": "0x7f8C5e730121657E17E452c5a1bA3fA1eF96f22a",
+  "chainId": 4,
+  "finality": 15,
+  "evmChainId": "56",
+  "isFork": false,
+  "governanceChainId": 1,
+  "governanceContract": "0x0000000000000000000000000000000000000000000000000000000000000004",
+  "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+  "registrations": {
+    "Solana": "0xec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5",
+    "Ethereum": "0x0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585",
+    "Terra": "0x0000000000000000000000007cf7b764e38a0a5e967972c1df77d432510564e2",
+    "Polygon": "0x0000000000000000000000005a58505a96d1dbf8df91cb21b54419fc36e93fde",
+    "Avalanche": "0x0000000000000000000000000e082f06ff657d94310cb8ce8b0d9a04541d8052",
+    "Oasis": "0x0000000000000000000000005848c791e09901b40a9ef749f2a6735b418d7564",
+    "Algorand": "0x67e93fa6c8ac5c819990aa7340c0c16b508abb1178be9b30d024b8ac25193d45",
+    "Aurora": "0x00000000000000000000000051b5123a7b0f9b2ba265f9c4c8de7d78d52f510f",
+    "Fantom": "0x0000000000000000000000007c9fc5741288cdfdd83ceb07f3ea7e22618d79d2",
+    "Karura": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
+    "Acala": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
+    "Klaytn": "0x0000000000000000000000005b08ac39eaed75c0439fc750d9fe7e1f9dd0193f",
+    "Celo": "0x000000000000000000000000796dff6d74f3e27060b71255fe517bfb23c93eed",
+    "Near": "0x148410499d3fcda4dcfd68a1ebfcdddda16ab28326448d4aae4d2f0465cdfcb7",
+    "Moonbeam": "0x000000000000000000000000b1731c586ca89a23809861c6103f0b96b3f57d92",
+    "Neon": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Terra2": "0xa463ad028fb79679cfc8ce1efba35ac0e77b35080a1abe9bebe83461f176b0a3",
+    "Injective": "0x00000000000000000000000045dbea4617971d93188eda21530bc6503d153313",
+    "Osmosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Sui": "0xccceeb29348f71bdd22ffef43a2a19c1f5b5e17c5cca5411529120182672ade5",
+    "Aptos": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "Arbitrum": "0x0000000000000000000000000b2402144bb366a632d14b83f244d2e0e21bd39c",
+    "Optimism": "0x0000000000000000000000001d68124e65fafc907325e3edbf8c4d84499daa8b",
+    "Gnosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Pythnet": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Xpla": "0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c",
+    "Btc": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Base": "0x0000000000000000000000008d2de8d2f73f1f4cab472ac9a881c9b123c79627",
+    "Sei": "0x86c5fd957e2db8389553e1728f9c27964b22a8154091ccba54d75f4b10c61f5e",
+    "Rootstock": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Scroll": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Mantle": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Blast": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Xlayer": "0x0000000000000000000000005537857664b0f9efe38c9f320f75fef23234d904",
+    "Linea": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Berachain": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Seievm": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Snaxchain": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Wormchain": "0xaeb534c45c3049d380b9d9b966f9895f53abd4301bfaff407fa09dea8ae7a924",
+    "Cosmoshub": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Evmos": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Kujira": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Neutron": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Celestia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Stargaze": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Seda": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Dymension": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Provenance": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Sepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "ArbitrumSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "BaseSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "OptimismSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Holesky": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "PolygonSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}
+```
+
+### Additional Info Examples
+
+You can get the contract address for a module as follows:
+
+```bash
+worm info rpc INSERT_NETWORK INSERT_CHAIN INSERT_MODULE
+```
+
+To get the contract address for `NFTBridge` on BSC Mainnet, for example, you can provide the following command:
+
+```bash
+worm info contract mainnet bsc NFTBridge
+```
+
+You can get the RPC address for a chain as follows:
+
+```bash
+worm info rpc INSERT_NETWORK INSERT_CHAIN
+```
+
+To get the RPC address for BSC Mainnet, for example, you can provide the following command: 
+
+```bash
+worm info rpc mainnet bsc
+```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/transfers/token-bridge/
+Doc-Content: https://wormhole.com/docs/build/toolkit/dev-env/
 --- BEGIN CONTENT ---
 ---
-title: Get Started with Token Bridge
-description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
-categories: Token-Bridge, Transfer
+title: Local Dev Environment
+description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more. 
+categories: Solidity-SDK, Typescript-SDK
 ---
 
-# Token Bridge
+# Development Environment
 
-## Introduction 
+Developers building for smart contract integration will want to set up a development environment to allow testing the full integration, possibly including VAA generation and relaying.
 
-Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Token Transfers with Messages](/docs/learn/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+## Tooling Installation
 
-This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} page in the Learn section. 
+The [Wormhole CLI Tool](/docs/build/toolkit/cli/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/build/start-building/supported-networks/){target=\_blank}.
 
-## Prerequisites
+## Development Stages
 
-To interact with the Wormhole Token Bridge, you'll need the following:
+Different approaches to development and testing are recommended at various stages of application development.
 
-- [The address of the Token Bridge contract](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
-- [The Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers
+### Initial Development
 
-## How to Interact with Token Bridge Contracts
+During the initial development of an on-chain application, the best option is to use the native tools available in the environment. You can visit the following resources for more information:
 
-The primary functions of the Token Bridge contracts revolve around:
+- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset  
+- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received. 
+- **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}** - example mock Guardian test
 
-- **Attesting a token** - registering a new token for cross-chain transfers
-- **Transferring tokens** - locking and minting tokens across chains
-- **Transferring tokens with a payload** - including additional data with transfers
+Relying on native tools when possible allows for more rapid prototyping and iteration.  
 
-### Attest a token
+### Integration
 
-Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
+For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/build/start-building/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} is available to run local instances of all the chains Wormhole supports.
 
-The attestation process doesn't require you to manually input token details like name, symbol, or decimals. Instead, the Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+!!! note
+    Variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make setting them up difficult or time-consuming. You may prefer Testnets for the simplest integration testing.
 
-```solidity
-function attestToken(
-    address tokenAddress,
-    uint32 nonce
-) external payable returns (uint64 sequence);
+### Prepare for Deployment
+
+Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](https://tilt.dev/){target=\_blank} since it allows you to spin up any chains supported by Wormhole in a consistent environment.
+
+## Validator Setup with Tilt
+
+### Tilt
+If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} page for a complete guide to setting up and configuring Tilt.
+
+## Deploying to Public Networks
+
+### Testnet
+
+When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where 19 Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
+
+```text
+https://api.testnet.wormholescan.io
 ```
 
-??? interface "Parameters"
+### Mainnet
 
-    `tokenAddress` ++"address"++
-        
-    The contract address of the token to be attested.
+The Mainnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Mainnet endpoint:
 
-    ---
+```text
+https://api.wormholescan.io
+```
+--- END CONTENT ---
 
-    `nonce` ++"uint32"++  
+Doc-Content: https://wormhole.com/docs/build/toolkit/faqs/
+--- BEGIN CONTENT ---
+---
+title: Toolkit FAQs
+description: FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScript, Solidity), Tilt, error handling, transaction history, and manual VAA submission.
+categories: Solidity-SDK, Typescript-SDK
+---
 
-    An arbitrary value provided by the caller to ensure uniqueness.
+# Toolkit FAQs
 
-??? interface "Returns"
+## Why does the `toNative` function in the TypeScript SDK return an error?
 
-    `sequence` ++"uint64"++
-    
-    A unique identifier for the attestation transaction.
+The `toNative` function may return an error if the platform-specific module (such as Solana or EVM) is not correctly imported or passed into the Wormhole constructor.
 
-When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
+To fix this, ensure the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
 
-You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
-
-### Transfer Tokens 
-
-Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
-
-Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
-
-```solidity
-function transferTokens(
-    address token,
-    uint256 amount,
-    uint16 recipientChain,
-    bytes32 recipient,
-    uint256 arbiterFee,
-    uint32 nonce
-) external payable returns (uint64 sequence);
+```typescript
+import solana from '@wormhole-foundation/sdk/solana';
+const wh = await wormhole('Testnet', [solana]);
 ```
 
-??? interface "Parameters"
+## How can I retrieve the history of previously bridged transactions?
 
-    `token` ++"address"++
-        
-    The address of the token being transferred.
+To retrieve the history of previously bridged transactions, you can use the Wormholescan API. Use the following endpoint to query the transaction history for a specific address:
 
-    ---
-
-    `amount` ++"uint256"++  
-    The amount of tokens to be transferred.
-
-    ---
-
-    `recipientChain` ++"uint16"++  
-    The Wormhole chain ID of the destination chain.
-
-    ---
-
-    `recipient` ++"bytes32"++  
-    The recipient's address on the destination chain.
-
-    ---
-
-    `arbiterFee` ++"uint256"++  
-    Optional fee to be paid to an arbiter for relaying the transfer.
-
-    ---
-
-    `nonce` ++"uint32"++  
-    A unique identifier for the transaction.
-
-??? interface "Returns"
-
-    `sequence` ++"uint64"++
-    
-    A unique identifier for the transfer transaction.
-
-Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
-
-```solidity
-function completeTransfer(bytes memory encodedVm) external;
+```bash
+https://api.wormholescan.io/api/v1/operations?address=INSERT_ADDRESS
 ```
 
-??? interface "Parameters"
+Simply replace `INSERT_ADDRESS_HERE` with the address you want to query. The API will return a list of operations, including details about previously bridged transactions.
 
-    `encodedVm` ++"bytes memory"++
-    
-    The signed VAA containing the transfer details.
+???- example "Fetch transaction history for a specific address"
+    ```bash
+    curl -X GET "https://api.wormholescan.io/api/v1/operations?address=0x05c009C4C1F1983d4B915C145F4E782de23d3A38" -H "accept: application/json"
+    ```
 
-!!!note
-    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation
-    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain
+## How can I manually submit a VAA to a destination chain in the correct format?
 
-### Transfer tokens with payload
+To manually submit a VAA (Verifiable Action Approval) to a destination chain, follow these steps:
 
-While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
+1. **Obtain the VAA in Base64 format** - navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
 
-Call `transferTokensWithPayload()` instead of `transferTokens()` to include a custom payload (arbitrary bytes) with the token transfer.
+    ```bash
+    https://wormholescan.io/#/tx/INSERT_TX_HASH?view=advanced
+    ```
 
-```solidity
-function transferTokensWithPayload(
-    address token,
-    uint256 amount,
-    uint16 recipientChain,
-    bytes32 recipient,
-    uint32 nonce,
-    bytes memory payload
-) external payable returns (uint64 sequence);
+2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
+
+3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
+
+    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/build/reference/contract-addresses/){target=\_blank} section
+
+    - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field
+
+Following these steps, you can manually submit a VAA in the proper format to a destination chain.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/
+--- BEGIN CONTENT ---
+---
+title: Wormhole SDK
+description: The Wormhole SDK provides tools for cross-chain communication, token bridges, and more, enabling developers to integrate with multiple blockchain environments.
+categories: Typescript-SDK
+---
+
+# Wormhole SDK
+
+## Get Started
+
+The Wormhole SDK provides developers with essential tools for cross-chain communication, token bridges, and more. This SDK enables seamless interaction between different blockchain environments with a focus on performance and usability.
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Wormhole SDK**
+
+    ---
+
+    Learn about the core functionalities of the Wormhole SDK, including how to use its features for building cross-chain applications.
+
+    [:custom-arrow: Explore the SDK](/docs/build/toolkit/typescript-sdk/wormhole-sdk/)
+
+-   :octicons-code-16:{ .lg .middle } **Layouts**
+
+    ---
+
+    Discover how to define, serialize, and deserialize data structures using the Wormhole SDK's layout system, ensuring efficient cross-chain communication.
+
+    [:custom-arrow: Learn about layouts](/docs/build/toolkit/typescript-sdk/sdk-layout/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/protocols-payloads/
+--- BEGIN CONTENT ---
+---
+title: Building Protocols and Payloads
+description: Learn how to build, register, and integrate protocols and payloads in the Wormhole TypeScript SDK with type-safe layouts.
+categories: Typescript-SDK
+---
+
+# Building Protocols and Payloads
+
+## Introduction
+
+The [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} provides a flexible and powerful system for integrating cross-chain communication into your applications. A key feature of the SDK is its ability to define protocols—modular units representing distinct functionalities—and their associated payloads, which encapsulate the data required for specific operations within those protocols.
+
+This guide will help you understand how to build protocols and payloads in the SDK, covering:
+
+ - The role of protocols and payloads in cross-chain communication
+ - The mechanics of registering protocols and payloads using the SDK
+ - Best practices for creating strongly typed layouts to ensure compatibility and reliability
+ - Real-world examples using the `TokenBridge` as a reference implementation
+
+By the end of this guide, you’ll have a solid understanding of how to define, register, and use protocols and payloads in your projects.
+
+## What is a Protocol?
+
+In the Wormhole SDK, a protocol represents a significant feature or functionality that operates across multiple blockchains. Protocols provide the framework for handling specific types of messages, transactions, or operations consistently and standardized.
+
+Examples of Protocols:
+
+ - **`TokenBridge`** - enables cross-chain token transfers, including operations like transferring tokens and relaying payloads
+ - **`NTT (Native Token Transfers)`** - manages native token movements across chains
+
+Protocols are defined by:
+
+ - **A `name`** - a string identifier (e.g., `TokenBridge`, `Ntt`)
+ - **A set of `payloads`** - these represent the specific actions or messages supported by the protocol, such as `Transfer` or `TransferWithPayload`
+
+Each protocol is registered in the Wormhole SDK, allowing developers to leverage its predefined features or extend it with custom payloads.
+
+## What is a Payload?
+
+A payload is a structured piece of data that encapsulates the details of a specific operation within a protocol. It defines the format, fields, and types of data used in a message or transaction. Payloads ensure consistency and type safety when handling complex cross-chain operations.
+
+Each payload is defined as:
+
+ - **A `layout`** - describes the binary format of the payload fields
+ - **A `literal`** - combines the protocol name and payload name into a unique identifier (e.g., `TokenBridge:Transfer`)
+
+By registering payloads, developers can enforce type safety and enable serialization and deserialization for specific protocol operations.
+
+## Register Protocols and Payloads
+
+Protocols and payloads work together to enable cross-chain communication with precise type safety. For instance, in the `TokenBridge` protocol:
+
+ - The protocol is registered under the `TokenBridge` namespace
+ - Payloads like `Transfer` or `AttestMeta` are linked to the protocol to handle specific operations
+
+Understanding the connection between these components is important for customizing or extending the SDK to suit your needs.
+
+### Register Protocols
+
+Registering a protocol establishes its connection to Wormhole's infrastructure, ensuring it interacts seamlessly with payloads and platforms while maintaining type safety and consistency.
+
+#### How Protocol Registration Works
+
+Protocol registration involves two key tasks:
+
+ - **Mapping protocols to interfaces** - connect the protocol to its corresponding interface, defining its expected behavior across networks (`N`) and chains (`C`). This ensures type safety, similar to strong typing, by preventing runtime errors if protocol definitions are incorrect
+ - **Linking protocols to platforms** - specify platform-specific implementations if needed, or use default mappings for platform-agnostic protocols
+
+For example, here's the `TokenBridge` protocol registration:
+
+```typescript
+declare module '../../registry.js' {
+  export namespace WormholeRegistry {
+    interface ProtocolToInterfaceMapping<N, C> {
+      TokenBridge: TokenBridge<N, C>;
+    }
+    interface ProtocolToPlatformMapping {
+      TokenBridge: EmptyPlatformMap<'TokenBridge'>;
+    }
+  }
+}
 ```
 
-??? interface "Parameters"
+This code snippet:
 
-    `token` ++"address"++
-    
-    The address of the token being transferred.
+ - Maps the `TokenBridge` protocol to its interface to define how it operates
+ - Links the protocol to a default platform mapping via `EmptyPlatformMap`
 
-    ---
+You can view the full implementation in the [`TokenBridge` protocol file](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L14-L70){target=\_blank}.
 
-    `amount` ++"uint256"++  
-    The amount of tokens to be transferred.
+#### Platform-Specific Protocols
 
-    ---
+Some protocols require platform-specific behavior. For instance, the EVM-compatible Wormhole Registry maps native addresses for Ethereum-based chains:
 
-    `recipientChain` ++"uint16"++  
-    The Wormhole chain ID of the destination chain.
+```typescript
+declare module '@wormhole-foundation/sdk-connect' {
+  export namespace WormholeRegistry {
+    interface PlatformToNativeAddressMapping {
+      Evm: EvmAddress;
+    }
+  }
+}
 
-    ---
-
-    `recipient` ++"bytes32"++  
-    The recipient's address on the destination chain.
-
-    ---
-
-    `nonce` ++"uint32"++  
-    A unique identifier for the transaction.
-
-    ---
-
-    `payload` ++"bytes memory"++  
-    Arbitrary data payload attached to the transaction.
-
-??? interface "Returns"
-    
-    `sequence` ++"uint64"++
-    
-    A unique identifier for the transfer transaction.
-
-After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
-
-Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
-
-```solidity
-function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
+registerNative(_platform, EvmAddress);
 ```
 
-??? interface "Parameters"
+This ensures that `EvmAddress` is registered as the native address type for EVM-compatible platforms. See the [EVM platform address file](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/platforms/evm/src/address.ts#L98-L106){target=\_blank} for details.
 
-    `encodedVm` ++"bytes memory"++
+### Register Payloads
 
-    The signed VAA containing the transfer details.
+[Payload registration](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dbbbc7c365db602dd3b534f6d615ac80c3d2aaf1/core/definitions/src/vaa/registration.ts){target=\_blank} enables developers to define, serialize, and handle custom message types within their protocols. It establishes the connection between a protocol and its payloads, ensuring seamless integration, type enforcement, and runtime efficiency.
 
-??? interface "Returns"
+This process ties a protocol to its payloads using a combination of:
 
-    `bytes memory`
+ - **Payload literals** - unique identifiers in the format `<ProtocolName>:<PayloadName>`. These literals map each payload to a layout
+ - **Payload layouts** - structures that define the binary representation of payload data
+ - **The payload factory** - a centralized runtime registry that maps payload literals to layouts for dynamic resolution and serialization
 
-    The extracted payload data.
+These components work together to streamline the definition and management of protocol payloads.
 
-## Source Code References
+#### How Payload Registration Works
 
-For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+Payload registration involves:
 
-- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
-- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+1. **Define payload layouts** - create layouts to structure your payloads. For instance, a protocol might use a `TransferWithPayload` layout:
 
-## Portal Bridge
+    ```typescript
+    export const transferWithPayloadLayout = <
+  const P extends CustomizableBytes = undefined
+>(
+  customPayload?: P
+) =>
+  [
+    payloadIdItem(3),
+    ...transferCommonLayout,
+    { name: 'from', ...universalAddressItem },
+    customizableBytes({ name: 'payload' }, customPayload),
+  ] as const;
+    ```
 
-A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
+2. **Register payloads** - use `registerPayloadTypes` to map payload literals to their layouts:
 
-## FAQs
+    ```typescript
+    registerPayloadTypes('ProtocolName', protocolNamedPayloads);
+    ```
 
-### Can ownership of wrapped tokens be transferred from the Token Bridge?
+3. **Access registered payloads** - use the [`getPayloadLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/definitions/src/vaa/functions.ts#L19-L23){target=\_blank} function to fetch the layout for a specific payload literal. This method ensures that the correct layout is retrieved dynamically and safely:
 
-No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
+    ```typescript
+    const layout = getPayloadLayout('ProtocolName:PayloadName');
+    ```
 
- - **On EVM chains** - when you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself
- - **On Solana** - the Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge
+These steps link payload literals and their layouts, enabling seamless runtime handling.
 
-The logic behind deploying these token contracts involves submitting an attestation VAA, which allows the Token Bridge to verify and deploy the wrapped token contract on the destination chain.
+#### The Payload Factory
 
-Relevant contracts:
+At the core of the payload registration process is the `payloadFactory`, a registry that manages the mapping between payload literals and layouts:
 
- - [Ethereum ERC-20](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/token/Token.sol){target=\_blank}
- - [Solana SPL](https://github.com/wormhole-foundation/wormhole/blob/main/solana/modules/token_bridge/program/src/api/create_wrapped.rs#L128-L145){target=\_blank}
- - [Attestation VAA and Token Contract Deployment Logic](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol#L385-L431){target=\_blank}
+```typescript
+export const payloadFactory = new Map<LayoutLiteral, Layout>();
 
-### How do I update the metadata of a wrapped token?
+export function registerPayloadType(
+  protocol: ProtocolName,
+  name: string,
+  layout: Layout
+) {
+  const payloadLiteral = composeLiteral(protocol, name);
+  if (payloadFactory.has(payloadLiteral)) {
+    throw new Error(`Payload type ${payloadLiteral} already registered`);
+  }
+  payloadFactory.set(payloadLiteral, layout);
+}
+```
 
-Because wrapped tokens are deployed and controlled by the Token Bridge program, which is under the authority of the Wormhole Guardians, there is no direct way for you to update their metadata. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
+ - The `payloadFactory` ensures each payload literal maps to its layout uniquely
+ - The [`registerPayloadType`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dbbbc7c365db602dd3b534f6d615ac80c3d2aaf1/core/definitions/src/vaa/registration.ts#L46-L52){target=\_blank} function adds individual payloads, while [`registerPayloadTypes`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dbbbc7c365db602dd3b534f6d615ac80c3d2aaf1/core/definitions/src/vaa/registration.ts#L62-L64){target=\_blank} supports bulk registration
 
-### How do I calculate the current gas costs for Ethereum Mainnet VAA verification?
+This implementation ensures dynamic, efficient handling of payloads at runtime.
 
-You can refer to the [core-bridge repository](https://github.com/nonergodic/core-bridge){target=\_blank} for guidance on how to calculate the current gas costs associated with verifying VAAs on Ethereum Mainnet. This repository provides up-to-date references and examples to help you gauge costs accurately.
+## Integrate Protocols with Payloads
 
-### How can I update my wrapped token image on Solscan?
+Integrating payloads with protocols enables dynamic identification through payload literals, while serialization and deserialization ensure their binary representation is compatible across chains. For more details on these processes, refer to the [Layouts page](/docs/build/toolkit/typescript-sdk/sdk-layout/){target=\_blank}.
 
-Updating the metadata (such as the token image, name, or symbol) of a wrapped token on [Solscan](https://solscan.io/){target=\_blank} requires [contacting the Solscan team](https://solscan.io/contactus){target=\_blank} directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the Token Bridge, not individual developers or projects.
+### Payload Discriminators
 
-To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
+Payload discriminators are mechanisms in the Wormhole SDK that dynamically identify and map incoming payloads to their respective layouts at runtime. They are relevant for protocols like `TokenBridge`, enabling efficient handling of diverse payload types while ensuring type safety and consistent integration.
+
+#### How Discriminators Work
+
+Discriminators evaluate serialized binary data and determine the corresponding payload layout by inspecting fixed fields or patterns within the data. Each payload layout is associated with a payload literal (e.g., `TokenBridge:Transfer` or `TokenBridge:TransferWithPayload`).
+
+This system ensures:
+
+ - **Dynamic runtime identification** - payloads are parsed based on their content, even if a single protocol handles multiple payload types
+ - **Strict type enforcement** - discriminators leverage layout mappings to prevent invalid payloads from being processed
+
+Below is an example of how the Wormhole SDK builds a discriminator to distinguish between payload layouts:
+
+```typescript
+export function layoutDiscriminator<B extends boolean = false>(
+  layouts: readonly Layout[],
+  allowAmbiguous?: B
+): Discriminator<B> {
+  // Internal logic to determine distinguishable layouts
+  const [distinguishable, discriminator] = internalBuildDiscriminator(layouts);
+  if (!distinguishable && !allowAmbiguous) {
+    throw new Error('Cannot uniquely distinguish the given layouts');
+  }
+
+  return (
+    !allowAmbiguous
+      ? (encoded: BytesType) => {
+          const layout = discriminator(encoded);
+          return layout.length === 0 ? null : layout[0];
+        }
+      : discriminator
+  ) as Discriminator<B>;
+}
+```
+
+ - [`layoutDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/base/src/utils/layout.ts#L16){target=\_blank} takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload
+ - The `allowAmbiguous` parameter determines whether layouts with overlapping characteristics are permitted
+
+### Real-World Example: Token Bridge Protocol
+
+Integrating protocols with their respective payloads exemplifies how the Wormhole SDK leverages layouts and type-safe registration mechanisms to ensure efficient cross-chain communication. This section focuses on how protocols like `TokenBridge` use payloads to facilitate specific operations.
+
+#### Token Bridge Protocol and Payloads
+
+The `TokenBridge` protocol enables cross-chain token transfers through its payloads. Key payloads include:
+
+ - **`Transfer`** - handles basic token transfer operations
+ - **`TransferWithPayload`** - extends the `Transfer` payload to include custom data, enhancing functionality
+
+Payloads are registered to the `TokenBridge` protocol via the `PayloadLiteralToLayoutMapping` interface, which links payload literals (e.g., `TokenBridge:Transfer`) to their layouts.
+
+Additionally, the protocol uses reusable layouts like [`transferCommonLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts#L29C7-L47){target=\_blank} and extends them in more specialized layouts such as [`transferWithPayloadLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/76b20317b0f68e823d4e6c4a2e41bb2a7705c64f/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts#L49-L57){target=\_blank}:
+
+```typescript
+export const transferWithPayloadLayout = <
+  const P extends CustomizableBytes = undefined
+>(
+  customPayload?: P
+) =>
+  [
+    payloadIdItem(3),
+    ...transferCommonLayout,
+    { name: 'from', ...universalAddressItem },
+    customizableBytes({ name: 'payload' }, customPayload),
+  ] as const;
+```
+
+This layout includes:
+
+ - A `payloadIdItem` to identify the payload type
+ - Common fields for token and recipient details
+ - A customizable `payload` field for additional data
+
+#### Use the Discriminator
+
+To manage multiple payloads, the `TokenBridge` protocol utilizes a discriminator to distinguish between payload types dynamically. For example:
+
+```typescript
+const tokenBridgePayloads = ['Transfer', 'TransferWithPayload'] as const;
+
+export const getTransferDiscriminator = lazyInstantiate(() =>
+  payloadDiscriminator([_protocol, tokenBridgePayloads])
+);
+```
+
+ - The [`getTransferDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dbbbc7c365db602dd3b534f6d615ac80c3d2aaf1/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L67-L70){target=\_blank} function dynamically evaluates payloads using predefined layouts
+ - This ensures that each payload type is processed according to its unique structure and type-safe layout
+
+#### Register Payloads to Protocols
+
+Here’s how the `TokenBridge` protocol connects its payloads to the Wormhole SDK:
+
+```typescript
+declare module '../../registry.js' {
+  export namespace WormholeRegistry {
+    interface PayloadLiteralToLayoutMapping
+      extends RegisterPayloadTypes<
+        'TokenBridge',
+        typeof tokenBridgeNamedPayloads
+      > {}
+  }
+}
+
+registerPayloadTypes('TokenBridge', tokenBridgeNamedPayloads);
+```
+
+This registration links the `TokenBridge` payload literals to their respective layouts, enabling serialization and deserialization at runtime.
+
+You can explore the complete `TokenBridge` protocol and payload definitions in the [`TokenBridge` layout file](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts){target=\_blank}.
+
+#### Token Bridge Payloads
+
+The following payloads are registered for the `TokenBridge` protocol:
+
+ - **`AttestMeta`** - used for token metadata attestation
+ - **`Transfer`** - facilitates token transfers
+ - **`TransferWithPayload`** - adds a custom payload to token transfers
+
+These payloads and their layouts are defined in the [`TokenBridge` layout file](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts){target=\_blank}.
+
+### Other Protocols: Native Token Transfers (NTT)
+
+While this guide focuses on the `TokenBridge` protocol, other protocols, like NTT, follow a similar structure.
+
+ - NTT manages the transfer of native tokens across chains
+ - Payloads such as `WormholeTransfer` and `WormholeTransferStandardRelayer` are registered to the protocol using the same patterns for payload literals and layouts
+ - The same mechanisms for type-safe registration and payload discriminators apply, ensuring reliability and extensibility
+
+For more details, you can explore the [NTT implementation in the SDK](https://github.com/wormhole-foundation/example-native-token-transfers/blob/00f83aa215338b1b8fd66f522bd0f45be3e98a5a/sdk/definitions/src/ntt.ts){target=\_blank}.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/sdk-layout/
+--- BEGIN CONTENT ---
+---
+title: Data Layouts
+description: Learn how to efficiently define, serialize, and deserialize data structures using Wormhole SDK's layout system for cross-chain communication.
+categories: Typescript-SDK
+---
+
+# Data Layouts
+
+## Introduction
+
+The [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} uses the [layout package](https://www.npmjs.com/package/binary-layout){target=\_blank} to define, serialize, and deserialize data structures efficiently. This modular system ensures consistent data formatting and cross-environment compatibility, benefiting projects that require robust handling of structured data.
+
+By understanding the layout mechanism, you’ll be able to:
+
+ - Define data structures (numbers, arrays, and custom types)
+ - Efficiently serialize and deserialize data using the SDK’s utilities
+ - Handle protocol-specific layouts with ease
+
+This guide is beneficial for developers looking to integrate Wormhole into their applications or protocols, especially those dealing with complex payloads or cross-chain communication.
+
+## Key Concepts
+
+### Layout Items
+
+A layout defines how data structures should be serialized (converted into binary format) and deserialized (converted back into their original structure). This ensures consistent data formatting when transmitting information across different blockchain environments.
+
+Layouts are composed of [layout items](https://github.com/nonergodic/layout/blob/main/src/items.ts){target=\_blank}, which describe individual fields or sets of fields in your data. Each layout item specifies:
+
+ - **`name`** - name of the field
+ - **`binary`** - type of data (e.g., `uint`, `bytes`)
+ - **`size`** - byte length for fixed-size fields within uint and bytes items only
+
+Layout items can represent:
+
+ - **Primitive types** - basic data types like unsigned integers (`uint`) or byte arrays (`bytes`)
+ - **Composite types** - more complex structures, such as arrays or nested objects
+
+Below is an example of a layout that might be used to serialize a message across the Wormhole protocol:
+
+```typescript
+const exampleLayout = [
+  { name: 'sourceChain', binary: 'uint', size: 2 },
+  { name: 'orderSender', binary: 'bytes', size: 32 },
+  { name: 'redeemer', binary: 'bytes', size: 32 },
+  { name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 },
+] as const;
+```
+
+In this example:
+
+ - `sourceChain` is a 2-byte unsigned integer (`uint`) identifying the source blockchain
+ - `orderSender` is a fixed-length 32-byte array representing the sender's address
+ - `redeemer` is another 32-byte array used for the redeemer’s address
+ - `redeemerMessage` is a variable-length byte sequence, with its length specified by a 4-byte integer
+
+This layout definition ensures that all necessary data fields are consistently encoded and can be correctly interpreted when they are deserialized.
+
+### Serialization and Deserialization
+
+Serialization converts structured data into binary format; deserialization reverses this, reconstructing the original objects.
+
+You can serialize data using the `serializeLayout` function:
+
+```typescript
+const serialized = serializeLayout(fillLayout, exampleFill);
+```
+
+To deserialize the binary data back into a structured object, use the `deserializeLayout` function:
+
+```typescript
+const deserialized = deserializeLayout(fillLayout, serialized);
+```
+
+### Custom Conversions
+
+Layouts also allow for custom conversions, which help map complex or custom types (like chain IDs or universal addresses) into a more usable format. This is useful when serializing or deserializing data that doesn’t fit neatly into simple types like integers or byte arrays.
+
+For example, consider a custom conversion for a chain ID:
+
+```typescript
+const chainCustomConversion = {
+  to: (chainId: number) => toChain(chainId),
+  from: (chain: Chain) => chainToChainId(chain),
+} satisfies CustomConversion<number, Chain>;
+```
+
+This setup allows Wormhole to convert between human-readable formats and binary-encoded data used in payloads.
+
+### Error Handling
+
+The layout system performs error checks during serialization and deserialization. An error is thrown if data is incorrectly sized or in the wrong format. Refer to the below example:
+
+```typescript
+try {
+  deserializeLayout(fillLayout, corruptedData);
+} catch (error) {
+  console.error('Error during deserialization:', error.message);
+}
+```
+
+## Application of Layouts
+
+This section will focus on applying the concepts explained earlier through examples. These will help developers better understand how to define layouts, serialize and deserialize data, and use custom conversions where needed.
+
+### Defining Layouts
+
+To get started with layouts in Wormhole, you need to define your structure. A layout is simply a list of fields (layout items) describing how each data piece will be serialized.
+
+Consider the following layout for a payload:
+
+```typescript
+const exampleLayout = [
+  { name: 'sourceChain', binary: 'uint', size: 2 },
+  { name: 'orderSender', binary: 'bytes', size: 32 },
+  { name: 'redeemer', binary: 'bytes', size: 32 },
+  { name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 },
+] as const;
+```
+
+In this example:
+
+ - `sourceChain` is an unsigned integer (uint) of 2 bytes
+ - `orderSender` is a 32-byte fixed-length byte array
+ - `redeemer` is another 32-byte byte array
+ - `redeemerMessage` is a length-prefixed byte array, with the length specified by a 4-byte integer
+
+### Serialize Data
+
+Once a layout is defined, the next step is to serialize data according to that structure. You can accomplish this using the `serializeLayout` function from the Wormhole SDK.
+
+```typescript
+const examplePayload = {
+  sourceChain: 6,
+  orderSender: new Uint8Array(32),
+  redeemer: new Uint8Array(32),
+  redeemerMessage: new Uint8Array([0x01, 0x02, 0x03]),
+};
+
+const serializedData = serializeLayout(exampleLayout, examplePayload);
+```
+
+This takes the data structure (`examplePayload`) and serializes it according to the rules defined in the layout (`exampleLayout`). The result is a `Uint8Array` representing the serialized binary data.
+
+### Deserialize Data
+
+Deserialization is the reverse of serialization. Given a serialized `Uint8Array`, we can convert it back into its original structure using the `deserializeLayout` function.
+
+```typescript
+const deserializedPayload = deserializeLayout(exampleLayout, serializedData);
+```
+
+This will output the structured object, making it easy to work with data transmitted or received from another chain.
+
+### Handling Variable-Length Fields
+
+One relevant aspect of Wormhole SDK's layout system is the ability to handle variable-length fields, such as arrays and length-prefixed byte sequences.
+
+For instance, if you want to serialize or deserialize a message where the length of the content isn't known beforehand, you can define a layout item with a `lengthSize` field.
+
+```typescript
+{ name: 'message', binary: 'bytes', lengthSize: 4 }
+```
+
+This tells the SDK to read or write the message's length (in 4 bytes) and then handle the content.
+
+## Nested Layouts and Strong Typing
+
+The Wormhole SDK simplifies handling complex structures with nested layouts and strong typing. Nested layouts clearly represent hierarchical data, while strong typing ensures data consistency and catches errors during development.
+
+### Nested Layout
+
+In complex protocols, layouts can contain nested structures. Nested layouts become relevant here, allowing you to represent hierarchical data (such as transactions or multi-part messages) in a structured format.
+
+Refer to the following nested layout where a message contains nested fields:
+
+```typescript
+const nestedLayout = [
+  {
+    name: 'source',
+    binary: 'bytes',
+    layout: [
+      { name: 'chainId', binary: 'uint', size: 2 },
+      { name: 'sender', binary: 'bytes', size: 32 },
+    ],
+  },
+  {
+    name: 'redeemer',
+    binary: 'bytes',
+    layout: [
+      { name: 'address', binary: 'bytes', size: 32 },
+      { name: 'message', binary: 'bytes', lengthSize: 4 },
+    ],
+  },
+] as const satisfies Layout;
+```
+
+In this layout:
+
+ - `source` is an object with two fields: `chainId` and `sender`
+ - `redeemer` is another object with two fields: `address` and a length-prefixed `message`
+
+### Strong Typing
+
+One of the benefits of using the Wormhole SDK in TypeScript is its support for strong typing. This ensures that serialized and deserialized data conform to expected structures, reducing errors during development by enforcing type checks at compile time.
+
+Using TypeScript, the `LayoutToType` utility provided by the SDK automatically generates a strongly typed structure based on the layout:
+
+```typescript
+type NestedMessage = LayoutToType<typeof nestedLayout>;
+```
+
+This ensures that when you serialize or deserialize data, it matches the expected structure.
+
+```typescript
+const message: NestedMessage = {
+  source: {
+    chainId: 6,
+    sender: new Uint8Array(32),
+  },
+  redeemer: {
+    address: new Uint8Array(32),
+    message: new Uint8Array([0x01, 0x02, 0x03]),
+  },
+};
+```
+
+Attempting to assign data of incorrect types will result in a compile-time error. The Wormhole SDK's layout system enforces strong types, reducing runtime errors and improving code reliability.
+
+### Serialization and Deserialization with Nested Layouts
+
+You can serialize and deserialize nested structures in the same way as simpler layouts:
+
+```typescript
+const serializedNested = serializeLayout(nestedLayout, message);
+const deserializedNested = deserializeLayout(nestedLayout, serializedNested);
+```
+
+Strong typing in TypeScript ensures that the message object conforms to the nested layout structure. This reduces the risk of data inconsistency during cross-chain communication.
+
+## Commonly Used Layouts
+
+The Wormhole SDK includes predefined layouts frequently used in cross-chain messaging. These layouts are optimized for standard fields such as chain IDs, addresses, and signatures. You can explore the complete set of predefined layouts in the [`layout-items` directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/layout-items){target=\_blank} of the Wormhole SDK.
+
+### Chain ID Layouts
+
+Chain ID layouts in the Wormhole SDK derive from a common foundation: `chainItemBase`. This structure defines the binary representation of a chain ID as a 2-byte unsigned integer, ensuring consistency across serialization and deserialization processes.
+
+#### Base Structure
+
+This simple structure is the blueprint for more specific layouts by standardizing the binary format and size.
+
+```typescript
+const chainItemBase = { binary: 'uint', size: 2 } as const;
+```
+
+#### Dynamic Chain ID Layout
+
+The dynamic chain ID layout, [`chainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/chain.ts#L13-L40){target=\_blank}, extends `chainItemBase` by adding flexible custom conversion logic. It enables runtime validation of chain IDs, supports optional null values, and restricts chain IDs to a predefined set when needed.
+
+```typescript
+export const chainItem = <
+  const C extends readonly Chain[] = typeof chains,
+  const N extends boolean = false,
+>(opts?: {
+  allowedChains?: C;
+  allowNull?: N;
+}) =>
+  ({
+    ...chainItemBase, // Builds on the base structure
+    custom: {
+      to: (val: number): AllowNull<C[number], N> => { ... },
+      from: (val: AllowNull<C[number], N>): number => { ... },
+    },
+  });
+```
+
+This layout is versatile. It allows the serialization of human-readable chain names (e.g., `Ethereum`) to numeric IDs (e.g., `1`) and vice versa. This is particularly useful when working with dynamic configurations or protocols supporting multiple chains.
+
+#### Fixed Chain ID Layout
+
+The fixed chain ID layout, [`fixedChainItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/chain.ts#L42-L49){target=\_blank}, is more rigid. It also extends `chainItemBase`, but the custom field is hardcoded for a single chain. This eliminates runtime validation and enforces strict adherence to a specific chain.
+
+```typescript
+export const fixedChainItem = <const C extends Chain>(chain: C) => ({
+  ...chainItemBase, // Builds on the base structure
+  custom: {
+    to: chain,
+    from: chainToChainId(chain),
+  },
+});
+```
+
+This layout allows developers to efficiently serialize and deserialize messages involving a single, fixed chain ID.
+
+### Address Layout
+
+The Wormhole SDK uses a Universal Address Layout to serialize and deserialize blockchain addresses into a standardized format. This layout ensures that addresses are always represented as fixed 32-byte binary values, enabling seamless cross-chain communication.
+
+#### Base Structure
+
+The [`universalAddressItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/universalAddress.ts#L7-L14){target=\_blank} defines the layout for addresses. It uses the binary type bytes and enforces a fixed size of 32 bytes for consistency.
+
+```typescript
+export const universalAddressItem = {
+  binary: 'bytes',
+  size: 32,
+  custom: {
+    to: (val: Uint8Array): UniversalAddress => new UniversalAddress(val),
+    from: (val: UniversalAddress): Uint8Array => val.toUint8Array(),
+  } satisfies CustomConversion<Uint8Array, UniversalAddress>,
+} as const satisfies LayoutItem;
+```
+
+This layout ensures consistent address handling by defining the following:
+
+ - **Serialization** - converts a high-level `UniversalAddress` object into raw binary (32 bytes) for efficient storage or transmission
+ - **Deserialization** - converts raw binary back into a `UniversalAddress` object, enabling further interaction in a human-readable or programmatic format
+
+### Signature Layout
+
+In the Wormhole SDK, the Signature Layout defines how to serialize and deserialize cryptographic signatures. These signatures verify message authenticity and ensure data integrity, particularly in Guardian-signed VAAs.
+
+#### Base Structure
+
+The `signatureLayout` specifies the binary structure of a secp256k1 signature. It divides the signature into three components:
+
+```typescript
+const signatureLayout = [
+  { name: 'r', binary: 'uint', size: 32 },
+  { name: 's', binary: 'uint', size: 32 },
+  { name: 'v', binary: 'uint', size: 1 },
+] as const satisfies Layout;
+```
+
+This layout provides a clear binary format for the secp256k1 signature, making it efficient to process within the Wormhole protocol.
+
+#### Layout with Custom Conversion
+
+The [`signatureItem`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/layout-items/signature.ts#L15-L22){target=\_blank} builds upon the `signatureLayout` by adding custom conversion logic. This conversion transforms raw binary data into a high-level `Signature` object and vice versa.
+
+```typescript
+export const signatureItem = {
+  binary: 'bytes',
+  layout: signatureLayout,
+  custom: {
+    to: (val: LayoutToType<typeof signatureLayout>) =>
+      new Signature(val.r, val.s, val.v),
+    from: (val: Signature) => ({ r: val.r, s: val.s, v: val.v }),
+  } satisfies CustomConversion<LayoutToType<typeof signatureLayout>, Signature>,
+} as const satisfies BytesLayoutItem;
+```
+
+The `custom` field ensures seamless integration of raw binary data with the `Signature` class, encapsulating signature-specific logic.
+
+## Advanced Use Cases
+
+The Wormhole SDK’s layout system is designed to handle various data structures and serialization needs. This section will explore more advanced use cases, such as handling conditional data structures, fixed conversions, and optimizing serialization performance.
+
+???- code "Switch Statements for Conditional Layouts"
+
+    In some cases, the structure of serialized data might change based on a specific field, such as a payload ID. The switch layout type conditionally defines layouts based on a value.
+
+    For example, different message types can be identified using a payload ID, and the layout for each message can be determined at runtime:
+
+    ```typescript
+    const switchLayout = {
+  binary: 'switch',
+  idSize: 1, // size of the payload ID
+  idTag: 'messageType', // tag to identify the type of message
+  layouts: [
+    [[1, 'messageType1'], fillLayout], // layout for type 1
+    [[2, 'messageType2'], fastFillLayout], // layout for type 2
+  ],
+} as const satisfies Layout;
+    ```
+
+    The switch statement helps developers parse multiple payload types using the same structure, depending on a control field like an ID.
+
+???- code "Fixed Conversions and Omitted Fields"
+
+    Fixed conversions and omitted fields allow developers to handle known, static data without including it in every serialization or deserialization operation. For instance, when specific fields in a layout always hold a constant value, they can be omitted from the deserialized object.
+
+    **Example: Fixed Conversion**
+
+    In some cases, a field may always contain a predefined value. The layout system supports fixed conversions, allowing developers to “hard-code” these values:
+
+    ```typescript
+    const fixedConversionLayout = {
+  binary: 'uint',
+  size: 2,
+  custom: {
+    to: 'Ethereum',
+    from: chainToChainId('Ethereum'),
+  },
+} as const satisfies Layout;
+    ```
+
+    **Example: Omitted Fields**
+
+    Omitted fields are useful for handling padding or reserved fields that do not carry meaningful information and can safely be excluded from the deserialized output:
+
+    ```typescript
+    const omittedFieldLayout = [
+  { name: 'reserved', binary: 'uint', size: 2, omit: true },
+] as const satisfies Layout;
+    ```
+
+    In this example, `reserved` is a padding field with a fixed, non-dynamic value that serves no functional purpose. It is omitted from the deserialized result but still considered during serialization to maintain the correct binary format.
+
+    Only fields with a fixed, known value, such as padding or reserved fields, should be marked as `omit: true`. Fields with meaningful or dynamic information, such as `sourceChain` or `version`, must remain in the deserialized structure to ensure data integrity and allow seamless round-trip conversions between serialized and deserialized representations.
+
+## Integration with Wormhole Protocol
+
+The layout system facilitates seamless interaction with the Wormhole protocol, mainly when dealing with VAAs. These cross-chain messages must be serialized and deserialized to ensure they can be transmitted and processed accurately across different chains.
+
+### VAAs and Layouts
+
+VAAs are the backbone of Wormhole’s cross-chain communication. Each VAA is a signed message encapsulating important information such as the originating chain, the emitter address, a sequence number, and Guardian signatures. The Wormhole SDK leverages its layout system to define, serialize, and deserialize VAAs, ensuring data integrity and chain compatibility.
+
+#### Base VAA Structure
+
+The Wormhole SDK organizes the VAA structure into three key components:
+
+ - [**Header**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank} - contains metadata such as the Guardian set index and an array of Guardian signatures
+ - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}
+ - **Payload** - provides application-specific data, such as the actual message or operation being performed
+
+**Header layout:**
+
+```typescript
+const guardianSignatureLayout = [
+  { name: 'guardianIndex', binary: 'uint', size: 1 },
+  { name: 'signature', ...signatureItem },
+] as const satisfies Layout;
+
+export const headerLayout = [
+  { name: 'version', binary: 'uint', size: 1, custom: 1, omit: true },
+  { name: 'guardianSet', ...guardianSetItem },
+  {
+    name: 'signatures',
+    binary: 'array',
+    lengthSize: 1,
+    layout: guardianSignatureLayout,
+  },
+] as const satisfies Layout;
+```
+
+The header defines metadata for validating and processing the VAA, such as the Guardian set index and signatures. Each signature is represented using the `signatureItem` layout, ensuring consistency and compatibility across different platforms.
+
+!!! note "Signature Standard Compliance"
+
+    The signature field uses the `signatureItem` layout, which is explicitly defined as 65 bytes. This layout is aligned with widely used standards such as EIP-2612 and Uniswap's Permit2, ensuring compatibility with cryptographic protocols and applications.
+
+**Envelope layout:**
+
+```typescript
+export const envelopeLayout = [
+  { name: 'timestamp', binary: 'uint', size: 4 },
+  { name: 'nonce', binary: 'uint', size: 4 },
+  { name: 'emitterChain', ...chainItem() },
+  { name: 'emitterAddress', ...universalAddressItem },
+  { name: 'sequence', ...sequenceItem },
+  { name: 'consistencyLevel', binary: 'uint', size: 1 },
+] as const satisfies Layout;
+```
+
+The envelope encapsulates the VAA's core message data, including chain-specific information like the emitter address and sequence number. This structured layout ensures that the VAA can be securely transmitted across chains.
+
+**Payload Layout:**
+
+The Payload contains the user-defined data specific to the application or protocol, such as a token transfer message, governance action, or other cross-chain operation. The layout of the payload is dynamic and depends on the payload type, identified by the `payloadLiteral` field.
+
+```typescript
+const examplePayloadLayout = [
+  { name: 'type', binary: 'uint', size: 1 },
+  { name: 'data', binary: 'bytes', lengthSize: 2 },
+] as const satisfies Layout;
+```
+
+This example demonstrates a payload containing:
+
+ - A type field specifying the operation type (e.g., transfer or governance action)
+ - A data field that is length-prefixed and can store operation-specific information
+
+Dynamic payload layouts are selected at runtime using the `payloadLiteral` field, which maps to a predefined layout in the Wormhole SDK.
+
+**Combined Base Layout:**
+
+The base VAA layout combines the header, envelope, and dynamically selected payload layout:
+
+```typescript
+export const baseLayout = [...headerLayout, ...envelopeLayout] as const;
+```
+
+At runtime, the payload layout is appended to the `baseLayout` to form the complete structure.
+
+#### Serializing VAA Data
+
+The Wormhole SDK provides the [`serialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/functions.ts#L48-L54){target=\_blank} function to serialize a VAA message. This function combines the base layout (header and envelope) with the appropriate payload layout, ensuring the message’s format is correct for transmission across chains.
+
+```typescript
+import { serialize } from '@wormhole-foundation/sdk-core/vaa/functions';
+
+const vaaData = {
+  guardianSet: 1,
+  signatures: [{ guardianIndex: 0, signature: new Uint8Array(65).fill(0) }],
+  timestamp: 1633000000,
+  nonce: 42,
+  emitterChain: 2, // Ethereum
+  emitterAddress: new Uint8Array(32).fill(0),
+  sequence: BigInt(1),
+  consistencyLevel: 1,
+  payloadLiteral: 'SomePayloadType',
+  payload: { key: 'value' },
+};
+
+const serializedVAA = serialize(vaaData);
+```
+
+???- note "How does it work?"
+
+    Internally, the serialize function dynamically combines the `baseLayout` (header and envelope) with the payload layout defined by the `payloadLiteral`. The complete layout is then passed to the `serializeLayout` function, which converts the data into binary format.
+
+    ```typescript
+    const layout = [
+  ...baseLayout, // Header and envelope layout
+  payloadLiteralToPayloadItemLayout(vaa.payloadLiteral), // Payload layout
+] as const;
+
+return serializeLayout(layout, vaa as LayoutToType<typeof layout>);
+    ```
+
+#### Deserializing VAA Data
+
+The Wormhole SDK provides the [`deserialize`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/functions.ts#L162-L200){target=\_blank} function to parse a VAA from its binary format back into a structured object. This function uses the `baseLayout` and payload discriminator logic to ensure the VAA is correctly interpreted.
+
+```typescript
+import { deserialize } from '@wormhole-foundation/sdk-core/vaa/functions';
+
+const serializedVAA = new Uint8Array([
+  /* Serialized VAA binary data */
+]);
+
+const vaaPayloadType = 'SomePayloadType'; // The payload type expected for this VAA
+const deserializedVAA = deserialize(vaaPayloadType, serializedVAA);
+```
+
+???- note "How does it work?"
+
+    Internally, the `deserialize` function uses the `baseLayout` (header and envelope) to parse the main VAA structure. It then identifies the appropriate payload layout using the provided payload type or discriminator.
+
+    ```typescript
+    const [header, envelopeOffset] = deserializeLayout(headerLayout, data, {
+  consumeAll: false,
+});
+
+const [envelope, payloadOffset] = deserializeLayout(envelopeLayout, data, {
+  offset: envelopeOffset,
+  consumeAll: false,
+});
+
+const [payloadLiteral, payload] =
+  typeof payloadDet === 'string'
+    ? [
+        payloadDet as PayloadLiteral,
+        deserializePayload(payloadDet as PayloadLiteral, data, payloadOffset),
+      ]
+    : deserializePayload(
+        payloadDet as PayloadDiscriminator,
+        data,
+        payloadOffset
+      );
+
+return {
+  ...header,
+  ...envelope,
+  payloadLiteral,
+  payload,
+} satisfies VAA;
+    ```
+
+### Registering Custom Payloads
+
+In the Wormhole SDK, payloads rely on layouts to define their binary structure, ensuring consistency and type safety across protocols. Custom payloads extend this functionality, allowing developers to handle protocol-specific features or unique use cases.
+
+To learn how to define and register payloads using layouts, refer to the [Building Protocols and Payloads](/docs/build/toolkit/typescript-sdk/protocols-payloads/){target=\_blank} page for a detailed guide.
+
+## Common Pitfalls & Best Practices
+
+When working with the Wormhole SDK layout system, it's important to be aware of a few common issues that can arise. Below are some pitfalls to avoid and best practices to ensure smooth integration.
+
+### Pitfalls to Avoid
+
+#### Defining Sizes for Data Types
+
+When defining sizes for each data type, make sure to match the actual data length to the specified size to prevent serialization and deserialization errors:
+
+ - **`uint` and `int`** - the specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure
+ - **`bytes`** - the data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail
+
+```typescript
+// Pitfall: Mismatch between the size of data and the defined size in the layout
+{ name: 'orderSender', binary: 'bytes', size: 32 }
+// If the provided data is not exactly 32 bytes, this will fail
+```
+
+#### Incorrectly Defined Arrays
+
+Arrays can be fixed-length or length-prefixed, so it’s important to define them correctly. Fixed-length arrays must match the specified length, while length-prefixed arrays need a `lengthSize` field.
+
+```typescript
+// Pitfall: Array length does not match the expected size
+{ name: 'redeemerMessage', binary: 'bytes', lengthSize: 4 }
+```
+
+### Best Practices
+
+These best practices and common pitfalls can help prevent bugs and improve the reliability of your implementation when working with layouts in the Wormhole SDK.
+
+#### Reuse Predefined Layout Items
+
+Rather than defining sizes or types manually, reuse the predefined layout items provided by the Wormhole SDK. These items ensure consistent formatting and enforce strong typing.
+
+For instance, use the `chainItem` layout for chain IDs or `universalAddressItem` for blockchain addresses:
+
+```typescript
+import {
+  chainItem,
+  universalAddressItem,
+} from '@wormhole-foundation/sdk-core/layout-items';
+
+const exampleLayout = [
+  { name: 'sourceChain', ...chainItem() }, // Use predefined chain ID layout
+  { name: 'senderAddress', ...universalAddressItem }, // Use universal address layout
+] as const;
+```
+
+By leveraging predefined layout items, you reduce redundancy, maintain consistency, and ensure compatibility with Wormhole’s standards.
+
+#### Use Class Instances
+
+Whenever possible, convert deserialized data into higher-level class instances. This makes it easier to validate, manipulate, and interact with structured data. For example, the [`UniversalAddress`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/universalAddress.ts#L17-L59){target=\_blank} class ensures consistent address handling:
+
+```typescript
+import { UniversalAddress } from '@wormhole-foundation/sdk-core';
+
+const deserializedAddress = new UniversalAddress(someBinaryData);
+```
+
+Focusing on reusing predefined layout items and converting deserialized data into higher-level abstractions can ensure a more robust and maintainable implementation.
+
+#### Consistent Error Handling
+
+Always handle errors during both serialization and deserialization. Catching exceptions allows you to log or resolve issues gracefully when working with potentially corrupted or invalid data.
+
+```typescript
+try {
+  const deserialized = deserializeLayout(fillLayout, data);
+} catch (error) {
+  console.error('Deserialization failed:', error);
+}
+```
+
+#### Leverage Reusable Layouts
+
+Creating reusable layouts for commonly repeated structures improves code maintainability and reduces duplication. These layouts can represent fields or combinations of fields frequently encountered in cross-chain communication, such as chain IDs, addresses, and signatures.
+
+For example, define a reusable layout for chain IDs and addresses:
+
+```typescript
+const commonLayout = [
+  { name: 'chainId', binary: 'uint', size: 2 },
+  { name: 'address', binary: 'bytes', size: 32 },
+] as const satisfies Layout;
+
+// Reuse the common layout in different contexts
+const exampleLayout = [
+  ...commonLayout,
+  { name: 'sequence', binary: 'uint', size: 8 },
+];
+```
+
+By abstracting common elements into a single layout, you ensure consistency across different parts of your application and simplify future updates.
+
+## Performance Considerations
+
+Efficient serialization and deserialization are crucial when handling large amounts of cross-chain data. Below are some strategies and best practices to ensure optimal performance when using Wormhole SDK layouts.
+
+### Lazy Instantiation
+
+Building a discriminator can be resource-intensive for complex or large datasets. The layout structures do not incur significant upfront costs, but deferring the creation of discriminators until needed can improve efficiency.
+
+```typescript
+const lazyDiscriminator = lazyInstantiate(() => layoutDiscriminator(layouts));
+```
+
+This approach ensures that discriminators are only built when required, helping to optimize performance, especially for complex or conditional layouts.
+
+## Resources
+
+For further learning and practical experience, explore the following resources:
+
+ - **Wormhole TypeScript SDK** - the [Wormhole SDK repository](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} contains the core implementation of layouts, including predefined layout items and utilities like `serializeLayout` and `deserializeLayout`
+
+ - **Layout tests repository** - for hands-on experimentation, check out this [layout package repository](https://github.com/nonergodic/layout){target=\_blank}, which provides examples and unit tests to help you better understand serialization, deserialization, and the strong typing mechanism. Running these tests locally is a great way to deepen your understanding of how layouts function in real-world scenarios
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/vaas-protocols/
+--- BEGIN CONTENT ---
+---
+title: VAAs and Protocols
+description: Understand how VAAs enable cross-chain messaging and how to handle them using Wormhole's TypeScript and Solidity SDKs.
+categories: Typescript-SDK
+---
+
+# VAAs and Protocols
+
+## Introduction
+
+Wormhole's core functionality revolves around [Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs), which are signed messages enabling secure and decentralized communication across chains. This guide focuses on their practical usage within the Wormhole ecosystem, specifically when working with protocol-specific messages in the [TypeScript](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and [Solidity](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} SDKs.
+
+For deeper insights into serialization, deserialization, and protocol design, refer to:
+
+- [Data Layouts](/docs/build/toolkit/typescript-sdk/sdk-layout/){target=\_blank} for serialization concepts
+- [Building Protocols and Payloads](/docs/build/toolkit/typescript-sdk/protocols-payloads/){target=\_blank} for designing custom protocol messages
+
+This guide will help you understand how to handle VAAs and protocol messages in off-chain and on-chain scenarios.
+
+## VAA Structure
+
+Understanding the structure of VAAs is fundamental to working with Wormhole's SDKs. Each section of the VAA—Header, Envelope, and Payload—serves a specific role:
+
+| Section  | Description                                                                                              |
+|----------|----------------------------------------------------------------------------------------------------------|
+| Header   |  Includes the version and guardian signature information required to verify the VAA                      |
+| Envelope |  Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp  |
+| Payload  |  Represents the actual message, in raw bytes, without a length prefix                                    |
+
+The VAA's body combines the Envelope and Payload. The Wormhole Guardians signed the core data and hashed (using `keccak256`) to generate the VAA's unique identifier.
+
+When integrating protocols like Token Bridge or Wormhole Relayer:
+
+- The TypeScript SDK handles VAAs off-chain, focusing on deserialization, validation, and payload extraction before submission
+- The Solidity SDK processes VAAs on-chain, using libraries like `VaaLib` to decode and execute protocol actions
+
+## VAAs in Protocol Contexts
+
+### How VAAs Enable Protocol-Specific Messaging
+
+VAAs are the backbone of Wormhole's cross-chain communication, encapsulating critical protocol payloads that drive actions on different blockchains. Each protocol—such as [Token Bridge](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/tokenBridge){target=\_blank}, [Wormhole Relayer](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/relayer){target=\_blank}, or [Circle CCTP](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/core/definitions/src/protocols/circleBridge){target=\_blank}—uses VAAs to securely transmit its messages across chains.
+
+Examples of mapping protocols to VAAs:
+
+| Protocol        | Payload Purpose                                           | Example                            |
+|-----------------|-----------------------------------------------------------|------------------------------------|
+| Token Bridge    |  Transfers token data and metadata                        |  Token transfer or redemption      |
+| Wormhole Relayer|  Manages delivery instructions for messages across chains |  Delivery fee or refund handling   |
+| Circle CCTP     |  Facilitates stablecoin mint-and-burn operations          |  Circle-issued stablecoin transfer |
+
+Each protocol integrates its payload format into the VAA structure, ensuring consistent message validation and execution across the ecosystem.
+
+### TypeScript SDK: Off-Chain Handling of VAAs
+
+The TypeScript SDK is designed for off-chain operations like reading, validating, and manipulating VAAs before submitting them to a chain. Developers can easily deserialize VAAs to extract protocol payloads and prepare actions such as initiating token transfers or constructing delivery instructions.
+
+In the example below, we use the real [`envelopeLayout`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/dd6bd2463264680597519285ff559f9e92e85ca7/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} from Wormhole's TS SDK to deserialize and extract essential information like the emitter chain, sequence, and [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank}:
+
+```typescript
+import { deserializeLayout } from '@wormhole-foundation/sdk-base';
+import {
+  universalAddressItem,
+  sequenceItem,
+} from '@wormhole-foundation/core/layout-items/index.js';
+
+export const envelopeLayout = [
+  { name: 'timestamp', binary: 'uint', size: 4 },
+  { name: 'nonce', binary: 'uint', size: 4 },
+  { name: 'emitterChain', binary: 'uint', size: 2 },
+  { name: 'emitterAddress', ...universalAddressItem },
+  { name: 'sequence', ...sequenceItem },
+  { name: 'consistencyLevel', binary: 'uint', size: 1 },
+] as const satisfies Layout;
+
+const encodedEnvelope = new Uint8Array([
+  /* binary envelope data */
+]);
+const deserializedEnvelope = deserializeLayout(envelopeLayout, encodedEnvelope);
+```
+
+For more details, you can refer to the [parseVAA example](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/examples/src/parseVaa.ts){target=\_blank} in the Wormhole SDK repository.
+
+### Solidity SDK: On-Chain Handling of VAAs
+
+The Solidity SDK enables on-chain processing of VAAs directly within smart contracts. This is essential for real-time validation, decoding, and execution of protocol-specific payloads. Developers can use libraries like [`VaaLib`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/e19013d08d1fdf5af9e6344c637e36a270422dd9/src/libraries/VaaLib.sol){target=\_blank} to parse the VAA header and payload, ensuring the message is authentic and consistent with Wormhole's validation.
+
+Below is an example of parsing an envelope on-chain using the Solidity SDK:
+
+```solidity
+// SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import {VaaLib} from "wormhole-sdk/libraries/VaaLib.sol";
+
+contract EnvelopeParser {
+    using VaaLib for bytes;
+
+    function parseEnvelope(
+        bytes memory encodedVaa
+    )
+        public
+        pure
+        returns (
+            uint32 timestamp,
+            uint32 nonce,
+            uint16 emitterChainId,
+            bytes32 emitterAddress,
+            uint64 sequence,
+            uint8 consistencyLevel
+        )
+    {
+        // Skip the header and decode the envelope
+        uint offset = VaaLib.skipVaaHeaderMemUnchecked(encodedVaa, 0);
+        return VaaLib.decodeVaaEnvelopeMemUnchecked(encodedVaa, offset);
+    }
+}
+```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/typescript-sdk/wormhole-sdk/
+--- BEGIN CONTENT ---
+---
+title: Wormhole TS SDK 
+description: Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC.
+categories: Typescript-SDK
+---
+
+# Wormhole TypeScript SDK
+
+## Introduction
+
+The Wormhole TypeScript SDK is useful for interacting with the chains Wormhole supports and the [protocols](#protocols) built on top of Wormhole. This package bundles together functions, definitions, and constants that streamline the process of connecting chains and completing transfers using Wormhole. The SDK also offers targeted sub-packages for Wormhole-connected platforms, which allow you to add multichain support without creating outsized dependencies.
+
+This section covers all you need to know about the functionality and ease of development offered through the Wormhole TypeScript SDK. Take a tour of the package to discover how it helps make integration easier. Learn more about how the SDK abstracts away complexities around concepts like platforms, contexts, and signers. Finally, you'll find guidance on usage, along with code examples, to show you how to use the tools of the SDK.
+
+
+<div class="grid cards" markdown>
+
+-   :octicons-download-16:{ .lg .middle } **Installation**
+
+    ---
+
+    Find installation instructions for both the meta package and installing specific, individual packages
+
+    [:custom-arrow: Install the SDK](#installation)
+
+-   :octicons-book-16:{ .lg .middle } **Concepts**
+
+    ---
+
+    Understand key concepts and how the SDK abstracts them away. Learn more about platforms, chain context, addresses, and signers
+
+    [:custom-arrow: Explore concepts](#concepts)
+
+-   :octicons-file-code-16:{ .lg .middle } **Usage**
+
+    ---
+
+    Guidance on using the SDK to add seamless interchain messaging to your application, including code examples
+
+    [:custom-arrow: Use the SDK](#usage)
+
+-   :octicons-code-square-16:{ .lg .middle } **TSdoc for SDK**
+
+    ---
+
+    Review the TSdoc for the Wormhole TypeScript SDK for a detailed look at availabel methods, classes, interfaces, and definitions
+
+    [:custom-arrow: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
+
+</div>
+
+!!! warning
+    This package is a work in progress. The interface may change, and there are likely bugs. Please [report](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} any issues you find.
+
+## Installation
+
+### Basic
+
+To install the meta package using npm, run the following command in the root directory of your project:
+
+```bash
+npm install @wormhole-foundation/sdk
+```
+
+This package combines all the individual packages to make setup easier while allowing for tree shaking.  
+
+### Advanced
+
+Alternatively, you can install a specific set of published packages individually:
+
+??? interface "`sdk-base` - exposes constants"
+
+    ```sh
+    npm install @wormhole-foundation/sdk-base
+    ```
+
+??? interface "`sdk-definitions` - exposes contract interfaces, basic types, and VAA payload definitions"
+
+    ```sh
+    npm install @wormhole-foundation/sdk-definitions
+    ```
+
+??? interface "`sdk-evm` - exposes EVM-specific utilities"
+
+    ```sh
+    npm install @wormhole-foundation/sdk-evm
+    ```
+
+??? interface "`sdk-evm-tokenbridge` - exposes the EVM Token Bridge protocol client"
+
+    ```sh
+    npm install @wormhole-foundation/sdk-evm-tokenbridge
+    ```
+
+## Usage
+
+Getting your integration started is simple. First, import Wormhole:
+
+```ts
+import { wormhole } from '@wormhole-foundation/sdk';
+
+import { Wormhole, amount, signSendWait } from '@wormhole-foundation/sdk';
+import algorand from '@wormhole-foundation/sdk/algorand';
+import aptos from '@wormhole-foundation/sdk/aptos';
+import cosmwasm from '@wormhole-foundation/sdk/cosmwasm';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { getSigner } from './helpers/index.js';
+
+(async function () {
+  const wh = await wormhole('Testnet', [
+    evm,
+    solana,
+    aptos,
+    algorand,
+    cosmwasm,
+    sui,
+  ]);
+
+  const ctx = wh.getChain('Solana');
+
+  const rcv = wh.getChain('Algorand');
+
+  const sender = await getSigner(ctx);
+  const receiver = await getSigner(rcv);
+
+  // Get a Token Bridge contract client on the source
+  const sndTb = await ctx.getTokenBridge();
+
+  // Send the native token of the source chain
+  const tokenId = Wormhole.tokenId(ctx.chain, 'native');
+
+  // Bigint amount using `amount` module
+  const amt = amount.units(amount.parse('0.1', ctx.config.nativeTokenDecimals));
+
+  // Create a transaction stream for transfers
+  const transfer = sndTb.transfer(
+    sender.address.address,
+    receiver.address,
+    tokenId.address,
+    amt
+  );
+
+  // Sign and send the transaction
+  const txids = await signSendWait(ctx, transfer, sender.signer);
+  console.log('Sent: ', txids);
+
+  // Get the Wormhole message ID from the transaction
+  const [whm] = await ctx.parseTransaction(txids[txids.length - 1]!.txid);
+  console.log('Wormhole Messages: ', whm);
+
+  const vaa = await wh.getVaa(
+    // Wormhole Message ID
+    whm!,
+    // Protocol:Payload name to use for decoding the VAA payload
+    'TokenBridge:Transfer',
+    // Timeout in milliseconds, depending on the chain and network, the VAA may take some time to be available
+    60_000
+  );
+
+  // Now get the token bridge on the redeem side
+  const rcvTb = await rcv.getTokenBridge();
+
+  // Create a transaction stream for redeeming
+  const redeem = rcvTb.redeem(receiver.address.address, vaa!);
+
+  // Sign and send the transaction
+  const rcvTxids = await signSendWait(rcv, redeem, receiver.signer);
+  console.log('Sent: ', rcvTxids);
+
+  // Now check if the transfer is completed according to
+  // the destination token bridge
+  const finished = await rcvTb.isTransferCompleted(vaa!);
+  console.log('Transfer completed: ', finished);
+})();
+```
+
+Then, import each of the ecosystem [platforms](#platforms) that you wish to support:
+
+```ts
+import aptos from '@wormhole-foundation/sdk/aptos';
+import cosmwasm from '@wormhole-foundation/sdk/cosmwasm';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+```
+
+
+To make the [platform](#platforms) modules available for use, pass them to the Wormhole constructor:
+
+```ts
+evm,
+    solana,
+    aptos,
+    algorand,
+    cosmwasm,
+    sui,
+  ]);
+```
+
+With a configured Wormhole object, you can do things like parse addresses for the provided platforms, get a [`ChainContext`](#chain-context) object, or fetch VAAs.
+
+```ts
+
+```
+
+You can retrieve a VAA as follows. In this example, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will vary by network.
+
+```ts
+// Wormhole Message ID
+    whm!,
+    // Protocol:Payload name to use for decoding the VAA payload
+    'TokenBridge:Transfer',
+    // Timeout in milliseconds, depending on the chain and network, the VAA may take some time to be available
+    60_000
+  );
+```
+
+??? code "View the complete script"
+    ```ts
+    import { wormhole } from '@wormhole-foundation/sdk';
+
+import { Wormhole, amount, signSendWait } from '@wormhole-foundation/sdk';
+import algorand from '@wormhole-foundation/sdk/algorand';
+import aptos from '@wormhole-foundation/sdk/aptos';
+import cosmwasm from '@wormhole-foundation/sdk/cosmwasm';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { getSigner } from './helpers/index.js';
+
+(async function () {
+  const wh = await wormhole('Testnet', [
+    evm,
+    solana,
+    aptos,
+    algorand,
+    cosmwasm,
+    sui,
+  ]);
+
+  const ctx = wh.getChain('Solana');
+
+  const rcv = wh.getChain('Algorand');
+
+  const sender = await getSigner(ctx);
+  const receiver = await getSigner(rcv);
+
+  // Get a Token Bridge contract client on the source
+  const sndTb = await ctx.getTokenBridge();
+
+  // Send the native token of the source chain
+  const tokenId = Wormhole.tokenId(ctx.chain, 'native');
+
+  // Bigint amount using `amount` module
+  const amt = amount.units(amount.parse('0.1', ctx.config.nativeTokenDecimals));
+
+  // Create a transaction stream for transfers
+  const transfer = sndTb.transfer(
+    sender.address.address,
+    receiver.address,
+    tokenId.address,
+    amt
+  );
+
+  // Sign and send the transaction
+  const txids = await signSendWait(ctx, transfer, sender.signer);
+  console.log('Sent: ', txids);
+
+  // Get the Wormhole message ID from the transaction
+  const [whm] = await ctx.parseTransaction(txids[txids.length - 1]!.txid);
+  console.log('Wormhole Messages: ', whm);
+
+  const vaa = await wh.getVaa(
+    // Wormhole Message ID
+    whm!,
+    // Protocol:Payload name to use for decoding the VAA payload
+    'TokenBridge:Transfer',
+    // Timeout in milliseconds, depending on the chain and network, the VAA may take some time to be available
+    60_000
+  );
+
+  // Now get the token bridge on the redeem side
+  const rcvTb = await rcv.getTokenBridge();
+
+  // Create a transaction stream for redeeming
+  const redeem = rcvTb.redeem(receiver.address.address, vaa!);
+
+  // Sign and send the transaction
+  const rcvTxids = await signSendWait(rcv, redeem, receiver.signer);
+  console.log('Sent: ', rcvTxids);
+
+  // Now check if the transfer is completed according to
+  // the destination token bridge
+  const finished = await rcvTb.isTransferCompleted(vaa!);
+  console.log('Transfer completed: ', finished);
+})();
+    ```
+
+Optionally, you can override the default configuration with a partial `WormholeConfig` object to specify particular fields, such as a different RPC endpoint.
+
+```ts
+const wh = await wormhole('Testnet', [solana], {
+  chains: {
+    Solana: {
+      contracts: {
+        coreBridge: '11111111111111111111111111111',
+      },
+      rpc: 'https://api.devnet.solana.com',
+    },
+  },
+});
+```
+
+??? code "View the complete script"
+    ```ts
+    import { wormhole } from '@wormhole-foundation/sdk';
+import solana from '@wormhole-foundation/sdk/solana';
+(async function () {
+  const wh = await wormhole('Testnet', [solana], {
+    chains: {
+      Solana: {
+        contracts: {
+          coreBridge: '11111111111111111111111111111',
+        },
+        rpc: 'https://api.devnet.solana.com',
+      },
+    },
+  });
+  console.log(wh.config.chains.Solana);
+})();
+    ```
+
+## Concepts
+
+Understanding several higher-level Wormhole concepts and how the SDK abstracts them away will help you use the tools most effectively. The following sections will introduce and discuss the concepts of platforms, chain contexts, addresses, signers, and protocols, how they are used in the Wormhole context, and how the SDK helps ease development in each conceptual area.
+
+### Platforms
+
+While every chain has unique attributes, chains from the same platform typically have standard functionalities they share. The SDK includes `Platform` modules, which create a standardized interface for interacting with the chains of a supported platform. The contents of a module vary by platform but can include:
+
+- Protocols, such as [Wormhole core](#wormhole-core), preconfigured to suit the selected platform
+- Definitions and configurations for types, signers, addresses, and chains 
+- Helpers configured for dealing with unsigned transactions on the selected platform
+
+These modules also import and expose essential functions and define types or constants from the chain's native ecosystem to reduce the dependencies needed to interact with a chain using Wormhole. Rather than installing the entire native package for each desired platform, you can install a targeted package of standardized functions and definitions essential to connecting with Wormhole, keeping project dependencies as slim as possible.
+
+
+Wormhole currently supports the following platforms:
+
+- EVM
+- Solana
+- Cosmos
+- Sui
+- Aptos
+- Algorand
+
+See the [Platforms folder of the TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/platforms){target=\_blank} for an up-to-date list of the platforms supported by the Wormhole TypeScript SDK.
+
+### Chain Context
+
+The `definitions` package of the SDK includes the `ChainContext` class, which creates an interface for working with connected chains in a standardized way. This class contains the network, chain, and platform configurations for connected chains and cached RPC and protocol clients. The `ChainContext` class also exposes chain-specific methods and utilities. Much of the functionality comes from the `Platform` methods but some specific chains may have overridden methods via the context. This is also where the `Network`, `Chain`, and `Platform` type parameters which are used throughout the package are defined.
+
+```ts
+const srcChain = wh.getChain(senderAddress.chain);
+const dstChain = wh.getChain(receiverAddress.chain);
+
+const tb = await srcChain.getTokenBridge(); // => TokenBridge<'Evm'>
+srcChain.getRpcClient(); // => RpcClient<'Evm'>
+```
+
+### Addresses
+
+The SDK uses the `UniversalAddress` class to implement the `Address` interface, which all address types must implement. Addresses from various networks are parsed into their byte representation and modified as needed to ensure they are exactly 32 bytes long. Each platform also has an address type that understands the native address formats, referred to as `NativeAddress.` These abstractions allow you to work with addresses consistently regardless of the underlying chain.
+
+```ts
+// It's possible to convert a string address to its Native address
+const ethAddr: NativeAddress<'Evm'> = toNative('Ethereum', '0xbeef...');
+
+// A common type in the SDK is the `ChainAddress` which provides
+// the additional context of the `Chain` this address is relevant for
+const senderAddress: ChainAddress = Wormhole.chainAddress(
+  'Ethereum',
+  '0xbeef...'
+);
+const receiverAddress: ChainAddress = Wormhole.chainAddress(
+  'Solana',
+  'Sol1111...'
+);
+
+// Convert the ChainAddress back to its canonical string address format
+const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
+
+// Or if the ethAddr above is for an emitter and you need the UniversalAddress
+const emitterAddr = ethAddr.toUniversalAddress().toString();
+```
+
+### Tokens
+
+Similar to the `ChainAddress` type, the `TokenId` type provides the chain and address of a given token. The following snippet introduces `TokenId`, a way to uniquely identify any token, whether it's a standard token or a blockchain's native currency (like ETH for Ethereum).
+
+Wormhole uses their contract address to create a `TokenId` for standard tokens. For native currencies, Wormhole uses the keyword `native` instead of an address. This makes it easy to work with any type of token consistently.
+
+Finally, the snippet demonstrates how to convert a `TokenId` back into a regular address format when needed.
+
+```ts
+const sourceToken: TokenId = Wormhole.tokenId('Ethereum', '0xbeef...');
+
+const gasToken: TokenId = Wormhole.tokenId('Ethereum', 'native');
+
+const strAddress = Wormhole.canonicalAddress(senderAddress); // => '0xbeef...'
+```
+
+### Signers
+
+Certain methods of signing transactions require a `Signer` interface in the SDK. Depending on the specific requirements, this interface can be fulfilled by either a `SignOnlySigner` or a `SignAndSendSigner`. A signer can be created by wrapping an offline or web wallet.
+
+A `SignOnlySigner` is used when the signer isn't connected to the network or prefers not to broadcast transactions themselves. It accepts an array of unsigned transactions and returns an array of signed and serialized transactions. Before signing, the transactions may be inspected or altered. It's important to note that the serialization process is chain-specific. Refer to the testing signers (e.g., [EVM](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/evm/src/signer.ts){target=\_blank} or [Solana](https://github.com/wormhole-foundation/connect-sdk/blob/main/platforms/solana/src/signer.ts){target=\_blank}) for an example of how to implement a signer for a specific chain or platform.
+
+Conversely, a `SignAndSendSigner` is appropriate when the signer is connected to the network and intends to broadcast the transactions. This type of signer also accepts an array of unsigned transactions but returns an array of transaction IDs corresponding to the order of the unsigned transactions.
+
+```ts
+export type Signer = SignOnlySigner | SignAndSendSigner;
+
+export interface SignOnlySigner {
+  chain(): ChainName;
+  address(): string;
+  // Accept an array of unsigned transactions and return
+  // an array of signed and serialized transactions.
+  // The transactions may be inspected or altered before
+  // signing.
+  sign(tx: UnsignedTransaction[]): Promise<SignedTx[]>;
+}
+
+export interface SignAndSendSigner {
+  chain(): ChainName;
+  address(): string;
+  // Accept an array of unsigned transactions and return
+  // an array of transaction ids in the same order as the
+  // unsignedTransactions array.
+  signAndSend(tx: UnsignedTransaction[]): Promise<TxHash[]>;
+}
+```
+
+#### Set Up a Signer with Ethers.js
+
+To sign transactions programmatically with the Wormhole SDK, you can use Ethers.js to manage private keys and handle signing. Here's an example of setting up a signer using Ethers.js:
+
+```javascript
+import { ethers } from 'ethers';
+
+// Update the following variables
+const rpcUrl = 'INSERT_RPC_URL';
+const privateKey = 'INSERT_PRIVATE_KEY';
+const toAddress = 'INSERT_RECIPIENT_ADDRESS';
+
+// Set up a provider and signer
+const provider = new ethers.JsonRpcProvider(rpcUrl);
+const signer = new ethers.Wallet(privateKey, provider);
+
+// Example: Signing and sending a transaction
+async function sendTransaction() {
+  const tx = {
+    to: toAddress,
+    value: ethers.parseUnits('0.1'), // Sending 0.1 ETH
+    gasPrice: await provider.getGasPrice(),
+    gasLimit: ethers.toBeHex(21000),
+  };
+
+  const transaction = await signer.sendTransaction(tx);
+  console.log('Transaction hash:', transaction.hash);
+}
+sendTransaction();
+```
+
+ - **`provider`** - responsible for connecting to the Ethereum network (or any EVM-compatible network). It acts as a bridge between your application and the blockchain, allowing you to fetch data, check the state of the blockchain, and submit transactions
+
+ - **`signer`** - represents the account that will sign the transaction. In this case, you’re creating a signer using the private key associated with the account. The signer is responsible for authorizing transactions by digitally signing them with the private key
+
+ - **`Wallet`** - combines both the provider (for blockchain interaction) and the signer (for transaction authorization), allowing you to sign and send transactions programmatically
+
+These components work together to create, sign, and submit a transaction to the blockchain.
+
+???- tip "Managing Private Keys Securely"
+    Handling private keys is unavoidable, so it’s crucial to manage them securely. Here are some best practices:
+
+     - **Use environment variables** - avoid hardcoding private keys in your code. Use environment variables or secret management tools to inject private keys securely
+     - **Hardware wallets** - for production environments, consider integrating hardware wallets to keep private keys secure while allowing programmatic access through the SDK
+
+### Protocols
+
+While Wormhole is a Generic Message Passing (GMP) protocol, several protocols have been built to provide specific functionality. If available, each protocol will have a platform-specific implementation. These implementations provide methods to generate transactions or read state from the contract on-chain.
+
+#### Wormhole Core
+
+The core protocol underlies all Wormhole activity. This protocol is responsible for emitting the message containing the information necessary to perform bridging, including the [emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter){target=\_blank}, the [sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence){target=\_blank} for the message, and the payload of the message itself.
+
+The following example demonstrates sending and verifying a message using the Wormhole Core protocol on Solana.
+
+First, initialize a Wormhole instance for the Testnet environment, specifically for the Solana chain. Then, obtain a signer and its associated address, which will be used to sign transactions.
+
+Next, get a reference to the core messaging bridge, which is the main interface for interacting with Wormhole's cross-chain messaging capabilities.
+The code then prepares a message for publication. This message includes:
+
+- The sender's address
+- The message payload (in this case, the encoded string `lol`)
+- A nonce (set to `0` here, but can be any user-defined value to uniquely identify the message)
+- A [consistency (finality) level](/docs/build/reference/consistency-levels/){target=\_blank} (set to `0`, which determines the finality requirements for the message)
+
+After preparing the message, the next steps are to generate, sign, and send the transaction or transactions required to publish the message on the Solana blockchain. Once the transaction is confirmed, the Wormhole message ID is extracted from the transaction logs. This ID is crucial for tracking the message across chains.
+
+The code then waits for the Wormhole network to process and sign the message, turning it into a Verified Action Approval (VAA). This VAA is retrieved in a `Uint8Array` format, with a timeout of 60 seconds.
+
+Lastly, the code will demonstrate how to verify the message on the receiving end. A verification transaction is prepared using the original sender's address and the VAA, and finally, this transaction is signed and sent.
+
+???+ code "View the complete script"
+    ```ts
+    import { encoding, signSendWait, wormhole } from '@wormhole-foundation/sdk';
+import { getSigner } from './helpers/index.js';
+import solana from '@wormhole-foundation/sdk/solana';
+import evm from '@wormhole-foundation/sdk/evm';
+
+(async function () {
+  const wh = await wormhole('Testnet', [solana, evm]);
+
+  const chain = wh.getChain('Avalanche');
+  const { signer, address } = await getSigner(chain);
+
+  // Get a reference to the core messaging bridge
+  const coreBridge = await chain.getWormholeCore();
+
+  // Generate transactions, sign and send them
+  const publishTxs = coreBridge.publishMessage(
+    // Address of sender (emitter in VAA)
+    address.address,
+    // Message to send (payload in VAA)
+    encoding.bytes.encode('lol'),
+    // Nonce (user defined, no requirement for a specific value, useful to provide a unique identifier for the message)
+    0,
+    // ConsistencyLevel (ie finality of the message, see wormhole docs for more)
+    0
+  );
+  // Send the transaction(s) to publish the message
+  const txids = await signSendWait(chain, publishTxs, signer);
+
+  // Take the last txid in case multiple were sent
+  // The last one should be the one containing the relevant
+  // event or log info
+  const txid = txids[txids.length - 1];
+
+  // Grab the wormhole message id from the transaction logs or storage
+  const [whm] = await chain.parseTransaction(txid!.txid);
+
+  // Wait for the vaa to be signed and available with a timeout
+  const vaa = await wh.getVaa(whm!, 'Uint8Array', 60_000);
+  console.log(vaa);
+
+  // Note: calling verifyMessage manually is typically not a useful thing to do
+  // As the VAA is typically submitted to the counterpart contract for
+  // A given protocol and the counterpart contract will verify the VAA
+  // This is simply for demo purposes
+  const verifyTxs = coreBridge.verifyMessage(address.address, vaa!);
+  console.log(await signSendWait(chain, verifyTxs, signer));
+})();
+    ```
+
+The payload contains the information necessary to perform whatever action is required based on the protocol that uses it.
+
+#### Token Bridge
+
+The most familiar protocol built on Wormhole is the Token Bridge. Every chain has a `TokenBridge` protocol client that provides a consistent interface for interacting with the Token Bridge, which includes methods to generate the transactions required to transfer tokens and methods to generate and redeem attestations. `WormholeTransfer` abstractions are the recommended way to interact with these protocols, but it is possible to use them directly.
+
+```ts
+import { signSendWait } from '@wormhole-foundation/sdk';
+
+const tb = await srcChain.getTokenBridge(); 
+
+const token = '0xdeadbeef...';
+const txGenerator = tb.createAttestation(token); 
+const txids = await signSendWait(srcChain, txGenerator, src.signer);
+```
+
+Supported protocols are defined in the [definitions module](https://github.com/wormhole-foundation/connect-sdk/tree/main/core/definitions/src/protocols){target=\_blank}.
+
+## Transfers
+
+While using the [`ChainContext`](#chain-context) and [`Protocol`](#protocols) clients directly is possible, the SDK provides some helpful abstractions for transferring tokens.
+
+The `WormholeTransfer` interface provides a convenient abstraction to encapsulate the steps involved in a cross-chain transfer.
+
+### Token Transfers
+
+Performing a token transfer is trivial for any source and destination chains. You can create a new `Wormhole` object to make objects like `TokenTransfer` and `CircleTransfer`, to transfer tokens between chains.
+
+The following example demonstrates the process of initiating and completing a token transfer. It starts by creating a `TokenTransfer` object, which tracks the transfer's state throughout its lifecycle. The code then obtains a quote for the transfer, ensuring the amount is sufficient to cover fees and any requested native gas.
+
+The transfer process is divided into three main steps:
+
+1. Initiating the transfer on the source chain
+2. Waiting for the transfer to be attested (if not automatic)
+3. Completing the transfer on the destination chain
+
+For automatic transfers, the process ends after initiation. The code waits for the transfer to be attested for manual transfers and then completes it on the destination chain.
+
+```ts
+const xfer = await wh.tokenTransfer(
+    route.token,
+    route.amount,
+    route.source.address,
+    route.destination.address,
+    route.delivery?.automatic ?? false,
+    route.payload,
+    route.delivery?.nativeGas
+  );
+
+  const quote = await TokenTransfer.quoteTransfer(
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    xfer.transfer
+  );
+  console.log(quote);
+
+  if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
+
+  // 1) Submit the transactions to the source chain, passing a signer to sign any txns
+  console.log('Starting transfer');
+  const srcTxids = await xfer.initiateTransfer(route.source.signer);
+  console.log(`Started transfer: `, srcTxids);
+
+  // If automatic, we're done
+  if (route.delivery?.automatic) return xfer;
+
+  // 2) Wait for the VAA to be signed and ready (not required for auto transfer)
+  console.log('Getting Attestation');
+  const attestIds = await xfer.fetchAttestation(60_000);
+  console.log(`Got Attestation: `, attestIds);
+
+  // 3) Redeem the VAA on the dest chain
+  console.log('Completing Transfer');
+  const destTxids = await xfer.completeTransfer(route.destination.signer);
+  console.log(`Completed Transfer: `, destTxids);
+```
+
+??? code "View the complete script"
+    ```ts hl_lines="122"
+    import {
+  Chain,
+  Network,
+  TokenId,
+  TokenTransfer,
+  Wormhole,
+  amount,
+  isTokenId,
+  wormhole,
+} from '@wormhole-foundation/sdk';
+
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
+
+(async function () {
+  // Init Wormhole object, passing config for which network
+  // to use (e.g. Mainnet/Testnet) and what Platforms to support
+  const wh = await wormhole('Testnet', [evm, solana]);
+
+  // Grab chain Contexts -- these hold a reference to a cached rpc client
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Solana');
+
+  // Shortcut to allow transferring native gas token
+  const token = Wormhole.tokenId(sendChain.chain, 'native');
+
+  // A TokenId is just a `{chain, address}` pair and an alias for ChainAddress
+  // The `address` field must be a parsed address.
+  // You can get a TokenId (or ChainAddress) prepared for you
+  // by calling the static `chainAddress` method on the Wormhole class.
+  // e.g.
+  // wAvax on Solana
+  // const token = Wormhole.tokenId("Solana", "3Ftc5hTz9sG4huk79onufGiebJNDMZNL8HYgdMJ9E7JR");
+  // wSol on Avax
+  // const token = Wormhole.tokenId("Avalanche", "0xb10563644a6AB8948ee6d7f5b0a1fb15AaEa1E03");
+
+  // Normalized given token decimals later but can just pass bigints as base units
+  // Note: The Token bridge will dedust past 8 decimals
+  // This means any amount specified past that point will be returned
+  // To the caller
+  const amt = '0.05';
+
+  // With automatic set to true, perform an automatic transfer. This will invoke a relayer
+  // Contract intermediary that knows to pick up the transfers
+  // With automatic set to false, perform a manual transfer from source to destination
+  // Of the token
+  // On the destination side, a wrapped version of the token will be minted
+  // To the address specified in the transfer VAA
+  const automatic = false;
+
+  // The Wormhole relayer has the ability to deliver some native gas funds to the destination account
+  // The amount specified for native gas will be swapped for the native gas token according
+  // To the swap rate provided by the contract, denominated in native gas tokens
+  const nativeGas = automatic ? '0.01' : undefined;
+
+  // Get signer from local key but anything that implements
+  // Signer interface (e.g. wrapper around web wallet) should work
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
+
+  // Used to normalize the amount to account for the tokens decimals
+  const decimals = isTokenId(token)
+    ? Number(await wh.getDecimals(token.chain, token.address))
+    : sendChain.config.nativeTokenDecimals;
+
+  // Set this to true if you want to perform a round trip transfer
+  const roundTrip: boolean = false;
+
+  // Set this to the transfer txid of the initiating transaction to recover a token transfer
+  // And attempt to fetch details about its progress.
+  let recoverTxid = undefined;
+
+  // Finally create and perform the transfer given the parameters set above
+  const xfer = !recoverTxid
+    ? // Perform the token transfer
+      await tokenTransfer(
+        wh,
+        {
+          token,
+          amount: amount.units(amount.parse(amt, decimals)),
+          source,
+          destination,
+          delivery: {
+            automatic,
+            nativeGas: nativeGas
+              ? amount.units(amount.parse(nativeGas, decimals))
+              : undefined,
+          },
+        },
+        roundTrip
+      )
+    : // Recover the transfer from the originating txid
+      await TokenTransfer.from(wh, {
+        chain: source.chain.chain,
+        txid: recoverTxid,
+      });
+
+  const receipt = await waitLog(wh, xfer);
+
+  // Log out the results
+  console.log(receipt);
+})();
+
+async function tokenTransfer<N extends Network>(
+  wh: Wormhole<N>,
+  route: {
+    token: TokenId;
+    amount: bigint;
+    source: SignerStuff<N, Chain>;
+    destination: SignerStuff<N, Chain>;
+    delivery?: {
+      automatic: boolean;
+      nativeGas?: bigint;
+    };
+    payload?: Uint8Array;
+  },
+  roundTrip?: boolean
+): Promise<TokenTransfer<N>> {
+  // Create a TokenTransfer object to track the state of the transfer over time
+  const xfer = await wh.tokenTransfer(
+    route.token,
+    route.amount,
+    route.source.address,
+    route.destination.address,
+    route.delivery?.automatic ?? false,
+    route.payload,
+    route.delivery?.nativeGas
+  );
+
+  const quote = await TokenTransfer.quoteTransfer(
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    xfer.transfer
+  );
+  console.log(quote);
+
+  if (xfer.transfer.automatic && quote.destinationToken.amount < 0)
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
+
+  // 1) Submit the transactions to the source chain, passing a signer to sign any txns
+  console.log('Starting transfer');
+  const srcTxids = await xfer.initiateTransfer(route.source.signer);
+  console.log(`Started transfer: `, srcTxids);
+
+  // If automatic, we're done
+  if (route.delivery?.automatic) return xfer;
+
+  // 2) Wait for the VAA to be signed and ready (not required for auto transfer)
+  console.log('Getting Attestation');
+  const attestIds = await xfer.fetchAttestation(60_000);
+  console.log(`Got Attestation: `, attestIds);
+
+  // 3) Redeem the VAA on the dest chain
+  console.log('Completing Transfer');
+  const destTxids = await xfer.completeTransfer(route.destination.signer);
+  console.log(`Completed Transfer: `, destTxids);
+
+  // If no need to send back, dip
+  if (!roundTrip) return xfer;
+
+  const { destinationToken: token } = quote;
+  return await tokenTransfer(wh, {
+    ...route,
+    token: token.token,
+    amount: token.amount,
+    source: route.destination,
+    destination: route.source,
+  });
+}
+    ```
+
+Internally, this uses the [TokenBridge](#token-bridge) protocol client to transfer tokens. Like other Protocols, the `TokenBridge` protocol provides a consistent set of methods across all chains to generate a set of transactions for that specific chain.
+
+### Native USDC Transfers
+
+You can also transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. Please note that if the transfer is set to `Automatic` mode, a fee for performing the relay will be included in the quote. This fee is deducted from the total amount requested to be sent. For example, if the user wishes to receive `1.0` on the destination, the amount sent should be adjusted to `1.0` plus the relay fee. The same principle applies to native gas drop offs.
+
+In the following example, the `wh.circleTransfer` function is called with several parameters to set up the transfer. It takes the amount to be transferred (in the token's base units), the sender's chain and address, and the receiver's chain and address. The function also allows specifying whether the transfer should be automatic, meaning it will be completed without further user intervention.
+
+An optional payload can be included with the transfer, though it's set to undefined in this case. Finally, if the transfer is automatic, you can request that native gas (the blockchain's native currency used for transaction fees) be sent to the receiver along with the transferred tokens.
+
+When waiting for the `VAA`, a timeout of `60,000` milliseconds is used. The amount of time required for the VAA to become available will [vary by network](https://developers.circle.com/stablecoins/docs/required-block-confirmations#mainnet){target=\_blank}.
+
+```ts
+// Amount as bigint (base units)
+    req.amount,
+    // Sender chain/address
+    src.address,
+    // Receiver chain/address
+    dst.address,
+    // Automatic delivery boolean
+    req.automatic,
+    // Payload to be sent with the transfer
+    undefined,
+    // If automatic, native gas can be requested to be sent to the receiver
+    req.nativeGas
+  );
+
+  // Note, if the transfer is requested to be Automatic, a fee for performing the relay
+  // will be present in the quote. The fee comes out of the amount requested to be sent.
+  // If the user wants to receive 1.0 on the destination, the amount to send should be 1.0 + fee.
+  // The same applies for native gas dropoff
+  const quote = await CircleTransfer.quoteTransfer(
+    src.chain,
+    dst.chain,
+    xfer.transfer
+  );
+  console.log('Quote', quote);
+
+  console.log('Starting Transfer');
+  const srcTxids = await xfer.initiateTransfer(src.signer);
+  console.log(`Started Transfer: `, srcTxids);
+
+  if (req.automatic) {
+    const relayStatus = await waitForRelay(srcTxids[srcTxids.length - 1]!);
+    console.log(`Finished relay: `, relayStatus);
+    return;
+  }
+
+  console.log('Waiting for Attestation');
+  const attestIds = await xfer.fetchAttestation(60_000);
+  console.log(`Got Attestation: `, attestIds);
+
+  console.log('Completing Transfer');
+  const dstTxids = await xfer.completeTransfer(dst.signer);
+  console.log(`Completed Transfer: `, dstTxids);
+}
+```
+
+??? code "View the complete script"
+    ```ts
+    import {
+  Chain,
+  CircleTransfer,
+  Network,
+  Signer,
+  TransactionId,
+  TransferState,
+  Wormhole,
+  amount,
+  wormhole,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { SignerStuff, getSigner, waitForRelay } from './helpers/index.js';
+
+/*
+Notes:
+Only a subset of chains are supported by Circle for CCTP, see core/base/src/constants/circle.ts for currently supported chains
+
+AutoRelayer takes a 0.1 USDC fee when transferring to any chain beside Goerli, which is 1 USDC
+*/
+//
+
+(async function () {
+  // Init the Wormhole object, passing in the config for which network
+  // to use (e.g. Mainnet/Testnet) and what Platforms to support
+  const wh = await wormhole('Testnet', [evm, solana]);
+
+  // Grab chain Contexts
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Solana');
+
+  // Get signer from local key but anything that implements
+  // Signer interface (e.g. wrapper around web wallet) should work
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
+
+  // 6 decimals for USDC (except for BSC, so check decimals before using this)
+  const amt = amount.units(amount.parse('0.2', 6));
+
+  // Choose whether or not to have the attestation delivered for you
+  const automatic = false;
+
+  // If the transfer is requested to be automatic, you can also request that
+  // during redemption, the receiver gets some amount of native gas transferred to them
+  // so that they may pay for subsequent transactions
+  // The amount specified here is denominated in the token being transferred (USDC here)
+  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
+
+  await cctpTransfer(wh, source, destination, {
+    amount: amt,
+    automatic,
+    nativeGas,
+  });
+
+})();
+
+async function cctpTransfer<N extends Network>(
+  wh: Wormhole<N>,
+  src: SignerStuff<N, any>,
+  dst: SignerStuff<N, any>,
+  req: {
+    amount: bigint;
+    automatic: boolean;
+    nativeGas?: bigint;
+  }
+) {
+
+  const xfer = await wh.circleTransfer(
+    // Amount as bigint (base units)
+    req.amount,
+    // Sender chain/address
+    src.address,
+    // Receiver chain/address
+    dst.address,
+    // Automatic delivery boolean
+    req.automatic,
+    // Payload to be sent with the transfer
+    undefined,
+    // If automatic, native gas can be requested to be sent to the receiver
+    req.nativeGas
+  );
+
+  // Note, if the transfer is requested to be Automatic, a fee for performing the relay
+  // will be present in the quote. The fee comes out of the amount requested to be sent.
+  // If the user wants to receive 1.0 on the destination, the amount to send should be 1.0 + fee.
+  // The same applies for native gas dropoff
+  const quote = await CircleTransfer.quoteTransfer(
+    src.chain,
+    dst.chain,
+    xfer.transfer
+  );
+  console.log('Quote', quote);
+
+  console.log('Starting Transfer');
+  const srcTxids = await xfer.initiateTransfer(src.signer);
+  console.log(`Started Transfer: `, srcTxids);
+
+  if (req.automatic) {
+    const relayStatus = await waitForRelay(srcTxids[srcTxids.length - 1]!);
+    console.log(`Finished relay: `, relayStatus);
+    return;
+  }
+
+  console.log('Waiting for Attestation');
+  const attestIds = await xfer.fetchAttestation(60_000);
+  console.log(`Got Attestation: `, attestIds);
+
+  console.log('Completing Transfer');
+  const dstTxids = await xfer.completeTransfer(dst.signer);
+  console.log(`Completed Transfer: `, dstTxids);
+}
+
+export async function completeTransfer(
+  wh: Wormhole<Network>,
+  txid: TransactionId,
+  signer: Signer
+): Promise<void> {
+
+  const xfer = await CircleTransfer.from(wh, txid);
+
+  const attestIds = await xfer.fetchAttestation(60 * 60 * 1000);
+  console.log('Got attestation: ', attestIds);
+
+  const dstTxIds = await xfer.completeTransfer(signer);
+  console.log('Completed transfer: ', dstTxIds);
+}
+    ```
+
+### Recovering Transfers
+
+It may be necessary to recover an abandoned transfer before it is completed. To do this, instantiate the `Transfer` class with the `from` static method and pass one of several types of identifiers. A `TransactionId` or `WormholeMessageId` may be used to recover the transfer.
+
+```ts
+const attestIds = await xfer.fetchAttestation(60 * 60 * 1000);
+  console.log('Got attestation: ', attestIds);
+
+  const dstTxIds = await xfer.completeTransfer(signer);
+  console.log('Completed transfer: ', dstTxIds);
+```
+
+??? code "View the complete script"
+    ```ts hl_lines="130"
+    import {
+  Chain,
+  CircleTransfer,
+  Network,
+  Signer,
+  TransactionId,
+  TransferState,
+  Wormhole,
+  amount,
+  wormhole,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { SignerStuff, getSigner, waitForRelay } from './helpers/index.js';
+
+/*
+Notes:
+Only a subset of chains are supported by Circle for CCTP, see core/base/src/constants/circle.ts for currently supported chains
+
+AutoRelayer takes a 0.1 USDC fee when transferring to any chain beside Goerli, which is 1 USDC
+*/
+//
+
+(async function () {
+  // Init the Wormhole object, passing in the config for which network
+  // to use (e.g. Mainnet/Testnet) and what Platforms to support
+  const wh = await wormhole('Testnet', [evm, solana]);
+
+  // Grab chain Contexts
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Solana');
+
+  // Get signer from local key but anything that implements
+  // Signer interface (e.g. wrapper around web wallet) should work
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
+
+  // 6 decimals for USDC (except for BSC, so check decimals before using this)
+  const amt = amount.units(amount.parse('0.2', 6));
+
+  // Choose whether or not to have the attestation delivered for you
+  const automatic = false;
+
+  // If the transfer is requested to be automatic, you can also request that
+  // during redemption, the receiver gets some amount of native gas transferred to them
+  // so that they may pay for subsequent transactions
+  // The amount specified here is denominated in the token being transferred (USDC here)
+  const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
+
+  await cctpTransfer(wh, source, destination, {
+    amount: amt,
+    automatic,
+    nativeGas,
+  });
+
+})();
+
+async function cctpTransfer<N extends Network>(
+  wh: Wormhole<N>,
+  src: SignerStuff<N, any>,
+  dst: SignerStuff<N, any>,
+  req: {
+    amount: bigint;
+    automatic: boolean;
+    nativeGas?: bigint;
+  }
+) {
+
+  const xfer = await wh.circleTransfer(
+    // Amount as bigint (base units)
+    req.amount,
+    // Sender chain/address
+    src.address,
+    // Receiver chain/address
+    dst.address,
+    // Automatic delivery boolean
+    req.automatic,
+    // Payload to be sent with the transfer
+    undefined,
+    // If automatic, native gas can be requested to be sent to the receiver
+    req.nativeGas
+  );
+
+  // Note, if the transfer is requested to be Automatic, a fee for performing the relay
+  // will be present in the quote. The fee comes out of the amount requested to be sent.
+  // If the user wants to receive 1.0 on the destination, the amount to send should be 1.0 + fee.
+  // The same applies for native gas dropoff
+  const quote = await CircleTransfer.quoteTransfer(
+    src.chain,
+    dst.chain,
+    xfer.transfer
+  );
+  console.log('Quote', quote);
+
+  console.log('Starting Transfer');
+  const srcTxids = await xfer.initiateTransfer(src.signer);
+  console.log(`Started Transfer: `, srcTxids);
+
+  if (req.automatic) {
+    const relayStatus = await waitForRelay(srcTxids[srcTxids.length - 1]!);
+    console.log(`Finished relay: `, relayStatus);
+    return;
+  }
+
+  console.log('Waiting for Attestation');
+  const attestIds = await xfer.fetchAttestation(60_000);
+  console.log(`Got Attestation: `, attestIds);
+
+  console.log('Completing Transfer');
+  const dstTxids = await xfer.completeTransfer(dst.signer);
+  console.log(`Completed Transfer: `, dstTxids);
+}
+
+export async function completeTransfer(
+  wh: Wormhole<Network>,
+  txid: TransactionId,
+  signer: Signer
+): Promise<void> {
+
+  const xfer = await CircleTransfer.from(wh, txid);
+
+  const attestIds = await xfer.fetchAttestation(60 * 60 * 1000);
+  console.log('Got attestation: ', attestIds);
+
+  const dstTxIds = await xfer.completeTransfer(signer);
+  console.log('Completed transfer: ', dstTxIds);
+}
+    ```
+
+## Routes
+
+While a specific `WormholeTransfer`, such as `TokenTransfer` or `CCTPTransfer`, may be used, the developer must know exactly which transfer type to use for a given request.
+
+To provide a more flexible and generic interface, the `Wormhole` class provides a method to produce a `RouteResolver` that can be configured with a set of possible routes to be supported.
+
+The following section demonstrates setting up and validating a token transfer using Wormhole's routing system.
+
+```ts
+const resolver = wh.resolver([
+    routes.TokenBridgeRoute, // manual token bridge
+    routes.AutomaticTokenBridgeRoute, // automatic token bridge
+    routes.CCTPRoute, // manual CCTP
+    routes.AutomaticCCTPRoute, // automatic CCTP
+    routes.AutomaticPorticoRoute, // Native eth transfers
+  ]);
+```
+
+Once created, the resolver can be used to provide a list of input and possible output tokens.
+
+```ts
+const srcTokens = await resolver.supportedSourceTokens(sendChain);
+  console.log(
+    'Allowed source tokens: ',
+    srcTokens.map((t) => canonicalAddress(t))
+  );
+
+  const sendToken = Wormhole.tokenId(sendChain.chain, 'native');
+
+  // Given the send token, what can we possibly get on the destination chain?
+  const destTokens = await resolver.supportedDestinationTokens(
+    sendToken,
+    sendChain,
+    destChain
+  );
+  console.log(
+    'For the given source token and routes configured, the following tokens may be receivable: ',
+    destTokens.map((t) => canonicalAddress(t))
+  );
+  // Grab the first one for the example
+  const destinationToken = destTokens[0]!;
+```
+
+Once the tokens are selected, a `RouteTransferRequest` may be created to provide a list of routes that can fulfill the request. Creating a transfer request fetches the token details since all routes will need to know about the tokens.
+
+```ts
+// Since all routes will need to know about the tokens
+  const tr = await routes.RouteTransferRequest.create(wh, {
+    source: sendToken,
+    destination: destinationToken,
+  });
+
+  // Resolve the transfer request to a set of routes that can perform it
+  const foundRoutes = await resolver.findRoutes(tr);
+  console.log(
+    'For the transfer parameters, we found these routes: ',
+    foundRoutes
+  );
+```
+
+Choosing the best route is currently left to the developer, but strategies might include sorting by output amount or expected time to complete the transfer (no estimate is currently provided).
+
+After choosing the best route, extra parameters like `amount`, `nativeGasDropoff`, and `slippage` can be passed, depending on the specific route selected. A quote can be retrieved with the validated request.
+
+After successful validation, the code requests a transfer quote. This quote likely includes important details such as fees, estimated time, and the final amount to be received. If the quote is generated successfully, it's displayed for the user to review and decide whether to proceed with the transfer. This process ensures that all transfer details are properly set up and verified before any actual transfer occurs.
+
+```ts
+'This route offers the following default options',
+    bestRoute.getDefaultOptions()
+  );
+
+  // Specify the amount as a decimal string
+  const amt = '0.001';
+  // Create the transfer params for this request
+  const transferParams = { amount: amt, options: { nativeGas: 0 } };
+
+  // Validate the transfer params passed, this returns a new type of ValidatedTransferParams
+  // which (believe it or not) is a validated version of the input params
+  // This new var must be passed to the next step, quote
+  const validated = await bestRoute.validate(tr, transferParams);
+  if (!validated.valid) throw validated.error;
+  console.log('Validated parameters: ', validated.params);
+
+  // Get a quote for the transfer, this too returns a new type that must
+  // be passed to the next step, execute (if you like the quote)
+  const quote = await bestRoute.quote(tr, validated.params);
+  if (!quote.success) throw quote.error;
+  console.log('Best route quote: ', quote);
+```
+
+Finally, assuming the quote looks good, the route can initiate the request with the quote and the `signer`.
+
+```ts
+tr,
+      sender.signer,
+      quote,
+      receiver.address
+    );
+    console.log('Initiated transfer with receipt: ', receipt);
+```
+
+??? code "View the complete script"
+
+    ```ts
+    import {
+  Wormhole,
+  canonicalAddress,
+  routes,
+  wormhole,
+} from '@wormhole-foundation/sdk';
+
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from './helpers/index.js';
+
+(async function () {
+  // Setup
+  const wh = await wormhole('Testnet', [evm, solana]);
+
+  // Get chain contexts
+  const sendChain = wh.getChain('Avalanche');
+  const destChain = wh.getChain('Solana');
+
+  // Get signers from local config
+  const sender = await getSigner(sendChain);
+  const receiver = await getSigner(destChain);
+
+  // Create new resolver, passing the set of routes to consider
+  const resolver = wh.resolver([
+    routes.TokenBridgeRoute, // manual token bridge
+    routes.AutomaticTokenBridgeRoute, // automatic token bridge
+    routes.CCTPRoute, // manual CCTP
+    routes.AutomaticCCTPRoute, // automatic CCTP
+    routes.AutomaticPorticoRoute, // Native eth transfers
+  ]);
+
+  // What tokens are available on the source chain?
+  const srcTokens = await resolver.supportedSourceTokens(sendChain);
+  console.log(
+    'Allowed source tokens: ',
+    srcTokens.map((t) => canonicalAddress(t))
+  );
+
+  const sendToken = Wormhole.tokenId(sendChain.chain, 'native');
+
+  // Given the send token, what can we possibly get on the destination chain?
+  const destTokens = await resolver.supportedDestinationTokens(
+    sendToken,
+    sendChain,
+    destChain
+  );
+  console.log(
+    'For the given source token and routes configured, the following tokens may be receivable: ',
+    destTokens.map((t) => canonicalAddress(t))
+  );
+  // Grab the first one for the example
+  const destinationToken = destTokens[0]!;
+
+  // Creating a transfer request fetches token details
+  // Since all routes will need to know about the tokens
+  const tr = await routes.RouteTransferRequest.create(wh, {
+    source: sendToken,
+    destination: destinationToken,
+  });
+
+  // Resolve the transfer request to a set of routes that can perform it
+  const foundRoutes = await resolver.findRoutes(tr);
+  console.log(
+    'For the transfer parameters, we found these routes: ',
+    foundRoutes
+  );
+
+  const bestRoute = foundRoutes[0]!;
+  console.log('Selected: ', bestRoute);
+
+  console.log(
+    'This route offers the following default options',
+    bestRoute.getDefaultOptions()
+  );
+
+  // Specify the amount as a decimal string
+  const amt = '0.001';
+  // Create the transfer params for this request
+  const transferParams = { amount: amt, options: { nativeGas: 0 } };
+
+  // Validate the transfer params passed, this returns a new type of ValidatedTransferParams
+  // which (believe it or not) is a validated version of the input params
+  // This new var must be passed to the next step, quote
+  const validated = await bestRoute.validate(tr, transferParams);
+  if (!validated.valid) throw validated.error;
+  console.log('Validated parameters: ', validated.params);
+
+  // Get a quote for the transfer, this too returns a new type that must
+  // be passed to the next step, execute (if you like the quote)
+  const quote = await bestRoute.quote(tr, validated.params);
+  if (!quote.success) throw quote.error;
+  console.log('Best route quote: ', quote);
+
+  // If you're sure you want to do this, set this to true
+  const imSure = false;
+  if (imSure) {
+    // Now the transfer may be initiated
+    // A receipt will be returned, guess what you gotta do with that?
+    const receipt = await bestRoute.initiate(
+      tr,
+      sender.signer,
+      quote,
+      receiver.address
+    );
+    console.log('Initiated transfer with receipt: ', receipt);
+
+    // Kick off a wait log, if there is an opportunity to complete, this function will do it
+    // See the implementation for how this works
+    await routes.checkAndCompleteTransfer(bestRoute, receipt, receiver.signer);
+  } else {
+    console.log('Not initiating transfer (set `imSure` to true to do so)');
+  }
+})();
+    ```
+
+See the `router.ts` example in the [examples directory](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main/examples){target=\_blank} for a full working example.
+
+### Routes as Plugins
+
+Routes can be imported from any npm package that exports them and configured with the resolver. Custom routes must extend [`Route`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L21-L64){target=\_blank} and implement [`StaticRouteMethods`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/0c57292368146c460abc9ce9e7f6a42be8e0b903/connect/src/routes/route.ts#L101){target=\_blank}.
+
+```ts
+import { Network, routes } from '@wormhole-foundation/sdk-connect';
+
+export class CustomRoute<N extends Network>
+  extends routes.Route<N>
+  implements routes.StaticRouteMethods<typeof CustomRoute>
+{
+  static meta = {
+    name: 'CustomRoute',
+  };
+  // implementation...
+}
+```
+
+A noteworthy example of a route exported from a separate npm package is Wormhole Native Token Transfers (NTT). See the [`NttAutomaticRoute`](https://github.com/wormhole-foundation/native-token-transfers/blob/66f8e414223a77f5c736541db0a7a85396cab71c/sdk/route/src/automatic.ts#L48){target=\_blank} route implementation.
+
+## See Also
+
+The TSdoc is available [on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}.
 --- END CONTENT ---
 
 # Basics Concepts [shared: true]
@@ -348,7 +3503,6 @@ The following section contains foundational documentation shared across all Worm
 It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
 This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
 This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
-
 
 ---
 
@@ -2477,7 +5631,6 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 The following section contains reference material for Wormhole.
 It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
 While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
-
 
 ---
 

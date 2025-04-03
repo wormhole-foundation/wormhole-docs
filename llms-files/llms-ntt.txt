@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation related to the product: Solidity-SDK
+This file includes documentation related to the product: NTT
 
 # AI Prompt Template
 
@@ -14,1312 +14,2044 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - Prefer concise explanations and code snippets where appropriate.
 
 # List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/cli.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/dev-env.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/faqs.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/solidity-sdk.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/architecture.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/deployment.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/overview.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/transfers/native-token-transfers/security.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/cli-commands.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/configuration.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/configuration/access-control.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/configuration/rate-limiting.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/deploy-to-evm.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/deploy-to-solana.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/evm-launchpad.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/installation.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/post-deployment.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/deployment-process/troubleshooting.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/faqs.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/native-token-transfers/managers-transceivers.md [type: build]
 
 # Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/build/toolkit/
+Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Tooling
-description: This page lists key dev tools, including the WormholeScan Explorer, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
-categories: Solidity-SDK
+title: A Quick Look at Native Token Transfers
+description: This section covers Wormhole's Native Token Transfers (NTT), an open source, flexible, and composable framework for transferring tokens across blockchains.
+categories: NTT, Transfer
 ---
 
-# Wormhole Tooling
-
-Regardless of which network development environment you are using, there are a few Wormhole-specific tools you should know about.
+# Native Token Transfers
 
 ## Get Started
 
+This section covers Wormhole's Native Token Transfers (NTT), an open source, flexible, and composable framework for transferring tokens across blockchains.
+
 <div class="grid cards" markdown>
 
--   :octicons-telescope-16:{ .lg .middle } **Wormholescan**
+-   :octicons-question-16:{ .lg .middle } **Overview**
 
     ---
 
-    Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
+    Dive into an introduction to NTT and discover what NTT is, what its key features are, and the available integration paths.
 
-    [:custom-arrow: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
+    [:custom-arrow: Learn more about NTT](/docs/learn/transfers/native-token-transfers/overview/)
 
--   :octicons-plug-16:{ .lg .middle } **Wormholescan API**
-
-    ---
-
-    Leverage the Wormholescan API to programmatically access Wormhole network data, including transaction details and VAAs.
-
-    [:custom-arrow: Explore the Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank}
-
--   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
+-   :octicons-question-16:{ .lg .middle } **Architecture**
 
     ---
 
-    The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
+    Explore NTT's architecture to understand its core components and how they work together to manage cross-chain communication.
 
-    [:custom-arrow: Get started with the CLI](/docs/build/toolkit/cli/)
+    [:custom-arrow: Discover how NTT works](/docs/learn/transfers/native-token-transfers/architecture/)
 
--   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
-
-    ---
-
-    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
-
-    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/typescript-sdk/)
-
--   :octicons-code-square-16:{ .lg .middle } **Solidity SDK**
+-   :octicons-book-16:{ .lg .middle } **Deployment Models**
 
     ---
 
-    Learn about Wormhole's Solidity SDK, including key components, interfaces, and tools for developing cross-chain decentralized applications on EVM-compatible blockchains.
+    The NTT framework offers two deployment models for different token management needs: the hub-and-spoke and burn-and-mint models.
 
-    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/solidity-sdk/)
+    [:custom-arrow: Check out the deployment models](/docs/learn/transfers/native-token-transfers/deployment/)
 
--   :octicons-beaker-16:{ .lg .middle } **Tilt**
-
-    ---
-
-    Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
-
-    [:custom-arrow: Get started with Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank}
-
-<!-- TODO: revisit
-
--   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
+-   :octicons-shield-lock-16:{ .lg .middle } **Security**
 
     ---
 
-    Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
+    Explore NTT's security measures, including the Global Accountant and governance strategies for seamless token safety.
 
-    [:custom-arrow: Read Toolkit FAQs](/docs/build/toolkit/faqs/) -->
+    [:custom-arrow: Review the security measures](/docs/learn/transfers/native-token-transfers/security/)
 
 </div>
+
+## Next Steps
+
+Ready to dive in and start building? Check out the following resources to begin the deployment process and make the most of your deployment.
+
+<div class="grid cards" markdown>
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy NTT**
+
+    ---
+
+    Explore detailed guides that walk you through the entire deployment process, from installing the NTT CLI to deploying NTT across supported chains.
+
+    [:custom-arrow: Deploy now using the NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/)
+
+-   :octicons-checklist-16:{ .lg .middle } **Post Deployment Recommendations**
+
+    ---
+
+    Already deployed your NTT project? Check out these post deployment recommendations and integration demos to get the most out of your deployment.
+
+    [:custom-arrow: Get the most of out your NTT deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/architecture/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Architecture
+description: Explore Wormhole's Native Token Transfers architecture, which covers components, message flow, rate limiting, and custom transceivers.
+categories: NTT, Transfer
+---
+
+## Introduction
+
+The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components that work together to manage cross-chain communication and token operations complexities.
+
+For the technical implementations of the functions, refer to the [Managers and Transceivers](/docs/build/transfers/native-token-transfers/managers-transceivers/){target=\_blank} page.
+
+## System Components
+
+The NTT framework is composed of managers, which oversee the transfer process, and transceivers, which handle cross-chain messaging, ensuring smooth and reliable token transfers.
+
+### Managers
+
+_Managers_ are responsible for handling the flow of token transfers between different blockchains and ensuring that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. The main tasks of managers include rate-limiting transactions, verifying message authenticity (message attestation), and managing the interaction between multiple transceivers, who are responsible for cross-chain communications.
+
+Each manager is assigned to a specific token but can operate across multiple chains. Their key responsibility is to ensure that tokens are securely locked or burned on the source chain before being minted or unlocked on the destination chain. This provides the integrity of token transfers and prevents double-spending.
+
+A manager is responsible for:
+
+- **Handling token transfer flow** - upon a transfer request, `NttManager` either locks or burns tokens depending on the configuration, emits a `TransferSent` event, and ensures tokens can’t be accessed on the source chain before leasing them on the destination chain. This process safeguards against double-spending and maintains a secure transfer
+- **Rate-limiting** - the `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers
+    - **Outbound** - transfers exceeding the outbound limit are queued (if `shouldQueue` is true) or reverted
+    - **Inbound** - similar limits apply on the destination chain, delaying transfers if capacity is exceeded
+
+    Rate limit duration and queuing are customizable per chain, and events notify users when transfers hit the limit
+
+- **Message authenticity verification** - the `NttManager` ensures transfer security by verifying message authenticity through multiple attestations from transceivers. For each transfer, a threshold number of attestation signatures must be gathered from transceivers. Once verified, `NttManager` releases tokens on the destination chain, ensuring only authenticated transfers are processed
+- **Interaction with transceivers** - `NttManager` collaborates with transceivers, forwarding transfer messages between chains and handling message verification. Transceivers route messages with transfer details to the destination chain, coordinating with `NttManager` to verify that tokens are locked or burned before releasing them on the other side. Transceivers can be customized to work with different security protocols, adding flexibility
+
+### Transceivers
+
+_Transceivers_ facilitate cross-chain token transfers by ensuring the accurate transmission of messages between different blockchains. They work in conjunction with managers to route token transfers from the source chain to the recipient chain. Their primary function is to ensure that messages regarding the transfer process are delivered correctly, and that tokens are safely transferred across chains.
+
+While transceivers operate closely with Wormhole's ecosystem, they can also be configured independently of Wormhole's core system, allowing for flexibility. This adaptability allows them to be integrated with various verification backends to accommodate different security needs or platform-specific requirements.
+
+Transceivers are entrusted with several responsibilities:
+
+- **Message transmission** - transceivers handle the routing of transfer messages between chains. When a transfer is initiated, the transceiver sends the message (including transfer details like recipient and amount) to the destination chain’s manager for verification and processing
+- **Manager coordination** - transceivers work with managers to ensure tokens are locked or burned on the source chain before issuance on the destination chain, reinforcing the security of each transfer
+- **Custom verification support** - transceivers can integrate with custom verification backends, allowing flexibility to adapt to different security protocols or chain requirements. This customization enables protocols to use different attestation standards as needed
+
+How it works:
+
+1. The transceiver receives instructions from the manager to send messages across chains
+2. It quotes delivery fees, handles cross-chain message relaying, and verifies delivery to ensure tokens are safely transferred
+3. For each message, the transceiver coordinates with managers, ensuring only authorized transfers are processed on the destination chain
+
+![NTT architecture diagram](/docs/images/learn/transfers/native-token-transfers/architecture/architecture-1.webp)
+
+!!! note
+    [Learn more](/docs/learn/transfers/native-token-transfers/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
+
+#### Custom Transceivers
+
+The NTT framework supports advanced features such as custom transceivers for specialized message verification, enhancing security and adaptability. The architecture includes detailed processes for initiating transfers, managing rate limits, and finalizing token operations, with specific instructions and events outlined for EVM-compatible chains and Solana.
+
+NTT has the flexibility to support custom message verification in addition to Wormhole Guardian message verification. Custom verifiers are implemented as transceiver contracts and can be protocol-specific or provided by other third-party attesters. Protocols can also configure the threshold of attestations required to mark a token transfer as valid — for example, 2/2, 2/3, 3/5.
+
+![Custom Attestation with NTT diagram](/docs/images/learn/transfers/native-token-transfers/architecture/architecture-2.webp)
+
+The verifier performs checks based on predefined criteria and issues approval for transactions that meet these requirements. This approval is incorporated into the Wormhole message, ensuring that only transactions verified by both the Wormhole Guardian Network and the additional verifier are processed. The model includes an extra verifier in the bridging process, enhancing security and providing an added assurance of transaction integrity.
+
+For more details, to collaborate, or to see examples of custom transceivers, [contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors.
+
+## Lifecycle of a Message
+
+The lifecycle of a message in the Wormhole ecosystem for Native Token Transfers (NTT) involves multiple steps to ensure secure and accurate cross-chain token transfers. This lifecycle can vary depending on the blockchain being used, and the following explanations focus on the EVM and Solana implementations. The key stages include initiating the transfer, handling rate limits, sending and receiving messages, and finally, minting or unlocking tokens on the destination chain.
+
+### Transfer
+
+The process begins when a client initiates a transfer. For EVM, this is done using the `transfer` function, whereas in Solana, the client uses either the `transfer_lock` or `transfer_burn` instruction, depending on whether the program is in locking or burning mode. The client specifies the transfer amount, recipient chain ID, recipient address, and a flag (`should_queue` on both EVM and Solana) to decide whether the transfer should be queued if it hits the rate limit.
+
+In both cases:
+
+- If the source chain is in locking mode, the tokens are locked on the source chain to be unlocked on the destination chain
+- If the source chain is in burning mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain
+
+Once initiated, an event (such as `TransferSent` on EVM or a corresponding log on Solana) is emitted to signal that the transfer process has started.
+
+### Rate Limit
+
+Both EVM and Solana implement rate-limiting for transfers to prevent abuse or network overload. Rate limits apply to both the source and destination chains. If transfers exceed the current capacity, depending on whether the `shouldQueue` flag is set to true, they can be queued.
+
+- On EVM, the transfer is added to an outbound queue if it hits the rate limit, with a delay corresponding to the configured rate limit duration. If `shouldQueue` is set to false, the transfer is reverted with an error
+- On Solana, the transfer is added to an **Outbox** via the `insert_into_outbox method`, and if the rate limit is hit, the transfer is queued with a `release_timestamp`. If `shouldQueue` is false, the transfer is reverted with a `TransferExceedsRateLimit` error
+
+Both chains emit events or logs when transfers are rate-limited or queued.
+
+### Send
+
+After being forwarded to the Transceiver, the message is transmitted across the chain. Transceivers are responsible for delivering the message containing the token transfer details. Depending on the Transceiver's implementation, messages may be routed through different systems, such as Wormhole relayers or other custom relaying solutions. Once the message is transmitted, an event is emitted to signal successful transmission.
+
+- In EVM, the message is sent using the `sendMessage` function, which handles the transmission based on the Transceiver's implementation. The Transceiver may use Wormhole relayers or custom relaying solutions to forward the message
+- In Solana, the transfer message is placed in an Outbox and released via the `release_outbound` instruction. The Solana transceiver, such as the Wormhole Transceiver, may send the message using the `post_message` instruction, which Wormhole Guardians observe for verification
+
+In both cases, an event or log (e.g., `SendTransceiverMessage` on EVM or a similar log on Solana) is emitted to signal that the message has been transmitted.
+
+### Receive
+
+Upon receiving the message on the destination chain, an off-chain relayer forwards the message to the destination Transceiver for verification. 
+
+- In EVM, the message is received by the `NttManager` on the destination chain, which verifies the message's authenticity. Depending on the M of N threshold set for the attestation process, the message may require attestations from multiple transceivers
+- In Solana, the message is received via the `receive_message` instruction in the Wormhole Transceiver program. The message is verified and stored in a `VerifiedTransceiverMessage` account, after which it is placed in an Inbox for further processing
+
+In both chains, replay protection mechanisms ensure that a message cannot be executed more than once. Events or logs are emitted (e.g., `ReceivedMessage` on EVM or `ReceiveMessage` on Solana) to notify that the message has been successfully received.
+
+### Mint or Unlock
+
+Finally, after the message is verified and attested to, the tokens can be either minted (if they were burned on the source chain) or unlocked (if they were locked). The tokens are then transferred to the recipient on the destination chain, completing the cross-chain token transfer process. 
+
+- On EVM, tokens are either minted (if burned on the source chain) or unlocked (if locked on the source chain). The `TransferRedeemed` event signals that the tokens have been successfully transferred
+- On Solana, the tokens are unlocked or minted depending on whether the program is in locking or burning mode. The `release_inbound_unlock` or `release_inbound_mint` instruction is used to complete the transfer, and a corresponding log is produced
+
+In both cases, once the tokens have been released, the transfer process is complete, and the recipient receives the tokens. Events are emitted to indicate that the transfer has been fully redeemed.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/deployment/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers - Deployment Models
+description: Explore Wormhole's Native Token Transfers deployment models——hub-and-spoke, burn-and-mint——for seamless cross-chain token transfers.
+categories: NTT, Transfer
+---
+
+# Deployment Models
+
+The Wormhole framework offers two deployment models, each catering to different token management needs: the hub-and-spoke model and the burn-and-mint model. These models provide flexible solutions for both existing token deployments and new projects looking to enable secure and seamless multichain token transfers.
+
+## Hub-and-Spoke
+
+The hub-and-spoke model involves locking tokens on a central hub chain and minting them on destination spoke chains. This model maintains the total supply on the hub chain and is backward-compatible with any existing token deployment.
+
+This model is ideal for existing token deployments that don't want to alter existing token contracts. It maintains the canonical balance on a hub chain while allowing for secure native deployment to new blockchains.
+
+- **Hub chain** - tokens are locked when initiating a transfer
+- **Spoke chains** - Equivalent tokens are minted on the destination chain
+
+When transferring tokens back to the original hub chain, the tokens on the source spoke chain are burned, and the previously locked tokens on the hub chain are unlocked. However, when transferring tokens directly between spoke chains, the tokens are burned on the source spoke chain and minted on the destination spoke chain.
+
+## Burn-and-Mint
+
+The burn-and-mint model involves burning tokens on the source chain and minting them on the destination chain. This results in a simplified multichain transfer process that distributes the total supply across multiple chains and produces a native multichain token.
+
+This model best suits new token deployments or projects willing to upgrade existing contracts.
+
+- **Source chain** - tokens are burned when initiating a transfer
+- **Destination chain** - equivalent tokens are minted on the destination chain
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/overview/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Overview
+description: Explore Wormhole's Native Token Transfers for flexible cross-chain transfers with full control over token behavior, security, and integration features.
+categories: NTT, Transfer
+---
+
+# Native Token Transfers
+
+!!!tip "Looking to deploy NTT?"
+    If you're ready to deploy NTT or access the CLI, follow the detailed [NTT Deployment Section](/docs/build/transfers/native-token-transfers/deployment-process/){target=\_blank}.  
+
+     - For deployment steps on EVM, visit the [Deploy to EVM page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}  
+     - For deployment steps on Solana, visit the [Deploy to Solana page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/){target=\_blank}
+
+## Introduction
+
+Wormhole's Native Token Transfers (NTT) is an open source, flexible, and composable framework for transferring tokens across blockchains. By eliminating wrapped assets, NTT preserves each token’s native properties across chains, letting you maintain complete control over metadata, ownership, upgrade authority, and other custom features.
+
+The framework offers two modes of operation for existing token deployments. In locking mode, the original token supply is preserved on a single chain. In contrast, the burning mode enables the deployment of multichain tokens, distributing the supply across various chains.
+
+## Key Features
+
+Wormhole's Native Token Transfers (NTT) framework offers a comprehensive and flexible solution for seamless token transfers across blockchains. Below are some of the key features that make this framework stand out:
+
+- **No wrapped tokens** – tokens remain native on every chain where NTT is deployed. All token properties and metadata remain consistent, avoiding any confusion or overhead introduced by wrapped tokens
+- **Unified user experience** - tokens retain their properties on each chain, remaining completely fungible and ensuring a consistent user experience
+- **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
+- **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
+- **Advanced rate limiting** - inbound and outbound rate limits are configurable per chain and over arbitrary periods, preventing abuse while managing network congestion and allowing for controlled deployments to new chains
+- **Global Accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
+- **Access control** - to prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions, such as the Pauser role, to a separate address from the owner
+- **Maximum composability** - open source and extensible for widespread adoption and integration with other protocols
+- **Custom attestation** - optionally add external verifiers and configure custom message attestation thresholds
+
+## Integration Paths
+
+Integrators looking to deploy their token to connected chains can use the NTT framework or the Token Bridge. Both options carry a distinct integration path and feature set depending on your requirements, as outlined in the following sections.
+
+### Native Token Transfers Framework
+
+The Native Token Transfers Framework is highly customizable and ideal for applications such as a DeFi governance token deployed across multiple chains, which seeks to achieve fungible multichain liquidity and direct integration into governance processes.
+
+- **Mechanism** - can entirely utilize a burn-and-mint mechanism or can be paired for a hub-and-spoke model
+- **Security** - fully configurable rate limiting, pausing, access control, and threshold attestations. Integrated with the Global Accountant
+- **Contract ownership** - retain ownership and upgrade authority of token contracts on each chain
+- **Token contracts** - native contracts owned by your protocol governance
+- **Integration** - streamlined, customizable framework allows for more sophisticated and bespoke deployments
+
+The following example projects demonstrate the use of the Wormhole NTT framework through Wormhole Connect and the TypeScript SDK:
+
+- [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank} 
+- [NTT TS SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank} 
+
+### Token Bridge
+
+The Token Bridge offers a secure, low-effort integration suitable for applications like a Web3 game that wants to make its token tradable across multiple chains.
+
+- **Mechanism** - solely utilizes a lock and mint model. Unlike NTT, the Token Bridge issues a wrapped asset on the destination chain, rather than preserving the original token contract
+- **Security** - preconfigured rate limiting and integrated Global Accountant
+- **Contract ownership** - Token Bridge contracts are upgradeable via [Wormhole Governance](/docs/learn/security/){target=\_blank}
+- **Token contracts** - wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process
+- **Integration** - straightforward and permissionless method to deploy on multiple chains
+
+!!! note
+    [Learn more](/docs/learn/infrastructure/vaas/){target=\_blank} about the core messaging primitives in the Wormhole network. 
+
+## Supported Token Standards
+
+Native Token Transfers (NTT) in Wormhole primarily support **ERC-20 tokens**, the most widely used standard for fungible tokens on the Ethereum network and other EVM-compatible blockchains. The NttManager contract leverages the IERC20 interface and SafeERC20 utility from OpenZeppelin to ensure secure and efficient token transfers. Additionally, it supports ERC-20 Burnable tokens, allowing tokens to be burned on the source chain when needed for cross-chain transfers. At this time, NTT focuses on ERC-20 tokens, and other token standards, such as ERC-721 (non-fungible tokens) or ERC-1155 (multi-token standard), are not natively supported.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/learn/transfers/native-token-transfers/security/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Security
+description: Explore the security measures of Native Token Transfers, including the Global Accountant and governance strategies for seamless token safety.
+categories: NTT, Transfer
+---
+
+# Security
+
+## Global Accountant
+
+The Global Accountant is a defense-in-depth security feature that checks the integrity of every token transfer. It ensures that chain balances remain isolated and more tokens cannot be burned and transferred out of a chain than were ever minted.
+
+This feature ensures native asset fungibility remains in 1:1 parity. At no time will assets coming from a spoke chain exceed the number of native assets sent to that spoke chain. The Guardians, with their role in enforcing accounting transparency, provide a reassuring layer of security, attesting to a Native Token Transfer (NTT) only if it passes integrity checks.
+
+[Contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors if you are interested in configuring the Global Accountant for your multichain deployment.
+
+## Governance and Upgradeability
+
+Integrators should implement governance mechanisms to manage the addition and removal of transceivers and to upgrade contracts using proxy patterns, as demonstrated in the upgrade functions in the `NttManager` contracts. These processes can also set thresholds and rules for attestation and message approval.
+
+The registry component of the NTT system is crucial for maintaining a trusted list of transceivers and managing their status. Governance processes for the following actions can be submitted directly to the corresponding contract on-chain, whether it is one or multiple of the bridging contracts or one of the token contracts:
+
+- Adding or removing a transceiver address from the registry
+- Setting the token contract address on a bridging contract
+- Setting the Wormhole Core Contract address on a bridging contract
+- Setting the registered bridging contract address on the token contract
+
+This governance model ensures that the system remains secure while being adaptable to new requirements in any environment where it is deployed.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers (NTT)
+description: This section provides comprehensive guidance on configuring, deploying, and managing your Native Token Transfers (NTT) integration. 
+categories: NTT, Transfer
+---
+
+# Native Token Transfers
+
+Native Token Transfers (NTT) simplifies and enables seamless, flexible token transfers across blockchains. This section provides comprehensive guidance on configuring, deploying, and managing your NTT integration. It includes information relevant to both new token deployments and existing token management.
+
+Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} and [Product Comparison](/docs/build/start-building/products/){target=\_blank} pages for help determining if NTT will meet the needs of your project.
+
+## Quickstart
+
+The process for creating, deploying, and monitoring NTTs is as follows. Select the title of each step to view the associated guide:
+
+[timeline left(wormhole-docs/.snippets/text/build/transfers/ntt/ntt-deployment-process-timeline.json)]
+
+## Deploy NTTs with Launchpad
+
+If you are deploying to EVM blockchains, the [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT. NTT Launchpad replaces manually deploying contracts or configuring relayers for each supported EVM chain. 
+
+Follow the [Deploy NTT with Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/){target=\_blank} guide to create new multichain tokens or integrate existing tokens with just a few clicks.
 
 ## Additional Resources
 
 <div class="grid cards" markdown>
 
--   :octicons-code-square-16:{ .lg .middle } **Wormhole Spy SDK**
+-   :octicons-gear-16:{ .lg .middle } **NTT CLI Commands**
 
     ---
 
-    The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
+    The NTT CLI tool provides a comprehensive set of commands for creating, configuring, deploying, and monitoring NTTs. This page provides a comprehensive list of available NTT CLI commands, their descriptions, and examples to help you interact effectively with the NTT system. 
 
-    [:custom-arrow: Check out the Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
+    [:custom-arrow: NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/)
 
--   :octicons-pencil-16:{ .lg .middle } **VAA Parser**
+-   :octicons-question-16:{ .lg .middle } **NTT FAQs**
 
     ---
 
-    The VAA Parser is a resource for parsing out details of an encoded VAA.
+    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
 
-    [:custom-arrow: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
+    [:custom-arrow: Check out the FAQs](/docs/build/transfers/native-token-transfers/faqs/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/toolkit/cli/
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/cli-commands/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole CLI
-description: Learn how to install and use the Wormhole CLI, including commands and examples for managing multichain deployments, generating VAAs, and querying contract info.
-categories: Solidity-SDK, Typescript-SDK
+title: NTT CLI Commands
+description: A comprehensive guide to the Native Token Transfers (NTT) CLI, detailing commands for managing token transfers across chains within the Wormhole ecosystem.
+categories: NTT, Transfer
 ---
 
-# Wormhole CLI
-
-This tool is a command-line interface to Wormhole, allowing you to perform various actions, such as querying a transaction's status or submitting token transfers.
-
-## Installation
-
-Clone the repository and change directories to the appropriate directory:
-
-```bash
-git clone https://github.com/wormhole-foundation/wormhole &&
-cd wormhole/clients/js
-```
-
-Build and install the CLI tool:
-
-```bash
-make install
-```
-
-This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. To use `worm`, set up `$HOME/.wormhole/.env` with your private keys, based on `.env.sample` in this folder.
-
-## Usage
-
-You can interact with the Wormhole CLI by typing `worm` and including the `command` and any necessary subcommands and parameters.  
-
-| Command                                                                                                                  | Description                                                                                                     |
-|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| `worm aptos INSERT_COMMAND`                                                                                              | Aptos utilities                                                                                                 |
-| `worm edit-vaa INSERT_COMMAND`                                                                                           | Edits or generates a VAA                                                                                        |
-| `worm evm INSERT_COMMAND`                                                                                                | EVM utilities                                                                                                   |
-| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (Devnet and Testnet only)                                                                         |
-| `worm info INSERT_COMMAND`                                                                                               | Contract, chain, RPC, and address information utilities                                                         |
-| `worm near INSERT_NETWORK, INSERT_ACCOUNT`                                                                               | NEAR utilities                                                                                                  |
-| `worm parse INSERT_VAA`                                                                                                  | Parse a VAA (can be in either hex or base64 format)                                                             |
-| `worm recover INSERT_DIGEST INSERT_SIGNATURE`                                                                            | Recover an address from a signature                                                                             |
-| `worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH`                                                              | Prints information about the automatic delivery initiated on the specified network, chain, and transaction hash |
-| `worm submit INSERT_VAA`                                                                                                 | Execute a VAA                                                                                                   |
-| `worm sui INSERT_COMMAND`                                                                                                | Sui utilities                                                                                                   |
-| `worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK` | Transfers a token                                                                                               |
-| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                                                                             | Verifies a VAA by querying the Core Contract on Ethereum                                                        |
-
-You can also refer to the below options, available with all `worm` commands:
-
-```bash
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-```
-
-### Subcommands
-
-??? code "Aptos"
-    ```bash
-    worm aptos INSERT_COMMAND
-
-Commands:
-  worm aptos init-token-bridge              Init token bridge contract
-  worm aptos init-wormhole                  Init Wormhole core contract
-  worm aptos deploy <package-dir>           Deploy an Aptos package
-  worm aptos deploy-resource <seed>         Deploy an Aptos package using a
-  <package-dir>                             resource account
-  worm aptos send-example-message           Send example message
-  <message>
-  worm aptos derive-resource-account        Derive resource account address
-  <account> <seed>
-  worm aptos derive-wrapped-address         Derive wrapped coin type
-  <chain> <origin-address>
-  worm aptos hash-contracts <package-dir>   Hash contract bytecodes for upgrade
-  worm aptos upgrade <package-dir>          Perform upgrade after VAA has been
-                                            submitted
-  worm aptos migrate                        Perform migration after contract
-                                            upgrade
-  worm aptos faucet                         Request money from the faucet for a
-                                            given account
-  worm aptos start-validator                Start a local aptos validator
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-    ```
-
-??? code "Edit VAA"
-    ```bash
-    worm edit-vaa INSERT_COMMAND
-
-Options:
-      --help                       Show help                           [boolean]
-      --version                    Show version number                 [boolean]
-  -v, --vaa                        vaa in hex format         [string] [required]
-  -n, --network                    Network
-                            [required] [choices: "mainnet", "testnet", "devnet"]
-      --guardian-set-index, --gsi  guardian set index                   [number]
-      --signatures, --sigs         comma separated list of signatures   [string]
-      --wormscanurl, --wsu         url to wormscan entry for the vaa that
-                                   includes signatures                  [string]
-      --wormscan, --ws             if specified, will query the wormscan entry
-                                   for the vaa to get the signatures   [boolean]
-      --emitter-chain-id, --ec     emitter chain id to be used in the vaa
-                                                                        [number]
-      --emitter-address, --ea      emitter address to be used in the vaa[string]
-      --nonce, --no                nonce to be used in the vaa          [number]
-      --sequence, --seq            sequence number to be used in the vaa[string]
-      --consistency-level, --cl    consistency level to be used in the vaa
-                                                                        [number]
-      --timestamp, --ts            timestamp to be used in the vaa in unix
-                                   seconds                              [number]
-  -p, --payload                    payload in hex format                [string]
-      --guardian-secret, --gs      Guardian's secret key                [string]
-    ```
-
-??? code "EVM"
-    ```bash
-    worm evm INSERT_COMMAND
-
-Commands:
-  worm evm address-from-secret <secret>  Compute a 20 byte eth address from a 32
-                                         byte private key
-  worm evm storage-update                Update a storage slot on an EVM fork
-                                         during testing (anvil or hardhat)
-  worm evm chains                        Return all EVM chains
-  worm evm info                          Query info about the on-chain state of
-                                         the contract
-  worm evm hijack                        Override the guardian set of the core
-                                         bridge contract during testing (anvil
-                                         or hardhat)
-  worm evm start-validator               Start a local EVM validator
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-  --rpc      RPC endpoint                                               [string]
-    ```
-
-??? code "Generate"
-    ```bash
-    worm generate INSERT_COMMAND
-
-Commands:
-  worm generate registration                Generate registration VAA
-  worm generate upgrade                     Generate contract upgrade VAA
-  worm generate attestation                 Generate a token attestation VAA
-  worm generate recover-chain-id            Generate a recover chain ID VAA
-  worm generate                             Sets the default delivery provider
-  set-default-delivery-provider             for the Wormhole Relayer contract
-
-Options:
-      --help             Show help                                     [boolean]
-      --version          Show version number                           [boolean]
-  -g, --guardian-secret  Guardians' secret keys (CSV)        [string] [required]
-    ```
-
-??? code "Info"
-    ```bash
-    worm info INSERT_COMMAND
-
-Commands:
-  worm info chain-id <chain>                Print the wormhole chain ID integer
-                                            associated with the specified chain
-                                            name
-  worm info contract <network> <chain>      Print contract address
-  <module>
-  worm info emitter <chain> <address>       Print address in emitter address
-                                            format
-  worm info origin <chain> <address>        Print the origin chain and address
-                                            of the asset that corresponds to the
-                                            given chain and address.
-  worm info registrations <network>         Print chain registrations
-  <chain> <module>
-  worm info rpc <network> <chain>           Print RPC address
-  worm info wrapped <origin-chain>          Print the wrapped address on the
-  <origin-address> <target-chain>           target chain that corresponds with
-                                            the specified origin chain and
-                                            address.
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-    ```
-
-??? code "NEAR"
-    ```bash
-    worm near INSERT_COMMAND
-
-Commands:
-  worm near contract-update <file>  Submit a contract update using our specific
-                                    APIs
-  worm near deploy <file>           Submit a contract update using near APIs
-
-Options:
-      --help      Show help                                            [boolean]
-      --version   Show version number                                  [boolean]
-  -m, --module    Module to query  [choices: "Core", "NFTBridge", "TokenBridge"]
-  -n, --network   Network   [required] [choices: "mainnet", "testnet", "devnet"]
-      --account   Near deployment account                    [string] [required]
-      --attach    Attach some near                                      [string]
-      --target    Near account to upgrade                               [string]
-      --mnemonic  Near private keys                                     [string]
-      --key       Near private key                                      [string]
-  -r, --rpc       Override default rpc endpoint url                     [string]
-    ```
-
-??? code "Parse"
-    ```bash
-    worm parse INSERT_VAA
-
-Positionals:
-  vaa  vaa                                                              [string]
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-    ```
-
-??? code "Recover"
-    ```bash
-    worm recover INSERT_DIGEST INSERT_SIGNATURE
-
-Positionals:
-  digest     digest                                                     [string]
-  signature  signature                                                  [string]
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-    ```
-
-??? code "Status"
-    ```bash
-    worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH
-
-Positionals:
-  network  Network                     [choices: 
-  'mainnet', 
-  'testnet', 
-  'devnet']
-  chain    Source chain
-             [choices: 
-  'unset',
-  'solana',
-  'ethereum',
-  'terra',
-  'bsc',
-  'polygon',
-  'avalanche',
-  'oasis',
-  'algorand',
-  'aurora',
-  'fantom',
-  'karura',
-  'acala',
-  'klaytn',
-  'celo',
-  'near',
-  'moonbeam',
-  'neon',
-  'terra2',
-  'injective',
-  'osmosis',
-  'sui',
-  'aptos',
-  'arbitrum',
-  'optimism',
-  'gnosis',
-  'pythnet',
-  'xpla',
-  'btc',
-  'base',
-  'sei',
-  'rootstock',
-  'scroll',
-  'mantle',
-  'blast',
-  'xlayer',
-  'linea',
-  'berachain',
-  'seievm',
-  'wormchain',
-  'cosmoshub',
-  'evmos',
-  'kujira',
-  'neutron',
-  'celestia',
-  'stargaze',
-  'seda',
-  'dymension',
-  'provenance',
-  'sepolia',
-  'arbitrum_sepolia',
-  'base_sepolia',
-  'optimism_sepolia',
-  'holesky',
-  'polygon_sepolia']
-  tx       Source transaction hash                                      [string]
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-    ```
-
-??? code "Submit"
-    ```bash
-    worm submit INSERT_VAA
-
-Positionals:
-  vaa  vaa                                                              [string]
-
-Options:
-      --help              Show help                                    [boolean]
-      --version           Show version number                          [boolean]
-  -c, --chain             chain name
-[choices: 'unset',
-  'solana',
-  'ethereum',
-  'terra',
-  'bsc',
-  'polygon',
-  'avalanche',
-  'oasis',
-  'algorand',
-  'aurora',
-  'fantom',
-  'karura',
-  'acala',
-  'klaytn',
-  'celo',
-  'near',
-  'moonbeam',
-  'neon',
-  'terra2',
-  'injective',
-  'osmosis',
-  'sui',
-  'aptos',
-  'arbitrum',
-  'optimism',
-  'gnosis',
-  'pythnet',
-  'xpla',
-  'btc',
-  'base',
-  'sei',
-  'rootstock',
-  'scroll',
-  'mantle',
-  'blast',
-  'xlayer',
-  'linea',
-  'berachain',
-  'seievm',
-  'wormchain',
-  'cosmoshub',
-  'evmos',
-  'kujira',
-  'neutron',
-  'celestia',
-  'stargaze',
-  'seda',
-  'dymension',
-  'provenance',
-  'sepolia',
-  'arbitrum_sepolia',
-  'base_sepolia',
-  'optimism_sepolia',
-  'holesky',
-  'polygon_sepolia']
-  -n, --network           Network
-                            [required] 
-  [choices: 
-  'mainnet', 
-  'testnet', 
-  'devnet']
-  -a, --contract-address  Contract to submit VAA to (override config)   [string]
-      --rpc               RPC endpoint                                  [string]
-      --all-chains, --ac  Submit the VAA to all chains except for the origin
-                          chain specified in the payload
-                                                      [boolean] [default: false]
-    ```
-
-??? code "Sui"
-    ```bash
-    worm sui INSERT_COMMAND
-
-Commands:
-  worm sui build-coin                    Build wrapped coin and dump bytecode.
-
-                                         Example:
-                                         worm sui build-coin -d 8 -v V__0_1_1 -n
-                                         testnet -r
-                                         "https://fullnode.testnet.sui.io:443"
-  worm sui deploy <package-dir>          Deploy a Sui package
-  worm sui init-example-message-app      Initialize example core message app
-  worm sui init-token-bridge             Initialize token bridge contract
-  worm sui init-wormhole                 Initialize wormhole core contract
-  worm sui publish-example-message       Publish message from example app via
-                                         core bridge
-  worm sui setup-devnet                  Setup devnet by deploying and
-                                         initializing core and token bridges and
-                                         submitting chain registrations.
-  worm sui objects <owner>               Get owned objects by owner
-  worm sui package-id <state-object-id>  Get package ID from State object ID
-  worm sui tx <transaction-digest>       Get transaction details
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
-    ```
-
-??? code "Transfer"
-    ```bash
-    worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK
-
-Options:
-      --help        Show help                                          [boolean]
-      --version     Show version number                                [boolean]
-      --src-chain   source chain [required] [choices:
-  'solana',
-  'ethereum',
-  'terra',
-  'bsc',
-  'polygon',
-  'avalanche',
-  'oasis',
-  'algorand',
-  'aurora',
-  'fantom',
-  'karura',
-  'acala',
-  'klaytn',
-  'celo',
-  'near',
-  'moonbeam',
-  'neon',
-  'terra2',
-  'injective',
-  'osmosis',
-  'sui',
-  'aptos',
-  'arbitrum',
-  'optimism',
-  'gnosis',
-  'pythnet',
-  'xpla',
-  'btc',
-  'base',
-  'sei',
-  'rootstock',
-  'scroll',
-  'mantle',
-  'blast',
-  'xlayer',
-  'linea',
-  'berachain',
-  'seievm',
-  'wormchain',
-  'cosmoshub',
-  'evmos',
-  'kujira',
-  'neutron',
-  'celestia',
-  'stargaze',
-  'seda',
-  'dymension',
-  'provenance',
-  'sepolia',
-  'arbitrum_sepolia',
-  'base_sepolia',
-  'optimism_sepolia',
-  'holesky',
-  'polygon_sepolia']
-  --dst-chain   destination chain
-           [required] [choices: 
-  'solana',
-  'ethereum',
-  'terra',
-  'bsc',
-  'polygon',
-  'avalanche',
-  'oasis',
-  'algorand',
-  'aurora',
-  'fantom',
-  'karura',
-  'acala',
-  'klaytn',
-  'celo',
-  'near',
-  'moonbeam',
-  'neon',
-  'terra2',
-  'injective',
-  'osmosis',
-  'sui',
-  'aptos',
-  'arbitrum',
-  'optimism',
-  'gnosis',
-  'pythnet',
-  'xpla',
-  'btc',
-  'base',
-  'sei',
-  'rootstock',
-  'scroll',
-  'mantle',
-  'blast',
-  'xlayer',
-  'linea',
-  'berachain',
-  'seievm',
-  'wormchain',
-  'cosmoshub',
-  'evmos',
-  'kujira',
-  'neutron',
-  'celestia',
-  'stargaze',
-  'seda',
-  'dymension',
-  'provenance',
-  'sepolia',
-  'arbitrum_sepolia',
-  'base_sepolia',
-  'optimism_sepolia',
-  'holesky',
-  'polygon_sepolia']
-      --dst-addr    destination address                      [string] [required]
-      --token-addr  token address               [string] [default: native token]
-      --amount      token amount                             [string] [required]
-  -n, --network     Network [required] [choices: "mainnet", "testnet", "devnet"]
-      --rpc         RPC endpoint                                        [string]
-    ```
-
-??? code "Verify VAA"
-    ```bash
-    worm verify-vaa INSERT_VAA, INSERT_NETWORK
-
-Options:
-      --help     Show help                                             [boolean]
-      --version  Show version number                                   [boolean]
-  -v, --vaa      vaa in hex format                           [string] [required]
-  -n, --network  Network    [required] [choices: "mainnet", "testnet", "devnet"]
-    ```
-
-
-## Examples
-
-### VAA generation
-
-Use `generate` to create VAAs for testing. For example, use the following command to create an NFT bridge registration VAA:
-
-```bash
-worm generate registration --module NFTBridge \
-    --chain bsc \
-    --contract-address 0x706abc4E45D419950511e474C7B9Ed348A4a716c \
-    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
-```
-
-The below example generates a token attestation VAA:
-
-```bash
-worm generate attestation --emitter-chain ethereum \
-    --emitter-address 11111111111111111111111111111115 \
-    --chain ethereum \
-    --token-address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 \
-    --decimals 6 \
-    --symbol USDC \
-    --name USDC \
-    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
-```
-
-### VAA parsing
-
-Use `parse` to parse a VAA into JSON:
-
-```bash
-worm parse $(worm-fetch-governance 13940208096455381020)
-```
-
-This example will fetch governance VAA `13940208096455381020` and print it as JSON: 
-
-```bash
-# ...signatures elided
-timestamp: 1651416474,
-nonce: 1570649151,
-emitterChain: 1,
-emitterAddress: '0000000000000000000000000000000000000000000000000000000000000004',
-sequence: 13940208096455381020n,
-consistencyLevel: 32,
-payload: {
-  module: 'Core',
-  type: 'GuardianSetUpgrade',
-  chain: 0,
-  newGuardianSetIndex: 2,
-  newGuardianSetLength: 19,
-  newGuardianSet: [
-    '58cc3ae5c097b213ce3c81979e1b9f9570746aa5',
-    'ff6cb952589bde862c25ef4392132fb9d4a42157',
-    '114de8460193bdf3a2fcf81f86a09765f4762fd1',
-    '107a0086b32d7a0977926a205131d8731d39cbeb',
-    '8c82b2fd82faed2711d59af0f2499d16e726f6b2',
-    '11b39756c042441be6d8650b69b54ebe715e2343',
-    '54ce5b4d348fb74b958e8966e2ec3dbd4958a7cd',
-    '66b9590e1c41e0b226937bf9217d1d67fd4e91f5',
-    '74a3bf913953d695260d88bc1aa25a4eee363ef0',
-    '000ac0076727b35fbea2dac28fee5ccb0fea768e',
-    'af45ced136b9d9e24903464ae889f5c8a723fc14',
-    'f93124b7c738843cbb89e864c862c38cddcccf95',
-    'd2cc37a4dc036a8d232b48f62cdd4731412f4890',
-    'da798f6896a3331f64b48c12d1d57fd9cbe70811',
-    '71aa1be1d36cafe3867910f99c09e347899c19c3',
-    '8192b6e7387ccd768277c17dab1b7a5027c0b3cf',
-    '178e21ad2e77ae06711549cfbb1f9c7a9d8096e8',
-    '5e1487f35515d02a92753504a8d75471b9f49edb',
-    '6fbebc898f403e4773e95feb15e80c9a99c8348d'
-  ]
-}
-```
-
-### Submitting VAAs
-
-Use `submit` to submit a VAA to a chain. It first parses the VAA and determines the destination chain and module. For example, a contract upgrade contains both the target chain and module, so the only required argument is the network moniker (`mainnet` or `testnet`):
-
-```bash
-worm submit $(cat my-nft-registration.txt) --network mainnet
-```
-
-The script will ask you to specify the target chain for VAAs that don't have a specific target chain (like registrations or Guardian set upgrades). For example, to submit a Guardian set upgrade on all chains, simply run:
-
-```bash
-worm-fetch-governance 13940208096455381020 > guardian-upgrade.txt
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain oasis
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain aurora
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain fantom
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain karura
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain acala
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain klaytn
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain avalanche
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain polygon
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain bsc
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain solana
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain terra
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain ethereum
-worm submit $(cat guardian-upgrade.txt) --network mainnet --chain celo
-```
-
-The VAA payload type (Guardian set upgrade) specifies that this VAA should go to the core bridge, and the tool directs it there.
-
-### Getting Info
-
-To get info about a contract (only EVM supported at this time), use the following command:
-
-```bash
-worm evm info -c bsc -n mainnet -m TokenBridge
-```
-
-Running this command generates the following output:
-
-```bash
+# NTT CLI Commands
+
+## Introduction
+
+The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
+
+If you haven't installed the NTT CLI yet, follow the [NTT Installation Guide](/docs/build/transfers/native-token-transfers/deployment-process/installation/#installation){target=\_blank} to set it up before proceeding.
+
+## Table of Commands
+
+The following table lists the available NTT CLI commands, descriptions, and examples.
+
+To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
+
+### General Commands
+
+| Command                                 | Description                                           | Examples                 |
+|-----------------------------------------|-------------------------------------------------------|--------------------------|
+| `ntt update`                            | update the NTT CLI                                    | `ntt update`             |
+| `ntt new <path>`                        | create a new NTT project                              | `ntt new my-ntt-project` |
+| `ntt add-chain <chain>`                 | add a chain to the deployment file                    | `ntt add-chain Ethereum --token 0x1234... --mode burning --latest`|
+| `ntt upgrade <chain>`                   | upgrade the contract on a specific chain              | `ntt upgrade Solana --ver 1.1.0`|
+| `ntt clone <network> <chain> <address>` | initialize a deployment file from an existing contract| `ntt clone Mainnet Solana Sol5678...`|
+| `ntt init <network>`                    | initialize a deployment file                          | `ntt init devnet`        |
+| `ntt pull`                              | pull the remote configuration                         | `ntt pull`               |
+| `ntt push`                              | push the local configuration                          | `ntt push`               |
+| `ntt status`                            | check the status of the deployment                    | `ntt status`             |
+
+### Configuration Commands
+
+| Command                                     | Description                            | Examples                            |
+|---------------------------------------------|----------------------------------------|-------------------------------------|
+| `ntt config set-chain <chain> <key> <value>`| set a configuration value for a chain  | `ntt config set-chain Ethereum scan_api_key`|
+| `ntt config unset-chain <chain> <key>`      | unset a configuration value for a chain| `ntt config unset-chain Ethereum scan_api_key`|
+| `ntt config get-chain <chain> <key>`        | get a configuration value for a chain  | `ntt config get-chain Ethereum scan_api_key`|
+
+### Solana Commands
+
+| Command                                       | Description                                             | Examples         |
+|-----------------------------------------------|---------------------------------------------------------|------------------|
+| `ntt solana key-base58 <keypair>`             | print private key in base58                             | `ntt solana key-base58 /path/to/keypair.json`|
+| `ntt solana token-authority <programId>`      | print the token authority address for a given program ID| `ntt solana token-authority Sol1234...`|
+| `ntt solana ata <mint> <owner> <tokenProgram>`| print the token authority address for a given program ID| `ntt solana ata Mint123... Owner123... token22`|
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+
+-   :octicons-gear-16:{ .lg .middle } **Configure NTT**
+
+    ---
+
+    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
+
+    [:custom-arrow: Configure your NTT deployment](/docs/build/transfers/native-token-transfers/configuration/)
+
+-   :octicons-question-16:{ .lg .middle } **NTT FAQs**
+
+    ---
+
+    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
+
+    [:custom-arrow: Check out the FAQs](/docs/build/transfers/native-token-transfers/faqs/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/configuration/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers (NTT) - Configuration
+description: This section contains information on configuring Native Token Transfers (NTT), including guidance on setting Owner and Pauser access control roles and management of rate-limiting. 
+categories: NTT, Transfer
+---
+
+# Configure Native Token Transfers (NTT)
+
+## Get Started
+
+This section contains information on configuring Native Token Transfers (NTT), including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
+
+<div class="grid cards" markdown>
+
+-   :octicons-clock-16:{ .lg .middle } **Rate Limiting**
+
+    ---
+
+    Discover options for configuring rate limits and how queueing effects transaction flow.
+
+    [:custom-arrow: Explore rate limit options](/docs/build/transfers/native-token-transfers/configuration/rate-limiting/)
+
+-   :octicons-unlock-16:{ .lg .middle } **Access Control**
+
+    ---
+
+    Learn more about access control, including why you should consider setting a separate Pauser address as part of your development security plan.
+
+    [:custom-arrow: Explore access control roles](/docs/build/transfers/native-token-transfers/configuration/access-control/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/configuration/access-control/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Access Control
+description: Learn about the owner and pauser access roles for the NTT manager contract, which can be used to pause and un-pause token transfers.
+categories: NTT, Transfer
+---
+
+## Owner and Pauser Roles
+
+Pausing the Native Toke Transfer (NTT) Manager Contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits if configured).
+
+NTT can be paused on a particular chain by updating the `paused` parameter on the deployment to `true` via the NTT CLI, then performing `ntt push` to sync the local configuration with the on-chain deployment.
+
+- **Owner** - full control over NTT contracts, can perform administrative functions. Has the ability to un-pause contracts if they have been paused
+- **Pauser** - can pause NTT contracts to halt token transfers temporarily. This role is crucial for responding quickly to adverse events without a prolonged governance process. Cannot un-pause contracts
+
+You may verify the current owner, pauser, and paused status of the NTT Manager contract on the `deployment.json` file in your NTT project directory.
+
+```json
 {
-  "address": "0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7",
-  "wormhole": "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B",
-  "implementation": "0x621199f6beB2ba6fbD962E8A52A320EA4F6D4aA3",
-  "isInitialized": true,
-  "tokenImplementation": "0x7f8C5e730121657E17E452c5a1bA3fA1eF96f22a",
-  "chainId": 4,
-  "finality": 15,
-  "evmChainId": "56",
-  "isFork": false,
-  "governanceChainId": 1,
-  "governanceContract": "0x0000000000000000000000000000000000000000000000000000000000000004",
-  "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
-  "registrations": {
-    "Solana": "0xec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5",
-    "Ethereum": "0x0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585",
-    "Terra": "0x0000000000000000000000007cf7b764e38a0a5e967972c1df77d432510564e2",
-    "Polygon": "0x0000000000000000000000005a58505a96d1dbf8df91cb21b54419fc36e93fde",
-    "Avalanche": "0x0000000000000000000000000e082f06ff657d94310cb8ce8b0d9a04541d8052",
-    "Oasis": "0x0000000000000000000000005848c791e09901b40a9ef749f2a6735b418d7564",
-    "Algorand": "0x67e93fa6c8ac5c819990aa7340c0c16b508abb1178be9b30d024b8ac25193d45",
-    "Aurora": "0x00000000000000000000000051b5123a7b0f9b2ba265f9c4c8de7d78d52f510f",
-    "Fantom": "0x0000000000000000000000007c9fc5741288cdfdd83ceb07f3ea7e22618d79d2",
-    "Karura": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
-    "Acala": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
-    "Klaytn": "0x0000000000000000000000005b08ac39eaed75c0439fc750d9fe7e1f9dd0193f",
-    "Celo": "0x000000000000000000000000796dff6d74f3e27060b71255fe517bfb23c93eed",
-    "Near": "0x148410499d3fcda4dcfd68a1ebfcdddda16ab28326448d4aae4d2f0465cdfcb7",
-    "Moonbeam": "0x000000000000000000000000b1731c586ca89a23809861c6103f0b96b3f57d92",
-    "Neon": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Terra2": "0xa463ad028fb79679cfc8ce1efba35ac0e77b35080a1abe9bebe83461f176b0a3",
-    "Injective": "0x00000000000000000000000045dbea4617971d93188eda21530bc6503d153313",
-    "Osmosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Sui": "0xccceeb29348f71bdd22ffef43a2a19c1f5b5e17c5cca5411529120182672ade5",
-    "Aptos": "0x0000000000000000000000000000000000000000000000000000000000000001",
-    "Arbitrum": "0x0000000000000000000000000b2402144bb366a632d14b83f244d2e0e21bd39c",
-    "Optimism": "0x0000000000000000000000001d68124e65fafc907325e3edbf8c4d84499daa8b",
-    "Gnosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Pythnet": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Xpla": "0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c",
-    "Btc": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Base": "0x0000000000000000000000008d2de8d2f73f1f4cab472ac9a881c9b123c79627",
-    "Sei": "0x86c5fd957e2db8389553e1728f9c27964b22a8154091ccba54d75f4b10c61f5e",
-    "Rootstock": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Scroll": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
-    "Mantle": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
-    "Blast": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
-    "Xlayer": "0x0000000000000000000000005537857664b0f9efe38c9f320f75fef23234d904",
-    "Linea": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Berachain": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Seievm": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Snaxchain": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Wormchain": "0xaeb534c45c3049d380b9d9b966f9895f53abd4301bfaff407fa09dea8ae7a924",
-    "Cosmoshub": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Evmos": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Kujira": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Neutron": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Celestia": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Stargaze": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Seda": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Dymension": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Provenance": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Sepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "ArbitrumSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "BaseSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "OptimismSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "Holesky": "0x0000000000000000000000000000000000000000000000000000000000000000",
-    "PolygonSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000"
-  }
+    "network": "Testnet",
+    "chains": {
+        "Sepolia": {
+            "version": "1.1.0",
+            "mode": "burning",
+            "paused": true, // set to true to pause the contract
+            "owner": "0x0088DFAC40029f266e0FF62B82E47A07467A0345",
+            "manager": "0x5592809cf5352a882Ad5E9d435C6B7355B716357",
+            //...
+            "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
+        }
+    }
 }
 ```
-
-### Additional Info Examples
-
-You can get the contract address for a module as follows:
-
-```bash
-worm info rpc INSERT_NETWORK INSERT_CHAIN INSERT_MODULE
-```
-
-To get the contract address for `NFTBridge` on BSC Mainnet, for example, you can provide the following command:
-
-```bash
-worm info contract mainnet bsc NFTBridge
-```
-
-You can get the RPC address for a chain as follows:
-
-```bash
-worm info rpc INSERT_NETWORK INSERT_CHAIN
-```
-
-To get the RPC address for BSC Mainnet, for example, you can provide the following command: 
-
-```bash
-worm info rpc mainnet bsc
-```
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/toolkit/dev-env/
---- BEGIN CONTENT ---
----
-title: Local Dev Environment
-description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more. 
-categories: Solidity-SDK, Typescript-SDK
----
-
-# Development Environment
-
-Developers building for smart contract integration will want to set up a development environment to allow testing the full integration, possibly including VAA generation and relaying.
-
-## Tooling Installation
-
-The [Wormhole CLI Tool](/docs/build/toolkit/cli/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/build/start-building/supported-networks/){target=\_blank}.
-
-## Development Stages
-
-Different approaches to development and testing are recommended at various stages of application development.
-
-### Initial Development
-
-During the initial development of an on-chain application, the best option is to use the native tools available in the environment. You can visit the following resources for more information:
-
-- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset  
-- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received. 
-- **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}** - example mock Guardian test
-
-Relying on native tools when possible allows for more rapid prototyping and iteration.  
-
-### Integration
-
-For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/build/start-building/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} is available to run local instances of all the chains Wormhole supports.
 
 !!! note
-    Variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make setting them up difficult or time-consuming. You may prefer Testnets for the simplest integration testing.
+    While the `Pauser` can pause contracts, the ability to un-pause contracts is callable only by the `Owner`.
 
-### Prepare for Deployment
+The `Owner` and the `Pauser` addresses can each pause the contract. Since the contract `Owner` address is typically a multisig or a more complex DAO governance contract, and pausing the contract only affects the availability of token transfers, protocols can choose to set the `Pauser` address to be a different address. Creating a separate `Pauser` helps protocols respond quickly to potential risks without going through a drawn-out process.
 
-Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](https://tilt.dev/){target=\_blank} since it allows you to spin up any chains supported by Wormhole in a consistent environment.
-
-## Validator Setup with Tilt
-
-### Tilt
-If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} page for a complete guide to setting up and configuring Tilt.
-
-## Deploying to Public Networks
-
-### Testnet
-
-When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where 19 Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
-
-```text
-https://api.testnet.wormholescan.io
-```
-
-### Mainnet
-
-The Mainnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Mainnet endpoint:
-
-```text
-https://api.wormholescan.io
-```
+Consider separating `Owner` and `Pauser` roles for your multichain deployment. `Owner` and `Pauser` roles are defined directly on the `NttManager` contract.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/toolkit/faqs/
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/configuration/rate-limiting/
 --- BEGIN CONTENT ---
 ---
-title: Toolkit FAQs
-description: FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScript, Solidity), Tilt, error handling, transaction history, and manual VAA submission.
-categories: Solidity-SDK, Typescript-SDK
+title: Native Token Transfers Rate Limiting
+description: Learn about rate limits in Wormhole NTT by configuring send/receive limits, queuing, and canceling flows to manage multichain token transfers efficiently.
+categories: NTT, Transfer
 ---
 
-# Toolkit FAQs
+## Introduction
 
-## Why does the `toNative` function in the TypeScript SDK return an error?
+The Native Token Transfer (NTT) framework provides configurable per-chain rate limits for sending and receiving token transfers. Integrators can manage these limits via their own governance processes to quickly adapt to on-chain activity.
 
-The `toNative` function may return an error if the platform-specific module (such as Solana or EVM) is not correctly imported or passed into the Wormhole constructor.
+If a transfer is rate-limited on the source chain and queueing is enabled via `shouldQueue = true`, the transfer is placed into an outbound queue and can be released after the rate limit expires.
 
-To fix this, ensure the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
+You can configure the following limits on every chain where NTT is deployed directly using the manager:
 
-```typescript
-import solana from '@wormhole-foundation/sdk/solana';
-const wh = await wormhole('Testnet', [solana]);
-```
+- **Sending limit** - a single outbound limit for sending tokens from the chain
+- **Per-chain receiving limits** - the maximum receiving limit, which can be configured on a per-chain basis. For example, allowing 100 tokens to be received from Ethereum but only 50 tokens to be received from Arbitrum
 
-## How can I retrieve the history of previously bridged transactions?
+Rate limits are replenished every second over a fixed duration. While the default duration is 24 hours, the value is configurable at contract creation. Rate-limited transfers on the destination chain are added to an inbound queue with a similar release delay.
 
-To retrieve the history of previously bridged transactions, you can use the Wormholescan API. Use the following endpoint to query the transaction history for a specific address:
+## Update Rate Limits
 
-```bash
-https://api.wormholescan.io/api/v1/operations?address=INSERT_ADDRESS
-```
+To configure or update the sending and receiving rate limits, follow these steps:
 
-Simply replace `INSERT_ADDRESS_HERE` with the address you want to query. The API will return a list of operations, including details about previously bridged transactions.
+1. **Locate the deployment file** - open the `deployment.json` file in your NTT project directory. This file contains the configuration for your deployed contracts
 
-???- example "Fetch transaction history for a specific address"
-    ```bash
-    curl -X GET "https://api.wormholescan.io/api/v1/operations?address=0x05c009C4C1F1983d4B915C145F4E782de23d3A38" -H "accept: application/json"
+2. **Modify the limits section** - for each chain, locate the limits field and update the outbound and inbound values as needed
+
+    ```json
+    "limits": {
+        "outbound": "1000.000000000000000000",
+        "inbound": {
+            "Ethereum": "100.000000000000000000",
+            "Arbitrum": "50.000000000000000000"
+        }
+    }
     ```
 
-## How can I manually submit a VAA to a destination chain in the correct format?
+     - **`outbound`** - sets the maximum tokens allowed to leave the chain
+     - **`inbound`** - configures per-chain receiving limits for tokens arriving from specific chains
 
-To manually submit a VAA (Verifiable Action Approval) to a destination chain, follow these steps:
-
-1. **Obtain the VAA in Base64 format** - navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
+3. **Push the configuration** - use the NTT CLI to synchronize the updated configuration with the blockchain
 
     ```bash
-    https://wormholescan.io/#/tx/INSERT_TX_HASH?view=advanced
+    ntt push
     ```
 
-2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
+4. **Verify the changes** - after pushing, confirm the new rate limits by checking the deployment status
 
-3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
+    ```bash
+    ntt status
+    ```
 
-    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/build/reference/contract-addresses/){target=\_blank} section
+???- note "`deployment.json` example"
+    ```json
+    {
+        "network": "Testnet",
+        "chains": {
+            "Sepolia": {
+                "version": "1.1.0",
+                "mode": "burning",
+                "paused": false,
+                "owner": "0x0088DFAC40029f266e0FF62B82E47A07467A0345",
+                "manager": "0x5592809cf5352a882Ad5E9d435C6B7355B716357",
+                "token": "0x5CF5D6f366eEa7123BeECec1B7c44B2493569995",
+                "transceivers": {
+                    "threshold": 1,
+                    "wormhole": {
+                        "address": "0x91D4E9629545129D427Fd416860696a9659AD6a1",
+                        "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
+                    }
+                },
+                "limits": {
+                    "outbound": "184467440737.095516150000000000",
+                    "inbound": {
+                        "ArbitrumSepolia": "500.000000000000000000"
+                    }
+                },
+                "pauser": "0x0088DFAC40029f266e0FF62B82E47A07467A0345"
+            }
+        }
+    }
+    ```
 
-    - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field
+## Queuing Mechanism
 
-Following these steps, you can manually submit a VAA in the proper format to a destination chain.
+When a transfer exceeds the rate limit, it is held in a queue and can be released after the set rate limit duration has expired. The sending and receiving queuing behavior is as follows:
+
+- **Sending** - if an outbound transfer violates rate limits, users can either revert and try again later or queue their transfer. Users must return after the queue duration has expired to complete sending their transfer
+- **Receiving** - if an inbound transfer violates rate limits, it is in a queue. Users or relayers must return after the queue duration has expired to complete receiving their transfer on the destination chain
+
+Queuing is configured dynamically during each transfer by passing the `shouldQueue` parameter to the [`transfer` function](https://github.com/wormhole-foundation/native-token-transfers/blob/5e7ceaef9a5e7eaa13e823a67c611dc684cc0c1d/evm/src/NttManager/NttManager.sol#L171-L182){target=\_blank} in the `NttManager` contract.
+
+## Cancel Flows
+
+If users bridge frequently between a given source chain and destination chain, the capacity could be exhausted quickly. Loss of capacity can leave other users rate-limited, potentially delaying their transfers.  The outbound transfer cancels the inbound rate limit on the source chain to avoid unintentional delays. This allows for refilling the inbound rate limit by an amount equal to the outbound transfer amount and vice-versa, with the inbound transfer canceling the outbound rate limit on the destination chain and refilling the outbound rate limit with an amount.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/toolkit/solidity-sdk/
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/
 --- BEGIN CONTENT ---
 ---
-title: Solidity SDK
-description: How to use the Wormhole Solidity SDK for cross-chain messaging, token transfers, and integrating decentralized applications on EVM-compatible blockchains.
-categories: Solidity-SDK
+title: Native Token Transfers (NTT) - Deployment
+description: This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
+categories: NTT, Transfer
 ---
 
-# Solidity SDK
+# Deploy Native Token Transfers (NTT)
 
-## Introduction 
+## Get Started
 
-The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} simplifies cross-chain messaging on EVM-compatible chains by providing essential Solidity interfaces, utility libraries, and testing tools. It allows developers to build secure and efficient cross-chain decentralized applications (dApps) without manually interacting with Wormhole’s core contracts across multiple chains.
+This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
 
-By abstracting away complex interactions, the SDK drastically reduces the overhead associated with cross-chain development. It provides:
+<div class="grid cards" markdown>
 
- - **Unified interfaces** - developers can use a standardized set of Solidity interfaces to handle cross-chain messaging, token transfers, and verifiable action approvals (VAAs) without needing to manage the underlying infrastructure
- - **Automated message delivery** - the SDK leverages Wormhole’s relayer infrastructure, automatically delivering messages across chains, reducing the need for manual intervention, and simplifying gas management on the target chain
- - **Seamless integration with Wormhole services** - the SDK integrates with Wormhole’s `TokenBridge` and Circle’s CCTP, providing built-in mechanisms for cross-chain asset transfers, making token bridges and cross-chain messaging easy to implement
- - **Testing and development tools** - it comes with comprehensive tools for local testing and simulation, allowing developers to validate their cross-chain logic before deployment, minimizing the risk of errors in production environments
+-   :octicons-download-16:{ .lg .middle } **Installation**
 
-These features significantly streamline the development workflow by reducing complexity and offering tools compatible with various EVM versions. This helps developers avoid issues that arise from differences in EVM equivalence across chains.
+    ---
 
-This guide covers installation, key concepts, and usage examples to help you build secure cross-chain applications using the SDK, from token transfers to advanced message passing.
+    Prerequisites and commands for installing the NTT CLI and working with the NTT framework.
 
-## Installation
+    [:custom-arrow: Install the NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/)
 
-To install the SDK, use [Foundry and Forge](https://book.getfoundry.sh/getting-started/installation){target=\_blank}. This pulls the necessary libraries into your project:
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM**
 
-```bash
-forge install wormhole-foundation/wormhole-solidity-sdk@v0.1.0
-```
+    ---
 
-When developing cross-chain applications, ensure that the chains you target support the EVM version you’re using. For instance, the PUSH0 opcode (introduced in Solidity 0.8.20) may not be available on all chains. To avoid compatibility issues, you can set the EVM version in your `foundry.toml` file:
+    Find information on preparing for NTT deployment to EVM, including an example NTT token repository.
 
-```toml
-evm_version = "paris"
-```
+    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
 
-This ensures compatibility across all targeted chains, even if some do not yet support the latest EVM upgrades.
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains via Launchpad**
 
-## Key Considerations
+    ---
 
-Before deploying applications using the Wormhole Solidity SDK, keep these considerations in mind:
+    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
 
- - **Version compatibility** - the SDK is evolving, and using tagged releases for production is crucial, as the main branch may introduce breaking changes
- - **IERC-20 remapping** - the SDK provides a remapping mechanism to handle potential conflicts between different implementations of IERC20, ensuring seamless integration with other libraries
- - **Testing** - given the cross-chain dependencies, testing all integrations is critical to avoid issues in production environments
+    [:custom-arrow: Deploy via Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/)
 
-## Concepts and Components
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**
 
-The Wormhole Solidity SDK consists of key components that streamline cross-chain communication, allowing developers to securely and efficiently interact with Wormhole’s infrastructure. Below are the critical concepts and contracts you'll encounter when working with the SDK.
+    ---
 
-### Cross-Chain Messaging with the Wormhole Relayer SDK
+    Your guide to NTT deployment to Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
 
-The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} contract simplifies cross-chain messaging and asset transfers by integrating several necessary modules, including the Wormhole relayer. By automating message delivery between chains, the Wormhole relayer removes the need for developers to manage relayer infrastructure or handle gas on the target chain. Delivery providers handle the message payload, ensuring secure and efficient communication.
+    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)
 
-You can refer to the [Wormhole relayer documentation](/docs/build/core-messaging/wormhole-relayers/){target=\_blank} for more details.
+-   :octicons-search-16:{ .lg .middle } **Post Deployment**
 
-Key modules in the SDK include:
+    ---
 
- - **`Base.sol`** - the core module for cross-chain messaging. It provides utility functions like `onlyWormholeRelayer()` and `setRegisteredSender()`, ensuring that only messages from trusted relayers are processed
+    Learn how to best monitor and maintain your NTT deployment to get the most out of your Wormhole integration while providing security for users.
 
- - **`TokenBase.sol`** - this module extends the base messaging functionality to support cross-chain token transfers. It includes utilities for securely sending and receiving tokens between EVM-compatible chains
+    [:custom-arrow: Explore next steps](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)
 
- - **`CCTPBase.sol`** - designed for Circle’s Cross-Chain Transfer Protocol, this module manages asset transfers such as USDC between chains. It includes functionalities for both sending and receiving CCTP-based assets
+-   :octicons-alert-16:{ .lg .middle } **Troubleshooting**
 
- - **`CCTPAndTokenBase.sol`** - a combined module that supports token and CCTP-based asset transfers in a single implementation. This module simplifies development for applications needing to handle both types of transfers
+    ---
 
-The Wormhole Solidity SDK offers a unified framework for cross-chain communication. Developers can select specific modules based on their application’s requirements, whether for messaging, token transfers, or CCTP. Each module includes built-in security measures, ensuring that only authorized senders or relayers are accepted, thereby protecting the application from unauthorized interactions.
+    Explore solutions and detailed guidance in our troubleshooting guide to resolve issues with NTT deployment.
 
-Please refer to the complete `WormholeRelayerSDK.sol` file below for further details.
+    [:custom-arrow: Get help](/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/)
 
-???- code "`WormholeRelayerSDK.sol`"
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers EVM Deployment
+description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
+---
+
+# Native Token Transfers (NTT) EVM Development
+
+## Deploy Your Token and Ensure Compatibility
+
+If you still need to do so, deploy the token contract to the destination or spoke chains.
+
+### Requirements for Token Deployment
+
+Wormhole’s NTT is an open framework that supports various deployment modes. The NTT CLI currently supports two deployment modes: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed across chains.
+
+#### Burn-and-Mint Mode
+
+Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
+
+- `burn(uint256 amount)`
+- `mint(address account, uint256 amount)`
+
+These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
+
+??? code "View the complete `INttToken` Interface`"
     ```solidity
     // SPDX-License-Identifier: Apache 2
-pragma solidity ^0.8.19;
+pragma solidity >=0.8.8 <0.9.0;
 
-import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
-import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
-import "wormhole-sdk/constants/Chains.sol";
-import "wormhole-sdk/Utils.sol";
+interface INttToken {
+    /// @notice Error when the caller is not the minter.
+    /// @dev Selector 0x5fb5729e.
+    /// @param caller The caller of the function.
+    error CallerNotMinter(address caller);
 
-import {Base} from "wormhole-sdk/WormholeRelayer/Base.sol";
-import {TokenBase, TokenReceiver, TokenSender} from "wormhole-sdk/WormholeRelayer/TokenBase.sol";
-import {CCTPBase, CCTPReceiver, CCTPSender} from "wormhole-sdk/WormholeRelayer/CCTPBase.sol";
-import {CCTPAndTokenBase, CCTPAndTokenReceiver, CCTPAndTokenSender} from "wormhole-sdk/WormholeRelayer/CCTPAndTokenBase.sol";
-    ```
+    /// @notice Error when the minter is the zero address.
+    /// @dev Selector 0x04a208c7.
+    error InvalidMinterZeroAddress();
 
-### Base Contract Overview
+    /// @notice Error when insufficient balance to burn the amount.
+    /// @dev Selector 0xcf479181.
+    /// @param balance The balance of the account.
+    /// @param amount The amount to burn.
+    error InsufficientBalance(uint256 balance, uint256 amount);
 
-The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Base.sol){target=\_blank} contract is a core part of the Wormhole Solidity SDK, providing essential helper functions and modifiers for managing cross-chain messages securely via the Wormhole Relayer. It handles sender registration and message validation, ensuring only authorized senders from specific chains can send messages.
+    /// @notice The minter has been changed.
+    /// @dev Topic0
+    ///      0x0b5e7be615a67a819aff3f47c967d1535cead1b98db60fafdcbf22dcaa8fa5a9.
+    /// @param newMinter The new minter.
+    event NewMinter(address previousMinter, address newMinter);
 
- - **`onlyWormholeRelayer()`** - a modifier that ensures only authorized messages from the Wormhole relayer contract are processed, restricting access to certain functions
+    // NOTE: the `mint` method is not present in the standard ERC20 interface.
+    function mint(address account, uint256 amount) external;
 
-    ```solidity
-    require(
-            msg.sender == address(wormholeRelayer),
-            "Msg.sender is not Wormhole Relayer"
-        );
-        _;
-    }
-    ```
+    // NOTE: the `setMinter` method is not present in the standard ERC20 interface.
+    function setMinter(address newMinter) external;
 
- - **`setRegisteredSender()`** - restricts message acceptance to a registered sender from a specific chain, ensuring messages are only processed from trusted sources
-
-    ```solidity
-    uint16 sourceChain,
-        bytes32 sourceAddress
-    ) public {
-        require(
-            msg.sender == registrationOwner,
-            "Not allowed to set registered sender"
-        );
-        registeredSenders[sourceChain] = sourceAddress;
-    }
-    ```
-
-These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete `Base.sol` contract below for further details.
-
-???- code "`Base.sol`"
-    ```solidity
-    // SPDX-License-Identifier: Apache 2
-pragma solidity ^0.8.19;
-
-import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
-import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
-import "wormhole-sdk/interfaces/IWormhole.sol";
-import "wormhole-sdk/Utils.sol";
-
-abstract contract Base {
-    IWormholeRelayer public immutable wormholeRelayer;
-    IWormhole public immutable wormhole;
-
-    address registrationOwner;
-    mapping(uint16 => bytes32) registeredSenders;
-
-    constructor(address _wormholeRelayer, address _wormhole) {
-        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
-        wormhole = IWormhole(_wormhole);
-        registrationOwner = msg.sender;
-    }
-
-    modifier onlyWormholeRelayer() {
-        require(
-            msg.sender == address(wormholeRelayer),
-            "Msg.sender is not Wormhole Relayer"
-        );
-        _;
-    }
-
-    modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
-        require(
-            registeredSenders[sourceChain] == sourceAddress,
-            "Not registered sender"
-        );
-        _;
-    }
-
-    /**
-     * Sets the registered address for 'sourceChain' to 'sourceAddress'
-     * So that for messages from 'sourceChain', only ones from 'sourceAddress' are valid
-     *
-     * Assumes only one sender per chain is valid
-     * Sender is the address that called 'send' on the Wormhole Relayer contract on the source chain)
-     */
-    function setRegisteredSender(
-        uint16 sourceChain,
-        bytes32 sourceAddress
-    ) public {
-        require(
-            msg.sender == registrationOwner,
-            "Not allowed to set registered sender"
-        );
-        registeredSenders[sourceChain] = sourceAddress;
-    }
+    // NOTE: NttTokens in `burn` mode require the `burn` method to be present.
+    //       This method is not present in the standard ERC20 interface, but is
+    //       found in the `ERC20Burnable` interface.
+    function burn(uint256 amount) external;
 }
     ```
 
-### Interface for Cross-Chain Messages
+Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
 
-The Wormhole Solidity SDK interacts with the Wormhole relayer for sending and receiving messages across EVM-compatible chains. The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} and [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interfaces are central to cross-chain communication, enabling secure and efficient message delivery.
+#### Hub-and-Spoke Mode
 
-For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/docs/build/core-messaging/wormhole-relayers/#wormhole-relayer-interfaces){target=\_blank}. This section covers:
+A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) mint or burn tokens during cross-chain transfers, ensuring consistency with the locked tokens on the hub chain.
 
- - **`IWormholeRelayer`** – methods for sending cross-chain messages, VAAs, and token transfers
- - **`IWormholeReceiver`** – the required implementation for receiving cross-chain messages
- - **`quoteEVMDeliveryPrice()`** – how to estimate gas and fees for cross-chain transactions
+ - **Hub chain** - tokens are locked on the hub chain when transferring to spoke chains
+ - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
 
-These interfaces reduce the complexity of cross-chain dApp development by abstracting away the details of relayer infrastructure, ensuring that message delivery is handled efficiently.
+!!! note
+    The only requirement for using the NTT framework is an ERC20 token, which can be newly deployed or existing. Steps like setting mint authority apply only to spoke chains.
 
-### Advanced Concepts
+For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
 
-For developers interested in exploring additional advanced topics, the following sections provide insights into key aspects of the SDK’s functionality.
+This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
 
-???- note "Error Handling and Reverts"
-    The SDK defines several custom errors to help developers handle common issues like incorrect gas fees, invalid senders, and more. For example, `InvalidMsgValue` is thrown when the message value for a relayed message is erroneous.
+For more detailed information, see the [Deployment Models](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank} page.
 
-    ```solidity
-    error InvalidMsgValue(uint256 msgValue, uint256 totalFee);
+### Key Differences Between Modes
+
+ - **Burn-and-mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to manage token issuance independently
+ - **Hub-and-spoke** - tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency
+
+## Deploy NTT
+
+Create a new NTT project:
+
+```bash
+ntt new my-ntt-deployment
+cd my-ntt-deployment
+```
+
+Initialize a new `deployment.json` file specifying the network:
+
+=== "Testnet"
+
+    ```bash
+    ntt init Testnet
     ```
 
-## Usage
+=== "Mainnet"
 
-This section covers cross-chain messaging and token transfers and shows how to use the Wormhole Solidity SDK in real-world scenarios.
+    ```bash
+    ntt init Mainnet
+    ```
 
-### Send a Cross-Chain Message
+Ensure you have set up your environment correctly: 
 
-To send a cross-chain message, inherit from the base contract provided by the SDK and use its helper methods to define your message and sender address. Here’s a basic example:
+```bash
+export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
+```
 
-```solidity
-pragma solidity ^0.8.19;
+Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
-import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/Base.sol";
+```bash
+# Set scanner API Keys as environment variables
+export SEPOLIA_SCAN_API_KEY=INSERT_ETHERSCAN_SEPOLIA_API_KEY
+export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
 
-contract CrossChainSender is Base {
-    constructor(
-        address _wormholeRelayer,
-        address _wormhole
-    ) Base(_wormholeRelayer, _wormhole) {}
+# Add each chain
+# The contracts will be automatically verified using the scanner API keys above
+ntt add-chain Sepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
+ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
+```
 
+While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
+
+The `ntt add-chain` command takes the following parameters:
+
+- Name of each chain
+- Version of NTT to deploy (use `--latest` for the latest contract versions)
+- Mode (either `burning` or `locking`)
+- Your token contract address
+
+The NTT CLI prints detailed logs and transaction hashes, so you can see exactly what's happening under the hood.
+
+## Configure NTT
+
+The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
+
+- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
+- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+
+    For Solana, the limits are set with 9 decimal places:
+      ```json
+      "inbound": {
+          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+      }
+      ```
+
+    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
+      ```json
+      "inbound": {
+          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+      }
+      ```
+
+    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
+  
+- `ntt push` - syncs the on-chain configuration with local changes made to your `deployment.json` file
+
+After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
+
+## Set Token Minter to NTT Manager
+
+The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub-and-spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
+
+!!! note
+    The required NTT Manager address can be found in the `deployment.json` file.
+
+- If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
+    ```json
+    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
+    ```
+
+- If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
+
+By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
+
+!!!important
+    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/){target=\_blank} page.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Solana Deployment
+description: Deploy and configure Wormhole's Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
+---
+
+# Deploy Native Token Transfers on Solana
+
+[Native Token Transfers (NTT)](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
+
+By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
+
+## Prerequisites
+
+Before deploying NTT on Solana, ensure you have the following:
+
+-  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
+-  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+-  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+
+Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
+
+## Overview of the Deployment Process
+
+Deploying NTT with the CLI on Solana follows a structured process:
+
+1. **Choose your token setup**:
+
+     - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
+     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
+
+        ???- interface "Create and Mint SPL Tokens"
+            This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+            1. **Generate a Solana key pair** - run the following command to create a new wallet:
+
+                ```bash
+                solana-keygen grind --starts-with w:1 --ignore-case
+                ```
+
+            2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
+
+                ```bash
+                solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+                ```
+
+            3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
+
+                === "Mainnet"
+                    ```bash
+                    solana config set -um
+                    ```
+
+                === "Testnet"
+                    ```bash
+                    solana config set -ut
+                    ```
+
+                === "Devnet"
+                    ```bash
+                    solana config set -ud
+                    ```
+
+            4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
+
+                ```bash
+                solana airdrop 2
+                solana balance
+                ```
+
+            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+
+                ```bash
+                cargo install spl-token-cli
+                ```
+
+            6. **Create a new SPL token** - initialize the token on Solana
+
+                ```bash
+                spl-token create-token
+                ```
+
+            7. **Create a token account** - generate an account to hold the token
+
+                ```bash
+                spl-token create-account INSERT_TOKEN_ADDRESS
+                ```
+
+            8. **Mint tokens** - send 1000 tokens to the created account
+
+                ```bash
+                spl-token mint INSERT_TOKEN_ADDRESS 1000
+                ```
+
+            !!! note
+                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+
+2. **Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}**:
+
+     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
+
+3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
+
+Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
+
+By default, NTT transfers to Solana require manual [relaying](/docs/learn/infrastructure/relayer/){target=\_blank}, meaning users must complete a transaction on Solana to finalize the transfer. For automatic relaying, where transactions are completed without user intervention, additional setup is required. [Contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to enable automatic relaying support for your deployment.
+
+## Set Up NTT
+
+To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
+
+The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+
+1. **Create a new NTT project** - set up a deployment workspace
+
+    ```bash
+    ntt new INSERT_PROJECT_NAME
+    cd INSERT_PROJECT_NAME
+    ```
+
+2. **Initialize the deployment** - generate a `deployment.json` file with your deployment settings
+
+    === "Mainnet"
+
+        ```bash
+        ntt init Mainnet
+        ```
+
+    === "Testnet"
+
+        ```bash
+        ntt init Testnet
+        ```
+!!! note
+    Testnet deployment settings work for both Solana Testnet and Devnet networks.
+
+### Set Mint Authority
+
+If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
+
+If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+
+Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
+
+Follow these steps to set the mint authority using the NTT CLI:
+
+1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
+
+    ```bash
+    solana-keygen grind --starts-with ntt:1 --ignore-case
+    ```
+
+2. **Derive the token authority** - generate the PDA, which will manage token minting
+
+    ```bash
+    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
+    ```
+
+3. **Set SPL token mint authority** - delegate minting control to the derived PDA 
+
+    ```bash
+    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+    ```
+
+## Deploy and Configure NTT
+
+After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
+
+1. **Deploy NTT to Solana** - run the appropriate command based on your deployment mode:
+
+    === "Burn-and-Mint"
+
+        ```bash
+        ntt add-chain Solana --latest --mode burning --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    === "Hub-and-Spoke"
+
+        ```bash
+        ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    !!! tip
+        The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
+
+2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
+
+    ```bash
+    ntt status
+    ```
+
+    If needed, sync your local configuration with the on-chain state:
+
+    ```bash
+    ntt pull
+    ```
+
+3. **Configure inbound and outbound rate limits** - by default, the inbound and outbound limits are set to `0` and must be updated before deployment. For EVM chains, values must be set using 18 decimals, while Solana uses nine decimals. 
+
+    Open your `deployment.json` file and adjust the values based on your use case:  
+
+    ```json
+    "inbound": {
+        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+    },
+    "outbound": {
+        "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
+    }
+    ```
+
+4. **Push the final deployment** - once rate limits are set, push the deployment to Solana using the specified key pair to cover gas fees
+
+    ```bash
+    ntt push --payer INSERT_YOUR_KEYPAIR_JSON
+    ```
+
+### Troubleshoot Deployment Issues
+    
+If your deployment fails, it may be due to leftover program buffer accounts taking up storage on Solana. These temporary accounts are created during deployment but may persist if interrupted. Refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on finding and closing these buffer accounts to free up space and allow redeployment.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+
+    ---  
+
+    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+
+    [:custom-arrow: Deploy NTT on EVM](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
+
+    ---
+
+    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
+
+    ---
+
+    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+
+    [:custom-arrow: Use Connect to Integrate NTT](/docs/build/transfers/connect/){target=\_blank}
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/
+--- BEGIN CONTENT ---
+---
+title: Deploy Native Token Transfers with Launchpad
+description: Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
+categories: NTT, Transfer
+---
+
+# Deploy Native Token Transfers with Launchpad
+
+## Introduction
+
+The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
+
+Instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication, you can quickly launch or expand tokens with just a few clicks. 
+
+The Launchpad automates deployment, reducing complexity and saving time.
+
+This guide covers:
+
+ - Launching a new cross-chain token
+ - Expanding an existing token for NTT
+ - Managing tokens via the dashboard and settings
+
+## Prerequisites
+
+ - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.)
+ - Minimum ETH (or equivalent) for gas fees per deployment
+
+## Supported Blockchains
+
+The NTT Launchpad currently supports deployments on the following mainnet chains:
+
+ - Ethereum
+ - Optimism Mainnet
+ - Arbitrum One
+ - Base
+
+## Choose Your Path
+
+Once ready, choose an option to proceed:
+
+ - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
+ - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract
+
+## Launch a Cross-Chain Token
+
+Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
+
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-1.webp)
+    
+2. Select **Launch a Cross-Chain Token**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-2.webp)
+
+3. Set the token details:
+    1. Select the **home network** from the dropdown menu
+    2. Enter the **name** for the token
+    3. Enter the **symbol** of the token 
+    4. Provide the **initial supply**
+    5. To the token details, click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-3.webp)
+
+4. Select the deployment chains:
+    1. The home network where your token will be deployed will be populated (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    3. To continue, click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-4.webp)
+
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-5.webp)
+
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-6.webp)
+
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
+
+8. Once both deployments are completed, proceed to the [**Dashboard**](#explore-the-launchpad-dashboard) to manage your token.
+
+## Expand Your Existing Token
+
+Expand an existing token to support NTT across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
+
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-1.webp)
+
+2. Select **Expand Your Existing Token**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-7.webp)
+
+3. Enter the token details:
+    1. Choose the home network where your token is already deployed (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    3. To continue, click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-8.webp)
+
+4. Select the chains to deploy your token to:
+    1. The home network where your token is already deployed will be populated (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    1. Click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-9.webp)
+
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-5.webp)
+
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-6.webp)
+
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
+
+8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details
+
+## Explore the Launchpad Dashboard
+
+To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.com/){target=\_blank}, click on **Manage Deployment**. Here, you can view deployment status, monitor supply across chains, and configure transfer settings.
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-10.webp)
+
+The dashboard provides a high-level view of your token across all deployed chains, including:
+
+ - Token addresses for each chain
+ - Supply distribution visualization
+ - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-11.webp)
+
+## Settings
+
+The **Settings** page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
+
+### Chain Management
+
+Use the drop-down menu at the top to select the chain you want to configure. The available options correspond to the chains where your token has already been deployed. Once selected, the page displays token details specific to that chain.
+
+From this section, you can also:
+
+ - **Pause the token** – temporarily turn off transfers on the selected chain
+ - **Deploy to a new chain** – expand your token by deploying it to an additional chain
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-12.webp)
+
+### Role Management
+
+This section displays key [roles](/docs/build/transfers/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
+
+ - **Manager’s Owner** – the owner through the `NTTOwner` proxy
+ - **Pauser** – the address authorized to pause transfers
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-13.webp)
+
+### Security Threshold
+
+Determine and update how transceivers interact with the token. [Transceivers](/docs/build/transfers/native-token-transfers/managers-transceivers/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
+
+A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
+
+ - **Registered Transceivers** – displays the number of registered transceivers and their addresses
+ - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-14.webp)
+
+### Peer Chains Limits
+
+Define the transfer restrictions for each connected network. You can adjust:
+
+ - **Sending Limits** – the maximum amount of tokens that can be sent from the home chain
+ - **Receiving Limits** – the maximum amount of tokens that can be received for each of the supported peer chains
+
+Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-15.webp)
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/installation/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Installation
+description: Learn how to Install Wormhole’s Native Token Transfers (NTT) framework, a flexible and composable framework for transferring tokens across blockchains.
+categories: NTT, Transfer
+---
+
+# Install the Native Token Transfers CLI
+
+In this video, the Wormhole team walks you through installing the [Native Token Transfers (NTT) CLI](https://github.com/wormhole-foundation/native-token-transfers/tree/main/cli){target=\_blank}. You’ll see a practical demonstration of running commands, verifying your installation, and addressing common issues that might arise. If you prefer to follow written instructions or want a quick reference for each step, scroll down for the detailed installation guide.
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
+
+## Install NTT CLI
+
+The fastest way to deploy Native Token Transfers (NTT) is using the NTT CLI. As prerequisites, ensure you have the following installed:
+
+- Install [Bun](https://bun.sh/){target=\_blank}
+
+Follow these steps to install the NTT CLI:
+
+1. Run the installation command in your terminal:
+
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    ```
+
+2. Verify the NTT CLI is installed:
+
+    ```bash
+    ntt --version
+    ```
+
+3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI
+
+## Update NTT CLI
+
+To update an existing NTT CLI installation, run the following command in your terminal:
+
+```bash
+ntt update
+```
+
+NTT CLI installations and updates will always pick up the latest tag with name vX.Y.Z+cli and verify that the underlying commit is included in main.
+
+For local development, you can update your CLI version from a specific branch or install from a local path.
+
+To install from a specific branch, run:
+
+```bash
+ntt update --branch foo
+```
+
+To install locally, run:
+```bash
+ntt update --path path/to/ntt/repo
+```
+
+Git branch and local installations enable a fast iteration loop as changes to the CLI code will immediately be reflected in the running binary without having to run any build steps.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy to EVM Chains**
+
+    ---
+
+    Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
+
+    [:custom-arrow: Deploy NTT to EVM chains](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy to Solana**
+
+    ---
+
+    Deploy and configure Wormhole's Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
+
+    [:custom-arrow: Deploy NTT to Solana](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Post Deployment
+description: Learn post-deployment guidelines for optimizing Wormhole NTT, which include testing, security, frontend integration, ecosystem coordination, and monitoring.
+categories: NTT, Transfer
+---
+
+# Native Token Transfers Post Deployment
+
+To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
+
+- Implement a robust testing plan for your multichain token before launching
+- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/build/transfers/native-token-transfers/configuration/){target=\_blank} for more details on ownership and rate limits
+- Consider a streamlined, customizable frontend such as [Wormhole Connect](/docs/build/transfers/connect/){target=\_blank} for an optimized user experience
+- Alternatively, the [Wormhole TypeScript SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} allows for a direct integration into your infrastructure
+- Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
+- Monitor and maintain your multichain deployment
+
+## Manual Relaying for Solana Transfers  
+
+By default, NTT transfers to Solana require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
+
+This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
+
+[Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole NTT Connect Demo**
+
+    ---
+
+    Check out an example project that uses a Vite-React TypeScript application and integrates it with Wormhole Connect, a customizable widget for cross-chain asset transfers.
+
+    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
+
+    ---
+
+    Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
+
+    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/
+--- BEGIN CONTENT ---
+---
+title: Troubleshooting NTT Deployment
+description: Resolve common issues in NTT deployment with this troubleshooting guide covering Solana, EVM, mint authority, decimals, and rate limits.
+categories: NTT, Transfer
+---
+
+# Troubleshooting NTT Deployment
+
+If you encounter issues during the NTT deployment process, check the following common points:
+
+- **Solana and Anchor versions** - ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#install-dependencies){target=\_blank}
+    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+    -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+- **Token compliance on EVM** - verify that your token is an ERC20 token on the EVM chain
+- **Mint authority transfer**
+    - **For burn or spoke tokens on Solana** - ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section
+    - **For EVM tokens** - confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details
+- **Decimal configuration** - run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#configure-ntt){target=\_blank} section
+- **Rate limit configuration** - increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/#configure-ntt){target=\_blank}
+- **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development** - run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file
+
+    ???- interface "Dockerfile"
+
+        ```Dockerfile
+            FROM ubuntu:20.04
+            # Set environment variables to prevent interactive prompts during installation
+            ENV DEBIAN_FRONTEND=noninteractive
+
+            # Update and install necessary dependencies
+            RUN apt-get update && apt-get install -y \
+                curl \
+                wget \
+                git \
+                build-essential \
+                libssl-dev \
+                libudev-dev \
+                pkg-config \
+                python3 \
+                python3-pip \
+                software-properties-common \
+                ca-certificates \
+                unzip \
+                clang \
+                cmake \
+                protobuf-compiler \
+                && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+            # Install Rust
+            RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+            ENV PATH="/root/.cargo/bin:$PATH"
+
+            # Install Solana CLI ({{ntt.solana_cli_version}})
+            RUN sh -c "$(curl -sSfL https://release.solana.com/{{ntt.solana_cli_version}}/install)"
+            ENV PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
+
+            # Install Anchor using avm
+            RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force \
+                && avm install 0.29.0 \
+                && avm use 0.29.0
+            ENV PATH="/root/.avm/bin:$PATH"
+
+
+            ENV NVM_DIR=/root/.nvm
+            RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
+                && . "$NVM_DIR/nvm.sh" \
+                && nvm install 22 \
+                && nvm use 22 \
+                && nvm alias default 22
+            ENV PATH="$NVM_DIR/versions/node/v22.12.0/bin:$PATH"
+
+            # Install Bun
+            RUN curl -fsSL https://bun.sh/install | bash
+            ENV PATH="/root/.bun/bin:$PATH"
+
+            # Install Foundry
+            RUN curl -L https://foundry.paradigm.xyz | bash
+            ENV PATH="/root/.foundry/bin:${PATH}"
+            RUN /bin/bash -c "source /root/.bashrc && foundryup"
+
+            # Install Wormhole NTT CLI
+            RUN curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+
+            # Add a default working directory
+            WORKDIR /app
+
+            # Expose port for development if needed
+            EXPOSE 8899
+
+            # Entry point for the container
+            CMD ["bash"]
+        ```
+
+    ???- interface "docker-compose.yml"
+        ```yml 
+            services:
+                portal-ntt:
+                    build:
+                        context: .
+                        dockerfile: Dockerfile
+                    platform: linux/amd64
+                    volumes:
+                        - ./src:/app
+                    working_dir: /app
+                    tty: true
+        ```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/faqs/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers FAQs
+description: Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
+categories: NTT, Transfer
+---
+
+# Wormhole NTT FAQs
+
+## Do you have an example of how cross-chain lending can be implemented using Wormhole?
+
+Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
+
+Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/docs/learn/transfers/native-token-transfers/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
+
+## What causes the "No protocols registered for Evm" error in Wormhole SDK?
+
+This error typically occurs when the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} cannot recognize or register the necessary EVM protocols, which are required for interacting with Ethereum-based networks. The most common reason for this error is that the relevant EVM package for Wormhole's NTT has not been imported correctly.
+
+To resolve this issue, ensure you have imported the appropriate Wormhole SDK package for EVM environments. The necessary package for handling NTT on EVM chains is `@wormhole-foundation/sdk-evm-ntt`. Here's the correct import statement:
+
+```rust
+import '@wormhole-foundation/sdk-evm-ntt';
+```
+
+By importing this package, the Wormhole SDK can register and utilize the required protocols for EVM chains, enabling cross-chain token transfers using the NTT framework. Ensure to include this import at the start of your code, especially before attempting any interactions with EVM chains in your project.
+
+## How can I transfer ownership of NTT to a multisig?
+
+Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
+
+1. **Initiate transfer** - use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig)
+2. **Claim ownership** - the multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer
+3. **Single-step transfer (Riskier)** - you can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA)
+
+For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
+
+## How can I specify a custom RPC for NTT?
+
+To specify a custom RPC for Wormhole's NTT, create an `overrides.json` file in the root of your deployment directory. This file allows you to define custom RPC endpoints, which can be helpful when you need to connect to specific nodes or networks for better performance, security, or control over the RPC connection.
+
+Below’s an example of how the `overrides.json` file should be structured:
+
+???- code "`overrides.json`"
+    ```json
+    {
+    "chains": {
+        "Bsc": {
+            "rpc": "http://127.0.0.1:8545"
+        },
+        "Sepolia": {
+            "rpc": "http://127.0.0.1:8546"
+        },
+        "Solana": {
+            "rpc": "http://127.0.0.1:8899"
+        }
+        }
+    }
+    ```
+
+## How can I redeem tokens if NTT rate limits block them on the target chain?
+
+If the rate limits on Wormhole's NTT block tokens from being received on the target chain, the transaction will typically be paused until the rate limits are adjusted. Rate limits are implemented to manage congestion and prevent chain abuse, but they can occasionally delay token redemptions.
+
+To resolve this:
+
+1. **Adjust rate limits** - the rate limits must be modified by an administrator or through the appropriate configuration tools to allow the blocked transaction to proceed
+2. **Resume transaction flow** - once the rate limits are adjusted, you can resume the flow, which should be visible in the UI. The tokens will then be redeemable on the target chain
+
+In most cases, the transaction will resume automatically once the rate limits are adjusted, and the UI will guide you through the redemption process.
+
+## What are the challenges of deploying NTT to non-EVM chains?
+
+NTT requires the same transceiver for all routes, limiting flexibility when deploying across EVM and non-EVM chains. For example, if you're deploying to Ethereum, Arbitrum, and Solana, you can't use Wormhole and Axelar as transceivers because Axelar doesn't support Solana. This constraint forces integrators to use a single transceiver (e.g., Wormhole) for all chains, reducing flexibility in optimizing cross-chain transfers.
+
+## Does the NTT manager function as an escrow account for a hub chain?
+
+Yes, the NTT manager acts like an escrow account for non-transferable tokens on a hub chain. To manage non-transferable tokens, you would add the NTT manager to the allowlist, ensuring that only the NTT manager can hold and control the tokens as they are transferred across chains.
+
+## Which functions or events does Connect rely on for NTT integration?
+
+Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=\_blank}. The key methods involved include:
+
+- **Initiate and redeem functions** - these functions are essential for initiating token transfers and redeeming them on the destination chain
+- **Rate capacity methods** - methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion
+
+These functions ensure Connect can handle token transfers and manage chain-rate limits.
+
+## How does the relayer contract determine which transceiver to call?
+
+The source chain's transceiver includes the destination chain's transceiver in the message via the relayer contract. The admin configures each transceiver's mapping of its peers on other chains. This mapping allows the destination transceiver to verify that the message came from a trusted source.
+
+## How do I create a verifier or transceiver?
+
+To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
+
+For reference, you can review the [Axelar transceiver implementation](https://github.com/wormhole-foundation/example-wormhole-axelar-wsteth/blob/main/src/axelar/AxelarTransceiver.sol){target=\_blank}.
+
+## Can I use Hetzner for the NTT deployment?
+
+No, using Hetzner servers for Solana deployments is not recommended. Hetzner has blocked Solana network activity on its servers, leading to connection issues. Hetzner nodes will return a `ConnectionRefused: Unable to connect` error for Solana deployments. Therefore, choosing alternative hosting providers that support Solana deployments is advisable to ensure seamless operation.
+
+## How can I transfer tokens with NTT with an additional payload?
+
+You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank}.
+
+- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message
+- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message
+
+!!!Important
+    You cannot pass the additional data as part of the entry point directly. Instead, the data must be queried on-chain via the `_handleMsg` method, ensuring the payload is properly included and processed.
+
+## Why use NTT over xERC20?
+
+Shortcomings of xERC20:
+
+- **Single point of failure** - xERC20 relies on multiple bridges, but a compromise in any single bridge can jeopardize the token. It enforces a 1-of-n design rather than a more robust m-of-n approach
+- **No pausing** - xERC20 lacks mechanisms to pause operations during emergencies
+- **No access control** - there are no built-in access controls for managing token transfers securely
+- **Limited rate limiting** - rate limits are bridge-specific and cannot be set per chain, reducing flexibility and security
+- **No integration with relaying systems** - xERC20 does not natively support relayer systems, limiting its usability in automated or dynamic setups
+
+While xERC20 is an extension of the ERC20 standard, NTT is designed as a framework rather than a rigid standard. It is compatible with any token that supports `burn` and `mint` functions and allows the NTT manager to act as a minter. 
+
+## How can I start transferring tokens to a chain that is in burning mode, if no tokens are locked yet?
+
+To begin transferring tokens to a chain in burning mode when no tokens are locked, you must first send tokens to the NTT manager to back the supply. The address of the NTT manager can be found in the `deployment.json` file.
+
+## Is there a way to use NTT tokens with chains that don't currently support NTT?
+
+Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. For example:
+
+- **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
+- **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism
+- **Messaging consistency** - the Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT
+
+This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/managers-transceivers/
+--- BEGIN CONTENT ---
+---
+title: Managers and Transceivers
+description: Explore the roles of Managers and Transceivers in NTT cross-chain token transfers, including key functions, lifecycle events, and rate-limiting mechanisms.
+categories: NTT, Transfer
+---
+
+# Managers and Transceivers
+
+## Managers
+
+_Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
+
+- **`transfer`** - initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
+
+    ```solidity
+    function transfer(
+        uint256 amount, // amount (in atomic units)
+        uint16 recipientChain, // chain ID (Wormhole formatted) 
+        bytes32 recipient // recipient address (Wormhole formatted)
+    ) external payable nonReentrant whenNotPaused returns (uint64)
+    ```
+
+- **`quoteDeliveryPrice`** - calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer
+
+    ```solidity
+    function quoteDeliveryPrice(
+        uint16 recipientChain, // chain ID (Wormhole formatted) 
+        bytes memory transceiverInstructions // extra instructions for transceivers (Transceiver-dependent on whether extra instructions are used/accepted)
+    ) public view returns (uint256[] memory, uint256)
+    ```
+
+- **`setPeer`** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
+
+    ```solidity
+    function setPeer(
+        uint16 peerChainId, // chain ID (Wormhole formatted) 
+        bytes32 peerContract, // peer NTT Manager address (Wormhole formatted)
+        uint8 decimals, // token decimals on the peer chain
+        uint256 inboundLimit // inbound rate limit (in atomic units)
+    ) public onlyOwner
+    ```
+
+## Transceivers
+
+_Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers. Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
+
+- **`sendMessage`** - this external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
+
+    ```solidity
     function sendMessage(
-        bytes memory message,
-        uint16 targetChain,
-        bytes32 targetAddress
-    ) external payable {
-        // Register sender and send message through WormholeRelayer
-        setRegisteredSender(targetChain, msg.sender);
-        onlyWormholeRelayer().sendPayloadToEvm(
-            targetChain,
-            address(targetAddress),
-            message,
-            0,
-            500_000
-        );
-    }
-}
+        uint16 recipientChain,   // chain ID (Wormhole formatted)
+        TransceiverStructs.TransceiverInstruction memory instruction, // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
+        bytes memory nttManagerMessage, // serialized NTT Manager message, provided by the NTT Manager
+        bytes32 recipientNttManagerAddress, // NTT Manager address on the recipient chain (Wormhole formatted)
+        bytes32 refundAddress // address to receive refunds on the destination chain in case of excess quotes (Wormhole formatted)
+    ) external payable nonReentrant onlyNttManager
+    ```
+
+- **`quoteDeliveryPrice`** - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
+
+    ```solidity
+    function quoteDeliveryPrice(
+        uint16 targetChain,  // chain ID (Wormhole formatted) 
+        TransceiverStructs.TransceiverInstruction memory instruction // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
+    ) external view returns (uint256) 
+    ```
+
+## Lifecycle of a Message
+
+### EVM
+
+#### Transfer
+
+A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the transfer amount, the recipient chain, and the recipient address on the recipient chain. `transfer` also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the transceiver on the source chain. Depending on the mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned." Once the transfer has been forwarded to the transceiver, the `NttManager` emits the `TransferSent` event.
+
+**Events**
+
+```ts
+/// @notice Emitted when a message is sent from the nttManager.
+/// @dev Topic0
+/// 0x9716fe52fe4e02cf924ae28f19f5748ef59877c6496041b986fbad3dae6a8ecf
+/// @param recipient The recipient of the message.
+/// @param amount The amount transferred.
+/// @param fee The amount of ether sent along with the tx to cover the delivery fee.
+/// @param recipientChain The chain ID of the recipient.
+/// @param msgSequence The unique sequence ID of the message.
+event TransferSent(
+    bytes32 recipient, uint256 amount, uint256 fee, uint16 recipientChain, uint64 msgSequence
+);
 ```
 
-This contract extends `Base.sol` and allows sending cross-chain messages securely using the `WormholeRelayer`.
+#### Rate Limit
 
-### Send Tokens Across Chains
+A transfer can be rate-limited on both the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
 
-The SDK enables seamless token transfers between EVM-compatible chains in addition to sending messages. To facilitate cross-chain token transfers, you can extend the SDK's `TokenSender` and `TokenReceiver` base contracts.
+If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
 
-```solidity
-pragma solidity ^0.8.19;
+Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
 
-import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
+If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
 
-contract CrossChainTokenSender is TokenSender {
-    constructor(
-        address _wormholeRelayer,
-        address _wormhole
-    ) TokenSender(_wormholeRelayer, _wormhole) {}
+To deactivate the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is deactivated, the inbound and outbound rate limits can be set to 0.
 
-    function sendToken(
-        address token,
-        uint256 amount,
-        uint16 targetChain,
-        bytes32 targetAddress
-    ) external payable {
-        // Send tokens across chains
-        transferTokenToTarget(token, amount, targetChain, targetAddress);
-    }
-}
+**Events**
+
+```ts
+/// @notice Emitted whenn an outbound transfer is queued.
+/// @dev Topic0
+/// 0x69add1952a6a6b9cb86f04d05f0cb605cbb469a50ae916139d34495a9991481f.
+/// @param queueSequence The location of the transfer in the queue.
+event OutboundTransferQueued(uint64 queueSequence);
 ```
 
-In this example, `TokenSender` initiates a token transfer to another chain. The SDK’s built-in utilities securely handle token transfers, ensuring proper VAAs are generated and processed.
-
-### Receive Tokens Across Chains
-
-To receive tokens on the target chain, implement a contract that inherits from `TokenReceiver` and overrides the `receiveWormholeMessages` function.
-
-```solidity
-pragma solidity ^0.8.19;
-
-import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
-
-contract CrossChainTokenReceiver is TokenReceiver {
-    constructor(
-        address _wormholeRelayer,
-        address _wormhole
-    ) TokenReceiver(_wormholeRelayer, _wormhole) {}
-
-    // Function to handle received tokens from another chain
-    function receiveWormholeMessages(
-        bytes memory payload,
-        bytes[] memory additionalMessages,
-        bytes32 sourceAddress,
-        uint16 sourceChain,
-        bytes32 deliveryHash
-    ) external payable override {
-        // Process the received tokens here
-        receiveTokens(payload);
-    }
-}
+```ts
+/// @notice Emitted when an outbound transfer is rate limited.
+/// @dev Topic0
+/// 0x754d657d1363ee47d967b415652b739bfe96d5729ccf2f26625dcdbc147db68b.
+/// @param sender The initial sender of the transfer.
+/// @param amount The amount to be transferred.
+/// @param currentCapacity The capacity left for transfers within the 24-hour window.
+event OutboundTransferRateLimited(
+    address indexed sender, uint64 sequence, uint256 amount, uint256 currentCapacity
+);
 ```
 
-In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.
+```ts
+/// @notice Emitted when an inbound transfer is queued
+/// @dev Topic0
+/// 0x7f63c9251d82a933210c2b6d0b0f116252c3c116788120e64e8e8215df6f3162.
+/// @param digest The digest of the message.
+event InboundTransferQueued(bytes32 digest);
+```
+
+#### Send
+
+Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer, or manually published via the core bridge).
+
+Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
+
+**Events**
+
+```ts
+/// @notice Emitted when a message is sent from the transceiver.
+/// @dev Topic0
+/// 0x53b3e029c5ead7bffc739118953883859d30b1aaa086e0dca4d0a1c99cd9c3f5.
+/// @param recipientChain The chain ID of the recipient.
+/// @param message The message.
+event SendTransceiverMessage(
+    uint16 recipientChain, TransceiverStructs.TransceiverMessage message
+);
+```
+
+#### Receive
+
+Once a message has been emitted by a transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding transceiver on the recipient chain. The relayer interacts with the transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
+
+This method should also forward the message to the `NttManager` on the destination chain. Note that the transceiver interface doesn't declare a signature for this method because receiving messages is specific to each transceiver, and a one-size-fits-all solution would be overly restrictive.
+
+The `NttManager` contract allows an M of N threshold for transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two transceivers deliver valid attestations. When a transceiver attests to a message, the contract emits the `MessageAttestedTo` event.
+
+NTT implements replay protection, so if a given transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
+
+If a message has already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
+
+**Events**
+
+```ts
+/// @notice Emitted when a relayed message is received.
+/// @dev Topic0
+/// 0xf557dbbb087662f52c815f6c7ee350628a37a51eae9608ff840d996b65f87475
+/// @param digest The digest of the message.
+/// @param emitterChainId The chain ID of the emitter.
+/// @param emitterAddress The address of the emitter.
+event ReceivedRelayedMessage(bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress);
+```
+
+```ts
+/// @notice Emitted when a message is received.
+/// @dev Topic0
+/// 0xf6fc529540981400dc64edf649eb5e2e0eb5812a27f8c81bac2c1d317e71a5f0.
+/// @param digest The digest of the message.
+/// @param emitterChainId The chain ID of the emitter.
+/// @param emitterAddress The address of the emitter.
+/// @param sequence The sequence of the message.
+event ReceivedMessage(
+    bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress, uint64 sequence
+);
+```
+
+```ts
+/// @notice Emitted when a message has already been executed to notify client of against retries.
+/// @dev Topic0
+/// 0x4069dff8c9df7e38d2867c0910bd96fd61787695e5380281148c04932d02bef2.
+/// @param sourceNttManager The address of the source nttManager.
+/// @param msgHash The keccak-256 hash of the message.
+event MessageAlreadyExecuted(bytes32 indexed sourceNttManager, bytes32 indexed msgHash);
+```
+
+#### Mint or Unlock
+
+Once a transfer has been successfully verified, the tokens can be minted (if the mode is "burning") or unlocked (if the mode is "locking") to the recipient on the destination chain. Note that the source token decimals are bounded between `0` and `TRIMMED_DECIMALS` as enforced in the wire format. The transfer amount is untrimmed (scaled-up) if the destination chain token decimals exceed `TRIMMED_DECIMALS`. Once the appropriate number of tokens have been minted or unlocked to the recipient, the `TransferRedeemed` event is emitted.
+
+**Events**
+
+```ts
+/// @notice Emitted when a transfer has been redeemed
+/// (either minted or unlocked on the recipient chain).
+/// @dev Topic0
+/// 0x504e6efe18ab9eed10dc6501a417f5b12a2f7f2b1593aed9b89f9bce3cf29a91.
+/// @param digest The digest of the message.
+event TransferRedeemed(bytes32 indexed digest);
+```
+
+### Solana
+
+#### Transfer
+
+A client calls the `transfer_lock` or `transfer_burn` instruction based on whether the program is in `LOCKING` or `BURNING` mode. The program mode is set during initialization. When transferring, the client must specify the amount of the transfer, the recipient chain, the recipient address on the recipient chain, and the boolean flag `should_queue` to specify whether the transfer should be queued if it hits the outbound rate limit. If `should_queue` is set to false, the transfer reverts instead of queuing if the rate limit were to be hit.
 
 !!! note
-    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](/docs/build/core-messaging/core-contracts/#validating-the-emitter/){target=\_blank} section for more details.
+    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in an `InvalidMode` error.
 
-## Testing Environment
+Depending on the mode and instruction, the following will be produced in the program logs:
 
-The SDK includes built-in support for Forge-based testing, which allows you to test your cross-chain applications locally before deploying them to production. Testing with the same Solidity compiler version and configuration you plan to use in production is highly recommended to catch any potential issues early.
+```ts
+Program log: Instruction: TransferLock
+Program log: Instruction: TransferBurn
+```
 
-For a detailed example, check out the below repositories:
+Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
 
- - [Cross chain messaging](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/){target=\_blank}
- - [Cross chain token transfer](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/){target=\_blank}
+#### Rate Limit
+
+During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
+
+If the transfer amount fits within the current capacity:
+
+- Reduce the current capacity
+- Refill the inbound capacity for the destination chain
+- Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
+
+If the transfer amount doesn't fit within the current capacity:
+
+- If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
+- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
+
+#### Send
+
+The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
+
+For example, the Wormhole transceiver will send by calling `post_message` on the Wormhole program, so that the Wormhole Guardians can observe and verify the message.
+
+!!! note
+    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the outbound release isn't performed.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReleaseOutbound
+```
+
+#### Receive
+
+Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
+
+The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReceiveMessage
+```
+
+`redeem` checks the inbound rate limit and places the message in an Inbox. Logic works the same as the outbound rate limit mentioned previously.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: Redeem
+```
+
+#### Mint or Unlock
+
+The inbound transfer is released and the tokens are unlocked or minted to the recipient through either `release_inbound_mint` if the mode is `BURNING`, or `release_inbound_unlock` if the mode is `LOCKING`. Similar to transfer, using the wrong transfer instruction (such as `release_inbound_mint` for a program that is in locking mode) will result in `InvalidMode` error.
+
+!!! note
+    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the minting/unlocking isn't performed.
+
+Depending on the mode and instruction, the following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReleaseInboundMint
+Program log: Instruction: ReleaseInboundUnlock
+```
 --- END CONTENT ---
 
 # Basics Concepts [shared: true]
@@ -1328,7 +2060,6 @@ The following section contains foundational documentation shared across all Worm
 It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
 This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
 This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
-
 
 ---
 
@@ -3457,7 +4188,6 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 The following section contains reference material for Wormhole.
 It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
 While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
-
 
 ---
 

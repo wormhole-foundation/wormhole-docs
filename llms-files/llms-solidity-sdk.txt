@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation related to the product: Queries
+This file includes documentation related to the product: Solidity-SDK
 
 # AI Prompt Template
 
@@ -14,632 +14,1312 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - Prefer concise explanations and code snippets where appropriate.
 
 # List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries/faqs.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries/overview.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries/use-queries.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/cli.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/dev-env.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/faqs.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/toolkit/solidity-sdk.md [type: build]
 
 # Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/build/queries/
+Doc-Content: https://wormhole.com/docs/build/toolkit/
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Queries
-description: Wormhole Queries offers on-demand access to Guardian-attested on-chain data via a simple REST endpoint to initiate an off-chain request via a proxy.
-categories: Queries
+title: Wormhole Tooling
+description: This page lists key dev tools, including the WormholeScan Explorer, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
+categories: Solidity-SDK
 ---
 
-# Queries
+# Wormhole Tooling
+
+Regardless of which network development environment you are using, there are a few Wormhole-specific tools you should know about.
 
 ## Get Started
 
-Wormhole Queries offers on-demand access to Guardian-attested on-chain data via a simple REST endpoint to initiate an off-chain request via a proxy.
+<div class="grid cards" markdown>
+
+-   :octicons-telescope-16:{ .lg .middle } **Wormholescan**
+
+    ---
+
+    Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
+
+    [:custom-arrow: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
+
+-   :octicons-plug-16:{ .lg .middle } **Wormholescan API**
+
+    ---
+
+    Leverage the Wormholescan API to programmatically access Wormhole network data, including transaction details and VAAs.
+
+    [:custom-arrow: Explore the Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank}
+
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
+
+    ---
+
+    The Wormhole CLI is a Swiss-Army knife utility command line tool. It is excellent for creating one-off VAAs, parsing VAAs, reading Wormhole contract configurations, and more.
+
+    [:custom-arrow: Get started with the CLI](/docs/build/toolkit/cli/)
+
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
+
+    ---
+
+    Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC transfers.
+
+    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/typescript-sdk/)
+
+-   :octicons-code-square-16:{ .lg .middle } **Solidity SDK**
+
+    ---
+
+    Learn about Wormhole's Solidity SDK, including key components, interfaces, and tools for developing cross-chain decentralized applications on EVM-compatible blockchains.
+
+    [:custom-arrow: Get started with the SDK](/docs/build/toolkit/solidity-sdk/)
+
+-   :octicons-beaker-16:{ .lg .middle } **Tilt**
+
+    ---
+
+    Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
+
+    [:custom-arrow: Get started with Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank}
+
+<!-- TODO: revisit
+
+-   :octicons-question-16:{ .lg .middle } **Toolkit FAQs**
+
+    ---
+
+    Find answers to common questions about Wormhole Toolkit, covering Wormholescan, CLI, SDKs, error handling, and more.
+
+    [:custom-arrow: Read Toolkit FAQs](/docs/build/toolkit/faqs/) -->
+
+</div>
+
+## Additional Resources
 
 <div class="grid cards" markdown>
 
--   :octicons-book-16:{ .lg .middle } **Overview**
+-   :octicons-code-square-16:{ .lg .middle } **Wormhole Spy SDK**
 
     ---
 
-    Explore Wormhole Queries, offering real-time access to verified blockchain data via a REST API endpoint, enabling secure cross-chain interactions and verifications.
+    The Wormhole Spy SDK allows you to listen to all the Guardian Network activity.
 
-    [:custom-arrow: Learn about Queries](/docs/build/queries/overview/)
+    [:custom-arrow: Check out the Spy SDK repository](https://github.com/wormhole-foundation/wormhole/tree/main/spydk/js){target=\_blank}
 
--   :octicons-code-16:{ .lg .middle } **Use Queries**
-
-    ---
-
-    Explore a simple demo of interacting with Wormhole Queries using an `eth_call` request to query the supply of wETH on Ethereum using a Wormhole query.
-
-    [:custom-arrow: Get hands-on](/docs/build/queries/use-queries/)
-
--   :octicons-book-16:{ .lg .middle } **Query FAQs**
+-   :octicons-pencil-16:{ .lg .middle } **VAA Parser**
 
     ---
 
-    Explore frequently asked questions about Wormhole Queries.
+    The VAA Parser is a resource for parsing out details of an encoded VAA.
 
-    [:custom-arrow: Check out the FAQs](/docs/build/queries/faqs/)
+    [:custom-arrow: Try the VAA Parser](https://wormholescan.io/#/developers/vaa-parser){target=\_blank}
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/queries/faqs/
+Doc-Content: https://wormhole.com/docs/build/toolkit/cli/
 --- BEGIN CONTENT ---
 ---
-title: Queries FAQs
-description: Wormhole Queries FAQ covering available libraries, query examples, response formats, and details about running query proxy servers.
-categories: Queries
+title: Wormhole CLI
+description: Learn how to install and use the Wormhole CLI, including commands and examples for managing multichain deployments, generating VAAs, and querying contract info.
+categories: Solidity-SDK, Typescript-SDK
 ---
 
-# Wormhole Queries FAQs
+# Wormhole CLI
 
-## What libraries are available to handle queries?
+This tool is a command-line interface to Wormhole, allowing you to perform various actions, such as querying a transaction's status or submitting token transfers.
 
- - The [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses
+## Installation
 
-- The [Solidity `QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repository as an example use case
+Clone the repository and change directories to the appropriate directory:
 
-- [`QueryRequestBuilder.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol){target=\_blank} can be used for mocking query requests and responses in Forge tests
-
-- The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main/node/pkg/query){target=\_blank} can also be used to create query requests and parse query responses
-
-!!! note
-    A Rust SDK for Solana is being actively investigated by the Wormhole contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repository as a proof of concept.
-
-## Are there any query examples?
-
-Certainly. You can find a complete guide on the [Use Queries page](/docs/build/queries/use-queries/){target=\_blank}. Additionally, you can find full code examples in the following repositories:
-
-- [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
-- [Solana Stake Pool Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
-- [Solana Program Derived Address (PDA) / Token Account Balance Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
-- [Solana Queries Verification Example](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
-
-## What is the format of the response signature?
-
-The Guardian node calculates an ECDSA signature using [`Sign` function of the crypto package](https://pkg.go.dev/github.com/ethereum/go-ethereum@v1.10.21/crypto#Sign){target=\_blank} where the digest hash is:
-
-```keccak256("query_response_0000000000000000000|"+keccak256(responseBytes))``` 
-
-See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0009_guardian_key.md){target=\_blank} white paper for more background. Once this signature is created, the Guardian's index in the Guardian set is appended to the end.
-
-!!! note
-    If you are used to `ecrecover` you will notice that the `v` byte is `0` or `1` as opposed to `27` or `28`. The `signaturesToEvmStruct` method in the [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} accounts for this as well as structuring the signatures into an `IWormhole.SignatureStruct[]`.
-
-## Can anyone run a query proxy server?
-
-Permissions for Query Proxy are managed by the Guardians. The Guardian nodes are configured to only listen to a set of allow-listed proxies. However, it is possible that this restriction may be lifted in the future and/or more proxies could be added.
-
-It is also important to note that the proxies don't impact the verifiability of the request or result, i.e., their role in the process is trustless.
-
-## What Does Queries Offer over an RPC Service
-
-Wormhole Queries provides on-demand, attested, on-chain, verifiable RPC results. Each Guardian independently executes the specified query and returns the result and their signature. The proxy handles aggregating the results and signatures, giving you a single result (all within one REST call) with a quorum of signatures suitable for on-chain submission, parsing, and verification using one of our examples or SDKs.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/queries/overview/
---- BEGIN CONTENT ---
----
-title: Queries Overview
-description: Explore Wormhole Queries, offering real-time access to verified blockchain data via a REST endpoint, enabling secure cross-chain interactions and verifications.
-categories: Queries
----
-
-# Queries Overview {: #queries-overview }
-
-Wormhole Guardians, who run full nodes for various connected chains, facilitate a new cross-chain query service that allows for on-demand attested responses to queries, bypassing the inefficiencies of traditional transaction-based data retrieval. This method is faster and cost-effective, eliminating the need for gas payments and transaction finality wait times.
-
-!!! note
-	Queries are currently in closed beta, though you can start developing today. Check out [Use Queries](/docs/build/queries/use-queries/){target=\_blank} and reach out to [Join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}.
-
-Wormhole Queries offers on-demand access to Guardian-attested on-chain data. The current implementation provides integrators with a simple REST endpoint to initiate an off-chain request via a proxy. The proxy then forwards the request to the Guardians and gathers a quorum of responses. The result returns the encoded response, including the request details and the Guardian signatures. The request validation performed by the query module includes a three step process that involves verifying the signature to ensure it has the correct prefix, confirming that the signer is authorized to execute query requests, and validating the legitimacy of all per-chain requests contained in the query. You can read more about Queries in the [white paper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank}.
-
-## The Flow of a Query {: #the-flow-of-a-query}
-
-The general overview of a query's flow is as follows: an off-chain process sends HTTPS query requests to a Query Proxy, which validates and forwards them to the Guardians; these Guardians independently validate, sign, and return the response, with the entire process typically taking less than a second.
-
-![The architecture flow of a query](/docs/images/build/queries/overview/overview-1.webp)
-
-The step-by-step flow of a query is as follows:
-
-1. An off-chain process initiates a query request via HTTPS to the query proxy (or Query Server) 
-2. The query proxy validates the request and forwards it to the Guardians via a gossip network
-3. The Guardians independently validate the request, make the requisite RPC calls, verify the results, sign, and gossip a response back to the Query Proxy
-4. The Query Proxy aggregates the results and returns a response when it reaches a quorum of two-thirds or more of the current Guardian set - the exact quorum requirements as the core bridge
-5. The off-chain process can then submit these requests to an on-chain contract which should verify the signatures and validate the request before processing the result
-
-In this flow, the Query Proxy is a permissioned but trustless part of the protocol. In most cases, this entire process takes less than one second. If a request is invalid or cannot be processed by the Guardians, they will retry for up to one minute before timing out. Requests can be batched to have the Guardians make multiple calls to multiple networks. This can further reduce overhead for processing query responses on-chain. Up to 255 queries can be batched together, with certain types allowing for batching themselves.
-
-## Supported Query Types {: #supported-query-types}
-
-There are currently five supported types of queries. See [the white paper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md){target=\_blank} for more details on each.
-
-### eth_call {: #eth-call}
-
-This query type is effectively an equivalent of [eth_call](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} against a block specified by number or hash.
-
-Calls are batched to allow specifying multiple calls (even to multiple contracts) against the same block. These calls are included in a single batch RPC call, simplifying on-chain verification. Up to 255 calls may be batched in an single `eth_call` query.
-
-The result contains the specified block number, hash, timestamp, and the call result.
-
-### eth_call By Timestamp {: #eth-call-by-timestamp}
-
-This query type is similar to `eth_call` but targets a timestamp instead of a specific `block_id`. This can be useful when forming requests based on uncorrelated data, such as requiring data from another chain based on the block timestamp of a given chain.
-
-The result also contains the target and block details with the following enforced conditions: `target_block.timestamp <= target_time < following_block.timestamp` and `following_block_num - 1 == target_block_num`.
-
-### eth_call With Finality {: #eth-call-with-finality}
-
-This query type is similar to `eth_call` but ensures that the specified block has reached the specified finality before returning the query results. The finality may be `finalized` or `safe.` Note that if a chain doesn't natively support the `safe` tag, this will be equivalent to `finalized.`
-
-### sol_account {: #sol_account}
-
-This query is used to read data for one or more accounts on Solana, akin to [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank}.
-
-### sol_pda {: #sol_pda}
-
-This query is used to read data for one or more [Program Derived Addresses(PDA)](https://www.anchor-lang.com/docs/pdas){target=\_blank} on Solana, akin to calling [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank} on the result of `PublicKey.findProgramAddressSync(seeds, programId).` This query is helpful for times when you want to more generally read accounts owned by a program and verify the derivation on another chain, like how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account){target=\_blank}.
-
-## Supported Chains {: #supported-chains}
-
-The following table provides expected support based on testing. However, the success of any given query is based on the success of the underlying call on each Guardian’s RPC node.
-
-For example, many chains have implementations forked from [Geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which keeps 128 blocks of state in memory by default (without running in archive mode). While this is good for about 25 minutes of history on Ethereum Mainnet, it is only about three minutes on Optimism. While Guardian nodes can be expected to have access to recent state, there are currently no guarantees of how far back in history they have access to.
-
-### Mainnet {: #mainnet}
-
-|     Chain     | Wormhole Chain ID | eth_call |    By Timestamp    | With Finality | Expected History |
-|:-------------:|:-----------------:|:--------:|:------------------:|:-------------:|:----------------:|
-|   Ethereum    |         2         |    ✅     |         ✅          |       ✅       |    128 blocks    |
-|      BSC      |         4         |    ✅     |         ✅          |       ✅       |    128 blocks    |
-|    Polygon    |         5         |    ✅     |         ✅          |       ✅       |    128 blocks    |
-|   Avalanche   |         6         |    ✅     |         ✅          |       ✅       |    32 blocks     |
-| Oasis Emerald |         7         |    ✅     |         ✅          |       ✅       |     archive      |
-|    Fantom     |        10         |    ✅     |         ✅          |       ✅       |    16 blocks     |
-|    Karura     |        11         |    ✅     |         ✅          |       ✅       |     archive      |
-|     Acala     |        12         |    ✅     |         ✅          |       ✅       |     archive      |
-|     Kaia      |        13         |    ✅     |         ✅          |       ✅       |    128 blocks    |
-|     Celo      |        14         |    ✅     | ℹ️ hints required\* |       ✅       |    128 blocks    |
-|   Moonbeam    |        16         |    ✅     | ℹ️ hints required\* |       ✅       |    256 blocks    |
-| Arbitrum One  |        23         |    ✅     |         ✅          |       ✅       |   ~6742 blocks   |
-|   Optimism    |        24         |    ✅     |         ✅          |       ❌       |    128 blocks    |
-|     Base      |        30         |    ✅     |         ✅          |       ✅       |     archive      |
-
-\*`EthCallByTimestamp` arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
-
-## Next Steps {: #next-steps}
-
-Remember that Wormhole Queries are currently in beta. You can [register to join the beta](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to fully experiment with Wormhole Queries. 
-
-Be sure to check out the [FAQs](/docs/build/queries/faqs/){target=\_blank} and the [Use Queries guide](/docs/build/queries/use-queries/){target=\_blank}.
-
-You can also check out the following examples of applications that make use of Wormhole Queries: 
-
-- [Basic demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
-- [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}
-- [Solana Program Derived Address (PDA) / Token Account Balance](https://github.com/wormholelabs-xyz/example-queries-solana-pda){target=\_blank}
-- [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank}
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/queries/use-queries/
---- BEGIN CONTENT ---
----
-title: Use Queries
-description: Explore a simple demo of interacting with Wormhole Queries using an eth_call request to query the supply of wETH on Ethereum using a Wormhole query.
-categories: Queries
----
-
-# Use Queries
-
-You can visit the [Example Queries Demo](https://wormholelabs-xyz.github.io/example-queries-demo/){target=\_blank} to view an interactive example of an application interacting with the [Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract.
-
-This guide covers using a simple `eth_call` request to get the total supply of WETH on Ethereum.
-
-## RPC Basics
-
-Before digging into anything Queries-specific, this page will look at how to make an [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} against a public Ethereum RPC. Suppose you'd like to query the WETH contract for its total supply; before making a request, you need some information about the contract you want to call, including:
-
-- **To** - the contract to call. WETH is [0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2){target=\_blank}
-- **Data** - the method identifier and ABI-encoded parameters, which can be obtained as follows: `web3.eth.abi.encodeFunctionSignature("totalSupply()")` which yields `0x18160ddd`
-- **Block ID** - the block number, hash, or tag. Tag options include `latest,` `safe,` or `finalized`
-
-The prepared curl request is as follows:
-
-```bash title="eth_call JSON-RPC request"
-curl https://ethereum.publicnode.com -X POST --data '{"jsonrpc":"2.0","method":"eth_call","params":[{"to":"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2","data":"0x18160ddd"},"latest"],"id":1}'
+```bash
+git clone https://github.com/wormhole-foundation/wormhole &&
+cd wormhole/clients/js
 ```
 
-And the corresponding response is:
+Build and install the CLI tool:
 
-```bash title="eth_call JSON-RPC reponse"
-{
-  "jsonrpc":"2.0",
-  "id":1,
-  "result":"0x000000000000000000000000000000000000000000029fd3d129b582d7949e71"
+```bash
+make install
+```
+
+This installs two binaries, `worm-fetch-governance` and `worm` on your `$PATH`. To use `worm`, set up `$HOME/.wormhole/.env` with your private keys, based on `.env.sample` in this folder.
+
+## Usage
+
+You can interact with the Wormhole CLI by typing `worm` and including the `command` and any necessary subcommands and parameters.  
+
+| Command                                                                                                                  | Description                                                                                                     |
+|--------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| `worm aptos INSERT_COMMAND`                                                                                              | Aptos utilities                                                                                                 |
+| `worm edit-vaa INSERT_COMMAND`                                                                                           | Edits or generates a VAA                                                                                        |
+| `worm evm INSERT_COMMAND`                                                                                                | EVM utilities                                                                                                   |
+| `worm generate INSERT_COMMAND`                                                                                           | Generate VAAs (Devnet and Testnet only)                                                                         |
+| `worm info INSERT_COMMAND`                                                                                               | Contract, chain, RPC, and address information utilities                                                         |
+| `worm near INSERT_NETWORK, INSERT_ACCOUNT`                                                                               | NEAR utilities                                                                                                  |
+| `worm parse INSERT_VAA`                                                                                                  | Parse a VAA (can be in either hex or base64 format)                                                             |
+| `worm recover INSERT_DIGEST INSERT_SIGNATURE`                                                                            | Recover an address from a signature                                                                             |
+| `worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH`                                                              | Prints information about the automatic delivery initiated on the specified network, chain, and transaction hash |
+| `worm submit INSERT_VAA`                                                                                                 | Execute a VAA                                                                                                   |
+| `worm sui INSERT_COMMAND`                                                                                                | Sui utilities                                                                                                   |
+| `worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK` | Transfers a token                                                                                               |
+| `worm verify-vaa INSERT_VAA, INSERT_NETWORK`                                                                             | Verifies a VAA by querying the Core Contract on Ethereum                                                        |
+
+You can also refer to the below options, available with all `worm` commands:
+
+```bash
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+```
+
+### Subcommands
+
+??? code "Aptos"
+    ```bash
+    worm aptos INSERT_COMMAND
+
+Commands:
+  worm aptos init-token-bridge              Init token bridge contract
+  worm aptos init-wormhole                  Init Wormhole core contract
+  worm aptos deploy <package-dir>           Deploy an Aptos package
+  worm aptos deploy-resource <seed>         Deploy an Aptos package using a
+  <package-dir>                             resource account
+  worm aptos send-example-message           Send example message
+  <message>
+  worm aptos derive-resource-account        Derive resource account address
+  <account> <seed>
+  worm aptos derive-wrapped-address         Derive wrapped coin type
+  <chain> <origin-address>
+  worm aptos hash-contracts <package-dir>   Hash contract bytecodes for upgrade
+  worm aptos upgrade <package-dir>          Perform upgrade after VAA has been
+                                            submitted
+  worm aptos migrate                        Perform migration after contract
+                                            upgrade
+  worm aptos faucet                         Request money from the faucet for a
+                                            given account
+  worm aptos start-validator                Start a local aptos validator
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Edit VAA"
+    ```bash
+    worm edit-vaa INSERT_COMMAND
+
+Options:
+      --help                       Show help                           [boolean]
+      --version                    Show version number                 [boolean]
+  -v, --vaa                        vaa in hex format         [string] [required]
+  -n, --network                    Network
+                            [required] [choices: "mainnet", "testnet", "devnet"]
+      --guardian-set-index, --gsi  guardian set index                   [number]
+      --signatures, --sigs         comma separated list of signatures   [string]
+      --wormscanurl, --wsu         url to wormscan entry for the vaa that
+                                   includes signatures                  [string]
+      --wormscan, --ws             if specified, will query the wormscan entry
+                                   for the vaa to get the signatures   [boolean]
+      --emitter-chain-id, --ec     emitter chain id to be used in the vaa
+                                                                        [number]
+      --emitter-address, --ea      emitter address to be used in the vaa[string]
+      --nonce, --no                nonce to be used in the vaa          [number]
+      --sequence, --seq            sequence number to be used in the vaa[string]
+      --consistency-level, --cl    consistency level to be used in the vaa
+                                                                        [number]
+      --timestamp, --ts            timestamp to be used in the vaa in unix
+                                   seconds                              [number]
+  -p, --payload                    payload in hex format                [string]
+      --guardian-secret, --gs      Guardian's secret key                [string]
+    ```
+
+??? code "EVM"
+    ```bash
+    worm evm INSERT_COMMAND
+
+Commands:
+  worm evm address-from-secret <secret>  Compute a 20 byte eth address from a 32
+                                         byte private key
+  worm evm storage-update                Update a storage slot on an EVM fork
+                                         during testing (anvil or hardhat)
+  worm evm chains                        Return all EVM chains
+  worm evm info                          Query info about the on-chain state of
+                                         the contract
+  worm evm hijack                        Override the guardian set of the core
+                                         bridge contract during testing (anvil
+                                         or hardhat)
+  worm evm start-validator               Start a local EVM validator
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+  --rpc      RPC endpoint                                               [string]
+    ```
+
+??? code "Generate"
+    ```bash
+    worm generate INSERT_COMMAND
+
+Commands:
+  worm generate registration                Generate registration VAA
+  worm generate upgrade                     Generate contract upgrade VAA
+  worm generate attestation                 Generate a token attestation VAA
+  worm generate recover-chain-id            Generate a recover chain ID VAA
+  worm generate                             Sets the default delivery provider
+  set-default-delivery-provider             for the Wormhole Relayer contract
+
+Options:
+      --help             Show help                                     [boolean]
+      --version          Show version number                           [boolean]
+  -g, --guardian-secret  Guardians' secret keys (CSV)        [string] [required]
+    ```
+
+??? code "Info"
+    ```bash
+    worm info INSERT_COMMAND
+
+Commands:
+  worm info chain-id <chain>                Print the wormhole chain ID integer
+                                            associated with the specified chain
+                                            name
+  worm info contract <network> <chain>      Print contract address
+  <module>
+  worm info emitter <chain> <address>       Print address in emitter address
+                                            format
+  worm info origin <chain> <address>        Print the origin chain and address
+                                            of the asset that corresponds to the
+                                            given chain and address.
+  worm info registrations <network>         Print chain registrations
+  <chain> <module>
+  worm info rpc <network> <chain>           Print RPC address
+  worm info wrapped <origin-chain>          Print the wrapped address on the
+  <origin-address> <target-chain>           target chain that corresponds with
+                                            the specified origin chain and
+                                            address.
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "NEAR"
+    ```bash
+    worm near INSERT_COMMAND
+
+Commands:
+  worm near contract-update <file>  Submit a contract update using our specific
+                                    APIs
+  worm near deploy <file>           Submit a contract update using near APIs
+
+Options:
+      --help      Show help                                            [boolean]
+      --version   Show version number                                  [boolean]
+  -m, --module    Module to query  [choices: "Core", "NFTBridge", "TokenBridge"]
+  -n, --network   Network   [required] [choices: "mainnet", "testnet", "devnet"]
+      --account   Near deployment account                    [string] [required]
+      --attach    Attach some near                                      [string]
+      --target    Near account to upgrade                               [string]
+      --mnemonic  Near private keys                                     [string]
+      --key       Near private key                                      [string]
+  -r, --rpc       Override default rpc endpoint url                     [string]
+    ```
+
+??? code "Parse"
+    ```bash
+    worm parse INSERT_VAA
+
+Positionals:
+  vaa  vaa                                                              [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Recover"
+    ```bash
+    worm recover INSERT_DIGEST INSERT_SIGNATURE
+
+Positionals:
+  digest     digest                                                     [string]
+  signature  signature                                                  [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Status"
+    ```bash
+    worm status INSERT_NETWORK, INSERT_CHAIN, INSERT_TXN_HASH
+
+Positionals:
+  network  Network                     [choices: 
+  'mainnet', 
+  'testnet', 
+  'devnet']
+  chain    Source chain
+             [choices: 
+  'unset',
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  tx       Source transaction hash                                      [string]
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Submit"
+    ```bash
+    worm submit INSERT_VAA
+
+Positionals:
+  vaa  vaa                                                              [string]
+
+Options:
+      --help              Show help                                    [boolean]
+      --version           Show version number                          [boolean]
+  -c, --chain             chain name
+[choices: 'unset',
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  -n, --network           Network
+                            [required] 
+  [choices: 
+  'mainnet', 
+  'testnet', 
+  'devnet']
+  -a, --contract-address  Contract to submit VAA to (override config)   [string]
+      --rpc               RPC endpoint                                  [string]
+      --all-chains, --ac  Submit the VAA to all chains except for the origin
+                          chain specified in the payload
+                                                      [boolean] [default: false]
+    ```
+
+??? code "Sui"
+    ```bash
+    worm sui INSERT_COMMAND
+
+Commands:
+  worm sui build-coin                    Build wrapped coin and dump bytecode.
+
+                                         Example:
+                                         worm sui build-coin -d 8 -v V__0_1_1 -n
+                                         testnet -r
+                                         "https://fullnode.testnet.sui.io:443"
+  worm sui deploy <package-dir>          Deploy a Sui package
+  worm sui init-example-message-app      Initialize example core message app
+  worm sui init-token-bridge             Initialize token bridge contract
+  worm sui init-wormhole                 Initialize wormhole core contract
+  worm sui publish-example-message       Publish message from example app via
+                                         core bridge
+  worm sui setup-devnet                  Setup devnet by deploying and
+                                         initializing core and token bridges and
+                                         submitting chain registrations.
+  worm sui objects <owner>               Get owned objects by owner
+  worm sui package-id <state-object-id>  Get package ID from State object ID
+  worm sui tx <transaction-digest>       Get transaction details
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
+    ```
+
+??? code "Transfer"
+    ```bash
+    worm transfer INSERT_SOURCE_CHAIN, INSERT_DESTINATION_CHAIN, INSERT_DESTINATION_ADDRESS, INSERT_AMOUNT, INSERT_NETWORK
+
+Options:
+      --help        Show help                                          [boolean]
+      --version     Show version number                                [boolean]
+      --src-chain   source chain [required] [choices:
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+  --dst-chain   destination chain
+           [required] [choices: 
+  'solana',
+  'ethereum',
+  'terra',
+  'bsc',
+  'polygon',
+  'avalanche',
+  'oasis',
+  'algorand',
+  'aurora',
+  'fantom',
+  'karura',
+  'acala',
+  'klaytn',
+  'celo',
+  'near',
+  'moonbeam',
+  'neon',
+  'terra2',
+  'injective',
+  'osmosis',
+  'sui',
+  'aptos',
+  'arbitrum',
+  'optimism',
+  'gnosis',
+  'pythnet',
+  'xpla',
+  'btc',
+  'base',
+  'sei',
+  'rootstock',
+  'scroll',
+  'mantle',
+  'blast',
+  'xlayer',
+  'linea',
+  'berachain',
+  'seievm',
+  'wormchain',
+  'cosmoshub',
+  'evmos',
+  'kujira',
+  'neutron',
+  'celestia',
+  'stargaze',
+  'seda',
+  'dymension',
+  'provenance',
+  'sepolia',
+  'arbitrum_sepolia',
+  'base_sepolia',
+  'optimism_sepolia',
+  'holesky',
+  'polygon_sepolia']
+      --dst-addr    destination address                      [string] [required]
+      --token-addr  token address               [string] [default: native token]
+      --amount      token amount                             [string] [required]
+  -n, --network     Network [required] [choices: "mainnet", "testnet", "devnet"]
+      --rpc         RPC endpoint                                        [string]
+    ```
+
+??? code "Verify VAA"
+    ```bash
+    worm verify-vaa INSERT_VAA, INSERT_NETWORK
+
+Options:
+      --help     Show help                                             [boolean]
+      --version  Show version number                                   [boolean]
+  -v, --vaa      vaa in hex format                           [string] [required]
+  -n, --network  Network    [required] [choices: "mainnet", "testnet", "devnet"]
+    ```
+
+
+## Examples
+
+### VAA generation
+
+Use `generate` to create VAAs for testing. For example, use the following command to create an NFT bridge registration VAA:
+
+```bash
+worm generate registration --module NFTBridge \
+    --chain bsc \
+    --contract-address 0x706abc4E45D419950511e474C7B9Ed348A4a716c \
+    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
+```
+
+The below example generates a token attestation VAA:
+
+```bash
+worm generate attestation --emitter-chain ethereum \
+    --emitter-address 11111111111111111111111111111115 \
+    --chain ethereum \
+    --token-address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 \
+    --decimals 6 \
+    --symbol USDC \
+    --name USDC \
+    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0
+```
+
+### VAA parsing
+
+Use `parse` to parse a VAA into JSON:
+
+```bash
+worm parse $(worm-fetch-governance 13940208096455381020)
+```
+
+This example will fetch governance VAA `13940208096455381020` and print it as JSON: 
+
+```bash
+# ...signatures elided
+timestamp: 1651416474,
+nonce: 1570649151,
+emitterChain: 1,
+emitterAddress: '0000000000000000000000000000000000000000000000000000000000000004',
+sequence: 13940208096455381020n,
+consistencyLevel: 32,
+payload: {
+  module: 'Core',
+  type: 'GuardianSetUpgrade',
+  chain: 0,
+  newGuardianSetIndex: 2,
+  newGuardianSetLength: 19,
+  newGuardianSet: [
+    '58cc3ae5c097b213ce3c81979e1b9f9570746aa5',
+    'ff6cb952589bde862c25ef4392132fb9d4a42157',
+    '114de8460193bdf3a2fcf81f86a09765f4762fd1',
+    '107a0086b32d7a0977926a205131d8731d39cbeb',
+    '8c82b2fd82faed2711d59af0f2499d16e726f6b2',
+    '11b39756c042441be6d8650b69b54ebe715e2343',
+    '54ce5b4d348fb74b958e8966e2ec3dbd4958a7cd',
+    '66b9590e1c41e0b226937bf9217d1d67fd4e91f5',
+    '74a3bf913953d695260d88bc1aa25a4eee363ef0',
+    '000ac0076727b35fbea2dac28fee5ccb0fea768e',
+    'af45ced136b9d9e24903464ae889f5c8a723fc14',
+    'f93124b7c738843cbb89e864c862c38cddcccf95',
+    'd2cc37a4dc036a8d232b48f62cdd4731412f4890',
+    'da798f6896a3331f64b48c12d1d57fd9cbe70811',
+    '71aa1be1d36cafe3867910f99c09e347899c19c3',
+    '8192b6e7387ccd768277c17dab1b7a5027c0b3cf',
+    '178e21ad2e77ae06711549cfbb1f9c7a9d8096e8',
+    '5e1487f35515d02a92753504a8d75471b9f49edb',
+    '6fbebc898f403e4773e95feb15e80c9a99c8348d'
+  ]
 }
 ```
 
-Converting the returned value of the executed call from hexidecimal results in the value `3172615244782286193073777`. You can compare your result to the [**Read Contract**](https://etherscan.io/token/0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2#readContract){target=\_blank} tab in Etherscan. Your result will be different as WETH is minted/burned over time.
+### Submitting VAAs
 
-## Construct a Query {: #construct-a-query}
-
-You can use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to construct a query. You will also need an RPC endpoint from the provider of your choice. This example uses [Axios](https://www.npmjs.com/package/axios){target=\_blank} for RPC requests. Ensure that you also have [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed. 
-
-```jsx
-npm i @wormhole-foundation/wormhole-query-sdk axios
-```
-
-In order to make an `EthCallQueryRequest`, you need a specific block number or hash as well as the call data to request.
-
-You can request the latest block from a public node using `eth_getBlockByNumber`.
-
-```jsx
-
-await axios.post(rpc, {
-      method: 'eth_getBlockByNumber',
-      params: ['latest', false],
-      id: 1,
-      jsonrpc: '2.0',
-    })
-  ).data?.result?.number;
-```
-
-Then construct the call data.
-
-```jsx
-to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
-  data: '0x18160ddd', // web3.eth.abi.encodeFunctionSignature("totalSupply()")
-};
-```
-
-Finally, put it all together in a `QueryRequest`.
-
-```jsx
-const request = new QueryRequest(
-    0, // Nonce
-    [
-      new PerChainQueryRequest(
-        2, // Ethereum Wormhole Chain ID
-        new EthCallQueryRequest(latestBlock, [callData])
-      ),
-    ]
-  );
-```
-
-This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can use `console.log` to print the JSON object and review the structure.
-
-```jsx
-
-// {
-//   "nonce": 0,
-//   "requests": [
-//     {
-//       "chainId": 2,
-//       "query": {
-//         "callData": [
-//           {
-//             "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-//             "data": "0x18160ddd"
-//           }
-//         ],
-//         "blockTag": "0x11e9068"
-//       }
-//     }
-//   ],
-//   "version": 1
-// }
-```
-
-## Mock a Query
-
-For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
-
-```jsx
-const mockData = await mock.mock(request);
-  console.log(mockData);
-// {
-//   signatures: ['...'],
-//   bytes: '...'
-// }
-```
-
-This response is suited for on-chain use, but the SDK also includes a parser to make the results readable via the client.
-
-```jsx
-const mockQueryResult = (
-    mockQueryResponse.responses[0].response as EthCallQueryResponse
-  ).results[0];
-  console.log(
-    `Mock Query Result: ${mockQueryResult} (${BigInt(mockQueryResult)})`
-  );
-// Mock Query Result: 0x000000000000000000000000000000000000000000029fd09d4d81addb3ccfee (3172556167631284394053614)
-```
-
-Testing this all together might look like the following:
-
-```jsx
-import {
-  EthCallData,
-  EthCallQueryRequest,
-  EthCallQueryResponse,
-  PerChainQueryRequest,
-  QueryProxyMock,
-  QueryRequest,
-  QueryResponse,
-} from '@wormhole-foundation/wormhole-query-sdk';
-import axios from 'axios';
-
-const rpc = 'https://ethereum.publicnode.com';
-const callData: EthCallData = {
-  to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2', // WETH
-  data: '0x18160ddd', // web3.eth.abi.encodeFunctionSignature("totalSupply()")
-};
-
-(async () => {
-  const latestBlock: string = (
-    await axios.post(rpc, {
-      method: 'eth_getBlockByNumber',
-      params: ['latest', false],
-      id: 1,
-      jsonrpc: '2.0',
-    })
-  ).data?.result?.number;
-  if (!latestBlock) {
-    console.error(`❌ Invalid block returned`);
-    return;
-  }
-  console.log('Latest Block:     ', latestBlock, `(${BigInt(latestBlock)})`);
-  const targetResponse = await axios.post(rpc, {
-    method: 'eth_call',
-    params: [callData, latestBlock],
-    id: 1,
-    jsonrpc: '2.0',
-  });
-  // console.log(finalizedResponse.data);
-  if (targetResponse.data.error) {
-    console.error(`❌ ${targetResponse.data.error.message}`);
-  }
-  const targetResult = targetResponse.data?.result;
-  console.log('Target Result:    ', targetResult, `(${BigInt(targetResult)})`);
-  // Form the query request
-  const request = new QueryRequest(
-    0, // Nonce
-    [
-      new PerChainQueryRequest(
-        2, // Ethereum Wormhole Chain ID
-        new EthCallQueryRequest(latestBlock, [callData])
-      ),
-    ]
-  );
-  console.log(JSON.stringify(request, undefined, 2));
-  const mock = new QueryProxyMock({ 2: rpc });
-  const mockData = await mock.mock(request);
-  console.log(mockData);
-  const mockQueryResponse = QueryResponse.from(mockData.bytes);
-  const mockQueryResult = (
-    mockQueryResponse.responses[0].response as EthCallQueryResponse
-  ).results[0];
-  console.log(
-    `Mock Query Result: ${mockQueryResult} (${BigInt(mockQueryResult)})`
-  );
-})();
-```
-
-### Fork Testing
-
-It is common to test against a local fork of Mainnet with something like
-
-```jsx
-anvil --fork-url https://ethereum.publicnode.com
-```
-
-In order for mock requests to verify against the Mainnet Core Contract, you need to replace the current Guardian set with the single Devnet key used by the mock.
-
-Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on that chain.
-
-```jsx
-npx @wormhole-foundation/wormhole-cli evm hijack -a 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B -g 0xbeFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
-```
-
-If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using [Anvil](https://book.getfoundry.sh/anvil/){target=\_blank}) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://book.getfoundry.sh/reference/anvil/#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
-
-## Make a Query Request
-
-The standardized means of making a `QueryRequest` with an API key is as follows:
-
-```jsx
-const serialized = request.serialize();
-const proxyResponse = (await axios.post)<QueryProxyQueryResponse>(
-  QUERY_URL,
-  {
-    bytes: Buffer.from(serialized).toString('hex'),
-  },
-  { headers: { 'X-API-Key': YOUR_API_KEY } }
-);
-```
-
-Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
-
-A Testnet Query Proxy is available at `https://testnet.query.wormhole.com/v1/query`
-
-A Mainnet Query Proxy is available at `https://query.wormhole.com/v1/query`
-
-## Verify a Query Response On-Chain
-
-A [`QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} is provided to assist with verifying query responses. You can begin by installing the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} with the following command:
+Use `submit` to submit a VAA to a chain. It first parses the VAA and determines the destination chain and module. For example, a contract upgrade contains both the target chain and module, so the only required argument is the network moniker (`mainnet` or `testnet`):
 
 ```bash
-forge install wormhole-foundation/wormhole-solidity-sdk
+worm submit $(cat my-nft-registration.txt) --network mainnet
 ```
 
-Broadly, using a query response on-chain comes down to three main steps:
+The script will ask you to specify the target chain for VAAs that don't have a specific target chain (like registrations or Guardian set upgrades). For example, to submit a Guardian set upgrade on all chains, simply run:
 
-   1. Parse and verify the query response
-   2. The `parseAndVerifyQueryResponse` handles verifying the Guardian signatures against the current Guardian set stored in the Core bridge contract
-   3. Validate the request details. This may be different for every integrator depending on their use case, but generally checks the following:
-    - Is the request against the expected chain?
-    - Is the request of the expected type? The `parseEthCall` helpers perform this check when parsing
-    - Is the resulting block number and time expected? Some consumers might require that a block number be higher than the last, or the block time be within the last 5 minutes. `validateBlockNum` and `validateBlockTime` can help with the checks
-    - Is the request for the expected contract and function signature? The `validateMultipleEthCallData` can help with non-parameter-dependent cases
-    - Is the result of the expected length for the expected result type?
-   4. Run `abi.decode` on the result 
+```bash
+worm-fetch-governance 13940208096455381020 > guardian-upgrade.txt
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain oasis
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain aurora
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain fantom
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain karura
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain acala
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain klaytn
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain avalanche
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain polygon
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain bsc
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain solana
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain terra
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain ethereum
+worm submit $(cat guardian-upgrade.txt) --network mainnet --chain celo
+```
 
-See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blob/main/src/QueryDemo.sol){target=\_blank} contract for an example and read the docstrings of the preceding methods for detailed usage instructions.
+The VAA payload type (Guardian set upgrade) specifies that this VAA should go to the core bridge, and the tool directs it there.
 
-??? code "View the complete `QueryDemo`"
+### Getting Info
+
+To get info about a contract (only EVM supported at this time), use the following command:
+
+```bash
+worm evm info -c bsc -n mainnet -m TokenBridge
+```
+
+Running this command generates the following output:
+
+```bash
+{
+  "address": "0xB6F6D86a8f9879A9c87f643768d9efc38c1Da6E7",
+  "wormhole": "0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B",
+  "implementation": "0x621199f6beB2ba6fbD962E8A52A320EA4F6D4aA3",
+  "isInitialized": true,
+  "tokenImplementation": "0x7f8C5e730121657E17E452c5a1bA3fA1eF96f22a",
+  "chainId": 4,
+  "finality": 15,
+  "evmChainId": "56",
+  "isFork": false,
+  "governanceChainId": 1,
+  "governanceContract": "0x0000000000000000000000000000000000000000000000000000000000000004",
+  "WETH": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+  "registrations": {
+    "Solana": "0xec7372995d5cc8732397fb0ad35c0121e0eaa90d26f828a534cab54391b3a4f5",
+    "Ethereum": "0x0000000000000000000000003ee18b2214aff97000d974cf647e7c347e8fa585",
+    "Terra": "0x0000000000000000000000007cf7b764e38a0a5e967972c1df77d432510564e2",
+    "Polygon": "0x0000000000000000000000005a58505a96d1dbf8df91cb21b54419fc36e93fde",
+    "Avalanche": "0x0000000000000000000000000e082f06ff657d94310cb8ce8b0d9a04541d8052",
+    "Oasis": "0x0000000000000000000000005848c791e09901b40a9ef749f2a6735b418d7564",
+    "Algorand": "0x67e93fa6c8ac5c819990aa7340c0c16b508abb1178be9b30d024b8ac25193d45",
+    "Aurora": "0x00000000000000000000000051b5123a7b0f9b2ba265f9c4c8de7d78d52f510f",
+    "Fantom": "0x0000000000000000000000007c9fc5741288cdfdd83ceb07f3ea7e22618d79d2",
+    "Karura": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
+    "Acala": "0x000000000000000000000000ae9d7fe007b3327aa64a32824aaac52c42a6e624",
+    "Klaytn": "0x0000000000000000000000005b08ac39eaed75c0439fc750d9fe7e1f9dd0193f",
+    "Celo": "0x000000000000000000000000796dff6d74f3e27060b71255fe517bfb23c93eed",
+    "Near": "0x148410499d3fcda4dcfd68a1ebfcdddda16ab28326448d4aae4d2f0465cdfcb7",
+    "Moonbeam": "0x000000000000000000000000b1731c586ca89a23809861c6103f0b96b3f57d92",
+    "Neon": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Terra2": "0xa463ad028fb79679cfc8ce1efba35ac0e77b35080a1abe9bebe83461f176b0a3",
+    "Injective": "0x00000000000000000000000045dbea4617971d93188eda21530bc6503d153313",
+    "Osmosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Sui": "0xccceeb29348f71bdd22ffef43a2a19c1f5b5e17c5cca5411529120182672ade5",
+    "Aptos": "0x0000000000000000000000000000000000000000000000000000000000000001",
+    "Arbitrum": "0x0000000000000000000000000b2402144bb366a632d14b83f244d2e0e21bd39c",
+    "Optimism": "0x0000000000000000000000001d68124e65fafc907325e3edbf8c4d84499daa8b",
+    "Gnosis": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Pythnet": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Xpla": "0x8f9cf727175353b17a5f574270e370776123d90fd74956ae4277962b4fdee24c",
+    "Btc": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Base": "0x0000000000000000000000008d2de8d2f73f1f4cab472ac9a881c9b123c79627",
+    "Sei": "0x86c5fd957e2db8389553e1728f9c27964b22a8154091ccba54d75f4b10c61f5e",
+    "Rootstock": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Scroll": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Mantle": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Blast": "0x00000000000000000000000024850c6f61c438823f01b7a3bf2b89b72174fa9d",
+    "Xlayer": "0x0000000000000000000000005537857664b0f9efe38c9f320f75fef23234d904",
+    "Linea": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Berachain": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Seievm": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Snaxchain": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Wormchain": "0xaeb534c45c3049d380b9d9b966f9895f53abd4301bfaff407fa09dea8ae7a924",
+    "Cosmoshub": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Evmos": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Kujira": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Neutron": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Celestia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Stargaze": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Seda": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Dymension": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Provenance": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Sepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "ArbitrumSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "BaseSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "OptimismSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "Holesky": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "PolygonSepolia": "0x0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}
+```
+
+### Additional Info Examples
+
+You can get the contract address for a module as follows:
+
+```bash
+worm info rpc INSERT_NETWORK INSERT_CHAIN INSERT_MODULE
+```
+
+To get the contract address for `NFTBridge` on BSC Mainnet, for example, you can provide the following command:
+
+```bash
+worm info contract mainnet bsc NFTBridge
+```
+
+You can get the RPC address for a chain as follows:
+
+```bash
+worm info rpc INSERT_NETWORK INSERT_CHAIN
+```
+
+To get the RPC address for BSC Mainnet, for example, you can provide the following command: 
+
+```bash
+worm info rpc mainnet bsc
+```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/dev-env/
+--- BEGIN CONTENT ---
+---
+title: Local Dev Environment
+description: Learn how to configure a development environment to build with Wormhole, including using the CLI, local validators, testing on public test networks, and more. 
+categories: Solidity-SDK, Typescript-SDK
+---
+
+# Development Environment
+
+Developers building for smart contract integration will want to set up a development environment to allow testing the full integration, possibly including VAA generation and relaying.
+
+## Tooling Installation
+
+The [Wormhole CLI Tool](/docs/build/toolkit/cli/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/build/start-building/supported-networks/){target=\_blank}.
+
+## Development Stages
+
+Different approaches to development and testing are recommended at various stages of application development.
+
+### Initial Development
+
+During the initial development of an on-chain application, the best option is to use the native tools available in the environment. You can visit the following resources for more information:
+
+- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset  
+- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received. 
+- **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}** - example mock Guardian test
+
+Relying on native tools when possible allows for more rapid prototyping and iteration.  
+
+### Integration
+
+For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/build/start-building/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} is available to run local instances of all the chains Wormhole supports.
+
+!!! note
+    Variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make setting them up difficult or time-consuming. You may prefer Testnets for the simplest integration testing.
+
+### Prepare for Deployment
+
+Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](https://tilt.dev/){target=\_blank} since it allows you to spin up any chains supported by Wormhole in a consistent environment.
+
+## Validator Setup with Tilt
+
+### Tilt
+If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} page for a complete guide to setting up and configuring Tilt.
+
+## Deploying to Public Networks
+
+### Testnet
+
+When doing integration testing on Testnets, remember that a single Guardian node is watching for transactions on various test networks. Because Testnets only have a single Guardian, there's a slight chance that your VAAs won't be processed. This rate doesn't indicate performance on Mainnet, where 19 Guardians are watching for transactions. The Testnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Testnet endpoint:
+
+```text
+https://api.testnet.wormholescan.io
+```
+
+### Mainnet
+
+The Mainnet contract addresses are available on the page for each [environment](/docs/build/start-building/supported-networks/){target=\_blank}. The [Wormholescan API](https://docs.wormholescan.io){target=\_blank} offers the following Guardian equivalent Mainnet endpoint:
+
+```text
+https://api.wormholescan.io
+```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/faqs/
+--- BEGIN CONTENT ---
+---
+title: Toolkit FAQs
+description: FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScript, Solidity), Tilt, error handling, transaction history, and manual VAA submission.
+categories: Solidity-SDK, Typescript-SDK
+---
+
+# Toolkit FAQs
+
+## Why does the `toNative` function in the TypeScript SDK return an error?
+
+The `toNative` function may return an error if the platform-specific module (such as Solana or EVM) is not correctly imported or passed into the Wormhole constructor.
+
+To fix this, ensure the relevant platform module is imported and included when initializing Wormhole. For example, if you're working with Solana, make sure to import the Solana module and pass it into the Wormhole constructor like this:
+
+```typescript
+import solana from '@wormhole-foundation/sdk/solana';
+const wh = await wormhole('Testnet', [solana]);
+```
+
+## How can I retrieve the history of previously bridged transactions?
+
+To retrieve the history of previously bridged transactions, you can use the Wormholescan API. Use the following endpoint to query the transaction history for a specific address:
+
+```bash
+https://api.wormholescan.io/api/v1/operations?address=INSERT_ADDRESS
+```
+
+Simply replace `INSERT_ADDRESS_HERE` with the address you want to query. The API will return a list of operations, including details about previously bridged transactions.
+
+???- example "Fetch transaction history for a specific address"
+    ```bash
+    curl -X GET "https://api.wormholescan.io/api/v1/operations?address=0x05c009C4C1F1983d4B915C145F4E782de23d3A38" -H "accept: application/json"
+    ```
+
+## How can I manually submit a VAA to a destination chain in the correct format?
+
+To manually submit a VAA (Verifiable Action Approval) to a destination chain, follow these steps:
+
+1. **Obtain the VAA in Base64 format** - navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
+
+    ```bash
+    https://wormholescan.io/#/tx/INSERT_TX_HASH?view=advanced
+    ```
+
+2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
+
+3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
+
+    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/build/reference/contract-addresses/){target=\_blank} section
+
+    - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field
+
+Following these steps, you can manually submit a VAA in the proper format to a destination chain.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/toolkit/solidity-sdk/
+--- BEGIN CONTENT ---
+---
+title: Solidity SDK
+description: How to use the Wormhole Solidity SDK for cross-chain messaging, token transfers, and integrating decentralized applications on EVM-compatible blockchains.
+categories: Solidity-SDK
+---
+
+# Solidity SDK
+
+## Introduction 
+
+The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} simplifies cross-chain messaging on EVM-compatible chains by providing essential Solidity interfaces, utility libraries, and testing tools. It allows developers to build secure and efficient cross-chain decentralized applications (dApps) without manually interacting with Wormhole’s core contracts across multiple chains.
+
+By abstracting away complex interactions, the SDK drastically reduces the overhead associated with cross-chain development. It provides:
+
+ - **Unified interfaces** - developers can use a standardized set of Solidity interfaces to handle cross-chain messaging, token transfers, and verifiable action approvals (VAAs) without needing to manage the underlying infrastructure
+ - **Automated message delivery** - the SDK leverages Wormhole’s relayer infrastructure, automatically delivering messages across chains, reducing the need for manual intervention, and simplifying gas management on the target chain
+ - **Seamless integration with Wormhole services** - the SDK integrates with Wormhole’s `TokenBridge` and Circle’s CCTP, providing built-in mechanisms for cross-chain asset transfers, making token bridges and cross-chain messaging easy to implement
+ - **Testing and development tools** - it comes with comprehensive tools for local testing and simulation, allowing developers to validate their cross-chain logic before deployment, minimizing the risk of errors in production environments
+
+These features significantly streamline the development workflow by reducing complexity and offering tools compatible with various EVM versions. This helps developers avoid issues that arise from differences in EVM equivalence across chains.
+
+This guide covers installation, key concepts, and usage examples to help you build secure cross-chain applications using the SDK, from token transfers to advanced message passing.
+
+## Installation
+
+To install the SDK, use [Foundry and Forge](https://book.getfoundry.sh/getting-started/installation){target=\_blank}. This pulls the necessary libraries into your project:
+
+```bash
+forge install wormhole-foundation/wormhole-solidity-sdk@v0.1.0
+```
+
+When developing cross-chain applications, ensure that the chains you target support the EVM version you’re using. For instance, the PUSH0 opcode (introduced in Solidity 0.8.20) may not be available on all chains. To avoid compatibility issues, you can set the EVM version in your `foundry.toml` file:
+
+```toml
+evm_version = "paris"
+```
+
+This ensures compatibility across all targeted chains, even if some do not yet support the latest EVM upgrades.
+
+## Key Considerations
+
+Before deploying applications using the Wormhole Solidity SDK, keep these considerations in mind:
+
+ - **Version compatibility** - the SDK is evolving, and using tagged releases for production is crucial, as the main branch may introduce breaking changes
+ - **IERC-20 remapping** - the SDK provides a remapping mechanism to handle potential conflicts between different implementations of IERC20, ensuring seamless integration with other libraries
+ - **Testing** - given the cross-chain dependencies, testing all integrations is critical to avoid issues in production environments
+
+## Concepts and Components
+
+The Wormhole Solidity SDK consists of key components that streamline cross-chain communication, allowing developers to securely and efficiently interact with Wormhole’s infrastructure. Below are the critical concepts and contracts you'll encounter when working with the SDK.
+
+### Cross-Chain Messaging with the Wormhole Relayer SDK
+
+The [`WormholeRelayerSDK.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} contract simplifies cross-chain messaging and asset transfers by integrating several necessary modules, including the Wormhole relayer. By automating message delivery between chains, the Wormhole relayer removes the need for developers to manage relayer infrastructure or handle gas on the target chain. Delivery providers handle the message payload, ensuring secure and efficient communication.
+
+You can refer to the [Wormhole relayer documentation](/docs/build/core-messaging/wormhole-relayers/){target=\_blank} for more details.
+
+Key modules in the SDK include:
+
+ - **`Base.sol`** - the core module for cross-chain messaging. It provides utility functions like `onlyWormholeRelayer()` and `setRegisteredSender()`, ensuring that only messages from trusted relayers are processed
+
+ - **`TokenBase.sol`** - this module extends the base messaging functionality to support cross-chain token transfers. It includes utilities for securely sending and receiving tokens between EVM-compatible chains
+
+ - **`CCTPBase.sol`** - designed for Circle’s Cross-Chain Transfer Protocol, this module manages asset transfers such as USDC between chains. It includes functionalities for both sending and receiving CCTP-based assets
+
+ - **`CCTPAndTokenBase.sol`** - a combined module that supports token and CCTP-based asset transfers in a single implementation. This module simplifies development for applications needing to handle both types of transfers
+
+The Wormhole Solidity SDK offers a unified framework for cross-chain communication. Developers can select specific modules based on their application’s requirements, whether for messaging, token transfers, or CCTP. Each module includes built-in security measures, ensuring that only authorized senders or relayers are accepted, thereby protecting the application from unauthorized interactions.
+
+Please refer to the complete `WormholeRelayerSDK.sol` file below for further details.
+
+???- code "`WormholeRelayerSDK.sol`"
     ```solidity
-    // contracts/query/QueryDemo.sol
-// SPDX-License-Identifier: Apache 2
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
 
-pragma solidity ^0.8.0;
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/constants/Chains.sol";
+import "wormhole-sdk/Utils.sol";
 
-import "wormhole-solidity-sdk/libraries/BytesParsing.sol";
-import "wormhole-solidity-sdk/interfaces/IWormhole.sol";
-import "wormhole-solidity-sdk/QueryResponse.sol";
+import {Base} from "wormhole-sdk/WormholeRelayer/Base.sol";
+import {TokenBase, TokenReceiver, TokenSender} from "wormhole-sdk/WormholeRelayer/TokenBase.sol";
+import {CCTPBase, CCTPReceiver, CCTPSender} from "wormhole-sdk/WormholeRelayer/CCTPBase.sol";
+import {CCTPAndTokenBase, CCTPAndTokenReceiver, CCTPAndTokenSender} from "wormhole-sdk/WormholeRelayer/CCTPAndTokenBase.sol";
+    ```
 
-error InvalidOwner();
-// @dev for the onlyOwner modifier
-error InvalidCaller();
-error InvalidCalldata();
-error InvalidForeignChainID();
-error ObsoleteUpdate();
-error StaleUpdate();
-error UnexpectedResultLength();
-error UnexpectedResultMismatch();
+### Base Contract Overview
 
-/// @dev QueryDemo is an example of using the QueryResponse library to parse and verify Cross Chain Query (CCQ) responses.
-contract QueryDemo is QueryResponse {
-    using BytesParsing for bytes;
+The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/Base.sol){target=\_blank} contract is a core part of the Wormhole Solidity SDK, providing essential helper functions and modifiers for managing cross-chain messages securely via the Wormhole Relayer. It handles sender registration and message validation, ensuring only authorized senders from specific chains can send messages.
 
-    struct ChainEntry {
-        uint16 chainID;
-        address contractAddress;
-        uint256 counter;
-        uint256 blockNum;
-        uint256 blockTime;
-    }
+ - **`onlyWormholeRelayer()`** - a modifier that ensures only authorized messages from the Wormhole relayer contract are processed, restricting access to certain functions
 
-    address private immutable owner;
-    uint16 private immutable myChainID;
-    mapping(uint16 => ChainEntry) private counters;
-    uint16[] private foreignChainIDs;
-
-    bytes4 public GetMyCounter = bytes4(hex"916d5743");
-
-    constructor(address _owner, address _wormhole, uint16 _myChainID) QueryResponse(_wormhole) {
-        if (_owner == address(0)) {
-            revert InvalidOwner();
-        }
-        owner = _owner;
-
-        myChainID = _myChainID;
-        counters[_myChainID] = ChainEntry(_myChainID, address(this), 0, 0, 0);
-    }
-
-    // updateRegistration should be used to add the other chains and to set / update contract addresses.
-    function updateRegistration(uint16 _chainID, address _contractAddress) public onlyOwner {
-        if (counters[_chainID].chainID == 0) {
-            foreignChainIDs.push(_chainID);
-            counters[_chainID].chainID = _chainID;
-        }
-
-        counters[_chainID].contractAddress = _contractAddress;
-    }
-
-    // getMyCounter (call signature 916d5743) returns the counter value for this chain. It is meant to be used in a cross chain query.
-    function getMyCounter() public view returns (uint256) {
-        return counters[myChainID].counter;
-    }
-
-    // getState() returns this chain's view of all the counters. It is meant to be used in the front end.
-    function getState() public view returns (ChainEntry[] memory) {
-        ChainEntry[] memory ret = new ChainEntry[](foreignChainIDs.length + 1);
-        ret[0] = counters[myChainID];
-        uint256 length = foreignChainIDs.length;
-
-        for (uint256 i = 0; i < length;) {
-            ret[i + 1] = counters[foreignChainIDs[i]];
-            unchecked {
-                ++i;
-            }
-        }
-
-        return ret;
-    }
-
-    // @notice Takes the cross chain query response for the other counters, stores the results for the other chains, and updates the counter for this chain.
-    function updateCounters(bytes memory response, IWormhole.Signature[] memory signatures) public {
-        ParsedQueryResponse memory r = parseAndVerifyQueryResponse(response, signatures);
-        uint256 numResponses = r.responses.length;
-        if (numResponses != foreignChainIDs.length) {
-            revert UnexpectedResultLength();
-        }
-
-        for (uint256 i = 0; i < numResponses;) {
-            // Create a storage pointer for frequently read and updated data stored on the blockchain
-            ChainEntry storage chainEntry = counters[r.responses[i].chainId];
-            if (chainEntry.chainID != foreignChainIDs[i]) {
-                revert InvalidForeignChainID();
-            }
-
-            EthCallQueryResponse memory eqr = parseEthCallQueryResponse(r.responses[i]);
-
-            // Validate that update is not obsolete
-            validateBlockNum(eqr.blockNum, chainEntry.blockNum);
-
-            // Validate that update is not stale
-            validateBlockTime(eqr.blockTime, block.timestamp - 300);
-
-            if (eqr.result.length != 1) {
-                revert UnexpectedResultMismatch();
-            }
-
-            // Validate addresses and function signatures
-            address[] memory validAddresses = new address[](1);
-            bytes4[] memory validFunctionSignatures = new bytes4[](1);
-            validAddresses[0] = chainEntry.contractAddress;
-            validFunctionSignatures[0] = GetMyCounter;
-
-            validateMultipleEthCallData(eqr.result, validAddresses, validFunctionSignatures);
-
-            require(eqr.result[0].result.length == 32, "result is not a uint256");
-
-            chainEntry.blockNum = eqr.blockNum;
-            chainEntry.blockTime = eqr.blockTime / 1_000_000;
-            chainEntry.counter = abi.decode(eqr.result[0].result, (uint256));
-
-            unchecked {
-                ++i;
-            }
-        }
-
-        counters[myChainID].blockNum = block.number;
-        counters[myChainID].blockTime = block.timestamp;
-        counters[myChainID].counter += 1;
-    }
-
-    modifier onlyOwner() {
-        if (owner != msg.sender) {
-            revert InvalidOwner();
-        }
+    ```solidity
+    require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
         _;
+    }
+    ```
+
+ - **`setRegisteredSender()`** - restricts message acceptance to a registered sender from a specific chain, ensuring messages are only processed from trusted sources
+
+    ```solidity
+    uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
+    }
+    ```
+
+These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete `Base.sol` contract below for further details.
+
+???- code "`Base.sol`"
+    ```solidity
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/interfaces/IWormhole.sol";
+import "wormhole-sdk/Utils.sol";
+
+abstract contract Base {
+    IWormholeRelayer public immutable wormholeRelayer;
+    IWormhole public immutable wormhole;
+
+    address registrationOwner;
+    mapping(uint16 => bytes32) registeredSenders;
+
+    constructor(address _wormholeRelayer, address _wormhole) {
+        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
+        wormhole = IWormhole(_wormhole);
+        registrationOwner = msg.sender;
+    }
+
+    modifier onlyWormholeRelayer() {
+        require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
+        _;
+    }
+
+    modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
+        require(
+            registeredSenders[sourceChain] == sourceAddress,
+            "Not registered sender"
+        );
+        _;
+    }
+
+    /**
+     * Sets the registered address for 'sourceChain' to 'sourceAddress'
+     * So that for messages from 'sourceChain', only ones from 'sourceAddress' are valid
+     *
+     * Assumes only one sender per chain is valid
+     * Sender is the address that called 'send' on the Wormhole Relayer contract on the source chain)
+     */
+    function setRegisteredSender(
+        uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
     }
 }
     ```
 
-## Submit a Query Response On-Chain
+### Interface for Cross-Chain Messages
 
-The `QueryProxyQueryResponse` result requires a slight tweak when submitting to the contract to match the format of `function parseAndVerifyQueryResponse(bytes memory response, IWormhole.Signature[] memory signatures)`. A helper function, `signaturesToEvmStruct`, is provided in the SDK for this.
+The Wormhole Solidity SDK interacts with the Wormhole relayer for sending and receiving messages across EVM-compatible chains. The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} and [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interfaces are central to cross-chain communication, enabling secure and efficient message delivery.
 
-This example submits the transaction to the demo contract:
+For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/docs/build/core-messaging/wormhole-relayers/#wormhole-relayer-interfaces){target=\_blank}. This section covers:
 
-```jsx
-const tx = await contract.updateCounters(
-  `0x${response.data.bytes}`,
-  signaturesToEvmStruct(response.data.signatures)
-);
+ - **`IWormholeRelayer`** – methods for sending cross-chain messages, VAAs, and token transfers
+ - **`IWormholeReceiver`** – the required implementation for receiving cross-chain messages
+ - **`quoteEVMDeliveryPrice()`** – how to estimate gas and fees for cross-chain transactions
+
+These interfaces reduce the complexity of cross-chain dApp development by abstracting away the details of relayer infrastructure, ensuring that message delivery is handled efficiently.
+
+### Advanced Concepts
+
+For developers interested in exploring additional advanced topics, the following sections provide insights into key aspects of the SDK’s functionality.
+
+???- note "Error Handling and Reverts"
+    The SDK defines several custom errors to help developers handle common issues like incorrect gas fees, invalid senders, and more. For example, `InvalidMsgValue` is thrown when the message value for a relayed message is erroneous.
+
+    ```solidity
+    error InvalidMsgValue(uint256 msgValue, uint256 totalFee);
+    ```
+
+## Usage
+
+This section covers cross-chain messaging and token transfers and shows how to use the Wormhole Solidity SDK in real-world scenarios.
+
+### Send a Cross-Chain Message
+
+To send a cross-chain message, inherit from the base contract provided by the SDK and use its helper methods to define your message and sender address. Here’s a basic example:
+
+```solidity
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/Base.sol";
+
+contract CrossChainSender is Base {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) Base(_wormholeRelayer, _wormhole) {}
+
+    function sendMessage(
+        bytes memory message,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Register sender and send message through WormholeRelayer
+        setRegisteredSender(targetChain, msg.sender);
+        onlyWormholeRelayer().sendPayloadToEvm(
+            targetChain,
+            address(targetAddress),
+            message,
+            0,
+            500_000
+        );
+    }
+}
 ```
+
+This contract extends `Base.sol` and allows sending cross-chain messages securely using the `WormholeRelayer`.
+
+### Send Tokens Across Chains
+
+The SDK enables seamless token transfers between EVM-compatible chains in addition to sending messages. To facilitate cross-chain token transfers, you can extend the SDK's `TokenSender` and `TokenReceiver` base contracts.
+
+```solidity
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
+
+contract CrossChainTokenSender is TokenSender {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenSender(_wormholeRelayer, _wormhole) {}
+
+    function sendToken(
+        address token,
+        uint256 amount,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Send tokens across chains
+        transferTokenToTarget(token, amount, targetChain, targetAddress);
+    }
+}
+```
+
+In this example, `TokenSender` initiates a token transfer to another chain. The SDK’s built-in utilities securely handle token transfers, ensuring proper VAAs are generated and processed.
+
+### Receive Tokens Across Chains
+
+To receive tokens on the target chain, implement a contract that inherits from `TokenReceiver` and overrides the `receiveWormholeMessages` function.
+
+```solidity
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
+
+contract CrossChainTokenReceiver is TokenReceiver {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenReceiver(_wormholeRelayer, _wormhole) {}
+
+    // Function to handle received tokens from another chain
+    function receiveWormholeMessages(
+        bytes memory payload,
+        bytes[] memory additionalMessages,
+        bytes32 sourceAddress,
+        uint16 sourceChain,
+        bytes32 deliveryHash
+    ) external payable override {
+        // Process the received tokens here
+        receiveTokens(payload);
+    }
+}
+```
+
+In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.
+
+!!! note
+    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](/docs/build/core-messaging/core-contracts/#validating-the-emitter/){target=\_blank} section for more details.
+
+## Testing Environment
+
+The SDK includes built-in support for Forge-based testing, which allows you to test your cross-chain applications locally before deploying them to production. Testing with the same Solidity compiler version and configuration you plan to use in production is highly recommended to catch any potential issues early.
+
+For a detailed example, check out the below repositories:
+
+ - [Cross chain messaging](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/){target=\_blank}
+ - [Cross chain token transfer](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/){target=\_blank}
 --- END CONTENT ---
 
 # Basics Concepts [shared: true]
@@ -648,7 +1328,6 @@ The following section contains foundational documentation shared across all Worm
 It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
 This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
 This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
-
 
 ---
 
@@ -2777,7 +3456,6 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 The following section contains reference material for Wormhole.
 It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
 While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
-
 
 ---
 
