@@ -1792,7 +1792,7 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 
 ## Mock a Query
 
-For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](/docs/build/toolkit/tilt/){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
+For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
 const mockData = await mock.mock(request);
@@ -3892,19 +3892,19 @@ Relying on native tools when possible allows for more rapid prototyping and iter
 
 ### Integration
 
-For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/build/start-building/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](/docs/build/toolkit/tilt/){target=\_blank} is available to run local instances of all the chains Wormhole supports.
+For integration to Wormhole and with multiple chains, the simplest option is to use the chains' Testnets. In choosing which chains to use for integration testing, consider which chains in a given environment provide easy access to Testnet tokens and where block times are fast. Find links for Testnet faucets in the [blockchain details section](/docs/build/start-building/supported-networks/){target=\_blank}. A developer may prefer standing up a set of local validators instead of using the Testnet. For this option, [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} is available to run local instances of all the chains Wormhole supports.
 
 !!! note
     Variation in host environments causes unique issues, and the computational intensity of multiple simultaneous local validators can make setting them up difficult or time-consuming. You may prefer Testnets for the simplest integration testing.
 
 ### Prepare for Deployment
 
-Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](/docs/build/toolkit/tilt/){target=\_blank} since it allows you to spin up any chains supported by Wormhole in a consistent environment.
+Once you've finished the application's initial development and performed integration testing, you should set up a CI test environment. The best option for that is likely to be [Tilt](https://tilt.dev/){target=\_blank} since it allows you to spin up any chains supported by Wormhole in a consistent environment.
 
 ## Validator Setup with Tilt
 
 ### Tilt
-If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](/docs/build/toolkit/tilt/){target=\_blank} page for a complete guide to setting up and configuring Tilt.
+If you'd like to set up a local validator environment, follow the setup guide for Tilt. Tilt is a full-fledged Kubernetes deployment of every chain connected to Wormhole, along with a Guardian node. It usually takes 30 minutes to spin up fully, but it comes with all chains running out of the box. Refer to the [Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} page for a complete guide to setting up and configuring Tilt.
 
 ## Deploying to Public Networks
 
@@ -4006,6 +4006,14 @@ Regardless of which network development environment you are using, there are a f
 
     [:custom-arrow: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
 
+-   :octicons-plug-16:{ .lg .middle } **Wormholescan API**
+
+    ---
+
+    Leverage the Wormholescan API to programmatically access Wormhole network data, including transaction details and VAAs.
+
+    [:custom-arrow: Explore the Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank}
+
 -   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
 
     ---
@@ -4036,7 +4044,7 @@ Regardless of which network development environment you are using, there are a f
 
     Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
-    [:custom-arrow: Get started with Tilt](/docs/build/toolkit/tilt/)
+    [:custom-arrow: Get started with Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank}
 
 <!-- TODO: revisit
 
@@ -20006,6 +20014,8 @@ description: Discover product-specific Wormhole tutorials. Learn setup, integrat
 
 In this section, you'll find tutorials focused on individual Wormhole products. Each product folder contains detailed guides to help you integrate and use specific Wormhole services, such as Token Bridge, Wormhole Connect, and more. Whether setting up your first product or diving deeper into advanced features, these tutorials will walk you through the entire process, from installation to implementation.
 
+## Get Started
+
 <div class="grid cards" markdown>
 
 -   :octicons-arrow-switch-16:{ .lg .middle } **Connect**
@@ -23153,6 +23163,8 @@ template: root-index-page.html
 Welcome to the Wormhole tutorials section! Whether you're just getting started or looking to build advanced cross-chain applications, this collection of step-by-step tutorials will help you leverage the full power of the Wormhole ecosystem.
 
 These tutorials are designed to help you develop efficient, scalable, and innovative cross-chain applications, from integrating individual Wormhole products to creating comprehensive end-to-end solutions. Explore our tutorials to get hands-on experience with Wormhole!
+
+## Get Started
 
 <div class="grid cards" markdown>
 
