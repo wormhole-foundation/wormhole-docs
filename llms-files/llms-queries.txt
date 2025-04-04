@@ -5,21 +5,20 @@ It is intended for use with large language models (LLMs) to support developers w
 
 This file includes documentation related to the product: Queries
 
-# AI Prompt Template
+## AI Prompt Template
 
 You are an AI developer assistant for Wormhole (https://wormhole.com). Your task is to assist developers in understanding and using the product described in this file.
 - Provide accurate answers based on the included documentation.
 - Do not assume undocumented features, behaviors, or APIs.
-- If unsure, respond with “Not specified in the documentation.”
-.
+- If unsure, respond with “Not specified in the documentation.
 
-# List of doc pages:
+## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries/faqs.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries/overview.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/queries/use-queries.md [type: build]
 
-# Full content for each doc page
+## Full content for each doc page
 
 Doc-Content: https://wormhole.com/docs/build/queries/
 --- BEGIN CONTENT ---
@@ -643,7 +642,7 @@ const tx = await contract.updateCounters(
 ```
 --- END CONTENT ---
 
-# Basics Concepts [shared: true]
+## Basics Concepts [shared: true]
 
 The following section contains foundational documentation shared across all Wormhole products.
 It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
@@ -652,23 +651,10 @@ This context is provided to help understand how the system works under the hood,
 
 ---
 
-# List of shared concept pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/glossary.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/architecture.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/core-contracts.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/guardians.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/relayer.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/spy.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/vaas.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/introduction.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/security.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/core-contracts.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/wormhole-relayers.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/products.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/use-cases.md [type: build]
+## List of shared concept pages:
 
-# Full content for shared concepts:
+
+## Full content for shared concepts:
 
 Doc-Content: https://wormhole.com/docs/learn/glossary/
 --- BEGIN CONTENT ---
@@ -2684,7 +2670,7 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 </div>
 --- END CONTENT ---
 
-# Reference Concepts [shared: true]
+## Reference Concepts [shared: true]
 
 The following section contains reference material for Wormhole.
 It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
@@ -2692,16 +2678,10 @@ While it may not be required for all use cases, it offers a deeper technical lay
 
 ---
 
-# List of shared concept pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/chain-ids.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/consistency-levels.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/contract-addresses.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/wormhole-formatted-addresses.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/supported-networks.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/testnet-faucets.md [type: build]
+## List of shared concept pages:
 
-# Full content for shared concepts:
+
+## Full content for shared concepts:
 
 Doc-Content: https://wormhole.com/docs/build/reference/
 --- BEGIN CONTENT ---

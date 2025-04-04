@@ -5,7 +5,7 @@ It is intended for use with large language models (LLMs) to support developers w
 
 This file includes documentation related to the category: Reference
 
-# List of doc pages:
+## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/chain-ids.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/consistency-levels.md [type: build]
@@ -14,7 +14,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/supported-networks.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/testnet-faucets.md [type: build]
 
-# Full content for each doc page
+## Full content for each doc page
 
 Doc-Content: https://wormhole.com/docs/build/reference/
 --- BEGIN CONTENT ---

@@ -85,7 +85,6 @@ def extract_category(category, shared_data=None):
         # Depending on category, write the correct line
         if category.lower() in ["basics", "reference"]:
             f.write(f"This file includes documentation related to the category: {category}\n\n")
-            # By request, do NOT include AI_PROMPT_TEMPLATE here.
         else:
             f.write(f"This file includes documentation related to the product: {category}\n\n")
             f.write(AI_PROMPT_TEMPLATE)
@@ -102,9 +101,9 @@ def extract_category(category, shared_data=None):
         sorted_index_lines, sorted_content_blocks = zip(*combined) if combined else ([], [])
 
         # Write the index and content blocks
-        f.write(f"# List of doc pages:\n")
+        f.write(f"## List of doc pages:\n")
         f.write('\n'.join(sorted_index_lines))
-        f.write("\n\n# Full content for each doc page\n\n")
+        f.write("\n\n## Full content for each doc page\n\n")
         f.write('\n\n'.join(sorted_content_blocks))
 
         # Attach shared core documentation
@@ -113,12 +112,12 @@ def extract_category(category, shared_data=None):
                 context_title = "Basics" if label == "basics" else "Reference"
                 context_description = CORE_CONTEXT_DESCRIPTION if label == "basics" else REFERENCE_CONTEXT_DESCRIPTION
 
-                f.write(f"\n\n# {context_title} Concepts [shared: true]\n\n")
+                f.write(f"\n\n## {context_title} Concepts [shared: true]\n\n")
                 f.write(context_description)
                 f.write("\n---\n\n")
-                f.write("# List of shared concept pages:\n")
+                f.write("## List of shared concept pages:\n")
                 f.write(context_index + "\n\n")
-                f.write("# Full content for shared concepts:\n\n")
+                f.write("## Full content for shared concepts:\n\n")
                 f.write(context_content)
     print(f"[✓] Generated {output_file} with {len(content_blocks)} pages")
 

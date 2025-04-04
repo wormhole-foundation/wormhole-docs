@@ -66,9 +66,8 @@ def get_all_markdown_files(directory):
     results.sort()  # Sorting alphabetically
     return results
 
-
 def build_index_section(files):
-    section = "# List of doc pages:\n"
+    section = "## List of doc pages:\n"
 
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
@@ -81,7 +80,6 @@ def build_index_section(files):
         rel_path = os.path.relpath(file, docs_dir)
         raw_url = f"{raw_base_url}/{rel_path.replace(os.sep, '/')}"
         section += f"Doc-Page: {raw_url}\n"
-
     return section
 
 # Parse snippet paths to extract file and line ranges if available.
@@ -92,7 +90,6 @@ def parse_line_range(snippet_path):
     line_start = int(parts[1]) if len(parts) > 1 and parts[1].isdigit() else None
     line_end = int(parts[2]) if len(parts) > 2 and parts[2].isdigit() else None
     return file_only, line_start, line_end
-
 
 def replace_snippet_placeholders(markdown, snippet_directory, yaml_file):
     def replacement(match):
@@ -105,7 +102,6 @@ def replace_snippet_placeholders(markdown, snippet_directory, yaml_file):
             return fetch_local_snippet(snippet_ref, snippet_directory)
 
     return re.sub(SNIPPET_REGEX, replacement, markdown)
-
 
 def fetch_local_snippet(snippet_ref, snippet_directory):
     file_only, line_start, line_end = parse_line_range(snippet_ref)
@@ -184,7 +180,7 @@ def get_value_from_path(data, path):
     return value
 
 def build_content_section(files,yaml_file):
-    section = "\n# Full content for each doc page\n\n"
+    section = "\n## Full content for each doc page\n\n"
 
     for file in files:
         relative_path = os.path.relpath(file, docs_dir)
@@ -271,8 +267,8 @@ def generate_standard_llms():
 
     # Header
     llms_content = f"# {PROJECT_NAME} llms-full.txt\n"
-    llms_content += f"# {PROJECT_NAME}. {PROJECT_DESCRIPTION}\n\n"
-    llms_content += "# Generated automatically. Do not edit directly.\n\n"
+    llms_content += f"{PROJECT_NAME}. {PROJECT_DESCRIPTION}\n\n"
+    llms_content += "## Generated automatically. Do not edit directly.\n\n"
     llms_content += f"Documentation: {docs_url}\n\n"
 
     # Add the index of pages

@@ -1,11 +1,11 @@
 # Wormhole llms-full.txt
-# Wormhole. A cross-chain messaging protocol used to move data and assets between blockchains.
+Wormhole. A cross-chain messaging protocol used to move data and assets between blockchains.
 
-# Generated automatically. Do not edit directly.
+## Generated automatically. Do not edit directly.
 
 Documentation: https://wormhole.com/docs/
 
-# List of doc pages:
+## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/core-contracts.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/index.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/wormhole-relayers.md
@@ -121,7 +121,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/wormholescan/replace-signatures.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/index.md
 
-# Full content for each doc page
+## Full content for each doc page
 
 Doc-Content: https://wormhole.com/docs/build/core-messaging/core-contracts/
 --- BEGIN CONTENT ---
