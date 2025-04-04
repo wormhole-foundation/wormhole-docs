@@ -74,6 +74,7 @@ Doc-Page: https://wormhole.com/docs/infrastructure/relayers/
 Doc-Page: https://wormhole.com/docs/infrastructure/relayers/run-relayer/
 Doc-Page: https://wormhole.com/docs/infrastructure/spy/
 Doc-Page: https://wormhole.com/docs/infrastructure/spy/run-spy/
+Doc-Page: https://wormhole.com/docs/learn/ai-resources/
 Doc-Page: https://wormhole.com/docs/learn/glossary/
 Doc-Page: https://wormhole.com/docs/learn/governance/architecture/
 Doc-Page: https://wormhole.com/docs/learn/governance/faq/
@@ -88,7 +89,6 @@ Doc-Page: https://wormhole.com/docs/learn/infrastructure/relayer/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/spy/
 Doc-Page: https://wormhole.com/docs/learn/infrastructure/vaas/
 Doc-Page: https://wormhole.com/docs/learn/introduction/
-Doc-Page: https://wormhole.com/docs/learn/llm-resources/
 Doc-Page: https://wormhole.com/docs/learn/security/
 Doc-Page: https://wormhole.com/docs/learn/transfers/cctp/
 Doc-Page: https://wormhole.com/docs/learn/transfers/
@@ -14800,6 +14800,40 @@ The Spy does not have a built-in persistence layer, so it is typically paired wi
 The persistence layer needs to implement the appropriate interface. For example, you can check out the [Redis interface](https://github.com/wormhole-foundation/relayer-engine/blob/main/relayer/storage/redis-storage.ts){target=\_blank} used by the Relayer Engine, a package that implements a client and persistence layer for messages received from a Spy subscription.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/learn/ai-resources/
+--- BEGIN CONTENT ---
+---
+title: AI Resources
+description: Download LLM-optimized files of the Wormhole documentation, including full content and category-specific resources for AI agents.
+---
+
+# AI Resources
+
+## Download LLM Files
+
+Wormhole provides `.txt` files containing the documentation content and navigation structure, optimized for use with large language models (LLMs) and AI tools. These resources help build AI assistants, power code search, or enable custom tooling trained on Wormhole’s docs.
+
+
+| Category       | Description       | File  | Actions  |
+|----------------|-------------------|-------|----------|
+| Index         | Navigation index of all Wormhole documentation pages | `llms.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms.txt" } [:octicons-download-16:](/docs/llms-files/llms.txt){ download="llms.txt" }                           |
+| Full Documentation  | Full content of all documentation pages | `llms-full.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-full.txt" } [:octicons-download-16:](/docs/llms-files/llms-full.txt){ download="llms-full.txt" }                           |
+| Basics         | Core concepts covering Wormhole’s architecture, guardian network, message flow, and Verifiable Action Approvals (VAAs) | `llms-basics.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-basics.txt" } [:octicons-download-16:](/docs/llms-files/llms-basics.txt){ download="llms-basics.txt" }                           |
+| Reference      | Reference details such as chain IDs, contract addresses, and finality rules | `llms-reference.txt`      | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-reference.txt"} [:octicons-download-16:](/docs/llms-files/llms-reference.txt){ download="llms-reference.txt" }                   |
+| NTT            | Transfer native tokens across chains—no conversion to wrapped assets required | `llms-ntt.txt`            | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-ntt.txt" } [:octicons-download-16:](/docs/llms-files/llms-ntt.txt){ download="llms-ntt.txt" }                                    |
+| Connect        | A plug-and-play bridging UI for cross-chain token transfers | `llms-connect.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-connect.txt" } [:octicons-download-16:](/docs/llms-files/llms-connect.txt){ download="llms-connect.txt" }                        |
+| Token Bridge   | A bridging solution that uses a lock and mint mechanism | `llms-token-bridge.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-token-bridge.txt" }   [:octicons-download-16:](/docs/llms-files/llms-token-bridge.txt){ download="llms-token-bridge.txt" }       |
+| Settlement     | Intent-based protocol for fast multichain transfers with optimized liquidity | `llms-settlement.txt`     | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-settlement.txt" } [:octicons-download-16:](/docs/llms-files/llms-settlement.txt){ download="llms-settlement.txt" }               |
+| Relayers       | 	Infrastructure that delivers VAAs across chains to support message finality and delivery | `llms-relayers.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-relayers.txt" } [:octicons-download-16:](/docs/llms-files/llms-relayers.txt){ download="llms-relayers.txt" }                     |
+| MultiGov       | Governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks | `llms-multigov.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-multigov.txt" } [:octicons-download-16:](/docs/llms-files/llms-multigov.txt){ download="llms-multigov.txt" }                     |
+| Queries        | Fetch on-chain data from multiple networks to fuel analytics and insights | `llms-queries.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-queries.txt" } [:octicons-download-16:](/docs/llms-files/llms-queries.txt){ download="llms-queries.txt" }                        |
+| Solidity SDK   | Smart contract tools and examples for integrating Wormhole directly into Solidity projects | `llms-solidity-sdk.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-solidity-sdk.txt" } [:octicons-download-16:](/docs/llms-files/llms-solidity-sdk.txt){ download="llms-solidity-sdk.txt" }         |
+| TypeScript SDK | Transform multichain development with a toolkit that minimizes complexity | `llms-typescript-sdk.txt` | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-typescript-sdk.txt" }   [:octicons-download-16:](/docs/llms-files/llms-typescript-sdk.txt){ download="llms-typescript-sdk.txt" } |
+
+!!! note
+    The `llms-full.txt` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the files by category.
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/learn/glossary/
 --- BEGIN CONTENT ---
 ---
@@ -16281,62 +16315,6 @@ Wormhole supports a growing number of blockchains.
 
 </div>
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/learn/llm-resources/
---- BEGIN CONTENT ---
----
-title: LLM Resources
-description: Download LLM-optimized files of the Wormhole documentation, including full content and category-specific resources for AI agents.
----
-
-# LLM Resources
-
-## Overview
-
-Wormhole provides `.txt` files containing the documentation content and navigation structure. These files are prepared specifically for Large Language Models (LLMs) and AI agents.
-
-You can use these files to:
-
- - Enable custom AI agents trained on the Wormhole documentation
- - Provide LLMs with reference material for technical support and accurate query responses
-
-These resources are intended to help developers learn and understand the Wormhole Protocol. They contain documentation content only and do not include live data or protocol APIs.
-
-## Full Documentation Files
-
-Use these files to provide LLM access to the complete Wormhole documentation.
-
-| File name          | Description                                              | Download               |
-|--------------------|----------------------------------------------------------|------------------------|
-| `llms.txt`         |  Navigation index of all Wormhole documentation pages    |  [llms.txt]()          |
-| `llms-full.txt`    |  Full content of all documentation pages                 |  [llms-full.txt]()     |
-
-!!! note
-    The `llms-full.txt` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the [files by category](#files-by-category).
-
-## Files by Category
-
-For convenience, we provide LLM files grouped by product category. Each file is self-contained and includes all the necessary context:
-
- - Relevant documentation pages for that category
- - Shared foundational concepts such as the Wormhole architecture and messaging infrastructure
- - Reference material including chain IDs, contract addresses, and finality details
-
-
-| Category       | File                      | Actions                                                                                                                                                                                       |
-|----------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Basics         | `llms-basics.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-basics.txt" } [:octicons-download-16:](/docs/llms-files/llms-basics.txt){ download="llms-basics.txt" }                           |
-| Reference      | `llms-reference.txt`      | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-reference.txt"} [:octicons-download-16:](/docs/llms-files/llms-reference.txt){ download="llms-reference.txt" }                   |
-| NTT            | `llms-ntt.txt`            | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-ntt.txt" } [:octicons-download-16:](/docs/llms-files/llms-ntt.txt){ download="llms-ntt.txt" }                                    |
-| Connect        | `llms-connect.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-connect.txt" } [:octicons-download-16:](/docs/llms-files/llms-connect.txt){ download="llms-connect.txt" }                        |
-| Token Bridge   | `llms-token-bridge.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-token-bridge.txt" }   [:octicons-download-16:](/docs/llms-files/llms-token-bridge.txt){ download="llms-token-bridge.txt" }       |
-| Settlement     | `llms-settlement.txt`     | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-settlement.txt" } [:octicons-download-16:](/docs/llms-files/llms-settlement.txt){ download="llms-settlement.txt" }               |
-| Relayers       | `llms-relayers.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-relayers.txt" } [:octicons-download-16:](/docs/llms-files/llms-relayers.txt){ download="llms-relayers.txt" }                     |
-| MultiGov       | `llms-multigov.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-multigov.txt" } [:octicons-download-16:](/docs/llms-files/llms-multigov.txt){ download="llms-multigov.txt" }                     |
-| Queries        | `llms-queries.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-queries.txt" } [:octicons-download-16:](/docs/llms-files/llms-queries.txt){ download="llms-queries.txt" }                        |
-| Solidity SDK   | `llms-solidity-sdk.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-solidity-sdk.txt" } [:octicons-download-16:](/docs/llms-files/llms-solidity-sdk.txt){ download="llms-solidity-sdk.txt" }         |
-| TypeScript SDK | `llms-typescript-sdk.txt` | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-typescript-sdk.txt" }   [:octicons-download-16:](/docs/llms-files/llms-typescript-sdk.txt){ download="llms-typescript-sdk.txt" } |
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/learn/security/
