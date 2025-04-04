@@ -1,10 +1,10 @@
 {
   "projectName": "Wormhole",
   "projectUrl": "https://wormhole.com",
-  "projectDescription": "Wormhole (https://wormhole.com) is a cross-chain messaging protocol used to move data and assets between blockchains.",
+  "projectDescription": "A cross-chain messaging protocol used to move data and assets between blockchains.",
   "sectionPriority": ["learn", "build", "tutorials"],
   "categories": ["NTT", "Connect", "Token-Bridge", "Settlement", "Relayers", "MultiGov", "Queries", "Transfer", "Solidity-SDK", "Typescript-SDK"],
-  "aiPromptTemplate": "# AI Prompt Template\n\nYou are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task is to assist developers in understanding and using the product described in this file.\n- Provide accurate answers based on the included documentation.\n- Do not assume undocumented features, behaviors, or APIs.\n- If unsure, respond with “Not specified in the documentation.”\n- Prefer concise explanations and code snippets where appropriate.\n\n",
+  "aiPromptTemplate": "# AI Prompt Template\n\nYou are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task is to assist developers in understanding and using the product described in this file.\n- Provide accurate answers based on the included documentation.\n- Do not assume undocumented features, behaviors, or APIs.\n- If unsure, respond with “Not specified in the documentation.”\n.\n\n",
   "coreContextDescription": "The following section contains foundational documentation shared across all {PROJECT_NAME} products.\nIt describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with {PROJECT_NAME}.\nThis includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.\nThis context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.\n",
   "referenceContextDescription": "The following section contains reference material for {PROJECT_NAME}.\nIt includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.\nWhile it may not be required for all use cases, it offers a deeper technical layer for advanced development work.\n"
 }

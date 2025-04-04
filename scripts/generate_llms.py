@@ -6,6 +6,17 @@ import yaml
 import os
 import re
 import requests
+import json
+
+# Load configuration from llms_config.json
+config_path = os.path.join(os.path.dirname(__file__), 'llms_config.json')
+with open(config_path, 'r', encoding='utf-8') as f:
+    config = json.load(f)
+
+# Configuration variables
+PROJECT_NAME = config["projectName"]
+PROJECT_URL = config["projectUrl"]
+PROJECT_DESCRIPTION = config["projectDescription"]
 
 # Set the base directory to the root of docs
 base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -211,9 +222,9 @@ def generate_llms_structure_txt(files):
     structure_output = os.path.join(docs_dir, 'llms.txt')
     
     structure_lines = [
-        "# Wormhole",
-        "", # spacer line
-        "> A cross-chain messaging protocol used to move data and assets between blockchains.",
+        f"# {PROJECT_NAME}",
+        "", 
+        f"> {PROJECT_DESCRIPTION}",
         "",  
         "## Docs",
         ""

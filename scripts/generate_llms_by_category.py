@@ -79,7 +79,7 @@ def extract_category(category, shared_data=None):
 
         # Intro context block to help LLMs understand purpose of the file
         f.write(f"# {PROJECT_NAME} Developer Documentation (LLMS Format)\n\n")
-        f.write(f"This file contains documentation for {PROJECT_DESCRIPTION}\n")
+        f.write(f"This file contains documentation for {PROJECT_NAME} ({PROJECT_URL}). {PROJECT_DESCRIPTION}\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
 
         # Depending on category, write the correct line
