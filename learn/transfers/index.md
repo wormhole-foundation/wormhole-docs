@@ -1,6 +1,7 @@
 ---
 title: Multichain Transfers
 description: This section introduces the core messaging protocols that power seamless multichain communication and asset transfer within the Wormhole ecosystem.
+categories: Transfer
 ---
 
 # Multichain Transfers

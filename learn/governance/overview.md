@@ -1,6 +1,7 @@
 ---
 title: MultiGov Overview
 description: Explore MultiGov, a cross-chain governance system using Wormhole for seamless voting and proposal execution across multiple blockchain networks.
+categories: MultiGov
 ---
 
 # MultiGov: Cross-Chain Governance with Wormhole

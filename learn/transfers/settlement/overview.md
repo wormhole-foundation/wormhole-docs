@@ -1,6 +1,7 @@
 ---
 title: Wormhole Settlement Overview
 description: Discover Wormhole Settlement, enabling fast, intent-based asset transfers across Ethereum, Solana, Sui, and more for institutions and builders.
+categories: Settlement, Transfer
 ---
 
 # Wormhole Settlement Overview

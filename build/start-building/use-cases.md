@@ -1,6 +1,7 @@
 ---
 title: Use Cases
 description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
+categories: Basics
 ---
 
 # Wormhole Use Cases
