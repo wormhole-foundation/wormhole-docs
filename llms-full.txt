@@ -1,5 +1,5 @@
 # Wormhole llms-full.txt
-# Wormhole is a cross-chain messaging protocol used to move data and assets between blockchains.
+# Wormhole. A cross-chain messaging protocol used to move data and assets between blockchains.
 
 # Generated automatically. Do not edit directly.
 
