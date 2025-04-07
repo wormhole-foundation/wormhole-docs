@@ -5,58 +5,47 @@ description: This section provides information on installing Wormhole's Native T
 
 # Deploy Native Token Transfers (NTT)
 
-## Get Started
+Native Token Transfers (NTT) enable secure, cross-chain token movement using the Wormhole messaging layer.
 
-This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
+This section provides a structured entry point to the deployment process.  
+It includes resources for installing and configuring the NTT CLI, selecting a deployment method, and finalizing or troubleshooting the deployment.
+
+## Before Deploy
+
+Before deploying NTT contracts, ensure you have completed the following:
+
+- [Install the NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/)
+- [Create a deployment configuration](/docs/build/transfers/native-token-transfers/configuration/)
+- [Review available CLI commands](/docs/build/transfers/native-token-transfers/cli-commands/)
+
+These steps are required for all deployment paths.
+
+## Choose Your Path
+
+Each deployment method serves a specific purpose and level of control. Review the available options below and select the one that aligns with your integration goals.
+
+[timeline left(wormhole-docs/.snippets/text/build/transfers/ntt/deployment process/ntt-deployment-index.json)]
+
+## After Deploy
+
+Complete your deployment by finalizing the configuration or resolving any issues.
 
 <div class="grid cards" markdown>
 
--   :octicons-download-16:{ .lg .middle } **Installation**
+-   :octicons-checklist-16:{ .lg .middle } **Operational Checklist**
 
     ---
 
-    Prerequisites and commands for installing the NTT CLI and working with the NTT framework.
+    Run post-deployment checks like testing, registration, and monitoring.
 
-    [:custom-arrow: Install the NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/)
-
--   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM**
-
-    ---
-
-    Find information on preparing for NTT deployment to EVM, including an example NTT token repository.
-
-    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
-
--   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains via Launchpad**
-
-    ---
-
-    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
-
-    [:custom-arrow: Deploy via Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/)
-
--   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**
-
-    ---
-
-    Your guide to NTT deployment to Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
-
-    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)
-
--   :octicons-search-16:{ .lg .middle } **Post Deployment**
-
-    ---
-
-    Learn how to best monitor and maintain your NTT deployment to get the most out of your Wormhole integration while providing security for users.
-
-    [:custom-arrow: Explore next steps](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)
+    [:custom-arrow: View Guide](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)
 
 -   :octicons-alert-16:{ .lg .middle } **Troubleshooting**
 
     ---
 
-    Explore solutions and detailed guidance in our troubleshooting guide to resolve issues with NTT deployment.
+    Review common deployment issues and how to resolve them.
 
-    [:custom-arrow: Get help](/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/)
+    [:custom-arrow: View Guide](/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/)
 
 </div>
