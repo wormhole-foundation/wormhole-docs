@@ -4,18 +4,17 @@ description: Download LLM-optimized files of the Wormhole documentation, includi
 ---
 
 # AI Resources
+Wormhole provides `.txt` files containing the documentation content and navigation structure, optimized for use with large language models (LLMs) and AI tools. These resources help build AI assistants, power code search, or enable custom tooling trained on Wormhole’s docs.
 
 ## Download LLM Files
-
-Wormhole provides `.txt` files containing the documentation content and navigation structure, optimized for use with large language models (LLMs) and AI tools. These resources help build AI assistants, power code search, or enable custom tooling trained on Wormhole’s docs.
 
 
 | Category       | Description       | File  | Actions  |
 |----------------|-------------------|-------|----------|
 | Index         | Navigation index of all Wormhole documentation pages | `llms.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms.txt" } [:octicons-download-16:](/docs/llms-files/llms.txt){ download="llms.txt" }                           |
 | Full Documentation  | Full content of all documentation pages | `llms-full.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-full.txt" } [:octicons-download-16:](/docs/llms-files/llms-full.txt){ download="llms-full.txt" }                           |
-| Basics         | Core concepts covering Wormhole’s architecture, guardian network, message flow, and Verifiable Action Approvals (VAAs) | `llms-basics.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-basics.txt" } [:octicons-download-16:](/docs/llms-files/llms-basics.txt){ download="llms-basics.txt" }                           |
-| Reference      | Reference details such as chain IDs, contract addresses, and finality rules | `llms-reference.txt`      | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-reference.txt"} [:octicons-download-16:](/docs/llms-files/llms-reference.txt){ download="llms-reference.txt" }                   |
+| Basics         | Wormhole's architecture, security, and core components to help understand how the protocol works | `llms-basics.txt`         | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-basics.txt" } [:octicons-download-16:](/docs/llms-files/llms-basics.txt){ download="llms-basics.txt" }                           |
+| Reference      | Reference details such as chain IDs, contract addresses, and finality levels | `llms-reference.txt`      | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-reference.txt"} [:octicons-download-16:](/docs/llms-files/llms-reference.txt){ download="llms-reference.txt" }                   |
 | NTT            | Transfer native tokens across chains—no conversion to wrapped assets required | `llms-ntt.txt`            | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-ntt.txt" } [:octicons-download-16:](/docs/llms-files/llms-ntt.txt){ download="llms-ntt.txt" }                                    |
 | Connect        | A plug-and-play bridging UI for cross-chain token transfers | `llms-connect.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-connect.txt" } [:octicons-download-16:](/docs/llms-files/llms-connect.txt){ download="llms-connect.txt" }                        |
 | Token Bridge   | A bridging solution that uses a lock and mint mechanism | `llms-token-bridge.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-token-bridge.txt" }   [:octicons-download-16:](/docs/llms-files/llms-token-bridge.txt){ download="llms-token-bridge.txt" }       |
