@@ -18690,9 +18690,12 @@ contract CrossChainSender is TokenSender {
         address _tokenBridge,
         address _wormhole
     ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
+    
     ```
 
     This sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
+
+    With the contract structure in place, define the following functions within its body to enable multichain token transfers.
 
 3. Next, let's add a function that estimates the cost of sending tokens across chains:
 
@@ -18741,7 +18744,6 @@ contract CrossChainSender is TokenSender {
             amount
         );
     }
-}
     ```
 
     This `sendCrossChainDeposit` function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
@@ -18856,11 +18858,12 @@ contract CrossChainReceiver is TokenReceiver {
         address _tokenBridge,
         address _wormhole
     ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
+    
     ```
 
     Similar to the `CrossChainSender` contract, this sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
 
-3. Next, let's add a function to handle receiving the payload and tokens:
+3. Next, let's add a function inside the contract to handle receiving the payload and tokens:
 
     ```solidity
     bytes memory payload,
@@ -18885,7 +18888,6 @@ contract CrossChainReceiver is TokenReceiver {
             receivedTokens[0].amount
         );
     }
-}
     ```
 
     This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address, and transfers the tokens to them using the Wormhole protocol. This function also validates the emitter (`sourceAddress`) to ensure the message comes from a trusted sender.
