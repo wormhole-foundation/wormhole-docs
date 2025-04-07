@@ -1,6 +1,7 @@
 ---
 title: Guardians
 description: Explore Wormhole's Guardian Network, a decentralized system for secure, scalable cross-chain communication across various blockchain ecosystems.
+categories: Basics
 ---
 
 ## Guardian

@@ -1,6 +1,7 @@
 ---
 title: Features
 description: Explore a comprehensive Feature Support matrix and explain Wormhole's capabilities across networks for Token Bridge, CCTP, ETH Bridge, and more. 
+categories: Connect, Transfer
 ---
 
 ## Feature Support Matrix {: #feature-support-matrix}

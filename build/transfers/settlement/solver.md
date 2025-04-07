@@ -1,6 +1,7 @@
 ---
 title: Wormhole Settlement Solver
 description: Set up, configure, and run a Wormhole Settlement Solver on Solana's Matching Engine to fulfill cross-chain transfers efficiently and securely.
+categories: Settlement, Transfer
 ---
 
 # Run a Wormhole Settlement Solver
