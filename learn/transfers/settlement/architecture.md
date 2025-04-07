@@ -1,6 +1,7 @@
 ---
 title: Settlement Protocol Architecture
 description: Explore Wormhole Settlement's native swap protocols—Liquidity Layer, Mayan Swift, and MCTP—for scalable, efficient cross-chain asset transfers.
+categories: Settlement, Transfer
 ---
 
 # Settlement Protocol Architecture

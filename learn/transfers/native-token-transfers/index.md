@@ -1,6 +1,7 @@
 ---
 title: A Quick Look at Native Token Transfers
 description: This section covers Wormhole's Native Token Transfers (NTT), an open source, flexible, and composable framework for transferring tokens across blockchains.
+categories: NTT, Transfer
 ---
 
 # Native Token Transfers

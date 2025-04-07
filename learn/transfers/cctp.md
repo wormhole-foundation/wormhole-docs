@@ -1,6 +1,7 @@
 ---
 title: Circle's CCTP Bridge
 description: Unlock fast USDC transfers with Wormhole's integration of Circle's CCTP, featuring automatic relaying via the Wormhole relayer and native gas solutions.
+categories: Transfer
 ---
 
 # Circle's CCTP Bridge
