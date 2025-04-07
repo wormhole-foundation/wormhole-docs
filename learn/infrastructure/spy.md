@@ -13,11 +13,11 @@ This page provides a comprehensive guide to where the Spy fits within the Wormho
 
 ## Key Features
 
-1. **Real-time monitoring of Wormhole messages** - the Spy allows users to observe Wormhole messages as they are published across supported chains in near real-time
-2. **Filterable and observable message streams** - users can filter message streams by chain, emitter, and other criteria, making it easier to track specific contracts or categories of interest
-3. **Integration-friendly event streaming** - the Spy exposes gRPC and WebSocket interfaces, making it easy to integrate message observation into custom tooling, dashboards, or indexing services
-4. **Support for multiple message protocols** - it can observe messages from different Wormhole messaging protocols (Token Bridge, CCTP, NTT, etc.), providing broad coverage of cross-chain activity
-5. **Lightweight and infrastructure-ready** - the Spy is designed to run as part of indexing or backend services, not requiring validator-level infrastructure
+- **Real-time monitoring of Wormhole messages** - the Spy allows users to observe Wormhole messages as they are published across supported chains in near real-time
+- **Filterable and observable message streams** - users can filter message streams by chain, emitter, and other criteria, making it easier to track specific contracts or categories of interest
+- **Integration-friendly event streaming** - the Spy exposes gRPC and WebSocket interfaces, making it easy to integrate message observation into custom tooling, dashboards, or indexing services
+- **Support for multiple message protocols** - it can observe messages from different Wormhole messaging protocols (Token Bridge, CCTP, NTT, etc.), providing broad coverage of cross-chain activity
+- **Lightweight and infrastructure-ready** - the Spy is designed to run as part of indexing or backend services, not requiring validator-level infrastructure
 
 ## Integrator Use Case
 
