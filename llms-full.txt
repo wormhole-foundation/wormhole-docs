@@ -11163,24 +11163,31 @@ categories: Connect, Transfer
 
 # Wormhole Connect
 
-## Configure Connect
-
-Wormhole Connect is a flexible React widget that streamlines cross-chain asset transfers and enables seamless interoperability by leveraging Wormhole's powerful infrastructure. Designed for easy integration into decentralized applications (dApps), Wormhole Connect abstracts the complexities of cross-chain communication, providing a user-friendly experience for both developers and end users.
-
-This guide provides detailed instructions on configuring Wormhole Connect and highlights the many ways it can be customized to fit your specific needs, from integrating supported blockchains and tokens to tailoring the user interface.
-
 !!! note
     To upgrade from Wormhole Connect v0 to v1, please refer to the [migration guide](/docs/build/transfers/connect/upgrade/){target=\_blank} for instructions.
 
     If you're using an older version of Wormhole Connect (v0.x), please refer to the [v0.x configuration documentation](/docs/build/transfers/connect/configuration-v0/){target=\_blank}.
 
+## Configure Connect
+
+You can customize the supported networks, tokens, routes, and runtime behavior to meet the needs of your dApp. If you haven't yet integrated Connect, please visit the [overview page](/docs/build/transfers/connect/overview/#integrate-connect) to decide whether to use the React or the hosted version.
+
+After implementing Connect, follow the steps below to configure it for your specific use case.
+
+[timeline left (wormhole-docs/.snippets/text/build/transfers/connect/connect configuration/connect-configuration.json)]
+
+## Next Steps
+
+Once Connect is fully configured, it will work with the default visual style.  
+If you’d like to customize the appearance to match your dApp better or need help with specific configurations, use the resources below.
+
 <div class="grid cards" markdown>
 
--   :octicons-database-16:{ .lg .middle } **Data**
+-   :octicons-database-16:{ .lg .middle } **FAQ**
 
     ---
 
-    Learn how to configure the networks, tokens, and routes supported by Wormhole Connect. Set up RPC endpoints, whitelist tokens, and leverage multiple bridging protocols to meet your dApp's needs.
+    Find answers to common configuration questions and troubleshooting tips.
 
 
     [:custom-arrow: Get started](/docs/build/transfers/connect/configuration/configure-data/)
@@ -11189,7 +11196,7 @@ This guide provides detailed instructions on configuring Wormhole Connect and hi
 
     ---
 
-    Discover how to style the Wormhole Connect widget to align with your brand. Customize colors, fonts, and UI elements to deliver a seamless user experience.
+    Adjust the layout, colors, and fonts better to align the widget with your dApp's design.
 
     [:custom-arrow: Explore routes](/docs/build/transfers/connect/configuration/configure-theme/)
 
