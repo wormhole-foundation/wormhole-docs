@@ -1,6 +1,7 @@
 ---
 title: Wormhole Tooling
 description: This page lists key dev tools, including the WormholeScan Explorer, Wormhole CLI, Wormhole SDKs, and APIs for querying network data.
+categories: Solidity-SDK
 ---
 
 # Wormhole Tooling
@@ -18,6 +19,14 @@ Regardless of which network development environment you are using, there are a f
     Wormholescan is an explorer for looking at individual transfer statuses on Mainnet and Testnet.
 
     [:custom-arrow: Review transactions on Wormholescan](https://wormholescan.io){target=\_blank}
+
+-   :octicons-plug-16:{ .lg .middle } **Wormholescan API**
+
+    ---
+
+    Leverage the Wormholescan API to programmatically access Wormhole network data, including transaction details and VAAs.
+
+    [:custom-arrow: Explore the Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank}
 
 -   :octicons-code-square-16:{ .lg .middle } **Wormhole CLI Tool**
 
@@ -49,7 +58,7 @@ Regardless of which network development environment you are using, there are a f
 
     Learn about Tilt, a Wormhole developer environment with a local Kubernetes set up for cross-chain testing with Guardian nodes and relayers for seamless development.
 
-    [:custom-arrow: Get started with Tilt](/docs/build/toolkit/tilt/)
+    [:custom-arrow: Get started with Tilt](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank}
 
 <!-- TODO: revisit
 

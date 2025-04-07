@@ -1,6 +1,7 @@
 ---
 title: Toolkit FAQs
 description: FAQs on Wormhole Toolkit, covering Wormholescan, CLI, SDKs (TypeScript, Solidity), Tilt, error handling, transaction history, and manual VAA submission.
+categories: Solidity-SDK, Typescript-SDK
 ---
 
 # Toolkit FAQs

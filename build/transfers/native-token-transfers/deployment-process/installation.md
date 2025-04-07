@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers Installation
 description: Learn how to Install Wormhole’s Native Token Transfers (NTT) framework, a flexible and composable framework for transferring tokens across blockchains.
+categories: NTT, Transfer
 ---
 
 # Install the Native Token Transfers CLI

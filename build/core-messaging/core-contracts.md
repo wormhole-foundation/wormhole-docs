@@ -1,6 +1,7 @@
 ---
 title: Get Started with Core Contracts
 description: This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts
+categories: Basics
 ---
 
 # Get Started with Core Contracts

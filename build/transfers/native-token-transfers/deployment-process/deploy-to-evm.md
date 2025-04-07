@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers EVM Deployment
 description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
 ---
 
 # Native Token Transfers (NTT) EVM Development
