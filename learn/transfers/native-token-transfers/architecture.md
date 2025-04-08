@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers Architecture
 description: Explore Wormhole's Native Token Transfers architecture, which covers components, message flow, rate limiting, and custom transceivers.
+categories: NTT, Transfer
 ---
 
 ## Introduction

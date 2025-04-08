@@ -1,6 +1,7 @@
 ---
 title: Wormhole Formatted Addresses
 description: Explanation of Wormhole formatted 32-byte hex addresses, their conversion, and usage across different blockchain platforms.
+categories: Reference
 ---
 
 # Wormhole Formatted Addresses

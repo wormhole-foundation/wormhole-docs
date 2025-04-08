@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers (NTT) - Configuration
 description: This section contains information on configuring Native Token Transfers (NTT), including guidance on setting Owner and Pauser access control roles and management of rate-limiting. 
+categories: NTT, Transfer
 ---
 
 # Configure Native Token Transfers (NTT)

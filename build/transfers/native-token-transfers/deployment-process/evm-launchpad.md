@@ -1,6 +1,7 @@
 ---
 title: Deploy Native Token Transfers with Launchpad
 description: Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
+categories: NTT, Transfer
 ---
 
 # Deploy Native Token Transfers with Launchpad

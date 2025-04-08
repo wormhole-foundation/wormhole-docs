@@ -1,6 +1,7 @@
 ---
 title: Architecture
 description: Overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
+categories: Basics
 ---
 
 # Architecture

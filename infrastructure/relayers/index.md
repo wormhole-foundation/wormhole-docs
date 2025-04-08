@@ -1,6 +1,7 @@
 ---
 title: Relayers
 description: Learn how to develop your own custom off-chain relaying service, giving you greater control and flexibility than using Wormhole-deployed relayers.
+categories: Relayers
 ---
 
 # Relayers

@@ -1,6 +1,7 @@
 ---
 title: Wormhole Settlement
 description: Start building with Wormhole Settlement; integrate with the Liquidity Layer and set up Solvers to enable seamless cross-chain asset transfers.
+categories: Settlement, Transfer
 ---
 
 # Wormhole Settlement

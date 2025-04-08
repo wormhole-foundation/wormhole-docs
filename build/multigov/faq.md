@@ -1,6 +1,7 @@
 ---
 title: MultiGov Technical FAQs
 description: Find answers to common questions about MultiGov, covering cross-chain governance, technical setup, security, proposal creation, and more.
+categories: MultiGov
 ---
 
 # FAQs

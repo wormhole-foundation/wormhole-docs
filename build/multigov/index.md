@@ -1,6 +1,7 @@
 ---
 title: Getting Started with MultiGov
 description: Learn how to get started with MultiGov, from evaluating cross-chain governance needs to deploying with help from the Tally team.
+categories: MultiGov
 ---
 
 # MultiGov
