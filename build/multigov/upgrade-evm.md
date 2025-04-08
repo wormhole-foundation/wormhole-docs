@@ -1,6 +1,7 @@
 ---
 title: Upgrading MultiGov on EVM
 description: Learn the process and key considerations for upgrading MultiGov on EVM, ensuring system integrity and careful planning across cross-chain components.
+categories: MultiGov
 ---
 
 # Upgrade MultiGov Contracts on EVM Chains

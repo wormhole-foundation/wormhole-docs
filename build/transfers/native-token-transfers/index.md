@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers (NTT)
 description: This section provides comprehensive guidance on configuring, deploying, and managing your Native Token Transfers (NTT) integration. 
+categories: NTT, Transfer
 ---
 
 # Native Token Transfers
