@@ -1,4 +1,4 @@
-title: Wormhole Settlements
+title: Settlement
 nav:
  - index.md
  - 'Integrate Settlement Routes using the SDK': 'settlement-routes.md'
