@@ -15176,12 +15176,12 @@ description: Download LLM-optimized files of the Wormhole documentation, includi
 ---
 
 # AI Resources
+
 Wormhole provides `.txt` files containing the documentation content and navigation structure, optimized for use with large language models (LLMs) and AI tools. These resources help build AI assistants, power code search, or enable custom tooling trained on Wormhole’s docs.
 
 Each category file includes foundational content from the **Basics** and **Reference** categories to ensure LLMs have the necessary context.
 
 ## Download LLM Files
-
 
 | Category       | Description       | File  | Actions  |
 |----------------|-------------------|-------|----------|
