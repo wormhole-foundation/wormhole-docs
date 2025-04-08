@@ -3,9 +3,11 @@ title: Wormhole Connect Tutorials
 description: Enable cross-chain connectivity with Wormhole Connect. Learn integration and simplify user experiences across multiple blockchains.
 ---
 
-# Connect Tutorials
+# Connect
 
 Wormhole Connect makes it simple to link your application to multiple blockchain ecosystems. These tutorials will teach you how to integrate Connect into your projects, streamline cross-chain interactions, simplify user onboarding, and deliver a smoother overall experience.
+
+## Tutorials
 
 <div class="grid cards" markdown>
 

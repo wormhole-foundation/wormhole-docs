@@ -1,11 +1,13 @@
 ---
-title: Cross-Chain Contract Integration Tutorials
-description: Master cross-chain smart contracts with Wormhole. Learn messaging, token transfers, and secure, scalable dApp deployments across blockchains.
+title: Solidity SDK Tutorials
+description: Master cross-chain smart contracts with Wormhole's Solidity SDK. Learn messaging, token transfers, and secure, scalable dApp deployments across blockchains.
 ---
 
-# Cross-Chain Contract Tutorials
+# Solidity SDK
 
 Expand the reach of your decentralized applications by building smart contracts that can communicate across multiple blockchains. Through these tutorials, you’ll learn to create robust cross-chain contracts, enabling your dApps to tap into global liquidity, diverse functionalities, and a broader user base.
+
+## Tutorials
 
 <div class="grid cards" markdown>
 
@@ -13,7 +15,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
     ---
 
-    Learn how to build and deploy smart contracts that communicate seamlessly across multiple blockchains. This tutorial walks you through using Wormhole’s Solidity SDK to send and receive messages between Avalanche Fuji and Celo Alfajores, helping you master emitter validation, relayer usage, and cross-chain cost management.
+    Learn how to build and deploy smart contracts that communicate seamlessly across multiple blockchains. This tutorial walks you through using Wormhole's Solidity SDK to send and receive messages between Avalanche Fuji and Celo Alfajores, helping you master emitter validation, relayer usage, and cross-chain cost management.
 
     [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/cross-chain-contracts/)
 
@@ -21,7 +23,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
     ---
 
-    Discover how to create a fully functional cross-chain token transfer system using Wormhole’s Solidity SDK. This tutorial guides you through token attestation, contract deployment, and secure transfers of ERC-20 tokens between test networks. By the end, you’ll know how to tap into global liquidity and enrich your dApps with seamless multi-chain asset movement.
+    Discover how to create a fully functional cross-chain token transfer system using Wormhole's Solidity SDK. This tutorial guides you through token attestation, contract deployment, and secure transfers of ERC-20 tokens between test networks. By the end, you’ll know how to tap into global liquidity and enrich your dApps with seamless multi-chain asset movement.
 
     [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/cross-chain-token-contracts/)
 

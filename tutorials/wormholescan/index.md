@@ -3,11 +3,11 @@ title: Wormholescan API Tutorials
 description: Explore step-by-step guides on using the Wormholescan API to fetch VAAs, validate signatures, check redemption status, and process cross-chain transactions.
 ---
 
-# Wormholescan API Tutorials  
+# Wormholescan API  
 
 Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain data, track transactions, validate VAAs, check redemption status, and more. 
 
-## Get Started  
+## Tutorials 
 
 <div class="grid cards" markdown>  
 

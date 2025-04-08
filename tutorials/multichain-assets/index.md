@@ -7,6 +7,8 @@ description: Explore comprehensive, step-by-step tutorials on how to register, m
 
 Multichain assets, often represented as wrapped tokens, enable seamless cross-chain interoperability. This section provides step-by-step tutorials for registering, managing, and working with these assets across different blockchains.
 
+## Tutorials
+
 <div class="grid cards" markdown>
 
 -   :octicons-repo-16:{ .lg .middle } **Create Multichain Tokens**

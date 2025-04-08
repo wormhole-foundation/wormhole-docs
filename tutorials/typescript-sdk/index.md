@@ -3,9 +3,11 @@ title: Wormhole SDK Tutorials
 description: Master the Wormhole SDK. Build robust cross-chain dApps with messaging, token bridging, and governance across multiple networks.
 ---
 
-# Wormhole SDK Tutorials
+# Wormhole SDK
 
 The Wormhole SDK provides the essential building blocks for creating robust cross-chain applications. With its developer-friendly libraries, tools, and interfaces, you can quickly integrate Wormhole’s messaging, token transfer, and governance functionalities into your projects. Whether you’re building a simple cross-chain dApp or architecting a complex multi-chain ecosystem, these tutorials will guide you through mastering the SDK and unlocking the full potential of Wormhole’s infrastructure.
+
+## Tutorials
 
 <div class="grid cards" markdown>
 

@@ -4,9 +4,11 @@ description: Discover product-specific Wormhole tutorials. Learn setup, integrat
 template: root-index-page.html
 ---
 
-# Tutorials by Product
+# Tutorials
 
 In this section, you'll find tutorials focused on individual Wormhole products. Each product folder contains detailed guides to help you integrate and use specific Wormhole services, such as Token Bridge, Wormhole Connect, and more. Whether setting up your first product or diving deeper into advanced features, these tutorials will walk you through the entire process, from installation to implementation.
+
+## Browse Tutorials by Product
 
 <div class="grid cards" markdown>
 
@@ -18,13 +20,13 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:custom-arrow: Start building](/docs/tutorials/connect/)
 
--   :octicons-file-code-16:{ .lg .middle } **Contract Integrations**
+-   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
 
     ---
 
-    Learn to build smart contracts that communicate across multiple blockchains. These tutorials show you how to create robust cross-chain contracts, allowing your dApps to move beyond a single network and tap into global liquidity, functionality, and user bases.
+    Learn how to create, register, and manage wrapped multichain assets across multiple chains. These tutorials will guide you through the process of enabling asset transfers between supported networks.
 
-    [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/)
+    [:custom-arrow: Start building](/docs/tutorials/multichain-assets/)
 
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
@@ -34,7 +36,15 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:custom-arrow: Start building](/docs/tutorials/multigov/)
 
--   :octicons-code-square-16:{ .lg .middle } **Wormhole SDK**
+-   :octicons-file-code-16:{ .lg .middle } **Solidity SDK**
+
+    ---
+
+    Learn to build smart contracts that communicate across multiple blockchains. These tutorials show you how to create robust cross-chain contracts, allowing your dApps to move beyond a single network and tap into global liquidity, functionality, and user bases.
+
+    [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/)
+
+-   :octicons-code-square-16:{ .lg .middle } **TypeScript SDK**
 
     ---
 
@@ -42,12 +52,12 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
     [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/)
 
--   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
+-   :octicons-code-square-16:{ .lg .middle } **Wormholescan API**
 
     ---
 
-    Learn how to create, register, and manage wrapped multichain assets across multiple chains. These tutorials will guide you through the process of enabling asset transfers between supported networks.
+    Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain data, track transactions, validate VAAs, check redemption status, and more.
 
-    [:custom-arrow: Start building](/docs/tutorials/multichain-assets/)
+    [:custom-arrow: Start building](/docs/tutorials/wormholescan/)
 
 </div>
