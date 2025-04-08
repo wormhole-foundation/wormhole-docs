@@ -8,13 +8,15 @@ categories: NTT, Transfer
 
 In this video, the Wormhole team walks you through installing the [Native Token Transfers (NTT) CLI](https://github.com/wormhole-foundation/native-token-transfers/tree/main/cli){target=\_blank}. You’ll see a practical demonstration of running commands, verifying your installation, and addressing common issues that might arise. If you prefer to follow written instructions or want a quick reference for each step, scroll down for the detailed installation guide.
 
+To start using the NTT CLI, you can generate test tokens for development with the [`example-ntt-token`](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} GitHub repository by following the README instructions.
+
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
 
 ## Install NTT CLI
 
 The fastest way to deploy Native Token Transfers (NTT) is using the NTT CLI. As prerequisites, ensure you have the following installed:
 
-- Install [Bun](https://bun.sh/){target=\_blank}
+- Install [Bun](https://bun.sh/docs/installation){target=\_blank}
 
 Follow these steps to install the NTT CLI:
 
