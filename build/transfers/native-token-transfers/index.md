@@ -12,6 +12,8 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} and
 
 ## Quickstart
 
+If needed, you can generate test tokens for development with the [`example-ntt-token`](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} GitHub repository by following the README instructions.
+
 The process for creating, deploying, and monitoring NTTs is as follows. Select the title of each step to view the associated guide:
 
 [timeline left(wormhole-docs/.snippets/text/build/transfers/ntt/ntt-deployment-process-timeline.json)]

@@ -112,9 +112,12 @@ Let's start writing the `CrossChainSender` contract:
 
     ```solidity
     --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-1.sol:1:14"
+    --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-1.sol:58:58"
     ```
 
     This sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
+
+    With the contract structure in place, define the following functions within its body to enable multichain token transfers.
 
 3. Next, let's add a function that estimates the cost of sending tokens across chains:
 
@@ -127,7 +130,7 @@ Let's start writing the `CrossChainSender` contract:
 4. Finally, we'll add the function that sends the tokens across chains:
 
     ```solidity
-    --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-1.sol:31:58"
+    --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-1.sol:31:57"
     ```
 
     This `sendCrossChainDeposit` function is where the actual token transfer happens. It sends the tokens to the recipient on the target chain using the Wormhole protocol.
@@ -173,14 +176,15 @@ Let's start writing the `CrossChainReceiver` contract:
 
     ```solidity
     --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-2.sol:1:14"
+    --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-2.sol:40:40"
     ```
 
     Similar to the `CrossChainSender` contract, this sets up the basic structure of the contract, including the necessary imports and the constructor that initializes the contract with the Wormhole-related addresses.
 
-3. Next, let's add a function to handle receiving the payload and tokens:
+3. Next, let's add a function inside the contract to handle receiving the payload and tokens:
 
     ```solidity
-    --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-2.sol:17:40"
+    --8<-- "code/tutorials/solidity-sdk/cross-chain-token-transfers/snippet-2.sol:17:39"
     ```
 
     This `receivePayloadAndTokens` function processes the tokens and payload sent from another chain, decodes the recipient address, and transfers the tokens to them using the Wormhole protocol. This function also validates the emitter (`sourceAddress`) to ensure the message comes from a trusted sender.
