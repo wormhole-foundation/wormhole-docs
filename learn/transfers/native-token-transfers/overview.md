@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers Overview
 description: Explore Wormhole's Native Token Transfers for flexible cross-chain transfers with full control over token behavior, security, and integration features.
+categories: NTT, Transfer
 ---
 
 # Native Token Transfers

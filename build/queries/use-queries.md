@@ -1,6 +1,7 @@
 ---
 title: Use Queries
 description: Explore a simple demo of interacting with Wormhole Queries using an eth_call request to query the supply of wETH on Ethereum using a Wormhole query.
+categories: Queries
 ---
 
 # Use Queries

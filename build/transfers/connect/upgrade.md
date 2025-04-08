@@ -1,6 +1,7 @@
 ---
 title: Wormhole Connect v1.0 Migration Guide
 description: Learn how to migrate to Wormhole Connect v1.0, with step-by-step guidance on updating your package and configuration.
+categories: Connect, Transfer
 ---
 
 # Wormhole Connect v1.0 Migration Guide

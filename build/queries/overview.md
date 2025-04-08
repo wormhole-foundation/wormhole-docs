@@ -1,6 +1,7 @@
 ---
 title: Queries Overview
 description: Explore Wormhole Queries, offering real-time access to verified blockchain data via a REST endpoint, enabling secure cross-chain interactions and verifications.
+categories: Queries
 ---
 
 # Queries Overview {: #queries-overview }

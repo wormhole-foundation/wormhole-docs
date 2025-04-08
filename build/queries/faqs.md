@@ -1,6 +1,7 @@
 ---
 title: Queries FAQs
 description: Wormhole Queries FAQ covering available libraries, query examples, response formats, and details about running query proxy servers.
+categories: Queries
 ---
 
 # Wormhole Queries FAQs

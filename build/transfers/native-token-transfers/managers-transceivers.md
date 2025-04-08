@@ -1,6 +1,7 @@
 ---
 title: Managers and Transceivers
 description: Explore the roles of Managers and Transceivers in NTT cross-chain token transfers, including key functions, lifecycle events, and rate-limiting mechanisms.
+categories: NTT, Transfer
 ---
 
 # Managers and Transceivers
