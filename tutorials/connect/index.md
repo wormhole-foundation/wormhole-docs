@@ -1,6 +1,7 @@
 ---
 title: Wormhole Connect Tutorials
 description: Enable cross-chain connectivity with Wormhole Connect. Learn integration and simplify user experiences across multiple blockchains.
+categories: Connect, Transfer
 ---
 
 # Connect

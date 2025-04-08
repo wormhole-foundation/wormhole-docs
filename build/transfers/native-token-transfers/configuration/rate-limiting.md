@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers Rate Limiting
 description: Learn about rate limits in Wormhole NTT by configuring send/receive limits, queuing, and canceling flows to manage multichain token transfers efficiently.
+categories: NTT, Transfer
 ---
 
 ## Introduction

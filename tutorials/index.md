@@ -10,6 +10,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
 ## Browse Tutorials by Product
 
+## Get Started
+
 <div class="grid cards" markdown>
 
 -   :octicons-arrow-switch-16:{ .lg .middle } **Connect**

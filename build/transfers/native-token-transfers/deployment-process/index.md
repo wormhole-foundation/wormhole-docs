@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers (NTT) - Deployment
 description: This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
+categories: NTT, Transfer
 ---
 
 # Deploy Native Token Transfers (NTT)

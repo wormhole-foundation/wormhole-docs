@@ -1,6 +1,7 @@
 ---
 title: Learn about MultiGov
 description: Explore the MultiGov documentation for a comprehensive guide covering architecture, deployment, upgrading, integration, and FAQs.
+categories: MultiGov
 ---
 
 # MultiGov

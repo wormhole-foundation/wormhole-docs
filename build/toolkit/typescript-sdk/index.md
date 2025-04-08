@@ -1,6 +1,7 @@
 ---
 title: Wormhole SDK
 description: The Wormhole SDK provides tools for cross-chain communication, token bridges, and more, enabling developers to integrate with multiple blockchain environments.
+categories: Typescript-SDK
 ---
 
 # Wormhole SDK

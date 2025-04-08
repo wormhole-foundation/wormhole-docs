@@ -1,6 +1,7 @@
 ---
 title: Building Protocols and Payloads
 description: Learn how to build, register, and integrate protocols and payloads in the Wormhole TypeScript SDK with type-safe layouts.
+categories: Typescript-SDK
 ---
 
 # Building Protocols and Payloads

@@ -1,6 +1,7 @@
 ---
 title: Native Token Transfers Solana Deployment
 description: Deploy and configure Wormhole's Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
 ---
 
 # Deploy Native Token Transfers on Solana

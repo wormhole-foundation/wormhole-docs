@@ -1,6 +1,7 @@
 ---
 title: VAAs and Protocols
 description: Understand how VAAs enable cross-chain messaging and how to handle them using Wormhole's TypeScript and Solidity SDKs.
+categories: Typescript-SDK
 ---
 
 # VAAs and Protocols

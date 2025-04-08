@@ -1,6 +1,7 @@
 ---
 title: Step-by-Step MultiGov Tutorials
 description: Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
+categories: MultiGov
 ---
 
 # MultiGov

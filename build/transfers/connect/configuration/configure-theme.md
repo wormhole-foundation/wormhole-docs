@@ -1,6 +1,7 @@
 ---
 title: Connect Theme & UI Customization
 description: Learn how to style Wormhole Connect with custom color schemes, fonts, layouts, and menus for a streamlined user experience.
+categories: Connect, Transfer
 ---
 
 ## Theme & UI Customization
