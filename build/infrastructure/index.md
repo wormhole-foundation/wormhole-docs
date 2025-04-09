@@ -1,7 +1,7 @@
 ---
 title: Run Infrastructure Services
 description: Follow the guides in this section to learn how to run off-chain infrastructure services, such as running a spy or a customized relayer.
-template: root-index-page.html
+# template: root-index-page.html
 ---
 
 # Infrastructure

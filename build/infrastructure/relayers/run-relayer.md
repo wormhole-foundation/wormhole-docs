@@ -21,7 +21,7 @@ This guide teaches you how to set up and configure a custom relayer for efficien
 To start building a custom relayer, it's essential to grasp the components you'll be managing as part of your relaying service. Your relayer must be capable of retrieving and delivering VAAs.
 
 <figure markdown="span">
-  ![Custom relayer](/docs/images/infrastructure/relayers/run-relayer/relayer-1.webp)
+  ![Custom relayer](/docs/images/build/infrastructure/relayers/run-relayer/relayer-1.webp)
   <figcaption>The off-chain components outlined in blue must be implemented.</figcaption>
 </figure>
 
@@ -62,13 +62,13 @@ In the following example, you'll:
 3. Start the relayer app
 
 ```typescript
---8<-- 'code/infrastructure/relayers/run-relayer/snippet-1.ts'
+--8<-- 'code/build/infrastructure/relayers/run-relayer/snippet-1.ts'
 ```
 
 The first meaningful line instantiates the `StandardRelayerApp`, a subclass of the `RelayerApp` with standard defaults.
 
 ```typescript
---8<-- 'code/infrastructure/relayers/run-relayer/snippet-2.ts'
+--8<-- 'code/build/infrastructure/relayers/run-relayer/snippet-2.ts'
 ```
 
 The only field you pass in the `StandardRelayerAppOpts` is the name to help identify log messages and reserve a namespace in Redis.
@@ -78,7 +78,7 @@ The only field you pass in the `StandardRelayerAppOpts` is the name to help iden
     Other options can be passed to the `StandardRelayerApp` constructor to configure the app further.
 
     ```typescript
-    --8<-- 'code/infrastructure/relayers/run-relayer/snippet-3.ts'
+    --8<-- 'code/build/infrastructure/relayers/run-relayer/snippet-3.ts'
     ```
 
 The next meaningful line in the example adds a filter middleware component. This middleware will cause the relayer app to request a subscription from the Spy for any VAAs that match the criteria and invoke the callback with the VAA.
@@ -86,7 +86,7 @@ The next meaningful line in the example adds a filter middleware component. This
 If you'd like your program to subscribe to `multiple` chains and addresses, you can call the same method several times or use the `multiple` helper.
 
 ```typescript
---8<-- 'code/infrastructure/relayers/run-relayer/snippet-4.ts'
+--8<-- 'code/build/infrastructure/relayers/run-relayer/snippet-4.ts'
 ```
 
 The last line in the simple example runs `await app.listen()`, which starts the relayer engine. Once started, the Relayer Engine issues subscription requests to the Spy and begins any other workflows (e.g., tracking missed VAAs).
@@ -148,7 +148,7 @@ docker run --rm -p 6379:6379 --name redis-docker -d redis
 You can also use the Wormhole SDK to poll the Guardian RPC until a signed VAA is ready using the SDK's `getSignedVAAWithRetry` function.
 
 ```ts
---8<-- 'code/infrastructure/relayers/run-relayer/snippet-5.ts'
+--8<-- 'code/build/infrastructure/relayers/run-relayer/snippet-5.ts'
 ```
 
 Once you have the VAA, the delivery method is chain-dependent.
@@ -158,7 +158,7 @@ Once you have the VAA, the delivery method is chain-dependent.
     On EVM chains, the bytes for the VAA can be passed directly as an argument to an ABI method.
 
     ```ts
-    --8<-- 'code/infrastructure/relayers/run-relayer/snippet-6.ts'
+    --8<-- 'code/build/infrastructure/relayers/run-relayer/snippet-6.ts'
     ```
 
 === "Solana"
@@ -166,5 +166,5 @@ Once you have the VAA, the delivery method is chain-dependent.
     On Solana, the VAA is first posted to the core bridge, and then a custom transaction is prepared to process and validate the VAA. 
 
     ```ts
-    --8<-- 'code/infrastructure/relayers/run-relayer/snippet-7.ts'
+    --8<-- 'code/build/infrastructure/relayers/run-relayer/snippet-7.ts'
     ```
