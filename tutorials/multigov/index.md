@@ -4,11 +4,11 @@ description: Access step-by-step guides for executing cross-chain governance act
 categories: MultiGov
 ---
 
-# MultiGov Tutorials
+# MultiGov
 
 Welcome to the MultiGov tutorials section. In this section, you will find tutorials that walk you through the key steps of working with MultiGov, providing clear instructions to help you get started. As you explore, you'll gain a deeper understanding of MultiGov's features and functionality.
 
-## Get Started
+## Tutorials
 
 <div class="grid cards" markdown>
 
@@ -18,7 +18,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Learn how to propose governance actions on a hub chain, gather votes from spoke chains, aggregate the results, and carry out the final decision. Following these steps, you’ll master end-to-end governance workflows spanning multiple networks.
 
-    [:custom-arrow: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
+    [:custom-arrow: Start building](/docs/tutorials/multigov/treasury-proposal/)
 
 </div>
 

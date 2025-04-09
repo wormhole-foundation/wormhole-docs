@@ -41,7 +41,7 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
     This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/){target=\_blank}.
 
 
-    [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
+    [:custom-arrow: Get started](/docs/tutorials/connect/react-dapp/)
 
 
 -   :octicons-tools-16:{ .lg .middle } **Connect FAQs**

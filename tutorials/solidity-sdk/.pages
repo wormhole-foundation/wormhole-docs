@@ -1,4 +1,4 @@
-title: Contract Integrations
+title: Solidity SDK
 nav:
  - index.md
  - 'Create Messaging Contracts': 'cross-chain-contracts.md'

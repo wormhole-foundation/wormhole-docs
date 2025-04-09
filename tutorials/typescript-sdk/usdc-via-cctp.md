@@ -84,7 +84,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     2. Open the `helpers.ts` file and add the following code
 
         ```typescript
-        --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-1.ts"
+        --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-1.ts"
         ```
 
         - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
@@ -101,7 +101,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     2. Open the `manual-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
 
         ```typescript
-        --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:1:4"
+        --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:1:4"
         ```
 
         - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
@@ -123,7 +123,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 1. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM and Solana) to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:6:7"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:6:7"
     ```
     
     !!! note
@@ -132,25 +132,25 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 2. **Set up source and destination chains** - specify the source chain (Avalanche) and the destination chain (Sepolia) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:10:11"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:10:11"
     ```
 
 3. **Configure the signers** - use the `getSigner` function to retrieve the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:14:15"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:14:15"
     ```
 
 4. **Define the transfer amount** - the amount of USDC to transfer is specified. In this case, we're transferring 0.1 USDC, which is parsed and converted into the base units expected by the Wormhole SDK
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:18:18"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:18:18"
     ```
 
 5. **Set transfer mode** - we specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:20:20"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:20:20"
     ```
 
 #### Initiate the Transfer
@@ -160,13 +160,13 @@ To begin the manual transfer process, you first need to create the transfer obje
 1. **Create the Circle transfer object** - the `wh.circleTransfer()` function creates an object with the  transfer details, such as the amount of USDC, the source and destination addresses, and the mode. However, this does not initiate the transfer itself
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:23:28"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:23:28"
     ```
 
 2. **Start the transfer** - the `initiateTransfer` function sends the transaction on the source chain. It involves signing and sending the transaction using the source signer. This will return a list of transaction IDs (`srcTxIds`) that you can use to track the transfer
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:34:35"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:34:35"
     ```
 
 #### Fetch the Circle Attestation (VAA)
@@ -177,13 +177,13 @@ Once you initialize the transfer on the source chain, you must fetch the VAA fro
 1. **Set a timeout** - fetching the attestation can take some time, so setting a timeout is common. In this example, we set the timeout to 60 seconds
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:38:38"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:38:38"
     ```
 
 2. **Fetch the attestation** - after initiating the transfer, you can use the `fetchAttestation()` function to retrieve the VAA. This function will wait until the attestation is available or you reach the specified timeout
 
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:40:41"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:40:41"
     ```
 
     The `attestIds` will contain the details of the fetched attestation, which Wormhole uses to complete the transfer on the destination chain
@@ -195,7 +195,7 @@ Once you fetch the VAA correctly, the final step is to complete the transfer on 
 Use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
 
 ```typescript
---8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts:45:50"
+--8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts:45:50"
 ```
 
 The `dstTxIds` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
@@ -204,7 +204,7 @@ You can find the full code for the manual USDC transfer script below:
 
 ???- code "`manual-transfer.ts`"
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-2.ts"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-2.ts"
     ```
 
 ### Run Manual Transfer
@@ -228,7 +228,7 @@ This feature is handy for recovering an incomplete transfer or when debugging.
 Here’s how you can complete a partial transfer using just the source chain and transaction hash:
 
 ```typescript
---8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-4.ts:19:29"
+--8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-4.ts:19:29"
 ```
 
 You will need to provide the below requirements to complete the partial transfer:
@@ -242,7 +242,7 @@ You can find the full code for the manual USDC transfer script below:
 
 ??? code "`partial-transfer.ts`"
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-4.ts"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-4.ts"
     ```
 
 ## Automatic Transfers
@@ -256,7 +256,7 @@ The automatic transfer process simplifies the steps by automating the attestatio
 The setup for automatic transfers is similar to manual transfers, with the key difference being that the `automatic` flag is `true`. This indicates that Wormhole will handle the attestation and finalization steps for you
 
 ```typescript
---8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-3.ts:21:21"
+--8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-3.ts:21:21"
 ```
 
 #### Initiate the Transfer
@@ -264,7 +264,7 @@ The setup for automatic transfers is similar to manual transfers, with the key d
 The transfer process is the same as that for manual transfers. You create the transfer object and then start the transfer on the source chain
 
 ```typescript
---8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-3.ts:24:29"
+--8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-3.ts:24:29"
 ```
 
 #### Log Transfer Details
@@ -272,14 +272,14 @@ The transfer process is the same as that for manual transfers. You create the tr
 After initiating the transfer, you can log the transaction IDs for both the source and destination chains. This will help you track the progress of the transfer
 
 ```typescript
---8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-3.ts:35:38"
+--8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-3.ts:35:38"
 ```
 
 You can find the full code for the automatic USDC transfer script below:
 
 ??? code "`automatic-transfer.ts`"
     ```typescript
-    --8<-- "code/tutorials/by-product/wormhole-sdk/usdc-via-cctp/cctp-sdk-3.ts"
+    --8<-- "code/tutorials/typescript-sdk/usdc-via-cctp/cctp-sdk-3.ts"
     ```
 
 ### Run Automatic Transfer

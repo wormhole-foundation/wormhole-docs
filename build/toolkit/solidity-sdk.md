@@ -163,5 +163,5 @@ The SDK includes built-in support for Forge-based testing, which allows you to t
 
 For a detailed example, check out the below repositories:
 
- - [Cross chain messaging](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/){target=\_blank}
- - [Cross chain token transfer](/docs/tutorials/by-product/contract-integrations/cross-chain-token-contracts/){target=\_blank}
+ - [Cross chain messaging](/docs/tutorials/solidity-sdk/cross-chain-contracts/){target=\_blank}
+ - [Cross chain token transfer](/docs/tutorials/solidity-sdk/cross-chain-token-contracts/){target=\_blank}

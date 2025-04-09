@@ -23,8 +23,8 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/faq.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/upgrade-evm.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/upgrade-solana.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/multigov.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/multigov/treasury-proposal.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/multigov.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/multigov/treasury-proposal.md [type: tutorials]
 
 ## Full content for each doc page
 
@@ -104,7 +104,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Access step-by-step guides for executing cross-chain governance actions, including treasury management proposals with MultiGov and Wormhole.
 
-    [:custom-arrow: Create MultiGov solutions](/docs/tutorials/by-product/multigov/)
+    [:custom-arrow: Create MultiGov solutions](/docs/tutorials/multigov/)
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 
@@ -940,7 +940,7 @@ Follow these steps to upgrade the MultiGov Staking Program on Solana:
     ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/by-product/multigov/
+Doc-Content: https://wormhole.com/docs/tutorials/multigov/
 --- BEGIN CONTENT ---
 ---
 title: Step-by-Step MultiGov Tutorials
@@ -948,11 +948,11 @@ description: Access step-by-step guides for executing cross-chain governance act
 categories: MultiGov
 ---
 
-# MultiGov Tutorials
+# MultiGov
 
 Welcome to the MultiGov tutorials section. In this section, you will find tutorials that walk you through the key steps of working with MultiGov, providing clear instructions to help you get started. As you explore, you'll gain a deeper understanding of MultiGov's features and functionality.
 
-## Get Started
+## Tutorials
 
 <div class="grid cards" markdown>
 
@@ -962,7 +962,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Learn how to propose governance actions on a hub chain, gather votes from spoke chains, aggregate the results, and carry out the final decision. Following these steps, you’ll master end-to-end governance workflows spanning multiple networks.
 
-    [:custom-arrow: Start building](/docs/tutorials/by-product/multigov/treasury-proposal/)
+    [:custom-arrow: Start building](/docs/tutorials/multigov/treasury-proposal/)
 
 </div>
 
@@ -990,7 +990,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/by-product/multigov/treasury-proposal/
+Doc-Content: https://wormhole.com/docs/tutorials/multigov/treasury-proposal/
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Guides
@@ -2948,7 +2948,7 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 
 ## Step-by-Step Tutorial
 
-For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/) tutorial.
+For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/solidity-sdk/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/start-building/products/
