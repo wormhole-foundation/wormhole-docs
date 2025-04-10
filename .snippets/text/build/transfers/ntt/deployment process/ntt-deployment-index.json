@@ -1,0 +1,17 @@
+[
+    {
+      "title": "[EVM Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/)",
+      "content": "Deploy using a simplified workflow. Recommended for testing or quick deployments.",
+      "icon": ":fontawesome-solid-1:"
+    },
+    {
+      "title": "[Manual EVM Deployment](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)",
+      "content": "Deploy contracts manually using the NTT CLI for full control over the process.",
+      "icon": ":fontawesome-solid-2:"
+    },
+    {
+      "title": "[Deploy to Solana](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)",
+      "content": "Use the Solana CLI to deploy NTT contracts. Suitable for Solana-native and cross-chain deployments.",
+      "icon": ":fontawesome-solid-3:"
+    }
+]  
