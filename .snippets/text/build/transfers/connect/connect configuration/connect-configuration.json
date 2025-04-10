@@ -1,0 +1,22 @@
+[
+    {
+      "title": "[Add Supported Chains](/docs/build/transfers/connect/configuration/configure-data/#chains-and-rpc-endpoints)",
+      "content": "Define which blockchains Connect will support by adding their chainId, RPC, and name.",
+      "icon": ":fontawesome-solid-1:"
+    },
+    {
+      "title": "[Add Supported Tokens](/docs/build/transfers/connect/configuration/configure-data/#custom-tokens)",
+      "content": "List the tokens available for bridging, including symbol, address, and decimals.",
+      "icon": ":fontawesome-solid-2:"
+    },
+    {
+      "title": "[Define Transfer Routes](/docs/build/transfers/connect/configuration/configure-data/#configuring-routes)",
+      "content": "Specify how tokens move between chains using supported protocols like Token Bridge or CCTP.",
+      "icon": ":fontawesome-solid-3:"
+    },
+    {
+      "title": "[Other Settings](/docs/build/transfers/connect/configuration/configure-data/)",
+      "content": "Adjust the other available settings to fine-tune the behavior of Connect UI.",
+      "icon": ":fontawesome-solid-4:"
+    }
+]  
