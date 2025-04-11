@@ -7,23 +7,17 @@ description: This section has all you need to start developing with Wormhole, in
 
 Wormhole's role as a Generic Message Passing (GMP) protocol enables seamless interoperability across various aspects of project development. It provides a suite of powerful tools that support cross-chain communication and asset transfers, helping to create a unified ecosystem for developers building multichain solutions.
 
-The following sections guide you to the tools and resources relevant to your development goals, whether integrating cross-chain functionality or enhancing infrastructure, with references and code examples to support your Wormhole integration.
+The following sections guide you to the tools and resources relevant to your development goals, whether integrating cross-chain functionality or enhancing infrastructure, with references and code examples to support your Wormhole integration. 
 
-## 
---
 Unsure what you want to build?
-- Check out use cases
-- Compare products
+
+- [Check out use cases](/docs/build/start-building/use-cases/){target=\_blank}
+- [Compare products ](/docs/build/start-building/products/){target=\_blank}
 
 Get ready to develop
-- Choose networks you want to work with (see supported networks)
-- Get testnet tokens (see testnet faucets)
 
-Create your first transfer
-- TypeScript SDK
-- Direct contract integrations
-- Connect
-
+- Choose networks you want to work with (see [supported networks](/docs/build/start-building/supported-networks/){target=\_blank})
+- Get testnet tokens (see [testnet faucets](/docs/build/start-building/testnet-faucets/){target=\_blank})
 
 ## Create Your First Cross-Chain Transfer
 
