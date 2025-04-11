@@ -1226,6 +1226,9 @@ The NTT Launchpad currently supports deployments on the following mainnet chains
  - Optimism Mainnet
  - Arbitrum One
  - Base
+ - BNB Smart Chain
+ - Polygon
+ - Blast
 
 ## Choose Your Path
 
