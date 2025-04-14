@@ -3,6 +3,7 @@ nav:
  - index.md
  - 'Product Comparison': 'products.md'
  - 'Use Cases': 'use-cases.md'
+ - 'Ecosystem': 'ecosystem.md'
  - 'Supported Networks': 'supported-networks.md'
  - 'Testnet Faucets': 'testnet-faucets.md'
  - 'Explorer': 'https://wormholescan.io/'
