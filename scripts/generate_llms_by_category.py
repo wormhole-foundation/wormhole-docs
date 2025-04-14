@@ -13,26 +13,21 @@ with open(config_path, 'r', encoding='utf-8') as f:
 # Configuration variables
 PROJECT_NAME = config["projectName"]
 PROJECT_URL = config["projectUrl"]
+RAW_BASE_URL = config["raw_base_url"]
 PROJECT_DESCRIPTION = config["projectDescription"]
 SECTION_PRIORITY = config["sectionPriority"]
 AI_PROMPT_TEMPLATE = config["aiPromptTemplate"].format(PROJECT_NAME=PROJECT_NAME, PROJECT_URL=PROJECT_URL)
-
-# We'll fetch the array of normal categories and the array of “shared” categories
 CATEGORIES = config.get("categories", [])
 SHARED_CATEGORIES = config.get("sharedCategories", [])
-
-# Use raw GitHub links for source URLs
-RAW_BASE_URL = "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main"
 
 docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..')) # path to docs directory 
 llms_input_path = os.path.join(docs_dir, 'llms-full.txt') # points to the full llms-full.txt
 output_dir = os.path.join(docs_dir, 'llms-files')  # path where we store individual category llms files
 os.makedirs(output_dir, exist_ok=True) # make the directory if it doesn't exist
 
-def infer_section_label(url, section_priority):
+def infer_section_label(url, section_priority): # if we reorganize the website this will need to be changed
     """
-    Returns which section label from section_priority is present in the URL path,
-    or defaults to 'other' if none match.
+    Returns which section label from section_priority is present in the URL path, or defaults to 'other' if none match.
     """
     for section in section_priority:
         if f"/{section}/" in url:
@@ -42,7 +37,7 @@ def infer_section_label(url, section_priority):
 def sort_key_by_section(index_line, section_priority):
     """
     Used to sort doc pages by the order in `section_priority`.
-    We parse the 'type: {section_label}' from index_line, then look it up in section_priority.
+    Parses the 'type: {section_label}' from index_line, then look it up in section_priority.
     """
     match = re.search(r"\[type: (.+?)\]", index_line)
     if not match:
@@ -57,11 +52,8 @@ def sort_key_by_section(index_line, section_priority):
 # Extracts and writes a per-category LLMS file 
 def extract_category(category, section_priority, shared_data=None): 
     """
-    Reads the entire llms-full.txt file, finds all doc blocks that list `category`
-    in their frontmatter categories, writes them into llms-{category}.txt.
-    
-    If shared_data is passed, we also append the “shared categories” data to the end
-    of the final file (i.e., basics, reference).
+    Reads the entire llms-full.txt file, finds all doc blocks that list `category`, writes them into llms-{category}.txt.
+    If shared_data is passed, also append the “shared categories” data to the end of the final file (i.e., basics, reference).
     """
     with open(llms_input_path, 'r', encoding='utf-8') as f: # read the full LLMS input file
         llms = f.read() 
@@ -115,12 +107,10 @@ def extract_category(category, section_priority, shared_data=None):
         f.write(f"This file contains documentation for {PROJECT_NAME} ({PROJECT_URL}). {PROJECT_DESCRIPTION}\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
 
-        # 2) Indicate if it’s a “shared” category or a normal product category and write the prompt
+        # 2) check if it’s a “shared” category or a normal product category and write the prompt
         if category.lower() in [sc['name'].lower() for sc in SHARED_CATEGORIES]:
-            # shared category 
             f.write(f"This file includes shared documentation for the category: {category}\n\n")
         else:
-            # a normal product category
             f.write(f"This file includes documentation for the product: {category}\n\n")
             f.write(AI_PROMPT_TEMPLATE)
             f.write("\n")
@@ -165,7 +155,7 @@ def generate_all_categories():
         cat_name = sc["name"]
         cat_description = sc["contextDescription"].format(PROJECT_NAME=PROJECT_NAME)
 
-        # Generate the shared category file
+        # Generate the shared category files
         extract_category(cat_name, SECTION_PRIORITY)
         
         path = os.path.join(output_dir, f"llms-{cat_name.lower()}.txt")
