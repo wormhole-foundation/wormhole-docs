@@ -145,6 +145,11 @@ docker run --rm -p 6379:6379 --name redis-docker -d redis
 
 ## Use the Wormhole SDK
 
+!!! note   
+    The example below uses the older [`@certusone/wormhole-sdk`](https://www.npmjs.com/package/@certusone/wormhole-sdk){target=\_blank}, which is still supported and used in the Relayer Engine but is no longer actively maintained.
+    
+    For most use cases, we recommend the latest [`@wormhole-foundation/sdk`](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank}. [Contact the Wormhole team](https://discord.com/invite/wormholecrypto){target=\_blank} for guidance on choosing the correct SDK for your project.
+
 You can also use the Wormhole SDK to poll the Guardian RPC until a signed VAA is ready using the SDK's `getSignedVAAWithRetry` function.
 
 ```ts
