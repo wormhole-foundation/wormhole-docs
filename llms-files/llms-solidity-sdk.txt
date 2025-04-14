@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com). A cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation related to the product: Solidity-SDK
+This file includes documentation for the product: Solidity-SDK
 
 ## AI Prompt Template
 
@@ -1321,17 +1321,26 @@ For a detailed example, check out the below repositories:
  - [Cross chain token transfer](/docs/tutorials/solidity-sdk/cross-chain-token-contracts/){target=\_blank}
 --- END CONTENT ---
 
-## Basics Concepts [shared: true]
+## Shared Concepts from 'basics'
 
-The following section contains foundational documentation shared across all Wormhole products.
-It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
-This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
-This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
-
+The following section contains foundational documentation shared across all Wormhole products. It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole. This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
 ---
 
 ## List of shared concept pages:
-
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/glossary.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/architecture.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/core-contracts.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/guardians.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/relayer.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/spy.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/vaas.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/introduction.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/security.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/core-contracts.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/core-messaging/wormhole-relayers.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/products.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/use-cases.md [type: build]
 
 ## Full content for shared concepts:
 
@@ -3410,16 +3419,19 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 </div>
 --- END CONTENT ---
 
-## Reference Concepts [shared: true]
+## Shared Concepts from 'reference'
 
-The following section contains reference material for Wormhole.
-It includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
-While it may not be required for all use cases, it offers a deeper technical layer for advanced development work.
-
+The following section contains reference material for Wormhole, including chain IDs, canonical contract addresses, finality levels, and other advanced specs. While it may not be required for all use cases, it provides a deeper layer for advanced development work.
 ---
 
 ## List of shared concept pages:
-
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/chain-ids.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/consistency-levels.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/contract-addresses.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/wormhole-formatted-addresses.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/supported-networks.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/testnet-faucets.md [type: build]
 
 ## Full content for shared concepts:
 
