@@ -1,5 +1,11 @@
 title: Tutorials
 nav:
  - index.md
- - by-product
-# - end-to-end
+ - connect
+ - multichain-assets
+ - multigov
+#  - native-token-transfers
+#  - settlement
+ - solidity-sdk
+ - typescript-sdk
+ - wormholescan

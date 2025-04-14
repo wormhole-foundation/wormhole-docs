@@ -5,8 +5,6 @@ description: This section has all you need to start developing with Wormhole, in
 
 # Start Building
 
-## Introduction
-
 Wormhole's role as a Generic Message Passing (GMP) protocol means it facilitates interoperability across multiple areas of project development. The following sections will help you locate the tools most relevant to your development needs whether you are focused on building frontend user interfaces or smart contracts and protocols. This section also links to developer resources like references and code examples which are helpful for all builders looking to integrate with Wormhole. 
 
 ## Get Hands-On 

@@ -22,8 +22,8 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/connect/overview.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/connect/routes.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/connect/upgrade.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/connect.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/connect/react-dapp.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/connect.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/connect/react-dapp.md [type: tutorials]
 
 ## Full content for each doc page
 
@@ -72,7 +72,7 @@ Visit the [Use Cases](/docs/build/start-building/use-cases/){target=\_blank} pag
     This tutorial guides you step-by-step through integrating Connect into your React dApp to transfer tokens from Sui to Avalanche Fuji. This tutorial is readily adaptable to work with other [supported networks](/docs/build/start-building/supported-networks/){target=\_blank}.
 
 
-    [:custom-arrow: Get started](/docs/tutorials/by-product/connect/react-dapp/)
+    [:custom-arrow: Get started](/docs/tutorials/connect/react-dapp/)
 
 
 -   :octicons-tools-16:{ .lg .middle } **Connect FAQs**
@@ -1555,7 +1555,7 @@ wormholeConnectHosted(container, {
 In this example, the `config` object defines the routes (in this case, using the Mayan route), while the `theme` object allows customization of the Connect interface (e.g., background color).
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/by-product/connect/
+Doc-Content: https://wormhole.com/docs/tutorials/connect/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Connect Tutorials
@@ -1563,9 +1563,11 @@ description: Enable cross-chain connectivity with Wormhole Connect. Learn integr
 categories: Connect, Transfer
 ---
 
-# Connect Tutorials
+# Connect
 
 Wormhole Connect makes it simple to link your application to multiple blockchain ecosystems. These tutorials will teach you how to integrate Connect into your projects, streamline cross-chain interactions, simplify user onboarding, and deliver a smoother overall experience.
+
+## Tutorials
 
 <div class="grid cards" markdown>
 
@@ -1575,7 +1577,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
     Learn how to incorporate Wormhole Connect into a React application. This step-by-step tutorial guides you through enabling cross-chain token transfers and interactions, bridging assets between networks, and enhancing the user experience with streamlined blockchain connectivity.
 
-    [:custom-arrow: Start building](/docs/tutorials/by-product/connect/react-dapp/)
+    [:custom-arrow: Start building](/docs/tutorials/connect/react-dapp/)
 
 </div>
 
@@ -1594,7 +1596,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/by-product/connect/react-dapp/
+Doc-Content: https://wormhole.com/docs/tutorials/connect/react-dapp/
 --- BEGIN CONTENT ---
 ---
 title: Integrate Connect into a React DApp Tutorial
@@ -1728,26 +1730,26 @@ To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
 3. Enter the amount of SUI tokens you wish to transfer
 
-    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-1.webp)
+    ![](/docs/images/tutorials/connect/react-dapp/connect-1.webp)
 
 4. Choose to view other routes 
     
-    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-2.webp)
+    ![](/docs/images/tutorials/connect/react-dapp/connect-2.webp)
 
 5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
 
     !!! note
         It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
 
-    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-3.webp)
+    ![](/docs/images/tutorials/connect/react-dapp/connect-3.webp)
 
 6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain
 
-    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-4.webp)
+    ![](/docs/images/tutorials/connect/react-dapp/connect-4.webp)
 
 7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet
 
-    ![](/docs/images/tutorials/by-product/connect/react-dapp/connect-5.webp)
+    ![](/docs/images/tutorials/connect/react-dapp/connect-5.webp)
 
 Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
@@ -1755,11 +1757,11 @@ Once the transaction has been submitted, Wormhole Connect will display the progr
 
 After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
 
-![](/docs/images/tutorials/by-product/connect/react-dapp/connect-6.webp)
+![](/docs/images/tutorials/connect/react-dapp/connect-6.webp)
 
 Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
 
-![](/docs/images/tutorials/by-product/connect/react-dapp/connect-7.webp)
+![](/docs/images/tutorials/connect/react-dapp/connect-7.webp)
 
 ## Resources
 
@@ -3520,7 +3522,7 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 
 ## Step-by-Step Tutorial
 
-For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/by-product/contract-integrations/cross-chain-contracts/) tutorial.
+For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/solidity-sdk/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/start-building/products/
@@ -3552,21 +3554,23 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ::spantable::
 
-|                                | Criteria                              | Connect                                               | NTT                                                        | Token Bridge                                               |
-|--------------------------------|---------------------------------------|-------------------------------------------------------|------------------------------------------------------------|------------------------------------------------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark:                                    | :white_check_mark:                                         | :white_check_mark:                                         |
-|                                | Token Transfers with Message Payloads | :x:                                                   | :white_check_mark:                                         | :white_check_mark:                                         |
-| Supported Assets @span         | Wrapped Assets                        | :white_check_mark:                                    | :x:                                                        | :white_check_mark:                                         |
-|                                | Native Assets                         | :white_check_mark:                                    | :white_check_mark:                                         | :x:                                                        |
-|                                | ERC-721s (NFTs)                       | :white_check_mark:                                    | :x:                                                        | :white_check_mark:                                         |
-| Features @span                 | Out-of-the-Box UI                     | :white_check_mark:                                    | :x:                                                        | :x:                                                        |
-|                                | Event-Based Actions                   | :x:                                                   | :white_check_mark:                                         | :white_check_mark:                                         |
-| Integration Details @span      |                                       |                                                       |                                                            |                                                            |
-| Requirements @span             | Contract Deployment                   | :x:                                                   | :white_check_mark:                                         | :x:                                                        |
-|                                | User-Owned Contracts                  | :x:                                                   | :white_check_mark:                                         | :x:                                                        |
-| Ecosystem Support              | Integrates with Other Products        | :white_check_mark:                                    | :white_check_mark:                                         | :white_check_mark:                                         |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |
-| Technology @span               | Supported Languages                   | JavaScript, TypeScript                                | Solidity (Ethereum), Rust (Solana)                         | Solidity (Ethereum), Rust (Solana), TypeScript             |
+|                                | Criteria                              | Connect            | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                |:x:  |
+| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark: |:white_check_mark: |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
