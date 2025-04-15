@@ -121,7 +121,7 @@ This section shows how to initiate and complete a cross-chain token swap using t
     --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:42:44"
     ```
 
-4. **Create a transfer request** - construct a `RouteTransferRequest` object that tells the Wormhole SDK what you want to transfer (source token) and what you want to receive (destination token). The tr object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
+4. **Create a transfer request** - construct a `RouteTransferRequest` object that tells the Wormhole SDK what you want to transfer (source token) and what you want to receive (destination token). The `tr` object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
 
     ```typescript
     --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:46:51"
