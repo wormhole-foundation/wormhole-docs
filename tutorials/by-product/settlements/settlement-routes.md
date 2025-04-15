@@ -15,7 +15,7 @@ This tutorial explains how to integrate the Wormhole Mayan Swift Route from the 
 [Mayan Swift](https://mayan.finance/){target=\_blank} is a cross-chain swap auction protocol that simplifies bridging and swapping tokens across blockchains to offer the best swap rates using an auction mechanism.
 
 !!!note
-    Mayan Swift currently supports **MainNet** only. Attempting to run the demo on testnet will result in failure.
+    Mayan Swift currently supports **mainnet** only. Attempting to run the demo on testnet will result in failure.
 
 ## Prerequisites
 
