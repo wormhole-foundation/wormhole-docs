@@ -10,7 +10,7 @@ categories: Settlement, Transfer
 
 ## Introduction
 
-This tutorial explains how to integrate the Wormhole Mayan Swift Route from the Wormhole SDK into your application. This Route abstracts the complexity of cross-chain token swaps, handling route discovery, fee estimation, and transaction construction.
+This tutorial explains how to integrate the Wormhole Mayan Swift Route from the Wormhole SDK into your application. This Route abstracts the complexity of multichain token swaps, handling route discovery, fee estimation, and transaction construction.
 
 [Mayan Swift](https://mayan.finance/){target=\_blank} s a cross-chain swap auction protocol that simplifies bridging and swapping tokens across blockchains to offer the best swap rates using an auction mechanism.
 
