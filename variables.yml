@@ -1,10 +1,10 @@
 ntt:
   anchor_version: v0.29.0
-  solana_cli_version: v1.18.10
+  solana_cli_version: v1.18.26
 repositories:
   wormhole_sdk:
     repository_url: https://github.com/wormhole-foundation/wormhole-sdk-ts
-    version: 1.14.0
+    version: 1.14.2
   wormhole:
     repository_url: https://github.com/wormhole-foundation/wormhole
     version: 2.30.0
