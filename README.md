@@ -14,7 +14,7 @@ This repository includes AI-ready `.txt` files generated from the documentation 
 - `llms-full.txt` – the complete content of all documentation pages in a single file
 - `llms-*.txt` – category-specific files for products like NTT, Token Bridge, Connect, and others
 
-These files power AI assistants, enable semantic code search, and integrate Wormhole docs into tools like Cursor. For details, visit the [AI Resources](https://wormhole.com/docs/ai-resources/){target=\_blank} page.
+These files power AI assistants, enable semantic code search, and integrate Wormhole docs into tools like Cursor. For details, visit the [AI Resources](https://wormhole.com/docs/ai-resources/) page.
 
 ## Contributing
 
