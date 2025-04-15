@@ -5849,8 +5849,10 @@ The NTT Launchpad currently supports deployments on the following mainnet chains
  - Ethereum
  - Arbitrum One
  - Base
+ - Berachain
  - Blast
  - BNB Smart Chain
+ - Ink
  - Optimism Mainnet
  - Polygon
 
