@@ -109,7 +109,7 @@ This section shows how to initiate and complete a cross-chain token swap using t
 
     })();
     ```
-2. **Inspect aupported tokens** - checking the tokens that each route can handle helps confirm your chain selections are valid. This step is optional but is often useful for debugging or logging
+2. **Inspect supported tokens** - checking the tokens that each route can handle helps confirm your chain selections are valid. This step is optional but is often useful for debugging or logging
 
     ```typescript
     --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:31:40"
