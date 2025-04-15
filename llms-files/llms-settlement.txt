@@ -20,7 +20,8 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/settlement/faqs.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/settlement/liquidity-layer.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/transfers/settlement/solver.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/by-product/settlements/settlement-routes.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/settlement.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/settlement/settlement-routes.md [type: tutorials]
 
 ## Full content for each doc page
 
@@ -617,7 +618,34 @@ This example solver does NOT do the following:
 - Add auctions to auction history. We recommend that after settling a complete auction (one that you have won), you write the auction pubkey to a database and have a separate process to add auction history entries to reclaim rent from these auction accounts. The auction history time delay is two hours after the VAA timestamp. This example does not prescribe any specific database, so add whichever you want
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/by-product/settlements/settlement-routes/
+Doc-Content: https://wormhole.com/docs/tutorials/settlement/
+--- BEGIN CONTENT ---
+---
+title: Settlement
+description: Follow step-by-step tutorials to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
+categories: Settlement, Transfer
+---
+
+# Wormhole Settlement
+
+This section provides hands-on tutorials to help you integrate Wormhole Settlement Routes into your application. Learn how to use the SDK to manage cross-chain swaps, optimize fees, and streamline transaction execution.
+
+## Tutorials
+
+<div class="grid cards" markdown>
+
+-   :octicons-repo-16:{ .lg .middle } **Integrate Mayan Swift Routes using the SDK**
+
+    ---
+
+    Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
+
+    [:custom-arrow: Integrate Settlement Routes](/docs/tutorials/settlement/settlement-routes/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/settlement/settlement-routes/
 --- BEGIN CONTENT ---
 ---
 title: Settlement with Mayan Swift
@@ -631,12 +659,12 @@ categories: Settlement, Transfer
 
 ## Introduction
 
-This tutorial explains how to integrate the Wormhole Mayan Swift Route from the Wormhole SDK into your application. This Route abstracts the complexity of cross-chain token swaps, handling route discovery, fee estimation, and transaction construction.
+This tutorial explains how to integrate the Wormhole Mayan Swift Route from the Wormhole SDK into your application. This Route abstracts the complexity of multichain token swaps, handling route discovery, fee estimation, and transaction construction.
 
-[Mayan Swift](https://mayan.finance/){target=\_blank} s a cross-chain swap auction protocol that simplifies bridging and swapping tokens across blockchains to offer the best swap rates using an auction mechanism.
+[Mayan Swift](https://mayan.finance/){target=\_blank} is a cross-chain swap auction protocol that simplifies bridging and swapping tokens across blockchains to offer the best swap rates using an auction mechanism.
 
 !!!note
-    Mayan Swift currently supports **MainNet** only. Attempting to run the demo on testnet will result in failure.
+    Mayan Swift currently supports **mainnet** only. Attempting to run the demo on testnet will result in failure.
 
 ## Prerequisites
 
@@ -647,7 +675,7 @@ Before you begin, ensure you have the following:
 
 ## Project Setup
 
-To get started, you’ll first clone the repository, install dependencies, and configure environment variables. Once set up, you can initiate a cross-chain token swap using the Mayan Swift Route.
+To get started, you’ll first clone the repository, install dependencies, and configure environment variables. Once set up, you can initiate a multichain token swap using the Mayan Swift Route.
 
 1. **Initialize the project** - start by creating a new directory for your project and initializing it with `npm`, which will create the `package.json` file for your project
 
@@ -808,7 +836,7 @@ dotenv.config();
 
     })();
     ```
-2. **Inspect aupported tokens** - checking the tokens that each route can handle helps confirm your chain selections are valid. This step is optional but is often useful for debugging or logging
+2. **Inspect supported tokens** - checking the tokens that each route can handle helps confirm your chain selections are valid. This step is optional but is often useful for debugging or logging
 
     ```typescript
     const srcTokens = await resolver.supportedSourceTokens(sendChain);
@@ -829,7 +857,7 @@ dotenv.config();
   const receiver = await getSigner(destChain);
     ```
 
-4. **Create a transfer request** - construct a `RouteTransferRequest` object that tells the Wormhole SDK what you want to transfer (source token) and what you want to receive (destination token). The tr object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
+4. **Create a transfer request** - construct a `RouteTransferRequest` object that tells the Wormhole SDK what you want to transfer (source token) and what you want to receive (destination token). The `tr` object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
 
     ```typescript
     // since all routes will need to know about the tokens
