@@ -132,10 +132,10 @@ def extract_category(category, section_priority, shared_data=None):
                 context_content = shared_cat_info["content"]
                 context_description = shared_cat_info["contextDescription"]
 
-                f.write(f"\n\n## Shared Concepts from '{shared_cat_name}'\n\n")
+                f.write(f"\n\n## Shared Concepts from {shared_cat_name}\n\n")
                 f.write(context_description)
                 f.write("\n---\n\n")
-                f.write("## List of shared concept pages:\n")
+                f.write("## List of Shared Concept Pages:\n")
                 f.write(context_index + "\n\n")
                 f.write("## Full content for shared concepts:\n\n")
                 f.write(context_content)

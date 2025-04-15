@@ -1207,12 +1207,12 @@ governor.execute(targets, values, calldatas, descriptionHash);
 Once the proposal is executed, the encoded messages will be dispatched via Wormhole to the spoke chains, where the Optimism and Arbitrum treasuries will receive their respective funds.
 --- END CONTENT ---
 
-## Shared Concepts from 'basics'
+## Shared Concepts from basics
 
 The following section contains foundational documentation shared across all Wormhole products. It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole. This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
 ---
 
-## List of shared concept pages:
+## List of Shared Concept Pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/glossary.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/infrastructure/architecture.md [type: learn]
@@ -3305,12 +3305,12 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 </div>
 --- END CONTENT ---
 
-## Shared Concepts from 'reference'
+## Shared Concepts from reference
 
 The following section contains reference material for Wormhole, including chain IDs, canonical contract addresses, finality levels, and other advanced specs. While it may not be required for all use cases, it provides a deeper layer for advanced development work.
 ---
 
-## List of shared concept pages:
+## List of Shared Concept Pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/chain-ids.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/consistency-levels.md [type: build]
