@@ -1,6 +1,7 @@
 ---
 title: Replace Outdated Signatures in VAAs
 description: Learn how to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK to ensure seamless processing.
+tutorial_badge: Advanced
 ---
 
 # Replace Outdated Signatures in VAAs
