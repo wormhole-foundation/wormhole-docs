@@ -11,7 +11,7 @@ Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain
 
 <div class="grid cards" markdown>  
 
--   :octicons-repo-16:{ .lg .middle } **Replace Outdated Signatures in VAAs**  
+-   :octicons-repo-16:{ .lg .middle } <span class="badge advanced">Advanced</span> **Replace Outdated Signatures in VAAs**  
 
     ---  
 
