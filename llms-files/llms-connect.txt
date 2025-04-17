@@ -4424,6 +4424,29 @@ categories: Reference
   
 <!--CCTP_ADDRESS-->
 
+## Settlement Token Router
+
+=== "Mainnet"
+
+    | Chain Name           | Contract Address                                |
+    |----------------------|-------------------------------------------------|
+    | Ethereum             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Solana               |  `28topqjtJzMnPaGFmmZk68tzGmj9W9aMntaEK3QkgtRe` |
+    | Arbitrum             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Avalanche            |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Base                 |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Optimism             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Polygon              |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+
+=== "Testnet"
+
+    | Chain Name           | Native Address Format                            |
+    |----------------------|--------------------------------------------------|
+    | Solana               |  `tD8RmtdcV7bzBeuFgyrFc8wvayj988ChccEzRQzo6md`   |
+    | ArbitrumSepolia      |  `0xe0418C44F06B0b0D7D1706E01706316DBB0B210E`    |
+    | OptimismSepolia      |  `0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8`    |
+    
+
 ## Read-Only Deployments
 
 === "Mainnet"
