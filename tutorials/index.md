@@ -14,15 +14,19 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
 <div class="grid cards" markdown>
 
--   :octicons-arrow-switch-16:{ .lg .middle } **Connect**
+-   :octicons-arrow-switch-16:{ .lg .middle } **Connect** 
+
+    <span class="badge advanced">Advanced</span>
 
     ---
-
+    
     With Wormhole Connect, you can enable seamless connectivity between different blockchain ecosystems. These tutorials guide you through integrating Connect into your projects, allowing you to easily leverage cross-chain interactions, simplify onboarding, and improve user experience.
 
     [:custom-arrow: Start building](/docs/tutorials/connect/)
 
 -   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
+
+    <span class="badge advanced">Advanced</span>
 
     ---
 
@@ -32,6 +36,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
+    <span class="badge advanced">Advanced</span>
+
     ---
 
     Unleash the power of cross-chain governance with Multigov. These tutorials guide you through setting up and managing governance structures spanning multiple blockchains, enabling collective decision-making and coordinated upgrades across decentralized ecosystems.
@@ -39,6 +45,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
     [:custom-arrow: Start building](/docs/tutorials/multigov/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Solidity SDK**
+
+    <span class="badge advanced">Advanced</span>
 
     ---
 
@@ -48,6 +56,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
 -   :octicons-code-square-16:{ .lg .middle } **TypeScript SDK**
 
+    <span class="badge advanced">Advanced</span>
+
     ---
 
     Master the tools to build cross-chain applications with the Wormhole SDK. These tutorials cover installation to advanced functionality, helping you streamline development, reduce complexity, and quickly bring your ideas to life. 
@@ -55,6 +65,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
     [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Wormholescan API**
+
+    <span class="badge advanced">Advanced</span>
 
     ---
 

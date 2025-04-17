@@ -11,7 +11,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Create Cross-Chain Messaging Contracts**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge advanced">Advanced</span> **Create Cross-Chain Messaging Contracts**
 
     ---
 
@@ -19,7 +19,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
     [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/cross-chain-contracts/)
 
--   :octicons-repo-16:{ .lg .middle } **Create Cross-Chain Token Transfer Contracts**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge intermediate">Intermediate</span> **Create Cross-Chain Token Transfer Contracts**
 
     ---
 

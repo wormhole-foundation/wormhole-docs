@@ -11,7 +11,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Transfer USDC via CCTP**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge advanced">Advanced</span> **Transfer USDC via CCTP**
 
     ---
 
@@ -19,7 +19,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/usdc-via-cctp/)
 
--   :octicons-repo-16:{ .lg .middle } **Transfer Tokens via the Token Bridge**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge intermediate">Intermediate</span> **Transfer Tokens via the Token Bridge**
 
     ---
 
