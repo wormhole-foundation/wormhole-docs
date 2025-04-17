@@ -17517,7 +17517,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Integrate Connect into a React DApp**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge beginner">Beginner</span>  **Integrate Connect into a React DApp**
 
     ---
 
@@ -17548,6 +17548,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/connect/react-dapp/
 title: Integrate Connect into a React DApp Tutorial
 description: Learn how to use Wormhole Connect to transfers tokens cross-chain seamlessly between Sui and Avalanche Fuji with this step-by-step guide.
 categories: Connect, Transfer
+tutorial_badge: Beginner
 ---
 
 # Integrate Connect into a React DApp
@@ -17745,15 +17746,19 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
 <div class="grid cards" markdown>
 
--   :octicons-arrow-switch-16:{ .lg .middle } **Connect**
+-   :octicons-arrow-switch-16:{ .lg .middle } **Connect** 
+
+    <span class="badge advanced">Advanced</span>
 
     ---
-
+    
     With Wormhole Connect, you can enable seamless connectivity between different blockchain ecosystems. These tutorials guide you through integrating Connect into your projects, allowing you to easily leverage cross-chain interactions, simplify onboarding, and improve user experience.
 
     [:custom-arrow: Start building](/docs/tutorials/connect/)
 
 -   :octicons-sync-16:{ .lg .middle } **Multichain Assets**
+
+    <span class="badge advanced">Advanced</span>
 
     ---
 
@@ -17763,6 +17768,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
 -   :octicons-people-16:{ .lg .middle } **MultiGov**
 
+    <span class="badge advanced">Advanced</span>
+
     ---
 
     Unleash the power of cross-chain governance with Multigov. These tutorials guide you through setting up and managing governance structures spanning multiple blockchains, enabling collective decision-making and coordinated upgrades across decentralized ecosystems.
@@ -17770,6 +17777,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
     [:custom-arrow: Start building](/docs/tutorials/multigov/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Solidity SDK**
+
+    <span class="badge advanced">Advanced</span>
 
     ---
 
@@ -17779,6 +17788,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
 
 -   :octicons-code-square-16:{ .lg .middle } **TypeScript SDK**
 
+    <span class="badge advanced">Advanced</span>
+
     ---
 
     Master the tools to build cross-chain applications with the Wormhole SDK. These tutorials cover installation to advanced functionality, helping you streamline development, reduce complexity, and quickly bring your ideas to life. 
@@ -17786,6 +17797,8 @@ In this section, you'll find tutorials focused on individual Wormhole products. 
     [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/)
 
 -   :octicons-code-square-16:{ .lg .middle } **Wormholescan API**
+
+    <span class="badge advanced">Advanced</span>
 
     ---
 
@@ -17811,7 +17824,7 @@ Multichain assets, often represented as wrapped tokens, enable seamless cross-ch
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Create Multichain Tokens**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge intermediate">Intermediate</span> **Create Multichain Tokens**
 
     ---
 
@@ -17827,6 +17840,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/multichain-assets/multichain-to
 ---
 title: Create Multichain Tokens
 description: Learn how to create a multichain token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability.
+tutorial_badge: Intermediate
 ---
 
 # Create Multichain Tokens
@@ -17934,7 +17948,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Cross-Chain Treasury Management Proposal**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge advanced">Advanced</span> **Cross-Chain Treasury Management Proposal**
 
     ---
 
@@ -17974,6 +17988,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/multigov/treasury-proposal/
 title: MultiGov Guides
 description: Learn how to initiate a proposal on a hub chain, vote from spoke chains, aggregate the votes, and finally execute the proposal using Wormhole's MultiGov.
 categories: MultiGov
+tutorial_badge: Advanced
 ---
 
 # Cross-Chain treasury management proposal
@@ -18200,7 +18215,7 @@ This section provides hands-on tutorials to help you integrate Wormhole Settleme
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Integrate Wormhole Settlement Routes using the SDK**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge intermediate">Intermediate</span> **Integrate Wormhole Settlement Routes using the SDK**
 
     ---
 
@@ -18216,6 +18231,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/settlement/.settlement-routes/
 ---
 title: Wormhole Settlements
 description: Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
+tutorial_badge: Intermediate
 ---
 
 # Integrate Wormhole Settlement Routes Using the SDK
@@ -18375,6 +18391,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/solidity-sdk/cross-chain-contra
 ---
 title: Create Cross-Chain Contracts
 description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo Testnets and send messages across chains.
+tutorial_badge: Intermediate
 ---
 
 # Create Cross-Chain Messaging Contracts
@@ -19299,6 +19316,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/solidity-sdk/cross-chain-token-
 ---
 title: Cross-Chain Token Transfers
 description: Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
+tutorial_badge: Intermediate
 ---
 
 # Create Cross-Chain Token Transfer Contracts
@@ -20919,7 +20937,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Create Cross-Chain Messaging Contracts**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge advanced">Advanced</span> **Create Cross-Chain Messaging Contracts**
 
     ---
 
@@ -20927,7 +20945,7 @@ Expand the reach of your decentralized applications by building smart contracts 
 
     [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/cross-chain-contracts/)
 
--   :octicons-repo-16:{ .lg .middle } **Create Cross-Chain Token Transfer Contracts**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge intermediate">Intermediate</span> **Create Cross-Chain Token Transfer Contracts**
 
     ---
 
@@ -20967,7 +20985,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Transfer USDC via CCTP**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge advanced">Advanced</span> **Transfer USDC via CCTP**
 
     ---
 
@@ -20975,7 +20993,7 @@ The Wormhole SDK provides the essential building blocks for creating robust cros
 
     [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/usdc-via-cctp/)
 
--   :octicons-repo-16:{ .lg .middle } **Transfer Tokens via the Token Bridge**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge intermediate">Intermediate</span> **Transfer Tokens via the Token Bridge**
 
     ---
 
@@ -21005,6 +21023,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/typescript-sdk/tokens-via-token
 ---
 title: Transfer Tokens via Token Bridge Tutorial
 description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
+tutorial_badge: Intermediate
 ---
 
 # Transfer Tokens via the Token Bridge
@@ -21816,6 +21835,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/typescript-sdk/usdc-via-cctp/
 ---
 title: Transfer USDC via CCTP and Wormhole SDK
 description: Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
+tutorial_badge: Advanced
 ---
 
 # Transfer USDC via CCTP and Wormhole SDK
@@ -22341,7 +22361,7 @@ Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain
 
 <div class="grid cards" markdown>  
 
--   :octicons-repo-16:{ .lg .middle } **Replace Outdated Signatures in VAAs**  
+-   :octicons-repo-16:{ .lg .middle } <span class="badge advanced">Advanced</span> **Replace Outdated Signatures in VAAs**  
 
     ---  
 
@@ -22371,6 +22391,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/wormholescan/replace-signatures
 ---
 title: Replace Outdated Signatures in VAAs
 description: Learn how to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK to ensure seamless processing.
+tutorial_badge: Advanced
 ---
 
 # Replace Outdated Signatures in VAAs
