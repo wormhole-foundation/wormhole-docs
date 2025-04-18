@@ -36,13 +36,25 @@ To get started, you’ll first clone the repository, install dependencies, and c
     npm init -y
     ```
 
-1. **Install dependencies**
+2. **Install dependencies** - with your folder still at the project root, run:
 
     ```bash
-    npm install
+    npm pkg delete main keywords author description scripts.test
+
+    npm pkg set name=mayanswift_example version=1.0.0 license=Apache-2.0
+    npm pkg set "scripts.swap"="npx tsx src/swap.ts"
+
+    npm install \
+    @mayanfinance/wormhole-sdk-route@1.6.0 \
+    @wormhole-foundation/sdk-connect@1.0.0 \
+    @wormhole-foundation/sdk-evm@1.0.0 \
+    @wormhole-foundation/sdk-solana@1.0.0 \
+    dotenv@16.0.3
+
+    npm install -D typescript@5.7.3
     ```
 
-3. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
+4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
 
     ```bash
     touch .env
@@ -59,7 +71,7 @@ To get started, you’ll first clone the repository, install dependencies, and c
 
         Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
 
-4. **Create a `helpers.ts` file** - retrieves the correct signer (for Solana or an EVM chain) from environment variables based on the provided chain context, and returns that signer and its associated chain address
+5. **Create a `helpers.ts` file** - retrieves the correct signer from environment variables based on the provided chain context, and returns that signer and its associated chain address
 
     1. Create the helpers file
 
