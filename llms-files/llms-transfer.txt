@@ -7632,13 +7632,25 @@ To get started, you’ll first clone the repository, install dependencies, and c
     npm init -y
     ```
 
-1. **Install dependencies**
+2. **Install dependencies** - with your folder still at the project root, run:
 
     ```bash
-    npm install
+    npm pkg delete main keywords author description scripts.test
+
+    npm pkg set name=mayanswift_example version=1.0.0 license=Apache-2.0
+    npm pkg set "scripts.swap"="npx tsx src/swap.ts"
+
+    npm install \
+    @mayanfinance/wormhole-sdk-route@1.6.0 \
+    @wormhole-foundation/sdk-connect@1.0.0 \
+    @wormhole-foundation/sdk-evm@1.0.0 \
+    @wormhole-foundation/sdk-solana@1.0.0 \
+    dotenv@16.0.3
+
+    npm install -D typescript@5.7.3
     ```
 
-3. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
+4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
 
     ```bash
     touch .env
@@ -7655,7 +7667,7 @@ To get started, you’ll first clone the repository, install dependencies, and c
 
         Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
 
-4. **Create a `helpers.ts` file** - retrieves the correct signer (for Solana or an EVM chain) from environment variables based on the provided chain context, and returns that signer and its associated chain address
+5. **Create a `helpers.ts` file** - retrieves the correct signer from environment variables based on the provided chain context, and returns that signer and its associated chain address
 
     1. Create the helpers file
 
@@ -7743,7 +7755,7 @@ This section shows how to initiate and complete a cross-chain token swap using t
     touch src/swap.ts
     ```
 
-2. **Add your import statements** - in `swap.ts`, import the necessary libraries:
+2. **Add your import statements** - in `swap.ts`, import the necessary libraries and initialize dotenv:
  
     ```typescript
     Wormhole,
@@ -7757,37 +7769,36 @@ import {
 import dotenv from "dotenv";
 import { getSigner } from "./helpers";
   
-// Initialize dotenv
 dotenv.config();
     ```
 
 ### Implement the Swap Logic
 
-1. **Define the Wormhole environment** - initialize your Wormhole client for Mainnet and load the desired platforms (EVM, Solana, etc.). Also define your source and destination chains. 
+1. **Define the Wormhole environment** - initialize your Wormhole client for Mainnet and load the desired platforms (EVM, Solana, etc.). Define your source and destination chains, and create a new Wormhole route resolver, adding the Mayan route to the default list @ts-ignore
 
     !!!note
         We’ll start by creating an immediately invoked asynchronous function ((async function() { ... })()) so we can use the await keyword inside our script. This structure makes the code self-contained and allows you to call asynchronous SDK methods without extra boilerplate.
 
     ```typescript
-    // Setup
-  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
+    const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
   
   const sendChain = wh.getChain("Base");
   const destChain = wh.getChain("Solana");
   
-  // Doing transaction of native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, "native");
   const destination = Wormhole.tokenId(destChain.chain, "native");
+  
+  const resolver = wh.resolver([MayanRouteSWIFT]);
 
     // ... in later steps, you’ll add more code here ...
 
     })();
     ```
+
 2. **Inspect supported tokens** - checking the tokens that each route can handle helps confirm your chain selections are valid. This step is optional but is often useful for debugging or logging
 
     ```typescript
-    const srcTokens = await resolver.supportedSourceTokens(sendChain);
-  console.log(srcTokens.slice(0, 5));
+    console.log(srcTokens.slice(0, 5));
   
   const dstTokens = await resolver.supportedDestinationTokens(
     source,
@@ -7800,15 +7811,12 @@ dotenv.config();
 3. **Retrieve signers** - fetch the appropriate signers for both the source and destination chains using the `getSigner`helper. You’ll need these to sign transactions on each chain
 
     ```typescript
-    const sender = await getSigner(sendChain);
-  const receiver = await getSigner(destChain);
-    ```
+    const receiver = await getSigner(destChain);
+    ``` 
 
-4. **Create a transfer request** - construct a `RouteTransferRequest` object that tells the Wormhole SDK what you want to transfer (source token) and what you want to receive (destination token). The `tr` object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
+4. **Create a transfer request** - construct a `RouteTransferRequest` object that fetches token details for the Wormhole SDK to know what you want to transfer (source token) and what you want to receive (destination token). The `tr` object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
 
     ```typescript
-    // since all routes will need to know about the tokens
-  const tr = await routes.RouteTransferRequest.create(wh, {
     source,
     destination,
   });
@@ -7817,16 +7825,14 @@ dotenv.config();
 5. **Find and select a route** - use the resolver to identify all routes capable of bridging your chosen tokens. Then pick one—commonly the “best” route
 
     ```typescript
-    const foundRoutes = await resolver.findRoutes(tr);
-  const bestRoute = foundRoutes[0]!;
+    const bestRoute = foundRoutes[0]!;
     ```
 
-    The Wormhole `resolver.findRoutes()` function returns an array of potential routes, each with different properties. Mayan Swift typically appears if your chosen tokens and chains are supported
+    The Wormhole `resolver.findRoutes()` function returns an array of potential routes, each with different properties. Mayan Swift typically appears if your chosen tokens and chains are supported. The array is pre‑sorted so that index 0 holds the best‑ranked route (highest expected output after fees) for the current transfer request
 
-6. **Prepare transfer parameters** - determine how many tokens you want to swap and any route options (such as slippage tolerance). Most routes can set default values for these options
+6. **Prepare transfer parameters** - determine how many tokens you want to swap and any route options (such as slippage tolerance). Most routes can set default values for these options. Specify the amount as a decimal string (e.g., 0.01 ETH)
 
     ```typescript
-    const transferParams = {
     amount: "0.01", // decimal string representation of the amount (e.g., 0.01 ETH)
     options: bestRoute.getDefaultOptions(),
   };
@@ -7837,8 +7843,7 @@ dotenv.config();
 7. **Validate the route** - check to ensure all details (token, amount, chain combination) are acceptable to this route. This step helps catch errors before you attempt to fetch a quote or execute a transaction
 
     ```typescript
-    let validated = await bestRoute.validate(tr, transferParams);
-  if (!validated.valid) {
+    if (!validated.valid) {
     console.error(validated.error);
     return;
   }
@@ -7858,7 +7863,6 @@ dotenv.config();
 9. **Initiate the transfer** - with the quote in hand, trigger the swap on the source chain. This step involves sending a transaction that the user’s signer (`sender`) must pay for in gas
 
     ```typescript
-    const receipt = await bestRoute.initiate(
     tr,
     sender.signer,
     quote,
@@ -7884,22 +7888,18 @@ import {
 import dotenv from "dotenv";
 import { getSigner } from "./helpers";
   
-// Initialize dotenv
 dotenv.config();
   
 (async function () {
-  // Setup
+
   const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
   
   const sendChain = wh.getChain("Base");
   const destChain = wh.getChain("Solana");
   
-  // Doing transaction of native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, "native");
   const destination = Wormhole.tokenId(destChain.chain, "native");
   
-  // Create a new Wormhole route resolver, adding the Mayan route to the default list
-  // @ts-ignore
   const resolver = wh.resolver([MayanRouteSWIFT]);
 
   // Show supported tokens
@@ -7981,22 +7981,18 @@ import {
 import dotenv from "dotenv";
 import { getSigner } from "./helpers";
   
-// Initialize dotenv
 dotenv.config();
   
 (async function () {
-  // Setup
+
   const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
   
   const sendChain = wh.getChain("Base");
   const destChain = wh.getChain("Solana");
   
-  // Doing transaction of native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, "native");
   const destination = Wormhole.tokenId(destChain.chain, "native");
   
-  // Create a new Wormhole route resolver, adding the Mayan route to the default list
-  // @ts-ignore
   const resolver = wh.resolver([MayanRouteSWIFT]);
 
   // Show supported tokens
