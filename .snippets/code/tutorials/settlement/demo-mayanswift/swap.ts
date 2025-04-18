@@ -10,22 +10,18 @@ import {
 import dotenv from "dotenv";
 import { getSigner } from "./helpers";
   
-// Initialize dotenv
 dotenv.config();
   
 (async function () {
-  // Setup
+
   const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
   
   const sendChain = wh.getChain("Base");
   const destChain = wh.getChain("Solana");
   
-  // Doing transaction of native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, "native");
   const destination = Wormhole.tokenId(destChain.chain, "native");
   
-  // Create a new Wormhole route resolver, adding the Mayan route to the default list
-  // @ts-ignore
   const resolver = wh.resolver([MayanRouteSWIFT]);
 
   // Show supported tokens

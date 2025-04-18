@@ -83,7 +83,7 @@ To get started, you’ll first clone the repository, install dependencies, and c
     2. Open the `helpers.ts` file and add the following code
 
         ```typescript
-        --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/helper.ts"
+        --8<-- "code/tutorials/settlement/demo-mayanswift/helper.ts"
         ```
 
         - `getEnv` - reads environment variables from your local `.env` file
@@ -101,56 +101,57 @@ This section shows how to initiate and complete a cross-chain token swap using t
     touch src/swap.ts
     ```
 
-2. **Add your import statements** - in `swap.ts`, import the necessary libraries:
+2. **Add your import statements** - in `swap.ts`, import the necessary libraries and initialize dotenv:
  
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:1:14"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:1:13"
     ```
 
 ### Implement the Swap Logic
 
-1. **Define the Wormhole environment** - initialize your Wormhole client for Mainnet and load the desired platforms (EVM, Solana, etc.). Also define your source and destination chains. 
+1. **Define the Wormhole environment** - initialize your Wormhole client for Mainnet and load the desired platforms (EVM, Solana, etc.). Define your source and destination chains, and create a new Wormhole route resolver, adding the Mayan route to the default list @ts-ignore
 
     !!!note
         We’ll start by creating an immediately invoked asynchronous function ((async function() { ... })()) so we can use the await keyword inside our script. This structure makes the code self-contained and allows you to call asynchronous SDK methods without extra boilerplate.
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:16:25"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:15:25"
 
     // ... in later steps, you’ll add more code here ...
 
     })();
     ```
+
 2. **Inspect supported tokens** - checking the tokens that each route can handle helps confirm your chain selections are valid. This step is optional but is often useful for debugging or logging
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:31:40"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:28:36"
     ```
 
 3. **Retrieve signers** - fetch the appropriate signers for both the source and destination chains using the `getSigner`helper. You’ll need these to sign transactions on each chain
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:42:44"
-    ```
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:39:40"
+    ``` 
 
-4. **Create a transfer request** - construct a `RouteTransferRequest` object that tells the Wormhole SDK what you want to transfer (source token) and what you want to receive (destination token). The `tr` object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
+4. **Create a transfer request** - construct a `RouteTransferRequest` object that fetches token details for the Wormhole SDK to know what you want to transfer (source token) and what you want to receive (destination token). The `tr` object will be reused in subsequent steps to identify which tokens you’re transferring and to which networks
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:46:51"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:44:47"
     ```
 
 5. **Find and select a route** - use the resolver to identify all routes capable of bridging your chosen tokens. Then pick one—commonly the “best” route
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:53:55"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:50:51"
     ```
 
-    The Wormhole `resolver.findRoutes()` function returns an array of potential routes, each with different properties. Mayan Swift typically appears if your chosen tokens and chains are supported
+    The Wormhole `resolver.findRoutes()` function returns an array of potential routes, each with different properties. Mayan Swift typically appears if your chosen tokens and chains are supported. The array is pre‑sorted so that index 0 holds the best‑ranked route (highest expected output after fees) for the current transfer request
 
-6. **Prepare transfer parameters** - determine how many tokens you want to swap and any route options (such as slippage tolerance). Most routes can set default values for these options
+6. **Prepare transfer parameters** - determine how many tokens you want to swap and any route options (such as slippage tolerance). Most routes can set default values for these options. Specify the amount as a decimal string (e.g., 0.01 ETH)
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:57:61"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:54:57"
     ```
 
     The `amount` field indicates how much of the source token to swap. You can override `getDefaultOptions()` with your own if needed
@@ -158,19 +159,19 @@ This section shows how to initiate and complete a cross-chain token swap using t
 7. **Validate the route** - check to ensure all details (token, amount, chain combination) are acceptable to this route. This step helps catch errors before you attempt to fetch a quote or execute a transaction
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:63:69"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:60:65"
     ```
 
 8. **Fetch a quote** - obtain pricing data—fees, net amounts, and so on—before initiating the swap. If successful, you’ll receive a `quote` object
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:71:76"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:67:72"
     ```
 
 9. **Initiate the transfer** - with the quote in hand, trigger the swap on the source chain. This step involves sending a transaction that the user’s signer (`sender`) must pay for in gas
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:78:85"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:75:81"
     ```
 
     The `initiate()` call will usually return a transaction receipt or identifier. You can log it or store it for reference
@@ -178,12 +179,12 @@ This section shows how to initiate and complete a cross-chain token swap using t
 10. **Complete the transfer (wait for finality)** - finally, wait for the transaction to finalize on the source chain and complete the process on the destination chain. The `checkAndCompleteTransfer()` method polls the network until the cross-chain transaction is confirmed, delivering tokens to the destination address
 
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts:87"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts:83"
     ```
 
 ??? code "Complete script"
     ```typescript
-    --8<-- "code/tutorials/by-product/settlement/demo-mayanswift/swap.ts"
+    --8<-- "code/tutorials/settlement/demo-mayanswift/swap.ts"
     ```
 
 ## Configuration
