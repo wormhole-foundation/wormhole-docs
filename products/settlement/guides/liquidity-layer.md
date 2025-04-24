@@ -14,6 +14,8 @@ The Wormhole Liquidity Layer is the underlying chain abstraction infrastructure 
 
 The EVM Token Router is a simple interface against which to integrate. For an integrator, the contracts have two main entry points: `placeMarketOrder` and `placeFastMarketOrder`.
 
+See the complete list of [Token Router contract addresses](/docs/build/reference/contract-addresses/#settlement-token-router){target=\_blank} for supported networks.
+
 ### Fast Market Order
 
 The `placeFastMarketOrder` function allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. Using this interface does not guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`

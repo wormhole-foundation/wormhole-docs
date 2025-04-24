@@ -6764,6 +6764,8 @@ The Wormhole Liquidity Layer is the underlying chain abstraction infrastructure 
 
 The EVM Token Router is a simple interface against which to integrate. For an integrator, the contracts have two main entry points: `placeMarketOrder` and `placeFastMarketOrder`.
 
+See the complete list of [Token Router contract addresses](/docs/build/reference/contract-addresses/#settlement-token-router){target=\_blank} for supported networks.
+
 ### Fast Market Order
 
 The `placeFastMarketOrder` function allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. Using this interface does not guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`
@@ -7893,7 +7895,7 @@ Wormhole relies on a set of 19 distributed nodes that monitor the state on sever
 Guardians fulfill their role in the messaging protocol as follows: 
 
 1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians
-2. Guardians combine their indpendent signatures to form a multisig
+2. Guardians combine their independent signatures to form a multisig
 3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state
 
 Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs).
@@ -10210,6 +10212,29 @@ categories: Reference
     N/A
   
 <!--CCTP_ADDRESS-->
+
+## Settlement Token Router
+
+=== "Mainnet"
+
+    | Chain Name           | Contract Address                                |
+    |----------------------|-------------------------------------------------|
+    | Ethereum             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Solana               |  `28topqjtJzMnPaGFmmZk68tzGmj9W9aMntaEK3QkgtRe` |
+    | Arbitrum             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Avalanche            |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Base                 |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Optimism             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    | Polygon              |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+
+=== "Testnet"
+
+    | Chain Name           | Contract Address                                |
+    |----------------------|-------------------------------------------------|
+    | Solana               |  `tD8RmtdcV7bzBeuFgyrFc8wvayj988ChccEzRQzo6md`  |
+    | Arbitrum Sepolia     |  `0xe0418C44F06B0b0D7D1706E01706316DBB0B210E`   |
+    | Optimism Sepolia     |  `0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8`   |
+    
 
 ## Read-Only Deployments
 
