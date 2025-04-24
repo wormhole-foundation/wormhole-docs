@@ -1,0 +1,7 @@
+title: Guides
+nav:
+- 'Construct a Query': construct-a-query.md
+- 'Mock a Query': mock-a-query.md
+- 'Make a Query Request': query-request.md
+- 'Verify a Query Response': verify-response.md
+- 'Submit a Query Response': submit-a-query-response.md

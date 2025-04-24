@@ -7,16 +7,16 @@ This file includes documentation related to the category: Reference
 
 ## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/chain-ids.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/consistency-levels.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/contract-addresses.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/wormhole-formatted-addresses.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/supported-networks.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/testnet-faucets.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md [type: build]
 
 ## Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/build/reference/
+Doc-Content: https://wormhole.com/docs/products/reference/
 --- BEGIN CONTENT ---
 ---
 title: Reference
@@ -38,7 +38,7 @@ In this section, you'll find reference information that is essential for develop
 
     Find a mapping of Wormhole chain IDs to the names and network IDs of the supported blockchains.
 
-    [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
+    [:custom-arrow: View list of chain IDs](/docs/products/reference/chain-ids/)
 
 -   :material-timer-sand:{ .lg .middle } **Wormhole Finality**
 
@@ -46,7 +46,7 @@ In this section, you'll find reference information that is essential for develop
 
     See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
 
-    [:custom-arrow: View list of finality levels](/docs/build/reference/consistency-levels/)
+    [:custom-arrow: View list of finality levels](/docs/products/reference/consistency-levels/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
 
@@ -62,7 +62,7 @@ In this section, you'll find reference information that is essential for develop
     - Wormhole relayer
     - CCTP
 
-    [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
+    [:custom-arrow: View list of contract addresses](/docs/products/reference/contract-addresses/)
 
 -   :octicons-checkbox-16:{ .lg .middle } **Wormhole Formatted Addresses**
 
@@ -72,12 +72,12 @@ In this section, you'll find reference information that is essential for develop
     
     This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
 
-    [:custom-arrow: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
+    [:custom-arrow: View details on Wormhole formatted addresses](/docs/products/reference/wormhole-formatted-addresses/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/chain-ids/
+Doc-Content: https://wormhole.com/docs/products/reference/chain-ids/
 --- BEGIN CONTENT ---
 ---
 title: Chain IDs
@@ -208,7 +208,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels/
+Doc-Content: https://wormhole.com/docs/products/reference/consistency-levels/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Finality | Consistency Levels
@@ -267,7 +267,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/contract-addresses/
+Doc-Content: https://wormhole.com/docs/products/reference/contract-addresses/
 --- BEGIN CONTENT ---
 ---
 title: Contract Addresses
@@ -573,7 +573,7 @@ categories: Reference
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/
+Doc-Content: https://wormhole.com/docs/products/reference/wormhole-formatted-addresses/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Formatted Addresses
@@ -727,7 +727,7 @@ For cross-chain dApp development, Wormhole formatted addresses simplify handling
 Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
+Doc-Content: https://wormhole.com/docs/products/reference/supported-networks/
 --- BEGIN CONTENT ---
 ---
 title: Supported Networks
@@ -822,7 +822,7 @@ Wormhole supports several different blockchains and environments. Since many of 
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets/
+Doc-Content: https://wormhole.com/docs/products/reference/testnet-faucets/
 --- BEGIN CONTENT ---
 ---
 title: Testnet Faucets

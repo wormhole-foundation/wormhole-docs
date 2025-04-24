@@ -14,17 +14,17 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 
 ## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance/architecture.md [type: learn]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance/faq.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/concepts/architecture.md [type: learn]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/faqs.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/learn/governance/overview.md [type: learn]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/deploy-to-evm.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/deploy-to-solana.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/faq.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/upgrade-evm.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/multigov/upgrade-solana.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/guides/deploy-to-evm.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/guides/deploy-to-solana.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/faqs.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/guides/upgrade-evm.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/guides/upgrade-solana.md [type: build]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/multigov.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tutorials/multigov/treasury-proposal.md [type: tutorials]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/multigov/tutorials/treasury-proposal.md [type: tutorials]
 
 ## Full content for each doc page
 
@@ -58,7 +58,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Discover MultiGov's hub-and-spoke architecture, enabling EVM and Solana cross-chain governance through coordinated decision-making.
 
-    [:custom-arrow: Learn about MultiGov architecture](/docs/learn/governance/architecture/)
+    [:custom-arrow: Learn about MultiGov architecture](/docs/products/multigov/concepts/architecture/)
 
 -   :octicons-question-16:{ .lg .middle } **Theoretical FAQs**
 
@@ -66,7 +66,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Find answers to common theoretical questions about MultiGov.
 
-    [:custom-arrow: Find the answer to your theoretical questions](/docs/learn/governance/faq/)  
+    [:custom-arrow: Find the answer to your theoretical questions](/docs/products/multigov/faqs/)  
 
 </div>
 
@@ -88,7 +88,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/products/multigov/guides/deploy-to-evm/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
 
@@ -96,7 +96,7 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.
 
-    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/) 
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/products/multigov/guides/deploy-to-solana/) 
 
 -   :octicons-code-square-16:{ .lg .middle } **Tutorials**
 
@@ -112,12 +112,12 @@ Discover everything you need to know about MultiGov, Wormhole's cross-chain gove
 
     Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
 
-    [:custom-arrow: Find the answer to your technical questions](/docs/build/multigov/faq/)
+    [:custom-arrow: Find the answer to your technical questions](/docs/products/multigov/faqs/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/governance/architecture/
+Doc-Content: https://wormhole.com/docs/products/multigov/concepts/architecture/
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Architecture
@@ -250,7 +250,7 @@ This architecture ensures that MultiGov can operate securely and efficiently acr
 ![detailed multigov architecture diagram](/docs/images/learn/governance/multigov-detailed.webp)
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/governance/faq/
+Doc-Content: https://wormhole.com/docs/products/multigov/faqs/
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Theoretical FAQs
@@ -316,7 +316,7 @@ MultiGov is important because it:
 
 The diagram below represents MultiGov's high-level architecture, focusing on its hub-and-spoke model for decentralized governance across multiple chains. The hub chain acts as the central governance controller, managing proposal creation, vote tallying, and execution, while the spoke chains handle local voting and proposal execution on individual chains. The hub and spoke chains communicate via Wormhole's cross-chain messaging infrastructure, ensuring secure and efficient governance across multiple blockchain networks.
 
-For a deeper understanding of the system's structure and how the components interact, refer to the [MultiGov Architecture](/docs/learn/governance/architecture/){target=\_blank} page.
+For a deeper understanding of the system's structure and how the components interact, refer to the [MultiGov Architecture](/docs/products/multigov/concepts/architecture/){target=\_blank} page.
 
 <!-- simplify diagram -->
 ![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/learn/governance/multigov-high-level.webp)
@@ -351,7 +351,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Set up and deploy MultiGov on EVM chains with step-by-step instructions for configuring, compiling, and deploying smart contracts across chains.
 
-    [:custom-arrow: Discover how to deploy MultiGov](/docs/build/multigov/deploy-to-evm/)
+    [:custom-arrow: Discover how to deploy MultiGov](/docs/products/multigov/guides/deploy-to-evm/)
 
 -   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**  
 
@@ -359,7 +359,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Set up and deploy the MultiGov Staking Program on Solana with step-by-step instructions for configuring, funding, deploying, and initializing the program.  
 
-    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/build/multigov/deploy-to-solana/)  
+    [:custom-arrow: Discover how to deploy MultiGov on Solana](/docs/products/multigov/guides/deploy-to-solana/)  
 
 -   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on EVM Chains**
 
@@ -367,7 +367,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Learn the process and key considerations for upgrading MultiGov contracts, ensuring system integrity and careful planning across cross-chain components.
 
-    [:custom-arrow: Discover how to upgrade MultiGov on EVM Chains](/docs/build/multigov/upgrade-evm/)
+    [:custom-arrow: Discover how to upgrade MultiGov on EVM Chains](/docs/products/multigov/guides/upgrade-evm/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Upgrade MultiGov on Solana**  
 
@@ -375,7 +375,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Learn how to upgrade the MultiGov Staking Program on Solana, including updating the program binary, IDL, and more.  
 
-    [:custom-arrow: Discover how to upgrade MultiGov on Solana](/docs/build/multigov/upgrade-solana/)  
+    [:custom-arrow: Discover how to upgrade MultiGov on Solana](/docs/products/multigov/guides/upgrade-solana/)  
 
 -   :octicons-question-16:{ .lg .middle } **Technical FAQs**
 
@@ -383,7 +383,7 @@ Take the following steps to get started with a MultiGov integration:
 
     Find answers to common technical questions about MultiGov, covering technical setup, security, proposal creation, and more.
 
-    [:custom-arrow: Find the answer to your technical questions](/docs/build/multigov/faq/)
+    [:custom-arrow: Find the answer to your technical questions](/docs/products/multigov/faqs/)
 
 </div>
 
@@ -410,7 +410,7 @@ Take the following steps to get started with a MultiGov integration:
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/multigov/deploy-to-evm/
+Doc-Content: https://wormhole.com/docs/products/multigov/guides/deploy-to-evm/
 --- BEGIN CONTENT ---
 ---
 title: Deploy MultiGov on EVM Chains
@@ -516,7 +516,7 @@ These parameters can be queried using their respective getter functions on the a
 To update these parameters, a governance proposal must be created, voted on, and executed through the standard MultiGov process.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/multigov/deploy-to-solana/
+Doc-Content: https://wormhole.com/docs/products/multigov/guides/deploy-to-solana/
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Deployment to Solana
@@ -526,7 +526,7 @@ categories: MultiGov
 
 # Deploy MultiGov on Solana  
 
-This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project's governance needs by reviewing the system [architecture](/docs/learn/governance/architecture/){target=\_blank}.
+This guide provides instructions on how to set up and deploy the **MultiGov Staking Program** on Solana. Before proceeding with the deployment, ensure that MultiGov aligns with your project's governance needs by reviewing the system [architecture](/docs/products/multigov/concepts/architecture/){target=\_blank}.
 
 Once your project setup is complete, follow this guide to configure, compile, and deploy the necessary Solana programs and supporting accounts. This deployment enables decentralized governance participation on Solana as a spoke chain within the MultiGov system.  
 
@@ -706,7 +706,7 @@ When deploying MultiGov on Solana, several key parameters need to be set. Here a
  - `hubDispatcher` ++"Pubkey"++ - the Solana public key derived from an Ethereum address on the hub chain that dispatches messages to the spoke chains. This is crucial for ensuring that only authorized messages from the hub are executed on the spoke
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/multigov/faq/
+Doc-Content: https://wormhole.com/docs/products/multigov/faqs/
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Technical FAQs
@@ -729,7 +729,7 @@ MultiGov leverages Wormhole's robust cross-chain communication protocol. It impl
 
 ### Can MultiGov integrate with any blockchain?
 
-MultiGov can potentially integrate with any blockchain supported by Wormhole. However, specific implementations may vary depending on the chain's compatibility with the Ethereum Virtual Machine (EVM) and its smart contract capabilities. [See the full list of supported networks](/docs/build/start-building/supported-networks/). The current implementation of MultiGov supports an EVM hub and both the EVM and SVM for spokes.
+MultiGov can potentially integrate with any blockchain supported by Wormhole. However, specific implementations may vary depending on the chain's compatibility with the Ethereum Virtual Machine (EVM) and its smart contract capabilities. [See the full list of supported networks](/docs/products/reference/supported-networks/). The current implementation of MultiGov supports an EVM hub and both the EVM and SVM for spokes.
 
 ### How are votes aggregated across different chains?
 
@@ -799,7 +799,7 @@ MultiGov includes several mechanisms to handle network issues or temporary chain
 However, prolonged outages on the hub chain or critical spoke chains could potentially disrupt governance activities. Projects should have contingency plans for such scenarios.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/multigov/upgrade-evm/
+Doc-Content: https://wormhole.com/docs/products/multigov/guides/upgrade-evm/
 --- BEGIN CONTENT ---
 ---
 title: Upgrading MultiGov on EVM
@@ -869,7 +869,7 @@ MultiGov is designed to be flexible but stable. Due to the system's complexity a
 - Always test upgrades extensively on testnets before implementing in production
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/multigov/upgrade-solana/
+Doc-Content: https://wormhole.com/docs/products/multigov/guides/upgrade-solana/
 --- BEGIN CONTENT ---
 ---
 title: Upgrading MultiGov on Solana
@@ -962,7 +962,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 
     Learn how to propose governance actions on a hub chain, gather votes from spoke chains, aggregate the results, and carry out the final decision. Following these steps, you’ll master end-to-end governance workflows spanning multiple networks.
 
-    [:custom-arrow: Start building](/docs/tutorials/multigov/treasury-proposal/)
+    [:custom-arrow: Start building](/docs/products/multigov/tutorials/treasury-proposal/)
 
 </div>
 
@@ -990,7 +990,7 @@ Welcome to the MultiGov tutorials section. In this section, you will find tutori
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tutorials/multigov/treasury-proposal/
+Doc-Content: https://wormhole.com/docs/products/multigov/tutorials/treasury-proposal/
 --- BEGIN CONTENT ---
 ---
 title: MultiGov Guides
@@ -1237,11 +1237,11 @@ This glossary is an index of technical term definitions for words commonly used 
 
 Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
 
-You can find each chain ID documented on the [Wormhole Chain IDs](/docs/build/reference/chain-ids/){target=\_blank} page.
+You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products/reference/chain-ids/){target=\_blank} page.
 
 ## Consistency Level
 
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page for details.
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
 
 ## Delivery Provider
 
@@ -1257,7 +1257,7 @@ The finality of a transaction depends on its blockchain properties. Once a trans
 
 ## Guardian
 
-A [Guardian](/docs/learn/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
+A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
 
 ## Guardian Network
 
@@ -1291,14 +1291,14 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 
 ## VAA
 
-[Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
+[Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
 
 ## Validator
 
 A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/
+Doc-Content: https://wormhole.com/docs/protocol/infrastructure/
 --- BEGIN CONTENT ---
 ---
 title: Infrastructure Components
@@ -1322,7 +1322,7 @@ Start here for an overview of Wormhole architecture components and security mech
 
     Overview of Wormhole's architecture, detailing key on-chain and off-chain components like the Core Contract, Guardian Network, and relayers.
 
-    [:custom-arrow: Learn About Architecture](/docs/learn/infrastructure/architecture/)
+    [:custom-arrow: Learn About Architecture](/docs/protocol/architecture/)
 
 -   :octicons-book-16:{ .lg .middle } **Security**
 
@@ -1330,7 +1330,7 @@ Start here for an overview of Wormhole architecture components and security mech
 
     Explore Wormhole's security features, including the Guardian network, governance, and monitoring.
 
-    [:custom-arrow: Learn About Security](/docs/learn/security/)
+    [:custom-arrow: Learn About Security](/docs/protocol/security/)
 
 </div>
 
@@ -1338,9 +1338,9 @@ Start here for an overview of Wormhole architecture components and security mech
 
 The relationship between individual components can be demonstrated through the simplified flow of a multichain message from a source-chain contract to a target-chain contract. Select the title of each step to learn more about that component:
 
-[timeline left(wormhole-docs/.snippets/text/learn/infrastructure/infrastructure-index-timeline.json)]
+[timeline left(wormhole-docs/.snippets/text/protocol/infrastructure/infrastructure-index-timeline.json)]
 
-The [Spy](/docs/learn/infrastructure/spy/) continuously runs in the background to subscribe to gossiped messages across the Guardian Network and enable real-time network activity monitoring.
+The [Spy](/docs/protocol/infrastructure/spy/) continuously runs in the background to subscribe to gossiped messages across the Guardian Network and enable real-time network activity monitoring.
 
 ## Next Steps
 
@@ -1352,7 +1352,7 @@ The [Spy](/docs/learn/infrastructure/spy/) continuously runs in the background t
 
     Learn more about individual messaging components such as Core Contracts, VAAs, Guardians, and relayers
 
-    [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
+    [:custom-arrow: Explore Core Contracts](/docs/protocol/infrastructure/core-contracts/)
 
 -   :octicons-people-16:{ .lg .middle } **Core Messaging Guides**
 
@@ -1365,7 +1365,7 @@ The [Spy](/docs/learn/infrastructure/spy/) continuously runs in the background t
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/architecture/
+Doc-Content: https://wormhole.com/docs/protocol/architecture/
 --- BEGIN CONTENT ---
 ---
 title: Architecture
@@ -1379,12 +1379,12 @@ categories: Basics
 
 Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
-![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/learn/infrastructure/architecture/architecture-1.webp)
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
 The preceding diagram outlines the end-to-end flow of multichain communication through Wormhole's architecture, which is described as follows:
 
-1. **Source chain** - a source contract emits a message by interacting with the [Wormhole Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs
-2. **Guardian Network** - [Guardians](/docs/learn/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank}
+1. **Source chain** - a source contract emits a message by interacting with the [Wormhole Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain, which publishes the message in the blockchain's transaction logs
+2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate these messages and sign them to produce [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}
 3. **Relayers** - off-chain relayers or applications fetch the VAA and relay it to the target chain
 4. **Target chain** - on the target chain, the message is consumed by the appropriate contract. This contract interacts with the Wormhole Core Contract to verify the VAA and execute the intended multichain operation. 
 
@@ -1396,17 +1396,17 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 ## On-Chain Components
 
 - **Emitter** - a contract that calls the publish message method on the Core Contract. To identify the message, the Core Contract will write an event to the transaction logs with details about the emitter and sequence number. This may be your [xDapp](/docs/learn/glossary/#xdapp){target=\_blank} or an existing ecosystem protocol
-- **[Wormhole Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank}** - primary contract, this is the contract which the Guardians observe and which fundamentally allows for multichain communication
+- **[Wormhole Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}** - primary contract, this is the contract which the Guardians observe and which fundamentally allows for multichain communication
 - **Transaction logs** - blockchain-specific logs that allow the Guardians to observe messages emitted by the Core Contract
 
 ## Off-Chain Components
 
 - **Guardian Network** - validators that exist in their own P2P network. Guardians observe and validate the messages emitted by the Core Contract on each supported chain to produce VAAs (signed messages)
-- **[Guardian](/docs/learn/infrastructure/guardians/){target=\_blank}** - one of 19 validators in the Guardian Network that contributes to the VAA multisig
-- **[Spy](/docs/learn/infrastructure/spy/){target=\_blank}** - a daemon that subscribes to messages published within the Guardian Network. A Spy can observe and forward network traffic, which helps scale up VAA distribution
+- **[Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank}** - one of 19 validators in the Guardian Network that contributes to the VAA multisig
+- **[Spy](/docs/protocol/infrastructure/spy/){target=\_blank}** - a daemon that subscribes to messages published within the Guardian Network. A Spy can observe and forward network traffic, which helps scale up VAA distribution
 - **[API](https://docs.wormholescan.io/){target=\_blank}** - a REST server to retrieve details for a VAA or the Guardian Network
-- **[VAAs](/docs/learn/infrastructure/vaas/){target=\_blank}** - Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract
-- **[Relayer](/docs/learn/infrastructure/relayer/){target=\_blank}** - any off-chain process that relays a VAA to the target chain
+- **[VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}** - Verifiable Action Approvals (VAAs) are the signed attestation of an observed message from the Wormhole Core Contract
+- **[Relayer](/docs/protocol/infrastructure/relayer/){target=\_blank}** - any off-chain process that relays a VAA to the target chain
     - **Wormhole relayers** - a decentralized relayer network that delivers messages that are requested on-chain via the Wormhole relayer contract
     - **Custom relayers** - relayers that only handle VAAs for a specific protocol or multichain application. They can execute custom logic off-chain, reducing gas costs and increasing multichain compatibility. Currently, multichain application developers are responsible for developing and hosting custom relayers
 
@@ -1420,7 +1420,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
     Discover Wormhole's Core Contracts, enabling multichain communication with message sending, receiving, and multicast features for efficient synchronization.
 
-    [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
+    [:custom-arrow: Explore Core Contracts](/docs/protocol/infrastructure/core-contracts/)
 
 -   :octicons-tools-16:{ .lg .middle } **Core Messaging**
 
@@ -1433,7 +1433,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/core-contracts/
+Doc-Content: https://wormhole.com/docs/protocol/infrastructure/core-contracts/
 --- BEGIN CONTENT ---
 ---
 title: Core Contracts
@@ -1468,7 +1468,7 @@ The following describes the role of the Wormhole Core Contract in message transf
 2. **Guardian verification** - the Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions
 
-For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/learn/infrastructure/architecture/) page.
+For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/protocol/architecture/) page.
 
 ### Message Submission
 
@@ -1476,13 +1476,13 @@ You can send multichain messages by calling a function against the source chain 
 
 - `emitterAddress` - the contract which made the call to publish the message
 - `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
-- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} reference page
+- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 
 ### Message Reception
 
-When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/learn/infrastructure/vaas#vaa-format){target=\_blank}. Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains.
+When you receive a multichain message on the target chain Core Contract, you generally must parse and verify the [components of a VAA](/docs/protocol/infrastructure/vaas#vaa-format){target=\_blank}. Receiving and verifying a VAA ensures that the Guardian Network properly attests to the message and maintains the integrity and authenticity of the data transmitted between chains.
 
 ## Multicast
 
@@ -1490,7 +1490,7 @@ Multicast refers to simultaneously broadcasting a single message or transaction 
 
 This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} and [Wormhole relayer](/docs/learn/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
@@ -1504,7 +1504,7 @@ Because the VAA creation is separate from relaying, the multicast model does not
 
     Learn about Verified Action Approvals (VAAs) in Wormhole, their structure, validation, and their role in multichain communication.
 
-    [:custom-arrow: Learn About VAAs](/docs/learn/infrastructure/vaas/)
+    [:custom-arrow: Learn About VAAs](/docs/protocol/infrastructure/vaas/)
 
 - :octicons-tools-16:{ .lg .middle } **Get Started with Core Contracts**
 
@@ -1512,12 +1512,12 @@ Because the VAA creation is separate from relaying, the multicast model does not
 
     This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your multichain contracts.
 
-    [:custom-arrow: Build with Core Contracts](/docs/build/core-messaging/core-contracts/)
+    [:custom-arrow: Build with Core Contracts](/docs/products/messaging/guides/core-contracts/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/guardians/
+Doc-Content: https://wormhole.com/docs/protocol/infrastructure/guardians/
 --- BEGIN CONTENT ---
 ---
 title: Guardians
@@ -1535,7 +1535,7 @@ Guardians fulfill their role in the messaging protocol as follows:
 2. Guardians combine their indpendent signatures to form a multisig
 3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state
 
-Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/learn/infrastructure/vaas/){target=\_blank} (VAAs).
+Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs).
 
 ## Guardian Network
 
@@ -1575,11 +1575,11 @@ This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus
 
 ### Modularity
 
-Wormhole is designed with simple components that are very good at a single function. Separating security and consensus (Guardians) from message delivery ([relayers](/docs/learn/infrastructure/relayer/){target=\_blank}) allows for the flexibility to change or upgrade one component without disrupting the others.
+Wormhole is designed with simple components that are very good at a single function. Separating security and consensus (Guardians) from message delivery ([relayers](/docs/protocol/infrastructure/relayer/){target=\_blank}) allows for the flexibility to change or upgrade one component without disrupting the others.
 
 ### Chain Agnosticism
 
-Today, Wormhole supports a broader range of ecosystems than any other interoperability protocol because it uses simple tech (t-schnorr signatures), an adaptable, heterogeneous relayer model, and a robust validator network. Wormhole can expand to new ecosystems as quickly as a [Core Contract](/docs/learn/infrastructure/core-contracts/){target=\_blank} can be developed for the smart contract runtime.
+Today, Wormhole supports a broader range of ecosystems than any other interoperability protocol because it uses simple tech (t-schnorr signatures), an adaptable, heterogeneous relayer model, and a robust validator network. Wormhole can expand to new ecosystems as quickly as a [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} can be developed for the smart contract runtime.
 
 ### Scalability
 
@@ -1608,7 +1608,7 @@ These principles combine to create a clear pathway towards a fully trustless int
 
     Discover the role of relayers in the Wormhole network, including client-side, custom, and Wormhole-deployed types, for secure cross-chain communication.
 
-    [:custom-arrow: Learn About Relayers](/docs/learn/infrastructure/relayer/)
+    [:custom-arrow: Learn About Relayers](/docs/protocol/infrastructure/relayer/)
 
 - :octicons-tools-16:{ .lg .middle } **Query Guardian Data**
 
@@ -1621,7 +1621,7 @@ These principles combine to create a clear pathway towards a fully trustless int
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/relayer/
+Doc-Content: https://wormhole.com/docs/protocol/infrastructure/relayer/
 --- BEGIN CONTENT ---
 ---
 title: Relayers
@@ -1633,7 +1633,7 @@ categories: Basics
 
 This page provides a comprehensive guide to relayers within the Wormhole network, describing their role, types, and benefits in facilitating cross-chain processes.
 
-Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only availability, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
+Relayers in the Wormhole context are processes that deliver [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} to their destination, playing a crucial role in Wormhole's security model. They can't compromise security, only availability, and act as delivery mechanisms for VAAs without the capacity to tamper with the outcome.
 
 There are three primary types of relayers discussed:
 
@@ -1701,7 +1701,7 @@ Though simple, this type of relaying is generally not recommended if your aim is
 
 Custom relayers are purpose-built components within the Wormhole protocol, designed to relay messages for specific applications. They can perform off-chain computations and can be customized to suit a variety of use cases.
 
-The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/docs/learn/infrastructure/spy/).
+The main method of setting up a custom relayer is by listening directly to the Guardian Network via a [Spy](/docs/protocol/infrastructure/spy/).
 
 ### Key Features
 
@@ -1767,7 +1767,7 @@ Developers should note that the choice of relayers depends on their project's sp
 
     Discover Wormhole's Spy daemon, which subscribes to gossiped messages in the Guardian Network, including VAAs and Observations, with setup instructions. 
 
-    [:custom-arrow: Learn More About the Spy](/docs/learn/infrastructure/spy/)
+    [:custom-arrow: Learn More About the Spy](/docs/protocol/infrastructure/spy/)
 
 -   :octicons-book-16:{ .lg .middle } **Build with Wormhole Relayers**
 
@@ -1775,7 +1775,7 @@ Developers should note that the choice of relayers depends on their project's sp
 
     Learn how to use Wormhole-deployed relayer configurations for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.   
 
-    [:custom-arrow: Get Started with Wormhole Relayers](/docs/build/core-messaging/wormhole-relayers/)
+    [:custom-arrow: Get Started with Wormhole Relayers](/docs/products/messaging/guides/wormhole-relayers/)
 
 -   :octicons-book-16:{ .lg .middle } **Run a Custom Relayer**
 
@@ -1783,12 +1783,12 @@ Developers should note that the choice of relayers depends on their project's sp
 
     Learn how to build and configure your own off-chain custom relaying solution to relay Wormhole messages for your applications using the Relayer Engine.
 
-    [:custom-arrow: Get Started with Custom Relayers](/docs/infrastructure/relayers/run-relayer/)
+    [:custom-arrow: Get Started with Custom Relayers](/docs/protocol/infrastructure-guides/run-relayer/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/spy/
+Doc-Content: https://wormhole.com/docs/protocol/infrastructure/spy/
 --- BEGIN CONTENT ---
 ---
 title: Spy
@@ -1822,7 +1822,7 @@ This monitoring capability is especially beneficial for applications that need i
 
 A Spy can access the following categories of messages shared over the gossip protocol:
 
-- [Verifiable Action Approvals (VAAs)](/docs/learn/infrastructure/vaas/){target=\_blank} - packets of multichain data
+- [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} - packets of multichain data
 
     - The Spy can detect whether a VAA has been approved by the Guardian Network, making it a valuable tool for applications needing real-time multichain verification
 
@@ -1874,7 +1874,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     Learn how to run the needed infrastructure to spin up a Spy daemon locally and subscribe to a stream of Verifiable Action Approvals (VAAs).
 
-    [:custom-arrow: Spin Up a Spy](/docs/infrastructure/spy/run-spy/){target=\_blank}
+    [:custom-arrow: Spin Up a Spy](/docs/protocol/infrastructure-guides/run-spy/){target=\_blank}
 
 -   :octicons-code-16:{ .lg .middle } **Use Queries**
 
@@ -1887,7 +1887,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/infrastructure/vaas/
+Doc-Content: https://wormhole.com/docs/protocol/infrastructure/vaas/
 --- BEGIN CONTENT ---
 ---
 title: VAAs
@@ -1899,7 +1899,7 @@ categories: Basics
 
 Verified Action Approvals (VAAs) are Wormhole's core messaging primitive. They are packets of cross-chain data emitted whenever a cross-chain application contract interacts with the Core Contract.
 
-[Guardians](/docs/learn/infrastructure/guardians/){target=\_blank} validate messages emitted by contracts before sending them to the target chain. Once a majority of Guardians agree the message is valid, they sign a keccak256 hash of the message body. 
+[Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate messages emitted by contracts before sending them to the target chain. Once a majority of Guardians agree the message is valid, they sign a keccak256 hash of the message body. 
 
 The message is wrapped up in a structure called a VAA, which combines the message with the Guardian signatures to form a proof. 
 
@@ -2076,7 +2076,7 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
 2. **Signatures are aggregated** - Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
 3. **VAA submitted to target chain** - the VAA acts as proof that the Guardians have collectively attested the existence of the message payload. The VAA is submitted (or relayed) to the target chain to be processed by a receiving contract and complete the final step
 
-![Lifetime of a message diagram](/docs/images/learn/infrastructure/vaas/lifetime-vaa-diagram.webp)
+![Lifetime of a message diagram](/docs/images/protocol/infrastructure/vaas/lifetime-vaa-diagram.webp)
 
 ## Next Steps
 
@@ -2088,7 +2088,7 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
 
     Explore Wormhole's Guardian Network, a decentralized system for secure, scalable cross-chain communication across various blockchain ecosystems.
 
-    [:custom-arrow: Learn About Guardians](/docs/learn/infrastructure/guardians/)
+    [:custom-arrow: Learn About Guardians](/docs/protocol/infrastructure/guardians/)
 
 - :octicons-tools-16:{ .lg .middle } **Wormhole Relayer**
 
@@ -2096,12 +2096,12 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
 
     Explore this guide to using Wormhole-deployed relayers to send and receive messages using VAAs.
 
-    [:custom-arrow: Build with Wormhole Relayer](/docs/build/core-messaging/wormhole-relayers/)
+    [:custom-arrow: Build with Wormhole Relayer](/docs/products/messaging/guides/wormhole-relayers/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/introduction/
+Doc-Content: https://wormhole.com/docs/protocol/introduction/
 --- BEGIN CONTENT ---
 ---
 title: Introduction to Wormhole
@@ -2117,10 +2117,10 @@ Wormhole addresses this problem by providing a _generic message-passing_ protoco
 
 Wormhole is distinguished by its focus on robust security, scalability, and transparency. The protocol is supported by a decentralized network of validators that ensure the integrity of every cross-chain transaction. This, combined with Wormhole’s proven performance in real-world applications, gives developers a dependable platform to create and scale multichain applications confidently.
 
-![Message-passing process in the Wormhole protocol](/docs/images/learn/introduction/introduction-1.webp)
+![Message-passing process in the Wormhole protocol](/docs/images/protocol/introduction/introduction-1.webp)
 
 !!! note
-    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/docs/learn/infrastructure/architecture/){target=\_blank}.
+    The above is an oversimplified illustration of the protocol; details about the architecture and components are available on the [architecture page](/docs/protocol/architecture/){target=\_blank}.
 
 Wormhole allows developers to leverage the strengths of multiple blockchain ecosystems without being confined to one. This means applications can benefit from the unique features of various networks—such as Solana's high throughput, Ethereum's security, and Cosmos's interoperability while maintaining a unified, efficient user experience.
 
@@ -2142,7 +2142,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 - **Cross-chain messaging** - securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications (xDapps)
 - **Asset transfers** - facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}
-- **Developer tools** - leverage [Wormhole’s SDKs](/docs/build/toolkit/typescript-sdk/){target=\_blank}, [APIs](/docs/build/toolkit/#wormhole-api-docs){target=\_blank}, [Wormhole Scan](https://wormholescan.io/){target=\_blank}, and documentation to build and deploy cross-chain applications quickly and efficiently
+- **Developer tools** - leverage [Wormhole’s SDKs](/docs/tools/typescript-sdk/get-started/){target=\_blank}, [APIs](/docs/build/toolkit/#wormhole-api-docs){target=\_blank}, [Wormhole Scan](https://wormholescan.io/){target=\_blank}, and documentation to build and deploy cross-chain applications quickly and efficiently
 
 ## What Isn't Wormhole?
 
@@ -2161,7 +2161,7 @@ Consider the following examples of potential applications enabled by Wormhole:
 
 Discover more about the Wormhole ecosystem, components, and protocols:
 
-- **[Architecture](/docs/learn/infrastructure/architecture/){target=\_blank}** - explore the components of the protocol
+- **[Architecture](/docs/protocol/architecture/){target=\_blank}** - explore the components of the protocol
 - **[Protocol Specifications](https://github.com/wormhole-foundation/wormhole/tree/main/whitepapers){target=\_blank}** - learn about the protocols built on top of Wormhole
 
 ## Demos
@@ -2257,7 +2257,7 @@ Wormhole supports a growing number of blockchains.
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/learn/security/
+Doc-Content: https://wormhole.com/docs/protocol/security/
 --- BEGIN CONTENT ---
 ---
 title: Security
@@ -2269,7 +2269,7 @@ categories: Basics
 
 ## Core Security Assumptions
 
-At its core, Wormhole is secured by a network of [Guardian](/docs/learn/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
+At its core, Wormhole is secured by a network of [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} nodes that validate and sign messages. If a super majority (e.g., 13 out of 19) of Guardians sign the same message, it can be considered valid. A smart contract on the target chain will verify the signatures and format of the message before approving any transaction.
 
 - Wormhole's core security primitive is its signed messages (signed [VAAs](/docs/learn/glossary/#vaa){target=\_blank})
 - The Guardian network is currently secured by a collection of 19 of the world's top [validator companies](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}
@@ -2334,7 +2334,7 @@ Wormhole builds in the open and is always open source.
 
 - **[Wormhole core repository](https://github.com/wormhole-foundation/wormhole){target=\_blank}**
 - **[Wormhole Foundation GitHub organization](https://github.com/wormhole-foundation){target=\_blank}**
-- **[Wormhole contract deployments](/docs/learn/infrastructure/core-contracts/){target=\_blank}**
+- **[Wormhole contract deployments](/docs/protocol/infrastructure/core-contracts/){target=\_blank}**
 
 ## Audits
 
@@ -2368,7 +2368,7 @@ For more information about submitting to the bug bounty programs, refer to the [
 The [SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank} from the official repository has the latest security policies and updates.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/core-messaging/core-contracts/
+Doc-Content: https://wormhole.com/docs/products/messaging/guides/core-contracts/
 --- BEGIN CONTENT ---
 ---
 title: Get Started with Core Contracts
@@ -2384,15 +2384,15 @@ Wormhole's Core Contracts, deployed on each supported blockchain network, enable
 
 While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
 
-This guide will walk you through the variations and key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts. To learn more about Core Contracts' features and how it works, please refer to the [Core Contracts](/docs/learn/infrastructure/core-contracts/){target=\_blank} page in the Learn section.
+This guide will walk you through the variations and key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts. To learn more about Core Contracts' features and how it works, please refer to the [Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} page in the Learn section.
 
 ## Prerequisites
 
 To interact with the Wormhole Core Contract, you'll need the following:
 
-- The [address of the Core Contract](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
-- The [Wormhole chain ID](/docs/build/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
-- The [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on
+- The [address of the Core Contract](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
+- The [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
+- The [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on
 
 ## How to Interact with Core Contracts
 
@@ -2536,7 +2536,7 @@ messageSequence = wormhole.publishMessage{value: wormholeFee}(
 
         `payload` ++"Vec<u8>"++
         
-        The data being sent in the message. This is a variable-length byte array that contains the actual content or information being transmitted. To learn about the different types of payloads, check out the [VAAs](/docs/learn/infrastructure/vaas#payload-types){target=\_blank} page.
+        The data being sent in the message. This is a variable-length byte array that contains the actual content or information being transmitted. To learn about the different types of payloads, check out the [VAAs](/docs/protocol/infrastructure/vaas#payload-types){target=\_blank} page.
 
         ---
 
@@ -2587,9 +2587,9 @@ wormhole::post_message(
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
 
-Once the message is emitted from the Core Contract, the [Guardian Network](/docs/learn/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/learn/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.solana.com/developing/runtime-facilities/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.solana.com/developing/runtime-facilities/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
-VAAs are [multicast](/docs/learn/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
+VAAs are [multicast](/docs/protocol/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 
 ### Receiving Messages
 
@@ -2615,7 +2615,7 @@ The way a message is received and handled depends on the environment.
 
         `vm` ++"VM memory"++
         
-        The valid parsed VAA, which will include the original `emitterAddress`, `sequenceNumber`, and `consistencyLevel`, among other fields outlined on the [VAAs](/docs/learn/infrastructure/vaas/) page.
+        The valid parsed VAA, which will include the original `emitterAddress`, `sequenceNumber`, and `consistencyLevel`, among other fields outlined on the [VAAs](/docs/protocol/infrastructure/vaas/) page.
 
         ??? child "Struct `VM`"
 
@@ -2726,10 +2726,10 @@ await tx.wait();
 
 #### Additional Checks
 
-In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/learn/infrastructure/vaas/){target=\_blank}, including:
+In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/protocol/infrastructure/vaas/){target=\_blank}, including:
 
 - **Sequence** - is this the expected sequence number? How should out-of-order deliveries be handled?
-- **Consistency level** - for the chain this message came from, is the [Wormhole Finality](/docs/build/reference/consistency-levels/){target=\_blank} level enough to guarantee the transaction won't be reverted after taking some action?
+- **Consistency level** - for the chain this message came from, is the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} level enough to guarantee the transaction won't be reverted after taking some action?
 
 The VAA digest is separate from the VAA body but is also relevant. It can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
 
@@ -2746,7 +2746,7 @@ For a deeper understanding of the Core Contract implementation for a specific bl
 - [Terra Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/terra/contracts/wormhole){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/core-messaging/wormhole-relayers/
+Doc-Content: https://wormhole.com/docs/products/messaging/guides/wormhole-relayers/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole-Deployed Relayers
@@ -2758,18 +2758,18 @@ categories: Relayers, Basics
 
 ## Introduction
 
-The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/infrastructure/relayers/run-relayer/) is available for more complex needs.
+The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
 
 This section covers the components and interfaces involved in using the Wormhole relayer module, such as message sending and receiving, delivery guarantees, and considerations for building reliable and efficient cross-chain applications. Additionally, you'll find details on how to handle specific implementation scenarios and track message delivery progress using the Wormhole CLI tool.
 
 ## Get Started with the Wormhole Relayer
 
-Before getting started, it's important to note that the Wormhole-deployed relayer configuration is currently **limited to EVM environments**. The complete list of EVM environment blockchains is on the [Supported Networks](/docs/build/start-building/supported-networks/) page.
+Before getting started, it's important to note that the Wormhole-deployed relayer configuration is currently **limited to EVM environments**. The complete list of EVM environment blockchains is on the [Supported Networks](/docs/products/reference/supported-networks/) page.
 
 To interact with the Wormhole relayer, you'll need to create contracts on the source and target chains to handle the sending and receiving of messages. No off-chain logic needs to be implemented to take advantage of Wormhole-powered relaying.
 
 <figure markdown="span">
-  ![Wormhole Relayer](/docs/images/build/core-messaging/wormhole-relayers/relayer-1.webp)
+  ![Wormhole Relayer](/docs/images/products/messaging/guides/wormhole-relayers/relayer-1.webp)
   <figcaption>The components outlined in blue must be implemented.</figcaption>
 </figure>
 
@@ -2787,7 +2787,7 @@ To start interacting with the Wormhole relayer in your contracts, you'll need to
 
 To easily integrate with the Wormhole relayer interface, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}.
 
-To retrieve the contract address of the Wormhole relayer, refer to the Wormhole relayer section on the [Contract Addresses](/docs/build/reference/contract-addresses/#wormhole-relayer) reference page.
+To retrieve the contract address of the Wormhole relayer, refer to the Wormhole relayer section on the [Contract Addresses](/docs/products/reference/contract-addresses/#wormhole-relayer) reference page.
 
 Your initial set up should resemble the following:
 
@@ -2948,7 +2948,7 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 
 ## Step-by-Step Tutorial
 
-For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/solidity-sdk/cross-chain-contracts/) tutorial.
+For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/products/messaging/tutorials/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/build/start-building/products/
@@ -3057,7 +3057,7 @@ Let users borrow assets on one chain using collateral from another.
 
 🛠 **Wormhole products used:**
 
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves loan requests and liquidations across chains
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – moves loan requests and liquidations across chains
 - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – transfers collateral as native assets
 - [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
 
@@ -3080,7 +3080,7 @@ Fetch price feeds across multiple chains for DeFi applications.
 🛠 **Wormhole products used:**
 
 - [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches price feeds from oracles and trading platforms
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – sends signals to execute trades
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – sends signals to execute trades
 
 🔗 **Used in:** Trading bots, arbitrage platforms, and oracles <br>🏗️ **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
 
@@ -3119,7 +3119,7 @@ Enable seamless communication and asset transfer across decentralized social net
 
 🛠 **Wormhole products used:**
 
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates decentralized interactions
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – facilitates decentralized interactions
 - [**Token Bridge**](/docs/build/transfers/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
 
 🔗 **Used in:** Web3 social networks and content monetization <br>🏗️ **Used by:** [Chingari](https://chingari.io/){target=\_blank}
@@ -3141,7 +3141,7 @@ Launch and distribute memecoins across multiple chains, enabling cross-chain fun
 🛠 **Wormhole products used:**
 
 - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – enables native asset transfers for seamless fundraising
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
 
 🔗 **Used in:** Token launchpads, IDOs, and meme token ecosystems
 
@@ -3182,7 +3182,7 @@ Allow users to pay gas fees with any token across different networks, removing f
 
 🛠 **Wormhole products used:**
 
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – routes gas fee payments across chains
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – routes gas fee payments across chains
 - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – facilitates native token conversion for gas payments
 
 🔗 **Used in:** Wallets, dApps, and multichain user experience improvements
@@ -3203,7 +3203,7 @@ Provide developers with a library of bridging intents and automation functions, 
 
 🛠 **Wormhole products used:**
 
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – enables predefined cross-chain actions and triggers.
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – enables predefined cross-chain actions and triggers.
 - [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} - provides a framework for executing user-defined bridging intents
 
 🔗 **Used in:** Bridging protocols, DeFi automation, and smart contract libraries
@@ -3267,7 +3267,7 @@ Fetch and verify cross-chain data, enabling reliable, decentralized Oracle servi
 🛠 **Wormhole products used:**
 
 - [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
 
 🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🏗️ **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
 
@@ -3287,7 +3287,7 @@ Enable users to stake assets on one chain while earning rewards or securing netw
 
 🛠 **Wormhole products used:**
 
-- [**Messaging**](/docs/learn/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
+- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
 - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
 
 🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks <br>🏗️ **Used by:** [Lido](https://lido.fi/){target=\_blank}
@@ -3309,7 +3309,7 @@ While it may not be required for all use cases, it offers a deeper technical lay
 
 ## Full content for shared concepts:
 
-Doc-Content: https://wormhole.com/docs/build/reference/
+Doc-Content: https://wormhole.com/docs/products/reference/
 --- BEGIN CONTENT ---
 ---
 title: Reference
@@ -3331,7 +3331,7 @@ In this section, you'll find reference information that is essential for develop
 
     Find a mapping of Wormhole chain IDs to the names and network IDs of the supported blockchains.
 
-    [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
+    [:custom-arrow: View list of chain IDs](/docs/products/reference/chain-ids/)
 
 -   :material-timer-sand:{ .lg .middle } **Wormhole Finality**
 
@@ -3339,7 +3339,7 @@ In this section, you'll find reference information that is essential for develop
 
     See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
 
-    [:custom-arrow: View list of finality levels](/docs/build/reference/consistency-levels/)
+    [:custom-arrow: View list of finality levels](/docs/products/reference/consistency-levels/)
 
 -   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
 
@@ -3355,7 +3355,7 @@ In this section, you'll find reference information that is essential for develop
     - Wormhole relayer
     - CCTP
 
-    [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
+    [:custom-arrow: View list of contract addresses](/docs/products/reference/contract-addresses/)
 
 -   :octicons-checkbox-16:{ .lg .middle } **Wormhole Formatted Addresses**
 
@@ -3365,12 +3365,12 @@ In this section, you'll find reference information that is essential for develop
     
     This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
 
-    [:custom-arrow: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
+    [:custom-arrow: View details on Wormhole formatted addresses](/docs/products/reference/wormhole-formatted-addresses/)
 
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/chain-ids/
+Doc-Content: https://wormhole.com/docs/products/reference/chain-ids/
 --- BEGIN CONTENT ---
 ---
 title: Chain IDs
@@ -3501,7 +3501,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels/
+Doc-Content: https://wormhole.com/docs/products/reference/consistency-levels/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Finality | Consistency Levels
@@ -3560,7 +3560,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/contract-addresses/
+Doc-Content: https://wormhole.com/docs/products/reference/contract-addresses/
 --- BEGIN CONTENT ---
 ---
 title: Contract Addresses
@@ -3866,7 +3866,7 @@ categories: Reference
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/
+Doc-Content: https://wormhole.com/docs/products/reference/wormhole-formatted-addresses/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Formatted Addresses
@@ -4020,7 +4020,7 @@ For cross-chain dApp development, Wormhole formatted addresses simplify handling
 Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
+Doc-Content: https://wormhole.com/docs/products/reference/supported-networks/
 --- BEGIN CONTENT ---
 ---
 title: Supported Networks
@@ -4115,7 +4115,7 @@ Wormhole supports several different blockchains and environments. Since many of 
 <!--SUPPORTED_BLOCKCHAIN_CARDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets/
+Doc-Content: https://wormhole.com/docs/products/reference/testnet-faucets/
 --- BEGIN CONTENT ---
 ---
 title: Testnet Faucets
