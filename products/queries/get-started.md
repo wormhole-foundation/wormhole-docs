@@ -8,7 +8,7 @@ categories: Queries
 
 ## Introduction
 
-Wormhole Queries let you fetch on-chain data from supported blockchains using `eth_call`-style requests, without submitting transactions or paying gas. The result is signed by the Guardian network, making it verifiable and suitable for use on-chain.
+Wormhole Queries let you fetch on-chain data from supported blockchains using `eth_call`-style requests, without submitting transactions or paying gas. The Guardian network signs the result, making it verifiable and suitable for use on-chain.
 
 This guide walks you through requesting an API key, constructing your first query using the Wormhole Query SDK, and decoding the result.
 
@@ -18,12 +18,12 @@ Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} 
  - A basic understanding of JavaScript or TypeScript
- - An RPC endpoint for a supported chain (e.g. Ethereum Sepolia)
+ - An RPC endpoint for a supported chain (e.g., Ethereum Sepolia)
  - A Wormhole [Queries API key](#request-an-api-key)
 
 ## Request an API Key
 
-Wormhole Queries are currently in closed beta, but you can start building today.
+Wormhole Queries is in closed beta, but you can start building today.
 
 To access the Query Proxy, you’ll need an API key. This allows you to send requests and receive signed responses from the Guardian network.
 
@@ -48,7 +48,7 @@ To request access, join the beta by filling out the [access form](https://forms.
 
 ## Run Your First Query
 
-You'll run a lightweight script that queries the `name()` of a token contract on Ethereum Sepolia, using the Wormhole Query Proxy. The response you receive will be signed by the Guardian network and locally decoded.
+Using the Wormhole Query Proxy, you will run a lightweight script that queries the `name()` of a token contract on Ethereum Sepolia. The response you receive will be signed by the Guardian network and locally decoded.
 
 1. Create a new file called `query.ts`:
 
@@ -162,11 +162,11 @@ API_KEY=<insert_queries_api_key> npx tsx queries.ts
 
 ## Next Steps
 
-Now that you've successfully run your first verifiable query, you're ready to go deeper. Check out the following guides to build on what you've learned:
+Now that you've successfully run your first verifiable query, you are ready to go deeper. Check out the following guides to build on what you've learned:
 
  - [Query Solana](https://github.com/wormhole-foundation/demo-queries-ts/blob/main/src/query_solana_stake_pool.ts){target=\_blank} – try fetching Solana stake pools to see how cross-chain queries apply beyond EVM
- - [Construct a Query](){target=\_blank} – Understand how to manually build different query types using the SDK
- - [Verify a Query Response On-Chain](){target=\_blank} – Use signed results in smart contracts
+ - [Construct a Query](){target=\_blank} – understand how to build different query types using the SDK manually
+ - [Verify a Query Response On-Chain](){target=\_blank} – use signed results in smart contracts
 
 Browse the [Supported Networks](){target=\_blank} to see where you can query today.
 
