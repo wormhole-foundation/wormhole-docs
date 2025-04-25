@@ -12,17 +12,9 @@ categories: Connect, Transfer
 
 :simple-vercel: [Deployed Demo App - Vercel](https://connect-usdc-demo-app.vercel.app/){target=\_blank}
 
-Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications.
+## Introduction
 
-## Objectives
-
-This guide demonstrates how to: 
-
-1. Create a Next.js project and install dependencies
-2. Add the Connect widget to your project
-3. Configure Connect to send testnet USDC from Sepolia to Solana
-4. Configure the theme to dark mode with a custom primary color
-5. Start the dev server to interact with the Connect UI
+Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how-to configure the Connect widget, add it to a React application, and view the application locally.
 
 ## Prerequisites
 
