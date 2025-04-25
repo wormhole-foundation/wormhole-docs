@@ -196,7 +196,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
 With your script in place, run the following command from your queries directory:
 
 ```bash
-API_KEY=<insert_queries_api_key> npx tsx query.ts
+API_KEY=<INSERT_QUERIES_API_KEY> npx tsx query.ts
 ```
 
 ???- code "Expected Output"
