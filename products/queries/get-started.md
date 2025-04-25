@@ -53,7 +53,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
 1. Create a new file called `query.ts`:
 
     ```bash
-    touch queries.ts
+    touch query.ts
     ```
 
 2. Import required dependencies inside the `query.ts` file:
@@ -142,7 +142,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
 With your script in place, run the following command from your queries directory:
 
 ```bash
-API_KEY=<insert_queries_api_key> npx tsx queries.ts
+API_KEY=<insert_queries_api_key> npx tsx query.ts
 ```
 
 ???- code "Expected Output"
