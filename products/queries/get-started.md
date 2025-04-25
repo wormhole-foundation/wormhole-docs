@@ -191,7 +191,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
     })();
     ```
 
-## Run Your First Query
+## Execute the Query
 
 With your script in place, run the following command from your queries directory:
 
