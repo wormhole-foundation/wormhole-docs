@@ -50,13 +50,13 @@ To request access, join the beta by filling out the [access form](https://forms.
 
 Using the Wormhole Query Proxy, you will run a lightweight script that queries the `name()` of a token contract on Ethereum Sepolia. The response you receive will be signed by the Guardian network and locally decoded.
 
-1. Create a new file called `query.ts`:
+1. **Create your query file** – add a new `query.ts` script where you will write and run your query logic
 
     ```bash
     touch query.ts
     ```
 
-2. Import required dependencies inside the `query.ts` file:
+2. **Import the required modules** – bring in the SDK, Web3, and Axios to construct and send your query
 
     ```typescript
     import {
@@ -70,24 +70,24 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
     import * as eth from 'web3';
     ```
 
-3.  Define your constants:
+3.  **Set up configuration variables** – define the query target, network RPC, token address, and function selector for your request
 
     ```ts
     const QUERY_URL = 'https://testnet.query.wormhole.com/v1/query';
     const RPC = 'https://ethereum-sepolia.rpc.subquery.network/public';
     const CHAIN_ID = 10002; // Sepolia
-    const TOKEN = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'; // USDC Sepolia
+    const TOKEN = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'; // USDC Contract on Sepolia
     const DATA = '0x06fdde03'; // function selector for `name()`
     ```
 
-4. Set your API key:
+4. **Load your API key** – access your key from the environment to authenticate requests to the Query Proxy
 
     ```ts
     const apiKey = process.env.API_KEY;
     if (!apiKey) throw new Error('API_KEY is not set in your environment');
     ```
 
-5. Create the main function:
+5. **Define the main function** – use an `async` wrapper to structure your script and run query logic
 
     ```ts
     (async () => {
@@ -97,7 +97,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
     })();
     ```
 
-6. Fetch the latest block from your RPC:
+6. **Fetch the latest block from your RPC** - Queries must reference a specific block to ensure Guardians verify data from the same state
 
     ```ts
     const latestBlock = (
@@ -110,7 +110,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
     ).data?.result?.number;
     ```
 
-7. Build and send the query:
+7. **Build and send the query** - construct a query that targets the specified contract and function, serialize it, and send it to the Guardian Query Proxy
 
     ```ts
     const request = new QueryRequest(1, [
@@ -125,7 +125,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
     );
     ```
 
-8. Decode the response:
+8. **Decode the response** - parse the signed response and extract the result of the `eth_call` to display the token name
 
     ```ts
     const queryResponse = QueryResponse.from(response.data.bytes);
