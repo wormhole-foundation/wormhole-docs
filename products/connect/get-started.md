@@ -29,12 +29,12 @@ This guide demonstrates how to:
 Before you begin, make sure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
-- **RPC URLs for Sepolia and Solana endpoints** - public endpoints are provided but, you are free to substitute your own
+- **RPC URLs for Sepolia and Solana endpoints** - public endpoints are provided, but you are free to substitute your own
 
 - **Optional** - if you would like to send a testnet transfer using your demo application, you will also need the following:
 
     - **Developer wallet with Sepolia USDC** - you can use the [Circle Testnet Faucet](https://faucet.circle.com/){target=\_blank} to obtain tokens
-    - **Developer wallet with Solana address** - to use as the recipient address, no tokens required
+    - **Developer wallet with Solana address** - to use as the recipient address; no tokens required
 
 
 ## Start Your Integration
@@ -43,7 +43,7 @@ Use the following steps to integrate Connect into a Next.js application:
 
 ### Create Your Project
 
-1. In your terminal, navigate to the directory where you wish to create your project then run the following command:
+1. In your terminal, navigate to the directory where you wish to create your project, then run the following command:
 
     ```bash
     npx create-next-app@latest wormhole-connect-demo --typescript
@@ -70,7 +70,7 @@ Use the following steps to integrate Connect into a Next.js application:
 
 ### Add Connect to Your Project
 
-Open the project in your code editor of choice, locate the `page.tsx` file in the `app` directory, delete the boilerplate code and replace it with the following:
+Open the project in your code editor of choice, locate the `page.tsx` file in the `app` directory, delete the boilerplate code, and replace it with the following:
 
 ```typescript title="page.tsx"
 --8<-- 'code/products/connect/configuration/get-started/page.tsx'
@@ -83,7 +83,7 @@ The preceding sample code configures Connect by setting values inside `config` a
 - **Define the network** - options include `Mainnet`, `Testnet`, or `Devnet`
 - **Define chains to include** - this example uses Sepolia and Solana. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains
 - **Define RPC URLs** - you must provide an RPC endpoint for each supported chain
-- **Add a title to UI** - optional. If defined, will render above the widget in the UI
+- **Add a title to UI** - optional. If defined, it will render above the widget in the UI
 - **Define the theme** - this example sets mode to `dark` mode and adds a primary color
 
 ### Interact with Connect
