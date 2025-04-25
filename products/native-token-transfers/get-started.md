@@ -128,7 +128,7 @@ ntt new my-ntt-project
 cd my-ntt-project
 ```
 
-Then, initialize your configuration for testnet:
+Then, initialize a new `deployment.json` file specifying the network:
 
 === "Mainnet"
     ```bash
@@ -139,6 +139,18 @@ Then, initialize your configuration for testnet:
     ```bash
     ntt init Testnet
     ```
+
+This file contains your NTT configuration and starts with the selected network after initialization. 
+
+???- code "Example `deployment.json` for testnet"
+    ```json
+    {
+    "network": "Testnet",
+    "chains": {}
+    }
+    ```
+
+In the [deployment steps](#next-steps), you will add your supported chains, along with their token addresses, deployment modes, and any custom settings.
 
 ## Next Steps
 
