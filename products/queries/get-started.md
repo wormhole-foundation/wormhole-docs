@@ -19,7 +19,7 @@ Before you begin, make sure you have the following:
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} 
  - A basic understanding of JavaScript or TypeScript
  - An RPC endpoint for a supported chain (e.g., Ethereum Sepolia)
- - A Wormhole [Queries API key](#request-an-api-key)
+ - A Wormhole Queries API key
 
 ## Request an API Key
 
