@@ -150,7 +150,7 @@ This file contains your NTT configuration and starts with the selected network a
     }
     ```
 
-In the deployment steps, you will add your supported chains, along with their token addresses, deployment modes, and any custom settings.
+In the deployment steps, you will add your supported chains, their token addresses, deployment modes, and any custom settings.
 
 ## Next Steps
 
