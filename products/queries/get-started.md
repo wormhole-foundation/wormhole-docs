@@ -59,32 +59,19 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
 2. **Import the required modules** – bring in the SDK, Web3, and Axios to construct and send your query
 
     ```typescript
-    import {
-    EthCallQueryRequest,
-    EthCallQueryResponse,
-    PerChainQueryRequest,
-    QueryRequest,
-    QueryResponse,
-    } from '@wormhole-foundation/wormhole-query-sdk';
-    import axios from 'axios';
-    import * as eth from 'web3';
+    --8<-- "code/protocol/queries/get-started/snippet-1.ts:1:9"
     ```
 
 3.  **Set up configuration variables** – define the query target, network RPC, token address, and function selector for your request
 
     ```ts
-    const QUERY_URL = 'https://testnet.query.wormhole.com/v1/query';
-    const RPC = 'https://ethereum-sepolia.rpc.subquery.network/public';
-    const CHAIN_ID = 10002; // Sepolia
-    const TOKEN = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'; // USDC Contract on Sepolia
-    const DATA = '0x06fdde03'; // function selector for `name()`
+    --8<-- "code/protocol/queries/get-started/snippet-1.ts:11:15"
     ```
 
 4. **Load your API key** – access your key from the environment to authenticate requests to the Query Proxy
 
     ```ts
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) throw new Error('API_KEY is not set in your environment');
+    --8<-- "code/protocol/queries/get-started/snippet-1.ts:17:18"
     ```
 
 5. **Define the main function** – use an `async` wrapper to structure your script and run query logic
@@ -100,95 +87,24 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
 6. **Fetch the latest block from your RPC** - Queries must reference a specific block to ensure Guardians verify data from the same state
 
     ```ts
-    const latestBlock = (
-        await axios.post(RPC, {
-        method: 'eth_getBlockByNumber',
-        params: ['latest', false],
-        id: 1,
-        jsonrpc: '2.0',
-        })
-    ).data?.result?.number;
+    --8<-- "code/protocol/queries/get-started/snippet-1.ts:21:28"
     ```
 
 7. **Build and send the query** - construct a query that targets the specified contract and function, serialize it, and send it to the Guardian Query Proxy
 
     ```ts
-    const request = new QueryRequest(1, [
-        new PerChainQueryRequest(CHAIN_ID, new EthCallQueryRequest(latestBlock, [{ to: TOKEN, data: DATA }])),
-    ]);
-    const serialized = request.serialize();
-
-    const response = await axios.post(
-        QUERY_URL,
-        { bytes: Buffer.from(serialized).toString('hex') },
-        { headers: { 'X-API-Key': apiKey } }
-    );
+    --8<-- "code/protocol/queries/get-started/snippet-1.ts:30:42"
     ```
 
 8. **Decode the response** - parse the signed response and extract the result of the `eth_call` to display the token name
 
     ```ts
-    const queryResponse = QueryResponse.from(response.data.bytes);
-    const chainResponse = queryResponse.responses[0].response as EthCallQueryResponse;
-    const name = eth.eth.abi.decodeParameter('string', chainResponse.results[0]);
-
-    console.log("\n\nParsed chain response:");
-    console.log(chainResponse);
-    console.log('\nToken name:', name);
+    --8<-- "code/protocol/queries/get-started/snippet-1.ts:44:51"
     ```
 
 ???- code "Complete `query.ts`"
     ```ts
-    import {
-    EthCallQueryRequest,
-    EthCallQueryResponse,
-    PerChainQueryRequest,
-    QueryRequest,
-    QueryResponse,
-    } from '@wormhole-foundation/wormhole-query-sdk';
-    import axios from 'axios';
-    import * as eth from 'web3';
-
-    const QUERY_URL = 'https://testnet.query.wormhole.com/v1/query';
-    const RPC = 'https://ethereum-sepolia.rpc.subquery.network/public';
-    const CHAIN_ID = 10002; // Sepolia
-    const TOKEN = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'; // USDC Sepolia
-    const DATA = '0x06fdde03'; // function selector for `name()`
-
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) throw new Error('API_KEY is not set in your environment');
-
-    (async () => {
-
-    const latestBlock = (
-        await axios.post(RPC, {
-        method: 'eth_getBlockByNumber',
-        params: ['latest', false],
-        id: 1,
-        jsonrpc: '2.0',
-        })
-    ).data?.result?.number;
-
-    const request = new QueryRequest(1, [
-        new PerChainQueryRequest(CHAIN_ID, new EthCallQueryRequest(latestBlock, [{ to: TOKEN, data: DATA }])),
-    ]);
-    const serialized = request.serialize();
-
-    const response = await axios.post(
-        QUERY_URL,
-        { bytes: Buffer.from(serialized).toString('hex') },
-        { headers: { 'X-API-Key': apiKey } }
-    );
-
-    const queryResponse = QueryResponse.from(response.data.bytes);
-    const chainResponse = queryResponse.responses[0].response as EthCallQueryResponse;
-    const name = eth.eth.abi.decodeParameter('string', chainResponse.results[0]);
-
-    console.log("\n\nParsed chain response:");
-    console.log(chainResponse);
-    console.log('\nToken name:', name);
-
-    })();
+    --8<-- "code/protocol/queries/get-started/snippet-1.ts"
     ```
 
 ## Execute the Query
