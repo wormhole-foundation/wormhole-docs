@@ -46,7 +46,7 @@ To request access, join the beta by filling out the [access form](https://forms.
     npm install -D tsx typescript
     ```
 
-## Run Your First Query
+## Create Your Query Script 
 
 Using the Wormhole Query Proxy, you will run a lightweight script that queries the `name()` of a token contract on Ethereum Sepolia. The response you receive will be signed by the Guardian network and locally decoded.
 
@@ -107,7 +107,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
     --8<-- "code/protocol/queries/get-started/snippet-1.ts"
     ```
 
-## Execute the Query
+## Run Your First Query
 
 With your script in place, run the following command from your queries directory:
 
