@@ -101,15 +101,15 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
 
 1. Run the installation command in your terminal:
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
-```
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    ```
 
 2. Verify the NTT CLI is installed:
 
-```bash
-ntt --version
-```
+    ```bash
+    ntt --version
+    ```
 
 ## Update NTT CLI
 
@@ -150,7 +150,7 @@ This file contains your NTT configuration and starts with the selected network a
     }
     ```
 
-In the [deployment steps](#next-steps), you will add your supported chains, along with their token addresses, deployment modes, and any custom settings.
+In the deployment steps, you will add your supported chains, along with their token addresses, deployment modes, and any custom settings.
 
 ## Next Steps
 
