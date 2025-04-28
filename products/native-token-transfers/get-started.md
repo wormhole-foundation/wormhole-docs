@@ -16,8 +16,8 @@ If you are looking for a no-code experience to deploy on mainnet, you can explor
 
 Before you begin, make sure you have:
 
-- Node.js and npm installed
-- Bun installed
+- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+- [Bun installed](https://bun.sh/){target=\_blank}
 - A wallet private key with tokens on supported chains
 - ERC-20 or SPL tokens already deployed on the source and destination chains
 
