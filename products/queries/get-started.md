@@ -25,7 +25,7 @@ Before you begin, make sure you have the following:
 
 Wormhole Queries is in closed beta, but you can start building today.
 
-To access the Query Proxy, you’ll need an API key. This allows you to send requests and receive signed responses from the Guardian network.
+To access the Query Proxy, you’ll need an API key to authenticate when sending requests and receiving signed responses from the Guardian network.
 
 To request access, join the beta by filling out the [access form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}. You’ll receive an API key via email once approved.
 
