@@ -59,19 +59,19 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
 2. **Import the required modules** – bring in the SDK, Web3, and Axios to construct and send your query
 
     ```typescript
-    --8<-- "code/protocol/queries/get-started/snippet-1.ts:1:9"
+    --8<-- "code/products/queries/get-started/snippet-1.ts:1:9"
     ```
 
 3.  **Set up configuration variables** – define the query target, network RPC, token address, and function selector for your request
 
     ```ts
-    --8<-- "code/protocol/queries/get-started/snippet-1.ts:11:15"
+    --8<-- "code/products/queries/get-started/snippet-1.ts:11:15"
     ```
 
 4. **Load your API key** – access your key from the environment to authenticate requests to the Query Proxy
 
     ```ts
-    --8<-- "code/protocol/queries/get-started/snippet-1.ts:17:18"
+    --8<-- "code/products/queries/get-started/snippet-1.ts:17:18"
     ```
 
 5. **Define the main function** – use an `async` wrapper to structure your script and run query logic
@@ -87,24 +87,24 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
 6. **Fetch the latest block from your RPC** - Queries must reference a specific block to ensure Guardians verify data from the same state
 
     ```ts
-    --8<-- "code/protocol/queries/get-started/snippet-1.ts:21:28"
+    --8<-- "code/products/queries/get-started/snippet-1.ts:21:28"
     ```
 
 7. **Build and send the query** - construct a query that targets the specified contract and function, serialize it, and send it to the Guardian Query Proxy
 
     ```ts
-    --8<-- "code/protocol/queries/get-started/snippet-1.ts:30:42"
+    --8<-- "code/products/queries/get-started/snippet-1.ts:30:42"
     ```
 
 8. **Decode the response** - parse the signed response and extract the result of the `eth_call` to display the token name
 
     ```ts
-    --8<-- "code/protocol/queries/get-started/snippet-1.ts:44:51"
+    --8<-- "code/products/queries/get-started/snippet-1.ts:44:51"
     ```
 
 ???- code "Complete `query.ts`"
     ```ts
-    --8<-- "code/protocol/queries/get-started/snippet-1.ts"
+    --8<-- "code/products/queries/get-started/snippet-1.ts"
     ```
 
 ## Run Your First Query
