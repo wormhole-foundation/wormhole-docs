@@ -16,8 +16,8 @@ This guide helps you install the SDK, set up a minimal project, and explore key 
 
 Before you begin, make sure you have the following:
 
- - [Node.js and npm](){target=\_blank}
- - [TypeScript](){target=\_blank} 
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} 
  
 ## Set Up Your Project
 
