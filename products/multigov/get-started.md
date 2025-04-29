@@ -1,1 +1,47 @@
-TODO
+---
+title: Get Started
+description: 
+categories: Multigov, Transfer
+---
+
+# Get Started
+
+## Introduction
+
+MultiGov enables cross-chain governance for DAOs using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain — eliminating the need to bridge assets or rely on a single governance hub.
+
+This guide prepares you to deploy MultiGov contracts by installing the required dependencies and setting up your local environment. Once ready, you can follow EVM or Solana-specific deployment guides to integrate MultiGov with your governance token.
+
+## Request MultiGov Access
+
+MultiGov integrations are coordinated through [Tally](){target=\_blank}, a cross-chain governance platform that powers proposal creation, voting, and execution.
+
+To get started, fill out the integration [intake form](){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
+
+Once approved, proceed to the deployment guide for your preferred chain, EVM or Solana.
+
+## Prerequisites
+
+Before deployment, make sure you have the following:
+
+ - A governance token deployed on multiple chains (ERC-20 or SPL)
+ - Approval from the Tally intake process
+ - [Git](https://git-scm.com/downloads){target=\_blank}
+
+## Clone the MultiGov Repository
+
+To begin working with MultiGov contracts, clone the official repository and navigate into the project directory:
+
+```bash
+git clone https://github.com/wormhole-foundation/multigov.git
+cd multigov
+```
+
+This repository contains the contracts and configuration needed for both EVM and Solana-based deployments.
+
+## Next Steps
+
+You have now set up your environment and cloned the MultiGov repository. Continue to the deployment guide that matches your governance architecture:
+
+ - [Deploy on EVM](){target=\_blank} – set up and deploy MultiGov smart contracts to EVM-compatible chains
+ - [Deploy on Solana](){target=\_blank} – deploy the Solana staking program and configure spoke chain participation
