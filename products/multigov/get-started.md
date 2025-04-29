@@ -8,7 +8,7 @@ categories: Multigov, Transfer
 
 ## Introduction
 
-MultiGov enables cross-chain governance for DAOs using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain — eliminating the need to bridge assets or rely on a single governance hub.
+MultiGov enables cross-chain governance for DAOs using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
 
 This guide prepares you to deploy MultiGov contracts by installing the required dependencies and setting up your local environment. Once ready, you can follow EVM or Solana-specific deployment guides to integrate MultiGov with your governance token.
 
@@ -18,7 +18,7 @@ MultiGov integrations are coordinated through [Tally](){target=\_blank}, a cross
 
 To get started, fill out the integration [intake form](){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
 
-Once approved, proceed to the deployment guide for your preferred chain, EVM or Solana.
+Once approved, proceed to the deployment guide for your preferred chain, EVM, or Solana.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ git clone https://github.com/wormhole-foundation/multigov.git
 cd multigov
 ```
 
-This repository contains the contracts and configuration needed for both EVM and Solana-based deployments.
+This repository contains the contracts and configuration needed for EVM and Solana-based deployments.
 
 ## Next Steps
 
