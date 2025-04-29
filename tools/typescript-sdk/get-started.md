@@ -10,7 +10,7 @@ categories: Typescript-SDK
 
 The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols—including Token Bridge, CCTP, and Settlement—giving developers a consistent API across multiple chains.
 
-This guide helps you install the SDK, initialize a basic project, and run a minimal script to connect to a supported chain and retrieve its Wormhole chain ID.
+This guide helps you install the SDK, set up a minimal project, and explore key SDK capabilities by logging a Wormhole chain ID and inspecting a Token Bridge contract.
 
 ## Prerequisites
 
@@ -38,6 +38,8 @@ Before you begin, make sure you have the following:
     ```
 
 ## Try the SDK
+
+Explore two minimal examples to validate your setup and get familiar with the SDK—log a chain ID and inspect a deployed protocol contract.
 
 ### Log a Chain ID
 
@@ -73,7 +75,7 @@ The Wormhole TypeScript SDK provides a unified way to access metadata for suppor
 
 ### Inspect a Token Bridge Contract
 
-The SDK provides access to contract instances for Wormhole protocols like the Token Bridge. With just a few lines, you can inspect contract addresses and available functions.
+Access contract instances for Wormhole protocols like the Token Bridge. With just a few lines, you can inspect contract addresses and available functions.
 
 1. Create a new file named `token-bridge.ts`:
 
