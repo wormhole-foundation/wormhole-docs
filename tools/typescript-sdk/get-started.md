@@ -8,7 +8,7 @@ categories: Typescript-SDK
 
 ## Introduction
 
-The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It acts as a foundational toolkit that supports interaction with core Wormhole protocols—including Token Bridge, CCTP, and Settlement—giving developers a consistent API across multiple chains.
+The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols—including Token Bridge, CCTP, and Settlement—giving developers a consistent API across multiple chains.
 
 This guide helps you install the SDK, initialize a basic project, and run a minimal script to connect to a supported chain and retrieve its Wormhole chain ID.
 
@@ -49,7 +49,7 @@ The Wormhole TypeScript SDK provides a unified way to access metadata for suppor
     touch hello.ts
     ```
 
-2. Import the SDK, initializes it in `Testnet`, retrieve the context for Ethereum, and logs its Wormhole chain ID::
+2. Import the SDK, initialize it in `Testnet`, retrieve the context for Ethereum, and log its Wormhole chain ID:
 
     ```ts
     import { Wormhole } from "@wormhole-foundation/sdk";
@@ -73,15 +73,15 @@ The Wormhole TypeScript SDK provides a unified way to access metadata for suppor
 
 ### Inspect a Token Bridge Contract
 
-The SDK also provides access to contract instances for Wormhole protocols like the Token Bridge. You can inspect contract addresses and available functions with just a few lines.
+The SDK provides access to contract instances for Wormhole protocols like the Token Bridge. With just a few lines, you can inspect contract addresses and available functions.
 
-1. Create a new file names `token-bridge.ts`:
+1. Create a new file named `token-bridge.ts`:
 
     ```bash
     touch token-bridge.ts
     ```
 
-2. Initializes the SDK on Testnet, get the Ethereum chain context, and fetch the deployed Token Bridge contract to inspect its address and available functions:
+2. Initialize the SDK on Testnet, get the Ethereum chain context, and fetch the deployed Token Bridge contract to inspect its address and available functions:
 
     ```ts
     import { Wormhole } from "@wormhole-foundation/sdk";
