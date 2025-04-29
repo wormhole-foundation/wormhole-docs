@@ -54,12 +54,7 @@ The Wormhole TypeScript SDK provides a unified way to access metadata for suppor
 2. Import the SDK, initialize it in `Testnet`, retrieve the context for Ethereum, and log its Wormhole chain ID:
 
     ```ts
-    import { Wormhole } from "@wormhole-foundation/sdk";
-
-    const wh = await Wormhole.init("Testnet");
-    const chain = wh.getChain("Ethereum");
-
-    console.log("Wormhole chain ID for Ethereum:", chain.chainId);
+    --8<-- "code/tools/typescript-sdk/get-started/snippet-1.ts"
     ```
 
 3. Run the script:
@@ -86,14 +81,7 @@ Access contract instances for Wormhole protocols like the Token Bridge. You can 
 2. Initialize the SDK on Testnet, get the Ethereum chain context, and fetch the deployed Token Bridge contract to inspect its address and available functions:
 
     ```ts
-    import { Wormhole } from "@wormhole-foundation/sdk";
-
-    const wh = await Wormhole.init("Testnet");
-    const eth = wh.getChain("Ethereum");
-    const tokenBridge = await eth.getTokenBridge();
-
-    console.log("Token Bridge address:", tokenBridge.address);
-    console.log("Contract functions:", Object.keys(tokenBridge.contract.methods));
+    --8<-- "code/tools/typescript-sdk/get-started/snippet-2.ts"
     ```
 
 3. Run the script:
