@@ -39,7 +39,7 @@ Before you begin, make sure you have the following:
 
 ## Try the SDK
 
-Explore two minimal examples to validate your setup and get familiar with the SDK—log a chain ID and inspect a deployed protocol contract.
+Explore two minimal examples to validate your setup and familiarize yourself with the SDK: log a chain ID and inspect a deployed protocol contract.
 
 ### Log a Chain ID
 
@@ -75,7 +75,7 @@ The Wormhole TypeScript SDK provides a unified way to access metadata for suppor
 
 ### Inspect a Token Bridge Contract
 
-Access contract instances for Wormhole protocols like the Token Bridge. With just a few lines, you can inspect contract addresses and available functions.
+Access contract instances for Wormhole protocols like the Token Bridge. You can inspect contract addresses and available functions with just a few lines.
 
 1. Create a new file named `token-bridge.ts`:
 
