@@ -14,9 +14,9 @@ This guide prepares you to deploy MultiGov contracts by installing the required 
 
 ## Request MultiGov Access
 
-MultiGov integrations are coordinated through [Tally](){target=\_blank}, a cross-chain governance platform that powers proposal creation, voting, and execution.
+MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a cross-chain governance platform that powers proposal creation, voting, and execution.
 
-To get started, fill out the integration [intake form](){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
+To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
 
 Once approved, proceed to the deployment guide for your preferred chain, EVM, or Solana.
 
