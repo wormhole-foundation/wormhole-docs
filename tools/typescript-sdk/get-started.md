@@ -34,7 +34,7 @@ Before you begin, make sure you have the following:
 
     ```bash
     npm install @wormhole-foundation/sdk
-    npm install dotenv tsx
+    npm install tsx
     ```
 
 ## Try the SDK
@@ -45,10 +45,10 @@ Explore two minimal examples to validate your setup and familiarize yourself wit
 
 The Wormhole TypeScript SDK provides a unified way to access metadata for supported chains. One of the simplest ways to verify everything is working is to fetch and print a Wormhole chain ID.
 
-1. Create a new file named `hello.ts`:
+1. Create a new file named `chain-id.ts`:
 
     ```bash
-    touch hello.ts
+    touch chain-id.ts
     ```
 
 2. Import the SDK, initialize it in `Testnet`, retrieve the context for Ethereum, and log its Wormhole chain ID:
@@ -60,7 +60,7 @@ The Wormhole TypeScript SDK provides a unified way to access metadata for suppor
 3. Run the script:
 
     ```bash
-    npx tsx hello.ts
+    npx tsx chain-id.ts
     ```
 
 ???- code "Expected output"
@@ -78,11 +78,13 @@ Access contract instances for Wormhole protocols like the Token Bridge. You can 
     touch token-bridge.ts
     ```
 
-2. Initialize the SDK on Testnet, get the Ethereum chain context, and fetch the deployed Token Bridge contract to inspect its address and available functions:
+2. Initialize the SDK on mainnet, get the Ethereum chain context, and fetch the deployed Token Bridge contract:
 
     ```ts
     --8<-- "code/tools/typescript-sdk/get-started/snippet-2.ts"
     ```
+
+    This will return a fully initialized `TokenBridge` context for the specified chain. The object includes the contract address, connected contract instance, and related protocol components.
 
 3. Run the script:
 
@@ -91,8 +93,8 @@ Access contract instances for Wormhole protocols like the Token Bridge. You can 
     ```
 
 ???- code "Expected output"
-    ```bash
-    Wormhole chain ID for Ethereum: 2
+    ```json
+    --8<-- "code/tools/typescript-sdk/get-started/snippet-3.json"
     ```
 
 ## Next Steps

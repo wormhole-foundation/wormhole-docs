@@ -1,0 +1,26 @@
+Token Bridge address: EvmTokenBridge {
+  network: 'Mainnet',
+  chain: 'Ethereum',
+  provider: JsonRpcProvider {},
+  contracts: {
+    coreBridge: '0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B',
+    tokenBridge: '0x3ee18B2214AFF97000D974cf647E7C347E8fa585',
+    nftBridge: '0x6FFd7EdE62328b3Af38FCD61461Bbfc52F5651fE',
+    relayer: '0x27428DD2d3DD32A4D7f7C497eAaa23130d894911',
+    tokenBridgeRelayer: '0xcafd2f0a35a4459fa40c0517e17e6fa2939441ca',
+    tbtc: undefined,
+    cctp: {
+      tokenMessenger: '0xbd3fa81b58ba92a82136038b25adec7066af3155',
+      messageTransmitter: '0x0a992d191deec32afe36203ad87d7d289a738f81',
+      wormholeRelayer: '0x4cb69FaE7e7Af841e44E1A1c30Af640739378bb2',
+      wormhole: '0xAaDA05BD399372f0b0463744C09113c137636f6a'
+    },
+    portico: {
+      porticoUniswap: '0x48b6101128C0ed1E208b7C910e60542A2ee6f476',
+      uniswapQuoterV2: '0x61fFE014bA17989E743c5F6cB21bF9697530B21e',
+      porticoPancakeSwap: '0x4db1683d60e0a933A9A477a19FA32F472bB9d06e',
+      pancakeSwapQuoterV2: '0xB048Bbc1Ee6b733FFfCFb9e9CeF7375518e25997'
+    }
+  },
+  ...
+}
