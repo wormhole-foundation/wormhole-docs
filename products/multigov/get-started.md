@@ -43,5 +43,5 @@ This repository contains the contracts and configuration needed for EVM and Sola
 
 You have now set up your environment and cloned the MultiGov repository. Continue to the deployment guide that matches your governance architecture:
 
- - [Deploy on EVM](){target=\_blank} – set up and deploy MultiGov smart contracts to EVM-compatible chains
- - [Deploy on Solana](){target=\_blank} – deploy the Solana staking program and configure spoke chain participation
+ - [Deploy on EVM](/docs/products/multigov/guides/deploy-to-evm){target=\_blank} – set up and deploy MultiGov smart contracts to EVM-compatible chains
+ - [Deploy on Solana](/docs/products/multigov/guides/deploy-to-solana){target=\_blank} – deploy the Solana staking program and configure spoke chain participation
