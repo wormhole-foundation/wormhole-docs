@@ -8,7 +8,7 @@ categories: NTT, Transfer
 
 ## Introduction
 
-Native Token Transfers (NTT) enable seamless cross-chain token movement without wrapping or liquidity pools. This guide will help you install the NTT CLI, scaffold your first NTT configuration, and prepare for deployment.
+The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
 
 If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}.
 
