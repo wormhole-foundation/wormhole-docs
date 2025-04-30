@@ -29,7 +29,7 @@ To interact with the system, you will use the Query Proxy, a hosted service that
 
 To request access, join the beta by filling out the [access form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}. Once approved, you will receive an API key via email.
 
-## Set Up Your Project
+## Install the Wormhole Queries SDK
 
 1. Create a new directory for your script and initialize a Node.js project:
 
@@ -46,7 +46,7 @@ To request access, join the beta by filling out the [access form](https://forms.
     npm install -D tsx typescript
     ```
 
-## Create Your Query Script 
+## Construct a Verifiable Query
 
 Using the Wormhole Query Proxy, you will run a lightweight script that queries the `name()` of a token contract on Ethereum Sepolia. The response you receive will be signed by the Guardian network and locally decoded.
 
@@ -107,7 +107,7 @@ Using the Wormhole Query Proxy, you will run a lightweight script that queries t
     --8<-- "code/products/queries/get-started/snippet-1.ts"
     ```
 
-## Run Your First Query
+## Execute and Validate the Response
 
 With your script in place, run the following command from your queries directory:
 
