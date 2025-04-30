@@ -31,7 +31,7 @@ To request access, join the beta by filling out the [access form](https://forms.
 
 ## Set Up Your Project
 
-1. Create a new directory for your script and initialize a `Node.js` project:
+1. Create a new directory for your script and initialize a Node.js project:
 
     ```bash
     mkdir queries
