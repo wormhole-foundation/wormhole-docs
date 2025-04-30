@@ -1,10 +1,10 @@
 ---
-title: Get Started
+title: Get Started with Queries
 description: Run your first cross-chain, verifiable query with the Wormhole Queries SDK and Proxy, using eth_call to fetch token metadata.
 categories: Queries
 ---
 
-# Get Started
+# Get Started with Queries
 
 ## Introduction
 
