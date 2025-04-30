@@ -1,6 +1,6 @@
 ---
 title: Get Started with NTT
-description: Set up your environment, install the NTT CLI, and scaffold your first cross-chain token configuration for deployment.
+description: Install the NTT CLI, deploy test tokens on EVM or Solana, and scaffold a project to integrate NTT into your cross-chain app.
 categories: NTT, Transfer
 ---
 
