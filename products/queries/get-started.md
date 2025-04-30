@@ -10,7 +10,7 @@ categories: Queries
 
 [Queries](/docs/products/queries/overview) lets you fetch on-chain data from supported blockchains using `eth_call`-style requests, without submitting transactions or paying gas. The Guardian network signs the result, making it verifiable and suitable for use on-chain.
 
-This guide walks you through requesting an API key, constructing your first query using the Wormhole Query SDK, and decoding the result.
+This guide walks you through requesting an API key, constructing your first query using the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank}, and decoding the result.
 
 ## Prerequisites
 
