@@ -132,9 +132,17 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
         ntt init Testnet
         ```
 
-    This file contains your NTT configuration and starts with the selected network after initialization. 
+    This file contains your NTT configuration and starts with the selected network after initialization.
 
-    ???- code "Example `deployment.json` for testnet"
+    === "Mainnet"
+        ```json
+        {
+            "network": "Mainnet",
+            "chains": {}
+        }
+        ```
+
+    === "Testnet"
         ```json
         {
             "network": "Testnet",
