@@ -8,18 +8,18 @@ import {
 import axios from 'axios';
 import * as eth from 'web3';
 
-const QUERY_URL = 'https://testnet.query.wormhole.com/v1/query';
-const RPC = 'https://ethereum-sepolia.rpc.subquery.network/public';
-const CHAIN_ID = 10002; // Sepolia
-const TOKEN = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'; // USDC Contract on Sepolia
-const DATA = '0x06fdde03'; // function selector for `name()`
+const query_url = 'https://testnet.query.wormhole.com/v1/query';
+const rpc = 'https://ethereum-sepolia.rpc.subquery.network/public';
+const chain_id = 10002; // Sepolia
+const token = '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238'; // USDC Contract on Sepolia
+const data = '0x06fdde03'; // function selector for `name()`
 
 const apiKey = process.env.API_KEY;
 if (!apiKey) throw new Error('API_KEY is not set in your environment');
 
 (async () => {
   const latestBlock = (
-    await axios.post(RPC, {
+    await axios.post(rpc, {
       method: 'eth_getBlockByNumber',
       params: ['latest', false],
       id: 1,
@@ -29,14 +29,14 @@ if (!apiKey) throw new Error('API_KEY is not set in your environment');
 
   const request = new QueryRequest(1, [
     new PerChainQueryRequest(
-      CHAIN_ID,
-      new EthCallQueryRequest(latestBlock, [{ to: TOKEN, data: DATA }])
+      chain_id,
+      new EthCallQueryRequest(latestBlock, [{ to: token, data: data }])
     ),
   ]);
   const serialized = request.serialize();
 
   const response = await axios.post(
-    QUERY_URL,
+    query_url,
     { bytes: Buffer.from(serialized).toString('hex') },
     { headers: { 'X-API-Key': apiKey } }
   );
