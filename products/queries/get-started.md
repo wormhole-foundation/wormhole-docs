@@ -115,20 +115,9 @@ With your script in place, run the following command from your queries directory
 API_KEY=<INSERT_QUERIES_API_KEY> npx tsx query.ts
 ```
 
-???- code "Expected Output"
-    ```bash
-    Parsed chain response:
-    EthCallQueryResponse {
-    blockNumber: 8193548n,
-    blockHash: '0xef97290e043a530dd2cdf2d4c513397495029cdf2ef3e916746c837dadda51a8',
-    blockTime: 1745595132000000n,
-    results: [
-        '0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000045553444300000000000000000000000000000000000000000000000000000000'
-    ]
-    }
+The expected output should be similar to this:
 
-    Token name: USDC
-    ```
+--8<-- "code/products/queries/get-started/snippet-2.html"
 
 ## Next Steps
 
