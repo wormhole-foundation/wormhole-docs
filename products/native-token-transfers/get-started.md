@@ -4,7 +4,7 @@ description: Set up your environment, install the NTT CLI, and scaffold your fir
 categories: NTT, Transfer
 ---
 
-# Get Started
+# Get Started with NTT
 
 ## Introduction
 
@@ -145,8 +145,8 @@ This file contains your NTT configuration and starts with the selected network a
 ???- code "Example `deployment.json` for testnet"
     ```json
     {
-    "network": "Testnet",
-    "chains": {}
+        "network": "Testnet",
+        "chains": {}
     }
     ```
 
