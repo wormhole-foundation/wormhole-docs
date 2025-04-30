@@ -111,14 +111,6 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
     ntt --version
     ```
 
-## Update NTT CLI
-
-To update an existing NTT CLI installation, run the following command in your terminal:
-
-```bash
-ntt update
-```
-
 ## Initialize a New NTT Project
 
 Once the CLI is installed, scaffold a new project by running:
