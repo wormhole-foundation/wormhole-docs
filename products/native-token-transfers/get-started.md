@@ -1,5 +1,5 @@
 ---
-title: Get Started
+title: Get Started with NTT
 description: Set up your environment, install the NTT CLI, and scaffold your first cross-chain token configuration for deployment.
 categories: NTT, Transfer
 ---
