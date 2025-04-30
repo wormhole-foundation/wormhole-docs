@@ -124,8 +124,8 @@ The expected output should be similar to this:
 Now that you've successfully run your first verifiable query, you are ready to go deeper. Check out the following guides to build on what you've learned:
 
  - [Query Solana](https://github.com/wormhole-foundation/demo-queries-ts/blob/main/src/query_solana_stake_pool.ts){target=\_blank} – try fetching Solana stake pools to see how cross-chain queries apply beyond EVM
- - [Construct a Query](){target=\_blank} – understand how to build different query types using the SDK manually
- - [Verify a Query Response On-Chain](){target=\_blank} – use signed results in smart contracts
+ - [Construct a Query](/docs/products/queries/guides/construct-a-query){target=\_blank} – understand how to build different query types using the SDK manually
+ - [Verify a Query Response On-Chain](/docs/products/queries/guides/verify-response){target=\_blank} – use signed results in smart contracts
 
-Browse the [Supported Networks](){target=\_blank} to see where you can query today.
+Browse the [Supported Networks](/docs/products/queries/reference/supported-networks){target=\_blank} to see where you can query today.
 
