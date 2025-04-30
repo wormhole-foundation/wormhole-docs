@@ -113,34 +113,34 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
 
 ## Initialize a New NTT Project
 
-Once the CLI is installed, scaffold a new project by running:
+1. Once the CLI is installed, scaffold a new project by running:
 
-```bash
-ntt new my-ntt-project
-cd my-ntt-project
-```
-
-Then, initialize a new `deployment.json` file specifying the network:
-
-=== "Mainnet"
     ```bash
-    ntt init Mainnet
+    ntt new my-ntt-project
+    cd my-ntt-project
     ```
 
-=== "Testnet"
-    ```bash
-    ntt init Testnet
-    ```
+2. Initialize a new `deployment.json` file specifying the network:
 
-This file contains your NTT configuration and starts with the selected network after initialization. 
+    === "Mainnet"
+        ```bash
+        ntt init Mainnet
+        ```
 
-???- code "Example `deployment.json` for testnet"
-    ```json
-    {
-        "network": "Testnet",
-        "chains": {}
-    }
-    ```
+    === "Testnet"
+        ```bash
+        ntt init Testnet
+        ```
+
+    This file contains your NTT configuration and starts with the selected network after initialization. 
+
+    ???- code "Example `deployment.json` for testnet"
+        ```json
+        {
+            "network": "Testnet",
+            "chains": {}
+        }
+        ```
 
 In the deployment steps, you will add your supported chains, their token addresses, deployment modes, and any custom settings.
 
