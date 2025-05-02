@@ -1,10 +1,10 @@
 ---
-title: Get Started
+title: Get Started with the Typescript SDK
 description: Install the Wormhole TypeScript SDK, initialize a basic project, and connect to supported chains using a minimal cross-chain script.
 categories: Typescript-SDK
 ---
 
-# Get Started
+# Get Started with the Typescript SDK
 
 ## Introduction
 
