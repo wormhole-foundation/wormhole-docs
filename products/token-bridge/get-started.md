@@ -92,6 +92,8 @@ If successful, the expected output should be similar to this:
 
 --8<-- "code/products/token-bridge/get-started/snippet-3.html"
 
+To verify the transaction and view its details, copy the transaction hash from the output and paste it into [WormholeScan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+
 ## Next Steps
 
 Now that you've completed a manual cross-chain token transfer, explore these guides to continue building:
