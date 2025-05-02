@@ -1,12 +1,12 @@
 ---
 title: Get Started with Messaging
-description: TODO 
+description: Follow this guide to deploy Wormhole Solidity SDK-based message sender and receiver smart contracts and use them to send messages across chains.
 categories: Messaging, Transfer
 ---
 
 # Get Started with Messaging
 
-:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
+:simple-github: [Source code on GitHub](TODO: update with final repo address){target=\_blank}
 
 ## Introduction
 
@@ -27,16 +27,15 @@ Before you begin, make sure you have the following:
 1. Clone the demo repository:
 
     ```bash
-    git clone https://github.com/wormhole-foundation/demo-wormhole-messaging.git
+    git clone (TODO: add final repo address for cloning command)
     ```
 
 The demo repository includes implementations for JavaScript and TypeScript. This example uses the TypeScript implementation. 
 
-2. Navigate to the project directory, then the `typescript` directory:
+2. Navigate to the project directory:
 
     ```bash
     cd demo-wormhole-messaging
-    cd typescript
     ```
 
 2. Use the following commands to install Foundry dependencies:
