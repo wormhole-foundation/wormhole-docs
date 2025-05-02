@@ -58,3 +58,37 @@ Before you begin, make sure you have the following:
     touch transfer.ts helper.ts
     ```
 
+## Perform a Manual Token Transfer from Solana to Sui
+
+This example demonstrates a full manual token transfer using the Wormhole SDK. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
+
+Let’s start by defining the helper functions for signer and token setup.
+
+### Configure Signers and Utilities
+
+Create a `helper.ts` file to load private keys from environment variables, instantiate signers for Solana and Sui, and retrieve token decimals as needed.
+
+```ts
+--8<-- "code/products/token-bridge/get-started/snippet-1.ts"
+```
+
+### Define the Token Transfer Logic
+
+In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui.
+
+```ts
+--8<-- "code/products/token-bridge/get-started/snippet-2.ts"
+```
+
+### Execute the Token Transfer
+
+Once your script is ready and your `.env` file is configured, run the script to initiate and complete the transfer.
+
+```bash
+npx tsx transfer.ts
+```
+
+If successful, the expected output should be similar to this:
+
+--8<-- "code/products/token-bridge/get-started/snippet-3.html"
+
