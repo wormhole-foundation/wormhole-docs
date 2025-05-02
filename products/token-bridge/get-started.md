@@ -14,5 +14,13 @@ In this guide, you will use the Wormhole TypeScript SDK to perform a manual toke
 
 To understand how the protocol works, see the [Token Bridge overview](/docs/products/token-bridge/overview){target=/_blank}.
 
+## Prerequisites
+
+Before you begin, make sure you have the following:
+
+ - [Node.js and npm](){target=\_blank}
+ - A Solana wallet with [SOL on Testnet](https://faucet.solana.com/){target=\_blank}
+ - A Sui wallet with [SUI on Testnet](https://faucet.sui.io/){target=\_blank}
+
 
 
