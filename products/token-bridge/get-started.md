@@ -18,7 +18,7 @@ To understand how the protocol works, see the [Token Bridge overview](/docs/prod
 
 Before you begin, make sure you have the following:
 
- - [Node.js and npm](){target=\_blank}
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
  - A Solana wallet with [SOL on Testnet](https://faucet.solana.com/){target=\_blank}
  - A Sui wallet with [SUI on Testnet](https://faucet.sui.io/){target=\_blank}
 
