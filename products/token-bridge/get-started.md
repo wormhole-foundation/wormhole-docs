@@ -60,7 +60,7 @@ Before you begin, make sure you have the following:
 
 ## Perform a Manual Token Transfer from Solana to Sui
 
-This example demonstrates a full manual token transfer using the Wormhole SDK. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
+This example demonstrates a complete manual token transfer using the Wormhole SDK. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
 
 Let’s start by defining the helper functions for signer and token setup.
 
@@ -94,7 +94,7 @@ If successful, the expected output should be similar to this:
 
 ## Next Steps
 
-Now that you've successfully completed a manual cross-chain token transfer, explore these guides to continue building:
+Now that you've completed a manual cross-chain token transfer, explore these guides to continue building:
 
  - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank} – step through a full end-to-end transfer scenario
  - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank} – learn how to issue tokens that work across chains
