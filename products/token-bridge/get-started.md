@@ -92,3 +92,10 @@ If successful, the expected output should be similar to this:
 
 --8<-- "code/products/token-bridge/get-started/snippet-3.html"
 
+## Next Steps
+
+Now that you've successfully completed a manual cross-chain token transfer, explore these guides to continue building:
+
+ - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank} – step through a full end-to-end transfer scenario
+ - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank} – learn how to issue tokens that work across chains
+ - [Flow of a Transfer](/docs/products/token-bridge/concepts/transfer-flow){target=\_blank} – understand how messages move through the protocol
