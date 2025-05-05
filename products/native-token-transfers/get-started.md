@@ -23,7 +23,7 @@ Before you begin, make sure you have:
 
 ## Don’t Have a Token Yet?
 
-To use NTT, you must have a token already deployed on the source and destination chains. If you don’t have one, follow one of the quick guides below to deploy a basic test token.
+To use NTT, you must have a token already deployed on the source and destination chains. If you don’t have one, follow the quick guides below to deploy a basic test token.
 
 ???- interface "Deploy an ERC-20 Token on EVM"
     You can follow the scripts in the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a token contract on testnet.
