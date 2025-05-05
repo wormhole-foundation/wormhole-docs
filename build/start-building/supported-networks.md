@@ -136,7 +136,24 @@ To plan your integration:
 !!!note
     Settlement availability depends on the implementation. For example, [Mayan Swift](/docs/learn/transfers/settlement/architecture/#mayan-swift){target=\_blank} is mainnet-only, while others like [Liquidity Layer](/docs/learn/transfers/settlement/architecture/#wormhole-liquidity-layer){target=\_blank} support both mainnet and testnet. Refer to each implementation’s documentation for up-to-date deployment details.
 
-### Multigov
+### MultiGov
+
+| Blockchain          | Mainnet | Testnet | Devnet |
+|---------------------|---------|---------|--------|
+| Ethereum            | ✅      | ✅      | ✅      |
+| Solana (spoke only) | ✅      | ✅      | ✅      |
+| Optimism            | ✅      | ✅      | ✅      |
+| Base                | ✅      | ✅      | ✅      |
+| Sei                 | ✅      | ✅      | ✅      |
+| Arbitrum            | ✅      | ✅      | ✅      |
+| Moonbeam            | ✅      | ✅      | ✅      |
+| Polygon             | ✅      | ✅      | ✅      |
+| Avalanche           | ✅      | ✅      | ✅      |
+| Fantom              | ✅      | ✅      | ✅      |
+| BSC                 | ✅      | ✅      | ✅      |
+
+!!!note
+    MultiGov supports any EVM-compatible chain as a hub or spoke. Solana is currently supported only as a spoke chain.
 
 ## Supported Blockchains by Environment
 
