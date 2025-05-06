@@ -63,6 +63,33 @@ To plan your integration:
 
 ### NTT
 
+| Blockchain        | Mainnet | Testnet | Devnet |
+|-------------------|---------|---------|--------|
+| Ethereum          | ✅      | ✅      | ✅     |
+| Solana            | ✅      | ✅      | ✅     |
+| Arbitrum          | ✅      | ✅      | ❌     |
+| Avalanche         | ✅      | ✅      | ❌     |
+| Base              | ✅      | ✅      | ❌     |
+| Berachain         | ✅      | ✅      | ❌     |
+| Blast             | ✅      | ✅      | ❌     |
+| BNB Smart Chain   | ✅      | ✅      | ✅     |
+| Celo              | ✅      | ✅      | ❌     |
+| Fantom            | ✅      | ✅      | ❌     |
+| Gnosis            | ✅      | ✅      | ❌     |
+| Ink               | ✅      | ✅      | ❌     |
+| Kaia              | ✅      | ✅      | ❌     |
+| Karura            | ✅      | ✅      | ❌     |
+| Mantle            | ✅      | ✅      | ❌     |
+| Moonbeam          | ✅      | ✅      | ❌     |
+| Oasis             | ✅      | ✅      | ❌     |
+| Optimism          | ✅      | ✅      | ❌     |
+| Polygon           | ✅      | ✅      | ❌     |
+| Scroll            | ✅      | ✅      | ❌     |
+| SNAXchain         | ✅      | ✅      | ❌     |
+| Unichain          | ✅      | ✅      | ❌     |
+| World Chain       | ✅      | ✅      | ❌     |
+| X Layer           | ✅      | ✅      | ❌     |
+
 ### Token Bridge
 
 | Blockchain        | Mainnet | Testnet | Devnet |
