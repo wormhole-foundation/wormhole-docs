@@ -132,7 +132,7 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
         ntt init Testnet
         ```
 
-    The `deployment.json` file contains your NTT configuration and starts with the selected network after initialization.
+    After initialization, the `deployment.json` file contains your NTT configuration and starts with the selected network.
 
     === "Mainnet"
         ```json
@@ -154,9 +154,7 @@ In the deployment steps, you will add your supported chains, their token address
 
 ## Next Steps
 
-You're now ready to deploy your NTT token configuration to supported chains.
-
-Follow the guide that matches your token's target environment:
+You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
 
 - [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
 - [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
