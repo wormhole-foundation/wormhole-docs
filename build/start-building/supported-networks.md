@@ -31,35 +31,31 @@ To plan your integration:
 
 | Blockchain        | Mainnet | Testnet | Devnet |
 |-------------------|---------|---------|--------|
-| Ethereum          | ✅      | ✅      | ✅      |
-| BSC               | ✅      | ✅      | ❌      |
-| Polygon           | ✅      | ❌      | ❌      |
-| Avalanche         | ✅      | ✅      | ❌      |
-| Fantom            | ✅      | ✅      | ❌      |
-| Celo              | ✅      | ✅      | ❌      |
-| Moonbeam          | ✅      | ✅      | ❌      |
-| Solana            | ✅      | ✅      | ❌      |
-| Sui               | ✅      | ✅      | ❌      |
-| Aptos             | ✅      | ✅      | ❌      |
-| Base              | ✅      | ✅      | ❌      |
-| Arbitrum          | ✅      | ✅      | ❌      |
-| Optimism          | ✅      | ✅      | ❌      |
-| Kaia              | ✅      | ✅      | ❌      |
-| Scroll            | ✅      | ✅      | ❌      |
-| Blast             | ✅      | ✅      | ❌      |
-| X Layer           | ✅      | ✅      | ❌      |
-| Mantle            | ✅      | ✅      | ❌      |
-| World Chain       | ✅      | ✅      | ❌      |
-| Unichain          | ✅      | ✅      | ❌      |
-| Berachain         | ✅      | ❌      | ❌      |
-| Mezo              | ❌      | ✅      | ❌      |
-| Sepolia           | ❌      | ✅      | ❌      |
-| Arbitrum Sepolia  | ❌      | ✅      | ❌      |
-| Base Sepolia      | ❌      | ✅      | ❌      |
-| Optimism Sepolia  | ❌      | ✅      | ❌      |
-| Osmosis           | ❌      | ❌      | ✅      |
-| Wormchain         | ❌      | ❌      | ✅      |
-| Terra             | ❌      | ❌      | ✅      |
+| Ethereum          | ✅      | ✅      | ✅     |
+| Solana            | ✅      | ✅      | ❌     |
+| Aptos             | ✅      | ✅      | ❌     |
+| Arbitrum          | ✅      | ✅      | ❌     |
+| Avalanche         | ✅      | ✅      | ❌     |
+| Base              | ✅      | ✅      | ❌     |
+| Berachain         | ✅      | ❌      | ❌     |
+| Blast             | ✅      | ✅      | ❌     |
+| BSC               | ✅      | ✅      | ❌     |
+| Celo              | ✅      | ✅      | ❌     |
+| Fantom            | ✅      | ✅      | ❌     |
+| Kaia              | ✅      | ✅      | ❌     |
+| Mantle            | ✅      | ✅      | ❌     |
+| Mezo              | ❌      | ✅      | ❌     |
+| Moonbeam          | ✅      | ✅      | ❌     |
+| Optimism          | ✅      | ✅      | ❌     |
+| Osmosis           | ❌      | ❌      | ✅     |
+| Polygon           | ✅      | ❌      | ❌     |
+| Scroll            | ✅      | ✅      | ❌     |
+| Sui               | ✅      | ✅      | ❌     |
+| Terra             | ❌      | ❌      | ✅     |
+| Unichain          | ✅      | ✅      | ❌     |
+| World Chain       | ✅      | ✅      | ❌     |
+| Wormchain         | ❌      | ❌      | ✅     |
+| X Layer           | ✅      | ✅      | ❌     |
 
 ### NTT
 
