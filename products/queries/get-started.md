@@ -1,6 +1,6 @@
 ---
 title: Get Started with Queries
-description: Run your first cross-chain, verifiable query with the Wormhole Queries SDK and Proxy, using eth_call to fetch token metadata.
+description: Follow this guide to run your first multichain, verifiable query with the Wormhole Queries SDK and Proxy, using eth_call to fetch token metadata.
 categories: Queries
 ---
 
@@ -8,7 +8,7 @@ categories: Queries
 
 ## Introduction
 
-[Queries](/docs/products/queries/overview) lets you fetch on-chain data from supported blockchains using `eth_call`-style requests, without submitting transactions or paying gas. The Guardian network signs the result, making it verifiable and suitable for use on-chain.
+[Queries](/docs/products/queries/overview) lets you fetch on-chain data from supported blockchains using `eth_call`-style requests without submitting transactions or paying gas. The Guardian network signs the result, making it verifiable and suitable for use on-chain.
 
 This guide walks you through requesting an API key, constructing your first query using the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank}, and decoding the result.
 
@@ -25,7 +25,7 @@ Before you begin, make sure you have the following:
 
 Wormhole Queries is in closed beta, but you can start building today.
 
-To interact with the system, you will use the Query Proxy, a hosted service that receives your query, routes it to the appropriate chain, and returns a signed, verifiable response from the Guardian network. This allows you to fetch on-chain data without running your own infrastructure.
+To interact with the system, you will use the Query Proxy. This hosted service receives your query, routes it to the appropriate chain, and returns a signed, verifiable response from the Guardian network. The Query Proxy allows you to fetch on-chain data without infrastructure overhead.
 
 To request access, join the beta by filling out the [access form](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}. Once approved, you will receive an API key via email.
 
