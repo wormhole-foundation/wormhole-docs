@@ -6,7 +6,7 @@ categories: Messaging, Transfer
 
 # Get Started with Messaging
 
-:simple-github: [Source code on GitHub](TODO: update with final repo address){target=\_blank}
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
 
 ## Introduction
 
@@ -24,34 +24,22 @@ Before you begin, make sure you have the following:
 
 ## Install and Setup Project
 
-1. Clone the demo repository:
+1. Clone the demo repository and navigate to the project directory:
 
     ```bash
-    git clone (TODO: add final repo address for cloning command)
-    ```
-
-The demo repository includes implementations for JavaScript and TypeScript. This example uses the TypeScript implementation. 
-
-2. Navigate to the project directory:
-
-    ```bash
+    git clone https://github.com/wormhole-foundation/demo-wormhole-messaging.git
     cd demo-wormhole-messaging
     ```
 
-2. Use the following commands to install Foundry dependencies:
+2. Use the following commands to install Foundry and project dependencies:
 
     ```bash
     forge install wormhole-foundation/wormhole-solidity-sdk
     forge install foundry-rs/forge-std
-    ```
-
-3. Install the remaining dependencies using the following command:
-
-    ```bash
     npm install
     ```
 
-4. Use Foundry's Forge to compile the contracts in the repository:
+3. Use Foundry's Forge to compile the contracts in the repository:
 
     ```bash
     forge build
@@ -61,7 +49,7 @@ The demo repository includes implementations for JavaScript and TypeScript. This
 
     --8<-- "code/products/messaging/get-started/terminal-output-01.html"
 
-5. Run tests to ensure everything is functioning correctly before deployment:
+4. Run tests to ensure everything is functioning correctly before deployment:
 
     ```bash
     forge test
@@ -73,7 +61,7 @@ The demo repository includes implementations for JavaScript and TypeScript. This
 
 ## Prepare for Contract Deployment
 
-This project relies on two chain-agnostic smart contracts:
+This project relies on two [Wormhole Solidity SDK-based](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} smart contracts:
 
 - **MessageSender.sol** - sends a message to the target chain. You will deploy this contract to Avalanche Fuji
 - **MessageReceiver.sol** - receives the message on the target chain and logs it. You will deploy this contract to Celo Alfajores
@@ -155,7 +143,7 @@ Follow these steps to use your deployed contracts and send your first message:
 
     ![Contract events on Celo Alfajores Testnet Explorer](/docs/images/products/messaging/get-started/messaging-get-started01.webp)
 
-Congratulations! You've successfully sent and received a message across networks via smart contracts using Wormhole's Solidity SDK. 
+Congratulations! You've successfully sent and received a message across networks using Wormhole Solidity SDK-based smart contracts. 
 
 ## Next Steps
 
