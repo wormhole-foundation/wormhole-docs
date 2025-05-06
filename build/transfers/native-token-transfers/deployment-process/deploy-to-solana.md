@@ -167,6 +167,10 @@ Follow these steps to set the mint authority using the NTT CLI:
 
 ## Deploy and Configure NTT
 
+!!! warning
+    If deploying to Solana Mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file.
+
+
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
 
 1. **Deploy NTT to Solana** - run the appropriate command based on your deployment mode:
@@ -183,8 +187,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
         ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
         ```
 
-    !!! tip
-        The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
+    You can optionally add `--solana-priority-fee` to the script to increase the priority fee in microlamports. The default is `50000`.
 
 2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
