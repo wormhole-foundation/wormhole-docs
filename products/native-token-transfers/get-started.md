@@ -26,7 +26,40 @@ Before you begin, make sure you have:
 To use NTT, you must have a token already deployed on the source and destination chains. If you don’t have one, follow the quick guides below to deploy a basic test token.
 
 ???- interface "Deploy an ERC-20 Token on EVM"
-    You can follow the scripts in the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a token contract on testnet.
+    Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+
+    1. **Install Foundry** - install the [Forge CLI](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+
+    2. **Clone the repository** – fetch the example contract repository
+
+        ```bash
+        git clone https://github.com/wormhole-foundation/example-ntt-token.git
+        cd example-ntt-token
+        ```
+    
+    3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
+
+        ```bash
+        forge create --broadcast \
+            --rpc-url INSERT_RPC_URL \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            src/PeerToken.sol:PeerToken \
+            --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
+        ```
+
+    4. **Mint tokens** – send tokens to your address
+
+        ```bash
+        cast send INSERT_TOKEN_ADDRESS \
+            "mint(address,uint256)" \
+            INSERT_RECIPIENT_ADDRESS \
+            INSERT_AMOUNT_IN_WEI \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            --rpc-url INSERT_RPC_URL
+        ```
+
+    !!! note
+        This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
 
 
 ???- interface "Create and Mint SPL Tokens"
