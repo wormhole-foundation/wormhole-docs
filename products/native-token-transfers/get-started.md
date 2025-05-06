@@ -158,5 +158,5 @@ You're now ready to deploy your NTT token configuration to supported chains.
 
 Follow the guide that matches your token's target environment:
 
-- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm.md){target=\_blank}
-- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana.md){target=\_blank}
+- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
