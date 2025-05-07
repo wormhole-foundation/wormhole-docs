@@ -252,11 +252,11 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/build/transfers/connect/){target=\_blank}
 
--   :octicons-question-16:{ .lg .middle } **FAQs**
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
 
     ---
 
-    Find answers to common questions about Native Token Transfers.
+    Find answers to common questions about NTT.
 
     [:custom-arrow: NTT FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
