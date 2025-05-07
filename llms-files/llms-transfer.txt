@@ -5729,7 +5729,7 @@ Follow these steps to set the mint authority using the NTT CLI:
 ## Deploy and Configure NTT
 
 !!! warning
-    If deploying to Solana Mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file.
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file.
 
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
@@ -5813,11 +5813,11 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/build/transfers/connect/){target=\_blank}
 
--   :octicons-question-16:{ .lg .middle } **FAQs**
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
 
     ---
 
-    Find answers to common questions about Native Token Transfers.
+    Find answers to common questions about NTT.
 
     [:custom-arrow: NTT FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
