@@ -27,54 +27,33 @@ The messaging flow consists of several core components:
 
 ## Use Cases
 
-Wormhole Messaging enables a wide range of cross-chain applications. Below are common use cases and the core Wormhole stack components you can use to build them.
+Wormhole Messaging enables a wide range of cross-chain applications. Below are common use cases and the Wormhole stack components you can use to build them.
 
-### Finance and Trading
+- **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-- **Borrowing and Lending Across Chains** - **used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
 
-    - [**Messaging**](#){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfer**](#){target=\_blank} – transfer collateral as native assets
-    - [**Queries**](#){target=\_blank} – fetch rates and prices in real-time
+- **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-- **Real-Time Price Feeds and Trading Strategies** - **used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
-
-    - [**Messaging**](#){target=\_blank} – trigger trade execution
-    - [**Queries**](#){target=\_blank} – access real-time price feeds
-
-- **Oracle Networks** - **used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
-
-    - [**Messaging**](#){target=\_blank} – relay verified data
-    - [**Queries**](#){target=\_blank} – aggregate multi-chain sources
-
-### Protocol Infrastructure
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – aggregate multi-chain sources
 
 - **Gas Abstraction**
 
-    - [**Messaging**](#){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfer**](#){target=\_blank} – handle native token swaps
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/){target=\_blank} – handle native token swaps
 
 - **Bridging Intent Library**
 
-    - [**Messaging**](#){target=\_blank} – dispatch and execute intents
-    - [**Wormhole Settlement**](#){target=\_blank} - execute user-defined bridging intents
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - execute user-defined bridging intents
 
-### Application-Level Integrations
+- **Decentralized Social Platforms (e.g.,[Chingari](https://chingari.io/){target=\_blank})**
 
-- **Decentralized Social Platforms** - **Used by:** [Chingari](https://chingari.io/){target=\_blank}
-
-    - [**Messaging**](#){target=\_blank} – facilitate decentralized interactions
-    - [**Token Bridge**](#){target=\_blank} – enable tokenized rewards
-
-- **Memecoin Launchpads** 
-
-    - [**Messaging**](#){target=\_blank} – manage token distribution and claim processes
-    - [**Native Token Transfer**](#){target=\_blank} – move funds between chains
-
-- **Cross-Chain Staking** - **Used by:** [Lido](https://lido.fi/){target=\_blank}
-
-    - [**Messaging**](#){target=\_blank} – send governance and reward signals
-    - [**Native Token Transfer**](#){target=\_blank} – move staked assets
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – enable tokenized rewards
 
 ## Next Steps
 
