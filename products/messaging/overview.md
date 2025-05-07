@@ -27,58 +27,54 @@ The messaging flow consists of several core components:
 
 ## Use Cases
 
-- **Borrowing and Lending Across Chains** - Build with the following stack: 
+Wormhole Messaging enables a wide range of cross-chain applications. Below are common use cases and the core Wormhole stack components you can use to build them.
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – moves loan requests and liquidations across chains
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfers collateral as native assets
-    - [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
+### Finance and Trading
 
-    🏗️ **Used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
+- **Borrowing and Lending Across Chains** - **used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
 
-- **Real-Time Price Feeds and Trading Strategies** - Build with the following stack: 
+    - [**Messaging**](#){target=\_blank} – coordinate actions across chains
+    - [**Native Token Transfer**](#){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](#){target=\_blank} – fetch rates and prices in real-time
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – sends signals to execute trades
-    - [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches price feeds from oracles and trading platforms
+- **Real-Time Price Feeds and Trading Strategies** - **used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
 
-    🏗️ **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
+    - [**Messaging**](#){target=\_blank} – trigger trade execution
+    - [**Queries**](#){target=\_blank} – access real-time price feeds
 
-- **Decentralized Social Platforms** - Build with the following stack: 
+- **Oracle Networks** - **used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – facilitates decentralized interactions
-    - [**Token Bridge**](/docs/build/transfers/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
+    - [**Messaging**](#){target=\_blank} – relay verified data
+    - [**Queries**](#){target=\_blank} – aggregate multi-chain sources
 
-    🏗️ **Used by:** [Chingari](https://chingari.io/){target=\_blank}
+### Protocol Infrastructure
 
-- **Memecoin Launchpads** - Build with the following stack: 
+- **Gas Abstraction**
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – enables native asset transfers for seamless fundraising
+    - [**Messaging**](#){target=\_blank} – coordinate gas logic
+    - [**Native Token Transfer**](#){target=\_blank} – handle native token swaps
 
-- **Gas Abstraction** - Build with the following stack: 
+- **Bridging Intent Library**
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – routes gas fee payments across chains
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – facilitates native token conversion for gas payments
+    - [**Messaging**](#){target=\_blank} – dispatch and execute intents
+    - [**Wormhole Settlement**](#){target=\_blank} - execute user-defined bridging intents
 
-- **Bridging Intent Library** - Build with the following stack: 
+### Application-Level Integrations
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – enables predefined cross-chain actions and triggers.
-    - [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} - provides a framework for executing user-defined bridging intents
+- **Decentralized Social Platforms** - **Used by:** [Chingari](https://chingari.io/){target=\_blank}
 
-- **Oracle Networks** - Build with the following stack: 
+    - [**Messaging**](#){target=\_blank} – facilitate decentralized interactions
+    - [**Token Bridge**](#){target=\_blank} – enable tokenized rewards
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
-    - [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
+- **Memecoin Launchpads** 
 
-    🏗️ **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
+    - [**Messaging**](#){target=\_blank} – manage token distribution and claim processes
+    - [**Native Token Transfer**](#){target=\_blank} – move funds between chains
 
-- **Cross-Chain Staking** - Build with the following stack: 
+- **Cross-Chain Staking** - **Used by:** [Lido](https://lido.fi/){target=\_blank}
 
-    - [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfers staked assets natively between networks
-
-    🏗️ **Used by:** [Lido](https://lido.fi/){target=\_blank}
-
-
+    - [**Messaging**](#){target=\_blank} – send governance and reward signals
+    - [**Native Token Transfer**](#){target=\_blank} – move staked assets
 
 ## Next Steps
 
