@@ -12,14 +12,6 @@ MultiGov enables cross-chain governance for DAOs using Wormhole messaging. With 
 
 This guide prepares you to deploy MultiGov contracts by installing the required dependencies and setting up your local environment. Once ready, you can follow EVM or Solana-specific deployment guides to integrate MultiGov with your governance token.
 
-## Request Tally Access for MultiGov
-
-MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a cross-chain governance platform that powers proposal creation, voting, and execution.
-
-To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
-
-Once approved, proceed to the deployment guide for your preferred chain, EVM, or Solana.
-
 ## Prerequisites
 
 Before deployment, make sure you have the following:
@@ -27,6 +19,14 @@ Before deployment, make sure you have the following:
  - A governance token deployed on multiple chains (ERC-20 or SPL)
  - Applied to and been approved by the Tally intake process
  - [Git](https://git-scm.com/downloads){target=\_blank}
+
+## Request Tally Access for MultiGov
+
+MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a cross-chain governance platform that powers proposal creation, voting, and execution.
+
+To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
+
+Once approved, proceed to the deployment guide for your preferred chain, EVM, or Solana.
 
 ## Clone the MultiGov Repository
 
