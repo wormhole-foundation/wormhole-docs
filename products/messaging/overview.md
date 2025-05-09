@@ -57,4 +57,10 @@ Wormhole Messaging enables a wide range of cross-chain applications. Below are c
 
 ## Next Steps
 
-[timeline(wormhole-docs/.snippets/text/build/core-messaging/core-messaging-timeline.json)]
+### Interact with the Core Contracts
+
+[timeline(wormhole-docs/.snippets/text/products/messaging/overview/contracts-timeline.json)]
+
+### Interact with the Wormhole Relayer
+
+[timeline(wormhole-docs/.snippets/text/products/messaging/overview/relayers-timeline.json)]
