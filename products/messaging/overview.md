@@ -50,7 +50,7 @@ Wormhole Messaging enables a wide range of cross-chain applications. Below are c
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
     - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - execute user-defined bridging intents
 
-- **Decentralized Social Platforms (e.g.,[Chingari](https://chingari.io/){target=\_blank})**
+- **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
     - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – enable tokenized rewards
