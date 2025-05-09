@@ -1,30 +1,34 @@
 ---
 title: Queries Overview
-description: 
+description: Learn how Wormhole Queries enable smart contracts to fetch real-time, Guardian-verified data across multiple blockchains.
 categories: Queries
 ---
 
 # Queries Overview 
 
-Wormhole Queries offer on-demand access to Guardian-attested on-chain data. They allow smart contracts to fetch real-time, verifiable data, such as prices, rates, and liquidity, from across the multichain ecosystem.
+Queries provide on-demand access to Guardian-attested on-chain data. They allow smart contracts to fetch real-time, verifiable data, such as prices, rates, and liquidity, from across the multichain ecosystem.
 
 ## Key Features
 
 - **On-demand data access** – fetch price feeds, interest rates, and other data in real-time
-- **Guardian attested** – all data is signed by Wormhole Guardians for trustless validation
-- **Cross-chain ready** – eequest data on one chain, use it on another
-- **Smart contract integration** – results are delivered as VAAs, readable by smart contracts
-- **Chain agnostic** – works across supported EVM chains, Solana, Sui, and more
+- **Guardian attested** – all data is signed by [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} for trustless validation
+- **Cross-chain ready** – request data on one chain, use it on another
+- **Smart contract integration** – results are delivered as [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, readable by smart contracts
+- **Chain agnostic** – works across supported EVM chains, Solana, Sui, and [more](/docs/products/queries/reference/supported-networks/){target=\_blank}
 
 ## How It Works
 
+A query request follows a simple but robust lifecycle:
+
 1. An off-chain app sends a query to the Query Server via HTTPS
-2. The Query Server checks the request and shares it with Wormhole Guardians
-3. Guardians independently fetch the data, verify it, and sign the result
+2. The Query Server checks the request and shares it with [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}
+3. [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} independently fetch the data, verify it, and sign the result
 4. Once enough Guardians (2/3 quorum) return matching results, the Query Server aggregates and sends the final response
 5. The off-chain app submits this result to a smart contract, which verifies the Guardian signatures and uses the data
 
-The Query Server is a permissioned but trustless component. Most queries complete in under one second. If a query fails, Guardians retry for up to one minute. Requests can be batched to reduce on-chain overhead and support complex multi-chain operations.
+The Query Server is permissioned but trustless. Most queries resolve in under one second, and Guardians retry failed requests for up to one minute. To optimize performance, up to 255 queries can be batched together, supporting efficient multi-chain workflows.
+
+![The architecture flow of a query](/docs/images/products/queries/overview/overview-1.webp)
 
 ## Use Cases
 
@@ -59,4 +63,6 @@ Queries enable a wide range of cross-chain applications. Below are common use ca
 
 ## Next Steps
 
-[timeline(wormhole-docs/.snippets/text/build/core-messaging/core-messaging-timeline.json)]
+Follow these steps to get started with Queries:
+
+[timeline(wormhole-docs/.snippets/text/products/queries/queries-timeline.json)]
