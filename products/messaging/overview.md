@@ -32,7 +32,7 @@ Wormhole Messaging enables a wide range of cross-chain applications. Below are c
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/){target=\_blank} – transfer collateral as native assets
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – transfer collateral as native assets
     - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
