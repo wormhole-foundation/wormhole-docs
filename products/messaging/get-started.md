@@ -70,12 +70,12 @@ The `chains.json` configuration defines properties for supported chains, includi
 
 ### Encrypt Private Key
 
-Foundry supports multiple options for [creating a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank}. This example uses the `--mnemonic` option. As long as you have a decryption password to enter when prompted, you can use your preferred options when creating your Foundry keystore.
+Foundry supports multiple options for [creating a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank}. This example uses the `--privatekey` option. As long as you have a decryption password to enter when prompted, you can use your preferred options when creating your Foundry keystore.
 
 1. Create a Foundry keystore to encrypt your wallet private key using the following command: 
 
     ```bash
-    cast wallet import CELO_AVAX --mnemonic "INSERT_MNEMONIC_PHRASE"
+    cast wallet import CELO_AVAX --privatekey INSERT_PRIVATE_KEY
     ```
 
 2. Enter the password you wish to use to decrypt your private key at the prompt. You will not see the password in the terminal as you type:
