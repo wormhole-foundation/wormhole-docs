@@ -43,7 +43,7 @@ Wormhole Messaging enables a wide range of cross-chain applications. Below are c
 - **Gas Abstraction**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/){target=\_blank} – handle native token swaps
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – handle native token swaps
 
 - **Bridging Intent Library**
 
