@@ -21,7 +21,7 @@ The messaging flow consists of several core components:
 1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
 2. **Guardian Network** - Guardians observe the message, validate it, and generate a signed VAA
 3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
-4. **Target Chain (recipient contract)** - the Core Contract on the destination chain verifies the VAA and triggers the specified application logic
+4. **Target chain (recipient contract)** - the Core Contract on the destination chain verifies the VAA and triggers the specified application logic
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
