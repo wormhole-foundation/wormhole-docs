@@ -1,6 +1,7 @@
 ---
 title: Cross-Chain Token Transfers
 description: Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
+tutorial_badge: Intermediate
 ---
 
 # Create Cross-Chain Token Transfer Contracts

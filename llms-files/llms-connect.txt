@@ -1571,7 +1571,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Integrate Connect into a React DApp**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge beginner">Beginner</span>  **Integrate Connect into a React DApp**
 
     ---
 
@@ -1602,6 +1602,7 @@ Doc-Content: https://wormhole.com/docs/tutorials/connect/react-dapp/
 title: Integrate Connect into a React DApp Tutorial
 description: Learn how to use Wormhole Connect to transfers tokens cross-chain seamlessly between Sui and Avalanche Fuji with this step-by-step guide.
 categories: Connect, Transfer
+tutorial_badge: Beginner
 ---
 
 # Integrate Connect into a React DApp
