@@ -6,10 +6,15 @@ categories: Queries
 
 # Queries Overview 
 
-Queries enable smart contracts to fetch off-chain or cross-chain data in real time. Whether it’s price feeds, interest rates, or liquidity information, Queries deliver fast, verifiable responses, powering more reactive and data-informed applications across the multichain ecosystem.
+Wormhole Queries offer on-demand access to Guardian-attested on-chain data. They allow smart contracts to fetch real-time, verifiable data, such as prices, rates, and liquidity, from across the multichain ecosystem.
 
 ## Key Features
 
+- **On-demand data access** – fetch price feeds, interest rates, and other data in real-time
+- **Guardian attested** – all data is signed by Wormhole Guardians for trustless validation
+- **Cross-chain ready** – eequest data on one chain, use it on another
+- **Smart contract integration** – results are delivered as VAAs, readable by smart contracts
+- **Chain agnostic** – works across supported EVM chains, Solana, Sui, and more
 
 ## How It Works
 
