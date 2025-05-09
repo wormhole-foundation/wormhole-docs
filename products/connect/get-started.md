@@ -1,6 +1,6 @@
 ---
 title: Get Started with Connect
-description: TODO 
+description: Follow this guide to configure and use the Connect UI widget to easily add an intuitive, multichain asset transfer UI to your web applications.  
 categories: Connect, Transfer
 ---
 
@@ -10,7 +10,7 @@ categories: Connect, Transfer
 
 ## Introduction
 
-Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how-to configure the Connect widget, add it to a React application, and view the application locally.
+Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
 
 ## Prerequisites
 
@@ -18,10 +18,10 @@ Before you begin, make sure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
 
-- **Optional** - if you would like to send a testnet transfer using your demo application, you will also need the following:
+- (Optional) To test a transfer from your demo app, you'll need:
 
-    - **Developer wallet with Sui testnet tokens** - you can use the [Sui Testnet Faucet](https://faucet.sui.io/){target=\_blank} to obtain tokens
-    - **Developer wallet with Avalanche Fuji address** - to use as the recipient address; no tokens required
+    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}
+    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required)
 
 ## Install and Setup Project
 
@@ -58,14 +58,10 @@ Open the `App.tsx` file in your code editor of choice. You will see code similar
 
 The preceding sample code configures Connect by setting values inside `config` and `theme` as follows:
 
-- **Define the network** - options include `Mainnet`, `Testnet`, or `Devnet`
-- **Define chains to include** - this example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains
-- **Add a title to UI** - optional. If defined, it will render above the widget in the UI
-- **Define the theme** - this example sets mode to `dark` and adds a primary color
-
-For more `config` options, see the [Connect Data Configuration](/docs/products/connect/configuration/data/){target=\_blank} guide.
-
-For more `theme` options, see the [Connect Theme Configuration](/docs/products/connect/configuration/theme/){target=\_blank} guide.
+- **Defines the network** - options include `Mainnet`, `Testnet`, or `Devnet`
+- **Defines chains to include** - this example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains
+- **Adds a title to UI** - (optional) if defined, it will render above the widget in the UI
+- **Defines the theme** - this example sets the mode to `dark` and adds a primary color
 
 ## Interact with Connect
 
@@ -73,9 +69,8 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 ## Next Steps
 
+For more `config` options, see the [Connect Data Configuration](/docs/products/connect/configuration/data/){target=\_blank} guide.
+
+For more `theme` options, see the [Connect Theme Configuration](/docs/products/connect/configuration/theme/){target=\_blank} guide.
+
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
-
-
-
-
-
