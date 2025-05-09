@@ -1,6 +1,7 @@
 ---
-title: Wormhole Settlement
+title: Settlement
 description: Follow step-by-step tutorials to integrate Wormhole Settlement Routes using the SDK for seamless cross-chain swaps and efficient asset transfers.
+categories: Settlement, Transfer
 ---
 
 # Wormhole Settlement
@@ -11,7 +12,7 @@ This section provides hands-on tutorials to help you integrate Wormhole Settleme
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Integrate Wormhole Settlement Routes using the SDK**
+-   :octicons-repo-16:{ .lg .middle } **Integrate Mayan Swift Routes using the SDK**
 
     ---
 
