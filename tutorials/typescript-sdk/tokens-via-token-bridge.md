@@ -47,13 +47,19 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
+2. **Create a `.gitignore` file** - ensure your private key isn't accidentally exposed or committed to version control
+
+    ```bash
+    echo ".env" >> .gitignore
+    ```
+
+3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
 
     ```bash
     npm install @wormhole-foundation/sdk dotenv tsx
     ```
 
-3. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
+4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
 
     ```bash
     touch .env
@@ -70,7 +76,7 @@ In this section, we’ll guide you through initializing the project, installing 
     !!! note
         Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
 
-4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
+5. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
 
     1. Create the helpers file
 

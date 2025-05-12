@@ -269,8 +269,14 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         ```bash
         npm init -y
         ```
+
+    2. Create a `.gitignore` file to ensure your private key isn't accidentally exposed or committed to version control:
+
+    ```bash
+    echo ".env" >> .gitignore
+    ```
     
-    2. Install the necessary dependencies:
+    3. Install the necessary dependencies:
 
         ```bash
         npm install ethers dotenv readline-sync @types/readline-sync
