@@ -3465,11 +3465,13 @@ Wormhole supports many blockchains across mainnet, testnet, and devnet. Product 
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Blast | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | HyperEVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -3526,7 +3528,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnet. Product 
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 <!--SUPPORTED_BLOCKCHAINS_BY_PRODUCT-->
 --- END CONTENT ---
