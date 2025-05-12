@@ -258,6 +258,6 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: NTT FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>
