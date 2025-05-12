@@ -138,7 +138,7 @@ The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/in
     Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
 
-### Generate an NTT program key pair
+### Generate an NTT Program Key Pair
 
 Create a unique key pair for the NTT program. 
 
