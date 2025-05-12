@@ -8,6 +8,6 @@ categories: Reference
 
 Wormhole supports many blockchains across mainnet, testnet, and devnet. Product support varies by chain, so each table below lists which networks are compatible with a specific Wormhole product.
 
-## Supported Blockchains by Product
+## Supported chains by Product
 
 --8<-- 'text/build/start-building/supported-networks/supported-networks-by-product.md'
