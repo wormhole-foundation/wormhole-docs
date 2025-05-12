@@ -140,7 +140,7 @@ The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/in
 
 ### Generate an NTT Program Key Pair
 
-Create a unique key pair for the NTT program. 
+Create a unique key pair for the NTT program:
 
     ```bash
     solana-keygen grind --starts-with ntt:1 --ignore-case
