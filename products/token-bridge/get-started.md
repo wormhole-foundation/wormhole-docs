@@ -62,35 +62,29 @@ This example demonstrates a complete manual token transfer using the Token Bridg
 
 Start by defining helper functions for signer and token setup.
 
-### Configure Signers and Utilities
+1. Create a `helper.ts` file to load private keys from environment variables, instantiate signers for Solana and Sui, and retrieve token decimals as needed:
 
-Create a `helper.ts` file to load private keys from environment variables, instantiate signers for Solana and Sui, and retrieve token decimals as needed.
+    ```ts
+    --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
+    ```
 
-```ts
---8<-- "code/products/token-bridge/get-started/snippet-1.ts"
-```
+2. In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui:
 
-### Define the Token Transfer Logic
+    ```ts
+    --8<-- "code/products/token-bridge/get-started/snippet-2.ts"
+    ```
 
-In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui.
+3. Execute the script to initiate and complete the transfer:
 
-```ts
---8<-- "code/products/token-bridge/get-started/snippet-2.ts"
-```
+    ```bash
+    npx tsx transfer.ts
+    ```
 
-### Execute the Token Transfer
+    If successful, the expected output should be similar to this:
 
-Once your script is ready and your `.env` file is configured, run the script to initiate and complete the transfer.
+    --8<-- "code/products/token-bridge/get-started/snippet-3.html"
 
-```bash
-npx tsx transfer.ts
-```
-
-If successful, the expected output should be similar to this:
-
---8<-- "code/products/token-bridge/get-started/snippet-3.html"
-
-To verify the transaction and view its details, copy the transaction hash from the output and paste it into [WormholeScan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+To verify the transaction and view its details, copy the transaction hash from the output and paste it into [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
 ## Next Steps
 
