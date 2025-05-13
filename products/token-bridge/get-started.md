@@ -8,7 +8,7 @@ categories: Token-Bridge, Transfers
 
 ## Introduction
 
-Wormhole’s Token Bridge enables seamless cross-chain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
+Wormhole’s Token Bridge enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual token transfer from Solana to Sui. You will initiate the transfer on Solana, fetch the attestation signed by the Guardian network, and redeem the tokens on Sui.
 
