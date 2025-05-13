@@ -1,6 +1,6 @@
 ---
 title: Get Started with Multigov
-description: Follow this guide to set up your environment and request access to deploy MultiGov contracts for cross-chain DAO governance using Wormhole messaging.
+description: Follow this guide to set up your environment and request access to deploy MultiGov contracts for multichain DAO governance using Wormhole messaging.
 categories: Multigov
 ---
 
@@ -8,7 +8,7 @@ categories: Multigov
 
 ## Introduction
 
-MultiGov enables cross-chain governance for DAOs using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
+MultiGov enables multichain governance using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
 
 This guide prepares you to deploy MultiGov contracts by installing the required dependencies and setting up your local environment. Once ready, you can follow EVM or Solana-specific deployment guides to integrate MultiGov with your governance token.
 
@@ -22,7 +22,7 @@ Before deployment, make sure you have the following:
 
 ## Request Tally Access for MultiGov
 
-MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a cross-chain governance platform that powers proposal creation, voting, and execution.
+MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a multichain governance platform that powers proposal creation, voting, and execution.
 
 To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
 
