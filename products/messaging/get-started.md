@@ -10,7 +10,7 @@ categories: Messaging, Transfer
 
 ## Introduction
 
-Wormhole's messaging protocol simplifies sending data, triggering events, and initiating transactions across blockchain networks. This guide demonstrates configuring and deploying contracts to send messages from Avalanche Fuji to Celo Alfajores.   
+Wormhole's messaging protocol simplifies sending data, triggering events, and initiating transactions across blockchain networks. This guide demonstrates how to configure and deploy contracts to send messages from Avalanche Fuji to Celo Alfajores.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Before you begin, make sure you have the following:
 - [Testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank}
 - Wallet private key
 
-## Install and Setup Project
+## Install and Set Up Project
 
 1. Clone the demo repository and navigate to the project directory:
 
@@ -34,7 +34,6 @@ Before you begin, make sure you have the following:
 2. Use the following commands to install Foundry and project dependencies:
 
     ```bash
-    forge install wormhole-foundation/wormhole-solidity-sdk
     forge install foundry-rs/forge-std
     npm install
     ```
@@ -64,7 +63,7 @@ Before you begin, make sure you have the following:
 This project relies on two [Wormhole Solidity SDK-based](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} smart contracts:
 
 - **MessageSender.sol** - sends a message to the target chain. You will deploy this contract to Avalanche Fuji
-- **MessageReceiver.sol** - receives the message on the target chain and logs it. You will deploy this contract to Celo Alfajores
+- **MessageReceiver.sol** - receives and logs the message on the target chain. You will deploy this contract to Celo Alfajores
 
 The `chains.json` configuration defines properties for supported chains, including the Wormhole relayer addresses, RPC URLs, and chain IDs, and provides this information to the deployment scripts when you run them.
 
@@ -102,7 +101,7 @@ Follow these steps to deploy `MessageSender.sol` to Avalanche Fuji:
 
     --8<-- "code/products/messaging/get-started/terminal-output-03.html"
 
-    The address you see in your terminal is the Avalance Fuji address for your deployed sender contract. Your deployed contract addresses are also output to the `deployedContracts.json` file.
+    The address you see in your terminal is the Avalanche Fuji address for your deployed sender contract. Your deployed contract addresses are also output to the `deployedContracts.json` file.
 
 ## Deploy Receiver Contract
 
@@ -121,7 +120,7 @@ Follow these steps to deploy `MessageReceiver.sol` to Celo Alforjes:
     --8<-- "code/products/messaging/get-started/terminal-output-04.html"
 
     - The Celo Alforjes address for your deployed receiver contract. Your deployed contract addresses are also output to the `deployedContracts.json` file
-    - Confirmation a `MessageSender` contract is now registered as authorized to send messages to your receiver contract. This address should match the sender contract you deployed to Avalanche Fuji
+    - Confirmation that a `MessageSender` contract is now registered as authorized to send messages to your receiver contract. This address should match the sender contract you deployed to Avalanche Fuji
 
 ## Send Your First Message
 
