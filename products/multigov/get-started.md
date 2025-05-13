@@ -10,7 +10,7 @@ categories: Multigov
 
 MultiGov enables multichain governance using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
 
-This guide prepares you to deploy MultiGov contracts by installing the required dependencies and setting up your local environment. Once ready, you can follow EVM or Solana-specific deployment guides to integrate MultiGov with your governance token.
+This guide prepares you to deploy MultiGov contracts by installing the required dependencies and setting up your local environment. Once ready, you can follow any of the supported chain-specific deployment guides to integrate MultiGov with your governance token.
 
 ## Prerequisites
 
