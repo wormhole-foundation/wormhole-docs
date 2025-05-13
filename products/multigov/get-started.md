@@ -18,7 +18,6 @@ Before deployment, make sure you have the following:
 
  - A governance token deployed on multiple chains (ERC-20 or SPL)
  - Applied to and been approved by the Tally intake process
- - [Git](https://git-scm.com/downloads){target=\_blank}
 
 ## Request Tally Access for MultiGov
 
