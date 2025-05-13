@@ -34,7 +34,6 @@ Before you begin, make sure you have the following:
 2. Use the following commands to install Foundry and project dependencies:
 
     ```bash
-    forge install foundry-rs/forge-std
     npm install
     ```
 
