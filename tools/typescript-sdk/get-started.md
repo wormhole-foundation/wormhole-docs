@@ -1,27 +1,29 @@
 ---
-title: Get Started with the Typescript SDK
-description: Install the Wormhole TypeScript SDK, initialize a basic project, and connect to supported chains using a minimal cross-chain script.
+title: Get Started with the TypeScript SDK
+description: Follow this guide to install the Wormhole TypeScript SDK, initialize a Wormhole instance, and add the platforms your integration supports. 
 categories: Typescript-SDK
 ---
 
-# Get Started with the Typescript SDK
+# Get Started with the TypeScript SDK
 
 ## Introduction
 
 The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Token Bridge, CCTP, and Settlement, giving developers a consistent API across multiple chains.
 
-This guide helps you install the SDK, set up a minimal project, and explore key SDK capabilities by logging a Wormhole chain ID and inspecting a Token Bridge contract.
+This guide helps you install the SDK, initialize a `Wormhole` instance to support your desired network and blockchain platforms, and return chain-specific information to verify successful initialization.
 
 ## Prerequisites
 
 Before you begin, make sure you have the following:
 
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} 
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
  
 ## Set Up Your Project
 
-1. **Initialize a new project directory** - create a directory and initialize a Node.js project
+Use the following commands to set up your project and install the Wormhole SDK:
+
+1. Create a directory and initialize a Node.js project:
 
     ```bash
     mkdir wh-ts-demo
@@ -29,78 +31,85 @@ Before you begin, make sure you have the following:
     npm init -y
     ```
 
-2. **Install the Wormhole TypeScript SDK and helpers** - add the SDK and common utilities
-
+2. Install the Wormhole TypeScript SDK and the `tsx` helper (for running TypeScript files):
 
     ```bash
     npm install @wormhole-foundation/sdk
-    npm install tsx
+    npm install --save-dev tsx typescript @types/node
     ```
 
-## Try the SDK
-
-Explore two minimal examples to validate your setup and familiarize yourself with the SDK: log a chain ID and inspect a deployed protocol contract.
-
-### Log a Chain ID
-
-The Wormhole TypeScript SDK provides a unified way to access metadata for supported chains. One of the simplest ways to verify everything is working is to fetch and print a Wormhole chain ID.
-
-1. Create a new file named `chain-id.ts`:
+3. (Optional) Create a `tsconfig.json` if you don't have one. You can generate a basic one using the following command:
 
     ```bash
-    touch chain-id.ts
+    npx tsc --init
     ```
 
-2. Import the SDK, initialize it in `Testnet`, retrieve the context for Ethereum, and log its Wormhole chain ID:
+    Make sure your `tsconfig.json` includes the following settings:
+
+    ```json
+    {
+        "compilerOptions": {
+            "target": "es2020", // Or newer
+            "module": "commonjs", // Or esnext if you configure package.json type: "module"
+            "esModuleInterop": true,
+            "forceConsistentCasingInFileNames": true,
+            "strict": true,
+            "skipLibCheck": true,
+            "resolveJsonModule": true // Often useful
+        }
+    }
+    ```
+
+## Initialize the SDK & Add Supported Platforms
+
+To use the SDK, you must first initialize the main `Wormhole` class. This involves specifying the network ("Mainnet," "Testnet," "Devnet," etc.) and the blockchain platforms your application will interact with.
+
+1. Create a new TypeScript file named `src/main.ts` in your project directory:
+
+    ```bash
+    mkdir src
+    touch src/main.ts
+    ```
+
+2. Add the following code to `src/main.ts` to initialize the SDK and use the `Wormhole` instance to return the chain ID and RPC for the chains this instance supports:
 
     ```ts
     --8<-- "code/tools/typescript-sdk/get-started/snippet-1.ts"
     ```
 
-3. Run the script:
+3. Save your changes to `src/main.ts` and run the script using the following command:
 
     ```bash
-    npx tsx chain-id.ts
+    npx tsx src/main.ts
     ```
 
-???- code "Expected output"
-    ```bash
-    Wormhole chain ID for Ethereum: 2
-    ```
+    You will see terminal output similar to the following:
 
-### Inspect a Token Bridge Contract
-
-Access contract instances for Wormhole protocols like the Token Bridge. You can inspect contract addresses and available functions with just a few lines.
-
-1. Create a new file named `token-bridge.ts`:
-
-    ```bash
-    touch token-bridge.ts
-    ```
-
-2. Initialize the SDK on mainnet, get the Ethereum chain context, and fetch the deployed Token Bridge contract:
-
-    ```ts
-    --8<-- "code/tools/typescript-sdk/get-started/snippet-2.ts"
-    ```
-
-    This will return a fully initialized `TokenBridge` context for the specified chain. The object includes the contract address, connected contract instance, and related protocol components.
-
-3. Run the script:
-
-    ```bash
-    npx tsx token-bridge.ts
-    ```
-
-???- code "Expected output"
-    ```json
-    --8<-- "code/tools/typescript-sdk/get-started/snippet-3.json"
-    ```
-
+    --8<-- "code/tools/typescript-sdk/get-started/terminal-01.html"
+    
 ## Next Steps
 
-Now that you’ve successfully used the SDK to interact with a supported chain and one of Wormhole’s core contracts, you’re ready to build more advanced functionality.
+Now that you’ve successfully installed the Wormhole TypeScript SDK and initialized a `Wormhole` instance, these guides will help you build on what you've accomplished:
 
- - [Understand Wormhole Chains](){target=\_blank} – view the list of supported networks and their Wormhole chain IDs
- - [Use the SDK for Transfers](){target=\_blank} – move tokens cross-chain using the Token Bridge protocol
- - [SDK Reference](){target=\_blank} – dive into the full API surface of the Wormhole SDK
+### Build SDK Helpers
+
+These guides demonstrate how to create items you can use across most or all Wormhole product integrations, such as transaction signers and encrypted key stores. You can create these helpers now; however, links to related helpers are included in the "Prerequisites" section for projects where they are used.
+
+- [Encrypt Private Keys with Foundry](TODO: WIP){target=\_blank} - use Foundry keystore to encrypt the private keys for your blockchain transaction signers. Examples throughout this documentation use encrypted private keys in alignment with industry best practices
+- [Sign EVM Transactions](TODO: WIP){target=\_blank} - create both front and backend signers for approving EVM environment blockchain transactions and add them to your Wormhole integration
+- [Sign Solana Transactions](TODO: WIP){target=\_blank} - create both front and backend signers for approving Solana environment blockchain transactions and add them to your Wormhole integration
+
+<!-- TODO What else should go here? -->
+
+### Get Started Guides
+
+These product-focused guides offer the TL;DR on using Wormhole products and include practical instructions and example code to get your integration off to the best start: 
+<!--TODO: Do we want them all here or just some right now? Update with final list, verify titles, add links and descriptions-->
+- [Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank} - follow this guide to deploy Wormhole-based message sender and receiver smart contracts and use them to send messages across chains
+- [Get Started with Token Bridge](TODO){target=\_blank}
+- [Get Started with Native Token Transfers (NTT)](TODO){target=\_blank}
+- [Get Started with CCTP Bridge](TODO){target=\_blank}
+
+
+
+
