@@ -30,16 +30,32 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 
 ![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/products/multigov/concepts/architecture/multigov-high-level.webp)
 
-
 ## Use Cases
 
-For a hands-on example, see the Treasury Proposal Tutorial.
+- **Cross-Chain Treasury Management**
+
+    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – vote on treasury actions from any supported chain  
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – transmit proposal execution to target chains
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – optionally move assets 
+
+- **Coordinated Protocol Upgrades Across Chains**
+
+    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – create a unified proposal to upgrade contracts across networks  
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – send upgrade instructions as VAAs and deliver execution payloads to target chains 
+    
+- **Progressive Decentralization for Multichain DAOs**
+
+    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – extend governance to new chains while preserving coordination  
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch on-chain vote weights from remote spokes  
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – aggregate results and execute actions via the hub 
+
+For a hands-on example, see the [Treasury Proposal Tutorial](/docs/products/multigov/tutorials/treasury-proposal/){target=\_blank}.
 
 ## Next Steps
 
 Here’s how to get started with MultiGov:
 
-- Submit an integration request{target=_blank} with Tally
+- Submit an integration request with Tally
 - Set up your local environment and clone the repo
 - Follow the appropriate deployment guide:
     - Deploy on EVM
