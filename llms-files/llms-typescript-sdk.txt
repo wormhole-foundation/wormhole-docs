@@ -6280,7 +6280,7 @@ Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
 --- BEGIN CONTENT ---
 ---
 title: Supported Networks
-description: Learn about the networks supported by each Wormhole product across mainnet, testnet, and devnet. Readers can click on each of the blockchain logos for more information.
+description: Learn about the networks each Wormhole product supports, and explore links to documentation, official websites, and block explorers.
 categories: Reference
 ---
 
@@ -6288,7 +6288,7 @@ categories: Reference
 
 Wormhole supports many blockchains across mainnet, testnet, and devnet. Product support varies by chain, so each table below lists which networks are compatible with a specific Wormhole product.
 
-## Networks by Product
+## Networks
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAINS_BY_PRODUCT-->
