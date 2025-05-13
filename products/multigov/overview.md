@@ -10,14 +10,15 @@ MultiGov is a multichain governance system that enables decentralized decision-m
 
 ## Key Features
 
-- **Hub-and-spoke model** - proposals originate on a hub chain and are voted on by participants across spoke chains. A hub chain is where the governance state lives, while the spoke chains can be considered extensions of governance that allow for participation by token holders on other chains
-- **Multichain governance** – token holders on any integrated chain can create, vote on, and execute proposals from any supported chain
-- **Secure vote aggregation** - votes from all chains are collected and tallied on the hub, checkpoints and query validations prevent double voting and ensure synchronized data
+MultiGov expands DAO governance across blockchains, increasing participation, improving security with Wormhole messaging, and enabling unified decision-making at scale. Key features include:
+
+- **Hub-and-spoke model** - proposals are created on a central hub chain and voted on from spoke chains, where governance tokens live
+- **Multichain governance** – token holders can vote and execute proposals from any supported chain
+- **Secure vote aggregation** - vote weights are checkpointed and verified to prevent double voting
 - **Cross-chain proposal execution** - approved proposals can be executed across multiple chains
-- **Wormhole integration** - secure and reliable cross-chain communication
 - **Flexible architecture** - can integrate with any Wormhole-supported blockchain
 - **Upgradeable and extensible** – supports upgrades across components while preserving vote history and system continuity
-- **Backed by Tally** – integrates seamlessly with [Tally](https://www.tally.xyz/get-started){target=\_blank} for proposal lifecycle management
+- **Backed by Tally** – proposal creation, voting, and execution are coordinated via  [Tally](https://www.tally.xyz/get-started){target=\_blank}
 
 ## How It Works
 
@@ -28,7 +29,6 @@ MultiGov is a multichain governance system that enables decentralized decision-m
 - **Consistent governance state** – ensures synchronized proposal data and vote weights across all chains involved
 
 ![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/products/multigov/concepts/architecture/multigov-high-level.webp)
-
 
 
 ## Use Cases
