@@ -92,4 +92,4 @@ Now that you've completed a manual multichain token transfer, explore these guid
 
  - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank} – step through a full end-to-end transfer scenario
  - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank} – learn how to issue tokens that work across chains
- - [Flow of a Transfer](/docs/products/token-bridge/concepts/transfer-flow){target=\_blank} – understand how messages move through the protocol
+ - [Flow of a Transfer](TODO){target=\_blank} – understand how messages move through the protocol
