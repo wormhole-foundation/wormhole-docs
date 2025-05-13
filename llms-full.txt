@@ -3535,7 +3535,7 @@ categories: Reference
 
 Wormhole supports many blockchains across mainnet, testnet, and devnet. Product support varies by chain, so each table below lists which networks are compatible with a specific Wormhole product.
 
-## Supported chains by Product
+## Networks by Product
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAINS_BY_PRODUCT-->
