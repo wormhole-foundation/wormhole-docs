@@ -45,7 +45,7 @@ import { getSigner, getTokenDecimals } from './helper';
 
   // Wait for the signed attestation from the Guardian network
   console.log('Fetching Attestation');
-  const timeout = 20 * 60 * 1000; // 20 minutes
+  const timeout = 5 * 60 * 1000; // 5 minutes
   await xfer.fetchAttestation(timeout);
 
   // Redeem the tokens on Sui
