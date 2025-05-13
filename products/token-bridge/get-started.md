@@ -60,7 +60,7 @@ Before you begin, make sure you have the following:
 
 This example demonstrates a complete manual token transfer using the Token Bridge and the TypeScript SDK. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
 
-Let’s start by defining the helper functions for signer and token setup.
+Start by defining helper functions for signer and token setup.
 
 ### Configure Signers and Utilities
 
