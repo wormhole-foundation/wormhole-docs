@@ -46,7 +46,7 @@ Use the following commands to set up your project and install the Wormhole SDK:
 
     Make sure your `tsconfig.json` includes the following settings:
 
-    ```json
+    ```json 
     {
         "compilerOptions": {
             "target": "es2020", // Or newer
@@ -73,7 +73,7 @@ To use the SDK, you must first initialize the main `Wormhole` class. This involv
 
 2. Add the following code to `src/main.ts` to initialize the SDK and use the `Wormhole` instance to return the chain ID and RPC for the chains this instance supports:
 
-    ```ts
+    ```ts title="src/main.ts"
     --8<-- "code/tools/typescript-sdk/get-started/snippet-1.ts"
     ```
 
