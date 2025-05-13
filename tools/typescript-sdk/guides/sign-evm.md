@@ -1,10 +1,10 @@
 ---
 title: Sign EVM Transactions
-description: Follow this guide to create browser wallet and script-based blockchain signers to approve EVM environment transactions for your Wormhole integration.
+description: Follow this guide to create a blockchain signer to approve EVM environment blockchain transactions for your Wormhole integration.
 categories: Typescript-SDK
 ---
 
-This guide demonstrates how to create and configure `Signer` objects compatible with the Wormhole TypeScript SDK for authorizing transactions on EVM environment blockchains. 
+This guide demonstrates how to create a `Signer` object compatible with the Wormhole TypeScript SDK for authorizing transactions on EVM environment blockchains. 
 
 The Wormhole TypeScript SDK uses a [`Signer` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/cdd396dce34ab5e1862f31cafe11b6be5c5ca715/core/definitions/src/signer.ts){target=\_blank} to interact consistently across different chains and wallet types. Functions that initiate on-chain actions will require a configured signer object. 
 
@@ -17,20 +17,38 @@ The interface includes the following main types of signers:
 
 Before you begin, make sure you have the following:
 
-- Completed the [Get Started with the Typescript SDK](tools/typescript-sdk/get-started){target=\_blank} guide including installation of Node.js, npm, and the Wormhole SDK
-- An RPC endpoint URL for each chain you want to support
-- Installed [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} to create a keystore to encrypt your private keys
+- Completed the [Get Started with the Typescript SDK](tools/typescript-sdk/get-started){target=\_blank} guide. This guide assumes you have already started a project, installed the Wormhole SDK, added supported platforms, and initialized Wormhole
+- An RPC endpoint URL for each EVM environment chain you want to support. Default public RPCs are built in for some read operations; however, you will want to provide an RPC URL for submitting transactions via backend signers
+- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} installed to encrypt your private key for use in the backend signer
 
-## Sign with a Browser Wallet
+## Encrypt Your Private Key
 
-The Wormhole SDK signer typically wraps or utilizes signer objects from the `ethers.js` library for EVM environment networks. Run the following command to install `ethers.js`:
+1. If you haven't already done so, run Foundryup from the root of your project to install the `cast` binary:
 
-```bash
-npm install ethers
-```
+    ```bash
+    foundryup
+    ```
 
-## Sign with an Encrypted Private Key
+2. Create a Foundry keystore to encrypt your wallet private key using the following command. The account name helps differentiate between multiple encrypted keystores, so make it descriptive such as the name of the environment ("EVM"), chain ("SEPOLIA"), or role ("EVM_SIGNER"):
+
+    ```bash
+    cast wallet import INSERT_ACCOUNT_NAME --privatekey INSERT_PRIVATE_KEY
+    ```
+
+3. Enter the password you wish to use to decrypt your private key at the prompt. You will not see the password in the terminal as you type:
+    
+    ```bash
+    Enter password: INSERT_DECRYPTION_PASSWORD
+    ```
+
+4. Select return to save your password, and you will see a success message confirming that the keystore was saved successfully. Keep this password. You will be prompted to enter it in the terminal when a wallet signature from this account is required
+
+Foundry supports multiple options for [creating a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank}. This example uses the `--privatekey` option. As long as you have a decryption password to enter when prompted, you can use your preferred options when creating your Foundry keystore.
+
+## Create EVM Signer Using Encrypted Keystore
 
 
-## Use Your Signer with the Wormhole TS SDK
+
+
+
 
