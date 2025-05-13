@@ -14,10 +14,7 @@ This guide prepares you to deploy MultiGov contracts by installing the required 
 
 ## Prerequisites
 
-Before deployment, make sure you have the following:
-
- - A governance token deployed on multiple chains (ERC-20 or SPL)
- - Applied to and been approved by the Tally intake process
+Before deployment, ensure you have a governance token deployed on multiple chains (ERC-20 or SPL).
 
 ## Request Tally Access for MultiGov
 
