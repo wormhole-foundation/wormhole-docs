@@ -1,7 +1,7 @@
 ---
 title: Get Started with Multigov
 description: Follow this guide to set up your environment and request access to deploy MultiGov contracts for cross-chain DAO governance using Wormhole messaging.
-categories: Multigov, Transfer
+categories: Multigov
 ---
 
 # Get Started with Multigov
