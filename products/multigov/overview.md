@@ -53,10 +53,6 @@ For a hands-on example, see the [Treasury Proposal Tutorial](/docs/products/mult
 
 ## Next Steps
 
-Here’s how to get started with MultiGov:
+Follow these steps to get started with MultiGov:
 
-- Submit an integration request with Tally
-- Set up your local environment and clone the repo
-- Follow the appropriate deployment guide:
-    - Deploy on EVM
-    - Deploy on Solana
+[timeline(wormhole-docs/.snippets/text/products/multigov/multigov-timeline.json)]
