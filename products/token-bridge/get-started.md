@@ -17,8 +17,8 @@ In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wor
 Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - A Solana wallet with [SOL on Testnet](https://faucet.solana.com/){target=\_blank}
- - A Sui wallet with [SUI on Testnet](https://faucet.sui.io/){target=\_blank}
+ - A Solana wallet with [testnet SOL](https://faucet.solana.com/){target=\_blank}
+ - A Sui wallet with [testnet SUI](https://faucet.sui.io/){target=\_blank}
 
 ## Configure Your Token Transfer Environment
 
@@ -56,21 +56,21 @@ Before you begin, make sure you have the following:
     touch transfer.ts helper.ts
     ```
 
-## Perform a Manual Token Transfer from Solana to Sui
+## Perform a Manual Token Transfer
 
-This example demonstrates a complete manual token transfer using the Token Bridge and the TypeScript SDK. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
+This example demonstrates a complete manual token transfer using the Token Bridge and the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
 
-Start by defining helper functions for signer and token setup.
+Start by defining helper functions for signer and token setup:
 
 1. Create a `helper.ts` file to load private keys from environment variables, instantiate signers for Solana and Sui, and retrieve token decimals as needed:
 
-    ```ts
+    ```ts title="helper.ts"
     --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
     ```
 
 2. In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui:
 
-    ```ts
+    ```ts title="transfer.ts"
     --8<-- "code/products/token-bridge/get-started/snippet-2.ts"
     ```
 
