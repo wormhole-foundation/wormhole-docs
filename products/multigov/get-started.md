@@ -16,6 +16,9 @@ This guide prepares you to deploy MultiGov contracts by installing the required 
 
 Before deployment, ensure you have a governance token deployed on multiple chains (ERC-20 or SPL).
 
+???- note "Don't have a token yet?"
+    The [NTT Get Started guide](/docs/products/native-token-transfers/get-started/#dont-have-a-token-yet){target=\_blank} includes steps for deploying test tokens on EVM and Solana using ERC-20 and SPL standards.
+
 ## Request Tally Access for MultiGov
 
 MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a multichain governance platform that powers proposal creation, voting, and execution.
