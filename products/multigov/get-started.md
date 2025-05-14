@@ -22,7 +22,7 @@ MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/expl
 
 To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
 
-Once approved, proceed to the deployment guide for your preferred chain, EVM, or Solana.
+Once approved, continue to the deployment guides to integrate MultiGov with your governance token on EVM chains, Solana, or other supported networks.
 
 ## Next Steps
 
