@@ -22,8 +22,8 @@ Depending on your use case, you can choose between several settlement routes. He
 
 | Integration Path               | Best for                              | Chains             | Technology         | Ease of Integration| 
 |--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
-| Liquidity Layer @span | DApps with flexible settlement and fast settlement finality| Testnet + Mainnet | Typescript | :green_circle: :white_circle: :white_circle: <br> Low | 
-| Mayan Swift @span              | Stablecoin transfers                              | Mainnet           | Typescript | :green_circle: :white_circle: :white_circle: <br> Low | 
+| Liquidity Layer @span | DApps with flexible settlement and fast settlement finality| Testnet + Mainnet | TypeScript | :green_circle: :white_circle: :white_circle: <br> Low | 
+| Mayan Swift @span              | Stablecoin transfers                              | Mainnet           | TypeScript | :green_circle: :white_circle: :white_circle: <br> Low | 
 
 ::end-spantable::
 
