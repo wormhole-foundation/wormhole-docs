@@ -8,7 +8,7 @@ categories: Settlement, Transfer
 
 ## Introduction
 
-Wormhole Settlement enables fast, intent-based cross-chain asset transfers across multiple blockchains like Ethereum, Solana, Sui, and more. This page helps you choose the right integration path for your application and prepare your environment for development.
+[Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} enables fast, intent-based multichain asset transfers across multiple blockchains like Ethereum, Solana, Sui, and more. This page helps you choose the right integration path for your application and prepare your environment for development.
 
 Settlement offers multiple integration routes, each designed for different use cases, levels of complexity, and supported ecosystems.
 
@@ -24,8 +24,6 @@ Depending on your use case, you can choose between several settlement routes. He
 |--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
 | Liquidity Layer @span | DApps with flexible settlement and fast settlement finality| Testnet + Mainnet | Typescript | :green_circle: :white_circle: :white_circle: <br> Low | 
 | Mayan Swift @span              | Stablecoin transfers                              | Mainnet           | Typescript | :green_circle: :white_circle: :white_circle: <br> Low | 
-| MCTP @span        | Programmable cross-chain USDC payments using Circle CCTP | To be defined | Typescript | :green_circle: :green_circle: :white_circle: <br> Moderate | 
-| Solver Infra @span             | Liquidity providers fulfilling intents via Solana Matching Engine | Solana Devnet | Typescript, Shell | :green_circle: :green_circle: :white_circle: <br> Moderate| 
 
 ::end-spantable::
 
@@ -35,7 +33,7 @@ Depending on your use case, you can choose between several settlement routes. He
 
 Once you choose your integration path, you can follow the specific guide that matches your needs:
 
- - [Build on the Wormhole Liquidity Layer](){target=\_blank} – integrate with Wormhole’s chain abstraction layer for fast cross-chain applications
+ - [Build on the Wormhole Liquidity Layer](){target=\_blank} – integrate with Wormhole’s chain abstraction layer for fast multichain applications
  - [Run a Wormhole Settlement Solver](){target=\_blank} – initiate and operate a Solver node to participate in fulfilling cross-chain intents
  - [Understand the Settlement Architecture](){target=\_blank} – explore about the different swap protocols (Liquidity Layer, Mayan Swift, MCTP)
  - [Review Settlement FAQs](){target=\_blank} – refer to common questions about auctions, fallback behavior, and settlement guarantees
