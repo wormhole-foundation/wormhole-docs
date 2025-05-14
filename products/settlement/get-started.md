@@ -34,4 +34,4 @@ Depending on your use case, you can choose between different settlement routes. 
 Once you've chosen a path, follow the corresponding guide to start building:
 
 - [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/){target=\_blank} – interact directly with routers for flexible protocol-level control
-- [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the TypeScript SDK for rapid integration
+- [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration
