@@ -1,6 +1,5 @@
 title: Guides
 nav:
- - 'Sign EVM Transactions': 'sign-evm.md'
  - 'Data Layouts': 'sdk-layout.md'
  - 'Building Protocols and Payloads': 'protocols-payloads.md'
  - 'VAAs and Protocol Messages': 'vaas-protocols.md'
