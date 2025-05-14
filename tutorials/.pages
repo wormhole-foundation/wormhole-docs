@@ -5,7 +5,7 @@ nav:
  - multichain-assets
  - multigov
 #  - native-token-transfers
-#  - settlement
+ - settlement
  - solidity-sdk
  - typescript-sdk
  - wormholescan
