@@ -16,8 +16,9 @@ This guide prepares you to deploy MultiGov contracts by installing the required 
 
 Before deployment, ensure you have a governance token deployed on multiple chains (ERC-20 or SPL).
 
-???- note "Don't have a token yet?"
-    The [NTT Get Started guide](/docs/products/native-token-transfers/get-started/#dont-have-a-token-yet){target=\_blank} includes steps for deploying test tokens on EVM and Solana using ERC-20 and SPL standards.
+!!! note
+     - On EVM chains, your governance token must implement the [`ERC20Votes`](https://docs.openzeppelin.com/contracts/4.x/governance#erc20votes){target=\_blank} standard and support `CLOCK_MODE` timestamps for compatibility with cross-chain voting
+     - On Solana, SPL tokens are supported and work with the [MultiGov staking program](/docs/products/multigov/concepts/architecture/#spoke-solana-staking-program){target=\_blank}, which handles vote weight and eligibility on-chain
 
 ## Request Tally Access for MultiGov
 
