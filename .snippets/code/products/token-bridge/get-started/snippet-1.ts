@@ -51,7 +51,7 @@ export async function getSigner<N extends Network, C extends Chain>(
 
 /**
  * Get the number of decimals for the token on the source chain.
- * This helps convert a user-friendly amount (e.g. '1') into raw units.
+ * This helps convert a user-friendly amount (e.g., '1') into raw units.
  */
 export async function getTokenDecimals<N extends Network>(
   wh: Wormhole<N>,
