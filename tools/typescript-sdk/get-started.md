@@ -38,7 +38,7 @@ Use the following commands to set up your project and install the Wormhole SDK:
     npm install --save-dev tsx typescript @types/node
     ```
 
-3. (Optional) Create a `tsconfig.json` if you don't have one. You can generate a basic one using the following command:
+3. Create a `tsconfig.json` if you don't have one. You can generate a basic one using the following command:
 
     ```bash
     npx tsc --init
@@ -60,9 +60,9 @@ Use the following commands to set up your project and install the Wormhole SDK:
     }
     ```
 
-## Initialize the SDK & Add Supported Platforms
+## Initialize the SDK and Add Supported Platforms
 
-To use the SDK, you must first initialize the main `Wormhole` class. This involves specifying the network ("Mainnet," "Testnet," "Devnet," etc.) and the blockchain platforms your application will interact with.
+To use the SDK, you must first initialize the main `Wormhole` class. This involves specifying the network (`Mainnet`, `Testnet`, or `Devnet`) and the blockchain platforms your application will interact with.
 
 1. Create a new TypeScript file named `src/main.ts` in your project directory:
 
@@ -77,7 +77,7 @@ To use the SDK, you must first initialize the main `Wormhole` class. This involv
     --8<-- "code/tools/typescript-sdk/get-started/snippet-1.ts"
     ```
 
-3. Save your changes to `src/main.ts` and run the script using the following command:
+3. Run the script using the following command:
 
     ```bash
     npx tsx src/main.ts
@@ -86,28 +86,32 @@ To use the SDK, you must first initialize the main `Wormhole` class. This involv
     You will see terminal output similar to the following:
 
     --8<-- "code/tools/typescript-sdk/get-started/terminal-01.html"
+
+## Fetch Chain Information
+
+Follow these steps to verify that the SDK is properly initialized for the chains you intend to support.
+
+1. Update `src/main.ts` as follows to retrieve the chain ID and RPC for the chains your project supports:
+
+    ```ts title="src/main.ts"
+    --8<-- "code/tools/typescript-sdk/get-started/snippet-2.ts"
+    ```
+
+2. Run the updated script again and you will see terminal output similar to the following:
+
+    --8<-- "code/tools/typescript-sdk/get-started/terminal-02.html"
     
 ## Next Steps
 
-Now that you’ve successfully installed the Wormhole TypeScript SDK and initialized a `Wormhole` instance, these guides will help you build on what you've accomplished:
-
-### Build SDK Helpers
-
-These guides demonstrate how to create items you can use across most or all Wormhole product integrations, such as transaction signers and encrypted key stores. You can create these helpers now; however, links to related helpers are included in the "Prerequisites" section for projects where they are used.
-
-- [Encrypt Private Keys with Foundry](TODO: WIP){target=\_blank} - use Foundry keystore to encrypt the private keys for your blockchain transaction signers. Examples throughout this documentation use encrypted private keys in alignment with industry best practices
-- [Sign EVM Transactions](TODO: WIP){target=\_blank} - create both front and backend signers for approving EVM environment blockchain transactions and add them to your Wormhole integration
-- [Sign Solana Transactions](TODO: WIP){target=\_blank} - create both front and backend signers for approving Solana environment blockchain transactions and add them to your Wormhole integration
+Now that you’ve successfully installed the Wormhole TypeScript SDK and initialized a `Wormhole` instance, these guides will help you build on what you've accomplished.
 
 <!-- TODO What else should go here? -->
-
-### Get Started Guides
+- basic messaging guide
+### Product Get Started Guides
 
 These product-focused guides offer the TL;DR on using Wormhole products and include practical instructions and example code to get your integration off to the best start: 
-<!--TODO: Do we want them all here or just some right now? Update with final list, verify titles, add links and descriptions-->
-- [Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank} - follow this guide to deploy Wormhole-based message sender and receiver smart contracts and use them to send messages across chains
+
 - [Get Started with Token Bridge](TODO){target=\_blank}
-- [Get Started with Native Token Transfers (NTT)](TODO){target=\_blank}
 - [Get Started with CCTP Bridge](TODO){target=\_blank}
 
 
