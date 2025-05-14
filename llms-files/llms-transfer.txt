@@ -596,7 +596,7 @@ The novel hub-and-spoke liquidity architecture relies on interoperable token sta
 
 After the Solana auction concludes, the appropriate instructions are called on the CCTP or NTT contract, initiating the transfer from Solana to the destination chain by burning/locking the asset on Solana and sequentially minting on the destination chain. Solvers rebalance their inventory on Solana using these interoperable token standards as well. Once the originating source chain transaction reaches finality and arrives to Solana, the solver can redeem the NTT or CCTP message, minting the inventory for use once again.
 
-By leveraging interoperable token standards like NTT, this model of liquidity facilitation for cross-chain intents can arbitrarily scale to any chain or ecosystem while preserving fully unified liquidity—eliminating the need for solver "buy-in" for new chain expansion. Additionally, this means new chains, even without proven traction, can access the same amount of liquidity for cross-chain intent fulfillment from day one of mainnet launch as they would if they were long-standing ecosystems with clear evidence of adoption — commonly overlooked by solvers who must aggressively prioritize high flow chains to due high opportunity costs. This includes new ecosystems without Centralized Exchange (CEX) enabled withdrawals.
+By leveraging interoperable token standards like NTT, this model of liquidity facilitation for cross-chain intents can arbitrarily scale to any chain or ecosystem while preserving fully unified liquidity. This removes the need for solver "buy-in" when expanding to new chains. Additionally, regardless of proven traction, new chains can access the same level of liquidity for cross-chain intent fulfillment from the first day of mainnet launch as long-standing ecosystems with clear evidence of adoption. This is often overlooked by solvers, who must aggressively prioritize high-flow chains due to high opportunity costs. The model also supports ecosystems without Centralized Exchange (CEX) enabled withdrawals.
 
 ### Protocol Flow: How It Works
 
@@ -801,7 +801,6 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- [**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
 - [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
 - [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
@@ -810,29 +809,32 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ::spantable::
 
-|                                | Criteria                              | Connect            | NTT                | Token Bridge       | Settlement         |
-|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|--------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-|                                | Token Transfers with Payloads         | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-|                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-| Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-|                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                |
-|                                | Intent-Based Execution                | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Fast Settlement                       | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |                    |
-| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                |:x:  |
-| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark: |:white_check_mark: |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
 </div>
 
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
 
 ## Real-time Data
 
@@ -5731,6 +5733,10 @@ Follow these steps to set the mint authority using the NTT CLI:
 
 ## Deploy and Configure NTT
 
+!!! warning
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file.
+
+
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
 
 1. **Deploy NTT to Solana** - run the appropriate command based on your deployment mode:
@@ -5747,8 +5753,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
         ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
         ```
 
-    !!! tip
-        The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
+    You can optionally add `--solana-priority-fee` to the script to increase the priority fee in microlamports. The default is `50000`.
 
 2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
@@ -5812,6 +5817,14 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
     Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/build/transfers/connect/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -9267,7 +9280,6 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- [**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
 - [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
 - [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
@@ -9276,29 +9288,32 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ::spantable::
 
-|                                | Criteria                              | Connect            | NTT                | Token Bridge       | Settlement         |
-|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|--------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-|                                | Token Transfers with Payloads         | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-|                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-| Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-|                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                |
-|                                | Intent-Based Execution                | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Fast Settlement                       | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |                    |
-| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                |:x:  |
-| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark: |:white_check_mark: |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
 </div>
 
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
 
 ## Real-time Data
 
