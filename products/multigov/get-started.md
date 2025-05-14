@@ -26,7 +26,7 @@ Once approved, continue to the deployment guides to integrate MultiGov with your
 
 ## Next Steps
 
-You have now set up your environment and cloned the MultiGov repository. Continue to the deployment guide that matches your governance architecture:
+You've now completed the initial setup and requested access through Tally. Continue to the deployment guide that matches your governance architecture:
 
  - [**Deploy on EVM Chains**](/docs/products/multigov/guides/deploy-to-evm){target=\_blank} – configure and deploy MultiGov smart contracts to EVM-compatible chains
  - [**Deploy on Solana**](/docs/products/multigov/guides/deploy-to-solana){target=\_blank} – launch the Solana staking program and configure spoke chain participation
