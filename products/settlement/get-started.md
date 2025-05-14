@@ -36,6 +36,6 @@ Depending on your use case, you can choose between several settlement routes. He
 Once you choose your integration path, you can follow the specific guide that matches your needs:
 
  - [Build on the Wormhole Liquidity Layer](){target=\_blank} – integrate with Wormhole’s chain abstraction layer for fast cross-chain applications
- - [Run a Wormhole Settlement Solver](){target=\_blank} – set up and operate a Solver node to participate in fulfilling cross-chain intents
- - [Understand the Settlement Architecture](){target=\_blank} – learn about the different swap protocols (Liquidity Layer, Mayan Swift, MCTP)
- - [Review Settlement FAQs](){target=\_blank} – see common questions about auctions, fallback behavior, and settlement guarantees
+ - [Run a Wormhole Settlement Solver](){target=\_blank} – initiate and operate a Solver node to participate in fulfilling cross-chain intents
+ - [Understand the Settlement Architecture](){target=\_blank} – explore about the different swap protocols (Liquidity Layer, Mayan Swift, MCTP)
+ - [Review Settlement FAQs](){target=\_blank} – refer to common questions about auctions, fallback behavior, and settlement guarantees
