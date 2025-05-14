@@ -8,22 +8,22 @@ categories: Settlement, Transfer
 
 ## Introduction
 
-[Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} enables fast, intent-based multichain asset transfers across multiple blockchains like Ethereum, Solana, Sui, and more. This page helps you choose the right integration path for your application and prepare your environment for development.
+[Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} enables fast, intent-based multichain asset transfers across supported blockchains like Ethereum, Solana, Sui, and more. It provides multiple integration paths tailored to different application needs, whether you're building a dApp, stablecoin swap interface, or participating as a solver.
 
-Settlement offers multiple integration routes, each designed for different use cases, levels of complexity, and supported ecosystems.
+This page compares two supported integration options, [Liquidity Layer](/docs/products/settlement/concepts/architecture/#wormhole-liquidity-layer){target=\_blank} and [Mayan Swift](/docs/products/settlement/concepts/architecture/#mayan-swift){target=\_blank}, to help you choose the best fit for your use case.
 
 ## Choose Your Integration Path
 
-Depending on your use case, you can choose between several settlement routes. Here's a quick comparison:
+Depending on your use case, you can choose between different settlement routes. Here's a quick comparison:
 
 <div markdown class="full-width">
 
 ::spantable::
 
-| Integration Path               | Best for                              | Chains             | Technology         | Ease of Integration| 
+| Integration Path               | Best for                              | Chains             | Typescript SDK Compatible | Flexibility| 
 |--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
-| Liquidity Layer @span | DApps with flexible settlement and fast settlement finality| Testnet + Mainnet | TypeScript | :green_circle: :white_circle: :white_circle: <br> Low | 
-| Mayan Swift @span              | Stablecoin transfers                              | Mainnet           | TypeScript | :green_circle: :white_circle: :white_circle: <br> Low | 
+| Liquidity Layer @span | dApps needing deeper control or protocol-level integration| Testnet + Mainnet | ❌ | :green_circle: :green_circle: :green_circle: <br> High | 
+| Mayan Swift @span              | dApps that want fast integration with minimal setup | Mainnet           | ✅ | :green_circle: :white_circle: :white_circle: <br> Low | 
 
 ::end-spantable::
 
