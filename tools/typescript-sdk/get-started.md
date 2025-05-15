@@ -101,18 +101,22 @@ Follow these steps to verify that the SDK is properly initialized for the chains
 
     --8<-- "code/tools/typescript-sdk/get-started/terminal-02.html"
     
+Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and initialized a `Wormhole` instance. Consider the following options to build on what you've accomplished.
+
 ## Next Steps
 
-Now that you’ve successfully installed the Wormhole TypeScript SDK and initialized a `Wormhole` instance, these guides will help you build on what you've accomplished.
+### Wormhole Basics
 
-<!-- TODO What else should go here? -->
-- basic messaging guide
+- [Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank} - follow this guide to use Wormhole's TypeScript SDK and core protocol to publish a multichain message and return transaction information with VAA identifiers
+
+- [Get Started with the Solidity SDK](/docs/tools/solidity-sdk/get-started.md) - follow this guide to deploy Wormhole Solidity SDK-based message sender and receiver smart contracts, publish a multichain message and return transaction information with VAA identifiers
+
 ### Product Get Started Guides
 
-These product-focused guides offer the TL;DR on using Wormhole products and include practical instructions and example code to get your integration off to the best start: 
+When you're ready to move on to token transfers, these guides offer the TL;DR on using Wormhole products and include practical instructions and example code to get your integration off to the best start: 
 
-- [Get Started with Token Bridge](TODO){target=\_blank}
-- [Get Started with CCTP Bridge](TODO){target=\_blank}
+- [Get Started with Token Bridge](TODO){target=\_blank} TODO: description
+- [Get Started with CCTP Bridge](TODO){target=\_blank} TODO: description
 
 
 
