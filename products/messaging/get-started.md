@@ -77,6 +77,6 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- [Get Started with the Solidity SDK](){target=\_blank} - follow this guide to create basic message sender and receiver contracts using the Wormhole Solidity SDK, deploy the contracts, and use them to send a message across blockchains
+- [Get Started with the Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank} - follow this guide to create basic message sender and receiver contracts using the Wormhole Solidity SDK, deploy the contracts, and use them to send a message across blockchains
 
-- [Fetch the Signed VAA](){target=\_blank} - whether your message is sent using core protocol or custom smart contracts, follow this guide to use your transaction information to fetch a signed VAA and decode the payload
+- [Fetch the Signed VAA](TODO WIP){target=\_blank} - whether your message is sent using core protocol or custom smart contracts, follow this guide to use your transaction information to fetch a signed VAA and decode the payload
