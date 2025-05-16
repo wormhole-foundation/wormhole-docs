@@ -11,7 +11,7 @@
     },
     {
         "title": "Choose a deployment path",
-        "content": "**Option A:** [Deploy to EVM](/docs/products/multigov/guides/deploy-to-evm/)  \n**Option B:** [Deploy to Solana](/docs/products/multigov/guides/deploy-to-solana/)",
+        "content": "**Option A:** [Deploy to EVM chains](/docs/products/multigov/guides/deploy-to-evm/)  \n**Option B:** [Deploy to Solana](/docs/products/multigov/guides/deploy-to-solana/)",
         "icon": ":fontawesome-solid-3:"
     }
 ]
