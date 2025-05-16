@@ -12,7 +12,7 @@ Wormhole's core functionality allows you to send any data packet from one suppor
 
 Before you begin, ensure you have the following:
 
-- Completed the [Get Started with the TypeScript SDK](/docs/tools/solidity-sdk/get-started){target=\_blank} guide. You should have a working project, the SDK installed, and an initialized `Wormhole` instance
+- Completed the [Get Started with the TypeScript SDK](/docs/tools/typescript-sdk/get-started){target=\_blank} guide. You should have a working project, the SDK installed, and an initialized `Wormhole` instance
 - [`ethers.js`](https://docs.ethers.org/v6/getting-started/){target=\_blank} installed (this example uses version 6)
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for encrypting your private key
 - A small amount of Sepolia ETH for gas fees. You can use the [Sepolia PoW Faucet](https://sepolia-faucet.pk910.de/){target=\_blank} if you need tokens
