@@ -11,7 +11,7 @@ Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, m
 ## Key Features
 
 - **Multichain messaging** - send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems
-- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs cross-chain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
+- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
 - **Composable architecture** - works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases
 
 ## How It Works
