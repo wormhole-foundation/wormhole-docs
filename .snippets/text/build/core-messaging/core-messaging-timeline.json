@@ -1,22 +1,27 @@
 [
     {
+        "title": "[Get Started](/docs/products/messaging/get-started/)",
+        "content": "Get Started with Messaging",
+        "icon": ":fontawesome-solid-1:"
+    },
+    {
         "title": "[Send Messages](/docs/products/messaging/guides/core-contracts/#sending-messages)",
         "content": "How-to send messages with Core Contracts.",
-        "icon": ":fontawesome-solid-1:"
+        "icon": ":fontawesome-solid-2:"
     },
     {
         "title": "[Interact with Wormhole Relayer](/docs/products/messaging/guides/wormhole-relayers/#receive-a-message)",
         "content": "How-to use Wormhole Relayer in your messaging workflow.",
-        "icon": ":fontawesome-solid-2:"
+        "icon": ":fontawesome-solid-3:"
     },
     {
         "title": "[Receive Messages](/docs/products/messaging/guides/core-contracts/#receiving-messages)",
         "content": "How-to verify and parse received messages.",
-        "icon": ":fontawesome-solid-3:"
+        "icon": ":fontawesome-solid-4:"
     },
     {
         "title": "[Validate the Emitter](/docs/products/messaging/guides/core-contracts/#validating-the-emitter)",
         "content": "How-to verify messages came from a trusted sender.",
-        "icon": ":fontawesome-solid-4:"
+        "icon": ":fontawesome-solid-5:"
     }
 ]
