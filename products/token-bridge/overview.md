@@ -1,13 +1,13 @@
 ---
 title: Token Bridge Overview
-description: With Wormhole Token Bridge, you can enable secure, cross-chain communication, build multichain apps, sync data, and coordinate actions across blockchains.
+description: With Wormhole Token Bridge, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
 categories: Token Bridge, Transfer
 ---
 
 
 # Token Bridge Overview
 
-The Token Bridge is a decentralized protocol designed for transferring tokens across various blockchain networks. It facilitates secure, efficient, and composable cross-chain token movement without the need for centralized exchanges, wrapped token custodians, or liquidity pools.
+The Token Bridge is a decentralized protocol designed for transferring tokens across various blockchain networks. It facilitates secure, efficient, and composable multichain token movement without the need for centralized exchanges, wrapped token custodians, or liquidity pools.
 
 Using a lock-and-mint architecture, the Token Bridge preserves token properties across chains, such as symbol, name, and precision. It also supports advanced features like Token Transfers with Messages, enabling smart contract interactions on the destination chain.
 
@@ -42,7 +42,7 @@ In short, the Token Bridge transfer process follows these key steps:
 
 Here are key use cases that highlight the power and versatility of the Token Bridge.
 
-- **Cross-Chain Rewards and Token Utility in Decentralized Platforms** (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
+- **Multichain Rewards and Token Utility in Decentralized Platforms** (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
 
     - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – transfer tokens between chains
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate the distribution and claiming processes of rewards
