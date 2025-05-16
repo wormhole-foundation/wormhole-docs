@@ -10,8 +10,13 @@
         "icon": ":fontawesome-solid-2:"
     },
     {
-        "title": "Choose a deployment path",
+        "title": "Choose a deployment network",
         "content": "**Option A:** [Deploy to EVM chains](/docs/products/multigov/guides/deploy-to-evm/)  \n**Option B:** [Deploy to Solana](/docs/products/multigov/guides/deploy-to-solana/)",
         "icon": ":fontawesome-solid-3:"
+    },
+    {
+        "title": "[Create a Treasury Management Proposal](/docs/products/multigov/tutorials/treasury-proposal/)",
+        "content": "Walk through a real example of creating and executing a cross-chain proposal.",
+        "icon": ":fontawesome-solid-check:"
     }
 ]

@@ -12,8 +12,8 @@ MultiGov is a multichain governance system that enables decentralized decision-m
 
 MultiGov expands DAO governance across blockchains, increasing participation, improving security with Wormhole messaging, and enabling unified decision-making at scale. Key features include:
 
-- **Hub-and-spoke model** - proposals are created on a central hub chain and voted on from spoke chains, where governance tokens live
 - **Multichain governance** – token holders can vote and execute proposals from any supported chain
+- **Hub-and-spoke model** - proposals are created on a central hub chain and voted on from spoke chains, where governance tokens live
 - **Secure vote aggregation** - vote weights are checkpointed and verified to prevent double voting
 - **Cross-chain proposal execution** - approved proposals can be executed across multiple chains
 - **Flexible architecture** - can integrate with any Wormhole-supported blockchain
@@ -22,11 +22,11 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 
 ## How It Works
 
-- **Hub chain** – manages proposal creation, vote aggregation, and execution
-- **Spoke chains** – handle local voting and checkpoints, enable token holders to vote and execute proposals on their native chain
-- **Secure messaging via Wormhole** – uses Wormhole VAAs to send and verify votes and execution data between chains
-- **Decentralized execution** – proposals can include actions on one or multiple spoke chains after hub-level approval
-- **Consistent governance state** – ensures synchronized proposal data and vote weights across all chains involved
+1. **Create proposal on hub chain**  - proposals are created on the hub chain, which manages the core governance logic, including vote aggregation and execution scheduling
+2. **Vote from spoke chains**  - token holders on spoke chains vote locally using `SpokeVoteAggregators`, with checkpoints tracking their voting power
+3. **Transmit votes via Wormhole**  - votes are securely sent to the hub using [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}, ensuring message integrity and cross-chain verification
+4. **Aggregate and finalize on hub**  - the hub chain receives votes from all spokes, tallies results, and finalizes the outcome once the voting period ends
+5. **Execute actions across chains**  - upon approval, proposals can trigger execution on one or more chains, again using [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} to deliver commands
 
 ![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/products/multigov/concepts/architecture/multigov-high-level.webp)
 
@@ -48,8 +48,6 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
     - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – extend governance to new chains while preserving coordination  
     - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch on-chain vote weights from remote spokes  
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – aggregate results and execute actions via the hub 
-
-For a hands-on example, see the [Treasury Proposal Tutorial](/docs/products/multigov/tutorials/treasury-proposal/){target=\_blank}.
 
 ## Next Steps
 
