@@ -15,7 +15,7 @@ Before you begin, ensure you have the following:
 - Completed the [Get Started with the TypeScript SDK](/docs/tools/typescript-sdk/get-started){target=\_blank} guide. You should have a working project, the SDK installed, and an initialized `Wormhole` instance
 - [`ethers.js`](https://docs.ethers.org/v6/getting-started/){target=\_blank} installed (this example uses version 6)
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for encrypting your private key
-- A small amount of Sepolia ETH for gas fees. You can use the [Sepolia PoW Faucet](https://sepolia-faucet.pk910.de/){target=\_blank} if you need tokens
+- A small amount of [Sepolia ETH](https://sepolia-faucet.pk910.de/){target=\_blank} for gas fees
 
 ## Encrypt Your Private Key
 
@@ -72,13 +72,13 @@ Now you can update `main.ts` to use your EVM signer, construct a message, and pu
 
     --8<-- "code/products/messaging/get-started/terminal01.html"
 
-3. Make a note of the transaction ID and VAA identifiers values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0x98698539762d93d0c152b893b521688c61ec0b48b16559c6f5e2a09b975b09ca?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages.
+3. Make a note of the transaction ID and VAA identifiers values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0x98698539762d93d0c152b893b521688c61ec0b48b16559c6f5e2a09b975b09ca?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages
 
 Congratulations! You've published your first multichain message using Wormhole's TypeScript SDK and core protocol functionality. Consider the following options to build upon what you've accomplished. 
 
 ## Next Steps
 
-- [Get Started with the Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank} - follow this guide to create basic message sender and receiver contracts using the Wormhole Solidity SDK, deploy the contracts, and use them to send a message across blockchains
+- [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank} - follow this guide to create basic message sender and receiver contracts using the Wormhole Solidity SDK, deploy the contracts, and use them to send a message across blockchains
 
-- [Fetch the Signed VAA](TODO WIP){target=\_blank} - whether your message is sent using core protocol or custom smart contracts, follow this guide to use your transaction information to fetch a signed VAA and decode the payload
+- [**Fetch the Signed VAA**](TODO WIP){target=\_blank} - whether your message is sent using core protocol or custom smart contracts, follow this guide to use your transaction information to fetch a signed VAA and decode the payload
 
