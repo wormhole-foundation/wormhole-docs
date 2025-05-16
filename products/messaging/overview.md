@@ -1,7 +1,7 @@
 ---
 title: Messaging Overview
 description: With Wormhole Messaging, you can enable secure, cross-chain communication, build multichain apps, sync data, and coordinate actions across blockchains.
-categories: Messaging, Transfer
+categories: Basics
 ---
 
 # Messaging Overview 
@@ -57,10 +57,4 @@ Wormhole Messaging enables a wide range of cross-chain applications. Below are c
 
 ## Next Steps
 
-### Interact with the Core Contracts
-
-[timeline(wormhole-docs/.snippets/text/products/messaging/overview/contracts-timeline.json)]
-
-### Interact with the Wormhole Relayer
-
-[timeline(wormhole-docs/.snippets/text/products/messaging/overview/relayers-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/products/messaging/overview/messaging-timeline.json)]
