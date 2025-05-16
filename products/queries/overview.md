@@ -18,15 +18,15 @@ Queries provide on-demand access to Guardian-attested on-chain data. They allow 
 
 ## How It Works
 
-A query request follows a simple but robust lifecycle:
+A query request follows a simple but robust lifecycle. The off-chain service responsible for handling requests is called the CCQ Server (Cross-Chain Query Server), also referred to as the Query Server throughout this documentation.
 
-1. An off-chain app sends a query to the Query Server via HTTPS
-2. The Query Server checks the request and shares it with [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}
+1. An off-chain app sends a query to the CCQ Server via HTTPS
+2. The CCQ Server checks the request and shares it with [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}
 3. [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} independently fetch the data, verify it, and sign the result
-4. Once enough Guardians (2/3 quorum) return matching results, the Query Server aggregates and sends the final response
+4. Once enough Guardians (2/3 quorum) return matching results, the CCQ Server aggregates and sends the final response
 5. The off-chain app submits this result to a smart contract, which verifies the Guardian signatures and uses the data
 
-The Query Server is permissioned but trustless. Most queries resolve in under one second, and Guardians retry failed requests for up to one minute. Up to 255 queries can be batched together to optimize performance, supporting efficient multichain workflows.
+The CCQ Server is permissioned but trustless. Most queries resolve in under one second, and Guardians retry failed requests for up to one minute. Up to 255 queries can be batched together to optimize performance, supporting efficient multichain workflows.
 
 ![The architecture flow of a query](/docs/images/products/queries/overview/overview-1.webp)
 
