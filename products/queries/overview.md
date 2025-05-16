@@ -26,7 +26,7 @@ A query request follows a simple but robust lifecycle:
 4. Once enough Guardians (2/3 quorum) return matching results, the Query Server aggregates and sends the final response
 5. The off-chain app submits this result to a smart contract, which verifies the Guardian signatures and uses the data
 
-The Query Server is permissioned but trustless. Most queries resolve in under one second, and Guardians retry failed requests for up to one minute. To optimize performance, up to 255 queries can be batched together, supporting efficient multi-chain workflows.
+The Query Server is permissioned but trustless. Most queries resolve in under one second, and Guardians retry failed requests for up to one minute. Up to 255 queries can be batched together to optimize performance, supporting efficient multichain workflows.
 
 ![The architecture flow of a query](/docs/images/products/queries/overview/overview-1.webp)
 
