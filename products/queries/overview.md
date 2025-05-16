@@ -6,7 +6,7 @@ categories: Queries
 
 # Queries Overview 
 
-Queries provide on-demand access to Guardian-attested on-chain data. They allow smart contracts to fetch real-time, verifiable data, such as prices, rates, and liquidity, from across the multichain ecosystem.
+Queries provide on-demand access to Guardian-attested on-chain data. They allow smart contracts to fetch real-time, verifiable data from across the multichain ecosystem, such as prices, rates, and liquidity.
 
 ## Key Features
 
