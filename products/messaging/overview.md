@@ -19,7 +19,7 @@ Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, c
 The messaging flow consists of several core components:
 
 1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
-2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}
+2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
 3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
 4. **Target chain (recipient contract)** - the Core Contract on the destination chain verifies the VAA and triggers the specified application logic
 
