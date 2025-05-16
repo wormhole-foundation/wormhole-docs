@@ -12,6 +12,8 @@ The Wormhole TypeScript SDK provides a unified, type-safe interface for building
 
 This guide helps you install the SDK, initialize a `Wormhole` instance to support your desired network and blockchain platforms, and return chain-specific information to verify successful initialization.
 
+If you're looking to build more advanced integrations, such as token transfers with Token Bridge, CCTP, or Native Token Transfers, see the [Next Steps](#next-steps).
+
 ## Prerequisites
 
 Before you begin, make sure you have the following:
