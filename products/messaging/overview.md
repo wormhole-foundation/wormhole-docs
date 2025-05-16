@@ -6,7 +6,7 @@ categories: Basics
 
 # Messaging Overview 
 
-Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, cross-chain message-passing layer that enables secure, fast communication between blockchains. It solves the critical problem of blockchain isolation by allowing data and assets to move freely across networks, empowering developers to build true multichain applications.
+Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, multichain message-passing layer that enables secure, fast communication between blockchains. It solves the critical problem of blockchain isolation by allowing data and assets to move freely across networks, empowering developers to build true multichain applications.
 
 ## Key Features
 
