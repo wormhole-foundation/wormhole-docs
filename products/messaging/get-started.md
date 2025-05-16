@@ -29,6 +29,7 @@ Foundry supports multiple options for [creating a keystore](https://book.getfoun
 
     The account name helps you differentiate between your saved keystores, so make it descriptive. You can use `cast wallet list` to see your saved accounts.
 
+
 2. Enter the password you wish to use to decrypt your private key at the prompt. You will not see the password in the terminal as you type:
 
     ```bash
@@ -80,3 +81,4 @@ Congratulations! You've published your first multichain message using Wormhole's
 - [Get Started with the Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank} - follow this guide to create basic message sender and receiver contracts using the Wormhole Solidity SDK, deploy the contracts, and use them to send a message across blockchains
 
 - [Fetch the Signed VAA](TODO WIP){target=\_blank} - whether your message is sent using core protocol or custom smart contracts, follow this guide to use your transaction information to fetch a signed VAA and decode the payload
+
