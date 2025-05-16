@@ -27,7 +27,7 @@ The messaging flow consists of several core components:
 
 ## Use Cases
 
-Wormhole Messaging enables a wide range of cross-chain applications. Below are common use cases and the Wormhole stack components you can use to build them.
+Wormhole Messaging enables a wide range of multichain applications. Below are common use cases and the Wormhole stack components you can use to build them.
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
