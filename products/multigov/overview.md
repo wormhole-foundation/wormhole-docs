@@ -1,10 +1,10 @@
 ---
-title: Multigov Overview
+title: MultiGov Overview
 description: Enable multichain governance with MultiGov. Create, vote, and execute DAO proposals securely across Wormhole supported networks.
 categories: Multigov
 ---
 
-# Multigov Overview 
+# MultiGov Overview 
 
 MultiGov is a multichain governance system that enables decentralized decision-making across multiple blockchain networks. Built on Wormhole messaging, it allows DAOs to manage proposals, voting, and execution from any connected chain without relying on a single hub or bridging assets. It empowers true multichain governance by aggregating voting power across chains and coordinating secure proposal execution.
 
@@ -22,11 +22,11 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 
 ## How It Works
 
-1. **Create proposal on hub chain**  - proposals are created on the hub chain, which manages the core governance logic, including vote aggregation and execution scheduling
-2. **Vote from spoke chains**  - token holders on spoke chains vote locally using `SpokeVoteAggregators`, with checkpoints tracking their voting power
-3. **Transmit votes via Wormhole**  - votes are securely sent to the hub using [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}, ensuring message integrity and cross-chain verification
-4. **Aggregate and finalize on hub**  - the hub chain receives votes from all spokes, tallies results, and finalizes the outcome once the voting period ends
-5. **Execute actions across chains**  - upon approval, proposals can trigger execution on one or more chains, again using [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} to deliver commands
+1. **Create proposal on hub chain** - proposals are created on the hub chain, which manages the core governance logic, including vote aggregation and execution scheduling
+2. **Vote from spoke chains** - token holders on spoke chains vote locally using `SpokeVoteAggregators`, with checkpoints tracking their voting power
+3. **Transmit votes via Wormhole** - votes are securely sent to the hub using [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}, ensuring message integrity and cross-chain verification
+4. **Aggregate and finalize on hub** - the hub chain receives votes from all spokes, tallies results, and finalizes the outcome once the voting period ends
+5. **Execute actions across chains** - upon approval, proposals can trigger execution on one or more chains, again using [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} to deliver commands
 
 <!-- PUT SIMPLE DIAGRAM HERE -->
 
