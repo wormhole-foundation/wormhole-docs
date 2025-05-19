@@ -15,12 +15,12 @@
         "icon": ":fontawesome-solid-3:"
     },
     {
-        "title": "Deploy MultiGov contracts or programs",
+        "title": "Deploy MultiGov Contracts or Programs",
         "content": "Use the provided scripts to deploy the hub (EVM only) and spoke components (EVM or Solana) to your selected networks using Foundry or Anchor.",
         "icon": ":fontawesome-solid-4:"
     },
     {
-        "title": "Initialize governance configuration",
+        "title": "Initialize Governance Configuration",
         "content": "Set voting parameters, authorities, and metadata. Use deployment scripts or governance proposals depending on your setup.",
         "icon": ":fontawesome-solid-5:"
     }
