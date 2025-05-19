@@ -10,7 +10,7 @@ categories: MultiGov
 
 [MultiGov](/docs/products/multigov/overview/){target=\_blank} enables multichain governance using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
 
-This guide prepares you to deploy MultiGov contracts by installing the required dependencies and setting up your local environment. Once ready, you can follow any of the supported chain-specific deployment guides to integrate MultiGov with your governance token.
+This page walks you through the MultiGov deployment flow—from requesting access with Tally to choosing a network and following the appropriate deployment guide.
 
 ## Prerequisites
 
@@ -33,10 +33,6 @@ Once approved, continue to the deployment guides to integrate MultiGov with your
 MultiGov deployments follow a similar structure on both EVM and Solana. The steps below outline the shared flow:
 
 [timeline(wormhole-docs/.snippets/text/products/multigov/deployment-flow-timeline.json)]
-
-!!! important
-    Currently, only EVM-compatible chains are supported as the **hub chain** in MultiGov. Spoke chains can be either EVM or Solana.
-
 
 ## Next Steps
 

@@ -1,27 +1,27 @@
 [
     {
-        "title": "Clone the MultiGov repository",
+        "title": "Clone The MultiGov Repository",
         "content": "Download the [codebase](https://github.com/wormhole-foundation/multigov) and navigate to the appropriate folder (`evm` or `solana`).",
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "Set up your project",
-        "content": "Install the required toolchain for your target network. Use Foundry or Anchor for EVM, Solana CLI and Rust for Solana.",
+        "title": "Set Up Your Project",
+        "content": "Install the required toolchain for your target network. Use Foundry for EVM,or  Anchor, Solana CLI and Rust for Solana.",
         "icon": ":fontawesome-solid-2:"
     },
     {
-        "title": "Configure environment variables",
-        "content": "Set deployment parameters in a `.env` file—such as RPC URLs, private keys, and hub settings.",
+        "title": "Configure Deployment Settings",
+        "content": "Set environment variables such as RPC URLs, keypairs, and hub chain details in a `.env` file or Anchor config.",
         "icon": ":fontawesome-solid-3:"
     },
     {
-        "title": "Deploy contracts or programs",
-        "content": "Use scripts to deploy the hub (EVM only) and spoke components (EVM or Solana) to your target networks.",
-        "icon": ":fontawesome-solid-rocket:"
+        "title": "Deploy MultiGov contracts or programs",
+        "content": "Use the provided scripts to deploy the hub (EVM only) and spoke components (EVM or Solana) to your selected networks using Foundry or Anchor.",
+        "icon": ":fontawesome-solid-4:"
     },
     {
-        "title": "Initialize governance parameters",
-        "content": "Configure vote thresholds, quorum, metadata, and authorities to activate governance.",
+        "title": "Initialize governance configuration",
+        "content": "Set voting parameters, authorities, and metadata. Use deployment scripts or governance proposals depending on your setup.",
         "icon": ":fontawesome-solid-5:"
     }
 ]
