@@ -8,7 +8,7 @@ categories: Typescript-SDK
 
 ## Introduction
 
-The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Token Bridge, CCTP, and Settlement, giving developers a consistent API across multiple chains.
+The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Native Token Transfers, Token Bridge, CCTP, and Settlement, giving developers a consistent API across multiple chains.
 
 This guide helps you install the SDK, initialize a `Wormhole` instance to support your desired network and blockchain platforms, and return chain-specific information to verify successful initialization.
 
@@ -171,7 +171,7 @@ Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and
 
 ## Next Steps
 
-- [Get familiar with the SDK](/tools/typescript-sdk/sdk-reference/)
+- [Get familiar with the SDK](/docs/tools/typescript-sdk/sdk-reference/)
 - [Send a multichain message](TODO: get started messaging)
 - [Transfer wrapped assets via the Token Bridge](TODO: get started token bridge)
 - [Transfer USDC via the CCTP Bridge](TODO: get started cctp bridge)
