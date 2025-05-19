@@ -32,6 +32,11 @@ Once approved, continue to the deployment guides to integrate MultiGov with your
 
 MultiGov deployments follow a similar structure on both EVM and Solana. The steps below outline the shared flow:
 
+[timeline(wormhole-docs/.snippets/text/products/multigov/deployment-flow-timeline.json)]
+
+!!! important
+    Currently, only EVM-compatible chains are supported as the **hub chain** in MultiGov. Spoke chains can be either EVM or Solana.
+
 
 ## Next Steps
 
