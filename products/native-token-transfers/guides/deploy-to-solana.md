@@ -137,6 +137,15 @@ The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, an
 !!! note
     Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
+
+### Generate an NTT Program Key Pair
+
+Create a unique key pair for the NTT program:
+
+    ```bash
+    solana-keygen grind --starts-with ntt:1 --ignore-case
+    ```
+
 ### Set Mint Authority
 
 If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
@@ -147,25 +156,23 @@ Before updating the mint authority, you must create metadata for your SPL token.
 
 Follow these steps to set the mint authority using the NTT CLI:
 
-1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
-
-    ```bash
-    solana-keygen grind --starts-with ntt:1 --ignore-case
-    ```
-
-2. **Derive the token authority** - generate the PDA, which will manage token minting
+1. **Derive the token authority** - generate the PDA, which will manage token minting
 
     ```bash
     ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
     ```
 
-3. **Set SPL token mint authority** - delegate minting control to the derived PDA 
+2. **Set SPL token mint authority** - delegate minting control to the derived PDA 
 
     ```bash
     spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
     ```
 
 ## Deploy and Configure NTT
+
+!!! warning
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
 
@@ -183,8 +190,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
         ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
         ```
 
-    !!! tip
-        The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
+    You can optionally add `--solana-priority-fee` to the script to increase the priority fee in microlamports. The default is `50000`.
 
 2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
@@ -248,5 +254,13 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
     Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>

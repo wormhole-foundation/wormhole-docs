@@ -20,8 +20,8 @@ categories: Connect, Transfer
 |    Celo     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Moonbeam   |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Injective  |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|     Sui     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|    Aptos    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|     Sui     |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
+|    Aptos    |        ✅         |            ❌             |        ✅        |       ❌        |        ❌         |
 |  Arbitrum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |  Optimism   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |    Base     |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
