@@ -28,7 +28,7 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 4. **Aggregate and finalize on hub**  - the hub chain receives votes from all spokes, tallies results, and finalizes the outcome once the voting period ends
 5. **Execute actions across chains**  - upon approval, proposals can trigger execution on one or more chains, again using [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} to deliver commands
 
-![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/products/multigov/concepts/architecture/multigov-high-level.webp)
+<!-- PUT SIMPLE DIAGRAM HERE -->
 
 ## Use Cases
 
