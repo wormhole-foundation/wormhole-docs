@@ -1,11 +1,11 @@
 [
     {
-        "title": "[Submit an integration request with Tally](https://www.tally.xyz/get-started)",
+        "title": "[Submit an Integration Request with Tally](https://www.tally.xyz/get-started)",
         "content": "Apply for MultiGov access by submitting your request to Tally.",
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "Choose a deployment network",
+        "title": "Deploy MultiGov to the Hub and Spoke Chains of Your Choice",
         "content": "**→** [Deploy to EVM chains](/docs/products/multigov/guides/deploy-to-evm/)  \n**→** [Deploy to Solana](/docs/products/multigov/guides/deploy-to-solana/)",
         "icon": ":fontawesome-solid-2:"
     },
