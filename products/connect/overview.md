@@ -4,11 +4,6 @@ description: With Wormhole Connect, you can seamlessly bridge digital assets and
 categories: Connect, Transfer
 
 ---
-typescript sdk overview name?
-In features remove the two lists meage them to make just one bulleted list 
-fix the use cases 
-Put todo if link is old 
-
 
 # Wormhole Connect Overview 
 
