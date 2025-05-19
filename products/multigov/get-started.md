@@ -1,7 +1,7 @@
 ---
 title: Get Started with Multigov
 description: Follow this guide to set up your environment and request access to deploy MultiGov contracts for multichain DAO governance using Wormhole messaging.
-categories: Multigov
+categories: MultiGov
 ---
 
 # Get Started with Multigov
@@ -20,7 +20,7 @@ Before deployment, ensure you have a governance token deployed on multiple chain
      - On EVM chains, your governance token must implement the [`ERC20Votes`](https://docs.openzeppelin.com/contracts/4.x/governance#erc20votes){target=\_blank} standard and support `CLOCK_MODE` timestamps for compatibility with cross-chain voting
      - On Solana, SPL tokens are supported and work with the [MultiGov staking program](/docs/products/multigov/concepts/architecture/#spoke-solana-staking-program){target=\_blank}, which handles vote weight and eligibility on-chain
 
-## Request Tally Access for MultiGov
+## Request Tally Access
 
 MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a multichain governance platform that powers proposal creation, voting, and execution.
 
