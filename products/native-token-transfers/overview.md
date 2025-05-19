@@ -1,3 +1,13 @@
+---
+title: Wormhole Connect
+description: Integrate the Wormhole Connect React widget into your web application for easy cross-chain asset transfers via Wormhole.
+categories: Connect, Widget, UI, Transfer
+description: With Wormhole Connect, you can seamlessly bridge digital assets and data across a wide range of supported blockchain networks.
+categories: Connect, Transfer
+
+---
+
+
 Native Token Transfers (NTT) for Cross-Chain Token Deployment
 
 Considering deploying Native Token Transfers (NTT)? Here's what you need to know:
@@ -69,3 +79,6 @@ Now that you've explored the power and flexibility of Wormhole's Native Token Tr
     - [**Native Token Transfer**](docs/build/transfers/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
 
 Experiment, build, and expand your reach across the multichain landscape with native tokens. The framework is ready—it's time to build with NTT.
+
+
+[timeline(wormhole-docs/.snippets/text/products/multigov/multigov-timeline.json)]
