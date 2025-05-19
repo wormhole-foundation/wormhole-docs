@@ -6,7 +6,7 @@
     },
     {
         "title": "Set Up Your Project",
-        "content": "Install the required toolchain for your target network. Use Foundry for EVM,or  Anchor, Solana CLI and Rust for Solana.",
+        "content": "Install the required toolchain for your target network. For EVM, use Foundry (or similar); for Solana, use Anchor (or similar), Solana CLI, and Rust.",
         "icon": ":fontawesome-solid-2:"
     },
     {
