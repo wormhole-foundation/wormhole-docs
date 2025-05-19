@@ -57,4 +57,4 @@ Ready to integrate Wormhole Connect into your application? Explore these tutoria
 
 - [Multichain Swap Tutorial](/docs/tutorials/connect/multichain-swap/){target=\_blank}—This step-by-step tutorial demonstrates how to integrate the Connect widget into your React dApp to enable cross-chain token transfers, using Sui to Avalanche Fuji as a practical example applicable to other networks.
 
-[timeline(wormhole-docs/.snippets/text/products/messaging/overview/connect-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/products/connect/overview/connect-timeline.json)]
