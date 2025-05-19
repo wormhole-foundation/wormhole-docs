@@ -28,6 +28,11 @@ To get started, fill out the integration [intake form](https://www.tally.xyz/get
 
 Once approved, continue to the deployment guides to integrate MultiGov with your governance token on EVM chains, Solana, or other supported networks.
 
+## Deployment Flow
+
+MultiGov deployments follow a similar structure on both EVM and Solana. The steps below outline the shared flow:
+
+
 ## Next Steps
 
 You've now completed the initial setup and requested access through Tally. Continue to the deployment guide that matches your governance architecture:
