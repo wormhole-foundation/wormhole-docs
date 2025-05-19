@@ -14,23 +14,27 @@ This page walks you through the MultiGov deployment flow—from requesting acces
 
 ## Prerequisites
 
-Before deployment, ensure you have a governance token deployed on multiple chains (ERC-20 or SPL).
+Before deploying MultiGov, you need a governance token deployed on multiple chains (ERC-20 or SPL):
 
-!!! note
-     - On EVM chains, your governance token must implement the [`ERC20Votes`](https://docs.openzeppelin.com/contracts/4.x/governance#erc20votes){target=\_blank} standard and support `CLOCK_MODE` timestamps for compatibility with cross-chain voting
-     - On Solana, SPL tokens are supported and work with the [MultiGov staking program](/docs/products/multigov/concepts/architecture/#spoke-solana-staking-program){target=\_blank}, which handles vote weight and eligibility on-chain
+- **EVM chains**:
+     - Your token must implement the [`ERC20Votes`](https://docs.openzeppelin.com/contracts/4.x/governance#erc20votes){target=\_blank} standard
+     - It must support `CLOCK_MODE` timestamps for compatibility with cross-chain voting
+
+- **Solana**:
+     - Use an SPL token
+     - Voting eligibility and weight are managed by the [MultiGov staking program](/docs/products/multigov/concepts/architecture/#spoke-solana-staking-program){target=\_blank}
 
 ## Request Tally Access
 
 MultiGov integrations are coordinated through [Tally](https://www.tally.xyz/explore){target=\_blank}, a multichain governance platform that powers proposal creation, voting, and execution.
 
-To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and reach out to align on deployment and setup requirements.
+To get started, fill out the integration [intake form](https://www.tally.xyz/get-started){target=\_blank}. The Tally team will review your application and contact you to discuss deployment and setup requirements.
 
-Once approved, continue to the deployment guides to integrate MultiGov with your governance token on EVM chains, Solana, or other supported networks.
+Once approved, review the deployment flow below to understand the integration process. Then, follow the appropriate deployment guide to integrate MultiGov with your governance token on EVM chains, Solana, or other supported networks.
 
 ## Deployment Flow
 
-MultiGov deployments follow a similar structure on both EVM and Solana. The steps below outline the shared flow:
+MultiGov deployments follow a similar structure on both EVM and Solana. This section provides a high-level overview of the end-to-end flow. Each step is explained in more detail in the platform-specific deployment guides linked [below](#next-steps).
 
 [timeline(wormhole-docs/.snippets/text/products/multigov/deployment-flow-timeline.json)]
 
