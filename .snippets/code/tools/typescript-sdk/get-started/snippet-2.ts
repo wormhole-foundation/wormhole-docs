@@ -5,7 +5,7 @@ import solana from '@wormhole-foundation/sdk/solana';
 async function main() {
   console.log('Initializing Wormhole SDK...');
 
-  const network = 'Testnet';  
+  const network = 'Testnet';
   const wh = await wormhole(network, [evm, solana]);
 
   console.log('Wormhole SDK Initialized!');
