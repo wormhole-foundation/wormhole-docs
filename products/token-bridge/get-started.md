@@ -55,11 +55,11 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
 
     If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-## Perform a Manual Token Transfer
+## Perform a Token Transfer
 
-This example demonstrates a complete manual token transfer using the Token Bridge and the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
+This section shows how to run manual and automatic token transfers using a shared project structure. You will define helper utilities once and reuse them across both flows.
 
-Start by defining helper functions for signer and token setup:
+In the manual transfer, you initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sepolia, giving you complete control over each step. In the automatic transfer, the relayer handles attestation and redemption, simplifying the process between EVM chains.
 
 1. Create a `helper.ts` file to load private keys from environment variables, instantiate signers for Solana and Sui, and retrieve token decimals as needed:
 
