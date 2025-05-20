@@ -15,7 +15,7 @@ Wormhole Connect offers flexible customization to match your application. Tailor
 
 - **In-app multichain transfers** – bridge assets without leaving your app
 - **Flexible bridging routes** – supports multiple transfer pathways
-- **Customizable UI** – style the bridge interface to match your brand (no-code option)
+- **Customizable UI** – style the bridge interface to match your brand 
 - **Customizable features** – select bridging options 
 - **Wormhole token bridging** – secure cross-chain transfers via Wormhole
 - **Optional destination gas** – provide gas for initial transactions on the target chain
