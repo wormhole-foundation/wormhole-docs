@@ -38,7 +38,7 @@ This example uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){
     npm install -D tsx typescript
     ```
 
-3. Create your script files:
+3. Create a `transfer.ts` file to handle the multichain transfer logic, and a `helper.ts` file to manage wallet signers and token utilities:
 
     ```bash
     touch transfer.ts helper.ts
