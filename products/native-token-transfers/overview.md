@@ -63,13 +63,13 @@ _Note:_ For a deeper understanding of the underlying technology, explore the cor
 - **Borrowing and Lending Across Chains**
 
     - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – moves collateral as native assets
-    - [**Messaging**](/docs/products/messaging/overview.md) – propagates loan requests and liquidations across chains
+    - [**Messaging**](/docs/learn/infrastructure/) – propagates loan requests and liquidations across chains
     - [**Queries**](/docs/build/queries/overview/) – retrieves  interest rates and asset prices in real-time
 
 - **Gas Abstraction**
 
     - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – facilitates native token conversion for gas payments
-    - [**Messaging**](/docs/products/messaging/overview.md) – sends gas fee payments across chains
+    - [**Messaging**](/docs/learn/infrastructure/) – sends gas fee payments across chains
 
 - **Cross-Chain Payment Widgets**
 
@@ -79,7 +79,7 @@ _Note:_ For a deeper understanding of the underlying technology, explore the cor
 - **Cross-Chain Staking**
 
     - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – transfers staked assets natively between networks
-    - [**Messaging**](/docs/products/messaging/overview.md) – moves staking rewards and governance signals across chains
+    - [**Messaging**](/docs/learn/infrastructure/) – moves staking rewards and governance signals across chains
 
 ## Next Steps
 

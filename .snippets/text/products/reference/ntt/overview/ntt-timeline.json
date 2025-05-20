@@ -10,7 +10,7 @@
         "icon": ":fontawesome-solid-2:"
     },
     { 
-        "title": "[Customize NTT]",
+        "title": "Customize NTT",
         "content": "**→** [Access control](/docs/products/native-token-transfers/configuration/access-control/)  \n**→** [Rate limits](/docs/products/native-token-transfers/configuration/rate-limiting/)",
         "icon": ":fontawesome-solid-3:"
     }
