@@ -10,10 +10,10 @@ The integration of [Circle's Cross-Chain Transfer Protocol (CCTP)](https://www.c
 
 ## Key Features
 
-**Secure native USDC transfers** - at its core, CCTP provides a "burn-and-mint" mechanism for transferring native USDC. This eliminates the need for wrapped assets and the associated risks of intermediary bridges
-**Generic cross-chain messaging** - wormhole acts as a powerful communication layer, allowing for the transmission of arbitrary data between blockchains
-**Atomic execution** - by combining CCTP and Wormhole, the transfer of USDC and the execution of accompanying instructions on the destination chain can occur as a single, atomic transaction
-**Enhanced composability** - developers can build more sophisticated cross-chain applications by sending additional data alongside the USDC transfer
+- **Secure native USDC transfers** - at its core, CCTP provides a "burn-and-mint" mechanism for transferring native USDC. This eliminates the need for wrapped assets and the associated risks of intermediary bridges
+- **Generic cross-chain messaging** - wormhole acts as a powerful communication layer, allowing for the transmission of arbitrary data between blockchains
+- **Atomic execution** - by combining CCTP and Wormhole, the transfer of USDC and the execution of accompanying instructions on the destination chain can occur as a single, atomic transaction
+- **Enhanced composability** - developers can build more sophisticated cross-chain applications by sending additional data alongside the USDC transfer
 
 ## How It Works
 
@@ -35,14 +35,14 @@ _Note_ Wormhole supports all CCTP chains, however, Circle currently supports a f
 
 Integrating Wormhole's messaging with CCTP enables the secure transfer of native USDC across blockchains, unlocking key cross-chain use cases, which include:
 
-**USDC Payments Across Chains**
-[**CCTP**]() – transfer native USDC using Circle’s burn-and-mint protocol
-[**Wormhole SDK**]() – automate attestation delivery and gas handling
-**Connect** – embed multichain USDC transfers directly in your app
+- **USDC Payments Across Chains**
+    - [**CCTP**]() – transfer native USDC using Circle’s burn-and-mint protocol
+    - [**Wormhole SDK**]() – automate attestation delivery and gas handling
+    - [**Connect**]() – embed multichain USDC transfers directly in your app
 
-**USDC Powered Multichain Settlement**
-[**Settlement**]() – use the Liquidity Layer to settle intents with native USDC, powered by CCTP under the hood
-[**Wormhole SDK**]() – initiate transfers, discover routes, and execute swaps seamlessly
+- **USDC Powered Multichain Settlement**
+    - [**Settlement**]() – use the Liquidity Layer to settle intents with native USDC, powered by CCTP under the hood
+    - [**Wormhole SDK**]() – initiate transfers, discover routes, and execute swaps seamlessly
 
 ## Next Steps
 

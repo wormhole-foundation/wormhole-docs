@@ -12,7 +12,7 @@
     { 
         "title": "[Use Manual Transfers with CCTP Bridge](/docs/products/multigov/get-started/)",
         "content": "Use manual transfer for maximum control, such as inserting custom logic for gas management or manual transaction signing.",
-        "icon": ":fontawesome-solid-4:"
+        "icon": ":fontawesome-solid-check:"
     }
 ]
 
