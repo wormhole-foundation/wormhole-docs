@@ -19,7 +19,7 @@ The Token Bridge is built to solve common problems in multichain token movement�
 - **Wrapped asset model** - mint wrapped tokens backed 1:1 by locked or burned assets on the source chain
 - **Preserved metadata** - ensure that attributes like name, symbol, and decimals persist across chains
 - **Transfer with payload** - attach arbitrary data to token transfers, enabling downstream smart contract calls
-- **Decentralized security** - verified by the [Wormhole Guardian network](/docs/protocol/infrastructure/guardians.md), ensuring cross-chain consistency and message authenticity
+- **Decentralized security** - verified by the [Wormhole Guardian network](/docs/protocol/infrastructure/guardians/), ensuring cross-chain consistency and message authenticity
 
 ## How It Works
 
@@ -42,14 +42,20 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 
 - **Multichain Rewards and Token Utility in Decentralized Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – transfer tokens between chains
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – transfer tokens between chains
     - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – facilitate the distribution and claiming processes of rewards
+
+- **Web3 Game Asset Transfers**
+
+    - [**Token Bridge**](/docs/products/token-bridge/overview/) – handle the underlying lock-and-mint logic securely
+    - [**Wormhole Connect**](/docs/products/connect/overview/) - provide a user-friendly way to move game tokens across chains
+    
 
 ## Next Steps
 
 If you are looking for guided practice, take a look at: 
 
-[timeline(wormhole-docs/.snippets/text/products/token-bridge/token-bridge-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/products/token-bridge/overview/token-bridge-timeline.json)]
 
 
 
