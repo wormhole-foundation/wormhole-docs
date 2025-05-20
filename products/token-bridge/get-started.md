@@ -43,6 +43,12 @@ Before you begin, make sure you have the following:
     touch transfer.ts helper.ts
     ```
 
+4. Set up secure access to your wallets:
+
+    This guide assumes you are loading your `SOL_PRIVATE_KEY` and `SUI_MNEMONIC` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+
+    If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
 ## Perform a Manual Token Transfer
 
 This example demonstrates a complete manual token transfer using the Token Bridge and the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. You'll initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sui. This flow gives you full control over each step.
@@ -54,12 +60,6 @@ Start by defining helper functions for signer and token setup:
     ```ts title="helper.ts"
     --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
     ```
-
-    !!! note
-        This guide assumes you are loading private keys and mnemonics from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
-        
-        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
-
 
 2. In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui:
 
