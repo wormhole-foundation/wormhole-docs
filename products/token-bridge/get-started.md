@@ -67,7 +67,7 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
     --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui:
+2. In `transfer.ts`, add the script for your preferred transfer mode:
 
     === "Manual Transfer"
 
