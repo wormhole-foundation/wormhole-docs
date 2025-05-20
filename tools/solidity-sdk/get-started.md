@@ -1,88 +1,260 @@
 ---
 title: Get Started with the Solidity SDK
-description: Follow this guide to deploy Wormhole Solidity SDK-based message sender and receiver smart contracts and use them to send messages across chains.
+description: Follow this guide to deploy Wormhole Solidity SDK-based sender and receiver smart contracts and use them to send testnet USDC across chains.
 categories: Basics, Solidity-SDK
 ---
 
 # Get Started with the Solidity SDK
 
-:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
-
-## Introduction
-
-Wormhole's messaging protocol simplifies sending data, triggering events, and initiating transactions across blockchain networks. This guide demonstrates how to configure and deploy contracts to send messages from Avalanche Fuji to Celo Alfajores.
+The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} makes it easier for EVM compatible chains to integrate with Wormhole by providing all necessary Solidity interfaces along with useful libraries and tools for testing. This guide demonstrates how to configure and deploy Wormhole Solidity SDK-based contracts to send testnet USDC from Avalanche Fuji to Celo Alfajores.
 
 ## Prerequisites
 
 Before you begin, make sure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts and encrypting your private key
+- [Foundry](https://book.getfoundry.sh/getting-started/installation) for contract deployment
+- Encrypted private key to sign for contract deployment. This example uses a [Foundry keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank} 
 - [Testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}
 - [Testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank}
-- Wallet private key
+- [USDC Testnet tokens](https://faucet.circle.com/){target=\_blank} on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
 
-## Install and Set Up Project
+## Set Up Your Project
 
-1. Clone the demo repository and navigate to the project directory:
-
-    ```bash
-    git clone https://github.com/wormhole-foundation/demo-wormhole-messaging.git
-    cd demo-wormhole-messaging
-    ```
-
-2. Use the following commands to install Foundry and project dependencies:
+1. Run the following command in your terminal to initialize a new Foundry project with a basic structure for your smart contracts:
 
     ```bash
-    npm install
+    forge init multichain-token-transfers
     ```
 
-3. Use Foundry's Forge to compile the contracts in the repository:
+2. Navigate into the newly created project directory and install the Wormhole Solidity SDK:
 
     ```bash
-    forge build
+    cd multichain-token-transfers
+    forge install wormhole-foundation/wormhole-solidity-sdk
     ```
 
-    You will see terminal output similar to the following, confirming the contracts were compiled successfully:
+## Create Sender Contract
 
-    --8<-- "code/tools/solidity-sdk/get-started/terminal-output-01.html"
+The `MultichainSender` contract uses the `WormholeRelayer` interface's [`TokenSender`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/baa085006586a43c42858d355e3ffb743b80d7a4/src/WormholeRelayer/TokenBase.sol#L24){target=\_blank} base class to simplify sending tokens across chains. 
 
-4. Run tests to ensure everything is functioning correctly before deployment:
+1. Create a new file named `MultichainSender.sol` in the `/src` directory:
 
     ```bash
-    forge test
+    touch src/MultichainSender.sol
     ```
 
-    You will see passing results for all test cases in the terminal output:
+2. Open the file and add the following code:
 
-    --8<-- "code/tools/solidity-sdk/get-started/terminal-output-02.html"
+```solidity title="MultichainSender.sol"
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+import "lib/wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
+import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
+
+// Assign the contract to the TokenSender role inherited from TokenBase
+contract MultichainSender is TokenSender {
+    uint256 constant GAS_LIMIT = 250_000;
+    // Initialize the contract with the Wormhole relayer, token bridge, and wormhole address
+    constructor(
+        address _wormholeRelayer,
+        address _tokenBridge,
+        address _wormhole
+    ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
+
+    // Calculate the estimated cost for multichain token transfer
+    // using the wormholeRelayer to get the delivery cost and add the message fee
+    function quoteCrossChainDeposit(
+        uint16 targetChain
+    ) public view returns (uint256 cost) {
+        uint256 deliveryCost;
+        (deliveryCost, ) = wormholeRelayer.quoteEVMDeliveryPrice(
+            targetChain,
+            0,
+            GAS_LIMIT
+        );
+
+        cost = deliveryCost + wormhole.messageFee();
+    }
+
+    // Send tokens and payload to the recipient on the target chain
+    function sendCrossChainDeposit(
+        uint16 targetChain,
+        address targetReceiver,
+        address recipient,
+        uint256 amount,
+        address token
+    ) public payable {
+        // Calculate the estimated cost for the multichain deposit
+        uint256 cost = quoteCrossChainDeposit(targetChain);
+        require(
+            msg.value == cost,
+            "msg.value must equal quoteCrossChainDeposit(targetChain)"
+        );
+        // Transfer the tokens from the sender to this contract
+        IERC20(token).transferFrom(msg.sender, address(this), amount);
+        // Encode the recipient address into the payload
+        bytes memory payload = abi.encode(recipient);
+        // Initiate the multichain transfer using the wormholeRelayer
+        sendTokenWithPayloadToEvm(
+            targetChain,
+            targetReceiver,
+            payload,
+            0,
+            GAS_LIMIT,
+            token,
+            amount
+        );
+    }
+}
+```
+
+## Create Receiver Contract
+
+The `MultichainReceiver` contract uses the `WormholeRelayer` interface's [`TokenReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/baa085006586a43c42858d355e3ffb743b80d7a4/src/WormholeRelayer/TokenBase.sol#L147){target=\_blank} base class to handle the receipt of tokens and payloads across chains.
+
+1. Create a new file named `MultichainReceiver.sol` in the `/src` directory:
+
+    ```bash
+    touch src/MultichainReceiver.sol
+    ```
+
+2. Open the file and add the following code:
+
+```solidity title="MultichainReceiver.sol"
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+import "lib/wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
+import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
+
+// Assign the contract to the TokenReceiver role inherited from TokenBase
+contract MultichainReceiver is TokenReceiver {
+    
+    // Initialize the contract with the Wormhole relayer, token bridge, and wormhole address
+    constructor(
+        address _wormholeRelayer,
+        address _tokenBridge,
+        address _wormhole
+    ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
+
+    // Receive the multichain payload and tokens
+    // Verify the transfer is from a registered sender
+    function receivePayloadAndTokens(
+        bytes memory payload,
+        TokenReceived[] memory receivedTokens,
+        bytes32 sourceAddress,
+        uint16 sourceChain,
+        bytes32 // deliveryHash
+    )
+        internal
+        override
+        onlyWormholeRelayer
+        isRegisteredSender(sourceChain, sourceAddress) 
+    {
+        // Ensure the payload is not empty and only has one token transfer
+        require(receivedTokens.length == 1, "Expected 1 token transfer");
+
+        // Decode the recipient address from the payload
+        address recipient = abi.decode(payload, (address));
+
+        // Transfer the received tokens to the intended recipient
+        IERC20(receivedTokens[0].tokenAddress).transfer(
+            recipient,
+            receivedTokens[0].amount
+        );
+    }
+}
+```
 
 ## Prepare for Contract Deployment
 
-This project relies on two [Wormhole Solidity SDK-based](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} smart contracts:
+Now that you've created the sender and receiver contracts, you must deploy them before you can use them to transfer tokens. Follow these steps to prepare to deploy your contracts:
 
-- **MessageSender.sol** - sends a message to the target chain. You will deploy this contract to Avalanche Fuji
-- **MessageReceiver.sol** - receives and logs the message on the target chain. You will deploy this contract to Celo Alfajores
+### Create Deployment Configuration 
 
-The `chains.json` configuration defines properties for supported chains, including the Wormhole relayer addresses, RPC URLs, and chain IDs, and provides this information to the deployment scripts when you run them.
+This file will store needed configuration information for the networks and deployment environment. 
 
-### Encrypt Private Key
-
-Foundry supports multiple options for [creating a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank}. This example uses the `--privatekey` option. As long as you have a decryption password to enter when prompted, you can use your preferred options when creating your Foundry keystore.
-
-1. Create a Foundry keystore to encrypt your wallet private key using the following command: 
+1. Create a directory named deploy-config in the root of your project and create a `config.json` file inside:
 
     ```bash
-    cast wallet import CELO_AVAX --privatekey INSERT_PRIVATE_KEY
+    mkdir deploy-config
+    touch deploy-config/config.json
     ```
 
-2. Enter the password you wish to use to decrypt your private key at the prompt. You will not see the password in the terminal as you type:
+2. Open the file and add the following configuration:
+
+```json title="config.json"
+{
+    "chains": [
+        {
+            "description": "Avalanche Fuji Testnet",
+            "chainId": 6,
+            "rpc": "https://api.avax-test.network/ext/bc/C/rpc",
+            "tokenBridge": "0x61E44E506Ca5659E6c0bba9b678586fA2d729756",
+            "wormholeRelayer": "0xA3cF45939bD6260bcFe3D66bc73d60f19e49a8BB",
+            "wormhole": "0x7bbcE28e64B3F8b84d876Ab298393c38ad7aac4C"
+        },
+        {
+            "description": "Celo Testnet",
+            "chainId": 14,
+            "rpc": "https://alfajores-forno.celo-testnet.org",
+            "tokenBridge": "0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153",
+            "wormholeRelayer": "0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84",
+            "wormhole": "0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56"
+        }
+    ]
+}
+```
+
+3. Create a `contracts.json` file in the `deploy-config` using the following command:
 
     ```bash
-    Enter password: INSERT_DECRYPTION_PASSWORD
+    echo '{}' > deploy-config/contracts.json
     ```
 
-3. Select return to save your password, and you will see a success message confirming that the keystore was saved successfully. Keep this password. You will be prompted to enter it in the terminal when a wallet signature is required
+    Leave this file blank for now. Your contract addresses will automatically output here after a successful deployment.
+
+### Set Up Your Node.js Environment
+
+You will use Node.js to run your deployment script.
+
+1. Initialize a Node.js project:
+
+    ```bash
+    npm init -y
+    ```
+
+2. Install the remaining dependencies you'll need for the deployment script:
+
+    ```bash
+    npm install ethers readline-sync @types/readline-sync
+    ```
+
+### Compile the Smart Contracts
+
+Run the following command to use [Foundry's `forge` tool](https://book.getfoundry.sh/forge/){target=\_blank} to compile your contracts and ensure they are ready for deployment:
+
+```bash
+forge build
+```
+
+You will see terminal output similar to the following, confirming the contracts were compiled successfully:
+
+--8<-- "code/tools/solidity-sdk/get-started/terminal-output-01.html"
+
+### Write the Deployment Script
+
+Follow these steps to create a script to automate deployment of your contracts. 
+
+1. Create a new file named `deploy.ts` in the /script directory:
+
+    ```bash
+    touch script/deploy.ts
+    ```
+
+2. 
 
 ## Deploy Sender Contract
 
@@ -144,7 +316,5 @@ Follow these steps to use your deployed contracts and send your first message:
 Congratulations! You've successfully sent and received a message across networks using Wormhole Solidity SDK-based smart contracts. 
 
 ## Next Steps
-
-- [**Fetch the Signed VAA**](TODO WIP){target=\_blank} - whether your message is sent using core protocol or custom smart contracts, follow this guide to use your transaction information to fetch a signed VAA and decode the payload
 
 <!--TODO: links to other guides and tutorials-->
