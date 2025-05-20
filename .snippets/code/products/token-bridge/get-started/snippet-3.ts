@@ -9,23 +9,23 @@ import { getSigner, getTokenDecimals } from './helper';
   const wh = await wormhole('Testnet', [solana, sui, evm]);
 
   // Define the source and destination chains
-  const sendChain = wh.getChain('Solana');
-  const rcvChain = wh.getChain('Sepolia');
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Celo');
 
   // Load signers and addresses from environment variables
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
   // Define the token and amount to transfer
-  const tokenId = Wormhole.tokenId('Solana', 'native');
-  const amt = '0.1';
+  const tokenId = Wormhole.tokenId('Avalanche', 'native');
+  const amt = '0.2';
 
   // Convert to raw units based on token decimals
   const decimals = await getTokenDecimals(wh, tokenId, sendChain);
   const transferAmount = amount.units(amount.parse(amt, decimals));
 
   // Set to false to require manual approval steps
-  const automatic = false;
+  const automatic = true;
   const nativeGas = automatic ? amount.units(amount.parse('0.0', 6)) : 0n;
 
   // Construct the transfer object
@@ -43,16 +43,6 @@ import { getSigner, getTokenDecimals } from './helper';
   console.log('Starting Transfer');
   const srcTxids = await xfer.initiateTransfer(source.signer);
   console.log(`Started Transfer: `, srcTxids);
-
-  // Wait for the signed attestation from the Guardian network
-  console.log('Fetching Attestation');
-  const timeout = 5 * 60 * 1000; // 5 minutes
-  await xfer.fetchAttestation(timeout);
-
-  // Redeem the tokens on Sui
-  console.log('Completing Transfer');
-  const destTxids = await xfer.completeTransfer(destination.signer);
-  console.log(`Completed Transfer: `, destTxids);
 
   process.exit(0);
 })();

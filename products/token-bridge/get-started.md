@@ -8,9 +8,14 @@ categories: Token-Bridge, Transfers
 
 ## Introduction
 
-Wormhole’s [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
+Wormhole's [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
-In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual token transfer from Solana devnet to Sui testnet. You will initiate the transfer on Solana, fetch the attestation signed by the Guardian network, and redeem the tokens on Sui.
+In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation.
+
+ - **Manual transfer** – from Solana devnet to Sepolia, where you control each step
+ - **Automatic transfer** – from Avalanche Fuji to Celo Alfajores, where a relayer finalizes the transfer for you
+
+These examples will help you understand how the Token Bridge works across EVM and non-EVM chains.
 
 ## Prerequisites
 
@@ -19,7 +24,7 @@ Before you begin, make sure you have the following:
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
  - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/){target=\_blank}
 
-This example uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank} and a Sui wallet with [testnet SUI](https://faucet.sui.io/){target=\_blank}; the steps can be adapted to other supported networks.
+This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank} and an EVM wallet with [Sepolia ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank} for the manual transfer example, and [Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} wallets funded with testnet tokens for the automatic transfer. You can adapt the examples to match your preferred chains.
 
 ## Configure Your Token Transfer Environment
 
@@ -64,9 +69,18 @@ Start by defining helper functions for signer and token setup:
 
 2. In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui:
 
-    ```ts title="transfer.ts"
-    --8<-- "code/products/token-bridge/get-started/snippet-2.ts"
-    ```
+    === "Manual Transfer"
+
+        ```ts title="transfer.ts"
+        --8<-- "code/products/token-bridge/get-started/snippet-2.ts"
+        ```
+    
+    === "Automatic Transfer"
+
+        ```ts title="transfer.ts"
+        --8<-- "code/products/token-bridge/get-started/snippet-3.ts"
+        ```
+
 
 3. Execute the script to initiate and complete the transfer:
 
@@ -76,7 +90,7 @@ Start by defining helper functions for signer and token setup:
 
     If successful, the expected output should be similar to this:
 
-    --8<-- "code/products/token-bridge/get-started/snippet-3.html"
+    --8<-- "code/products/token-bridge/get-started/snippet-4.html"
 
 To verify the transaction and view its details, copy the transaction hash from the output and paste it into [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
