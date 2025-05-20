@@ -171,7 +171,7 @@ Follow these steps to set the mint authority using the NTT CLI:
 ## Deploy and Configure NTT
 
 !!! warning
-    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file.
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
 
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
