@@ -10,12 +10,13 @@ import {
 } from '@wormhole-foundation/sdk';
 import solana from '@wormhole-foundation/sdk/solana';
 import sui from '@wormhole-foundation/sdk/sui';
+import evm from '@wormhole-foundation/sdk/evm';
 import { config } from 'dotenv';
 config();
 
 /**
  * Load and return the appropriate signer for the given chain.
- * Uses environment variables for private key (Solana) or mnemonic (Sui).
+ * Uses environment variables for private key (Solana, EVM chains) or mnemonic (Sui).
  */
 export async function getSigner<N extends Network, C extends Chain>(
   chain: ChainContext<N, C>
@@ -28,6 +29,11 @@ export async function getSigner<N extends Network, C extends Chain>(
   const platform = chain.platform.utils()._platform;
 
   switch (platform) {
+    case 'Evm':
+      signer = await (
+        await evm()
+      ).getSigner(await chain.getRpc(), process.env.EVM_PRIVATE_KEY!);
+      break;
     case 'Solana':
       signer = await (
         await solana()
