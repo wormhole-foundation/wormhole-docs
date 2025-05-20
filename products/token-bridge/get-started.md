@@ -66,7 +66,7 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
     --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, add the script for your preferred transfer mode:
+2. In `transfer.ts`, add the script for your preferred transfer mode. The `automatic` flag controls transfer behavior passed to `tokenTransfer()`; set it to `false` for manual transfers and `true` for automatic transfers
 
     === "Manual Transfer"
 
