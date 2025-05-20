@@ -50,13 +50,19 @@ In this section, you'll set up your project for transferring USDC across chains 
     npm init -y
     ```
 
-2. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
+2. **Create a `.gitignore` file** - ensure your private key isn't accidentally exposed or committed to version control
+
+    ```bash
+    echo ".env" >> .gitignore
+    ```
+
+3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
 
     ```bash
     npm install @wormhole-foundation/sdk dotenv
     ```
 
-3. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
+4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
 
     ```bash
     touch .env
@@ -72,7 +78,7 @@ In this section, you'll set up your project for transferring USDC across chains 
     !!! note
         Ensure your private key contains USDC funds and native tokens for gas on both the source and destination chains.
 
-4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays
+5. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays
 
     1. Create the helpers file
 
@@ -90,7 +96,7 @@ In this section, you'll set up your project for transferring USDC across chains 
         - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
         - **`getSigner`** - based on the chain you're working with (EVM, Solana, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
 
-5. **Create the main script** - create a new file named `manual-transfer.ts` to hold your script for transferring USDC across chains
+6. **Create the main script** - create a new file named `manual-transfer.ts` to hold your script for transferring USDC across chains
 
     1. Create the `manual-transfer.ts` file in the `src` directory
 

@@ -32,13 +32,16 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/data.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/theme.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/get-started.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/security.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/configuration/access-control.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/configuration/rate-limiting.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/get-started.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/deploy-to-evm.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/deploy-to-solana.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/evm-launchpad.md [type: other]
@@ -3193,8 +3196,6 @@ By default, NTT transfers to Solana require manual relaying, meaning that after 
 
 This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
 
-[Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
-
 ## Where to Go Next
 
 <div class="grid cards" markdown>
@@ -4746,6 +4747,115 @@ Additional notes:
             The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/connect/get-started/
+--- BEGIN CONTENT ---
+---
+title: Get Started with Connect
+description: Follow this guide to configure and use the Connect UI widget to easily add an intuitive, multichain asset transfer UI to your web applications.  
+categories: Connect, Transfer
+---
+
+# Get Started with Connect
+
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
+
+## Introduction
+
+Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
+
+## Prerequisites
+
+Before you begin, make sure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+
+- (Optional) To test a transfer from your demo app, you'll need:
+
+    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}
+    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required)
+
+## Install and Setup Project
+
+1. Clone the demo repository and navigate to the project directory:
+
+    ```bash
+    git clone https://github.com/wormhole-foundation/demo-basic-connect.git
+    cd demo-basic-connect
+    ```
+
+2. Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Start the application:
+
+    ```bash
+    npm start
+    ```
+
+4. Open your browser to [localhost:3000](http://localhost:3000){target=\_blank} to view the application locally. It will look similar to the following:
+
+    ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
+
+## Configure Connect
+
+Open the `App.tsx` file in your code editor of choice. You will see code similar to the following:
+
+```typescript title="App.tsx"
+import './App.css';
+import WormholeConnect, {
+  WormholeConnectConfig,
+  WormholeConnectTheme,
+} from '@wormhole-foundation/wormhole-connect';
+
+function App() {
+  const config: WormholeConnectConfig = {
+    // Define the network
+    network: 'Testnet',
+
+    // Define the chains
+    chains: ['Sui', 'Avalanche'],
+
+    // UI configuration
+    ui: {
+      title: 'SUI Connect TS Demo',
+    },
+  };
+
+  const theme: WormholeConnectTheme = {
+    // Define the theme
+    mode: 'dark',
+    primary: '#78c4b6',
+  };
+
+  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
+}
+
+export default App;
+```
+
+The preceding sample code configures Connect by setting values inside `config` and `theme` as follows:
+
+- **Defines the network** - options include `Mainnet`, `Testnet`, or `Devnet`
+- **Defines chains to include** - this example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains
+- **Adds a title to UI** - (optional) if defined, it will render above the widget in the UI
+- **Defines the theme** - this example sets the mode to `dark` and adds a primary color
+
+## Interact with Connect
+
+Congratulations! You've successfully used Connect to create a simple multichain token transfer application. You can now follow the prompts in the UI to connect your developer wallets and send a test transfer.
+
+## Next Steps
+
+For more `config` options, see the [Connect Data Configuration](/docs/products/connect/configuration/data/){target=\_blank} guide.
+
+For more `theme` options, see the [Connect Theme Configuration](/docs/products/connect/configuration/theme/){target=\_blank} guide.
+
+<!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/connect/guides/upgrade/
 --- BEGIN CONTENT ---
 ---
@@ -5340,8 +5450,8 @@ categories: Connect, Transfer
 |    Celo     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Moonbeam   |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Injective  |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|     Sui     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|    Aptos    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|     Sui     |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
+|    Aptos    |        ✅         |            ❌             |        ✅        |       ❌        |        ❌         |
 |  Arbitrum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |  Optimism   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |    Base     |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
@@ -5401,6 +5511,195 @@ This route appears if all of the following conditions are satisfied:
 - Both the origin and destination chains support gas drop off
 - An automatic route is selected
 - The relayer accepts the selected token to swap into the gas token
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/messaging/get-started/
+--- BEGIN CONTENT ---
+---
+title: Get Started with Messaging
+description: Follow this guide to deploy Wormhole Solidity SDK-based message sender and receiver smart contracts and use them to send messages across chains.
+categories: Messaging, Transfer
+---
+
+# Get Started with Messaging
+
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
+
+## Introduction
+
+Wormhole's messaging protocol simplifies sending data, triggering events, and initiating transactions across blockchain networks. This guide demonstrates how to configure and deploy contracts to send messages from Avalanche Fuji to Celo Alfajores.
+
+## Prerequisites
+
+Before you begin, make sure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts and encrypting your private key
+- [Testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}
+- [Testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank}
+- Wallet private key
+
+## Install and Set Up Project
+
+1. Clone the demo repository and navigate to the project directory:
+
+    ```bash
+    git clone https://github.com/wormhole-foundation/demo-wormhole-messaging.git
+    cd demo-wormhole-messaging
+    ```
+
+2. Use the following commands to install Foundry and project dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Use Foundry's Forge to compile the contracts in the repository:
+
+    ```bash
+    forge build
+    ```
+
+    You will see terminal output similar to the following, confirming the contracts were compiled successfully:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>forge build</span>
+<span data-ty=""> &gt; [⠒] Compiling...</span>
+<span data-ty=""> &gt; [⠰] Compiling 30 files with 0.8.23</span>
+<span data-ty=""> [⠔] Solc 0.8.23 finished in 2.29s</span>
+<span data-ty="">Compiler run successful!</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+4. Run tests to ensure everything is functioning correctly before deployment:
+
+    ```bash
+    forge test
+    ```
+
+    You will see passing results for all test cases in the terminal output:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>forge test</span>
+<span data-ty="">[⠊] Compiling...</span>
+<span data-ty="">No files changed, compilation skipped</span>
+<span data-ty="">Ran 3 tests for test/CrossChainMessagingTest.sol:CrossChainMessagingTest</span>
+<span data-ty="">[PASS] testDeployment() (gas: 13544)</span>
+<span data-ty="">[PASS] testReceiveMessage() (gas: 22579)</span>
+<span data-ty="">[PASS] testSendMessage() (gas: 22719)</span>
+<span data-ty="">Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 5.66ms (3.25ms CPU time)</span>
+<span data-ty="">Ran 1 test suite in 124.80ms (5.66ms CPU time): 3 tests passed, 0 failed, 0 skipped (3 total tests)</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+## Prepare for Contract Deployment
+
+This project relies on two [Wormhole Solidity SDK-based](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} smart contracts:
+
+- **MessageSender.sol** - sends a message to the target chain. You will deploy this contract to Avalanche Fuji
+- **MessageReceiver.sol** - receives and logs the message on the target chain. You will deploy this contract to Celo Alfajores
+
+The `chains.json` configuration defines properties for supported chains, including the Wormhole relayer addresses, RPC URLs, and chain IDs, and provides this information to the deployment scripts when you run them.
+
+### Encrypt Private Key
+
+Foundry supports multiple options for [creating a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank}. This example uses the `--privatekey` option. As long as you have a decryption password to enter when prompted, you can use your preferred options when creating your Foundry keystore.
+
+1. Create a Foundry keystore to encrypt your wallet private key using the following command: 
+
+    ```bash
+    cast wallet import CELO_AVAX --privatekey INSERT_PRIVATE_KEY
+    ```
+
+2. Enter the password you wish to use to decrypt your private key at the prompt. You will not see the password in the terminal as you type:
+
+    ```bash
+    Enter password: INSERT_DECRYPTION_PASSWORD
+    ```
+
+3. Select return to save your password, and you will see a success message confirming that the keystore was saved successfully. Keep this password. You will be prompted to enter it in the terminal when a wallet signature is required
+
+## Deploy Sender Contract
+
+Follow these steps to deploy `MessageSender.sol` to Avalanche Fuji:
+
+1. Run the deployment script command in your terminal:
+
+    ```bash
+    npm run deploy:sender
+    ```
+
+2. Enter your Foundry keystore password in the terminal when prompted
+
+3. You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run deploy:sender</span>
+<span data-ty="">Enter keystore password: XXXXXXXXXXXX</span>
+<span data-ty="">MessageSender deployed to: 0x32fDaD190eC54578713cEFB1787AfE688eab4420</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    The address you see in your terminal is the Avalanche Fuji address for your deployed sender contract. Your deployed contract addresses are also output to the `deployedContracts.json` file.
+
+## Deploy Receiver Contract
+
+Follow these steps to deploy `MessageReceiver.sol` to Celo Alforjes:
+
+1. Run the deployment script command in your terminal:
+
+    ```bash
+    npm run deploy:receiver
+    ```
+
+2. Enter your Foundry keystore password in the terminal when prompted
+
+3. You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run deploy:receiver</span>
+<span data-ty="">Enter keystore password: XXXXXXXXXXXX</span>
+<span data-ty="">MessageReceiver deployed to: 0x4Ed1F630c5EbB7A7913aF18052b1A636dA12Eb05</span>
+<span data-ty="">Registered MessageSender (0x32fDaD190eC54578713cEFB1787AfE688eab4420) for Avalanche chain (6)</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    - The Celo Alforjes address for your deployed receiver contract. Your deployed contract addresses are also output to the `deployedContracts.json` file
+    - Confirmation that a `MessageSender` contract is now registered as authorized to send messages to your receiver contract. This address should match the sender contract you deployed to Avalanche Fuji
+
+## Send Your First Message
+
+Follow these steps to use your deployed contracts and send your first message:
+
+1. Run the `sendMessage.ts` script using the following command:
+
+    ```bash
+    npm run send:message
+    ```
+
+2. Enter your Foundry keystore password in the terminal when prompted
+
+3. You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npm run send:message</span>
+<span data-ty="">Enter keystore password: XXXXXXXXXXXX</span>
+<span data-ty="">Transaction sent, waiting for confirmation...</span>
+<span data-ty="">...</span>
+<span data-ty="">Message sent! Transaction hash: 0xeb922bfe66ad38c9ed582a80038ba0687df4abf55ade04e6d1e102cd8cec8a54</span>
+<span data-ty="">You may see the transaction status on the Wormhole Explorer: https://wormholescan.io/#/tx/0xeb922bfe66ad38c9ed582a80038ba0687df4abf55ade04e6d1e102cd8cec8a54?network=TESTNET</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+4. You can also use the [Celo Alfajores Testnet Explorer](https://alfajores.celoscan.io/){target=\_blank} to view your `MessageReceiver` contract. Select **Events** to see the events emitted by the contract when your message was received. You can use the dropdowns to change **Hex** to **Text** to read the message. It will look similar to the image below:
+
+    ![Contract events on Celo Alfajores Testnet Explorer](/docs/images/products/messaging/get-started/messaging-get-started01.webp)
+
+Congratulations! You've successfully sent and received a message across networks using Wormhole Solidity SDK-based smart contracts. 
+
+## Next Steps
+
+<!--TODO: links to other guides and tutorials-->
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/concepts/architecture/
@@ -5840,6 +6139,203 @@ Yes. NTT tokens can be used with chains that do not support NTT by leveraging th
 This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/get-started/
+--- BEGIN CONTENT ---
+---
+title: Get Started with NTT
+description: NTT enables cross-chain token movement without wrapping. Install the CLI, deploy test tokens, and scaffold a project to integrate NTT into your app.
+categories: NTT, Transfer
+---
+
+# Get Started with NTT
+
+## Introduction
+
+The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
+
+If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+- [Bun installed](https://bun.sh/){target=\_blank}
+- A wallet private key with tokens on supported chains
+- ERC-20 or SPL tokens already deployed on the source and destination chains
+
+## Don’t Have a Token Yet?
+
+To use NTT, you must have a token already deployed on the source and destination chains. If you don’t have one, follow the quick guides below to deploy a basic test token.
+
+???- interface "Deploy an ERC-20 Token on EVM"
+    Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+
+    1. **Install Foundry** - install the [Forge CLI](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+
+    2. **Clone the repository** – fetch the example contract repository
+
+        ```bash
+        git clone https://github.com/wormhole-foundation/example-ntt-token.git
+        cd example-ntt-token
+        ```
+    
+    3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
+
+        ```bash
+        forge create --broadcast \
+            --rpc-url INSERT_RPC_URL \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            src/PeerToken.sol:PeerToken \
+            --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
+        ```
+
+    4. **Mint tokens** – send tokens to your address
+
+        ```bash
+        cast send INSERT_TOKEN_ADDRESS \
+            "mint(address,uint256)" \
+            INSERT_RECIPIENT_ADDRESS \
+            INSERT_AMOUNT_IN_WEI \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            --rpc-url INSERT_RPC_URL
+        ```
+
+    !!! note
+        This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
+
+
+???- interface "Create and Mint SPL Tokens"
+    This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+    1. **Generate a Solana key pair** - run the following command to create a new wallet:
+
+        ```bash
+        solana-keygen grind --starts-with w:1 --ignore-case
+        ```
+
+    2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
+
+        ```bash
+        solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+        ```
+
+    3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
+
+        === "Mainnet"
+            ```bash
+            solana config set -um
+            ```
+
+        === "Testnet"
+            ```bash
+            solana config set -ut
+            ```
+
+        === "Devnet"
+            ```bash
+            solana config set -ud
+            ```
+
+    4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
+
+        ```bash
+        solana airdrop 2
+        solana balance
+        ```
+
+    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+
+        ```bash
+        cargo install spl-token-cli
+        ```
+
+    6. **Create a new SPL token** - initialize the token on Solana
+
+        ```bash
+        spl-token create-token
+        ```
+
+    7. **Create a token account** - generate an account to hold the token
+
+        ```bash
+        spl-token create-account INSERT_TOKEN_ADDRESS
+        ```
+
+    8. **Mint tokens** - send 1000 tokens to the created account
+
+        ```bash
+        spl-token mint INSERT_TOKEN_ADDRESS 1000
+        ```
+
+    !!! note
+        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+
+## Install NTT CLI
+
+The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
+
+1. Run the installation command in your terminal:
+
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    ```
+
+2. Verify the NTT CLI is installed:
+
+    ```bash
+    ntt --version
+    ```
+
+## Initialize a New NTT Project
+
+1. Once the CLI is installed, scaffold a new project by running:
+
+    ```bash
+    ntt new my-ntt-project
+    cd my-ntt-project
+    ```
+
+2. Initialize a new `deployment.json` file specifying the network:
+
+    === "Mainnet"
+        ```bash
+        ntt init Mainnet
+        ```
+
+    === "Testnet"
+        ```bash
+        ntt init Testnet
+        ```
+
+    After initialization, the `deployment.json` file contains your NTT configuration and starts with the selected network.
+
+    === "Mainnet"
+        ```json
+        {
+            "network": "Mainnet",
+            "chains": {}
+        }
+        ```
+
+    === "Testnet"
+        ```json
+        {
+            "network": "Testnet",
+            "chains": {}
+        }
+        ```
+
+In the deployment steps, you will add your supported chains, their token addresses, deployment modes, and any custom settings.
+
+## Next Steps
+
+You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
+
+- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/guides/deploy-to-evm/
 --- BEGIN CONTENT ---
 ---
@@ -6171,6 +6667,15 @@ The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, an
 !!! note
     Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
+
+### Generate an NTT Program Key Pair
+
+Create a unique key pair for the NTT program:
+
+    ```bash
+    solana-keygen grind --starts-with ntt:1 --ignore-case
+    ```
+
 ### Set Mint Authority
 
 If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
@@ -6181,25 +6686,23 @@ Before updating the mint authority, you must create metadata for your SPL token.
 
 Follow these steps to set the mint authority using the NTT CLI:
 
-1. **Generate an NTT program key pair** - create a unique key pair for the NTT program. The key pair must start with "ntt" to identify it as belonging to the NTT deployment
-
-    ```bash
-    solana-keygen grind --starts-with ntt:1 --ignore-case
-    ```
-
-2. **Derive the token authority** - generate the PDA, which will manage token minting
+1. **Derive the token authority** - generate the PDA, which will manage token minting
 
     ```bash
     ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
     ```
 
-3. **Set SPL token mint authority** - delegate minting control to the derived PDA 
+2. **Set SPL token mint authority** - delegate minting control to the derived PDA 
 
     ```bash
     spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
     ```
 
 ## Deploy and Configure NTT
+
+!!! warning
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
 
@@ -6217,8 +6720,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
         ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
         ```
 
-    !!! tip
-        The `add-chain` command accepts an optional `--solana-priority-fee` flag, which sets the priority fee in microlamports. The default is `50000`.
+    You can optionally add `--solana-priority-fee` to the script to increase the priority fee in microlamports. The default is `50000`.
 
 2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
@@ -6282,6 +6784,14 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
     Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -6680,7 +7190,6 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- [**Connect**](/docs/products/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
 - [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
 - [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
@@ -6689,29 +7198,32 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ::spantable::
 
-|                                | Criteria                              | Connect            | NTT                | Token Bridge       | Settlement         |
-|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|--------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-|                                | Token Transfers with Payloads         | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-|                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-| Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-|                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                |
-|                                | Intent-Based Execution                | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Fast Settlement                       | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |                    |
-| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                |:x:  |
-| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark: |:white_check_mark: |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
 </div>
 
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
 
 ## Real-time Data
 
@@ -6762,7 +7274,7 @@ The novel hub-and-spoke liquidity architecture relies on interoperable token sta
 
 After the Solana auction concludes, the appropriate instructions are called on the CCTP or NTT contract, initiating the transfer from Solana to the destination chain by burning/locking the asset on Solana and sequentially minting on the destination chain. Solvers rebalance their inventory on Solana using these interoperable token standards as well. Once the originating source chain transaction reaches finality and arrives to Solana, the solver can redeem the NTT or CCTP message, minting the inventory for use once again.
 
-By leveraging interoperable token standards like NTT, this model of liquidity facilitation for cross-chain intents can arbitrarily scale to any chain or ecosystem while preserving fully unified liquidity—eliminating the need for solver "buy-in" for new chain expansion. Additionally, this means new chains, even without proven traction, can access the same amount of liquidity for cross-chain intent fulfillment from day one of mainnet launch as they would if they were long-standing ecosystems with clear evidence of adoption — commonly overlooked by solvers who must aggressively prioritize high flow chains to due high opportunity costs. This includes new ecosystems without Centralized Exchange (CEX) enabled withdrawals.
+By leveraging interoperable token standards like NTT, this model of liquidity facilitation for cross-chain intents can arbitrarily scale to any chain or ecosystem while preserving fully unified liquidity. This removes the need for solver "buy-in" when expanding to new chains. Additionally, regardless of proven traction, new chains can access the same level of liquidity for cross-chain intent fulfillment from the first day of mainnet launch as long-standing ecosystems with clear evidence of adoption. This is often overlooked by solvers, who must aggressively prioritize high-flow chains due to high opportunity costs. The model also supports ecosystems without Centralized Exchange (CEX) enabled withdrawals.
 
 ### Protocol Flow: How It Works
 
@@ -8196,6 +8708,73 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/products/messaging/tutorials/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/messaging/overview/
+--- BEGIN CONTENT ---
+---
+title: Messaging Overview
+description: With Wormhole Messaging, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
+categories: Basics
+---
+
+# Messaging Overview 
+
+Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, multichain message-passing layer that enables secure, fast communication between blockchains. It solves the critical problem of blockchain isolation by allowing data and assets to move freely across networks, empowering developers to build true multichain applications.
+
+## Key Features
+
+- **Multichain messaging** - send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems
+- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
+- **Composable architecture** - works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases
+
+## How It Works
+
+The messaging flow consists of several core components:
+
+1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
+2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
+3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
+4. **Target chain (recipient contract)** - the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic
+
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
+
+## Use Cases
+
+Wormhole Messaging enables a wide range of multichain applications. Below are common use cases and the Wormhole stack components you can use to build them.
+
+- **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
+
+- **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – aggregate multi-chain sources
+
+- **Gas Abstraction**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – handle native token swaps
+
+- **Bridging Intent Library**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - execute user-defined bridging intents
+
+- **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – enable tokenized rewards
+
+## Next Steps
+
+Follow these steps to work with Wormhole Messaging:
+
+- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank} - use the core protocol to publish a multichain message and return transaction info with VAA identifiers
+- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank} - send and receive messages without off-chain infrastructure
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/products/
 --- BEGIN CONTENT ---
 ---
@@ -8216,7 +8795,6 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- [**Connect**](/docs/products/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
 - [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
 - [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
@@ -8225,29 +8803,32 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ::spantable::
 
-|                                | Criteria                              | Connect            | NTT                | Token Bridge       | Settlement         |
-|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|--------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-|                                | Token Transfers with Payloads         | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-|                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-| Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-|                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                |
-|                                | Intent-Based Execution                | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Fast Settlement                       | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |                    |
-| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                |:x:  |
-| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark: |:white_check_mark: |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
 </div>
 
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
 
 ## Real-time Data
 
