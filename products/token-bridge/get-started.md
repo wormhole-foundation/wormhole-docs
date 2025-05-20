@@ -12,8 +12,8 @@ Wormhole's [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} 
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation.
 
- - **Manual transfer** – from Solana devnet to Sepolia, where you control each step
- - **Automatic transfer** – from Avalanche Fuji to Celo Alfajores, where a relayer finalizes the transfer for you
+ - **Manual transfer** – where you control each step
+ - **Automatic transfer** – where a relayer finalizes the transfer for you
 
 These examples will help you understand how the Token Bridge works across EVM and non-EVM chains.
 
