@@ -21,7 +21,7 @@ Before you begin, make sure you have the following:
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
  - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
 
-??? note "Project setup instructions"
+??? example "Project setup instructions"
  
     Use the following commands to create a TypeScript project:
 
@@ -79,7 +79,7 @@ You can choose to install a specific set of packages as needed. For example, to 
 npm install @wormhole-foundation/sdk-evm
 ```
 
-??? note "Complete list of individually published packages"
+??? example "Complete list of individually published packages"
 
     Platform-Specific Packages
 
