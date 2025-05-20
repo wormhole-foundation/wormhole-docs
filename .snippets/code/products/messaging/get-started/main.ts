@@ -26,11 +26,11 @@ import {
 import { signEvmMessage } from './signMessage';
 
 async function main() {
-  // 1. Initialize Wormhole SDK
+  // Initialize Wormhole SDK with EVM platform
   const network = 'Testnet';
   const wh = await wormhole(network, [EvmPlatformLoader]);
 
-  // 2. Get the EVM Signer
+  // Get the EVM signer and provider classes
   let ethersJsSigner: EthersSigner;
   let ethersJsProvider: JsonRpcProvider;
 
@@ -44,7 +44,7 @@ async function main() {
     process.exit(1);
   }
 
-  // 3. Define the source chain context
+  // Define the source chain context
   const sourceChainName: Chain = 'Sepolia';
   const sourceChainContext = wh.getChain(sourceChainName) as ChainContext<
     'Testnet',
@@ -52,7 +52,7 @@ async function main() {
     'Evm'
   >;
 
-  // 4. Adapt ethers.js signer to Wormhole signer
+  // Adapt ethers.js signer to Wormhole signer
   let sdkSigner: WormholeSdkSigner<Network, Chain>;
   try {
     sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
@@ -61,18 +61,18 @@ async function main() {
     process.exit(1);
   }
 
-  // 5. Construct your message payload
+  // Construct your message payload
   const messageText = `HelloWormholeSDK-${Date.now()}`;
   const payload: Uint8Array = encoding.bytes.encode(messageText);
   const messageNonce = Math.floor(Math.random() * 1_000_000_000);
   const consistencyLevel = 1;
 
   try {
-    // 6. Get the core protocol client
+    // Get the core protocol client
     const coreProtocolClient: WormholeCore<Network> =
       await sourceChainContext.getWormholeCore();
 
-    // 7. Generate the unsigned transactions
+    // Generate the unsigned transactions
     const whSignerAddress: NativeAddress<Chain> = toNative(
       sdkSigner.chain(),
       sdkSigner.address()
@@ -91,7 +91,7 @@ async function main() {
         consistencyLevel
       );
 
-    // 8. Sign and send the transactions
+    // Sign and send the transactions
     console.log(
       'Signing and sending the message publication transaction(s)...'
     );
@@ -118,7 +118,7 @@ async function main() {
     );
     await new Promise((resolve) => setTimeout(resolve, 8000));
 
-    // 10. Retrieve VAA Identifiers
+    // Retrieve VAA Identifiers
     console.log(
       `Attempting to parse VAA identifiers from transaction: ${primaryTxid}...`
     );

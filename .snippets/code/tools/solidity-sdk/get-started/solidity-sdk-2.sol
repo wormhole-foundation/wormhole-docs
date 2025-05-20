@@ -1,55 +1,42 @@
-// SPDX-License-Identifier: Apache 2
-pragma solidity ^0.8.19;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
 
-import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
-import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
-import "wormhole-sdk/interfaces/IWormhole.sol";
-import "wormhole-sdk/Utils.sol";
+import "lib/wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
+import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
 
-abstract contract Base {
-    IWormholeRelayer public immutable wormholeRelayer;
-    IWormhole public immutable wormhole;
+// Assign the contract to the TokenReceiver role inherited from TokenBase
+contract CrossChainReceiver is TokenReceiver {
+    // Initialize the contract with the Wormhole relayer, token bridge, and wormhole address
+    constructor(
+        address _wormholeRelayer,
+        address _tokenBridge,
+        address _wormhole
+    ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
 
-    address registrationOwner;
-    mapping(uint16 => bytes32) registeredSenders;
-
-    constructor(address _wormholeRelayer, address _wormhole) {
-        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
-        wormhole = IWormhole(_wormhole);
-        registrationOwner = msg.sender;
-    }
-
-    modifier onlyWormholeRelayer() {
-        require(
-            msg.sender == address(wormholeRelayer),
-            "Msg.sender is not Wormhole Relayer"
-        );
-        _;
-    }
-
-    modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
-        require(
-            registeredSenders[sourceChain] == sourceAddress,
-            "Not registered sender"
-        );
-        _;
-    }
-
-    /**
-     * Sets the registered address for 'sourceChain' to 'sourceAddress'
-     * So that for messages from 'sourceChain', only ones from 'sourceAddress' are valid
-     *
-     * Assumes only one sender per chain is valid
-     * Sender is the address that called 'send' on the Wormhole Relayer contract on the source chain)
-     */
-    function setRegisteredSender(
+    // Receive the multichain payload and tokens
+    // Verify the transfer is from a registered sender
+    function receivePayloadAndTokens(
+        bytes memory payload,
+        TokenReceived[] memory receivedTokens,
+        bytes32 sourceAddress,
         uint16 sourceChain,
-        bytes32 sourceAddress
-    ) public {
-        require(
-            msg.sender == registrationOwner,
-            "Not allowed to set registered sender"
+        bytes32 // deliveryHash
+    )
+        internal
+        override
+        onlyWormholeRelayer
+        isRegisteredSender(sourceChain, sourceAddress)
+    {
+        // Ensure the payload is not empty and only has one token transfer
+        require(receivedTokens.length == 1, "Expected 1 token transfer");
+
+        // Decode the recipient address from the payload
+        address recipient = abi.decode(payload, (address));
+
+        // Transfer the received tokens to the intended recipient
+        IERC20(receivedTokens[0].tokenAddress).transfer(
+            recipient,
+            receivedTokens[0].amount
         );
-        registeredSenders[sourceChain] = sourceAddress;
     }
 }

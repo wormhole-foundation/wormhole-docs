@@ -1,6 +1,6 @@
 ---
 title: Get Started with Messaging
-description: Follow this guide to use Wormhole SDK's core protocol to publish a multichain message and return transaction information with VAA identifiers.
+description: Follow this guide to use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
 categories: Basics, Typescript-SDK
 ---
 
@@ -12,33 +12,67 @@ Wormhole's core functionality allows you to send any data packet from one suppor
 
 Before you begin, ensure you have the following:
 
-- Completed the [Get Started with the TypeScript SDK](/docs/tools/typescript-sdk/get-started){target=\_blank} guide. You should have a working project, the SDK installed, and an initialized `Wormhole` instance
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
 - [`ethers.js`](https://docs.ethers.org/v6/getting-started/){target=\_blank} installed (this example uses version 6)
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for encrypting your private key
 - A small amount of [Sepolia ETH](https://sepolia-faucet.pk910.de/){target=\_blank} for gas fees
+- An encrypted private key for signing transactions. This example uses Foundry to [create a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank} for encrypting and safely using your private key but you can adapt it to use your preferred encryption method
 
-## Encrypt Your Private Key
+## Setup Your Project
 
-Foundry supports multiple options for [creating a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank}. This example uses the `--privatekey` option. As long as you have a decryption password to enter when prompted, you can use your preferred options when creating your Foundry keystore.
+If you already completed the [Get Started with the TypeScript SDK](/docs/tools/typescript-sdk/get-started){target=\_blank} guide, proceed to [Prepare to Sign Messages with Your Encrypted Key](#prepare-to-sign-messages-with-your-encrypted-key). 
 
-1. Create a Foundry keystore to encrypt your wallet private key using the following command:
+??? example "Project setup instructions"
 
-    ```bash
-    cast wallet import INSERT_ACCOUNT_NAME --privatekey INSERT_PRIVATE_KEY
-    ```
+    Use the following commands to create a TypeScript project:
 
-    The account name helps you differentiate between your saved keystores, so make it descriptive. You can use `cast wallet list` to see your saved accounts.
+    1. Create a directory and initialize a Node.js project:
 
+        ```bash
+        mkdir wh-core-message-demo
+        cd wh-core-message-demo
+        npm init -y
+        ```
 
-2. Enter the password you wish to use to decrypt your private key at the prompt. You will not see the password in the terminal as you type:
+    2. Install TypeScript along with `tsx` (for running TypeScript files) and Node.js type definitions:
 
-    ```bash
-    Enter password: INSERT_DECRYPTION_PASSWORD
-    ```
+        ```bash
+        npm install --save-dev tsx typescript @types/node
+        ```
 
-3. Select return to save your password, and you will see a success message confirming that the keystore was saved successfully. Keep this password. You will be prompted to enter it in the terminal when a wallet signature is required
+    3. Create a `tsconfig.json` if you don't have one. You can generate a basic one using the following command:
 
-## Sign Messages with Your Encrypted Key
+        ```bash
+        npx tsc --init
+        ```
+
+        Make sure your `tsconfig.json` includes the following settings:
+
+        ```json 
+        {
+            "compilerOptions": {
+                // es2020 or newer
+                "target": "es2020",
+                // Use esnext if you configured your package.json with type: "module"
+                "module": "commonjs",
+                "esModuleInterop": true,
+                "forceConsistentCasingInFileNames": true,
+                "strict": true,
+                "skipLibCheck": true,
+                "resolveJsonModule": true
+            }
+        }
+        ```
+    
+    4. Use the following command to install the Wormhole TypeScript SDK:
+
+        ```bash
+        npm install @wormhole-foundation/sdk
+        ```
+
+## Prepare to Sign Messages with Your Encrypted Key
+
+First, write a script for an EVM-compatible signer using the following steps:
 
 1. Create a new file inside the `src` directory named `signMessage.ts`:
 
@@ -51,6 +85,8 @@ Foundry supports multiple options for [creating a keystore](https://book.getfoun
     ```ts title="signMessage.ts"
     --8<-- "code/products/messaging/get-started/signMessage.ts"
     ```
+
+     The `signMessage.ts` script creates an `ethers.js` provider, decrypts the Foundry keystore, connects to a wallet, and creates an full signer for the EVM environment. It returns the `signer` and `provider` for use in your messaging script.
 
 ## Construct and Publish Your Message
 
@@ -78,7 +114,8 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank} - follow this guide to create basic message sender and receiver contracts using the Wormhole Solidity SDK, deploy the contracts, and use them to send a message across blockchains
+- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} - follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains
 
-- [**Fetch the Signed VAA**](TODO WIP){target=\_blank} - whether your message is sent using core protocol or custom smart contracts, follow this guide to use your transaction information to fetch a signed VAA and decode the payload
+- [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank} - smart contract developers can follow this on-chain integration guide to deploy Wormhole Solidity SDK-based sender and receiver smart contracts and use them to send testnet USDC across chains
+
 
