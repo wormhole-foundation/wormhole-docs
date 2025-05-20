@@ -21,8 +21,6 @@ By default, NTT transfers to Solana require manual relaying, meaning that after 
 
 This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
 
-[Wormhole Connect](/docs/build/applications/connect/){target=\_blank} support this process automatically.
-
 ## Where to Go Next
 
 <div class="grid cards" markdown>
