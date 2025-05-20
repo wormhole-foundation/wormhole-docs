@@ -100,4 +100,3 @@ Now that you've completed a manual multichain token transfer, explore these guid
 
  - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank} – build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic)
  - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank} – learn how to issue tokens that work across chains
- - [Flow of a Transfer](TODO){target=\_blank} – understand how messages move through the protocol
