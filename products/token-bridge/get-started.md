@@ -33,24 +33,11 @@ Before you begin, make sure you have the following:
 2. Install the required dependencies:
 
     ```bash
-    npm install @wormhole-foundation/sdk dotenv
+    npm install @wormhole-foundation/sdk
     npm install -D tsx typescript
     ```
 
-3. Create a `.env` file to store your private keys:
-
-    ```bash
-    touch .env
-    ```
-
-    Add the following variables to your `.env` file:
-
-    ```env
-    SOL_PRIVATE_KEY=INSERT_SOLANA_PRIVATE_KEY
-    SUI_MNEMONIC=INSERT_SUI_MNEMONIC_PHRASE
-    ```
-
-4. Create your script files:
+3. Create your script files:
 
     ```bash
     touch transfer.ts helper.ts
@@ -67,6 +54,12 @@ Start by defining helper functions for signer and token setup:
     ```ts title="helper.ts"
     --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
     ```
+
+    !!! note
+        This guide assumes you are loading private keys and mnemonics from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+        
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
 
 2. In `transfer.ts`, write the script that initiates the transfer on Solana, fetches the signed attestation, and completes the transfer on Sui:
 
