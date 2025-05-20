@@ -4,7 +4,7 @@ description: With Wormhole Connect, you can seamlessly bridge digital assets and
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect Overview 
+# Connect Overview 
 
 With the Wormhole Connect React widget, you can enable your users to perform cross-chain asset transfers directly within your web application, powered by the Wormhole protocol's easy-to-use interface.
 
@@ -40,14 +40,18 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
     - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – handles user-friendly asset transfers
-    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – moves native assets across chains
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
     - [**Queries**](/docs/build/queries/overview/) – fetches real-time prices for optimal trade execution
-
 
 - **Cross-Chain Payment Widgets**
 
     - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – facilitates seamless payments in various tokens
-    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – ensures direct, native asset transfers
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/) – ensures direct, native asset transfers
+
+- **Web3 Game Asset Transfers**
+
+    - [**Wormhole Connect**](/docs/products/connect/overview/) – provide a user-friendly way to move game tokens across chains
+    - [**Token Bridge**](/docs/products/token-bridge/overview/) – handle the underlying lock-and-mint logic securely
 
 ## Next Steps 
 
