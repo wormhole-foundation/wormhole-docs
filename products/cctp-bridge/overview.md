@@ -36,23 +36,16 @@ _Note_ Wormhole supports all CCTP chains, however, Circle currently supports a f
 Integrating Wormhole's messaging with CCTP enables the secure transfer of native USDC across blockchains, unlocking key cross-chain use cases, which include:
 
 - **USDC Payments Across Chains**
-    - [**CCTP**]() – transfer native USDC using Circle’s burn-and-mint protocol
-    - [**Wormhole SDK**]() – automate attestation delivery and gas handling
-    - [**Connect**]() – embed multichain USDC transfers directly in your app
+    - [**CCTP**](/docs/products/cctp-bridge/get-started/) – transfer native USDC using Circle’s burn-and-mint protocol
+    - [**Wormhole SDK**](/docs/tools/typescript-sdk/sdk-reference/) – automate attestation delivery and gas handling
+    - [**Connect**](/docs/products/connect/overview/) – embed multichain USDC transfers directly in your app
 
 - **USDC Powered Multichain Settlement**
-    - [**Settlement**]() – use the Liquidity Layer to settle intents with native USDC, powered by CCTP under the hood
-    - [**Wormhole SDK**]() – initiate transfers, discover routes, and execute swaps seamlessly
+    - [**Settlement**](/docs/products/settlement/overview/) – use the Liquidity Layer to settle intents with native USDC, powered by CCTP under the hood
+    - [**Wormhole SDK**](/docs/tools/typescript-sdk/sdk-reference/) – initiate transfers, discover routes, and execute swaps seamlessly
 
 ## Next Steps
 
 Now that you're familiar with CCTP, here is a guide for hands-on practice:
-
-- [Transfer USDC via CCTP and Wormhole SDK](/docs/tutorials/typescript-sdk/usdc-via-cctp/){target=\_blank}—Follow a step-by-step guide to move native USDC across chains using the Wormhole SDK and CCTPD
-
-If you want to gain a deeper understanding of the underlying technology:
-
-- [Messaging Infrastructure:](/docs/learn/messaging/){target=\_blank}Familiarize yourself with Wormhole's fundamental cross-chain communication protocol, which enables the transfer of arbitrary data between blockchains, a key component for CCTP integration
-
 
 [timeline(wormhole-docs/.snippets/text/products/reference/cctp/cctp-timeline.json)]
