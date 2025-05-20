@@ -12,7 +12,7 @@ import { getSigner, getTokenDecimals } from './helper';
   const sendChain = wh.getChain('Avalanche');
   const rcvChain = wh.getChain('Celo');
 
-  // Load signers and addresses from environment variables
+  // Load signers and addresses from helpers
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 

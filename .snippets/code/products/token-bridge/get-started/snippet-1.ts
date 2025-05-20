@@ -11,12 +11,11 @@ import {
 import solana from '@wormhole-foundation/sdk/solana';
 import sui from '@wormhole-foundation/sdk/sui';
 import evm from '@wormhole-foundation/sdk/evm';
-import { config } from 'dotenv';
-config();
 
 /**
- * Load and return the appropriate signer for the given chain.
- * Uses environment variables for private key (Solana, EVM chains) or mnemonic (Sui).
+ * Returns a signer for the given chain using locally scoped credentials.
+ * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC) must be loaded securely beforehand,
+ * for example via a keystore, secrets manager, or environment variables.
  */
 export async function getSigner<N extends Network, C extends Chain>(
   chain: ChainContext<N, C>
@@ -32,17 +31,17 @@ export async function getSigner<N extends Network, C extends Chain>(
     case 'Evm':
       signer = await (
         await evm()
-      ).getSigner(await chain.getRpc(), process.env.EVM_PRIVATE_KEY!);
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!);
       break;
     case 'Solana':
       signer = await (
         await solana()
-      ).getSigner(await chain.getRpc(), process.env.SOL_PRIVATE_KEY!);
+      ).getSigner(await chain.getRpc(), SOL_PRIVATE_KEY!);
       break;
     case 'Sui':
       signer = await (
         await sui()
-      ).getSigner(await chain.getRpc(), process.env.SUI_MNEMONIC!);
+      ).getSigner(await chain.getRpc(), SUI_MNEMONIC!);
       break;
     default:
       throw new Error(`Unsupported platform: ${platform}`);
