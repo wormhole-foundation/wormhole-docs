@@ -17,8 +17,9 @@ In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wor
 Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - A Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank}
- - A Sui wallet with [testnet SUI](https://faucet.sui.io/){target=\_blank}
+ - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/){target=\_blank}
+
+This example uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank} and a Sui wallet with [testnet SUI](https://faucet.sui.io/){target=\_blank}; the steps can be adapted to other supported networks.
 
 ## Configure Your Token Transfer Environment
 
