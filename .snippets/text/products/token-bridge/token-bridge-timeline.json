@@ -1,32 +1,17 @@
 [
     {
-        "title": "[First step is get started page ](docs/products/token-bridge/get-started.md)",
-        "content": "Explore the ins and outs of Token bridge transfers(protocol?).",
+        "title": "[Get Started with Token Bridge](docs/products/token-bridge/get-started.md)",
+        "content": "Perform a manual multichain token transfer using Wormhole’s Token Bridge with TypeScript SDK, including setup, attestation, and redemption.",
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "[Set up your wallet](/docs/products/multigov/get-started/)",
-        "content": "Set up your wallet",
+        "title": "[Create Multichain Tokens with Portal Bridge](/docs/products/token-bridge/tutorials/multichain-token/)",
+        "content": "Expand your token's interoperability by following this step-by-step tutorial on creating a multichain asset with Wormhole.",
         "icon": ":fontawesome-solid-2:"
     },
     {
-        "title": "Receieve Test funds from faucet",
-        "content": "Acquire funds from [Testnet Faucets](docs/build/start-building/testnet-faucets/) ",
-        "icon": ":fontawesome-solid-3:"
-    },
-    {
-        "title": "Choose transfer method",
-        "content": "**Option A:** [Wormhole Typescript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts)  \n**Option B:** [Portal Bridge](https://portalbridge.com/) ",
-        "icon": ":fontawesome-solid-4:"
-    },
-    {
-        "title": "Perform test transfers",
-        "content": "Perform test transfers between chains",
-        "icon": ":fontawesome-solid-5:"
-    },
-    {
-        "title": "Transaction Confirmation on Both Chains",
-        "content": "Confirm transaction on [Wormholescan](https://wormholescan.io/)  ",
-        "icon": ":fontawesome-solid-6:"
+        "title": "[Test Multiple Transfer Types via Token Bridge](/docs/products/token-bridge/tutorials/transfer-workflow/)",
+        "content": "Build a multi-chain token transfer application with support for EVM and non-EVM ecosystems by following this tutorial utilizing the Wormhole TypeScript SDK's Token Bridge ",
+        "icon": ":fontawesome-solid-check:"
     }
 ]
