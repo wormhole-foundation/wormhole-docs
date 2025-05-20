@@ -10,14 +10,14 @@ categories: Token-Bridge, Transfers
 
 Wormhole’s [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
-In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual token transfer from Solana to Sui. You will initiate the transfer on Solana, fetch the attestation signed by the Guardian network, and redeem the tokens on Sui.
+In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual token transfer from Solana devnet to Sui testnet. You will initiate the transfer on Solana, fetch the attestation signed by the Guardian network, and redeem the tokens on Sui.
 
 ## Prerequisites
 
 Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - A Solana wallet with [testnet SOL](https://faucet.solana.com/){target=\_blank}
+ - A Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank}
  - A Sui wallet with [testnet SUI](https://faucet.sui.io/){target=\_blank}
 
 ## Configure Your Token Transfer Environment
