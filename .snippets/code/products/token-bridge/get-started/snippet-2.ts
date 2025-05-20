@@ -17,7 +17,7 @@ import { getSigner, getTokenDecimals } from './helper';
 
   // Define the token and amount to transfer
   const tokenId = Wormhole.tokenId('Solana', 'native');
-  const amt = '1';
+  const amt = '0.1';
 
   // Convert to raw units based on token decimals
   const decimals = await getTokenDecimals(wh, tokenId, sendChain);
