@@ -61,7 +61,7 @@ This section shows how to run manual and automatic token transfers using a share
 
 In the manual transfer, you initiate a transfer on Solana, wait for Guardian signatures, and redeem the tokens on Sepolia, giving you complete control over each step. In the automatic transfer, the relayer handles attestation and redemption, simplifying the process between EVM chains.
 
-1. Create a `helper.ts` file to load private keys from environment variables, instantiate signers for Solana and Sui, and retrieve token decimals as needed:
+1. Open `helper.ts` and define utility functions to load private keys, instantiate signers for Solana and EVM chains, and retrieve token decimals as needed:
 
     ```ts title="helper.ts"
     --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
