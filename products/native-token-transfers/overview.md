@@ -5,16 +5,8 @@ categories: NTT, Transfer
 ---
 
 list todo:
-Timeline
-Key feature list
-section on deployment models  : Maybe we should have a section on deployment models so we can easily link to it from other places if needed. Probably after the key features section
-NNT vs token bridge comparison Remove
-
-I don't know what the NttManager is
-
-Wormhole NTT primarily supports ERC-20 tokens, the standard for fungible tokens on Ethereum and other EVM-compatible chains. The `NttManager` contract leverages the `IERC20` interface and OpenZeppelin's `SafeERC20` for secure and efficient transfers. It also supports **ERC-20 Burnable** tokens. Currently, NTT does not natively support other standards like ERC-721 or ERC-1155.
-
-How it works section msissing 
+section on deployment models  : Make links for deployment section
+Use cases reformat
 
 ## Introduction
 
@@ -35,6 +27,8 @@ NTT offers two operational modes for your existing tokens: (add links)
 - **Locking Mode:** - preserves the original token supply on a single, designated chain
 - **Burning Mode:** - enables the deployment of truly multichain tokens with the total supply distributed across various connected chains
 
+## How it Works
+
 
 ## Integration Options
 
@@ -48,13 +42,46 @@ When deploying your token across chains, you have two primary options within the
 * **Contract Ownership:** retain full ownership and upgrade authority of your native token contracts on each chain
 * **Token Contracts:** employs native token contracts owned by your protocol's governance
 * **Integration:** offers a streamlined and highly customizable framework for sophisticated deployments
-* **Examples:** explore the NTT framework in action through:
 
 **Note:** For a deeper understanding of the underlying technology, explore the core messaging primitives within the Wormhole network: [Core Messaging](docs/build/core-messaging/).
 
-## Supported Token Standards
+## Use Cases 
 
-Wormhole NTT primarily supports **ERC-20** tokens, the standard for fungible tokens on Ethereum and other EVM-compatible chains. The `NttManager` contract leverages the `IERC20` interface and OpenZeppelin's `SafeERC20` for secure and efficient transfers. It also supports **ERC-20 Burnable** tokens. Currently, NTT does not natively support other standards like ERC-721 or ERC-1155.
+**Cross-Chain Swaps and Liquidity Aggregation**
+
+    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – moves native assets across chains
+    - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – handles user-friendly asset transfers
+    - [**Queries**](/docs/build/queries/overview/) – fetches real-time prices for optimal trade execution
+
+**Borrowing and Lending Across Chains**
+
+    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – transfers collateral as native assets
+    - [**Messaging**](/docs/learn/infrastructure/) – moves loan requests and liquidations across chains
+    - [**Queries**](/docs/build/queries/overview/) – fetches interest rates and asset prices in real-time
+
+**Asset Movement Between Bitcoin and Other Chains**
+
+    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – transfers BTC across chains
+
+**Memecoin Launchpad**
+
+    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – enables native asset transfers for seamless fundraising
+    - [**Messaging**](/docs/learn/infrastructure/) – facilitates cross-chain token distribution and claim processes
+
+**Gas Abstraction**
+
+    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – facilitates native token conversion for gas payments
+    - [**Messaging**](/docs/learn/infrastructure/) – routes gas fee payments across chains
+
+**Cross-Chain Payment Widgets**
+
+    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – ensures direct, native asset transfers
+    - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – facilitates seamless payments in various tokens
+
+**Cross-Chain Staking**
+
+    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – transfers staked assets natively between networks
+    - [**Messaging**](/docs/learn/infrastructure/) – moves staking rewards and governance signals across chains
 
 ## Next Steps
 
@@ -72,4 +99,4 @@ Follow these steps to get started with NTT:
     - [**Native Token Transfer**](docs/build/transfers/native-token-transfers/){target=\_blank} – transfers staked assets natively between networks
 
 
-[timeline(wormhole-docs/.snippets/text/products/ntt/ntt-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/products/ntt/overview/ntt-timeline.json)]
