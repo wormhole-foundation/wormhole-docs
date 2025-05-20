@@ -15,7 +15,7 @@ import evm from '@wormhole-foundation/sdk/evm';
 /**
  * Returns a signer for the given chain using locally scoped credentials.
  * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC) must be loaded securely beforehand,
- * for example via a keystore, secrets manager, or environment variables.
+ * for example via a keystore, secrets manager, or environment variables (not recommended).
  */
 export async function getSigner<N extends Network, C extends Chain>(
   chain: ChainContext<N, C>
