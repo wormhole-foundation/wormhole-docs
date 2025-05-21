@@ -1,6 +1,6 @@
 ---
 title: Get Started with Token Bridge
-description: Perform a manual token transfer from Solana to Sui using Wormhole’s Token Bridge with TypeScript SDK, including setup, attestation, and redemption.
+description: Perform token transfers using Wormhole’s Token Bridge with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
 categories: Token-Bridge, Transfers
 ---
 
