@@ -20,12 +20,12 @@ The integration of [Circle's Cross-Chain Transfer Protocol (CCTP)](https://www.c
 Imagine a user wants to move USDC from a source chain to a destination chain and trigger an action there. This is what that flow would look like:
 
 
-1.  **Initiation on source chain** - user on source chain dApp initiates native USDC transfer and specifies action on destination chain
-2.  **CCTP burn and Wormhole Message** - Wormhole packages CCTP burn of native USDC on source chain and destination chain action instructions
-3.  **Circle attestation** -  Circle's attestation service confirms the USDC burn on the source chain and issues a cryptographic signature
-4.  **Wormhole relayer network** - Guardians sign and relay burn attestation and action instructions to the destination chain
-5.  **Message delivery and CCTP mint** - Circle's attestation in Wormhole message triggers CCTP mint of native USDC on the destination chain after verification
-6.  **Automated action** - action on destination chain executes if included in Wormhole message, potentially using new USDC
+1. **Initiation on source chain** - user on source chain dApp initiates native USDC transfer and specifies action on destination chain
+2. **CCTP burn and Wormhole message** - Wormhole packages CCTP burn of native USDC on source chain and destination chain action instructions
+3. **Circle attestation** -  Circle's attestation service confirms the USDC burn on the source chain and issues a cryptographic signature
+4. **Wormhole relayer network** - Guardians sign and relay burn attestation and action instructions to the destination chain
+5. **Message delivery and CCTP mint** - Circle's attestation in Wormhole message triggers CCTP mint of native USDC on the destination chain after verification
+6. **Automated action** - action on destination chain executes if included in Wormhole message, potentially using new USDC
 
 This process highlights how CCTP ensures the secure transfer of native USDC, while Wormhole provides the messaging infrastructure to carry the attestation and enable more complex, automated cross-chain workflows.
 
