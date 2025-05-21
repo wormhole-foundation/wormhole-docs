@@ -13,7 +13,7 @@ This overview introduces Wormhole's Token Bridge's core design, flow, and functi
 
 ## Key Features
 
-The Token Bridge is built to solve common problems in multichain token movement—loss of precision, fragmented liquidity, and slow settlement—by offering a trust-minimized and scalable alternative. It includes:
+The Token Bridge is built to solve interoperability problems in multichain token transfers. Key features include:
 
 - **Universal interoperability** - transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 supported chains
 - **Wrapped asset model** - mint wrapped tokens backed 1:1 by locked or burned assets on the source chain
