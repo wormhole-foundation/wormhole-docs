@@ -29,7 +29,7 @@ By handling token movement in a decentralized, permissionless, and metadata-awar
 In short, the Token Bridge transfer process follows these key steps:
 
 1. **Attestation** - the token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token
-2. **Lock or burn** - to ensure one-to-one backing, the original token is either locked (on EVM chains) or burned (on chains like Solana)
+2. **Locking* - on the source chain, the native token is locked in a custody account
 3. **Message emission** - the decentralized Guardian network generates and cryptographically signs a transfer message
 4. **Verification** - the signed message is submitted and verified on the destination chain to confirm authenticity
 5. **Mint or release** - a wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain
