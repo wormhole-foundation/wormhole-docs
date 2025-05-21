@@ -9,7 +9,7 @@ categories: Token Bridge, Transfer
 
 The Token Bridge is a decentralized protocol designed for transferring tokens across various blockchain networks. It facilitates secure, efficient, and composable multichain token movement without the need for centralized exchanges, wrapped token custodians, or liquidity pools.
 
-This overview introduces Wormhole's Token Bridge's core design, flow, and functionality, and guides you through implementation.
+This overview introduces Wormhole's Token Bridge's core design, flow, and functionality to help you undertstand how assets are securely trasferred across chains. 
 
 ## Key Features
 

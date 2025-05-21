@@ -1,6 +1,6 @@
 [
     {
-        "title": "[Get Started with Token Bridge](docs/products/token-bridge/get-started.md)",
+        "title": "[Get Started with Token Bridge](/docs/products/token-bridge/get-started/",
         "content": "Perform a manual multichain token transfer using Wormhole’s Token Bridge with TypeScript SDK, including setup, attestation, and redemption.",
         "icon": ":fontawesome-solid-1:"
     },
