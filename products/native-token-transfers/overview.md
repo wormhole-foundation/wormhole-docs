@@ -1,5 +1,5 @@
 ---
-title: Wormhole NTT
+title: Overview of Wormhole NTT
 description: With Wormhole NTT, you can directly transfer a blockchain's native assets across various connected networks.
 categories: NTT, Transfer
 ---
