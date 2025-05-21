@@ -1,6 +1,6 @@
 ---
 title: Get Started with CCTP
-description: 
+description: Transfer USDC across chains using Wormhole’s CCTP integration with the TypeScript SDK, including setup, attestation, and redemption steps.
 categories: Transfer
 ---
 
