@@ -19,9 +19,9 @@ You will initiate the transfer on Avalanche, wait for Circle's attestation, and 
 Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - Wallets funded with native tokens on two [supported CCTP chains](/docs/products/reference/supported-networks/#cctp){target=\_blank}
+ - Wallets funded with native tokens and USDC on two [supported CCTP chains](/docs/products/reference/supported-networks/#cctp){target=\_blank}
 
-This example uses an Avalanche Fuji wallet with [AVAX](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and a Sepolia wallet with testnet [ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank}. You can adapt the steps to work with any supported EVM chains that support CCTP.
+This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com/){target=\_blank} and [AVAX](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}, as well as a Sepolia wallet with testnet [ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank}, to pay the transaction fees. You can adapt the steps to work with any supported EVM chains that support CCTP.
 
 ## Configure Your Token Transfer Environment
 
