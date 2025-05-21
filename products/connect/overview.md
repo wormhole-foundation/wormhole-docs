@@ -35,18 +35,18 @@ Think of Wormhole Connect as a ready-made interface that simplifies the process 
 
 ## Use Cases
 
-Here are key use cases that highlight the power and versatility of the Token Bridge.
+Here are key use cases that highlight the power and versatility of Wormhole Connect.
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – handles user-friendly asset transfers
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
-    - [**Queries**](/docs/build/queries/overview/) – fetches real-time prices for optimal trade execution
+    - [**Wormhole Connect**](/docs/products/connect/overview/) – handles user-friendly asset transfers
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
+    - [**Queries**](/docs/products/queries/overview/) – fetches real-time prices for optimal trade execution
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – facilitates seamless payments in various tokens
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/) – ensures direct, native asset transfers
+    - [**Wormhole Connect**](/docs/products/connect/overview/) – facilitates seamless payments in various tokens
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – ensures direct, native asset transfers
 
 - **Web3 Game Asset Transfers**
 
