@@ -1,18 +1,18 @@
 [
     {
-        "title": "[Get Started with CCTP Bridge](https://www.tally.xyz/get-started)",
-        "content": "Apply for MultiGov access by submitting your request to Tally.",
+        "title": "[Get Started with CCTP Bridge](Todo)",
+        "content": "Implement the fundamentals of CCTP and configure its core capabilities.",
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "[Use Automatic Transfers with CCTP Bridge](/docs/products/multigov/get-started/)",
+        "title": "[Use Automatic Transfers with CCTP Bridge](Todo)",
         "content": "Simplify your USDC transfer process with automated attestation fetching and transfer completion",
         "icon": ":fontawesome-solid-2:"
     },
     { 
-        "title": "[Use Manual Transfers with CCTP Bridge](/docs/products/multigov/get-started/)",
+        "title": "[Use Manual Transfers with CCTP Bridge](Todo)",
         "content": "Use manual transfer for maximum control, such as inserting custom logic for gas management or manual transaction signing.",
-        "icon": ":fontawesome-solid-check:"
+        "icon": ":fontawesome-solid-3:"
     }
 ]
 
