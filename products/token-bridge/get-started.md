@@ -22,7 +22,7 @@ These examples will help you understand how the Token Bridge works across EVM an
 Before you begin, make sure you have the following:
 
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/){target=\_blank}
+ - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}
 
 This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank} and an EVM wallet with [Sepolia ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank} for the manual transfer example, and [Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} wallets funded with testnet tokens for the automatic transfer. You can adapt the examples to match your preferred chains.
 
