@@ -42,7 +42,7 @@ Integrating Wormhole's messaging with CCTP enables the secure transfer of native
 
 - **USDC-Powered Multichain Settlement**
     - [**Settlement**](/docs/products/settlement/overview/) – use the Liquidity Layer to settle intents with native USDC
-    - [**Wormhole SDK**](/docs/tools/typescript-sdk/sdk-reference/) – initiate transfers, discover routes, and execute swaps seamlessly
+    - [**Wormhole TypeScript SDK**](/docs/tools/typescript-sdk/sdk-reference/) – initiate transfers, discover routes, and execute swaps seamlessly
 
 ## Next Steps
 
