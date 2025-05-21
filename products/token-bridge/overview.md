@@ -9,7 +9,7 @@ categories: Token Bridge, Transfer
 
 The Token Bridge is a decentralized protocol designed for transferring tokens across various blockchain networks. It facilitates secure, efficient, and composable multichain token movement without the need for centralized exchanges, wrapped token custodians, or liquidity pools.
 
-This overview introduces Wormhole's Token Bridge's core design, flow, and functionality to help you undertstand how assets are securely trasferred across chains. 
+This overview covers Wormhole's Token Bridge design, flow, and functionality, connecting you to resources for a better understanding of asset transfers.
 
 ## Key Features
 
@@ -38,16 +38,16 @@ In short, the Token Bridge transfer process follows these key steps:
 
 ## Use Cases
 
-Here are key use cases that highlight the power and versatility of the Token Bridge. (one other use case)
+Here are key use cases that highlight the power and versatility of the Token Bridge.
 
 - **Multichain Rewards and Token Utility in Decentralized Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
 
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – transfer tokens between chains
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – facilitate the distribution and claiming processes of rewards
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – transfer tokens between chains
+    - [**Messaging**](/docs/products/messaging/overview/) – facilitate the distribution and claiming processes of rewards
 
-- **Web3 Game Asset Transfers**
+- **Cross-Chain Game Economies**
 
-    - [**Token Bridge**](/docs/products/token-bridge/overview/) – handle the underlying lock-and-mint logic securely
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – handle the underlying lock-and-mint logic securely
     - [**Wormhole Connect**](/docs/products/connect/overview/) - provide a user-friendly way to move game tokens across chains
     
 

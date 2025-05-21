@@ -1,7 +1,7 @@
 [
     {
         "title": "[Get Started with Token Bridge](/docs/products/token-bridge/get-started/",
-        "content": "Perform a manual multichain token transfer using Wormhole’s Token Bridge with TypeScript SDK, including setup, attestation, and redemption.",
+        "content": "Perform a manual multichain token transfer using Wormhole Token Bridge and the TypeScript SDK, including setup, attestation, and redemption.",
         "icon": ":fontawesome-solid-1:"
     },
     {
@@ -12,6 +12,6 @@
     {
         "title": "[Test Multiple Transfer Types via Token Bridge](/docs/products/token-bridge/tutorials/transfer-workflow/)",
         "content": "Build a multi-chain token transfer application with support for EVM and non-EVM ecosystems by following this tutorial utilizing the Wormhole TypeScript SDK's Token Bridge ",
-        "icon": ":fontawesome-solid-check:"
+        "icon": ":fontawesome-solid-3:"
     }
 ]
