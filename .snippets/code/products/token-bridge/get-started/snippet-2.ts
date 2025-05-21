@@ -5,7 +5,7 @@ import evm from '@wormhole-foundation/sdk/evm';
 import { getSigner, getTokenDecimals } from './helper';
 
 (async function () {
-  // Initialize Wormhole SDK for Solana and Sui on Testnet
+  // Initialize Wormhole SDK for Solana and Sepolia on Testnet
   const wh = await wormhole('Testnet', [solana, sui, evm]);
 
   // Define the source and destination chains
@@ -49,7 +49,7 @@ import { getSigner, getTokenDecimals } from './helper';
   const timeout = 5 * 60 * 1000; // 5 minutes
   await xfer.fetchAttestation(timeout);
 
-  // Redeem the tokens on Sui
+  // Redeem the tokens on Sepolia
   console.log('Completing Transfer');
   const destTxids = await xfer.completeTransfer(destination.signer);
   console.log(`Completed Transfer: `, destTxids);

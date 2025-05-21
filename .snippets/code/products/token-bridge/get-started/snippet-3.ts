@@ -5,7 +5,7 @@ import evm from '@wormhole-foundation/sdk/evm';
 import { getSigner, getTokenDecimals } from './helper';
 
 (async function () {
-  // Initialize Wormhole SDK for Solana and Sui on Testnet
+  // Initialize Wormhole SDK for Avalanche and Celo on Testnet
   const wh = await wormhole('Testnet', [solana, sui, evm]);
 
   // Define the source and destination chains
@@ -39,7 +39,7 @@ import { getSigner, getTokenDecimals } from './helper';
     nativeGas
   );
 
-  // Initiate the transfer from Solana
+  // Initiate the transfer from Avalanche Fuji
   console.log('Starting Transfer');
   const srcTxids = await xfer.initiateTransfer(source.signer);
   console.log(`Started Transfer: `, srcTxids);
