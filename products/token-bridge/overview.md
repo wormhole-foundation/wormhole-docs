@@ -1,7 +1,7 @@
 ---
 title: Token Bridge Overview
 description: With Wormhole Token Bridge, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
-categories: Token Bridge, Transfer
+categories: Token-Bridge, Transfer
 ---
 
 
