@@ -37,7 +37,7 @@ Integrating Wormhole's messaging with CCTP enables the secure transfer of native
 
 - **USDC Payments Across Chains**
     - [**CCTP**](/docs/products/cctp-bridge/get-started/) – transfer native USDC using Circle’s burn-and-mint protocol
-    - [**Wormhole SDK**](/docs/tools/typescript-sdk/sdk-reference/) – automate attestation delivery and gas handling
+    - [**Wormhole TypeScript SDK**](/docs/tools/typescript-sdk/sdk-reference/) – automate attestation delivery and gas handling
     - [**Connect**](/docs/products/connect/overview/) – embed multichain USDC transfers directly in your app
 
 - **USDC-Powered Multichain Settlement**
