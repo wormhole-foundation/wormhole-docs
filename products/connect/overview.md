@@ -6,8 +6,7 @@ categories: Connect, Transfer
 
 # Connect Overview 
 
-With the Wormhole Connect React widget, you can enable your users to perform cross-chain asset transfers directly within your web application, powered by the Wormhole protocol's easy-to-use interface.
-
+With the Wormhole Connect widget, you can enable your users to perform cross-chain asset transfers directly within your web application, powered by the Wormhole protocol's easy-to-use interface. Connect simplifies the complexity of bridging, offering a single, intuitive point of interaction for moving assets across diverse blockchains. This empowers you to seamlessly access liquidity and opportunities across any connected network.
 ## Key Features
 
 Wormhole Connect offers flexible customization to match your application. Tailor technical aspects like supported assets and custom RPCs, or use the full-featured default widget. Its UI is also highly adaptable, offering extensive styling options, including a no-code visual interface. Connect’s features include:
@@ -23,38 +22,39 @@ Be sure to check the [features page](/docs/products/connect/reference/support-ma
 
 ## How It Works
 
-Think of Wormhole Connect as a ready-made interface that simplifies the process of bridging assets across different blockchains. When a user initiates a transfer using the widget:
+Think of Connect as a ready-made interface that simplifies the process of bridging assets across different blockchains. As you begin a cross-chain asset move, Connect simplifies the steps by:
 
-1.  **Initiation** - select the asset, the originating blockchain, and the target blockchain for the transfer
-2.  **Connection** - establish a link between your wallet and the chosen source blockchain
-3.  **Transaction submission on source chain** - confirm the transfer details to trigger the asset lock or deposit on the initial blockchain
+1.  **Initiation** - selects the asset, the originating blockchain, and the target blockchain for the transfer
+2.  **Connection** - establishes a link between your wallet and the chosen source blockchain
+3.  **Transaction submission on source chain** - confirms the transfer details to trigger the asset lock or deposit on the initial blockchain
 4.  **Wormhole message creation** - Wormhole's network observes the source transaction, and Guardians validate it to generate the cross-chain proof 
-5.  **Message relaying** -  the generated CCT or VAA is transmitted across the Wormhole network to the intended destination blockchain
-6.  **Transaction on destination chain** - Wormhole's contracts on the target blockchain receive and verify the incoming CCT or VAA
+5.  **Message relaying** -  autmomates relays of the generated CCT or VAA across the Wormhole network to the intended destination blockchain
+6.  **Transaction on destination chain** - contracts on the target blockchain receive and verify the incoming CCT or VAA
 7.  **Asset release/minting** - upon successful verification, the equivalent assets are either released as wrapped assets  or newly created on the destination blockchain and delivered to your wallet
+
+_Note_ If you want more hands on experience with Connect, checkout Wormhole [Portal Bridge](https://portalbridge.com/).
 
 ## Use Cases
 
-Here are key use cases that highlight the power and versatility of Wormhole Connect.
+Here are some key use cases that highlight the power and versatility of Connect:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Wormhole Connect**](/docs/products/connect/overview/) – handles user-friendly asset transfers
+    - [**Wormhole Connect**](/docs/products/connect/get-started/) – handles user-friendly asset transfers
     - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
     - [**Queries**](/docs/products/queries/overview/) – fetches real-time prices for optimal trade execution
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Wormhole Connect**](/docs/products/connect/overview/) – facilitates seamless payments in various tokens
+    - [**Wormhole Connect**](/docs/products/connect/get-started/) – facilitates seamless payments in various tokens
     - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – ensures direct, native asset transfers
 
 - **Web3 Game Asset Transfers**
 
-    - [**Wormhole Connect**](/docs/products/connect/overview/) – provide a user-friendly way to move game tokens across chains
+    - [**Wormhole Connect**](/docs/products/connect/get-started/) – provide a user-friendly way to move game tokens across chains
     - [**Token Bridge**](/docs/products/token-bridge/overview/) – handle the underlying lock-and-mint logic securely
 
 ## Next Steps 
 
-Ready to integrate Wormhole Connect into your application? Explore these pages to get started:
-
+Do you feel ready to get started with Connect? Explore these pages to get started:
 [timeline(wormhole-docs/.snippets/text/products/reference/connect/overview/connect-timeline.json)]
