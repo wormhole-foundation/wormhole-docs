@@ -59,13 +59,13 @@ Start by defining utility functions for signer and token setup:
 
 1. In `helper.ts`, define functions to load private keys and instantiate EVM signers:
 
-    ```ts
+    ```ts title="helper.ts"
     --8<-- "code/products/cctp-bridge/get-started/snippet-1.ts"
     ```
 
 2. In `transfer.ts`, add the script to perform the manual transfer using CCTP:
 
-    ```ts
+    ```ts title="transfer.ts"
     --8<-- "code/products/cctp-bridge/get-started/snippet-2.ts"
     ```
 
