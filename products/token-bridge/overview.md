@@ -1,25 +1,25 @@
 ---
 title: Token Bridge Overview
 description: With Wormhole Token Bridge, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
-categories: Token Bridge, Transfer
+categories: Token-Bridge, Transfer
 ---
 
 
 # Token Bridge Overview
 
-The Token Bridge is a decentralized protocol designed for transferring tokens across various blockchain networks. It facilitates secure, efficient, and composable multichain token movement without the need for centralized exchanges, wrapped token custodians, or liquidity pools.
+The Token Bridge is a Wormhole module for bridging and wrapping tokens across various blockchain networks. Locking assets on one network and minting corresponding wrapped tokens on another facilitates secure, efficient, and composable multichain token movement.
 
 This overview covers Wormhole's Token Bridge design, flow, and functionality, connecting you to resources for a better understanding of asset transfers.
 
 ## Key Features
 
-The Token Bridge is built to solve common problems in multichain token movement—loss of precision, fragmented liquidity, and slow settlement—by offering a trust-minimized and scalable alternative. It includes:
+The Token Bridge is built to solve interoperability problems in multichain token transfers. Key features include:
 
-- **Universal interoperability** - transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 supported chains
-- **Wrapped asset model** - mint wrapped tokens backed 1:1 by locked or burned assets on the source chain
-- **Preserved metadata** - ensure that attributes like name, symbol, and decimals persist across chains
-- **Transfer with payload** - attach arbitrary data to token transfers, enabling downstream smart contract calls
-- **Decentralized security** - verified by the [Wormhole Guardian network](/docs/protocol/infrastructure/guardians/), ensuring cross-chain consistency and message authenticity
+- **Interoperability** - transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 supported chains
+- **Wrapped asset model** - mint wrapped tokens backed 1:1 by locked assets on the source chain
+- **Preserved metadata** - ensure that token properties like name, symbol, and decimals persist across chains
+- **Transfer with payload** - attach arbitrary data to token transfers, enabling the triggering of specific actions
+- **Decentralized security** - verified by the [Guardian Network](/docs/protocol/infrastructure/guardians/), ensuring cross-chain consistency and message authenticity
 
 ## How It Works
 
@@ -28,11 +28,11 @@ By handling token movement in a decentralized, permissionless, and metadata-awar
 
 In short, the Token Bridge transfer process follows these key steps:
 
-1.  **Attestation** - the token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token
-2.  **Lock or burn** - to ensure one-to-one backing, the original token is either locked (on EVM chains) or burned (on chains like Solana)
-3.  **Message emission** - the decentralized Guardian network generates and cryptographically signs a transfer message
-4.  **Verification** - the signed message is submitted and verified on the destination chain to confirm authenticity
-5.  **Mint or release** - a wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain
+1. **Attestation** - the token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token
+2. **Locking* - on the source chain, the native token is locked in a custody account
+3. **Message emission** - the decentralized Guardian network generates and cryptographically signs a transfer message
+4. **Verification** - the signed message is submitted and verified on the destination chain to confirm authenticity
+5. **Minting** - a wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain
 
 ![Token Bridge Steps Diagram](/docs/images/products/token-bridge/overview/token-bridge-diagram.webp)
 
