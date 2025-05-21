@@ -85,3 +85,4 @@ To verify the transaction and view its details, paste the transaction hash into 
 
 Now that you've completed a CCTP USDC transfer using the Wormhole SDK, you're ready to explore more advanced features and expand your integration:
 
+ - [**Circle CCTP Documentation**](https://developers.circle.com/stablecoins/cctp-getting-started){target=\_blank} – learn how USDC cross-chain transfers work and explore advanced CCTP features
