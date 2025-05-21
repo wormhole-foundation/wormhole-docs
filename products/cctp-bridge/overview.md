@@ -40,7 +40,7 @@ Integrating Wormhole's messaging with CCTP enables the secure transfer of native
     - [**Wormhole SDK**](/docs/tools/typescript-sdk/sdk-reference/) – automate attestation delivery and gas handling
     - [**Connect**](/docs/products/connect/overview/) – embed multichain USDC transfers directly in your app
 
-- **USDC Powered Multichain Settlement**
+- **USDC-Powered Multichain Settlement**
     - [**Settlement**](/docs/products/settlement/overview/) – use the Liquidity Layer to settle intents with native USDC
     - [**Wormhole SDK**](/docs/tools/typescript-sdk/sdk-reference/) – initiate transfers, discover routes, and execute swaps seamlessly
 
