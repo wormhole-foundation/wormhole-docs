@@ -35,19 +35,19 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 - **Cross-Chain Treasury Management**
 
     - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – vote on treasury actions from any supported chain  
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – transmit proposal execution to target chains
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – optionally move assets 
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – transmit proposal execution to target chains
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – optionally move assets 
 
 - **Coordinated Protocol Upgrades Across Chains**
 
     - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – create a unified proposal to upgrade contracts across networks  
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – send upgrade instructions as VAAs and deliver execution payloads to target chains 
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – send upgrade instructions as VAAs and deliver execution payloads to target chains 
     
 - **Progressive Decentralization for Multichain DAOs**
 
     - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – extend governance to new chains while preserving coordination  
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch on-chain vote weights from remote spokes  
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – aggregate results and execute actions via the hub 
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch on-chain vote weights from remote spokes  
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – aggregate results and execute actions via the hub 
 
 ## Next Steps
 
