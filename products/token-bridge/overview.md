@@ -56,7 +56,3 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 If you are looking for guided practice, take a look at: 
 
 [timeline(wormhole-docs/.snippets/text/products/token-bridge/overview/token-bridge-timeline.json)]
-
-
-
-
