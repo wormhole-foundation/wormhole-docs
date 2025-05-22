@@ -22,7 +22,7 @@ The Token Bridge is built to solve interoperability problems in multichain token
 
 ## How It Works
 
-By handling token movement in a decentralized, permissionless, and metadata-aware way, the Token Bridge provides a reliable foundation for cross-chain interoperability at scale.
+By handling token movement in a decentralized, permissionless, and metadata-aware way, the Token Bridge provides a reliable foundation for multichain interoperability at scale.
 
 The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
