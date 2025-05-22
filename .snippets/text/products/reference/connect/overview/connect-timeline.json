@@ -1,0 +1,17 @@
+[
+    {
+        "title": "[Get Started with Connect](Todo)",
+        "content": "Configure and use the Connect UI widget to easily add an intuitive, multichain asset transfer UI to your web applications.",
+        "icon": ":fontawesome-solid-1:"
+    },
+    {
+        "title": "[Configure Connect](Todo)",
+        "content": "Tailor your Connect's core behavior and supported assets.",
+        "icon": ":fontawesome-solid-2:"
+    },
+    { 
+        "title": "[Customize Your Connect Widget](Todo)",
+        "content": "Style Connect’s look and feel to fit your application with options for color schemes, fonts, menu layout, and adding menu entries.",
+        "icon": ":fontawesome-solid-3:"
+    }
+]
