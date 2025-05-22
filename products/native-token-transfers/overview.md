@@ -4,82 +4,79 @@ description: With Native Token Transfers, you can directly transfer a blockchain
 categories: NTT, Transfer
 ---
 
-## Introduction
+## Native Token Transfers Overview
 
 Native Token Transfers (NTT) provides an adaptable framework for transferring your native tokens across different blockchains. Unlike traditional wrapped assets, NTT maintains your token's native properties on every chain. This ensures you retain complete control over crucial aspects like metadata, ownership, upgradeability, and custom features.
 
 ## Key Features
 
-- **No wrapped assets** – tokens retain their native format on each chain
-- **Canonical deployments** – one unified token identity across chain
 - **Supply control** – enforced mint-and-burn model maintains global supply integrity
-- **Composable** – open-source and extensible for widespread adoption and integration with other protocols
 - **Customizable controls** – configure rate limits, access control, and attestation thresholds
+- **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
+- **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
+- **Advanced rate limiting** - inbound and outbound rate limits are configurable per chain and over arbitrary periods, preventing abuse while managing network congestion and allowing for controlled deployments 
+- **Global accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
+- **Custom attestation** - optionally add external verifiers and configure custom message attestation thresholds
+- **Access control** - to prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions to a separate address from the owner
+
 
 ## Deployment Models
 
 NTT offers two operational modes for your existing tokens: 
 
-- **[Locking Mode](todo)** - preserves the original token supply on a single, designated chain
-- **[Burning Mode](todo)** - enables the deployment of truly multichain tokens with the total supply distributed across various connected chains
+- **[Burn-and-mint](todo)** -  locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts.
+
+- **[Hub-and-spoke](todo)** - burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token.
 
 ## Supported Token Models
 
-Wormhole's NTT primarily supports `ERC-20` tokens. These are the most common type of tokens that are identical and interchangeable. `ERC-20`s are found on Ethereum and other EVM-compatible chains.
+Wormhole's NTT primarily supports ERC-20 tokens. These are the most common type of tokens that are identical and interchangeable and can be found on Ethereum and other EVM-compatible chains.
 
-The NTT system's `NttManager` contract is a special program that securely handles these tokens. It uses standard tools like the `IERC20` interface, which acts as a blueprint for ERC-20 tokens and OpenZeppelin's `SafeERC-20` library (for added security) to manage transfers. NTT also supports `ERC-20` Burnable tokens, which can be permanently removed from circulation, crucial for NTT's token burning process.
+NTT Managers are crucial for Native Token Transfers (NTT) within Wormhole, overseeing the entire cross-chain token movement process. They manage rate limits and verify message attestations, preventing abuse and ensuring secure transfers. By locking or burning tokens on the source chain before minting or unlocking them on the destination, Managers guarantee consistent token supply and integrity across all connected blockchains
 
-Currently, NTT doesn't natively support `ERC-721`, which are unique, non-fungible tokens, or `ERC-1155`, a standard for managing multiple token types. In short, NTT is designed for seamless, secure transfers of interchangeable digital assets across compatible blockchains.
+The NttManager uses standard tools like the IERC-20 interface, which acts as a blueprint for ERC-20 tokens and OpenZeppelin's SafeERC-20 library to manage transfers. NTT also supports ERC-20 Burnable tokens, which can be permanently removed from circulation, crucial for NTT's token burning process.
+
+Currently, NTT doesn't natively support ERC-721, which are unique, non-fungible tokens, or ERC-1155, a standard for managing multiple token types. In short, NTT is designed for seamless, secure transfers of interchangeable digital assets across compatible blockchains.
 
 ## How it Works
 
 Here's a breakdown of the key steps involved when a native token is transferred across blockchains using NTT:
 
-1. **Initiate transfer** - a user triggers a request to move their native token from a source blockchain to a desired destination blockchain.
-2. **Source chain action** - the token is either burned on the source chain (for distributed supply) or locked (for single-chain supply)
-3. **Wormhole attestation** - Wormhole's Guardians observe and cryptographically attest to this token action on the source chain, generating a signed message (VAA)
-4. **Message relaying** - the signed message containing the transfer details is relayed across the Wormhole network to the destination chain
-5. **Destination chain action** - verified Wormhole message on the destination chain mints (if burned) or unlocks (if locked) the native token 
-6. **Accounting integrity** - the Global Accountant continuously validates total supply across chains
-
-### Native Token Transfer Framework
-
-- **Mechanism** supports a pure burn-and-mint model or a hybrid hub-and-spoke approach
-- **Security** highly configurable rate limiting, pausing, access controls, and threshold attestations
-- **Contract ownership** retain full ownership and upgrade authority of your native token contracts on each chain
-- **Token contracts** employs native token contracts owned by your protocol's governance
-- **Integration** offers a streamlined and highly customizable framework for sophisticated deployments
-
-_Note:_ For a deeper understanding of the underlying technology, explore the core messaging primitives within the Wormhole network: [Core Messaging](docs/build/core-messaging/).
+1. **Prepare Token and Mode** - Ready your ERC-20 or SPL token, then decide on a "Burn-and-Mint" or "Hub-and-Spoke" deployment model to manage token minting
+2. **Choose Method** - Select the NTT Launchpad for a UI-driven EVM-only experience, or the NTT CLI for command-line control supporting both EVM and Solana
+3. **Configure Initial Settings** - Identify target blockchains, provide essential token details (name, symbol, initial supply if new), and set up your environment if using the CLI
+4. **Execute Deployment** - Initiate the deployment of NTT Manager contracts (and your token if new) to all chosen blockchains, confirming transactions and covering gas fees
+5. **Post-Deployment Configuration** - Grant minting authority to NTT Managers (if applicable), configure rate limits, define security thresholds for transceivers, establish peer relationships between Managers, and assign administrative roles
+6. **Monitor & Maintain** - Verify deployment status, continuously monitor total token supply across chains with the Global Accountant, and adjust settings like limits and roles as needed
 
 ## Use Cases 
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – transmits native assets across chains
-    - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – manages user-friendly asset transfers
-    - [**Queries**](/docs/build/queries/overview/) – acquires real-time prices for optimal trade execution
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – transmits native assets across chains
+    - [**Wormhole Connect**](/docs/products/connect/overview/) – manages user-friendly asset transfers
+    - [**Queries**](/docs/products/queries/overview/) – acquires real-time prices for optimal trade execution
 
 - **Borrowing and Lending Across Chains**
 
-    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – moves collateral as native assets
-    - [**Messaging**](/docs/learn/infrastructure/) – propagates loan requests and liquidations across chains
-    - [**Queries**](/docs/build/queries/overview/) – retrieves  interest rates and asset prices in real-time
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – moves collateral as native assets
+    - [**Messaging**](/docs/products/messaging/overview/) – propagates loan requests and liquidations across chains
+    - [**Queries**](/docs/products/queries/overview/) – retrieves  interest rates and asset prices in real-time
 
 - **Gas Abstraction**
 
-    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – facilitates native token conversion for gas payments
-    - [**Messaging**](/docs/learn/infrastructure/) – sends gas fee payments across chains
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – facilitates native token conversion for gas payments
+    - [**Messaging**](/docs/products/messaging/overview/) – sends gas fee payments across chains
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – ensures direct, native asset transfers
-    - [**Wormhole Connect**](/docs/build/transfers/connect/overview/) – facilitates seamless payments in various tokens
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – ensures direct, native asset transfers
+    - [**Wormhole Connect**](/docs/products/connect/overview/) – facilitates seamless payments in various tokens
 
 - **Cross-Chain Staking**
 
-    - [**Native Token Transfer**](/docs/build/transfers/native-token-transfers/) – transfers staked assets natively between networks
-    - [**Messaging**](/docs/learn/infrastructure/) – moves staking rewards and governance signals across chains
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – transfers staked assets natively between networks
+    - [**Messaging**](/docs/products/messaging/overview/) – moves staking rewards and governance signals across chains
 
 ## Next Steps
 

@@ -1,12 +1,12 @@
 [
     {
         "title": "[Get Started with NTT](/docs/products/native-token-transfers/get-started/)",
-        "content": "Understand the fundamental concepts and benefits of Wormhole's Native Token Transfer (NTT) for directly moving native assets across connected blockchains..",
+        "content": "Start your journey with Wormhole's NTT by learning to install its CLI, deploy test tokens, and set up it's initial structure for seamless token movement.",
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "[Implement NTT](/docs/products/native-token-transfers/guides/deploy-to-evm/)",
-        "content": "Integrate Wormhole's Native Token Transfer functionality into your application to enable direct cross-chain movement of native assets.",
+        "title": "Implement NTT",
+        "content": "**→** [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/)  \n**→** [Deploy to EVM Chains via Launchpad](/docs/products/native-token-transfers/guides/evm-launchpad/)   \n**→** [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/)",
         "icon": ":fontawesome-solid-2:"
     },
     { 
@@ -15,4 +15,3 @@
         "icon": ":fontawesome-solid-3:"
     }
 ]
-
