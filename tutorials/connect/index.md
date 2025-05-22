@@ -12,7 +12,7 @@ Wormhole Connect makes it simple to link your application to multiple blockchain
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Integrate Connect into a React DApp**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge beginner">Beginner</span>  **Integrate Connect into a React DApp**
 
     ---
 

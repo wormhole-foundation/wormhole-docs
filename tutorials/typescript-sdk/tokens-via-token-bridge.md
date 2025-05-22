@@ -1,6 +1,7 @@
 ---
 title: Transfer Tokens via Token Bridge Tutorial
 description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
+tutorial_badge: Intermediate
 ---
 
 # Transfer Tokens via the Token Bridge
