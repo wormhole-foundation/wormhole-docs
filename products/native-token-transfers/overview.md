@@ -1,12 +1,12 @@
 ---
-title: Overview of Wormhole NTT
-description: With Wormhole NTT, you can directly transfer a blockchain's native assets across various connected networks.
+title: Native Token Transfers Overview
+description: With Native Token Transfers, you can directly transfer a blockchain's native assets across various connected networks.
 categories: NTT, Transfer
 ---
 
 ## Introduction
 
-Wormhole's Native Token Transfers (NTT) provides an open-source, adaptable framework for transferring your tokens across different blockchains. Unlike traditional wrapped assets, NTT maintains the native properties of your token on every chain. This ensures you retain complete control over crucial aspects like metadata, ownership, upgradeability, and custom features.
+Native Token Transfers (NTT) provides an adaptable framework for transferring your native tokens across different blockchains. Unlike traditional wrapped assets, NTT maintains your token's native properties on every chain. This ensures you retain complete control over crucial aspects like metadata, ownership, upgradeability, and custom features.
 
 ## Key Features
 
