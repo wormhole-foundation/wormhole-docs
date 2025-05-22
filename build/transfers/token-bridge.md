@@ -58,6 +58,12 @@ function attestToken(
     
     A unique identifier for the attestation transaction.
 
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/attestToken.sol'
+    ```
+
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
 You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
@@ -115,6 +121,12 @@ function transferTokens(
     `sequence` ++"uint64"++
     
     A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/transferTokens.sol'
+    ```
 
 Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
 
@@ -186,6 +198,12 @@ function transferTokensWithPayload(
     
     A unique identifier for the transfer transaction.
 
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/transferTokensWithPayload.sol'
+    ```
+
 After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
 
 Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
@@ -247,3 +265,5 @@ You can refer to the [core-bridge repository](https://github.com/nonergodic/core
 Updating the metadata (such as the token image, name, or symbol) of a wrapped token on [Solscan](https://solscan.io/){target=\_blank} requires [contacting the Solscan team](https://solscan.io/contactus){target=\_blank} directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the Token Bridge, not individual developers or projects.
 
 To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
+
+// TODO: create a new example for  ??
