@@ -12220,7 +12220,1485 @@ Congratulations! You've successfully built and deployed a cross-chain token tran
  - Write deployment scripts to manage and deploy contracts on different networks
 --- END CONTENT ---
 
+<<<<<<< HEAD
+Doc-Content: https://wormhole.com/docs/tutorials/solidity-sdk/
+--- BEGIN CONTENT ---
+---
+title: Solidity SDK Tutorials
+description: Master cross-chain smart contracts with Wormhole's Solidity SDK. Learn messaging, token transfers, and secure, scalable dApp deployments across blockchains.
+---
+
+# Solidity SDK
+
+Expand the reach of your decentralized applications by building smart contracts that can communicate across multiple blockchains. Through these tutorials, you’ll learn to create robust cross-chain contracts, enabling your dApps to tap into global liquidity, diverse functionalities, and a broader user base.
+
+## Tutorials
+
+<div class="grid cards" markdown>
+
+-   :octicons-repo-16:{ .lg .middle } **Create Cross-Chain Messaging Contracts**
+
+    ---
+
+    Learn how to build and deploy smart contracts that communicate seamlessly across multiple blockchains. This tutorial walks you through using Wormhole's Solidity SDK to send and receive messages between Avalanche Fuji and Celo Alfajores, helping you master emitter validation, relayer usage, and cross-chain cost management.
+
+    [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/cross-chain-contracts/)
+
+-   :octicons-repo-16:{ .lg .middle } **Create Cross-Chain Token Transfer Contracts**
+
+    ---
+
+    Discover how to create a fully functional cross-chain token transfer system using Wormhole's Solidity SDK. This tutorial guides you through token attestation, contract deployment, and secure transfers of ERC-20 tokens between test networks. By the end, you’ll know how to tap into global liquidity and enrich your dApps with seamless multi-chain asset movement.
+
+    [:custom-arrow: Start building](/docs/tutorials/solidity-sdk/cross-chain-token-contracts/)
+
+</div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-book-16:{ .lg .middle } **Core Contracts**
+
+    ---
+
+    Dive deeper into Wormhole’s foundational concepts for cross-chain contracts. Discover how messaging, guardians, and VAAs work together to enable secure, scalable dApps.
+
+    [:custom-arrow: Explore Core Contracts](/docs/learn/infrastructure/core-contracts/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/typescript-sdk/
+--- BEGIN CONTENT ---
+---
+title: Wormhole SDK Tutorials
+description: Master the Wormhole SDK. Build robust cross-chain dApps with messaging, token bridging, and governance across multiple networks.
+---
+
+# Wormhole SDK
+
+The Wormhole SDK provides the essential building blocks for creating robust cross-chain applications. With its developer-friendly libraries, tools, and interfaces, you can quickly integrate Wormhole’s messaging, token transfer, and governance functionalities into your projects. Whether you’re building a simple cross-chain dApp or architecting a complex multi-chain ecosystem, these tutorials will guide you through mastering the SDK and unlocking the full potential of Wormhole’s infrastructure.
+
+## Tutorials
+
+<div class="grid cards" markdown>
+
+-   :octicons-repo-16:{ .lg .middle } **Transfer USDC via CCTP**
+
+    ---
+
+    Learn how to move native USDC across chains using Circle’s CCTP and Wormhole’s TypeScript SDK. This tutorial shows you how to streamline transfers with automated attestation and finalization or take complete control with manual steps. Gain the skills to handle seamless USDC bridging, optimize user experience, and improve the reliability of your cross-chain applications.
+
+    [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/usdc-via-cctp/)
+
+-   :octicons-repo-16:{ .lg .middle } **Transfer Tokens via the Token Bridge**
+
+    ---
+
+    Learn how to build a versatile cross-chain token transfer application using Wormhole’s TypeScript SDK. This tutorial walks you through leveraging the Token Bridge to securely and efficiently move assets between EVM and non-EVM chains. By the end, you’ll understand how to transfer tokens between networks like Ethereum, Solana, Sui, and beyond, opening the door to an interconnected blockchain ecosystem.
+
+    [:custom-arrow: Start building](/docs/tutorials/typescript-sdk/tokens-via-token-bridge/)
+
+</div>
+
+## Additional Resources
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Wormhole SDK Documentation**
+
+    ---
+
+    Learn to build cross-chain dApps using the Wormhole SDK. Access detailed guides, reference code, and best practices for robust application development.
+
+    [:custom-arrow: Learn more](/docs/build/toolkit/typescript-sdk/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/typescript-sdk/tokens-via-token-bridge/
+--- BEGIN CONTENT ---
+---
+title: Transfer Tokens via Token Bridge Tutorial
+description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
+---
+
+# Transfer Tokens via the Token Bridge
+
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}
+
+## Introduction
+
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
+
+By leveraging Wormhole’s Token Bridge, this guide shows you how to build an application that supports multiple transfer types:
+
+ - EVM to EVM (e.g., Ethereum to Avalanche)
+ - EVM to non-EVM chains (e.g., Ethereum to Solana)
+ - Non-EVM to EVM chains (e.g., Sui to Avalanche)
+ - Non-EVM to non-EVM chains (e.g., Solana to Sui)
+
+Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the Token Bridge method from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
+
+At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s Token Bridge method.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
+ - Native tokens (testnet or mainnet) in Solana and Sui wallets
+ - A wallet with a private key, funded with native tokens (testnet or mainnet) for gas fees
+
+## Supported Chains
+
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=\_blank}, which covers both testnet and mainnet environments.
+
+## Project Setup
+
+In this section, we’ll guide you through initializing the project, installing dependencies, and preparing your environment for cross-chain transfers.
+
+1. **Initialize the project** - start by creating a new directory for your project and initializing it with `npm`, which will create the `package.json` file for your project
+
+    ```bash
+    mkdir native-transfers
+    cd native-transfers
+    npm init -y
+    ```
+
+2. **Create a `.gitignore` file** - ensure your private key isn't accidentally exposed or committed to version control
+
+    ```bash
+    echo ".env" >> .gitignore
+    ```
+
+3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
+
+    ```bash
+    npm install @wormhole-foundation/sdk dotenv tsx
+    ```
+
+4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
+
+    ```bash
+    touch .env
+    ```
+
+    Inside the `.env` file, add your private keys.
+
+    ```env
+    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
+    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
+    SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
+    ```
+
+    !!! note
+        Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
+
+5. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
+
+    1. Create the helpers file
+
+        ```bash
+        mkdir -p src/helpers
+        touch src/helpers/helpers.ts
+        ```
+
+    2. Open the `helpers.ts` file and add the following code
+
+        ```typescript
+        import {
+  ChainAddress,
+  ChainContext,
+  Network,
+  Signer,
+  Wormhole,
+  Chain,
+  TokenId,
+  isTokenId,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import aptos from '@wormhole-foundation/sdk/aptos';
+import { config } from 'dotenv';
+config();
+
+export interface SignerStuff<n c="" chain="" extends="" network,=""> {
+  chain: ChainContext<n, c="">;
+  signer: Signer<n, c="">;
+  address: ChainAddress<c>;
+}
+
+// Function to fetch environment variables (like your private key)
+function getEnv(key: string): string {
+  const val = process.env[key];
+  if (!val) throw new Error(`Missing environment variable: ${key}`);
+  return val;
+}
+
+// Signer setup function for different blockchain platforms
+export async function getSigner<n c="" chain="" extends="" network,="">(
+  chain: ChainContext<n, c="">,
+  gasLimit?: bigint
+): Promise&lt;{
+  chain: ChainContext<n, c="">;
+  signer: Signer<n, c="">;
+  address: ChainAddress<c>;
+}&gt; {
+  let signer: Signer;
+  const platform = chain.platform.utils()._platform;
+
+  switch (platform) {
+    case 'Solana':
+      signer = await (
+        await solana()
+      ).getSigner(await chain.getRpc(), getEnv('SOL_PRIVATE_KEY'));
+      break;
+    case 'Evm':
+      const evmSignerOptions = gasLimit ? { gasLimit } : {};
+      signer = await (
+        await evm()
+      ).getSigner(
+        await chain.getRpc(),
+        getEnv('ETH_PRIVATE_KEY'),
+        evmSignerOptions
+      );
+      break;
+    case 'Sui':
+      signer = await (
+        await sui()
+      ).getSigner(await chain.getRpc(), getEnv('SUI_MNEMONIC'));
+      break;
+    case 'Aptos':
+      signer = await (
+        await aptos()
+      ).getSigner(await chain.getRpc(), getEnv('APTOS_PRIVATE_KEY'));
+      break;
+    default:
+      throw new Error('Unsupported platform: ' + platform);
+  }
+
+  return {
+    chain,
+    signer: signer as Signer<n, c="">,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
+}
+
+export async function getTokenDecimals&lt;
+  N extends 'Mainnet' | 'Testnet' | 'Devnet'
+&gt;(
+  wh: Wormhole<n>,
+  token: TokenId,
+  sendChain: ChainContext<n, any="">
+): Promise<number> {
+  return isTokenId(token)
+    ? Number(await wh.getDecimals(token.chain, token.address))
+    : sendChain.config.nativeTokenDecimals;
+}
+</number></n,></n></n,></c></n,></n,></n,></n></c></n,></n,></n>
+        ```
+
+        - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
+        - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
+        - **`getTokenDecimals`** - this function fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers
+
+## Check and Create Wrapped Tokens
+
+Before tokens are transferred across chains, it should be checked whether a wrapped version exists on the destination chain. If not, an attestation must be generated to wrap it so it can be sent and received on that chain.
+
+In this section, you'll create a script that automates this process by checking whether Arbitrum Sepolia has a wrapped version on Base Sepolia and registering it if needed.
+
+### Configure the Wrapped Token Script
+
+1. **Create the `create-wrapped.ts` file** - set up the script file that will handle checking and wrapping tokens in the `src` directory
+
+    ```bash
+    mkdir -p src/scripts
+    touch src/scripts/create-wrapped.ts
+    ```
+
+2. **Open `create-wrapped.ts` and import the required modules** - import the necessary SDK modules to interact with Wormhole, EVM, Solana, and Sui chains, as well as helper functions for signing and sending transactions
+
+    ```typescript
+    import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { inspect } from 'util';
+import { getSigner } from '../helpers/helpers';
+    ```
+
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
+
+    ```typescript
+    const wh = await wormhole('Testnet', [evm, solana, sui]);
+    ```
+
+    !!! note
+        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
+
+4. **Configure transfer parameters** - specify Arbitrum Sepolia as the source chain and Base Sepolia as the destination, retrieve the token ID from the source chain for transfer, and set the gas limit (optional)
+
+    ```typescript
+    const destChain = wh.getChain('BaseSepolia');
+  const token = await srcChain.getNativeWrappedTokenId();
+  const gasLimit = BigInt(2_500_000);
+    ```
+
+5. **Set up the destination chain signer** -  the signer authorizes transactions, such as submitting the attestation
+
+    ```typescript
+    
+    ```
+
+6. **Check if the token is wrapped on the destination chain** - verify if the token already exists as a wrapped asset before creating an attestation
+
+    ```typescript
+    try {
+    const wrapped = await tbDest.getWrappedAsset(token);
+    console.log(
+      `Token already wrapped on ${destChain.chain}. Skipping attestation.`
+    );
+    return { chain: destChain.chain, address: wrapped };
+  } catch (e) {
+    console.log(
+      `No wrapped token found on ${destChain.chain}. Proceeding with attestation.`
+    );
+  }
+    ```
+
+    If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/tutorials/typescript-sdk/tokens-via-token-bridge/#token-transfers). Otherwise, an attestation must be generated.
+
+7. **Set up the source chain signer** -  the signer creates and submits the attestation transaction
+
+    ```typescript
+    
+    ```
+
+8. **Create an attestation transaction** - generate and send an attestation for the token on the source chain to register it on the destination chain, then save the transaction ID to verify the attestation in the next step
+
+    ```typescript
+    const attestTxns = tbOrig.createAttestation(
+    token.address,
+    Wormhole.parseAddress(origSigner.chain(), origSigner.address())
+  );
+
+  const txids = await signSendWait(srcChain, attestTxns, origSigner);
+  console.log('txids: ', inspect(txids, { depth: null }));
+  const txid = txids[0]!.txid;
+  console.log('Created attestation (save this): ', txid);
+    ```
+
+9. **Retrieve the signed VAA** - once the attestation transaction is confirmed, use `parseTransaction(txid)` to extract Wormhole messages, then retrieve the signed VAA from the messages. The timeout defines how long to wait for the VAA before failure
+
+    ```typescript
+    console.log('Parsed Messages:', msgs);
+
+  const timeout = 25 * 60 * 1000;
+  const vaa = await wh.getVaa(msgs[0]!, 'TokenBridge:AttestMeta', timeout);
+  if (!vaa) {
+    throw new Error(
+      'VAA not found after retries exhausted. Try extending the timeout.'
+    );
+  }
+    ```
+
+10. **Submit the attestation on the destination chain** - submit the signed VAA using `submitAttestation(vaa, recipient)` to create the wrapped token on the destination chain, then send the transaction and await confirmation
+
+    ```typescript
+    vaa,
+    Wormhole.parseAddress(destSigner.chain(), destSigner.address())
+  );
+
+  const tsx = await signSendWait(destChain, subAttestation, destSigner);
+    ```
+
+11. **Wait for the wrapped asset to be available** - poll until the wrapped token is available on the destination chain
+
+    ```typescript
+    do {
+      try {
+        const wrapped = await tbDest.getWrappedAsset(token);
+        return { chain: destChain.chain, address: wrapped };
+      } catch (e) {
+        console.error('Wrapped asset not found yet. Retrying...');
+      }
+      console.log('Waiting before checking again...');
+      await new Promise((r) =&gt; setTimeout(r, 2000));
+    } while (true);
+  }
+
+  console.log('Wrapped Asset: ', await waitForIt());
+})().catch((e) =&gt; console.error(e));
+    ```
+
+    If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
+
+??? code "Complete script"
+    ```typescript
+    import { Wormhole, signSendWait, wormhole } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { inspect } from 'util';
+import { getSigner } from '../helpers/helpers';
+
+(async function () {
+  const wh = await wormhole('Testnet', [evm, solana, sui]);
+
+  // Define the source and destination chains
+  const srcChain = wh.getChain('ArbitrumSepolia');
+  const destChain = wh.getChain('BaseSepolia');
+  const token = await srcChain.getNativeWrappedTokenId();
+  const gasLimit = BigInt(2_500_000);
+
+  // Destination chain signer setup
+  const { signer: destSigner } = await getSigner(destChain, gasLimit);
+  const tbDest = await destChain.getTokenBridge();
+
+  try {
+    const wrapped = await tbDest.getWrappedAsset(token);
+    console.log(
+      `Token already wrapped on ${destChain.chain}. Skipping attestation.`
+    );
+    return { chain: destChain.chain, address: wrapped };
+  } catch (e) {
+    console.log(
+      `No wrapped token found on ${destChain.chain}. Proceeding with attestation.`
+    );
+  }
+
+  // Source chain signer setup
+  const { signer: origSigner } = await getSigner(srcChain);
+
+  // Create an attestation transaction on the source chain
+  const tbOrig = await srcChain.getTokenBridge();
+  const attestTxns = tbOrig.createAttestation(
+    token.address,
+    Wormhole.parseAddress(origSigner.chain(), origSigner.address())
+  );
+
+  const txids = await signSendWait(srcChain, attestTxns, origSigner);
+  console.log('txids: ', inspect(txids, { depth: null }));
+  const txid = txids[0]!.txid;
+  console.log('Created attestation (save this): ', txid);
+
+  // Retrieve the Wormhole message ID from the attestation transaction
+  const msgs = await srcChain.parseTransaction(txid);
+  console.log('Parsed Messages:', msgs);
+
+  const timeout = 25 * 60 * 1000;
+  const vaa = await wh.getVaa(msgs[0]!, 'TokenBridge:AttestMeta', timeout);
+  if (!vaa) {
+    throw new Error(
+      'VAA not found after retries exhausted. Try extending the timeout.'
+    );
+  }
+
+  console.log('Token Address: ', vaa.payload.token.address);
+
+  // Submit the attestation on the destination chain
+  console.log('Attesting asset on destination chain...');
+
+  const subAttestation = tbDest.submitAttestation(
+    vaa,
+    Wormhole.parseAddress(destSigner.chain(), destSigner.address())
+  );
+
+  const tsx = await signSendWait(destChain, subAttestation, destSigner);
+  console.log('Transaction hash: ', tsx);
+
+  // Poll for the wrapped asset until it's available
+  async function waitForIt() {
+    do {
+      try {
+        const wrapped = await tbDest.getWrappedAsset(token);
+        return { chain: destChain.chain, address: wrapped };
+      } catch (e) {
+        console.error('Wrapped asset not found yet. Retrying...');
+      }
+      console.log('Waiting before checking again...');
+      await new Promise((r) =&gt; setTimeout(r, 2000));
+    } while (true);
+  }
+
+  console.log('Wrapped Asset: ', await waitForIt());
+})().catch((e) =&gt; console.error(e));
+    ```
+
+### Run the Wrapped Token Creation
+
+Once the script is ready, execute it with:
+
+```bash
+npx tsx src/scripts/create-wrapped.ts
+```
+
+If the token is already wrapped, the script exits. Otherwise, it generates an attestation and submits it. Once complete, you’re ready to transfer tokens across chains.
+
+## Token Transfers
+
+In this section, you'll create a script to transfer native tokens across chains using Wormhole's Token Bridge method. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
+
+### Configure Transfer Details
+
+Before initiating a cross-chain transfer, you must set up the chain context and signers for both the source and destination chains.
+
+1. Create the `native-transfer.ts` file in the `src` directory to hold your script for transferring native tokens across chains
+
+    ```bash
+    touch src/scripts/native-transfer.ts
+    ```
+
+2. Open the `native-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
+
+    ```typescript
+    Chain,
+  Network,
+  Wormhole,
+  amount,
+  wormhole,
+  TokenId,
+  TokenTransfer,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
+    ```
+
+3. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support
+
+    ```typescript
+    const wh = await wormhole('Testnet', [evm, solana, sui]);
+    ```
+
+4. **Set up source and destination chains** - specify the source chain (Sui) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the native tokens and where to receive them
+
+    ```typescript
+    const rcvChain = wh.getChain('Solana');
+    ```
+
+5. **Configure the signers** - use the `getSigner` function to retrieve the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
+
+    ```typescript
+    const destination = await getSigner(rcvChain);
+    ```
+
+6. **Define the token to transfer** - specify the native token on the source chain (Sui in this example) by creating a `TokenId` object
+
+    ```typescript
+    
+    ```
+
+7. **Define the transfer amount** - the amount of native tokens to transfer is specified. In this case, we're transferring 1 unit
+
+    ```typescript
+    
+    ```
+
+8. **Set transfer mode** - specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself
+
+    ```typescript
+    
+    ```
+
+    !!! note
+        Automatic transfers are only supported for EVM chains. For non-EVM chains like Solana and Sui, you must manually handle the attestation and finalization steps.
+    
+9. **Define decimals** - fetch the number of decimals for the token on the source chain (Sui) using the `getTokenDecimals` function
+
+    ```typescript
+    
+    ```
+
+10. **Perform the token transfer and exit the process** - initiate the transfer by calling the `tokenTransfer` function, which we’ll define in the next step. This function takes an object containing all required details for executing the transfer, including the `source` and `destination` chains, `token`, `mode`, and transfer `amount`
+
+    ```typescript
+    token,
+    amount: amount.units(amount.parse(amt, decimals)),
+    source,
+    destination,
+    automatic,
+  });
+    ```
+
+    Finally, we use `process.exit(0);` to close the script once the transfer completes
+
+    ```typescript
+    })();
+    ```
+
+### Token Transfer Logic
+
+This section defines the `tokenTransfer` function, which manages the core steps for cross-chain transfer execution. This function will handle initiating the transfer on the source chain, retrieving the attestation, and completing the transfer on the destination chain.
+
+#### Defining the Token Transfer Function
+
+The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK. This function uses types from the SDK and our `helpers.ts` file to ensure chain compatibility.
+
+```typescript
+wh: Wormhole<n>,
+  route: {
+    token: TokenId;
+    amount: bigint;
+    source: SignerStuff<n, chain="">;
+    destination: SignerStuff<n, chain="">;
+    automatic: boolean;
+    payload?: Uint8Array;
+  }
+) {
+  // Token Transfer Logic
+import {
+  Chain,
+  Network,
+  Wormhole,
+  amount,
+  wormhole,
+  TokenId,
+  TokenTransfer,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
+
+(async function () {
+  const wh = await wormhole('Testnet', [evm, solana, sui]);
+
+  // Set up source and destination chains
+  const sendChain = wh.getChain('Sui');
+  const rcvChain = wh.getChain('Solana');
+
+  // Get signer from local key but anything that implements
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
+
+  // Shortcut to allow transferring native gas token
+  const token = Wormhole.tokenId(sendChain.chain, 'native');
+
+  // Define the amount of tokens to transfer
+  const amt = '1';
+
+  // Set automatic transfer to false for manual transfer
+  const automatic = false;
+
+  // Used to normalize the amount to account for the tokens decimals
+  const decimals = await getTokenDecimals(wh, token, sendChain);
+
+  // Perform the token transfer if no recovery transaction ID is provided
+  const xfer = await tokenTransfer(wh, {
+    token,
+    amount: amount.units(amount.parse(amt, decimals)),
+    source,
+    destination,
+    automatic,
+  });
+
+  process.exit(0);
+})();
+
+async function tokenTransfer<n extends="" network="">(
+  wh: Wormhole<n>,
+  route: {
+    token: TokenId;
+    amount: bigint;
+    source: SignerStuff<n, chain="">;
+    destination: SignerStuff<n, chain="">;
+    automatic: boolean;
+    payload?: Uint8Array;
+  }
+) {
+  // Token Transfer Logic
+  // Create a TokenTransfer object to track the state of the transfer over time
+  const xfer = await wh.tokenTransfer(
+    route.token,
+    route.amount,
+    route.source.address,
+    route.destination.address,
+    route.automatic ?? false,
+    route.payload
+  );
+
+  const quote = await TokenTransfer.quoteTransfer(
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    xfer.transfer
+  );
+
+  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
+
+  // Submit the transactions to the source chain, passing a signer to sign any txns
+  console.log('Starting transfer');
+  const srcTxids = await xfer.initiateTransfer(route.source.signer);
+  console.log(`Source Trasaction ID: ${srcTxids[0]}`);
+  console.log(`Wormhole Trasaction ID: ${srcTxids[1] ?? srcTxids[0]}`);
+
+  // Wait for the VAA to be signed and ready (not required for auto transfer)
+  console.log('Getting Attestation');
+  await xfer.fetchAttestation(60_000);
+
+  // Redeem the VAA on the dest chain
+  console.log('Completing Transfer');
+  const destTxids = await xfer.completeTransfer(route.destination.signer);
+  console.log(`Completed Transfer: `, destTxids);
+}
+</n,></n,></n></n>
+```
+
+#### Steps to Transfer Tokens
+
+The `tokenTransfer` function consists of several key steps to facilitate the cross-chain transfer. Let’s break down each step:
+
+1. **Initialize the transfer object** - the `tokenTransfer` function begins by creating a `TokenTransfer` object, `xfer`, which tracks the state of the transfer process and provides access to relevant methods for each transfer step
+
+    ```typescript
+    route.token,
+    route.amount,
+    route.source.address,
+    route.destination.address,
+    route.automatic ?? false,
+    route.payload
+  );
+    ```
+
+2. **Estimate transfer fees and validate amount** - we obtain a fee quote for the transfer before proceeding. This step is significant in automatic mode (`automatic = true`), where the quote will include additional fees for relaying
+
+    ```typescript
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    xfer.transfer
+  );
+
+  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
+    ```
+
+3. **Submit the transaction to the source chain** - initiate the transfer on the source chain by submitting the transaction using `route.source.signer`, starting the token transfer process
+
+    ```typescript
+    console.log(`Source Trasaction ID: ${srcTxids[0]}`);
+    ```
+
+     - **`srcTxids`** - the resulting transaction IDs are printed to the console. These IDs can be used to track the transfer’s progress on the source chain and [Wormhole network](https://wormholescan.io/#/?network=Testnet){target=\_blank}
+
+    ???- note "How Cross-Chain Transfers Work in the Background"
+        When `xfer.initiateTransfer(route.source.signer)` is called, it initiates the transfer on the source chain. Here’s what happens in the background:
+
+         - **Token lock or burn** - tokens are either locked in a smart contract or burned on the source chain, representing the transfer amount
+         - **VAA creation** - Wormhole’s network of Guardians generates a Verifiable Action Approval (VAA)—a signed proof of the transaction, which ensures it’s recognized across chains
+         - **Tracking the transfer** - the returned transaction IDs allow you to track the transfer's progress both on the source chain and within Wormhole’s network
+         - **Redemption on destination** - once detected, the VAA is used to release or mint the corresponding token amount on the destination chain, completing the transfer
+
+        This process ensures a secure and verifiable transfer across chains, from locking tokens on the source chain to redeeming them on the destination chain.
+
+4. **Wait for the attestation** - retrieve the Wormhole attestation (VAA), which serves as cryptographic proof of the transfer. In manual mode, you must wait for the VAA before redeeming the transfer on the destination chain
+
+    ```typescript
+    
+    ```
+
+5. **Complete the transfer on the destination chain** - redeem the VAA on the destination chain to finalize the transfer
+
+    ```typescript
+    console.log(`Completed Transfer: `, destTxids);
+    ```
+
+??? code "Complete script"
+    ```typescript
+    import {
+  Chain,
+  Network,
+  Wormhole,
+  amount,
+  wormhole,
+  TokenId,
+  TokenTransfer,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
+
+(async function () {
+  const wh = await wormhole('Testnet', [evm, solana, sui]);
+
+  // Set up source and destination chains
+  const sendChain = wh.getChain('Sui');
+  const rcvChain = wh.getChain('Solana');
+
+  // Get signer from local key but anything that implements
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
+
+  // Shortcut to allow transferring native gas token
+  const token = Wormhole.tokenId(sendChain.chain, 'native');
+
+  // Define the amount of tokens to transfer
+  const amt = '1';
+
+  // Set automatic transfer to false for manual transfer
+  const automatic = false;
+
+  // Used to normalize the amount to account for the tokens decimals
+  const decimals = await getTokenDecimals(wh, token, sendChain);
+
+  // Perform the token transfer if no recovery transaction ID is provided
+  const xfer = await tokenTransfer(wh, {
+    token,
+    amount: amount.units(amount.parse(amt, decimals)),
+    source,
+    destination,
+    automatic,
+  });
+
+  process.exit(0);
+})();
+
+async function tokenTransfer<n extends="" network="">(
+  wh: Wormhole<n>,
+  route: {
+    token: TokenId;
+    amount: bigint;
+    source: SignerStuff<n, chain="">;
+    destination: SignerStuff<n, chain="">;
+    automatic: boolean;
+    payload?: Uint8Array;
+  }
+) {
+  // Token Transfer Logic
+  // Create a TokenTransfer object to track the state of the transfer over time
+  const xfer = await wh.tokenTransfer(
+    route.token,
+    route.amount,
+    route.source.address,
+    route.destination.address,
+    route.automatic ?? false,
+    route.payload
+  );
+
+  const quote = await TokenTransfer.quoteTransfer(
+    wh,
+    route.source.chain,
+    route.destination.chain,
+    xfer.transfer
+  );
+
+  if (xfer.transfer.automatic &amp;&amp; quote.destinationToken.amount &lt; 0)
+    throw 'The amount requested is too low to cover the fee and any native gas requested.';
+
+  // Submit the transactions to the source chain, passing a signer to sign any txns
+  console.log('Starting transfer');
+  const srcTxids = await xfer.initiateTransfer(route.source.signer);
+  console.log(`Source Trasaction ID: ${srcTxids[0]}`);
+  console.log(`Wormhole Trasaction ID: ${srcTxids[1] ?? srcTxids[0]}`);
+
+  // Wait for the VAA to be signed and ready (not required for auto transfer)
+  console.log('Getting Attestation');
+  await xfer.fetchAttestation(60_000);
+
+  // Redeem the VAA on the dest chain
+  console.log('Completing Transfer');
+  const destTxids = await xfer.completeTransfer(route.destination.signer);
+  console.log(`Completed Transfer: `, destTxids);
+}
+</n,></n,></n></n>
+    ```
+
+### Run the Native Token Transfer
+
+Now that you’ve set up the project and defined the transfer logic, you can execute the script to transfer native tokens from the Sui chain to Solana. You can use `tsx` to run the TypeScript file directly:
+
+```bash
+npx tsx src/scripts/native-transfer.ts
+```
+
+This initiates the native token transfer from the source chain (Sui) and completes it on the destination chain (Solana).
+
+You can monitor the status of the transaction on the [Wormhole explorer](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+
+## Resources
+
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}. The repository includes all the example scripts and configurations needed to perform native token cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK.
+
+## Conclusion
+
+You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the Token Bridge method. This guide took you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains like Sui and Solana.
+
+The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/typescript-sdk/usdc-via-cctp/
+--- BEGIN CONTENT ---
+---
+title: Transfer USDC via CCTP and Wormhole SDK
+description: Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
+---
+
+# Transfer USDC via CCTP and Wormhole SDK
+
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-cctp-transfer){target=\_blank}
+
+## Introduction
+
+In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/docs/learn/transfers/cctp/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
+
+Traditionally, cross-chain transfers using CCTP involve multiple manual steps, such as initiating the transfer on the source chain, relaying messages between chains, and covering gas fees on both the source and destination chains. Without the TypeScript SDK, developers must handle these operations independently, adding complexity and increasing the chance for errors, mainly when dealing with gas payments on the destination chain and native gas token management.
+
+Wormhole’s TypeScript SDK simplifies this process by offering automated transfer relaying and handling gas payments on the destination chain. It also offers an option to include native gas tokens for seamless execution. This reduces developer overhead, makes transfers faster and more reliable, and enhances the user experience.
+
+In this guide, we’ll first explore the theory behind CCTP and then provide a step-by-step tutorial for integrating Wormhole’s TypeScript SDK into your application to streamline USDC transfers across multiple chains.
+
+## Core Concepts
+
+When bridging assets across chains, there are two primary approaches to handling the transfer process: manual and automated. Below, you may find the differences between these approaches and how they impact the user experience:
+
+ - **Manual transfers** - manual transfers involve three key steps: initiating the transfer on the source chain, fetching the Circle attestation to verify the transfer, and completing the transfer on the destination chain
+
+ - **Automated transfers** - automatic transfers simplify the process by handling Circle attestations and finalization for you. With Wormhole's automated relaying, you only need to initiate the transfer, and the rest is managed for you
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
+ - [USDC tokens](https://faucet.circle.com/){target=\_blank} on supported chains. This tutorial uses Avalanche and Sepolia as examples
+ - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees
+
+## Supported Chains
+
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=_blank}, which covers both Testnet and Mainnet environments.
+
+## Project Setup
+
+In this section, you'll set up your project for transferring USDC across chains using Wormhole's SDK and Circle's CCTP. We’ll guide you through initializing the project, installing dependencies, and preparing your environment for cross-chain transfers.
+
+1. **Initialize the project** - start by creating a new directory for your project and initializing it with `npm`, which will create the `package.json` file for your project
+
+    ```bash
+    mkdir cctp-circle
+    cd cctp-circle
+    npm init -y
+    ```
+
+2. **Create a `.gitignore` file** - ensure your private key isn't accidentally exposed or committed to version control
+
+    ```bash
+    echo ".env" >> .gitignore
+    ```
+
+3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
+
+    ```bash
+    npm install @wormhole-foundation/sdk dotenv
+    ```
+
+4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
+
+    ```bash
+    touch .env
+    ```
+
+    Inside the `.env` file, add your private key
+
+    ```env
+    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
+    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
+    ```
+
+    !!! note
+        Ensure your private key contains USDC funds and native tokens for gas on both the source and destination chains.
+
+5. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays
+
+    1. Create the helpers file
+
+        ```bash
+        mkdir helpers
+        touch helpers/helpers.ts
+        ```
+
+    2. Open the `helpers.ts` file and add the following code
+
+        ```typescript
+        import {
+  ChainAddress,
+  ChainContext,
+  Network,
+  Signer,
+  Wormhole,
+  Chain,
+} from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { config } from 'dotenv';
+config();
+
+export interface SignerStuff<n c="" chain="" extends="" network,=""> {
+  chain: ChainContext<n, c="">;
+  signer: Signer<n, c="">;
+  address: ChainAddress<c>;
+}
+
+// Function to fetch environment variables (like your private key)
+function getEnv(key: string): string {
+  const val = process.env[key];
+  if (!val) throw new Error(`Missing environment variable: ${key}`);
+  return val;
+}
+
+// Signer setup function for different blockchain platforms
+export async function getSigner<n c="" chain="" extends="" network,="">(
+  chain: ChainContext<n, c="">
+): Promise&lt;{
+  chain: ChainContext<n, c="">;
+  signer: Signer<n, c="">;
+  address: ChainAddress<c>;
+}&gt; {
+  let signer: Signer;
+  const platform = chain.platform.utils()._platform;
+
+  switch (platform) {
+    case 'Solana':
+      signer = await (
+        await solana()
+      ).getSigner(await chain.getRpc(), getEnv('SOL_PRIVATE_KEY'));
+      break;
+    case 'Evm':
+      signer = await (
+        await evm()
+      ).getSigner(await chain.getRpc(), getEnv('ETH_PRIVATE_KEY'));
+      break;
+    default:
+      throw new Error('Unsupported platform: ' + platform);
+  }
+
+  return {
+    chain,
+    signer: signer as Signer<n, c="">,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
+}
+</n,></c></n,></n,></n,></n></c></n,></n,></n>
+        ```
+
+        - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
+        - **`getSigner`** - based on the chain you're working with (EVM, Solana, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
+
+6. **Create the main script** - create a new file named `manual-transfer.ts` to hold your script for transferring USDC across chains
+
+    1. Create the `manual-transfer.ts` file in the `src` directory
+
+        ```bash
+        touch src/manual-transfer.ts
+        ```
+
+    2. Open the `manual-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files
+
+        ```typescript
+        import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from './helpers/helpers';
+        ```
+
+        - **`evm`** - this import is for working with EVM-compatible chains, like Avalanche, Ethereum, Base Sepolia, and more
+        - **`solana`** - this adds support for Solana, a non-EVM chain
+        - **`getSigner`** - utility function from the helper file that retrieves the signer to sign transactions
+
+## Manual Transfers
+
+In a manual USDC transfer, you perform each step of the cross-chain transfer process individually. This approach allows for greater control and flexibility over how the transfer is executed, which can be helpful in scenarios where you need to customize certain aspects of the transfer, such as gas management, specific chain selection, or signing transactions manually.
+
+This section will guide you through performing a manual USDC transfer across chains using the Wormhole SDK and Circle’s CCTP.
+
+### Set Up the Transfer Environment
+
+#### Configure Transfer Details
+
+Before initiating a cross-chain transfer, you must set up the chain context and signers for both the source and destination chains.
+
+1. **Initialize the Wormhole SDK** - initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM and Solana) to support. This allows us to interact with both EVM-compatible chains like Avalanche and non-EVM chains like Solana if needed
+
+    ```typescript
+    const wh = await wormhole('Testnet', [evm, solana]);
+    ```
+    
+    !!! note
+        You can replace `'Testnet'` with `'Mainnet'` if you want to perform transfers on Mainnet.
+
+2. **Set up source and destination chains** - specify the source chain (Avalanche) and the destination chain (Sepolia) using the `getChain` method. This allows us to define where to send the USDC and where to receive them
+
+    ```typescript
+    const rcvChain = wh.getChain('Sepolia');
+    ```
+
+3. **Configure the signers** - use the `getSigner` function to retrieve the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains
+
+    ```typescript
+    const destination = await getSigner(rcvChain);
+    ```
+
+4. **Define the transfer amount** - the amount of USDC to transfer is specified. In this case, we're transferring 0.1 USDC, which is parsed and converted into the base units expected by the Wormhole SDK
+
+    ```typescript
+    
+    ```
+
+5. **Set transfer mode** - we specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself
+
+    ```typescript
+    
+    ```
+
+#### Initiate the Transfer
+
+To begin the manual transfer process, you first need to create the transfer object and then manually initiate the transfer on the source chain.
+
+1. **Create the Circle transfer object** - the `wh.circleTransfer()` function creates an object with the  transfer details, such as the amount of USDC, the source and destination addresses, and the mode. However, this does not initiate the transfer itself
+
+    ```typescript
+    amt,
+    source.address,
+    destination.address,
+    automatic
+  );
+    ```
+
+2. **Start the transfer** - the `initiateTransfer` function sends the transaction on the source chain. It involves signing and sending the transaction using the source signer. This will return a list of transaction IDs (`srcTxIds`) that you can use to track the transfer
+
+    ```typescript
+    console.log(`Started Transfer: `, srcTxids);
+    ```
+
+#### Fetch the Circle Attestation (VAA)
+
+Once you initialize the transfer on the source chain, you must fetch the VAA from Circle. The VAA serves as cryptographic proof that CCTP has successfully recognized the transfer. The transfer cannot be completed on the destination chain until this attestation is fetched.
+
+
+1. **Set a timeout** - fetching the attestation can take some time, so setting a timeout is common. In this example, we set the timeout to 60 seconds
+
+    ```typescript
+    
+    ```
+
+2. **Fetch the attestation** - after initiating the transfer, you can use the `fetchAttestation()` function to retrieve the VAA. This function will wait until the attestation is available or you reach the specified timeout
+
+    ```typescript
+    console.log(`Got Attestation: `, attestIds);
+    ```
+
+    The `attestIds` will contain the details of the fetched attestation, which Wormhole uses to complete the transfer on the destination chain
+
+#### Complete the Transfer on the Destination Chain
+
+Once you fetch the VAA correctly, the final step is to complete the transfer on the destination chain (Sepolia in this example). This involves redeeming the VAA, which moves the USDC from Circle's custody onto the destination chain.
+
+Use the `completeTransfer()` function to finalize the transfer on the destination chain. This requires the destination signer to sign and submit the transaction to the destination chain
+
+```typescript
+console.log(`Completed Transfer: `, dstTxids);
+
+  console.log('Circle Transfer status: ', xfer);
+
+  process.exit(0);
+```
+
+The `dstTxIds` will hold the transaction IDs for the transfer on the destination chain, confirming that the transfer has been completed
+
+You can find the full code for the manual USDC transfer script below:
+
+???- code "`manual-transfer.ts`"
+    ```typescript
+    import { wormhole } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from './helpers/helpers';
+
+(async function () {
+  const wh = await wormhole('Testnet', [evm, solana]);
+
+  // Set up source and destination chains
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Sepolia');
+
+  // Configure the signers
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
+
+  // Define the transfer amount (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
+  const amt = 100_000n;
+
+  const automatic = false;
+
+  // Create the Circle transfer object 
+  const xfer = await wh.circleTransfer(
+    amt,
+    source.address,
+    destination.address,
+    automatic
+  );
+
+  console.log('Circle Transfer object created:', xfer);
+
+  // Initiate the transfer on the source chain (Avalanche)
+  console.log('Starting Transfer');
+  const srcTxids = await xfer.initiateTransfer(source.signer);
+  console.log(`Started Transfer: `, srcTxids);
+
+  // Wait for Circle Attestation (VAA)
+  const timeout = 60 * 1000; // Timeout in milliseconds (60 seconds)
+  console.log('Waiting for Attestation');
+  const attestIds = await xfer.fetchAttestation(timeout);
+  console.log(`Got Attestation: `, attestIds);
+
+  // Complete the transfer on the destination chain (Sepolia)
+  console.log('Completing Transfer');
+  const dstTxids = await xfer.completeTransfer(destination.signer);
+  console.log(`Completed Transfer: `, dstTxids);
+
+  console.log('Circle Transfer status: ', xfer);
+
+  process.exit(0);
+})();
+    ```
+
+### Run Manual Transfer
+
+To execute the manual transfer script, you can use `ts-node` to run the TypeScript file directly
+
+```bash
+npx ts-node src/manual-transfer.ts
+```
+
+This will initiate the USDC transfer from the source chain (Avalanche) and complete it on the destination chain (Sepolia).
+
+You can monitor the status of the transaction on the [Wormhole explorer](https://wormholescan.io/){target=\_blank}.
+
+### Complete Partial Transfer
+
+In some cases, a manual transfer might start but not finish—perhaps the user terminates their session, or there's an issue before the transfer can be completed. The Wormhole SDK allows you to reconstitute the transfer object from the transaction hash on the source chain.
+
+This feature is handy for recovering an incomplete transfer or when debugging.
+
+Here’s how you can complete a partial transfer using just the source chain and transaction hash:
+
+```typescript
+wh,
+    {
+      chain: 'Avalanche',
+      txid: '0x6b6d5f101a32aa6d2f7bf0bf14d72bfbf76a640e1b2fdbbeeac5b82069cda4dd',
+    },
+    timeout
+  );
+
+  const dstTxIds = await xfer.completeTransfer(destination.signer);
+  console.log('Completed transfer: ', dstTxIds);
+```
+
+You will need to provide the below requirements to complete the partial transfer:
+
+- **Transaction ID (`txId`)** - the transaction hash from the source chain where the transfer was initiated
+- **Signer for the destination chain (`destination.signer`)** - the wallet or private key that can authorize and complete the transfer on the destination chain. This signer is the same as the `destination.signer` defined in the manual transfer setup
+
+This allows you to resume the transfer process by rebuilding the transfer object and completing it on the destination chain. It's especially convenient when debugging or handling interrupted transfers.
+
+You can find the full code for the manual USDC transfer script below:
+
+??? code "`partial-transfer.ts`"
+    ```typescript
+    import { CircleTransfer, wormhole } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from '../helpers/helpers';
+
+(async function () {
+  // Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)
+  const wh = await wormhole('Testnet', [evm, solana]);
+
+  // Grab chain Contexts -- these hold a reference to a cached rpc client
+  const rcvChain = wh.getChain('Sepolia');
+
+  // Get signer from local key
+  const destination = await getSigner(rcvChain);
+
+  const timeout = 60 * 1000; // Timeout in milliseconds (60 seconds)
+
+  // Rebuild the transfer from the source txid
+  const xfer = await CircleTransfer.from(
+    wh,
+    {
+      chain: 'Avalanche',
+      txid: '0x6b6d5f101a32aa6d2f7bf0bf14d72bfbf76a640e1b2fdbbeeac5b82069cda4dd',
+    },
+    timeout
+  );
+
+  const dstTxIds = await xfer.completeTransfer(destination.signer);
+  console.log('Completed transfer: ', dstTxIds);
+
+  console.log('Circle Transfer status: ', xfer);
+
+  process.exit(0);
+})();
+    ```
+
+## Automatic Transfers
+
+The automatic transfer process simplifies the steps by automating the attestation fetching and transfer completion. All you need to do is initiate the transfer.
+
+### Set Up the Transfer Environment
+
+#### Configure Transfer Details
+
+The setup for automatic transfers is similar to manual transfers, with the key difference being that the `automatic` flag is `true`. This indicates that Wormhole will handle the attestation and finalization steps for you
+
+```typescript
+
+```
+
+#### Initiate the Transfer
+
+The transfer process is the same as that for manual transfers. You create the transfer object and then start the transfer on the source chain
+
+```typescript
+amt,
+    source.address,
+    destination.address,
+    automatic
+  );
+```
+
+#### Log Transfer Details
+
+After initiating the transfer, you can log the transaction IDs for both the source and destination chains. This will help you track the progress of the transfer
+
+```typescript
+console.log(`Started Transfer: `, srcTxids);
+
+  process.exit(0);
+```
+
+You can find the full code for the automatic USDC transfer script below:
+
+??? code "`automatic-transfer.ts`"
+    ```typescript
+    import { wormhole } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from '../helpers/helpers';
+
+(async function () {
+  // Initialize the Wormhole object for the Testnet environment and add supported chains (evm and solana)
+  const wh = await wormhole('Testnet', [evm, solana]);
+
+  // Set up source and destination chains
+  const sendChain = wh.getChain('Avalanche');
+  const rcvChain = wh.getChain('Sepolia');
+
+  // Configure the signers
+  const source = await getSigner(sendChain);
+  const destination = await getSigner(rcvChain);
+
+  // Define the transfer amount (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
+  const amt = 100_000_001n;
+
+  const automatic = true;
+
+  // Create the Circle transfer object (USDC-only)
+  const xfer = await wh.circleTransfer(
+    amt,
+    source.address,
+    destination.address,
+    automatic
+  );
+
+  console.log('Circle Transfer object created:', xfer);
+
+  // Initiate the transfer on the source chain (Avalanche)
+  console.log('Starting Transfer');
+  const srcTxids = await xfer.initiateTransfer(source.signer);
+  console.log(`Started Transfer: `, srcTxids);
+
+  process.exit(0);
+})();
+    ```
+
+### Run Automatic Transfer
+
+Assuming you have created a new `automatic-transfer.ts` file for automatic transfers under the `src` directory, use the following command to run it with `ts-node`:
+
+```bash
+npx ts-node src/automatic-transfer.ts
+```
+
+The automatic relayer will take care of fetching the attestation and completing the transfer for you.
+
+## Resources
+
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the complete codebase in [Wormhole's demo GitHub repository](https://github.com/wormhole-foundation/demo-cctp-transfer){target=\_blank}. The repository includes all the example scripts and configurations needed to perform USDC cross-chain transfers, including manual, automatic, and partial transfers using the Wormhole SDK and Circle's CCTP.
+
+## Conclusion
+
+In this tutorial, you’ve gained hands-on experience with Circle’s CCTP and the Wormhole SDK. You’ve learned to perform manual and automatic USDC transfers across multiple chains and recover partial transfers if needed.
+
+By following these steps, you've learned how to:
+
+- Set up cross-chain transfers for native USDC between supported chains
+- Handle both manual and automatic relaying of transactions
+- Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/wormholescan/
+--- BEGIN CONTENT ---
+---
+title: Wormholescan API Tutorials
+description: Explore step-by-step guides on using the Wormholescan API to fetch VAAs, validate signatures, check redemption status, and process cross-chain transactions.
+---
+
+# Wormholescan API  
+
+Explore hands-on tutorials for using the Wormholescan API to retrieve blockchain data, track transactions, validate VAAs, check redemption status, and more. 
+
+## Tutorials 
+
+<div class="grid cards" markdown>  
+
+-   :octicons-repo-16:{ .lg .middle } **Replace Outdated Signatures in VAAs**  
+
+    ---  
+
+    Learn how to fetch VAAs, verify their validity, and replace outdated signatures using the Wormholescan API and Wormhole SDK.  
+
+    [:custom-arrow: Start tutorial](/docs/tutorials/wormholescan/replace-signatures/)  
+
+</div>  
+
+## Additional Resources  
+
+<div class="grid cards" markdown>  
+
+-   :octicons-book-16:{ .lg .middle } **Wormholescan**  
+
+    ---  
+
+    Wormholescan is a blockchain explorer for tracking transactions, VAAs, and cross-chain activity. Its API provides programmatic access to transaction data, network analytics, and more.
+
+    [:custom-arrow: Visit Wormholescan](https://wormholescan.io/){target=\_blank}  
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/tutorials/wormholescan/replace-signatures/
+=======
 Doc-Content: https://wormhole.com/docs/products/messaging/tutorials/replace-signatures/
+>>>>>>> 50001c091b09baf8f8eecacccad16611effdfd7a
 --- BEGIN CONTENT ---
 ---
 title: Replace Outdated Signatures in VAAs
