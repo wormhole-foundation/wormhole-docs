@@ -23,7 +23,7 @@ Be sure to check the [features page](/docs/products/connect/reference/support-ma
 
 ## How It Works
 
-Think of Connect as a ready-made interface that simplifies the process of bridging assets across different blockchains. As you begin a cross-chain asset move, Connect simplifies the steps by:
+Think of Connect as a ready-made interface that simplifies the process of bridging assets across different blockchains. As you begin a multichain transfer, Connect simplifies the steps by:
 
 1.  **Initiation** - selects the asset, the originating blockchain, and the target blockchain for the transfer
 2.  **Connection** - establishes a link between your wallet and the chosen source blockchain
