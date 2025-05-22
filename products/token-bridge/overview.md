@@ -47,7 +47,6 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 
     - [**Token Bridge**](/docs/products/token-bridge/get-started/) – handle the underlying lock-and-mint logic securely
     - [**Wormhole Connect**](/docs/products/connect/overview/) - provide a user-friendly way to move game tokens across chains
-    
 
 ## Next Steps
 
