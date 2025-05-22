@@ -10,7 +10,12 @@ categories: NTT, Transfer
 
 This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
+The diagram below shows a high-level view of the Solana NTT deployment flow. It illustrates the full lifecycle, from token setup to selecting the transfer mode and configuring and deploying the NTT program using the CLI. This visual is a quick reference for how each step connects in the Solana deployment process.
+
+![Solana NTT deployment diagram](/docs/images/products/native-token-transfers/guides/solana/ntt-solana.webp)
+
 By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
+
 
 ## Prerequisites
 
