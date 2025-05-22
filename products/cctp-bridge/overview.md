@@ -12,18 +12,24 @@ The integration of [Circle's Cross-Chain Transfer Protocol (CCTP)](https://www.c
 
 - **Secure native USDC transfers** - at its core, CCTP provides a "burn-and-mint" mechanism for transferring native USDC. This eliminates the need for wrapped assets and the associated risks of intermediary bridges
 - **Atomic execution** - by combining CCTP and Wormhole, the transfer of USDC and the execution of accompanying instructions on the destination chain can occur as a single, atomic transaction
-- **Enhanced composability** - developers can build more sophisticated cross-chain applications by sending additional data alongside the USDC transfer
+- **Automated relaying** - eliminates the need for users to redeem USDC transfers themselves
+- **Gas payment on the destination chain** - allows users to transfer USDC without needing to pay gas on the destination chain
+- **Gas drop off** - enables users to convert a portion of USDC into the destination chain's gas token upon a successful transfer
+- **Enhanced composability** - developers can build more sophisticated cross-chain applications by sending additional data alongside the 
 
 ## How It Works
 
 This section outlines the end-to-end flow for transferring native USDC across chains using CCTP while optionally triggering an action on the destination chain. Circle and Wormhole coordinate each step to ensure a secure, verifiable transfer and execution process.
 
-1.  **Initiation on source chain** - a user on the source chain initiates a USDC transfer and specifies the action on the destination chain
-2.  **CCTP burn and package** - Wormhole packages CCTP burn of native USDC on the source chain and the destination chain action instructions
-3.  **Circle attestation** -  Circle's attestation service confirms the USDC burn on the source chain and issues a signature
-4.  **Guardians relay** - Guardians sign and relay burn attestation and action instructions to the destination chain
-5.  **Mint and verify** - Circle's attestation in Wormhole message triggers CCTP mint of native USDC on the destination chain after verification
-6.  **Execute action** - action on destination chain executes if included in Wormhole message, potentially using new USDC
+![Alternative text for Mermaid](Todo)
+
+1. **Initiation on source chain** - a user on the source chain initiates a USDC transfer and specifies the action on the destination chain
+2. **CCTP burn and package** - Wormhole automates the transfer by packaging the USDC burn request and destination chain action instructions into a single message
+3. **Circle attestation** -  Circle's attestation service confirms the USDC burn on the source chain and issues a signature that is packaged together with the Wormhole message
+4. **Guardians verify and sign** - Wormhole's Guardians observe and sign the package achieving consensus on validity 
+5. **Automated relay** - the Relayers then automatically push the package to the destination chain without manual interaction
+6. **Mint and verify** - Circle's attestation in Wormhole message triggers the minting of native USDC on the destination chain after verification
+7. **Execute action** - any action on destination chain executes if included in Wormhole message, potentially using new USDC
 
 This process highlights how CCTP ensures the secure transfer of native USDC, while Wormhole provides the messaging infrastructure to carry the attestation and enable more complex, automated cross-chain workflows.
 
@@ -46,6 +52,8 @@ Integrating Wormhole's messaging with CCTP enables the secure transfer of native
 
 ## Next Steps
 
-Now that you're familiar with CCTP, here is a guide for hands-on practice:
+Now that you're familiar with CCTP, here is a list of resources for more hands-on practice:
 
-[timeline(wormhole-docs/.snippets/text/products/reference/cctp/cctp-timeline.json)]
+- [**Get started with CCTP Bridge**](Todo) - perform a multochain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP
+- [**Complete USDC Transfer Flow**](Todo) -  execute a USDC cross-chain transfers using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery
+- [**Checkout Circle's CCTP Docs**](https://developers.circle.com/stablecoins/cctp-getting-started) - learn more about Circle's cross chain transfer protocol in their documentation
