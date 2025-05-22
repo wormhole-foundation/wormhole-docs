@@ -1,4 +1,4 @@
 title: Concepts
 nav:
-- 'Flow of a Transfer': transfer-flow.md
+- 'Architecture': architecture.md
 - 'Payload Structure': payload-structure.md
