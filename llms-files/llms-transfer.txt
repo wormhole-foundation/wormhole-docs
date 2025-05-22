@@ -954,7 +954,7 @@ contract CircleIntegration is
 
         // Call the circle bridge and `depositForBurnWithCaller`. The `mintRecipient`
         // should be the target contract (or wallet) composing on this contract.
-        (uint64 nonce, uint256 amountReceived) = _transferTokens(
+        (uint64 nonce, uint256 amountReceived) = _transferTokens{value: wormholeFee}(
             transferParams.token,
             transferParams.amount,
             transferParams.targetChain,
@@ -7167,6 +7167,19 @@ function attestToken(
     
     A unique identifier for the attestation transaction.
 
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+
+uint256 wormholeFee = wormhole.messageFee();
+
+wormhole.attestToken{value: wormholeFee}(
+    address(tokenImpl), // the token contract to attest
+    234                 // nonce for the transfer
+);
+    ```
+
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
 You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
@@ -7224,6 +7237,25 @@ function transferTokens(
     `sequence` ++"uint64"++
     
     A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokens{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    arbiterFee,      // fee for relayer
+    nonce            // nonce for this transfer
+);
+    ```
 
 Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
 
@@ -7294,6 +7326,25 @@ function transferTokensWithPayload(
     `sequence` ++"uint64"++
     
     A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokensWithPayload{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    nonce,           // nonce for this transfer
+    additionalPayload // additional payload data
+);
+    ```
 
 After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
 

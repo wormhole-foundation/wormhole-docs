@@ -58,6 +58,12 @@ function attestToken(
     
     A unique identifier for the attestation transaction.
 
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/attestToken.sol'
+    ```
+
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
 You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
@@ -115,6 +121,12 @@ function transferTokens(
     `sequence` ++"uint64"++
     
     A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/transferTokens.sol'
+    ```
 
 Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
 
@@ -185,6 +197,12 @@ function transferTokensWithPayload(
     `sequence` ++"uint64"++
     
     A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/transferTokensWithPayload.sol'
+    ```
 
 After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
 
