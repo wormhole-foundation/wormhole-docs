@@ -4,7 +4,6 @@ description: With Wormhole Token Bridge, you can enable secure, multichain commu
 categories: Token-Bridge, Transfer
 ---
 
-
 # Token Bridge Overview
 
 The Token Bridge is a Wormhole module for bridging and wrapping tokens across various blockchain networks. Locking assets on one network and minting corresponding wrapped tokens on another facilitates secure, efficient, and composable multichain token movement.
