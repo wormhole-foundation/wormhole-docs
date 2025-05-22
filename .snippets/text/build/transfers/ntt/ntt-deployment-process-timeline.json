@@ -5,12 +5,12 @@
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "[Configure NTTs](/docs/build/transfers/native-token-transfers/configuration/)",
+        "title": "[Configure NTTs](/docs/products/native-token-transfers/configuration/access-control/)",
         "content": "Set NTT configuration options to manage Owner and Pauser access control roles and  rate-limiting.",
         "icon": ":fontawesome-solid-2:"
     },
     {
-        "title": "[Deploy NTTs](/docs/build/transfers/native-token-transfers/deployment-process/)",
+        "title": "[Deploy NTTs](/docs/products/native-token-transfers/guides/)",
         "content": "Deploy your NTT to EVM chains and Solana.",
         "icon": ":fontawesome-solid-3:"
     },

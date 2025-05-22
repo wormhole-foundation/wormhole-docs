@@ -6,78 +6,16 @@ It is intended for use with large language models (LLMs) to support developers w
 This file includes documentation related to the category: Reference
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/chain-ids.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/consistency-levels.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/contract-addresses.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/reference/wormhole-formatted-addresses.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/supported-networks.md [type: build]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/build/start-building/testnet-faucets.md [type: build]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: other]
 
 ## Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/build/reference/
---- BEGIN CONTENT ---
----
-title: Reference
-description: Find essential reference information for development, including canonical contract addresses, Wormhole chain IDs, and Wormhole finality levels for Guardians.
-categories: Reference
----
-
-# Reference
-
-## Get Started
-
-In this section, you'll find reference information that is essential for development. This includes Wormhole chain IDs, canonical contract addresses, and finality levels for Guardians for each of the supported blockchains in the Wormhole ecosystem.
-
-<div class="grid cards" markdown>
-
--   :octicons-list-ordered-16:{ .lg .middle } **Chain IDs**
-
-    ---
-
-    Find a mapping of Wormhole chain IDs to the names and network IDs of the supported blockchains.
-
-    [:custom-arrow: View list of chain IDs](/docs/build/reference/chain-ids/)
-
--   :material-timer-sand:{ .lg .middle } **Wormhole Finality**
-
-    ---
-
-    See the levels of finality (consistency) a transaction should meet before being signed by a Guardian for each network.
-
-    [:custom-arrow: View list of finality levels](/docs/build/reference/consistency-levels/)
-
--   :octicons-file-code-16:{ .lg .middle } **Contract Addresses**
-
-    ---
-
-    Discover the contract addresses for Wormhole-deployed contracts on each of the supported blockchains.
-
-    This includes the following protocol contracts:
-
-    - Core Contract
-    - Token Bridge
-    - NFT Bridge
-    - Wormhole relayer
-    - CCTP
-
-    [:custom-arrow: View list of contract addresses](/docs/build/reference/contract-addresses/)
-
--   :octicons-checkbox-16:{ .lg .middle } **Wormhole Formatted Addresses**
-
-    ---
-
-    Learn how Wormhole formats addresses into a 32-byte hex format for cross-chain compatibility.
-    
-    This includes converting addresses between their native formats and the Wormhole format across multiple blockchains.
-
-    [:custom-arrow: View details on Wormhole formatted addresses](/docs/build/reference/wormhole-formatted-addresses/)
-
-</div>
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/reference/chain-ids/
+Doc-Content: https://wormhole.com/docs/products/reference/chain-ids/
 --- BEGIN CONTENT ---
 ---
 title: Chain IDs
@@ -208,7 +146,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/consistency-levels/
+Doc-Content: https://wormhole.com/docs/products/reference/consistency-levels/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Finality | Consistency Levels
@@ -267,7 +205,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/contract-addresses/
+Doc-Content: https://wormhole.com/docs/products/reference/contract-addresses/
 --- BEGIN CONTENT ---
 ---
 title: Contract Addresses
@@ -596,7 +534,190 @@ categories: Reference
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/build/reference/wormhole-formatted-addresses/
+Doc-Content: https://wormhole.com/docs/products/reference/supported-networks/
+--- BEGIN CONTENT ---
+---
+title: Supported Networks
+description: Learn about the compatible environments and individual networks that Wormhole supports. Readers can click on each of the blockchain logos for more information.
+categories: Reference
+---
+
+# Supported Networks
+
+Wormhole supports several different blockchains and environments. Since many of the concepts for using Wormhole within a given blockchain environment are the same, this section is organized by environment, and individual chains are detailed within the environment page.
+
+## Supported Environments
+
+- [EVM (Ethereum and compatible chains)](#evm)
+- [SVM (Solana and compatible chains)](#svm)
+- [CosmWasm (Cosmos ecosystem chains)](#cosmwasm)
+- [AVM (Algorand)](#avm)
+- [NEAR VM (NEAR)](#near-vm)
+- [Move VM (Aptos)](#move-vm)
+- [Sui Move VM (Sui)](#sui-move-vm)
+
+## Supported Blockchains by Environment
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_CARDS-->
+<div class="full-width" markdown="">
+
+### EVM
+
+| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Acala | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Berachain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Celo | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fantom | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Gnosis | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| HyperEVM | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
+| Ink | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Karura | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
+| Linea | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Neon | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Oasis | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Seievm | EVM | :x: | :white_check_mark: |  |
+| SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Unichain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+
+### SVM
+
+| Solana | SVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Pythnet | SVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+
+### AVM
+
+| Algorand | AVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+
+### CosmWasm
+
+| Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Neutron | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Osmosis | CosmWasm | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sei | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Terra | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Terra 2.0 | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XPLA | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+
+### Move VM
+
+| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+
+### NEAR VM
+
+| NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+
+### Sui Move VM
+
+| Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
+<!--SUPPORTED_BLOCKCHAIN_CARDS-->
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/reference/testnet-faucets/
+--- BEGIN CONTENT ---
+---
+title: Testnet Faucets
+description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
+categories: Reference
+---
+
+# Testnet Faucets
+
+## Get Started
+
+Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--TESTNET_FAUCETS-->
+<div class="full-width" markdown="">
+
+### EVM
+
+| Ethereum Holesky | EVM | ETH | Alchemy Faucet |
+| Ethereum Sepolia | EVM | ETH | Alchemy Faucet |
+| Acala | EVM | ACA | Discord Faucet |
+| Arbitrum Sepolia | EVM | ETH | List of Faucets |
+| Avalanche | EVM | AVAX | Official Avalanche Faucet |
+| Base Sepolia | EVM | ETH | List of Faucets |
+| Berachain | EVM | BERA | Official Berachain Faucet |
+| Blast | EVM | ETH | List of Faucets |
+| BNB Smart Chain | EVM | BNB | Official BNB Faucet |
+| Celo | EVM | CELO | Official Celo Faucet |
+| Fantom | EVM | FTM | Official Fantom Faucet |
+| Gnosis | EVM | xDAI | Official Gnosis Faucet |
+| HyperEVM | EVM | mock USDC | Official Hyperliquid Faucet |
+| Ink | EVM | ETH | Official Ink Faucet |
+| Kaia | EVM | KAIA | Official Kaia Faucet |
+| Karura | EVM | ACA | Discord Faucet |
+| Linea | EVM | ETH | List of Faucets |
+| Mantle | EVM | MNT | Official Mantle Faucet |
+| Monad | EVM | MON | Official Monad Faucet |
+| Moonbeam | EVM | DEV | Official Moonbeam Faucet |
+| Neon | EVM | NEON | Official Neon Faucet |
+| Oasis | EVM | TEST | Official Oasis Faucet |
+| Optimism Sepolia | EVM | ETH | Superchain Faucet |
+| Polygon Amoy | EVM | POL | Official Polygon Faucet |
+| Scroll | EVM | ETH | List of Faucets |
+| Unichain | EVM | ETH | QuickNode Faucet |
+| World Chain | EVM | ETH | Alchemy Faucet |
+| X Layer | EVM | OKB | X Layer Official Faucet |
+
+### SVM
+
+| Pythnet | SVM | ETH | Superchain Faucet |
+
+### AVM
+
+| Algorand | AVM | ALGO | Official Algorand Faucet |
+
+### CosmWasm
+
+| Celestia | CosmWasm | TIA | Discord Faucet |
+| Cosmos Hub | CosmWasm | ATOM | Discord Faucet |
+| Evmos | CosmWasm | TEVMOS | Official Evmos Faucet |
+| Injective | CosmWasm | INJ | Official Injective Faucet |
+| Kujira | CosmWasm | KUJI | Discord Faucet |
+| Neutron | CosmWasm | NTRN | List of Faucets |
+| Noble | CosmWasm | USDC | Circle Faucet |
+| Osmosis | CosmWasm | OSMO | Official Osmosis Faucet |
+| SEDA | CosmWasm | SEDA | Official SEDA Faucet |
+| Sei | CosmWasm | SEI | Sei Atlantic-2 Faucet |
+| Terra | CosmWasm | LUNA | Terra Official Faucet |
+| Terra 2.0 | CosmWasm | LUNA | Terra Official Faucet |
+| XPLA | CosmWasm | XPLA | XPLA Official Faucet |
+
+### Move VM
+
+| Aptos | Move VM | APT | Official Aptos Faucet |
+
+### NEAR VM
+
+| NEAR | NEAR VM | NEAR | Official NEAR Faucet |
+
+### Sui Move VM
+
+| Sui | Sui Move VM | SUI | List of Faucets |
+</div>
+<!--TESTNET_FAUCETS-->
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/reference/wormhole-formatted-addresses/
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Formatted Addresses
@@ -748,187 +869,4 @@ For cross-chain dApp development, Wormhole formatted addresses simplify handling
 ### Relayers and Infrastructure
 
 Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
---- BEGIN CONTENT ---
----
-title: Supported Networks
-description: Learn about the compatible environments and individual networks that Wormhole supports. Readers can click on each of the blockchain logos for more information.
-categories: Reference
----
-
-# Supported Networks
-
-Wormhole supports several different blockchains and environments. Since many of the concepts for using Wormhole within a given blockchain environment are the same, this section is organized by environment, and individual chains are detailed within the environment page.
-
-## Supported Environments
-
-- [EVM (Ethereum and compatible chains)](#evm)
-- [SVM (Solana and compatible chains)](#svm)
-- [CosmWasm (Cosmos ecosystem chains)](#cosmwasm)
-- [AVM (Algorand)](#avm)
-- [NEAR VM (NEAR)](#near-vm)
-- [Move VM (Aptos)](#move-vm)
-- [Sui Move VM (Sui)](#sui-move-vm)
-
-## Supported Blockchains by Environment
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--SUPPORTED_BLOCKCHAIN_CARDS-->
-<div class="full-width" markdown="">
-
-### EVM
-
-| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Base | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Berachain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Blast | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Celo | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Fantom | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Gnosis | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| HyperEVM | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
-| Ink | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Kaia | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
-| Linea | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mantle | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mezo | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Monad | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Optimism | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Polygon | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Scroll | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Seievm | EVM | :x: | :white_check_mark: |  |
-| SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Unichain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| World Chain | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| X Layer | EVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-
-### SVM
-
-| Solana | SVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Pythnet | SVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-
-### AVM
-
-| Algorand | AVM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-
-### CosmWasm
-
-| Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neutron | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Osmosis | CosmWasm | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Sei | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra 2.0 | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XPLA | CosmWasm | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-
-### Move VM
-
-| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-
-### NEAR VM
-
-| NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-
-### Sui Move VM
-
-| Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-</div>
-<!--SUPPORTED_BLOCKCHAIN_CARDS-->
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets/
---- BEGIN CONTENT ---
----
-title: Testnet Faucets
-description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
-categories: Reference
----
-
-# Testnet Faucets
-
-## Get Started
-
-Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--TESTNET_FAUCETS-->
-<div class="full-width" markdown="">
-
-### EVM
-
-| Ethereum Holesky | EVM | ETH | Alchemy Faucet |
-| Ethereum Sepolia | EVM | ETH | Alchemy Faucet |
-| Acala | EVM | ACA | Discord Faucet |
-| Arbitrum Sepolia | EVM | ETH | List of Faucets |
-| Avalanche | EVM | AVAX | Official Avalanche Faucet |
-| Base Sepolia | EVM | ETH | List of Faucets |
-| Berachain | EVM | BERA | Official Berachain Faucet |
-| Blast | EVM | ETH | List of Faucets |
-| BNB Smart Chain | EVM | BNB | Official BNB Faucet |
-| Celo | EVM | CELO | Official Celo Faucet |
-| Fantom | EVM | FTM | Official Fantom Faucet |
-| Gnosis | EVM | xDAI | Official Gnosis Faucet |
-| HyperEVM | EVM | mock USDC | Official Hyperliquid Faucet |
-| Ink | EVM | ETH | Official Ink Faucet |
-| Kaia | EVM | KAIA | Official Kaia Faucet |
-| Karura | EVM | ACA | Discord Faucet |
-| Linea | EVM | ETH | List of Faucets |
-| Mantle | EVM | MNT | Official Mantle Faucet |
-| Monad | EVM | MON | Official Monad Faucet |
-| Moonbeam | EVM | DEV | Official Moonbeam Faucet |
-| Neon | EVM | NEON | Official Neon Faucet |
-| Oasis | EVM | TEST | Official Oasis Faucet |
-| Optimism Sepolia | EVM | ETH | Superchain Faucet |
-| Polygon Amoy | EVM | POL | Official Polygon Faucet |
-| Scroll | EVM | ETH | List of Faucets |
-| Unichain | EVM | ETH | QuickNode Faucet |
-| World Chain | EVM | ETH | Alchemy Faucet |
-| X Layer | EVM | OKB | X Layer Official Faucet |
-
-### SVM
-
-| Pythnet | SVM | ETH | Superchain Faucet |
-
-### AVM
-
-| Algorand | AVM | ALGO | Official Algorand Faucet |
-
-### CosmWasm
-
-| Celestia | CosmWasm | TIA | Discord Faucet |
-| Cosmos Hub | CosmWasm | ATOM | Discord Faucet |
-| Evmos | CosmWasm | TEVMOS | Official Evmos Faucet |
-| Injective | CosmWasm | INJ | Official Injective Faucet |
-| Kujira | CosmWasm | KUJI | Discord Faucet |
-| Neutron | CosmWasm | NTRN | List of Faucets |
-| Noble | CosmWasm | USDC | Circle Faucet |
-| Osmosis | CosmWasm | OSMO | Official Osmosis Faucet |
-| SEDA | CosmWasm | SEDA | Official SEDA Faucet |
-| Sei | CosmWasm | SEI | Sei Atlantic-2 Faucet |
-| Terra | CosmWasm | LUNA | Terra Official Faucet |
-| Terra 2.0 | CosmWasm | LUNA | Terra Official Faucet |
-| XPLA | CosmWasm | XPLA | XPLA Official Faucet |
-
-### Move VM
-
-| Aptos | Move VM | APT | Official Aptos Faucet |
-
-### NEAR VM
-
-| NEAR | NEAR VM | NEAR | Official NEAR Faucet |
-
-### Sui Move VM
-
-| Sui | Sui Move VM | SUI | List of Faucets |
-</div>
-<!--TESTNET_FAUCETS-->
 --- END CONTENT ---

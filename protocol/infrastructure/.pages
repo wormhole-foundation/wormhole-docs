@@ -1,0 +1,7 @@
+title: Infrastructure Components
+nav:
+- 'Core Contracts': 'core-contracts.md'
+- 'VAAs': 'vaas.md'
+- 'Guardians': 'guardians.md'
+- 'Spy': 'spy.md'
+- 'Relayers': 'relayer.md'

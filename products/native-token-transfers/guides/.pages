@@ -1,0 +1,5 @@
+title: Guides
+nav:
+- 'Deploy to EVM Chains': deploy-to-evm.md
+- 'Deploy to EVM Chains via Launchpad': evm-launchpad.md
+- 'Deploy to Solana': deploy-to-solana.md
