@@ -24,7 +24,7 @@ The Token Bridge is built to solve interoperability problems in multichain token
 
 By handling token movement in a decentralized, permissionless, and metadata-aware way, the Token Bridge provides a reliable foundation for cross-chain interoperability at scale.
 
-The Token Bridge provides a reliable foundation for cross-chain interoperability at scale. The transfer process follows these key steps:
+The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
 1. **Attestation** - the token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token
 2. **Locking** - on the source chain, the native token is locked in a custody account
