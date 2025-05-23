@@ -1,6 +1,6 @@
 ---
 title: Settlement Overview
-description: 
+description: Discover how Settlement enables fast, intent-based token transfers across chains using a unified system of solver auctions and integrated execution routes.
 categories: Settlement, Transfer
 ---
 
@@ -45,36 +45,33 @@ waiting with publishing until the Product team gives more information regarding 
 
 ### Mayan Swift
 
-- Implements a typical intent architecture with fast execution (~12 seconds)
-- Requires solvers to hold inventory across chains
-- Prone to imbalances (some chains depleted, others overfilled), requires rebalancing assets
-- Best for high-speed transfers with primary assets
-- Features open auctions and competitive pricing
+Mayan Swift implements a traditional intent-based architecture where solvers compete to fulfill user intents using their inventory distributed across chains. It offers the fastest execution in the Settlement suite, typically around 12 seconds. To participate, solvers must hold assets on multiple chains, which can lead to imbalances: some chains may get depleted while others accumulate excess. This requires occasional rebalancing and adds operational overhead. Despite that, Mayan Swift is ideal for high-speed transfers involving common assets and benefits from open, competitive auctions that can drive down execution prices.
 
 ```mermaid
 flowchart LR
 
-    subgraph TOP[User has ARB and wants WIF]
+    subgraph A[User has ARB and wants WIF]
+        direction LR
         ARB[ARB] ==> WIF[WIF]
     end
 
     ARB -.-> ETH[ETH]
-    ETH -.-> Escrow[Escrow Contract]
+    subgraph B[" "]
+        direction LR
+        ETH -.-> Escrow[Escrow Contract]
+        Escrow -.-> ArbSolver[Solver Wallet on ETH]
+        Escrow -. Emits VAA .-> SolSolver[Solver Wallet on Solana]
+        SolSolver -.-> SOL
+        SOL -.-> WIF
+    end
 
-    Escrow -.-> ArbSolver[Solver Wallet on ETH]
-    Escrow -. Emits VAA .-> SolSolver[Solver Wallet on Solana]
+    WIF -.-> UW[User Wallet]
 
-    SolSolver -.-> SOL
-    SOL -.-> WIF
 ```
 
 ### Liquidity Layer
 
-- Uses a hub-and-spoke model with Solana as the hub
-- No rebalancing needed, liquidity sits only on Solana
-- Solvers join on-chain English auctions and fulfill intents by fronting assets
-- Relies on USDC and NTT as shuttle assets
-- Execution takes ~15–25 seconds
+The Liquidity Layer uses a hub-and-spoke architecture with Solana as the central liquidity hub. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
 
 ```mermaid
 flowchart LR
@@ -83,22 +80,22 @@ flowchart LR
         ARB[ARB] ==> JOE[JOE]
     end
 
-    ARB -.-> USDC1[USDC]
-    USDC1 -.-> SOL
-    SOL -.-> USDC2[USDC]
-    USDC2 -.-> JOE
+    subgraph B[" "]
+        direction LR
+        ARB -.-> USDC1[USDC]
+        USDC1 -.-> SOL
+        SOL -.-> USDC2[USDC]
+        USDC2 -.-> JOE
+    end
 ```
 
 ### Mayan MCTP
 
-- A fallback protocol using Circle’s CCTP
-- Bundles USDC bridging and swaps in one operation
-- Slower due to finality requirements, but highly reliable
-- Provides execution redundancy and supports chains without fast auction infrastructure
+Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift or the Liquidity Layer. While typically more expensive due to protocol fees, it’s a reliable way to ensure settlement completion in edge cases.
 
-### One Integration, Three Routes
+### One Integration, Three Ways
 
-Settlement isn't about choosing just one route; it’s a unified system in which all three protocols work together to maximize coverage, speed, and reliability.
+Settlement isn't about choosing just one route; it’s a protocol suite in which all three architectures work together to maximize coverage, speed, and reliability.
 
 By default, Settlement integrates all three:
 
@@ -109,5 +106,20 @@ By default, Settlement integrates all three:
 Developers can customize route preferences, but for most applications, no configuration is needed to benefit from the full suite.
 
 ## Use Cases
+
+- **Cross-Chain Perpetuals** 
+
+    - [**Settlement**](#){target=\_blank} - fast token execution across chains
+    - [**Queries**](#){target=\_blank} – fetch live prices and manage position state across chains
+
+- **Bridging Intent Library**
+
+    - [**Settlement**](#){target=\_blank} - handles user-defined bridge intents
+    - [**Messaging**](#){target=\_blank} – triggers cross-chain function calls
+
+- **Multichain Prediction Markets**
+
+    - [**Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} – executes token flows between chains
+    - [**Queries**](/docs/build/queries/overview/){target=\_blank} – gets market data and tracks state
 
 ## Next Steps
