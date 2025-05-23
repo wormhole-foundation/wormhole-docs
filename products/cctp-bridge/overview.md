@@ -33,7 +33,7 @@ This section outlines the end-to-end flow for transferring native USDC across ch
 
 This process highlights how CCTP ensures the secure transfer of native USDC, while Wormhole provides the messaging infrastructure to carry the attestation and enable more complex, automated cross-chain workflows.
 
-!!! note Note 
+!!! note 
     Wormhole supports all CCTP chains, however, Circle currently supports a few that you can find listed in [Circles supported domains](https://developers.circle.com/stablecoins/supported-domains).
 
 
