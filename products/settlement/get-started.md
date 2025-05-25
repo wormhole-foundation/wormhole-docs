@@ -1,6 +1,6 @@
 ---
 title: Get Started
-description: Compare integration paths for Wormhole Settlement and choose the best option for your use case—app, router, or protocol-level.
+description: Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
 categories: Settlement, Transfer
 ---
 
@@ -8,26 +8,57 @@ categories: Settlement, Transfer
 
 ## Introduction
 
-[Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} enables fast, intent-based multichain asset transfers across supported blockchains like Ethereum, Solana, Sui, and more. It provides multiple integration paths tailored to different application needs, whether you're building a dApp, stablecoin swap interface, or participating as a solver.
+[Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer for fast, cross-chain asset movement. This guide walks you through using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of three integrated Settlement protocols, to initiate a token swap between two chains.
 
-This page compares two supported integration options, [Liquidity Layer](/docs/products/settlement/concepts/architecture/#wormhole-liquidity-layer){target=\_blank} and [Mayan Swift](/docs/products/settlement/concepts/architecture/#mayan-swift){target=\_blank}, to help you choose the best fit for your use case.
+We'll use the [demo-mayanswift](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} project to set up and execute a live swap using the Wormhole SDK.
 
-## Choose Your Integration Path
+!!! note
+    Mayan Swift currently supports **mainnet only**. Attempting to run this demo on testnet will result in failure.
 
-Depending on your use case, you can choose between different settlement routes. Here's a quick comparison:
+## Prerequisites
 
-<div markdown class="full-width">
+Before you begin, ensure you have the following:
 
-::spantable::
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
+- A wallet with a private key, funded with native tokens on mainnet for gas fees
 
-| Integration Path               | Best for                              | Chains             | Typescript SDK Compatible | Flexibility| 
-|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
-| Liquidity Layer @span | dApps needing deeper control or protocol-level integration| Testnet + Mainnet | ❌ | :green_circle: :green_circle: :green_circle: <br> High | 
-| Mayan Swift @span              | dApps that want fast integration with minimal setup | Mainnet           | ✅ | :green_circle: :white_circle: :white_circle: <br> Low | 
+## Project Setup
 
-::end-spantable::
+1. **Clone the demo repository**
 
-</div>
+    ```bash
+    git clone https://github.com/wormhole-foundation/demo-mayanswift
+    cd demo-mayanswift
+    ```
+
+2. **Install dependencies**
+
+    ```bash
+    npm install
+    ```
+
+3. **Set up environment variables**: set up secure access to your wallets. This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like cast wallet.
+
+    !!! warning
+        If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
+## Mayan Swift Swap
+
+To initiate a token transfer across chains, using the Mayan Swift Route run:
+
+```bash
+npm run swap
+```
+
+## Customize the Integration
+
+You can tailor the example to your use case by adjusting:
+
+- **Tokens and chains** – use `getSupportedTokens()` to explore what's available
+- **Transfer settings** – update the amount or route parameters
+- **Signer management** – modify `src/helpers.ts` to integrate with your preferred wallet setup
+- **Source and destination chains**: modify `sendChain` and `destChain` in `swap.ts`
+- **Amount and transfer settings**: adjust amount to suit your needs
 
 ## Next Steps
 
