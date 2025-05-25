@@ -6,7 +6,7 @@ categories: Settlement, Transfer
 
 # Settlement Overview 
 
-Wormhole Settlement is a multichain transfer system that lets users describe what they want, like sending or swapping tokens, without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
+Wormhole Settlement is a multichain transfer system that lets users describe the transfer they want to make without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
 
 Settlement was built to address liquidity fragmentation across chains. Traditionally, solvers had to split their capital between multiple networks, which reduced efficiency and scalability. Settlement solves this by consolidating liquidity on Solana, enabling faster execution and minimal slippage, even as liquidity and supported chains scale.
 
@@ -24,7 +24,7 @@ It combines three complementary protocols into a single integration suite, letti
 
 At the core of Settlement are two components:
 
-- **Intents**: these are signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed
+- **Intents**: signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed
 - **Solvers**: third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return
 
 Settlement leverages three integrated protocols:
@@ -44,34 +44,49 @@ waiting with publishing until the Product team gives more information regarding 
 -->
 
 ### Mayan Swift
+<!-- once the table is published, we can make this intro shorter by removing some repeated details -->
 
 Mayan Swift implements a traditional intent-based architecture where solvers compete to fulfill user intents using their inventory distributed across chains. It offers the fastest execution in the Settlement suite, typically around 12 seconds. To participate, solvers must hold assets on multiple chains, which can lead to imbalances: some chains may get depleted while others accumulate excess. This requires occasional rebalancing and adds operational overhead. Despite that, Mayan Swift is ideal for high-speed transfers involving common assets and benefits from open, competitive auctions that can drive down execution prices.
 
+The diagram below shows how Mayan Swift handles a cross-chain intent when an user wants to swap ARB on Arbitrum for WIF on Solana. Behind the scenes, the process is more involved and relies on solver-managed liquidity across both chains.
+
+1. **Solver initiates on Arbitrum**: solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum
+2. **VAA emitted to Solana**: a [VAA](#){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator
+3. **User receives WIF**: once the user receives WIF, a second VAA finalizes the transfer and releases the ETH held in the escrow to the solver
+4. **Failure handling**: if any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds
+
 ```mermaid
-flowchart LR
+sequenceDiagram
+    participant User
+    participant Solver_ARB as Solver (Arbitrum)
+    participant Escrow
+    participant Wormhole
+    participant Solver_SOL as Solver (Solana)
+    participant Aggregator
+    participant UserWallet as User Wallet
 
-    subgraph A[User has ARB and wants WIF]
-        direction LR
-        ARB[ARB] ==> WIF[WIF]
-    end
-
-    ARB -.-> ETH[ETH]
-    subgraph B[" "]
-        direction LR
-        ETH -.-> Escrow[Escrow Contract]
-        Escrow -.-> ArbSolver[Solver Wallet on ETH]
-        Escrow -. Emits VAA .-> SolSolver[Solver Wallet on Solana]
-        SolSolver -.-> SOL
-        SOL -.-> WIF
-    end
-
-    WIF -.-> UW[User Wallet]
-
+    User->>Solver_ARB: Sends ARB
+    Solver_ARB->>Escrow: Swaps ARB → ETH and deposits ETH
+    Escrow-->>Wormhole: Emits VAA
+    Wormhole-->>Solver_SOL: Delivers VAA
+    Solver_SOL->>Aggregator: Releases SOL and swaps to WIF
+    Aggregator->>UserWallet: Sends WIF
+    UserWallet-->>Wormhole: Emits final VAA
+    Wormhole-->>Escrow: Confirms receipt
+    Escrow->>Solver_ARB: Releases ETH to solver
 ```
 
 ### Liquidity Layer
+<!-- once the table is published, we can make this intro shorter by removing some repeated details -->
 
 The Liquidity Layer uses a hub-and-spoke architecture with Solana as the central liquidity hub. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
+
+The diagram below shows how the Liquidity Layer handles the process when an user wants to swap ARB on Arbitrum for JOE on Avalanche. 
+
+1. **Solver initiates on Arbitrum**: solver swaps ARB → USDC on Arbitrum and sends it to Solana, emitting a VAA
+2. **English auction**: on Solana, an on-chain English auction starts, and solvers bid to fulfill the request
+3. **Fronting and bridging**: winning solver fronts USDC from Solana to Avalanche using Circle’s CCTP
+4. **Swap, deliver, and settle**: USDC is swapped to JOE on Avalanche, User receives JOE, and the solver is repaid once the original USDC arrives
 
 ```mermaid
 flowchart LR
@@ -80,12 +95,12 @@ flowchart LR
         ARB[ARB] ==> JOE[JOE]
     end
 
-    subgraph B[" "]
+    subgraph B["Solver flow"]
         direction LR
-        ARB -.-> USDC1[USDC]
-        USDC1 -.-> SOL
-        SOL -.-> USDC2[USDC]
-        USDC2 -.-> JOE
+        ARB --> USDC1[USDC]
+        USDC1 -- Over CCTP --> SOL
+        SOL -- Over CCTP --> USDC2[USDC]
+        USDC2 --> JOE
     end
 ```
 
