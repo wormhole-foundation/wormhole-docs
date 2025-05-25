@@ -51,7 +51,7 @@ Mayan Swift implements a traditional intent-based architecture where solvers com
 The diagram below shows how Mayan Swift handles a cross-chain intent when an user wants to swap ARB on Arbitrum for WIF on Solana. Behind the scenes, the process is more involved and relies on solver-managed liquidity across both chains.
 
 1. **Solver initiates on Arbitrum**: solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum
-2. **VAA emitted to Solana**: a [VAA](#){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator
+2. **VAA emitted to Solana**: a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator
 3. **User receives WIF**: once the user receives WIF, a second VAA finalizes the transfer and releases the ETH held in the escrow to the solver
 4. **Failure handling**: if any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds
 
@@ -138,3 +138,10 @@ Developers can customize route preferences, but for most applications, no config
     - [**Queries**](/docs/build/queries/overview/){target=\_blank} – gets market data and tracks state
 
 ## Next Steps
+
+Start building with Settlement or dive deeper into specific components:
+
+- **[Get Started with Settlement](#){target=\_blank}**: follow a hands-on demo using Mayan Swift
+- **[Build on the Liquidity Layer](#){target=\_blank}**: integrate the hub-and-spoke model
+- **[Run a Solver](#){target=\_blank}**: operate a solver and participate in auctions
+
