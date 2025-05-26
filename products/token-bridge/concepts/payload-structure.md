@@ -1,17 +1,12 @@
 ---
 title: Token Bridge Payload Structure
-description: 
+description: Discover the structure and purpose of each Token Bridge payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
 categories: Token-Bridge, Transfers
 ---
 
-<!--
-add meta descr 
-add links
--->
-
 # Token Bridge Message and Payload Structure
 
-To enable secure and flexible cross-chain token transfers, the [Token Bridge](#){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](#){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
+To enable secure and flexible cross-chain token transfers, the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
 
 This page outlines each payload type in detail.
 
@@ -274,4 +269,12 @@ NewContract [32]uint8
 
 This message allows the Wormhole governance system to deploy new versions of the bridge while retaining control over interoperability and security.
 
-## Summary of Payload Lifecycle
+## Summary of Payload Structure
+
+| Payload Type          | ID            | Purpose                                                                | Who Emits It           |
+|-----------------------|---------------|------------------------------------------------------------------------|------------------------|
+| `Transfer`            | PayloadID `1` | Moves tokens between chains by minting or releasing on the destination | Token Bridge contract  |
+| `AssetMeta`           | PayloadID `2` | Attests token metadata (decimals, symbol, name) before first transfer  | Token Bridge contract  |
+| `TransferWithPayload` | PayloadID `3` | Transfers tokens along with a custom payload for contract execution    | Token Bridge contract  |
+| `RegisterChain`       | Action `1`    | Registers a verified Token Bridge emitter for a foreign chain          | Wormhole governance    |
+| `UpgradeContract`     | Action `2`    | Upgrades the Token Bridge contract on a specific chain                 | Wormhole governance    |
