@@ -67,7 +67,7 @@ Fee uint256
     Amount of tokens that the user is willing to pay as relayer fee. Must be less than Amount. Optional and can be claimed by relayers who submit the VAA on the target chain.
    
 
-In order to keep `Transfer` messages small, they don't carry all metadata of the token. However, this means that before a token can be transferred to a new chain for the first time, the metadata needs to be bridged and the wrapped asset created. Metadata in this case includes the amount of decimals which is a core requirement for instantiating a token.
+To keep `Transfer` messages small, they don't carry all the token's metadata. However, this means that before a token can be transferred to a new chain for the first time, the metadata needs to be bridged, and the wrapped asset needs to be created. Metadata, in this case, includes the number of decimals, which is a core requirement for instantiating a token.
 
 ## AssetMeta
 
@@ -118,7 +118,7 @@ Name [32]uint8
 
     Name of the token, UTF-8 encoded and padded to 32 bytes.
 
-Before a token can be transferred to a new chain, the `AssetMeta` message must be submitted to that chain. The bridge uses this metadata to create a wrapped representation of the token with accurate name, symbol, and decimal precision.
+Before a token can be transferred to a new chain, the `AssetMeta` message must be submitted to that chain. The bridge uses this metadata to create a wrapped token representation with accurate name, symbol, and decimal precision.
 
 ## TransferWithPayload
 
@@ -184,11 +184,11 @@ Payload bytes
     Arbitrary data passed to the recipient contract. Can be used for DeFi operations, authentication, or app-specific logic.
 
 
-Unlike `Transfer`, the `TransferWithPayload` message must be redeemed by the recipient contract, since only that contract can properly handle the custom payload.
+Unlike `Transfer`, the `TransferWithPayload` message must be redeemed by the recipient contract since only that contract can handle the custom payload properly.
 
 ## RegisterChain
 
-The `RegisterChain` governance payload (Action ID = `1`) is used to register a Token Bridge emitter address for a foreign chain. This ensures the bridge only accepts messages from known peers.
+The `RegisterChain` governance payload (Action ID = `1`) registers a Token Bridge emitter address for a foreign chain. This ensures the bridge only accepts messages from known peers.
 
 ```text
 Module [32]byte
@@ -229,7 +229,7 @@ EmitterAddress [32]uint8
 
     Address of the registered emitter, left-zero-padded if shorter than 32 bytes.
 
-This payload can only be emitted by the Wormhole governance contract and ensures that each chain only accepts messages from one verified bridge emitter per remote chain.
+This payload can only be emitted by the Wormhole governance contract, which ensures that each chain only accepts messages from one verified bridge emitter per remote chain.
 
 ## UpgradeContract
 
