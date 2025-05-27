@@ -13,16 +13,16 @@ The integration of [Circle's Cross-Chain Transfer Protocol (CCTP)](https://www.c
 - **Secure native USDC transfers** - at its core, CCTP provides a "burn-and-mint" mechanism for transferring native USDC. This eliminates the need for wrapped assets and the associated risks of intermediary bridges
 - **Atomic execution** - by combining CCTP and Wormhole, the transfer of USDC and the execution of accompanying instructions on the destination chain can occur as a single, atomic transaction
 - **Automated relaying** - eliminates the need for users to redeem USDC transfers themselves
-- **Gas payment on the destination chain** - allows users to transfer USDC without needing to pay gas on the destination chain
+- **Gas payment** - users are not required to hold destination gas tokens beforehand, as gas costs can be handled by the protocol depending on manual or automated transaction using relayers
 - **Gas drop off** - enables users to convert a portion of USDC into the destination chain's gas token upon a successful transfer
-- **Enhanced composability** - developers can build more sophisticated cross-chain applications by sending additional data alongside the 
+- **Enhanced composability** - developers can build more sophisticated cross-chain applications by sending additional data alongside the transfer
 
 ## How It Works
 
 This section outlines the end-to-end flow for transferring native USDC across chains using CCTP while optionally triggering an action on the destination chain. Circle and Wormhole coordinate each step to ensure a secure, verifiable transfer and execution process.
 
 1. **Initiation on source chain** - a user on the source chain initiates a USDC transfer and specifies the action on the destination chain
-2. **CCTP burn and package** - Wormhole automates the transfer by packaging the USDC burn request and destination chain action instructions into a single message
+2. **CCTP burn and package** - Wormhole automates the transfer by packaging the USDC burn request and the destination chain action instructions into a single message
 3. **Circle attestation** -  Circle's attestation service confirms the USDC burn on the source chain and issues a signature that is packaged together with the Wormhole message
 4. **Guardians verify and sign** - Wormhole's Guardians observe and sign the package achieving consensus on validity 
 5. **Automated relay** - the Relayers then automatically deliver the package to the destination chain without manual interaction
@@ -34,7 +34,6 @@ This section outlines the end-to-end flow for transferring native USDC across ch
 config:
   layout: fixed
 ---
-
 flowchart TD
  subgraph subGraph0["Source Chain"]
         B("Call Wormhole CCTP Integration Contract")
