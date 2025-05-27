@@ -32,14 +32,13 @@ This section outlines the end-to-end flow for transferring native USDC across ch
 ```mermaid
 ---
 config:
-  layout: fixed 
+  layout: fixed
 ---
 
-flowchart
+flowchart TD
  subgraph subGraph0["Source Chain"]
         B("Call Wormhole CCTP Integration Contract")
         A["User/dApp"]
-        C{"Wormhole CCTP Integration Contract"}
         D["Circle CCTP Contract"]
         E("Source Chain Transaction Logs")
   end
@@ -51,44 +50,27 @@ flowchart
         J("Relayer")
   end
  subgraph subGraph2["Target Chain"]
-        K{"Wormhole CCTP Integration Contract"}
+        K["Submit VAA & Attestation"] 
         L["Wormhole Core Contract"]
         M["Circle CCTP Contract"]
         N["Target dApp/Contract"]
         O["Recipient Wallet/Contract"]
   end
     A --> B
-    B --> C
-    C -- Burn USDC --> D
-    C -- Emit Wormhole Message --> E
+    B -- Burn USDC --> D
+    B -- Emit Wormhole Message --> E
     E --> F
-    D -- Observe Burn --> G
+    D --> G
     F -- Sign VAA --> H
     G -- Sign Attestation --> I
     H --> J
     I --> J
-    J -- Submit VAA & Attestation --> K
+    J --> K 
     K -- Verify Wormhole VAA --> L
     K -- Call Circle CCTP Contract --> M
     K -- (Optional) Execute Payload Logic --> N
     M -- Mint Native USDC --> O
     N --> O
-    style B fill:#F5F5F5,stroke:#333,stroke-width:1px,color:#000
-    style A fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#000
-    style C fill:#D9D9D9,stroke:#333,stroke-width:2px,color:#000
-    style D fill:#ADD8E6,stroke:#333,stroke-width:1px,color:#000
-    style E fill:#FFFFCC,stroke:#333,stroke-width:1px,color:#000
-    style F fill:#F0F8FF,stroke:#333,stroke-width:2px,color:#000
-    style G fill:#E6E6FA,stroke:#333,stroke-width:2px,color:#000
-    style H fill:#E0FFFF,stroke:#333,stroke-width:1px,color:#000
-    style I fill:#FAFAD2,stroke:#333,stroke-width:1px,color:#000
-    style J fill:#FFDAB9,stroke:#333,stroke-width:2px,color:#000
-    style K fill:#D9D9D9,stroke:#333,stroke-width:2px,color:#000
-    style L fill:#ADD8E6,stroke:#333,stroke-width:1px,color:#000
-    style M fill:#ADD8E6,stroke:#333,stroke-width:1px,color:#000
-    style N fill:#F5F5F5,stroke:#333,stroke-width:1px,color:#000
-    style O fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#000
-
 ```
 !!! note 
     Wormhole supports all CCTP chains, however, Circle currently supports a few that you can find listed in [Circles supported domains](https://developers.circle.com/stablecoins/supported-domains).
