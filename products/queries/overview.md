@@ -28,7 +28,7 @@ A query request follows a simple but robust lifecycle. The off-chain service res
 
 The CCQ Server is permissioned but trustless. Most queries resolve in under one second, and Guardians retry failed requests for up to one minute. Up to 255 queries can be batched together to optimize performance, supporting efficient multichain workflows.
 
-![The architecture flow of a query](/docs/images/products/queries/overview/queries.webp)
+![The architecture flow of a query](/docs/images/products/queries/overview/overview-1.webp)
 
 ## Use Cases
 
