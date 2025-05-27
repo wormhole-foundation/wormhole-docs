@@ -25,10 +25,9 @@ This section outlines the end-to-end flow for transferring native USDC across ch
 2. **CCTP burn and package** - Wormhole automates the transfer by packaging the USDC burn request and destination chain action instructions into a single message
 3. **Circle attestation** -  Circle's attestation service confirms the USDC burn on the source chain and issues a signature that is packaged together with the Wormhole message
 4. **Guardians verify and sign** - Wormhole's Guardians observe and sign the package achieving consensus on validity 
-5. **Automated relay** - the Relayers then automatically push the package to the destination chain without manual interaction
+5. **Automated relay** - the Relayers then automatically deliver the package to the destination chain without manual interaction
 6. **Mint and verify** - Circle's attestation in Wormhole message triggers the minting of native USDC on the destination chain after verification
 7. **Execute action** - any action on the destination chain executes if included in Wormhole message, potentially using new USDC
-
 
 ```mermaid
 ---
@@ -93,7 +92,6 @@ flowchart
 ```
 !!! note 
     Wormhole supports all CCTP chains, however, Circle currently supports a few that you can find listed in [Circles supported domains](https://developers.circle.com/stablecoins/supported-domains).
-
 
 ## Use Cases
 
