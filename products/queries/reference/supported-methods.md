@@ -6,7 +6,7 @@ categories: Queries
 
 ## Wormhole Queries: Supported Methods
 
-Wormhole Queries provide on-demand access to Guardian-attested on-chain data. Wormhole Queries offer a faster and more cost-effective way to retrieve data compared to traditional transaction-based methods, eliminating gas payments and transaction finality wait times. The system uses a simple REST endpoint for off-chain requests, which are then processed by Wormhole Guardians.
+Wormhole Queries provides on-demand access to Guardian-attested on-chain data. Wormhole Queries offers a faster and more cost-effective way to retrieve data than traditional transaction-based methods, eliminating gas payments and transaction finality wait times. The system uses a simple REST endpoint for off-chain requests, which Wormhole Guardians then process.
 
 This page describes Wormhole Queries, their operational details, and available methods, aiming to assist new developers in utilizing the service.
 
@@ -30,9 +30,9 @@ Key features include:
 
 ### Eth_call by Timestamps
 
-The `eth_call by timestamp` query is similar to a standard eth_call, but it targets a specific timestamp instead of a block ID. This is useful for retrieving on-chain data based on a precise point in time, especially for correlating information across different chains.
+The `eth_call by timestamp` query is similar to a standard eth_call but targets a specific timestamp instead of a block ID. This is useful for retrieving on-chain data based on a precise point in time, especially for correlating information across different chains.
 
-The query returns your target timestamp and details of the block that is the latest one at or before your specified `target_time`, and which immediately precedes the subsequent block. 
+The query returns your target timestamp and the latest block details at or before your specified `target_time` immediately preceding the subsequent block. 
 
 ### Eth_call with Finality
 
@@ -40,21 +40,21 @@ The `eth_call with Finality` query type functions like a standard `eth_call`, bu
 
 You can specify one of two finality levels for your query:
 
-- **Finalized** - indicates the highest level of assurance that a block is permanent and will not be altered or removed from the chain.
-- **Safe** - refers to a block that is considered highly unlikely to be reorganized, offering a strong degree of confidence, though it may not yet be fully finalized by the network's consensus.
+- **Finalized** - indicates the highest level of assurance that a block is permanent and will not be altered or removed from the chain
+- **Safe** - refers to a block considered highly unlikely to be reorganized, offering a substantial degree of confidence, though the network's consensus may not fully finalize it
 
 !!! note
     If the target blockchain does not natively support or recognize the safe finality tag, requesting safe finality will be treated as a request for finalized finality instead.
 
 ### Sol_account
 
-The `sol_account` query is used to read on-chain data for one or more specified accounts on the Solana blockchain. This functionality is akin to using Solana's native [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts) RPC method, enabling you to retrieve information for multiple accounts simultaneously
+The `sol_account` query reads on-chain data for one or more specified accounts on the Solana blockchain. This functionality is similar to using Solana's native [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts) RPC method, enabling you to retrieve information for multiple accounts simultaneously
 
 ### Sol_pda
 
-The `sol_pda` query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/pdas). It streamlines the common process of first deriving a PDA and then fetching its account data.
+The `sol_pda` query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/pdas). It streamlines the standard process of deriving a PDA and fetching its account data.
 
-This is particularly useful for accessing multiple PDAs owned by a specific program or for verifying Solana PDA derivations on another blockchain like how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account).
+This is particularly useful for accessing multiple PDAs owned by a specific program or for verifying Solana PDA derivations on another blockchain, such as how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account).
 
 
 
