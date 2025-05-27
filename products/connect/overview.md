@@ -16,22 +16,33 @@ Wormhole Connect offers flexible customization to match your application. Tailor
 - **Flexible bridging routes** – supports multiple transfer pathways
 - **Customizable UI** – style the bridge interface to match your brand 
 - **Customizable features** – select bridging options 
+This ones kind of vague, what type of features are customizable? what type of bridging options?
 - **Wormhole token bridging** – secure cross-chain transfers via Wormhole
+This one's pretty similar to in-app multichain transfers. So I'd probably get rid of this one
 - **Optional destination gas** – provide gas for initial transactions on the target chain
 
 Be sure to check the [Feature Support Matrix](/docs/products/connect/reference/support-matrix/#feature-support-matrix){target=\_blank} to find out which routes and features are supported for each chain.
 
 ## How It Works
 
-Think of Connect as a ready-made interface that simplifies the process of bridging assets across different blockchains. As you begin a multichain transfer, Connect simplifies the steps by:
+When a user initiates a cross-chain transfer, Connect guides them through the process of:
 
-1.  **Initiating the transfer** - selecting the asset, source chain, and destination chain
+1.  **Initiating the transfer** - selects the asset, the source chain, and the target chain for the transfer
 2.  **Connection** - connect your chosen wallet to the source chain
 3.  **Transaction submission on source chain** - confirms the transfer details to trigger the asset lock or deposit on the initial blockchain
 4.  **Wormhole message creation** - Wormhole's network observes the source transaction, and Guardians validate it to generate the VAA
 5.  **Message relaying** -  autmomates relays of the generated CCTP or VAA across the Wormhole network to the intended destination blockchain
 6.  **Transaction on destination chain** - contracts on the target blockchain receive and verify the incoming CCTP or VAA
 7.  **Asset release/minting** - upon successful verification, the equivalent assets are either released as wrapped assets or newly created on the destination blockchain and delivered to your wallet
+
+What's CCT
+if you mean CCTP i don't think we should treat it as a VAA bc cctp is the protocol not a proof itself
+this is the connect page so just use VAA and forget about cctp here
+
+I think there's something missing here from connecting wallet to submitting
+you can refer to this tutorial for the flow https://wormhole.com/docs/tutorials/connect/react-dapp/
+
+
 
 !!! tip
     If you want more hands on experience with Connect, checkout [Portal Bridge](https://portalbridge.com/){target=\_blank}.
