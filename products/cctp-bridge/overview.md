@@ -31,7 +31,6 @@ This section outlines the end-to-end flow for transferring native USDC across ch
 
 
 ```mermaid
-
 ---
 config:
   layout: fixed 
@@ -92,7 +91,6 @@ flowchart
     style O fill:#FFFFFF,stroke:#333,stroke-width:2px,color:#000
 
 ```
-
 !!! note 
     Wormhole supports all CCTP chains, however, Circle currently supports a few that you can find listed in [Circles supported domains](https://developers.circle.com/stablecoins/supported-domains).
 
