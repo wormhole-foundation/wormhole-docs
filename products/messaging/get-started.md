@@ -16,7 +16,7 @@ Before you begin, ensure you have the following:
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
 - [`ethers.js`](https://docs.ethers.org/v6/getting-started/){target=\_blank} installed (this example uses version 6)
 - A small amount of [Sepolia ETH](https://sepolia-faucet.pk910.de/){target=\_blank} for gas fees
-- An encrypted private key for signing transactions. This example uses Foundry to [create a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank} for encrypting and safely using your private key but you can adapt it to use your preferred encryption method
+- An private key for signing transactions
 
 ## Setup Your Project
 
