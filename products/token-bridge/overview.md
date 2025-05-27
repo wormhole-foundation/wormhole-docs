@@ -6,7 +6,7 @@ categories: Token-Bridge, Transfer
 
 # Token Bridge Overview
 
-The Token Bridge is a Wormhole module for bridging and wrapping tokens across various blockchain networks. Locking assets on one network and minting corresponding wrapped tokens on another facilitates secure, efficient, and composable multichain token movement.
+The Token Bridge is a Wormhole module for bridging wrapped tokens across various blockchain networks. Locking assets on one network and minting corresponding wrapped tokens on another facilitates secure, efficient, and composable multichain token movement.
 
 This overview covers Token Bridge's main features, general processes, and possible next steps to begin building a cross-chain application.
 
@@ -22,7 +22,7 @@ The Token Bridge is built to solve interoperability problems in multichain token
 
 ## How It Works
 
-By handling token movement in a decentralized, permissionless, and metadata-aware way, the Token Bridge provides a reliable foundation for multichain interoperability at scale.
+By handling token movement in a decentralized and permissionless way, the Token Bridge provides a reliable foundation for multichain interoperability at scale.
 
 The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
