@@ -6,7 +6,7 @@ categories: Basics, Typescript-SDK
 
 # Get Started with Messaging
 
-Wormhole's core functionality allows you to send any data packet from one supported chain to another. This guide will demonstrate publishing your first simple, arbitrary data message from an EVM environment source chain using the Wormhole TypeScript SDK's core messaging capabilities. 
+Wormhole's core functionality allows you to send any data packet from one supported chain to another. This guide demonstrates how to publish your first simple, arbitrary data message from an EVM environment source chain using the Wormhole TypeScript SDK's core messaging capabilities. 
 
 ## Prerequisites
 
@@ -78,7 +78,7 @@ Before you begin, ensure you have the following:
     --8<-- "code/products/messaging/get-started/main.ts"
     ```
 
-    This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successfully publishing the message.
+    This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses the core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successful publication of the message.
 
 2. Run the script using the following command:
 
@@ -90,14 +90,12 @@ Before you begin, ensure you have the following:
 
     --8<-- "code/products/messaging/get-started/terminal01.html"
 
-3. Make a note of the transaction ID and VAA identifiers values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages
+3. Make a note of the transaction ID and VAA identifier values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages
 
 Congratulations! You've published your first multichain message using Wormhole's TypeScript SDK and core protocol functionality. Consider the following options to build upon what you've accomplished. 
 
 ## Next Steps
 
-- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} - follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains
+- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
 
-- [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank} - smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains
-
-
+- [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.

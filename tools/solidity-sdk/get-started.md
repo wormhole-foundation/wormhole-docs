@@ -20,13 +20,13 @@ Next, review the following sections for more information on SDK components and f
 
 ## Key Components and Features
 
-The following key component and features work together to make your on-chain Wormhole integration easier to build.
+The following key components and features work together to make your on-chain Wormhole integration easier to build.
 
 ### Wormhole Relayer Integration
 
 - Easy integration with [Wormhole Relayer](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeRelayer.sol){target=\_blank} to allow you to request a delivery provider to relay a payload to the target chain and address.
-- **Reduce operational burden**: No need to run your own relay infrastructure or manage gas on multiple chains.
-- **Accelerate development with pre-built contracts**: Common use cases like sending messages, tokens, and USDC come together quickly leveraging base contracts like the following:
+- **Reduce operational burden**: No need to run relay infrastructure or manage gas on multiple chains.
+- **Accelerate development with prebuilt contracts**: Common use cases like sending messages, tokens, and USDC come together quickly leveraging base contracts like the following:
 
     - [**`Base.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/Base.sol){target=\_blank}: Uses Wormhole interfaces to authorize and verify a registered sender.
     - [**`TokenBase.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/TokenBase.sol){target=\_blank}: Uses `TokenReceiver` and `TokenSender` contracts to define functions for transferring tokens.
@@ -34,9 +34,9 @@ The following key component and features work together to make your on-chain Wor
 
 ### Solidity Interfaces
 
-The SDK offers a number of Solidity interfaces for interacting with Wormhole ecosystem contracts.  
+The SDK provides several Solidity interfaces for interacting with Wormhole ecosystem contracts.  
 
-- [**`ITokenBridge.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/ITokenBridge.sol){target=\_blank}: Defines key structs and functions for token attestation, wrapping and transferring tokens, monitoring transaction progess.
+- [**`ITokenBridge.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/ITokenBridge.sol){target=\_blank}: Defines key structs and functions for token attestation, wrapping and transferring tokens, monitoring transaction progress.
 - [**CCTP Interfaces**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/CCTPInterfaces){target=\_blank}: A set of interfaces for USDC transfers via CCTP for sending, relaying, and receiving messages and tokens.
 - [**`IWormholeReceiver.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeReceiver.sol){target=\_blank}: Defines the `receiveWormholeMessages` function.
 - [**`IWormholeRelayer.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeRelayer.sol){target=\_blank}: Defines key structs and functions to identify, send, and deliver messages and follow the progress of transactions.
@@ -55,28 +55,25 @@ The Wormhole Solidity SDK also includes a robust set of [testing utilities](http
 
 ## How It Works
 
-The following demo illustrates use of Wormhole Solidity SDK-based smart contracts to send testnet USDC from Avalanche Fuji to Celo Alfajores.
+The following demo illustrates the use of Wormhole Solidity SDK-based smart contracts to send testnet USDC between supported chains.
 
 ### Prerequisites
 
-Before you begin, make sure you have the following:
+Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} installed
-- [Testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}
-- [Testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank}
-- [USDC Testnet tokens](https://faucet.circle.com/){target=\_blank} on Avalanche Fuji and/or Celo Alfajores for cross-chain transfer
-
-### Set Up Your Project
+- Testnet tokens for two supported chains. This example uses [Testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [Testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} and can be adapted to any supported chains.
+- [USDC Testnet tokens](https://faucet.circle.com/){target=\_blank} on your source chain for cross-chain transfer
 
 Follow these steps to prepare your development environment:
 
 1. Create a directory for your project, navigate into it, and install the Wormhole Solidity SDK: 
 
     ```bash
-    mkdir wh-solidity-token-transfer
-    cd wh-solidity-token-transfer
+    mkdir solidity-token-transfer
+    cd solidity-token-transfer
     forge install wormhole-foundation/wormhole-solidity-sdk
     ```
 
