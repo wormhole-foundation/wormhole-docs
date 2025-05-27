@@ -55,7 +55,3 @@ The `sol_account` query reads on-chain data for one or more specified accounts o
 The `sol_pda` query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/pdas). It streamlines the standard process of deriving a PDA and fetching its account data.
 
 This is particularly useful for accessing multiple PDAs owned by a specific program or for verifying Solana PDA derivations on another blockchain, such as how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account).
-
-
-
-
