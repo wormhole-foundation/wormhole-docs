@@ -46,14 +46,14 @@ Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ET
 
 ```mermaid
 sequenceDiagram
-    participant Alice as Alice (User)
-    participant TokenBridgeEth as Token Bridge <br> Ethereum (Source Chain)
-    participant CoreEth as Core Contract <br> Ethereum (Source Chain)
+    participant Alice as Alice
+    participant TokenBridgeEth as Token Bridge Ethereum<br>(Source Chain)
+    participant CoreEth as Core Contract Ethereum<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeSol as Token Bridge <br> Solana (Destination Chain)
-    participant CoreSol as Core Contract <br> Solana (Destination Chain)
+    participant TokenBridgeSol as Token Bridge Solana<br>(Destination Chain)
+    participant CoreSol as Core Contract Solana<br>(Destination Chain)
 
-    Alice->>TokenBridgeEth: Initiate ETH transfer (lock ETH)
+    Alice->>TokenBridgeEth: Initiate ETH transfer<br>(lock ETH)
     TokenBridgeEth->>CoreEth: Publish transfer message
     CoreEth-->>Guardians: Emit message event
     Guardians->>Guardians: Sign and publish VAA
@@ -75,11 +75,11 @@ Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Et
 ```mermaid
 sequenceDiagram
     participant User as Alice
-    participant TokenBridgeSrc as Token Bridge <br> (Solana)
-    participant CoreSrc as Core Contract <br> (Solana)
+    participant TokenBridgeSrc as Token Bridge Solana<br>(Source Chain)
+    participant CoreSrc as Core Contract Solana<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeDst as Token Bridge <br> (Ethereum)
-    participant CoreDst as Core Contract <br> (Ethereum)
+    participant TokenBridgeDst as Token Bridge Ethereum<br>(Destination Chain)
+    participant CoreDst as Core Contract Ethereum<br>(Destination Chain)
 
     User->>TokenBridgeSrc: Initiate transfer <br> (burn wrapped ETH)
     TokenBridgeSrc->>CoreSrc: Publish message
