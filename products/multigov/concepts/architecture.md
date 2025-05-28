@@ -12,7 +12,7 @@ Wormhole’s multichain messaging infrastructure connects the hub and spokes, en
 
 The diagram below illustrates this high-level architecture.
 
-![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/products/multigov/concepts/architecture/multigov-high-level.webp)
+![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/products/multigov/concepts/architecture/architecture-1.webp)
 
 ## Key Components
 
@@ -132,4 +132,4 @@ MultiGov relies on Wormhole's infrastructure for all cross-chain messaging, ensu
 This architecture ensures that MultiGov can operate securely and efficiently across multiple chains, allowing for truly decentralized and cross-chain governance while maintaining a unified decision-making process.
 
 <!-- add diagram broken down in sections -->
-![detailed multigov architecture diagram](/docs/images/products/multigov/concepts/architecture/multigov-detailed.webp)
+![detailed multigov architecture diagram](/docs/images/products/multigov/concepts/architecture/architecture-2.webp)
