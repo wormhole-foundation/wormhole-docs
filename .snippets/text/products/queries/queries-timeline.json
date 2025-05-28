@@ -5,14 +5,9 @@
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "[Construct a Query](/docs/products/queries/guides/construct-a-query)",
+        "title": "[Submit a Query Request](/docs/products/queries/guides/submit-query)",
         "content": "Set up the query configuration.",
         "icon": ":fontawesome-solid-2:"
-    },
-    {
-        "title": "[Make a Query Request](/docs/products/queries/guides/query-request)",
-        "content": "Send your query to the Query Server using HTTPS.",
-        "icon": ":fontawesome-solid-3:"
     },
     {
         "title": "[Submit a Query Response](/docs/products/queries/guides/submit-response)",

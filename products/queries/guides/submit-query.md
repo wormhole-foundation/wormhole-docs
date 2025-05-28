@@ -1,14 +1,16 @@
 ---
-title: Construct a Query
+title: Submit a Query Request
 description: Learn how to build a Wormhole QueryRequest to fetch data such as the total supply of WETH on Ethereum.
 categories: Queries
 ---
 
-# Construct a Query
+# Submit a Query Request
 
-Use the Wormhole Query SDK to build a `QueryRequest`. This request defines what data to fetch and from which chain. In this example, we'll construct an `EthCallQueryRequest` to get the total supply of WETH on Ethereum using an `eth_call`.
+## Construct a Query
 
-## Install Dependencies
+Use the [Wormhole Query SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} to build a `QueryRequest`. This request defines what data to fetch and from which chain. In this example, we'll construct an `EthCallQueryRequest` to get the total supply of WETH on Ethereum using an `eth_call`.
+
+### Install Dependencies
 
 You’ll need the following packages to create and send a query:
 
@@ -16,7 +18,7 @@ You’ll need the following packages to create and send a query:
 npm install @wormhole-foundation/wormhole-query-sdk axios
 ```
 
-## Prepare the Call Data
+### Prepare the Call Data
 
 To construct an `EthCallQueryRequest`, you need the block number or hash and the ABI-encoded call data.
 
@@ -40,7 +42,7 @@ Then construct the call data.
 --8<-- 'code/build/queries/use-queries/test-full.jsx:13:16'
 ```
 
-## Create the QueryRequest
+### Create the QueryRequest
 
 Now that you have the block number and call data, you can put it all together in a `QueryRequest`.
 
@@ -73,3 +75,26 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 ```
 
 The `QueryRequest` can now be used to mock, submit, or verify a query response.
+
+## Make a Query Request
+
+Once you've [constructed a `QueryRequest`](/docs/products/queries/guides/submit-query/#construct-a-query){target=\_blank}, you can send it to the Wormhole Query Proxy. The Query Proxy validates the request, collects signed results from Guardians, and returns a Guardian-attested response suitable for on-chain use.
+
+### Send the Request
+
+To submit the request, serialize it and make a POST request to the appropriate proxy endpoint. You must include your API key in the request headers.
+
+The standardized means of making a `QueryRequest` is as follows:
+
+```jsx
+--8<-- 'code/build/queries/use-queries/query-request-with-api-key.jsx'
+```
+
+### Proxy Endpoints
+
+Use one of the following endpoints depending on your environment:
+
+- Testnet Query Proxy: https://testnet.query.wormhole.com/v1/query
+- Mainnet Query Proxy : https://query.wormhole.com/v1/query
+
+Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
