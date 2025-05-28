@@ -30,7 +30,8 @@ import {
  */
 
 const SEPOLIA_PRIVATE_KEY = SEPOLIA_PRIVATE_KEY!;
-// Provide a private endpoint RPC URL for Sepolia, defaults to a public node if not set
+// Provide a private endpoint RPC URL for Sepolia, defaults to a public node
+// if not set
 const RPC_URL =
   process.env.SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com';
 
@@ -70,8 +71,9 @@ async function main() {
   >;
   console.log(`Source chain context obtained for: ${sourceChainContext.chain}`);
 
-  // Get the Wormhole SDK signer, which is a wrapper around the Ethers.js signer
-  // using the Wormhole SDK's signing and transaction handling capabilities
+  // Get the Wormhole SDK signer, which is a wrapper around the Ethers.js
+  // signer using the Wormhole SDK's signing and transaction handling
+  // capabilities
   let sdkSigner: WormholeSdkSigner<Network, Chain>;
   try {
     sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
