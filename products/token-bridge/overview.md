@@ -68,7 +68,7 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 - **Multichain DeFi Arbitrage**
 
     - [**Token Bridge**](/docs/products/token-bridge/get-started/) – enables rapid and secure movement of DeFi assets 
-    - [**Connect**](/docs/products/connect/overview/) – empowers a broader range of DeFi users or be integrated into DeFi aggregator dashboards
+    - [**Connect**](/docs/products/connect/overview/) – provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms
 
 ## Next Steps
 
