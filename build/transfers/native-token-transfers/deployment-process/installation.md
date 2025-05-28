@@ -26,13 +26,20 @@ Follow these steps to install the NTT CLI:
     curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
     ```
 
-2. Verify the NTT CLI is installed:
+2. Add the installed binary to your PATH
+Append the following line to your shell configuration file (e.g., .zshrc, .bashrc, etc.):
+    ```bash
+    echo 'export PATH="$HOME/.bun/bin:$PATH"' >> .zshrc
+    ```
+  Note: Make sure to use the appropriate shell config file for your shell (e.g., ~/.bashrc for Bash).
+
+3. Verify the NTT CLI is installed:
 
     ```bash
     ntt --version
     ```
 
-3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI
+4. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI
 
 ## Update NTT CLI
 
