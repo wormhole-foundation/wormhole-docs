@@ -20,7 +20,7 @@ Cross-chain token transfers using the Token Bridge follow these steps:
     The transfer begins when a user calls the Token Bridge contract on the source chain:
 
     - **Wrapped tokens**: The token is burned.
-    - **Native tokens**: The token is locked in the contract.
+    - **Original tokens**: If the token is native to the source chain, the token is locked in the contract.
 
 2. **Transfer Message Publication**  
     The Token Bridge contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
@@ -40,18 +40,48 @@ Cross-chain token transfers using the Token Bridge follow these steps:
    After the VAA is verified on the destination chain, the Token Bridge contract completes the transfer:
 
     - **Wrapped tokens**: A wrapped representation of the original token is minted.
-    - **Native tokens**: The original token is released to the recipient.
+    - **Original tokens**: If the token is native to the destination chain, the token is released to the recipient.
+
+Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ETH is locked on Ethereum’s Token Bridge, and an equivalent amount of wrapped ETH is minted on Solana. The diagram below illustrates this transfer flow.
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant TokenBridgeSrc as Token Bridge <br> (Source Chain)
-    participant CoreSrc as Core Contract <br> (Source Chain)
+    participant Alice as Alice (User)
+    participant TokenBridgeEth as Token Bridge <br> Ethereum (Source Chain)
+    participant CoreEth as Core Contract <br> Ethereum (Source Chain)
     participant Guardians
-    participant TokenBridgeDst as Token Bridge <br> (Destination Chain)
-    participant CoreDst as Core Contract <br> (Destination Chain)
+    participant TokenBridgeSol as Token Bridge <br> Solana (Destination Chain)
+    participant CoreSol as Core Contract <br> Solana (Destination Chain)
 
-    User->>TokenBridgeSrc: Initiate transfer <br> (burn/lock token)
+    Alice->>TokenBridgeEth: Initiate ETH transfer (lock ETH)
+    TokenBridgeEth->>CoreEth: Publish transfer message
+    CoreEth-->>Guardians: Emit message event
+    Guardians->>Guardians: Sign and publish VAA
+
+    alt Automatic VAA submission
+        Guardians->>TokenBridgeSol: Relayer submits VAA
+    else Manual VAA submission
+        Alice->>Guardians: Retrieve VAA
+        Alice->>TokenBridgeSol: Submit VAA
+    end
+
+    TokenBridgeSol->>CoreSol: Verify VAA
+    CoreSol-->>TokenBridgeSol: VAA verified
+    TokenBridgeSol-->>Alice: Mint wrapped ETH on Solana (complete transfer)
+```
+
+Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Ethereum. The wrapped ETH is burned on Solana’s Token Bridge, and the equivalent 5 ETH are released on Ethereum. The diagram below illustrates this transfer flow.
+
+```mermaid
+sequenceDiagram
+    participant User as Alice
+    participant TokenBridgeSrc as Token Bridge <br> (Solana)
+    participant CoreSrc as Core Contract <br> (Solana)
+    participant Guardians
+    participant TokenBridgeDst as Token Bridge <br> (Ethereum)
+    participant CoreDst as Core Contract <br> (Ethereum)
+
+    User->>TokenBridgeSrc: Initiate transfer <br> (burn wrapped ETH)
     TokenBridgeSrc->>CoreSrc: Publish message
     CoreSrc-->>Guardians: Emit message event
     Guardians->>Guardians: Sign and publish VAA
@@ -65,8 +95,9 @@ sequenceDiagram
 
     TokenBridgeDst->>CoreDst: Verify VAA
     CoreDst-->>TokenBridgeDst: VAA verified
-    TokenBridgeDst-->>User: Complete transfer (mint/release token)
+    TokenBridgeDst-->>User: Release native ETH on Ethereum (Complete transfer)
 ```
+
 
 ## Automatic vs. Manual Transfers
 
