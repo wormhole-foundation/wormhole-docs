@@ -118,8 +118,6 @@ Name [32]uint8
 
     Name of the token, UTF-8 encoded and padded to 32 bytes.
 
-Before a token can be transferred to a new chain, the `AssetMeta` message must be submitted to that chain. The bridge uses this metadata to create a wrapped token representation with accurate name, symbol, and decimal precision.
-
 ## TransferWithPayload
 
 The `TransferWithPayload` payload (ID = `3`) extends the standard token transfer by allowing developers to include arbitrary data. This enables interactions with destination chain smart contracts, such as triggering swaps or staking.
