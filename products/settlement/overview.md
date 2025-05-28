@@ -17,7 +17,7 @@ It combines three complementary protocols into a single integration suite, letti
 - **Intent-based architecture**: users express what they want to happen (e.g., swap X for Y on chain Z), and solvers execute it
 - **Solver auctions**: solvers compete in on-chain auctions for the right to fulfill intents, improving execution quality
 - **Unified liquidity**: liquidity is concentrated on Solana, reducing fragmentation and making scaling easier
-- **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and NTT
+- **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and tokens deployed via NTT
 - **Three interchangeable routes**: each with distinct tradeoffs in speed, cost, and protocol requirements
 
 ## How It Works
