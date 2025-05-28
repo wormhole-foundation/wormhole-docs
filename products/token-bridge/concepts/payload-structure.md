@@ -229,7 +229,7 @@ EmitterAddress [32]uint8
 
     Address of the registered emitter, left-zero-padded if shorter than 32 bytes.
 
-This payload can only be emitted by the Wormhole governance contract, which ensures that each chain only accepts messages from one verified bridge emitter per remote chain.
+This payload can only be emitted by the Wormhole governance contract, ensuring that each chain accepts messages only from one verified bridge emitter per remote chain.
 
 ## UpgradeContract
 
