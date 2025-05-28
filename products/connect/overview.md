@@ -8,7 +8,6 @@ categories: Connect, Transfer
 
 With the Wormhole Connect widget, you can enable users to perform multichain asset transfers directly within your application. Connect simplifies the complexity of bridging, offering a single, intuitive point of interaction for moving assets across diverse blockchains. This empowers you to access liquidity and opportunities across any connected network seamlessly.
 
-
 ## Key Features
 
 Wormhole Connect offers flexible customization to match your application. Tailor technical aspects, such as supported assets and custom RPCs, or use the full-featured default widget. Its UI is also highly adaptable, offering extensive styling options, which can be modified using a [no-code visual interface](https://connect-in-style.wormhole.com/){target=\_blank}. Connect’s features include:
@@ -30,8 +29,8 @@ Think of Connect as a ready-made interface that simplifies the process of bridgi
 2.  **Connection** - connect your chosen wallet to the source chain
 3.  **Transaction submission on source chain** - confirms the transfer details to trigger the asset lock or deposit on the initial blockchain
 4.  **Wormhole message creation** - Wormhole's network observes the source transaction, and Guardians validate it to generate the VAA
-5.  **Message relaying** -  autmomates relays of the generated CCT or VAA across the Wormhole network to the intended destination blockchain
-6.  **Transaction on destination chain** - contracts on the target blockchain receive and verify the incoming CCT or VAA
+5.  **Message relaying** -  autmomates relays of the generated CCTP or VAA across the Wormhole network to the intended destination blockchain
+6.  **Transaction on destination chain** - contracts on the target blockchain receive and verify the incoming CCTP or VAA
 7.  **Asset release/minting** - upon successful verification, the equivalent assets are either released as wrapped assets or newly created on the destination blockchain and delivered to your wallet
 
 !!! tip
