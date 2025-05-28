@@ -49,7 +49,7 @@ It is common to test against a local fork of Mainnet with something like
 anvil --fork-url https://ethereum.publicnode.com
 ```
 
-In order for mock requests to verify against the Mainnet Core Contract, you need to replace the current Guardian set with the single Devnet key used by the mock.
+In order for mock requests to verify against the mainnet Core Contract, you need to replace the current Guardian set with the single devnet key used by the mock.
 
 Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on that chain.
 
