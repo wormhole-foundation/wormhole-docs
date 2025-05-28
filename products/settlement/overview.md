@@ -14,18 +14,18 @@ It combines three complementary protocols into a single integration suite, letti
 
 ## Key Features
 
-- **Intent-based architecture**: users express what they want to happen (e.g., swap X for Y on chain Z), and solvers execute it
-- **Solver auctions**: solvers compete in on-chain auctions for the right to fulfill intents, improving execution quality
-- **Unified liquidity**: liquidity is concentrated on Solana, reducing fragmentation and making scaling easier
-- **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and tokens deployed via NTT
-- **Three interchangeable routes**: each with distinct tradeoffs in speed, cost, and protocol requirements
+- **Intent-based architecture**: Users express what they want to happen (e.g., swap X for Y on chain Z), and solvers execute it.
+- **Solver auctions**: Solvers compete in on-chain auctions for the right to fulfill intents, improving execution quality.
+- **Unified liquidity**: Liquidity is concentrated on Solana, reducing fragmentation and making scaling easier.
+- **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and tokens deployed via NTT.
+- **Three interchangeable routes**: Each with distinct tradeoffs in speed, cost, and protocol requirements.
 
 ## How It Works
 
 At the core of Settlement are two components:
 
-- **Intents**: signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed
-- **Solvers**: third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return
+- **Intents**: Signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed.
+- **Solvers**: Third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return.
 
 Settlement leverages three integrated protocols:
 
@@ -46,14 +46,14 @@ waiting with publishing until the Product team gives more information regarding 
 ### Mayan Swift
 <!-- once the table is published, we can make this intro shorter by removing some repeated details -->
 
-Mayan Swift implements a traditional intent-based architecture where solvers compete to fulfill user intents using their inventory distributed across chains. It offers the fastest execution in the Settlement suite, typically around 12 seconds. To participate, solvers must hold assets on multiple chains, which can lead to imbalances: some chains may get depleted while others accumulate excess. This requires occasional rebalancing and adds operational overhead. Despite that, Mayan Swift is ideal for high-speed transfers involving common assets and benefits from open, competitive auctions that can drive down execution prices.
+Mayan Swift implements a traditional intent-based architecture, where solvers compete to fulfill user intents by utilizing their inventory. It offers fast execution, typically around 12 seconds. To participate, solvers must hold assets on multiple chains, which can lead to imbalances: some chains may get depleted while others accumulate excess. This requires occasional rebalancing and adds operational overhead. Despite that, Mayan Swift is ideal for high-speed transfers and benefits from open, competitive auctions that can drive down execution prices.
 
-The diagram below shows how Mayan Swift handles a cross-chain intent when an user wants to swap ARB on Arbitrum for WIF on Solana. Behind the scenes, the process is more involved and relies on solver-managed liquidity across both chains.
+The diagram below shows how Mayan Swift handles a cross-chain intent when a user wants to swap ARB on Arbitrum for WIF on Solana. Behind the scenes, the process is more involved and relies on solver-managed liquidity across both chains.
 
-1. **Solver initiates on Arbitrum**: solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum
-2. **VAA emitted to Solana**: a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator
-3. **User receives WIF**: once the user receives WIF, a second VAA finalizes the transfer and releases the ETH held in the escrow to the solver
-4. **Failure handling**: if any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds
+1. **Solver initiates on Arbitrum**: Solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum.
+2. **VAA emitted to Solana**: A [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator.
+3. **User receives WIF**: Once the user receives WIF, a second VAA finalizes the transfer and releases the ETH held in the escrow to the solver.
+4. **Failure handling**: If any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds.
 
 ```mermaid
 sequenceDiagram
@@ -63,15 +63,17 @@ sequenceDiagram
     participant Wormhole
     participant Solver_SOL as Solver (Solana)
     participant Aggregator
-    participant UserWallet as User Wallet
 
-    User->>Solver_ARB: Sends ARB
+    Note over User,Aggregator: User has ARB and wants WIF
+
+    User->>Solver_ARB: Submit intent (ARB → WIF)
     Solver_ARB->>Escrow: Swaps ARB → ETH and deposits ETH
     Escrow-->>Wormhole: Emits VAA
     Wormhole-->>Solver_SOL: Delivers VAA
     Solver_SOL->>Aggregator: Releases SOL and swaps to WIF
-    Aggregator->>UserWallet: Sends WIF
-    UserWallet-->>Wormhole: Emits final VAA
+    Aggregator->>Solver_SOL: Receives WIF
+    Solver_SOL->>User: Sends WIF
+    User-->>Wormhole: Emits final VAA
     Wormhole-->>Escrow: Confirms receipt
     Escrow->>Solver_ARB: Releases ETH to solver
 ```
@@ -79,29 +81,40 @@ sequenceDiagram
 ### Liquidity Layer
 <!-- once the table is published, we can make this intro shorter by removing some repeated details -->
 
-The Liquidity Layer uses a hub-and-spoke architecture with Solana as the central liquidity hub. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
+The Liquidity Layer employs a hub-and-spoke architecture, with Solana serving as the central liquidity hub. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
 
-The diagram below shows how the Liquidity Layer handles the process when an user wants to swap ARB on Arbitrum for JOE on Avalanche. 
+The diagram below shows how the Liquidity Layer handles the process when a user wants to swap ARB on Arbitrum for JOE on Avalanche. 
 
-1. **Solver initiates on Arbitrum**: solver swaps ARB → USDC on Arbitrum and sends it to Solana, emitting a VAA
-2. **English auction**: on Solana, an on-chain English auction starts, and solvers bid to fulfill the request
-3. **Fronting and bridging**: winning solver fronts USDC from Solana to Avalanche using Circle’s CCTP
-4. **Swap, deliver, and settle**: USDC is swapped to JOE on Avalanche, User receives JOE, and the solver is repaid once the original USDC arrives
+1. **Solver initiates on Arbitrum**: Solver swaps ARB → USDC on Arbitrum and sends it to Solana, emitting a VAA.
+2. **English auction**: On Solana, an on-chain English auction starts, and solvers bid to fulfill the request.
+3. **Fronting and bridging**: Winning solver fronts USDC from Solana to Avalanche using Circle’s CCTP.
+4. **Swap, deliver, and settle**: USDC is swapped to JOE on Avalanche, User receives JOE, and the solver is repaid once the original USDC arrives.
 
 ```mermaid
-flowchart LR
+sequenceDiagram
+    participant User
+    participant Solver_Arbitrum as Solver (Arbitrum)
+    participant Solana
+    participant Auction
+    participant CCTP as Circle CCTP
+    participant Solver_Avalanche as Solver (Avalanche)
 
-    subgraph TOP [User has ARB and wants JOE]
-        ARB[ARB] ==> JOE[JOE]
-    end
+    Note over User,Solver_Avalanche: User has ARB and wants JOE
 
-    subgraph B["Solver flow"]
-        direction LR
-        ARB --> USDC1[USDC]
-        USDC1 -- Over CCTP --> SOL
-        SOL -- Over CCTP --> USDC2[USDC]
-        USDC2 --> JOE
-    end
+    User->>Solver_Arbitrum: Submit intent (ARB → JOE)
+    Solver_Arbitrum->>Solver_Arbitrum: Swap ARB → USDC
+    Solver_Arbitrum->>CCTP: Initiate USDC transfer to Solana
+    CCTP-->>Solana: Emit VAA for auction
+
+    Solana->>Auction: Start on-chain auction
+    Auction-->>Solver_Arbitrum: Solver wins and fronts USDC
+
+    Solver_Arbitrum->>CCTP: Send USDC from Solana → Avalanche
+    CCTP-->>Solver_Avalanche: Deliver USDC
+    Solver_Avalanche->>User: Send JOE
+
+    Note over Solver_Arbitrum,Solana: After 15 min, <br> CCTP msg from Arbitrum settles
+    Solana->>Solver_Arbitrum: Redeem USDC + fee
 ```
 
 ### Mayan MCTP
@@ -114,9 +127,9 @@ Settlement isn't about choosing just one route; it’s a protocol suite in which
 
 By default, Settlement integrates all three:
 
-- The SDK automatically resolves the best route for each transfer
-- If a fast route like Mayan Swift is unavailable, it can fall back to Liquidity Layer or MCTP
-- This redundancy ensures better uptime, pricing, and a smoother user experience without extra logic
+- The SDK automatically resolves the best route for each transfer.
+- If a fast route like Mayan Swift is unavailable, it can fall back to Liquidity Layer or MCTP.
+- This redundancy ensures better uptime, pricing, and a smoother user experience without extra logic.
 
 Developers can customize route preferences, but for most applications, no configuration is needed to benefit from the full suite.
 
@@ -141,7 +154,7 @@ Developers can customize route preferences, but for most applications, no config
 
 Start building with Settlement or dive deeper into specific components:
 
-- **[Get Started with Settlement](#){target=\_blank}**: follow a hands-on demo using Mayan Swift
-- **[Build on the Liquidity Layer](#){target=\_blank}**: integrate the hub-and-spoke model
-- **[Run a Solver](#){target=\_blank}**: operate a solver and participate in auctions
+- **[Get Started with Settlement](docs/products/settlement/get-started/){target=\_blank}**: follow a hands-on demo using Mayan Swift
+- **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/){target=\_blank}**: integrate the hub-and-spoke model
+- **[Run a Solver](/docs/products/settlement/guides/solver/){target=\_blank}**: operate a solver and participate in auctions
 
