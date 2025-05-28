@@ -27,7 +27,7 @@ The Token Bridge provides a reliable foundation for multichain interoperability 
 1. **Attestation** - the token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token
 2. **Locking** - on the source chain, the native token is locked in a custody account
 3. **Message emission** - the Guardian Network verifies and emits a VAA
-4. **Verification** - the signed message is submitted and verified on the destination chain to confirm authenticity
+4. **Verification** - the VAA is submitted and verified on the destination chain to confirm authenticity
 5. **Minting** - a wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain
 
 This diagram showcases a simplified flow of Alice bridging ETH from Ethereum to her account on Solana.
