@@ -18,7 +18,7 @@ Token Bridge is built to solve interoperability problems in multichain token tra
 - **Lock-and-mint mechanism** - mint wrapped tokens backed 1:1 by locked assets on the source chain
 - **Preserved metadata** - ensure that token properties like name, symbol, and decimals persist across chains
 - **Transfer with payload** - attach arbitrary data to token transfers, enabling the triggering of specific actions
-- **Decentralized security** - verified by the [Guardian Network](/docs/protocol/infrastructure/guardians/), ensuring cross-chain consistency and message authenticity
+- **Decentralized security** - verified by the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank}, ensuring cross-chain consistency and message authenticity
 
 ## How It Works
 
