@@ -14,7 +14,7 @@ This overview covers Token Bridge's main features, general processes, and possib
 
 Token Bridge is built to solve interoperability problems in multichain token transfers. Key features include:
 
-- **Interoperability** - transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](https://wormhole.com/platform/blockchains)
+- **Interoperability** - transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}
 - **Lock-and-mint mechanism** - mint wrapped tokens backed 1:1 by locked assets on the source chain
 - **Preserved metadata** - ensure that token properties like name, symbol, and decimals persist across chains
 - **Transfer with payload** - attach arbitrary data to token transfers, enabling the triggering of specific actions
