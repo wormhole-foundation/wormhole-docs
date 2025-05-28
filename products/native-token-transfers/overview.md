@@ -53,29 +53,29 @@ Here's a breakdown of the key steps involved when a native token is transferred 
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – transmits native assets across chains
-    - [**Wormhole Connect**](/docs/products/connect/overview/) – manages user-friendly asset transfers
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – transmits native assets across chains
+    - [**Connect**](/docs/products/connect/overview/) – manages user-friendly asset transfers
     - [**Queries**](/docs/products/queries/overview/) – acquires real-time prices for optimal trade execution
 
 - **Borrowing and Lending Across Chains**
 
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – moves collateral as native assets
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – moves collateral as native assets
     - [**Messaging**](/docs/products/messaging/overview/) – propagates loan requests and liquidations across chains
     - [**Queries**](/docs/products/queries/overview/) – retrieves  interest rates and asset prices in real-time
 
 - **Gas Abstraction**
 
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – facilitates native token conversion for gas payments
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – facilitates native token conversion for gas payments
     - [**Messaging**](/docs/products/messaging/overview/) – sends gas fee payments across chains
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – ensures direct, native asset transfers
-    - [**Wormhole Connect**](/docs/products/connect/overview/) – facilitates seamless payments in various tokens
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – ensures direct, native asset transfers
+    - [**Connect**](/docs/products/connect/overview/) – facilitates seamless payments in various tokens
 
 - **Cross-Chain Staking**
 
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/get-started/) – transfers staked assets natively between networks
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – transfers staked assets natively between networks
     - [**Messaging**](/docs/products/messaging/overview/) – moves staking rewards and governance signals across chains
 
 ## Next Steps
