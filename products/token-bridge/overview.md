@@ -44,12 +44,12 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 - **Tokenized Gaming Rewards**
 
     - [**Token Bridge**](/docs/products/token-bridge/get-started/) – handle the underlying lock-and-mint logic securely
-    - [**Wormhole Connect**](/docs/products/connect/overview/) - provide a user-friendly way to move game tokens across chains
+    - [**Connect**](/docs/products/connect/overview/) - provide a user-friendly way to move game tokens across chains
 
 - **Multichain DeFi Arbitrage**
 
     - [**Token Bridge**](/docs/products/token-bridge/get-started/) – crucial for enabling rapid and secure movement of DeFi assets 
-    - [**Wormhole Connect**](/docs/products/connect/overview/) –empowers a broader range of DeFi users or be integrated into DeFi aggregator dashboards
+    - [**Connect**](/docs/products/connect/overview/) –empowers a broader range of DeFi users or be integrated into DeFi aggregator dashboards
 
 ## Next Steps
 
