@@ -29,22 +29,7 @@ At the core of Settlement are two components:
 
 Settlement leverages three integrated protocols:
 
-<!--
-waiting with publishing until the Product team gives more information regarding the upcoming plans for Settlement
-
-| Feature                | Mayan Swift               | Liquidity Layer          | Mayan MCTP                             |
-|------------------------|---------------------------|--------------------------|----------------------------------------|
-| Architecture           | Intent architecture       | Hub-and-spoke model      | CCTP wrapper                           |
-| Speed                  | ~12 seconds               | ~15–25 seconds           | Slower, depends on chain finality      |
-| Liquidity Location     | Distributed across chains | Consolidated on Solana   | Uses CCTP to move liquidity            |
-| Liquidity Requirements | Inventory on all chains   | Liquidity on Solana only | None (relayer handles bridging + swap) |
-| Rebalancing Required   | Yes                       | No                       | No                                     |
-| Asset Support          | Primary assets            | USDC and NTT             | USDC only                              |
-
--->
-
 ### Mayan Swift
-<!-- once the table is published, we can make this intro shorter by removing some repeated details -->
 
 Mayan Swift implements a traditional intent-based architecture, where solvers compete to fulfill user intents by utilizing their inventory. It offers fast execution, typically around 12 seconds. To participate, solvers must hold assets on multiple chains, which can lead to imbalances: some chains may get depleted while others accumulate excess. This requires occasional rebalancing and adds operational overhead. Despite that, Mayan Swift is ideal for high-speed transfers and benefits from open, competitive auctions that can drive down execution prices.
 
@@ -79,43 +64,15 @@ sequenceDiagram
 ```
 
 ### Liquidity Layer
-<!-- once the table is published, we can make this intro shorter by removing some repeated details -->
 
 The Liquidity Layer employs a hub-and-spoke architecture, with Solana serving as the central liquidity hub. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
 
-The diagram below shows how the Liquidity Layer handles the process when a user wants to swap ARB on Arbitrum for JOE on Avalanche. 
+The following flow shows how the Liquidity Layer handles the process when a user wants to swap ARB on Arbitrum for JOE on Avalanche. 
 
 1. **Solver initiates on Arbitrum**: Solver swaps ARB → USDC on Arbitrum and sends it to Solana, emitting a VAA.
 2. **English auction**: On Solana, an on-chain English auction starts, and solvers bid to fulfill the request.
 3. **Fronting and bridging**: Winning solver fronts USDC from Solana to Avalanche using Circle’s CCTP.
 4. **Swap, deliver, and settle**: USDC is swapped to JOE on Avalanche, User receives JOE, and the solver is repaid once the original USDC arrives.
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Solver_Arbitrum as Solver (Arbitrum)
-    participant Solana
-    participant Auction
-    participant CCTP as Circle CCTP
-    participant Solver_Avalanche as Solver (Avalanche)
-
-    Note over User,Solver_Avalanche: User has ARB and wants JOE
-
-    User->>Solver_Arbitrum: Submit intent (ARB → JOE)
-    Solver_Arbitrum->>Solver_Arbitrum: Swap ARB → USDC
-    Solver_Arbitrum->>CCTP: Initiate USDC transfer to Solana
-    CCTP-->>Solana: Emit VAA for auction
-
-    Solana->>Auction: Start on-chain auction
-    Auction-->>Solver_Arbitrum: Solver wins and fronts USDC
-
-    Solver_Arbitrum->>CCTP: Send USDC from Solana → Avalanche
-    CCTP-->>Solver_Avalanche: Deliver USDC
-    Solver_Avalanche->>User: Send JOE
-
-    Note over Solver_Arbitrum,Solana: After 15 min, <br> CCTP msg from Arbitrum settles
-    Solana->>Solver_Arbitrum: Redeem USDC + fee
-```
 
 ### Mayan MCTP
 
