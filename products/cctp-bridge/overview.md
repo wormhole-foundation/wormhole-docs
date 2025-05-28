@@ -13,9 +13,11 @@ The integration of [Circle's Cross-Chain Transfer Protocol (CCTP)](https://www.c
 - **Secure native USDC transfers** - at its core, CCTP provides a "burn-and-mint" mechanism for transferring native USDC. This eliminates the need for wrapped assets and the associated risks of intermediary bridges
 - **Atomic execution** - by combining CCTP and Wormhole, the transfer of USDC and the execution of accompanying instructions on the destination chain can occur as a single atomic transaction
 - **Automated relaying** - eliminates the need for users to redeem USDC transfers themselves
-- **Gas payment** - users are not required to hold destination gas tokens beforehand, as gas costs can be handled by the protocol depending on manual or automated transaction using relayers
-- **Gas drop off** - enables users to convert a portion of USDC into the destination chain's gas token upon a successful transfer
 - **Enhanced composability** - developers can build more sophisticated cross-chain applications by sending additional data alongside the transfer
+- **Gas drop off** - enables users to convert a portion of USDC into the destination chain's gas token upon a successful transfer
+- **Gas payment** - covering destination gas in automated vs. manual transfers:
+    - **Automated** - users often don't need destination gas tokens upfront, relayers cover these gas costs, reimbursed via gas drop-off or initial fees
+    - **Manual** - users pay destination gas directly, the protocol may offer post-claim USDC-to-gas conversion
 
 ## How It Works
 
@@ -30,49 +32,28 @@ This section outlines the end-to-end flow for transferring native USDC across ch
 7. **Execute action** - any action on the destination chain executes if included in the message, potentially using the new USDC
 
 ```mermaid
----
-config:
-  layout: fixed
----
-flowchart TD
- subgraph subGraph0["Source Chain"]
-        B("Call Wormhole CCTP Integration Contract")
-        A["User/dApp"]
-        D["Circle CCTP Contract"]
-        E("Source Chain Transaction Logs")
-  end
- subgraph subGraph1["Wormhole and Circle Network"]
-        F["Wormhole Guardian Network"]
-        G["Circle Attestation Service"]
-        H["Wormhole VAA"]
-        I["Signed Circle Attestation"]
-        J("Relayer")
-  end
- subgraph subGraph2["Target Chain"]
-        K["Submit VAA & Attestation"] 
-        L["Wormhole Core Contract"]
-        M["Circle CCTP Contract"]
-        N["Target dApp/Contract"]
-        O["Recipient Wallet/Contract"]
-  end
-    A --> B
-    B -- Burn USDC --> D
-    B -- Emit Wormhole Message --> E
-    E --> F
-    D --> G
-    F -- Sign VAA --> H
-    G -- Sign Attestation --> I
-    H --> J
-    I --> J
-    J --> K 
-    K -- Verify Wormhole VAA --> L
-    K -- Call Circle CCTP Contract --> M
-    K -- (Optional) Execute Payload Logic --> N
-    M -- Mint Native USDC --> O
-    N --> O
+sequenceDiagram
+    participant User
+    participant SourceChain as Source Chain
+    participant Circle
+    participant Guardians as Wormhole Guardians
+    participant Relayers
+    participant DestinationChain as Destination Chain
+
+    User->>SourceChain: Initiate USDC transfer <br> with destination action
+    SourceChain->>Circle: Burn USDC and package <br> transfer + action
+    Circle->>Circle: Attest burn and issue signature
+    Circle->>Guardians: Package message with <br> Circle signature
+    Guardians->>Guardians: Verify & sign package
+    Relayers->>Guardians: Pick up signed package
+    Relayers->>DestinationChain: Relay package <br> automatically
+    DestinationChain->>Circle: Verify Circle attestation
+    DestinationChain->>DestinationChain: Mint native USDC
+    DestinationChain->>DestinationChain: Execute destination action (optional)
 ```
+
 !!! note 
-    Wormhole supports all CCTP chains, however, Circle currently supports a few that you can find listed in [Circles supported domains](https://developers.circle.com/stablecoins/supported-domains).
+    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/stablecoins/supported-domains).
 
 ## Use Cases
 
