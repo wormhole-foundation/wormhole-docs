@@ -10,7 +10,7 @@ To test your integration without relying on the live Query Proxy, you can simula
 
 ## Simulate the Query
 
-The `mock()` method accepts a `QueryRequest` and performs the RPC calls locally. It then signs the results using the Devnet Guardian key.
+The `mock()` method accepts a `QueryRequest` and performs the RPC calls locally. It then signs the results using the devnet Guardian key.
 
 ```jsx
 --8<-- 'code/build/queries/use-queries/test-full.jsx:55:57'
