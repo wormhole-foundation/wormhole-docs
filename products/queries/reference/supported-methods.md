@@ -1,6 +1,6 @@
 ---
 title: Queries Supported Methods
-description: Retrieve multichain data with Wormhole queries through various supported methods like query by historical timestamp, get query with finality confirmation, and use Solana lookups
+description: Retrieve multichain data via historical timestamp queries, finality confirmation queries, and Solana lookups.
 categories: Queries
 ---
 
