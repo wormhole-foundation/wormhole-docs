@@ -66,7 +66,7 @@ Before you begin, ensure you have the following:
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} installed
 - Testnet tokens for two supported chains. This example uses [testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} and can be adapted to any supported chains.
-- [USDC Testnet tokens](https://faucet.circle.com/){target=\_blank} on your source chain for cross-chain transfer
+- [USDC testnet tokens](https://faucet.circle.com/){target=\_blank} on your source chain for cross-chain transfer
 
 Follow these steps to prepare your development environment:
 
