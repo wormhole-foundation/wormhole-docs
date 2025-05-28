@@ -4,7 +4,7 @@ description: Discover the structure and purpose of each Token Bridge payload, in
 categories: Token-Bridge, Transfers
 ---
 
-# Token Bridge Message and Payload Structure
+# Message and Payload Structure
 
 To enable secure and flexible cross-chain token transfers, the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
 
