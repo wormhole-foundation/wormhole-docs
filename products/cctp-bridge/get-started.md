@@ -75,7 +75,7 @@ Start by defining utility functions for signer and token setup:
     npx tsx transfer.ts
     ```
 
-    If successful, the expected output should look similar to this:
+    You will see terminal output similar to the following:
 
     --8<-- "code/products/cctp-bridge/get-started/snippet-3.html"
 
