@@ -30,7 +30,26 @@ The Token Bridge provides a reliable foundation for multichain interoperability 
 4. **Verification** - the signed message is submitted and verified on the destination chain to confirm authenticity
 5. **Minting** - a wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain
 
-![Token Bridge Steps Diagram](/docs/images/products/token-bridge/overview/token-bridge-diagram.webp)
+This diagram showcases a simplified flow of Alice bridging ETH from Ethereum to her account on Solana.
+
+```mermaid
+sequenceDiagram
+    participant Alice
+    participant Ethereum
+    participant GuardianNetwork
+    participant Solana
+
+    Alice->>Ethereum: Lock ETH in Token Bridge contract
+    Ethereum->>GuardianNetwork: Emit transfer message
+    GuardianNetwork->>GuardianNetwork: Verify and sign message
+
+    GuardianNetwork->>Solana: Submit signed message
+    Solana->>Solana: Verify message and mint wrapped ETH (WETH)
+
+    Solana->>Alice: Deliver wrapped ETH on Solana
+```
+
+For a more in-depth understanding of how the Token Bridge works, see the [Flow of a Transfer](/docs/products/token-bridge/concepts/transfer-flow/){target=\_blank} page.
 
 ## Use Cases
 
