@@ -10,44 +10,40 @@ Native Token Transfers (NTT) provides an adaptable framework for transferring yo
 
 ## Key Features
 
-- **Supply control** – enforced mint-and-burn model maintains global supply integrity
-- **Customizable controls** – configure rate limits, access control, and attestation thresholds
-- **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
-- **Integrator flexibility** - retained ownership, upgrade authority, and complete customizability over token contracts
+- **Control & Customization** - retain full ownership and complete customizability over token contracts, alongside the configuration of controls like access control or attestation thresholds
 - **Advanced rate limiting** - inbound and outbound rate limits are configurable per chain and over arbitrary periods, preventing abuse while managing network congestion and allowing for controlled deployments 
 - **Global accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
-- **Custom attestation** - optionally add external verifiers and configure custom message attestation thresholds
-- **Access control** - to prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions to a separate address from the owner
+- **Access control** - prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions to a separate address from the owner
 
 
 ## Deployment Models
 
 NTT offers two operational modes for your existing tokens: 
 
-- **[Burn-and-mint](todo)** -  locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts.
-
-- **[Hub-and-spoke](todo)** - burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token.
+- **Hub-and-spoke** - locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts
+- **Burn-and-mint** - burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token
 
 ## Supported Token Models
 
-Wormhole's NTT primarily supports ERC-20 tokens. These are the most common type of tokens that are identical and interchangeable and can be found on Ethereum and other EVM-compatible chains.
+NTT supports ERC-20 tokens—the standard for fungible assets on Ethereum and other EVM-compatible chains—including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required.
 
-NTT Managers are crucial for Native Token Transfers (NTT) within Wormhole, overseeing the entire cross-chain token movement process. They manage rate limits and verify message attestations, preventing abuse and ensuring secure transfers. By locking or burning tokens on the source chain before minting or unlocking them on the destination, Managers guarantee consistent token supply and integrity across all connected blockchains
+The NTT Manager is a core contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
 
-The NttManager uses standard tools like the IERC-20 interface, which acts as a blueprint for ERC-20 tokens and OpenZeppelin's SafeERC-20 library to manage transfers. NTT also supports ERC-20 Burnable tokens, which can be permanently removed from circulation, crucial for NTT's token burning process.
+NTT's SPL token support covers fungible types on Solana, including those that allow NTT to control mint/burn operations via their Mint Authority for essential cross-chain transfers. This support is achieved through direct interaction with Solana's Token Program for secure token operations.
 
-Currently, NTT doesn't natively support ERC-721, which are unique, non-fungible tokens, or ERC-1155, a standard for managing multiple token types. In short, NTT is designed for seamless, secure transfers of interchangeable digital assets across compatible blockchains.
+However, NTT does not natively support non-fungible token standards at this time, whether they are SPL-based like Metaplex NFTs or ERC-based such as ERC-721 and ERC-1155.
 
-## How it Works
+## Deployment Process
 
-Here's a breakdown of the key steps involved when a native token is transferred across blockchains using NTT:
+Here's a breakdown of the key steps involved when deploying NTT:
 
-1. **Prepare Token and Mode** - Ready your ERC-20 or SPL token, then decide on a "Burn-and-Mint" or "Hub-and-Spoke" deployment model to manage token minting
-2. **Choose Method** - Select the NTT Launchpad for a UI-driven EVM-only experience, or the NTT CLI for command-line control supporting both EVM and Solana
-3. **Configure Initial Settings** - Identify target blockchains, provide essential token details (name, symbol, initial supply if new), and set up your environment if using the CLI
-4. **Execute Deployment** - Initiate the deployment of NTT Manager contracts (and your token if new) to all chosen blockchains, confirming transactions and covering gas fees
-5. **Post-Deployment Configuration** - Grant minting authority to NTT Managers (if applicable), configure rate limits, define security thresholds for transceivers, establish peer relationships between Managers, and assign administrative roles
-6. **Monitor & Maintain** - Verify deployment status, continuously monitor total token supply across chains with the Global Accountant, and adjust settings like limits and roles as needed
+- **Prepare tokens** - ensure your ERC-20 or SPL tokens are ready
+- **Choose deployment model** - choose your cross-chain token model: either burn-and-mint or hub-and-spoke
+- **Choose deployment tool** - use the [NTT Launchpad](https://ntt.wormhole.com/) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/)
+- **Initialization** - specify target chains, token details, and set up your CLI environment if using it
+- **Deploy contracts** - deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees
+- **Finalize configurations** - grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles
+- **Monitor and maintain** - verify deployment, monitor total supply with the Global Accountant, and adjust configurations as needed
 
 ## Use Cases 
 
