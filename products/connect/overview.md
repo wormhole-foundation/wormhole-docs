@@ -7,7 +7,6 @@ categories: Connect, Transfer
 # Connect Overview 
 
 With the Wormhole Connect widget, you can enable users to perform multichain asset transfers directly within your application. Connect simplifies the complexity of bridging, offering a single, intuitive point of interaction for moving assets across diverse blockchains. This empowers you to access liquidity and opportunities across any connected network seamlessly.
-
 ## Key Features
 
 Wormhole connect's notable features include:
