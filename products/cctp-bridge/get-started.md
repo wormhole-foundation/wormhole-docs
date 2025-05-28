@@ -40,7 +40,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     npm install -D tsx typescript
     ```
 
-3. Create a `transfer.ts` file to handle the multichain transfer logic, and a `helper.ts` file to manage wallet signers:
+3. Create a `transfer.ts` file to handle the multichain transfer logic and a `helper.ts` file to manage wallet signers:
 
     ```bash
     touch transfer.ts helper.ts
