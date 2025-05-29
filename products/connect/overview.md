@@ -12,11 +12,11 @@ With the Wormhole Connect widget, you can enable users to perform multichain ass
 
 Wormhole connect's notable features include:
 
-- **In-app multichain transfers** – bridge assets without leaving your app
-- **Flexible bridging routes** – supports multiple transfer pathways
-- **Customizable features** – specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Token Bridge, CCTP, or NTT
-- **Customizable UI** – style the bridge interface to match your brand
-- **Optional destination gas** – provide gas for initial transactions on the target chain
+- **In-app multichain transfers**: Bridge assets without leaving your app.
+- **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Token Bridge, CCTP, or NTT.
+- **Customizable UI**: Style the bridge interface to match your brand.
+- **Optional destination gas**: Provide gas for initial transactions on the target chain.
+- **Wrapped and native assets support**: Supports both wrapped and native tokens and integrates with Settlement.
 
 Be sure to check the [Feature Support Matrix](/docs/products/connect/reference/support-matrix/#feature-support-matrix){target=\_blank} to find out which routes and features are supported for each chain.
 
@@ -24,14 +24,13 @@ Be sure to check the [Feature Support Matrix](/docs/products/connect/reference/s
 
 When a user initiates a multichain transfer, Connect walks them through key steps and automates the transfer process behind the scenes, including:
 
-1. **Initiating the transfer** - selects the asset, the source chain, and the target chain for the transfer
-2. **Connection** - connect your chosen wallet to the source chain
-3. **Finalize transfer setup** - connect the destination wallet and select a bridging route  
-4. **Transaction submission on source chain** - confirms the transfer details to trigger the asset lock or deposit on the initial blockchain
-5. **Wormhole message creation** - Wormhole's network observes the source transaction, and [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} validate it to generate the [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
-6. **Message relaying** - automates relays of the generated CCTP or VAA across the Wormhole network to the intended destination blockchain
-7. **Transaction on destination chain** - contracts on the target blockchain receive and verify the incoming VAA
-8. **Asset release/minting** - upon successful verification, the equivalent assets are either released as wrapped assets or newly created on the destination blockchain and delivered to your wallet
+1. **Initiating the transfer**: Connect your chosen wallet to the source chain, select asset and source chain for the transfer.
+2. **Finalize transfer setup**: Connect the destination wallet, select the target chain and select a bridging route (manual or automatic).
+3. **Transaction submission on source chain**: Confirms the transfer details to trigger the asset lock or deposit on the initial blockchain. Connect will guide you through the transaction process.
+4. **VAA or attestation creation**: Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the source transaction and produce a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank} or CCTP attestation.
+5. **Relaying to destination**: The VAA or attestation is automatically relayed to the destination chain.
+6. **Verification on destination**: Contracts on the target chain receive and verify the incoming VAA.
+7. **Asset release/minting**: Upon successful verification, the equivalent assets are either released or minted on the target chain and delivered to your wallet.
 
 !!! tip
     If you want more hands on experience with Connect, checkout [Portal Bridge](https://portalbridge.com/){target=\_blank}.
