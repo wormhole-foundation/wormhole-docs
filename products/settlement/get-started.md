@@ -1,6 +1,6 @@
 ---
 title: Get Started
-description: 
+description: Perform a cross-chain token swap using Wormhole Settlement and the Mayan Swift route with the TypeScript SDK on mainnet.
 categories: Settlement, Transfer
 ---
 
@@ -61,8 +61,8 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
 4. Set up environment variables: Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://book.getfoundry.sh/reference/cast/cast-wallet/){target=_blank}. If you're testing locally, you can create a .env file with the following:
 
     ```bash
-    MAINNET_ETH_PRIVATE_KEY=your_ethereum_private_key
-    MAINNET_SOL_PRIVATE_KEY=your_solana_private_key
+    MAINNET_ETH_PRIVATE_KEY="your_ethereum_private_key"
+    MAINNET_SOL_PRIVATE_KEY="your_solana_private_key"
     ```
 
     !!! warning
@@ -118,27 +118,14 @@ Add the following code to `src/swap.ts`:
 --8<-- "code/products/settlement/get-started/snippet-2.ts"
 ```
 
-### Add a Run Script
+## Add a Run Script
 
 To simplify running the swap script, update your `package.json` with the following:
 
 ```json title="package.json"
 {
-  "name": "mayanswift_example",
-  "version": "1.0.0",
-  "license": "Apache-2.0",
   "scripts": {
     "swap": "npx tsx src/swap.ts"
-  },
-  "devDependencies": {
-    "typescript": "5.8.3"
-  },
-  "dependencies": {
-    "@mayanfinance/wormhole-sdk-route": "1.12.0",
-    "@wormhole-foundation/sdk-connect": "1.15.1",
-    "@wormhole-foundation/sdk-evm": "1.15.1",
-    "@wormhole-foundation/sdk-solana": "1.15.1",
-    "dotenv": "16.5.0"
   }
 }
 ```
@@ -150,6 +137,16 @@ Once everything is in place, you can execute the swap script with:
 ```bash
 npm run swap
 ```
+If successful, you’ll see terminal output like this:
+
+```bash
+Validated: { valid: true, ... }
+Quote: { success: true, ... }
+Initiated transfer with receipt: ...
+Current Transfer State: DestinationFinalized
+```
+
+Congrats!!! You've just completed a cross-chain token swap from Ethereum to Solana using Settlement!
 
 ## Customize the Integration
 

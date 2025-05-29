@@ -17,7 +17,7 @@ dotenv.config();
   // Setup
   const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
 
-  const sendChain = wh.getChain("Base");
+  const sendChain = wh.getChain("Ethereum");
   const destChain = wh.getChain("Solana");
 
   // Doing transaction of native ETH on Ethereum to native SOL on Solana
@@ -53,7 +53,7 @@ dotenv.config();
 
   // Specify the amount as a decimal string
   const transferParams = {
-    amount: "0.0001",
+    amount: "0.002",
     options: bestRoute.getDefaultOptions(),
   };
 
