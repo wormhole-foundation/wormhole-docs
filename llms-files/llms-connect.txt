@@ -20,6 +20,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/data.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/theme.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/get-started.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md [type: other]
 
@@ -1036,6 +1037,115 @@ Additional notes:
             The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/connect/get-started/
+--- BEGIN CONTENT ---
+---
+title: Get Started with Connect
+description: Follow this guide to configure and use the Connect UI widget to easily add an intuitive, multichain asset transfer UI to your web applications.  
+categories: Connect, Transfer
+---
+
+# Get Started with Connect
+
+:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
+
+## Introduction
+
+Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
+
+## Prerequisites
+
+Before you begin, make sure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+
+- (Optional) To test a transfer from your demo app, you'll need:
+
+    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}
+    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required)
+
+## Install and Setup Project
+
+1. Clone the demo repository and navigate to the project directory:
+
+    ```bash
+    git clone https://github.com/wormhole-foundation/demo-basic-connect.git
+    cd demo-basic-connect
+    ```
+
+2. Install the dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3. Start the application:
+
+    ```bash
+    npm start
+    ```
+
+4. Open your browser to [localhost:3000](http://localhost:3000){target=\_blank} to view the application locally. It will look similar to the following:
+
+    ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
+
+## Configure Connect
+
+Open the `App.tsx` file in your code editor of choice. You will see code similar to the following:
+
+```typescript title="App.tsx"
+import './App.css';
+import WormholeConnect, {
+  WormholeConnectConfig,
+  WormholeConnectTheme,
+} from '@wormhole-foundation/wormhole-connect';
+
+function App() {
+  const config: WormholeConnectConfig = {
+    // Define the network
+    network: 'Testnet',
+
+    // Define the chains
+    chains: ['Sui', 'Avalanche'],
+
+    // UI configuration
+    ui: {
+      title: 'SUI Connect TS Demo',
+    },
+  };
+
+  const theme: WormholeConnectTheme = {
+    // Define the theme
+    mode: 'dark',
+    primary: '#78c4b6',
+  };
+
+  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
+}
+
+export default App;
+```
+
+The preceding sample code configures Connect by setting values inside `config` and `theme` as follows:
+
+- **Defines the network** - options include `Mainnet`, `Testnet`, or `Devnet`
+- **Defines chains to include** - this example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains
+- **Adds a title to UI** - (optional) if defined, it will render above the widget in the UI
+- **Defines the theme** - this example sets the mode to `dark` and adds a primary color
+
+## Interact with Connect
+
+Congratulations! You've successfully used Connect to create a simple multichain token transfer application. You can now follow the prompts in the UI to connect your developer wallets and send a test transfer.
+
+## Next Steps
+
+For more `config` options, see the [Connect Data Configuration](/docs/products/connect/configuration/data/){target=\_blank} guide.
+
+For more `theme` options, see the [Connect Theme Configuration](/docs/products/connect/configuration/theme/){target=\_blank} guide.
+
+<!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/connect/guides/upgrade/
 --- BEGIN CONTENT ---
 ---
@@ -1630,8 +1740,8 @@ categories: Connect, Transfer
 |    Celo     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Moonbeam   |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
 |  Injective  |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|     Sui     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|    Aptos    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
+|     Sui     |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
+|    Aptos    |        ✅         |            ❌             |        ✅        |       ❌        |        ❌         |
 |  Arbitrum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |  Optimism   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
 |    Base     |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
@@ -2650,6 +2760,73 @@ See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and 
 For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/products/messaging/tutorials/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/messaging/overview/
+--- BEGIN CONTENT ---
+---
+title: Messaging Overview
+description: With Wormhole Messaging, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
+categories: Basics
+---
+
+# Messaging Overview 
+
+Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, multichain message-passing layer that enables secure, fast communication between blockchains. It solves the critical problem of blockchain isolation by allowing data and assets to move freely across networks, empowering developers to build true multichain applications.
+
+## Key Features
+
+- **Multichain messaging** - send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems
+- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
+- **Composable architecture** - works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases
+
+## How It Works
+
+The messaging flow consists of several core components:
+
+1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
+2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
+3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
+4. **Target chain (recipient contract)** - the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic
+
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
+
+## Use Cases
+
+Wormhole Messaging enables a wide range of multichain applications. Below are common use cases and the Wormhole stack components you can use to build them.
+
+- **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
+
+- **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – aggregate multi-chain sources
+
+- **Gas Abstraction**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – handle native token swaps
+
+- **Bridging Intent Library**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - execute user-defined bridging intents
+
+- **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – enable tokenized rewards
+
+## Next Steps
+
+Follow these steps to work with Wormhole Messaging:
+
+- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank} - use the core protocol to publish a multichain message and return transaction info with VAA identifiers
+- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank} - send and receive messages without off-chain infrastructure
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/products/
 --- BEGIN CONTENT ---
 ---
@@ -2670,7 +2847,6 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- [**Connect**](/docs/products/connect/overview/){target=\_blank} - a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts
 - [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
 - [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
@@ -2679,29 +2855,32 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ::spantable::
 
-|                                | Criteria                              | Connect            | NTT                | Token Bridge       | Settlement         |
-|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|--------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-|                                | Token Transfers with Payloads         | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Supported Assets @span         | Wrapped Assets                        | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-|                                | Native Assets                         | :white_check_mark: | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :white_check_mark: | :x:                | :white_check_mark: | :white_check_mark: |
-| Features @span                 | Out-of-the-Box UI                     | :white_check_mark: | :x:                | :x:                | :white_check_mark: |
-|                                | Event-Based Actions                   | :x:                | :white_check_mark: | :white_check_mark: | :x:                |
-|                                | Intent-Based Execution                | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Fast Settlement                       | :x:                | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |                    |
-| Requirements @span             | Contract Deployment                   | :x:                | :white_check_mark: | :x:                |:x:  |
-| Ecosystem Support              | Integrates with Other Products        | :white_check_mark: | :white_check_mark: | :white_check_mark: |:white_check_mark: |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :white_circle: :white_circle: <br> Low | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | JavaScript, TypeScript | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
 </div>
 
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
 
 ## Real-time Data
 

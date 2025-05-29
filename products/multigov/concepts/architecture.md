@@ -6,7 +6,13 @@ categories: MultiGov
 
 # MultiGov Architecture
 
-MultiGov employs a hub-and-spoke model to enable cross-chain governance, utilizing Wormhole's interoperability infrastructure for secure cross-chain communication. This architecture allows coordinated decision-making across multiple blockchain networks while maintaining a central coordination point.
+MultiGov uses a hub-and-spoke architecture to coordinate governance across multiple blockchains. The hub chain is the central controller that handles proposal creation, vote aggregation, and execution. Spoke chains allow token holders to vote locally and can also execute proposal outcomes specific to their network.
+
+Wormhole’s multichain messaging infrastructure connects the hub and spokes, enabling secure and efficient chain communication. This design allows DAOs to operate seamlessly across ecosystems while maintaining a unified governance process.
+
+The diagram below illustrates this high-level architecture.
+
+![High-level architecture diagram illustrating the hub-and-spoke structure of the MultiGov system. The diagram shows three key components: Hub Chain and two Spoke Chains, interconnected via Wormhole for cross-chain governance.](/docs/images/products/multigov/concepts/architecture/architecture-1.webp)
 
 ## Key Components
 
@@ -126,4 +132,4 @@ MultiGov relies on Wormhole's infrastructure for all cross-chain messaging, ensu
 This architecture ensures that MultiGov can operate securely and efficiently across multiple chains, allowing for truly decentralized and cross-chain governance while maintaining a unified decision-making process.
 
 <!-- add diagram broken down in sections -->
-![detailed multigov architecture diagram](/docs/images/products/multigov/concepts/architecture/multigov-detailed.webp)
+![detailed multigov architecture diagram](/docs/images/products/multigov/concepts/architecture/architecture-2.webp)
