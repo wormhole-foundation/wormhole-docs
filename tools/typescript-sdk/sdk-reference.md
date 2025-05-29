@@ -26,6 +26,14 @@ This page covers all you need to know about the functionality offered through th
 
     [:custom-arrow: View the TSdoc on GitHub](https://wormhole-foundation.github.io/wormhole-sdk-ts/){target=\_blank}
 
+-   :octicons-code-square-16:{ .lg .middle } **Source Code**
+
+    ---
+
+    Want to go straight to the source? Check out the TypeScript SDK GitHub repository.
+    
+    [:custom-arrow: View GitHub Repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/){target=\_blank}
+
 </div>
 
 !!! warning
