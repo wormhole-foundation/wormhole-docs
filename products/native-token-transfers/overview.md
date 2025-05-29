@@ -10,7 +10,7 @@ Native Token Transfers (NTT) provides an adaptable framework for transferring yo
 
 ## Key Features
 
-- **Control and customizatoin** - ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls
+- **Control and customization** - ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls
 - **Advanced rate limiting** - set rate limits per chain and period to prevent abuse, manage network congestion, and control deployments
 - **Global accountant** - ensures the amount burned and transferred on chains never exceeds the amount of tokens minted
 - **No wrapped tokens** - tokens are used directly within their native ecosystem, eliminating intermediary transfer steps
