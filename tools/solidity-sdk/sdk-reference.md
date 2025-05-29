@@ -22,7 +22,7 @@ This page covers all you need to know about the functionality offered through th
 
     ---
 
-    Want to go straight to the source? Check out the Solidity SDK GitHub repoistory.
+    Want to go straight to the source? Check out the Solidity SDK GitHub repository.
 
     [:custom-arrow: View GitHub Repository](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}
 
