@@ -12,7 +12,7 @@ categories: Transfer
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual cross-chain USDC transfer using Circle's CCTP protocol.
 
-You will initiate the transfer on Avalanche, wait for Circle's attestation, and redeem the USDC on Sepolia.
+You will initiate the transfer on the source chain, wait for Circle's attestation, and redeem the USDC on the destination chain.
 
 ## Prerequisites
 
