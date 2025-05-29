@@ -38,7 +38,7 @@ Here's a breakdown of the key steps involved when deploying NTT:
 - **Prepare tokens** - ensure your ERC-20 or SPL tokens are ready
 - **Choose deployment model** - choose your cross-chain token model: either burn-and-mint or hub-and-spoke
 - **Choose deployment tool** - use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}
-- **Initialization** - specify target chains, token details, and set up your CLI environment if using it
+- **Initialization** - specify target chains and token details, and set up your CLI environment if using it
 - **Deploy contracts** - deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees
 - **Finalize configurations** - grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles
 - **Monitor and maintain** - verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed
