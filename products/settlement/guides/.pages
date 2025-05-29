@@ -1,4 +1,4 @@
 title: Guides
 nav:
 - 'Build on the Liquidity Layer': 'liquidity-layer.md'
-- 'Run a Solver': 'run-a-solver.md'
+- 'Run a Solver': 'solver.md'
