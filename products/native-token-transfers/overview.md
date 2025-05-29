@@ -23,13 +23,13 @@ NTT offers two operational modes for your existing tokens:
 - **Hub-and-spoke** - locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts
 - **Burn-and-mint** - burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token
 
-## Supported Token Models
+## Supported Token Standards
 
-NTT supports ERC-20 tokens—the standard for fungible assets on Ethereum and other EVM-compatible chains—including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required. It also supports fungible SPL tokens on Solana for secure cross-chain transfers.
+Native Token Transfers (NTT) primarily support ERC-20 tokens, the most widely used standard for fungible assets on Ethereum and other EVM-compatible chains, including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required. It also supports fungible SPL tokens on Solana for secure cross-chain transfers.
 
-The NTT Manager is a contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
+The NttManager is a contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
 
-However, NTT does not natively support non-fungible token standards at this time, whether they are SPL-based like Metaplex NFTs or ERC-based such as ERC-721 and ERC-1155.
+Currently, NTT focuses on ERC-20 tokens, and other token standards, such as ERC-721 (non-fungible tokens), ERC-1155 (multi-token standard), or SPL-based like Metaplex NFT, are not natively supported.
 
 ## Deployment Process
 
