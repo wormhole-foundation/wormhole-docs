@@ -1,0 +1,17 @@
+[
+    {
+        "title": "[Get Started with NTT](/docs/products/native-token-transfers/get-started/)",
+        "content": "Start your journey with Wormhole's NTT by learning to install its CLI, deploy test tokens, and set up it's initial structure for seamless token movement.",
+        "icon": ":fontawesome-solid-1:"
+    },
+    {
+        "title": "Deploy NTT",
+        "content": "Use these resources to deploy NTT across supported chains: <br><br>**→** [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/)  \n\n**→** [Deploy to EVM Chains via Launchpad](/docs/products/native-token-transfers/guides/evm-launchpad/)   \n**→** [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/)",
+        "icon": ":fontawesome-solid-2:"
+    },
+    { 
+        "title": "Customize NTT",
+        "content": "Configure crucial operational and security settings for NTT: <br><br>**→** [Access control](/docs/products/native-token-transfers/configuration/access-control/)  \n**→** [Rate limits](/docs/products/native-token-transfers/configuration/rate-limiting/)",
+        "icon": ":fontawesome-solid-3:"
+    }
+]
