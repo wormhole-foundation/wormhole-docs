@@ -10,10 +10,9 @@ Native Token Transfers (NTT) provides an adaptable framework for transferring yo
 
 ## Key Features
 
-- **Control & Customization** - retain full ownership and complete customizability over token contracts, alongside the configuration of controls like access control or attestation thresholds
-- **No liquidity pools** - transfer tokens without the need for liquidity pools, avoiding fees, slippage, and MEV risk
+- **Keep control and customization** - retain full ownership and complete customizability over token contracts, alongside the configuration of controls like access control or attestation thresholds
 - **Advanced rate limiting** - inbound and outbound rate limits are configurable per chain and over arbitrary periods, preventing abuse while managing network congestion and allowing for controlled deployments 
-- **Global accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
+- **Global Accountant** - ensures accounting integrity across chains by checking that the number of tokens burned and transferred out of a chain never exceeds the number of tokens minted
 - **Access control** - prevent unauthorized calls to administrative functions, protocols can choose to assign specific functions to a separate address from the owner
 
 
@@ -28,7 +27,7 @@ NTT offers two operational modes for your existing tokens:
 
 NTT supports ERC-20 tokens—the standard for fungible assets on Ethereum and other EVM-compatible chains—including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required.
 
-The NTT Manager is a core contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
+The NTT Manager is a contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
 
 NTT's SPL token support covers fungible types on Solana, including those that allow NTT to control mint/burn operations via their Mint Authority for essential cross-chain transfers. This support is achieved through direct interaction with Solana's Token Program for secure token operations.
 
@@ -40,11 +39,11 @@ Here's a breakdown of the key steps involved when deploying NTT:
 
 - **Prepare tokens** - ensure your ERC-20 or SPL tokens are ready
 - **Choose deployment model** - choose your cross-chain token model: either burn-and-mint or hub-and-spoke
-- **Choose deployment tool** - use the [NTT Launchpad](https://ntt.wormhole.com/) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/)
+- **Choose deployment tool** - use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}
 - **Initialization** - specify target chains, token details, and set up your CLI environment if using it
 - **Deploy contracts** - deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees
 - **Finalize configurations** - grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles
-- **Monitor and maintain** - verify deployment, monitor total supply with the Global Accountant, and adjust configurations as needed
+- **Monitor and maintain** - verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed
 
 ## Use Cases 
 

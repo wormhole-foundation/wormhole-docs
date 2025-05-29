@@ -6,12 +6,12 @@
     },
     {
         "title": "Deploy NTT",
-        "content": "If seeking guidance deploying native token transfers across blockchains like EVM-compatible chains and Solana here are some resources.  \n**→** [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/)  \n\n**→** [Deploy to EVM Chains via Launchpad](/docs/products/native-token-transfers/guides/evm-launchpad/)   \n**→** [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/)",
+        "content": "Use these resources to deploy NTT across supported chains: <br><br>**→** [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/)  \n\n**→** [Deploy to EVM Chains via Launchpad](/docs/products/native-token-transfers/guides/evm-launchpad/)   \n**→** [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/)",
         "icon": ":fontawesome-solid-2:"
     },
     { 
         "title": "Customize NTT",
-        "content": "These links provide documentation on configuring crucial operational and security settings for native token transfers, covering access control and rate limits.   \n**→** [Access control](/docs/products/native-token-transfers/configuration/access-control/)  \n**→** [Rate limits](/docs/products/native-token-transfers/configuration/rate-limiting/)",
+        "content": "Configure crucial operational and security settings for NTT: <br><br>**→** [Access control](/docs/products/native-token-transfers/configuration/access-control/)  \n**→** [Rate limits](/docs/products/native-token-transfers/configuration/rate-limiting/)",
         "icon": ":fontawesome-solid-3:"
     }
 ]
