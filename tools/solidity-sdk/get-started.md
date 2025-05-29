@@ -8,7 +8,7 @@ categories: Basics, Solidity-SDK
 
 The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} provides Solidity interfaces, prebuilt contracts, and testing tools to help Solidity developers build on-chain Wormhole integrations via smart contracts. You can use the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} for off-chain integrations without writing Solidity.
 
-## Install the Wormhole Solidity SDK
+## Install the SDK
 
 Use Foundry's [`forge`](https://book.getfoundry.sh/forge/){target=\_blank} to install the SDK using the following command:
 
@@ -20,39 +20,30 @@ forge install wormhole-foundation/wormhole-solidity-sdk
 
 The following key components and features work together to make your on-chain Wormhole integration easier to build.
 
-### Wormhole Relayer Integration
+??? interface "Base contracts"
 
-- **Easy integration with** [**Wormhole Relayer**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeRelayer.sol){target=\_blank}: allows you to request a delivery provider to relay a payload to the target chain and address.
-- **Reduce operational burden**: No need to run relay infrastructure or manage gas on multiple chains.
-- **Accelerate development with prebuilt contracts**: Common use cases like sending messages, tokens, and USDC come together quickly leveraging base contracts.
+    Leverage base contracts to send and receive messages and tokens.
 
-    ??? example "Solidity SDK base contracts"
-        - [**`Base.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/Base.sol){target=\_blank}: Uses Wormhole interfaces to authorize and verify a registered sender.
-        - [**`TokenBase.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/TokenBase.sol){target=\_blank}: Uses `TokenReceiver` and `TokenSender` contracts to define functions for transferring tokens.
-        - [**`CCTPBase.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/CCTPBase.sol){target=\_blank}: Uses `CCTPSender` and `CCTPReceiver` contracts to define functions for transferring USDC.
+    - [**`Base.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/Base.sol){target=\_blank}: Uses Wormhole interfaces to authorize and verify a registered sender.
+    - [**`TokenBase.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/TokenBase.sol){target=\_blank}: Uses `TokenReceiver` and `TokenSender` contracts to define functions for transferring tokens.
+    - [**`CCTPBase.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/CCTPBase.sol){target=\_blank}: Uses `CCTPSender` and `CCTPReceiver` contracts to define functions for transferring USDC.
 
-### Solidity Interfaces
+??? interface "Interfaces"
 
-The SDK provides several Solidity interfaces for interacting with Wormhole ecosystem contracts. These interfaces ensure consistent interactions with the protocol regardless of the supported chain you use.
+    Use interfaces to ensure consistent interactions with the protocol regardless of the supported chain you use.
 
-??? example "Solidity SDK interfaces"
     - [**`ITokenBridge.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/ITokenBridge.sol){target=\_blank}: Defines key structs and functions for token attestation, wrapping and transferring tokens, monitoring transaction progress.
     - [**CCTP Interfaces**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/CCTPInterfaces){target=\_blank}: A set of interfaces for USDC transfers via CCTP for sending, relaying, and receiving messages and tokens.
     - [**`IWormholeReceiver.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeReceiver.sol){target=\_blank}: Defines the `receiveWormholeMessages` function.
     - [**`IWormholeRelayer.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeRelayer.sol){target=\_blank}: Defines key structs and functions to identify, send, and deliver messages and follow the progress of transactions.
 
-### Helpful Constants
+??? interface "Constants"
 
-Auto-generated Solidity constants help avoid manual entry errors and ensure consistent delivery.
+    Auto-generated Solidity constants help avoid manual entry errors and ensure consistent delivery.
 
-??? example "Solidity SDK constants"
     - [**Wormhole Chain ID's**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/Chains.sol){target=\_blank}: Generated list of Wormhole Chain ID's for supported chains.
     - [**Circle CCTP Domain IDs**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/CCTPAndTokenBase.sol){target=\_blank}: Generated list of defined CCTP domain ID's to ensure USDC transfers use the correct domain for a given chain. 
     - [**`chainConsts.ts`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/75ddcec06ffe9d62603d023357caa576c5ea101c/gen/chainConsts.ts){target=\_blank}: Returns values to identify properties and contract addresses for each supported chain.
-
-### Testing Utilities
-
-The Wormhole Solidity SDK also includes a robust set of [testing utilities](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/75ddcec06ffe9d62603d023357caa576c5ea101c/test) for simulating message and token transfers to test your build.
 
 ## Example Usage
 
