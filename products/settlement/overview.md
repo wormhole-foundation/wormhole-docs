@@ -6,17 +6,17 @@ categories: Settlement, Transfer
 
 # Settlement Overview 
 
-Wormhole Settlement is a multichain transfer system that lets users describe the transfer they want to make without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
+Wormhole Settlement is a multichain transfer system that allows users to describe the transfer they want to make without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
 
 Settlement was built to address liquidity fragmentation across chains. Traditionally, solvers had to split their capital between multiple networks, which reduced efficiency and scalability. Settlement solves this by consolidating liquidity on Solana, enabling faster execution and minimal slippage, even as liquidity and supported chains scale.
 
-It combines three complementary protocols into a single integration suite, letting developers pick the best execution route based on cost, speed, and asset requirements.
+It combines three complementary protocols into a single integration suite, allowing developers to select the best execution route based on cost, speed, and asset requirements.
 
 ## Key Features
 
 - **Intent-based architecture**: Users express what they want to happen (e.g., swap X for Y on chain Z), and solvers execute it.
 - **Solver auctions**: Solvers compete in on-chain auctions for the right to fulfill intents, improving execution quality.
-- **Unified liquidity**: Liquidity is concentrated on Solana, reducing fragmentation and making scaling easier.
+- **Unified liquidity**: Liquidity is concentrated on Solana, reducing fragmentation and facilitating easier scaling.
 - **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and tokens deployed via NTT.
 - **Three interchangeable routes**: Each with distinct tradeoffs in speed, cost, and protocol requirements.
 
@@ -65,7 +65,7 @@ sequenceDiagram
 
 ### Liquidity Layer
 
-The Liquidity Layer employs a hub-and-spoke architecture, with Solana serving as the central liquidity hub. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
+The Liquidity Layer utilizes a hub-and-spoke architecture, with Solana serving as the central hub for liquidity. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
 
 ### Mayan MCTP
 
@@ -79,7 +79,7 @@ By default, Settlement integrates all three:
 
 - The SDK automatically resolves the best route for each transfer.
 - If a fast route like Mayan Swift is unavailable, it can fall back to Liquidity Layer or MCTP.
-- This redundancy ensures better uptime, pricing, and a smoother user experience without extra logic.
+- This redundancy ensures better uptime, pricing, and a smoother user experience without requiring additional logic.
 
 Developers can customize route preferences, but for most applications, no configuration is needed to benefit from the full suite.
 
@@ -89,24 +89,24 @@ To read more about each protocol, check the [architecture documentation](/docs/p
 
 - **Cross-Chain Perpetuals** 
 
-    - [**Settlement**](#){target=\_blank} - fast token execution across chains
-    - [**Queries**](#){target=\_blank} – fetch live prices and manage position state across chains
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - fast token execution across chains
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch live prices and manage position state across chains
 
 - **Bridging Intent Library**
 
-    - [**Settlement**](#){target=\_blank} - handles user-defined bridge intents
-    - [**Messaging**](#){target=\_blank} – triggers cross-chain function calls
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - handles user-defined bridge intents
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – triggers cross-chain function calls
 
 - **Multichain Prediction Markets**
 
-    - [**Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} – executes token flows between chains
-    - [**Queries**](/docs/build/queries/overview/){target=\_blank} – gets market data and tracks state
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} – executes token flows between chains
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – gets market data and tracks state
 
 ## Next Steps
 
 Start building with Settlement or dive deeper into specific components:
 
-- **[Get Started with Settlement](docs/products/settlement/get-started/)**: follow a hands-on demo using Mayan Swift
-- **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/)**: integrate the hub-and-spoke model
-- **[Run a Solver](/docs/products/settlement/guides/solver/)**: operate a solver and participate in auctions
+- **[Get Started with Settlement](docs/products/settlement/get-started/)**: Follow a hands-on demo using Mayan Swift.
+- **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/)**: Integrate the hub-and-spoke model.
+- **[Run a Solver](/docs/products/settlement/guides/solver/)**: Operate a solver and participate in auctions.
 
