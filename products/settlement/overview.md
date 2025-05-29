@@ -27,7 +27,7 @@ At the core of Settlement are two components:
 - **Intents**: Signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed.
 - **Solvers**: Third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return.
 
-Settlement leverages three integrated protocols:
+Settlement leverages the following three integrated protocols.
 
 ### Mayan Swift
 
@@ -67,13 +67,6 @@ sequenceDiagram
 
 The Liquidity Layer employs a hub-and-spoke architecture, with Solana serving as the central liquidity hub. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
 
-The following flow shows how the Liquidity Layer handles the process when a user wants to swap ARB on Arbitrum for JOE on Avalanche. 
-
-1. **Solver initiates on Arbitrum**: Solver swaps ARB → USDC on Arbitrum and sends it to Solana, emitting a VAA.
-2. **English auction**: On Solana, an on-chain English auction starts, and solvers bid to fulfill the request.
-3. **Fronting and bridging**: Winning solver fronts USDC from Solana to Avalanche using Circle’s CCTP.
-4. **Swap, deliver, and settle**: USDC is swapped to JOE on Avalanche, User receives JOE, and the solver is repaid once the original USDC arrives.
-
 ### Mayan MCTP
 
 Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift or the Liquidity Layer. While typically more expensive due to protocol fees, it’s a reliable way to ensure settlement completion in edge cases.
@@ -89,6 +82,8 @@ By default, Settlement integrates all three:
 - This redundancy ensures better uptime, pricing, and a smoother user experience without extra logic.
 
 Developers can customize route preferences, but for most applications, no configuration is needed to benefit from the full suite.
+
+To read more about each protocol, check the [architecture documentation](/docs/products/settlement/concepts/architecture/){target=\_blank}.
 
 ## Use Cases
 
