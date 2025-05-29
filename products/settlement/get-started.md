@@ -1,16 +1,21 @@
 ---
 title: Get Started
-description: Learn how to integrate Wormhole Settlement Routes using the SDK to simplify cross-chain swaps, manage fees, and execute seamless transactions.
+description: 
 categories: Settlement, Transfer
 ---
 
 # Get Started
 
-## Introduction
+[Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer that enables fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want done, not how.
 
-[Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer for fast, cross-chain asset movement. This guide walks you through using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of three integrated Settlement protocols, to initiate a token swap between two chains.
+This guide walks you through performing a real token swap from Ethereum to Solana using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols. We’ll follow the [demo-mayanswift](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} project and use the [Wormhole SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=_blank}.
 
-We'll use the [demo-mayanswift](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} project to set up and execute a live swap using the Wormhole SDK.
+By the end, you'll have a working script that:
+
+- Resolves token transfer routes using Mayan Swift
+- Quotes and validates the best route
+- Initiates the swap on Ethereum
+- Completes the transfer on Solana
 
 !!! note
     Mayan Swift currently supports **mainnet only**. Attempting to run this demo on testnet will result in failure.
@@ -21,30 +26,126 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
 - A wallet with a private key, funded with native tokens on mainnet for gas fees
+  - **Ethereum** wallet with ETH for gas
+  - **Solana** wallet with SOL for fees
+
 
 ## Project Setup
 
-1. **Clone the demo repository**
+Start by scaffolding a basic Node.js project and installing the required SDKs.
+
+1. Create a new project folder
 
     ```bash
-    git clone https://github.com/wormhole-foundation/demo-mayanswift
-    cd demo-mayanswift
+    mkdir settlement-swap
+    cd settlement-swap
+    npm init -y
     ```
 
-2. **Install dependencies**
+2. Install the required dependencies
 
     ```bash
-    npm install
+    npm install @wormhole-foundation/sdk-connect \
+        @wormhole-foundation/sdk-evm \
+        @wormhole-foundation/sdk-solana \
+        @mayanfinance/wormhole-sdk-route \
+        dotenv
+    npm install -D typescript tsx
     ```
+3. Create the file structure
 
-3. **Set up environment variables**: set up secure access to your wallets. This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like cast wallet.
+    ```bash
+    mkdir src
+    touch src/helpers.ts src/swap.ts .env .gitignore
+    ```
+4. Set up environment variables: Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://book.getfoundry.sh/reference/cast/cast-wallet/){target=_blank}. If you're testing locally, you can create a .env file with the following:
+
+    ```bash
+    MAINNET_ETH_PRIVATE_KEY=your_ethereum_private_key
+    MAINNET_SOL_PRIVATE_KEY=your_solana_private_key
+    ```
 
     !!! warning
         If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-## Mayan Swift Swap
+    Add this to your `.gitignore`:
 
-To initiate a token transfer across chains, using the Mayan Swift Route run:
+    ```bash
+    node_modules
+    .env
+    ```
+
+## Configure Wallet Access
+
+The Mayan Swift route requires signing transactions on both EVM and Solana. To handle this cleanly, you’ll write a helper function that:
+
+- Detects the platform (Solana or EVM)
+- Loads the correct signer from the environment
+- Returns both the signer and a Wormhole-formatted address
+
+Create `src/helpers.ts` and add the following:
+
+```ts title="src/helpers.ts"
+--8<-- "code/products/settlement/get-started/snippet-1.ts"
+```
+
+- `getEnv()` makes sure required keys are present, or throws a clear error.
+- The `getSigner()` function:
+    - Checks if the chain is EVM or Solana
+    - Loads the appropriate signer using Wormhole SDK helpers
+    - Returns both the signer (used to send txs) and address (used as the recipient)
+
+You’ll use this in the next step to load the sender (on Ethereum) and receiver (on Solana).
+
+## Perform the Token Swap
+
+Now you’ll build the script that performs the swap using the Mayan Swift route. Here’s what happens in the `swap.ts` script:
+
+- **Initialize Wormhole**: Sets up the SDK for Mainnet with EVM and Solana support.
+- **Define chains and tokens**: specifies you're sending native ETH on Base to native SOL on Solana.
+- **Load wallets**: Pulls signers and addresses from your `getSigner()` helper.
+- **Create transfer request**: Tells Wormhole what you're trying to do.
+- **Find routes**: Asks the Mayan Swift resolver to suggest valid ways to perform the transfer.
+- **Transfer parameters** – specifies how much to send and uses default route options.
+- **Validate route**: Checks if your intent is valid (e.g. sufficient liquidity, no errors).
+- **Quote**: Retrieves the expected output and fees.
+- **Initiate**: Sends the transaction on Ethereum (Base).
+- **Complete**: waits for the VAA and finalizes the transfer on Solana.
+
+Add the following code to `src/swap.ts`:
+
+```ts title="src/swap.ts"
+--8<-- "code/products/settlement/get-started/snippet-2.ts"
+```
+
+### Add a Run Script
+
+To simplify running the swap script, update your `package.json` with the following:
+
+```json title="package.json"
+{
+  "name": "mayanswift_example",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "scripts": {
+    "swap": "npx tsx src/swap.ts"
+  },
+  "devDependencies": {
+    "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "@mayanfinance/wormhole-sdk-route": "1.12.0",
+    "@wormhole-foundation/sdk-connect": "1.15.1",
+    "@wormhole-foundation/sdk-evm": "1.15.1",
+    "@wormhole-foundation/sdk-solana": "1.15.1",
+    "dotenv": "16.5.0"
+  }
+}
+```
+
+## Run the Script
+
+Once everything is in place, you can execute the swap script with:
 
 ```bash
 npm run swap
