@@ -6,42 +6,32 @@ categories: Solidity-SDK
 
 # Solidity SDK
 
-## Introduction 
+This page covers all you need to know about the functionality offered through the Wormhole Solidity SDK.
 
-The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} simplifies cross-chain messaging on EVM-compatible chains by providing essential Solidity interfaces, utility libraries, and testing tools. It allows developers to build secure and efficient cross-chain decentralized applications (dApps) without manually interacting with Wormhole’s core contracts across multiple chains.
+<div class="grid cards" markdown>
 
-By abstracting away complex interactions, the SDK drastically reduces the overhead associated with cross-chain development. It provides:
+-   :octicons-download-16:{ .lg .middle } **Installation**
 
- - **Unified interfaces** - developers can use a standardized set of Solidity interfaces to handle cross-chain messaging, token transfers, and verifiable action approvals (VAAs) without needing to manage the underlying infrastructure
- - **Automated message delivery** - the SDK leverages Wormhole’s relayer infrastructure, automatically delivering messages across chains, reducing the need for manual intervention, and simplifying gas management on the target chain
- - **Seamless integration with Wormhole services** - the SDK integrates with Wormhole’s `TokenBridge` and Circle’s CCTP, providing built-in mechanisms for cross-chain asset transfers, making token bridges and cross-chain messaging easy to implement
- - **Testing and development tools** - it comes with comprehensive tools for local testing and simulation, allowing developers to validate their cross-chain logic before deployment, minimizing the risk of errors in production environments
+    ---
 
-These features significantly streamline the development workflow by reducing complexity and offering tools compatible with various EVM versions. This helps developers avoid issues that arise from differences in EVM equivalence across chains.
+    Find installation instructions using Foundry and Forge to pull the necessary libraries into your project.
 
-This guide covers installation, key concepts, and usage examples to help you build secure cross-chain applications using the SDK, from token transfers to advanced message passing.
+    [:custom-arrow: Install the SDK](/docs/tools/solidity-sdk/get-started/#installation)
 
-## Installation
+-   :octicons-download-16:{ .lg .middle } **Source Code**
 
-To install the SDK, use [Foundry and Forge](https://book.getfoundry.sh/getting-started/installation){target=\_blank}. This pulls the necessary libraries into your project:
+    ---
 
-```bash
-forge install wormhole-foundation/wormhole-solidity-sdk@v0.1.0
-```
+    Want to go straight to the source? Check out the Solidity SDK GitHub repoistory.
 
-When developing cross-chain applications, ensure that the chains you target support the EVM version you’re using. For instance, the PUSH0 opcode (introduced in Solidity 0.8.20) may not be available on all chains. To avoid compatibility issues, you can set the EVM version in your `foundry.toml` file:
+    [:custom-arrow: View GitHub Repository](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}
 
-```toml
-evm_version = "paris"
-```
-
-This ensures compatibility across all targeted chains, even if some do not yet support the latest EVM upgrades.
+</div>
 
 ## Key Considerations
 
 Before deploying applications using the Wormhole Solidity SDK, keep these considerations in mind:
 
- - **Version compatibility** - the SDK is evolving, and using tagged releases for production is crucial, as the main branch may introduce breaking changes
  - **IERC-20 remapping** - the SDK provides a remapping mechanism to handle potential conflicts between different implementations of IERC20, ensuring seamless integration with other libraries
  - **Testing** - given the cross-chain dependencies, testing all integrations is critical to avoid issues in production environments
 
