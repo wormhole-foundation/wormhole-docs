@@ -14,55 +14,6 @@ This guide helps you install the SDK, initialize a `Wormhole` instance to suppor
 
 If you want to build more advanced integrations, such as token transfers using the Token Bridge or CCTP Bridge, skip ahead to [Next Steps](#next-steps).
 
-## Prerequisites
-
-Before you begin, make sure you have the following:
-
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
- - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
-
-??? example "Project setup instructions"
- 
-    Use the following commands to create a TypeScript project:
-
-    1. Create a directory and initialize a Node.js project:
-
-        ```bash
-        mkdir wh-ts-demo
-        cd wh-ts-demo
-        npm init -y
-        ```
-
-    2. Install TypeScript along with `tsx` (for running TypeScript files) and Node.js type definitions:
-
-        ```bash
-        npm install --save-dev tsx typescript @types/node
-        ```
-
-    3. Create a `tsconfig.json` if you don't have one. You can generate a basic one using the following command:
-
-        ```bash
-        npx tsc --init
-        ```
-
-        Make sure your `tsconfig.json` includes the following settings:
-
-        ```json 
-        {
-            "compilerOptions": {
-                // es2020 or newer
-                "target": "es2020",
-                // Use esnext if you configured your package.json with type: "module"
-                "module": "commonjs",
-                "esModuleInterop": true,
-                "forceConsistentCasingInFileNames": true,
-                "strict": true,
-                "skipLibCheck": true,
-                "resolveJsonModule": true
-            }
-        }
-        ```
-
 ## Install the SDK
 
 To install the Wormhole TypeScript SDK, use the following command:
@@ -132,24 +83,93 @@ npm install @wormhole-foundation/sdk-evm
 
 ## Initialize the SDK
 
-You must first initialize the main `Wormhole` class to use the SDK. This involves specifying the network (`Mainnet`, `Testnet`, or `Devnet`) and the blockchain platforms your application will interact with.
+Getting your integration started is simple. First, import Wormhole:
 
-1. (Optional) Create a new TypeScript file named `src/main.ts` in your project directory:
+```ts
+--8<-- 'code/tools/typescript-sdk/sdk-reference/get-vaa.ts::1'
+```
 
-    ```bash
-    mkdir src
-    touch src/main.ts
-    ```
+Then, import each of the ecosystem [platforms](#platforms) that you wish to support:
 
-2. Add the following code to initialize the SDK and use the `Wormhole` instance to return the chain ID and RPC for the chains this instance supports:
+```ts
+--8<-- 'code/tools/typescript-sdk/sdk-reference/get-vaa.ts:4:9'
+```
 
-    ```ts title="src/main.ts"
-    --8<-- "code/tools/typescript-sdk/get-started/snippet-1.ts"
-    ```
+To make the [platform](#platforms) modules available for use, pass them to the Wormhole constructor and specify the network (`Mainnet`, `Testnet`, or `Devnet`) you want to interact with:
 
-## Fetch Chain Information
+```ts
+--8<-- 'code/tools/typescript-sdk/sdk-reference/get-vaa.ts:13:20'
+```
 
-Follow these steps to verify that the SDK is properly initialized for the chains you intend to support.
+With a configured `Wormhole` object, you can begin to interact with these chains.
+
+## Example Usage
+
+Follow these steps to confirm that the SDK is initialized correctly and can fetch basic chain information for your target chains.
+
+### Prerequisites
+
+Before you begin, make sure you have the following:
+
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
+
+??? example "Project setup instructions"
+ 
+    Use the following commands to create a TypeScript project:
+
+    1. Create a directory and initialize a Node.js project:
+
+        ```bash
+        mkdir wh-ts-demo
+        cd wh-ts-demo
+        npm init -y
+        ```
+
+    2. Install TypeScript, `tsx` (for running TypeScript files), Node.js type definitions, the base Wormhole SDK, and the platform-specific packages for the chains you want to interact with:
+
+        ```bash
+        npm install --save-dev tsx typescript @types/node @wormhole-foundation/sdk @wormhole-foundation/sdk-evm @wormhole-foundation/sdk-solana
+        ```
+
+    3. Create a `tsconfig.json` if you don't have one. You can generate a basic one using the following command:
+
+        ```bash
+        npx tsc --init
+        ```
+
+        Make sure your `tsconfig.json` includes the following settings:
+
+        ```json 
+        {
+            "compilerOptions": {
+                // es2020 or newer
+                "target": "es2020",
+                // Use esnext if you configured your package.json with type: "module"
+                "module": "commonjs",
+                "esModuleInterop": true,
+                "forceConsistentCasingInFileNames": true,
+                "strict": true,
+                "skipLibCheck": true,
+                "resolveJsonModule": true
+            }
+        }
+        ```
+
+    4. Initialize the main `Wormhole` class to use the SDK. Create a new TypeScript file named `src/main.ts` in your project directory:
+
+        ```bash
+        mkdir src
+        touch src/main.ts
+        ```
+
+    5. Add the following code to initialize the SDK and use the `Wormhole` instance to return the chain ID and RPC for the chains this instance supports:
+
+        ```ts title="src/main.ts"
+        --8<-- "code/tools/typescript-sdk/get-started/snippet-1.ts"
+        ```
+
+### Fetch Chain Information
 
 1. Update the `main` function as follows to retrieve the chain ID and RPC for the chains your project supports:
 
