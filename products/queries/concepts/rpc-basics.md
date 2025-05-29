@@ -6,7 +6,7 @@ categories: Queries
 
 ## The Remote Procedural Call
 
-An RPC (Remote Procedure Call) node is a server that enables applications to read blockchain data and send transactions to different networks. It acts as a direct communication bridge, allowing apps to interact efficiently with the blockchain by querying data, submitting transactions, and executing smart contracts. This real-time access to blockchain information enhances application functionality and user experience.
+A Remote Procedure Call (RPC) node is a server that enables applications to read blockchain data and send transactions to different networks. It acts as a direct communication bridge, allowing apps to interact efficiently with the blockchain by querying data, submitting transactions, and executing smart contracts. This real-time access to blockchain information enhances application functionality and user experience.
 
 This page will cover the RPC basics, their fundamental purpose, how they operate, and why they are essential for blockchain networks.
 
