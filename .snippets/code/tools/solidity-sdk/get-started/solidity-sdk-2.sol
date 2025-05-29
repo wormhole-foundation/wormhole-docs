@@ -6,7 +6,8 @@ import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
 
 // Assign the contract to the TokenReceiver role inherited from TokenBase
 contract CrossChainReceiver is TokenReceiver {
-    // Initialize the contract with the Wormhole relayer, token bridge, and wormhole address
+    // Initialize the contract with the Wormhole relayer, Token Bridge,
+    // and Wormhole Core Contract addresses
     constructor(
         address _wormholeRelayer,
         address _tokenBridge,

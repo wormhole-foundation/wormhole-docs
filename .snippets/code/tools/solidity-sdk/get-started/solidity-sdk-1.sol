@@ -7,15 +7,16 @@ import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
 // Assign the contract to the TokenSender role inherited from TokenBase
 contract CrossChainSender is TokenSender {
     uint256 constant GAS_LIMIT = 250_000;
-    // Initialize the contract with the Wormhole relayer, token bridge, and wormhole address
+    // Initialize the contract with the Wormhole relayer, Token Bridge,
+    // and Wormhole Core Contract addresses
     constructor(
         address _wormholeRelayer,
         address _tokenBridge,
         address _wormhole
     ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
 
-    // Calculate the estimated cost for multichain token transfer
-    // using the wormholeRelayer to get the delivery cost and add the message fee
+    // Calculate the estimated cost for multichain token transfer using
+    // the wormholeRelayer to get the delivery cost and add the message fee
     function quoteCrossChainDeposit(
         uint16 targetChain
     ) public view returns (uint256 cost) {

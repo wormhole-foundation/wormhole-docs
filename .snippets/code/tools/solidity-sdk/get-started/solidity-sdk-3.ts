@@ -3,19 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import readlineSync from 'readline-sync';
 import { fileURLToPath } from 'url';
-import {
-  wormhole,
-  amount,
-  Wormhole,
-  ChainContext,
-  Signer,
-  Chain,
-  Network,
-  ChainAddress,
-  isTokenId,
-  TokenId,
-  chainToChainId,
-} from '@wormhole-foundation/sdk';
+import { wormhole, chainToChainId } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 
 // Replace with your contract address and chain names
@@ -40,10 +28,8 @@ const SENDER_ABI_PATH = path.resolve(
     const sendChain = wh.getChain(AVALANCHE_CHAIN_NAME);
     const rcvChain = wh.getChain(CELO_CHAIN_NAME);
 
-    // Create an ethers.Signer wallet with your EVM private key
-    // using locally scoped credentials. EVM_PRIVATE_KEY must
-    // be loaded securely beforehand, for example via a keystore,
-    // secrets manager, or environment variables
+    // The EVM_PRIVATE_KEY value must be loaded securely beforehand,
+    // for example via a keystore, secrets manager, or environment variables
     // (not recommended)
     const EVM_PRIVATE_KEY = EVM_PRIVATE_KEY!;
     if (!EVM_PRIVATE_KEY) {

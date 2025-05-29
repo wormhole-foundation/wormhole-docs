@@ -16,9 +16,7 @@ Use Foundry's [`forge`](https://book.getfoundry.sh/forge/){target=\_blank} to in
 forge install wormhole-foundation/wormhole-solidity-sdk
 ```
 
-Next, review the following sections for more information on SDK components and features, or jump to [How It Works](#how-it-works) for a build-along demo project.
-
-## Key Components and Features
+## Key Components
 
 The following key components and features work together to make your on-chain Wormhole integration easier to build.
 
@@ -56,17 +54,20 @@ Auto-generated Solidity constants help avoid manual entry errors and ensure cons
 
 The Wormhole Solidity SDK also includes a robust set of [testing utilities](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/75ddcec06ffe9d62603d023357caa576c5ea101c/test) for simulating message and token transfers to test your build.
 
-## Prerequisites
+## Example Usage
 
 The following demo illustrates the use of Wormhole Solidity SDK-based smart contracts to send testnet USDC between supported chains.
 
+### Prerequisites
 Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
 - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} installed
-- Testnet tokens for two supported chains. This example uses [testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} and can be adapted to any supported chains.
+- Testnet tokens for two supported chains. This example uses [testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} and can be adapted to any supported chains
 - [USDC testnet tokens](https://faucet.circle.com/){target=\_blank} on your source chain for cross-chain transfer
+
+### Set Up a Project
 
 Follow these steps to prepare your development environment:
 
@@ -84,7 +85,7 @@ Follow these steps to prepare your development environment:
     npm init -y && npm install @wormhole-foundation/sdk ethers -D tsx typescript
     ```
 
-## Create and Deploy Contracts
+### Create and Deploy Contracts
 
 This project uses sender and receiver contracts to access the `WormholeRelayer` interface's [`TokenSender`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/baa085006586a43c42858d355e3ffb743b80d7a4/src/WormholeRelayer/TokenBase.sol#L24){target=\_blank} and [`TokenReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/baa085006586a43c42858d355e3ffb743b80d7a4/src/WormholeRelayer/TokenBase.sol#L147){target=\_blank} base classes to simplify sending tokens across chains.
 
@@ -96,7 +97,7 @@ Follow these steps to create and deploy your sender and receiver Solidity contra
     --8<-- "code/tools/solidity-sdk/get-started/solidity-sdk-1.sol"
     ```
 
-    This contract assigns `CrossChainSender` to the `TokenSender` role, initializes the contract, calculates a cost of transfer estimate, defines transfer parameters, and initiates the transfer using the `sendTokenWithPayloadToEvm` function from `WormholeRelayer`.
+    This contract extends `TokenSender`, gaining access to its functionality. It initializes the contract with the required addresses, calculates estimated transfer costs, defines transfer parameters, and initiates the transfer using the `sendTokenWithPayloadToEvm` function from `WormholeRelayer`.
 
 2. Use the following example code to create `CrossChainReceiver.sol`:
 
@@ -104,11 +105,11 @@ Follow these steps to create and deploy your sender and receiver Solidity contra
     --8<-- "code/tools/solidity-sdk/get-started/solidity-sdk-2.sol"
     ```
 
-    This contract assigns `CrossChainReceiver` to the `TokenReceiver` role, initializes the contract, receives the payload and tokens, verifies the transfer is from a registered sender, decodes the recipient address, and transfers the tokens to the recipient.
+    This contract extends `TokenReceiver`, gaining access to its functionality. It initializes the contract with the required addresses, receives the payload and tokens, verifies the transfer is from a registered sender, decodes the recipient address, and transfers the tokens to the recipient.
 
 3. Deploy the contracts using your preferred deployment method. Make sure you deploy `CrossChainSender.sol` to your desired source chain and `CrossChainReceiver.sol` to the target chain. Save the deployed contract addresses for each contract. You will need them for your transfer script.
 
-## Create Your Transfer Script
+##  Use Contracts to Transfer USDC
 
 1. Once your contracts are deployed, create a `transfer.ts` file to handle the multichain transfer logic:
 
@@ -127,7 +128,7 @@ Follow these steps to create and deploy your sender and receiver Solidity contra
     --8<-- "code/tools/solidity-sdk/get-started/solidity-sdk-3.ts"
     ```
 
-    This script defines sender and receiver contract addresses, fetches needed ABI information, creates a connected signer, converts decimals, qoutes transfer cost, and initiates the token transfer.
+    This script defines the sender and receiver contract addresses, fetches the necessary ABI information, creates a connected signer, converts decimals, calculates the estimated transfer cost, and initiates the token transfer.
 
 3. Run the script using the following command:
 

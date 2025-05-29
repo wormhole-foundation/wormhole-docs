@@ -58,7 +58,7 @@ Before you begin, ensure you have the following:
     }
     ```
 
-4. Install the TypeScript SDK:
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}:
 
     ```bash
     npm install @wormhole-foundation/sdk
