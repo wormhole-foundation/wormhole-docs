@@ -111,7 +111,7 @@ Developers can customize route preferences, but for most applications, no config
 
 Start building with Settlement or dive deeper into specific components:
 
-- **[Get Started with Settlement](docs/products/settlement/get-started/){target=\_blank}**: follow a hands-on demo using Mayan Swift
-- **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/){target=\_blank}**: integrate the hub-and-spoke model
-- **[Run a Solver](/docs/products/settlement/guides/solver/){target=\_blank}**: operate a solver and participate in auctions
+- **[Get Started with Settlement](docs/products/settlement/get-started/)**: follow a hands-on demo using Mayan Swift
+- **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/)**: integrate the hub-and-spoke model
+- **[Run a Solver](/docs/products/settlement/guides/solver/)**: operate a solver and participate in auctions
 
