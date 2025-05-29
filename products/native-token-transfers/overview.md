@@ -6,7 +6,7 @@ categories: NTT, Transfer
 
 ## Native Token Transfers Overview
 
-Native Token Transfers (NTT) provides an adaptable framework for transferring your native tokens across different blockchains. Unlike traditional wrapped assets, NTT maintains your token's native properties on every chain. This ensures you retain complete control over crucial aspects like metadata, ownership, upgradeability, and custom features.
+Native Token Transfers (NTT) provides an adaptable framework for transferring your native tokens across different blockchains. Unlike traditional wrapped assets, NTT maintains your token's native properties on every chain. This ensures that you retain complete control over crucial aspects, such as metadata, ownership, upgradeability, and custom features.
 
 ## Key Features
 
