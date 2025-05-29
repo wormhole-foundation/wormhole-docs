@@ -29,7 +29,7 @@ Native Token Transfers (NTT) primarily support ERC-20 tokens, the most widely us
 
 The NttManager is a contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
 
-Currently, NTT focuses on ERC-20 tokens, and other token standards, such as ERC-721 (non-fungible tokens), ERC-1155 (multi-token standard), or SPL-based like Metaplex NFT, are not natively supported.
+NTT does not currently support token standards like ERC-721 (non-fungible tokens), ERC-1155 (a multi-token standard), or SPL-based tokens, such as Metaplex NFTs. Support is currently limited to ERC-20 tokens.
 
 ## Deployment Process
 
