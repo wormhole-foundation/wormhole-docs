@@ -6,13 +6,12 @@ It is intended for use with large language models (LLMs) to support developers w
 This file includes documentation related to the category: Basics
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/..build/start-building/use-cases.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/..learn/glossary.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/products.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/core-contracts.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/guardians.md [type: other]
@@ -24,366 +23,6 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/solidity-sdk/get-started.md [type: other]
 
 ## Full content for each doc page
-
-Doc-Content: https://wormhole.com/docs/..build/start-building/use-cases/
---- BEGIN CONTENT ---
----
-title: Use Cases
-description: Explore Wormhole's use cases, from cross-chain swaps to DeFi, lending, gaming, and more. See how projects integrate Wormhole solutions.
-categories: Basics
----
-
-# Wormhole Use Cases
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Cross-Chain Swaps and Liquidity Aggregation
-
-Enable seamless swaps between chains with real-time liquidity routing.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Wormhole Connect**](/docs/products/connect/overview/){target=\_blank} – handles user-friendly asset transfers
-- [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – moves native assets across chains
-- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches real-time prices for optimal trade execution
-
-🔗 **Used in:** Decentralized exchanges (DEXs) and liquidity aggregators  <br>🏗️ **Used by:** [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank}
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Borrowing and Lending Across Chains
-
-Let users borrow assets on one chain using collateral from another.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – moves loan requests and liquidations across chains
-- [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfers collateral as native assets
-- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches interest rates and asset prices in real-time
-
-🔗 **Used in:** Lending protocols and yield platforms <br>🏗️ **Used by:** [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank}
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Real-Time Price Feeds and Trading Strategies
-
-Fetch price feeds across multiple chains for DeFi applications.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches price feeds from oracles and trading platforms
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – sends signals to execute trades
-
-🔗 **Used in:** Trading bots, arbitrage platforms, and oracles <br>🏗️ **Used by:** [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank}
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Asset Movement Between Bitcoin and Other Chains
-
-Enable direct BTC transfers without wrapped assets.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfers BTC across chains
-
-🔗 **Used in:** Bitcoin DeFi and lightning network integrations <br>🏗️ **Used by:** [Synonym](https://wormhole.com/case-studies/synonym){target=\_blank}
-
-</div>
-</div>
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Decentralized Social Platforms
-
-Enable seamless communication and asset transfer across decentralized social networks.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – facilitates decentralized interactions
-- [**Token Bridge**](/docs/build/transfers/token-bridge/){target=\_blank} – enables cross-chain tokenized rewards
-
-🔗 **Used in:** Web3 social networks and content monetization <br>🏗️ **Used by:** [Chingari](https://chingari.io/){target=\_blank}
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Memecoin Launchpads
-
-Launch and distribute memecoins across multiple chains, enabling cross-chain fundraising and liquidity access.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – enables native asset transfers for seamless fundraising
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – facilitates cross-chain token distribution and claim processes
-
-🔗 **Used in:** Token launchpads, IDOs, and meme token ecosystems
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Cross-Chain Perpetuals
-
-Enable leveraged perpetual trading across chains with seamless collateral and liquidity management.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches real-time asset prices and manages position state across chains
-- [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} - for quick cross-chain token execution, providing efficient and seamless user experiences
-
-🔗 **Used in:**  Perpetual DEXs, trading platforms and cross-chain derivatives
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Gas Abstraction
-
-Allow users to pay gas fees with any token across different networks, removing friction in multichain interactions.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – routes gas fee payments across chains
-- [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – facilitates native token conversion for gas payments
-
-🔗 **Used in:** Wallets, dApps, and multichain user experience improvements
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Bridging Intent Library
-
-Provide developers with a library of bridging intents and automation functions, enabling plug-and-play interoperability logic.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – enables predefined cross-chain actions and triggers.
-- [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} - provides a framework for executing user-defined bridging intents
-
-🔗 **Used in:** Bridging protocols, DeFi automation, and smart contract libraries
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Multichain Prediction Markets
-
-Allow users to place bets, manage positions, and receive payouts seamlessly across different networks.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches real-time market data, tracks collateral, and manages odds across chains
-- [**Wormhole Settlement**](/docs/learn/transfers/settlement/overview/){target=\_blank} – automates token execution for efficient and seamless cross-chain prediction market interactions
-
-🔗 **Used in:** Decentralized betting, prediction markets, and cross-chain gaming
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Cross-Chain Payment Widgets
-
-Allow merchants and platforms to accept payments in any token, auto-converting them into a desired asset.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Wormhole Connect**](/docs/products/connect/overview/){target=\_blank} – facilitates seamless payments in various tokens
-- [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – ensures direct, native asset transfers
-
-🔗 **Used in:** E-commerce, Web3 payments, and subscription models
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Oracle Networks
-
-Fetch and verify cross-chain data, enabling reliable, decentralized Oracle services for multichain applications.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Queries**](/docs/build/queries/overview/){target=\_blank} – fetches data from multiple chains and Oracle providers
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – ensures tamper-proof data relay across networks
-
-🔗 **Used in:** Price feeds, DeFi protocols, and smart contract automation <br>🏗️ **Used by:** [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank}
-
-</div>
-</div>
-
-
-<div markdown class="use-case-card">
-<div class="title" markdown>
-
-## Cross-Chain Staking
-
-Enable users to stake assets on one chain while earning rewards or securing networks on another.
-
-</div>
-<div markdown>
-
-🛠 **Wormhole products used:**
-
-- [**Messaging**](/docs/protocol/infrastructure/){target=\_blank} – moves staking rewards and governance signals across chains
-- [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfers staked assets natively between networks
-
-🔗 **Used in:** Liquid staking, cross-chain governance, and PoS networks <br>🏗️ **Used by:** [Lido](https://lido.fi/){target=\_blank}
-
-</div>
-</div>
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/..learn/glossary/
---- BEGIN CONTENT ---
----
-title: Glossary
-description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
-categories: Basics
----
-
-# Glossary
-
-This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
-
-## Chain ID
-
-Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
-
-You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products/reference/chain-ids/){target=\_blank} page.
-
-## Consistency Level
-
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
-
-## Delivery Provider
-
-A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
-
-## Emitter
-
-The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
-
-## Finality
-
-The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
-
-## Guardian
-
-A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
-
-## Guardian Network
-
-Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
-
-## Guardian Set
-
-The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
-
-## Heartbeat
-
-Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and convey details about its identity, uptime, version, and the status of the connected nodes.
-
-You can view the heartbeats on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
-
-## Observation
-
-An Observation is a data structure describing a message emitted by the Core Contract and noticed by the Guardian node.
-
-## Relayer
-
-A relayer is any process that delivers VAAs to a destination.
-
-## Sequence
-
-A nonce, strictly increasing, which is tracked by the Wormhole Core Contract and unique to the emitter chain and address.
-
-## Spy
-
-A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
-
-## VAA
-
-[Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
-
-## Validator
-
-A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
---- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/messaging/get-started/
 --- BEGIN CONTENT ---
@@ -1362,7 +1001,7 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
 - [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
 - [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
 
@@ -1391,6 +1030,10 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 </div>
 
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
+
 Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
 
 ## Bridging UI
@@ -1404,6 +1047,83 @@ Beyond asset transfers, Wormhole provides additional tools for cross-chain data 
 ## Multichain Governance
 
 [**MultiGov**](/docs/products/multigov/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/reference/glossary/
+--- BEGIN CONTENT ---
+---
+title: Glossary
+description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
+categories: Basics
+---
+
+# Glossary
+
+This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
+
+## Chain ID
+
+Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
+
+You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products/reference/chain-ids/){target=\_blank} page.
+
+## Consistency Level
+
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
+
+## Delivery Provider
+
+A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
+
+## Emitter
+
+The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
+
+## Finality
+
+The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
+
+## Guardian
+
+A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
+
+## Guardian Network
+
+Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
+
+## Guardian Set
+
+The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
+
+## Heartbeat
+
+Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and convey details about its identity, uptime, version, and the status of the connected nodes.
+
+You can view the heartbeats on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+
+## Observation
+
+An Observation is a data structure describing a message emitted by the Core Contract and noticed by the Guardian node.
+
+## Relayer
+
+A relayer is any process that delivers VAAs to a destination.
+
+## Sequence
+
+A nonce, strictly increasing, which is tracked by the Wormhole Core Contract and unique to the emitter chain and address.
+
+## Spy
+
+A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
+
+## VAA
+
+[Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
+
+## Validator
+
+A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/protocol/architecture/

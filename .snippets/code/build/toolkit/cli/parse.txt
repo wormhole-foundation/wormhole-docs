@@ -1,8 +1,0 @@
-worm parse INSERT_VAA
-
-Positionals:
-  vaa  vaa                                                              [string]
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
