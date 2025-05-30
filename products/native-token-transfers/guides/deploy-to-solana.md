@@ -102,7 +102,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
             !!! note
                 NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
-2. **Choose your [deployment model](/docs/products/native-token-transfers/overview/#deployment-models){target=\_blank}**:
+2. **Choose your deployment model**:
 
     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
