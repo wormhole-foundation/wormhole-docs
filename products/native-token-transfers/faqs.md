@@ -134,3 +134,28 @@ Yes. NTT tokens can be used with chains that do not support NTT by leveraging th
 - **Messaging consistency** - the Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT
 
 This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
+
+## How can I update my NTT CLI version?
+
+To update an existing NTT CLI installation, run the following command in your terminal:
+
+```bash
+ntt update
+```
+
+NTT CLI installations and updates will always pick up the latest tag with name vX.Y.Z+cli and verify that the underlying commit is included in main.
+
+For local development, you can update your CLI version from a specific branch or install from a local path.
+
+To install from a specific branch, run:
+
+```bash
+ntt update --branch foo
+```
+
+To install locally, run:
+```bash
+ntt update --path path/to/ntt/repo
+```
+
+Git branch and local installations enable a fast iteration loop as changes to the CLI code will immediately be reflected in the running binary without having to run any build steps.
