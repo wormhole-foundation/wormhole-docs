@@ -1159,6 +1159,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ```bash
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
     ```
+
 ### Recovering Rent for Failed Solana Deployments
 
 Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
