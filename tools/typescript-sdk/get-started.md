@@ -89,13 +89,13 @@ Getting your integration started is simple. First, import Wormhole:
 --8<-- 'code/tools/typescript-sdk/sdk-reference/get-vaa.ts::1'
 ```
 
-Then, import each of the ecosystem [platforms](#platforms) that you wish to support:
+Then, import each of the ecosystem [platforms](/docs/tools/typescript-sdk/sdk-reference/#platforms) that you wish to support:
 
 ```ts
 --8<-- 'code/tools/typescript-sdk/sdk-reference/get-vaa.ts:4:9'
 ```
 
-To make the [platform](#platforms) modules available for use, pass them to the Wormhole constructor and specify the network (`Mainnet`, `Testnet`, or `Devnet`) you want to interact with:
+To make the [platform](/docs/tools/typescript-sdk/sdk-reference/#platforms) modules available for use, pass them to the Wormhole constructor and specify the network (`Mainnet`, `Testnet`, or `Devnet`) you want to interact with:
 
 ```ts
 --8<-- 'code/tools/typescript-sdk/sdk-reference/get-vaa.ts:13:20'

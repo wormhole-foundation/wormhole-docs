@@ -10,7 +10,7 @@ categories: Connect, Transfer
 
 Wormhole Connect is a React widget that lets developers offer an easy-to-use interface to facilitate cross-chain asset transfers via Wormhole directly in a web application. Check out the [Wormhole Connect GitHub repository](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank}.
 
-The [Wormhole TypeScript SDK](https://docs.wormhole.com/wormhole/reference/sdk-docs){target=\_blank} allows you to implement the same functionality as the Connect widget but in your own UI. Check out the docs for more information on using the SDK instead of Connect.
+The [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} allows you to implement the same functionality as the Connect widget but in your own UI. Check out the docs for more information on using the SDK instead of Connect.
 
 ## Features {: #features }
 

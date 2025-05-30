@@ -153,7 +153,7 @@ Wormhole is a Generic Message Passing (GMP) protocol with several specialized pr
 
 #### Wormhole Core
 
-The core protocol powers all Wormhole activity by emitting messages containing the [emitter address](https://docs.wormhole.com/wormhole/reference/glossary#emitter){target=\_blank}, [sequence number](https://docs.wormhole.com/wormhole/reference/glossary#sequence){target=\_blank}, and payload needed for bridging.
+The core protocol powers all Wormhole activity by emitting messages containing the [emitter address](/docs/products/reference/glossary/#emitter){target=\_blank}, sequence number, and payload needed for bridging.
 
 Example workflow on Solana Testnet:
 
