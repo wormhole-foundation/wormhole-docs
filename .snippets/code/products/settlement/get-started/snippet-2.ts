@@ -1,24 +1,19 @@
-import {
-  Wormhole,
-  routes,
-} from "@wormhole-foundation/sdk-connect";
-import { EvmPlatform } from "@wormhole-foundation/sdk-evm";
-import { SolanaPlatform } from "@wormhole-foundation/sdk-solana";
-import {
-  MayanRouteSWIFT,
-} from '@mayanfinance/wormhole-sdk-route';
-import { getSigner } from "./helpers";
+import { Wormhole, routes } from '@wormhole-foundation/sdk-connect';
+import { EvmPlatform } from '@wormhole-foundation/sdk-evm';
+import { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
+import { MayanRouteSWIFT } from '@mayanfinance/wormhole-sdk-route';
+import { getSigner } from './helpers';
 
 (async function () {
   // Setup
-  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
+  const wh = new Wormhole('Mainnet', [EvmPlatform, SolanaPlatform]);
 
-  const sendChain = wh.getChain("Ethereum");
-  const destChain = wh.getChain("Solana");
+  const sendChain = wh.getChain('Ethereum');
+  const destChain = wh.getChain('Solana');
 
   //  To transfer native ETH on Ethereum to native SOL on Solana
-  const source = Wormhole.tokenId(sendChain.chain, "native");
-  const destination = Wormhole.tokenId(destChain.chain, "native");
+  const source = Wormhole.tokenId(sendChain.chain, 'native');
+  const destination = Wormhole.tokenId(destChain.chain, 'native');
 
   // Create a new Wormhole route resolver, adding the Mayan route to the default list
   // @ts-ignore: Suppressing TypeScript error because the resolver method expects a specific type,
@@ -50,7 +45,7 @@ import { getSigner } from "./helpers";
 
   // Specify the amount as a decimal string
   const transferParams = {
-    amount: "0.002",
+    amount: '0.002',
     options: bestRoute.getDefaultOptions(),
   };
 
@@ -60,14 +55,14 @@ import { getSigner } from "./helpers";
     console.error(validated.error);
     return;
   }
-  console.log("Validated: ", validated);
+  console.log('Validated: ', validated);
 
   const quote = await bestRoute.quote(tr, validated.params);
   if (!quote.success) {
     console.error(`Error fetching a quote: ${quote.error.message}`);
     return;
   }
-  console.log("Quote: ", quote);
+  console.log('Quote: ', quote);
 
   // Initiate the transfer
   const receipt = await bestRoute.initiate(
@@ -76,7 +71,7 @@ import { getSigner } from "./helpers";
     quote,
     receiver.address
   );
-  console.log("Initiated transfer with receipt: ", receipt);
+  console.log('Initiated transfer with receipt: ', receipt);
 
   await routes.checkAndCompleteTransfer(
     bestRoute,

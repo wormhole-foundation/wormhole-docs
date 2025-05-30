@@ -63,78 +63,35 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     !!! warning
         If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-## Configure Wallet Access
-
-The Mayan Swift route requires signing transactions on both EVM and Solana. To handle this cleanly, you’ll write a helper function that:
-
-- Detects the platform (Solana or EVM)
-- Loads the correct signer from the environment
-- Returns both the signer and a Wormhole-formatted address
-
-Create `src/helpers.ts` and add the following:
-
-```ts title="src/helpers.ts"
---8<-- "code/products/settlement/get-started/snippet-1.ts"
-```
-
-- `getEnv()` makes sure required keys are present, or throws a clear error.
-- The `getSigner()` function:
-    - Checks if the chain is EVM or Solana
-    - Loads the appropriate signer using Wormhole SDK helpers
-    - Returns both the signer (used to send txs) and address (used as the recipient)
-
-You’ll use this in the next step to load the sender (on Ethereum) and receiver (on Solana).
-
 ## Perform a Token Swap
 
-Now you’ll build the script that performs the swap using the Mayan Swift route. Here’s what happens in the `swap.ts` script:
+This section shows you how to perform a token swap using the Mayan Swift route. You will define a helper function to configure the source and destination chain signers.
 
-- **Initialize Wormhole**: Sets up the SDK for Mainnet with EVM and Solana support.
-- **Define chains and tokens**: specifies you're sending native ETH on Base to native SOL on Solana.
-- **Load wallets**: Pulls signers and addresses from your `getSigner()` helper.
-- **Create transfer request**: Tells Wormhole what you're trying to do.
-- **Find routes**: Asks the Mayan Swift resolver to suggest valid ways to perform the transfer.
-- **Transfer parameters** – specifies how much to send and uses default route options.
-- **Validate route**: Checks if your intent is valid (e.g. sufficient liquidity, no errors).
-- **Quote**: Retrieves the expected output and fees.
-- **Initiate**: Sends the transaction on Ethereum (Base).
-- **Complete**: waits for the VAA and finalizes the transfer on Solana.
+Then, you'll create a script that initiates a transfer on Ethereum, uses the Mayan Swift resolver to find valid routes, sends the transaction, and completes the transfer on Solana.
 
-Add the following code to `src/swap.ts`:
+1. Open `helper.ts` and define the `getSigner` utility function to load private keys, instantiate signers for Ethereum and Solana, and return the signers along with the Wormhole-formatted address:
 
-```ts title="src/swap.ts"
---8<-- "code/products/settlement/get-started/snippet-2.ts"
-```
+    ```ts title="src/helpers.ts"
+    --8<-- "code/products/settlement/get-started/snippet-1.ts"
+    ```
 
-## Add a Run Script
+2. In `swap.ts`, add the following script, which will handle all of the logic required to perform the token swap: 
 
-To simplify running the swap script, update your `package.json` with the following:
+    ```ts title="src/swap.ts"
+    --8<-- "code/products/settlement/get-started/snippet-2.ts"
+    ```
 
-```json title="package.json"
-{
-  "scripts": {
-    "swap": "npx tsx src/swap.ts"
-  }
-}
-```
+3. Execute the script to initiate and complete the transfer:
 
-## Run the Script
+    ```bash
+    npx tsx src/swap.ts
+    ```
 
-Once everything is in place, you can execute the swap script with:
+    If successful, you’ll see terminal output like this:
 
-```bash
-npm run swap
-```
-If successful, you’ll see terminal output like this:
+    --8<-- "code/products/settlement/get-started/snippet-3.html"
 
-```bash
-Validated: { valid: true, ... }
-Quote: { success: true, ... }
-Initiated transfer with receipt: ...
-Current Transfer State: DestinationFinalized
-```
-
-Congrats!!! You've just completed a cross-chain token swap from Ethereum to Solana using Settlement!
+Congratulations! You've just completed a cross-chain token swap from Ethereum to Solana using Settlement.
 
 ## Customize the Integration
 
@@ -149,5 +106,6 @@ You can tailor the example to your use case by adjusting:
 
 Once you've chosen a path, follow the corresponding guide to start building:
 
-- [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/){target=\_blank} – interact directly with routers for flexible protocol-level control
+- Check out the [**demo-mayanswift**](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} for the full code example.
+- [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/){target=\_blank}: Interact directly with routers for flexible protocol-level control.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
