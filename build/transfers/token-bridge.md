@@ -27,7 +27,7 @@ The primary functions of the Token Bridge contracts revolve around:
 - **Transferring tokens** - locking and minting tokens across chains
 - **Transferring tokens with a payload** - including additional data with transfers
 
-### Attest a token
+### Attest a Token
 
 Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
 
@@ -57,6 +57,12 @@ function attestToken(
     `sequence` ++"uint64"++
     
     A unique identifier for the attestation transaction.
+
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/attestToken.sol'
+    ```
 
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
@@ -116,6 +122,12 @@ function transferTokens(
     
     A unique identifier for the transfer transaction.
 
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/transferTokens.sol'
+    ```
+
 Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
 
 ```solidity
@@ -132,7 +144,7 @@ function completeTransfer(bytes memory encodedVm) external;
     - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation
     - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain
 
-### Transfer tokens with payload
+### Transfer Tokens with Payload
 
 While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
 
@@ -185,6 +197,12 @@ function transferTokensWithPayload(
     `sequence` ++"uint64"++
     
     A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    --8<-- 'code/build/core-messaging/core-contracts/transferTokensWithPayload.sol'
+    ```
 
 After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
 
