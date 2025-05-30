@@ -69,7 +69,7 @@ contract CircleIntegration is
 
         // Call the circle bridge and `depositForBurnWithCaller`. The `mintRecipient`
         // should be the target contract (or wallet) composing on this contract.
-        (uint64 nonce, uint256 amountReceived) = _transferTokens(
+        (uint64 nonce, uint256 amountReceived) = _transferTokens{value: wormholeFee}(
             transferParams.token,
             transferParams.amount,
             transferParams.targetChain,
