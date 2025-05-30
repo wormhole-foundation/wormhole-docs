@@ -1,3 +1,4 @@
 title: Guides
 nav:
+- 'Integrate via CDN': hosted-version.md
 - 'Migration to v1': upgrade.md

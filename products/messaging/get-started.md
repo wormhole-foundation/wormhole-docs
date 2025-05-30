@@ -1,149 +1,101 @@
 ---
 title: Get Started with Messaging
-description: Follow this guide to deploy Wormhole Solidity SDK-based message sender and receiver smart contracts and use them to send messages across chains.
-categories: Messaging, Transfer
+description: Follow this guide to use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
+categories: Basics, Typescript-SDK
 ---
 
 # Get Started with Messaging
 
-:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
-
-## Introduction
-
-Wormhole's messaging protocol simplifies sending data, triggering events, and initiating transactions across blockchain networks. This guide demonstrates how to configure and deploy contracts to send messages from Avalanche Fuji to Celo Alfajores.
+Wormhole's core functionality allows you to send any data packet from one supported chain to another. This guide demonstrates how to publish your first simple, arbitrary data message from an EVM environment source chain using the Wormhole TypeScript SDK's core messaging capabilities. 
 
 ## Prerequisites
 
-Before you begin, make sure you have the following:
+Before you begin, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts and encrypting your private key
-- [Testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank}
-- [Testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank}
-- Wallet private key
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
+- [Ethers.js](https://docs.ethers.org/v6/getting-started/){target=\_blank} installed (this example uses version 6)
+- A small amount of testnet tokens for gas fees. This example uses [Sepolia ETH](https://sepolia-faucet.pk910.de/){target=\_blank} but can be adapted for any supported network
+- A private key for signing blockchain transactions
 
-## Install and Set Up Project
+## Configure Your Messaging Environment
 
-1. Clone the demo repository and navigate to the project directory:
-
-    ```bash
-    git clone https://github.com/wormhole-foundation/demo-wormhole-messaging.git
-    cd demo-wormhole-messaging
-    ```
-
-2. Use the following commands to install Foundry and project dependencies:
+1. Create a directory and initialize a Node.js project:
 
     ```bash
-    npm install
+    mkdir core-message
+    cd core-message
+    npm init -y
     ```
 
-3. Use Foundry's Forge to compile the contracts in the repository:
+2. Install TypeScript, tsx, Node.js type definitions, and Ethers.js:
 
     ```bash
-    forge build
+    npm install --save-dev tsx typescript @types/node ethers
     ```
 
-    You will see terminal output similar to the following, confirming the contracts were compiled successfully:
-
-    --8<-- "code/products/messaging/get-started/terminal-output-01.html"
-
-4. Run tests to ensure everything is functioning correctly before deployment:
+3. Create a `tsconfig.json` file if you don't have one. You can generate a basic one using the following command:
 
     ```bash
-    forge test
+    npx tsc --init
     ```
 
-    You will see passing results for all test cases in the terminal output:
+    Make sure your `tsconfig.json` includes the following settings:
 
-    --8<-- "code/products/messaging/get-started/terminal-output-02.html"
+    ```json 
+    {
+        "compilerOptions": {
+            // es2020 or newer
+            "target": "es2020",
+            // Use esnext if you configured your package.json with type: "module"
+            "module": "commonjs",
+            "esModuleInterop": true,
+            "forceConsistentCasingInFileNames": true,
+            "strict": true,
+            "skipLibCheck": true,
+            "resolveJsonModule": true
+            }
+    }
+    ```
 
-## Prepare for Contract Deployment
-
-This project relies on two [Wormhole Solidity SDK-based](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} smart contracts:
-
-- **MessageSender.sol** - sends a message to the target chain. You will deploy this contract to Avalanche Fuji
-- **MessageReceiver.sol** - receives and logs the message on the target chain. You will deploy this contract to Celo Alfajores
-
-The `chains.json` configuration defines properties for supported chains, including the Wormhole relayer addresses, RPC URLs, and chain IDs, and provides this information to the deployment scripts when you run them.
-
-### Encrypt Private Key
-
-Foundry supports multiple options for [creating a keystore](https://book.getfoundry.sh/reference/cast/cast-wallet-import){target=\_blank}. This example uses the `--privatekey` option. As long as you have a decryption password to enter when prompted, you can use your preferred options when creating your Foundry keystore.
-
-1. Create a Foundry keystore to encrypt your wallet private key using the following command: 
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}:
 
     ```bash
-    cast wallet import CELO_AVAX --privatekey INSERT_PRIVATE_KEY
+    npm install @wormhole-foundation/sdk
     ```
 
-2. Enter the password you wish to use to decrypt your private key at the prompt. You will not see the password in the terminal as you type:
+5. Create a new file named `main.ts`:
 
     ```bash
-    Enter password: INSERT_DECRYPTION_PASSWORD
+    touch main.ts
     ```
 
-3. Select return to save your password, and you will see a success message confirming that the keystore was saved successfully. Keep this password. You will be prompted to enter it in the terminal when a wallet signature is required
+## Construct and Publish Your Message
 
-## Deploy Sender Contract
+1. Open `main.ts` and update the code there as follows:
 
-Follow these steps to deploy `MessageSender.sol` to Avalanche Fuji:
+    ```ts title="main.ts"
+    --8<-- "code/products/messaging/get-started/main.ts"
+    ```
 
-1. Run the deployment script command in your terminal:
+    This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses the core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successful publication of the message.
+
+2. Run the script using the following command:
 
     ```bash
-    npm run deploy:sender
+    npx tsx main.ts
     ```
 
-2. Enter your Foundry keystore password in the terminal when prompted
+    You will see terminal output similar to the following:
 
-3. You will see terminal output similar to the following:
+    --8<-- "code/products/messaging/get-started/terminal01.html"
 
-    --8<-- "code/products/messaging/get-started/terminal-output-03.html"
+3. Make a note of the transaction ID and VAA identifier values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages
 
-    The address you see in your terminal is the Avalanche Fuji address for your deployed sender contract. Your deployed contract addresses are also output to the `deployedContracts.json` file.
-
-## Deploy Receiver Contract
-
-Follow these steps to deploy `MessageReceiver.sol` to Celo Alforjes:
-
-1. Run the deployment script command in your terminal:
-
-    ```bash
-    npm run deploy:receiver
-    ```
-
-2. Enter your Foundry keystore password in the terminal when prompted
-
-3. You will see terminal output similar to the following:
-
-    --8<-- "code/products/messaging/get-started/terminal-output-04.html"
-
-    - The Celo Alforjes address for your deployed receiver contract. Your deployed contract addresses are also output to the `deployedContracts.json` file
-    - Confirmation that a `MessageSender` contract is now registered as authorized to send messages to your receiver contract. This address should match the sender contract you deployed to Avalanche Fuji
-
-## Send Your First Message
-
-Follow these steps to use your deployed contracts and send your first message:
-
-1. Run the `sendMessage.ts` script using the following command:
-
-    ```bash
-    npm run send:message
-    ```
-
-2. Enter your Foundry keystore password in the terminal when prompted
-
-3. You will see terminal output similar to the following:
-
-    --8<-- "code/products/messaging/get-started/terminal-output-05.html"
-
-4. You can also use the [Celo Alfajores Testnet Explorer](https://alfajores.celoscan.io/){target=\_blank} to view your `MessageReceiver` contract. Select **Events** to see the events emitted by the contract when your message was received. You can use the dropdowns to change **Hex** to **Text** to read the message. It will look similar to the image below:
-
-    ![Contract events on Celo Alfajores Testnet Explorer](/docs/images/products/messaging/get-started/messaging-get-started01.webp)
-
-Congratulations! You've successfully sent and received a message across networks using Wormhole Solidity SDK-based smart contracts. 
+Congratulations! You've published your first multichain message using Wormhole's TypeScript SDK and core protocol functionality. Consider the following options to build upon what you've accomplished. 
 
 ## Next Steps
 
-<!--TODO: links to other guides and tutorials-->
+- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
 
+- [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.

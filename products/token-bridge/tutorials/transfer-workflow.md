@@ -33,7 +33,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains in the Wormhole SDK [GitHub repository](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/5810ebbd3635aaf1b5ab675da3f99f62aec2210f/core/base/src/constants/circle.ts#L14-L30){target=\_blank}, which covers both testnet and mainnet environments.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains on the [Contract Addresses](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} page, which includes every network where Wormhole smart contracts are deployed, across both mainnet and testnet.
 
 ## Project Setup
 
