@@ -10,18 +10,18 @@ Native Token Transfers (NTT) provides an adaptable framework for transferring yo
 
 ## Key Features
 
-- **Control and customization** - ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls
-- **Advanced rate limiting** - set rate limits per chain and period to prevent abuse, manage network congestion, and control deployments
-- **Global accountant** - ensures the amount burned and transferred on chains never exceeds the amount of tokens minted
-- **No wrapped tokens** - tokens are used directly within their native ecosystem, eliminating intermediary transfer steps
+- **Control and customization**: Ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls.
+- **Advanced rate limiting**: Set rate limits per chain and period to prevent abuse, manage network congestion, and control deployments.
+- **Global accountant**: Ensures the amount burned and transferred on chains never exceeds the amount of tokens minted.
+- **No wrapped tokens**: Tokens are used directly within their native ecosystem, eliminating intermediary transfer steps.
 
 
 ## Deployment Models
 
 NTT offers two operational modes for your existing tokens: 
 
-- **Hub-and-spoke** - locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts
-- **Burn-and-mint** - burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token
+- **Hub-and-spoke**: Locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts.
+- **Burn-and-mint**: Burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token.
 
 ## Supported Token Standards
 
@@ -35,42 +35,42 @@ NTT does not currently support token standards like ERC-721 (non-fungible tokens
 
 Here's a breakdown of the key steps involved when deploying NTT:
 
-- **Prepare tokens** - ensure your ERC-20 or SPL tokens are ready
-- **Choose deployment model** - choose your cross-chain token model: either burn-and-mint or hub-and-spoke
-- **Choose deployment tool** - use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}
-- **Initialization** - specify target chains and token details, and set up your CLI environment if using it
-- **Deploy contracts** - deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees
-- **Finalize configurations** - grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles
-- **Monitor and maintain** - verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed
+- **Prepare tokens**: Ensure your ERC-20 or SPL tokens are ready.
+- **Choose deployment model**: Choose your cross-chain token model: either burn-and-mint or hub-and-spoke.
+- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}.
+- **Initialization**: Specify target chains and token details, and set up your CLI environment if using it.
+- **Deploy contracts**: Deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees.
+- **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles.
+- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
 
 ## Use Cases 
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – transmits native assets across chains
-    - [**Connect**](/docs/products/connect/overview/) – manages user-friendly asset transfers
-    - [**Queries**](/docs/products/queries/overview/) – acquires real-time prices for optimal trade execution
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transmits native assets across chains.
+    - [**Connect**](/docs/products/connect/overview/): Manages user-friendly asset transfers.
+    - [**Queries**](/docs/products/queries/overview/): Acquires real-time prices for optimal trade execution.
 
 - **Borrowing and Lending Across Chains**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – moves collateral as native assets
-    - [**Messaging**](/docs/products/messaging/overview/) – propagates loan requests and liquidations across chains
-    - [**Queries**](/docs/products/queries/overview/) – retrieves  interest rates and asset prices in real-time
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Moves collateral as native assets.
+    - [**Messaging**](/docs/products/messaging/overview/): Propagates loan requests and liquidations across chains.
+    - [**Queries**](/docs/products/queries/overview/): Retrieves interest rates and asset prices in real-time.
 
 - **Gas Abstraction**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – facilitates native token conversion for gas payments
-    - [**Messaging**](/docs/products/messaging/overview/) – sends gas fee payments across chains
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Facilitates native token conversion for gas payments.
+    - [**Messaging**](/docs/products/messaging/overview/): Sends gas fee payments across chains.
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – ensures direct, native asset transfers
-    - [**Connect**](/docs/products/connect/overview/) – facilitates seamless payments in various tokens
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Ensures direct, native asset transfers.
+    - [**Connect**](/docs/products/connect/overview/): Facilitates seamless payments in various tokens.
 
 - **Cross-Chain Staking**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – transfers staked assets natively between networks
-    - [**Messaging**](/docs/products/messaging/overview/) – moves staking rewards and governance signals across chains
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transfers staked assets natively between networks.
+    - [**Messaging**](/docs/products/messaging/overview/): Moves staking rewards and governance signals across chains.
 
 ## Next Steps
 

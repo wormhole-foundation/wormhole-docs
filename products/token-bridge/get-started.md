@@ -12,8 +12,8 @@ Wormhole's [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} 
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
- - **Manual transfer** – where you control each step
- - **Automatic transfer** – where a relayer finalizes the transfer for you
+ - **Manual transfer**: Where you control each step.
+ - **Automatic transfer**: Where a relayer finalizes the transfer for you.
 
 These examples will help you understand how the Token Bridge works across EVM and non-EVM chains.
 
@@ -97,5 +97,5 @@ To verify the transaction and view its details, copy the transaction hash from t
 
 Now that you've completed a manual multichain token transfer, explore these guides to continue building:
 
- - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank} – build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic)
- - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank} – learn how to issue tokens that work across chains
+ - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank}: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
+ - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}: Learn how to issue tokens that work across chains.

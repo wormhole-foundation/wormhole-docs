@@ -89,18 +89,18 @@ To read more about each protocol, check the [architecture documentation](/docs/p
 
 - **Cross-Chain Perpetuals** 
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - fast token execution across chains
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch live prices and manage position state across chains
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Provides fast token execution across chains.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch live prices and manage position state across chains.
 
 - **Bridging Intent Library**
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - handles user-defined bridge intents
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – triggers cross-chain function calls
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Handles user-defined bridge intents.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Triggers cross-chain function calls.
 
 - **Multichain Prediction Markets**
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} – executes token flows between chains
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – gets market data and tracks state
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Executes token flows between chains.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Gets market data and tracks state.
 
 ## Next Steps
 
