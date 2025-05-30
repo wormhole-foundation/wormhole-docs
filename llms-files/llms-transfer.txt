@@ -3366,18 +3366,18 @@ By default, Connect offers two bridging protocols: Token Bridge (for Wormhole-wr
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
-- [**`TokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank} - manually redeemed Wormhole Token Bridge route
-- [**`AutomaticTokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank} - automatically redeemed (relayed) Token Bridge route
-- [**`CCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank} - manually redeemed CCTP route
-- [**`AutomaticCCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank} - automatically redeemed (relayed) CCTP route
-- **`DEFAULT_ROUTES`** - array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`)
-- [**`nttAutomaticRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank} - function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route
-- [**`nttManualRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}- function that returns the manually-redeemed NTT route
-- **`nttRoutes(nttConfig)`** - function that returns both NTT routes as an array
-- [**`MayanRoute`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank} - route that offers multiple Mayan protocols
-- [**`MayanRouteSWIFT`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank} - route for Mayan's Swift protocol only
-- [**`MayanRouteMCTP`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank} - route for Mayan's MCTP protocol only
-- [**`MayanRouteWH`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L550){target=\_blank} - route for Mayan's original Wormhole transfer protocol
+- [**`TokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank}: Manually redeemed Wormhole Token Bridge route.
+- [**`AutomaticTokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}: Automatically redeemed (relayed) Token Bridge route. 
+- [**`CCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank}: Manually redeemed CCTP route.
+- [**`AutomaticCCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank}: Automatically redeemed (relayed) CCTP route.
+- **`DEFAULT_ROUTES`**: Array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`).
+- [**`nttAutomaticRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/automatic.ts){target=\_blank}: Function that returns the automatically-redeemed (relayed) Native Token Transfer (NTT) route.
+- [**`nttManualRoute(nttConfig)`**](https://github.com/wormhole-foundation/native-token-transfers/blob/main/sdk/route/src/manual.ts){target=\_blank}: Function that returns the manually-redeemed NTT route.
+- **`nttRoutes(nttConfig)`**: Function that returns both NTT routes as an array.
+- [**`MayanRoute`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L57){target=\_blank}: Route that offers multiple Mayan protocols.
+- [**`MayanRouteSWIFT`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L528){target=\_blank}: Route for Mayan's Swift protocol only.
+- [**`MayanRouteMCTP`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L539){target=\_blank}: Route for Mayan's MCTP protocol only.
+- [**`MayanRouteWH`**](https://github.com/mayan-finance/wormhole-sdk-route/blob/main/src/index.ts#L550){target=\_blank}: Route for Mayan's original Wormhole transfer protocol.
 
 In addition to these routes, developers can create custom routes for their Wormhole-based protocols. For examples, refer to the [NTT](https://github.com/wormhole-foundation/native-token-transfers/tree/main/sdk/route){target=\_blank} and the [Mayan](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} example GitHub repositories.
 
@@ -3638,7 +3638,7 @@ categories: Connect, Transfer
 
 ## Theme & UI Customization
 
-This page focuses on how to style the Wormhole Connect widget, covering color schemes, fonts, layout changes (like toggling the hamburger menu), and adding extra menu entries. You'll learn how to customize Connect's look and feel to match your application's branding.
+This page focuses on how to style the Connect widget, covering color schemes, fonts, layout changes (like toggling the hamburger menu), and adding extra menu entries. You'll learn how to customize Connect's look and feel to match your application's branding.
 
 ### Changing the Color Scheme
 
@@ -3921,10 +3921,10 @@ export default App;
 
 The preceding sample code configures Connect by setting values inside `config` and `theme` as follows:
 
-- **Defines the network** - options include `Mainnet`, `Testnet`, or `Devnet`
-- **Defines chains to include** - this example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains
-- **Adds a title to UI** - (optional) if defined, it will render above the widget in the UI
-- **Defines the theme** - this example sets the mode to `dark` and adds a primary color
+- **Defines the network**: Options include `Mainnet`, `Testnet`, or `Devnet`.
+- **Defines chains to include**: This example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains.
+- **Adds a title to UI**: (Optional) If defined, it will render above the widget in the UI.
+- **Defines the theme**: This example sets the mode to `dark` and adds a primary color.
 
 ## Interact with Connect
 
@@ -3959,7 +3959,7 @@ If you're using React, refer to the [Get Started with Connect](/docs/products/co
 
 ## Install Connect
 
-To install the [Wormhole Connect npm package](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}, run the following command:
+To install the [Connect npm package](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}, run the following command:
 
 ```bash
 npm i @wormhole-foundation/wormhole-connect
@@ -4040,7 +4040,7 @@ These updates ensure better performance and a smoother integration experience.
 
 ## Update the Connect Package
 
-To begin the migration process, update the Wormhole Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/1.0.0-beta.6-development?activeTab=readme){target=\_blank} to the latest version 1.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
+To begin the migration process, update the Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/1.0.0-beta.6-development?activeTab=readme){target=\_blank} to the latest version 1.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
 
 Run the following command in your terminal:
 
@@ -4143,11 +4143,11 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 
 ### Update `routes` to Use Route Plugins
 
-The `routes` property in Wormhole Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
+The `routes` property in Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
 
-By default, if no `routes` property is set, Wormhole Connect will provide routes for two core protocols:
+By default, if no `routes` property is set, Connect will provide routes for two core protocols:
 
- - [Wormhole Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}
+ - [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}
  - [CCTP](/docs/products/cctp-bridge/overview/){target=\_blank}
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
@@ -4157,7 +4157,7 @@ For most use cases, integrators require more than the default routes. The new `r
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
 ???- tip "`route` Plugins"
-    - **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
+    - **`TokenBridgeRoute`** - manually redeemed Token Bridge route
     - **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
     - **`CCTPRoute`** - manually redeemed CCTP route
     - **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
@@ -4178,7 +4178,7 @@ Now that you know the available `route` plugins, let's explore some examples of 
 
 #### Example: Offer Only CCTP Transfers
 
-To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
+To configure Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
 ```typescript
 import WormholeConnect, {
@@ -4195,7 +4195,7 @@ const config: WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import WormholeConnect, {
@@ -4218,7 +4218,7 @@ This flexible plugin allows you to combine default routes (such as Token Bridge 
 
 ### Update the `tokensConfig` Structure
 
-In Wormhole Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
+In Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
 
 Key Changes to `tokensConfig`:
 
@@ -4295,7 +4295,7 @@ Key Changes to `tokensConfig`:
 
 ### Update NTT Configuration
 
-In Wormhole Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
+In Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
 
 Key changes:
 
@@ -4394,7 +4394,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
 
 ### Update UI Configuration
 
-In Wormhole Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
+In Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
 
 Key UI changes:
 
@@ -4518,7 +4518,7 @@ Important details:
 
 ### Removed Configuration Properties
 
-Several configuration properties have been removed in Wormhole Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
+Several configuration properties have been removed in Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
 
 Removed config keys:
 
@@ -4546,7 +4546,7 @@ For those using the CDN-hosted version of Wormhole Connect, the package's instal
     npm install @wormhole-foundation/wormhole-connect@^1.0
     ```
 
-2. After installing the package, you can embed Wormhole Connect into your page by adding the following code:
+2. After installing the package, you can embed Connect into your page by adding the following code:
 
     ```typescript
     import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
@@ -4631,19 +4631,19 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Connect**](/docs/products/connect/get-started/): handles user-friendly asset transfers
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
-    - [**Queries**](/docs/products/queries/overview/) – fetches real-time prices for optimal trade execution
+    - [**Connect**](/docs/products/connect/get-started/): Handles user-friendly asset transfers.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/): Moves native assets across chains.
+    - [**Queries**](/docs/products/queries/overview/): Fetches real-time prices for optimal trade execution.
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Connect**](/docs/products/connect/get-started/) – facilitates seamless payments in various tokens
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – ensures direct, native asset transfers
+    - [**Connect**](/docs/products/connect/get-started/): Facilitates seamless payments in various tokens.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/): Ensures direct, native asset transfers.
 
 - **Web3 Game Asset Transfers**
 
-    - [**Connect**](/docs/products/connect/get-started/) – provide a user-friendly way to move game tokens across chains
-    - [**Token Bridge**](/docs/products/token-bridge/overview/) – handle the underlying lock-and-mint logic securely
+    - [**Connect**](/docs/products/connect/get-started/): Provide a user-friendly way to move game tokens across chains.
+    - [**Token Bridge**](/docs/products/token-bridge/overview/): Handle the underlying lock-and-mint logic securely.
 
 ## Next Steps 
 
@@ -5394,8 +5394,8 @@ In the deployment steps, you will add your supported chains, their token address
 
 You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
 
-- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
-- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
+- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on Solana.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/guides/deploy-to-evm/
@@ -5941,8 +5941,8 @@ The NTT Launchpad currently supports deployments on the following mainnet chains
 
 Once ready, choose an option to proceed:
 
- - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
- - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract
+ - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token): Deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains.
+ - [**Expand Your Existing Token**](#expand-your-existing-token): If you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract.
 
 ## Launch a Cross-Chain Token
 
@@ -6046,8 +6046,8 @@ Use the drop-down menu at the top to select the chain you want to configure. The
 
 From this section, you can also:
 
- - **Pause the token** – temporarily turn off transfers on the selected chain
- - **Deploy to a new chain** – expand your token by deploying it to an additional chain
+ - **Pause the token**: Temporarily turn off transfers on the selected chain.
+ - **Deploy to a new chain**: Expand your token by deploying it to an additional chain.
 
 ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-12.webp)
 
@@ -6055,8 +6055,8 @@ From this section, you can also:
 
 This section displays key [roles](/docs/products/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
 
- - **Manager’s Owner** – the owner through the `NTTOwner` proxy
- - **Pauser** – the address authorized to pause transfers
+ - **Manager’s Owner**: The owner through the `NTTOwner` proxy.
+ - **Pauser**: The address authorized to pause transfers.
 
 ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-13.webp)
 
@@ -6066,8 +6066,8 @@ Determine and update how transceivers interact with the token. [Transceivers](/d
 
 A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
 
- - **Registered Transceivers** – displays the number of registered transceivers and their addresses
- - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
+ - **Registered Transceivers**: Displays the number of registered transceivers and their addresses.
+ - **Transceivers Threshold**: A configurable value that must be less than or equal to the number of transceivers.
 
 ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-14.webp)
 
@@ -6075,8 +6075,8 @@ A higher transceiver threshold increases security by requiring more approvals be
 
 Define the transfer restrictions for each connected network. You can adjust:
 
- - **Sending Limits** – the maximum amount of tokens that can be sent from the home chain
- - **Receiving Limits** – the maximum amount of tokens that can be received for each of the supported peer chains
+ - **Sending Limits**: The maximum amount of tokens that can be sent from the home chain.
+ - **Receiving Limits**: The maximum amount of tokens that can be received for each of the supported peer chains.
 
 Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
 
@@ -6097,7 +6097,7 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 
 - Implement a robust testing plan for your multichain token before launching
 - Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/products/native-token-transfers/configuration/access-control/){target=\_blank} for more details on ownership and rate limits
-- Consider a streamlined, customizable frontend such as [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} for an optimized user experience
+- Consider a streamlined, customizable frontend such as [Connect](/docs/products/connect/overview/){target=\_blank} for an optimized user experience
 - Alternatively, the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} allows for a direct integration into your infrastructure
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
 - Monitor and maintain your multichain deployment
@@ -6116,7 +6116,7 @@ This step ensures that tokens are properly minted or unlocked on Solana and prev
 
     ---
 
-    Check out an example project that uses a Vite-React TypeScript application and integrates it with Wormhole Connect, a customizable widget for cross-chain asset transfers.
+    Check out an example project that uses a Vite-React TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
 
     [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
 
@@ -6254,18 +6254,18 @@ Native Token Transfers (NTT) provides an adaptable framework for transferring yo
 
 ## Key Features
 
-- **Control and customization** - ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls
-- **Advanced rate limiting** - set rate limits per chain and period to prevent abuse, manage network congestion, and control deployments
-- **Global accountant** - ensures the amount burned and transferred on chains never exceeds the amount of tokens minted
-- **No wrapped tokens** - tokens are used directly within their native ecosystem, eliminating intermediary transfer steps
+- **Control and customization**: Ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls.
+- **Advanced rate limiting**: Set rate limits per chain and period to prevent abuse, manage network congestion, and control deployments.
+- **Global accountant**: Ensures the amount burned and transferred on chains never exceeds the amount of tokens minted.
+- **No wrapped tokens**: Tokens are used directly within their native ecosystem, eliminating intermediary transfer steps.
 
 
 ## Deployment Models
 
 NTT offers two operational modes for your existing tokens: 
 
-- **Hub-and-spoke** - locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts
-- **Burn-and-mint** - burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token
+- **Hub-and-spoke**: Locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts.
+- **Burn-and-mint**: Burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token.
 
 ## Supported Token Standards
 
@@ -6279,42 +6279,42 @@ NTT does not currently support token standards like ERC-721 (non-fungible tokens
 
 Here's a breakdown of the key steps involved when deploying NTT:
 
-- **Prepare tokens** - ensure your ERC-20 or SPL tokens are ready
-- **Choose deployment model** - choose your cross-chain token model: either burn-and-mint or hub-and-spoke
-- **Choose deployment tool** - use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}
-- **Initialization** - specify target chains and token details, and set up your CLI environment if using it
-- **Deploy contracts** - deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees
-- **Finalize configurations** - grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles
-- **Monitor and maintain** - verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed
+- **Prepare tokens**: Ensure your ERC-20 or SPL tokens are ready.
+- **Choose deployment model**: Choose your cross-chain token model: either burn-and-mint or hub-and-spoke.
+- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}.
+- **Initialization**: Specify target chains and token details, and set up your CLI environment if using it.
+- **Deploy contracts**: Deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees.
+- **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles.
+- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
 
 ## Use Cases 
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – transmits native assets across chains
-    - [**Connect**](/docs/products/connect/overview/) – manages user-friendly asset transfers
-    - [**Queries**](/docs/products/queries/overview/) – acquires real-time prices for optimal trade execution
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transmits native assets across chains.
+    - [**Connect**](/docs/products/connect/overview/): Manages user-friendly asset transfers.
+    - [**Queries**](/docs/products/queries/overview/): Acquires real-time prices for optimal trade execution.
 
 - **Borrowing and Lending Across Chains**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – moves collateral as native assets
-    - [**Messaging**](/docs/products/messaging/overview/) – propagates loan requests and liquidations across chains
-    - [**Queries**](/docs/products/queries/overview/) – retrieves  interest rates and asset prices in real-time
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Moves collateral as native assets.
+    - [**Messaging**](/docs/products/messaging/overview/): Propagates loan requests and liquidations across chains.
+    - [**Queries**](/docs/products/queries/overview/): Retrieves interest rates and asset prices in real-time.
 
 - **Gas Abstraction**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – facilitates native token conversion for gas payments
-    - [**Messaging**](/docs/products/messaging/overview/) – sends gas fee payments across chains
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Facilitates native token conversion for gas payments.
+    - [**Messaging**](/docs/products/messaging/overview/): Sends gas fee payments across chains.
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – ensures direct, native asset transfers
-    - [**Connect**](/docs/products/connect/overview/) – facilitates seamless payments in various tokens
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Ensures direct, native asset transfers.
+    - [**Connect**](/docs/products/connect/overview/): Facilitates seamless payments in various tokens.
 
 - **Cross-Chain Staking**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/) – transfers staked assets natively between networks
-    - [**Messaging**](/docs/products/messaging/overview/) – moves staking rewards and governance signals across chains
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transfers staked assets natively between networks.
+    - [**Messaging**](/docs/products/messaging/overview/): Moves staking rewards and governance signals across chains.
 
 ## Next Steps
 
@@ -7149,7 +7149,7 @@ You can tailor the example to your use case by adjusting:
 
 Once you've chosen a path, follow the corresponding guide to start building:
 
-- Check out the [`demo-mayanswift`](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} repository for the full code example.
+- [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank}: Check out the repository for the full code example.
 - [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/): Interact directly with routers for flexible protocol-level control.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
 --- END CONTENT ---
@@ -7592,18 +7592,18 @@ To read more about each protocol, check the [architecture documentation](/docs/p
 
 - **Cross-Chain Perpetuals** 
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - fast token execution across chains
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch live prices and manage position state across chains
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Provides fast token execution across chains.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch live prices and manage position state across chains.
 
 - **Bridging Intent Library**
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - handles user-defined bridge intents
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – triggers cross-chain function calls
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Handles user-defined bridge intents.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Triggers cross-chain function calls.
 
 - **Multichain Prediction Markets**
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} – executes token flows between chains
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – gets market data and tracks state
+    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Executes token flows between chains.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Gets market data and tracks state.
 
 ## Next Steps
 
@@ -8095,21 +8095,21 @@ This overview covers Token Bridge's main features, general processes, and possib
 
 Token Bridge is built to solve interoperability problems in multichain token transfers. Key features include:
 
-- **Interoperability** - transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}
-- **Lock-and-mint mechanism** - mint wrapped tokens backed 1:1 by locked assets on the source chain
-- **Preserved metadata** - ensure that token properties like name, symbol, and decimals persist across chains
-- **Transfer with payload** - attach arbitrary data to token transfers, enabling the triggering of specific actions
-- **Decentralized security** - verified by the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank}, ensuring cross-chain consistency and message authenticity
+- **Interoperability**: Transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+- **Lock-and-mint mechanism**: Mint wrapped tokens backed 1:1 by locked assets on the source chain.
+- **Preserved metadata**: Ensure that token properties like name, symbol, and decimals persist across chains.
+- **Transfer with payload**: Attach arbitrary data to token transfers, enabling the triggering of specific actions.
+- **Decentralized security**: Verified by the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank}, ensuring cross-chain consistency and message authenticity.
 
 ## How It Works
 
 The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
-1. **Attestation** - the token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token
-2. **Locking** - on the source chain, the native token is locked in a custody account
-3. **Message emission** - the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} verifies and emits a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
-4. **Verification** - the VAA is submitted and verified on the destination chain to confirm authenticity
-5. **Minting** - a wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain
+1. **Attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token.
+2. **Locking**: On the source chain, the native token is locked in a custody account.
+3. **Message emission**: The [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} verifies and emits a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+4. **Verification**: The VAA is submitted and verified on the destination chain to confirm authenticity.
+5. **Minting**: A wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain.
 
 This diagram showcases a simplified flow of Alice bridging ETH from Ethereum to her account on Solana.
 
@@ -8138,26 +8138,26 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 
 - **Multichain Rewards and Token Utility in Decentralized Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – transfer tokens between chains
-    - [**Messaging**](/docs/products/messaging/overview/) – facilitate the distribution and claiming processes of rewards
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Transfer tokens between chains.
+    - [**Messaging**](/docs/products/messaging/overview/): Facilitate the distribution and claiming processes of rewards.
 
 - **Tokenized Gaming Rewards**
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – handle the underlying lock-and-mint logic securely
-    - [**Connect**](/docs/products/connect/overview/) - provide a user-friendly way to move game tokens across chains
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Handle the underlying lock-and-mint logic securely.
+    - [**Connect**](/docs/products/connect/overview/): Provide a user-friendly way to move game tokens across chains.
 
 - **Multichain DeFi Arbitrage**
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – enables rapid and secure movement of DeFi assets 
-    - [**Connect**](/docs/products/connect/overview/) – provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Enables rapid and secure movement of DeFi assets.
+    - [**Connect**](/docs/products/connect/overview/): Provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms.
 
 ## Next Steps
 
 If you are looking for more guided practice, take a look at: 
 
-- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/) - perform token transfers using Wormhole’s Token Bridge, including manual and automatic transfers
-- [**Complete Token Transfer Flow**](/docs/products/token-bridge/tutorials/transfer-workflow/) - build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
-- [**Create Multichain Tokens**](/docs/products/token-bridge/tutorials/multichain-token/) - craft a multichain token using Wormhole's Portal Bridge
+- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/): Perform token transfers using the Token Bridge, including manual and automatic transfers.
+- [**Complete Token Transfer Flow**](/docs/products/token-bridge/tutorials/transfer-workflow/): Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
+- [**Create Multichain Tokens**](/docs/products/token-bridge/tutorials/multichain-token/): Craft a multichain token using Wormhole's Portal Bridge.
 --- END CONTENT ---
 
 ## Basics Concepts [shared: true]
@@ -9077,18 +9077,18 @@ Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, m
 
 ## Key Features
 
-- **Multichain messaging** - send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems
-- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
-- **Composable architecture** - works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases
+- **Multichain messaging**: Send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems.
+- **Decentralized validation**: A network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity.
+- **Composable architecture**: Works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases.
 
 ## How It Works
 
 The messaging flow consists of several core components:
 
-1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
-2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
-3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
-4. **Target chain (recipient contract)** - the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic
+1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
+2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
+4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
@@ -9098,29 +9098,29 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch rates and prices in real-time
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate actions across chains.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – aggregate multi-chain sources
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Relay verified data.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Aggregate multi-chain sources.
 
 - **Gas Abstraction**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – handle native token swaps
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate gas logic.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Handle native token swaps.
 
 - **Bridging Intent Library**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - execute user-defined bridging intents
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Dispatch and execute intents.
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Execute user-defined bridging intents.
 
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – enable tokenized rewards
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Facilitate decentralized interactions.
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Enable tokenized rewards.
 
 ## Next Steps
 
@@ -9792,7 +9792,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     For access to real-time network data without infrastructure overhead, follow this guide and use Wormhole Query to construct a query, make a request, and verify the response.
 
-    [:custom-arrow: Get Started with Queries](/docs/build/queries/use-queries/)
+    [:custom-arrow: Get Started with Queries](/docs/products/queries/guides/use-queries/)
 
 </div>
 --- END CONTENT ---

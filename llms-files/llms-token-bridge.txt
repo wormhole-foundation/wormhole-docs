@@ -561,8 +561,8 @@ Wormhole's [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} 
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
- - **Manual transfer** – where you control each step
- - **Automatic transfer** – where a relayer finalizes the transfer for you
+ - **Manual transfer**: Where you control each step.
+ - **Automatic transfer**: Where a relayer finalizes the transfer for you.
 
 These examples will help you understand how the Token Bridge works across EVM and non-EVM chains.
 
@@ -833,8 +833,8 @@ To verify the transaction and view its details, copy the transaction hash from t
 
 Now that you've completed a manual multichain token transfer, explore these guides to continue building:
 
- - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank} – build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic)
- - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank} – learn how to issue tokens that work across chains
+ - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank}: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
+ - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}: Learn how to issue tokens that work across chains.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/token-bridge/guides/token-bridge-contracts/
@@ -1077,21 +1077,21 @@ This overview covers Token Bridge's main features, general processes, and possib
 
 Token Bridge is built to solve interoperability problems in multichain token transfers. Key features include:
 
-- **Interoperability** - transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}
-- **Lock-and-mint mechanism** - mint wrapped tokens backed 1:1 by locked assets on the source chain
-- **Preserved metadata** - ensure that token properties like name, symbol, and decimals persist across chains
-- **Transfer with payload** - attach arbitrary data to token transfers, enabling the triggering of specific actions
-- **Decentralized security** - verified by the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank}, ensuring cross-chain consistency and message authenticity
+- **Interoperability**: Transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+- **Lock-and-mint mechanism**: Mint wrapped tokens backed 1:1 by locked assets on the source chain.
+- **Preserved metadata**: Ensure that token properties like name, symbol, and decimals persist across chains.
+- **Transfer with payload**: Attach arbitrary data to token transfers, enabling the triggering of specific actions.
+- **Decentralized security**: Verified by the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank}, ensuring cross-chain consistency and message authenticity.
 
 ## How It Works
 
 The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
-1. **Attestation** - the token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token
-2. **Locking** - on the source chain, the native token is locked in a custody account
-3. **Message emission** - the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} verifies and emits a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
-4. **Verification** - the VAA is submitted and verified on the destination chain to confirm authenticity
-5. **Minting** - a wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain
+1. **Attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token.
+2. **Locking**: On the source chain, the native token is locked in a custody account.
+3. **Message emission**: The [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} verifies and emits a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+4. **Verification**: The VAA is submitted and verified on the destination chain to confirm authenticity.
+5. **Minting**: A wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain.
 
 This diagram showcases a simplified flow of Alice bridging ETH from Ethereum to her account on Solana.
 
@@ -1120,26 +1120,26 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 
 - **Multichain Rewards and Token Utility in Decentralized Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – transfer tokens between chains
-    - [**Messaging**](/docs/products/messaging/overview/) – facilitate the distribution and claiming processes of rewards
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Transfer tokens between chains.
+    - [**Messaging**](/docs/products/messaging/overview/): Facilitate the distribution and claiming processes of rewards.
 
 - **Tokenized Gaming Rewards**
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – handle the underlying lock-and-mint logic securely
-    - [**Connect**](/docs/products/connect/overview/) - provide a user-friendly way to move game tokens across chains
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Handle the underlying lock-and-mint logic securely.
+    - [**Connect**](/docs/products/connect/overview/): Provide a user-friendly way to move game tokens across chains.
 
 - **Multichain DeFi Arbitrage**
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/) – enables rapid and secure movement of DeFi assets 
-    - [**Connect**](/docs/products/connect/overview/) – provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms
+    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Enables rapid and secure movement of DeFi assets.
+    - [**Connect**](/docs/products/connect/overview/): Provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms.
 
 ## Next Steps
 
 If you are looking for more guided practice, take a look at: 
 
-- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/) - perform token transfers using Wormhole’s Token Bridge, including manual and automatic transfers
-- [**Complete Token Transfer Flow**](/docs/products/token-bridge/tutorials/transfer-workflow/) - build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
-- [**Create Multichain Tokens**](/docs/products/token-bridge/tutorials/multichain-token/) - craft a multichain token using Wormhole's Portal Bridge
+- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/): Perform token transfers using the Token Bridge, including manual and automatic transfers.
+- [**Complete Token Transfer Flow**](/docs/products/token-bridge/tutorials/transfer-workflow/): Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
+- [**Create Multichain Tokens**](/docs/products/token-bridge/tutorials/multichain-token/): Craft a multichain token using Wormhole's Portal Bridge.
 --- END CONTENT ---
 
 ## Basics Concepts [shared: true]
@@ -2059,18 +2059,18 @@ Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, m
 
 ## Key Features
 
-- **Multichain messaging** - send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems
-- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
-- **Composable architecture** - works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases
+- **Multichain messaging**: Send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems.
+- **Decentralized validation**: A network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity.
+- **Composable architecture**: Works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases.
 
 ## How It Works
 
 The messaging flow consists of several core components:
 
-1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
-2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
-3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
-4. **Target chain (recipient contract)** - the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic
+1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
+2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
+4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
@@ -2080,29 +2080,29 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch rates and prices in real-time
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate actions across chains.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – aggregate multi-chain sources
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Relay verified data.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Aggregate multi-chain sources.
 
 - **Gas Abstraction**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – handle native token swaps
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate gas logic.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Handle native token swaps.
 
 - **Bridging Intent Library**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - execute user-defined bridging intents
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Dispatch and execute intents.
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Execute user-defined bridging intents.
 
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – enable tokenized rewards
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Facilitate decentralized interactions.
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Enable tokenized rewards.
 
 ## Next Steps
 
@@ -2774,7 +2774,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     For access to real-time network data without infrastructure overhead, follow this guide and use Wormhole Query to construct a query, make a request, and verify the response.
 
-    [:custom-arrow: Get Started with Queries](/docs/build/queries/use-queries/)
+    [:custom-arrow: Get Started with Queries](/docs/products/queries/guides/use-queries/)
 
 </div>
 --- END CONTENT ---

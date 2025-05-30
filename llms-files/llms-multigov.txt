@@ -531,8 +531,8 @@ MultiGov deployments follow a similar structure on both EVM and Solana. This sec
 
 You've now completed the initial setup and requested access through Tally. Continue to the deployment guide that matches your governance architecture:
 
- - [**Deploy on EVM Chains**](/docs/products/multigov/guides/deploy-to-evm){target=\_blank} – configure and deploy MultiGov smart contracts to EVM-compatible chains
- - [**Deploy on Solana**](/docs/products/multigov/guides/deploy-to-solana){target=\_blank} – launch the Solana staking program and configure spoke chain participation
+ - [**Deploy on EVM Chains**](/docs/products/multigov/guides/deploy-to-evm){target=\_blank}: Configure and deploy MultiGov smart contracts to EVM-compatible chains.
+ - [**Deploy on Solana**](/docs/products/multigov/guides/deploy-to-solana){target=\_blank}: Launch the Solana staking program and configure spoke chain participation.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/multigov/guides/deploy-to-evm/
@@ -988,21 +988,21 @@ MultiGov is a multichain governance system that enables decentralized decision-m
 
 MultiGov expands DAO governance across blockchains, increasing participation, improving security with Wormhole messaging, and enabling unified decision-making at scale. Key features include:
 
-- **Multichain governance** – token holders can vote and execute proposals from any supported chain
-- **Hub-and-spoke model** - proposals are created on a central hub chain and voted on from spoke chains, where governance tokens live
-- **Secure vote aggregation** - vote weights are checkpointed and verified to prevent double voting
-- **Cross-chain proposal execution** - approved proposals can be executed across multiple chains
-- **Flexible architecture** - can integrate with any Wormhole-supported blockchain
-- **Upgradeable and extensible** – supports upgrades across components while preserving vote history and system continuity
-- **Backed by Tally** – proposal creation, voting, and execution are coordinated via  [Tally](https://www.tally.xyz/get-started){target=\_blank}
+- **Multichain governance**: Token holders can vote and execute proposals from any supported chain.
+- **Hub-and-spoke model**: Proposals are created on a central hub chain and voted on from spoke chains, where governance tokens live.
+- **Secure vote aggregation**: Vote weights are checkpointed and verified to prevent double voting.
+- **Cross-chain proposal execution**: Approved proposals can be executed across multiple chains.
+- **Flexible architecture**: Can integrate with any Wormhole-supported blockchain.
+- **Upgradeable and extensible**: Supports upgrades across components while preserving vote history and system continuity.
+- **Backed by Tally**: Proposal creation, voting, and execution are coordinated via  [Tally](https://www.tally.xyz/get-started){target=\_blank}.
 
 ## How It Works
 
-1. **Create proposal on hub chain** - proposals are created on the hub chain, which manages the core governance logic, including vote aggregation and execution scheduling
-2. **Vote from spoke chains** - token holders on spoke chains vote locally using `SpokeVoteAggregators`, with checkpoints tracking their voting power
-3. **Transmit votes via Wormhole** - votes are securely sent to the hub using [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}, ensuring message integrity and cross-chain verification
-4. **Aggregate and finalize on hub** - the hub chain receives votes from all spokes, tallies results, and finalizes the outcome once the voting period ends
-5. **Execute actions across chains** - upon approval, proposals can trigger execution on one or more chains, again using [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} to deliver commands
+1. **Create proposal on hub chain**: Proposals are created on the hub chain, which manages the core governance logic, including vote aggregation and execution scheduling.
+2. **Vote from spoke chains**: Token holders on spoke chains vote locally using `SpokeVoteAggregators`, with checkpoints tracking their voting power.
+3. **Transmit votes via Wormhole**: Votes are securely sent to the hub using [VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}, ensuring message integrity and cross-chain verification.
+4. **Aggregate and finalize on hub**: The hub chain receives votes from all spokes, tallies results, and finalizes the outcome once the voting period ends.
+5. **Execute actions across chains**: Upon approval, proposals can trigger execution on one or more chains, again using [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} to deliver commands.
 
 <!-- PUT SIMPLE DIAGRAM HERE -->
 
@@ -1010,20 +1010,20 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 
 - **Cross-Chain Treasury Management**
 
-    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – vote on treasury actions from any supported chain  
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – transmit proposal execution to target chains
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – optionally move assets 
+    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank}: Vote on treasury actions from any supported chain.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Transmit proposal execution to target chains.
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Optionally move assets.
 
 - **Coordinated Protocol Upgrades Across Chains**
 
-    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – create a unified proposal to upgrade contracts across networks  
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – send upgrade instructions as VAAs and deliver execution payloads to target chains 
+    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank}: Create a unified proposal to upgrade contracts across networks.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Send upgrade instructions as VAAs and deliver execution payloads to target chains.
     
 - **Progressive Decentralization for Multichain DAOs**
 
-    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – extend governance to new chains while preserving coordination  
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch on-chain vote weights from remote spokes  
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – aggregate results and execute actions via the hub 
+    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank}: Extend governance to new chains while preserving coordination. 
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch on-chain vote weights from remote spokes.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Aggregate results and execute actions via the hub.
 
 ## Next Steps
 
@@ -1949,18 +1949,18 @@ Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, m
 
 ## Key Features
 
-- **Multichain messaging** - send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems
-- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
-- **Composable architecture** - works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases
+- **Multichain messaging**: Send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems.
+- **Decentralized validation**: A network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity.
+- **Composable architecture**: Works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases.
 
 ## How It Works
 
 The messaging flow consists of several core components:
 
-1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
-2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
-3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
-4. **Target chain (recipient contract)** - the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic
+1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
+2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
+4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
@@ -1970,29 +1970,29 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch rates and prices in real-time
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate actions across chains.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – aggregate multi-chain sources
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Relay verified data.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Aggregate multi-chain sources.
 
 - **Gas Abstraction**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – handle native token swaps
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate gas logic.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Handle native token swaps.
 
 - **Bridging Intent Library**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - execute user-defined bridging intents
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Dispatch and execute intents.
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Execute user-defined bridging intents.
 
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – enable tokenized rewards
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Facilitate decentralized interactions.
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Enable tokenized rewards.
 
 ## Next Steps
 
@@ -2664,7 +2664,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     For access to real-time network data without infrastructure overhead, follow this guide and use Wormhole Query to construct a query, make a request, and verify the response.
 
-    [:custom-arrow: Get Started with Queries](/docs/build/queries/use-queries/)
+    [:custom-arrow: Get Started with Queries](/docs/products/queries/guides/use-queries/)
 
 </div>
 --- END CONTENT ---

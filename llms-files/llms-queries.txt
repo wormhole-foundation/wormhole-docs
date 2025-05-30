@@ -643,11 +643,11 @@ Queries provide on-demand access to Guardian-attested on-chain data. They allow 
 
 ## Key Features
 
-- **On-demand data access** – fetch price feeds, interest rates, and other data in real-time
-- **Guardian attested** – all data is signed by [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} for trustless validation
-- **Cross-chain ready** – request data on one chain, use it on another
-- **Smart contract integration** – results are delivered as [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, readable by smart contracts
-- **Chain agnostic** – works across supported EVM chains, Solana, Sui, and [more](/docs/products/queries/reference/supported-networks/){target=\_blank}
+- **On-demand data access**: Fetch price feeds, interest rates, and other data in real-time.
+- **Guardian attested**: All data is signed by [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} for trustless validation.
+- **Cross-chain ready**: Request data on one chain, use it on another.
+- **Smart contract integration**: Results are delivered as [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, readable by smart contracts.
+- **Chain agnostic**: works across supported EVM chains, Solana, Sui, and [more](/docs/products/queries/reference/supported-networks/){target=\_blank}.
 
 ## How It Works
 
@@ -669,30 +669,30 @@ Queries enable a wide range of cross-chain applications. Below are common use ca
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – sync actions between chains
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch rates and prices in real-time.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Sync actions between chains.
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
 
 - **Cross-Chain Swaps and Liquidity Aggregation (e.g., [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch live prices optimal trade execution
-    - [**Connect**](/docs/products/connect/overview/){target=\_blank} – handle user-friendly asset transfers
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – moves native tokens
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch live prices optimal trade execution.
+    - [**Connect**](/docs/products/connect/overview/){target=\_blank}: Handle user-friendly asset transfers.
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank}: Moves native tokens.
 
 - **Real-Time Price Feeds and Trading Strategies (e.g., [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch price feeds 
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – trigger trades
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch price feeds.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Trigger trades.
 
 - **Multichain Prediction Markets**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch market data and odds
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} – automates token execution
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch market data and odds.
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Automates token execution.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} –  source data from chains
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – ensures tamper-proof data relay across networks
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Source data from chains.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Ensures tamper-proof data relay across networks.
 
 ## Next Steps
 
@@ -1717,18 +1717,18 @@ Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, m
 
 ## Key Features
 
-- **Multichain messaging** - send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems
-- **Decentralized validation** - a network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity
-- **Composable architecture** - works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases
+- **Multichain messaging**: Send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems.
+- **Decentralized validation**: A network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity.
+- **Composable architecture**: Works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases.
 
 ## How It Works
 
 The messaging flow consists of several core components:
 
-1. **Source chain (emitter contract)** - a contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain
-2. **Guardian Network** - [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}
-3. **Relayers** - off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain
-4. **Target chain (recipient contract)** - the [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic
+1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
+2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
+4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
 
@@ -1738,29 +1738,29 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch rates and prices in real-time
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate actions across chains.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – aggregate multi-chain sources
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Relay verified data.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Aggregate multi-chain sources.
 
 - **Gas Abstraction**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – handle native token swaps
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate gas logic.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Handle native token swaps.
 
 - **Bridging Intent Library**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - execute user-defined bridging intents
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Dispatch and execute intents.
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Execute user-defined bridging intents.
 
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – enable tokenized rewards
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Facilitate decentralized interactions.
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Enable tokenized rewards.
 
 ## Next Steps
 
@@ -2432,7 +2432,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     For access to real-time network data without infrastructure overhead, follow this guide and use Wormhole Query to construct a query, make a request, and verify the response.
 
-    [:custom-arrow: Get Started with Queries](/docs/build/queries/use-queries/)
+    [:custom-arrow: Get Started with Queries](/docs/products/queries/guides/use-queries/)
 
 </div>
 --- END CONTENT ---
