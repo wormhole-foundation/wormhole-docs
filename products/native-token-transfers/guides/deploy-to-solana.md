@@ -102,10 +102,10 @@ Deploying NTT with the CLI on Solana follows a structured process:
             !!! note
                 NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
-2. **Choose your [deployment model](TODO){target=\_blank}**:
+2. **Choose your [deployment model](/docs/products/native-token-transfers/overview/#deployment-models){target=\_blank}**:
 
-     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
-     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
+    - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+    - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
 
 3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
 
@@ -117,7 +117,7 @@ By default, NTT transfers to Solana require manual [relaying](/docs/protocol/inf
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
 
-The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 1. **Create a new NTT project** - set up a deployment workspace
 

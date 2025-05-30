@@ -69,8 +69,8 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 ## Next Steps
 
-For more `config` options, see the [Connect Data Configuration](/docs/products/connect/configuration/data/){target=\_blank} guide.
+- [**Connect Data Configuration**](/docs/products/connect/configuration/data/): Check out more config options for the Connect widget, including how to set up custom RPCs, manage tokens, and select bridging routes.
+- [**Connect Theme Configuration**](/docs/products/connect/configuration/theme/): Learn how to customize the Connect widget's appearance, including colors, fonts, and layout.
+- [**Integrate Connect into a React DApp**](/docs/products/connect/tutorials/react-dapp/): Explore a more comprehensive tutorial of integrating Connect into a React application.
 
-For more `theme` options, see the [Connect Theme Configuration](/docs/products/connect/configuration/theme/){target=\_blank} guide.
-
-<!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
+<!--TODO: Definitely want to feature using Connect to interact with your NTT deployment-->

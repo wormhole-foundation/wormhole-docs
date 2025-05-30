@@ -10,7 +10,7 @@ categories: NTT, Transfer
 
 The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
 
-If you haven't installed the NTT CLI yet, follow the [NTT Installation Guide](TODO){target=\_blank} to set it up before proceeding.
+If you haven't installed the NTT CLI yet, follow the [NTT Installation Guide](docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank} to set it up before proceeding.
 
 ## Table of Commands
 
