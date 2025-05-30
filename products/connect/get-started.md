@@ -79,7 +79,7 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 Use the following guides to configure your Connect instance:
 
-- **[Data Configuration](/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
-- **[Theme Configuration](/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
+- **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+- **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
 
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->

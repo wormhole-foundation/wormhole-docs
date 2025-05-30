@@ -10,7 +10,7 @@ categories: Connect, Transfer
 
 This guide focuses on using the hosted version—ideal for simpler setups or non-React environments. It includes everything you need to get started with just a few lines of code.
 
-If you're using React, refer to the [Get Started with Connect](/products/connect/get-started/){target=\_blank} guide.
+If you're using React, refer to the [Get Started with Connect](/docs/products/connect/get-started/){target=\_blank} guide.
 
 ## Install Connect
 
@@ -38,5 +38,5 @@ You can provide config and theme parameters in a second function argument:
 
 Use the following guides to configure your Connect instance:
 
-- **[Data Configuration](/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
-- **[Theme Configuration](/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
+- **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+- **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
