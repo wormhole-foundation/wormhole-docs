@@ -55,7 +55,7 @@ Here's a breakdown of the key steps involved when deploying NTT:
 
     - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Moves collateral as native assets.
     - [**Messaging**](/docs/products/messaging/overview/): Propagates loan requests and liquidations across chains.
-    - [**Queries**](/docs/products/queries/overview/): Retrieves  interest rates and asset prices in real-time.
+    - [**Queries**](/docs/products/queries/overview/): Retrieves interest rates and asset prices in real-time.
 
 - **Gas Abstraction**
 
