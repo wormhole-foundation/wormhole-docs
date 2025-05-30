@@ -43,6 +43,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/products.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/concepts/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/get-started.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/guides/liquidity-layer.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/guides/solver.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/overview.md [type: other]
@@ -453,7 +454,7 @@ To verify the transaction and view its details, paste the transaction hash into 
 
 Now that you've completed a CCTP USDC transfer using the Wormhole SDK, you're ready to explore more advanced features and expand your integration:
 
- - [**Circle CCTP Documentation**](https://developers.circle.com/stablecoins/cctp-getting-started){target=\_blank} – learn how USDC cross-chain transfers work and explore advanced CCTP features
+ - [**Circle CCTP Documentation**](https://developers.circle.com/stablecoins/cctp-getting-started): Learn how USDC cross-chain transfers work and explore advanced CCTP features.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/cctp-bridge/guides/cctp-contracts/
@@ -3159,7 +3160,7 @@ Integrating Wormhole's messaging with CCTP enables the secure transfer of native
 Now that you're familiar with CCTP, here is a list of resources for more hands-on practice:
 
 - [**Get started with CCTP Bridge**](/docs/products/cctp-bridge/get-started/): Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
-- [**Complete USDC Transfer Flow**](Todo): Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
+- [**Complete USDC Transfer Flow**](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/): Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
 - [**Checkout Circle's CCTP Docs**](https://developers.circle.com/stablecoins/cctp-getting-started){target=\_blank}: Learn more about Circle's cross-chain transfer protocol in their documentation.
 --- END CONTENT ---
 
@@ -3931,10 +3932,11 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 ## Next Steps
 
-Use the following guides to configure your Connect instance:
+Use the following guides to configure your Connect instance and integrate it into your application:
 
 - **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
 - **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
+- **[Integrate Connect into a React DApp](/docs/products/connect/tutorials/react-dapp/)**: Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
 
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
 --- END CONTENT ---
@@ -4598,7 +4600,7 @@ With the Wormhole Connect widget, you can enable users to perform multichain ass
 
 ## Key Features
 
-Wormhole connect's notable features include:
+Connect's notable features include:
 
 - **In-app multichain transfers**: Bridge assets without leaving your app.
 - **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Token Bridge, CCTP, or NTT.
@@ -4615,7 +4617,7 @@ When a user initiates a multichain transfer, Connect walks them through key step
 1. **Initiating the transfer**: Connect your chosen wallet to the source chain, select asset and source chain for the transfer.
 2. **Finalize transfer setup**: Connect the destination wallet, select the target chain and select a bridging route (manual or automatic).
 3. **Transaction submission on source chain**: Confirms the transfer details to trigger the asset lock or deposit on the initial blockchain. Connect will guide you through the transaction process.
-4. **VAA or attestation creation**: Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the source transaction and produce a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank} or CCTP attestation.
+4. **VAA or attestation creation**: Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the source transaction and produce a [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 5. **Relaying to destination**: The VAA or attestation is automatically relayed to the destination chain.
 6. **Verification on destination**: Contracts on the target chain receive and verify the incoming VAA.
 7. **Asset release/minting**: Upon successful verification, the equivalent assets are either released or minted on the target chain and delivered to your wallet.
@@ -4629,7 +4631,7 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Connect**](/docs/products/connect/get-started/) – handles user-friendly asset transfers
+    - [**Connect**](/docs/products/connect/get-started/): handles user-friendly asset transfers
     - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
     - [**Queries**](/docs/products/queries/overview/) – fetches real-time prices for optimal trade execution
 
@@ -5404,7 +5406,11 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 categories: NTT, Transfer
 ---
 
-# Native Token Transfers (NTT) EVM Development
+# Deploy Native Token Transfers (NTT) to EVM Chains
+
+[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
 ## Deploy Your Token and Ensure Compatibility
 
@@ -5412,20 +5418,20 @@ If you still need to do so, deploy the token contract to the destination or spok
 
 ### Requirements for Token Deployment
 
-Wormhole’s NTT is an open framework that supports various deployment modes. The NTT CLI currently supports two deployment modes: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed across chains.
+Wormhole’s NTT framework supports two [deployment models](/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke. **Both require an ERC-20 token (new or existing).**
 
-#### Burn-and-Mint Mode
+??? interface "Burn-and-Mint"
 
-Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
+    Tokens must implement the following non-standard ERC-20 functions:
 
-- `burn(uint256 amount)`
-- `mint(address account, uint256 amount)`
+    - `burn(uint256 amount)`
+    - `mint(address account, uint256 amount)`
 
-These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
+    These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for all required functions, errors, and events.
 
-??? code "View the complete `INttToken` Interface`"
-    ```solidity
-    // SPDX-License-Identifier: Apache 2
+    ??? interface "`INttToken` Interface"
+        ```solidity
+        // SPDX-License-Identifier: Apache 2
 pragma solidity &gt;=0.8.8 &lt;0.9.0;
 
 interface INttToken {
@@ -5461,53 +5467,65 @@ interface INttToken {
     //       found in the `ERC20Burnable` interface.
     function burn(uint256 amount) external;
 }
-    ```
+        ```
 
-Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
+    You’ll also need to set mint authority to the relevant `NttManager` contract. Example deployment scripts are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
 
-#### Hub-and-Spoke Mode
+??? interface "Hub-and-Spoke Mode"
 
-A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) mint or burn tokens during cross-chain transfers, ensuring consistency with the locked tokens on the hub chain.
+    Tokens only need to be ERC-20 compliant. The hub chain serves as the source of truth for supply consistency, while only spoke chains need to support minting and burning. For example, if Ethereum is the hub and Polygon is a spoke:
 
- - **Hub chain** - tokens are locked on the hub chain when transferring to spoke chains
- - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
+    - Tokens are locked on Ethereum
+    - Tokens are minted or burned on Polygon
 
-!!! note
-    The only requirement for using the NTT framework is an ERC20 token, which can be newly deployed or existing. Steps like setting mint authority apply only to spoke chains.
-
-For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
-
-This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
-
-For more detailed information, see the [Deployment Models](TODO){target=\_blank} page.
-
-### Key Differences Between Modes
-
- - **Burn-and-mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to manage token issuance independently
- - **Hub-and-spoke** - tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency
+    This setup maintains a consistent total supply across all chains.
 
 ## Deploy NTT
 
-Create a new NTT project:
+Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
 
-```bash
-ntt new my-ntt-deployment
-cd my-ntt-deployment
-```
+???- interface "Install the NTT CLI and Scaffold a New Project"
+    
+    Before proceeding, make sure you have the NTT CLI installed and a project initialized. 
 
-Initialize a new `deployment.json` file specifying the network:
+Follow these steps (or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}):
 
-=== "Testnet"
-
-    ```bash
-    ntt init Testnet
-    ```
-
-=== "Mainnet"
+1. Install the NTT CLI:
 
     ```bash
-    ntt init Mainnet
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
     ```
+
+    Verify installation:
+
+    ```bash
+    ntt --version
+    ```
+
+2. Initialize a new NTT project:
+
+    ```bash
+    ntt new my-ntt-project
+    cd my-ntt-project
+    ```
+
+3. Create the deployment config**:
+
+    === "Mainnet"
+
+        ```bash
+        ntt init Mainnet
+        ```
+
+    === "Testnet"
+
+        ```bash
+        ntt init Testnet
+        ```
+
+    This generates a `deployment.json` file where your deployment settings will be stored.
+
+Once you've completed those steps, return here to proceed with adding your EVM chains and deploying contracts.
 
 Ensure you have set up your environment correctly: 
 
@@ -5583,7 +5601,7 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
 
 !!!important
-    To proceed with testing and find integration examples, check out the [NTT Post Deployment](TODO){target=\_blank} page.
+    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank} page.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/guides/deploy-to-solana/
@@ -5598,14 +5616,7 @@ categories: NTT, Transfer
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
-This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
-
-The diagram below shows a high-level view of the Solana NTT deployment flow. It illustrates the full lifecycle, from token setup to selecting the transfer mode and configuring and deploying the NTT program using the CLI. This visual is a quick reference for how each step connects in the Solana deployment process.
-
-![Solana NTT deployment diagram](/docs/images/products/native-token-transfers/guides/solana/ntt-solana-guide-1.webp)
-
-By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
-
+This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode. By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
 
 ## Prerequisites
 
@@ -5692,12 +5703,14 @@ Deploying NTT with the CLI on Solana follows a structured process:
             !!! note
                 NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
-2. **Choose your [deployment model](TODO){target=\_blank}**:
+2. **Choose your deployment model**:
 
-     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
-     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
+    - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+    - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
 
 3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
+
+![Solana NTT deployment diagram](/docs/images/products/native-token-transfers/guides/solana/ntt-solana-guide-1.webp)
 
 Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
 
@@ -5707,16 +5720,34 @@ By default, NTT transfers to Solana require manual [relaying](/docs/protocol/inf
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
 
-The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
-1. **Create a new NTT project** - set up a deployment workspace
+???- interface "Install the NTT CLI and Scaffold a New Project"
+
+    Before proceeding, make sure you have the NTT CLI installed and a project initialized. 
+
+Follow these steps (or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}):
+
+1. Install the NTT CLI:
 
     ```bash
-    ntt new INSERT_PROJECT_NAME
-    cd INSERT_PROJECT_NAME
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
     ```
 
-2. **Initialize the deployment** - generate a `deployment.json` file with your deployment settings
+    Verify installation:
+
+    ```bash
+    ntt --version
+    ```
+
+2. Initialize a new NTT project:
+
+    ```bash
+    ntt new my-ntt-project
+    cd my-ntt-project
+    ```
+
+3. Create the deployment config**:
 
     === "Mainnet"
 
@@ -5729,8 +5760,11 @@ The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, an
         ```bash
         ntt init Testnet
         ```
-!!! note
-    Testnet deployment settings work for both Solana Testnet and Devnet networks.
+
+    This generates a `deployment.json` file where your deployment settings will be stored.
+
+    !!! note
+        Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
 ### Generate an NTT Program Key Pair
 
@@ -5839,7 +5873,7 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](TODO){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
 
@@ -6036,7 +6070,7 @@ This section displays key [roles](/docs/products/native-token-transfers/configur
 
 ### Security Threshold
 
-Determine and update how transceivers interact with the token. [Transceivers](TODO){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
+Determine and update how transceivers interact with the token. [Transceivers](/docs/products/native-token-transfers/concepts/architecture/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
 
 A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
 
@@ -6869,6 +6903,263 @@ If an auction does not start within the specified deadline, a standard CCTP tran
 After the user receives the token upfront, the execution of additional contract calls depends on the relayer of the composing protocol. For example, in Mayan Shuttle, the relayer will attempt the swap multiple times, but its success is subject to the parameters defined in the `callData` (e.g., slippage).
 
 If the slippage tolerance is set too low, the user may receive USDC on the destination chain instead of the intended swap outcome. However, the four basis points (bps) fee is non-refundable, as the service provided by Liquidity Layer (LL) solvers (ensuring front-finality) is separate from the composing protocol's services, such as swaps or deposits.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/settlement/get-started/
+--- BEGIN CONTENT ---
+---
+title: Get Started
+description: Perform a cross-chain token swap using Wormhole Settlement and the Mayan Swift route with the TypeScript SDK on mainnet.
+categories: Settlement, Transfer
+---
+
+# Get Started
+
+[Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
+
+This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](docs/tools/typescript-sdk/get-started/){target=_blank}.
+
+By the end, you'll have a working script that:
+
+- Resolves token transfer routes using Mayan Swift
+- Quotes and validates the best route
+- Initiates a swap on a source chain and completes the transfer on a destination chain
+
+!!! note
+    Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
+- Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}
+
+This example uses Ethereum as the source chain and Solana as the destination. As a result, you'll need an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the example to match your preferred chains.
+
+## Set Up a Project
+
+Start by scaffolding a basic Node.js project and installing the required SDKs.
+
+1. Create a new project folder:
+
+    ```bash
+    mkdir settlement-swap
+    cd settlement-swap
+    npm init -y
+    ```
+
+2. Install the required dependencies:
+
+    ```bash
+    npm install @wormhole-foundation/sdk-connect \
+        @wormhole-foundation/sdk-evm \
+        @wormhole-foundation/sdk-solana \
+        @mayanfinance/wormhole-sdk-route \
+        dotenv
+    npm install -D typescript tsx
+    ```
+
+3. Create the file structure:
+
+    ```bash
+    mkdir src
+    touch src/helpers.ts src/swap.ts .env .gitignore
+    ```
+
+4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://book.getfoundry.sh/reference/cast/cast-wallet/){target=_blank}.
+
+    !!! warning
+        If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
+## Perform a Token Swap
+
+This section shows you how to perform a token swap using the Mayan Swift route. You will define a helper function to configure the source and destination chain signers.
+
+Then, you'll create a script that initiates a transfer on Ethereum, uses the Mayan Swift resolver to find valid routes, sends the transaction, and completes the transfer on Solana.
+
+1. Open `helper.ts` and define the `getSigner` utility function to load private keys, instantiate signers for Ethereum and Solana, and return the signers along with the Wormhole-formatted address:
+
+    ```ts title="src/helpers.ts"
+    import {
+  Chain,
+  ChainAddress,
+  ChainContext,
+  Network,
+  Signer,
+  Wormhole,
+} from '@wormhole-foundation/sdk-connect';
+import { getEvmSignerForKey } from '@wormhole-foundation/sdk-evm';
+import { getSolanaSigner } from '@wormhole-foundation/sdk-solana';
+
+/**
+ * Returns a signer for the given chain using locally scoped credentials.
+ * The required values (MAINNET_ETH_PRIVATE_KEY, MAINNET_SOL_PRIVATE_KEY)
+ * must be loaded securely beforehand, for example via a keystore,
+ * secrets manager, or environment variables (not recommended).
+ */
+// Define Transfer Interface
+export interface SignerContext<n c="" chain="" extends="" network,=""> {
+  signer: Signer<n, c="">;
+  address: ChainAddress<c>;
+}
+
+export async function getSigner<n c="" chain="" extends="" network,="">(
+  chain: ChainContext<n, c="">
+): Promise<signercontext<n, c="">&gt; {
+  let signer: Signer;
+  const platform = chain.platform.utils()._platform;
+  switch (platform) {
+    case 'Solana':
+      signer = await getSolanaSigner(
+        await chain.getRpc(),
+        getEnv('MAINNET_SOL_PRIVATE_KEY')
+      );
+      break;
+    case 'Evm':
+      signer = await getEvmSignerForKey(
+        await chain.getRpc(),
+        getEnv('MAINNET_ETH_PRIVATE_KEY')
+      );
+      break;
+    default:
+      throw new Error('Unrecognized platform: ' + platform);
+  }
+
+  return {
+    signer: signer as Signer<n, c="">,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
+}
+</n,></signercontext<n,></n,></n></c></n,></n>
+    ```
+
+2. In `swap.ts`, add the following script, which will handle all of the logic required to perform the token swap: 
+
+    ```ts title="src/swap.ts"
+    import { Wormhole, routes } from '@wormhole-foundation/sdk-connect';
+import { EvmPlatform } from '@wormhole-foundation/sdk-evm';
+import { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
+import { MayanRouteSWIFT } from '@mayanfinance/wormhole-sdk-route';
+import { getSigner } from './helpers';
+
+(async function () {
+  // Setup
+  const wh = new Wormhole('Mainnet', [EvmPlatform, SolanaPlatform]);
+
+  const sendChain = wh.getChain('Ethereum');
+  const destChain = wh.getChain('Solana');
+
+  //  To transfer native ETH on Ethereum to native SOL on Solana
+  const source = Wormhole.tokenId(sendChain.chain, 'native');
+  const destination = Wormhole.tokenId(destChain.chain, 'native');
+
+  // Create a new Wormhole route resolver, adding the Mayan route to the default list
+  // @ts-ignore: Suppressing TypeScript error because the resolver method expects a specific type,
+  // but MayanRouteSWIFT is compatible and works as intended in this context.
+  const resolver = wh.resolver([MayanRouteSWIFT]);
+
+  // Show supported tokens
+  const dstTokens = await resolver.supportedDestinationTokens(
+    source,
+    sendChain,
+    destChain
+  );
+  console.log(dstTokens.slice(0, 5));
+
+  // Load signers and addresses from helpers
+  const sender = await getSigner(sendChain);
+  const receiver = await getSigner(destChain);
+
+  // Creating a transfer request fetches token details
+  // since all routes will need to know about the tokens
+  const tr = await routes.RouteTransferRequest.create(wh, {
+    source,
+    destination,
+  });
+
+  // Resolve the transfer request to a set of routes that can perform it
+  const foundRoutes = await resolver.findRoutes(tr);
+  const bestRoute = foundRoutes[0]!;
+
+  // Specify the amount as a decimal string
+  const transferParams = {
+    amount: '0.002',
+    options: bestRoute.getDefaultOptions(),
+  };
+
+  // Validate the queries route
+  let validated = await bestRoute.validate(tr, transferParams);
+  if (!validated.valid) {
+    console.error(validated.error);
+    return;
+  }
+  console.log('Validated: ', validated);
+
+  const quote = await bestRoute.quote(tr, validated.params);
+  if (!quote.success) {
+    console.error(`Error fetching a quote: ${quote.error.message}`);
+    return;
+  }
+  console.log('Quote: ', quote);
+
+  // Initiate the transfer
+  const receipt = await bestRoute.initiate(
+    tr,
+    sender.signer,
+    quote,
+    receiver.address
+  );
+  console.log('Initiated transfer with receipt: ', receipt);
+
+  await routes.checkAndCompleteTransfer(
+    bestRoute,
+    receipt,
+    receiver.signer,
+    15 * 60 * 1000
+  );
+})();
+    ```
+
+3. Execute the script to initiate and complete the transfer:
+
+    ```bash
+    npx tsx src/swap.ts
+    ```
+
+    If successful, you’ll see terminal output like this:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx src/swap.ts</span>
+<span data-ty="">Validated: { valid: true, ... }</span>
+<span data-ty="">Quote: { success: true, ... }</span>
+<span data-ty="">Initiated transfer with receipt: ...</span>
+<span data-ty="">Checking transfer state...</span>
+<span data-ty="">Current Transfer State: SourceInitiated</span>
+<span data-ty="">Current Transfer State: SourceInitiated</span>
+<span data-ty="">Current Transfer State: SourceInitiated</span>
+<span data-ty="">Current Transfer State: DestinationFinalized</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+Congratulations! You've just completed a cross-chain token swap from Ethereum to Solana using Settlement.
+
+## Customize the Integration
+
+You can tailor the example to your use case by adjusting:
+
+- **Tokens and chains**: Use `getSupportedTokens()` to explore what's available.
+- **Source and destination chains**: Modify `sendChain` and `destChain` in `swap.ts`.
+- **Transfer settings**: Update the amount or route parameters.
+- **Signer management**: Modify `src/helpers.ts` to integrate with your preferred wallet setup.
+
+## Next Steps
+
+Once you've chosen a path, follow the corresponding guide to start building:
+
+- Check out the [`demo-mayanswift`](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} repository for the full code example.
+- [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/): Interact directly with routers for flexible protocol-level control.
+<!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/settlement/guides/liquidity-layer/
@@ -8194,7 +8485,6 @@ Congratulations! You've published your first multichain message using Wormhole's
 ## Next Steps
 
 - [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
-
 - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 --- END CONTENT ---
 
@@ -8844,8 +9134,8 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 Follow these steps to work with Wormhole Messaging:
 
-- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank} - use the core protocol to publish a multichain message and return transaction info with VAA identifiers
-- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank} - send and receive messages without off-chain infrastructure
+- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
+- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/products/
@@ -10870,7 +11160,7 @@ categories: Reference
 
 Wormhole supports many blockchains across mainnet, testnet, and devnets. You can use these tables to verify if your desired chains are supported by the Wormhole products you plan to include in your integration. 
 
-## Networks
+## Supported Networks by Product
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CONNECT-->

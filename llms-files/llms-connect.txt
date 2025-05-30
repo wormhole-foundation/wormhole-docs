@@ -979,10 +979,11 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 ## Next Steps
 
-Use the following guides to configure your Connect instance:
+Use the following guides to configure your Connect instance and integrate it into your application:
 
 - **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
 - **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
+- **[Integrate Connect into a React DApp](/docs/products/connect/tutorials/react-dapp/)**: Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
 
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
 --- END CONTENT ---
@@ -1646,7 +1647,7 @@ With the Wormhole Connect widget, you can enable users to perform multichain ass
 
 ## Key Features
 
-Wormhole connect's notable features include:
+Connect's notable features include:
 
 - **In-app multichain transfers**: Bridge assets without leaving your app.
 - **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Token Bridge, CCTP, or NTT.
@@ -1663,7 +1664,7 @@ When a user initiates a multichain transfer, Connect walks them through key step
 1. **Initiating the transfer**: Connect your chosen wallet to the source chain, select asset and source chain for the transfer.
 2. **Finalize transfer setup**: Connect the destination wallet, select the target chain and select a bridging route (manual or automatic).
 3. **Transaction submission on source chain**: Confirms the transfer details to trigger the asset lock or deposit on the initial blockchain. Connect will guide you through the transaction process.
-4. **VAA or attestation creation**: Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the source transaction and produce a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank} or CCTP attestation.
+4. **VAA or attestation creation**: Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the source transaction and produce a [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 5. **Relaying to destination**: The VAA or attestation is automatically relayed to the destination chain.
 6. **Verification on destination**: Contracts on the target chain receive and verify the incoming VAA.
 7. **Asset release/minting**: Upon successful verification, the equivalent assets are either released or minted on the target chain and delivered to your wallet.
@@ -1677,7 +1678,7 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Connect**](/docs/products/connect/get-started/) – handles user-friendly asset transfers
+    - [**Connect**](/docs/products/connect/get-started/): handles user-friendly asset transfers
     - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
     - [**Queries**](/docs/products/queries/overview/) – fetches real-time prices for optimal trade execution
 
@@ -2102,7 +2103,6 @@ Congratulations! You've published your first multichain message using Wormhole's
 ## Next Steps
 
 - [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
-
 - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 --- END CONTENT ---
 
@@ -2752,8 +2752,8 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 Follow these steps to work with Wormhole Messaging:
 
-- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank} - use the core protocol to publish a multichain message and return transaction info with VAA identifiers
-- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank} - send and receive messages without off-chain infrastructure
+- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
+- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/products/
@@ -4778,7 +4778,7 @@ categories: Reference
 
 Wormhole supports many blockchains across mainnet, testnet, and devnets. You can use these tables to verify if your desired chains are supported by the Wormhole products you plan to include in your integration. 
 
-## Networks
+## Supported Networks by Product
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CONNECT-->
