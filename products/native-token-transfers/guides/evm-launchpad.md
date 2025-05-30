@@ -164,7 +164,7 @@ This section displays key [roles](/docs/products/native-token-transfers/configur
 
 ### Security Threshold
 
-Determine and update how transceivers interact with the token. [Transceivers](TODO){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
+Determine and update how transceivers interact with the token. [Transceivers](/docs/products/native-token-transfers/concepts/architecture/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
 
 A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
 

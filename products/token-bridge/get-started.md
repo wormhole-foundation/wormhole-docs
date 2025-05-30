@@ -10,7 +10,7 @@ categories: Token-Bridge, Transfers
 
 Wormhole's [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
-In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation.
+In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
  - **Manual transfer** – where you control each step
  - **Automatic transfer** – where a relayer finalizes the transfer for you

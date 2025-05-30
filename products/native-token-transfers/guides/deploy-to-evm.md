@@ -16,7 +16,7 @@ If you still need to do so, deploy the token contract to the destination or spok
 
 ### Requirements for Token Deployment
 
-Wormhole’s NTT framework supports two [deployment modes](/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke. **Both require an ERC-20 token (new or existing).**
+Wormhole’s NTT framework supports two [deployment models](/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke. **Both require an ERC-20 token (new or existing).**
 
 ??? interface "Burn-and-Mint"
 
@@ -120,4 +120,4 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
 
 !!!important
-    To proceed with testing and find integration examples, check out the [NTT Post Deployment](TODO){target=\_blank} page.
+    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank} page.

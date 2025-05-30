@@ -10,7 +10,7 @@ With the Wormhole Connect widget, you can enable users to perform multichain ass
 
 ## Key Features
 
-Wormhole connect's notable features include:
+Connect's notable features include:
 
 - **In-app multichain transfers**: Bridge assets without leaving your app.
 - **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Token Bridge, CCTP, or NTT.
@@ -27,7 +27,7 @@ When a user initiates a multichain transfer, Connect walks them through key step
 1. **Initiating the transfer**: Connect your chosen wallet to the source chain, select asset and source chain for the transfer.
 2. **Finalize transfer setup**: Connect the destination wallet, select the target chain and select a bridging route (manual or automatic).
 3. **Transaction submission on source chain**: Confirms the transfer details to trigger the asset lock or deposit on the initial blockchain. Connect will guide you through the transaction process.
-4. **VAA or attestation creation**: Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the source transaction and produce a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank} or CCTP attestation.
+4. **VAA or attestation creation**: Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the source transaction and produce a [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 5. **Relaying to destination**: The VAA or attestation is automatically relayed to the destination chain.
 6. **Verification on destination**: Contracts on the target chain receive and verify the incoming VAA.
 7. **Asset release/minting**: Upon successful verification, the equivalent assets are either released or minted on the target chain and delivered to your wallet.
@@ -41,7 +41,7 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Connect**](/docs/products/connect/get-started/) – handles user-friendly asset transfers
+    - [**Connect**](/docs/products/connect/get-started/): handles user-friendly asset transfers
     - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
     - [**Queries**](/docs/products/queries/overview/) – fetches real-time prices for optimal trade execution
 
@@ -59,4 +59,4 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 Add Connect to your app with these key setup steps:
 
-[timeline(wormhole-docs/.snippets/text/products/reference/connect/overview/connect-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/products/connect/overview/connect-timeline.json)]
