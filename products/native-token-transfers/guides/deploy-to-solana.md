@@ -142,14 +142,13 @@ The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, an
 !!! note
     Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
-
 ### Generate an NTT Program Key Pair
 
 Create a unique key pair for the NTT program:
 
-    ```bash
-    solana-keygen grind --starts-with ntt:1 --ignore-case
-    ```
+```bash
+solana-keygen grind --starts-with ntt:1 --ignore-case
+```
 
 ### Set Mint Authority
 
@@ -259,6 +258,14 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
     Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
