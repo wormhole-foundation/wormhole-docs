@@ -6,7 +6,7 @@ categories: Connect, Transfer
 
 ## Theme & UI Customization
 
-This page focuses on how to style the Wormhole Connect widget, covering color schemes, fonts, layout changes (like toggling the hamburger menu), and adding extra menu entries. You'll learn how to customize Connect's look and feel to match your application's branding.
+This page focuses on how to style the Connect widget, covering color schemes, fonts, layout changes (like toggling the hamburger menu), and adding extra menu entries. You'll learn how to customize Connect's look and feel to match your application's branding.
 
 ### Changing the Color Scheme
 

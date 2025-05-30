@@ -14,7 +14,7 @@ If you're using React, refer to the [Get Started with Connect](/docs/products/co
 
 ## Install Connect
 
-To install the [Wormhole Connect npm package](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}, run the following command:
+To install the [Connect npm package](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}, run the following command:
 
 ```bash
 npm i @wormhole-foundation/wormhole-connect

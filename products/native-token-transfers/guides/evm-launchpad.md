@@ -43,8 +43,8 @@ The NTT Launchpad currently supports deployments on the following mainnet chains
 
 Once ready, choose an option to proceed:
 
- - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
- - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract
+ - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token): Deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains.
+ - [**Expand Your Existing Token**](#expand-your-existing-token): If you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract.
 
 ## Launch a Cross-Chain Token
 
@@ -148,8 +148,8 @@ Use the drop-down menu at the top to select the chain you want to configure. The
 
 From this section, you can also:
 
- - **Pause the token** – temporarily turn off transfers on the selected chain
- - **Deploy to a new chain** – expand your token by deploying it to an additional chain
+ - **Pause the token**: Temporarily turn off transfers on the selected chain.
+ - **Deploy to a new chain**: Expand your token by deploying it to an additional chain.
 
 ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-12.webp)
 
@@ -157,8 +157,8 @@ From this section, you can also:
 
 This section displays key [roles](/docs/products/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
 
- - **Manager’s Owner** – the owner through the `NTTOwner` proxy
- - **Pauser** – the address authorized to pause transfers
+ - **Manager’s Owner**: The owner through the `NTTOwner` proxy.
+ - **Pauser**: The address authorized to pause transfers.
 
 ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-13.webp)
 
@@ -168,8 +168,8 @@ Determine and update how transceivers interact with the token. [Transceivers](/d
 
 A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
 
- - **Registered Transceivers** – displays the number of registered transceivers and their addresses
- - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
+ - **Registered Transceivers**: Displays the number of registered transceivers and their addresses.
+ - **Transceivers Threshold**: A configurable value that must be less than or equal to the number of transceivers.
 
 ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-14.webp)
 
@@ -177,8 +177,8 @@ A higher transceiver threshold increases security by requiring more approvals be
 
 Define the transfer restrictions for each connected network. You can adjust:
 
- - **Sending Limits** – the maximum amount of tokens that can be sent from the home chain
- - **Receiving Limits** – the maximum amount of tokens that can be received for each of the supported peer chains
+ - **Sending Limits**: The maximum amount of tokens that can be sent from the home chain.
+ - **Receiving Limits**: The maximum amount of tokens that can be received for each of the supported peer chains.
 
 Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
 

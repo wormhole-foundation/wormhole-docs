@@ -189,5 +189,5 @@ In the deployment steps, you will add your supported chains, their token address
 
 You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
 
-- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
-- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
+- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on Solana.

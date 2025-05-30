@@ -10,11 +10,11 @@ Queries provide on-demand access to Guardian-attested on-chain data. They allow 
 
 ## Key Features
 
-- **On-demand data access** – fetch price feeds, interest rates, and other data in real-time
-- **Guardian attested** – all data is signed by [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} for trustless validation
-- **Cross-chain ready** – request data on one chain, use it on another
-- **Smart contract integration** – results are delivered as [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, readable by smart contracts
-- **Chain agnostic** – works across supported EVM chains, Solana, Sui, and [more](/docs/products/queries/reference/supported-networks/){target=\_blank}
+- **On-demand data access**: Fetch price feeds, interest rates, and other data in real-time.
+- **Guardian attested**: All data is signed by [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} for trustless validation.
+- **Cross-chain ready**: Request data on one chain, use it on another.
+- **Smart contract integration**: Results are delivered as [Verified Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, readable by smart contracts.
+- **Chain agnostic**: works across supported EVM chains, Solana, Sui, and [more](/docs/products/queries/reference/supported-networks/){target=\_blank}.
 
 ## How It Works
 
@@ -36,30 +36,30 @@ Queries enable a wide range of cross-chain applications. Below are common use ca
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – sync actions between chains
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch rates and prices in real-time.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Sync actions between chains.
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
 
 - **Cross-Chain Swaps and Liquidity Aggregation (e.g., [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch live prices optimal trade execution
-    - [**Connect**](/docs/products/connect/overview/){target=\_blank} – handle user-friendly asset transfers
-    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank} – moves native tokens
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch live prices optimal trade execution.
+    - [**Connect**](/docs/products/connect/overview/){target=\_blank}: Handle user-friendly asset transfers.
+    - [**Native Token Transfer**](/docs/products/native-token-transfers/overview/){target=\_blank}: Moves native tokens.
 
 - **Real-Time Price Feeds and Trading Strategies (e.g., [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch price feeds 
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – trigger trades
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch price feeds.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Trigger trades.
 
 - **Multichain Prediction Markets**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch market data and odds
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} – automates token execution
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Fetch market data and odds.
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Automates token execution.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} –  source data from chains
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – ensures tamper-proof data relay across networks
+    - [**Queries**](/docs/products/queries/get-started/){target=\_blank}: Source data from chains.
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Ensures tamper-proof data relay across networks.
 
 ## Next Steps
 
