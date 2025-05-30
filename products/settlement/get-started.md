@@ -14,8 +14,7 @@ By the end, you'll have a working script that:
 
 - Resolves token transfer routes using Mayan Swift
 - Quotes and validates the best route
-- Initiates the swap on Ethereum
-- Completes the transfer on Solana
+- Initiates a swap on a source chain and completes the transfer on a destination chain
 
 !!! note
     Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
@@ -27,7 +26,7 @@ Before you begin, ensure you have the following:
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
 - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}
 
-This guide uses an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the examples to match your preferred chains.
+This example uses Ethereum as the source chain and Solana as the destination. As a result, you'll need an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the example to match your preferred chains.
 
 ## Set Up a Project
 
@@ -51,6 +50,7 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
         dotenv
     npm install -D typescript tsx
     ```
+
 3. Create the file structure:
 
     ```bash
@@ -106,6 +106,6 @@ You can tailor the example to your use case by adjusting:
 
 Once you've chosen a path, follow the corresponding guide to start building:
 
-- Check out the [**demo-mayanswift**](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} for the full code example.
-- [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/){target=\_blank}: Interact directly with routers for flexible protocol-level control.
+- Check out the [`demo-mayanswift`](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} repository for the full code example.
+- [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/): Interact directly with routers for flexible protocol-level control.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
