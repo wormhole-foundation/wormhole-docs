@@ -9,21 +9,12 @@ import {
   import { getEvmSignerForKey } from "@wormhole-foundation/sdk-evm";
   import { getSolanaSigner } from "@wormhole-foundation/sdk-solana";
 
-// Helper function to get environment variables
-function getEnv(key: string): string {
-  // If we're in the browser, return empty string
-  if (typeof process === undefined) return "";
-
-  // Otherwise, return the env var or error
-  const val = process.env[key];
-  if (!val)
-    throw new Error(
-      `Missing env var ${key}, did you forget to set values in '.env'?`
-    );
-
-  return val;
-}
-
+/**
+ * Returns a signer for the given chain using locally scoped credentials.
+ * The required values (MAINNET_ETH_PRIVATE_KEY, MAINNET_SOL_PRIVATE_KEY) must
+ * be loaded securely beforehand, for example via a keystore, secrets
+ * manager, or environment variables (not recommended).
+ */
 // Define TransferStuff interface
 export interface SignerContext<N extends Network, C extends Chain> {
   signer: Signer<N, C>;

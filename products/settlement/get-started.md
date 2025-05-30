@@ -6,9 +6,9 @@ categories: Settlement, Transfer
 
 # Get Started
 
-[Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer that enables fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want done, not how.
+[Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
-This guide walks you through performing a real token swap from Ethereum to Solana using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols. We’ll follow the [demo-mayanswift](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank} project and use the [Wormhole SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=_blank}.
+This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](docs/tools/typescript-sdk/get-started/){target=_blank}.
 
 By the end, you'll have a working script that:
 
@@ -18,23 +18,22 @@ By the end, you'll have a working script that:
 - Completes the transfer on Solana
 
 !!! note
-    Mayan Swift currently supports **mainnet only**. Attempting to run this demo on testnet will result in failure.
+    Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
 
 ## Prerequisites
 
 Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- A wallet with a private key, funded with native tokens on mainnet for gas fees
-  - **Ethereum** wallet with ETH for gas
-  - **Solana** wallet with SOL for fees
+- Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}
 
+This guide uses an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the examples to match your preferred chains.
 
-## Project Setup
+## Set Up a Project
 
 Start by scaffolding a basic Node.js project and installing the required SDKs.
 
-1. Create a new project folder
+1. Create a new project folder:
 
     ```bash
     mkdir settlement-swap
@@ -42,7 +41,7 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     npm init -y
     ```
 
-2. Install the required dependencies
+2. Install the required dependencies:
 
     ```bash
     npm install @wormhole-foundation/sdk-connect \
@@ -52,28 +51,17 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
         dotenv
     npm install -D typescript tsx
     ```
-3. Create the file structure
+3. Create the file structure:
 
     ```bash
     mkdir src
     touch src/helpers.ts src/swap.ts .env .gitignore
     ```
-4. Set up environment variables: Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://book.getfoundry.sh/reference/cast/cast-wallet/){target=_blank}. If you're testing locally, you can create a .env file with the following:
 
-    ```bash
-    MAINNET_ETH_PRIVATE_KEY="your_ethereum_private_key"
-    MAINNET_SOL_PRIVATE_KEY="your_solana_private_key"
-    ```
+4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://book.getfoundry.sh/reference/cast/cast-wallet/){target=_blank}.
 
     !!! warning
         If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
-
-    Add this to your `.gitignore`:
-
-    ```bash
-    node_modules
-    .env
-    ```
 
 ## Configure Wallet Access
 
@@ -97,7 +85,7 @@ Create `src/helpers.ts` and add the following:
 
 You’ll use this in the next step to load the sender (on Ethereum) and receiver (on Solana).
 
-## Perform the Token Swap
+## Perform a Token Swap
 
 Now you’ll build the script that performs the swap using the Mayan Swift route. Here’s what happens in the `swap.ts` script:
 
@@ -152,15 +140,14 @@ Congrats!!! You've just completed a cross-chain token swap from Ethereum to Sola
 
 You can tailor the example to your use case by adjusting:
 
-- **Tokens and chains** – use `getSupportedTokens()` to explore what's available
-- **Transfer settings** – update the amount or route parameters
-- **Signer management** – modify `src/helpers.ts` to integrate with your preferred wallet setup
-- **Source and destination chains**: modify `sendChain` and `destChain` in `swap.ts`
-- **Amount and transfer settings**: adjust amount to suit your needs
+- **Tokens and chains**: Use `getSupportedTokens()` to explore what's available.
+- **Source and destination chains**: Modify `sendChain` and `destChain` in `swap.ts`.
+- **Transfer settings**: Update the amount or route parameters.
+- **Signer management**: Modify `src/helpers.ts` to integrate with your preferred wallet setup.
 
 ## Next Steps
 
 Once you've chosen a path, follow the corresponding guide to start building:
 
 - [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/){target=\_blank} – interact directly with routers for flexible protocol-level control
-- [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration
+<!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->

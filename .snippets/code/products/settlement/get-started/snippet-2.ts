@@ -7,11 +7,7 @@ import { SolanaPlatform } from "@wormhole-foundation/sdk-solana";
 import {
   MayanRouteSWIFT,
 } from '@mayanfinance/wormhole-sdk-route';
-import dotenv from "dotenv";
 import { getSigner } from "./helpers";
-
-// Initialize dotenv
-dotenv.config();
 
 (async function () {
   // Setup
@@ -20,12 +16,13 @@ dotenv.config();
   const sendChain = wh.getChain("Ethereum");
   const destChain = wh.getChain("Solana");
 
-  // Doing transaction of native ETH on Ethereum to native SOL on Solana
+  //  To transfer native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, "native");
   const destination = Wormhole.tokenId(destChain.chain, "native");
 
   // Create a new Wormhole route resolver, adding the Mayan route to the default list
-  // @ts-ignore
+  // @ts-ignore: Suppressing TypeScript error because the resolver method expects a specific type,
+  // but MayanRouteSWIFT is compatible and works as intended in this context.
   const resolver = wh.resolver([MayanRouteSWIFT]);
 
   // Show supported tokens
@@ -36,7 +33,7 @@ dotenv.config();
   );
   console.log(dstTokens.slice(0, 5));
 
-  // Pull private keys from env for testing purposes
+  // Load signers and addresses from helpers
   const sender = await getSigner(sendChain);
   const receiver = await getSigner(destChain);
 
@@ -47,7 +44,7 @@ dotenv.config();
     destination,
   });
 
-  // resolve the transfer request to a set of routes that can perform it
+  // Resolve the transfer request to a set of routes that can perform it
   const foundRoutes = await resolver.findRoutes(tr);
   const bestRoute = foundRoutes[0]!;
 
@@ -57,7 +54,7 @@ dotenv.config();
     options: bestRoute.getDefaultOptions(),
   };
 
-  // validate the queries route
+  // Validate the queries route
   let validated = await bestRoute.validate(tr, transferParams);
   if (!validated.valid) {
     console.error(validated.error);
@@ -72,7 +69,7 @@ dotenv.config();
   }
   console.log("Quote: ", quote);
 
-  // initiate the transfer
+  // Initiate the transfer
   const receipt = await bestRoute.initiate(
     tr,
     sender.signer,
