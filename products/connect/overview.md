@@ -41,19 +41,19 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Connect**](/docs/products/connect/get-started/): Handles user-friendly asset transfers.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/): Moves native assets across chains.
-    - [**Queries**](/docs/products/queries/overview/): Fetches real-time prices for optimal trade execution.
+    - [**Connect**](/docs/products/connect/get-started/): handles user-friendly asset transfers
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – moves native assets across chains
+    - [**Queries**](/docs/products/queries/overview/) – fetches real-time prices for optimal trade execution
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Connect**](/docs/products/connect/get-started/): Facilitates seamless payments in various tokens.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/): Ensures direct, native asset transfers.
+    - [**Connect**](/docs/products/connect/get-started/) – facilitates seamless payments in various tokens
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/) – ensures direct, native asset transfers
 
 - **Web3 Game Asset Transfers**
 
-    - [**Connect**](/docs/products/connect/get-started/): Provide a user-friendly way to move game tokens across chains.
-    - [**Token Bridge**](/docs/products/token-bridge/overview/): Handle the underlying lock-and-mint logic securely. 
+    - [**Connect**](/docs/products/connect/get-started/) – provide a user-friendly way to move game tokens across chains
+    - [**Token Bridge**](/docs/products/token-bridge/overview/) – handle the underlying lock-and-mint logic securely
 
 ## Next Steps 
 

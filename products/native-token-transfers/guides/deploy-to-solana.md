@@ -8,14 +8,7 @@ categories: NTT, Transfer
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
-This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
-
-The diagram below shows a high-level view of the Solana NTT deployment flow. It illustrates the full lifecycle, from token setup to selecting the transfer mode and configuring and deploying the NTT program using the CLI. This visual is a quick reference for how each step connects in the Solana deployment process.
-
-![Solana NTT deployment diagram](/docs/images/products/native-token-transfers/guides/solana/ntt-solana-guide-1.webp)
-
-By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
-
+This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode. By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
 
 ## Prerequisites
 
@@ -34,7 +27,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
 1. **Choose your token setup**:
 
      - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
-     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with NTT
+     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
 
         ???- interface "Create and Mint SPL Tokens"
             This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
@@ -102,12 +95,14 @@ Deploying NTT with the CLI on Solana follows a structured process:
             !!! note
                 NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
 
-2. **Choose your [deployment model](/docs/products/native-token-transfers/overview/#deployment-models){target=\_blank}**:
+2. **Choose your deployment model**:
 
     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
 
 3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
+
+![Solana NTT deployment diagram](/docs/images/products/native-token-transfers/guides/solana/ntt-solana-guide-1.webp)
 
 Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
 
@@ -119,28 +114,12 @@ To integrate your token with NTT on Solana, you must initialize the deployment a
 
 The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
-1. **Create a new NTT project** - set up a deployment workspace
+???- interface "Install the NTT CLI and Scaffold a New Project"
 
-    ```bash
-    ntt new INSERT_PROJECT_NAME
-    cd INSERT_PROJECT_NAME
-    ```
+    --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
 
-2. **Initialize the deployment** - generate a `deployment.json` file with your deployment settings
-
-    === "Mainnet"
-
-        ```bash
-        ntt init Mainnet
-        ```
-
-    === "Testnet"
-
-        ```bash
-        ntt init Testnet
-        ```
-!!! note
-    Testnet deployment settings work for both Solana Testnet and Devnet networks.
+    !!! note
+        Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
 ### Generate an NTT Program Key Pair
 
@@ -255,7 +234,7 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     ---
 
-    Configure Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
 

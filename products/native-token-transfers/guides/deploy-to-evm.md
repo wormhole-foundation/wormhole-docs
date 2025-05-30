@@ -4,7 +4,11 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 categories: NTT, Transfer
 ---
 
-# Native Token Transfers (NTT) EVM Development
+# Deploy Native Token Transfers (NTT) to EVM Chains
+
+[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
 ## Deploy Your Token and Ensure Compatibility
 
@@ -12,67 +16,42 @@ If you still need to do so, deploy the token contract to the destination or spok
 
 ### Requirements for Token Deployment
 
-Wormhole’s Natuve Token Transfers (NTT) is an open framework that supports various deployment modes. The NTT CLI currently supports two deployment modes: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed across chains.
+Wormhole’s NTT framework supports two [deployment models](/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke. **Both require an ERC-20 token (new or existing).**
 
-#### Burn-and-Mint Mode
+??? interface "Burn-and-Mint"
 
-Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
+    Tokens must implement the following non-standard ERC-20 functions:
 
-- `burn(uint256 amount)`
-- `mint(address account, uint256 amount)`
+    - `burn(uint256 amount)`
+    - `mint(address account, uint256 amount)`
 
-These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
+    These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for all required functions, errors, and events.
 
-??? code "View the complete `INttToken` Interface`"
-    ```solidity
-    --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/INttToken.sol'
-    ```
+    ??? interface "`INttToken` Interface"
+        ```solidity
+        --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/INttToken.sol'
+        ```
 
-Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
+    You’ll also need to set mint authority to the relevant `NttManager` contract. Example deployment scripts are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
 
-#### Hub-and-Spoke Mode
+??? interface "Hub-and-Spoke Mode"
 
-A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) mint or burn tokens during cross-chain transfers, ensuring consistency with the locked tokens on the hub chain.
+    Tokens only need to be ERC-20 compliant. The hub chain serves as the source of truth for supply consistency, while only spoke chains need to support minting and burning. For example, if Ethereum is the hub and Polygon is a spoke:
 
- - **Hub chain** - tokens are locked on the hub chain when transferring to spoke chains
- - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
+    - Tokens are locked on Ethereum
+    - Tokens are minted or burned on Polygon
 
-!!! note
-    The only requirement for using the NTT framework is an ERC20 token, which can be newly deployed or existing. Steps like setting mint authority apply only to spoke chains.
-
-For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
-
-This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
-
-For more detailed information, see the [Deployment Models](/docs/products/native-token-transfers/overview/#deployment-models){target=\_blank}.
-
-### Key Differences Between Modes
-
- - **Burn-and-mint**: Tokens must implement custom `mint` and `burn` functions, allowing each chain to manage token issuance independently.
- - **Hub-and-spoke**: Tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency.
+    This setup maintains a consistent total supply across all chains.
 
 ## Deploy NTT
 
-Create a new NTT project:
+Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
 
-```bash
-ntt new my-ntt-deployment
-cd my-ntt-deployment
-```
+???- interface "Install the NTT CLI and Scaffold a New Project"
+    
+    --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
 
-Initialize a new `deployment.json` file specifying the network:
-
-=== "Testnet"
-
-    ```bash
-    ntt init Testnet
-    ```
-
-=== "Mainnet"
-
-    ```bash
-    ntt init Mainnet
-    ```
+Once you've completed those steps, return here to proceed with adding your EVM chains and deploying contracts.
 
 Ensure you have set up your environment correctly: 
 
@@ -101,8 +80,8 @@ The NTT CLI prints detailed logs and transaction hashes, so you can see exactly 
 
 The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
 
-- `ntt status`: Checks whether your `deployment.json` file is consistent with what is on-chain.
-- `ntt pull`: Syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
+- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
 
     For Solana, the limits are set with 9 decimal places:
       ```json
@@ -120,7 +99,7 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
 
     This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
   
-- `ntt push`: Syncs the on-chain configuration with local changes made to your `deployment.json` file.
+- `ntt push` - syncs the on-chain configuration with local changes made to your `deployment.json` file
 
 After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
 
