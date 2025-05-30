@@ -5418,7 +5418,7 @@ If you still need to do so, deploy the token contract to the destination or spok
 
 ### Requirements for Token Deployment
 
-Wormhole’s NTT framework supports two [deployment models](/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke. **Both require an ERC-20 token (new or existing).**
+Wormhole’s NTT framework supports two [deployment models](/docs/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke. **Both require an ERC-20 token (new or existing).**
 
 ??? interface "Burn-and-Mint"
 
