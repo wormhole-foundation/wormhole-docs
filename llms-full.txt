@@ -12682,7 +12682,6 @@ The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, an
 !!! note
     Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
-
 ### Generate an NTT Program Key Pair
 
 Create a unique key pair for the NTT program:
@@ -20568,42 +20567,32 @@ categories: Solidity-SDK
 
 # Solidity SDK
 
-## Introduction 
+This page covers all you need to know about the functionality offered through the Wormhole Solidity SDK.
 
-The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} simplifies cross-chain messaging on EVM-compatible chains by providing essential Solidity interfaces, utility libraries, and testing tools. It allows developers to build secure and efficient cross-chain decentralized applications (dApps) without manually interacting with Wormhole’s core contracts across multiple chains.
+<div class="grid cards" markdown>
 
-By abstracting away complex interactions, the SDK drastically reduces the overhead associated with cross-chain development. It provides:
+-   :octicons-download-16:{ .lg .middle } **Installation**
 
- - **Unified interfaces** - developers can use a standardized set of Solidity interfaces to handle cross-chain messaging, token transfers, and verifiable action approvals (VAAs) without needing to manage the underlying infrastructure
- - **Automated message delivery** - the SDK leverages Wormhole’s relayer infrastructure, automatically delivering messages across chains, reducing the need for manual intervention, and simplifying gas management on the target chain
- - **Seamless integration with Wormhole services** - the SDK integrates with Wormhole’s `TokenBridge` and Circle’s CCTP, providing built-in mechanisms for cross-chain asset transfers, making token bridges and cross-chain messaging easy to implement
- - **Testing and development tools** - it comes with comprehensive tools for local testing and simulation, allowing developers to validate their cross-chain logic before deployment, minimizing the risk of errors in production environments
+    ---
 
-These features significantly streamline the development workflow by reducing complexity and offering tools compatible with various EVM versions. This helps developers avoid issues that arise from differences in EVM equivalence across chains.
+    Find installation instructions using Foundry and Forge to pull the necessary libraries into your project.
 
-This guide covers installation, key concepts, and usage examples to help you build secure cross-chain applications using the SDK, from token transfers to advanced message passing.
+    [:custom-arrow: Install the SDK](/docs/tools/solidity-sdk/get-started/#installation)
 
-## Installation
+-   :octicons-download-16:{ .lg .middle } **Source Code**
 
-To install the SDK, use [Foundry and Forge](https://book.getfoundry.sh/getting-started/installation){target=\_blank}. This pulls the necessary libraries into your project:
+    ---
 
-```bash
-forge install wormhole-foundation/wormhole-solidity-sdk@v0.1.0
-```
+    Want to go straight to the source? Check out the Solidity SDK GitHub repository.
 
-When developing cross-chain applications, ensure that the chains you target support the EVM version you’re using. For instance, the PUSH0 opcode (introduced in Solidity 0.8.20) may not be available on all chains. To avoid compatibility issues, you can set the EVM version in your `foundry.toml` file:
+    [:custom-arrow: View GitHub Repository](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}
 
-```toml
-evm_version = "paris"
-```
-
-This ensures compatibility across all targeted chains, even if some do not yet support the latest EVM upgrades.
+</div>
 
 ## Key Considerations
 
 Before deploying applications using the Wormhole Solidity SDK, keep these considerations in mind:
 
- - **Version compatibility** - the SDK is evolving, and using tagged releases for production is crucial, as the main branch may introduce breaking changes
  - **IERC-20 remapping** - the SDK provides a remapping mechanism to handle potential conflicts between different implementations of IERC20, ensuring seamless integration with other libraries
  - **Testing** - given the cross-chain dependencies, testing all integrations is critical to avoid issues in production environments
 
@@ -20633,7 +20622,18 @@ Please refer to the complete `WormholeRelayerSDK.sol` file below for further det
 
 ???- code "`WormholeRelayerSDK.sol`"
     ```solidity
-    code/tools/solidity-sdk/sdk-reference/solidity-sdk-1.sol
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/constants/Chains.sol";
+import "wormhole-sdk/Utils.sol";
+
+import {Base} from "wormhole-sdk/WormholeRelayer/Base.sol";
+import {TokenBase, TokenReceiver, TokenSender} from "wormhole-sdk/WormholeRelayer/TokenBase.sol";
+import {CCTPBase, CCTPReceiver, CCTPSender} from "wormhole-sdk/WormholeRelayer/CCTPBase.sol";
+import {CCTPAndTokenBase, CCTPAndTokenReceiver, CCTPAndTokenSender} from "wormhole-sdk/WormholeRelayer/CCTPAndTokenBase.sol";
     ```
 
 ### Base Contract Overview
@@ -20643,20 +20643,87 @@ The [`Base.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/bl
  - **`onlyWormholeRelayer()`** - a modifier that ensures only authorized messages from the Wormhole relayer contract are processed, restricting access to certain functions
 
     ```solidity
-    code/tools/solidity-sdk/sdk-reference/solidity-sdk-2.sol:22:28
+    require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
+        _;
+    }
     ```
 
  - **`setRegisteredSender()`** - restricts message acceptance to a registered sender from a specific chain, ensuring messages are only processed from trusted sources
 
     ```solidity
-    code/tools/solidity-sdk/sdk-reference/solidity-sdk-2.sol:45:54
+    uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
+    }
     ```
 
 These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete `Base.sol` contract below for further details.
 
 ???- code "`Base.sol`"
     ```solidity
-    code/tools/solidity-sdk/sdk-reference/solidity-sdk-2.sol
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/interfaces/IWormhole.sol";
+import "wormhole-sdk/Utils.sol";
+
+abstract contract Base {
+    IWormholeRelayer public immutable wormholeRelayer;
+    IWormhole public immutable wormhole;
+
+    address registrationOwner;
+    mapping(uint16 =&gt; bytes32) registeredSenders;
+
+    constructor(address _wormholeRelayer, address _wormhole) {
+        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
+        wormhole = IWormhole(_wormhole);
+        registrationOwner = msg.sender;
+    }
+
+    modifier onlyWormholeRelayer() {
+        require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
+        _;
+    }
+
+    modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
+        require(
+            registeredSenders[sourceChain] == sourceAddress,
+            "Not registered sender"
+        );
+        _;
+    }
+
+    /**
+     * Sets the registered address for 'sourceChain' to 'sourceAddress'
+     * So that for messages from 'sourceChain', only ones from 'sourceAddress' are valid
+     *
+     * Assumes only one sender per chain is valid
+     * Sender is the address that called 'send' on the Wormhole Relayer contract on the source chain)
+     */
+    function setRegisteredSender(
+        uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
+    }
+}
     ```
 
 ### Interface for Cross-Chain Messages
@@ -20691,7 +20758,32 @@ This section covers cross-chain messaging and token transfers and shows how to u
 To send a cross-chain message, inherit from the base contract provided by the SDK and use its helper methods to define your message and sender address. Here’s a basic example:
 
 ```solidity
-code/tools/solidity-sdk/sdk-reference/solidity-sdk-3.sol
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/Base.sol";
+
+contract CrossChainSender is Base {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) Base(_wormholeRelayer, _wormhole) {}
+
+    function sendMessage(
+        bytes memory message,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Register sender and send message through WormholeRelayer
+        setRegisteredSender(targetChain, msg.sender);
+        onlyWormholeRelayer().sendPayloadToEvm(
+            targetChain,
+            address(targetAddress),
+            message,
+            0,
+            500_000
+        );
+    }
+}
 ```
 
 This contract extends `Base.sol` and allows sending cross-chain messages securely using the `WormholeRelayer`.
@@ -20701,7 +20793,26 @@ This contract extends `Base.sol` and allows sending cross-chain messages securel
 The SDK enables seamless token transfers between EVM-compatible chains in addition to sending messages. To facilitate cross-chain token transfers, you can extend the SDK's `TokenSender` and `TokenReceiver` base contracts.
 
 ```solidity
-code/tools/solidity-sdk/sdk-reference/solidity-sdk-4.sol
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
+
+contract CrossChainTokenSender is TokenSender {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenSender(_wormholeRelayer, _wormhole) {}
+
+    function sendToken(
+        address token,
+        uint256 amount,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Send tokens across chains
+        transferTokenToTarget(token, amount, targetChain, targetAddress);
+    }
+}
 ```
 
 In this example, `TokenSender` initiates a token transfer to another chain. The SDK’s built-in utilities securely handle token transfers, ensuring proper VAAs are generated and processed.
@@ -20711,7 +20822,28 @@ In this example, `TokenSender` initiates a token transfer to another chain. The 
 To receive tokens on the target chain, implement a contract that inherits from `TokenReceiver` and overrides the `receiveWormholeMessages` function.
 
 ```solidity
-code/tools/solidity-sdk/sdk-reference/solidity-sdk-5.sol
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
+
+contract CrossChainTokenReceiver is TokenReceiver {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenReceiver(_wormholeRelayer, _wormhole) {}
+
+    // Function to handle received tokens from another chain
+    function receiveWormholeMessages(
+        bytes memory payload,
+        bytes[] memory additionalMessages,
+        bytes32 sourceAddress,
+        uint16 sourceChain,
+        bytes32 deliveryHash
+    ) external payable override {
+        // Process the received tokens here
+        receiveTokens(payload);
+    }
+}
 ```
 
 In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.

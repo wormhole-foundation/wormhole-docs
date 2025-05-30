@@ -5732,7 +5732,6 @@ The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, an
 !!! note
     Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
-
 ### Generate an NTT Program Key Pair
 
 Create a unique key pair for the NTT program:
