@@ -23,44 +23,44 @@ In order to make an `EthCallQueryRequest`, you need a specific block number or h
 You can request the latest block from a public node using `eth_getBlockByNumber`.
 
 ```jsx
---8<-- 'code/build/queries/use-queries/test-full.jsx:12:12'
---8<-- 'code/build/queries/use-queries/test-full.jsx:19:26'
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx:12:12'
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx:19:26'
 ```
 
 Then construct the call data.
 
 ```jsx
---8<-- 'code/build/queries/use-queries/test-full.jsx:13:16'
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx:13:16'
 ```
 
 Finally, put it all together in a `QueryRequest`.
 
 ```jsx
---8<-- 'code/build/queries/use-queries/test-full.jsx:44:53'
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx:44:53'
 ```
 
 This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRequest` to Ethereum. You can use `console.log` to print the JSON object and review the structure.
 
 ```jsx
---8<-- 'code/build/queries/use-queries/test-full.jsx:54:54'
-// {
-//   "nonce": 0,
-//   "requests": [
-//     {
-//       "chainId": 2,
-//       "query": {
-//         "callData": [
-//           {
-//             "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
-//             "data": "0x18160ddd"
-//           }
-//         ],
-//         "blockTag": "0x11e9068"
-//       }
-//     }
-//   ],
-//   "version": 1
-// }
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx:54:54'
+  // {
+  //   "nonce": 0,
+  //   "requests": [
+  //     {
+  //       "chainId": 2,
+  //       "query": {
+  //         "callData": [
+  //           {
+  //             "to": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+  //             "data": "0x18160ddd"
+  //           }
+  //         ],
+  //         "blockTag": "0x11e9068"
+  //       }
+  //     }
+  //   ],
+  //   "version": 1
+  // }
 ```
 
 ## Mock a Query
@@ -68,24 +68,26 @@ This request consists of one `PerChainQueryRequest`, which is an `EthCallQueryRe
 For easier testing, the Query SDK provides a `QueryProxyMock` method. This method will perform the request and sign the result with the [Devnet](https://github.com/wormhole-foundation/wormhole/blob/main/DEVELOP.md){target=\_blank} Guardian key. The `mock` call returns the same format as the Query Proxy.
 
 ```jsx
---8<-- 'code/build/queries/use-queries/test-full.jsx:55:57'
-// {
-//   signatures: ['...'],
-//   bytes: '...'
-// }
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx:55:57'
+  // {
+  //   signatures: ['...'],
+  //   bytes: '...'
+  // }
 ```
 
 This response is suited for on-chain use, but the SDK also includes a parser to make the results readable via the client.
 
 ```jsx
---8<-- 'code/build/queries/use-queries/test-full.jsx:58:64'
-// Mock Query Result: 0x000000000000000000000000000000000000000000029fd09d4d81addb3ccfee (3172556167631284394053614)
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx:58:64'
+  // Mock Query Result:
+  // 0x000000000000000000000000000000000000000000029fd09d4d81addb3ccfee
+  // (3172556167631284394053614)
 ```
 
 Testing this all together might look like the following:
 
 ```jsx
---8<-- 'code/build/queries/use-queries/test-full.jsx'
+--8<-- 'code/products/queries/guides/use-queries/test-full.jsx'
 ```
 
 ### Fork Testing
@@ -111,7 +113,7 @@ If you are using `EthCallWithFinality`, you will need to mine additional blocks 
 The standardized means of making a `QueryRequest` with an API key is as follows:
 
 ```jsx
---8<-- 'code/build/queries/use-queries/query-request-with-api-key.jsx'
+--8<-- 'code/products/queries/guides/use-queries/query-request-with-api-key.jsx'
 ```
 
 Remember to always take steps to protect your sensitive API keys, such as defining them in `.env` files and including such files in your `.gitignore`.
@@ -144,7 +146,7 @@ See the [QueryDemo](https://github.com/wormholelabs-xyz/example-queries-demo/blo
 
 ??? code "View the complete `QueryDemo`"
     ```solidity
-    --8<-- 'code/build/queries/use-queries/query-demo.sol'
+    --8<-- 'code/products/queries/guides/use-queries/query-demo.sol'
     ```
 
 ## Submit a Query Response On-Chain
@@ -154,5 +156,5 @@ The `QueryProxyQueryResponse` result requires a slight tweak when submitting to 
 This example submits the transaction to the demo contract:
 
 ```jsx
---8<-- 'code/build/queries/use-queries/query-proxy-query-response.jsx'
+--8<-- 'code/products/queries/guides/use-queries/query-proxy-query-response.jsx'
 ```
