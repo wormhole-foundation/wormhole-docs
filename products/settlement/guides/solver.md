@@ -17,7 +17,7 @@ A Solver is an off-chain agent responsible for:
 - Facilitating the actual cross-chain transfer by locking/burning assets on Solana and minting/unlocking them on the destination chain
 - Rebalancing once the origin chain transaction finalizes and is redeemed back on Solana
 
-For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/learn/transfers/settlement/overview/){target=\_blank} page.
+For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} page.
 
 ## Background
 

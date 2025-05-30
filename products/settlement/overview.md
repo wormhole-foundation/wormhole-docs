@@ -106,7 +106,7 @@ To read more about each protocol, check the [architecture documentation](/docs/p
 
 Start building with Settlement or dive deeper into specific components:
 
-- **[Get Started with Settlement](docs/products/settlement/get-started/)**: Follow a hands-on demo using Mayan Swift.
+- **[Get Started with Settlement](/docs/products/settlement/get-started/)**: Follow a hands-on demo using Mayan Swift.
 - **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/)**: Integrate the hub-and-spoke model.
 - **[Run a Solver](/docs/products/settlement/guides/solver/)**: Operate a solver and participate in auctions.
 

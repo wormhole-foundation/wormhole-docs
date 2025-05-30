@@ -1,16 +1,16 @@
 [
     {
-        "title": "[Get Started with Connect](Todo)",
+        "title": "[Get Started with Connect](/docs/products/connect/get-started/)",
         "content": "Integrate Connect into your React or JavaScript application with minimal setup.",
         "icon": ":fontawesome-solid-1:"
     },
     {
-        "title": "[Customize Transfer Logic](Todo)",
+        "title": "[Customize Transfer Logic](/docs/products/connect/configuration/data/)",
         "content": "Configure supported chains, tokens, and transfer routes to fit your app's needs.",
         "icon": ":fontawesome-solid-2:"
     },
     { 
-        "title": "[Customize the UI](Todo)",
+        "title": "[Customize the UI](/docs/products/connect/configuration/theme/)",
         "content": "Adapt Connect's interface to match your brand using flexible styling options.",
         "icon": ":fontawesome-solid-3:"
     }

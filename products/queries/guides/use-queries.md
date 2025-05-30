@@ -100,7 +100,7 @@ anvil --fork-url https://ethereum.publicnode.com
 
 In order for mock requests to verify against the Mainnet Core Contract, you need to replace the current Guardian set with the single Devnet key used by the mock.
 
-Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Contract address](/docs/build/reference/contract-addresses/#core-contracts){target=\_blank} on that chain.
+Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Contract address](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} on that chain.
 
 ```jsx
 npx @wormhole-foundation/wormhole-cli evm hijack -a 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B -g 0xbeFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe

@@ -10,9 +10,9 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 ## Supported Networks by Product
 
---8<-- 'text/build/start-building/supported-networks/connect.md'
---8<-- 'text/build/start-building/supported-networks/ntt.md'
---8<-- 'text/build/start-building/supported-networks/token-bridge.md'
---8<-- 'text/build/start-building/supported-networks/cctp.md'
---8<-- 'text/build/start-building/supported-networks/settlement.md'
---8<-- 'text/build/start-building/supported-networks/multigov.md'
+--8<-- 'text/products/reference/supported-networks/connect.md'
+--8<-- 'text/products/reference/supported-networks/ntt.md'
+--8<-- 'text/products/reference/supported-networks/token-bridge.md'
+--8<-- 'text/products/reference/supported-networks/cctp.md'
+--8<-- 'text/products/reference/supported-networks/settlement.md'
+--8<-- 'text/products/reference/supported-networks/multigov.md'

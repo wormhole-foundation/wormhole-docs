@@ -10,7 +10,7 @@ Developers building for smart contract integration will want to set up a develop
 
 ## Tooling Installation
 
-The [Wormhole CLI Tool](/docs/build/toolkit/cli/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/products/reference/supported-networks/){target=\_blank}.
+The [Wormhole CLI Tool](/docs/tools/cli/get-started/){target=\_blank} should be installed regardless of the environments chosen. Each environment has its own set of recommended tools. To begin working with a specific environment, see the recommended tools on the respective [environment page](/docs/products/reference/supported-networks/){target=\_blank}.
 
 ## Development Stages
 

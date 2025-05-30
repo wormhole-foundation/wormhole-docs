@@ -9,7 +9,7 @@ description: Learn to build a cross-chain native token transfer app using Wormho
 
 ## Introduction
 
-This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
 By leveraging Wormhole’s Token Bridge, this guide shows you how to build an application that supports multiple transfer types:
 
@@ -33,7 +33,7 @@ Before you begin, ensure you have the following:
 
 ## Supported Chains
 
-The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains on the [Contract Addresses](/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} page, which includes every network where Wormhole smart contracts are deployed, across both mainnet and testnet.
+The Wormhole SDK supports a wide range of EVM and non-EVM chains, allowing you to facilitate cross-chain transfers efficiently. You can find a complete list of supported chains on the [Contract Addresses](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} page, which includes every network where Wormhole smart contracts are deployed, across both mainnet and testnet.
 
 ## Project Setup
 

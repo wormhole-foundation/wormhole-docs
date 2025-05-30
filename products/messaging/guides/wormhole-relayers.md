@@ -124,7 +124,7 @@ Some implementation details should be considered during development to ensure sa
 
 ## Track the Progress of Messages with the Wormhole CLI
 
-While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the [Wormhole CLI](/docs/build/toolkit/cli/) tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command:
+While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the [Wormhole CLI](/docs/tools/cli/get-started/){target=\_blank} tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command:
 
 === "Mainnet"
 
@@ -138,7 +138,7 @@ While no off-chain programs are required, a developer may want to track the prog
     worm status testnet ethereum INSERT_TRANSACTION_HASH
     ```
 
-See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and usage.
+See the [Wormhole CLI tool docs](/docs/tools/cli/get-started/){target=\_blank} for installation and usage.
 
 ## Step-by-Step Tutorial
 

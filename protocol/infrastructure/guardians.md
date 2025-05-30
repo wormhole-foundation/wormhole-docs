@@ -95,6 +95,6 @@ These principles combine to create a clear pathway towards a fully trustless int
 
     Learn how to use Wormhole Queries to add real-time access to Guardian-attested on-chain data via a REST endpoint to your dApp, enabling secure cross-chain interactions and verifications.
 
-    [:custom-arrow: Build with Queries](/docs/build/queries/overview/)
+    [:custom-arrow: Build with Queries](/docs/products/queries/overview/)
 
 </div>

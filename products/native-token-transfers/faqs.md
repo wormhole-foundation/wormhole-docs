@@ -8,7 +8,7 @@ categories: NTT, Transfer
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
-Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
+Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
 
 Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/docs/products/messaging/overview/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
 
@@ -127,7 +127,7 @@ To begin transferring tokens to a chain in burning mode when no tokens are locke
 
 ## Is there a way to use NTT tokens with chains that don't currently support NTT?
 
-Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}. For example:
+Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. For example:
 
 - **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
 - **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism

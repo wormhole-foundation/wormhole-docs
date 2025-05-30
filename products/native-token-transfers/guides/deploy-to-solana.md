@@ -154,7 +154,7 @@ Follow these steps to set the mint authority using the NTT CLI:
 ## Deploy and Configure NTT
 
 !!! warning
-    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
 
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
@@ -220,7 +220,7 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
 
-    [:custom-arrow: Deploy NTT on EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
 
@@ -244,14 +244,6 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
-
--   :octicons-question-16:{ .lg .middle } **View FAQs**
-
-    ---
-
-    Find answers to common questions about NTT.
-
-    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
 
 </div>

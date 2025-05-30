@@ -26,7 +26,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 
 ## On-Chain Components
 
-- **Emitter** - a contract that calls the publish message method on the Core Contract. To identify the message, the Core Contract will write an event to the transaction logs with details about the emitter and sequence number. This may be your [xDapp](/docs/learn/glossary/#xdapp){target=\_blank} or an existing ecosystem protocol
+- **Emitter** - a contract that calls the publish message method on the Core Contract. To identify the message, the Core Contract will write an event to the transaction logs with details about the emitter and sequence number. This may be your cross-chain dApp or an existing ecosystem protocol
 - **[Wormhole Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}** - primary contract, this is the contract which the Guardians observe and which fundamentally allows for multichain communication
 - **Transaction logs** - blockchain-specific logs that allow the Guardians to observe messages emitted by the Core Contract
 

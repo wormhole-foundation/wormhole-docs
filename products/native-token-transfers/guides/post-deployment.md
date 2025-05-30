@@ -9,7 +9,7 @@ categories: NTT, Transfer
 To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
 
 - Implement a robust testing plan for your multichain token before launching
-- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/build/transfers/native-token-transfers/configuration/){target=\_blank} for more details on ownership and rate limits
+- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/products/native-token-transfers/configuration/access-control/){target=\_blank} for more details on ownership and rate limits
 - Consider a streamlined, customizable frontend such as [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} for an optimized user experience
 - Alternatively, the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} allows for a direct integration into your infrastructure
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
