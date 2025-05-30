@@ -3977,23 +3977,11 @@ categories: Reference
 
 === "Mainnet"
 
-    | Chain Name           | Contract Address                                |
-    |----------------------|-------------------------------------------------|
-    | Ethereum             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
-    | Solana               |  `28topqjtJzMnPaGFmmZk68tzGmj9W9aMntaEK3QkgtRe` |
-    | Arbitrum             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
-    | Avalanche            |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
-    | Base                 |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
-    | Optimism             |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
-    | Polygon              |  `0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47`   |
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Ethereum</td><td><code>0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47</code></td></tr><tr><td>Solana</td><td><code>28topqjtJzMnPaGFmmZk68tzGmj9W9aMntaEK3QkgtRe</code></td></tr><tr><td>Arbitrum</td><td><code>0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47</code></td></tr><tr><td>Avalanche</td><td><code>0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47</code></td></tr><tr><td>Base</td><td><code>0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47</code></td></tr><tr><td>Optimism</td><td><code>0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47</code></td></tr><tr><td>Polygon</td><td><code>0x70287c79ee41C5D1df8259Cd68Ba0890cd389c47</code></td></tr></tbody></table>
 
 === "Testnet"
 
-    | Chain Name           | Contract Address                                |
-    |----------------------|-------------------------------------------------|
-    | Solana               |  `tD8RmtdcV7bzBeuFgyrFc8wvayj988ChccEzRQzo6md`  |
-    | Arbitrum Sepolia     |  `0xe0418C44F06B0b0D7D1706E01706316DBB0B210E`   |
-    | Optimism Sepolia     |  `0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8`   |
+    <table data-full-width="true" markdown><thead><tr><th>Chain Name</th><th>Contract Address</th></tr></thead><tbody><tr><td>Solana</td><td><code>tD8RmtdcV7bzBeuFgyrFc8wvayj988ChccEzRQzo6md</code></td></tr><tr><td>Arbitrum Sepolia</td><td><code>0xe0418C44F06B0b0D7D1706E01706316DBB0B210E</code></td></tr><tr><td>Optimism Sepolia</td><td><code>0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8</code></td></tr></tbody></table>
     
 
 ## Read-Only Deployments
