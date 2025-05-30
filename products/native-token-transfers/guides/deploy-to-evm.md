@@ -53,26 +53,49 @@ For more detailed information, see the [Deployment Models](TODO){target=\_blank}
 
 ## Deploy NTT
 
-Create a new NTT project:
+Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
 
-```bash
-ntt new my-ntt-deployment
-cd my-ntt-deployment
-```
+???- interface "Install the NTT CLI and Scaffold a New Project"
+    Before proceeding, make sure you have the NTT CLI installed and a project initialized.
 
-Initialize a new `deployment.json` file specifying the network:
+    Follow these steps (or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli)):
 
-=== "Testnet"
+    1. **Install the NTT CLI**:
 
-    ```bash
-    ntt init Testnet
-    ```
+        ```bash
+        curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+        ```
 
-=== "Mainnet"
+        Verify installation:
 
-    ```bash
-    ntt init Mainnet
-    ```
+        ```bash
+        ntt --version
+        ```
+
+    2. **Initialize a new NTT project**:
+
+        ```bash
+        ntt new my-ntt-project
+        cd my-ntt-project
+        ```
+
+    3. **Create the deployment config**:
+
+        === "Mainnet"
+
+            ```bash
+            ntt init Mainnet
+            ```
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+        This generates a `deployment.json` file where your deployment settings will be stored.
+
+Once you've completed those steps, return here to proceed with adding your EVM chains and deploying contracts.
 
 Ensure you have set up your environment correctly: 
 

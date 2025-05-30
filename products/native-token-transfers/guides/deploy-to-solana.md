@@ -16,7 +16,6 @@ The diagram below shows a high-level view of the Solana NTT deployment flow. It 
 
 By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
 
-
 ## Prerequisites
 
 Before deploying NTT on Solana, ensure you have the following:
@@ -119,28 +118,48 @@ To integrate your token with NTT on Solana, you must initialize the deployment a
 
 The [NTT CLI](TODO){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
-1. **Create a new NTT project** - set up a deployment workspace
+???- interface "Install the NTT CLI and Scaffold a New Project"
+    Before proceeding, make sure you have the NTT CLI installed and a project initialized.
 
-    ```bash
-    ntt new INSERT_PROJECT_NAME
-    cd INSERT_PROJECT_NAME
-    ```
+    Follow these steps (or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli)):
 
-2. **Initialize the deployment** - generate a `deployment.json` file with your deployment settings
-
-    === "Mainnet"
+    1. **Install the NTT CLI**:
 
         ```bash
-        ntt init Mainnet
+        curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
         ```
 
-    === "Testnet"
+        Verify installation:
 
         ```bash
-        ntt init Testnet
+        ntt --version
         ```
-!!! note
-    Testnet deployment settings work for both Solana Testnet and Devnet networks.
+
+    2. **Initialize a new NTT project**:
+
+        ```bash
+        ntt new my-ntt-project
+        cd my-ntt-project
+        ```
+
+    3. **Create the deployment config**:
+
+        === "Mainnet"
+
+            ```bash
+            ntt init Mainnet
+            ```
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+        This generates a `deployment.json` file where your deployment settings will be stored.
+
+    !!! note
+        Testnet deployment settings work for both Solana Testnet and Devnet networks.
 
 ### Generate an NTT Program Key Pair
 
