@@ -1160,9 +1160,9 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
     ```
 
-### Troubleshoot Deployment Issues
-    
-If your deployment fails, it may be due to leftover program buffer accounts taking up storage on Solana. These temporary accounts are created during deployment but may persist if interrupted. Refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on finding and closing these buffer accounts to free up space and allow redeployment.
+### Recovering Rent for Failed Solana Deployments
+
+Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
 
 ## Where to Go Next
 
