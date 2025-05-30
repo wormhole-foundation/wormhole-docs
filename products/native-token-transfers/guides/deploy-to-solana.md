@@ -249,7 +249,7 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](TODO){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
 
