@@ -44,7 +44,7 @@ For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), th
 
 This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
 
-For more detailed information, see the [Deployment Models](TODO){target=\_blank} page.
+For more detailed information, see the [Deployment Models](/docs/products/native-token-transfers/overview/#deployment-models){target=\_blank}.
 
 ### Key Differences Between Modes
 
@@ -141,4 +141,4 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
 
 !!!important
-    To proceed with testing and find integration examples, check out the [NTT Post Deployment](TODO){target=\_blank} page.
+    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank} page.
