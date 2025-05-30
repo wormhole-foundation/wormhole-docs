@@ -21,7 +21,7 @@ MultiGov leverages Wormhole's robust cross-chain communication protocol. It impl
 
 ## Can MultiGov integrate with any blockchain?
 
-MultiGov can potentially integrate with any blockchain supported by Wormhole. However, specific implementations may vary depending on the chain's compatibility with the Ethereum Virtual Machine (EVM) and its smart contract capabilities. [See the full list of supported networks](/docs/products/reference/supported-networks/). The current implementation of MultiGov supports an EVM hub and both the EVM and SVM for spokes.
+MultiGov can potentially integrate with any blockchain supported by Wormhole. However, specific implementations may vary depending on the chain's compatibility with the Ethereum Virtual Machine (EVM) and its smart contract capabilities. [See the full list of supported networks](/docs/products/reference/supported-networks/#multigov). The current implementation of MultiGov supports an EVM hub and both the EVM and SVM for spokes.
 
 ## How are votes aggregated across different chains?
 

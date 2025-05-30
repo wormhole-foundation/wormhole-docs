@@ -8,7 +8,7 @@ categories: Settlement, Transfer
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
-This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](docs/tools/typescript-sdk/get-started/){target=_blank}.
+This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=_blank}.
 
 By the end, you'll have a working script that:
 

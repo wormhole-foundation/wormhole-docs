@@ -34,11 +34,11 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     - The Spy can detect whether a VAA has been approved by the Guardian Network, making it a valuable tool for applications needing real-time multichain verification
 
-- [Observations](/docs/learn/glossary/#observation){target=\_blank} - emitted by Wormhole's core contracts, observations are picked up by the Guardians and relayed across the network
+- [Observations](/docs/products/reference/glossary/#observation){target=\_blank} - emitted by Wormhole's core contracts, observations are picked up by the Guardians and relayed across the network
 
     - A Spy allow users to monitor these messages, adding transparency and insight into blockchain events
 
-- [Guardian heartbeats](/docs/learn/glossary/#heartbeat){target=\_blank} - heartbeat messages represent Guardian node status 
+- [Guardian heartbeats](/docs/products/reference/glossary/#heartbeat){target=\_blank} - heartbeat messages represent Guardian node status 
 
     - By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network
 
@@ -68,7 +68,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     For an alternative option to on-demand access to Guardian-attested multichain data, see the Wormhole Queries page. Queries provide a simple, REST endpoint style developer experience. 
 
-    [:custom-arrow: Explore Queries](/docs/build/queries/overview/)
+    [:custom-arrow: Explore Queries](/docs/products/queries/overview/)
 
 </div>
 
@@ -90,6 +90,6 @@ A Spy can access the following categories of messages shared over the gossip pro
 
     For access to real-time network data without infrastructure overhead, follow this guide and use Wormhole Query to construct a query, make a request, and verify the response.
 
-    [:custom-arrow: Get Started with Queries](/docs/build/queries/use-queries/)
+    [:custom-arrow: Get Started with Queries](/docs/products/queries/guides/use-queries/)
 
 </div>

@@ -127,8 +127,8 @@ The `routes` property in Connect version 1.0 has significantly improved. Previou
 
 By default, if no `routes` property is set, Connect will provide routes for two core protocols:
 
- - [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}
- - [CCTP](/docs/learn/transfers/cctp/){target=\_blank}
+ - [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}
+ - [CCTP](/docs/products/cctp-bridge/overview/){target=\_blank}
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
 

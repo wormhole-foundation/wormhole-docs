@@ -14,7 +14,7 @@ The Wormhole Liquidity Layer is the underlying chain abstraction infrastructure 
 
 The EVM Token Router is a simple interface against which to integrate. For an integrator, the contracts have two main entry points: `placeMarketOrder` and `placeFastMarketOrder`.
 
-See the complete list of [Token Router contract addresses](/docs/build/reference/contract-addresses/#settlement-token-router){target=\_blank} for supported networks.
+See the complete list of [Token Router contract addresses](/docs/products/reference/contract-addresses/#settlement-token-router){target=\_blank} for supported networks.
 
 ### Fast Market Order
 

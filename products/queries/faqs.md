@@ -21,7 +21,7 @@ categories: Queries
 
 ## Are there any query examples?
 
-Certainly. You can find a complete guide on the [Use Queries page](/docs/build/queries/use-queries/){target=\_blank}. Additionally, you can find full code examples in the following repositories:
+Certainly. You can find a complete guide on the [Use Queries page](/docs/products/queries/guides/use-queries/){target=\_blank}. Additionally, you can find full code examples in the following repositories:
 
 - [Basic Example Query Demo](https://github.com/wormholelabs-xyz/example-queries-demo/){target=\_blank}
 - [Solana Stake Pool Example Query](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank}

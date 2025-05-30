@@ -76,4 +76,4 @@ Here's a breakdown of the key steps involved when deploying NTT:
 
 Follow these steps to get started with NTT:
 
-[timeline(wormhole-docs/.snippets/text/products/ntt/overview/ntt-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/products/native-token-transfers/overview/ntt-timeline.json)]
