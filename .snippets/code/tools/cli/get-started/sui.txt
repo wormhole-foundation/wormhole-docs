@@ -1,0 +1,25 @@
+worm sui INSERT_COMMAND
+
+Commands:
+  worm sui build-coin                    Build wrapped coin and dump bytecode.
+
+                                         Example:
+                                         worm sui build-coin -d 8 -v V__0_1_1 -n
+                                         testnet -r
+                                         "https://fullnode.testnet.sui.io:443"
+  worm sui deploy <package-dir>          Deploy a Sui package
+  worm sui init-example-message-app      Initialize example core message app
+  worm sui init-token-bridge             Initialize token bridge contract
+  worm sui init-wormhole                 Initialize wormhole core contract
+  worm sui publish-example-message       Publish message from example app via
+                                         core bridge
+  worm sui setup-devnet                  Setup devnet by deploying and
+                                         initializing core and token bridges and
+                                         submitting chain registrations.
+  worm sui objects <owner>               Get owned objects by owner
+  worm sui package-id <state-object-id>  Get package ID from State object ID
+  worm sui tx <transaction-digest>       Get transaction details
+
+Options:
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]

@@ -1,8 +1,0 @@
-worm generate attestation --emitter-chain ethereum \
-    --emitter-address 11111111111111111111111111111115 \
-    --chain ethereum \
-    --token-address 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48 \
-    --decimals 6 \
-    --symbol USDC \
-    --name USDC \
-    --guardian-secret cfb12303a19cde580bb4dd771639b0d26bc68353645571a8cff516ab2ee113a0

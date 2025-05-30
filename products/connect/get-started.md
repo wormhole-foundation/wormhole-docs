@@ -12,6 +12,14 @@ categories: Connect, Transfer
 
 Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
 
+## Install Connect
+
+To install the [Wormhole Connect npm package](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}, run the following command:
+
+```bash
+npm i @wormhole-foundation/wormhole-connect
+```
+
 ## Prerequisites
 
 Before you begin, make sure you have the following:
@@ -23,7 +31,7 @@ Before you begin, make sure you have the following:
     - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}
     - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required)
 
-## Install and Setup Project
+## Install and Set Up Project
 
 1. Clone the demo repository and navigate to the project directory:
 
@@ -69,8 +77,9 @@ Congratulations! You've successfully used Connect to create a simple multichain 
 
 ## Next Steps
 
-For more `config` options, see the [Connect Data Configuration](/docs/products/connect/configuration/data/){target=\_blank} guide.
+Use the following guides to configure your Connect instance:
 
-For more `theme` options, see the [Connect Theme Configuration](/docs/products/connect/configuration/theme/){target=\_blank} guide.
+- **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
+- **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
 
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
