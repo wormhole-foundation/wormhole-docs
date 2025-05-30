@@ -59,4 +59,4 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 Add Connect to your app with these key setup steps:
 
-[timeline(wormhole-docs/.snippets/text/products/reference/connect/overview/connect-timeline.json)]
+[timeline(wormhole-docs/.snippets/text/products/connect/overview/connect-timeline.json)]
