@@ -34,7 +34,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
 1. **Choose your token setup**:
 
      - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
-     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
+     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with NTT
 
         ???- interface "Create and Mint SPL Tokens"
             This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
@@ -255,7 +255,7 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
 
     ---
 
-    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+    Configure Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
 
     [:custom-arrow: Use Connect to Integrate NTT](/docs/products/connect/overview/){target=\_blank}
 

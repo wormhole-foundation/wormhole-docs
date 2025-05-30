@@ -20,7 +20,7 @@ These updates ensure better performance and a smoother integration experience.
 
 ## Update the Connect Package
 
-To begin the migration process, update the Wormhole Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/1.0.0-beta.6-development?activeTab=readme){target=\_blank} to the latest version 1.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
+To begin the migration process, update the Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/1.0.0-beta.6-development?activeTab=readme){target=\_blank} to the latest version 1.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
 
 Run the following command in your terminal:
 
@@ -123,11 +123,11 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 
 ### Update `routes` to Use Route Plugins
 
-The `routes` property in Wormhole Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
+The `routes` property in Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
 
-By default, if no `routes` property is set, Wormhole Connect will provide routes for two core protocols:
+By default, if no `routes` property is set, Connect will provide routes for two core protocols:
 
- - [Wormhole Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}
+ - [Token Bridge](/docs/learn/transfers/token-bridge/){target=\_blank}
  - [CCTP](/docs/learn/transfers/cctp/){target=\_blank}
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
@@ -137,7 +137,7 @@ For most use cases, integrators require more than the default routes. The new `r
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
 ???- tip "`route` Plugins"
-    - **`TokenBridgeRoute`** - manually redeemed Wormhole Token Bridge route
+    - **`TokenBridgeRoute`** - manually redeemed Token Bridge route
     - **`AutomaticTokenBridgeRoute`** - automatically redeemed (relayed) Token Bridge route
     - **`CCTPRoute`** - manually redeemed CCTP route
     - **`AutomaticCCTPRoute`** - automatically redeemed (relayed) CCTP route
@@ -158,7 +158,7 @@ Now that you know the available `route` plugins, let's explore some examples of 
 
 #### Example: Offer Only CCTP Transfers
 
-To configure Wormhole Connect to offer only USDC transfers via the CCTP route, use the following configuration:
+To configure Connect to offer only USDC transfers via the CCTP route, use the following configuration:
 
 ```typescript
 import WormholeConnect, {
@@ -175,7 +175,7 @@ const config: WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import WormholeConnect, {
@@ -198,7 +198,7 @@ This flexible plugin allows you to combine default routes (such as Token Bridge 
 
 ### Update the `tokensConfig` Structure
 
-In Wormhole Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
+In Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
 
 Key Changes to `tokensConfig`:
 
@@ -275,7 +275,7 @@ Key Changes to `tokensConfig`:
 
 ### Update NTT Configuration
 
-In Wormhole Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
+In Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
 
 Key changes:
 
@@ -374,7 +374,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
 
 ### Update UI Configuration
 
-In Wormhole Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
+In Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
 
 Key UI changes:
 
@@ -498,7 +498,7 @@ Important details:
 
 ### Removed Configuration Properties
 
-Several configuration properties have been removed in Wormhole Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
+Several configuration properties have been removed in Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
 
 Removed config keys:
 
@@ -526,7 +526,7 @@ For those using the CDN-hosted version of Wormhole Connect, the package's instal
     npm install @wormhole-foundation/wormhole-connect@^1.0
     ```
 
-2. After installing the package, you can embed Wormhole Connect into your page by adding the following code:
+2. After installing the package, you can embed Connect into your page by adding the following code:
 
     ```typescript
     import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';

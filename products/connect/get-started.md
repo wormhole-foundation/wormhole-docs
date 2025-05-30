@@ -66,10 +66,10 @@ Open the `App.tsx` file in your code editor of choice. You will see code similar
 
 The preceding sample code configures Connect by setting values inside `config` and `theme` as follows:
 
-- **Defines the network** - options include `Mainnet`, `Testnet`, or `Devnet`
-- **Defines chains to include** - this example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains
-- **Adds a title to UI** - (optional) if defined, it will render above the widget in the UI
-- **Defines the theme** - this example sets the mode to `dark` and adds a primary color
+- **Defines the network**: Options include `Mainnet`, `Testnet`, or `Devnet`.
+- **Defines chains to include**: This example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains.
+- **Adds a title to UI**: (Optional) If defined, it will render above the widget in the UI.
+- **Defines the theme**: This example sets the mode to `dark` and adds a primary color.
 
 ## Interact with Connect
 
