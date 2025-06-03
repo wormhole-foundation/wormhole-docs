@@ -77,8 +77,16 @@ More demos are available in the [demos page](/docs/build/start-building/demos/){
 
     **[Reach out now!](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}**
 
-## Supported Blockchains
+## Supported Networks by Product
 
 Wormhole supports a growing number of blockchains.
 
 --8<-- 'text/supported-networks.md'
+
+
+--8<-- 'text/products/reference/supported-networks/connect.md'
+--8<-- 'text/products/reference/supported-networks/ntt.md'
+--8<-- 'text/products/reference/supported-networks/token-bridge.md'
+--8<-- 'text/products/reference/supported-networks/cctp.md'
+--8<-- 'text/products/reference/supported-networks/settlement.md'
+--8<-- 'text/products/reference/supported-networks/multigov.md'
