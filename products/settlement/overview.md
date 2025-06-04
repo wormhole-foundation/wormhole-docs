@@ -6,19 +6,18 @@ categories: Settlement, Transfer
 
 # Settlement Overview 
 
-Wormhole Settlement is a multichain transfer system that allows users to describe the transfer they want to make without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
+Wormhole Settlement is a multichain transfer system that allows users to specify what they want to happen—such as sending or swapping tokens—without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
 
-Settlement was built to address liquidity fragmentation across chains. Traditionally, solvers had to split their capital between multiple networks, which reduced efficiency and scalability. Settlement solves this by consolidating liquidity on Solana, enabling faster execution and minimal slippage, even as liquidity and supported chains scale.
-
-It combines three complementary protocols into a single integration suite, allowing developers to select the best execution route based on cost, speed, and asset requirements.
+Settlement prioritizes speed, execution quality, and reliability. Its primary route, Mayan Swift, leverages fast off-chain auctions among a curated set of solvers to achieve low-latency bridging with minimal slippage. All settlement steps remain verifiable on-chain through Wormhole messages. For broader compatibility and fallback support, Settlement also integrates Mayan MCTP, which wraps Circle’s CCTP for reliable cross-chain execution when fast paths are unavailable.
 
 ## Key Features
 
 - **Intent-based architecture**: Users express what they want to happen (e.g., swap X for Y on chain Z), and solvers execute it.
 - **Solver auctions**: Solvers compete in on-chain auctions for the right to fulfill intents, improving execution quality.
-- **Unified liquidity**: Liquidity is concentrated on Solana, reducing fragmentation and facilitating easier scaling.
+- **Fast and fallback-capable**: Combines high-speed execution with a reliable fallback path.
 - **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and tokens deployed via NTT.
-- **Three interchangeable routes**: Each with distinct tradeoffs in speed, cost, and protocol requirements.
+- **On-chain verifiability**: Even though auctions are off-chain, all settlement steps remain verifiable on-chain via Wormhole messages.
+- **Two integrated routes**: Mayan Swift for speed, Mayan MCTP for compatibility and redundancy.
 
 ## How It Works
 
@@ -27,7 +26,7 @@ At the core of Settlement are two components:
 - **Intents**: Signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed.
 - **Solvers**: Third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return.
 
-Settlement leverages the following three integrated protocols.
+Settlement currently supports the following two integrated protocols.
 
 ### Mayan Swift
 
@@ -37,7 +36,7 @@ The diagram below shows how Mayan Swift handles a cross-chain intent when a user
 
 1. **Solver initiates on Arbitrum**: Solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum.
 2. **VAA emitted to Solana**: A [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator.
-3. **User receives WIF**: Once the user receives WIF, a second VAA finalizes the transfer and releases the ETH held in the escrow to the solver.
+3. **User receives WIF**: Once the user receives WIF, a second VAA is emitted to finalize the transfer and releases the ETH held in the escrow to the solver.
 4. **Failure handling**: If any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds.
 
 ```mermaid
@@ -63,13 +62,9 @@ sequenceDiagram
     Escrow->>Solver_ARB: Releases ETH to solver
 ```
 
-### Liquidity Layer
-
-The Liquidity Layer utilizes a hub-and-spoke architecture, with Solana serving as the central hub for liquidity. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
-
 ### Mayan MCTP
 
-Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift or the Liquidity Layer. While typically more expensive due to protocol fees, it’s a reliable way to ensure settlement completion in edge cases.
+Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift. While typically more expensive due to protocol fees, it ensures reliable settlement when faster options are unavailable.
 
 ## Use Cases
 
