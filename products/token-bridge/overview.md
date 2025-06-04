@@ -24,8 +24,8 @@ Token Bridge is built to solve interoperability problems in multichain token tra
 
 The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
-1. **Attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token.
-2. **Locking**: On the source chain, the native token is locked in a custody account.
+1. **Token attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token, if it is not already registered in the destination chain.
+2. **Locking**: On the source chain, the native token is locked in a custody account/contract.
 3. **Message emission**: The [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} verifies and emits a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 4. **Verification**: The VAA is submitted and verified on the destination chain to confirm authenticity.
 5. **Minting**: A wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain.

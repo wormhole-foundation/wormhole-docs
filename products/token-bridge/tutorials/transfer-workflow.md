@@ -18,7 +18,7 @@ By leveraging Wormhole’s Token Bridge, this guide shows you how to build an ap
  - Non-EVM to EVM chains (e.g., Sui to Avalanche)
  - Non-EVM to non-EVM chains (e.g., Solana to Sui)
 
-Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the Token Bridge method from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
+Existing solutions for multichain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the Token Bridge method from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
 
 At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s Token Bridge method.
 
@@ -47,11 +47,11 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Create a `.gitignore` file** - ensure your private key isn't accidentally exposed or committed to version control
+2. **Set up secure access to your wallets** - this guide assumes you are loading your private keys from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
 
-    ```bash
-    echo ".env" >> .gitignore
-    ```
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
 
 3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
 
@@ -59,24 +59,7 @@ In this section, we’ll guide you through initializing the project, installing 
     npm install @wormhole-foundation/sdk dotenv tsx
     ```
 
-4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
-
-    ```bash
-    touch .env
-    ```
-
-    Inside the `.env` file, add your private keys.
-
-    ```env
-    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
-    ```
-
-    !!! note
-        Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
-
-5. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
+4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
 
     1. Create the helpers file
 
@@ -91,8 +74,7 @@ In this section, we’ll guide you through initializing the project, installing 
         --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-1.ts"
         ```
 
-        - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
-        - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
+        - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. Private keys must be securely loaded beforehand, for example, via keystore or secrets managers
         - **`getTokenDecimals`** - this function fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers
 
 ## Check and Create Wrapped Tokens

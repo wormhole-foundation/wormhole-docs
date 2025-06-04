@@ -1,4 +1,4 @@
 title: Tutorials
 nav:
-- 'Complete Token Transfer Workflow': transfer-workflow.md
 - 'Create Multichain Tokens': multichain-token.md
+- 'Token Transfer via SDK': transfer-workflow.md
