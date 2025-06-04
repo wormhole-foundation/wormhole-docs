@@ -6,9 +6,11 @@ categories: Settlement, Transfer
 
 # Settlement Overview 
 
-Wormhole Settlement is a multichain transfer system that allows users to specify what they want to happen—such as sending or swapping tokens—without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
+Wormhole Settlement is a multichain transfer system that allows users to specify what they want to happen, such as sending or swapping tokens, without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
 
-Settlement prioritizes speed, execution quality, and reliability. Its primary route, Mayan Swift, leverages fast off-chain auctions among a curated set of solvers to achieve low-latency bridging with minimal slippage. All settlement steps remain verifiable on-chain through Wormhole messages. For broader compatibility and fallback support, Settlement also integrates Mayan MCTP, which wraps Circle’s CCTP for reliable cross-chain execution when fast paths are unavailable.
+Settlement prioritizes speed, execution quality, and reliability. Its primary route, Mayan Swift, leverages fast off-chain auctions among a curated set of solvers to achieve low-latency bridging with minimal slippage. All settlement steps remain verifiable on-chain through Wormhole messages. 
+
+For broader use cases and protocol-level execution, Mayan MCTP provides an alternative path. It wraps Circle’s CCTP to facilitate native USDC bridging and token delivery in a single, verifiable flow. While slower due to chain finality constraints, MCTP offers a reliable mechanism for cross-chain transfers.
 
 ## Key Features
 
