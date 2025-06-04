@@ -7,7 +7,7 @@ import {
 import MAINNET from './mainnet';
 import TESTNET from './testnet';
 import DEVNET from './devnet';
-import type { WormholeConnectConfig } from './types';
+import type { config } from './types';
 import {
   Network,
   InternalConfig,
@@ -42,7 +42,7 @@ import cosmwasm from '@wormhole-foundation/sdk/cosmwasm';
 import algorand from '@wormhole-foundation/sdk/algorand';
 
 export function buildConfig(
-  customConfig?: WormholeConnectConfig,
+  customConfig?: config.WormholeConnectConfig,
 ): InternalConfig<NetworkV2> {
   const network = (
     customConfig?.network ||
@@ -298,7 +298,7 @@ export async function newWormholeContextV2(): Promise<WormholeV2<NetworkV2>> {
 
 // setConfig can be called afterwards to override the default config with integrator-provided config
 
-export function setConfig(customConfig?: WormholeConnectConfig) {
+export function setConfig(customConfig?: config.WormholeConnectConfig) {
   const newConfig: InternalConfig<NetworkV2> = buildConfig(customConfig);
 
   // We overwrite keys in the existing object so the references to the config

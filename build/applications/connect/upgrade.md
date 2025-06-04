@@ -12,7 +12,7 @@ The Wormhole Connect feature has been updated to **version 1.0**, introducing a 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
  - Update to the latest Connect package
- - Apply configuration changes to the **`WormholeConnectConfig`** object
+ - Apply configuration changes to the **`config.WormholeConnectConfig`** object
  - Understand new routing capabilities and plugin options
 
 These updates ensure better performance and a smoother integration experience.
@@ -31,9 +31,9 @@ npm install @wormhole-foundation/wormhole-connect@^1.0
 
 This command installs the latest stable version of Wormhole Connect and prepares your environment for the new configuration changes.
 
-## Update the `WormholeConnectConfig` Object
+## Update the `config.WormholeConnectConfig` Object
 
-In version 1.0, the `WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
+In version 1.0, the `config.WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
 
 ### Summary of Breaking Changes
 
@@ -55,7 +55,7 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 === "v0.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       rpcs: {
         ethereum: 'INSERT_ETH_RPC_URL',
         solana: 'INSERT_SOLANA_RPC_URL',
@@ -65,7 +65,7 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       rpcs: {
         Ethereum: 'INSERT_ETH_RPC_URL',
         Solana: 'INSERT_SOLANA_RPC_URL',
@@ -82,14 +82,14 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 === "v0.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       env: 'testnet',
     };
     ```
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       network: 'Testnet',
     };
     ```
@@ -98,7 +98,7 @@ If you don’t explicitly set the `network` value, Connect will default to `Main
 
 ```typescript
 // Defaults to Mainnet
-const config: WormholeConnectConfig = {};
+const config: config.WormholeConnectConfig = {};
 ```
 
 For more information, refer to the [network constants list](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/networks.ts){target=\_blank}.
@@ -110,14 +110,14 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 === "v0.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       networks: ['solana', 'ethereum'],
     };
     ```
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       chains: ['Solana', 'Ethereum'],
     };
     ```
@@ -164,11 +164,11 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 ```typescript
 import {
   AutomaticCCTPRoute,
-  WormholeConnectConfig,
+  config as wormholeConfig,
   WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: wormholeConfig.WormholeConnectConfig = {
   routes: [AutomaticCCTPRoute],
 };
 
@@ -184,13 +184,13 @@ import {
   DEFAULT_ROUTES,
   nttRoutes,
   MayanRouteSWIFT,
-  WormholeConnectConfig,
+  config as wormholeConfig,
   WormholeConnect,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
-const config: WormholeConnectConfig = {
+const config: wormholeConfig.WormholeConnectConfig = {
   routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
@@ -216,7 +216,7 @@ Key Changes to `tokensConfig`:
     ```typescript
     import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       tokensConfig: {
         WETH: {
           key: 'WETH',
@@ -247,7 +247,7 @@ Key Changes to `tokensConfig`:
     ```typescript
     import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       tokensConfig: {
         WETH: {
           key: 'WETH',
@@ -292,7 +292,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
       nttRoutes,
     } from '@wormhole-foundation/wormhole-connect';
 
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       nttGroups: {
         Lido_wstETH: {
           nttManagers: [
@@ -332,7 +332,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
       nttRoutes,
     } from '@wormhole-foundation/wormhole-connect';
 
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       routes: [
         ...nttRoutes({
           tokens: {
@@ -399,7 +399,7 @@ Additionally, there are two new properties under `ui`:
 ```typescript
 import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
     title: 'My Custom Bridge Example',
     getHelpUrl: 'https://examplehelp.com/',
@@ -429,7 +429,7 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 === "v0.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       bridgeDefaults: {
         fromNetwork: 'solana',
         toNetwork: 'ethereum',
@@ -442,7 +442,7 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       ui: {
         defaultInputs: {
           fromChain: 'Solana', // Chain names now capitalized
@@ -467,7 +467,7 @@ Important details:
 === "v0.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       customTheme: {
         primaryColor: '#4266f5',
         secondaryColor: '#ff5733',

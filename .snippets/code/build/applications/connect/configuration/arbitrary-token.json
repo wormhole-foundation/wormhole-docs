@@ -1,4 +1,4 @@
-const config: WormholeConnectConfig = {
+const connectConfig: config.WormholeConnectConfig = {
     "networks":[
         "solana",
         "ethereum"

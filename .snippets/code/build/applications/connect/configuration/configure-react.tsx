@@ -1,8 +1,8 @@
 import WormholeConnect, {
-  WormholeConnectConfig,
+  config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const connectConfig: config.WormholeConnectConfig = {
   networks: ['ethereum', 'polygon', 'solana'],
   tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
   rpcs: {
@@ -13,4 +13,4 @@ const config: WormholeConnectConfig = {
 
 // ...
 
-<WormholeConnect config={config} />
+<WormholeConnect config={connectConfig} />

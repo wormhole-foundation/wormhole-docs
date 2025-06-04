@@ -5,7 +5,7 @@ description: Configure Wormhole Connect for React or HTML, set themes, define to
 
 ## Introduction {: #introduction }
 
-Configure the Wormhole Connect React component by passing a `WormholeConnectConfig` object as the `config` attribute. If using the hosted version, provide `config` and `theme` as JSON-serialized strings on the mount point.
+Configure the Wormhole Connect React component by passing a `config.WormholeConnectConfig` object as the `config` attribute. If using the hosted version, provide `config` and `theme` as JSON-serialized strings on the mount point.
 
 === "React"
 
@@ -21,9 +21,9 @@ Configure the Wormhole Connect React component by passing a `WormholeConnectConf
 
 ## Examples {: #examples }
 
-Below are some examples of different ways you can configure Connect. See `WormholeConnectConfig` in the below file for a full view of the supported configuration parameters.
+Below are some examples of different ways you can configure Connect. See `config.WormholeConnectConfig` in the below file for a full view of the supported configuration parameters.
 
-??? code "View `WormholeConnectConfig`"
+??? code "View `config.WormholeConnectConfig`"
     ```ts
     --8<-- 'code/build/applications/connect/configuration/index.ts'
     ```
@@ -57,12 +57,12 @@ Wormhole Connect offers a high level of customizability that suits and integrate
 
 ### Environment {: #environment }
 
-You can configure Connect to be used in Testnet environments, too. You can toggle between Mainnet and Testnet environments by defining the `WormholeConnectConfig` as follows:
+You can configure Connect to be used in Testnet environments, too. You can toggle between Mainnet and Testnet environments by defining the `config.WormholeConnectConfig` as follows:
 
 === "Mainnet"
 
     ```ts
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       "env": "mainnet"
     }
     ```
@@ -70,7 +70,7 @@ You can configure Connect to be used in Testnet environments, too. You can toggl
 === "Testnet"
 
     ```ts
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       "env": "testnet"
     }
     ```
@@ -79,7 +79,7 @@ You can configure Connect to be used in Testnet environments, too. You can toggl
 You can define a custom RPC provider for your Connect widget to use. This can be especially helpful if you'd like to replace public endpoints with dedicated or private endpoints.
 
 ```ts
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   "rpcs": {
     "solana": "https://rpc.ankr.com/solana/ee827255553bb0fa9e0aaeab27e988707e60ea06ae36be0658b778072e94979e"
   }
