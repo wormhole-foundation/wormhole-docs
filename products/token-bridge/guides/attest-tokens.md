@@ -60,7 +60,7 @@ You must ensure the token is ERC-20 compliant. If it does not implement the stan
 
 ## How to Verify an Attested Token
 
-To verify if a token has a wrapped representation in a given chain, you can call the `wrappedAsset()` function of the Token Bridce contract, in the destination chain that you want to check. The function call will return the address of the wrapped token, or `0x0` if no wrapped token has been attested.
+To verify if a token has a wrapped representation in a given chain, you can call the `wrappedAsset()` function of the Token Bridge contract in the destination chain that you want to check. The function call will return the address of the wrapped token, or `0x0` if no wrapped token has been attested.
 
 ```wrappedAsset
 function attestToken(
@@ -73,7 +73,7 @@ function attestToken(
 
     `uint16` ++"tokenChainId"++
         
-    The Wormhole [chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the soure chain.
+    The Wormhole [chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the source chain.
 
     ---
 
