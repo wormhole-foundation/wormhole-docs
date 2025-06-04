@@ -32,7 +32,7 @@ The VAA's body combines the Envelope and Payload. The Wormhole Guardians signed 
 When integrating protocols like Token Bridge or Wormhole Relayer:
 
 - The TypeScript SDK handles VAAs off-chain, focusing on deserialization, validation, and payload extraction before submission
-- The Solidity SDK processes VAAs on-chain, using libraries like `VaaLib` to decode and execute protocol actions
+- The Solidity SDK processes VAAs on-chain, using libraries like [`VaaLib`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/VaaLib.sol){target=\_blank} to decode and execute protocol actions
 
 ## VAAs in Protocol Contexts
 
