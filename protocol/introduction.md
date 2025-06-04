@@ -79,10 +79,7 @@ More demos are available in the [demos page](/docs/build/start-building/demos/){
 
 ## Supported Networks by Product
 
-Wormhole supports a growing number of blockchains.
-
---8<-- 'text/supported-networks.md'
-
+Wormhole supports a growing number of blockchains. You can use the tables below to verify if your desired chains are supported by the Wormhole products you plan to include in your integration.
 
 --8<-- 'text/products/reference/supported-networks/connect.md'
 --8<-- 'text/products/reference/supported-networks/ntt.md'

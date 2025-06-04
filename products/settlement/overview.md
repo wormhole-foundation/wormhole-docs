@@ -71,20 +71,6 @@ The Liquidity Layer utilizes a hub-and-spoke architecture, with Solana serving a
 
 Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift or the Liquidity Layer. While typically more expensive due to protocol fees, it’s a reliable way to ensure settlement completion in edge cases.
 
-### One Integration, Three Ways
-
-Settlement isn't about choosing just one route; it’s a protocol suite in which all three architectures work together to maximize coverage, speed, and reliability.
-
-By default, Settlement integrates all three:
-
-- The SDK automatically resolves the best route for each transfer.
-- If a fast route like Mayan Swift is unavailable, it can fall back to Liquidity Layer or MCTP.
-- This redundancy ensures better uptime, pricing, and a smoother user experience without requiring additional logic.
-
-Developers can customize route preferences, but for most applications, no configuration is needed to benefit from the full suite.
-
-To read more about each protocol, check the [architecture documentation](/docs/products/settlement/concepts/architecture/){target=\_blank}.
-
 ## Use Cases
 
 - **Cross-Chain Perpetuals** 
@@ -107,6 +93,4 @@ To read more about each protocol, check the [architecture documentation](/docs/p
 Start building with Settlement or dive deeper into specific components:
 
 - **[Get Started with Settlement](/docs/products/settlement/get-started/)**: Follow a hands-on demo using Mayan Swift.
-- **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/)**: Integrate the hub-and-spoke model.
-- **[Run a Solver](/docs/products/settlement/guides/solver/)**: Operate a solver and participate in auctions.
-
+- **[Architecture Documentation](/docs/products/settlement/concepts/architecture/)**: Explore the Settlement architecture and components.
