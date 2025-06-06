@@ -21,6 +21,21 @@ By default, NTT transfers to Solana require manual relaying, meaning that after 
 
 This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
 
+## Post-deployment Settings
+
+The following table outlines post-deployment settings available on the NTT Manager contract. These allow you to update roles, pause activity, and adjust transfer limits—useful for upgrades, incident response, or protocol tuning after initial deployment.
+
+| Setting                 | Effect                                   |
+|-------------------------|------------------------------------------|
+| `pause`                 | Pauses the manager                       |
+| `unpause`               | Unpauses the manager                     |
+| `setOwner`              | Changes the manager owner                |
+| `setPauser`             | Changes the pauser role                  |
+| `setOutboundLimit`      | Sets outbound transfer limit             |
+| `setInboundLimit`       | Sets inbound transfer limit (per chain)  |
+| `setTransceiverPauser ` | Changes pauser for a transceiver         |
+
+
 ## Where to Go Next
 
 <div class="grid cards" markdown>
