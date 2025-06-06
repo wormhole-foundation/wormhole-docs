@@ -50,7 +50,7 @@ Consider the following examples of potential applications enabled by Wormhole:
 
 - **Cross-chain exchange**: Using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access.
 - **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}**: NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
-- **Cross-chain game** : Games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum.
+- **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum.
 
 ## Explore
 
