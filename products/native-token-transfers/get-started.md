@@ -130,6 +130,8 @@ To use NTT, you must have a token already deployed on the source and destination
 
 ## Install NTT CLI
 
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
+
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
 
 1. Run the installation command in your terminal:
