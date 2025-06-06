@@ -10,9 +10,9 @@ categories: Connect, Transfer
 
 ## Introduction
 
-In this tutorial, we’ll explore how to integrate [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank} to enable cross-chain token transfers and interactions. Wormhole Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Wormhole Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
+In this tutorial, we'll explore how to integrate [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank} to enable cross-chain token transfers and interactions. Wormhole Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Wormhole Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
-While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any blockchain supported by Wormhole. In this example, we’ll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
+While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any blockchain supported by Wormhole. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
 
 ## Prerequisites
 
@@ -28,12 +28,12 @@ Before starting this tutorial, ensure you have the following:
 
 ### Create a React Project
 
-Start by setting up your React app:
+In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-started){target=\_blank}, a popular framework built on top of React, to set up your app:
 
 1. Open your terminal and run the following command to create a new React app:
 
     ```bash
-    npx create-react-app connect-tutorial
+    npx create-next-app@latest connect-tutorial
     ```
 
 2. Navigate into the project directory:
@@ -52,13 +52,13 @@ npm install @wormhole-foundation/wormhole-connect
 
 ### Integrate Connect into the Application
 
-Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/products/connect/guides/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
+Now, we need to modify the default `page.tsx` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/products/connect/guides/upgrade/){target=\_blank} or later, make sure to check which version of Connect you are using. Open `src/app/page.tsx` and replace the content with the following code:
 
 === "JavaScript"
 
     ```js
-    import logo from './logo.svg';
-    import './App.css';
+    'use client';
+
     import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
     const config = {
@@ -66,23 +66,27 @@ Now, we need to modify the default `App.js` file to integrate Wormhole Connect. 
         chains: ['Sui', 'Avalanche'],
     };
 
-    function App() {
-        return <WormholeConnect config={config}/>;
-    }
+    const theme = {
+        mode: 'light',
+        primary: '#78c4b6',
+    };
 
-    export default App;
-    ``` 
+    export default function Home() {
+        return <WormholeConnect config={config} theme={theme} />;
+    }
+    ```
 
 === "TypeScript"
 
     ```ts
-    import './App.css';
+    'use client';
+
     import WormholeConnect, {
         WormholeConnectConfig,
         WormholeConnectTheme,
     } from '@wormhole-foundation/wormhole-connect';
 
-    function App() {
+    export default function Home() {
         const config: WormholeConnectConfig = {
             network: 'Testnet',
             chains: ['Sui', 'Avalanche'],
@@ -93,14 +97,11 @@ Now, we need to modify the default `App.js` file to integrate Wormhole Connect. 
         };
 
         const theme: WormholeConnectTheme = {
-            mode: 'dark',
+            mode: 'light',
             primary: '#78c4b6',
         };
-
         return <WormholeConnect config={config} theme={theme} />;
     }
-
-    export default App;
     ```
 
 - Set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
@@ -112,10 +113,10 @@ To further customize Wormhole Connect for your application, such as adjusting th
 
 ### Run the Application
 
-Make sure you’re in the root directory of your React app, and run the following command to start the application:
+Make sure you're in the root directory of your React app, and run the following command to start the application:
 
 ```bash
-npm start
+npm run dev
 ```
 
 Now your React app should be up and running, and Wormhole Connect should be visible on `http://localhost:3000/`. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
@@ -151,7 +152,7 @@ To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp)
 
-Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you're prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
 ## Claim Tokens on Fuji
 
@@ -169,7 +170,7 @@ If you'd like to explore the complete project or need a reference while followin
 
 ## Conclusion
 
-In this tutorial, you’ve gained hands-on experience with integrating Wormhole Connect to enable cross-chain token transfers. You’ve learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
+In this tutorial, you've gained hands-on experience with integrating Wormhole Connect to enable cross-chain token transfers. You've learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
 
 By following these steps, you've learned how to:
 
@@ -178,4 +179,4 @@ By following these steps, you've learned how to:
 - Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers
 - Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
 
-With these tools and knowledge, you’re now equipped to build powerful cross-chain applications using Wormhole Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
+With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Wormhole Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
