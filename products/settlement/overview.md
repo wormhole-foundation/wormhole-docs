@@ -28,7 +28,7 @@ At the core of Settlement are two components:
 - **Intents**: Signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed.
 - **Solvers**: Third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return.
 
-Settlement currently supports the following two integrated protocols.
+Settlement currently supports the following integrated protocols.
 
 ### Mayan Swift
 
