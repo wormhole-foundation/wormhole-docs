@@ -42,6 +42,9 @@ In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-starte
     cd connect-tutorial
     ```
 
+!!!warning
+    Please note that [`create-react-app`](https://create-react-app.dev/docs/getting-started/){target=\_blank} is deprecated and no longer actively supported. We recommend using [Next.js](https://nextjs.org/docs/app/getting-started){target=\_blank} or [Vite](https://vite.dev/guide/){target=\_blank} for better compatibility with tools like Wormhole Connect.
+
 ### Install Wormhole Connect
 
 Next, install the Wormhole Connect package as a dependency by running the following command inside your project directory:
