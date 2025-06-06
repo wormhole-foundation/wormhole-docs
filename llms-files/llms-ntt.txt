@@ -327,7 +327,971 @@ Queuing is configured dynamically during each transfer by passing the `shouldQue
 If users bridge frequently between a given source chain and destination chain, the capacity could be exhausted quickly. Loss of capacity can leave other users rate-limited, potentially delaying their transfers.  The outbound transfer cancels the inbound rate limit on the source chain to avoid unintentional delays. This allows for refilling the inbound rate limit by an amount equal to the outbound transfer amount and vice-versa, with the inbound transfer canceling the outbound rate limit on the destination chain and refilling the outbound rate limit with an amount.
 --- END CONTENT ---
 
+<<<<<<< HEAD
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/faqs/
+=======
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers (NTT) - Deployment
+description: This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
+categories: NTT, Transfer
+---
+
+# Deploy Native Token Transfers (NTT)
+
+## Get Started
+
+This section provides information on installing Wormhole's Native Token Transfer framework, deployment to EVM and Solana, and post deployment NTT maintenance.
+
+<div class="grid cards" markdown>
+
+-   :octicons-download-16:{ .lg .middle } **Installation**
+
+    ---
+
+    Prerequisites and commands for installing the NTT CLI and working with the NTT framework.
+
+    [:custom-arrow: Install the NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM**
+
+    ---
+
+    Find information on preparing for NTT deployment to EVM, including an example NTT token repository.
+
+    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to EVM Chains via Launchpad**
+
+    ---
+
+    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
+
+    [:custom-arrow: Deploy via Launchpad](/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/)
+
+-   :octicons-rocket-16:{ .lg .middle } **Deploy to Solana**
+
+    ---
+
+    Your guide to NTT deployment to Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
+
+    [:custom-arrow: Deploy token and NTT contracts](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)
+
+-   :octicons-search-16:{ .lg .middle } **Post Deployment**
+
+    ---
+
+    Learn how to best monitor and maintain your NTT deployment to get the most out of your Wormhole integration while providing security for users.
+
+    [:custom-arrow: Explore next steps](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/)
+
+-   :octicons-alert-16:{ .lg .middle } **Troubleshooting**
+
+    ---
+
+    Explore solutions and detailed guidance in our troubleshooting guide to resolve issues with NTT deployment.
+
+    [:custom-arrow: Get help](/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers EVM Deployment
+description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
+---
+
+# Native Token Transfers (NTT) EVM Development
+
+## Deploy Your Token and Ensure Compatibility
+
+If you still need to do so, deploy the token contract to the destination or spoke chains.
+
+### Requirements for Token Deployment
+
+Wormhole’s NTT is an open framework that supports various deployment modes. The NTT CLI currently supports two deployment modes: burn-and-mint and hub-and-spoke. These modes differ in how tokens are managed across chains.
+
+#### Burn-and-Mint Mode
+
+Tokens integrated with `NttManager` in `burning` mode require the following two functions to be present:
+
+- `burn(uint256 amount)`
+- `mint(address account, uint256 amount)`
+
+These functions aren't part of the standard ERC-20 interface. The [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} documents the required functions and convenience methods, errors, and events.
+
+??? code "View the complete `INttToken` Interface`"
+    ```solidity
+    // SPDX-License-Identifier: Apache 2
+pragma solidity &gt;=0.8.8 &lt;0.9.0;
+
+interface INttToken {
+    /// @notice Error when the caller is not the minter.
+    /// @dev Selector 0x5fb5729e.
+    /// @param caller The caller of the function.
+    error CallerNotMinter(address caller);
+
+    /// @notice Error when the minter is the zero address.
+    /// @dev Selector 0x04a208c7.
+    error InvalidMinterZeroAddress();
+
+    /// @notice Error when insufficient balance to burn the amount.
+    /// @dev Selector 0xcf479181.
+    /// @param balance The balance of the account.
+    /// @param amount The amount to burn.
+    error InsufficientBalance(uint256 balance, uint256 amount);
+
+    /// @notice The minter has been changed.
+    /// @dev Topic0
+    ///      0x0b5e7be615a67a819aff3f47c967d1535cead1b98db60fafdcbf22dcaa8fa5a9.
+    /// @param newMinter The new minter.
+    event NewMinter(address previousMinter, address newMinter);
+
+    // NOTE: the `mint` method is not present in the standard ERC20 interface.
+    function mint(address account, uint256 amount) external;
+
+    // NOTE: the `setMinter` method is not present in the standard ERC20 interface.
+    function setMinter(address newMinter) external;
+
+    // NOTE: NttTokens in `burn` mode require the `burn` method to be present.
+    //       This method is not present in the standard ERC20 interface, but is
+    //       found in the `ERC20Burnable` interface.
+    function burn(uint256 amount) external;
+}
+    ```
+
+Later, you set mint authority to the corresponding `NttManager` contract. You can also follow the scripts in the [example NTT token](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} repository to deploy a token contract.
+
+#### Hub-and-Spoke Mode
+
+A central hub chain (e.g., Ethereum) manages the total token supply in hub-and-spoke mode. Other chains (spokes) mint or burn tokens during cross-chain transfers, ensuring consistency with the locked tokens on the hub chain.
+
+ - **Hub chain** - tokens are locked on the hub chain when transferring to spoke chains
+ - **Spoke chains** - tokens are native to the spoke chains and are either minted or burned during cross-chain transfers
+
+!!! note
+    The only requirement for using the NTT framework is an ERC20 token, which can be newly deployed or existing. Steps like setting mint authority apply only to spoke chains.
+
+For example, when transferring tokens from Ethereum (hub) to Polygon (spoke), the NTT Manager locks tokens on Ethereum, and the corresponding amount is minted on Polygon. Similarly, transferring tokens back from Polygon to Ethereum burns the tokens on Polygon and unlocks the equivalent tokens on Ethereum.
+
+This process ensures that the total token supply remains consistent across all chains, with the hub chain acting as the source of truth.
+
+For more detailed information, see the [Deployment Models](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank} page.
+
+### Key Differences Between Modes
+
+ - **Burn-and-mint** - tokens must implement custom `mint` and `burn` functions, allowing each chain to manage token issuance independently
+ - **Hub-and-spoke** - tokens only need to be ERC20 compliant, with the hub chain acting as the source of truth for supply consistency
+
+## Deploy NTT
+
+Create a new NTT project:
+
+```bash
+ntt new my-ntt-deployment
+cd my-ntt-deployment
+```
+
+Initialize a new `deployment.json` file specifying the network:
+
+=== "Testnet"
+
+    ```bash
+    ntt init Testnet
+    ```
+
+=== "Mainnet"
+
+    ```bash
+    ntt init Mainnet
+    ```
+
+Ensure you have set up your environment correctly: 
+
+```bash
+export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
+```
+
+Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
+
+```bash
+# Set scanner API Keys as environment variables
+export SEPOLIA_SCAN_API_KEY=INSERT_ETHERSCAN_SEPOLIA_API_KEY
+export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
+
+# Add each chain
+# The contracts will be automatically verified using the scanner API keys above
+ntt add-chain Sepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
+ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
+```
+
+While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
+
+The `ntt add-chain` command takes the following parameters:
+
+- Name of each chain
+- Version of NTT to deploy (use `--latest` for the latest contract versions)
+- Mode (either `burning` or `locking`)
+- Your token contract address
+
+The NTT CLI prints detailed logs and transaction hashes, so you can see exactly what's happening under the hood.
+
+## Configure NTT
+
+The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
+
+- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
+- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+
+    For Solana, the limits are set with 9 decimal places:
+      ```json
+      "inbound": {
+          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+      }
+      ```
+
+    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
+      ```json
+      "inbound": {
+          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+      }
+      ```
+
+    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
+  
+- `ntt push` - syncs the on-chain configuration with local changes made to your `deployment.json` file
+
+After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
+
+## Set Token Minter to NTT Manager
+
+The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub-and-spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
+
+!!! note
+    The required NTT Manager address can be found in the `deployment.json` file.
+
+- If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
+    ```json
+    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
+    ```
+
+- If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
+
+By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
+
+!!!important
+    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/){target=\_blank} page.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Solana Deployment
+description: Deploy and configure Wormhole's Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
+---
+
+# Deploy Native Token Transfers on Solana
+
+[Native Token Transfers (NTT)](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on Solana, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
+
+By the end, a fully deployed NTT will be set up, allowing your token to transfer between Solana and other supported chains.
+
+## Prerequisites
+
+Before deploying NTT on Solana, ensure you have the following:
+
+-  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
+-  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+-  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+
+Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
+
+## Overview of the Deployment Process
+
+Deploying NTT with the CLI on Solana follows a structured process:
+
+1. **Choose your token setup**:
+
+     - **Use an existing SPL token** - if your token is already deployed on Solana, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section
+     - **Create a new SPL token** - if you don't already have an SPL token deployed, you'll need to deploy and configure it on Solana before integrating with Wormhole's NTT
+
+        ???- interface "Create and Mint SPL Tokens"
+            This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+            1. **Generate a Solana key pair** - run the following command to create a new wallet:
+
+                ```bash
+                solana-keygen grind --starts-with w:1 --ignore-case
+                ```
+
+            2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
+
+                ```bash
+                solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+                ```
+
+            3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
+
+                === "Mainnet"
+                    ```bash
+                    solana config set -um
+                    ```
+
+                === "Testnet"
+                    ```bash
+                    solana config set -ut
+                    ```
+
+                === "Devnet"
+                    ```bash
+                    solana config set -ud
+                    ```
+
+            4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
+
+                ```bash
+                solana airdrop 2
+                solana balance
+                ```
+
+            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+
+                ```bash
+                cargo install spl-token-cli
+                ```
+
+            6. **Create a new SPL token** - initialize the token on Solana
+
+                ```bash
+                spl-token create-token
+                ```
+
+            7. **Create a token account** - generate an account to hold the token
+
+                ```bash
+                spl-token create-account INSERT_TOKEN_ADDRESS
+                ```
+
+            8. **Mint tokens** - send 1000 tokens to the created account
+
+                ```bash
+                spl-token mint INSERT_TOKEN_ADDRESS 1000
+                ```
+
+            !!! note
+                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+
+2. **Choose your [deployment model](/docs/learn/transfers/native-token-transfers/deployment/){target=\_blank}**:
+
+     - **Hub-and-spoke** - tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required
+     - **Burn-and-mint** - tokens are burned on the source chain and minted on the destination chain. This requires transferring the SPL token's minting authority to the Program Derived Address (PDA) controlled by the NTT program
+
+3. **Deploy and configure NTT** - use the NTT CLI to initialize and deploy the NTT program, specifying your SPL token and deployment mode
+
+Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
+
+By default, NTT transfers to Solana require manual [relaying](/docs/learn/infrastructure/relayer/){target=\_blank}, meaning users must complete a transaction on Solana to finalize the transfer. For automatic relaying, where transactions are completed without user intervention, additional setup is required. [Contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to enable automatic relaying support for your deployment.
+
+## Set Up NTT
+
+To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
+
+The [NTT CLI](/docs/build/transfers/native-token-transfers/deployment-process/installation/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+
+1. **Create a new NTT project** - set up a deployment workspace
+
+    ```bash
+    ntt new INSERT_PROJECT_NAME
+    cd INSERT_PROJECT_NAME
+    ```
+
+2. **Initialize the deployment** - generate a `deployment.json` file with your deployment settings
+
+    === "Mainnet"
+
+        ```bash
+        ntt init Mainnet
+        ```
+
+    === "Testnet"
+
+        ```bash
+        ntt init Testnet
+        ```
+!!! note
+    Testnet deployment settings work for both Solana Testnet and Devnet networks.
+
+
+### Generate an NTT Program Key Pair
+
+Create a unique key pair for the NTT program:
+    
+    ```bash
+    solana-keygen grind --starts-with ntt:1 --ignore-case
+    ```
+
+### Set Mint Authority
+
+If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
+
+If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+
+Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
+
+Follow these steps to set the mint authority using the NTT CLI:
+
+1. **Derive the token authority** - generate the PDA, which will manage token minting
+
+    ```bash
+    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
+    ```
+
+2. **Set SPL token mint authority** - delegate minting control to the derived PDA 
+
+    ```bash
+    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+    ```
+
+## Deploy and Configure NTT
+
+!!! warning
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/build/transfers/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+
+
+After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
+
+1. **Deploy NTT to Solana** - run the appropriate command based on your deployment mode:
+
+    === "Burn-and-Mint"
+
+        ```bash
+        ntt add-chain Solana --latest --mode burning --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    === "Hub-and-Spoke"
+
+        ```bash
+        ntt add-chain Solana --latest --mode locking --token INSERT_TOKEN_ADDRESS --payer INSERT_YOUR_KEYPAIR_JSON --program-key INSERT_YOUR_NTT_PROGRAM_KEYPAIR_JSON
+        ```
+
+    You can optionally add `--solana-priority-fee` to the script to increase the priority fee in microlamports. The default is `50000`.
+
+2. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
+
+    ```bash
+    ntt status
+    ```
+
+    If needed, sync your local configuration with the on-chain state:
+
+    ```bash
+    ntt pull
+    ```
+
+3. **Configure inbound and outbound rate limits** - by default, the inbound and outbound limits are set to `0` and must be updated before deployment. For EVM chains, values must be set using 18 decimals, while Solana uses nine decimals. 
+
+    Open your `deployment.json` file and adjust the values based on your use case:  
+
+    ```json
+    "inbound": {
+        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+    },
+    "outbound": {
+        "Sepolia": "1000.000000000" // outbound limit from Solana to Sepolia
+    }
+    ```
+
+4. **Push the final deployment** - once rate limits are set, push the deployment to Solana using the specified key pair to cover gas fees
+
+    ```bash
+    ntt push --payer INSERT_YOUR_KEYPAIR_JSON
+    ```
+
+### Recovering Rent for Failed Solana Deployments
+
+Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-globe-16:{ .lg .middle } **Deploy NTT on EVM Chains**  
+
+    ---  
+
+    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+
+    [:custom-arrow: Deploy NTT on EVM](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
+
+    ---
+
+    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
+
+    ---
+
+    Configure Wormhole Connect, a plug-and-play bridging UI, to enable multichain transfers for your token.
+
+    [:custom-arrow: Use Connect to Integrate NTT](/docs/build/transfers/connect/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/evm-launchpad/
+--- BEGIN CONTENT ---
+---
+title: Deploy Native Token Transfers with Launchpad
+description: Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
+categories: NTT, Transfer
+---
+
+# Deploy Native Token Transfers with Launchpad
+
+## Introduction
+
+The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
+
+Instead of manually deploying contracts on each chain, configuring relayers, and managing cross-chain communication, you can quickly launch or expand tokens with just a few clicks. 
+
+The Launchpad automates deployment, reducing complexity and saving time.
+
+This guide covers:
+
+ - Launching a new cross-chain token
+ - Expanding an existing token for NTT
+ - Managing tokens via the dashboard and settings
+
+## Prerequisites
+
+ - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.)
+ - Minimum ETH (or equivalent) for gas fees per deployment
+
+## Supported Blockchains
+
+The NTT Launchpad currently supports deployments on the following mainnet chains:
+
+ - Ethereum
+ - Arbitrum One
+ - Base
+ - Berachain
+ - Blast
+ - BNB Smart Chain
+ - Ink
+ - Optimism Mainnet
+ - Polygon
+
+## Choose Your Path
+
+Once ready, choose an option to proceed:
+
+ - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token) - deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains
+ - [**Expand Your Existing Token**](#expand-your-existing-token) - if you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract
+
+## Launch a Cross-Chain Token
+
+Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
+
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-1.webp)
+    
+2. Select **Launch a Cross-Chain Token**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-2.webp)
+
+3. Set the token details:
+    1. Select the **home network** from the dropdown menu
+    2. Enter the **name** for the token
+    3. Enter the **symbol** of the token 
+    4. Provide the **initial supply**
+    5. To the token details, click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-3.webp)
+
+4. Select the deployment chains:
+    1. The home network where your token will be deployed will be populated (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    3. To continue, click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-4.webp)
+
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-5.webp)
+
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-6.webp)
+
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
+
+8. Once both deployments are completed, proceed to the [**Dashboard**](#explore-the-launchpad-dashboard) to manage your token.
+
+## Expand Your Existing Token
+
+Expand an existing token to support NTT across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
+
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-1.webp)
+
+2. Select **Expand Your Existing Token**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-7.webp)
+
+3. Enter the token details:
+    1. Choose the home network where your token is already deployed (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    3. To continue, click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-8.webp)
+
+4. Select the chains to deploy your token to:
+    1. The home network where your token is already deployed will be populated (e.g., Optimism)
+    2. Choose any additional chains to deploy your token to (e.g., Base)
+    1. Click **Next**
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-9.webp)
+
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-5.webp)
+
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+
+    ![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-6.webp)
+
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
+
+8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details
+
+## Explore the Launchpad Dashboard
+
+To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.com/){target=\_blank}, click on **Manage Deployment**. Here, you can view deployment status, monitor supply across chains, and configure transfer settings.
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-10.webp)
+
+The dashboard provides a high-level view of your token across all deployed chains, including:
+
+ - Token addresses for each chain
+ - Supply distribution visualization
+ - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-11.webp)
+
+## Settings
+
+The **Settings** page allows you to configure security parameters, role management, and transfer limits for your deployed token. You can switch between chains to manage these settings independently for each deployment.
+
+### Chain Management
+
+Use the drop-down menu at the top to select the chain you want to configure. The available options correspond to the chains where your token has already been deployed. Once selected, the page displays token details specific to that chain.
+
+From this section, you can also:
+
+ - **Pause the token** – temporarily turn off transfers on the selected chain
+ - **Deploy to a new chain** – expand your token by deploying it to an additional chain
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-12.webp)
+
+### Role Management
+
+This section displays key [roles](/docs/build/transfers/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
+
+ - **Manager’s Owner** – the owner through the `NTTOwner` proxy
+ - **Pauser** – the address authorized to pause transfers
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-13.webp)
+
+### Security Threshold
+
+Determine and update how transceivers interact with the token. [Transceivers](/docs/build/transfers/native-token-transfers/managers-transceivers/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
+
+A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
+
+ - **Registered Transceivers** – displays the number of registered transceivers and their addresses
+ - **Transceivers Threshold** – a configurable value that must be less than or equal to the number of transceivers
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-14.webp)
+
+### Peer Chains Limits
+
+Define the transfer restrictions for each connected network. You can adjust:
+
+ - **Sending Limits** – the maximum amount of tokens that can be sent from the home chain
+ - **Receiving Limits** – the maximum amount of tokens that can be received for each of the supported peer chains
+
+Enter a new value to adjust limits and click **Update**. The changes will take effect immediately.
+
+![](/docs/images/build/transfers/native-token-transfers/deployment-process/evm-launchpad/ntt-launchpad-15.webp)
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/installation/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Installation
+description: Learn how to Install Wormhole’s Native Token Transfers (NTT) framework, a flexible and composable framework for transferring tokens across blockchains.
+categories: NTT, Transfer
+---
+
+# Install the Native Token Transfers CLI
+
+In this video, the Wormhole team walks you through installing the [Native Token Transfers (NTT) CLI](https://github.com/wormhole-foundation/native-token-transfers/tree/main/cli){target=\_blank}. You’ll see a practical demonstration of running commands, verifying your installation, and addressing common issues that might arise. If you prefer to follow written instructions or want a quick reference for each step, scroll down for the detailed installation guide.
+
+To start using the NTT CLI, you can generate test tokens for development with the [`example-ntt-token`](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} GitHub repository by following the README instructions.
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
+
+## Install NTT CLI
+
+The fastest way to deploy Native Token Transfers (NTT) is using the NTT CLI. As prerequisites, ensure you have the following installed:
+
+- Install [Bun](https://bun.sh/docs/installation){target=\_blank}
+
+Follow these steps to install the NTT CLI:
+
+1. Run the installation command in your terminal:
+
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    ```
+
+2. Verify the NTT CLI is installed:
+
+    ```bash
+    ntt --version
+    ```
+
+3. Once installed, check out the available [NTT CLI Commands](/docs/build/transfers/native-token-transfers/cli-commands/){target=\_blank} to start using the CLI
+
+## Update NTT CLI
+
+To update an existing NTT CLI installation, run the following command in your terminal:
+
+```bash
+ntt update
+```
+
+NTT CLI installations and updates will always pick up the latest tag with name vX.Y.Z+cli and verify that the underlying commit is included in main.
+
+For local development, you can update your CLI version from a specific branch or install from a local path.
+
+To install from a specific branch, run:
+
+```bash
+ntt update --branch foo
+```
+
+To install locally, run:
+```bash
+ntt update --path path/to/ntt/repo
+```
+
+Git branch and local installations enable a fast iteration loop as changes to the CLI code will immediately be reflected in the running binary without having to run any build steps.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy to EVM Chains**
+
+    ---
+
+    Deploy and configure Wormhole’s Native Token Transfers (NTT) for EVM chains, including setup, token compatibility, mint/burn modes, and CLI usage.
+
+    [:custom-arrow: Deploy NTT to EVM chains](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/)
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy to Solana**
+
+    ---
+
+    Deploy and configure Wormhole's Native Token Transfers (NTT) for Solana, including setup, token compatibility, mint/burn modes, and CLI usage.
+
+    [:custom-arrow: Deploy NTT to Solana](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/post-deployment/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Post Deployment
+description: Learn post-deployment guidelines for optimizing Wormhole NTT, which include testing, security, frontend integration, ecosystem coordination, and monitoring.
+categories: NTT, Transfer
+---
+
+# Native Token Transfers Post Deployment
+
+To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
+
+- Implement a robust testing plan for your multichain token before launching
+- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/build/transfers/native-token-transfers/configuration/){target=\_blank} for more details on ownership and rate limits
+- Consider a streamlined, customizable frontend such as [Wormhole Connect](/docs/build/transfers/connect/){target=\_blank} for an optimized user experience
+- Alternatively, the [Wormhole TypeScript SDK](/docs/build/toolkit/typescript-sdk/){target=\_blank} allows for a direct integration into your infrastructure
+- Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately
+- Monitor and maintain your multichain deployment
+
+## Manual Relaying for Solana Transfers  
+
+By default, NTT transfers to Solana require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
+
+This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole NTT Connect Demo**
+
+    ---
+
+    Check out an example project that uses a Vite-React TypeScript application and integrates it with Wormhole Connect, a customizable widget for cross-chain asset transfers.
+
+    [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
+
+-   :octicons-code-16:{ .lg .middle } **Wormhole NTT TypeScript SDK Demo**
+
+    ---
+
+    Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
+
+    [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/deployment-process/troubleshooting/
+--- BEGIN CONTENT ---
+---
+title: Troubleshooting NTT Deployment
+description: Resolve common issues in NTT deployment with this troubleshooting guide covering Solana, EVM, mint authority, decimals, and rate limits.
+categories: NTT, Transfer
+---
+
+# Troubleshooting NTT Deployment
+
+If you encounter issues during the NTT deployment process, check the following common points:
+
+- **Solana and Anchor versions** - ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#install-dependencies){target=\_blank}
+    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+    -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+- **Token compliance on EVM** - verify that your token is an ERC20 token on the EVM chain
+- **Mint authority transfer**
+    - **For burn or spoke tokens on Solana** - ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section
+    - **For EVM tokens** - confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details
+- **Decimal configuration** - run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-solana/#configure-ntt){target=\_blank} section
+- **Rate limit configuration** - increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/build/transfers/native-token-transfers/deployment-process/deploy-to-evm/#configure-ntt){target=\_blank}
+- **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development** - run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file
+
+    ???- interface "Dockerfile"
+
+        ```Dockerfile
+            FROM ubuntu:20.04
+            # Set environment variables to prevent interactive prompts during installation
+            ENV DEBIAN_FRONTEND=noninteractive
+
+            # Update and install necessary dependencies
+            RUN apt-get update && apt-get install -y \
+                curl \
+                wget \
+                git \
+                build-essential \
+                libssl-dev \
+                libudev-dev \
+                pkg-config \
+                python3 \
+                python3-pip \
+                software-properties-common \
+                ca-certificates \
+                unzip \
+                clang \
+                cmake \
+                protobuf-compiler \
+                && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+            # Install Rust
+            RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+            ENV PATH="/root/.cargo/bin:$PATH"
+
+            # Install Solana CLI ({{ntt.solana_cli_version}})
+            RUN sh -c "$(curl -sSfL https://release.solana.com/{{ntt.solana_cli_version}}/install)"
+            ENV PATH="/root/.local/share/solana/install/active_release/bin:$PATH"
+
+            # Install Anchor using avm
+            RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force \
+                && avm install 0.29.0 \
+                && avm use 0.29.0
+            ENV PATH="/root/.avm/bin:$PATH"
+
+
+            ENV NVM_DIR=/root/.nvm
+            RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash \
+                && . "$NVM_DIR/nvm.sh" \
+                && nvm install 22 \
+                && nvm use 22 \
+                && nvm alias default 22
+            ENV PATH="$NVM_DIR/versions/node/v22.12.0/bin:$PATH"
+
+            # Install Bun
+            RUN curl -fsSL https://bun.sh/install | bash
+            ENV PATH="/root/.bun/bin:$PATH"
+
+            # Install Foundry
+            RUN curl -L https://foundry.paradigm.xyz | bash
+            ENV PATH="/root/.foundry/bin:${PATH}"
+            RUN /bin/bash -c "source /root/.bashrc && foundryup"
+
+            # Install Wormhole NTT CLI
+            RUN curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+
+            # Add a default working directory
+            WORKDIR /app
+
+            # Expose port for development if needed
+            EXPOSE 8899
+
+            # Entry point for the container
+            CMD ["bash"]
+        ```
+
+    ???- interface "docker-compose.yml"
+        ```yml 
+            services:
+                portal-ntt:
+                    build:
+                        context: .
+                        dockerfile: Dockerfile
+                    platform: linux/amd64
+                    volumes:
+                        - ./src:/app
+                    working_dir: /app
+                    tty: true
+        ```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/transfers/native-token-transfers/faqs/
+>>>>>>> origin
 --- BEGIN CONTENT ---
 ---
 title: Native Token Transfers FAQs
@@ -4411,7 +5375,69 @@ const SENDER_ABI_PATH = path.resolve(
     npx tsx script/transfer.ts
     ```
 
+<<<<<<< HEAD
 4. Follow the prompts in the terminal. This example uses Avalanche Fuji as the source chain, Celo Testnet as the target, [Avalanche Fuji testnet USDC](https://developers.circle.com/stablecoins/usdc-on-test-networks){target=\_blank}, and a developer wallet as the recipient address. You will see terminal output similar to the following:
+=======
+=== "Testnet"
+
+    ```bash
+    worm status testnet ethereum INSERT_TRANSACTION_HASH
+    ```
+
+See the [Wormhole CLI tool docs](/docs/build/toolkit/cli/) for installation and usage.
+
+## Step-by-Step Tutorial
+
+For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/tutorials/solidity-sdk/cross-chain-contracts/) tutorial.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/start-building/products/
+--- BEGIN CONTENT ---
+---
+title: Compare Wormhole's Cross-Chain Solutions
+description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+categories: Transfer, Basics
+---
+
+# Products 
+
+Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
+
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+
+Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
+
+## Transfer Products
+
+Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
+
+- [**Native Token Transfers (NTT)**](/docs/learn/transfers/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Token Bridge**](/docs/learn/transfers/token-bridge/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
+- [**Settlement**](/docs/learn/messaging/wormhole-settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
+
+<div markdown class="full-width">
+
+::spantable::
+
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+
+::end-spantable::
+>>>>>>> origin
 
     <div data-termynal="" id="termynal">
 <span data-ty="input"><span class="file-path"></span>npx tsx script/transfer.ts</span>
@@ -4426,7 +5452,15 @@ const SENDER_ABI_PATH = path.resolve(
 
 Congratulations! You've successfully created and deployed Wormhole Solidity SDK-based smart contracts and used them to send testnet USDC across blockchains. Consider the following options to build upon what you've accomplished.
 
+<<<<<<< HEAD
 ## Next Steps
+=======
+## Bridging UI
+
+[**Connect**](/docs/build/transfers/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
+
+## Real-time Data
+>>>>>>> origin
 
 - [**Get Started with Messaging**](/docs/products/messaging/get-started/): Send a message across blockchains using the Wormhole TypeScript SDK to eliminate smart contract development and auditing overhead.
 --- END CONTENT ---
@@ -4668,6 +5702,7 @@ categories: Reference
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
 | Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
+| HyperEVM | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | Kaia | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7 |
@@ -5395,4 +6430,294 @@ For cross-chain dApp development, Wormhole formatted addresses simplify handling
 ### Relayers and Infrastructure
 
 Finally, relayers and infrastructure components, such as Wormhole Guardians, rely on the standardized format to efficiently process and relay cross-chain messages. A uniform address format simplifies operations, ensuring smooth interoperability across multiple blockchains.
+<<<<<<< HEAD
+=======
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/start-building/supported-networks/
+--- BEGIN CONTENT ---
+---
+title: Supported Networks
+description: Learn about the networks each Wormhole product supports, and explore links to documentation, official websites, and block explorers.
+categories: Reference
+---
+
+# Supported Networks
+
+Wormhole supports many blockchains across mainnet, testnet, and devnets. You can use these tables to verify if your desired chains are supported by the Wormhole products you plan to include in your integration. 
+
+## Networks
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_CONNECT-->
+<div class="full-width" markdown="">
+
+### Connect
+
+| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Solana | SVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Berachain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Osmosis | CosmWasm | :x: | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Terra | CosmWasm | :x: | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_NTT-->
+<div class="full-width" markdown="">
+
+### NTT
+
+| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Gnosis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| HyperEVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
+| SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->
+<div class="full-width" markdown="">
+
+### Token Bridge
+
+| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Algorand | AVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| HyperEVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sei | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
+| SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Terra | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Terra 2.0 | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XPLA | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_CCTP-->
+<div class="full-width" markdown="">
+
+### CCTP
+
+| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_SETTLEMENT-->
+<div class="full-width" markdown="">
+
+### Settlement
+
+| Ethereum | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Solana | SVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sui | Sui Move VM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Unichain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_MULTIGOV-->
+<div class="full-width" markdown="">
+
+### MultiGov
+
+| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Acala | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Berachain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Celo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fantom | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Gnosis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| HyperEVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
+| Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Karura | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
+| Linea | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Neon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Oasis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sei | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
+| SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Sonic | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Unichain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/build/start-building/testnet-faucets/
+--- BEGIN CONTENT ---
+---
+title: Testnet Faucets
+description: This page includes resources to quickly find the Testnet tokens you need to deploy and test applications and contracts on Wormhole's supported networks.
+categories: Reference
+---
+
+# Testnet Faucets
+
+## Get Started
+
+Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--TESTNET_FAUCETS-->
+<div class="full-width" markdown="">
+
+### EVM
+
+| Ethereum Holesky | EVM | ETH | Alchemy Faucet |
+| Ethereum Sepolia | EVM | ETH | Alchemy Faucet |
+| Acala | EVM | ACA | Discord Faucet |
+| Arbitrum Sepolia | EVM | ETH | List of Faucets |
+| Avalanche | EVM | AVAX | Official Avalanche Faucet |
+| Base Sepolia | EVM | ETH | List of Faucets |
+| Berachain | EVM | BERA | Official Berachain Faucet |
+| Blast | EVM | ETH | List of Faucets |
+| BNB Smart Chain | EVM | BNB | Official BNB Faucet |
+| Celo | EVM | CELO | Official Celo Faucet |
+| Fantom | EVM | FTM | Official Fantom Faucet |
+| Gnosis | EVM | xDAI | Official Gnosis Faucet |
+| HyperEVM | EVM | mock USDC | Official Hyperliquid Faucet |
+| Ink | EVM | ETH | Official Ink Faucet |
+| Kaia | EVM | KAIA | Official Kaia Faucet |
+| Karura | EVM | ACA | Discord Faucet |
+| Linea | EVM | ETH | List of Faucets |
+| Mantle | EVM | MNT | Official Mantle Faucet |
+| Monad | EVM | MON | Official Monad Faucet |
+| Moonbeam | EVM | DEV | Official Moonbeam Faucet |
+| Neon | EVM | NEON | Official Neon Faucet |
+| Oasis | EVM | TEST | Official Oasis Faucet |
+| Optimism Sepolia | EVM | ETH | Superchain Faucet |
+| Polygon Amoy | EVM | POL | Official Polygon Faucet |
+| Scroll | EVM | ETH | List of Faucets |
+| Unichain | EVM | ETH | QuickNode Faucet |
+| World Chain | EVM | ETH | Alchemy Faucet |
+| X Layer | EVM | OKB | X Layer Official Faucet |
+
+### SVM
+
+| Pythnet | SVM | ETH | Superchain Faucet |
+
+### AVM
+
+| Algorand | AVM | ALGO | Official Algorand Faucet |
+
+### CosmWasm
+
+| Celestia | CosmWasm | TIA | Discord Faucet |
+| Cosmos Hub | CosmWasm | ATOM | Discord Faucet |
+| Evmos | CosmWasm | TEVMOS | Official Evmos Faucet |
+| Injective | CosmWasm | INJ | Official Injective Faucet |
+| Kujira | CosmWasm | KUJI | Discord Faucet |
+| Neutron | CosmWasm | NTRN | List of Faucets |
+| Noble | CosmWasm | USDC | Circle Faucet |
+| Osmosis | CosmWasm | OSMO | Official Osmosis Faucet |
+| SEDA | CosmWasm | SEDA | Official SEDA Faucet |
+| Sei | CosmWasm | SEI | Sei Atlantic-2 Faucet |
+| Terra | CosmWasm | LUNA | Terra Official Faucet |
+| Terra 2.0 | CosmWasm | LUNA | Terra Official Faucet |
+| XPLA | CosmWasm | XPLA | XPLA Official Faucet |
+
+### Move VM
+
+| Aptos | Move VM | APT | Official Aptos Faucet |
+
+### NEAR VM
+
+| NEAR | NEAR VM | NEAR | Official NEAR Faucet |
+
+### Sui Move VM
+
+| Sui | Sui Move VM | SUI | List of Faucets |
+</div>
+<!--TESTNET_FAUCETS-->
+>>>>>>> origin
 --- END CONTENT ---
