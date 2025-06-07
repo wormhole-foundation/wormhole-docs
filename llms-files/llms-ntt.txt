@@ -1065,6 +1065,15 @@ Create a unique key pair for the NTT program:
 solana-keygen grind --starts-with ntt:1 --ignore-case
 ```
 
+
+### Generate an NTT Program Key Pair
+
+Create a unique key pair for the NTT program:
+    
+    ```bash
+    solana-keygen grind --starts-with ntt:1 --ignore-case
+    ```
+
 ### Set Mint Authority
 
 If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
@@ -1142,9 +1151,9 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
     ```
 
-### Troubleshoot Deployment Issues
-    
-If your deployment fails, it may be due to leftover program buffer accounts taking up storage on Solana. These temporary accounts are created during deployment but may persist if interrupted. Refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on finding and closing these buffer accounts to free up space and allow redeployment.
+### Recovering Rent for Failed Solana Deployments
+
+Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
 
 ## Where to Go Next
 
@@ -1181,6 +1190,14 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
     Find answers to common questions about NTT.
 
     [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -4668,6 +4685,7 @@ categories: Reference
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
 | Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
+| HyperEVM | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | Kaia | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7 |
