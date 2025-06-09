@@ -58,51 +58,13 @@ Now, we need to modify the default `page.tsx` file to integrate Connect. We are 
 === "JavaScript"
 
     ```js
-    'use client';
-
-    import WormholeConnect from '@wormhole-foundation/wormhole-connect';
-
-    const config = {
-        network: 'Testnet',
-        chains: ['Sui', 'Avalanche'],
-    };
-
-    const theme = {
-        mode: 'light',
-        primary: '#78c4b6',
-    };
-
-    export default function Home() {
-        return <WormholeConnect config={config} theme={theme} />;
-    }
+    --8<-- "code/products/connect/tutorials/react-dapp/snippet-1.js"
     ```
 
 === "TypeScript"
 
     ```ts
-    'use client';
-
-    import WormholeConnect, {
-        WormholeConnectConfig,
-        WormholeConnectTheme,
-    } from '@wormhole-foundation/wormhole-connect';
-
-    export default function Home() {
-        const config: WormholeConnectConfig = {
-            network: 'Testnet',
-            chains: ['Sui', 'Avalanche'],
-
-            ui: {
-                title: 'SUI Connect TS Demo',
-            },
-        };
-
-        const theme: WormholeConnectTheme = {
-            mode: 'light',
-            primary: '#78c4b6',
-        };
-        return <WormholeConnect config={config} theme={theme} />;
-    }
+    --8<-- "code/products/connect/tutorials/react-dapp/snippet-2.ts"
     ```
 
 - Set `network` to `testnet` - this ensures that Connect uses the testnet environment
