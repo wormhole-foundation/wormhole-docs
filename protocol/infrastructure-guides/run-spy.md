@@ -70,9 +70,6 @@ Once running, a [gRPC](https://grpc.io/){target=\_blank} client (i.e., your prog
 
 Use this [proto-spec file](https://github.com/wormhole-foundation/wormhole/blob/main/proto/spy/v1/spy.proto){target=\_blank} to generate a client for the gRPC service.
 
-!!! note
-    If using JavaScript/TypeScript, the [Spydk](https://www.npmjs.com/package/@certusone/wormhole-spydk){target=\_blank} makes setting up a client easier.
-
 ## Data Persistence
 
 The Spy does not have a built-in persistence layer, so it is typically paired with something like Redis or an SQL database to record relevant messages.

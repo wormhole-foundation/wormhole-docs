@@ -107,5 +107,4 @@ You can tailor the example to your use case by adjusting:
 Once you've chosen a path, follow the corresponding guide to start building:
 
 - [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank}: Check out the repository for the full code example.
-- [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/): Interact directly with routers for flexible protocol-level control.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
