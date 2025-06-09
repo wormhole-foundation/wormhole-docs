@@ -1,6 +1,6 @@
 ---
 title: Ecosystem
-description: description
+description: Explore Wormhole's modular ecosystem of cross-chain tools for messaging, bridging, governance, and developer integration.
 categories: Basics
 ---
 
@@ -21,7 +21,7 @@ The diagram shows a high-level view of Wormhole’s modular stack, illustrating 
 - **Integration layer**: The [TypeScript SDK](/docs/build/toolkit/typescript-sdk/wormhole-sdk/){target=\_blank}, [Solidity SDK](/docs/build/toolkit/solidity-sdk/){target=\_blank}, and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
 - **Foundation layer**: At the base, the [Wormhole messaging](/docs/learn/infrastructure/){target=\_blank} system and the [core contracts](/docs/build/core-messaging/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
 
-![Wormhole ecosystem diagram](/docs/images/protocol/ecosystem/ecosystem-diagram.webp)
+![Wormhole ecosystem diagram](/docs/images/protocol/ecosystem/ecosystem-1.webp)
 
 ## Bringing It All Together: Interoperability in Action
 
