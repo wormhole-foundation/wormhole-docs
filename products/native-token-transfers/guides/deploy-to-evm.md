@@ -135,7 +135,7 @@ This table compares the configuration parameters available when deploying the NT
 | `specialRelayer`        | input                  | Not exposed                         | No     | Take into consideration if doing custom relaying. Not recommended |
 | `decimals`              | input, overridable     | Auto-detected via token contract, not overridable  | Similar |                              |
 | `wormholeChainId`       | Queried from wormhole contract | --chain (network param, mapped internally) | Yes     |                              |
-| `rateLimitDuration`     | Hardcoded (86400)      | Hardcoded (86400)                   | Yes    | Rate limit duration, a day is normal but worth deciding  |
+| `rateLimitDuration`     | Hardcoded (86400)      | Hardcoded (86400)                   | Yes    | Rate limit duration. A day is normal but worth deciding  |
 | `shouldSkipRatelimiter` | Hardcoded (false)      | Hardcoded (false)                   | Yes    | If rate limit should be disabled (when the manager supports it)         |
 | `consistencyLevel`      | Hardcoded (202)        | Hardcoded (202)                     | Yes    | 202 is the standard — can do lower but not recommended for now  |
 | `gasLimit`              | Hardcoded (500000)     | Hardcoded (500000)                  | Yes    |                                              |
