@@ -10,9 +10,9 @@ categories: Connect, Transfer
 
 ## Introduction
 
-In this tutorial, we'll explore how to integrate [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank} to enable cross-chain token transfers and interactions. Wormhole Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Wormhole Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
+In this tutorial, we'll explore how to integrate [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} to enable cross-chain token transfers and interactions. Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
-While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any blockchain supported by Wormhole. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
+While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any [blockchain supported by Wormhole](/docs/products/connect/reference/support-matrix/){target=\_blank}. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
 
 ## Prerequisites
 
@@ -42,8 +42,6 @@ In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-starte
     cd connect-tutorial
     ```
 
-!!!warning
-    Please note that [`create-react-app`](https://create-react-app.dev/docs/getting-started/){target=\_blank} is deprecated and no longer actively supported. We recommend using [Next.js](https://nextjs.org/docs/app/getting-started){target=\_blank} or [Vite](https://vite.dev/guide/){target=\_blank} for better compatibility with tools like Wormhole Connect.
 
 ### Install Wormhole Connect
 
