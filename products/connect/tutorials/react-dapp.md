@@ -36,6 +36,8 @@ In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-starte
     npx create-next-app@latest connect-tutorial
     ```
 
+    We recommend enabling TypeScript and creating a `src/` directory during setup. Other options can be configured based on your preferences.
+
 2. Navigate into the project directory:
 
     ```bash
