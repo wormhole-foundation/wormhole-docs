@@ -58,7 +58,7 @@ This table compares the configuration parameters available when deploying the NT
 | `wormholeChainId`       | Queried from wormhole contract | --chain (network param, mapped internally) | Yes     |                              |
 | `rateLimitDuration`     | Hardcoded (`86400`)    | Hardcoded (`86400`)                 | Yes    | Rate limit duration. A day is normal but worth deciding  |
 | `shouldSkipRatelimiter` | Hardcoded (`false`)      | Hardcoded (`false`)                   | Yes    | If rate limit should be disabled (when the manager supports it)         |
-| `consistencyLevel`      | Hardcoded (`202`)      | Hardcoded (`202`)                   | Yes    | `202`(finalized) is the standard — lower is not recommended  |
+| `consistencyLevel`      | Hardcoded (`202`)      | Hardcoded (`202`)                   | Yes    | `202` (finalized) is the standard — lower is not recommended  |
 | `gasLimit`              | Hardcoded (`500000`)   | Hardcoded (`500000`)                | Yes    |             |
 | `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
 
