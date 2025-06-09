@@ -132,7 +132,7 @@ This table compares the configuration parameters available when deploying the NT
 | `mode`                  | input                  | --mode <locking/burning>            | Yes    | Key decision: hub-and-spoke or mint-and-burn |
 | `wormhole`              | input                  | Auto-detected via SDK/ChainContext  | Similar|                                              |
 | `wormholeRelayer`       | input                  | Auto-detected via on-chain query/SDK| Similar|                                              |
-| `specialRelayer`        | input                  | Not exposed                         | No     | Take into consideration if doing custom relaying. Not recommended |
+| `specialRelayer`        | input                  | Not exposed                         | No     | Take into consideration if using custom relaying. Not recommended |
 | `decimals`              | input, overridable     | Auto-detected via token contract, not overridable  | Similar |                              |
 | `wormholeChainId`       | Queried from wormhole contract | --chain (network param, mapped internally) | Yes     |                              |
 | `rateLimitDuration`     | Hardcoded (86400)      | Hardcoded (86400)                   | Yes    | Rate limit duration. A day is normal but worth deciding  |
