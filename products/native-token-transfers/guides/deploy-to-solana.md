@@ -129,6 +129,15 @@ Create a unique key pair for the NTT program:
 solana-keygen grind --starts-with ntt:1 --ignore-case
 ```
 
+
+### Generate an NTT Program Key Pair
+
+Create a unique key pair for the NTT program:
+    
+    ```bash
+    solana-keygen grind --starts-with ntt:1 --ignore-case
+    ```
+
 ### Set Mint Authority
 
 If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
@@ -206,9 +215,9 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
     ```
 
-### Troubleshoot Deployment Issues
-    
-If your deployment fails, it may be due to leftover program buffer accounts taking up storage on Solana. These temporary accounts are created during deployment but may persist if interrupted. Refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on finding and closing these buffer accounts to free up space and allow redeployment.
+### Recovering Rent for Failed Solana Deployments
+
+Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
 
 ## Where to Go Next
 
@@ -245,5 +254,13 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
     Find answers to common questions about NTT.
 
     [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>
