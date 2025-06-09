@@ -69,7 +69,7 @@ Now, we need to modify the default `page.tsx` file to integrate Connect. We are 
     --8<-- "code/products/connect/tutorials/react-dapp/snippet-2.ts"
     ```
 
-- Set `network` to `testnet` - this ensures that Connect uses the testnet environment
+- Set `network` to `'Testnet'` - this ensures that Connect uses the testnet environment
 - Set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
 ### Customize Connect
