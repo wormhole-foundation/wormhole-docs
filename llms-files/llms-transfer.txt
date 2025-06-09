@@ -66,13 +66,13 @@ categories: Connect, Transfer
 
 ## Introduction
 
-In this tutorial, we’ll explore how to integrate [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank} to enable cross-chain token transfers and interactions. Wormhole Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Wormhole Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
+In this tutorial, we'll explore how to integrate [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} to enable cross-chain token transfers and interactions. Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
-While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any blockchain supported by Wormhole. In this example, we’ll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
+While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any [blockchain supported by Wormhole](/docs/products/connect/reference/support-matrix/){target=\_blank}. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
 
 ## Prerequisites
 
-To get started with Wormhole Connect, we'll first need to set up a basic environment that allows for cross-chain token transfers.
+To get started with Connect, we'll first need to set up a basic environment that allows for cross-chain token transfers.
 Before starting this tutorial, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
@@ -84,13 +84,15 @@ Before starting this tutorial, ensure you have the following:
 
 ### Create a React Project
 
-Start by setting up your React app:
+In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-started){target=\_blank}, a popular framework built on top of React, to set up your app:
 
 1. Open your terminal and run the following command to create a new React app:
 
     ```bash
-    npx create-react-app connect-tutorial
+    npx create-next-app@latest connect-tutorial
     ```
+
+    We recommend enabling TypeScript and creating a `src/` directory during setup. Other options can be configured based on your preferences.
 
 2. Navigate into the project directory:
 
@@ -98,9 +100,10 @@ Start by setting up your React app:
     cd connect-tutorial
     ```
 
-### Install Wormhole Connect
 
-Next, install the Wormhole Connect package as a dependency by running the following command inside your project directory:
+### Install Connect
+
+Next, install the Connect package as a dependency by running the following command inside your project directory:
 
 ```bash
 npm install @wormhole-foundation/wormhole-connect
@@ -108,133 +111,134 @@ npm install @wormhole-foundation/wormhole-connect
 
 ### Integrate Connect into the Application
 
-Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/products/connect/guides/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
+Now, we need to modify the default `page.tsx` file to integrate Connect. We are going to use [version V1.0](/docs/products/connect/guides/upgrade/){target=\_blank} or later, make sure to check which version of Connect you are using. Open `src/app/page.tsx` and replace the content with the following code:
 
 === "JavaScript"
 
     ```js
-    import logo from './logo.svg';
-    import './App.css';
-    import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+    'use client';
 
-    const config = {
-        network: 'Testnet',
-        chains: ['Sui', 'Avalanche'],
-    };
+import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
-    function App() {
-        return <WormholeConnect config={config}/>;
-    }
+const config = {
+  network: 'Testnet',
+  chains: ['Sui', 'Avalanche'],
+};
 
-    export default App;
-    ``` 
+const theme = {
+  mode: 'light',
+  primary: '#78c4b6',
+};
+
+export default function Home() {
+  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
+}
+    ```
 
 === "TypeScript"
 
     ```ts
-    import './App.css';
-    import WormholeConnect, {
-        WormholeConnectConfig,
-        WormholeConnectTheme,
-    } from '@wormhole-foundation/wormhole-connect';
+    'use client';
 
-    function App() {
-        const config: WormholeConnectConfig = {
-            network: 'Testnet',
-            chains: ['Sui', 'Avalanche'],
+import WormholeConnect, {
+  WormholeConnectConfig,
+  WormholeConnectTheme,
+} from '@wormhole-foundation/wormhole-connect';
 
-            ui: {
-                title: 'SUI Connect TS Demo',
-            },
-        };
+export default function Home() {
+  const config: WormholeConnectConfig = {
+    network: 'Testnet',
+    chains: ['Sui', 'Avalanche'],
 
-        const theme: WormholeConnectTheme = {
-            mode: 'dark',
-            primary: '#78c4b6',
-        };
+    ui: {
+      title: 'SUI Connect TS Demo',
+    },
+  };
 
-        return <WormholeConnect config={config} theme={theme} />;
-    }
-
-    export default App;
+  const theme: WormholeConnectTheme = {
+    mode: 'light',
+    primary: '#78c4b6',
+  };
+  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
+}
     ```
 
-- Set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
+- Set `network` to `'Testnet'` - this ensures that Connect uses the testnet environment
 - Set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
-### Customize Wormhole Connect
+### Customize Connect
 
-To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
+To further customize Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
 
 ### Run the Application
 
-Make sure you’re in the root directory of your React app, and run the following command to start the application:
+Make sure you're in the root directory of your React app, and run the following command to start the application:
 
 ```bash
-npm start
+npm run dev
 ```
 
-Now your React app should be up and running, and Wormhole Connect should be visible on `http://localhost:3000/`. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
+Now your React app should be up and running, and Connect should be visible on `http://localhost:3000/`. You should see the Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
 
 ## Transfer Tokens from Sui to Fuji
 
 Before transferring token ensure you have enough testnet SUI and Fuji tokens to cover the gas fees for the transfer. 
 
-To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
+To transfer tokens from Sui to Fuji in the Connect interface:
 
 1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer
 2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
 3. Enter the amount of SUI tokens you wish to transfer
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-1.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-1.webp){.half}
 
 4. Choose to view other routes 
     
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-2.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-2.webp){.half}
 
 5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
 
     !!! note
         It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-3.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-3.webp){.half}
 
 6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-4.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-4.webp){.half}
 
 7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp){.half}
 
-Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+Once the transaction has been submitted, Connect will display the progress of the transfer. Monitor the status until you're prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
 ## Claim Tokens on Fuji
 
 After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
 
-![](/docs/images/products/connect/tutorials/react-dapp/connect-6.webp)
+![](/docs/images/products/connect/tutorials/react-dapp/connect-6.webp){.half}
 
 Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
 
-![](/docs/images/products/connect/tutorials/react-dapp/connect-7.webp)
+![](/docs/images/products/connect/tutorials/react-dapp/connect-7.webp){.half}
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the entire codebase in the [Sui-Connect GitHub repository](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}. The repository includes an integration of Wormhole Connect in a React app for bridging tokens between the Sui and Fuji (Avalanche Testnet) networks.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the entire codebase in the [Sui-Connect GitHub repository](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}. The repository includes an integration of Connect in a React app for bridging tokens between the Sui and Fuji (Avalanche Testnet) networks.
 
 ## Conclusion
 
-In this tutorial, you’ve gained hands-on experience with integrating Wormhole Connect to enable cross-chain token transfers. You’ve learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
+In this tutorial, you've gained hands-on experience with integrating Connect to enable cross-chain token transfers. You've learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
 
 By following these steps, you've learned how to:
 
 - Set up a React project tailored for cross-chain transfers
-- Install and configure Wormhole Connect to support multiple blockchains
+- Install and configure Connect to support multiple blockchains
 - Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers
 - Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
 
-With these tools and knowledge, you’re now equipped to build powerful cross-chain applications using Wormhole Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
+With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/cctp-bridge/get-started/
@@ -5462,6 +5466,26 @@ interface INttToken {
 
     This setup maintains a consistent total supply across all chains.
 
+## NTT Manager Deployment Parameters
+
+This table compares the configuration parameters available when deploying the NTT Manager using the CLI versus a manual deployment with a Forge script. It highlights which options are configurable via each method, whether values are auto-detected or hardcoded, and includes additional comments to help guide deployment decisions.
+
+| <div style="width:150px">Parameter</div> | Forge Script           | CLI                                 | Both   | Comments                                     |
+|-------------------------|------------------------|-------------------------------------|--------|----------------------------------------------|
+| `token`                 | Input                  | `--token <address>`                 | Yes    |                                              |
+| `mode`                  | Input                  | `--mode <locking/burning>`          | Yes    | Key decision: hub-and-spoke or mint-and-burn |
+| `wormhole`              | Input                  | Auto-detected via SDK/`ChainContext`  | Similar|                                              |
+| `wormholeRelayer`       | Input                  | Auto-detected via on-chain query/SDK| Similar|                                              |
+| `specialRelayer`        | Input                  | Not exposed                         | No     | Take into consideration if using custom relaying. Not recommended |
+| `decimals`              | Input, overridable     | Auto-detected via token contract, not overridable  | Similar |                              |
+| `wormholeChainId`       | Queried from Wormhole contract | `--chain` (network param, mapped internally) | Yes     |                              |
+| `rateLimitDuration`     | Hardcoded (`86400`)    | Hardcoded (`86400`)                 | Yes    | Rate limit duration. A day is normal but worth deciding  |
+| `shouldSkipRatelimiter` | Hardcoded (`false`)      | Hardcoded (`false`)                   | Yes    | If rate limit should be disabled (when the manager supports it)         |
+| `consistencyLevel`      | Hardcoded (`202`)      | Hardcoded (`202`)                   | Yes    | `202` (finalized) is the standard — lower is not recommended  |
+| `gasLimit`              | Hardcoded (`500000`)   | Hardcoded (`500000`)                | Yes    |             |
+| `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
+
+
 ## Deploy NTT
 
 Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
@@ -6106,6 +6130,20 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 By default, NTT transfers to Solana require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
 
 This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
+
+## Post-Deployment Settings
+
+The following table outlines post-deployment settings available on the NTT Manager contract. These allow you to update roles, pause activity, and adjust transfer limits—useful for upgrades, incident response, or protocol tuning after initial deployment.
+
+| Setting                 | Effect                                   |
+|-------------------------|------------------------------------------|
+| `pause`                 | Pauses the manager                       |
+| `unpause`               | Unpauses the manager                     |
+| `setOwner`              | Changes the manager owner                |
+| `setPauser`             | Changes the pauser role                  |
+| `setOutboundLimit`      | Sets outbound transfer limit             |
+| `setInboundLimit`       | Sets inbound transfer limit (per chain)  |
+| `setTransceiverPauser ` | Changes pauser for a transceiver         |
 
 ## Where to Go Next
 
@@ -9028,6 +9066,44 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     [:custom-arrow: Build with Core Messaging](/docs/products/messaging/guides/wormhole-relayers/)
 
 </div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/protocol/ecosystem/
+--- BEGIN CONTENT ---
+---
+title: Ecosystem
+description: Explore Wormhole's modular ecosystem of cross-chain tools for messaging, bridging, governance, and developer integration.
+categories: Basics
+---
+
+# The Wormhole Ecosystem
+
+[Wormhole](/docs/protocol/introduction/){target=\_blank} is a cross-chain messaging protocol connecting decentralized applications across multiple blockchains. It offers a suite of interoperability tools, each addressing different multichain challenges, and allows developers to mix and match these products as needed.
+
+Whether you’re looking for a simple UI-based bridging experience, a native token transfer flow without wrapped assets, real-time cross-chain data queries, or an advanced settlement layer for complex asset movements, Wormhole has a product designed for that purpose. Every solution integrates with Wormhole’s core messaging network, ensuring each module can operate independently or in combination with others.
+
+This page will guide you through the structural layout of these tools—how they fit together, can be used independently, and can be layered to build robust, multichain applications.
+
+## Ecosystem Overview
+
+The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
+
+- **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments).
+- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
+- **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, [Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank}, and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
+- **Foundation layer**: At the base, the [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} system and the [core contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
+
+![Wormhole ecosystem diagram](/docs/images/protocol/ecosystem/ecosystem-1.webp)
+
+## Bringing It All Together: Interoperability in Action
+
+Wormhole’s modularity makes it easy to adopt just the pieces you need. If you want to quickly add bridging to a dApp, use Connect at the top layer while relying on the Foundation Layer behind the scenes. Or if your app needs to send raw messages between chains, integrate the Messaging layer directly via the Integration Layer (TypeScript or Solidity SDK). You can even layer on additional features—like real-time data calls from Queries or more flexible bridging flows with Native Token Transfers.
+
+Ultimately, these components aren’t siloed but designed to be combined. You could, for instance, fetch a balance from one chain using Queries and then perform an on-chain swap on another chain using Settlement. Regardless of your approach, each Wormhole product is powered by the same Guardian-secured messaging backbone, ensuring all cross-chain interactions remain reliable and secure.
+
+## Next Steps
+
+Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/products/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/protocol/infrastructure/core-contracts/
