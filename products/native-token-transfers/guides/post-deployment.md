@@ -35,7 +35,6 @@ The following table outlines post-deployment settings available on the NTT Manag
 | `setInboundLimit`       | Sets inbound transfer limit (per chain)  |
 | `setTransceiverPauser ` | Changes pauser for a transceiver         |
 
-
 ## Where to Go Next
 
 <div class="grid cards" markdown>
