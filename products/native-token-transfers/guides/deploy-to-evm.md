@@ -129,7 +129,7 @@ This table compares the configuration parameters available when deploying the NT
 | Parameter               | Forge Script           | CLI                                 | Both   | Comments                                     |
 |-------------------------|------------------------|-------------------------------------|--------|----------------------------------------------|
 | `token`                 | input                  | --token <address>                   | Yes    |                                              |
-| `mode`                  | input                  | --mode <locking/burning>            | Yes    | Key decision, hub-and-spoke or mint-and-burn |
+| `mode`                  | input                  | --mode <locking/burning>            | Yes    | Key decision: hub-and-spoke or mint-and-burn |
 | `wormhole`              | input                  | Auto-detected via SDK/ChainContext  | Similar|                                              |
 | `wormholeRelayer`       | input                  | Auto-detected via on-chain query/SDK| Similar|                                              |
 | `specialRelayer`        | input                  | Not exposed                         | No     | Take into consideration if doing custom relaying. Not recommended |
