@@ -43,6 +43,26 @@ Wormhole’s NTT framework supports two [deployment models](/docs/products/nativ
 
     This setup maintains a consistent total supply across all chains.
 
+## NTT Manager Deployment Parameters
+
+This table compares the configuration parameters available when deploying the NTT Manager using the CLI versus a manual deployment with a Forge script. It highlights which options are configurable via each method, whether values are auto-detected or hardcoded, and includes additional comments to help guide deployment decisions.
+
+| <div style="width:150px">Parameter</div> | Forge Script           | CLI                                 | Both   | Comments                                     |
+|-------------------------|------------------------|-------------------------------------|--------|----------------------------------------------|
+| `token`                 | Input                  | `--token <address>`                 | Yes    |                                              |
+| `mode`                  | Input                  | `--mode <locking/burning>`          | Yes    | Key decision: hub-and-spoke or mint-and-burn |
+| `wormhole`              | Input                  | Auto-detected via SDK/`ChainContext`  | Similar|                                              |
+| `wormholeRelayer`       | Input                  | Auto-detected via on-chain query/SDK| Similar|                                              |
+| `specialRelayer`        | Input                  | Not exposed                         | No     | Take into consideration if using custom relaying. Not recommended |
+| `decimals`              | Input, overridable     | Auto-detected via token contract, not overridable  | Similar |                              |
+| `wormholeChainId`       | Queried from Wormhole contract | `--chain` (network param, mapped internally) | Yes     |                              |
+| `rateLimitDuration`     | Hardcoded (`86400`)    | Hardcoded (`86400`)                 | Yes    | Rate limit duration. A day is normal but worth deciding  |
+| `shouldSkipRatelimiter` | Hardcoded (`false`)      | Hardcoded (`false`)                   | Yes    | If rate limit should be disabled (when the manager supports it)         |
+| `consistencyLevel`      | Hardcoded (`202`)      | Hardcoded (`202`)                   | Yes    | `202` (finalized) is the standard — lower is not recommended  |
+| `gasLimit`              | Hardcoded (`500000`)   | Hardcoded (`500000`)                | Yes    |             |
+| `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
+
+
 ## Deploy NTT
 
 Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
