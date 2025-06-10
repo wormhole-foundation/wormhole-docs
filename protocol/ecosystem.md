@@ -31,4 +31,4 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 
 ## Next Steps
 
-Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/products/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
+Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.

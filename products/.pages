@@ -1,5 +1,5 @@
 nav:
- - 'Product Overview': products.md
+ - 'Product Overview': overview.md
  - connect
  - native-token-transfers
  - settlement
