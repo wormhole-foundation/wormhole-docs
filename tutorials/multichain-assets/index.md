@@ -11,7 +11,7 @@ Multichain assets, often represented as wrapped tokens, enable seamless cross-ch
 
 <div class="grid cards" markdown>
 
--   :octicons-repo-16:{ .lg .middle } **Create Multichain Tokens**
+-   :octicons-repo-16:{ .lg .middle } <span class="badge intermediate">Intermediate</span> **Create Multichain Tokens**
 
     ---
 
