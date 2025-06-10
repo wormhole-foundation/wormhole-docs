@@ -10,7 +10,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/products.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md [type: other]
@@ -981,7 +981,7 @@ Follow these steps to work with Wormhole Messaging:
 - [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/products/products/
+Doc-Content: https://wormhole.com/docs/products/overview/
 --- BEGIN CONTENT ---
 ---
 title: Compare Wormhole's Cross-Chain Solutions
@@ -1229,7 +1229,7 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 
 ## Next Steps
 
-Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/products/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
+Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/protocol/infrastructure/core-contracts/

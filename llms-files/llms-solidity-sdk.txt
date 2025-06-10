@@ -2574,7 +2574,7 @@ Follow these steps to work with Wormhole Messaging:
 - [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/products/products/
+Doc-Content: https://wormhole.com/docs/products/overview/
 --- BEGIN CONTENT ---
 ---
 title: Compare Wormhole's Cross-Chain Solutions
@@ -2822,7 +2822,7 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 
 ## Next Steps
 
-Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/products/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
+Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/protocol/infrastructure/core-contracts/
