@@ -2214,28 +2214,28 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – transfer collateral as native assets
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch rates and prices in real-time
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – aggregate multi-chain sources
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – aggregate multi-chain sources
 
 - **Gas Abstraction**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – handle native token swaps
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – handle native token swaps
 
 - **Bridging Intent Library**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - execute user-defined bridging intents
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - execute user-defined bridging intents
 
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – enable tokenized rewards
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – enable tokenized rewards
 
 ## Next Steps
 

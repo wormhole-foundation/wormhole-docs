@@ -1143,19 +1143,19 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 - **Cross-Chain Treasury Management**
 
     - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – vote on treasury actions from any supported chain  
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – transmit proposal execution to target chains
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – optionally move assets 
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – transmit proposal execution to target chains
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – optionally move assets 
 
 - **Coordinated Protocol Upgrades Across Chains**
 
     - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – create a unified proposal to upgrade contracts across networks  
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – send upgrade instructions as VAAs and deliver execution payloads to target chains 
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – send upgrade instructions as VAAs and deliver execution payloads to target chains 
     
 - **Progressive Decentralization for Multichain DAOs**
 
     - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank} – extend governance to new chains while preserving coordination  
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch on-chain vote weights from remote spokes  
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – aggregate results and execute actions via the hub 
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch on-chain vote weights from remote spokes  
+    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank} – aggregate results and execute actions via the hub 
 
 ## Next Steps
 
@@ -2157,28 +2157,28 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate actions across chains
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – transfer collateral as native assets
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – fetch rates and prices in real-time
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – transfer collateral as native assets
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – fetch rates and prices in real-time
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – relay verified data
-    - [**Queries**](/docs/products/queries/get-started/){target=\_blank} – aggregate multi-chain sources
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank} – aggregate multi-chain sources
 
 - **Gas Abstraction**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – coordinate gas logic
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/){target=\_blank} – handle native token swaps
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank} – handle native token swaps
 
 - **Bridging Intent Library**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – dispatch and execute intents
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank} - execute user-defined bridging intents
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - execute user-defined bridging intents
 
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
     - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank} – facilitate decentralized interactions
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank} – enable tokenized rewards
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} – enable tokenized rewards
 
 ## Next Steps
 

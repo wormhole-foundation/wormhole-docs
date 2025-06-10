@@ -8,7 +8,7 @@ categories: Token-Bridge, Transfers, Typescript-SDK
 
 ## Introduction
 
-This guide demonstrates multichain wrapped asset transfer using the core Token Bridge protocol via the TypeScript SDK. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Ethereum Sepolia, but can be adapted for any supported EVM chains. View this list of chains with [deployed Token Bridge contracts](/products/reference/contract-addresses/#token-bridge){target=\_blank} to verify if your desired source and desination chains are supported.
+This guide demonstrates the transfer of wrapped assets using the core Token Bridge protocol via the TypeScript SDK. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Ethereum Sepolia but can be adapted for any supported EVM chains. View this list of chains with [deployed Token Bridge contracts](/products/reference/contract-addresses/#token-bridge){target=\_blank} to verify if your desired source and destination chains are supported.
 
 Completing this guide will help you to accomplish the following:
 
@@ -41,7 +41,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
    npm init -y
    ```
 
-2. Install dependencies including the Wormhole TypeScript SDK:
+2. Install dependencies, including the Wormhole TypeScript SDK:
    ```bash
    npm install @wormhole-foundation/sdk ethers -D tsx typescript
    ```
@@ -51,7 +51,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-4. Create a `src` directory, navigate into it, then create a new file named `helpers.ts` to hold signer functions:
+4. Create an `src` directory, navigate into it, then create a new file named `helpers.ts` to hold signer functions:
    ```bash
    mkdir src && cd src
    touch helpers.ts
@@ -76,7 +76,7 @@ When working with the Wormhole SDK on EVM-compatible chains, developers often en
     - You're interacting directly with smart contracts using `ethers.Contract`
     - You want complete control over gas, nonce, or transaction composition
 
-## Verify Token Registeration (Attestation)
+## Verify Token Registration (Attestation)
 
 Tokens must be registered on the destination chain before they can be bridged. This process includes submitting an attestation with the native token metadata to the destination chain. This attestation allows the destination chain Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
 
@@ -107,12 +107,12 @@ Registration via attestation is only required the first time a given token is se
     npx tsx transfer.ts
     ```
 
-    If the token is registered on the destination chain, the address of the existing wrapped asset is returned and you can continue on to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising attestation is required:
+    If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising attestation is required:
 
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal01.html'
 
     ??? example "Need to register a token?"
-        Token attestation is a one time process to register a token on a destination chain. You should only follow these steps if your token registration check indicated a wrapped version does not exist on the destination chain.
+        Token attestation is a one-time process to register a token on a destination chain. You should only follow these steps if your token registration check indicates a wrapped version does not exist on the destination chain.
 
         1. Inside the `src` directory, create a new file named `attestToken.ts`:
 
@@ -160,9 +160,9 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
     This code does the following:
 
     - Uses the supplied [Token Bridge contract address](https://wormhole.com/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} to approve spending the ERC-20 token in the amount you want to transfer
-    - Calls `transfer()` method to initiate the transfer on the source chain
+    - Calls the `transfer()` method to initiate the transfer on the source chain
     - Watches for the transaction, parses the transaction ID to read the Wormhole message, and waits for the Guardians to sign the VAA verifying the transaction
-    - Fetches the VAA and writes it to a file named `vaa.bin` which will be used to redeem the transfer and claim the tokens on the destination chain
+    - Fetches the VAA and writes it to a file named `vaa.bin`, which will be used to redeem the transfer and claim the tokens on the destination chain
 
 2. Run the script with the following command:
     ```bash
@@ -175,9 +175,41 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
 
 ## Redeem Transfer on Destination Chain
 
+The final step to complete a manual transfer with Token Bridge is to submit the signed VAA from your transfer transaction to the destination chain. The signed VAA provides Guardian-backed confirmation of the tokens locked in the token bridge contract on the source chain, allowing a matching amount of tokens to be minted on the destination chain. 
 
+Follow these steps to redeem your transfer on the destination chain:
 
+1. Inside the `src` directory, create a file named `redeem.ts`:
+    ```bash
+    touch redeem.ts
+    ```
 
+2. Open the file and add the following code:
+    ```typescript title="redeem.ts"
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/redeem.ts'
+    ```
 
+    This code does the following:
 
+    - Fetches the raw VAA bytes from the `vaa.bin` file
+    - Initializes a `wormhole` instance and gets the destination chain context
+    - Parses the VAA, gets the signer and Token Bridge protocol for the destination chain
+    - Calls `redeem()` and signs the transaction for the recipient to claim the tokens
+    - Returns the destination chain transaction ID for the successful redemption
 
+3. Run the script with the following command:
+    ```bash
+    npx tsx redeem.ts
+    ```
+
+4. You will see terminal output similar to the following:
+
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal04.html'
+
+Congratulations! You've now completed a manual Token Bridge transfer using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
+
+## Next Steps
+
+TODO: link to Solana/Sui end-to-end guide(s) to see how manual transfer is different for those platforms
+
+TODO: links to individual Token Bridge guides: Register/Attest, Fetch Signed VAA, Redeem Signed VAA
