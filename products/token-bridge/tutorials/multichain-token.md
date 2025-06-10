@@ -9,7 +9,9 @@ description: Learn how to create a multichain token, bridge tokens across blockc
 
 Blockchain ecosystems are becoming increasingly interconnected, with assets often needing to exist across multiple networks to maximize their utility and reach. For example, tokens created on one chain may want to expand to others to tap into broader audiences and liquidity pools.
 
-This guide explains how to create a multichain token—a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
+This guide explains how to create a multichain token, a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
+
+To complete the following steps, you'll need token in both the source and target chains of your token.
 
 By the end of this tutorial, you'll learn:
 
@@ -23,7 +25,7 @@ Let’s begin with a straightforward, step-by-step process for creating a multic
 
 The first step in creating a multichain token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
 
-1. Open the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank}
+1. Open the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool
 2. Select the blockchain where your token is currently deployed (source chain)
 3. Connect your wallet by following the on-screen instructions
 4. Locate the **Asset** field and paste the token contract address
@@ -33,7 +35,9 @@ The first step in creating a multichain token is registering your token on its s
 
 ## Register the Token on the Target Chain
 
-After registering your token on the source chain, the next step is to select the target chain—the blockchain where you want the wrapped version of your token to exist. This step connects your token to its destination network.
+After registering your token on the source chain, the next step is to select the target chain, the blockchain where you want the wrapped version of your token to exist. This step connects your token to its destination network.
+
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered, take the following steps:
 
 1. Choose the blockchain where you want the token to be bridged (target chain)
 2. Connect your wallet to the target chain
@@ -42,7 +46,10 @@ After registering your token on the source chain, the next step is to select the
 ![Target Chain Registration Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-2.webp)
 
 ## Send an Attestation
+
 Attestation is a key step in the process. It verifies your token’s metadata, ensuring it is correctly recognized on the target chain’s blockchain explorer (e.g., [Etherscan](https://etherscan.io/){target=\_blank}).
+
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered in both source and target cahins, take the following steps:
 
 1. Click **Attest** to initiate the attestation process
 2. Approve the transaction in your wallet when prompted
@@ -56,6 +63,8 @@ Attestation is a key step in the process. It verifies your token’s metadata, e
 ## Create the Wrapped Token
 
 The final step is to create the wrapped token on the target chain. This token represents the original asset and enables its use within the target blockchain.
+
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered in both source and target cahins, and the attestation sent, take the following steps:
 
 1. Click **Create** to generate the wrapped token
 2. Approve the transaction in your wallet when prompted
