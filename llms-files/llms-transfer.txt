@@ -6896,7 +6896,6 @@ The protocol provides mechanisms for unlocking the fee once the bridging process
 
 ## Where to Go Next
 
-- To learn more about available EVM functions, see the [Build on the Wormhole Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/){target=\_blank} guide
 - To learn how to integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank} tutorial
 --- END CONTENT ---
 
@@ -10890,7 +10889,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra | CosmWasm | :x: | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -10903,7 +10901,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -10913,17 +10910,15 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Gnosis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| HyperEVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -10941,7 +10936,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Algorand | AVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Aptos | Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -10956,7 +10950,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -10964,7 +10957,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -10972,12 +10964,10 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
 | SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Terra 2.0 | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XPLA | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CCTP-->
@@ -11016,7 +11006,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11029,14 +11018,12 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | HyperEVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
