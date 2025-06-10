@@ -1,6 +1,5 @@
 nav:
- - index.md
- - build
- - tutorials
- - learn
- - 'AI Resources': ai-resources.md
+- products
+- protocol
+- tools
+- ai-resources

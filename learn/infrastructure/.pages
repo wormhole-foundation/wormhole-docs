@@ -1,9 +1,0 @@
-title: Messaging Infrastructure
-nav:
- - index.md
- - 'Architecture Overview': 'architecture.md'
- - 'Core Contracts': 'core-contracts.md'
- - 'VAAs': 'vaas.md'
- - 'Guardians': 'guardians.md'
- - 'Spy': 'spy.md'
- - 'Relayers': 'relayer.md'
