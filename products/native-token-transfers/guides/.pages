@@ -3,5 +3,6 @@ nav:
 - 'Deploy to EVM Chains': deploy-to-evm.md
 - 'Deploy to EVM Chains via Launchpad': evm-launchpad.md
 - 'Deploy to Solana': deploy-to-solana.md
+- 'Create and Mint Solana SPL Tokens': create-spl-token.md
 - 'Troubleshoot Your Deployment': troubleshoot.md
 - 'Post Deployment': post-deployment.md
