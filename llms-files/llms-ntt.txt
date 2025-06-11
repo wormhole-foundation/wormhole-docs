@@ -714,7 +714,7 @@ Before creating and minting a Solana SPL token, make sure the following tools ar
 -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
 -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 
-## Create and Mint Your SPL Token
+## Steps to Create and Mint a Token
 
 Follow the steps below to create a new SPL token and mint an initial supply. If you already have an SPL token deployed, you can skip this guide and proceed to [Deploy Native Token Transfers on Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}.
 
