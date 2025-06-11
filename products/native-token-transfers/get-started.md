@@ -146,6 +146,17 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
     ntt --version
     ```
 
+!!! warning "Command not found?"
+    If the `ntt` command is not recognized after installation, you may need to add the binary to your shell's PATH.
+
+    Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
+
+    ```bash
+    echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.zshrc
+    ```
+
+    Then, restart your terminal or run `source ~/.zshrc`.
+
 ## Initialize a New NTT Project
 
 1. Once the CLI is installed, scaffold a new project by running:
