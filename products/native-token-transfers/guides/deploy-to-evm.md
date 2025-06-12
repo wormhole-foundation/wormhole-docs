@@ -10,6 +10,23 @@ categories: NTT, Transfer
 
 This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- You've completed the [Get Started with NTT](/docs/products/native-token-transfers/get-started/){target=\_blank} guide
+- You have an existing ERC-20 token deployed to the EVM chains you plan to use
+
+!!! note "Don't have a token yet?"
+
+    Before proceeding, make sure you have the NTT CLI installed and a project initialized. 
+    Follow the below steps or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}:
+
+    ???- interface "Install the NTT CLI and Scaffold a New Project"
+    
+        --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
+
+
 ## Deploy Your Token and Ensure Compatibility
 
 If you still need to do so, deploy the token contract to the destination or spoke chains.
@@ -65,19 +82,28 @@ This table compares the configuration parameters available when deploying the NT
 
 ## Deploy NTT
 
-Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
+Once you have the NTT CLI installed and a project initialized, proceed with adding your EVM chains and deploying contracts.
 
-???- interface "Install the NTT CLI and Scaffold a New Project"
-    
-    --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
+Ensure your wallet is set up using Foundry's encrypted keystore.
 
-Once you've completed those steps, return here to proceed with adding your EVM chains and deploying contracts.
+!!! info "Use Foundry's Encrypted Keystore"
 
-Ensure you have set up your environment correctly: 
+    Instead of setting your private key as a raw environment variable, use Foundry's keystore:
 
-```bash
-export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
-```
+    1. Generate a new encrypted key:
+        ```bash
+        cast wallet new
+        ```
+
+    2. Or import an existing private key:
+        ```bash
+        cast wallet import
+        ```
+
+    3. You’ll be prompted to set a password. Use this keystore file when interacting with contracts:
+        ```bash
+        cast send --keystore /path/to/keystore.json --password <(echo "YOUR_PASSWORD") ...
+        ```
 
 Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
@@ -132,7 +158,7 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 
 - If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
     ```json
-    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
+    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --keystore /path/to/keystore.json --password <(echo "YOUR_PASSWORD") --rpc-url $YOUR_RPC_URL 
     ```
 
 - If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
