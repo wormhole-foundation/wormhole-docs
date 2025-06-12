@@ -100,16 +100,10 @@ Ensure your wallet is set up using Foundry's encrypted keystore.
         cast wallet import
         ```
 
-    3. You’ll be prompted to set a password. Use this keystore file when interacting with contracts, like this:
+    3. You’ll be prompted to set a password. Use this keystore file when interacting with contracts:
         ```bash
         cast send --keystore /path/to/keystore.json --password <(echo "YOUR_PASSWORD") ...
         ```
-
-
-
-```bash
-export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
-```
 
 Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
@@ -164,7 +158,7 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 
 - If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
     ```json
-    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
+    cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --keystore /path/to/keystore.json --password <(echo "YOUR_PASSWORD") --rpc-url $YOUR_RPC_URL 
     ```
 
 - If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
