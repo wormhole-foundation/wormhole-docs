@@ -19,6 +19,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/get-started.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/token-bridge-contracts.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/overview.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/portal/faqs.md [type: other]
 
 ## Full content for each doc page
 
@@ -1192,6 +1193,56 @@ If you are looking for more guided practice, take a look at:
 - [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/): Perform token transfers using the Token Bridge, including manual and automatic transfers.
 - [**Complete Token Transfer Flow**](/docs/products/token-bridge/tutorials/transfer-workflow/): Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
 - [**Create Multichain Tokens**](/docs/products/token-bridge/tutorials/multichain-token/): Craft a multichain token using Wormhole's Portal Bridge.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/token-bridge/portal/faqs/
+--- BEGIN CONTENT ---
+---
+title: Portal Bridge FAQs
+description: Learn how to use deep-linking on Portal Bridge and send tokens to any wallet address with simple URL parameters and custom recipient fields.
+categories: Token-Bridge, Transfer
+---
+
+# FAQs
+
+## How do I use deep-linking with Portal?
+
+You can create a direct link to pre-fill chain and asset selections on [Portal Bridge](https://portalbridge.com){target=\_blank} using URL parameters.
+
+| Parameter     | Description                                                |
+|---------------|------------------------------------------------------------|
+| `sourceChain` | A source chain that will be pre-selected                   |
+| `targetChain` | A target chain that will be pre-selected                   |
+| `asset`       | The asset key on the source chain (e.g., SOL, USDC, etc.)  |
+| `targetAsset` | The asset key on the destination chain                     |
+
+Example:
+
+```bash
+https://portalbridge.com/?sourceChain=solana&targetChain=ethereum&asset=SOL&targetAsset=WSOL
+```
+
+This link will open Portal with:
+ 
+ - **`sourceChain`** pre-selected as `solana`
+ - **`targetChain`** pre-selected as `ethereum`
+ - **`asset`** pre-selected as `SOL`
+ - **`targetAsset`** pre-selected as `WSOL`
+
+!!! note
+    For [**NTT tokens**](/docs/products/native-token-transfers/overview/){target=\_blank}, you can define just one asset if the same token exists across chains.
+
+    Example: [https://portalbridge.com/?sourceChain=ethereum&targetChain=solana&asset=W](https://portalbridge.com/?sourceChain=ethereum&targetChain=solana&asset=W){target=\_blank}
+
+## What does the "Send to a wallet address" field do?
+
+After selecting your tokens and connecting your source wallet on [Portal](https://portalbridge.com/){target=\_blank}, you’ll be prompted to connect your destination wallet. At this step, alongside wallet options like MetaMask or Phantom, you’ll also see an option labeled "Send to a wallet address".
+
+This allows you to enter any wallet address as the recipient, rather than connecting a destination wallet. This option will enable you to send tokens to a predefined recipient, such as a team wallet, treasury address, or cold storage wallet.
+
+![](/docs/images/products/token-bridge/portal-bridge/faqs/portal-wallet-address.webp){.half}
+
+This field is optional. If left empty, the tokens will be sent to your connected wallet.
 --- END CONTENT ---
 
 ## Basics Concepts [shared: true]
