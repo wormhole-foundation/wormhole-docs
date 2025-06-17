@@ -1,6 +1,6 @@
 ---
 title: Integrate Connect via CDN
-description:
+description: Bridge tokens across chains instantly with Wormhole Connect’s prebuilt UI. Add the script, no backend setup needed.
 categories: Connect, Transfer
 ---
 
