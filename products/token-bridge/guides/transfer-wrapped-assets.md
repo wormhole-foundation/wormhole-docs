@@ -26,9 +26,9 @@ Before you begin, ensure you have the following:
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
 - The contract address for the ERC-20 token you wish to transfer
 - A wallet setup with the following:
-  - Private keys for your source and destination chains
-  - A small amount of gas tokens on your source and destination chains
-  - A balance on your source chain of the ERC-20 token you want to transfer
+    - Private keys for your source and destination chains
+    - A small amount of gas tokens on your source and destination chains
+    - A balance on your source chain of the ERC-20 token you want to transfer
 
 ## Set Up Your Token Transfer Environment
 
@@ -61,6 +61,8 @@ Follow these steps to initialize your project, install dependencies, and prepare
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/helpers.ts'
     ```
 
+    You can view the [constants for platform names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/3eae2e91fc3a6fec859eb87cfa85a4c92c65466f/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms
+
 ## Verify Token Registration (Attestation)
 
 Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
@@ -87,7 +89,7 @@ Registration via attestation is only required the first time a given token is se
     - Identifies the token and amount to transfer
     - Checks to see if a wrapped version of the ERC-20 token to transfer exists on the destination chain
 
-3.  Run the script using the following command:
+3. Run the script using the following command:
 
     ```bash
     npx tsx transfer.ts
