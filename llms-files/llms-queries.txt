@@ -753,7 +753,7 @@ The [`sol_account`](https://github.com/wormhole-foundation/wormhole/blob/main/wh
 
 ### sol_pda
 
-The [`sol_pda`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana_queries){target=\_blank} query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/pdas){target=\_blank}. It streamlines the standard process of deriving a PDA and fetching its account data.
+The [`sol_pda`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana_queries){target=\_blank} query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/basics/pda){target=\_blank}. It streamlines the standard process of deriving a PDA and fetching its account data.
 
 This is particularly useful for accessing multiple PDAs owned by a specific program or for verifying Solana PDA derivations on another blockchain, such as how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account){target=\_blank}.
 --- END CONTENT ---
@@ -1337,7 +1337,7 @@ wormhole::post_message(
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
 
-Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.solana.com/developing/runtime-facilities/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.anza.xyz/runtime/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
 VAAs are [multicast](/docs/protocol/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 
@@ -2545,7 +2545,7 @@ signature = ecdsa_sign(digest, key)
 !!!tip "Hash vs. double hash"
     Different implementations of the ECDSA signature validation may apply a keccak256 hash to the message passed, so care must be taken to pass the correct arguments.
     
-    For example, the [Solana secp256k1 program](https://docs.solanalabs.com/runtime/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+    For example, the [Solana secp256k1 program](https://docs.anza.xyz/runtime/programs/#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
 ## Payload Types
 
@@ -2898,7 +2898,7 @@ The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-soli
 
 ## Install the SDK
 
-Use Foundry's [`forge`](https://book.getfoundry.sh/forge/){target=\_blank} to install the SDK using the following command:
+Use Foundry's [`forge`](https://getfoundry.sh/forge/){target=\_blank} to install the SDK using the following command:
 
 ```bash
 forge install wormhole-foundation/wormhole-solidity-sdk
@@ -2942,7 +2942,7 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} installed
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} installed
 - Testnet tokens for two supported chains. This example uses [testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} and can be adapted to any supported chains
 - [USDC testnet tokens](https://faucet.circle.com/){target=\_blank} on your source chain for cross-chain transfer
 
@@ -3257,7 +3257,7 @@ const SENDER_ABI_PATH = path.resolve(
     npx tsx script/transfer.ts
     ```
 
-4. Follow the prompts in the terminal. This example uses Avalanche Fuji as the source chain, Celo Testnet as the target, [Avalanche Fuji testnet USDC](https://developers.circle.com/stablecoins/usdc-on-test-networks){target=\_blank}, and a developer wallet as the recipient address. You will see terminal output similar to the following:
+4. Follow the prompts in the terminal. This example uses Avalanche Fuji as the source chain, Celo Testnet as the target, [Avalanche Fuji testnet USDC](https://developers.circle.com/stablecoins/usdc-contract-addresses#testnet){target=\_blank}, and a developer wallet as the recipient address. You will see terminal output similar to the following:
 
     <div data-termynal="" id="termynal">
 <span data-ty="input"><span class="file-path"></span>npx tsx script/transfer.ts</span>
