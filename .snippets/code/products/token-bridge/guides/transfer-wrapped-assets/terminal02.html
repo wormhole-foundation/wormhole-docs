@@ -1,14 +1,36 @@
 <div id="termynal" data-termynal>
-  <span data-ty="input"><span class="file-path"></span>npx tsx src/attestToken.ts</span>
-  <span data-ty>🔍 Token to attest: 0x39F2f26f247CcC223393396755bfde5ecaeb0648</span>
-  <span data-ty>✅ Attestation tx sent: 0x8e56fd1e5a539127542e087e5618ccc5b315cf5cefcd7763b8dbeefa67eec370</span>
-  <span data-ty>📦 Parsed messages: [
+  <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+  <span data-ty>⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+  <span data-ty>✅ Attestation transaction sent: [
+  {
+    chain: 'Moonbeam',
+    txid: '0x2b9878e6d8e92d8ecc96d663904312c18a827ccf0b02380074fdbc0fba7e6b68'
+  }
+]</span>
+  <span data-ty>✅ Attestation messages: [
   {
     chain: 'Moonbeam',
     emitter: UniversalAddress { address: [Uint8Array] },
-    sequence: 1497n
+    sequence: 1505n
+  }
+]
+</span>
+  <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
+  <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
+  <span data-ty>....</span>
+  <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
+  <span data-ty>✅ Attestation submitted on destination: [
+  {
+    chain: 'Solana',
+    txid: '3R4oF5P85jK3wKgkRs5jmE8BBLoM4wo2hWSgXXL6kA8efbj2Vj9vfuFSb53xALqYZuv3FnXDwJNuJfiKKDwpDH1r'
   }
 ]</span>
-  <span data-ty></span>
+  <span data-ty>✅ Wrapped token is now available on Solana: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca>
+  }
+}</span>
+  <span data-ty>🚀 Token attestation complete! Proceeding with transfer...</span>
   <span data-ty="input"><span class="file-path"></span></span>
 </div>

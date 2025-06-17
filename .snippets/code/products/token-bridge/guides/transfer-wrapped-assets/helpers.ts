@@ -1,41 +1,75 @@
-import { getEvmSigner } from '@wormhole-foundation/sdk-evm';
-import { ethers } from 'ethers';
+import {
+  Chain,
+  ChainAddress,
+  ChainContext,
+  isTokenId,
+  Wormhole,
+  Network,
+  Signer,
+  TokenId,
+} from '@wormhole-foundation/sdk';
+import type { SignAndSendSigner } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
 
 /**
  * Returns a signer for the given chain using locally scoped credentials.
- * The required values (MOONBEAM_PRIVATE_KEY, SEPOLIA_PRIVATE_KEY) must
+ * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC) must
  * be loaded securely beforehand, for example via a keystore, secrets
  * manager, or environment variables (not recommended).
  */
-// Use a custom RPC or fallback to public endpoints
-const MOONBEAM_RPC_URL =
-  process.env.MOONBEAM_RPC_URL! || 'https://rpc.api.moonbase.moonbeam.network';
-const SEPOLIA_RPC_URL =
-  process.env.SEPOLIA_RPC_URL! || 'https://eth-sepolia.public.blastapi.io';
+export async function getSigner<N extends Network, C extends Chain>(
+  chain: ChainContext<N, C>
+): Promise<{
+  chain: ChainContext<N, C>;
+  signer: SignAndSendSigner<N, C>;
+  address: ChainAddress<C>;
+}> {
+  let signer: Signer<any, any>;
+  const platform = chain.platform.utils()._platform;
 
-// Define raw ethers.Wallets for contract runner interactions
-export function getMoonbeamWallet(): ethers.Wallet {
-  return new ethers.Wallet(
-    MOONBEAM_PRIVATE_KEY!,
-    new ethers.JsonRpcProvider(MOONBEAM_RPC_URL)
-  );
-}
-export function getSepoliaWallet(): ethers.Wallet {
-  return new ethers.Wallet(
-    SEPOLIA_PRIVATE_KEY!,
-    new ethers.JsonRpcProvider(SEPOLIA_RPC_URL)
-  );
+  // Customize the signer by adding or removing platforms as needed
+  // Be sure to import the necessary packages for the platforms you want to support
+  switch (platform) {
+    case 'Evm':
+      signer = await (
+        await evm()
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!);
+      break;
+    case 'Solana':
+      signer = await (
+        await solana()
+      ).getSigner(await chain.getRpc(), SOL_PRIVATE_KEY!);
+      break;
+    case 'Sui':
+      signer = await (
+        await sui()
+      ).getSigner(await chain.getRpc(), SUI_MNEMONIC!);
+      break;
+    default:
+      throw new Error(`Unsupported platform: ${platform}`);
+  }
+
+  const typedSigner = signer as SignAndSendSigner<N, C>;
+
+  return {
+    chain,
+    signer: typedSigner,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
 }
 
-// Create Wormhole-compatible signer for SDK interactions
-export async function getMoonbeamSigner() {
-  const wallet = getMoonbeamWallet(); // Wallet
-  const provider = wallet.provider as ethers.JsonRpcProvider; // Provider
-  return await getEvmSigner(provider, wallet, { chain: 'Moonbeam' });
-}
-
-export async function getSepoliaSigner() {
-  const wallet = getSepoliaWallet();
-  const provider = wallet.provider as ethers.JsonRpcProvider;
-  return await getEvmSigner(provider, wallet, { chain: 'Sepolia' });
+/**
+ * Get the number of decimals for the token on the source chain.
+ * This helps convert a user-friendly amount (e.g., '1') into raw units.
+ */
+export async function getTokenDecimals<N extends Network>(
+  wh: Wormhole<N>,
+  token: TokenId,
+  chain: ChainContext<N, any>
+): Promise<number> {
+  return isTokenId(token)
+    ? Number(await wh.getDecimals(token.chain, token.address))
+    : chain.config.nativeTokenDecimals;
 }
