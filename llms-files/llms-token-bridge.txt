@@ -1116,7 +1116,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/guides/transfer-wra
 --- BEGIN CONTENT ---
 ---
 title: Transfer Wrapped Assets
-description: This guide covers Token Bridge's manual transfer flow to verify token registration, attest a custom token, fetch a VAA, and complete manual redemption.
+description: Follow this guide to use Token Bridge to transfer wrapped assets. Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
 categories: Token-Bridge, Transfers, Typescript-SDK
 ---
 
@@ -1124,13 +1124,13 @@ categories: Token-Bridge, Transfers, Typescript-SDK
 
 ## Introduction
 
-This guide demonstrates the transfer of wrapped assets using the core Token Bridge protocol via the TypeScript SDK. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Ethereum Sepolia but can be adapted for any supported EVM chains. View this list of chains with [deployed Token Bridge contracts](/products/reference/contract-addresses/#token-bridge){target=\_blank} to verify if your desired source and destination chains are supported.
+This guide demonstrates the transfer of wrapped assets using the Token Bridge protocol via the TypeScript SDK. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana but can be adapted for any supported chains. View this list of chains with [deployed Token Bridge contracts](/products/reference/contract-addresses/#token-bridge){target=\_blank} to verify if your desired source and destination chains are supported.
 
 Completing this guide will help you to accomplish the following:
 
 - Verify if a wrapped version of a token exists on a destination chain
 - Create a token attestation to register a wrapped version of a token on a destination chain
-- Transfer wrapped assets using Token Bridge manual transfer
+- Transfer wrapped assets using Token Bridge automatic or manual transfers
 - Fetch a signed Verified Action Approval (VAA)
 - Manually redeem a signed VAA to claim tokens on a destination chain
 
@@ -1159,7 +1159,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 2. Install dependencies, including the Wormhole TypeScript SDK:
    ```bash
-   npm install @wormhole-foundation/sdk ethers -D tsx typescript
+   npm install @wormhole-foundation/sdk -D tsx typescript
    ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
@@ -1167,78 +1167,98 @@ Follow these steps to initialize your project, install dependencies, and prepare
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-4. Create an `src` directory, navigate into it, then create a new file named `helpers.ts` to hold signer functions:
+4. Create a new file named `helpers.ts` to hold signer and decimal functions:
    ```bash
-   mkdir src && cd src
    touch helpers.ts
    ```
 
 5. Open `helpers.ts` and add the following code:
     ```typescript title="helpers.ts"
-    import { getEvmSigner } from '@wormhole-foundation/sdk-evm';
-import { ethers } from 'ethers';
+    import {
+  Chain,
+  ChainAddress,
+  ChainContext,
+  isTokenId,
+  Wormhole,
+  Network,
+  Signer,
+  TokenId,
+} from '@wormhole-foundation/sdk';
+import type { SignAndSendSigner } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
 
 /**
  * Returns a signer for the given chain using locally scoped credentials.
- * The required values (MOONBEAM_PRIVATE_KEY, SEPOLIA_PRIVATE_KEY) must
+ * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC) must
  * be loaded securely beforehand, for example via a keystore, secrets
  * manager, or environment variables (not recommended).
  */
-// Use a custom RPC or fallback to public endpoints
-const MOONBEAM_RPC_URL =
-  process.env.MOONBEAM_RPC_URL! || 'https://rpc.api.moonbase.moonbeam.network';
-const SEPOLIA_RPC_URL =
-  process.env.SEPOLIA_RPC_URL! || 'https://eth-sepolia.public.blastapi.io';
+export async function getSigner<n c="" chain="" extends="" network,="">(
+  chain: ChainContext<n, c="">
+): Promise&lt;{
+  chain: ChainContext<n, c="">;
+  signer: SignAndSendSigner<n, c="">;
+  address: ChainAddress<c>;
+}&gt; {
+  let signer: Signer<any, any="">;
+  const platform = chain.platform.utils()._platform;
 
-// Define raw ethers.Wallets for contract runner interactions
-export function getMoonbeamWallet(): ethers.Wallet {
-  return new ethers.Wallet(
-    MOONBEAM_PRIVATE_KEY!,
-    new ethers.JsonRpcProvider(MOONBEAM_RPC_URL)
-  );
-}
-export function getSepoliaWallet(): ethers.Wallet {
-  return new ethers.Wallet(
-    SEPOLIA_PRIVATE_KEY!,
-    new ethers.JsonRpcProvider(SEPOLIA_RPC_URL)
-  );
+  // Customize the signer by adding or removing platforms as needed
+  // Be sure to import the necessary packages for the platforms you want to support
+  switch (platform) {
+    case 'Evm':
+      signer = await (
+        await evm()
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!);
+      break;
+    case 'Solana':
+      signer = await (
+        await solana()
+      ).getSigner(await chain.getRpc(), SOL_PRIVATE_KEY!);
+      break;
+    case 'Sui':
+      signer = await (
+        await sui()
+      ).getSigner(await chain.getRpc(), SUI_MNEMONIC!);
+      break;
+    default:
+      throw new Error(`Unsupported platform: ${platform}`);
+  }
+
+  const typedSigner = signer as SignAndSendSigner<n, c="">;
+
+  return {
+    chain,
+    signer: typedSigner,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
 }
 
-// Create Wormhole-compatible signer for SDK interactions
-export async function getMoonbeamSigner() {
-  const wallet = getMoonbeamWallet(); // Wallet
-  const provider = wallet.provider as ethers.JsonRpcProvider; // Provider
-  return await getEvmSigner(provider, wallet, { chain: 'Moonbeam' });
+/**
+ * Get the number of decimals for the token on the source chain.
+ * This helps convert a user-friendly amount (e.g., '1') into raw units.
+ */
+export async function getTokenDecimals<n extends="" network="">(
+  wh: Wormhole<n>,
+  token: TokenId,
+  chain: ChainContext<n, any="">
+): Promise<number> {
+  return isTokenId(token)
+    ? Number(await wh.getDecimals(token.chain, token.address))
+    : chain.config.nativeTokenDecimals;
 }
-
-export async function getSepoliaSigner() {
-  const wallet = getSepoliaWallet();
-  const provider = wallet.provider as ethers.JsonRpcProvider;
-  return await getEvmSigner(provider, wallet, { chain: 'Sepolia' });
-}
+</number></n,></n></n></n,></any,></c></n,></n,></n,></n>
     ```
-
-### Wormhole Signer versus Ethers Wallet
-
-When working with the Wormhole SDK on EVM-compatible chains, developers often encounter two types of signers:
-
-- [**`Signer`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a86f8f93953cdb67ba26c78435b9d539282065f2/core/definitions/src/signer.ts#L12){target=\_blank}: a Wormhole compatible signer designed to be compatible with the Wormhole SDK abstractions, particularly for transaction batching and message parsing. Use the Wormhole `Signer` when:
-    - Passing a signer into Wormhole SDK helper methods, like `signSendWait()`
-    - Creating or submitting transactions using `TokenBridge`, `CoreBridge`, or other Wormhole protocol modules
-    - Calling methods that require Wormhole's internal `Signer` type, which can be a `SignOnlySigner` or `SignAndSendSigner`
-
-- [**`ethers.Wallet`**](https://docs.ethers.org/v6/api/wallet/){target=\_blank} from Ethers.js: Wormhole's `Signer` often doesn't expose low-level methods like `sendTransaction()`, which you might need for manual control. Use the Ethers `Wallet` when:
-    - You need to manually sign and send EVM transactions (`wallet.sendTransaction()`)
-    - You're interacting directly with smart contracts using `ethers.Contract`
-    - You want complete control over gas, nonce, or transaction composition
 
 ## Verify Token Registration (Attestation)
 
-Tokens must be registered on the destination chain before they can be bridged. This process includes submitting an attestation with the native token metadata to the destination chain. This attestation allows the destination chain Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
+Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
 
-Registration via attestation is only required the first time a given token is sent to that specific destination chain. Your transfer script should include a check for an existing wrapped version of the token on your destination chain. Follow these steps to check the registration status of a token:
+Registration via attestation is only required the first time a given token is sent to that specific destination chain. Follow these steps to check the registration status of a token:
 
-1. Inside your `src` directory, create a new file named `transfer.ts`:
+1. Create a new file named `transfer.ts`:
    ```bash
    touch transfer.ts
    ```
@@ -1246,106 +1266,63 @@ Registration via attestation is only required the first time a given token is se
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
     wormhole,
-  toNative,
-  toUniversal,
-  serialize,
+  Wormhole,
+  TokenId,
+  TokenAddress,
 } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
-import {
-  getMoonbeamSigner,
-  getMoonbeamWallet,
-  getSepoliaSigner,
-  getSepoliaWallet,
-} from './helpers';
-import { ethers } from 'ethers';
-import { writeFile } from 'fs/promises';
+import solana from '@wormhole-foundation/sdk/solana';
+import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
+import { getSigner, getTokenDecimals } from './helpers';
 
 async function transferTokens() {
-  // Initialize Wormhole SDK with EVM support
-  const wh = await wormhole('Testnet', [evm]);
-  // Get source and destination chain contexts
-  const sourceChainCtx = wh.getChain('Moonbeam');
-  const destinationChainCtx = wh.getChain('Sepolia');
-  /** Get signers, wallets, and addresses for source and destination chains
-   * Signers: Wormhole-compatible signers for SDK interactions
-   * Wallets: Raw ethers.Wallets for contract interactions
-   * Addresses: EVM addresses that won't trigger ENS resolve errors
-   * */
-  const sourceSigner = await getMoonbeamSigner();
-  const sourceWallet = await getMoonbeamWallet();
-  const destinationSigner = await getSepoliaSigner();
-  const destinationWallet = await getSepoliaWallet();
-  const sourceAddress = await sourceSigner.address();
-  const destinationAddress = ethers.getAddress(
-    await destinationSigner.address()
+  // Initialize wh instance
+  const wh = await wormhole('Testnet', [evm, solana]);
+  // Define sourceChain and destinationChain, get chain contexts
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+  // Load signers for both chains
+  const sourceSigner = await getSigner(sourceChain);
+  const destinationSigner = await getSigner(destinationChain);
+
+  // Define token and amount to transfer
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
   );
-  if (typeof destinationAddress !== 'string') {
-    throw new Error('Destination address must be a string');
-  }
+  // Replace with amount you want to transfer
+  // This is a human-readable number, e.g., 0.2 for 0.2 tokens
+  const amount = 0;
+  // Convert to raw units based on token decimals
+  const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
+  const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));
 
-  // Define the ERC-20 token and amount to transfer
-  // Replace with contract address of the ERC-20 token to transfer
-  const ERC20_ADDRESS = 'INSERT_TOKEN_ADDRESS';
-  const tokenAddress = toNative('Moonbeam', ERC20_ADDRESS);
-  const amount = '0.01';
-  // Get the Token Bridge protocol for source chain
-  const tokenBridge = await sourceChainCtx.getProtocol('TokenBridge');
-  // Check source wallet balance of the ERC-20 token to transfer
-  const tokenContract = new ethers.Contract(
-    tokenAddress.toString(),
-    [
-      'function balanceOf(address) view returns (uint256)',
-      'function approve(address spender, uint256 amount) returns (bool)',
-      'function decimals() view returns (uint8)',
-    ],
-    sourceWallet
-  );
-  const tokenBalance = await tokenContract.balanceOf(sourceAddress);
-  // Get the decimals from the token metadata
-  const decimals = await tokenContract.decimals();
-  // Convert the amount to BigInt for comparison
-  const amountBigInt = BigInt(ethers.parseUnits(amount, decimals).toString());
-  const humanBalance = ethers.formatUnits(tokenBalance, decimals);
-  console.log(`💰 ERC-20 balance: ${humanBalance}`);
-
-  if (tokenBalance &lt; amountBigInt) {
-    throw new Error(
-      `🚫 Insufficient ERC-20 balance. Have ${humanBalance}, need ${amount}`
-    );
-  }
-
-  // Check if token is registered with the destination chain token bridge
-  const destinationTokenBridge = await destinationChainCtx.getTokenBridge();
-  const isRegistered = await destinationTokenBridge.hasWrappedAsset({
-    chain: sourceChainCtx.chain,
-    address: tokenAddress.toUniversalAddress(),
-  });
-  // If it isn't registered, prompt user to attest the token
-  if (!isRegistered) {
-    console.log(`🚫 Token not registered on ${destinationChainCtx.chain}.`);
+  // Check if the token is registered with destinationChain token bridge contract
+  // Registered = returns the wrapped token ID, continues with transfer
+  // Not registered = runs the attestation flow to register the token
+  let wrappedToken: TokenId;
+  try {
+    wrappedToken = await wh.getWrappedAsset(destinationChain.chain, tokenId);
     console.log(
-      `👉 Open attestToken.ts, define the token address, and run npx tsx attest:token`
+      '✅ Token already registered on destination:',
+      wrappedToken.address
     );
-    return;
-    // If it is registered, proceed with transfer
-  } else {
+  } catch (e) {
     console.log(
-      `✅ Token is registered on ${destinationChainCtx.chain}. Proceeding with transfer...`
+      '⚠️ Token is NOT registered on destination. Running attestation flow...'
     );
-  }
-
-// Additional transfer code
-    console.error('❌ Error in transferViaAutoBridge:', e);
+    // Token attestation and registration flow here if needed
+    
+    console.error('❌ Error in transferTokens', e);
   process.exit(1);
-});
+});</typeof>
     ```
 
     This code does the following:
 
     - Initializes a `wormhole` instance and defines the source and destination chains
-    - Imports the signer and wallet functions from `helpers.ts`
-    - Identifies the token to transfer and verifies the token balance in the source wallet
-    - Gets the `TokenBridge` protocol client for the source chain
+    - Imports the signer and decimal functions from `helpers.ts`
+    - Identifies the token and amount to transfer
     - Checks to see if a wrapped version of the ERC-20 token to transfer exists on the destination chain
 
 3.  Run the script using the following command:
@@ -1354,139 +1331,158 @@ async function transferTokens() {
     npx tsx transfer.ts
     ```
 
-    If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising attestation is required:
+    If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising the attestation flow will run:
 
     <div data-termynal="" id="termynal">
-<span data-ty="input"><span class="file-path"></span>npx tsx src/transfer.ts</span>
-<span data-ty="">💰 ERC-20 balance: 1000000.0</span>
-<span data-ty="">🚫 Token not registered on Sepolia.</span>
-<span data-ty="">👉 Open attestToken.ts, define the token address, and run npx tsx attestToken.ts.</span>
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
+
+    If you see this message, follow the steps under "Need to register a token?" before continuing with the rest of the transfer flow code.
 
     ??? example "Need to register a token?"
         Token attestation is a one-time process to register a token on a destination chain. You should only follow these steps if your token registration check indicates a wrapped version does not exist on the destination chain.
 
-        1. Inside the `src` directory, create a new file named `attestToken.ts`:
+        1. Add the following code to `transfer.ts` to create the attestation for token registration:
+            ```typescript title="transfer.ts"
+            // Token attestation and registration flow here if needed
+            // This is where you will send the transaction to attest the token
+    const tb = await sourceChain.getTokenBridge();
+    // Define the token to attest and a payer address
+    const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
+      sourceChain.chain,
+      tokenId.address.toString()
+    );
+    const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
+    // Call the `createAttestation` method to create a new attestation
+    // and sign and send the transaction
+    for await (const tx of tb.createAttestation(token, payer)) {
+      const txids = await signSendWait(
+        sourceChain,
+        tb.createAttestation(token),
+        sourceSigner.signer
+      );
+      console.log('✅ Attestation transaction sent:', txids);
+      // Parse the transaction to get Wormhole message ID
+      const messages = await sourceChain.parseTransaction(txids[0].txid);
+      console.log('✅ Attestation messages:', messages);
+      // Set a timeout for fetching the VAA, this can take several minutes
+      // depending on the source chain network and finality
+      const timeout = 25 * 60 * 1000;
+      // Fetch the VAA for the attestation message
+      const vaa = await wh.getVaa(
+        messages[0]!,
+        'TokenBridge:AttestMeta',
+        timeout
+      );
+      if (!vaa) throw new Error('❌ VAA not found before timeout.');
+      // Get the token bridge context for the destination chain
+      // and submit the attestation VAA
+      const destTb = await destinationChain.getTokenBridge();
+      const payer = toNative(
+        destinationChain.chain,
+        destinationSigner.signer.address()
+      );
+      const destTxids = await signSendWait(
+        destinationChain,
+        destTb.submitAttestation(vaa, payer),
+        destinationSigner.signer
+      );
+      console.log('✅ Attestation submitted on destination:', destTxids);
+    }
+    // Poll for the wrapped token to appear on the destination chain
+    // before proceeding with the transfer
+    const maxAttempts = 50; // ~5 minutes with 6s interval
+    const interval = 6000;
+    let attempt = 0;
+    let registered = false;
 
-            ```bash
-            touch attestToken.ts
-            ```
+    while (attempt &lt; maxAttempts &amp;&amp; !registered) {
+      attempt++;
+      try {
+        const wrapped = await wh.getWrappedAsset(
+          destinationChain.chain,
+          tokenId
+        );
+        console.log(
+          `✅ Wrapped token is now available on ${destinationChain.chain}:`,
+          wrapped.address
+        );
+        registered = true;
+      } catch {
+        console.log(
+          `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
+        );
+        await new Promise((res) =&gt; setTimeout(res, interval));
+      }
+    }
 
-        2. Open the new file and add the following code:
+    if (!registered) {
+      throw new Error(
+        `❌ Token attestation did not complete in time on ${destinationChain.chain}`
+      );
+    }
 
-            ```typescript title="attestToken.ts"
-            import { wormhole, toNative } from '@wormhole-foundation/sdk';
-import evm from '@wormhole-foundation/sdk/evm';
-import { ethers } from 'ethers';
-import {
-  getMoonbeamSigner,
-  getMoonbeamWallet,
-  getSepoliaSigner,
-  getSepoliaWallet,
-} from './helpers';
-
-async function attestToken() {
-  // Initialize the Wormhole SDK, get chain contexts
-  const wh = await wormhole('Testnet', [evm]);
-  const sourceChainCtx = wh.getChain('Moonbeam');
-  const destinationChainCtx = wh.getChain('Sepolia');
-  // Get signers for source and destination chains
-  const sourceSigner = await getMoonbeamSigner();
-  const sourceWallet = getMoonbeamWallet();
-  const destinationSigner = await getSepoliaSigner();
-  const destinationWallet = await getSepoliaWallet();
-
-  // Define the token to attest for registeration
-  // on the destination chain (token you want to transfer)
-  const tokenToAttest = 'INSERT_TOKEN_ADDRESS';
-  const token = toNative(sourceChainCtx.chain, tokenToAttest);
-  console.log(`🔍 Token to attest: ${token.toString()}`);
-
-  // Get the Token Bridge protocol for source chain
-  const sourceTokenBridge = await sourceChainCtx.getTokenBridge();
-  // Create attestation transactions
-  const createAttestationTxs = sourceTokenBridge.createAttestation(token);
-  // Prepare to collect transaction hashes
-  const sourceTxids: string[] = [];
-  // Iterate through the unsigned transactions, sign and send them
-  for await (const tx of createAttestationTxs) {
-    const txRequest = tx.transaction as ethers.TransactionRequest;
-    const sentTx = await sourceWallet.sendTransaction(txRequest); // Use wallet, not SDK signer
-    await sentTx.wait();
-    sourceTxids.push(sentTx.hash);
+    console.log('🚀 Token attestation complete! Proceeding with transfer...');
   }
-  const sourceTxId = sourceTxids[0];
-  console.log(`✅ Attestation tx sent: ${sourceTxId}`);
-  // Parse the transaction to get messages
-  const messages = await sourceChainCtx.parseTransaction(sourceTxId);
-  console.log('📦 Parsed messages:', messages);
-  // Set a timeout for fetching the VAA, this can take several minutes
-  // depending on the source chain network and finality
-  const timeout = 25 * 60 * 1000;
-  // Fetch the VAA for the attestation message
-  const vaa = await wh.getVaa(messages[0]!, 'TokenBridge:AttestMeta', timeout);
-  if (!vaa) throw new Error('❌ VAA not found before timeout.');
-
-  console.log(
-    `📨 Submitting attestation VAA to ${destinationChainCtx.chain}...`
-  );
-  // Get the Token Bridge protocol for destination chain
-  const destTokenBridge = await destinationChainCtx.getTokenBridge();
-  // Submit the attestation VAA
-  const submitTxs = destTokenBridge.submitAttestation(vaa);
-  // Prepare to collect transaction hashes for the destination chain
-  const destTxids: string[] = [];
-  // Iterate through the unsigned transactions, sign and send them
-  for await (const tx of submitTxs) {
-    const txRequest = tx.transaction as ethers.TransactionRequest;
-    const sentTx = await destinationWallet.sendTransaction(txRequest);
-    await sentTx.wait();
-    destTxids.push(sentTx.hash);
-  }
-  console.log(`✅ Attestation VAA submitted: ${destTxids[0]}`);
-  console.log(
-    `🎉 Token attestation complete! You are now ready to transfer ${token.toString()} to ${
-      destinationChainCtx.chain
-    }`
-  );
-}
-
-attestToken().catch((err) =&gt; {
-  console.error('❌ Error in attestToken:', err);
+            // Remainder of transfer code 
+            console.error('❌ Error in transferTokens', e);
   process.exit(1);
-});
+});</typeof>
             ```
 
             This code does the following:
         
-            - Initializes a `wormhole` instance and defines the source and destination chains for the transfer 
-            - Imports your signer and wallet functions from `helpers.ts`
-            - Identifies the token to attest for registration on the destination chain
-            - Gets the Token Bridge protocol for the source chain and sends the `createAttestation` transaction there
+            - Gets the Token Bridge protocol for the source chain
+            - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction
+            - Calls `createAttestation`, signs, and then sends the transaction
             - Waits for the signed VAA confirming the attestation creation
             - Sends the VAA to the destination chain to complete registration
+            - Polls for the wrapped token to be available on the destination chain before continuing the transfer process
 
         3. Run the script with the following command:
             
             ```bash
-            npx tsx attestToken.ts
+            npx tsx transfer.ts
             ```
 
             When the attestation and registration are complete, you will see terminal output similar to the following:
 
             <div data-termynal="" id="termynal">
-<span data-ty="input"><span class="file-path"></span>npx tsx src/attestToken.ts</span>
-<span data-ty="">🔍 Token to attest: 0x39F2f26f247CcC223393396755bfde5ecaeb0648</span>
-<span data-ty="">✅ Attestation tx sent: 0x8e56fd1e5a539127542e087e5618ccc5b315cf5cefcd7763b8dbeefa67eec370</span>
-<span data-ty="">📦 Parsed messages: [
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+<span data-ty="">✅ Attestation transaction sent: [
+  {
+    chain: 'Moonbeam',
+    txid: '0x2b9878e6d8e92d8ecc96d663904312c18a827ccf0b02380074fdbc0fba7e6b68'
+  }
+]</span>
+<span data-ty="">✅ Attestation messages: [
   {
     chain: 'Moonbeam',
     emitter: UniversalAddress { address: [Uint8Array] },
-    sequence: 1497n
+    sequence: 1505n
+  }
+]
+</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
+<span data-ty="">....</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
+<span data-ty="">✅ Attestation submitted on destination: [
+  {
+    chain: 'Solana',
+    txid: '3R4oF5P85jK3wKgkRs5jmE8BBLoM4wo2hWSgXXL6kA8efbj2Vj9vfuFSb53xALqYZuv3FnXDwJNuJfiKKDwpDH1r'
   }
 ]</span>
-<span data-ty=""></span>
+<span data-ty="">✅ Wrapped token is now available on Solana: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
+  }
+}</bn:></span>
+<span data-ty="">🚀 Token attestation complete! Proceeding with transfer...</span>
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
@@ -1496,62 +1492,64 @@ attestToken().catch((err) =&gt; {
 
 Follow these steps to add the rest of the logic to initiate the token transfer on the source chain:
 
-1. Open your `transfer.ts` file and replace the commented line "// Additional transfer code" with the following code:
+1. Open your `transfer.ts` file and add the following code:
 
     ```typescript title="transfer.ts"
-    const tokenBridgeAddress = "INSERT_TOKEN_BRIDGE_ADDRESS"; // e.g., "0xYourTokenBridgeAddress"
-// Approve the Token Bridge to spend your ERC-20 token
-const approveTx = await tokenContract.approve(tokenBridgeAddress, amountBigInt);
-await approveTx.wait();
-console.log(`✅ Approved Token Bridge to spend ${amount} ERC-20 token.`);
+    // Remainder of transfer code 
+    const automatic = false;
+  // Optional native gas amount for automatic transfers only
+  const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
+  // Get the decimals for the source chain
+  const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
+  // If automatic, convert to raw units, otherwise set to 0n
+  const nativeGas = automatic
+    ? BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals)
+    : 0n;
+  // Build the token transfer object
+  const xfer = await wh.tokenTransfer(
+    tokenId,
+    transferAmount,
+    sourceSigner.address,
+    destinationSigner.address,
+    automatic,
+    undefined, // no payload
+    nativeGas
+  );
+  console.log('🚀 Built transfer object:', xfer.transfer);
 
-// Build transfer transactions
-const transferTxs = await tokenBridge.transfer(
-toNative(sourceChainCtx.chain, sourceAddress),
-{
-chain: destinationChainCtx.chain,
-address: toUniversal(destinationChainCtx.chain, await destinationSigner.address),
-},
-tokenAddress,
-amountBigInt
-);
-// Gather transaction IDs for each transfer
-const txids: string[] = [];
-// Iterate through each unsigned transaction, sign and send it,
-// and collect the transaction IDs
-for await (const unsignedTx of transferTxs) {
-const tx = unsignedTx.transaction as ethers.TransactionRequest;
-const sentTx = await sourceSigner.sendTransaction(tx);
-await sentTx.wait();
-txids.push(sentTx.hash);
+  // Initiate, sign, and send the token transfer
+  const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
+  console.log('🔗 Source chain tx sent:', srcTxs);
+
+  // If automatic, no further action is required. The relayer completes the transfer.
+  if (automatic) {
+    console.log('✅ Automatic transfer: relayer is handling redemption.');
+    return;
+  }
+  // For manual transfers, wait for VAA
+  console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
+  const attIds = await xfer.fetchAttestation(120_000); // 2 minutes timeout
+  console.log('✅ Got attestation ID(s):', attIds);
+
+  // Complete the manual transfer on the destination chain
+  console.log('↪️ Redeeming transfer on destination...');
+  const destTxs = await xfer.completeTransfer(destinationSigner.signer);
+  console.log('🎉 Destination tx(s) submitted:', destTxs);
 }
 
-console.log("✅ Sent txs:", txids);
-
-// Parse the transaction to get Wormhole messages
-const messages = await sourceChainCtx.parseTransaction(txids[0]!);
-console.log("📨 Parsed transfer messages:", messages);
-// Set a timeout for VAA retrieval
-// This can take several minutes depending on the network and finality
-const timeout = 25 _ 60 _ 1000; // 25 minutes
-const vaaBytes = await wh.getVaa(messages[0]!, "TokenBridge:Transfer", timeout);
-
-// Save VAA to file. You will need this to submit
-// the transfer on the destination chain
-if (!vaaBytes) {
-throw new Error("❌ No VAA was returned. Token transfer may not have finalized yet.");
-}
-await writeFile("vaa.bin", Buffer.from(serialize(vaaBytes)));
-console.log("📝 VAA saved to vaa.bin");
-}
+transferTokens().catch((e) =&gt; {
+  console.error('❌ Error in transferTokens', e);
+  process.exit(1);
+});</typeof>
+         
     ```
 
     This code does the following:
 
-    - Uses the supplied [Token Bridge contract address](https://wormhole.com/docs/build/reference/contract-addresses/#token-bridge){target=\_blank} to approve spending the ERC-20 token in the amount you want to transfer
-    - Calls the `transfer()` method to initiate the transfer on the source chain
-    - Watches for the transaction, parses the transaction ID to read the Wormhole message, and waits for the Guardians to sign the VAA verifying the transaction
-    - Fetches the VAA and writes it to a file named `vaa.bin`, which will be used to redeem the transfer and claim the tokens on the destination chain
+    - Defines the transfer as automatic or manual. To use automatic transfer, both the source and destination chain must have an existing `tokenBridgeRelayer` contract. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/core/base/src/constants/contracts/tokenBridgeRelayer.ts) in the Wormhole SDK repo to see if your desired chains are supported
+    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers
+    - Builds the transfer object, initiates the transfer, signs and sends the transaction
+    - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer
 
 2. Run the script with the following command:
     ```bash
@@ -1561,120 +1559,69 @@ console.log("📝 VAA saved to vaa.bin");
 3. You will see terminal output similar to the following:
 
     <div data-termynal="" id="termynal">
-<span data-ty="input"><span class="file-path"></span>npx tsx src/transfer.ts</span>
-<span data-ty="">✅ Token is registered on Sepolia. Proceeding with transfer...</span>
-<span data-ty="">✅ Approved Token Bridge to spend 0.01 ERC-20 token.</span>
-<span data-ty="">✅ Sent txs: [
-  '0xd07886b82c4d177a64298d37870b14c0fb332fa66f6cd2ac459f887fe8f45853'
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">✅ Token already registered on destination: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
+  }
+}</bn:></span>
+<span data-ty="">🚀 Built transfer object: {
+  token: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0x39F2f26f247CcC223393396755bfde5ecaeb0648'
+    }
+  },
+  amount: 200000000000000000n,
+  from: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12'
+    }
+  },
+  to: {
+    chain: 'Solana',
+    address: SolanaAddress {
+      type: 'Native',
+      address: [PublicKey [PublicKey(21dmEFTFGBEVoUNjmrxumN6A2xFxNBQXTkK7AmMqNmqD)]]
+    }
+  },
+  automatic: false,
+  payload: undefined,
+  nativeGas: 0n
+}</span>
+<span data-ty="">🔗 Source chain tx sent: [
+  '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
 ]</span>
-<span data-ty="">📨 Parsed transfer messages: [
+<span data-ty="">⏳ Waiting for attestation (VAA) for manual transfer...</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/30</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/30</span>
+<span data-ty="">.....</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 15/30</span>
+<span data-ty="">✅ Got attestation ID(s): [
   {
     chain: 'Moonbeam',
     emitter: UniversalAddress { address: [Uint8Array] },
-    sequence: 1498n
+    sequence: 1506n
   }
 ]</span>
-<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
-<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
-<span data-ty="">.....</span>
-<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 14/750</span>
-<span data-ty="">📝 VAA saved to vaa.bin</span>
-<span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-## Redeem Transfer on Destination Chain
-
-The final step to complete a manual transfer with Token Bridge is to submit the signed VAA from your transfer transaction to the destination chain. The signed VAA provides Guardian-backed confirmation of the tokens locked in the token bridge contract on the source chain, allowing a matching amount of tokens to be minted on the destination chain. 
-
-Follow these steps to redeem your transfer on the destination chain:
-
-1. Inside the `src` directory, create a file named `redeem.ts`:
-    ```bash
-    touch redeem.ts
-    ```
-
-2. Open the file and add the following code:
-    ```typescript title="redeem.ts"
-    import { wormhole, toNative, VAA } from '@wormhole-foundation/sdk';
-import { deserialize } from '@wormhole-foundation/sdk-definitions';
-import evm from '@wormhole-foundation/sdk/evm';
-import { getSepoliaSigner, getSepoliaWallet } from './helpers';
-import { promises as fs } from 'fs';
-
-async function redeemOnDestination() {
-  // Read the raw VAA bytes from file
-  const vaaBytes = await fs.readFile('vaa.bin');
-  // Initialize the Wormhole SDK
-  const wh = await wormhole('Testnet', [evm]);
-  // Get the destination chain context
-  const destinationChainCtx = wh.getChain('Sepolia');
-
-  // Parse the VAA from bytes
-  const vaa = deserialize(
-    'TokenBridge:Transfer',
-    vaaBytes
-  ) as VAA&lt;'TokenBridge:Transfer'&gt;;
-
-  // Get the signer for destination chain
-  const destinationSigner = await getSepoliaSigner();
-  const destinationWallet = await getSepoliaWallet();
-  const recipient = destinationSigner.address();
-
-  // Get the TokenBridge protocol for the destination chain
-  const tokenBridge = await destinationChainCtx.getProtocol('TokenBridge');
-  // Redeem the VAA on Sepolia to claim the transferred tokens
-  // for the specified recipient address
-  console.log('📨 Redeeming VAA on Sepolia...');
-  const txs = await tokenBridge.redeem(toNative('Sepolia', recipient), vaa);
-  // Prepare to collect transaction hashes
-  const txHashes: string[] = [];
-  // Iterate through the unsigned transactions, sign and send them
-  for await (const unsignedTx of txs) {
-    const tx = unsignedTx.transaction;
-    const sent = await destinationWallet.sendTransaction(tx);
-    await sent.wait();
-    txHashes.push(sent.hash);
-  }
-  console.log('✅ Redemption complete. Sepolia txid(s):', txHashes);
-}
-
-redeemOnDestination().catch((e) =&gt; {
-  console.error('❌ Error in redeemOnDestination:', e);
-  process.exit(1);
-});
-    ```
-
-    This code does the following:
-
-    - Fetches the raw VAA bytes from the `vaa.bin` file
-    - Initializes a `wormhole` instance and gets the destination chain context
-    - Parses the VAA, gets the signer and Token Bridge protocol for the destination chain
-    - Calls `redeem()` and signs the transaction for the recipient to claim the tokens
-    - Returns the destination chain transaction ID for the successful redemption
-
-3. Run the script with the following command:
-    ```bash
-    npx tsx redeem.ts
-    ```
-
-4. You will see terminal output similar to the following:
-
-    <div data-termynal="" id="termynal">
-<span data-ty="input"><span class="file-path"></span>npx tsx src/redeem.ts</span>
-<span data-ty="">📨 Redeeming VAA on Sepolia...</span>
-<span data-ty="">✅ Redemption complete. Sepolia txid(s): [
-  '0x1d0bfc789db632c2047f1f53501e1c1900b784a2316d9486b84d05b75b2a9c49'
+<span data-ty="">↪️ Redeeming transfer on destination...</span>
+<span data-ty="">🎉 Destination tx(s) submitted: [
+  '23NRfFZyKJTDLppJF4GovdegxYAuW2HeXTEFSKKNeA7V82aqTVYTkKeM8sCHCDWe7gWooLAPHARjbAheXoxbbwPk'
 ]</span>
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
-Congratulations! You've now completed a manual Token Bridge transfer using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
+Congratulations! You've now used Token Bridge to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 
 ## Next Steps
 
-TODO: link to Solana/Sui end-to-end guide(s) to see how manual transfer is different for those platforms
-
-TODO: links to individual Token Bridge guides: Register/Attest, Fetch Signed VAA, Redeem Signed VAA
+- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: visit this site to interact with Wormhole's Portal Bridge featuring a working Token Bridge integration.
+- [**Interact with Token Bridge Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): this guide explores the Solidity functions used in Token Bridge contracts.
+- [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: view the source code defining these key interfaces and their associated namespaces.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/token-bridge/overview/
