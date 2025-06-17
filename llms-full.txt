@@ -12339,13 +12339,8 @@ This guide walks you through deploying NTT on EVM chains, including setting up d
 
 Before you begin, ensure you have the following:
 
-- You've completed the [Get Started with NTT](/docs/products/native-token-transfers/get-started/){target=\_blank} guide
-- You have an existing ERC-20 token deployed to the EVM chains you plan to use
-
-!!! note "Don't have a token yet?"
-
-    Before proceeding, make sure you have the NTT CLI installed and a project initialized. 
-    Follow the below steps or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}:
+- An existing ERC-20 token deployed to the [EVM chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} you plan to use
+- Make sure you have the NTT CLI installed and a project initialized. Follow the below steps or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}:
 
     ???- interface "Install the NTT CLI and Scaffold a New Project"
     
@@ -12388,6 +12383,43 @@ Before you begin, ensure you have the following:
 ## Deploy Your Token and Ensure Compatibility
 
 If you still need to do so, deploy the token contract to the destination or spoke chains.
+
+???- interface "Deploy an ERC-20 Token on EVM"
+    Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+
+    1. **Install Foundry** - install the [Forge CLI](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+
+    2. **Clone the repository** – fetch the example contract repository
+
+        ```bash
+        git clone https://github.com/wormhole-foundation/example-ntt-token.git
+        cd example-ntt-token
+        ```
+    
+    3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
+
+        ```bash
+        forge create --broadcast \
+            --rpc-url INSERT_RPC_URL \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            src/PeerToken.sol:PeerToken \
+            --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
+        ```
+
+    4. **Mint tokens** – send tokens to your address
+
+        ```bash
+        cast send INSERT_TOKEN_ADDRESS \
+            "mint(address,uint256)" \
+            INSERT_RECIPIENT_ADDRESS \
+            INSERT_AMOUNT_IN_WEI \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            --rpc-url INSERT_RPC_URL
+        ```
+
+    !!! note
+        This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
+
 
 ### Requirements for Token Deployment
 
@@ -12477,26 +12509,10 @@ This table compares the configuration parameters available when deploying the NT
 
 Once you have the NTT CLI installed and a project initialized, proceed with adding your EVM chains and deploying contracts.
 
-Ensure your wallet is set up using Foundry's encrypted keystore.
+Ensure your wallet is properly configured and that sensitive information such as private keys is handled securely.
 
-!!! info "Use Foundry's Encrypted Keystore"
-
-    Instead of setting your private key as a raw environment variable, use Foundry's keystore:
-
-    1. Generate a new encrypted key:
-        ```bash
-        cast wallet new
-        ```
-
-    2. Or import an existing private key:
-        ```bash
-        cast wallet import
-        ```
-
-    3. You’ll be prompted to set a password. Use this keystore file when interacting with contracts:
-        ```bash
-        cast send --keystore /path/to/keystore.json --password <(echo "YOUR_PASSWORD") ...
-        ```
+!!! info "Secure Key Management Recommended"
+    Avoid exposing your private key directly in scripts or environment variables.  Use a secure key management method like encrypted keystores.
 
 Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
