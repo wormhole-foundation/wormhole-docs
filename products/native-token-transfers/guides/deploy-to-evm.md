@@ -15,7 +15,7 @@ This guide walks you through deploying NTT on EVM chains, including setting up d
 Before you begin, ensure you have the following:
 
 - You've completed the [Get Started with NTT](/docs/products/native-token-transfers/get-started/){target=\_blank} guide
-- You have an existing ERC-20 token deployed to the EVM chains you plan to use
+- An existing ERC-20 token deployed to the EVM chains you plan to use
 
 !!! note "Don't have a token yet?"
 
