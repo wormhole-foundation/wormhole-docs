@@ -11,7 +11,7 @@ Blockchain ecosystems are becoming increasingly interconnected, with assets ofte
 
 This guide explains how to create a multichain token, a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
 
-To complete the following steps, you'll need token in both the source and target chains of your token.
+To complete the following steps, you'll need tokens in both the source and target chains of your token.
 
 By the end of this tutorial, you'll learn:
 
@@ -49,7 +49,7 @@ In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){targe
 
 Attestation is a key step in the process. It verifies your token’s metadata, ensuring it is correctly recognized on the target chain’s blockchain explorer (e.g., [Etherscan](https://etherscan.io/){target=\_blank}).
 
-In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered in both source and target cahins, take the following steps:
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, after the token has already been registered in both source and target chains, take the following steps:
 
 1. Click **Attest** to initiate the attestation process
 2. Approve the transaction in your wallet when prompted
@@ -64,7 +64,7 @@ In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){targe
 
 The final step is to create the wrapped token on the target chain. This token represents the original asset and enables its use within the target blockchain.
 
-In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered in both source and target cahins, and the attestation sent, take the following steps:
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, after the token has already been registered in both source and target chains and the attestation sent, take the following steps:
 
 1. Click **Create** to generate the wrapped token
 2. Approve the transaction in your wallet when prompted

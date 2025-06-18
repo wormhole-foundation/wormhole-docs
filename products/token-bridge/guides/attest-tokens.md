@@ -18,12 +18,12 @@ This page outlines how to attest your token via the Token Bridge contracts. To u
 
 ## Prerequisites
 
-To attest your token with the Wormhole Token Bridge contract, you'll need the following:
+To attest your token with the Token Bridge contract, you'll need the following:
 
-- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
+- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
 
 
-## How to Attest your Token
+## How to Attest Your Token
 
 Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
 
@@ -54,7 +54,7 @@ function attestToken(
     
     A unique identifier for the attestation transaction.
 
-When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
+When `attestToken()` is called, the contract emits a [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank} containing the token's metadata, which the [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} sign and publish.
 
 You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
 
