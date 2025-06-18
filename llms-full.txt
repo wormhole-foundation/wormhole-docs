@@ -130,11 +130,14 @@ Each category file includes foundational content from the **Basics** and **Refer
 | Relayers       | 	Guides and reference for using Wormhole’s Relayer module, building cross-chain messaging contracts, and running custom relayers | `llms-relayers.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-relayers.txt" } [:octicons-download-16:](/docs/llms-files/llms-relayers.txt){ download="llms-relayers.txt" }                     |
 | MultiGov       | Architecture, deployment steps, and upgrade instructions for multichain governance on EVM and Solana | `llms-multigov.txt`       | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-multigov.txt" } [:octicons-download-16:](/docs/llms-files/llms-multigov.txt){ download="llms-multigov.txt" }                     |
 | Queries        | Guides for using the Wormhole Query SDK and Proxy to construct, test, and verify on-chain data queries across chains | `llms-queries.txt`        | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-queries.txt" } [:octicons-download-16:](/docs/llms-files/llms-queries.txt){ download="llms-queries.txt" }                        |
-| Solidity SDK   | SDK docs for cross-chain messaging, token transfers, relayer integration, and local testing in Solidity | `llms-solidity-sdk.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-solidity-sdk.txt" } [:octicons-download-16:](/docs/llms-files/llms-solidity-sdk.txt){ download="llms-solidity-sdk.txt" }         |
 | TypeScript SDK | Docs for working with VAAs, payloads, and cross-chain message structures using the TypeScript SDK | `llms-typescript-sdk.txt` | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-typescript-sdk.txt" }   [:octicons-download-16:](/docs/llms-files/llms-typescript-sdk.txt){ download="llms-typescript-sdk.txt" } |
 
 !!! note
     The `llms-full.txt` file may exceed the input limits of some language models due to its size. If you encounter limitations, consider using the files by category.
+
+<!--
+| Solidity SDK   | SDK docs for cross-chain messaging, token transfers, relayer integration, and local testing in Solidity | `llms-solidity-sdk.txt`   | [:octicons-copy-16:](){ .llms action="copy" data-value="llms-solidity-sdk.txt" } [:octicons-download-16:](/docs/llms-files/llms-solidity-sdk.txt){ download="llms-solidity-sdk.txt" }         |
+-->
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/cctp-bridge/get-started/
