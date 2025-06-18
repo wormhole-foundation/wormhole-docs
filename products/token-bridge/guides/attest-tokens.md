@@ -10,9 +10,9 @@ categories: Token-Bridge, Transfer
 
 Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. The primary functions of the Token Bridge contracts revolve around:
 
-- **Attesting a token** - registering a new token for cross-chain transfers
-- **Transferring tokens** - locking and minting tokens across chains
-- **Transferring tokens with a payload** - including additional data with transfers
+- **Attesting a token**: Registering a new token for cross-chain transfers.
+- **Transferring tokens**: Locking and minting tokens across chains.
+- **Transferring tokens with a payload**: Including additional data with transfers.
 
 This page outlines how to attest your token via the Token Bridge contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
 
