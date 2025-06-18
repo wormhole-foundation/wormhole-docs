@@ -77,7 +77,10 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/transfer-flow.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/faqs.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/get-started.md
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/attest-tokens.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/token-bridge-contracts.md
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-tokens-payload.md
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-tokens.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/overview.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/tutorials/multichain-token.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/tutorials/transfer-workflow.md
@@ -17331,6 +17334,105 @@ Now that you've completed a manual multichain token transfer, explore these guid
  - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}: Learn how to issue tokens that work across chains.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/token-bridge/guides/attest-tokens/
+--- BEGIN CONTENT ---
+---
+title: Attesting Tokens via Token Bridge Contracts
+description: Learn how to attest your token via Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+categories: Token-Bridge, Transfer
+---
+
+# Attesting Tokens via Token Bridge Contracts
+
+## Introduction 
+
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. The primary functions of the Token Bridge contracts revolve around:
+
+- **Attesting a token** - registering a new token for cross-chain transfers
+- **Transferring tokens** - locking and minting tokens across chains
+- **Transferring tokens with a payload** - including additional data with transfers
+
+This page outlines how to attest your token via the Token Bridge contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
+
+## Prerequisites
+
+To attest your token with the Wormhole Token Bridge contract, you'll need the following:
+
+- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
+
+
+## How to Attest your Token
+
+Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
+
+The attestation process doesn't require you to manually input token details like name, symbol, or decimals. Instead, the Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+
+```solidity
+function attestToken(
+    address tokenAddress,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `tokenAddress` ++"address"++
+        
+    The contract address of the token to be attested.
+
+    ---
+
+    `nonce` ++"uint32"++  
+
+    An arbitrary value provided by the caller to ensure uniqueness.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the attestation transaction.
+
+When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
+
+You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
+
+## How to Verify an Attested Token
+
+To verify if a token has a wrapped representation in a given chain, you can call the `wrappedAsset()` function of the Token Bridge contract in the destination chain that you want to check. The function call will return the address of the wrapped token, or `0x0` if no wrapped token has been attested.
+
+```wrappedAsset
+function attestToken(
+    uint16 tokenChainId,
+    bytes32 tokenAddress
+) external view returns (address);
+```
+
+??? interface "Parameters"
+
+    `uint16` ++"tokenChainId"++
+        
+    The Wormhole [chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the source chain.
+
+    ---
+
+    `tokenAddress` ++"bytes32"++  
+
+    The token's [Universal Address](/docs/products/reference/wormhole-formatted-addresses/#universal-address-methods){target=\_blank} in the source chain.
+
+??? interface "Returns"
+
+    `wrappedTokenAddress` ++"address"++
+    
+    The address of the wrapped token in this chain, or `0x0` if the token has not been attested.
+
+## Source Code References
+
+For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+
+- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/token-bridge/guides/token-bridge-contracts/
 --- BEGIN CONTENT ---
 ---
@@ -17553,6 +17655,227 @@ For a deeper understanding of the Token Bridge implementation and to review the 
 A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/token-bridge/guides/transfer-tokens-payload/
+--- BEGIN CONTENT ---
+---
+title: Transfer Tokens with Payload via the Token Bridge Contract
+description: Learn how to transfer your token with an additional payload via Wormhole's Token Bridge for seamless multichain token transfers with payload execution.
+categories: Token-Bridge, Transfer
+---
+
+# Token Transfers with Payload via the Token Bridge Contract
+
+## Introduction 
+
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. The primary functions of the Token Bridge contracts revolve around:
+
+- **Attesting a token** - registering a new token for cross-chain transfers
+- **Transferring tokens** - locking and minting tokens across chains
+- **Transferring tokens with a payload** - including additional data with transfers
+
+This page outlines how to [transfer tokens with a message](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank} via the Token Bridge contract, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
+
+## Prerequisites
+
+To transfer a token with a payload via the Wormhole Token Bridge, you'll need the following:
+
+- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
+- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers
+- The token you want to transfer must be [attested](/docs/products/token-bridge/guides/attest-tokens/){target=\_blank} beforehand.
+- A formatted payload to be executed in the destination chain.
+
+## Transfer Tokens with Payload
+
+While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
+
+Call `transferTokensWithPayload()` instead of `transferTokens()` to include a custom payload (arbitrary bytes) with the token transfer.
+
+```solidity
+function transferTokensWithPayload(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint32 nonce,
+    bytes memory payload
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+    
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++  
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++  
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++  
+    The recipient's address on the destination chain.
+
+    ---
+
+    `nonce` ++"uint32"++  
+    A unique identifier for the transaction.
+
+    ---
+
+    `payload` ++"bytes memory"++  
+    Arbitrary data payload attached to the transaction.
+
+??? interface "Returns"
+    
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
+
+Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
+
+```solidity
+function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+
+    The signed VAA containing the transfer details.
+
+??? interface "Returns"
+
+    `bytes memory`
+
+    The extracted payload data.
+
+## Source Code References
+
+For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+
+- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/token-bridge/guides/transfer-tokens/
+--- BEGIN CONTENT ---
+---
+title: Transfer Tokens via the Token Bridge Contract
+description: Learn how to transfer your token via Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+categories: Token-Bridge, Transfer
+---
+
+# Token Transfers via the Token Bridge Contract
+
+## Introduction 
+
+Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. The primary functions of the Token Bridge contracts revolve around:
+
+- **Attesting a token** - registering a new token for cross-chain transfers
+- **Transferring tokens** - locking and minting tokens across chains
+- **Transferring tokens with a payload** - including additional data with transfers
+
+This page outlines how to transfer tokens via the Token Bridge contract. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
+
+## Prerequisites
+
+To transfer a token with the Wormhole Token Bridge, you'll need the following:
+
+- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
+- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers
+- The token you want to transfer must be [attested](/docs/products/token-bridge/guides/attest-tokens/){target=\_blank} beforehand.
+
+## Transfer Tokens 
+
+Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
+
+Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
+
+```solidity
+function transferTokens(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint256 arbiterFee,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+        
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++  
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++  
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++  
+    The recipient's address on the destination chain.
+
+    ---
+
+    `arbiterFee` ++"uint256"++  
+    Optional fee to be paid to an arbiter for relaying the transfer.
+
+    ---
+
+    `nonce` ++"uint32"++  
+    A unique identifier for the transaction.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
+
+```solidity
+function completeTransfer(bytes memory encodedVm) external;
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+    
+    The signed VAA containing the transfer details.
+
+!!!note
+    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation
+    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain
+
+## Source Code References
+
+For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+
+- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+
+## Portal Bridge
+
+A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/token-bridge/overview/
 --- BEGIN CONTENT ---
 ---
@@ -17581,8 +17904,8 @@ Token Bridge is built to solve interoperability problems in multichain token tra
 
 The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
-1. **Attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token.
-2. **Locking**: On the source chain, the native token is locked in a custody account.
+1. **Token attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token, if it is not already registered in the destination chain.
+2. **Locking**: On the source chain, the native token is locked in a custody account/contract.
 3. **Message emission**: The [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} verifies and emits a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 4. **Verification**: The VAA is submitted and verified on the destination chain to confirm authenticity.
 5. **Minting**: A wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain.
@@ -17649,7 +17972,9 @@ description: Learn how to create a multichain token, bridge tokens across blockc
 
 Blockchain ecosystems are becoming increasingly interconnected, with assets often needing to exist across multiple networks to maximize their utility and reach. For example, tokens created on one chain may want to expand to others to tap into broader audiences and liquidity pools.
 
-This guide explains how to create a multichain token—a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
+This guide explains how to create a multichain token, a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
+
+To complete the following steps, you'll need token in both the source and target chains of your token.
 
 By the end of this tutorial, you'll learn:
 
@@ -17663,7 +17988,7 @@ Let’s begin with a straightforward, step-by-step process for creating a multic
 
 The first step in creating a multichain token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
 
-1. Open the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank}
+1. Open the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool
 2. Select the blockchain where your token is currently deployed (source chain)
 3. Connect your wallet by following the on-screen instructions
 4. Locate the **Asset** field and paste the token contract address
@@ -17673,7 +17998,9 @@ The first step in creating a multichain token is registering your token on its s
 
 ## Register the Token on the Target Chain
 
-After registering your token on the source chain, the next step is to select the target chain—the blockchain where you want the wrapped version of your token to exist. This step connects your token to its destination network.
+After registering your token on the source chain, the next step is to select the target chain, the blockchain where you want the wrapped version of your token to exist. This step connects your token to its destination network.
+
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered, take the following steps:
 
 1. Choose the blockchain where you want the token to be bridged (target chain)
 2. Connect your wallet to the target chain
@@ -17682,7 +18009,10 @@ After registering your token on the source chain, the next step is to select the
 ![Target Chain Registration Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-2.webp)
 
 ## Send an Attestation
+
 Attestation is a key step in the process. It verifies your token’s metadata, ensuring it is correctly recognized on the target chain’s blockchain explorer (e.g., [Etherscan](https://etherscan.io/){target=\_blank}).
+
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered in both source and target cahins, take the following steps:
 
 1. Click **Attest** to initiate the attestation process
 2. Approve the transaction in your wallet when prompted
@@ -17696,6 +18026,8 @@ Attestation is a key step in the process. It verifies your token’s metadata, e
 ## Create the Wrapped Token
 
 The final step is to create the wrapped token on the target chain. This token represents the original asset and enables its use within the target blockchain.
+
+In the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank} token registration tool, with the token already registered in both source and target cahins, and the attestation sent, take the following steps:
 
 1. Click **Create** to generate the wrapped token
 2. Approve the transaction in your wallet when prompted
@@ -17754,7 +18086,7 @@ By leveraging Wormhole’s Token Bridge, this guide shows you how to build an ap
  - Non-EVM to EVM chains (e.g., Sui to Avalanche)
  - Non-EVM to non-EVM chains (e.g., Solana to Sui)
 
-Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the Token Bridge method from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
+Existing solutions for multichain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the Token Bridge method from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
 
 At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s Token Bridge method.
 
@@ -17783,11 +18115,11 @@ In this section, we’ll guide you through initializing the project, installing 
     npm init -y
     ```
 
-2. **Create a `.gitignore` file** - ensure your private key isn't accidentally exposed or committed to version control
+2. **Set up secure access to your wallets** - this guide assumes you are loading your private keys from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
 
-    ```bash
-    echo ".env" >> .gitignore
-    ```
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
 
 3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
 
@@ -17795,24 +18127,7 @@ In this section, we’ll guide you through initializing the project, installing 
     npm install @wormhole-foundation/sdk dotenv tsx
     ```
 
-4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
-
-    ```bash
-    touch .env
-    ```
-
-    Inside the `.env` file, add your private keys.
-
-    ```env
-    ETH_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SOL_PRIVATE_KEY="INSERT_YOUR_PRIVATE_KEY"
-    SUI_PRIVATE_KEY="INSERT_SUI_MNEMONIC"
-    ```
-
-    !!! note
-        Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
-
-5. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
+4. **Create a `helpers.ts` file** - to simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays
 
     1. Create the helpers file
 
@@ -17847,14 +18162,12 @@ export interface SignerStuff<n c="" chain="" extends="" network,=""> {
   address: ChainAddress<c>;
 }
 
-// Function to fetch environment variables (like your private key)
-function getEnv(key: string): string {
-  const val = process.env[key];
-  if (!val) throw new Error(`Missing environment variable: ${key}`);
-  return val;
-}
-
-// Signer setup function for different blockchain platforms
+/**
+ * Returns a signer for the given chain using locally scoped credentials.
+ * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC, APTOS_PRIVATE_KEY) must
+ * be loaded securely beforehand, for example via a keystore, secrets
+ * manager, or environment variables (not recommended).
+ */
 export async function getSigner<n c="" chain="" extends="" network,="">(
   chain: ChainContext<n, c="">,
   gasLimit?: bigint
@@ -17870,27 +18183,23 @@ export async function getSigner<n c="" chain="" extends="" network,="">(
     case 'Solana':
       signer = await (
         await solana()
-      ).getSigner(await chain.getRpc(), getEnv('SOL_PRIVATE_KEY'));
+      ).getSigner(await chain.getRpc(), 'SOL_PRIVATE_KEY');
       break;
     case 'Evm':
       const evmSignerOptions = gasLimit ? { gasLimit } : {};
       signer = await (
         await evm()
-      ).getSigner(
-        await chain.getRpc(),
-        getEnv('ETH_PRIVATE_KEY'),
-        evmSignerOptions
-      );
+      ).getSigner(await chain.getRpc(), 'ETH_PRIVATE_KEY', evmSignerOptions);
       break;
     case 'Sui':
       signer = await (
         await sui()
-      ).getSigner(await chain.getRpc(), getEnv('SUI_MNEMONIC'));
+      ).getSigner(await chain.getRpc(), 'SUI_MNEMONIC');
       break;
     case 'Aptos':
       signer = await (
         await aptos()
-      ).getSigner(await chain.getRpc(), getEnv('APTOS_PRIVATE_KEY'));
+      ).getSigner(await chain.getRpc(), 'APTOS_PRIVATE_KEY');
       break;
     default:
       throw new Error('Unsupported platform: ' + platform);
@@ -17917,8 +18226,7 @@ export async function getTokenDecimals&lt;
 </number></n,></n></n,></c></n,></n,></n,></n></c></n,></n,></n>
         ```
 
-        - **`getEnv`** - this function fetches environment variables like your private key from the `.env` file
-        - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. It securely uses the private key stored in your `.env` file
+        - **`getSigner`** - based on the chain you're working with (EVM, Solana, Sui, etc.), this function retrieves a signer for that specific platform. The signer is responsible for signing transactions and interacting with the blockchain. Private keys must be securely loaded beforehand, for example, via keystore or secrets managers
         - **`getTokenDecimals`** - this function fetches the number of decimals for a token on a specific chain. It helps handle token amounts accurately during transfers
 
 ## Check and Create Wrapped Tokens
