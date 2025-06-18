@@ -65,7 +65,7 @@ The body of the VAA is hashed twice with `keccak256` to produce the signed diges
 !!!tip "Hash vs. double hash"
     Different implementations of the ECDSA signature validation may apply a keccak256 hash to the message passed, so care must be taken to pass the correct arguments.
     
-    For example, the [Solana secp256k1 program](https://docs.anza.xyz/runtime/programs/#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+    For example, the [Solana secp256k1 program](https://solana.com/docs/core/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
 ## Payload Types
 
