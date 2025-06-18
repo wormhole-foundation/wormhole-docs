@@ -1,5 +1,3 @@
 title: Guides
 nav:
-- 'Token Attestation': attest-tokens.md
-- 'Token Transfer': transfer-tokens.md
-- 'Token Transfer with Payload': transfer-tokens-payload.md
+- 'Interact with Contracts': token-bridge-contracts.md

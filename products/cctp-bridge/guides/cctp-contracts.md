@@ -624,7 +624,7 @@ Before writing your own contracts, it's essential to understand the key function
 
 To initiate a cross-chain transfer, you must call the `transferTokensWithPayload` method of Wormhole's Circle Integration (CCTP) contract. Once you have initiated a transfer, you must fetch the attested Wormhole message and parse the transaction logs to locate a transfer message emitted by the Circle Bridge contract. Then, a request must be sent to Circle's off-chain process with the transfer message to grab the attestation from the process's response, which validates the token mint on the target chain.
 
-To streamline this process, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank}, which exposes the [`WormholeRelayerSDK.sol` contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank}, including the [`CCTPSender` abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/CCTPBase.sol){target=\_blank}. By inheriting this contract, you can transfer USDC while automatically relaying the message payload to the destination chain via a Wormhole-deployed relayer.
+To streamline this process, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank}, which exposes the `WormholeRelayerSDK.sol` contract, including the `CCTPSender` abstract contract. By inheriting this contract, you can transfer USDC while automatically relaying the message payload to the destination chain via a Wormhole-deployed relayer.
 
 ??? code "CCTP Sender contract"
 
@@ -705,7 +705,7 @@ The above example sends a specified amount of USDC and the recipient's address a
 
 To complete the cross-chain transfer, you must invoke the `redeemTokensWithPayload` function on the target Wormhole Circle Integration contract. This function verifies the message's authenticity, decodes the payload, confirms the recipient and sender, checks message delivery, and then calls the `receiveMessage` function of the [Message Transmitter](#message-transmitter-contract) contract.
 
-Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeMessages` function. This function is defined in the [`WormholeRelayerSDK.sol` contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} from the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank} and is implemented within the [`CCTPReceiver` abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/CCTPBase.sol){target=\_blank}.
+Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeMessages` function. This function is defined in the `WormholeRelayerSDK.sol` contract from the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank} and is implemented within the `CCTPReceiver` abstract contract.
 
 ??? code "CCTP Receiver contract"
 

@@ -40,12 +40,11 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/overview.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/cli-commands.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/managers-transceivers.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/products.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/concepts/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/faqs.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/get-started.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/guides/liquidity-layer.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/guides/solver.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/overview.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/transfer-flow.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/faqs.md [type: other]
@@ -71,13 +70,13 @@ categories: Connect, Transfer
 
 ## Introduction
 
-In this tutorial, we’ll explore how to integrate [Wormhole Connect](https://github.com/wormhole-foundation/wormhole-connect){target=\_blank} to enable cross-chain token transfers and interactions. Wormhole Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Wormhole Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
+In this tutorial, we'll explore how to integrate [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} to enable cross-chain token transfers and interactions. Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
-While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any blockchain supported by Wormhole. In this example, we’ll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
+While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any [blockchain supported by Wormhole](/docs/products/connect/reference/support-matrix/){target=\_blank}. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
 
 ## Prerequisites
 
-To get started with Wormhole Connect, we'll first need to set up a basic environment that allows for cross-chain token transfers.
+To get started with Connect, we'll first need to set up a basic environment that allows for cross-chain token transfers.
 Before starting this tutorial, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
@@ -89,13 +88,15 @@ Before starting this tutorial, ensure you have the following:
 
 ### Create a React Project
 
-Start by setting up your React app:
+In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-started){target=\_blank}, a popular framework built on top of React, to set up your app:
 
 1. Open your terminal and run the following command to create a new React app:
 
     ```bash
-    npx create-react-app connect-tutorial
+    npx create-next-app@latest connect-tutorial
     ```
+
+    We recommend enabling TypeScript and creating a `src/` directory during setup. Other options can be configured based on your preferences.
 
 2. Navigate into the project directory:
 
@@ -103,9 +104,10 @@ Start by setting up your React app:
     cd connect-tutorial
     ```
 
-### Install Wormhole Connect
 
-Next, install the Wormhole Connect package as a dependency by running the following command inside your project directory:
+### Install Connect
+
+Next, install the Connect package as a dependency by running the following command inside your project directory:
 
 ```bash
 npm install @wormhole-foundation/wormhole-connect
@@ -113,133 +115,134 @@ npm install @wormhole-foundation/wormhole-connect
 
 ### Integrate Connect into the Application
 
-Now, we need to modify the default `App.js` file to integrate Wormhole Connect. We are going to use [version V1.0](/docs/products/connect/guides/upgrade/){target=\_blank}, make sure to check which version of connect you are using. Open `src/App.js` and replace the content with the following code:
+Now, we need to modify the default `page.tsx` file to integrate Connect. We are going to use [version V1.0](/docs/products/connect/guides/upgrade/){target=\_blank} or later, make sure to check which version of Connect you are using. Open `src/app/page.tsx` and replace the content with the following code:
 
 === "JavaScript"
 
     ```js
-    import logo from './logo.svg';
-    import './App.css';
-    import WormholeConnect from '@wormhole-foundation/wormhole-connect';
+    'use client';
 
-    const config = {
-        network: 'Testnet',
-        chains: ['Sui', 'Avalanche'],
-    };
+import WormholeConnect from '@wormhole-foundation/wormhole-connect';
 
-    function App() {
-        return <WormholeConnect config={config}/>;
-    }
+const config = {
+  network: 'Testnet',
+  chains: ['Sui', 'Avalanche'],
+};
 
-    export default App;
-    ``` 
+const theme = {
+  mode: 'light',
+  primary: '#78c4b6',
+};
+
+export default function Home() {
+  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
+}
+    ```
 
 === "TypeScript"
 
     ```ts
-    import './App.css';
-    import WormholeConnect, {
-        WormholeConnectConfig,
-        WormholeConnectTheme,
-    } from '@wormhole-foundation/wormhole-connect';
+    'use client';
 
-    function App() {
-        const config: WormholeConnectConfig = {
-            network: 'Testnet',
-            chains: ['Sui', 'Avalanche'],
+import WormholeConnect, {
+  WormholeConnectConfig,
+  WormholeConnectTheme,
+} from '@wormhole-foundation/wormhole-connect';
 
-            ui: {
-                title: 'SUI Connect TS Demo',
-            },
-        };
+export default function Home() {
+  const config: WormholeConnectConfig = {
+    network: 'Testnet',
+    chains: ['Sui', 'Avalanche'],
 
-        const theme: WormholeConnectTheme = {
-            mode: 'dark',
-            primary: '#78c4b6',
-        };
+    ui: {
+      title: 'SUI Connect TS Demo',
+    },
+  };
 
-        return <WormholeConnect config={config} theme={theme} />;
-    }
-
-    export default App;
+  const theme: WormholeConnectTheme = {
+    mode: 'light',
+    primary: '#78c4b6',
+  };
+  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
+}
     ```
 
-- Set `network` to `testnet` - this ensures that Wormhole Connect uses the testnet environment
+- Set `network` to `'Testnet'` - this ensures that Connect uses the testnet environment
 - Set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
 
-### Customize Wormhole Connect
+### Customize Connect
 
-To further customize Wormhole Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Wormhole Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
+To further customize Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
 
 ### Run the Application
 
-Make sure you’re in the root directory of your React app, and run the following command to start the application:
+Make sure you're in the root directory of your React app, and run the following command to start the application:
 
 ```bash
-npm start
+npm run dev
 ```
 
-Now your React app should be up and running, and Wormhole Connect should be visible on `http://localhost:3000/`. You should see the Wormhole Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
+Now your React app should be up and running, and Connect should be visible on `http://localhost:3000/`. You should see the Connect component, which will include a UI for selecting networks and tokens for cross-chain transfers.
 
 ## Transfer Tokens from Sui to Fuji
 
 Before transferring token ensure you have enough testnet SUI and Fuji tokens to cover the gas fees for the transfer. 
 
-To transfer tokens from Sui to Fuji in the Wormhole Connect interface:
+To transfer tokens from Sui to Fuji in the Connect interface:
 
 1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer
 2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
 3. Enter the amount of SUI tokens you wish to transfer
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-1.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-1.webp){.half}
 
 4. Choose to view other routes 
     
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-2.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-2.webp){.half}
 
 5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
 
     !!! note
         It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-3.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-3.webp){.half}
 
 6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-4.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-4.webp){.half}
 
 7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet
 
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp)
+    ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp){.half}
 
-Once the transaction has been submitted, Wormhole Connect will display the progress of the transfer. Monitor the status until you’re prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
+Once the transaction has been submitted, Connect will display the progress of the transfer. Monitor the status until you're prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
 ## Claim Tokens on Fuji
 
 After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
 
-![](/docs/images/products/connect/tutorials/react-dapp/connect-6.webp)
+![](/docs/images/products/connect/tutorials/react-dapp/connect-6.webp){.half}
 
 Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
 
-![](/docs/images/products/connect/tutorials/react-dapp/connect-7.webp)
+![](/docs/images/products/connect/tutorials/react-dapp/connect-7.webp){.half}
 
 ## Resources
 
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the entire codebase in the [Sui-Connect GitHub repository](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}. The repository includes an integration of Wormhole Connect in a React app for bridging tokens between the Sui and Fuji (Avalanche Testnet) networks.
+If you'd like to explore the complete project or need a reference while following this tutorial, you can find the entire codebase in the [Sui-Connect GitHub repository](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}. The repository includes an integration of Connect in a React app for bridging tokens between the Sui and Fuji (Avalanche Testnet) networks.
 
 ## Conclusion
 
-In this tutorial, you’ve gained hands-on experience with integrating Wormhole Connect to enable cross-chain token transfers. You’ve learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
+In this tutorial, you've gained hands-on experience with integrating Connect to enable cross-chain token transfers. You've learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
 
 By following these steps, you've learned how to:
 
 - Set up a React project tailored for cross-chain transfers
-- Install and configure Wormhole Connect to support multiple blockchains
+- Install and configure Connect to support multiple blockchains
 - Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers
 - Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
 
-With these tools and knowledge, you’re now equipped to build powerful cross-chain applications using Wormhole Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
+With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/cctp-bridge/get-started/
@@ -2755,7 +2758,7 @@ Before writing your own contracts, it's essential to understand the key function
 
 To initiate a cross-chain transfer, you must call the `transferTokensWithPayload` method of Wormhole's Circle Integration (CCTP) contract. Once you have initiated a transfer, you must fetch the attested Wormhole message and parse the transaction logs to locate a transfer message emitted by the Circle Bridge contract. Then, a request must be sent to Circle's off-chain process with the transfer message to grab the attestation from the process's response, which validates the token mint on the target chain.
 
-To streamline this process, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank}, which exposes the [`WormholeRelayerSDK.sol` contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank}, including the [`CCTPSender` abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/CCTPBase.sol){target=\_blank}. By inheriting this contract, you can transfer USDC while automatically relaying the message payload to the destination chain via a Wormhole-deployed relayer.
+To streamline this process, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank}, which exposes the `WormholeRelayerSDK.sol` contract, including the `CCTPSender` abstract contract. By inheriting this contract, you can transfer USDC while automatically relaying the message payload to the destination chain via a Wormhole-deployed relayer.
 
 ??? code "CCTP Sender contract"
 
@@ -2984,7 +2987,7 @@ The above example sends a specified amount of USDC and the recipient's address a
 
 To complete the cross-chain transfer, you must invoke the `redeemTokensWithPayload` function on the target Wormhole Circle Integration contract. This function verifies the message's authenticity, decodes the payload, confirms the recipient and sender, checks message delivery, and then calls the `receiveMessage` function of the [Message Transmitter](#message-transmitter-contract) contract.
 
-Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeMessages` function. This function is defined in the [`WormholeRelayerSDK.sol` contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayerSDK.sol){target=\_blank} from the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank} and is implemented within the [`CCTPReceiver` abstract contract](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/WormholeRelayer/CCTPBase.sol){target=\_blank}.
+Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeMessages` function. This function is defined in the `WormholeRelayerSDK.sol` contract from the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/main){target=\_blank} and is implemented within the `CCTPReceiver` abstract contract.
 
 ??? code "CCTP Receiver contract"
 
@@ -3611,24 +3614,6 @@ Your selected blockchain network determines the available wallet options when us
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
 If you would like to offer Reown Cloud (formerly WalletConnect) as a supported wallet option, you'll need to obtain a project ID on the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}.
-
-### CoinGecko API Key {: #coingecko-api-key }
-
-The CoinGecko API can be used to fetch token price data. If you have a [CoinGecko API Plan](https://apiguide.coingecko.com/getting-started/getting-started){target=\_blank}, you can include the API key in the configuration.
-
-```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
-
-const config: WormholeConnectConfig = {
-  coinGeckoApiKey: 'INSERT_API_KEY',
-};
-
-function App() {
-  return <wormholeconnect config="{config}"></wormholeconnect>;
-}
-```
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/connect/configuration/theme/
@@ -5338,6 +5323,8 @@ To use NTT, you must have a token already deployed on the source and destination
 
 ## Install NTT CLI
 
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
+
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
 
 1. Run the installation command in your terminal:
@@ -5351,6 +5338,17 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
     ```bash
     ntt --version
     ```
+
+??? warning "Command not found?"
+    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) is installed and that its binary directory is included in your shell’s PATH.
+    
+    Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
+
+    ```bash
+    echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.zshrc
+    ```
+
+    Then, restart your terminal or run `source ~/.zshrc`.
 
 ## Initialize a New NTT Project
 
@@ -5482,6 +5480,26 @@ interface INttToken {
     - Tokens are minted or burned on Polygon
 
     This setup maintains a consistent total supply across all chains.
+
+## NTT Manager Deployment Parameters
+
+This table compares the configuration parameters available when deploying the NTT Manager using the CLI versus a manual deployment with a Forge script. It highlights which options are configurable via each method, whether values are auto-detected or hardcoded, and includes additional comments to help guide deployment decisions.
+
+| <div style="width:150px">Parameter</div> | Forge Script           | CLI                                 | Both   | Comments                                     |
+|-------------------------|------------------------|-------------------------------------|--------|----------------------------------------------|
+| `token`                 | Input                  | `--token <address>`                 | Yes    |                                              |
+| `mode`                  | Input                  | `--mode <locking/burning>`          | Yes    | Key decision: hub-and-spoke or mint-and-burn |
+| `wormhole`              | Input                  | Auto-detected via SDK/`ChainContext`  | Similar|                                              |
+| `wormholeRelayer`       | Input                  | Auto-detected via on-chain query/SDK| Similar|                                              |
+| `specialRelayer`        | Input                  | Not exposed                         | No     | Take into consideration if using custom relaying. Not recommended |
+| `decimals`              | Input, overridable     | Auto-detected via token contract, not overridable  | Similar |                              |
+| `wormholeChainId`       | Queried from Wormhole contract | `--chain` (network param, mapped internally) | Yes     |                              |
+| `rateLimitDuration`     | Hardcoded (`86400`)    | Hardcoded (`86400`)                 | Yes    | Rate limit duration. A day is normal but worth deciding  |
+| `shouldSkipRatelimiter` | Hardcoded (`false`)      | Hardcoded (`false`)                   | Yes    | If rate limit should be disabled (when the manager supports it)         |
+| `consistencyLevel`      | Hardcoded (`202`)      | Hardcoded (`202`)                   | Yes    | `202` (finalized) is the standard — lower is not recommended  |
+| `gasLimit`              | Hardcoded (`500000`)   | Hardcoded (`500000`)                | Yes    |             |
+| `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
+
 
 ## Deploy NTT
 
@@ -5854,9 +5872,9 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt push --payer INSERT_YOUR_KEYPAIR_JSON
     ```
 
-### Troubleshoot Deployment Issues
-    
-If your deployment fails, it may be due to leftover program buffer accounts taking up storage on Solana. These temporary accounts are created during deployment but may persist if interrupted. Refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on finding and closing these buffer accounts to free up space and allow redeployment.
+### Recovering Rent for Failed Solana Deployments
+
+Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
 
 ## Where to Go Next
 
@@ -5893,6 +5911,14 @@ If your deployment fails, it may be due to leftover program buffer accounts taki
     Find answers to common questions about NTT.
 
     [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -6110,6 +6136,20 @@ To offer the best user experience and ensure the most robust deployment, Wormhol
 By default, NTT transfers to Solana require manual relaying, meaning that after initiating a cross-chain transfer, the recipient must submit an on-chain transaction to claim the tokens.
 
 This step ensures that tokens are properly minted or unlocked on Solana and prevents unauthorized claims.
+
+## Post-Deployment Settings
+
+The following table outlines post-deployment settings available on the NTT Manager contract. These allow you to update roles, pause activity, and adjust transfer limits—useful for upgrades, incident response, or protocol tuning after initial deployment.
+
+| Setting                 | Effect                                   |
+|-------------------------|------------------------------------------|
+| `pause`                 | Pauses the manager                       |
+| `unpause`               | Unpauses the manager                     |
+| `setOwner`              | Changes the manager owner                |
+| `setPauser`             | Changes the pauser role                  |
+| `setOutboundLimit`      | Sets outbound transfer limit             |
+| `setInboundLimit`       | Sets inbound transfer limit (per chain)  |
+| `setTransceiverPauser ` | Changes pauser for a transceiver         |
 
 ## Where to Go Next
 
@@ -6700,6 +6740,74 @@ Program log: Instruction: ReleaseInboundUnlock
 ```
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/overview/
+--- BEGIN CONTENT ---
+---
+title: Compare Wormhole's Cross-Chain Solutions
+description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+categories: Transfer, Basics
+---
+
+# Products 
+
+Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
+
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+
+Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
+
+## Transfer Products
+
+Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
+
+- [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
+- [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
+
+<div markdown class="full-width">
+
+::spantable::
+
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+
+::end-spantable::
+
+</div>
+
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
+
+Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/products/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
+
+## Real-time Data
+
+[**Queries**](/docs/products/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation.
+
+## Multichain Governance
+
+[**MultiGov**](/docs/products/multigov/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/products/
 --- BEGIN CONTENT ---
 ---
@@ -6871,7 +6979,6 @@ The protocol provides mechanisms for unlocking the fee once the bridging process
 
 ## Where to Go Next
 
-- To learn more about available EVM functions, see the [Build on the Wormhole Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/){target=\_blank} guide
 - To learn how to integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank} tutorial
 --- END CONTENT ---
 
@@ -7153,353 +7260,7 @@ You can tailor the example to your use case by adjusting:
 Once you've chosen a path, follow the corresponding guide to start building:
 
 - [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank}: Check out the repository for the full code example.
-- [**Integrate with Liquidity Layer**](/docs/products/settlement/guides/liquidity-layer/): Interact directly with routers for flexible protocol-level control.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/settlement/guides/liquidity-layer/
---- BEGIN CONTENT ---
----
-title: Wormhole Settlement Liquidity Layer
-description: Learn how to build on the Wormhole Liquidity Layer, the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems.
-categories: Settlement, Transfer
----
-
-# Build on the Wormhole Liquidity Layer
-
-## Introduction
-
-The Wormhole Liquidity Layer is the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems. It allows these protocols to bundle call data containing arbitrary actions that can be executed atomically alongside each transfer. This feature enables developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer. The following section describes the key smart contract components for teams seeking to build atop Wormhole Settlement.
-
-## EVM Functions
-
-The EVM Token Router is a simple interface against which to integrate. For an integrator, the contracts have two main entry points: `placeMarketOrder` and `placeFastMarketOrder`.
-
-See the complete list of [Token Router contract addresses](/docs/products/reference/contract-addresses/#settlement-token-router){target=\_blank} for supported networks.
-
-### Fast Market Order
-
-The `placeFastMarketOrder` function allows the caller to elect for a _faster-than-finality_ transfer of USDC (with an arbitrary message payload) to the destination chain by setting the `maxFee` and `deadline` parameters. Using this interface does not guarantee that the caller's transfer will be delivered faster than finality; however, any willing market participants can compete for the specified `maxFee` by participating in an auction on the Solana `MatchingEngine`
-
-```solidity title="`placeFastMarketOrder` Interface"
-function placeFastMarketOrder(
-    uint128 amountIn,
-    uint16 targetChain,
-    bytes32 redeemer,
-    bytes calldata redeemerMessage,
-    uint128 maxFee,
-    uint32 deadline
-) external payable returns (uint64 sequence, uint64 fastSequence);
-```
-
-??? interface "Parameters `placeFastMarketOrder()`"
-
-    `amountIn` ++"uint128"++
-
-    The amount to transfer.
-
-    ---
-
-    `targetChain` ++"uint16"++
-
-    Target chain ID.
-
-    ---
-
-    `redeemer` ++"bytes32"++
-
-    Redeemer contract address.
-
-    ---
-
-    `redeemerMessage` ++"bytes"++
-
-    An arbitrary payload for the redeemer.
-
-    ---
-
-    `maxFee` ++"uint128"++
-
-    The maximum fee the user wants to pay to execute a fast transfer.
-
-    ---
-
-    `deadline` ++"uint32"++
-
-    The deadline for the fast transfer auction to start. Note: This timestamp should be for the `MatchingEngine` chain (such as Solana) to avoid any clock drift issues between different blockchains. Integrators can set this value to `0` if they don't want to use a deadline.
-
-The `placeFastMarketOrder` function returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
-
-### Market Order
-
-The `placeMarketOrder` function is a _wait-for-full-finality_ USDC transfer with an arbitrary message payload. The Swap Layer, built on top of the Wormhole Settlement, uses this function if the auction on the matching engine for `placeFastMarketOrder` doesn't start within a specific deadline.
-
-```solidity title="`placeMarketOrder` Interface"
-function placeMarketOrder(
-    uint128 amountIn,
-    uint16 targetChain,
-    bytes32 redeemer,
-    bytes calldata redeemerMessage,
-) external payable returns (uint64 sequence, uint64 protocolSequence);
-```
-
-??? interface "Parameters `placeMarketOrder()`"
-
-    `amountIn` ++"uint128"++
-
-    The amount to transfer.
-
-    ---
-
-    `targetChain` ++"uint16"++
-
-    Target chain ID.
-
-    ---
-
-    `redeemer` ++"bytes32"++
-
-    Redeemer contract address.
-
-    ---
-
-    `redeemerMessage` ++"bytes"++
-
-    An arbitrary payload for the redeemer.
-
-The `placeMarketOrder` function returns a sequence number for the Wormhole Fill message. This function requires the caller to provide a `msg.value` equal to the amount returned by the `messageFee()` function on the `IWormhole.sol` interface.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/settlement/guides/solver/
---- BEGIN CONTENT ---
----
-title: Wormhole Settlement Solver
-description: Set up, configure, and run a Wormhole Settlement Solver on Solana's Matching Engine to fulfill cross-chain transfers efficiently and securely.
-categories: Settlement, Transfer
----
-
-# Run a Wormhole Settlement Solver
-
-## Introduction
-
-This page provides instructions on how to set up, configure, and run a Solver for Wormhole Settlement using the [example solver](https://github.com/wormholelabs-xyz/example-liquidity-layer/tree/update-solver-example/solver){target=\_blank}. 
-
-A Solver is an off-chain agent responsible for:
-
-- Listening to cross-chain transfer requests sent over Wormhole
-- Bidding in auctions (on Solana) to fulfill each request
-- Facilitating the actual cross-chain transfer by locking/burning assets on Solana and minting/unlocking them on the destination chain
-- Rebalancing once the origin chain transaction finalizes and is redeemed back on Solana
-
-For information on how the protocol functions and its core features, please visit the [Wormhole Settlement](/docs/products/settlement/overview/){target=\_blank} page.
-
-## Background
-
-The Solana Matching Engine's permissionless English auction is a central component of Wormhole Settlement protocol architecture. The Matching Engine contract allows any third-party solver to interact with the matching engine to place bids or improve existing ones. The contract includes four key instructions:
-
-1. `initialize_auction` - creates a new auction account on-chain and sets basic parameters like the auction's token mint, the amount required, and the bidding period details
-2. `bid` - allows a solver to place or update a bid on the active auction
-3. `finalize_auction` - following the conclusion of the auction, this instruction completes the fast transfer by sending funds to the recipient on the target chain. This instruction may call the Circle CCTP contract or release an NTT contract in the future, depending on the shuttle asset in question. Failure to execute this message within a predefined grace period may result in a penalty for the winning bidder.
-4. `cancel_auction` - cancels an open auction when the auction is no longer valid or was created by mistake. The program returns all locked funds to their respective owners
-
-These instructions work together to carry out the auction as follows:
-
-- The solver transfers the bid amount to the program escrow account, which ensures they have liquidity 
-- With each successful call of `bid`, the program updates the auction to the new highest bidder, and the prior bid is atomically sent back to the originating solver 
-- The originating solver can repurpose the returned funds and use them to improve their bid
-- Following the auction, the winning solver has to call an instruction on the matching engine to execute the intent
-
-When placing a bid, whether initial or improved, the solver must deposit the required funds plus a security deposit into the matching engine contract. In this permissionless auction, the requirement of this principal amount plus the security deposit ensures a solver's credible commitment to fulfill the transfer. Malicious actors could place hollow bids without this safeguard, undermining the auction's credibility and hindering true price discovery.
-
-If the winning solver fails to call the `finalize_auction` instruction, other competing solvers may permissionlessly 'slash' the solver by executing the instruction on their behalf and collecting a portion of the original security deposit as a reward. The remaining portion is routed to the user as compensation for the unanticipated delay. This mechanism properly incentivizes timely execution through solver redundancy and competition.
-
-## Testnet Example Solver
-
-You can clone the Wormhole [`example-liquidity-layer`](https://github.com/wormholelabs-xyz/example-liquidity-layer){target=\_blank} repository to use the included [`solver`](https://github.com/wormholelabs-xyz/example-liquidity-layer/tree/main/solver){target=\_blank} directory as an example solver to fulfill fast orders by interacting with the Matching Engine on Solana.
-
-!!!warning
-    This example is not optimized for performance, has only been tested on Solana devnet, and is not intended for production use. Any assumptions made in this example may not translate to mainnet.
-
-### Prerequisites
-
-In order to build and install dependencies locally in this repo, you will need: 
-
-- node v20.18.1
-- npmv - get started by installing `nvm` using this [installation guide](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating){target=\_blank}
-
-Navigate into the `solver` directory, then run the command below to set up your environment and install the node dependencies and Matching Engine package:
-
-```sh
-make dependencies
-```
-
-### Set up Config
-
-The following is an example of a `config.json` file for Solana devnet. The keys here are required for both the publisher and example solver processes.
-
-```json title="config.json"
-{
-  "environment": "Testnet",
-  "zmqChannels": {
-    "fastVaa": "tcp://localhost:6001",
-    "finalizedVaa": "tcp://localhost:6002"
-  },
-  "publisher": {
-    "log": {
-      "level": "info"
-    },
-    "vaaSpy": {
-      "host": "localhost:7073",
-      "enableObservationCleanup": true,
-      "observationSeenThresholdMs": 1500000,
-      "observationCleanupIntervalMs": 500,
-      "observationsToRemovePerInterval": 5,
-      "delayedThresholdMs": 60000
-    }
-  },
-  "solver": {
-    "log": {
-      "level": "info",
-      "filename": "logs/solver.log"
-    },
-    "connection": {
-      "rpc": "<https: your-devnet-rpc-here=""></https:>",
-      "maxTransactionsPerSecond": 5,
-      "commitment": "processed",
-      "addressLookupTable": "YourAddressLookupTab1eHere11111111111111111",
-      "matchingEngine": "mPydpGUWxzERTNpyvTKdvS7v8kvw5sgwfiP8WQFrXVS",
-      "mint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU",
-      "knownAtaOwners": [
-        "Payer11111111111111111111111111111111111111",
-        "Payer11111111111111111111111111111111111112",
-        "Payer11111111111111111111111111111111111113"
-      ]
-    }
-  },
-  "routerEndpoints": [
-    {
-      "chain": "Sepolia",
-      "endpoint": "0xE57D917bf955FedE2888AAbD056202a6497F1882",
-      "rollbackRisk": 0.0069,
-      "offerEdge": 0.042
-    },
-    {
-      "chain": "Avalanche",
-      "endpoint": "0x8Cd7D7C980cd72eBD16737dC3fa04469dcFcf07A",
-      "rollbackRisk": 0.0069,
-      "offerEdge": 0.042
-    },
-    {
-      "chain": "OptimismSepolia",
-      "endpoint": "0x6BAa7397c18abe6221b4f6C3Ac91C88a9faE00D8",
-      "rollbackRisk": 0.0069,
-      "offerEdge": 0.042
-    },
-    {
-      "chain": "ArbitrumSepolia",
-      "endpoint": "0xe0418C44F06B0b0D7D1706E01706316DBB0B210E",
-      "rollbackRisk": 0.0069,
-      "offerEdge": 0.042
-    },
-    {
-      "chain": "BaseSepolia",
-      "endpoint": "0x824Ea687CD1CC2f2446235D33Ae764CbCd08e18C",
-      "rollbackRisk": 0.0069,
-      "offerEdge": 0.042
-    },
-    {
-      "chain": "Polygon",
-      "endpoint": "0xa098368AaaDc0FdF3e309cda710D7A5f8BDEeCD9",
-      "rollbackRisk": 0.0069,
-      "offerEdge": 0.042
-    }
-  ]
-}
-```
-
-The rollback risks and offer edges configured in the sample config are arbitrary placeholders. You should use historical data and your risk tolerance, to determine appropriate values for your project.
-
-### Listen to Activity
-
-The example solver listens to attested Wormhole messages (VAAs) published on the Wormhole Guardian gossip network. To listen to this gossip network and run the VAA publisher, run the command below. Docker compose is used to listen to the Pyth Beacon and start the [`publishActivity`](https://github.com/wormholelabs-xyz/example-liquidity-layer/blob/update-solver-example/solver/app/publishActivity.ts){target=\_blank} process.
-
-```sh
-NETWORK=testnet CONFIG=path/to/config.json make run-publisher
-```
-
-You should see output resembling:
-
-<div id="termynal" data-termynal>
-	<span data-ty> Start logging with info level.</span>
-	<span data-ty> 2025-01-21 16:38:28.145 [publisher] info: Environment: Testnet</span>
-	<span data-ty> 2025-01-21 16:38:36.631 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33635, vaaTime=1737499116</span>
-	<span data-ty> 2025-01-21 16:38:51.044 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33637, vaaTime=1737499130</span>
-  <span data-ty> 2025-01-21 16:40:24.890 [publisher] info: Fast VAA. chain=OptimismSepolia, sequence=33639, vaaTime=1737499224</span>
-</div>
-
-To set up the Pyth Beacon (which is run using make `run-publisher`), you may need to increase the UDP buffer size for the OS:
-
-=== "Linux"
-
-    ```sh
-    sudo sysctl -w net.core.rmem_max=2097152
-    sudo sysctl -w net.core.rmem_default=2097152
-    ```
-
-=== "MacOS"
-
-    ```sh
-    sudo sysctl -w net.inet.udp.recvspace=2097152
-    ```
-
-### Running the Example Solver
-
-Using the same config for your publisher, run the example solver with the command below.
-
-```sh
-CONFIG=path/to/config.json make run-solver
-```
-
-It is recommended you write log output to a file so errors can be tracked. The example config above specifies an example log filename.
-
-This process reads the following environment variables:
-
-```sh
-SOLANA_PRIVATE_KEY_1=
-SOLANA_PRIVATE_KEY_2=
-SOLANA_PRIVATE_KEY_3=
-SOLANA_PRIVATE_KEY_4=
-SOLANA_PRIVATE_KEY_5=
-```
-
-At least one of these environment variables must be defined as a keypair encoded in base64 format. These payers must have SOL to send transactions on Solana devnet. If they need funds, they can request them from the [Solana devnet faucet](https://faucet.solana.com/){target=\_blank}.
-
-The example solver assumes that these payers own USDC Associated Token Accounts(ATAs), which will be used to fulfill fast transfers. These ATAs must be funded with Solana Devnet USDC. If your ATAs need funds, request some at the [Circle testnet faucet](https://faucet.circle.com/){target=\_blank}.
-
-Wallets and their corresponding ATA will be disabled if there are insufficient funds to pay for transactions or fulfill fast transfers. These constraints can be modified using the `updatePayerMinimumLamports` and `updateTokenMinimumBalance` methods.
-
-An address lookup table is required to execute some transactions. Use the command below to create one.
-
-```sh
-CONFIG=path/to/config.json make create-lut
-```
-
-`SOLANA_PRIVATE_KEY_1` must be defined for this script to work.
-
-The example solver has the following toggles depending on which orders you want to fulfill:
-
-- `enableCctpOrderPipeline()`
-- `enableLocalOrderPipeline()`
-- `enablePlaceInitialOffer()`
-- `enableImproveOffer()`
-
-See the comments in [runExampleSolver](https://github.com/wormholelabs-xyz/example-liquidity-layer/blob/update-solver-example/solver/app/runExampleSolver.ts){target=\_blank} for more information.
-
-This example solver does NOT do the following:
-
-- Discriminate between the CCTP source networks. You must add logic to determine whether you want to constrain fulfilling orders from specific networks. This solver will try to fulfill all orders as long as `enableCctpOrderPipeline()` is called
-- Discriminate among fulfillment sizes. No logic determines how small or large fast order transfer sizes should be. This solver will try to fulfill anything as long as your balance can handle it
-- Add auctions to auction history. We recommend that after settling a complete auction (one that you have won), you write the auction pubkey to a database and have a separate process to add auction history entries to reclaim rent from these auction accounts. The auction history time delay is two hours after the VAA timestamp. This example does not prescribe any specific database, so add whichever you want
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/settlement/overview/
@@ -7512,19 +7273,20 @@ categories: Settlement, Transfer
 
 # Settlement Overview 
 
-Wormhole Settlement is a multichain transfer system that allows users to describe the transfer they want to make without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
+Wormhole Settlement is a multichain transfer system that allows users to specify what they want to happen, such as sending or swapping tokens, without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
 
-Settlement was built to address liquidity fragmentation across chains. Traditionally, solvers had to split their capital between multiple networks, which reduced efficiency and scalability. Settlement solves this by consolidating liquidity on Solana, enabling faster execution and minimal slippage, even as liquidity and supported chains scale.
+Settlement prioritizes speed, execution quality, and reliability. Its primary route, Mayan Swift, leverages fast off-chain auctions among a curated set of solvers to achieve low-latency bridging with minimal slippage. All settlement steps remain verifiable on-chain through Wormhole messages. 
 
-It combines three complementary protocols into a single integration suite, allowing developers to select the best execution route based on cost, speed, and asset requirements.
+For broader use cases and protocol-level execution, Mayan MCTP provides an alternative path. It wraps Circle’s CCTP to facilitate native USDC bridging and token delivery in a single, verifiable flow. While slower due to chain finality constraints, MCTP offers a reliable mechanism for cross-chain transfers.
 
 ## Key Features
 
 - **Intent-based architecture**: Users express what they want to happen (e.g., swap X for Y on chain Z), and solvers execute it.
 - **Solver auctions**: Solvers compete in on-chain auctions for the right to fulfill intents, improving execution quality.
-- **Unified liquidity**: Liquidity is concentrated on Solana, reducing fragmentation and facilitating easier scaling.
+- **Fast and fallback-capable**: Combines high-speed execution with a reliable fallback path.
 - **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and tokens deployed via NTT.
-- **Three interchangeable routes**: Each with distinct tradeoffs in speed, cost, and protocol requirements.
+- **On-chain verifiability**: Even though auctions are off-chain, all settlement steps remain verifiable on-chain via Wormhole messages.
+- **Two integrated routes**: Mayan Swift for speed, Mayan MCTP for compatibility and redundancy.
 
 ## How It Works
 
@@ -7533,7 +7295,7 @@ At the core of Settlement are two components:
 - **Intents**: Signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed.
 - **Solvers**: Third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return.
 
-Settlement leverages the following three integrated protocols.
+Settlement currently supports the following integrated protocols.
 
 ### Mayan Swift
 
@@ -7543,7 +7305,7 @@ The diagram below shows how Mayan Swift handles a cross-chain intent when a user
 
 1. **Solver initiates on Arbitrum**: Solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum.
 2. **VAA emitted to Solana**: A [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator.
-3. **User receives WIF**: Once the user receives WIF, a second VAA finalizes the transfer and releases the ETH held in the escrow to the solver.
+3. **User receives WIF**: Once the user receives WIF, a second VAA is emitted to finalize the transfer and releases the ETH held in the escrow to the solver.
 4. **Failure handling**: If any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds.
 
 ```mermaid
@@ -7569,27 +7331,9 @@ sequenceDiagram
     Escrow->>Solver_ARB: Releases ETH to solver
 ```
 
-### Liquidity Layer
-
-The Liquidity Layer utilizes a hub-and-spoke architecture, with Solana serving as the central hub for liquidity. Solvers only need to provide liquidity on Solana, eliminating the need for cross-chain inventory management. This route relies on USDC and NTT as shuttle assets and executes transactions in roughly 15 to 25 seconds. Solvers participate in on-chain English auctions to win execution rights and front the necessary assets to fulfill user intents. The design removes the need for rebalancing, making it more scalable and capital-efficient, especially for high-volume or frequently used applications.
-
 ### Mayan MCTP
 
-Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift or the Liquidity Layer. While typically more expensive due to protocol fees, it’s a reliable way to ensure settlement completion in edge cases.
-
-### One Integration, Three Ways
-
-Settlement isn't about choosing just one route; it’s a protocol suite in which all three architectures work together to maximize coverage, speed, and reliability.
-
-By default, Settlement integrates all three:
-
-- The SDK automatically resolves the best route for each transfer.
-- If a fast route like Mayan Swift is unavailable, it can fall back to Liquidity Layer or MCTP.
-- This redundancy ensures better uptime, pricing, and a smoother user experience without requiring additional logic.
-
-Developers can customize route preferences, but for most applications, no configuration is needed to benefit from the full suite.
-
-To read more about each protocol, check the [architecture documentation](/docs/products/settlement/concepts/architecture/){target=\_blank}.
+Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift. While typically more expensive due to protocol fees, it ensures reliable settlement when faster options are unavailable.
 
 ## Use Cases
 
@@ -7613,8 +7357,7 @@ To read more about each protocol, check the [architecture documentation](/docs/p
 Start building with Settlement or dive deeper into specific components:
 
 - **[Get Started with Settlement](/docs/products/settlement/get-started/)**: Follow a hands-on demo using Mayan Swift.
-- **[Build on the Liquidity Layer](/docs/products/settlement/guides/liquidity-layer/)**: Integrate the hub-and-spoke model.
-- **[Run a Solver](/docs/products/settlement/guides/solver/)**: Operate a solver and participate in auctions.
+- **[Architecture Documentation](/docs/products/settlement/concepts/architecture/)**: Explore the Settlement architecture and components.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/token-bridge/concepts/transfer-flow/
@@ -7988,7 +7731,7 @@ The primary functions of the Token Bridge contracts revolve around:
 - **Transferring tokens** - locking and minting tokens across chains
 - **Transferring tokens with a payload** - including additional data with transfers
 
-### Attest a token
+### Attest a Token
 
 Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
 
@@ -8018,6 +7761,20 @@ function attestToken(
     `sequence` ++"uint64"++
     
     A unique identifier for the attestation transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.attestToken{value: wormholeFee}(
+    address(tokenImpl), // the token contract to attest
+    234                 // nonce for the transfer
+);
+    ```
 
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
 
@@ -8077,6 +7834,25 @@ function transferTokens(
     
     A unique identifier for the transfer transaction.
 
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokens{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    arbiterFee,      // fee for relayer
+    nonce            // nonce for this transfer
+);
+    ```
+
 Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
 
 ```solidity
@@ -8093,7 +7869,7 @@ function completeTransfer(bytes memory encodedVm) external;
     - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation
     - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain
 
-### Transfer tokens with payload
+### Transfer Tokens with Payload
 
 While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
 
@@ -8146,6 +7922,25 @@ function transferTokensWithPayload(
     `sequence` ++"uint64"++
     
     A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokensWithPayload{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    nonce,           // nonce for this transfer
+    additionalPayload // additional payload data
+);
+    ```
 
 After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
 
@@ -8440,8 +8235,8 @@ Token Bridge is built to solve interoperability problems in multichain token tra
 
 The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
-1. **Token attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token, if it is not already registered in the destination chain.
-2. **Locking**: On the source chain, the native token is locked in a custody account/contract.
+1. **Attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token.
+2. **Locking**: On the source chain, the native token is locked in a custody account.
 3. **Message emission**: The [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} verifies and emits a [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 4. **Verification**: The VAA is submitted and verified on the destination chain to confirm authenticity.
 5. **Minting**: A wrapped version of the token is minted (or the native token is released) to the recipient on the destination chain.
@@ -9321,7 +9116,7 @@ wormholeRelayer.sendPayloadToEvm{value: cost}(
 
 ### Receive a Message
 
-To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole-relayer-solidity-sdk/blob/main/src/interfaces/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interact-with-the-wormhole-relayer).
+To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interact-with-the-wormhole-relayer).
 
 ```solidity
 function receiveWormholeMessages(
@@ -9463,6 +9258,74 @@ Follow these steps to work with Wormhole Messaging:
 
 - [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
 - [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/overview/
+--- BEGIN CONTENT ---
+---
+title: Compare Wormhole's Cross-Chain Solutions
+description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+categories: Transfer, Basics
+---
+
+# Products 
+
+Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
+
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+
+Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
+
+## Transfer Products
+
+Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
+
+- [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
+- [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
+
+<div markdown class="full-width">
+
+::spantable::
+
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+
+::end-spantable::
+
+</div>
+
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
+
+Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/products/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
+
+## Real-time Data
+
+[**Queries**](/docs/products/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation.
+
+## Multichain Governance
+
+[**MultiGov**](/docs/products/multigov/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/products/
@@ -9676,6 +9539,44 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     [:custom-arrow: Build with Core Messaging](/docs/products/messaging/guides/wormhole-relayers/)
 
 </div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/protocol/ecosystem/
+--- BEGIN CONTENT ---
+---
+title: Ecosystem
+description: Explore Wormhole's modular ecosystem of cross-chain tools for messaging, bridging, governance, and developer integration.
+categories: Basics
+---
+
+# The Wormhole Ecosystem
+
+[Wormhole](/docs/protocol/introduction/){target=\_blank} is a cross-chain messaging protocol connecting decentralized applications across multiple blockchains. It offers a suite of interoperability tools, each addressing different multichain challenges, and allows developers to mix and match these products as needed.
+
+Whether you’re looking for a simple UI-based bridging experience, a native token transfer flow without wrapped assets, real-time cross-chain data queries, or an advanced settlement layer for complex asset movements, Wormhole has a product designed for that purpose. Every solution integrates with Wormhole’s core messaging network, ensuring each module can operate independently or in combination with others.
+
+This page will guide you through the structural layout of these tools—how they fit together, can be used independently, and can be layered to build robust, multichain applications.
+
+## Ecosystem Overview
+
+The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
+
+- **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments).
+- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
+- **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, [Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank}, and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
+- **Foundation layer**: At the base, the [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} system and the [core contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
+
+![Wormhole ecosystem diagram](/docs/images/protocol/ecosystem/ecosystem-1.webp)
+
+## Bringing It All Together: Interoperability in Action
+
+Wormhole’s modularity makes it easy to adopt just the pieces you need. If you want to quickly add bridging to a dApp, use Connect at the top layer while relying on the Foundation Layer behind the scenes. Or if your app needs to send raw messages between chains, integrate the Messaging layer directly via the Integration Layer (TypeScript or Solidity SDK). You can even layer on additional features—like real-time data calls from Queries or more flexible bridging flows with Native Token Transfers.
+
+Ultimately, these components aren’t siloed but designed to be combined. You could, for instance, fetch a balance from one chain using Queries and then perform an on-chain swap on another chain using Settlement. Regardless of your approach, each Wormhole product is powered by the same Guardian-secured messaging backbone, ensuring all cross-chain interactions remain reliable and secure.
+
+## Next Steps
+
+Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/protocol/infrastructure/core-contracts/
@@ -10377,44 +10278,44 @@ Interoperability is a critical challenge in the rapidly evolving blockchain land
 
 Critical problems Wormhole addresses include:
 
-- **Blockchain isolation** - Wormhole connects disparate blockchains, enabling the transfer of assets, data, and governance actions across networks
-- **Cross-chain complexity** - by abstracting the complexities of cross-chain communication, Wormhole makes it easier for developers to build and deploy cross-chain applications
-- **Security and decentralization** - Wormhole prioritizes security through a decentralized Guardian network that validates and signs messages, ensuring the integrity of cross-chain interactions
+- **Blockchain isolation**: Wormhole connects disparate blockchains, enabling the transfer of assets, data, and governance actions across networks.
+- **Cross-chain complexity**: By abstracting the complexities of cross-chain communication, Wormhole makes it easier for developers to build and deploy cross-chain applications.
+- **Security and decentralization**: Wormhole prioritizes security through a decentralized Guardian network that validates and signs messages, ensuring the integrity of cross-chain interactions.
 
 ## What Does Wormhole Offer?
 
 Wormhole provides a suite of tools and protocols that support a wide range of use cases:
 
-- **Cross-chain messaging** - securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications (xDapps)
-- **Asset transfers** - facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}
-- **Developer tools** - leverage Wormhole’s [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, [Solidity SDK](/docs/tools/solidity-sdk/get-started/), [Wormholescan](https://wormholescan.io/){target=\_blank}, and the [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} and documentation to build and deploy cross-chain applications quickly and efficiently
+- **Cross-chain messaging**: Securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications.
+- **Asset transfers**: Facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}.
+- **Developer tools**: Leverage Wormhole’s [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, [Solidity SDK](/docs/tools/solidity-sdk/get-started/), [Wormholescan](https://wormholescan.io/){target=\_blank}, and the [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} and documentation to build and deploy cross-chain applications quickly and efficiently.
 
 ## What Isn't Wormhole?
 
-- **Wormhole is _not_ a blockchain** - it acts as a communication layer that connects different blockchains, enabling them to interact without being a blockchain itself
-- **Wormhole is _not_ a token bridge** - while it facilitates token transfers, Wormhole also supports a wide range of cross-chain applications, making it much more versatile than a typical bridge
+- **Wormhole is _not_ a blockchain**: It acts as a communication layer that connects different blockchains, enabling them to interact without being a blockchain itself.
+- **Wormhole is _not_ a token bridge**: While it facilitates token transfers, Wormhole also supports a wide range of cross-chain applications, making it much more versatile than a typical bridge.
 
 ## Use Cases of Wormhole
 
 Consider the following examples of potential applications enabled by Wormhole:
 
-- **Cross-chain exchange** - using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access
-- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}** - NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
-- **Cross-chain game** - games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum
+- **Cross-chain exchange**: Using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access.
+- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}**: NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
+- **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum.
 
 ## Explore
 
 Discover more about the Wormhole ecosystem, components, and protocols:
 
-- **[Architecture](/docs/protocol/architecture/){target=\_blank}** - explore the components of the protocol
-- **[Protocol Specifications](https://github.com/wormhole-foundation/wormhole/tree/main/whitepapers){target=\_blank}** - learn about the protocols built on top of Wormhole
+- **[Architecture](/docs/protocol/architecture/){target=\_blank}**: Explore the components of the protocol.
+- **[Protocol Specifications](https://github.com/wormhole-foundation/wormhole/tree/main/whitepapers){target=\_blank}**: Learn about the protocols built on top of Wormhole.
 
 ## Demos
 
 Demos offer more realistic implementations than tutorials:
 
-- **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}** - quickly set up a project with the Scaffolding repository
-- **[xDapp Book Projects](https://github.com/wormhole-foundation/xdapp-book/tree/main/projects){target=\_blank}** - run and learn from example programs
+- **[Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding){target=\_blank}**: Quickly set up a project with the Scaffolding repository.
+- **[Demo Tutorials](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank}**: Explore various demos that showcase Wormhole's capabilities across different blockchains.
 
 <!-- TODO: Add this back once we have the demos page under the Tutorials section
 
@@ -10427,11 +10328,9 @@ More demos are available in the [demos page](/docs/build/start-building/demos/){
 
     **[Reach out now!](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank}**
 
-## Supported Blockchains
+## Supported Networks by Product
 
-Wormhole supports a growing number of blockchains.
-
-text/supported-networks.md
+Wormhole supports a growing number of blockchains. Check out the [Supported Networks by Product](/docs/products/reference/supported-networks/){target=\_blank} page to see which networks are supported for each Wormhole product.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/protocol/security/
@@ -10583,7 +10482,7 @@ The following key components and features work together to make your on-chain Wo
 
     - [**`ITokenBridge.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/ITokenBridge.sol){target=\_blank}: Defines key structs and functions for token attestation, wrapping and transferring tokens, monitoring transaction progress.
     - [**CCTP Interfaces**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/CCTPInterfaces){target=\_blank}: A set of interfaces for USDC transfers via CCTP for sending, relaying, and receiving messages and tokens.
-    - [**`IWormholeReceiver.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeReceiver.sol){target=\_blank}: Defines the `receiveWormholeMessages` function.
+    - [**`IWormholeReceiver.sol`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank}: Defines the `receiveWormholeMessages` function.
     - [**`IWormholeRelayer.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeRelayer.sol){target=\_blank}: Defines key structs and functions to identify, send, and deliver messages and follow the progress of transactions.
 
 ??? interface "Constants"
@@ -10973,7 +10872,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 
     | Ethereum | 2 | 1 |
 | Solana | 1 | Mainnet Beta-5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d |
-| Acala | 12 | 787 |
 | Algorand | 8 | mainnet-v1.0 |
 | Aptos | 22 | 1 |
 | Arbitrum | 23 | Arbitrum One-42161 |
@@ -10984,6 +10882,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | BNB Smart Chain | 4 | 56 |
 | Celestia | 4004 | celestia |
 | Celo | 14 | 42220 |
+| Converge | 53 |  |
 | Cosmos Hub | 4000 | cosmoshub-4 |
 | Dymension | 4007 | dymension_1100-1 |
 | Evmos | 4001 | evmos_9001-2 |
@@ -10993,7 +10892,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Injective | 19 | injective-1 |
 | Ink | 46 |  |
 | Kaia | 13 | 8217 |
-| Karura | 11 | 686 |
 | Kujira | 4002 | kaiyo-1 |
 | Linea | 38 | 59144 |
 | Mantle | 35 | 5000 |
@@ -11004,7 +10902,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Neon | 17 | 245022934 |
 | Neutron | 4003 | neutron-1 |
 | Noble | 4009 | noble-1 |
-| Oasis | 7 | 42262 |
 | Optimism | 24 | 10 |
 | Osmosis | 20 | osmosis-1 |
 | Polygon | 5 | 137 |
@@ -11018,19 +10915,16 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Sonic | 52 | 146 |
 | Stargaze | 4005 | stargaze-1 |
 | Sui | 21 | 35834a8a |
-| Terra | 3 | columbus-5 |
 | Terra 2.0 | 18 | phoenix-1 |
 | Unichain | 44 |  |
 | World Chain | 45 | 480 |
 | X Layer | 37 | 196 |
-| XPLA | 28 | dimension_37-1 |
 
 === "Testnet"
 
     | Ethereum Holesky | 10006 | Holesky-17000 |
 | Ethereum Sepolia | 10002 | Sepolia-11155111 |
 | Solana | 1 | Devnet-EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG |
-| Acala | 12 | 597 |
 | Algorand | 8 | testnet-v1.0 |
 | Aptos | 22 | 2 |
 | Arbitrum Sepolia | 10003 | Sepolia-421614 |
@@ -11041,6 +10935,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | BNB Smart Chain | 4 | 97 |
 | Celestia | 4004 | mocha-4 |
 | Celo | 14 | Alfajores-44787 |
+| Converge | 53 | 52085145 |
 | Cosmos Hub | 4000 | theta-testnet-001 |
 | Dymension | 4007 |  |
 | Evmos | 4001 | evmos_9000-4 |
@@ -11050,7 +10945,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Injective | 19 | injective-888 |
 | Ink | 46 | 763373 |
 | Kaia | 13 | Kairos-1001 |
-| Karura | 11 | 596 |
 | Kujira | 4002 | harpoon-4 |
 | Linea | 38 | 59141 |
 | Mantle | 35 | Sepolia-5003 |
@@ -11061,7 +10955,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Neon | 17 | 245022940 |
 | Neutron | 4003 | pion-1 |
 | Noble | 4009 | grand-1 |
-| Oasis | 7 | 42261 |
 | Optimism Sepolia | 10005 | Optimism Sepolia-11155420 |
 | Osmosis | 20 | osmo-test-5 |
 | Polygon Amoy | 10007 | Amoy-80002 |
@@ -11075,12 +10968,10 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Sonic | 52 | 57054 |
 | Stargaze | 4005 |  |
 | Sui | 21 | 4c78adac |
-| Terra | 3 | bombay-12 |
 | Terra 2.0 | 18 | pisco-1 |
 | Unichain | 44 | Unichain Sepolia-1301 |
 | World Chain | 45 | 4801 |
 | X Layer | 37 | 195 |
-| XPLA | 28 | cube_47-5 |
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
@@ -11100,7 +10991,6 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 <!--CONSISTENCY_LEVELS-->
 | Ethereum | 200 | 201 |  | finalized | ~ 19min | Details |
 | Solana |  | 0 | 1 |  | ~ 14s | Details |
-| Acala | 200 | 201 |  | finalized | ~ 24s |  |
 | Algorand |  |  | 0 |  | ~ 4s | Details |
 | Aptos |  |  | 0 |  | ~ 4s | Details |
 | Arbitrum | 200 | 201 |  | finalized | ~ 18min | Details |
@@ -11111,6 +11001,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | BNB Smart Chain | 200 | 201 |  | finalized | ~ 48s | Details |
 | Celestia |  |  | 0 |  | ~ 5s |  |
 | Celo | 200 |  |  | finalized | ~ 10s |  |
+| Converge |  |  | 0 |  | ~ 7min |  |
 | Cosmos Hub |  |  | 0 |  | ~ 5s |  |
 | Dymension |  |  | 0 |  | ~ 5s |  |
 | Evmos |  |  | 0 |  | ~ 2s |  |
@@ -11118,7 +11009,6 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Injective |  |  | 0 |  | ~ 3s |  |
 | Ink |  |  | 0 |  | ~ 9min |  |
 | Kaia | 200 |  |  | finalized | ~ 1s |  |
-| Karura | 200 | 201 |  | finalized | ~ 24s | Details |
 | Kujira |  |  | 0 |  | ~ 3s |  |
 | Mantle | 200 | 201 |  | finalized | ~ 18min |  |
 | Mezo |  |  | 0 |  | ~ 8s |  |
@@ -11126,7 +11016,6 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Moonbeam | 200 | 201 |  | finalized | ~ 24s | Details |
 | NEAR |  |  | 0 |  | ~ 2s | Details |
 | Neutron |  |  | 0 |  | ~ 5s |  |
-| Oasis | 200 |  |  | finalized | ~ 12s |  |
 | Optimism | 200 | 201 |  | finalized | ~ 18min |  |
 | Osmosis |  |  | 0 |  | ~ 6s |  |
 | Polygon | 200 |  |  | finalized | ~ 66s | Details |
@@ -11135,12 +11024,10 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Sonic |  |  | 0 |  | ~ 1s |  |
 | Stargaze |  |  | 0 |  | ~ 5s |  |
 | Sui |  |  | 0 |  | ~ 3s | Details |
-| Terra |  |  | 0 |  | ~ 6s |  |
 | Terra 2.0 |  |  | 0 |  | ~ 6s |  |
 | Unichain | 200 | 201 |  | finalized | ~ 18min |  |
 | World Chain |  |  | 0 |  | ~ 18min |  |
 | X Layer | 200 | 201 |  | finalized | ~ 16min |  |
-| XPLA |  |  | 0 |  | ~ 5s |  |
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
@@ -11163,7 +11050,6 @@ categories: Reference
 
     | Ethereum | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
 | Solana | worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth |
-| Acala | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Algorand | 842125965 |
 | Aptos | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum | 0xa5f208e072434bC67592E4C49C1B991BA79BCA46 |
@@ -11175,15 +11061,15 @@ categories: Reference
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
 | Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
+| HyperEVM | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | Kaia | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7 |
-| Karura | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Mantle | 0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6 |
+| Mezo | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 | Moonbeam | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3 |
 | NEAR | contract.wormhole_crypto.near |
 | Neutron | neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh |
-| Oasis | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585 |
 | Optimism | 0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722 |
 | Polygon | 0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7 |
 | Pythnet | H3fxXJ86ADW2PNuDDmZJg6mzTtPxkYCpNuQUTgmJ7AjU |
@@ -11192,19 +11078,16 @@ categories: Reference
 | Seievm | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | SNAXchain | 0xc1BA3CC4bFE724A08FbbFbF64F8db196738665f4 |
 | Sui | 0xaeab97f96cf9877fee2883315d459552b2b921edc16d7ceac6eab944dd88919c |
-| Terra | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5 |
 | Terra 2.0 | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnhp |
 | Unichain | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | World Chain | 0xcbcEe4e081464A15d8Ad5f58BB493954421eB506 |
 | X Layer | 0x194B123c5E96B9b2E49763619985790Dc241CAC0 |
-| XPLA | xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w |
 
 === "Testnet"
 
     | Ethereum Holesky | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | Ethereum Sepolia | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
 | Solana | 3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5 |
-| Acala | 0x64fb09E405D2043ed7785a29E296C766D56F2056 |
 | Algorand | 86525623 |
 | Aptos | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum Sepolia | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35 |
@@ -11214,13 +11097,13 @@ categories: Reference
 | Blast | 0x473e002D7add6fB67a4964F13bFd61280Ca46886 |
 | BNB Smart Chain | 0x68605AD7b15c732a30b1BbC62BE8F2A509D74b4D |
 | Celo | 0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56 |
+| Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
 | Gnosis | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | HyperEVM | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
 | Ink | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Kaia | 0x1830CC6eE66c84D2F177B94D544967c774E624cA |
-| Karura | 0x64fb09E405D2043ed7785a29E296C766D56F2056 |
 | Linea | 0x79A1027a6A159502049F10906D333EC57E95F083 |
 | Mantle | 0x376428e7f26D5867e69201b275553C45B09EE090 |
 | Mezo | 0x268557122Ffd64c85750d630b716471118F323c8 |
@@ -11229,7 +11112,6 @@ categories: Reference
 | NEAR | wormhole.wormhole.testnet |
 | Neon | 0x268557122Ffd64c85750d630b716471118F323c8 |
 | Neutron | neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4 |
-| Oasis | 0xc1C338397ffA53a2Eb12A7038b4eeb34791F8aCb |
 | Optimism Sepolia | 0x31377888146f3253211EFEf5c676D41ECe7D58Fe |
 | Osmosis | osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx |
 | Polygon Amoy | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35 |
@@ -11239,12 +11121,10 @@ categories: Reference
 | Seievm | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | SNAXchain | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Sui | 0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790 |
-| Terra | terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v |
 | Terra 2.0 | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0 |
 | Unichain | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | World Chain | 0xe5E02cD12B6FcA153b0d7fF4bF55730AE7B3C93A |
 | X Layer | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780 |
-| XPLA | xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35 |
 
 === "Devnet"
 
@@ -11255,7 +11135,6 @@ categories: Reference
 | BNB Smart Chain | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550 |
 | NEAR | wormhole.test.near |
 | Sui | 0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0 |
-| Terra | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au |
 | Terra 2.0 | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au |
 <!--CORE_ADDRESS-->
 
@@ -11268,7 +11147,6 @@ categories: Reference
 
     | Ethereum | 0x3ee18B2214AFF97000D974cf647E7C347E8fa585 |
 | Solana | wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb |
-| Acala | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624 |
 | Algorand | 842126029 |
 | Aptos | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum | 0x0b2402144Bb366A632D14B83F244D2e0e21bD39c |
@@ -11282,11 +11160,9 @@ categories: Reference
 | Injective | inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn |
 | Ink | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | Kaia | 0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F |
-| Karura | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624 |
 | Mantle | 0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d |
 | Moonbeam | 0xb1731c586ca89a23809861c6103f0b96b3f57d92 |
 | NEAR | contract.portalbridge.near |
-| Oasis | 0x5848C791e09901b40A9Ef749f2a6735b418d7564 |
 | Optimism | 0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b |
 | Polygon | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE |
 | Scroll | 0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d |
@@ -11294,19 +11170,16 @@ categories: Reference
 | Seievm | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | SNAXchain | 0x8B94bfE456B48a6025b92E11Be393BAa86e68410 |
 | Sui | 0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9 |
-| Terra | terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf |
 | Terra 2.0 | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9 |
 | Unichain | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | World Chain | 0xc309275443519adca74c9136b02A38eF96E3a1f6 |
 | X Layer | 0x5537857664B0f9eFe38C9f320F75fEf23234D904 |
-| XPLA | xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv |
 
 === "Testnet"
 
     | Ethereum Holesky | 0x76d093BbaE4529a342080546cAFEec4AcbA59EC6 |
 | Ethereum Sepolia | 0xDB5492265f6038831E89f495670FF909aDe94bd9 |
 | Solana | DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe |
-| Acala | 0xe157115ef34c93145Fec2FE53706846853B07F42 |
 | Algorand | 86525641 |
 | Aptos | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum Sepolia | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
@@ -11321,7 +11194,6 @@ categories: Reference
 | Injective | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh |
 | Ink | 0x376428e7f26D5867e69201b275553C45B09EE090 |
 | Kaia | 0xC7A13BE098720840dEa132D860fDfa030884b09A |
-| Karura | 0xe157115ef34c93145Fec2FE53706846853B07F42 |
 | Linea | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
 | Mantle | 0x75Bfa155a9D7A3714b0861c8a8aF0C4633c45b5D |
 | Mezo | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780 |
@@ -11329,7 +11201,6 @@ categories: Reference
 | Moonbeam | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96 |
 | NEAR | token.wormhole.testnet |
 | Neon | 0xEe3dB83916Ccdc3593b734F7F2d16D630F39F1D0 |
-| Oasis | 0x88d8004A9BdbfD9D28090A02010C19897a29605c |
 | Optimism Sepolia | 0x99737Ec4B815d816c49A385943baf0380e75c0Ac |
 | Polygon Amoy | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
 | Scroll | 0x22427d90B7dA3fA4642F7025A854c7254E4e45BF |
@@ -11337,12 +11208,10 @@ categories: Reference
 | Seievm | 0x23908A62110e21C04F3A4e011d24F901F911744A |
 | SNAXchain | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | Sui | 0x6fb10cdb7aa299e9a4308752dadecb049ff55a892de92992a1edbd7912b3d6da |
-| Terra | terra1pseddrv0yfsn76u4zxrjmtf45kdlmalswdv39a |
 | Terra 2.0 | terra1c02vds4uhgtrmcw7ldlg75zumdqxr8hwf7npseuf2h58jzhpgjxsgmwkvk |
 | Unichain | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | World Chain | 0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2 |
 | X Layer | 0xdA91a06299BBF302091B053c6B9EF86Eff0f930D |
-| XPLA | xpla1kek6zgdaxcsu35nqfsyvs2t9vs87dqkkq6hjdgczacysjn67vt8sern93x |
 
 === "Devnet"
 
@@ -11353,7 +11222,6 @@ categories: Reference
 | BNB Smart Chain | 0x0290FB167208Af455bB137780163b7B7a9a10C16 |
 | NEAR | token.test.near |
 | Sui | 0xa6a3da85bbe05da5bfd953708d56f1a3a023e7fb58e5a824a3d4de3791e8f690 |
-| Terra | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6 |
 | Terra 2.0 | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6 |
 <!--TOKEN_BRIDGE_ADDRESS-->
 
@@ -11380,6 +11248,7 @@ categories: Reference
 | Optimism | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Polygon | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Scroll | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Seievm | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | SNAXchain | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Unichain | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | World Chain | 0x1520cc9e779c56dab5866bebfb885c86840c33d3 |
@@ -11399,6 +11268,7 @@ categories: Reference
 | Monad | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Moonbeam | 0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0 |
 | Optimism Sepolia | 0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE |
+| Polygon Amoy | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Seievm | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Unichain | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 
@@ -11451,13 +11321,18 @@ categories: Reference
 
 === "Mainnet"
 
-    | Corn | 0xa683c66045ad16abb1bCE5ad46A64d95f9A25785 |
+    | Acala | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
+| Corn | 0xa683c66045ad16abb1bCE5ad46A64d95f9A25785 |
 | Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Goat | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
+| Karura | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | LightLink | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
+| Oasis | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585 |
 | Rootstock | 0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6 |
 | Sonic | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
 | Telos | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
+| Terra | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5 |
+| XPLA | xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w |
 
 !!!note  
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
@@ -11502,7 +11377,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra | CosmWasm | :x: | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11515,35 +11389,27 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Blast | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Gnosis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| HyperEVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
-| Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
-| SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| SNAXchain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->
@@ -11553,7 +11419,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Algorand | AVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Aptos | Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11568,7 +11433,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11576,7 +11440,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11584,12 +11447,10 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
 | SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Terra 2.0 | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XPLA | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CCTP-->
@@ -11628,7 +11489,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11636,19 +11496,18 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Blast | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Converge | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Gnosis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | HyperEVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -11684,7 +11543,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 | Ethereum Holesky | EVM | ETH | Alchemy Faucet |
 | Ethereum Sepolia | EVM | ETH | Alchemy Faucet |
-| Acala | EVM | ACA | Discord Faucet |
 | Arbitrum Sepolia | EVM | ETH | List of Faucets |
 | Avalanche | EVM | AVAX | Official Avalanche Faucet |
 | Base Sepolia | EVM | ETH | List of Faucets |
@@ -11697,13 +11555,11 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | HyperEVM | EVM | mock USDC | Official Hyperliquid Faucet |
 | Ink | EVM | ETH | Official Ink Faucet |
 | Kaia | EVM | KAIA | Official Kaia Faucet |
-| Karura | EVM | ACA | Discord Faucet |
 | Linea | EVM | ETH | List of Faucets |
 | Mantle | EVM | MNT | Official Mantle Faucet |
 | Monad | EVM | MON | Official Monad Faucet |
 | Moonbeam | EVM | DEV | Official Moonbeam Faucet |
 | Neon | EVM | NEON | Official Neon Faucet |
-| Oasis | EVM | TEST | Official Oasis Faucet |
 | Optimism Sepolia | EVM | ETH | Superchain Faucet |
 | Polygon Amoy | EVM | POL | Official Polygon Faucet |
 | Scroll | EVM | ETH | List of Faucets |
@@ -11731,9 +11587,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Osmosis | CosmWasm | OSMO | Official Osmosis Faucet |
 | SEDA | CosmWasm | SEDA | Official SEDA Faucet |
 | Sei | CosmWasm | SEI | Sei Atlantic-2 Faucet |
-| Terra | CosmWasm | LUNA | Terra Official Faucet |
 | Terra 2.0 | CosmWasm | LUNA | Terra Official Faucet |
-| XPLA | CosmWasm | XPLA | XPLA Official Faucet |
 
 ### Move VM
 

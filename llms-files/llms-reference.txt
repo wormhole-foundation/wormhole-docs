@@ -37,7 +37,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 
     | Ethereum | 2 | 1 |
 | Solana | 1 | Mainnet Beta-5eykt4UsFv8P8NJdTREpY1vzqKqZKvdpKuc147dw2N9d |
-| Acala | 12 | 787 |
 | Algorand | 8 | mainnet-v1.0 |
 | Aptos | 22 | 1 |
 | Arbitrum | 23 | Arbitrum One-42161 |
@@ -48,6 +47,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | BNB Smart Chain | 4 | 56 |
 | Celestia | 4004 | celestia |
 | Celo | 14 | 42220 |
+| Converge | 53 |  |
 | Cosmos Hub | 4000 | cosmoshub-4 |
 | Dymension | 4007 | dymension_1100-1 |
 | Evmos | 4001 | evmos_9001-2 |
@@ -57,7 +57,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Injective | 19 | injective-1 |
 | Ink | 46 |  |
 | Kaia | 13 | 8217 |
-| Karura | 11 | 686 |
 | Kujira | 4002 | kaiyo-1 |
 | Linea | 38 | 59144 |
 | Mantle | 35 | 5000 |
@@ -68,7 +67,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Neon | 17 | 245022934 |
 | Neutron | 4003 | neutron-1 |
 | Noble | 4009 | noble-1 |
-| Oasis | 7 | 42262 |
 | Optimism | 24 | 10 |
 | Osmosis | 20 | osmosis-1 |
 | Polygon | 5 | 137 |
@@ -82,19 +80,16 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Sonic | 52 | 146 |
 | Stargaze | 4005 | stargaze-1 |
 | Sui | 21 | 35834a8a |
-| Terra | 3 | columbus-5 |
 | Terra 2.0 | 18 | phoenix-1 |
 | Unichain | 44 |  |
 | World Chain | 45 | 480 |
 | X Layer | 37 | 196 |
-| XPLA | 28 | dimension_37-1 |
 
 === "Testnet"
 
     | Ethereum Holesky | 10006 | Holesky-17000 |
 | Ethereum Sepolia | 10002 | Sepolia-11155111 |
 | Solana | 1 | Devnet-EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG |
-| Acala | 12 | 597 |
 | Algorand | 8 | testnet-v1.0 |
 | Aptos | 22 | 2 |
 | Arbitrum Sepolia | 10003 | Sepolia-421614 |
@@ -105,6 +100,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | BNB Smart Chain | 4 | 97 |
 | Celestia | 4004 | mocha-4 |
 | Celo | 14 | Alfajores-44787 |
+| Converge | 53 | 52085145 |
 | Cosmos Hub | 4000 | theta-testnet-001 |
 | Dymension | 4007 |  |
 | Evmos | 4001 | evmos_9000-4 |
@@ -114,7 +110,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Injective | 19 | injective-888 |
 | Ink | 46 | 763373 |
 | Kaia | 13 | Kairos-1001 |
-| Karura | 11 | 596 |
 | Kujira | 4002 | harpoon-4 |
 | Linea | 38 | 59141 |
 | Mantle | 35 | Sepolia-5003 |
@@ -125,7 +120,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Neon | 17 | 245022940 |
 | Neutron | 4003 | pion-1 |
 | Noble | 4009 | grand-1 |
-| Oasis | 7 | 42261 |
 | Optimism Sepolia | 10005 | Optimism Sepolia-11155420 |
 | Osmosis | 20 | osmo-test-5 |
 | Polygon Amoy | 10007 | Amoy-80002 |
@@ -139,12 +133,10 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Sonic | 52 | 57054 |
 | Stargaze | 4005 |  |
 | Sui | 21 | 4c78adac |
-| Terra | 3 | bombay-12 |
 | Terra 2.0 | 18 | pisco-1 |
 | Unichain | 44 | Unichain Sepolia-1301 |
 | World Chain | 45 | 4801 |
 | X Layer | 37 | 195 |
-| XPLA | 28 | cube_47-5 |
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
@@ -164,7 +156,6 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 <!--CONSISTENCY_LEVELS-->
 | Ethereum | 200 | 201 |  | finalized | ~ 19min | Details |
 | Solana |  | 0 | 1 |  | ~ 14s | Details |
-| Acala | 200 | 201 |  | finalized | ~ 24s |  |
 | Algorand |  |  | 0 |  | ~ 4s | Details |
 | Aptos |  |  | 0 |  | ~ 4s | Details |
 | Arbitrum | 200 | 201 |  | finalized | ~ 18min | Details |
@@ -175,6 +166,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | BNB Smart Chain | 200 | 201 |  | finalized | ~ 48s | Details |
 | Celestia |  |  | 0 |  | ~ 5s |  |
 | Celo | 200 |  |  | finalized | ~ 10s |  |
+| Converge |  |  | 0 |  | ~ 7min |  |
 | Cosmos Hub |  |  | 0 |  | ~ 5s |  |
 | Dymension |  |  | 0 |  | ~ 5s |  |
 | Evmos |  |  | 0 |  | ~ 2s |  |
@@ -182,7 +174,6 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Injective |  |  | 0 |  | ~ 3s |  |
 | Ink |  |  | 0 |  | ~ 9min |  |
 | Kaia | 200 |  |  | finalized | ~ 1s |  |
-| Karura | 200 | 201 |  | finalized | ~ 24s | Details |
 | Kujira |  |  | 0 |  | ~ 3s |  |
 | Mantle | 200 | 201 |  | finalized | ~ 18min |  |
 | Mezo |  |  | 0 |  | ~ 8s |  |
@@ -190,7 +181,6 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Moonbeam | 200 | 201 |  | finalized | ~ 24s | Details |
 | NEAR |  |  | 0 |  | ~ 2s | Details |
 | Neutron |  |  | 0 |  | ~ 5s |  |
-| Oasis | 200 |  |  | finalized | ~ 12s |  |
 | Optimism | 200 | 201 |  | finalized | ~ 18min |  |
 | Osmosis |  |  | 0 |  | ~ 6s |  |
 | Polygon | 200 |  |  | finalized | ~ 66s | Details |
@@ -199,12 +189,10 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Sonic |  |  | 0 |  | ~ 1s |  |
 | Stargaze |  |  | 0 |  | ~ 5s |  |
 | Sui |  |  | 0 |  | ~ 3s | Details |
-| Terra |  |  | 0 |  | ~ 6s |  |
 | Terra 2.0 |  |  | 0 |  | ~ 6s |  |
 | Unichain | 200 | 201 |  | finalized | ~ 18min |  |
 | World Chain |  |  | 0 |  | ~ 18min |  |
 | X Layer | 200 | 201 |  | finalized | ~ 16min |  |
-| XPLA |  |  | 0 |  | ~ 5s |  |
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
@@ -227,7 +215,6 @@ categories: Reference
 
     | Ethereum | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
 | Solana | worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth |
-| Acala | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Algorand | 842125965 |
 | Aptos | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum | 0xa5f208e072434bC67592E4C49C1B991BA79BCA46 |
@@ -239,15 +226,15 @@ categories: Reference
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
 | Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
+| HyperEVM | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | Kaia | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7 |
-| Karura | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Mantle | 0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6 |
+| Mezo | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 | Moonbeam | 0xC8e2b0cD52Cf01b0Ce87d389Daa3d414d4cE29f3 |
 | NEAR | contract.wormhole_crypto.near |
 | Neutron | neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh |
-| Oasis | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585 |
 | Optimism | 0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722 |
 | Polygon | 0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7 |
 | Pythnet | H3fxXJ86ADW2PNuDDmZJg6mzTtPxkYCpNuQUTgmJ7AjU |
@@ -256,19 +243,16 @@ categories: Reference
 | Seievm | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | SNAXchain | 0xc1BA3CC4bFE724A08FbbFbF64F8db196738665f4 |
 | Sui | 0xaeab97f96cf9877fee2883315d459552b2b921edc16d7ceac6eab944dd88919c |
-| Terra | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5 |
 | Terra 2.0 | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnhp |
 | Unichain | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | World Chain | 0xcbcEe4e081464A15d8Ad5f58BB493954421eB506 |
 | X Layer | 0x194B123c5E96B9b2E49763619985790Dc241CAC0 |
-| XPLA | xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w |
 
 === "Testnet"
 
     | Ethereum Holesky | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | Ethereum Sepolia | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
 | Solana | 3u8hJUVTA4jH1wYAyUur7FFZVQ8H635K3tSHHF4ssjQ5 |
-| Acala | 0x64fb09E405D2043ed7785a29E296C766D56F2056 |
 | Algorand | 86525623 |
 | Aptos | 0x5bc11445584a763c1fa7ed39081f1b920954da14e04b32440cba863d03e19625 |
 | Arbitrum Sepolia | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35 |
@@ -278,13 +262,13 @@ categories: Reference
 | Blast | 0x473e002D7add6fB67a4964F13bFd61280Ca46886 |
 | BNB Smart Chain | 0x68605AD7b15c732a30b1BbC62BE8F2A509D74b4D |
 | Celo | 0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56 |
+| Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
 | Gnosis | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | HyperEVM | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
 | Ink | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Kaia | 0x1830CC6eE66c84D2F177B94D544967c774E624cA |
-| Karura | 0x64fb09E405D2043ed7785a29E296C766D56F2056 |
 | Linea | 0x79A1027a6A159502049F10906D333EC57E95F083 |
 | Mantle | 0x376428e7f26D5867e69201b275553C45B09EE090 |
 | Mezo | 0x268557122Ffd64c85750d630b716471118F323c8 |
@@ -293,7 +277,6 @@ categories: Reference
 | NEAR | wormhole.wormhole.testnet |
 | Neon | 0x268557122Ffd64c85750d630b716471118F323c8 |
 | Neutron | neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4 |
-| Oasis | 0xc1C338397ffA53a2Eb12A7038b4eeb34791F8aCb |
 | Optimism Sepolia | 0x31377888146f3253211EFEf5c676D41ECe7D58Fe |
 | Osmosis | osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx |
 | Polygon Amoy | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35 |
@@ -303,12 +286,10 @@ categories: Reference
 | Seievm | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | SNAXchain | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Sui | 0x31358d198147da50db32eda2562951d53973a0c0ad5ed738e9b17d88b213d790 |
-| Terra | terra1pd65m0q9tl3v8znnz5f5ltsfegyzah7g42cx5v |
 | Terra 2.0 | terra19nv3xr5lrmmr7egvrk2kqgw4kcn43xrtd5g0mpgwwvhetusk4k7s66jyv0 |
 | Unichain | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | World Chain | 0xe5E02cD12B6FcA153b0d7fF4bF55730AE7B3C93A |
 | X Layer | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780 |
-| XPLA | xpla1upkjn4mthr0047kahvn0llqx4qpqfn75lnph4jpxfn8walmm8mqsanyy35 |
 
 === "Devnet"
 
@@ -319,7 +300,6 @@ categories: Reference
 | BNB Smart Chain | 0xC89Ce4735882C9F0f0FE26686c53074E09B0D550 |
 | NEAR | wormhole.test.near |
 | Sui | 0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0 |
-| Terra | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au |
 | Terra 2.0 | terra14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9ssrc8au |
 <!--CORE_ADDRESS-->
 
@@ -332,7 +312,6 @@ categories: Reference
 
     | Ethereum | 0x3ee18B2214AFF97000D974cf647E7C347E8fa585 |
 | Solana | wormDTUJ6AWPNvk59vGQbDvGJmqbDTdgWgAqcLBCgUb |
-| Acala | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624 |
 | Algorand | 842126029 |
 | Aptos | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum | 0x0b2402144Bb366A632D14B83F244D2e0e21bD39c |
@@ -346,11 +325,9 @@ categories: Reference
 | Injective | inj1ghd753shjuwexxywmgs4xz7x2q732vcnxxynfn |
 | Ink | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | Kaia | 0x5b08ac39EAED75c0439FC750d9FE7E1F9dD0193F |
-| Karura | 0xae9d7fe007b3327AA64A32824Aaac52C42a6E624 |
 | Mantle | 0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d |
 | Moonbeam | 0xb1731c586ca89a23809861c6103f0b96b3f57d92 |
 | NEAR | contract.portalbridge.near |
-| Oasis | 0x5848C791e09901b40A9Ef749f2a6735b418d7564 |
 | Optimism | 0x1D68124e65faFC907325e3EDbF8c4d84499DAa8b |
 | Polygon | 0x5a58505a96D1dbf8dF91cB21B54419FC36e93fdE |
 | Scroll | 0x24850c6f61C438823F01B7A3BF2B89B72174Fa9d |
@@ -358,19 +335,16 @@ categories: Reference
 | Seievm | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | SNAXchain | 0x8B94bfE456B48a6025b92E11Be393BAa86e68410 |
 | Sui | 0xc57508ee0d4595e5a8728974a4a93a787d38f339757230d441e895422c07aba9 |
-| Terra | terra10nmmwe8r3g99a9newtqa7a75xfgs2e8z87r2sf |
 | Terra 2.0 | terra153366q50k7t8nn7gec00hg66crnhkdggpgdtaxltaq6xrutkkz3s992fw9 |
 | Unichain | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | World Chain | 0xc309275443519adca74c9136b02A38eF96E3a1f6 |
 | X Layer | 0x5537857664B0f9eFe38C9f320F75fEf23234D904 |
-| XPLA | xpla137w0wfch2dfmz7jl2ap8pcmswasj8kg06ay4dtjzw7tzkn77ufxqfw7acv |
 
 === "Testnet"
 
     | Ethereum Holesky | 0x76d093BbaE4529a342080546cAFEec4AcbA59EC6 |
 | Ethereum Sepolia | 0xDB5492265f6038831E89f495670FF909aDe94bd9 |
 | Solana | DZnkkTmCiFWfYTfT41X3Rd1kDgozqzxWaHqsw6W4x2oe |
-| Acala | 0xe157115ef34c93145Fec2FE53706846853B07F42 |
 | Algorand | 86525641 |
 | Aptos | 0x576410486a2da45eee6c949c995670112ddf2fbeedab20350d506328eefc9d4f |
 | Arbitrum Sepolia | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
@@ -385,7 +359,6 @@ categories: Reference
 | Injective | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh |
 | Ink | 0x376428e7f26D5867e69201b275553C45B09EE090 |
 | Kaia | 0xC7A13BE098720840dEa132D860fDfa030884b09A |
-| Karura | 0xe157115ef34c93145Fec2FE53706846853B07F42 |
 | Linea | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
 | Mantle | 0x75Bfa155a9D7A3714b0861c8a8aF0C4633c45b5D |
 | Mezo | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780 |
@@ -393,7 +366,6 @@ categories: Reference
 | Moonbeam | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96 |
 | NEAR | token.wormhole.testnet |
 | Neon | 0xEe3dB83916Ccdc3593b734F7F2d16D630F39F1D0 |
-| Oasis | 0x88d8004A9BdbfD9D28090A02010C19897a29605c |
 | Optimism Sepolia | 0x99737Ec4B815d816c49A385943baf0380e75c0Ac |
 | Polygon Amoy | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
 | Scroll | 0x22427d90B7dA3fA4642F7025A854c7254E4e45BF |
@@ -401,12 +373,10 @@ categories: Reference
 | Seievm | 0x23908A62110e21C04F3A4e011d24F901F911744A |
 | SNAXchain | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | Sui | 0x6fb10cdb7aa299e9a4308752dadecb049ff55a892de92992a1edbd7912b3d6da |
-| Terra | terra1pseddrv0yfsn76u4zxrjmtf45kdlmalswdv39a |
 | Terra 2.0 | terra1c02vds4uhgtrmcw7ldlg75zumdqxr8hwf7npseuf2h58jzhpgjxsgmwkvk |
 | Unichain | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | World Chain | 0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2 |
 | X Layer | 0xdA91a06299BBF302091B053c6B9EF86Eff0f930D |
-| XPLA | xpla1kek6zgdaxcsu35nqfsyvs2t9vs87dqkkq6hjdgczacysjn67vt8sern93x |
 
 === "Devnet"
 
@@ -417,7 +387,6 @@ categories: Reference
 | BNB Smart Chain | 0x0290FB167208Af455bB137780163b7B7a9a10C16 |
 | NEAR | token.test.near |
 | Sui | 0xa6a3da85bbe05da5bfd953708d56f1a3a023e7fb58e5a824a3d4de3791e8f690 |
-| Terra | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6 |
 | Terra 2.0 | terra1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrquka9l6 |
 <!--TOKEN_BRIDGE_ADDRESS-->
 
@@ -444,6 +413,7 @@ categories: Reference
 | Optimism | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Polygon | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Scroll | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Seievm | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | SNAXchain | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Unichain | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | World Chain | 0x1520cc9e779c56dab5866bebfb885c86840c33d3 |
@@ -463,6 +433,7 @@ categories: Reference
 | Monad | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Moonbeam | 0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0 |
 | Optimism Sepolia | 0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE |
+| Polygon Amoy | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Seievm | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Unichain | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 
@@ -515,13 +486,18 @@ categories: Reference
 
 === "Mainnet"
 
-    | Corn | 0xa683c66045ad16abb1bCE5ad46A64d95f9A25785 |
+    | Acala | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
+| Corn | 0xa683c66045ad16abb1bCE5ad46A64d95f9A25785 |
 | Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Goat | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
+| Karura | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | LightLink | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
+| Oasis | 0xfE8cD454b4A1CA468B57D79c0cc77Ef5B6f64585 |
 | Rootstock | 0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6 |
 | Sonic | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
 | Telos | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
+| Terra | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5 |
+| XPLA | xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w |
 
 !!!note  
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
@@ -566,7 +542,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra | CosmWasm | :x: | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -579,35 +554,27 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Blast | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Gnosis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| HyperEVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
-| Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
-| SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| SNAXchain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->
@@ -617,7 +584,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Algorand | AVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Aptos | Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -632,7 +598,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -640,7 +605,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -648,12 +612,10 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
 | SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Terra | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Terra 2.0 | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XPLA | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CCTP-->
@@ -692,7 +654,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 | Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Acala | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Avalanche | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Base | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -700,19 +661,18 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Blast | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Converge | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Gnosis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | HyperEVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Karura | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Oasis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -748,7 +708,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 
 | Ethereum Holesky | EVM | ETH | Alchemy Faucet |
 | Ethereum Sepolia | EVM | ETH | Alchemy Faucet |
-| Acala | EVM | ACA | Discord Faucet |
 | Arbitrum Sepolia | EVM | ETH | List of Faucets |
 | Avalanche | EVM | AVAX | Official Avalanche Faucet |
 | Base Sepolia | EVM | ETH | List of Faucets |
@@ -761,13 +720,11 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | HyperEVM | EVM | mock USDC | Official Hyperliquid Faucet |
 | Ink | EVM | ETH | Official Ink Faucet |
 | Kaia | EVM | KAIA | Official Kaia Faucet |
-| Karura | EVM | ACA | Discord Faucet |
 | Linea | EVM | ETH | List of Faucets |
 | Mantle | EVM | MNT | Official Mantle Faucet |
 | Monad | EVM | MON | Official Monad Faucet |
 | Moonbeam | EVM | DEV | Official Moonbeam Faucet |
 | Neon | EVM | NEON | Official Neon Faucet |
-| Oasis | EVM | TEST | Official Oasis Faucet |
 | Optimism Sepolia | EVM | ETH | Superchain Faucet |
 | Polygon Amoy | EVM | POL | Official Polygon Faucet |
 | Scroll | EVM | ETH | List of Faucets |
@@ -795,9 +752,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Osmosis | CosmWasm | OSMO | Official Osmosis Faucet |
 | SEDA | CosmWasm | SEDA | Official SEDA Faucet |
 | Sei | CosmWasm | SEI | Sei Atlantic-2 Faucet |
-| Terra | CosmWasm | LUNA | Terra Official Faucet |
 | Terra 2.0 | CosmWasm | LUNA | Terra Official Faucet |
-| XPLA | CosmWasm | XPLA | XPLA Official Faucet |
 
 ### Move VM
 

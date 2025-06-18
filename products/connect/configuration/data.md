@@ -158,11 +158,3 @@ Your selected blockchain network determines the available wallet options when us
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
 If you would like to offer Reown Cloud (formerly WalletConnect) as a supported wallet option, you'll need to obtain a project ID on the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}.
-
-### CoinGecko API Key {: #coingecko-api-key }
-
-The CoinGecko API can be used to fetch token price data. If you have a [CoinGecko API Plan](https://apiguide.coingecko.com/getting-started/getting-started){target=\_blank}, you can include the API key in the configuration.
-
-```jsx
---8<-- 'code/products/connect/configuration/data/custom-coingecko-key.jsx'
-```

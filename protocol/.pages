@@ -2,6 +2,7 @@ title: Protocol
 nav:
 - 'Introduction to Wormhole': introduction.md
 - 'Architecture Overview': architecture.md
+- 'Ecosystem Overview': ecosystem.md
 - 'Security Overview': security.md
 - infrastructure
 - infrastructure-guides
