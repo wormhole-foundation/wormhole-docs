@@ -11,8 +11,6 @@ Blockchain ecosystems are becoming increasingly interconnected, with assets ofte
 
 This guide explains how to create a multichain token, a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
 
-To complete the following steps, you'll need tokens in both the source and target chains of your token.
-
 By the end of this tutorial, you'll learn:
 
 - How to register your token for bridging
@@ -20,6 +18,13 @@ By the end of this tutorial, you'll learn:
 - How to ensure its visibility on blockchain explorers
 
 Let’s begin with a straightforward, step-by-step process for creating a multichain token and expanding its reach.
+
+## Prerequisites
+
+Before you start, ensure you have the following:
+
+ - A compatible wallet (e.g., MetaMask, Phantom)
+ - Native tokens (testnet or mainnet) in your wallet on both the source and target chains
 
 ## Register the Token on the Source Chain
 
