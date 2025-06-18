@@ -21,7 +21,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/vaas.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/introduction.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/security.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/solidity-sdk/get-started.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/.solidity-sdk/.get-started.md [type: other]
 
 ## Full content for each doc page
 
@@ -2097,7 +2097,7 @@ For more information about submitting to the bug bounty programs, refer to the [
 The [SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank} from the official repository has the latest security policies and updates.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tools/solidity-sdk/get-started/
+Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.get-started/
 --- BEGIN CONTENT ---
 ---
 title: Get Started with the Solidity SDK

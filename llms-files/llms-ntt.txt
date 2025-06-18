@@ -4129,7 +4129,7 @@ For more information about submitting to the bug bounty programs, refer to the [
 The [SECURITY.md](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md){target=\blank} from the official repository has the latest security policies and updates.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/tools/solidity-sdk/get-started/
+Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.get-started/
 --- BEGIN CONTENT ---
 ---
 title: Get Started with the Solidity SDK
