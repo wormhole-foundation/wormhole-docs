@@ -14,7 +14,7 @@ Wormhole's Token Bridge enables seamless cross-chain token transfers using a loc
 - **Transferring tokens**: Locking and minting tokens across chains.
 - **Transferring tokens with a payload**: Including additional data with transfers.
 
-This page outlines how to attest your token via the Token Bridge contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
+This page outlines how to attest your token via the Token Bridge contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge Overview](/docs/products/token-bridge/overview/){target=\_blank} page. 
 
 ## Prerequisites
 
