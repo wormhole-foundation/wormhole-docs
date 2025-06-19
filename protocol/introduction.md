@@ -37,7 +37,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 
 - **Cross-chain messaging**: Securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications.
 - **Asset transfers**: Facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}.
-- **Developer tools**: Leverage Wormhole’s [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, [Solidity SDK](/docs/tools/solidity-sdk/get-started/), [Wormholescan](https://wormholescan.io/){target=\_blank}, and the [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} and documentation to build and deploy cross-chain applications quickly and efficiently.
+- **Developer tools**: Leverage Wormhole’s [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank},<!-- [Solidity SDK](/docs/tools/solidity-sdk/get-started/),--> [Wormholescan](https://wormholescan.io/){target=\_blank}, and the [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} and documentation to build and deploy cross-chain applications quickly and efficiently.
 
 ## What Isn't Wormhole?
 
