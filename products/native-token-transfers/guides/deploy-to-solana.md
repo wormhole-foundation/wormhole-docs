@@ -115,7 +115,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
 
 !!! note
     When deploying NTT to Solana in `Testnet` mode, you must use [**Devnet tokens**](https://faucet.solana.com/){target=\_blank}.  
-    Solana's official Testnet cluster is not supported for token creation or deployment in NTT.
+    Solana's official testnet cluster is not supported for token creation or deployment in NTT.
 
 ### Generate an NTT Program Key Pair
 
