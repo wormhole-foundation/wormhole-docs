@@ -1,6 +1,6 @@
 ---
 title: NTT Supported Networks
-description: Reference table of chains supported by Wormhole's Native Token Transfers.
+description: See which blockchains support Wormhole’s Native Token Transfers (NTT), including mainnet, testnet, and devnet availability by chain.
 categories: NTT, Transfer
 ---
 
