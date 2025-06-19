@@ -30,7 +30,7 @@ Additionally, we'll rely on the Wormhole relayer to automatically determine cros
 Before starting this tutorial, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts
 - Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
 - Wallet private key
 
@@ -112,7 +112,7 @@ We use _Foundry_ to deploy our smart contracts. However, you can use any tool yo
 
  - [Remix](https://remix.ethereum.org/){target=\_blank} for a browser-based IDE
  - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation){target=\_blank} for a more extensive JavaScript/TypeScript workflow
- - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for a CLI-focused experience with built-in scripting and testing features
+ - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for a CLI-focused experience with built-in scripting and testing features
 
 The contracts and deployment steps remain the same regardless of your preferred tool. The key is to ensure you have the necessary Testnet funds and are deploying to the right networks.
 

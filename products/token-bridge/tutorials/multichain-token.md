@@ -23,7 +23,7 @@ Let’s begin with a straightforward, step-by-step process for creating a multic
 
 The first step in creating a multichain token is registering your token on its source chain. This ensures the token is prepared for bridging across blockchains. Follow these steps:
 
-1. Open the [Portal Bridge](https://portalbridge.com/advanced-tools/#/register){target=\_blank}
+1. Open the [Portal Bridge](https://portalbridge.com/legacy-tools/#/register){target=\_blank}
 2. Select the blockchain where your token is currently deployed (source chain)
 3. Connect your wallet by following the on-screen instructions
 4. Locate the **Asset** field and paste the token contract address

@@ -18,7 +18,7 @@ By the end of this tutorial, you'll have a working cross-chain token transfer sy
 Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts
 - Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
 - [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
 - Wallet private key

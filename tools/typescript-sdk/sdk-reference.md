@@ -37,7 +37,7 @@ This page covers all you need to know about the functionality offered through th
 </div>
 
 !!! warning
-    This package is a work in progress. The interface may change, and there are likely bugs. Please [report any issues](https://github.com/wormhole-foundation/connect-sdk/issues){target=\_blank} you find.
+    This package is a work in progress. The interface may change, and there are likely bugs. Please [report any issues](https://github.com/wormhole-foundation/wormhole-sdk-ts/issues){target=\_blank} you find.
 
 ## Concepts
 
@@ -110,7 +110,7 @@ The SDK's `Signer` interface can be implemented as either a `SignOnlySigner` or 
 
 #### Set Up a Signer with Ethers.js
 
-To sign transactions programmatically with the Wormhole SDK, you can use [Ethers.js](https://docs.ethers.org/){target=\_blank} to manage private keys and handle signing. Here's an example of setting up a signer using Ethers.js:
+To sign transactions programmatically with the Wormhole SDK, you can use [Ethers.js](https://docs.ethers.org/v6/){target=\_blank} to manage private keys and handle signing. Here's an example of setting up a signer using Ethers.js:
 
 ```javascript
 --8<-- 'code/tools/typescript-sdk/sdk-reference/ethers.js'
@@ -218,11 +218,11 @@ Internally, this uses the [`TokenBridge`](#token-bridge) protocol client to tran
 
 ### Native USDC Transfers
 
-You can transfer native USDC using [Circle's CCTP](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank}. If the transfer is set to `automatic`, the quote will include a relay fee, which is deducted from the total amount sent. For example, to receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the relay fee. The same applies when including a native gas drop-off.
+You can transfer native USDC using [Circle's CCTP](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank}. If the transfer is set to `automatic`, the quote will include a relay fee, which is deducted from the total amount sent. For example, to receive 1.0 USDC on the destination chain, the sender must cover both the 1.0 and the relay fee. The same applies when including a native gas drop-off.
 
 In the example below, the `wh.circleTransfer` function is used to initiate the transfer. It accepts the amount (in base units), sender and receiver chains and addresses, and an optional automatic flag to enable hands-free completion. You can also include an optional payload (set to `undefined` here) and specify a native gas drop-off if desired.
 
-When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual wait time [varies by network](https://developers.circle.com/stablecoins/docs/required-block-confirmations#mainnet){target=\_blank}.
+When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual wait time [varies by network](https://developers.circle.com/stablecoins/required-block-confirmations#mainnet){target=\_blank}.
 
 ```ts
 --8<-- 'code/tools/typescript-sdk/sdk-reference/cctp.ts:69:112'
