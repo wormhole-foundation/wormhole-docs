@@ -21,7 +21,7 @@ Follow these steps (or see the [Get Started guide](/docs/products/native-token-t
     cd my-ntt-project
     ```
 
-3. Create the deployment config**:
+3. Create the deployment config:
 
     === "Mainnet"
 
