@@ -12718,7 +12718,7 @@ Follow these steps (or see the [Get Started guide](/docs/products/native-token-t
 
 !!! note
     When deploying NTT to Solana in `Testnet` mode, you must use [**Devnet tokens**](https://faucet.solana.com/){target=\_blank}.  
-    Solana's official Testnet cluster is not supported for token creation or deployment in NTT.
+    Solana's official testnet cluster is not supported for token creation or deployment in NTT.
 
 ### Generate an NTT Program Key Pair
 
