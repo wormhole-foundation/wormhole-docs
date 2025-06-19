@@ -1,0 +1,45 @@
+name: Deploy Docs to Cloudflare
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone wormhole-mkdocs
+        run: |
+          git clone --single-branch --branch main https://github.com/papermoonio/wormhole-mkdocs.git mkdocs
+
+      - name: Clone wormhole-docs into mkdocs/wormhole-docs
+        run: |
+          git clone --single-branch --branch main https://github.com/wormhole-foundation/wormhole-docs.git mkdocs/wormhole-docs
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install MkDocs dependencies
+        run: |
+          cd mkdocs
+          pip install -r requirements.txt
+
+      - name: Build MkDocs site
+        run: |
+          cd mkdocs
+          mkdocs build
+
+      - name: Install Wrangler CLI
+        run: npm install -g wrangler
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          cd mkdocs
+          wrangler pages deploy site --project-name=YOUR_PROJECT_NAME --branch=main --commit-dirty=true
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
