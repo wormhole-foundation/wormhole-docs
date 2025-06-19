@@ -3,4 +3,5 @@ nav:
 - 'Overview': overview.md
 - 'Get Started': get-started.md
 - concepts
+- reference
 - 'FAQs': faqs.md
