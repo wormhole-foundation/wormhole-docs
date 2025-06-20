@@ -8,7 +8,7 @@ categories: Token-Bridge, Transfers, Typescript-SDK
 
 ## Introduction
 
-This guide demonstrates the transfer of wrapped assets using the Token Bridge protocol via the TypeScript SDK. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana but can be adapted for any supported chains. View this list of chains with [deployed Token Bridge contracts](/products/reference/contract-addresses/#token-bridge){target=\_blank} to verify if your desired source and destination chains are supported.
+This guide demonstrates the transfer of wrapped assets using the Token Bridge protocol via the [TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana but can be adapted for any supported chains. View this list of chains with [deployed Token Bridge contracts](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} to verify if your desired source and destination chains are supported.
 
 Completing this guide will help you to accomplish the following:
 
@@ -79,7 +79,7 @@ Registration via attestation is only required the first time a given token is se
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:1:47'
     // Token attestation and registration flow here if needed
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:127:127'
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:171:174'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:169:174'
     ```
 
     This code does the following:
@@ -147,7 +147,7 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
 
     This code does the following:
 
-    - Defines the transfer as automatic or manual. To use automatic transfer, both the source and destination chain must have an existing `tokenBridgeRelayer` contract. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/core/base/src/constants/contracts/tokenBridgeRelayer.ts) in the Wormhole SDK repo to see if your desired chains are supported
+    - Defines the transfer as automatic or manual. To use automatic transfer, both the source and destination chain must have an existing `tokenBridgeRelayer` contract. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported
     - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers
     - Builds the transfer object, initiates the transfer, signs and sends the transaction
     - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer
