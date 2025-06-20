@@ -1,3 +1,4 @@
 title: Guides
 nav:
+- 'Transfer Wrapped Assets': transfer-wrapped-assets.md
 - 'Interact with Contracts': token-bridge-contracts.md
