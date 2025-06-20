@@ -8,7 +8,7 @@ categories: Token-Bridge, Transfer
 
 ## Introduction
 
-This guide demonstrates token attestation for registering a token for transfer using the Token Bridge protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
+This guide demonstrates token attestation for registering a token for transfer using the [Token Bridge](/docs/products/token-bridge/overview) protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
 
 Completing this guide will help you to accomplish the following:
 
@@ -40,7 +40,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
    npm init -y
    ```
 
-2. Install dependencies, including the Wormhole TypeScript SDK:
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}:
    ```bash
    npm install @wormhole-foundation/sdk -D tsx typescript
    ```
@@ -76,7 +76,7 @@ Since attestation is a one-time process, it is good practice when working with e
 2. Open `attest.ts` and add the following code:
     ```typescript title="attest.ts"
     --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:1:37'
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:123:126'
+    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:120:126'
     ```
 
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
