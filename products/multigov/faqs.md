@@ -4,7 +4,7 @@ description: Find answers to common questions about MultiGov, covering cross-cha
 categories: MultiGov
 ---
 
-# FAQs
+# MultiGov FAQs
 
 ## What is MultiGov?
 

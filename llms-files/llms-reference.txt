@@ -696,8 +696,6 @@ categories: Reference
 
 # Testnet Faucets
 
-## Get Started
-
 Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
@@ -778,8 +776,6 @@ categories: Reference
 ---
 
 # Wormhole Formatted Addresses
-
-## Introduction
 
 Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 

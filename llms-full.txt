@@ -110,6 +110,7 @@ description: Download LLM-optimized files of the Wormhole documentation, includi
 ---
 
 # AI Resources
+
 Wormhole provides `.txt` files containing the documentation content and navigation structure, optimized for use with large language models (LLMs) and AI tools. These resources help build AI assistants, power code search, or enable custom tooling trained on Wormhole’s docs.
 
 Each category file includes foundational content from the **Basics** and **Reference** categories to ensure LLMs have the necessary context.
@@ -149,8 +150,6 @@ categories: Transfer
 ---
 
 # Get Started with CCTP
-
-## Introduction
 
 [Wormhole CCTP](/docs/products/cctp-bridge/overview/){target=\_blank} enables native USDC transfers between supported chains by burning tokens on the source chain and minting them on the destination. This provides native, canonical USDC movement without the need for wrapped tokens.
 
@@ -367,8 +366,6 @@ categories: Transfer
 ---
 
 # Interact with CCTP Contracts
-
-## Introduction
 
 Circle's [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\_blank} is a permissionless utility that facilitates secure and efficient USDC transfers across blockchain networks through native burning and minting mechanisms.
 
@@ -3076,8 +3073,6 @@ description: Learn how to perform USDC cross-chain transfers using Wormhole SDK 
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-cctp-transfer){target=\_blank}
 
-## Introduction
-
 In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/docs/products/cctp-bridge/overview/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
 
 Traditionally, cross-chain transfers using CCTP involve multiple manual steps, such as initiating the transfer on the source chain, relaying messages between chains, and covering gas fees on both the source and destination chains. Without the TypeScript SDK, developers must handle these operations independently, adding complexity and increasing the chance for errors, mainly when dealing with gas payments on the destination chain and native gas token management.
@@ -3675,8 +3670,6 @@ description: Configure Wormhole Connect v0 for React or HTML, set themes, define
 ---
 
 # Configure Your Connect Widget
-
-## Introduction {: #introduction }
 
 Wormhole Connect is a flexible React widget that streamlines cross-chain asset transfers and enables seamless interoperability by leveraging Wormhole's powerful infrastructure. Designed for easy integration into decentralized applications (dApps), Wormhole Connect abstracts the complexities of cross-chain communication, providing a user-friendly experience for both developers and end users.
 
@@ -4891,7 +4884,7 @@ description: Common questions and detailed answers about using Wormhole Connect,
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect FAQs
+# Connect FAQs
 
 ## What types of assets does Connect support? 
 
@@ -4968,8 +4961,6 @@ categories: Connect, Transfer
 # Get Started with Connect
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
-
-## Introduction
 
 Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
 
@@ -5160,8 +5151,6 @@ categories: Connect, Transfer
 ---
 
 # Wormhole Connect v1.0 Migration Guide
-
-## Overview
 
 The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
@@ -5886,8 +5875,6 @@ categories: Connect, Transfer
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
 
-## Introduction
-
 In this tutorial, we'll explore how to integrate [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} to enable cross-chain token transfers and interactions. Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
 While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any [blockchain supported by Wormhole](/docs/products/connect/reference/support-matrix/){target=\_blank}. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
@@ -6380,8 +6367,6 @@ categories: Basics
 
 # Get Started with Core Contracts
 
-## Introduction
-
 Wormhole's Core Contracts, deployed on each supported blockchain network, enable the fundamental operations of sending and receiving cross-chain messages.
 
 While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
@@ -6758,8 +6743,6 @@ categories: Relayers, Basics
 
 # Wormhole Relayer
 
-## Introduction
-
 The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
 
 This section covers the components and interfaces involved in using the Wormhole relayer module, such as message sending and receiving, delivery guarantees, and considerations for building reliable and efficient cross-chain applications. Additionally, you'll find details on how to handle specific implementation scenarios and track message delivery progress using the Wormhole CLI tool.
@@ -7030,8 +7013,6 @@ description: Learn how to create cross-chain contracts using Wormhole's Solidity
 # Create Cross-Chain Messaging Contracts
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
-
-## Introduction
 
 Wormhole's cross-chain messaging allows smart contracts to interact seamlessly across multiple blockchains. This enables developers to build decentralized applications that leverage the strengths of different networks, whether it's Avalanche, Celo, Ethereum, or beyond. In this tutorial, we'll explore using [Wormhole's Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} to create cross-chain contracts to send and receive messages across chains.
 
@@ -7954,8 +7935,6 @@ description: Learn how to create cross-chain token transfers using Wormhole's So
 # Create Cross-Chain Token Transfer Contracts
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank}
-
-## Introduction
 
 In this tutorial, you'll learn how to create a simple cross-chain token transfer system using the Wormhole protocol via the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}. We'll guide you through building and deploying smart contracts that enable seamless token transfers of IERC-20 tokens between blockchains. Whether you're a developer looking to explore cross-chain applications or just interested in the Wormhole protocol, this guide will help you understand the fundamentals.
 
@@ -9571,8 +9550,6 @@ description: Learn how to fetch, validate, and replace outdated signatures in Wo
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}
 
-## Introduction
-
 Cross-chain transactions in Wormhole rely on [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, which contain signatures from a trusted set of validators called [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}. These signatures prove that the network approved an action, such as a token transfer.
 
 However, the set of Guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the Guardian set may have already changed. This means the VAA will contain outdated signatures from Guardians, who are no longer part of the network, causing the transaction to fail.
@@ -10804,7 +10781,7 @@ description: Find answers to common questions about MultiGov, covering cross-cha
 categories: MultiGov
 ---
 
-# FAQs
+# MultiGov FAQs
 
 ## What is MultiGov?
 
@@ -10909,8 +10886,6 @@ categories: MultiGov
 ---
 
 # Get Started with Multigov
-
-## Introduction
 
 [MultiGov](/docs/products/multigov/overview/){target=\_blank} enables multichain governance using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
 
@@ -11672,10 +11647,9 @@ description: Explore Wormhole's Native Token Transfers architecture, which cover
 categories: NTT, Transfer
 ---
 
-## Introduction
+# NTT Architecture
 
 The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components that work together to manage cross-chain communication and token operations complexities.
-
 
 ## System Components
 
@@ -11826,6 +11800,8 @@ description: Learn about the owner and pauser access roles for the NTT manager c
 categories: NTT, Transfer
 ---
 
+# Access Control
+
 ## Owner and Pauser Roles
 
 Pausing the Native Toke Transfer (NTT) Manager Contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits if configured).
@@ -11870,7 +11846,7 @@ description: Learn about rate limits in Wormhole NTT by configuring send/receive
 categories: NTT, Transfer
 ---
 
-## Introduction
+# Rate Limiting
 
 The Native Token Transfer (NTT) framework provides configurable per-chain rate limits for sending and receiving token transfers. Integrators can manage these limits via their own governance processes to quickly adapt to on-chain activity.
 
@@ -11969,7 +11945,7 @@ description: Frequently asked questions about Wormhole Native Token Transfers, i
 categories: NTT, Transfer
 ---
 
-# Wormhole NTT FAQs
+# NTT FAQs
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
@@ -12344,7 +12320,7 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers (NTT) to EVM Chains
+# Deploy NTT to EVM Chains
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
@@ -12570,7 +12546,7 @@ description: Deploy and configure Wormhole's Native Token Transfers (NTT) for So
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers on Solana
+# Deploy NTT on Solana
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
@@ -12868,9 +12844,7 @@ description: Deploy a new token or extend an existing one across multiple chains
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers with Launchpad
-
-## Introduction
+# Deploy NTT with Launchpad
 
 The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
 
@@ -13057,7 +13031,7 @@ description: Learn post-deployment guidelines for optimizing Wormhole NTT, which
 categories: NTT, Transfer
 ---
 
-# Native Token Transfers Post Deployment
+# NTT Post-Deployment Steps
 
 To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
 
@@ -13312,8 +13286,6 @@ categories: NTT, Transfer
 ---
 
 # NTT CLI Commands
-
-## Introduction
 
 The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
 
@@ -13753,7 +13725,7 @@ description: Wormhole Queries FAQ covering available libraries, query examples, 
 categories: Queries
 ---
 
-# Wormhole Queries FAQs
+# Queries FAQs
 
 ## What libraries are available to handle queries?
 
@@ -13808,8 +13780,6 @@ categories: Queries
 ---
 
 # Get Started with Queries
-
-## Introduction
 
 [Queries](/docs/products/queries/overview) lets you fetch on-chain data from supported blockchains using `eth_call`-style requests without submitting transactions or paying gas. The Guardian network signs the result, making it verifiable and suitable for use on-chain.
 
@@ -15279,8 +15249,6 @@ categories: Reference
 
 # Testnet Faucets
 
-## Get Started
-
 Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
@@ -15361,8 +15329,6 @@ categories: Reference
 ---
 
 # Wormhole Formatted Addresses
-
-## Introduction
 
 Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 
@@ -15516,8 +15482,6 @@ categories: Settlement, Transfer
 
 # Settlement Protocol Architecture
 
-## Introduction
-
 This page describes the high-level mechanics of the underlying native swap protocols in the Wormhole SDK. While built on Wormhole messaging, each protocol uses a novel architecture with unique price discovery, scalability, and latency tradeoffs. These designs enable redundancy to handle highly asymmetric flows and sharp volume changes. These sections will cover the following:
 
 - **Wormhole Liquidity Layer** - a cross-chain transfer protocol that utilizes Solana as the central orchestration layer for cross-chain intents, allowing solvers to deploy liquidity from a single Solana-based hub rather than distributing it across each supported chain
@@ -15620,7 +15584,7 @@ description: Frequently asked questions about Wormhole Settlement, including sma
 categories: Settlement, Transfer
 ---
 
-# Wormhole Settlement FAQs
+# Settlement FAQs
 
 ## Can I use Wormhole Settlement from a smart contract? If so, how is a message signed and relayed?
 
@@ -15645,7 +15609,7 @@ description: Perform a cross-chain token swap using Wormhole Settlement and the 
 categories: Settlement, Transfer
 ---
 
-# Get Started
+# Get Started with Settlement
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
@@ -16282,8 +16246,6 @@ categories: Token-Bridge, Transfer
 
 # Flow of a Transfer
 
-## Introduction
-
 The [Wormhole Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own Token Bridge contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
 This guide provides a conceptual overview of the Token Bridge and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
@@ -16481,7 +16443,7 @@ description: Find answers to common questions about the Wormhole Token Bridge, i
 categories: Token-Bridge, Transfer
 ---
 
-# FAQs
+# Token Bridge FAQs
 
 ## Can ownership of wrapped tokens be transferred from the Token Bridge?
 
@@ -16814,8 +16776,6 @@ categories: Token-Bridge, Transfer
 ---
 
 # Interact with Token Bridge Contracts
-
-## Introduction 
 
 Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
@@ -17171,8 +17131,6 @@ description: Learn how to create a multichain token, bridge tokens across blockc
 
 # Create Multichain Tokens
 
-## Introduction
-
 Blockchain ecosystems are becoming increasingly interconnected, with assets often needing to exist across multiple networks to maximize their utility and reach. For example, tokens created on one chain may want to expand to others to tap into broader audiences and liquidity pools.
 
 This guide explains how to create a multichain token—a token that seamlessly bridges across blockchains using the Wormhole protocol. The process is designed to be user-friendly. With just a few steps, your token can become multichain, enabling it to be traded or used on various networks.
@@ -17268,8 +17226,6 @@ description: Learn to build a cross-chain native token transfer app using Wormho
 # Complete Token Transfer Workflow
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}
-
-## Introduction
 
 This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
@@ -18085,8 +18041,6 @@ categories: Basics
 
 # Architecture
 
-## Overview
-
 Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
@@ -18190,8 +18144,6 @@ categories: Relayers
 ---
 
 # Run a Custom Relayer
-
-## Introduction
 
 Relayers play a crucial role in cross-chain communication, ensuring that messages are transferred seamlessly between different blockchains. While Wormhole relayers provide a reliable way to handle these transfers, they might not always meet every application's unique requirements.
 
@@ -18518,8 +18470,6 @@ description: Learn how to run a Spy locally to listen for and forward messages (
 
 # Run a Spy
 
-## Introduction
-
 The Spy is a lightweight component in the Wormhole infrastructure designed to listen for and forward messages (Verifiable Action Approvals (VAAs)) published on the Wormhole network. Running a Spy locally allows developers to subscribe to a filtered stream of these messages, facilitating the development of custom relayers or other integrations with Wormhole.
 
 For a more comprehensive understanding of the Spy and its role within the Wormhole ecosystem, refer to the [Spy Documentation](/docs/protocol/infrastructure/spy/){target=\_blank}.
@@ -18599,8 +18549,6 @@ categories: Basics
 ---
 
 # Core Contracts
-
-## Introduction
 
 The Wormhole Core Contract is deployed across each supported blockchain network. This contract is a fundamental component of the Wormhole interoperability protocol and acts as the foundational layer enabling secure and efficient multichain messaging. All multichain applications either interact directly with the Core Contract or with another contract that does.
 
@@ -18682,7 +18630,7 @@ description: Explore Wormhole's Guardian Network, a decentralized system for sec
 categories: Basics
 ---
 
-## Guardian
+# Guardians
 
 Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
@@ -21048,8 +20996,6 @@ categories: Typescript-SDK
 
 # Get Started with the TypeScript SDK
 
-## Introduction
-
 The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Native Token Transfers, Token Bridge, CCTP, and Settlement, giving developers a consistent API across multiple chains.
 
 This guide helps you install the SDK, initialize a `Wormhole` instance to support your desired network and blockchain platforms, and return chain-specific information to verify successful initialization.
@@ -21395,8 +21341,6 @@ categories: Typescript-SDK
 
 # Building Protocols and Payloads
 
-## Introduction
-
 The [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} provides a flexible and powerful system for integrating cross-chain communication into your applications. A key feature of the SDK is its ability to define protocols—modular units representing distinct functionalities—and their associated payloads, which encapsulate the data required for specific operations within those protocols.
 
 This guide will help you understand how to build protocols and payloads in the SDK, covering:
@@ -21715,8 +21659,6 @@ categories: Typescript-SDK
 ---
 
 # Data Layouts
-
-## Introduction
 
 The [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} uses the [layout package](https://www.npmjs.com/package/binary-layout){target=\_blank} to define, serialize, and deserialize data structures efficiently. This modular system ensures consistent data formatting and cross-environment compatibility, benefiting projects that require robust handling of structured data.
 
@@ -22429,8 +22371,6 @@ categories: Typescript-SDK
 ---
 
 # VAAs and Protocols
-
-## Introduction
 
 Wormhole's core functionality revolves around [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs), which are signed messages enabling secure and decentralized communication across chains. This guide focuses on their practical usage within the Wormhole ecosystem, specifically when working with protocol-specific messages in the [TypeScript](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and [Solidity](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} SDKs.
 

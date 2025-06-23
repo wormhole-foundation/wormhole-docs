@@ -4,7 +4,7 @@ description: Wormhole Queries FAQ covering available libraries, query examples, 
 categories: Queries
 ---
 
-# Wormhole Queries FAQs
+# Queries FAQs
 
 ## What libraries are available to handle queries?
 

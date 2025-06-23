@@ -314,8 +314,6 @@ categories: Token-Bridge, Transfer
 
 # Flow of a Transfer
 
-## Introduction
-
 The [Wormhole Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own Token Bridge contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
 This guide provides a conceptual overview of the Token Bridge and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
@@ -513,7 +511,7 @@ description: Find answers to common questions about the Wormhole Token Bridge, i
 categories: Token-Bridge, Transfer
 ---
 
-# FAQs
+# Token Bridge FAQs
 
 ## Can ownership of wrapped tokens be transferred from the Token Bridge?
 
@@ -846,8 +844,6 @@ categories: Token-Bridge, Transfer
 ---
 
 # Interact with Token Bridge Contracts
-
-## Introduction 
 
 Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
@@ -1525,8 +1521,6 @@ categories: Basics
 
 # Get Started with Core Contracts
 
-## Introduction
-
 Wormhole's Core Contracts, deployed on each supported blockchain network, enable the fundamental operations of sending and receiving cross-chain messages.
 
 While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
@@ -1902,8 +1896,6 @@ categories: Relayers, Basics
 ---
 
 # Wormhole Relayer
-
-## Introduction
 
 The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
 
@@ -2320,8 +2312,6 @@ categories: Basics
 
 # Architecture
 
-## Overview
-
 Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
@@ -2426,8 +2416,6 @@ categories: Basics
 
 # Core Contracts
 
-## Introduction
-
 The Wormhole Core Contract is deployed across each supported blockchain network. This contract is a fundamental component of the Wormhole interoperability protocol and acts as the foundational layer enabling secure and efficient multichain messaging. All multichain applications either interact directly with the Core Contract or with another contract that does.
 
 This page summarizes the key functions of the Core Contract and outlines how the Core Contract works.
@@ -2508,7 +2496,7 @@ description: Explore Wormhole's Guardian Network, a decentralized system for sec
 categories: Basics
 ---
 
-## Guardian
+# Guardians
 
 Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
@@ -4368,8 +4356,6 @@ categories: Reference
 
 # Testnet Faucets
 
-## Get Started
-
 Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
@@ -4450,8 +4436,6 @@ categories: Reference
 ---
 
 # Wormhole Formatted Addresses
-
-## Introduction
 
 Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 
