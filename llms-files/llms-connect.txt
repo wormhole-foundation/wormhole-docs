@@ -22,7 +22,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/hosted-version.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/overview.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-features.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md [type: other]
 
 ## Full content for each doc page
@@ -1686,7 +1686,7 @@ Add Connect to your app with these key setup steps:
 [timeline(wormhole-docs/.snippets/text/products/connect/overview/connect-timeline.json)]
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/products/connect/reference/support-matrix/
+Doc-Content: https://wormhole.com/docs/products/connect/reference/support-features/
 --- BEGIN CONTENT ---
 ---
 title: Features
@@ -1782,14 +1782,6 @@ categories: Connect, Transfer
 ---
 
 # Supported Networks
-
-This page lists all blockchain networks supported by Wormhole Connect, a drop-in widget that enables seamless cross-chain asset transfers in any dApp.
-
-Support for a chain means the Connect widget can interact with Wormhole contracts and wallets on that chain to send and receive tokens across networks.
-
-For integration details, see the [Connect Overview](/docs/products/connect/overview/){target=\_blank} and [Get Started guide](/docs/products/connect/get-started/){target=\_blank}.
-
-## Support Matrix
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CONNECT-->

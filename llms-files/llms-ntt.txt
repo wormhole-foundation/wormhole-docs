@@ -2054,14 +2054,6 @@ categories: NTT, Transfer
 
 # Supported Networks
 
-This page lists all blockchain networks supported by the Native Token Transfers (NTT) protocol.
-
-NTT enables native asset transfers between supported chains by deploying canonical token contracts on each network and using Wormhole messages to coordinate minting and burning. Support for a chain means the necessary NTT contracts are deployed and active on that chain's mainnet or testnet.
-
-For more details on NTT architecture and deployment, see the [NTT Overview](/docs/products/native-token-transfers/overview/){target=\_blank} and [deployment guides](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}.
-
-## Support Matrix
-
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_NTT-->
 <div class="full-width" markdown="">

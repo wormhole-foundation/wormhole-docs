@@ -1205,14 +1205,6 @@ categories: Token-Bridge, Transfer
 
 # Supported Networks
 
-This page lists all blockchain networks supported by the Wormhole Token Bridge, which enables cross-chain transfers of wrapped assets between chains.
-
-Support for a chain means the Token Bridge contracts are deployed and active, allowing users and dApps to transfer tokens to and from that chain.
-
-For more details on how the Token Bridge works, see the [Overview](/docs/products/token-bridge/overview/){target=\_blank} and [Get Started guide](/docs/products/token-bridge/get-started/){target=\_blank}.
-
-## Support Matrix
-
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->
 <div class="full-width" markdown="">

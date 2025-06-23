@@ -26,7 +26,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/hosted-version.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/overview.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-features.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/security.md [type: other]
@@ -3181,14 +3181,6 @@ categories: Transfer
 
 # Supported Networks
 
-This page lists all blockchain networks supported by Circle's CCTP (Cross-Chain Transfer Protocol), used in Wormhole's native USDC transfer flows.
-
-Support for a chain implies that the required CCTP and Wormhole contracts are deployed and configured, allowing USDC to be burned and minted across different chains.
-
-For more details, see the [CCTP Overview](/docs/products/cctp-bridge/overview/){target=\_blank} and [Get Started guide](/docs/products/cctp-bridge/get-started/){target=\_blank}.
-
-## Support Matrix
-
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CCTP-->
 <div class="full-width" markdown="">
@@ -4671,7 +4663,7 @@ Add Connect to your app with these key setup steps:
 [timeline(wormhole-docs/.snippets/text/products/connect/overview/connect-timeline.json)]
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/products/connect/reference/support-matrix/
+Doc-Content: https://wormhole.com/docs/products/connect/reference/support-features/
 --- BEGIN CONTENT ---
 ---
 title: Features
@@ -4767,14 +4759,6 @@ categories: Connect, Transfer
 ---
 
 # Supported Networks
-
-This page lists all blockchain networks supported by Wormhole Connect, a drop-in widget that enables seamless cross-chain asset transfers in any dApp.
-
-Support for a chain means the Connect widget can interact with Wormhole contracts and wallets on that chain to send and receive tokens across networks.
-
-For integration details, see the [Connect Overview](/docs/products/connect/overview/){target=\_blank} and [Get Started guide](/docs/products/connect/get-started/){target=\_blank}.
-
-## Support Matrix
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_CONNECT-->
@@ -6827,14 +6811,6 @@ categories: NTT, Transfer
 
 # Supported Networks
 
-This page lists all blockchain networks supported by the Native Token Transfers (NTT) protocol.
-
-NTT enables native asset transfers between supported chains by deploying canonical token contracts on each network and using Wormhole messages to coordinate minting and burning. Support for a chain means the necessary NTT contracts are deployed and active on that chain's mainnet or testnet.
-
-For more details on NTT architecture and deployment, see the [NTT Overview](/docs/products/native-token-transfers/overview/){target=\_blank} and [deployment guides](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}.
-
-## Support Matrix
-
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_NTT-->
 <div class="full-width" markdown="">
@@ -7425,14 +7401,6 @@ categories: Settlement, Transfer
 ---
 
 # Supported Networks
-
-This page lists all blockchain networks supported by the Wormhole Settlement protocol, which enables fast, secure, and token-agnostic multichain payments.
-
-Support for a chain means the Settlement contracts are deployed and can be used to initiate and complete payments between supported blockchains.
-
-For more details, see the [Settlement Overview](/docs/products/settlement/overview/){target=\_blank} and [Get Started guide](/docs/products/settlement/get-started/){target=\_blank}.
-
-## Support Matrix
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_SETTLEMENT-->
@@ -8056,14 +8024,6 @@ categories: Token-Bridge, Transfer
 ---
 
 # Supported Networks
-
-This page lists all blockchain networks supported by the Wormhole Token Bridge, which enables cross-chain transfers of wrapped assets between chains.
-
-Support for a chain means the Token Bridge contracts are deployed and active, allowing users and dApps to transfer tokens to and from that chain.
-
-For more details on how the Token Bridge works, see the [Overview](/docs/products/token-bridge/overview/){target=\_blank} and [Get Started guide](/docs/products/token-bridge/get-started/){target=\_blank}.
-
-## Support Matrix
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->

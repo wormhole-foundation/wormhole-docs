@@ -515,14 +515,6 @@ categories: Settlement, Transfer
 
 # Supported Networks
 
-This page lists all blockchain networks supported by the Wormhole Settlement protocol, which enables fast, secure, and token-agnostic multichain payments.
-
-Support for a chain means the Settlement contracts are deployed and can be used to initiate and complete payments between supported blockchains.
-
-For more details, see the [Settlement Overview](/docs/products/settlement/overview/){target=\_blank} and [Get Started guide](/docs/products/settlement/get-started/){target=\_blank}.
-
-## Support Matrix
-
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_SETTLEMENT-->
 <div class="full-width" markdown="">
