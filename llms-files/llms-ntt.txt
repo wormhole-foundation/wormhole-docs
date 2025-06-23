@@ -4140,7 +4140,9 @@ categories: Basics, Solidity-SDK
 
 # Get Started with the Solidity SDK
 
-The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} provides Solidity interfaces, prebuilt contracts, and testing tools to help Solidity developers build on-chain Wormhole integrations via smart contracts. You can use the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} for off-chain integrations without writing Solidity.
+:simple-github: [Repository on GitHub](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}
+
+The Wormhole Solidity SDK provides Solidity interfaces, prebuilt contracts, and testing tools to help Solidity developers build on-chain Wormhole integrations via smart contracts. You can use the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} for off-chain integrations without writing Solidity.
 
 ## Install the SDK
 
