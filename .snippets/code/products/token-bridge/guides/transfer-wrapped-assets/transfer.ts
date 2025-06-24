@@ -26,7 +26,7 @@ async function transferTokens() {
   );
   // Replace with amount you want to transfer
   // This is a human-readable number, e.g., 0.2 for 0.2 tokens
-  const amount = 0;
+  const amount = INSERT_AMOUNT;
   // Convert to raw units based on token decimals
   const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
   const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));

@@ -20,13 +20,13 @@ Completing this guide will help you to accomplish the following:
 
 Before you begin, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
-- The contract address for the ERC-20 token you wish to transfer
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The contract address for the ERC-20 token you wish to transfer.
 - A wallet setup with the following:
-    - Private keys for your source and destination chains
-    - A small amount of gas tokens on your source and destination chains
-    - A balance on your source chain of the ERC-20 token you want to transfer
+    - Private keys for your source and destination chains.
+    - A small amount of gas tokens on your source and destination chains.
+    - A balance on your source chain of the ERC-20 token you want to transfer.
 
 ## Set Up Your Token Transfer Environment
 
@@ -74,10 +74,10 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts::47'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::47'
     // Token attestation and registration flow here if needed
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:127:127'
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:169:174'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:127:127'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:169:174'
     ```
 
     This code does the following:
@@ -95,7 +95,7 @@ Registration via attestation is only required the first time a given token is se
 
     If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising the attestation flow will run:
 
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal01.html'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-1.html'
 
     If you see this message, follow the steps under "Need to register a token?" before continuing with the rest of the transfer flow code.
 
@@ -112,12 +112,12 @@ Registration via attestation is only required the first time a given token is se
 
             This code does the following:
         
-            - Gets the Token Bridge protocol for the source chain
-            - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction
-            - Calls `createAttestation`, signs, and then sends the transaction
-            - Waits for the signed VAA confirming the attestation creation
-            - Sends the VAA to the destination chain to complete registration
-            - Polls for the wrapped token to be available on the destination chain before continuing the transfer process
+            - Gets the Token Bridge protocol for the source chain.
+            - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction.
+            - Calls `createAttestation`, signs, and then sends the transaction.
+            - Waits for the signed VAA confirming the attestation creation.
+            - Sends the VAA to the destination chain to complete registration.
+            - Polls for the wrapped token to be available on the destination chain before continuing the transfer process.
 
         3. Run the script with the following command:
             
@@ -127,7 +127,7 @@ Registration via attestation is only required the first time a given token is se
 
             When the attestation and registration are complete, you will see terminal output similar to the following:
 
-            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal02.html'
+            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-2.html'
 
         You can now go on to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain.
 
@@ -139,16 +139,16 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
 
     ```typescript title="transfer.ts"
     // Remainder of transfer code 
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:129:174'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:129:174'
          
     ```
 
     This code does the following:
 
-    - Defines the transfer as automatic or manual. To use automatic transfer, both the source and destination chain must have an existing `tokenBridgeRelayer` contract. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported
-    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers
-    - Builds the transfer object, initiates the transfer, signs and sends the transaction
-    - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer
+    - Defines the transfer as automatic or manual. To use automatic transfer, both the source and destination chain must have an existing `tokenBridgeRelayer` contract. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
+    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers.
+    - Builds the transfer object, initiates the transfer, signs and sends the transaction.
+    - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
 
 2. Run the script with the following command:
     ```bash
@@ -157,7 +157,7 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
 
 3. You will see terminal output similar to the following:
 
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal03.html'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-3.html'
 
 Congratulations! You've now used Token Bridge to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 
