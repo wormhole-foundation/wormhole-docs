@@ -4,7 +4,7 @@ description: Explore Wormhole's TypeScript SDK and learn how to perform differen
 categories: Typescript-SDK
 ---
 
-# Wormhole TypeScript SDK Reference
+# TypeScript SDK Reference
 
 This page covers all you need to know about the functionality offered through the Wormhole TypeScript SDK.
 
