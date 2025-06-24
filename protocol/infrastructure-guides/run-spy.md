@@ -5,8 +5,6 @@ description: Learn how to run a Spy locally to listen for and forward messages (
 
 # Run a Spy
 
-## Introduction
-
 The Spy is a lightweight component in the Wormhole infrastructure designed to listen for and forward messages (Verifiable Action Approvals (VAAs)) published on the Wormhole network. Running a Spy locally allows developers to subscribe to a filtered stream of these messages, facilitating the development of custom relayers or other integrations with Wormhole.
 
 For a more comprehensive understanding of the Spy and its role within the Wormhole ecosystem, refer to the [Spy Documentation](/docs/protocol/infrastructure/spy/){target=\_blank}.

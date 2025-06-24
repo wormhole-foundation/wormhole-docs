@@ -1,3 +1,4 @@
 title: Reference
 nav:
-- 'Support Matrix': support-matrix.md
+- 'Supported Networks': supported-networks.md
+- 'Supported Features': support-matrix.md

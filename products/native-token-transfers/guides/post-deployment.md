@@ -4,7 +4,7 @@ description: Learn post-deployment guidelines for optimizing Wormhole NTT, which
 categories: NTT, Transfer
 ---
 
-# Native Token Transfers Post Deployment
+# NTT Post-Deployment Steps
 
 To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
 

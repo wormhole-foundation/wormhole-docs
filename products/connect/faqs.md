@@ -4,7 +4,7 @@ description: Common questions and detailed answers about using Wormhole Connect,
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect FAQs
+# Connect FAQs
 
 ## What types of assets does Connect support? 
 
