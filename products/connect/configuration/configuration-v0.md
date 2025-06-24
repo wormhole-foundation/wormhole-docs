@@ -5,8 +5,6 @@ description: Configure Wormhole Connect v0 for React or HTML, set themes, define
 
 # Configure Your Connect Widget
 
-## Introduction {: #introduction }
-
 Wormhole Connect is a flexible React widget that streamlines cross-chain asset transfers and enables seamless interoperability by leveraging Wormhole's powerful infrastructure. Designed for easy integration into decentralized applications (dApps), Wormhole Connect abstracts the complexities of cross-chain communication, providing a user-friendly experience for both developers and end users.
 
 This guide provides detailed instructions on configuring Wormhole Connect and highlights the many ways it can be customized to fit your specific needs, from integrating supported blockchains and tokens to tailoring the user interface.

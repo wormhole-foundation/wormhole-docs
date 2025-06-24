@@ -39,8 +39,6 @@ categories: Connect, Transfer
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
 
-## Introduction
-
 In this tutorial, we'll explore how to integrate [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} to enable cross-chain token transfers and interactions. Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
 While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any [blockchain supported by Wormhole](/docs/products/connect/reference/support-matrix/){target=\_blank}. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
@@ -790,7 +788,7 @@ description: Common questions and detailed answers about using Wormhole Connect,
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect FAQs
+# Connect FAQs
 
 ## What types of assets does Connect support? 
 
@@ -867,8 +865,6 @@ categories: Connect, Transfer
 # Get Started with Connect
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
-
-## Introduction
 
 Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
 
@@ -1059,8 +1055,6 @@ categories: Connect, Transfer
 ---
 
 # Wormhole Connect v1.0 Migration Guide
-
-## Overview
 
 The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
@@ -2142,8 +2136,6 @@ categories: Basics
 
 # Get Started with Core Contracts
 
-## Introduction
-
 Wormhole's Core Contracts, deployed on each supported blockchain network, enable the fundamental operations of sending and receiving cross-chain messages.
 
 While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
@@ -2519,8 +2511,6 @@ categories: Relayers, Basics
 ---
 
 # Wormhole Relayer
-
-## Introduction
 
 The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
 
@@ -2937,8 +2927,6 @@ categories: Basics
 
 # Architecture
 
-## Overview
-
 Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
@@ -3043,8 +3031,6 @@ categories: Basics
 
 # Core Contracts
 
-## Introduction
-
 The Wormhole Core Contract is deployed across each supported blockchain network. This contract is a fundamental component of the Wormhole interoperability protocol and acts as the foundational layer enabling secure and efficient multichain messaging. All multichain applications either interact directly with the Core Contract or with another contract that does.
 
 This page summarizes the key functions of the Core Contract and outlines how the Core Contract works.
@@ -3125,7 +3111,7 @@ description: Explore Wormhole's Guardian Network, a decentralized system for sec
 categories: Basics
 ---
 
-## Guardian
+# Guardians
 
 Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
@@ -4986,8 +4972,6 @@ categories: Reference
 
 # Testnet Faucets
 
-## Get Started
-
 Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
@@ -5068,8 +5052,6 @@ categories: Reference
 ---
 
 # Wormhole Formatted Addresses
-
-## Introduction
 
 Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 

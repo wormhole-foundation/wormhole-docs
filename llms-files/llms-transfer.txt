@@ -70,8 +70,6 @@ categories: Connect, Transfer
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
 
-## Introduction
-
 In this tutorial, we'll explore how to integrate [Wormhole Connect](/docs/products/connect/overview/){target=\_blank} to enable cross-chain token transfers and interactions. Connect offers a simplified interface for developers to facilitate seamless token transfers between blockchains. Using Connect, you can easily bridge assets across multiple ecosystems without diving into the complex mechanics of cross-chain communication.
 
 While this tutorial will guide you through the process using a specific blockchain as an example, the principles and steps outlined here can be applied to any [blockchain supported by Wormhole](/docs/products/connect/reference/support-matrix/){target=\_blank}. In this example, we'll work with Sui as our source blockchain and Avalanche Fuji as the destination blockchain.
@@ -256,8 +254,6 @@ categories: Transfer
 ---
 
 # Get Started with CCTP
-
-## Introduction
 
 [Wormhole CCTP](/docs/products/cctp-bridge/overview/){target=\_blank} enables native USDC transfers between supported chains by burning tokens on the source chain and minting them on the destination. This provides native, canonical USDC movement without the need for wrapped tokens.
 
@@ -474,8 +470,6 @@ categories: Transfer
 ---
 
 # Interact with CCTP Contracts
-
-## Introduction
 
 Circle's [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\_blank} is a permissionless utility that facilitates secure and efficient USDC transfers across blockchain networks through native burning and minting mechanisms.
 
@@ -3768,7 +3762,7 @@ description: Common questions and detailed answers about using Wormhole Connect,
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect FAQs
+# Connect FAQs
 
 ## What types of assets does Connect support? 
 
@@ -3845,8 +3839,6 @@ categories: Connect, Transfer
 # Get Started with Connect
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
-
-## Introduction
 
 Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
 
@@ -4037,8 +4029,6 @@ categories: Connect, Transfer
 ---
 
 # Wormhole Connect v1.0 Migration Guide
-
-## Overview
 
 The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
@@ -4797,10 +4787,9 @@ description: Explore Wormhole's Native Token Transfers architecture, which cover
 categories: NTT, Transfer
 ---
 
-## Introduction
+# NTT Architecture
 
 The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components that work together to manage cross-chain communication and token operations complexities.
-
 
 ## System Components
 
@@ -4951,6 +4940,8 @@ description: Learn about the owner and pauser access roles for the NTT manager c
 categories: NTT, Transfer
 ---
 
+# Access Control
+
 ## Owner and Pauser Roles
 
 Pausing the Native Toke Transfer (NTT) Manager Contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits if configured).
@@ -4995,7 +4986,7 @@ description: Learn about rate limits in Wormhole NTT by configuring send/receive
 categories: NTT, Transfer
 ---
 
-## Introduction
+# Rate Limiting
 
 The Native Token Transfer (NTT) framework provides configurable per-chain rate limits for sending and receiving token transfers. Integrators can manage these limits via their own governance processes to quickly adapt to on-chain activity.
 
@@ -5094,7 +5085,7 @@ description: Frequently asked questions about Wormhole Native Token Transfers, i
 categories: NTT, Transfer
 ---
 
-# Wormhole NTT FAQs
+# NTT FAQs
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
@@ -5469,7 +5460,7 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers (NTT) to EVM Chains
+# Deploy NTT to EVM Chains
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
@@ -5695,7 +5686,7 @@ description: Deploy and configure Wormhole's Native Token Transfers (NTT) for So
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers on Solana
+# Deploy NTT on Solana
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
@@ -5993,9 +5984,7 @@ description: Deploy a new token or extend an existing one across multiple chains
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers with Launchpad
-
-## Introduction
+# Deploy NTT with Launchpad
 
 The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
 
@@ -6182,7 +6171,7 @@ description: Learn post-deployment guidelines for optimizing Wormhole NTT, which
 categories: NTT, Transfer
 ---
 
-# Native Token Transfers Post Deployment
+# NTT Post-Deployment Steps
 
 To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
 
@@ -6437,8 +6426,6 @@ categories: NTT, Transfer
 ---
 
 # NTT CLI Commands
-
-## Introduction
 
 The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
 
@@ -6919,8 +6906,6 @@ categories: Settlement, Transfer
 
 # Settlement Protocol Architecture
 
-## Introduction
-
 This page describes the high-level mechanics of the underlying native swap protocols in the Wormhole SDK. While built on Wormhole messaging, each protocol uses a novel architecture with unique price discovery, scalability, and latency tradeoffs. These designs enable redundancy to handle highly asymmetric flows and sharp volume changes. These sections will cover the following:
 
 - **Wormhole Liquidity Layer** - a cross-chain transfer protocol that utilizes Solana as the central orchestration layer for cross-chain intents, allowing solvers to deploy liquidity from a single Solana-based hub rather than distributing it across each supported chain
@@ -7023,7 +7008,7 @@ description: Frequently asked questions about Wormhole Settlement, including sma
 categories: Settlement, Transfer
 ---
 
-# Wormhole Settlement FAQs
+# Settlement FAQs
 
 ## Can I use Wormhole Settlement from a smart contract? If so, how is a message signed and relayed?
 
@@ -7048,7 +7033,7 @@ description: Perform a cross-chain token swap using Wormhole Settlement and the 
 categories: Settlement, Transfer
 ---
 
-# Get Started
+# Get Started with Settlement
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
@@ -7428,8 +7413,6 @@ categories: Token-Bridge, Transfer
 
 # Flow of a Transfer
 
-## Introduction
-
 The [Wormhole Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own Token Bridge contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
 This guide provides a conceptual overview of the Token Bridge and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
@@ -7627,7 +7610,7 @@ description: Find answers to common questions about the Wormhole Token Bridge, i
 categories: Token-Bridge, Transfer
 ---
 
-# FAQs
+# Token Bridge FAQs
 
 ## Can ownership of wrapped tokens be transferred from the Token Bridge?
 
@@ -7668,8 +7651,6 @@ categories: Token-Bridge, Transfer
 ---
 
 # Interact with Token Bridge Contracts
-
-## Introduction 
 
 Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
@@ -8446,8 +8427,6 @@ categories: Basics
 
 # Get Started with Core Contracts
 
-## Introduction
-
 Wormhole's Core Contracts, deployed on each supported blockchain network, enable the fundamental operations of sending and receiving cross-chain messages.
 
 While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
@@ -8823,8 +8802,6 @@ categories: Relayers, Basics
 ---
 
 # Wormhole Relayer
-
-## Introduction
 
 The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
 
@@ -9241,8 +9218,6 @@ categories: Basics
 
 # Architecture
 
-## Overview
-
 Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
@@ -9347,8 +9322,6 @@ categories: Basics
 
 # Core Contracts
 
-## Introduction
-
 The Wormhole Core Contract is deployed across each supported blockchain network. This contract is a fundamental component of the Wormhole interoperability protocol and acts as the foundational layer enabling secure and efficient multichain messaging. All multichain applications either interact directly with the Core Contract or with another contract that does.
 
 This page summarizes the key functions of the Core Contract and outlines how the Core Contract works.
@@ -9429,7 +9402,7 @@ description: Explore Wormhole's Guardian Network, a decentralized system for sec
 categories: Basics
 ---
 
-## Guardian
+# Guardians
 
 Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 
@@ -11290,8 +11263,6 @@ categories: Reference
 
 # Testnet Faucets
 
-## Get Started
-
 Don't let the need for testnet tokens get in the way of buildling your next great idea with Wormhole. Use this guide to quickly locate the testnet token faucets you need to deploy and test applications and contracts on Wormhole's supported networks.
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
@@ -11372,8 +11343,6 @@ categories: Reference
 ---
 
 # Wormhole Formatted Addresses
-
-## Introduction
 
 Wormhole formatted addresses are 32-byte hex representations of addresses from any supported blockchain. Whether an address originates from EVM, Solana, Cosmos, or another ecosystem, Wormhole standardizes all addresses into this format to ensure cross-chain compatibility.
 

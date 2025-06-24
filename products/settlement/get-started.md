@@ -4,7 +4,7 @@ description: Perform a cross-chain token swap using Wormhole Settlement and the 
 categories: Settlement, Transfer
 ---
 
-# Get Started
+# Get Started with Settlement
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
