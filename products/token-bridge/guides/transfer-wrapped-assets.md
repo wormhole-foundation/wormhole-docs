@@ -6,17 +6,15 @@ categories: Token-Bridge, Transfers, Typescript-SDK
 
 # Transfer Wrapped Assets
 
-## Introduction
-
-This guide demonstrates the transfer of wrapped assets using the Token Bridge protocol via the [TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana but can be adapted for any supported chains. View this list of chains with [deployed Token Bridge contracts](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} to verify if your desired source and destination chains are supported.
+This guide demonstrates the transfer of wrapped assets using the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
 
 Completing this guide will help you to accomplish the following:
 
-- Verify if a wrapped version of a token exists on a destination chain
-- Create a token attestation to register a wrapped version of a token on a destination chain
-- Transfer wrapped assets using Token Bridge automatic or manual transfers
-- Fetch a signed Verified Action Approval (VAA)
-- Manually redeem a signed VAA to claim tokens on a destination chain
+- Verify if a wrapped version of a token exists on a destination chain.
+- Create a token attestation to register a wrapped version of a token on a destination chain.
+- Transfer wrapped assets using Token Bridge automatic or manual transfers.
+- Fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+- Manually redeem a signed VAA to claim tokens on a destination chain.
 
 ## Prerequisites
 
@@ -76,7 +74,7 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:1:47'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts::47'
     // Token attestation and registration flow here if needed
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:127:127'
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:169:174'
@@ -165,6 +163,6 @@ Congratulations! You've now used Token Bridge to transfer wrapped assets using t
 
 ## Next Steps
 
-- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: visit this site to interact with Wormhole's Portal Bridge featuring a working Token Bridge integration.
-- [**Interact with Token Bridge Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): this guide explores the Solidity functions used in Token Bridge contracts.
-- [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: view the source code defining these key interfaces and their associated namespaces.
+- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working Token Bridge integration.
+- [**Interact with Token Bridge Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in Token Bridge contracts.
+- [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
