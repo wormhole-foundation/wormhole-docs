@@ -494,7 +494,7 @@ The Circle Integration contract emits Wormhole messages with arbitrary payloads 
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
 !!! note
-    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/stablecoins/docs/supported-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
+    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/stablecoins/supported-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
 
 ??? code "Circle Integration contract"
     ```solidity
@@ -3197,7 +3197,7 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
 
 ## CCTP Routes (USDC) {: #cctp-routes-usdc}
  
-[Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains. Wormhole Connect can facilitate such transfers.
+[Circle](https://www.circle.com/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank} chains. Wormhole Connect can facilitate such transfers.
 
 Note that if native USDC is transferred from the CCTP-enabled chains to any other outside of this list, the transfer will be routed through the Token Bridge, and the resulting asset will be a Wormhole-wrapped token instead of native USDC.
 
@@ -3308,7 +3308,7 @@ wormholeConnectHosted(container, {
     ```
 
 !!! note
-    The complete type definition of `WormholeConnectConfig` is available in the [Wormhole Connect repository](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank}.
+    The complete type definition of `WormholeConnectConfig` is available in the [Wormhole Connect repository](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/types.ts#L96){target=\_blank}.
 
 ## Examples {: #examples }
 
@@ -3435,7 +3435,7 @@ The following section shows how to add an arbitrary token to your deployment of 
 
 This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
 
-See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
+See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/types.ts#L182){target=\_blank} for the type definition of `TokensConfig`.
 
 ```typescript
 import WormholeConnect, {
@@ -3469,8 +3469,8 @@ const config: WormholeConnectConfig = {
 
 Connect offers a list of built-in tokens by default. You can see it below:
 
-- [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/mainnet/tokens.ts){target=\_blank}
-- [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/testnet/tokens.ts){target=\_blank}
+- [Mainnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/mainnet/tokens.ts){target=\_blank}
+- [Testnet tokens](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/testnet/tokens.ts){target=\_blank}
 
 You can customize the tokens shown in the UI using the `tokens` property. The following example adds a custom token and limits Connect to showing only that token, along with the native gas tokens ETH and SOL.
 
@@ -3863,7 +3863,7 @@ Before you begin, make sure you have the following:
     npm start
     ```
 
-4. Open your browser to [localhost:3000](http://localhost:3000){target=\_blank} to view the application locally. It will look similar to the following:
+4. Open your browser to `http://localhost:3000` to view the application locally. It will look similar to the following:
 
     ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
 
@@ -3930,7 +3930,7 @@ Doc-Content: https://wormhole.com/docs/products/connect/guides/hosted-version/
 --- BEGIN CONTENT ---
 ---
 title: Integrate Connect via CDN
-description:
+description: Learn how to use Wormhole Connect via CDN in any JavaScript project using just a script tag with no React or backend setup required.
 categories: Connect, Transfer
 ---
 
@@ -4697,7 +4697,7 @@ This route appears if all of the following conditions are satisfied:
 
 ### Circle CCTP {: #circle-cctp}
 
-[Circle](https://www.circle.com/en/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/en/cross-chain-transfer-protocol){target=\_blank} chains.
+[Circle](https://www.circle.com/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank} chains.
 
 This route appears if all of the following conditions are satisfied:
 
@@ -5033,7 +5033,7 @@ categories: NTT, Transfer
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
-Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
+Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} on GitHub.
 
 Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/docs/products/messaging/overview/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
 
@@ -5218,7 +5218,7 @@ To use NTT, you must have a token already deployed on the source and destination
 ???- interface "Deploy an ERC-20 Token on EVM"
     Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-    1. **Install Foundry** - install the [Forge CLI](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+    1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
     2. **Clone the repository** – fetch the example contract repository
 
@@ -6948,7 +6948,7 @@ categories: Settlement, Transfer
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
-This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=_blank}.
+This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=\_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}.
 
 By the end, you'll have a working script that:
 
@@ -6998,7 +6998,7 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     touch src/helpers.ts src/swap.ts .env .gitignore
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://book.getfoundry.sh/reference/cast/cast-wallet/){target=_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -7188,7 +7188,7 @@ You can tailor the example to your use case by adjusting:
 
 Once you've chosen a path, follow the corresponding guide to start building:
 
-- [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank}: Check out the repository for the full code example.
+- [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}: Check out the repository for the full code example.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
 --- END CONTENT ---
 
@@ -7412,7 +7412,7 @@ Here's a quick breakdown of the key differences:
 
 The user who initiated the transfer should complete the transfer within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
 
-If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=_blank} tutorial to update the VAA with signatures from the current Guardian Set.
+If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=\_blank} tutorial to update the VAA with signatures from the current Guardian Set.
 
 ## Token Bridge Relayer (TBR)
 
@@ -8476,7 +8476,7 @@ wormhole::post_message(
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
 
-Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.solana.com/developing/runtime-facilities/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://solana.com/docs/core/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
 VAAs are [multicast](/docs/protocol/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 
@@ -9684,7 +9684,7 @@ signature = ecdsa_sign(digest, key)
 !!!tip "Hash vs. double hash"
     Different implementations of the ECDSA signature validation may apply a keccak256 hash to the message passed, so care must be taken to pass the correct arguments.
     
-    For example, the [Solana secp256k1 program](https://docs.solanalabs.com/runtime/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+    For example, the [Solana secp256k1 program](https://solana.com/docs/core/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
 ## Payload Types
 
@@ -10037,7 +10037,7 @@ The [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-soli
 
 ## Install the SDK
 
-Use Foundry's [`forge`](https://book.getfoundry.sh/forge/){target=\_blank} to install the SDK using the following command:
+Use Foundry's [`forge`](https://getfoundry.sh/forge/){target=\_blank} to install the SDK using the following command:
 
 ```bash
 forge install wormhole-foundation/wormhole-solidity-sdk
@@ -10081,7 +10081,7 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} installed
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} installed
 - Testnet tokens for two supported chains. This example uses [testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} and can be adapted to any supported chains
 - [USDC testnet tokens](https://faucet.circle.com/){target=\_blank} on your source chain for cross-chain transfer
 
@@ -10396,7 +10396,7 @@ const SENDER_ABI_PATH = path.resolve(
     npx tsx script/transfer.ts
     ```
 
-4. Follow the prompts in the terminal. This example uses Avalanche Fuji as the source chain, Celo Testnet as the target, [Avalanche Fuji testnet USDC](https://developers.circle.com/stablecoins/usdc-on-test-networks){target=\_blank}, and a developer wallet as the recipient address. You will see terminal output similar to the following:
+4. Follow the prompts in the terminal. This example uses Avalanche Fuji as the source chain, Celo Testnet as the target, [Avalanche Fuji testnet USDC](https://developers.circle.com/stablecoins/usdc-contract-addresses#testnet){target=\_blank}, and a developer wallet as the recipient address. You will see terminal output similar to the following:
 
     <div data-termynal="" id="termynal">
 <span data-ty="input"><span class="file-path"></span>npx tsx script/transfer.ts</span>
