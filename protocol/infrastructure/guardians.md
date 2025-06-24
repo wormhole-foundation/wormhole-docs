@@ -4,7 +4,7 @@ description: Explore Wormhole's Guardian Network, a decentralized system for sec
 categories: Basics
 ---
 
-## Guardian
+# Guardians
 
 Wormhole relies on a set of 19 distributed nodes that monitor the state on several blockchains. In Wormhole, these nodes are referred to as Guardians. The current Guardian set can be seen in the [Dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
 

@@ -8,8 +8,6 @@ categories: Connect, Transfer
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
 
-## Introduction
-
 Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
 
 ## Install Connect
@@ -52,7 +50,7 @@ Before you begin, make sure you have the following:
     npm start
     ```
 
-4. Open your browser to [localhost:3000](http://localhost:3000){target=\_blank} to view the application locally. It will look similar to the following:
+4. Open your browser to `http://localhost:3000` to view the application locally. It will look similar to the following:
 
     ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
 

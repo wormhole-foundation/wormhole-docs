@@ -7,8 +7,6 @@ description: Learn how to fetch, validate, and replace outdated signatures in Wo
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-vaa-signature-replacement){target=\_blank}
 
-## Introduction
-
 Cross-chain transactions in Wormhole rely on [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}, which contain signatures from a trusted set of validators called [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}. These signatures prove that the network approved an action, such as a token transfer.
 
 However, the set of Guardians changes over time. If a user generates a transaction and waits too long before redeeming it, the Guardian set may have already changed. This means the VAA will contain outdated signatures from Guardians, who are no longer part of the network, causing the transaction to fail.

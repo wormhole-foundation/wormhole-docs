@@ -4,7 +4,7 @@ description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for 
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers (NTT) to EVM Chains
+# Deploy NTT to EVM Chains
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
@@ -70,6 +70,12 @@ Before deploying NTT contracts on EVM chains, you need to scaffold a project and
 ???- interface "Install the NTT CLI and Scaffold a New Project"
     
     --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
 
 Once you've completed those steps, return here to proceed with adding your EVM chains and deploying contracts.
 

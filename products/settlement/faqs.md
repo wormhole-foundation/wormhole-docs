@@ -4,7 +4,7 @@ description: Frequently asked questions about Wormhole Settlement, including sma
 categories: Settlement, Transfer
 ---
 
-# Wormhole Settlement FAQs
+# Settlement FAQs
 
 ## Can I use Wormhole Settlement from a smart contract? If so, how is a message signed and relayed?
 

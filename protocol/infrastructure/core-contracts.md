@@ -6,8 +6,6 @@ categories: Basics
 
 # Core Contracts
 
-## Introduction
-
 The Wormhole Core Contract is deployed across each supported blockchain network. This contract is a fundamental component of the Wormhole interoperability protocol and acts as the foundational layer enabling secure and efficient multichain messaging. All multichain applications either interact directly with the Core Contract or with another contract that does.
 
 This page summarizes the key functions of the Core Contract and outlines how the Core Contract works.
