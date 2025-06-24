@@ -71,11 +71,11 @@ Before deploying NTT contracts on EVM chains, you need to scaffold a project and
     
     --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
 
-    === "Testnet"
+        === "Testnet"
 
-        ```bash
-        ntt init Testnet
-        ```
+            ```bash
+            ntt init Testnet
+            ```
 
 Once you've completed those steps, return here to proceed with adding your EVM chains and deploying contracts.
 
