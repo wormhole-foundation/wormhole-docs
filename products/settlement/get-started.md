@@ -8,7 +8,7 @@ categories: Settlement, Transfer
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
-This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=_blank}.
+This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=\_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}.
 
 By the end, you'll have a working script that:
 
@@ -58,7 +58,7 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     touch src/helpers.ts src/swap.ts .env .gitignore
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://book.getfoundry.sh/reference/cast/cast-wallet/){target=_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -106,5 +106,5 @@ You can tailor the example to your use case by adjusting:
 
 Once you've chosen a path, follow the corresponding guide to start building:
 
-- [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=_blank}: Check out the repository for the full code example.
+- [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}: Check out the repository for the full code example.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
