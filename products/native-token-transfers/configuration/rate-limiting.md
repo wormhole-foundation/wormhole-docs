@@ -4,7 +4,7 @@ description: Learn about rate limits in Wormhole NTT by configuring send/receive
 categories: NTT, Transfer
 ---
 
-## Introduction
+# Rate Limiting
 
 The Native Token Transfer (NTT) framework provides configurable per-chain rate limits for sending and receiving token transfers. Integrators can manage these limits via their own governance processes to quickly adapt to on-chain activity.
 

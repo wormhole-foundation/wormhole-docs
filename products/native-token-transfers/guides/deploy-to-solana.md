@@ -4,7 +4,7 @@ description: Deploy and configure Wormhole's Native Token Transfers (NTT) for So
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers on Solana
+# Deploy NTT on Solana
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 

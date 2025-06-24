@@ -4,7 +4,7 @@ description: Find answers to common questions about the Wormhole Token Bridge, i
 categories: Token-Bridge, Transfer
 ---
 
-# FAQs
+# Token Bridge FAQs
 
 ## Can ownership of wrapped tokens be transferred from the Token Bridge?
 

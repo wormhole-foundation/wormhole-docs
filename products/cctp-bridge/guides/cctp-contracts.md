@@ -6,8 +6,6 @@ categories: Transfer
 
 # Interact with CCTP Contracts
 
-## Introduction
-
 Circle's [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\_blank} is a permissionless utility that facilitates secure and efficient USDC transfers across blockchain networks through native burning and minting mechanisms.
 
 As decentralized finance (DeFi) protocols evolve, the need for flexible, secure cross-chain messaging has expanded, requiring solutions beyond simple asset transfers. Wormhole enhances CCTP's capabilities by allowing developers to compose more complex cross-chain interactions. With Wormhole's generic messaging, applications can execute smart contract logic alongside native USDC transfers, enabling richer, more versatile cross-chain experiences.

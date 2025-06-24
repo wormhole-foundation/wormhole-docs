@@ -4,7 +4,7 @@ description: Frequently asked questions about Wormhole Native Token Transfers, i
 categories: NTT, Transfer
 ---
 
-# Wormhole NTT FAQs
+# NTT FAQs
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
