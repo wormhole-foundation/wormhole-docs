@@ -249,7 +249,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core Contract.
 
-        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=_blank}.
+        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=\_blank}.
 
         !!! note
             You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores Testnets.
