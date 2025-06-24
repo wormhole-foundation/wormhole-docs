@@ -74,18 +74,16 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::47'
-    // Token attestation and registration flow here if needed
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:127:127'
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:169:174'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::48'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:90:95'
     ```
 
     This code does the following:
 
-    - Initializes a `wormhole` instance and defines the source and destination chains
-    - Imports the signer and decimal functions from `helpers.ts`
-    - Identifies the token and amount to transfer
-    - Checks to see if a wrapped version of the ERC-20 token to transfer exists on the destination chain
+    - Initializes a `wormhole` instance and defines the source and destination chains.
+    - Imports the signer and decimal functions from `helpers.ts`.
+    - Identifies the token and amount to transfer.
+    - Checks to see if a wrapped version of the ERC-20 token to transfer exists on the destination chain.
 
 3. Run the script using the following command:
 
@@ -102,12 +100,14 @@ Registration via attestation is only required the first time a given token is se
     ??? example "Need to register a token?"
         Token attestation is a one-time process to register a token on a destination chain. You should only follow these steps if your token registration check indicates a wrapped version does not exist on the destination chain.
 
-        1. Add the following code to `transfer.ts` to create the attestation for token registration:
-            ```typescript title="transfer.ts"
-            // Token attestation and registration flow here if needed
-            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:48:127'
-            // Remainder of transfer code 
-            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer01.ts:171:174'
+        1. Create a new file called `attestToken.ts`:
+            ```bash
+            touch attestToken.ts
+            ```
+
+        2. Open `attestToken.ts` and add the following code to create the attestation for token registration:
+            ```typescript title="attestToken.ts"
+            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/attestToken.ts::107'
             ```
 
             This code does the following:
@@ -122,7 +122,7 @@ Registration via attestation is only required the first time a given token is se
         3. Run the script with the following command:
             
             ```bash
-            npx tsx transfer.ts
+            npx tsx attestToken.ts
             ```
 
             When the attestation and registration are complete, you will see terminal output similar to the following:
@@ -138,9 +138,7 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
 1. Open your `transfer.ts` file and add the following code:
 
     ```typescript title="transfer.ts"
-    // Remainder of transfer code 
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:129:174'
-         
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:49:88'
     ```
 
     This code does the following:
