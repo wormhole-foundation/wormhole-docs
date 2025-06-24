@@ -119,7 +119,7 @@ Here's a quick breakdown of the key differences:
 
 The user who initiated the transfer should complete the transfer within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
 
-If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=_blank} tutorial to update the VAA with signatures from the current Guardian Set.
+If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=\_blank} tutorial to update the VAA with signatures from the current Guardian Set.
 
 ## Token Bridge Relayer (TBR)
 
