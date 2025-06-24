@@ -6,15 +6,13 @@ categories: Token-Bridge, Transfer
 
 # Token Attestation
 
-## Introduction
-
 This guide demonstrates token attestation for registering a token for transfer using the [Token Bridge](/docs/products/token-bridge/overview) protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
 
 Completing this guide will help you to accomplish the following:
 
-- Verify if a wrapped version of a token exists on a destination chain
-- Create and submit token attestation to register a wrapped version of a token on a destination chain
-- Check for the wrapped version to become available on the destination chain and return the wrapped token address
+- Verify if a wrapped version of a token exists on a destination chain.
+- Create and submit token attestation to register a wrapped version of a token on a destination chain.
+- Check for the wrapped version to become available on the destination chain and return the wrapped token address.
 
 The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana but can be adapted for any supported chains.
 
@@ -22,12 +20,12 @@ The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha f
 
 Before you begin, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
-- The contract address for the token you wish to register
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The contract address for the token you wish to register.
 - A wallet setup with the following:
-    - Private keys for your source and destination chains
-    - A small amount of gas tokens on your source and destination chains
+    - Private keys for your source and destination chains.
+    - A small amount of gas tokens on your source and destination chains.
 
 ## Set Up Your Developer Environment
 
@@ -153,5 +151,3 @@ Congratulations! You've successfully created and submitted an attestation to reg
 ## Next Steps
 
 - [**Transfer Wrapped Assets**](/docs/products/token-bridge/guides/attest-tokens): follow this guide to incorporate token attestation and registration into an end-to-end Token Bridge transfer flow.
-
-TODO: What else should be here?
