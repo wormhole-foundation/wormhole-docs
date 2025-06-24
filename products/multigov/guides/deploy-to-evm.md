@@ -14,7 +14,7 @@ Once your project is approved through the intake process and you’ve collaborat
 
 To interact with MultiGov, you'll need the following:
 
-- Install [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+- Install [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank}
 - Install [Git](https://git-scm.com/downloads){target=\_blank}
 - Clone the repository:
    ```bash
