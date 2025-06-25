@@ -33,5 +33,51 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 ## Fetch VAA via TypeScript SDK
 
-This example fetches a singed VAA for a known token transfer transaction using its source chain transaction ID. It prints the `chain`, `emitter`, and `sequence` values from the VAA ID and the VAA bytes to the terminal and returns the `vaa` object for any further processing. 
+Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
 
+1. Create a new file called `fetch-vaa.ts` using the following command:
+    ```bash
+    touch fetch-vaa.ts
+    ```
+
+2. Open your `fetch-vaa.ts` file and add the following code:
+    ```typescript title="fetch-vaa.ts"
+    --8<-- 'code/products/token-bridge/guides/fetch-signed-vaa/fetch-vaa.ts'
+    ```
+
+    This code does the following:
+
+    - Initializes a Wormhole instance with the same `network` and `platform` as the source chain transfer transaction.
+    - Accepts the transaction ID from the source chain transfer transaction.
+    - Prints the associated `chain`, `emitter`, `sequence`, and VAA bytes to the terminal.
+    - Returns the `vaa` object for any further processing.
+
+3. Run the script with the following command:
+    ```bash
+    npx tsx fetch-vaa.ts
+    ```
+
+4. You will see terminal output similar to the following:
+
+    --8<-- 'code/products/token-bridge/guides/fetch-signed-vaa/terminal-1.html'
+
+## Fetch VAA via Wormholescan
+
+You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI to manually search for a VAA using the source transaction ID, VAA ID, or a wallet address. This type of quick search is helpful during debugging or testing of your integration. Follow these steps to fetch a VAA using Wormholescan:
+
+1. From the [Wormholescan homepage](https://wormholescan.io/){target=\_blank}, use the dropdown menu in the top right corner to select either **Mainnet** or **Testnet**.
+
+2. Enter your transaction ID in the search bar and select "return" or "enter" to submit your search request. Alternatively, you can enter the wallet address of the transaction signer and return any transactions under that account.
+
+    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-1.webp)
+
+3. Inspect the returned search results. Note the source transaction ID, current status, transaction details, and the VAA ID are included.
+
+    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-2.webp)
+
+Congratulations! You've now fetched a signed VAA using both the TypeScript SDK and Wormholescan UI. These skills are valuable when developing manual transfer or messaging processes, as well as debugging and testing an integration build. Consider the following options to build upon what you've achieved.
+
+## Next Steps
+
+- [**Redeem Signed VAA to Complete Transfer**](TODO: writing this now under separate PR): Follow this guide to submit a signed VAA verifying a source chain transfer transaction to the destination chain to complete a manual transfer flow and release the tokens to the intended recipient.
+- [**Transfer Wrapped Assets**](TODO: this is under review in a separate PR): This guide takes you end-to-end through the Token Bridge transfer flow for moving wrapped assets across blockchains, including automatic and manual transfers.
