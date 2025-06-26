@@ -3608,6 +3608,8 @@ By following these steps, you've learned how to:
 - Set up cross-chain transfers for native USDC between supported chains
 - Handle both manual and automatic relaying of transactions
 - Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/connect/concepts/routes/
@@ -6115,6 +6117,8 @@ By following these steps, you've learned how to:
 - Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
 
 With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/messaging/get-started/
@@ -7990,6 +7994,8 @@ You're now fully equipped to build cross-chain contracts using the Wormhole prot
 - Deploy sender and receiver contracts on different Testnets
 - Send a cross-chain message from one blockchain to another
 - Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/messaging/tutorials/cross-chain-token-contracts/
@@ -9604,6 +9610,8 @@ Congratulations! You've successfully built and deployed a cross-chain token tran
  - Set up a new Solidity project using Foundry
  - Develop smart contracts to send and receive tokens across chains
  - Write deployment scripts to manage and deploy contracts on different networks
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/messaging/tutorials/replace-signatures/
@@ -10699,6 +10707,8 @@ The demo repository includes a bonus script to check the VAA redemption status o
 You've successfully built a script to fetch, validate, and replace outdated signatures in VAAs using Wormholescan and the Wormhole SDK.
 
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for Guardian approval to finalize the process.
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/multigov/concepts/architecture/
@@ -11751,6 +11761,10 @@ governor.execute(targets, values, calldatas, descriptionHash);
     No direct return, but executing this function finalizes the cross-chain governance actions by dispatching the encoded messages via Wormhole to the spoke chains.
 
 Once the proposal is executed, the encoded messages will be dispatched via Wormhole to the spoke chains, where the Optimism and Arbitrum treasuries will receive their respective funds.
+
+## Conclusion
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/concepts/architecture/
@@ -17483,6 +17497,10 @@ It is recommended that you update your token’s metadata on blockchain explorer
 4. Follow the directions to verify contract address ownership via MetaMask by reviewing the [guide on verifying address ownership](https://info.etherscan.com/how-to-verify-address-ownership/){target=\_blank}
    - Given that Wormhole may be the contract owner, use the manual verification process by reaching out through the [Etherscan contact form](https://etherscan.io/contactus){target=\_blank}. The team will provide support as needed
 5. Once the step above is completed, follow the [instructions to update token information](https://info.etherscan.com/how-to-update-token-information-on-token-page/){target=\_blank}
+
+## Conclusion
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/token-bridge/tutorials/transfer-workflow/
@@ -18298,6 +18316,8 @@ If you'd like to explore the complete project or need a reference while followin
 You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the Token Bridge method. This guide took you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains like Sui and Solana.
 
 The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/protocol/architecture/
