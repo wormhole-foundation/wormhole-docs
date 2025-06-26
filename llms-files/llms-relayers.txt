@@ -3449,6 +3449,7 @@ categories: Reference
 | Celo | 0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84 |
 | Fantom | 0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470 |
 | Ink | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
+| Mezo | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Monad | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Moonbeam | 0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0 |
 | Optimism Sepolia | 0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE |
@@ -3583,6 +3584,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
