@@ -15,7 +15,8 @@
     "Queries", 
     "Transfer", 
     "Solidity-SDK", 
-    "Typescript-SDK"
+    "Typescript-SDK",
+    "CCTP"
   ],
   "sharedCategories": [
     {
