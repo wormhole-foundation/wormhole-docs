@@ -1210,14 +1210,6 @@ Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked i
 
     [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
 
--   :octicons-question-16:{ .lg .middle } **View FAQs**
-
-    ---
-
-    Find answers to common questions about NTT.
-
-    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
-
 </div>
 --- END CONTENT ---
 
