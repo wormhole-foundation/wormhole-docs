@@ -257,9 +257,9 @@ categories: Transfer
 
 [Wormhole CCTP](/docs/products/cctp-bridge/overview/){target=\_blank} enables native USDC transfers between supported chains by burning tokens on the source chain and minting them on the destination. This provides native, canonical USDC movement without the need for wrapped tokens.
 
-In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual cross-chain USDC transfer using Circle's CCTP protocol.
+In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform an automatic cross-chain USDC transfer using Circle's CCTP protocol.
 
-You will initiate the transfer on the source chain, wait for Circle's attestation, and redeem the USDC on the destination chain.
+You will initiate the transfer on the source chain, and Wormhole's relayer will automatically handle Circle's attestation and redemption steps to complete the transfer on the destination chain.
 
 ## Prerequisites
 
@@ -300,7 +300,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
 
 ## Perform a CCTP Transfer
 
-This section walks you through a complete manual USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, wait for the Circle attestation, and complete the redemption on Sepolia.
+This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on Sepolia.
 
 Start by defining utility functions for signer and token setup:
 
@@ -364,10 +364,10 @@ export async function getSigner<n c="" chain="" extends="" network,="">(
 </n,></c></n,></n,></n,></n>
     ```
 
-2. In `transfer.ts`, add the script to perform the manual transfer using CCTP:
+2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP:
 
     ```ts title="transfer.ts"
-    import { CircleTransfer, wormhole } from '@wormhole-foundation/sdk';
+    import { wormhole, amount } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import sui from '@wormhole-foundation/sdk/sui';
@@ -378,48 +378,36 @@ import { getSigner } from './helper';
   const wh = await wormhole('Testnet', [evm, solana, sui]);
 
   // Grab chain Contexts -- these hold a reference to a cached rpc client
-  const sendChain = wh.getChain('Avalanche');
-  const rcvChain = wh.getChain('Sepolia');
+  const sendChain = wh.getChain('Sepolia');
+  const rcvChain = wh.getChain('Avalanche');
 
   // Get signer from local key
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
   // Define the amount of USDC to transfer (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
-  const amt = 100_000n;
+  const amt = 1_000_001n;
 
-  const automatic = false;
+  // Whether to use automatic delivery
+  const automatic = true;
+
+  // The amount of native gas to send with the transfer
+  const nativeGas = amount.units(amount.parse('0.1', 6));
 
   // Create the circleTransfer transaction (USDC-only)
   const xfer = await wh.circleTransfer(
     amt,
     source.address,
     destination.address,
-    automatic
+    automatic,
+    undefined,
+    nativeGas
   );
 
-  const quote = await CircleTransfer.quoteTransfer(
-    sendChain,
-    rcvChain,
-    xfer.transfer
-  );
-  console.log('Quote: ', quote);
-
-  // Step 1: Initiate the transfer on the source chain (Avalanche)
+  // Initiate the transfer on the source chain (Avalanche)
   console.log('Starting Transfer');
   const srcTxids = await xfer.initiateTransfer(source.signer);
   console.log(`Started Transfer: `, srcTxids);
-
-  // Step 2: Wait for Circle Attestation (VAA)
-  const timeout = 120 * 1000; // Timeout in milliseconds (120 seconds)
-  console.log('Waiting for Attestation');
-  const attestIds = await xfer.fetchAttestation(timeout);
-  console.log(`Got Attestation: `, attestIds);
-
-  // Step 3: Complete the transfer on the destination chain (Sepolia)
-  console.log('Completing Transfer');
-  const dstTxids = await xfer.completeTransfer(destination.signer);
-  console.log(`Completed Transfer: `, dstTxids);
 
   process.exit(0);
 })();
@@ -436,19 +424,8 @@ import { getSigner } from './helper';
     <div data-termynal="" id="termynal">
 <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
 <span data-ty="">Starting Transfer</span>
-<span data-ty="">Started Transfer: 
-        [ '0xdedbf496a1e658efb15bc57f120122b38a3714a560892be7a8c0a7f23c44aca2',
-		'0x9a8e41837e225edfa62d1913f850c01bd0552e55bf082fd9225df789455a465a' ]</span>
-<span data-ty=""> </span>
-<span data-ty="">Waiting for Attestation</span>
-<span data-ty="">Retrying Circle:GetAttestation, attempt 0/60</span>
-<span data-ty="">Retrying Circle:GetAttestation, attempt 1/60</span>
-<span data-ty=""> </span>
-<span data-ty="">Got Attestation: [{hash: '0x89f8651bf94cfd932ba5bcd2f7795a3fabc6a7c602075fa712c9c55022f5cca8'}]</span>
-<span data-ty=""> </span>
-<span data-ty="">Completing Transfer</span>
-<span data-ty="">Completed Transfer: 
-        [ '0x9b81bb30d2a68aa2ecc707a8a1b5af63448223a69b2ead6cf6d172ab880ad0c9']</span>
+<span data-ty="">Started Transfer:
+        [ '0xa3a545e65865c95f814132ac689c2ff5a20bfa3ca3d68bab48230708de342841']</span>
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
