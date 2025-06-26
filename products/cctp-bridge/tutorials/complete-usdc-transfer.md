@@ -309,3 +309,5 @@ By following these steps, you've learned how to:
 - Set up cross-chain transfers for native USDC between supported chains
 - Handle both manual and automatic relaying of transactions
 - Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
+
+Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
