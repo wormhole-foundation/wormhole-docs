@@ -19677,7 +19677,7 @@ Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.get-started/
 ---
 title: Get Started with the Solidity SDK
 description: Follow this guide to use the Wormhole Solidity SDK's interfaces and tools to help you quickly build on-chain integrations using smart contracts.
-categories: Basics, Solidity-SDK
+categories: Solidity-SDK
 ---
 
 # Get Started with the Solidity SDK
