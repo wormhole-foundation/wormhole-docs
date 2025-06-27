@@ -106,14 +106,7 @@ def extract_category(category, section_priority, shared_data=None):
         if category.lower() in tags:
             section_label = infer_section_label(url, SECTION_PRIORITY) # determine section based on url  !!! this to be adjusted once we reorganize the website 
 
-            # Fix: Convert /docs/.../page -> relative GitHub path
-            if "/docs/" in url:
-                rel_path = url.split("/docs/")[1].rstrip("/") + ".md"
-                raw_url = f"{RAW_BASE_URL}/{rel_path}"
-            else:
-                raw_url = url  # fallback
-
-            index_lines.append(f"Doc-Page: {raw_url} [type: {infer_section_label(raw_url, SECTION_PRIORITY)}]")
+            index_lines.append(f"Doc-Page: {url} [type: {section_label}]")
             content_blocks.append(f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---") # store full page
 
     if not content_blocks: # # if no doc pages matched, skip writing a file.
