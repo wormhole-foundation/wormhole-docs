@@ -1,0 +1,4 @@
+title: Configuration
+nav:
+- 'Data': data.md
+- 'Theme': theme.md

@@ -1,8 +1,0 @@
-title: Toolkit
-nav:
- - index.md
- - typescript-sdk
- - 'Solidity SDK': 'solidity-sdk.md'
- - 'Wormholescan API': 'https://wormholescan.io/#/developers/api-doc'
-# - 'Development Environment': 'dev-env.md'
-# - 'FAQs': 'faqs.md'

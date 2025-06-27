@@ -1,5 +1,0 @@
-title: TypeScript SDK
-nav:
- - index.md
- - 'Transfer USDC via the CCTP Bridge': 'usdc-via-cctp.md'
- - 'Transfer Tokens via the Token Bridge': 'tokens-via-token-bridge.md'

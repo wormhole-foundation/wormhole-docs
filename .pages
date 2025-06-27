@@ -1,6 +1,6 @@
 nav:
- - index.md
- - build
- - tutorials
- - learn
- - 'AI Resources': ai-resources.md
+- products
+- protocol
+- tools
+- 'Reference': '/docs/products/reference/chain-ids/'
+- ai-resources

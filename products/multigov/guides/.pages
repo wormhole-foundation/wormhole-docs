@@ -1,0 +1,6 @@
+title: Guides
+nav:
+- 'Deploy to EVM Chains': deploy-to-evm.md
+- 'Deploy to Solana': deploy-to-solana.md
+- 'Upgrade on EVM Chains': upgrade-evm.md
+- 'Upgrade on Solana': upgrade-solana.md
