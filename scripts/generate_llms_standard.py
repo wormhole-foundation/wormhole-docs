@@ -185,8 +185,8 @@ def build_content_section(files,yaml_file):
         if '.snippets' in relative_path.split(os.sep):
             continue
 
-        doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
-        doc_url = f"{docs_url}{doc_url_path}"
+        #doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
+        doc_url = f"{raw_base_url}/{relative_path.replace(os.sep, '/')}"
 
         # Remove trailing /index from doc_url
         if doc_url.endswith('/index'):
