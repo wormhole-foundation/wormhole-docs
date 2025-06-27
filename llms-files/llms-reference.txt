@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com). A cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes shared documentation for the category: reference
+This file includes shared documentation for the category: Reference
 
 ## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: other]

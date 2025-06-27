@@ -153,7 +153,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/get-started/
 ---
 title: Get Started with CCTP
 description: Transfer USDC across chains using Wormhole's CCTP integration with the TypeScript SDK, including setup, attestation, and redemption steps.
-categories: Transfer
+categories: CCTP, Transfer
 ---
 
 # Get Started with CCTP
@@ -369,7 +369,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/guides/cctp-contract
 ---
 title: Interacting with CCTP Contracts
 description: Learn how to interact directly with Circle's CCTP Bridge contracts, including TokenMessenger, TokenMinter, and MessageTransmitter. 
-categories: Transfer
+categories: CCTP, Transfer
 ---
 
 # Interact with CCTP Contracts
@@ -2991,7 +2991,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/overview/
 ---
 title: CCTP Bridge with Wormhole
 description: Learn how the integration of Circle's CCTP with Wormhole enables secure and efficient native USDC transfers and complex cross-chain interactions.
-categories: Transfer
+categories: CCTP, Transfer
 ---
 
 # CCTP with Wormhole Overview 
@@ -3074,7 +3074,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/reference/supported-
 ---
 title: CCTP Supported Networks
 description: Explore all blockchains supported by Wormhole CCTP, including network availability, block explorers, and cross-chain transfer support.
-categories: Transfer
+categories: CCTP, Transfer
 ---
 
 # Supported Networks
@@ -3096,6 +3096,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/tutorials/complete-u
 ---
 title: Complete USDC Transfer Flow
 description: Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
+categories: CCTP, Transfer
 ---
 
 # Complete USDC Transfer Flow
@@ -4910,7 +4911,7 @@ Doc-Content: https://wormhole.com/docs/products/connect/faqs/
 ---
 title: Connect FAQs
 description: Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options.
-categories: Connect, Transfer
+categories: Connect, Transfer, CCTP
 ---
 
 # Connect FAQs
@@ -6122,7 +6123,7 @@ Doc-Content: https://wormhole.com/docs/products/messaging/get-started/
 ---
 title: Get Started with Messaging
 description: Follow this guide to use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
-categories: Basics, Typescript-SDK
+categories: Basics, Typescript SDK
 ---
 
 # Get Started with Messaging
@@ -7075,6 +7076,7 @@ Doc-Content: https://wormhole.com/docs/products/messaging/tutorials/cross-chain-
 ---
 title: Create Cross-Chain Contracts
 description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo Testnets and send messages across chains.
+categories: Basics
 ---
 
 # Create Cross-Chain Messaging Contracts
@@ -7997,6 +7999,7 @@ Doc-Content: https://wormhole.com/docs/products/messaging/tutorials/cross-chain-
 ---
 title: Cross-Chain Token Transfers
 description: Learn how to create cross-chain token transfers using Wormhole's Solidity SDK. Build and deploy smart contracts to send tokens from one blockchain to another.
+categories: Basics
 ---
 
 # Create Cross-Chain Token Transfer Contracts
@@ -9611,6 +9614,7 @@ Doc-Content: https://wormhole.com/docs/products/messaging/tutorials/replace-sign
 ---
 title: Replace Outdated Signatures in VAAs
 description: Learn how to fetch, validate, and replace outdated signatures in Wormhole VAAs using Wormholescan and the Wormhole SDK to ensure seamless processing.
+categories: Basics, Typescript SDK
 ---
 
 # Replace Outdated Signatures in VAAs
@@ -16125,7 +16129,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/concepts/payload-st
 ---
 title: Token Bridge Payload Structure
 description: Discover the structure and purpose of each Token Bridge payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
-categories: Token-Bridge, Transfers
+categories: Token Bridge, Transfers
 ---
 
 # Message and Payload Structure
@@ -16407,7 +16411,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/concepts/transfer-f
 ---
 title: Flow of a Token Bridge Transfer
 description: Learn how the Wormhole Token Bridge enables secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Flow of a Transfer
@@ -16606,7 +16610,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/faqs/
 ---
 title: Token Bridge FAQs
 description: Find answers to common questions about the Wormhole Token Bridge, including managing wrapped assets and understanding gas fees.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Token Bridge FAQs
@@ -16646,7 +16650,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/get-started/
 ---
 title: Get Started with Token Bridge
 description: Perform token transfers using Wormhole’s Token Bridge with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
-categories: Token-Bridge, Transfers
+categories: Token Bridge, Transfers
 ---
 
 # Get Started with Token Bridge
@@ -16938,7 +16942,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/guides/token-bridge
 ---
 title: Get Started with Token Bridge
 description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Interact with Token Bridge Contracts
@@ -17210,7 +17214,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/overview/
 ---
 title: Token Bridge Overview
 description: With Wormhole Token Bridge, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Token Bridge Overview
@@ -17293,7 +17297,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/portal/faqs/
 ---
 title: Portal Bridge FAQs
 description: Learn how to use deep-linking on Portal Bridge and send tokens to any wallet address with simple URL parameters and custom recipient fields.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # FAQs
@@ -17342,7 +17346,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/reference/supported
 ---
 title: Token Bridge Supported Networks
 description: Explore all blockchains supported by Wormhole Token Bridge, including network availability, block explorers, and cross-chain transfer support.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Supported Networks
@@ -17392,6 +17396,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/tutorials/multichai
 ---
 title: Create Multichain Tokens
 description: Learn how to create a multichain token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability.
+categories: Token Bridge, Transfers
 ---
 
 # Create Multichain Tokens
@@ -17486,6 +17491,7 @@ Doc-Content: https://wormhole.com/docs/products/token-bridge/tutorials/transfer-
 ---
 title: Transfer Tokens via Token Bridge Tutorial
 description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
+categories: Token Bridge, Transfers
 ---
 
 # Complete Token Transfer Workflow
@@ -19673,7 +19679,7 @@ Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.get-started/
 ---
 title: Get Started with the Solidity SDK
 description: Follow this guide to use the Wormhole Solidity SDK's interfaces and tools to help you quickly build on-chain integrations using smart contracts.
-categories: Solidity-SDK
+categories: Solidity SDK
 ---
 
 # Get Started with the Solidity SDK
@@ -20068,7 +20074,7 @@ Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.sdk-reference/
 ---
 title: Solidity SDK
 description: How to use the Wormhole Solidity SDK for cross-chain messaging, token transfers, and integrating decentralized applications on EVM-compatible blockchains.
-categories: Solidity-SDK
+categories: Solidity SDK
 ---
 
 # Solidity SDK Reference
@@ -21258,7 +21264,7 @@ Doc-Content: https://wormhole.com/docs/tools/typescript-sdk/get-started/
 ---
 title: Get Started with the TypeScript SDK
 description: Follow this guide to install the Wormhole TypeScript SDK, initialize a Wormhole instance, and add the platforms your integration supports. 
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # Get Started with the TypeScript SDK
@@ -21605,7 +21611,7 @@ Doc-Content: https://wormhole.com/docs/tools/typescript-sdk/guides/protocols-pay
 ---
 title: Building Protocols and Payloads
 description: Learn how to build, register, and integrate protocols and payloads in the Wormhole TypeScript SDK with type-safe layouts.
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # Building Protocols and Payloads
@@ -21924,7 +21930,7 @@ Doc-Content: https://wormhole.com/docs/tools/typescript-sdk/guides/sdk-layout/
 ---
 title: Data Layouts
 description: Learn how to efficiently define, serialize, and deserialize data structures using Wormhole SDK's layout system for cross-chain communication.
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # Data Layouts
@@ -22636,7 +22642,7 @@ Doc-Content: https://wormhole.com/docs/tools/typescript-sdk/guides/vaas-protocol
 ---
 title: VAAs and Protocols
 description: Understand how VAAs enable cross-chain messaging and how to handle them using Wormhole's TypeScript and Solidity SDKs.
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # VAAs and Protocols
@@ -22755,7 +22761,7 @@ Doc-Content: https://wormhole.com/docs/tools/typescript-sdk/sdk-reference/
 ---
 title: Wormhole TS SDK 
 description: Explore Wormhole's TypeScript SDK and learn how to perform different types of transfers, including native, token, and USDC.
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # TypeScript SDK Reference

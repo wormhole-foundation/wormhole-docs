@@ -1,7 +1,7 @@
 ---
 title: CCTP Supported Networks
 description: Explore all blockchains supported by Wormhole CCTP, including network availability, block explorers, and cross-chain transfer support.
-categories: Transfer
+categories: CCTP, Transfer
 ---
 
 # Supported Networks

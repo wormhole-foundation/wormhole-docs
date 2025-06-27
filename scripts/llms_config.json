@@ -8,23 +8,23 @@
   "categories": [
     "NTT", 
     "Connect", 
-    "Token-Bridge", 
+    "Token Bridge", 
     "Settlement", 
     "Relayers", 
     "MultiGov", 
     "Queries", 
     "Transfer", 
-    "Solidity-SDK", 
-    "Typescript-SDK",
+    "Solidity SDK", 
+    "Typescript SDK",
     "CCTP"
   ],
   "sharedCategories": [
     {
-      "name": "basics",
+      "name": "Basics",
       "contextDescription": "The following section contains foundational documentation shared across all {PROJECT_NAME} products. It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with {PROJECT_NAME}. This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture."
     },
     {
-      "name": "reference",
+      "name": "Reference",
       "contextDescription": "The following section contains reference material for {PROJECT_NAME}, including chain IDs, canonical contract addresses, finality levels, and other advanced specs. While it may not be required for all use cases, it provides a deeper layer for advanced development work."
     }
   ]

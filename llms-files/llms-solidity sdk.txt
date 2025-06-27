@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com). A cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation for the product: Settlement
+This file includes documentation for the product: Solidity SDK
 
 ## AI Prompt Template
 
@@ -13,519 +13,708 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/concepts/architecture.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/faqs.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/get-started.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/overview.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/reference/supported-networks.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/.solidity-sdk/.get-started.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/.solidity-sdk/.sdk-reference.md [type: other]
 
 ## Full content for each doc page
 
-Doc-Content: https://wormhole.com/docs/products/settlement/concepts/architecture/
+Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.get-started/
 --- BEGIN CONTENT ---
 ---
-title: Settlement Protocol Architecture
-description: Explore Wormhole Settlement's native swap protocols—Liquidity Layer, Mayan Swift, and MCTP—for scalable, efficient cross-chain asset transfers.
-categories: Settlement, Transfer
+title: Get Started with the Solidity SDK
+description: Follow this guide to use the Wormhole Solidity SDK's interfaces and tools to help you quickly build on-chain integrations using smart contracts.
+categories: Solidity SDK
 ---
 
-# Settlement Protocol Architecture
+# Get Started with the Solidity SDK
 
-This page describes the high-level mechanics of the underlying native swap protocols in the Wormhole SDK. While built on Wormhole messaging, each protocol uses a novel architecture with unique price discovery, scalability, and latency tradeoffs. These designs enable redundancy to handle highly asymmetric flows and sharp volume changes. These sections will cover the following:
+:simple-github: [Repository on GitHub](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}
 
-- **Wormhole Liquidity Layer** - a cross-chain transfer protocol that utilizes Solana as the central orchestration layer for cross-chain intents, allowing solvers to deploy liquidity from a single Solana-based hub rather than distributing it across each supported chain
-- **Mayan Swift** - a flexible cross-chain intent protocol that embeds a competitive on-chain price auction to determine the best possible execution for the expressed user intent
-- **Mayan MCTP** - a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains
+The Wormhole Solidity SDK provides Solidity interfaces, prebuilt contracts, and testing tools to help Solidity developers build on-chain Wormhole integrations via smart contracts. You can use the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} for off-chain integrations without writing Solidity.
 
-## Wormhole Liquidity Layer
+## Install the SDK
 
-Wormhole Liquidity Layer is a cross-chain transfer protocol that enables faster-than-finality transfers across the Wormhole ecosystem through a novel, Solana-based hub-and-spoke architecture. The hub-and-spoke model leverages interoperable token standards like Circle's CCTP (and Wormhole's NTT), allowing the solver to natively mint and burn assets between chains for intent fulfillment. This architecture allows solvers to facilitate cross-chain transfers by fronting assets on the destination chain and assuming the finality risk of the originating source chain transaction. 
+Use Foundry's [`forge`](https://getfoundry.sh/forge/){target=\_blank} to install the SDK using the following command:
 
-Solvers concentrate their liquidity entirely on Solana, where they participate in permissionless on-chain English auctions (open ascending-price auctions where bidders publicly raise bids until only one bidder remains) to fulfill each cross-chain transfer. Upon the conclusion of each auction, the winning solver initiates a transfer from Solana to the specified destination chain. The solver rebalances inventory once the originating source chain transaction reaches finality and arrives to Solana.
+```bash
+forge install wormhole-foundation/wormhole-solidity-sdk
+```
 
-![Wormhole Settlments Liquidity layer architecture diagram: source chain to hub to destination chain](/docs/images/products/settlement/concepts/architecture/architecture-1.webp)
+## Key Components
 
-The Wormhole Liquidity Layer serves as the underlying chain abstraction infrastructure layer for protocols across Wormhole-connected ecosystems by enabling protocols to bundle call data containing arbitrary protocol actions, which can be executed atomically alongside each transfer. This feature allows developers to create fully chain-abstracted user experiences, including constructing natively cross-chain decentralized exchanges (DEXs), borrow-lend protocols, payment protocols, and other applications atop this layer.
+The following key components and features work together to make your on-chain Wormhole integration easier to build.
 
-### Solvers and Liquidity Fragmentation
+??? interface "Base contracts"
 
-Traditional intent-based protocols require solvers to distribute their capital across each supported chain in the network. This liquidity fragmentation leads to capital inefficiency and requires complex rebalancing to manage asymmetric flows between chains. As the number of chains increases, solvers face scalability challenges, which can result in market concentration, reducing competition and potentially impacting price discovery in intent execution.
+    Leverage base contracts to send and receive messages and tokens.
 
-Using a hub-and-spoke model, the Wormhole Liquidity Layer solves these challenges by consolidating solver liquidity on a single chain, Solana. This model eliminates the need for complex cross-chain rebalancing and simplifies solvers' infrastructure requirements. Solvers only need to consider the finality risk of the originating source chain transaction and the payload size when bidding on transfers. By concentrating liquidity on Solana, the protocol can handle large transfer volumes with a smaller capital base, enhancing capital efficiency and lowering barriers to entry for solvers. This approach promotes competition, improves overall market efficiency, and ultimately benefits users with better prices while still preserving the speed of transactions.
+    - [**`Base.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/Base.sol){target=\_blank}: Uses Wormhole interfaces to authorize and verify a registered sender.
+    - [**`TokenBase.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/TokenBase.sol){target=\_blank}: Uses `TokenReceiver` and `TokenSender` contracts to define functions for transferring tokens.
+    - [**`CCTPBase.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/CCTPBase.sol){target=\_blank}: Uses `CCTPSender` and `CCTPReceiver` contracts to define functions for transferring USDC.
 
-### Enable Unified Liquidity
+??? interface "Interfaces"
 
-The novel hub-and-spoke liquidity architecture relies on interoperable token standards that enable cross-chain token fungibility, such as Circle's Cross-Chain Transfer Protocol (CCTP) and Wormhole's Native Token Transfers (NTT). These protocols allow assets to move seamlessly between chains, making unified liquidity possible. On the liquidity hub (Solana), solvers concentrate their liquidity in NTT or CCTP-supported assets, such as USDC. These assets act as the shuttle between chains but may not necessarily be the user's original or final asset.
+    Use interfaces to ensure consistent interactions with the protocol regardless of the supported chain you use.
 
-After the Solana auction concludes, the appropriate instructions are called on the CCTP or NTT contract, initiating the transfer from Solana to the destination chain by burning/locking the asset on Solana and sequentially minting on the destination chain. Solvers rebalance their inventory on Solana using these interoperable token standards as well. Once the originating source chain transaction reaches finality and arrives to Solana, the solver can redeem the NTT or CCTP message, minting the inventory for use once again.
+    - [**`ITokenBridge.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/ITokenBridge.sol){target=\_blank}: Defines key structs and functions for token attestation, wrapping and transferring tokens, monitoring transaction progress.
+    - [**CCTP Interfaces**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/tree/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/CCTPInterfaces){target=\_blank}: A set of interfaces for USDC transfers via CCTP for sending, relaying, and receiving messages and tokens.
+    - [**`IWormholeReceiver.sol`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank}: Defines the `receiveWormholeMessages` function.
+    - [**`IWormholeRelayer.sol`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/interfaces/IWormholeRelayer.sol){target=\_blank}: Defines key structs and functions to identify, send, and deliver messages and follow the progress of transactions.
 
-By leveraging interoperable token standards like NTT, this model of liquidity facilitation for cross-chain intents can arbitrarily scale to any chain or ecosystem while preserving fully unified liquidity. This removes the need for solver "buy-in" when expanding to new chains. Additionally, regardless of proven traction, new chains can access the same level of liquidity for cross-chain intent fulfillment from the first day of mainnet launch as long-standing ecosystems with clear evidence of adoption. This is often overlooked by solvers, who must aggressively prioritize high-flow chains due to high opportunity costs. The model also supports ecosystems without Centralized Exchange (CEX) enabled withdrawals.
+??? interface "Constants"
 
-### Protocol Flow: How It Works
+    Auto-generated Solidity constants help avoid manual entry errors and ensure consistent delivery.
 
-1. **Initiation** - users or protocols initiate a transfer via an interface or directly on-chain. They choose between a standard transfer (waiting for finality on the sending chain) or a fast transfer (triggering the auction process). For fast transfers, users or the protocol specify a maximum fee and an auction start deadline
+    - [**Wormhole Chain ID's**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/Chains.sol){target=\_blank}: Generated list of Wormhole Chain ID's for supported chains.
+    - [**Circle CCTP Domain IDs**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/b9e129e65d34827d92fceeed8c87d3ecdfc801d0/src/CCTPAndTokenBase.sol){target=\_blank}: Generated list of defined CCTP domain ID's to ensure USDC transfers use the correct domain for a given chain. 
+    - [**`chainConsts.ts`**](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/75ddcec06ffe9d62603d023357caa576c5ea101c/gen/chainConsts.ts){target=\_blank}: Returns values to identify properties and contract addresses for each supported chain.
 
-    !!! Note
-        If an auction doesn't start within the set deadline, a standard transfer will proceed directly from the source to the destination chain.
+## Example Usage
 
-2. **Auction** - solvers monitor the Wormhole network for these fast transfer requests and initiate an auction on Solana by offering to fulfill the transfer at or below the user's maximum fee. To start the auction, the solver must transfer the requested funds plus a small security deposit to the Matching Engine contract
-3. **Competition** - once initiated, other solvers can participate by submitting lower bids in a simple English auction, aiming to provide users with the best rate. If a new solver submits a better offer, the previous solver's funds and security deposit are returned, with the latest offer taking precedence atomically. This competition ensures that users receive the best possible transfer rate
-4. **Fulfillment** - after the auction concludes, the winning solver must complete the transfer within a predefined grace period to earn their fee and reclaim their security deposit. Failure to do so may result in the security deposit being slashed, with the slashed amount compensating the user for delays. This mechanism incentivizes prompt execution. Upon successful completion, the Fast Transfer hub sends the USDC to the user's destination wallet, and the solver receives their security deposit and transfer fee
-5. **Settlement** - once the source chain transaction reaches finality, the winning solver can use the finalized Wormhole message to settle the auction with the matching engine and rebalance. This allows the solver to retrieve the original transfer amount into their wallet
+The following demo illustrates the use of Wormhole Solidity SDK-based smart contracts to send testnet USDC between supported chains.
 
-## Mayan Swift
-
-Mayan Swift is a flexible cross-chain intent protocol that embeds a competitive on-chain price auction to determine the best possible execution for the expressed user intent.
-
-### On-Chain Competitive Price Discovery Mechanism
-
-Traditional intent-based protocols essentially function as cross-chain limit orders. If the order is profitable, solvers will compete to fulfill it, leading to MEV-like competition focused on speed. While functional, this methodology presents two clear inefficiencies and drawbacks.
-
-First, they lack a competitive price discovery mechanism as limit order prices are typically determined through centralized off-chain systems. Second, in this MEV-like market structure, only a single solver can win, while the others lose out on transaction fees. This dynamic of deadweight loss results in solvers prioritizing high-margin orders, ultimately resulting in elevated fees for end-users without commensurate benefits.
-
-Mayan Swift addresses these limitations by implementing competitive on-chain English auctions on Solana as an embedded price discovery mechanism, fundamentally shifting solver competition from speed-based to price-based execution. Through this architecture, the solver offering the best possible price secures the right to fulfill the order within pre-specified deadline parameters.
-
-![Mayan Swift - Intent-centric design](/docs/images/products/settlement/concepts/architecture/architecture-2.webp)
-
-### Protocol Flow: How It Works
-
-1. **Initiation** - the user creates an order by signing a transaction that locks one of the primary assets (USDC or ETH) into the Mayan smart contract, specifying the desired outcome. 
-
-    !!!note
-        If the input asset is not a primary asset, it is converted into a primary asset within the same transaction before the order is submitted.
-
-    Each order includes properties such as destination chain, destination wallet address, output token address, minimum output amount, gas drop amount, deadline, and 32 bytes of random hex to prevent collisions. A Keccak-256 hash is then calculated to identify the order
-
-2. **Auction** - solvers observe on-chain data or subscribe to the Mayan explorer web socket (solvers using the Mayan explorer verify the order's integrity by checking the data against the on-chain hash). Once the new order is verified, an on-chain auction on Solana is initiated by passing the order ID and the bid amount, which cannot be lower than the minimum amount. Other solvers can increase the bid by submitting a higher amount before the auction ends
-3. **Fulfillment** - the auction ends three seconds after the initial bid. Once the auction ends, the winning solver can execute an instruction that passes their wallet address on the destination chain. This triggers a Wormhole message containing the order ID and the winner's wallet address. Wormhole Guardians then sign this message, allowing the winning solver to fulfill the order on the destination chain by submitting proof of their win and the promised amount to the Mayan contract before the deadline. The Mayan contract deducts a protocol fee (currently 3 basis points) and a referral fee (if applicable), transferring the remaining amount to the user's destination wallet. It also triggers a Wormhole message as proof of fulfillment
-4. **Settlement** - after the Wormhole Guardians sign the fulfillment message, the winning solver can submit this message on the source chain to unlock the user's funds and transfer them to their own wallet. Upon fulfillment, the solver has the option to delay triggering a Wormhole message immediately. Instead, they can batch the proofs and, once the batch reaches a certain threshold, issue a batched proof to unlock all orders simultaneously, saving on gas fees
-
-## Mayan MCTP
-
-Mayan MCTP is a cross-chain intents protocol that leverages Circle's CCTP (Cross-Chain Transfer Protocol) mechanism and Wormhole messaging to enable secure, fee-managed asset transfers across chains.
-
-![Mayan MCTP diagram](/docs/images/products/settlement/concepts/architecture/architecture-3.webp)
-
-### Protocol Flow: How It Works
-
-1. **Initiation** - the user creates an order by signing a transaction that locks one USDC into the Mayan smart contract, specifying the desired outcome. 
-
-    !!!note
-        If the input asset is not USDC, it is converted into a primary asset within the same transaction before the order is submitted.
-    
-    The contract constructs a `BridgeWithFeeMsg` structure, which includes parameters such as the action type, payload type, nonce, destination address, gas drop, redeem fee, and an optional custom payload hash
-
-2. **Intent submission** - the contract calls the CCTP messenger to deposit the tokens for bridging. A unique nonce is generated, and a corresponding fee-lock record is created in the contract's storage. This record includes the locked fee, gas drop parameters, and destination details. The constructed message is hashed and published through Wormhole. The protocol fee is deducted during this step, and the Wormhole message is broadcast with the specified [consistency (finality) level](/docs/products/reference/consistency-levels/){target=\_blank}
-3. **Fulfillment** - on the destination chain, the protocol receives a CCTP message with corresponding signatures and verifies the payload using Wormhole's verification mechanism. Once validated, the redeemed tokens are transferred to the intended recipient, deducting the redeem fee as per protocol rules
-
-The protocol provides mechanisms for unlocking the fee once the bridging process is completed. This can occur immediately upon fulfillment or be batched for efficiency. In the fee unlock flow, the contract verifies the unlock message via Wormhole and then releases the locked fee to the designated unlocker address.
-
-## Where to Go Next
-
-- To learn how to integrate settlement routes into your application, see the [Integrate Wormhole Settlement Routes Using the SDK](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank} tutorial
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/settlement/faqs/
---- BEGIN CONTENT ---
----
-title: Wormhole Settlement FAQs
-description: Frequently asked questions about Wormhole Settlement, including smart contract usage, auction fallback, and message execution. 
-categories: Settlement, Transfer
----
-
-# Settlement FAQs
-
-## Can I use Wormhole Settlement from a smart contract? If so, how is a message signed and relayed?
-
-Yes, Wormhole Settlement can be used from a smart contract. The composing protocol's relayer relays the message. For example, Mayan Shuttle (formerly Swap Layer) has a relayer that redeems the VAA on the destination chain to mint USDC and execute the `callData` contained in the payload.
-
-## What happens if no solver participates in the auction?
-
-If an auction does not start within the specified deadline, a standard CCTP transfer will proceed directly from the source chain to the destination chain. This is why parameters like `deadline` exist in the token router interface, ensuring a fallback mechanism in case no solver participates.
-
-## What guarantees does Wormhole Settlement provide for message execution?
-
-After the user receives the token upfront, the execution of additional contract calls depends on the relayer of the composing protocol. For example, in Mayan Shuttle, the relayer will attempt the swap multiple times, but its success is subject to the parameters defined in the `callData` (e.g., slippage).
-
-If the slippage tolerance is set too low, the user may receive USDC on the destination chain instead of the intended swap outcome. However, the four basis points (bps) fee is non-refundable, as the service provided by Liquidity Layer (LL) solvers (ensuring front-finality) is separate from the composing protocol's services, such as swaps or deposits.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/settlement/get-started/
---- BEGIN CONTENT ---
----
-title: Get Started
-description: Perform a cross-chain token swap using Wormhole Settlement and the Mayan Swift route with the TypeScript SDK on mainnet.
-categories: Settlement, Transfer
----
-
-# Get Started with Settlement
-
-[Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
-
-This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=\_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}.
-
-By the end, you'll have a working script that:
-
-- Resolves token transfer routes using Mayan Swift
-- Quotes and validates the best route
-- Initiates a swap on a source chain and completes the transfer on a destination chain
-
-!!! note
-    Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
-
-## Prerequisites
-
+### Prerequisites
 Before you begin, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} installed
+- Testnet tokens for two supported chains. This example uses [testnet AVAX for Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [testnet CELO for Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} and can be adapted to any supported chains
+- [USDC testnet tokens](https://faucet.circle.com/){target=\_blank} on your source chain for cross-chain transfer
 
-This example uses Ethereum as the source chain and Solana as the destination. As a result, you'll need an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the example to match your preferred chains.
+### Set Up a Project
 
-## Set Up a Project
+Follow these steps to prepare your development environment:
 
-Start by scaffolding a basic Node.js project and installing the required SDKs.
-
-1. Create a new project folder:
-
-    ```bash
-    mkdir settlement-swap
-    cd settlement-swap
-    npm init -y
-    ```
-
-2. Install the required dependencies:
+1. Create a directory for your project, navigate into it, and install the Wormhole Solidity SDK: 
 
     ```bash
-    npm install @wormhole-foundation/sdk-connect \
-        @wormhole-foundation/sdk-evm \
-        @wormhole-foundation/sdk-solana \
-        @mayanfinance/wormhole-sdk-route \
-        dotenv
-    npm install -D typescript tsx
+    mkdir solidity-token-transfer
+    cd solidity-token-transfer
+    forge install wormhole-foundation/wormhole-solidity-sdk
     ```
 
-3. Create the file structure:
+2. Install dependencies for use with your transfer script, including the Wormhole TypeScript SDK, and initiate a new Node.js project:
 
     ```bash
-    mkdir src
-    touch src/helpers.ts src/swap.ts .env .gitignore
+    npm init -y && npm install @wormhole-foundation/sdk ethers -D tsx typescript
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/cast-wallet){target=\_blank}.
+### Create and Deploy Contracts
+
+This project uses sender and receiver contracts to access the `WormholeRelayer` interface's [`TokenSender`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/baa085006586a43c42858d355e3ffb743b80d7a4/src/WormholeRelayer/TokenBase.sol#L24){target=\_blank} and [`TokenReceiver`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/baa085006586a43c42858d355e3ffb743b80d7a4/src/WormholeRelayer/TokenBase.sol#L147){target=\_blank} base classes to simplify sending tokens across chains.
+
+Follow these steps to create and deploy your sender and receiver Solidity contracts:
+
+1. Use the following example code to create `CrossChainSender.sol`:
+
+    ```solidity title="CrossChainSender.sol"
+    // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+import "lib/wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
+import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
+
+// Extend the TokenSender contract inherited from TokenBase
+contract CrossChainSender is TokenSender {
+    uint256 constant GAS_LIMIT = 250_000;
+    // Initialize the contract with the Wormhole relayer, Token Bridge,
+    // and Wormhole Core Contract addresses
+    constructor(
+        address _wormholeRelayer,
+        address _tokenBridge,
+        address _wormhole
+    ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
+
+    // Calculate the estimated cost for multichain token transfer using
+    // the wormholeRelayer to get the delivery cost and add the message fee
+    function quoteCrossChainDeposit(
+        uint16 targetChain
+    ) public view returns (uint256 cost) {
+        uint256 deliveryCost;
+        (deliveryCost, ) = wormholeRelayer.quoteEVMDeliveryPrice(
+            targetChain,
+            0,
+            GAS_LIMIT
+        );
+
+        cost = deliveryCost + wormhole.messageFee();
+    }
+
+    // Send tokens and payload to the recipient on the target chain
+    function sendCrossChainDeposit(
+        uint16 targetChain,
+        address targetReceiver,
+        address recipient,
+        uint256 amount,
+        address token
+    ) public payable {
+        // Calculate the estimated cost for the multichain deposit
+        uint256 cost = quoteCrossChainDeposit(targetChain);
+        require(
+            msg.value == cost,
+            "msg.value must equal quoteCrossChainDeposit(targetChain)"
+        );
+        // Transfer the tokens from the sender to this contract
+        IERC20(token).transferFrom(msg.sender, address(this), amount);
+        // Encode the recipient address into the payload
+        bytes memory payload = abi.encode(recipient);
+        // Initiate the multichain transfer using the wormholeRelayer
+        sendTokenWithPayloadToEvm(
+            targetChain,
+            targetReceiver,
+            payload,
+            0,
+            GAS_LIMIT,
+            token,
+            amount
+        );
+    }
+}
+    ```
+
+    This contract extends `TokenSender`, gaining access to its functionality. It initializes the contract with the required addresses, calculates estimated transfer costs, defines transfer parameters, and initiates the transfer using the `sendTokenWithPayloadToEvm` function from `WormholeRelayer`.
+
+2. Use the following example code to create `CrossChainReceiver.sol`:
+
+    ```solidity title="CrossChainSender.sol"
+    // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.13;
+
+import "lib/wormhole-solidity-sdk/src/WormholeRelayerSDK.sol";
+import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
+
+// Extend the TokenReceiver contract inherited from TokenBase
+contract CrossChainReceiver is TokenReceiver {
+    // Initialize the contract with the Wormhole relayer, Token Bridge,
+    // and Wormhole Core Contract addresses
+    constructor(
+        address _wormholeRelayer,
+        address _tokenBridge,
+        address _wormhole
+    ) TokenBase(_wormholeRelayer, _tokenBridge, _wormhole) {}
+
+    // Receive the multichain payload and tokens
+    // Verify the transfer is from a registered sender
+    function receivePayloadAndTokens(
+        bytes memory payload,
+        TokenReceived[] memory receivedTokens,
+        bytes32 sourceAddress,
+        uint16 sourceChain,
+        bytes32 // deliveryHash
+    )
+        internal
+        override
+        onlyWormholeRelayer
+        isRegisteredSender(sourceChain, sourceAddress)
+    {
+        // Ensure the payload is not empty and only has one token transfer
+        require(receivedTokens.length == 1, "Expected 1 token transfer");
+
+        // Decode the recipient address from the payload
+        address recipient = abi.decode(payload, (address));
+
+        // Transfer the received tokens to the intended recipient
+        IERC20(receivedTokens[0].tokenAddress).transfer(
+            recipient,
+            receivedTokens[0].amount
+        );
+    }
+}
+    ```
+
+    This contract extends `TokenReceiver`, gaining access to its functionality. It initializes the contract with the required addresses, receives the payload and tokens, verifies the transfer is from a registered sender, decodes the recipient address, and transfers the tokens to the recipient.
+
+3. Deploy the contracts using your preferred deployment method. Make sure you deploy `CrossChainSender.sol` to your desired source chain and `CrossChainReceiver.sol` to the target chain. Save the deployed contract addresses for each contract. You will need them for your transfer script.
+
+##  Use Contracts to Transfer USDC
+
+1. Once your contracts are deployed, create a `transfer.ts` file to handle the multichain transfer logic:
+
+    ```bash
+    touch script/transfer.ts
+    ```
+
+2. Set up secure access to your wallets. This guide assumes you are loading your private key(s) from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
 
     !!! warning
-        If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
-## Perform a Token Swap
+3. Open `transfer.ts` and add the following code:
 
-This section shows you how to perform a token swap using the Mayan Swift route. You will define a helper function to configure the source and destination chain signers.
+    ```typescript title="transfer.ts"
+    import { ethers } from 'ethers';
+import fs from 'fs';
+import path from 'path';
+import readlineSync from 'readline-sync';
+import { fileURLToPath } from 'url';
+import { wormhole, chainToChainId } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
 
-Then, you'll create a script that initiates a transfer on Ethereum, uses the Mayan Swift resolver to find valid routes, sends the transaction, and completes the transfer on Solana.
+// Replace with your contract address and chain names
+const AVALANCHE_SENDER_ADDRESS = 'INSERT_AVALANCHE_SENDER_CONTRACT_ADDRESS';
+const CELO_RECEIVER_ADDRESS = 'INSERT_CELO_RECEIVER_ADDRESS';
+const AVALANCHE_CHAIN_NAME = 'Avalanche';
+const CELO_CHAIN_NAME = 'Celo';
 
-1. Open `helper.ts` and define the `getSigner` utility function to load private keys, instantiate signers for Ethereum and Solana, and return the signers along with the Wormhole-formatted address:
-
-    ```ts title="src/helpers.ts"
-    import {
-  Chain,
-  ChainAddress,
-  ChainContext,
-  Network,
-  Signer,
-  Wormhole,
-} from '@wormhole-foundation/sdk-connect';
-import { getEvmSignerForKey } from '@wormhole-foundation/sdk-evm';
-import { getSolanaSigner } from '@wormhole-foundation/sdk-solana';
-
-/**
- * Returns a signer for the given chain using locally scoped credentials.
- * The required values (MAINNET_ETH_PRIVATE_KEY, MAINNET_SOL_PRIVATE_KEY)
- * must be loaded securely beforehand, for example via a keystore,
- * secrets manager, or environment variables (not recommended).
- */
-// Define Transfer Interface
-export interface SignerContext<n c="" chain="" extends="" network,=""> {
-  signer: Signer<n, c="">;
-  address: ChainAddress<c>;
-}
-
-export async function getSigner<n c="" chain="" extends="" network,="">(
-  chain: ChainContext<n, c="">
-): Promise<signercontext<n, c="">&gt; {
-  let signer: Signer;
-  const platform = chain.platform.utils()._platform;
-  switch (platform) {
-    case 'Solana':
-      signer = await getSolanaSigner(
-        await chain.getRpc(),
-        getEnv('MAINNET_SOL_PRIVATE_KEY')
-      );
-      break;
-    case 'Evm':
-      signer = await getEvmSignerForKey(
-        await chain.getRpc(),
-        getEnv('MAINNET_ETH_PRIVATE_KEY')
-      );
-      break;
-    default:
-      throw new Error('Unrecognized platform: ' + platform);
-  }
-
-  return {
-    signer: signer as Signer<n, c="">,
-    address: Wormhole.chainAddress(chain.chain, signer.address()),
-  };
-}
-</n,></signercontext<n,></n,></n></c></n,></n>
-    ```
-
-2. In `swap.ts`, add the following script, which will handle all of the logic required to perform the token swap: 
-
-    ```ts title="src/swap.ts"
-    import { Wormhole, routes } from '@wormhole-foundation/sdk-connect';
-import { EvmPlatform } from '@wormhole-foundation/sdk-evm';
-import { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
-import { MayanRouteSWIFT } from '@mayanfinance/wormhole-sdk-route';
-import { getSigner } from './helpers';
+// Fetch the contract ABI from the local filesystem
+// This example uses the `out` directory from a Foundry deployment
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const SENDER_ABI_PATH = path.resolve(
+  __dirname,
+  '../out/CrossChainSender.sol/CrossChainSender.json'
+);
 
 (async function () {
-  // Setup
-  const wh = new Wormhole('Mainnet', [EvmPlatform, SolanaPlatform]);
+  try {
+    console.log('Initializing Wormhole SDK...');
+    const wh = await wormhole('Testnet', [evm]);
+    const sendChain = wh.getChain(AVALANCHE_CHAIN_NAME);
+    const rcvChain = wh.getChain(CELO_CHAIN_NAME);
 
-  const sendChain = wh.getChain('Ethereum');
-  const destChain = wh.getChain('Solana');
+    // The EVM_PRIVATE_KEY value must be loaded securely beforehand,
+    // for example via a keystore, secrets manager, or environment variables
+    // (not recommended)
+    const EVM_PRIVATE_KEY = EVM_PRIVATE_KEY!;
+    if (!EVM_PRIVATE_KEY) {
+      console.error('EVM_PRIVATE_KEY is not set in your .env file.');
+      process.exit(1);
+    }
 
-  //  To transfer native ETH on Ethereum to native SOL on Solana
-  const source = Wormhole.tokenId(sendChain.chain, 'native');
-  const destination = Wormhole.tokenId(destChain.chain, 'native');
+    // Get the RPC URL or Provider from the SDK
+    const sourceRpcOrProvider = await sendChain.getRpc();
+    let sourceProvider: ethers.JsonRpcProvider;
+    if (
+      sourceRpcOrProvider &amp;&amp;
+      typeof (sourceRpcOrProvider as any).getBlockNumber === 'function'
+    ) {
+      sourceProvider = sourceRpcOrProvider as ethers.JsonRpcProvider;
+    } else if (typeof sourceRpcOrProvider === 'string') {
+      sourceProvider = new ethers.JsonRpcProvider(sourceRpcOrProvider);
+    } else if (
+      Array.isArray(sourceRpcOrProvider) &amp;&amp;
+      typeof sourceRpcOrProvider[0] === 'string'
+    ) {
+      sourceProvider = new ethers.JsonRpcProvider(sourceRpcOrProvider[0]);
+    } else {
+      console.error(
+        'Could not get a valid RPC URL or Provider from SDK:',
+        sourceRpcOrProvider
+      );
+      process.exit(1);
+    }
 
-  // Create a new Wormhole route resolver, adding the Mayan route to the default list
-  // @ts-ignore: Suppressing TypeScript error because the resolver method expects a specific type,
-  // but MayanRouteSWIFT is compatible and works as intended in this context.
-  const resolver = wh.resolver([MayanRouteSWIFT]);
+    // Create the wallet using the provider and private key
+    const sourceWallet = new ethers.Wallet(EVM_PRIVATE_KEY, sourceProvider);
 
-  // Show supported tokens
-  const dstTokens = await resolver.supportedDestinationTokens(
-    source,
-    sendChain,
-    destChain
-  );
-  console.log(dstTokens.slice(0, 5));
+    // Load the sender contract ABI
+    if (!fs.existsSync(SENDER_ABI_PATH)) {
+      console.error(`ABI file not found at ${SENDER_ABI_PATH}`);
+      process.exit(1);
+    }
+    const CrossChainSenderArtifact = JSON.parse(
+      fs.readFileSync(SENDER_ABI_PATH, 'utf8')
+    );
+    const senderAbi = CrossChainSenderArtifact.abi;
 
-  // Load signers and addresses from helpers
-  const sender = await getSigner(sendChain);
-  const receiver = await getSigner(destChain);
+    // Create new sender contract instance
+    const senderContract = new ethers.Contract(
+      AVALANCHE_SENDER_ADDRESS,
+      senderAbi,
+      sourceWallet
+    );
 
-  // Creating a transfer request fetches token details
-  // since all routes will need to know about the tokens
-  const tr = await routes.RouteTransferRequest.create(wh, {
-    source,
-    destination,
-  });
+    // Get user input for token transfer parameters
+    const tokenAddress = readlineSync.question(
+      'Enter the (ERC20) token contract address on Avalanche: '
+    );
+    const recipientAddress = readlineSync.question(
+      'Enter the recipient address on Celo: '
+    );
+    const amountStr = readlineSync.question(
+      'Enter the amount of tokens to transfer: '
+    );
 
-  // Resolve the transfer request to a set of routes that can perform it
-  const foundRoutes = await resolver.findRoutes(tr);
-  const bestRoute = foundRoutes[0]!;
+    // Approve sending tokens from the source wallet to the sender contract
+    const tokenContract = new ethers.Contract(
+      tokenAddress,
+      [
+        'function decimals() view returns (uint8)',
+        'function approve(address spender, uint256 amount) public returns (bool)',
+        'function allowance(address owner, address spender) view returns (uint256)',
+      ],
+      sourceWallet
+    );
 
-  // Specify the amount as a decimal string
-  const transferParams = {
-    amount: '0.002',
-    options: bestRoute.getDefaultOptions(),
-  };
+    // Convert the amount to the correct units based on token decimals
+    const decimals = Number(await tokenContract.decimals());
+    const amountToTransfer = ethers.parseUnits(amountStr, decimals);
 
-  // Validate the queries route
-  let validated = await bestRoute.validate(tr, transferParams);
-  if (!validated.valid) {
-    console.error(validated.error);
-    return;
+    // Get a transfer cost quote
+    const targetChainId = chainToChainId(rcvChain.chain);
+    const cost = await senderContract.quoteCrossChainDeposit(targetChainId);
+    // Approve the sender contract to spend the tokens
+    const approveTx = await tokenContract.approve(
+      AVALANCHE_SENDER_ADDRESS,
+      amountToTransfer
+    );
+    await approveTx.wait();
+
+    // Initiate the transfer
+    console.log(
+      `Initiating cross-chain transfer to ${CELO_RECEIVER_ADDRESS} on ${rcvChain.chain}...`
+    );
+    const transferTx = await senderContract.sendCrossChainDeposit(
+      targetChainId,
+      CELO_RECEIVER_ADDRESS,
+      recipientAddress,
+      amountToTransfer,
+      tokenAddress,
+      { value: cost }
+    );
+    console.log(`Transfer transaction sent: ${transferTx.hash}`);
+    await transferTx.wait();
+    console.log(`✅ Transfer initiated successfully!`);
+  } catch (error) {
+    console.error('An error occurred:', error);
+    process.exit(1);
   }
-  console.log('Validated: ', validated);
 
-  const quote = await bestRoute.quote(tr, validated.params);
-  if (!quote.success) {
-    console.error(`Error fetching a quote: ${quote.error.message}`);
-    return;
-  }
-  console.log('Quote: ', quote);
-
-  // Initiate the transfer
-  const receipt = await bestRoute.initiate(
-    tr,
-    sender.signer,
-    quote,
-    receiver.address
-  );
-  console.log('Initiated transfer with receipt: ', receipt);
-
-  await routes.checkAndCompleteTransfer(
-    bestRoute,
-    receipt,
-    receiver.signer,
-    15 * 60 * 1000
-  );
+  process.exit(0);
 })();
     ```
 
-3. Execute the script to initiate and complete the transfer:
+    This script defines the sender and receiver contract addresses, fetches the necessary ABI information, creates a connected signer, converts decimals, calculates the estimated transfer cost, and initiates the token transfer.
+
+3. Run the script using the following command:
 
     ```bash
-    npx tsx src/swap.ts
+    npx tsx script/transfer.ts
     ```
 
-    If successful, you’ll see terminal output like this:
+4. Follow the prompts in the terminal. This example uses Avalanche Fuji as the source chain, Celo Testnet as the target, [Avalanche Fuji testnet USDC](https://developers.circle.com/stablecoins/usdc-contract-addresses#testnet){target=\_blank}, and a developer wallet as the recipient address. You will see terminal output similar to the following:
 
     <div data-termynal="" id="termynal">
-<span data-ty="input"><span class="file-path"></span>npx tsx src/swap.ts</span>
-<span data-ty="">Validated: { valid: true, ... }</span>
-<span data-ty="">Quote: { success: true, ... }</span>
-<span data-ty="">Initiated transfer with receipt: ...</span>
-<span data-ty="">Checking transfer state...</span>
-<span data-ty="">Current Transfer State: SourceInitiated</span>
-<span data-ty="">Current Transfer State: SourceInitiated</span>
-<span data-ty="">Current Transfer State: SourceInitiated</span>
-<span data-ty="">Current Transfer State: DestinationFinalized</span>
+<span data-ty="input"><span class="file-path"></span>npx tsx script/transfer.ts</span>
+<span data-ty="">Initializing Wormhole SDK...</span>
+<span data-ty="">Enter the (ERC20) token contract address on Avalanche: 0x5425890298aed601595a70ab815c96711a31bc65</span>
+<span data-ty="">Enter the recipient address on Celo: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+<span data-ty="">Initiating cross-chain transfer to 0xff97a7141833fbe829249d4e8952A8e73a4a2fbd on Celo...</span>
+<span data-ty="">Transfer transaction sent: 0x2d819aadf88309eb19f59a510aba1f2892b54487f9e287feadd150181a28f771</span>
+<span data-ty="">✅ Transfer initiated successfully!</span>
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
-Congratulations! You've just completed a cross-chain token swap from Ethereum to Solana using Settlement.
-
-## Customize the Integration
-
-You can tailor the example to your use case by adjusting:
-
-- **Tokens and chains**: Use `getSupportedTokens()` to explore what's available.
-- **Source and destination chains**: Modify `sendChain` and `destChain` in `swap.ts`.
-- **Transfer settings**: Update the amount or route parameters.
-- **Signer management**: Modify `src/helpers.ts` to integrate with your preferred wallet setup.
+Congratulations! You've successfully created and deployed Wormhole Solidity SDK-based smart contracts and used them to send testnet USDC across blockchains. Consider the following options to build upon what you've accomplished.
 
 ## Next Steps
 
-Once you've chosen a path, follow the corresponding guide to start building:
-
-- [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}: Check out the repository for the full code example.
-<!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
+- [**Get Started with Messaging**](/docs/products/messaging/get-started/): Send a message across blockchains using the Wormhole TypeScript SDK to eliminate smart contract development and auditing overhead.
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/products/settlement/overview/
+Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.sdk-reference/
 --- BEGIN CONTENT ---
 ---
-title: Settlement Overview
-description: Discover how Settlement enables fast, intent-based token transfers across chains using a unified system of solver auctions and integrated execution routes.
-categories: Settlement, Transfer
+title: Solidity SDK
+description: How to use the Wormhole Solidity SDK for cross-chain messaging, token transfers, and integrating decentralized applications on EVM-compatible blockchains.
+categories: Solidity SDK
 ---
 
-# Settlement Overview 
+# Solidity SDK Reference
 
-Wormhole Settlement is a multichain transfer system that allows users to specify what they want to happen, such as sending or swapping tokens, without handling the execution themselves. Instead, off-chain agents called solvers compete to fulfill these user intents.
+This page covers all you need to know about the functionality offered through the Wormhole Solidity SDK.
 
-Settlement prioritizes speed, execution quality, and reliability. Its primary route, Mayan Swift, leverages fast off-chain auctions among a curated set of solvers to achieve low-latency bridging with minimal slippage. All settlement steps remain verifiable on-chain through Wormhole messages. 
+<div class="grid cards" markdown>
 
-For broader use cases and protocol-level execution, Mayan MCTP provides an alternative path. It wraps Circle’s CCTP to facilitate native USDC bridging and token delivery in a single, verifiable flow. While slower due to chain finality constraints, MCTP offers a reliable mechanism for cross-chain transfers.
+-   :octicons-download-16:{ .lg .middle } **Installation**
 
-## Key Features
+    ---
 
-- **Intent-based architecture**: Users express what they want to happen (e.g., swap X for Y on chain Z), and solvers execute it.
-- **Solver auctions**: Solvers compete in on-chain auctions for the right to fulfill intents, improving execution quality.
-- **Fast and fallback-capable**: Combines high-speed execution with a reliable fallback path.
-- **Minimal slippage**: Settlement abstracts away complex balancing operations and uses shuttle assets like USDC and tokens deployed via NTT.
-- **On-chain verifiability**: Even though auctions are off-chain, all settlement steps remain verifiable on-chain via Wormhole messages.
-- **Two integrated routes**: Mayan Swift for speed, Mayan MCTP for compatibility and redundancy.
+    Find installation instructions using Foundry and Forge to pull the necessary libraries into your project.
 
-## How It Works
+    [:custom-arrow: Install the SDK](/docs/tools/solidity-sdk/get-started/#installation)
 
-At the core of Settlement are two components:
+-   :octicons-download-16:{ .lg .middle } **Source Code**
 
-- **Intents**: Signed transactions where a user defines what outcome they want (e.g., send USDC to another chain and receive ETH). It abstracts what the user wants, not how it should be executed.
-- **Solvers**: Third-party agents that compete in auctions to fulfill these intents. They front capital, perform swaps or transfers, and receive fees in return.
+    ---
 
-Settlement currently supports the following integrated protocols.
+    Want to go straight to the source? Check out the Solidity SDK GitHub repository.
 
-### Mayan Swift
+    [:custom-arrow: View GitHub Repository](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}
 
-Mayan Swift implements a traditional intent-based architecture, where solvers compete to fulfill user intents by utilizing their inventory. It offers fast execution, typically around 12 seconds. To participate, solvers must hold assets on multiple chains, which can lead to imbalances: some chains may get depleted while others accumulate excess. This requires occasional rebalancing and adds operational overhead. Despite that, Mayan Swift is ideal for high-speed transfers and benefits from open, competitive auctions that can drive down execution prices.
+</div>
 
-The diagram below shows how Mayan Swift handles a cross-chain intent when a user wants to swap ARB on Arbitrum for WIF on Solana. Behind the scenes, the process is more involved and relies on solver-managed liquidity across both chains.
+## Key Considerations
 
-1. **Solver initiates on Arbitrum**: Solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum.
-2. **VAA emitted to Solana**: A [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator.
-3. **User receives WIF**: Once the user receives WIF, a second VAA is emitted to finalize the transfer and releases the ETH held in the escrow to the solver.
-4. **Failure handling**: If any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds.
+Before deploying applications using the Wormhole Solidity SDK, keep these considerations in mind:
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Solver_ARB as Solver (Arbitrum)
-    participant Escrow
-    participant Wormhole
-    participant Solver_SOL as Solver (Solana)
-    participant Aggregator
+ - **IERC-20 remapping** - the SDK provides a remapping mechanism to handle potential conflicts between different implementations of IERC20, ensuring seamless integration with other libraries
+ - **Testing** - given the cross-chain dependencies, testing all integrations is critical to avoid issues in production environments
 
-    Note over User,Aggregator: User has ARB and wants WIF
+## Concepts and Components
 
-    User->>Solver_ARB: Submit intent (ARB → WIF)
-    Solver_ARB->>Escrow: Swaps ARB → ETH and deposits ETH
-    Escrow-->>Wormhole: Emits VAA
-    Wormhole-->>Solver_SOL: Delivers VAA
-    Solver_SOL->>Aggregator: Releases SOL and swaps to WIF
-    Aggregator->>Solver_SOL: Receives WIF
-    Solver_SOL->>User: Sends WIF
-    User-->>Wormhole: Emits final VAA
-    Wormhole-->>Escrow: Confirms receipt
-    Escrow->>Solver_ARB: Releases ETH to solver
+The Wormhole Solidity SDK consists of key components that streamline cross-chain communication, allowing developers to securely and efficiently interact with Wormhole’s infrastructure. Below are the critical concepts and contracts you'll encounter when working with the SDK.
+
+### Cross-Chain Messaging with the Wormhole Relayer SDK
+
+The `WormholeRelayerSDK.sol` contract simplifies cross-chain messaging and asset transfers by integrating several necessary modules, including the Wormhole relayer. By automating message delivery between chains, the Wormhole relayer removes the need for developers to manage relayer infrastructure or handle gas on the target chain. Delivery providers handle the message payload, ensuring secure and efficient communication.
+
+You can refer to the [Wormhole relayer documentation](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank} for more details.
+
+Key modules in the SDK include:
+
+ - **`Base.sol`** - the core module for cross-chain messaging. It provides utility functions like `onlyWormholeRelayer()` and `setRegisteredSender()`, ensuring that only messages from trusted relayers are processed
+
+ - **`TokenBase.sol`** - this module extends the base messaging functionality to support cross-chain token transfers. It includes utilities for securely sending and receiving tokens between EVM-compatible chains
+
+ - **`CCTPBase.sol`** - designed for Circle’s Cross-Chain Transfer Protocol, this module manages asset transfers such as USDC between chains. It includes functionalities for both sending and receiving CCTP-based assets
+
+ - **`CCTPAndTokenBase.sol`** - a combined module that supports token and CCTP-based asset transfers in a single implementation. This module simplifies development for applications needing to handle both types of transfers
+
+The Wormhole Solidity SDK offers a unified framework for cross-chain communication. Developers can select specific modules based on their application’s requirements, whether for messaging, token transfers, or CCTP. Each module includes built-in security measures, ensuring that only authorized senders or relayers are accepted, thereby protecting the application from unauthorized interactions.
+
+Please refer to the complete `WormholeRelayerSDK.sol` file below for further details.
+
+???- code "`WormholeRelayerSDK.sol`"
+    ```solidity
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/constants/Chains.sol";
+import "wormhole-sdk/Utils.sol";
+
+import {Base} from "wormhole-sdk/WormholeRelayer/Base.sol";
+import {TokenBase, TokenReceiver, TokenSender} from "wormhole-sdk/WormholeRelayer/TokenBase.sol";
+import {CCTPBase, CCTPReceiver, CCTPSender} from "wormhole-sdk/WormholeRelayer/CCTPBase.sol";
+import {CCTPAndTokenBase, CCTPAndTokenReceiver, CCTPAndTokenSender} from "wormhole-sdk/WormholeRelayer/CCTPAndTokenBase.sol";
+    ```
+
+### Base Contract Overview
+
+The `Base.sol` contract is a core part of the Wormhole Solidity SDK, providing essential helper functions and modifiers for managing cross-chain messages securely via the Wormhole Relayer. It handles sender registration and message validation, ensuring only authorized senders from specific chains can send messages.
+
+ - **`onlyWormholeRelayer()`** - a modifier that ensures only authorized messages from the Wormhole relayer contract are processed, restricting access to certain functions
+
+    ```solidity
+    require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
+        _;
+    }
+    ```
+
+ - **`setRegisteredSender()`** - restricts message acceptance to a registered sender from a specific chain, ensuring messages are only processed from trusted sources
+
+    ```solidity
+    uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
+    }
+    ```
+
+These security measures ensure messages come from the correct source and are processed securely. Please refer to the complete `Base.sol` contract below for further details.
+
+???- code "`Base.sol`"
+    ```solidity
+    // SPDX-License-Identifier: Apache 2
+pragma solidity ^0.8.19;
+
+import "wormhole-sdk/interfaces/IWormholeReceiver.sol";
+import "wormhole-sdk/interfaces/IWormholeRelayer.sol";
+import "wormhole-sdk/interfaces/IWormhole.sol";
+import "wormhole-sdk/Utils.sol";
+
+abstract contract Base {
+    IWormholeRelayer public immutable wormholeRelayer;
+    IWormhole public immutable wormhole;
+
+    address registrationOwner;
+    mapping(uint16 =&gt; bytes32) registeredSenders;
+
+    constructor(address _wormholeRelayer, address _wormhole) {
+        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
+        wormhole = IWormhole(_wormhole);
+        registrationOwner = msg.sender;
+    }
+
+    modifier onlyWormholeRelayer() {
+        require(
+            msg.sender == address(wormholeRelayer),
+            "Msg.sender is not Wormhole Relayer"
+        );
+        _;
+    }
+
+    modifier isRegisteredSender(uint16 sourceChain, bytes32 sourceAddress) {
+        require(
+            registeredSenders[sourceChain] == sourceAddress,
+            "Not registered sender"
+        );
+        _;
+    }
+
+    /**
+     * Sets the registered address for 'sourceChain' to 'sourceAddress'
+     * So that for messages from 'sourceChain', only ones from 'sourceAddress' are valid
+     *
+     * Assumes only one sender per chain is valid
+     * Sender is the address that called 'send' on the Wormhole Relayer contract on the source chain)
+     */
+    function setRegisteredSender(
+        uint16 sourceChain,
+        bytes32 sourceAddress
+    ) public {
+        require(
+            msg.sender == registrationOwner,
+            "Not allowed to set registered sender"
+        );
+        registeredSenders[sourceChain] = sourceAddress;
+    }
+}
+    ```
+
+### Interface for Cross-Chain Messages
+
+The Wormhole Solidity SDK interacts with the Wormhole relayer for sending and receiving messages across EVM-compatible chains. The [`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/IWormholeRelayer.sol){target=\_blank} includes several interfaces that are central to cross-chain communication, enabling secure and efficient message delivery.
+
+For detailed information on how to implement these interfaces, refer to the [Wormhole Relayer Interfaces documentation](/docs/products/messaging/guides/wormhole-relayers/#wormhole-relayer-interfaces){target=\_blank}. This section covers:
+
+ - **`IWormholeRelayer`** – methods for sending cross-chain messages, VAAs, and token transfers
+ - **`IWormholeReceiver`** – the required implementation for receiving cross-chain messages
+ - **`quoteEVMDeliveryPrice()`** – how to estimate gas and fees for cross-chain transactions
+
+These interfaces reduce the complexity of cross-chain dApp development by abstracting away the details of relayer infrastructure, ensuring that message delivery is handled efficiently.
+
+### Advanced Concepts
+
+For developers interested in exploring additional advanced topics, the following sections provide insights into key aspects of the SDK’s functionality.
+
+???- note "Error Handling and Reverts"
+    The SDK defines several custom errors to help developers handle common issues like incorrect gas fees, invalid senders, and more. For example, `InvalidMsgValue` is thrown when the message value for a relayed message is erroneous.
+
+    ```solidity
+    error InvalidMsgValue(uint256 msgValue, uint256 totalFee);
+    ```
+
+## Usage
+
+This section covers cross-chain messaging and token transfers and shows how to use the Wormhole Solidity SDK in real-world scenarios.
+
+### Send a Cross-Chain Message
+
+To send a cross-chain message, inherit from the base contract provided by the SDK and use its helper methods to define your message and sender address. Here’s a basic example:
+
+```solidity
+pragma solidity ^0.8.19;
+
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/Base.sol";
+
+contract CrossChainSender is Base {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) Base(_wormholeRelayer, _wormhole) {}
+
+    function sendMessage(
+        bytes memory message,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Register sender and send message through WormholeRelayer
+        setRegisteredSender(targetChain, msg.sender);
+        onlyWormholeRelayer().sendPayloadToEvm(
+            targetChain,
+            address(targetAddress),
+            message,
+            0,
+            500_000
+        );
+    }
+}
 ```
 
-### Mayan MCTP
+This contract extends `Base.sol` and allows sending cross-chain messages securely using the `WormholeRelayer`.
 
-Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement framework. It bundles USDC bridging and swaps into a single operation handled by protocol logic. This route is slower due to its reliance on chain finality. However, it provides broad compatibility and redundancy, making it useful when faster routes are unavailable or when targeting chains that aren’t supported by Swift. While typically more expensive due to protocol fees, it ensures reliable settlement when faster options are unavailable.
+### Send Tokens Across Chains
 
-## Use Cases
+The SDK enables seamless token transfers between EVM-compatible chains in addition to sending messages. To facilitate cross-chain token transfers, you can extend the SDK's `TokenSender` and `TokenReceiver` base contracts.
 
-- **Cross-Chain Perpetuals** 
+```solidity
+pragma solidity ^0.8.19;
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Provides fast token execution across chains.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch live prices and manage position state across chains.
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
 
-- **Bridging Intent Library**
+contract CrossChainTokenSender is TokenSender {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenSender(_wormholeRelayer, _wormhole) {}
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Handles user-defined bridge intents.
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Triggers cross-chain function calls.
+    function sendToken(
+        address token,
+        uint256 amount,
+        uint16 targetChain,
+        bytes32 targetAddress
+    ) external payable {
+        // Send tokens across chains
+        transferTokenToTarget(token, amount, targetChain, targetAddress);
+    }
+}
+```
 
-- **Multichain Prediction Markets**
+In this example, `TokenSender` initiates a token transfer to another chain. The SDK’s built-in utilities securely handle token transfers, ensuring proper VAAs are generated and processed.
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Executes token flows between chains.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Gets market data and tracks state.
+### Receive Tokens Across Chains
 
-## Next Steps
+To receive tokens on the target chain, implement a contract that inherits from `TokenReceiver` and overrides the `receiveWormholeMessages` function.
 
-Start building with Settlement or dive deeper into specific components:
+```solidity
+pragma solidity ^0.8.19;
 
-- **[Get Started with Settlement](/docs/products/settlement/get-started/)**: Follow a hands-on demo using Mayan Swift.
-- **[Architecture Documentation](/docs/products/settlement/concepts/architecture/)**: Explore the Settlement architecture and components.
---- END CONTENT ---
+import "@wormhole-foundation/wormhole-solidity-sdk/src/WormholeRelayer/TokenBase.sol";
 
-Doc-Content: https://wormhole.com/docs/products/settlement/reference/supported-networks/
---- BEGIN CONTENT ---
----
-title: Settlement Supported Networks
-description: Explore all blockchains supported by Wormhole Settlement, including network availability, block explorers, and cross-chain transfer support.
-categories: Settlement, Transfer
----
+contract CrossChainTokenReceiver is TokenReceiver {
+    constructor(
+        address _wormholeRelayer,
+        address _wormhole
+    ) TokenReceiver(_wormholeRelayer, _wormhole) {}
 
-# Supported Networks
+    // Function to handle received tokens from another chain
+    function receiveWormholeMessages(
+        bytes memory payload,
+        bytes[] memory additionalMessages,
+        bytes32 sourceAddress,
+        uint16 sourceChain,
+        bytes32 deliveryHash
+    ) external payable override {
+        // Process the received tokens here
+        receiveTokens(payload);
+    }
+}
+```
 
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--SUPPORTED_BLOCKCHAIN_SETTLEMENT-->
-<div class="full-width" markdown="">
-| Ethereum | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Solana | SVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Avalanche | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Base | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Sui | Sui Move VM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Unichain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-</div>
+In this example, `TokenReceiver` allows the contract to handle tokens sent from the source chain. Once the cross-chain message is received, the `receiveWormholeMessages` function processes the incoming tokens. Always validate the message's authenticity and source.
+
+!!! note
+    Always verify the source of incoming messages and tokens to prevent unauthorized access to your contract. Please refer to the [Emitter Verification](/docs/products/messaging/guides/core-contracts/#validating-the-emitter/){target=\_blank} section for more details.
+
+## Testing Environment
+
+The SDK includes built-in support for Forge-based testing, which allows you to test your cross-chain applications locally before deploying them to production. Testing with the same Solidity compiler version and configuration you plan to use in production is highly recommended to catch any potential issues early.
+
+For a detailed example, check out the below repositories:
+
+ - [Cross chain messaging](/docs/products/messaging/tutorials/cross-chain-contracts/){target=\_blank}
+ - [Cross chain token transfer](/docs/products/messaging/tutorials/cross-chain-token-contracts/){target=\_blank}
 --- END CONTENT ---
 
 ## Shared Concepts from basics

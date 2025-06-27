@@ -1,7 +1,7 @@
 ---
 title: Connect FAQs
 description: Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options.
-categories: Connect, Transfer
+categories: Connect, Transfer, CCTP
 ---
 
 # Connect FAQs

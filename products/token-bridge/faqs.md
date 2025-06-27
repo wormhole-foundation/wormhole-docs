@@ -1,7 +1,7 @@
 ---
 title: Token Bridge FAQs
 description: Find answers to common questions about the Wormhole Token Bridge, including managing wrapped assets and understanding gas fees.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Token Bridge FAQs
