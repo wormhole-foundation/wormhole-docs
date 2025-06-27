@@ -125,7 +125,7 @@ def extract_category(category, section_priority, shared_data=None):
         return
 
     # Output file for this category
-    output_file = os.path.join(output_dir, f"llms-{category.lower()}.txt") # write to output file
+    output_file = os.path.join(output_dir, f"llms-{category.lower().replace(' ', '-')}.txt") # write to output file
     with open(output_file, 'w', encoding='utf-8') as f:
 
         # I# 1) Intro context block for LLMs purpose 
@@ -184,7 +184,7 @@ def generate_all_categories():
         # Generate the shared category files
         extract_category(cat_name, SECTION_PRIORITY)
         
-        path = os.path.join(output_dir, f"llms-{cat_name.lower()}.txt")
+        path = os.path.join(output_dir, f"llms-{cat_name.lower().replace(' ', '-')}.txt")
         if not os.path.isfile(path):
             print(f"[!] Shared category file not found for {cat_name}: {path}")
             continue
