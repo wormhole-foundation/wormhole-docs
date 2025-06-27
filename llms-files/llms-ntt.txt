@@ -13,23 +13,316 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/architecture.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/security.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/architecture.md [type: concept]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/security.md [type: concept]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/configuration/access-control.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/configuration/rate-limiting.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/faqs.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/get-started.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/deploy-to-evm.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/deploy-to-solana.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/evm-launchpad.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/post-deployment.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/troubleshoot.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/overview.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/deploy-to-evm.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/deploy-to-solana.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/evm-launchpad.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/post-deployment.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/troubleshoot.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/cli-commands.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/managers-transceivers.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/supported-networks.md [type: other]
 
 ## Full content for each doc page
+
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/overview/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Overview
+description: With Native Token Transfers, you can directly transfer a blockchain's native assets across various connected networks.
+categories: NTT, Transfer
+---
+
+## Native Token Transfers Overview
+
+Native Token Transfers (NTT) provides an adaptable framework for transferring your native tokens across different blockchains. Unlike traditional wrapped assets, NTT maintains your token's native properties on every chain. This ensures that you retain complete control over crucial aspects, such as metadata, ownership, upgradeability, and custom features.
+
+## Key Features
+
+- **Control and customization**: Ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls.
+- **Advanced rate limiting**: Set rate limits per chain and period to prevent abuse, manage network congestion, and control deployments.
+- **Global accountant**: Ensures the amount burned and transferred on chains never exceeds the amount of tokens minted.
+- **No wrapped tokens**: Tokens are used directly within their native ecosystem, eliminating intermediary transfer steps.
+
+
+## Deployment Models
+
+NTT offers two operational modes for your existing tokens: 
+
+- **Hub-and-spoke**: Locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts.
+- **Burn-and-mint**: Burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token.
+
+## Supported Token Standards
+
+Native Token Transfers (NTT) primarily support ERC-20 tokens, the most widely used standard for fungible assets on Ethereum and other EVM-compatible chains, including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required. It also supports fungible SPL tokens on Solana for secure cross-chain transfers.
+
+The NttManager is a contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
+
+NTT does not currently support token standards like ERC-721 (non-fungible tokens), ERC-1155 (a multi-token standard), or SPL-based tokens, such as Metaplex NFTs. Support is currently limited to ERC-20 tokens.
+
+## Deployment Process
+
+Here's a breakdown of the key steps involved when deploying NTT:
+
+- **Prepare tokens**: Ensure your ERC-20 or SPL tokens are ready.
+- **Choose deployment model**: Choose your cross-chain token model: either burn-and-mint or hub-and-spoke.
+- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}.
+- **Initialization**: Specify target chains and token details, and set up your CLI environment if using it.
+- **Deploy contracts**: Deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees.
+- **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles.
+- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
+
+## Use Cases 
+
+- **Cross-Chain Swaps and Liquidity Aggregation**
+
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transmits native assets across chains.
+    - [**Connect**](/docs/products/connect/overview/): Manages user-friendly asset transfers.
+    - [**Queries**](/docs/products/queries/overview/): Acquires real-time prices for optimal trade execution.
+
+- **Borrowing and Lending Across Chains**
+
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Moves collateral as native assets.
+    - [**Messaging**](/docs/products/messaging/overview/): Propagates loan requests and liquidations across chains.
+    - [**Queries**](/docs/products/queries/overview/): Retrieves interest rates and asset prices in real-time.
+
+- **Gas Abstraction**
+
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Facilitates native token conversion for gas payments.
+    - [**Messaging**](/docs/products/messaging/overview/): Sends gas fee payments across chains.
+
+- **Cross-Chain Payment Widgets**
+
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Ensures direct, native asset transfers.
+    - [**Connect**](/docs/products/connect/overview/): Facilitates seamless payments in various tokens.
+
+- **Cross-Chain Staking**
+
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transfers staked assets natively between networks.
+    - [**Messaging**](/docs/products/messaging/overview/): Moves staking rewards and governance signals across chains.
+
+## Next Steps
+
+Follow these steps to get started with NTT:
+
+[timeline(wormhole-docs/.snippets/text/products/native-token-transfers/overview/ntt-timeline.json)]
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/get-started/
+--- BEGIN CONTENT ---
+---
+title: Get Started with NTT
+description: NTT enables cross-chain token movement without wrapping. Install the CLI, deploy test tokens, and scaffold a project to integrate NTT into your app.
+categories: NTT, Transfer
+---
+
+# Get Started with NTT
+
+## Introduction
+
+The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
+
+If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+- [Bun installed](https://bun.sh/){target=\_blank}
+- A wallet private key with tokens on supported chains
+- ERC-20 or SPL tokens already deployed on the source and destination chains
+
+## Don’t Have a Token Yet?
+
+To use NTT, you must have a token already deployed on the source and destination chains. If you don’t have one, follow the quick guides below to deploy a basic test token.
+
+???- interface "Deploy an ERC-20 Token on EVM"
+    Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+
+    1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
+
+    2. **Clone the repository** – fetch the example contract repository
+
+        ```bash
+        git clone https://github.com/wormhole-foundation/example-ntt-token.git
+        cd example-ntt-token
+        ```
+    
+    3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
+
+        ```bash
+        forge create --broadcast \
+            --rpc-url INSERT_RPC_URL \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            src/PeerToken.sol:PeerToken \
+            --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
+        ```
+
+    4. **Mint tokens** – send tokens to your address
+
+        ```bash
+        cast send INSERT_TOKEN_ADDRESS \
+            "mint(address,uint256)" \
+            INSERT_RECIPIENT_ADDRESS \
+            INSERT_AMOUNT_IN_WEI \
+            --private-key INSERT_YOUR_PRIVATE_KEY \
+            --rpc-url INSERT_RPC_URL
+        ```
+
+    !!! note
+        This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
+
+
+???- interface "Create and Mint SPL Tokens"
+    This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
+
+    1. **Generate a Solana key pair** - run the following command to create a new wallet:
+
+        ```bash
+        solana-keygen grind --starts-with w:1 --ignore-case
+        ```
+
+    2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
+
+        ```bash
+        solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
+        ```
+
+    3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
+
+        === "Mainnet"
+            ```bash
+            solana config set -um
+            ```
+
+        === "Testnet"
+            ```bash
+            solana config set -ut
+            ```
+
+        === "Devnet"
+            ```bash
+            solana config set -ud
+            ```
+
+    4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
+
+        ```bash
+        solana airdrop 2
+        solana balance
+        ```
+
+    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+
+        ```bash
+        cargo install spl-token-cli
+        ```
+
+    6. **Create a new SPL token** - initialize the token on Solana
+
+        ```bash
+        spl-token create-token
+        ```
+
+    7. **Create a token account** - generate an account to hold the token
+
+        ```bash
+        spl-token create-account INSERT_TOKEN_ADDRESS
+        ```
+
+    8. **Mint tokens** - send 1000 tokens to the created account
+
+        ```bash
+        spl-token mint INSERT_TOKEN_ADDRESS 1000
+        ```
+
+    !!! note
+        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+
+## Install NTT CLI
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
+
+The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
+
+1. Run the installation command in your terminal:
+
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    ```
+
+2. Verify the NTT CLI is installed:
+
+    ```bash
+    ntt --version
+    ```
+
+??? warning "Command not found?"
+    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) is installed and that its binary directory is included in your shell’s PATH.
+    
+    Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
+
+    ```bash
+    echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.zshrc
+    ```
+
+    Then, restart your terminal or run `source ~/.zshrc`.
+
+## Initialize a New NTT Project
+
+1. Once the CLI is installed, scaffold a new project by running:
+
+    ```bash
+    ntt new my-ntt-project
+    cd my-ntt-project
+    ```
+
+2. Initialize a new `deployment.json` file specifying the network:
+
+    === "Mainnet"
+        ```bash
+        ntt init Mainnet
+        ```
+
+    === "Testnet"
+        ```bash
+        ntt init Testnet
+        ```
+
+    After initialization, the `deployment.json` file contains your NTT configuration and starts with the selected network.
+
+    === "Mainnet"
+        ```json
+        {
+            "network": "Mainnet",
+            "chains": {}
+        }
+        ```
+
+    === "Testnet"
+        ```json
+        {
+            "network": "Testnet",
+            "chains": {}
+        }
+        ```
+
+In the deployment steps, you will add your supported chains, their token addresses, deployment modes, and any custom settings.
+
+## Next Steps
+
+You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
+
+- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
+- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on Solana.
+--- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/concepts/architecture/
 --- BEGIN CONTENT ---
@@ -492,216 +785,6 @@ ntt update --path path/to/ntt/repo
 ```
 
 Git branch and local installations enable a fast iteration loop as changes to the CLI code will immediately be reflected in the running binary without having to run any build steps.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/native-token-transfers/get-started/
---- BEGIN CONTENT ---
----
-title: Get Started with NTT
-description: NTT enables cross-chain token movement without wrapping. Install the CLI, deploy test tokens, and scaffold a project to integrate NTT into your app.
-categories: NTT, Transfer
----
-
-# Get Started with NTT
-
-## Introduction
-
-The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
-
-If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}.
-
-## Prerequisites
-
-Before you begin, make sure you have:
-
-- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
-- [Bun installed](https://bun.sh/){target=\_blank}
-- A wallet private key with tokens on supported chains
-- ERC-20 or SPL tokens already deployed on the source and destination chains
-
-## Don’t Have a Token Yet?
-
-To use NTT, you must have a token already deployed on the source and destination chains. If you don’t have one, follow the quick guides below to deploy a basic test token.
-
-???- interface "Deploy an ERC-20 Token on EVM"
-    Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
-
-    1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
-
-    2. **Clone the repository** – fetch the example contract repository
-
-        ```bash
-        git clone https://github.com/wormhole-foundation/example-ntt-token.git
-        cd example-ntt-token
-        ```
-    
-    3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
-
-        ```bash
-        forge create --broadcast \
-            --rpc-url INSERT_RPC_URL \
-            --private-key INSERT_YOUR_PRIVATE_KEY \
-            src/PeerToken.sol:PeerToken \
-            --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
-        ```
-
-    4. **Mint tokens** – send tokens to your address
-
-        ```bash
-        cast send INSERT_TOKEN_ADDRESS \
-            "mint(address,uint256)" \
-            INSERT_RECIPIENT_ADDRESS \
-            INSERT_AMOUNT_IN_WEI \
-            --private-key INSERT_YOUR_PRIVATE_KEY \
-            --rpc-url INSERT_RPC_URL
-        ```
-
-    !!! note
-        This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
-
-
-???- interface "Create and Mint SPL Tokens"
-    This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
-
-    1. **Generate a Solana key pair** - run the following command to create a new wallet:
-
-        ```bash
-        solana-keygen grind --starts-with w:1 --ignore-case
-        ```
-
-    2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
-
-        ```bash
-        solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
-        ```
-
-    3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
-
-        === "Mainnet"
-            ```bash
-            solana config set -um
-            ```
-
-        === "Testnet"
-            ```bash
-            solana config set -ut
-            ```
-
-        === "Devnet"
-            ```bash
-            solana config set -ud
-            ```
-
-    4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
-
-        ```bash
-        solana airdrop 2
-        solana balance
-        ```
-
-    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
-
-        ```bash
-        cargo install spl-token-cli
-        ```
-
-    6. **Create a new SPL token** - initialize the token on Solana
-
-        ```bash
-        spl-token create-token
-        ```
-
-    7. **Create a token account** - generate an account to hold the token
-
-        ```bash
-        spl-token create-account INSERT_TOKEN_ADDRESS
-        ```
-
-    8. **Mint tokens** - send 1000 tokens to the created account
-
-        ```bash
-        spl-token mint INSERT_TOKEN_ADDRESS 1000
-        ```
-
-    !!! note
-        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
-
-## Install NTT CLI
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
-
-The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
-
-1. Run the installation command in your terminal:
-
-    ```bash
-    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
-    ```
-
-2. Verify the NTT CLI is installed:
-
-    ```bash
-    ntt --version
-    ```
-
-??? warning "Command not found?"
-    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) is installed and that its binary directory is included in your shell’s PATH.
-    
-    Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
-
-    ```bash
-    echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.zshrc
-    ```
-
-    Then, restart your terminal or run `source ~/.zshrc`.
-
-## Initialize a New NTT Project
-
-1. Once the CLI is installed, scaffold a new project by running:
-
-    ```bash
-    ntt new my-ntt-project
-    cd my-ntt-project
-    ```
-
-2. Initialize a new `deployment.json` file specifying the network:
-
-    === "Mainnet"
-        ```bash
-        ntt init Mainnet
-        ```
-
-    === "Testnet"
-        ```bash
-        ntt init Testnet
-        ```
-
-    After initialization, the `deployment.json` file contains your NTT configuration and starts with the selected network.
-
-    === "Mainnet"
-        ```json
-        {
-            "network": "Mainnet",
-            "chains": {}
-        }
-        ```
-
-    === "Testnet"
-        ```json
-        {
-            "network": "Testnet",
-            "chains": {}
-        }
-        ```
-
-In the deployment steps, you will add your supported chains, their token addresses, deployment modes, and any custom settings.
-
-## Next Steps
-
-You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
-
-- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
-- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on Solana.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/guides/deploy-to-evm/
@@ -1571,89 +1654,6 @@ If you encounter issues during the NTT deployment process, check the following c
         ```
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/products/native-token-transfers/overview/
---- BEGIN CONTENT ---
----
-title: Native Token Transfers Overview
-description: With Native Token Transfers, you can directly transfer a blockchain's native assets across various connected networks.
-categories: NTT, Transfer
----
-
-## Native Token Transfers Overview
-
-Native Token Transfers (NTT) provides an adaptable framework for transferring your native tokens across different blockchains. Unlike traditional wrapped assets, NTT maintains your token's native properties on every chain. This ensures that you retain complete control over crucial aspects, such as metadata, ownership, upgradeability, and custom features.
-
-## Key Features
-
-- **Control and customization**: Ensure ownership and configurable access controls, permissions, and thresholds, preventing unauthorized calls.
-- **Advanced rate limiting**: Set rate limits per chain and period to prevent abuse, manage network congestion, and control deployments.
-- **Global accountant**: Ensures the amount burned and transferred on chains never exceeds the amount of tokens minted.
-- **No wrapped tokens**: Tokens are used directly within their native ecosystem, eliminating intermediary transfer steps.
-
-
-## Deployment Models
-
-NTT offers two operational modes for your existing tokens: 
-
-- **Hub-and-spoke**: Locks tokens on a central "hub" chain and mints equivalents on "spoke" chains, maintaining the total supply on the hub. It's ideal for integrating existing tokens onto new blockchains without altering their original contracts.
-- **Burn-and-mint**: Burns tokens on the source chain and mints new ones on the destination, distributing the total supply across multiple chains. It's best suited for new token deployments or projects willing to upgrade existing contracts for a truly native multichain token.
-
-## Supported Token Standards
-
-Native Token Transfers (NTT) primarily support ERC-20 tokens, the most widely used standard for fungible assets on Ethereum and other EVM-compatible chains, including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required. It also supports fungible SPL tokens on Solana for secure cross-chain transfers.
-
-The NttManager is a contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
-
-NTT does not currently support token standards like ERC-721 (non-fungible tokens), ERC-1155 (a multi-token standard), or SPL-based tokens, such as Metaplex NFTs. Support is currently limited to ERC-20 tokens.
-
-## Deployment Process
-
-Here's a breakdown of the key steps involved when deploying NTT:
-
-- **Prepare tokens**: Ensure your ERC-20 or SPL tokens are ready.
-- **Choose deployment model**: Choose your cross-chain token model: either burn-and-mint or hub-and-spoke.
-- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}.
-- **Initialization**: Specify target chains and token details, and set up your CLI environment if using it.
-- **Deploy contracts**: Deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees.
-- **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles.
-- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
-
-## Use Cases 
-
-- **Cross-Chain Swaps and Liquidity Aggregation**
-
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transmits native assets across chains.
-    - [**Connect**](/docs/products/connect/overview/): Manages user-friendly asset transfers.
-    - [**Queries**](/docs/products/queries/overview/): Acquires real-time prices for optimal trade execution.
-
-- **Borrowing and Lending Across Chains**
-
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Moves collateral as native assets.
-    - [**Messaging**](/docs/products/messaging/overview/): Propagates loan requests and liquidations across chains.
-    - [**Queries**](/docs/products/queries/overview/): Retrieves interest rates and asset prices in real-time.
-
-- **Gas Abstraction**
-
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Facilitates native token conversion for gas payments.
-    - [**Messaging**](/docs/products/messaging/overview/): Sends gas fee payments across chains.
-
-- **Cross-Chain Payment Widgets**
-
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Ensures direct, native asset transfers.
-    - [**Connect**](/docs/products/connect/overview/): Facilitates seamless payments in various tokens.
-
-- **Cross-Chain Staking**
-
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transfers staked assets natively between networks.
-    - [**Messaging**](/docs/products/messaging/overview/): Moves staking rewards and governance signals across chains.
-
-## Next Steps
-
-Follow these steps to get started with NTT:
-
-[timeline(wormhole-docs/.snippets/text/products/native-token-transfers/overview/ntt-timeline.json)]
---- END CONTENT ---
-
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/reference/cli-commands/
 --- BEGIN CONTENT ---
 ---
@@ -2072,14 +2072,14 @@ The following section contains foundational documentation shared across all Worm
 ---
 
 ## List of Shared Concept Pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md [type: tutorials]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md [type: tutorial]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md [type: other]
@@ -2092,6 +2092,1027 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/security.md [type: other]
 
 ## Full content for shared concepts:
+
+Doc-Content: https://wormhole.com/docs/products/messaging/overview/
+--- BEGIN CONTENT ---
+---
+title: Messaging Overview
+description: With Wormhole Messaging, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
+categories: Basics
+---
+
+# Messaging Overview 
+
+Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, multichain message-passing layer that enables secure, fast communication between blockchains. It solves the critical problem of blockchain isolation by allowing data and assets to move freely across networks, empowering developers to build true multichain applications.
+
+## Key Features
+
+- **Multichain messaging**: Send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems.
+- **Decentralized validation**: A network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity.
+- **Composable architecture**: Works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases.
+
+## How It Works
+
+The messaging flow consists of several core components:
+
+1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
+2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
+4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
+
+![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
+
+## Use Cases
+
+Wormhole Messaging enables a wide range of multichain applications. Below are common use cases and the Wormhole stack components you can use to build them.
+
+- **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate actions across chains.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch rates and prices in real-time.
+
+- **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Relay verified data.
+    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Aggregate multi-chain sources.
+
+- **Gas Abstraction**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate gas logic.
+    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Handle native token swaps.
+
+- **Bridging Intent Library**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Dispatch and execute intents.
+    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Execute user-defined bridging intents.
+
+- **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
+
+    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Facilitate decentralized interactions.
+    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Enable tokenized rewards.
+
+## Next Steps
+
+Follow these steps to work with Wormhole Messaging:
+
+- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
+- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/overview/
+--- BEGIN CONTENT ---
+---
+title: Compare Wormhole's Cross-Chain Solutions
+description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
+categories: Transfer, Basics
+---
+
+# Products 
+
+Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
+
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+
+Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
+
+## Transfer Products
+
+Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
+
+- [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
+- [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
+- [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
+
+<div markdown class="full-width">
+
+::spantable::
+
+|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
+| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
+|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
+|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
+| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
+|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
+|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
+|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
+|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
+| Integration Details @span      |                                       |                    |                    |                    |
+| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
+| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
+| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
+
+::end-spantable::
+
+</div>
+
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
+
+Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
+
+## Bridging UI
+
+[**Connect**](/docs/products/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
+
+## Real-time Data
+
+[**Queries**](/docs/products/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation.
+
+## Multichain Governance
+
+[**MultiGov**](/docs/products/multigov/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/messaging/get-started/
+--- BEGIN CONTENT ---
+---
+title: Get Started with Messaging
+description: Follow this guide to use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
+categories: Basics, Typescript SDK
+---
+
+# Get Started with Messaging
+
+Wormhole's core functionality allows you to send any data packet from one supported chain to another. This guide demonstrates how to publish your first simple, arbitrary data message from an EVM environment source chain using the Wormhole TypeScript SDK's core messaging capabilities. 
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
+- [Ethers.js](https://docs.ethers.org/v6/getting-started/){target=\_blank} installed (this example uses version 6)
+- A small amount of testnet tokens for gas fees. This example uses [Sepolia ETH](https://sepolia-faucet.pk910.de/){target=\_blank} but can be adapted for any supported network
+- A private key for signing blockchain transactions
+
+## Configure Your Messaging Environment
+
+1. Create a directory and initialize a Node.js project:
+
+    ```bash
+    mkdir core-message
+    cd core-message
+    npm init -y
+    ```
+
+2. Install TypeScript, tsx, Node.js type definitions, and Ethers.js:
+
+    ```bash
+    npm install --save-dev tsx typescript @types/node ethers
+    ```
+
+3. Create a `tsconfig.json` file if you don't have one. You can generate a basic one using the following command:
+
+    ```bash
+    npx tsc --init
+    ```
+
+    Make sure your `tsconfig.json` includes the following settings:
+
+    ```json 
+    {
+        "compilerOptions": {
+            // es2020 or newer
+            "target": "es2020",
+            // Use esnext if you configured your package.json with type: "module"
+            "module": "commonjs",
+            "esModuleInterop": true,
+            "forceConsistentCasingInFileNames": true,
+            "strict": true,
+            "skipLibCheck": true,
+            "resolveJsonModule": true
+            }
+    }
+    ```
+
+4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}:
+
+    ```bash
+    npm install @wormhole-foundation/sdk
+    ```
+
+5. Create a new file named `main.ts`:
+
+    ```bash
+    touch main.ts
+    ```
+
+## Construct and Publish Your Message
+
+1. Open `main.ts` and update the code there as follows:
+
+    ```ts title="main.ts"
+    import {
+  wormhole,
+  signSendWait,
+  toNative,
+  encoding,
+  type Chain,
+  type Network,
+  type NativeAddress,
+  type WormholeMessageId,
+  type UnsignedTransaction,
+  type TransactionId,
+  type WormholeCore,
+  type Signer as WormholeSdkSigner,
+  type ChainContext,
+} from '@wormhole-foundation/sdk';
+// Platform-specific modules
+import EvmPlatformLoader from '@wormhole-foundation/sdk/evm';
+import { getEvmSigner } from '@wormhole-foundation/sdk-evm';
+import {
+  ethers,
+  Wallet,
+  JsonRpcProvider,
+  Signer as EthersSigner,
+} from 'ethers';
+
+/**
+ * The required value (SEPOLIA_PRIVATE_KEY) must
+ * be loaded securely beforehand, for example via a keystore, secrets
+ * manager, or environment variables (not recommended).
+ */
+
+const SEPOLIA_PRIVATE_KEY = SEPOLIA_PRIVATE_KEY!;
+// Provide a private endpoint RPC URL for Sepolia, defaults to a public node
+// if not set
+const RPC_URL =
+  process.env.SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com';
+
+async function main() {
+  // Initialize Wormhole SDK
+  const network = 'Testnet';
+  const wh = await wormhole(network, [EvmPlatformLoader]);
+  console.log('Wormhole SDK Initialized.');
+
+  // Get the EVM signer and provider
+  let ethersJsSigner: EthersSigner;
+  let ethersJsProvider: JsonRpcProvider;
+
+  try {
+    if (!SEPOLIA_PRIVATE_KEY) {
+      console.error('Please set the SEPOLIA_PRIVATE_KEY environment variable.');
+      process.exit(1);
+    }
+
+    ethersJsProvider = new JsonRpcProvider(RPC_URL);
+    const wallet = new Wallet(SEPOLIA_PRIVATE_KEY);
+    ethersJsSigner = wallet.connect(ethersJsProvider);
+    console.log(
+      `Ethers.js Signer obtained for address: ${await ethersJsSigner.getAddress()}`,
+    );
+  } catch (error) {
+    console.error('Failed to get Ethers.js signer and provider:', error);
+    process.exit(1);
+  }
+
+  // Define the source chain context
+  const sourceChainName: Chain = 'Sepolia';
+  const sourceChainContext = wh.getChain(sourceChainName) as ChainContext&lt;
+    'Testnet',
+    'Sepolia',
+    'Evm'
+  &gt;;
+  console.log(`Source chain context obtained for: ${sourceChainContext.chain}`);
+
+  // Get the Wormhole SDK signer, which is a wrapper around the Ethers.js
+  // signer using the Wormhole SDK's signing and transaction handling
+  // capabilities
+  let sdkSigner: WormholeSdkSigner<network, chain="">;
+  try {
+    sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
+    console.log(
+      `Wormhole SDK Signer obtained for address: ${sdkSigner.address()}`,
+    );
+  } catch (error) {
+    console.error('Failed to get Wormhole SDK Signer:', error);
+    process.exit(1);
+  }
+
+  // Construct your message payload
+  const messageText = `HelloWormholeSDK-${Date.now()}`;
+  const payload: Uint8Array = encoding.bytes.encode(messageText);
+  console.log(`Message to send: "${messageText}"`);
+
+  // Define message parameters
+  const messageNonce = Math.floor(Math.random() * 1_000_000_000);
+  const consistencyLevel = 1;
+
+  try {
+    // Get the core protocol client
+    const coreProtocolClient: WormholeCore<network> =
+      await sourceChainContext.getWormholeCore();
+
+    // Generate the unsigned transactions
+    const whSignerAddress: NativeAddress<chain> = toNative(
+      sdkSigner.chain(),
+      sdkSigner.address(),
+    );
+    console.log(
+      `Preparing to publish message from ${whSignerAddress.toString()} on ${
+        sourceChainContext.chain
+      }...`,
+    );
+
+    const unsignedTxs: AsyncGenerator<unsignedtransaction<network, chain="">&gt; =
+      coreProtocolClient.publishMessage(
+        whSignerAddress, 
+        payload,
+        messageNonce,
+        consistencyLevel,
+      );
+
+    // Sign and send the transactions
+    console.log(
+      'Signing and sending the message publication transaction(s)...',
+    );
+    const txIds: TransactionId[] = await signSendWait(
+      sourceChainContext,
+      unsignedTxs,
+      sdkSigner,
+    );
+
+    if (!txIds || txIds.length === 0) {
+      throw new Error('No transaction IDs were returned from signSendWait.');
+    }
+    const primaryTxIdObject = txIds[txIds.length - 1];
+    const primaryTxid = primaryTxIdObject.txid;
+
+    console.log(`Primary transaction ID for parsing: ${primaryTxid}`);
+    console.log(
+      `View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/${primaryTxid}`,
+    );
+
+    console.log(
+      '\nWaiting a few seconds for transaction to propagate before parsing...',
+    );
+    await new Promise((resolve) =&gt; setTimeout(resolve, 8000));
+
+    // Retrieve VAA identifiers
+    console.log(
+      `Attempting to parse VAA identifiers from transaction: ${primaryTxid}...`,
+    );
+    const messageIds: WormholeMessageId[] =
+      await sourceChainContext.parseTransaction(primaryTxid);
+
+    if (messageIds &amp;&amp; messageIds.length &gt; 0) {
+      const wormholeMessageId = messageIds[0];
+      console.log('--- VAA Identifiers (WormholeMessageId) ---');
+      console.log('  Emitter Chain:', wormholeMessageId.chain);
+      console.log('  Emitter Address:', wormholeMessageId.emitter.toString());
+      console.log('  Sequence:', wormholeMessageId.sequence.toString());
+      console.log('-----------------------------------------');
+    } else {
+      console.error(
+        `Could not parse Wormhole message IDs from transaction ${primaryTxid}.`,
+      );
+    }
+  } catch (error) {
+    console.error(
+      'Error during message publishing or VAA identifier retrieval:',
+      error,
+    );
+    if (error instanceof Error &amp;&amp; error.stack) {
+      console.error('Stack Trace:', error.stack);
+    }
+  }
+}
+
+main().catch((e) =&gt; {
+  console.error('Critical error in main function (outer catch):', e);
+  if (e instanceof Error &amp;&amp; e.stack) {
+    console.error('Stack Trace:', e.stack);
+  }
+  process.exit(1);
+});</unsignedtransaction<network,></chain></network></network,>
+    ```
+
+    This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses the core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successful publication of the message.
+
+2. Run the script using the following command:
+
+    ```bash
+    npx tsx main.ts
+    ```
+
+    You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx main.ts</span>
+<span data-ty="">Wormhole SDK Initialized.</span>
+<span data-ty="">Ethers.js Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+<span data-ty="">Source chain context obtained for: Sepolia</span>
+<span data-ty="">Wormhole SDK Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
+<span data-ty="">Message to send: "HelloWormholeSDK-1748362375390"</span>
+<span data-ty="">Preparing to publish message from 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12 on Sepolia...</span>
+<span data-ty="">Signing and sending the message publication transaction(s)...</span>
+<span data-ty="">Primary Transaction ID for parsing: 0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
+<span data-ty="">View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
+<span data-ty="">Waiting a few seconds for transaction to propagate before parsing...</span>
+<span data-ty="">Attempting to parse VAA identifiers from transaction:
+    0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508...</span>
+<span data-ty="">--- VAA Identifiers (WormholeMessageId) ---</span>
+<span data-ty=""> Emitter Chain: Sepolia</span>
+<span data-ty=""> Emitter Address: 0x000000000000000000000000cd8bcd9a793a7381b3c66c763c3f463f70de4e12</span>
+<span data-ty=""> Sequence: 1</span>
+<span data-ty="">-----------------------------------------</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+3. Make a note of the transaction ID and VAA identifier values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages
+
+Congratulations! You've published your first multichain message using Wormhole's TypeScript SDK and core protocol functionality. Consider the following options to build upon what you've accomplished. 
+
+## Next Steps
+
+- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
+<!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
+-->
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/messaging/guides/core-contracts/
+--- BEGIN CONTENT ---
+---
+title: Get Started with Core Contracts
+description: This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts
+categories: Basics
+---
+
+# Get Started with Core Contracts
+
+Wormhole's Core Contracts, deployed on each supported blockchain network, enable the fundamental operations of sending and receiving cross-chain messages.
+
+While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
+
+This guide will walk you through the variations and key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts. To learn more about Core Contracts' features and how it works, please refer to the [Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} page in the Learn section.
+
+## Prerequisites
+
+To interact with the Wormhole Core Contract, you'll need the following:
+
+- The [address of the Core Contract](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
+- The [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
+- The [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on
+
+## How to Interact with Core Contracts
+
+Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole Core Contracts. The primary functionality revolves around:
+
+- **Sending messages** - submitting messages to the Wormhole network for cross-chain communication
+- **Receiving and verifying messages** - validating messages received from other chains via the Wormhole network
+
+While the implementation details of the Core Contracts vary by network, the core functionality remains consistent across chains.
+
+### Sending Messages
+
+To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}.
+
+=== "EVM"
+
+    The `IWormhole.sol` interface provides the `publishMessage` function, which can be used to publish a message directly to the Core Contract:
+
+    ```solidity
+    function publishMessage(
+    uint32 nonce,
+    bytes memory payload,
+    uint8 consistencyLevel
+) external payable returns (uint64 sequence);
+    ```
+
+    ??? interface "Parameters"
+
+        `nonce` ++"uint32"++
+        
+        A free integer field that can be used however you like. Note that changing the `nonce` will result in a different digest.
+
+        ---
+
+        `payload` ++"bytes memory"++
+        
+        The content of the emitted message. Due to the constraints of individual blockchains, it may be capped to a certain maximum length.
+
+        ---
+
+        `consistencyLevel` ++"uint8"++
+        
+        A value that defines the required level of finality that must be reached before the Guardians will observe and attest to emitted events.
+
+    ??? interface "Returns"
+
+        `sequence` ++"uint64"++
+        
+        A unique number that increments for every message for a given emitter (and implicitly chain). This, combined with the emitter address and emitter chain ID, allows the VAA for this message to be queried from the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank}.
+    
+    ??? interface "Example"
+
+        ```solidity
+        IWormhole wormhole = IWormhole(wormholeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+// Check fee and send parameters
+
+// Create the HelloWorldMessage struct
+HelloWorldMessage memory parsedMessage = HelloWorldMessage({
+    payloadID: uint8(1),
+    message: helloWorldMessage
+});
+
+// Encode the HelloWorldMessage struct into bytes
+bytes memory encodedMessage = encodeMessage(parsedMessage);
+
+// Send the HelloWorld message by calling publishMessage on the
+// wormhole core contract and paying the Wormhole protocol fee.
+messageSequence = wormhole.publishMessage{value: wormholeFee}(
+    0, // batchID
+    encodedMessage,
+    wormholeFinality()
+);
+        ```
+
+        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/evm/src/01_hello_world){target=\_blank} repository on GitHub.
+
+=== "Solana"
+
+    The `wormhole_anchor_sdk::wormhole` module and the Wormhole program account can be used to pass a message directly to the Core Contract via the `wormhole::post_message` function:
+
+    ```rs
+    pub fn post_message<'info>(
+        ctx: CpiContext<'_, '_, '_, 'info, PostMessage<'info>>,
+        batch_id: u32,
+        payload: Vec<u8>,
+        finality: Finality
+    ) -> Result<()>
+    ```
+
+    ??? interface "Parameters"
+
+        `ctx` ++"CpiContext<'_, '_, '_, 'info, PostMessage<'info>>"++ 
+        
+        Provides the necessary context for executing the function, including the accounts and program information required for the Cross-Program Invocation (CPI).
+
+        ??? child "Type `pub struct CpiContext<'a, 'b, 'c, 'info, T>`"
+
+            ```rs
+            pub struct CpiContext<'a, 'b, 'c, 'info, T>
+            where
+                T: ToAccountMetas + ToAccountInfos<'info>,
+            {
+                pub accounts: T,
+                pub remaining_accounts: Vec<AccountInfo<'info>>,
+                pub program: AccountInfo<'info>,
+                pub signer_seeds: &'a [&'b [&'c [u8]]],
+            }
+            ```
+
+            For more information, please refer to the [`wormhole_anchor_sdk` Rust docs](https://docs.rs/anchor-lang/0.29.0/anchor_lang/context/struct.CpiContext.html){target=\_blank}.
+
+        ??? child "Type `PostMessage<'info>`"
+
+            ```rs
+            pub struct PostMessage<'info> {
+                pub config: AccountInfo<'info>,
+                pub message: AccountInfo<'info>,
+                pub emitter: AccountInfo<'info>,
+                pub sequence: AccountInfo<'info>,
+                pub payer: AccountInfo<'info>,
+                pub fee_collector: AccountInfo<'info>,
+                pub clock: AccountInfo<'info>,
+                pub rent: AccountInfo<'info>,
+                pub system_program: AccountInfo<'info>,
+            }
+            ```
+
+            For more information, please refer to the [`wormhole_anchor_sdk` Rust docs](https://docs.rs/wormhole-anchor-sdk/latest/wormhole_anchor_sdk/wormhole/instructions/struct.PostMessage.html){target=\_blank}.
+
+        ---
+
+        `batch_id` ++"u32"++
+        
+        An identifier for the message batch.
+
+        ---
+
+        `payload` ++"Vec<u8>"++
+        
+        The data being sent in the message. This is a variable-length byte array that contains the actual content or information being transmitted. To learn about the different types of payloads, check out the [VAAs](/docs/protocol/infrastructure/vaas#payload-types){target=\_blank} page.
+
+        ---
+
+        `finality` ++"Finality"++
+        
+        Specifies the level of finality or confirmation required for the message.
+        
+        ??? child "Type `Finality`"
+
+            ```rs
+            pub enum Finality {
+                Confirmed,
+                Finalized,
+            }
+            ```
+    
+    ??? interface "Returns"
+
+        ++"Result<()>"++
+        
+        The result of the function’s execution. If the function completes successfully, it returns `Ok(())`, otherwise it returns `Err(E)`, indicating that an error occurred along with the details about the error
+    
+    ??? interface "Example"
+
+        ```rust
+        let fee = ctx.accounts.wormhole_bridge.fee();
+// ... Check fee and send parameters
+
+let config = &amp;ctx.accounts.config
+let payload: Vec<u8> = HelloWorldMessage::Hello { message }.try_to_vec()?;
+
+// Invoke `wormhole::post_message`.
+wormhole::post_message(
+    CpiContext::new_with_signer(
+        ctx.accounts.wormhole_program.to_account_info(),
+        wormhole::PostMessage {
+            // ... Set fields
+        },
+        &amp;[
+            // ... Set seeds
+        ],
+    ),
+    config.batch_id,
+    payload,
+    config.finality.into(),
+)?;</u8>
+        ```
+
+        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
+
+Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://solana.com/docs/core/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+
+VAAs are [multicast](/docs/protocol/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
+
+### Receiving Messages
+
+The way a message is received and handled depends on the environment.
+
+=== "EVM"
+
+    On EVM chains, the message passed is the raw VAA encoded as binary. The `IWormhole.sol` interface provides the `parseAndVerifyVM` function, which can be used to parse and verify the received message.
+
+    ```solidity
+    function parseAndVerifyVM(
+    bytes calldata encodedVM
+) external view returns (VM memory vm, bool valid, string memory reason);
+    ```
+
+    ??? interface "Parameters"
+
+        `encodedVM` ++"bytes calldata"++
+        
+        The encoded message as a Verified Action Approval (VAA), which contains all necessary information for verification and processing.
+
+    ??? interface "Returns"
+
+        `vm` ++"VM memory"++
+        
+        The valid parsed VAA, which will include the original `emitterAddress`, `sequenceNumber`, and `consistencyLevel`, among other fields outlined on the [VAAs](/docs/protocol/infrastructure/vaas/) page.
+
+        ??? child "Struct `VM`"
+
+            ```solidity
+            struct VM {
+                uint8 version;
+                uint32 timestamp;
+                uint32 nonce;
+                uint16 emitterChainId;
+                bytes32 emitterAddress;
+                uint64 sequence;
+                uint8 consistencyLevel;
+                bytes payload;
+                uint32 guardianSetIndex;
+                Signature[] signatures;
+                bytes32 hash;
+            }
+            ```
+
+            For more information, refer to the [`IWormhole.sol` interface](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol){target=\_blank}.
+
+        ---
+        
+        `valid` ++"bool"++
+        
+        A boolean indicating whether the VAA is valid or not.
+        
+        ---
+
+        `reason` ++"string"++
+        
+        If the VAA is not valid, a reason will be provided
+
+    ??? interface "Example"
+
+        ```solidity
+        function receiveMessage(bytes memory encodedMessage) public {
+    // Call the Wormhole core contract to parse and verify the encodedMessage
+    (
+        IWormhole.VM memory wormholeMessage,
+        bool valid,
+        string memory reason
+    ) = wormhole().parseAndVerifyVM(encodedMessage);
+
+    // Perform safety checks here
+
+    // Decode the message payload into the HelloWorldMessage struct
+    HelloWorldMessage memory parsedMessage = decodeMessage(
+        wormholeMessage.payload
+    );
+
+    // Your custom application logic here
+}
+        ```
+
+        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/evm/src/01_hello_world){target=\_blank} repository on GitHub.
+
+=== "Solana"
+
+    On Solana, the VAA is first posted and verified by the Core Contract, after which it can be read by the receiving contract and action taken.
+
+    Retrieve the raw message data:
+
+    ```rs
+    let posted_message = &ctx.accounts.posted;
+    posted_message.data()
+    ```
+
+    ??? interface "Example"
+
+        ```rust
+        pub fn receive_message(ctx: Context<receivemessage>, vaa_hash: [u8; 32]) -&gt; Result&lt;()&gt; {
+    let posted_message = &amp;ctx.accounts.posted
+
+    if let HelloWorldMessage::Hello { message } = posted_message.data() {
+        // Check message
+        // Your custom application logic here
+        Ok(())
+    } else {
+        Err(HelloWorldError::InvalidMessage.into())
+    }
+}
+</receivemessage>
+        ```
+
+        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
+
+#### Validating the Emitter
+
+When processing cross-chain messages, it's critical to ensure that the message originates from a trusted sender (emitter). This can be done by verifying the emitter address and chain ID in the parsed VAA.
+
+Typically, contracts should provide a method to register trusted emitters and check incoming messages against this list before processing them. For example, the following check ensures that the emitter is registered and authorized:
+
+```solidity
+require(isRegisteredSender(emitterChainId, emitterAddress), "Invalid emitter");
+```
+
+This check can be applied after the VAA is parsed, ensuring only authorized senders can interact with the receiving contract. Trusted emitters can be registered using a method like `setRegisteredSender` during contract deployment or initialization.
+
+```typescript
+const tx = await receiverContract.setRegisteredSender(
+  sourceChain.chainId,
+  ethers.zeroPadValue(senderAddress as BytesLike, 32)
+);
+
+await tx.wait();
+```
+
+#### Additional Checks
+
+In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/protocol/infrastructure/vaas/){target=\_blank}, including:
+
+- **Sequence** - is this the expected sequence number? How should out-of-order deliveries be handled?
+- **Consistency level** - for the chain this message came from, is the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} level enough to guarantee the transaction won't be reverted after taking some action?
+
+The VAA digest is separate from the VAA body but is also relevant. It can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
+
+## Source Code References
+
+For a deeper understanding of the Core Contract implementation for a specific blockchain environment and to review the actual source code, please refer to the following links:
+
+- [Algorand Core Contract source code](https://github.com/wormhole-foundation/wormhole/blob/main/algorand/wormhole_core.py){target=\_blank}
+- [Aptos Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/aptos/wormhole){target=\_blank}
+- [EVM Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/ethereum/contracts){target=\_blank} ([`IWormhole.sol` interface](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol){target=\_blank})
+- [NEAR Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/near/contracts/wormhole){target=\_blank}
+- [Solana Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/solana/bridge/program){target=\_blank}
+- [Sui Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/sui/wormhole){target=\_blank}
+- [Terra Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/terra/contracts/wormhole){target=\_blank}
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/messaging/guides/wormhole-relayers/
+--- BEGIN CONTENT ---
+---
+title: Wormhole-Deployed Relayers
+description: Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
+categories: Relayers, Basics
+---
+
+# Wormhole Relayer
+
+The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
+
+This section covers the components and interfaces involved in using the Wormhole relayer module, such as message sending and receiving, delivery guarantees, and considerations for building reliable and efficient cross-chain applications. Additionally, you'll find details on how to handle specific implementation scenarios and track message delivery progress using the Wormhole CLI tool.
+
+## Get Started with the Wormhole Relayer
+
+Before getting started, it's important to note that the Wormhole-deployed relayer configuration is currently **limited to EVM environments**. The complete list of EVM environment blockchains is on the [Supported Networks](/docs/products/reference/supported-networks/) page.
+
+To interact with the Wormhole relayer, you'll need to create contracts on the source and target chains to handle the sending and receiving of messages. No off-chain logic needs to be implemented to take advantage of Wormhole-powered relaying.
+
+<figure markdown="span">
+  ![Wormhole Relayer](/docs/images/products/messaging/guides/wormhole-relayers/relayer-1.webp)
+  <figcaption>The components outlined in blue must be implemented.</figcaption>
+</figure>
+
+### Wormhole Relayer Interfaces
+
+There are three relevant interfaces to discuss when utilizing the Wormhole relayer module:
+
+- [**`IWormholeRelayer`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayer.sol){target=\_blank} - the primary interface by which you send and receive messages. It allows you to request the sending of messages and VAAs
+- [**`IWormholeReceiver`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank} - this is the interface you are responsible for implementing. It allows the selected delivery provider to deliver messages/VAAs to your contract
+- [**`IDeliveryProvider`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IDeliveryProvider.sol){target=\_blank} - this interface represents the delivery pricing information for a given relayer network. Each delivery provider implements this on every blockchain they support delivering from
+
+## Interact with the Wormhole Relayer
+
+To start interacting with the Wormhole relayer in your contracts, you'll need to import the `IWormholeRelayer` interface and set up a reference using the contract address to the Wormhole-deployed relayer on the supported network of your choice.
+
+To easily integrate with the Wormhole relayer interface, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}.
+
+To retrieve the contract address of the Wormhole relayer, refer to the Wormhole relayer section on the [Contract Addresses](/docs/products/reference/contract-addresses/#wormhole-relayer) reference page.
+
+Your initial set up should resemble the following:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+import "wormhole-solidity-sdk/interfaces/IWormholeRelayer.sol";
+
+contract Example {
+    IWormholeRelayer public wormholeRelayer;
+
+    constructor(address _wormholeRelayer) {
+        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
+    }
+}
+```
+
+The code provided sets up the basic structure for your contract to interact with the Wormhole relayer using the address supplied to the constructor. By leveraging methods from the `IWormholeRelayer` interface, you can implement message sending and receiving functionalities. The following sections will detail the specific methods you need to use for these tasks.
+
+### Send a Message
+
+To send a message to a contract on another EVM chain, you can call the `sendPayloadToEvm` method provided by the `IWormholeRelayer` interface.
+
+```solidity
+function sendPayloadToEvm(
+    // Chain ID in Wormhole format
+    uint16 targetChain,     
+    // Contract Address on target chain we're sending a message to
+    address targetAddress,  
+    // The payload, encoded as bytes
+    bytes memory payload,   
+    // How much value to attach to the delivery transaction 
+    uint256 receiverValue,  
+    // The gas limit to set on the delivery transaction
+    uint256 gasLimit        
+) external payable returns (
+    // Unique, incrementing ID, used to identify a message
+    uint64 sequence
+);
+```
+
+!!! tip
+    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v{{repositories.wormhole.version}}/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
+
+The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
+
+```solidity
+function quoteEVMDeliveryPrice(
+    // Chain ID in Wormhole format
+    uint16 targetChain,
+    // How much value to attach to delivery transaction 
+    uint256 receiverValue,
+    // The gas limit to attach to the delivery transaction
+    uint256 gasLimit
+) external view returns (
+    // How much value to attach to the send call
+    uint256 nativePriceQuote, 
+    uint256 targetChainRefundPerGasUnused
+);
+```
+
+This method should be called before sending a message, and the value returned for `nativePriceQuote` should be attached to the call to send the payload to cover the transaction's cost on the target chain.
+
+In total, sending a message across EVM chains can be as simple as getting a fee quote and sending the message as follows:
+
+```solidity
+// Get a quote for the cost of gas for delivery
+(cost, ) = wormholeRelayer.quoteEVMDeliveryPrice(
+    targetChain,
+    valueToSend,
+    GAS_LIMIT
+);
+
+// Send the message
+wormholeRelayer.sendPayloadToEvm{value: cost}(
+    targetChain,
+    targetAddress,
+    abi.encode(payload),
+    valueToSend, 
+    GAS_LIMIT
+);
+```
+
+### Receive a Message
+
+To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interact-with-the-wormhole-relayer).
+
+```solidity
+function receiveWormholeMessages(
+    bytes memory payload,           // Message passed by source contract 
+    bytes[] memory additionalVaas,  // Any additional VAAs that are needed (Note: these are unverified) 
+    bytes32 sourceAddress,          // The address of the source contract
+    uint16 sourceChain,             // The Wormhole chain ID
+    bytes32 deliveryHash            // A hash of contents, useful for replay protection
+) external payable;
+```
+
+The logic inside the function body may be whatever business logic is required to take action on the specific payload.
+
+## Delivery Guarantees
+
+The Wormhole relayer protocol is intended to create a service interface whereby mutually distrustful integrators and delivery providers can work together to provide a seamless dApp experience. You don't trust the delivery providers with your data, and the delivery providers don't trust your smart contract. The primary agreement between integrators and delivery providers is that when a delivery is requested, the provider will attempt to deliver the VAA within the provider's stated delivery timeframe.
+
+This creates a marketplace whereby providers can set different price levels and service guarantees. Delivery providers effectively accept the slippage risk premium of delivering your VAAs in exchange for a set fee rate. Thus, the providers agree to deliver your messages even if they do so at a loss.
+
+Delivery providers should set their prices such that they turn a profit on average but not necessarily on every single transfer. Thus, some providers may choose to set higher rates for tighter guarantees or lower rates for less stringent guarantees.
+
+## Delivery Statuses
+
+All deliveries result in one of the following four outcomes before the delivery provider's delivery timeframe. When they occur, these outcomes are emitted as EVM events from the Wormhole relayer contract. The four possible outcomes are:
+
+- (0) Delivery Success
+- (1) Receiver Failure
+- (2) Forward Request Success
+- (3) Forward Request Failure
+
+A receiver failure is a scenario in which the selected provider attempted the delivery but it could not be completely successfully. The three possible causes for a delivery failure are:
+
+- The target contract does not implement the `IWormholeReceiver` interface
+- The target contract threw an exception or reverted during the execution of `receiveWormholeMessages`
+- The target contract exceeded the specified `gasLimit` while executing `receiveWormholeMessages`
+
+All three of these scenarios can be avoided with correct design by the integrator, and thus, it is up to the integrator to resolve them. Any other scenario that causes a delivery to not be performed should be considered an outage by some component of the system, including potentially the blockchains themselves.
+
+`Forward Request Success` and `Forward Failure` represent when the delivery succeeded and the user requested a forward during the delivery. If the user has enough funds left over as a refund to complete the forward, the forward will be executed, and the status will be `Forward Request Success`. Otherwise, it will be `Forward Request Failure`.
+
+## Other Considerations
+
+Some implementation details should be considered during development to ensure safety and a pleasant UX. Ensure that your engineering efforts have appropriately considered each of the following areas:
+
+- Receiving a message from a relayer
+- Checking for expected emitter
+- Calling `parseAndVerify` on any additional VAAs
+- Replay protection
+- Message ordering (no guarantees on order of messages delivered)
+- Forwarding and call chaining
+- Refunding overpayment of `gasLimit`
+- Refunding overpayment of value sent
+
+## Track the Progress of Messages with the Wormhole CLI
+
+While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the [Wormhole CLI](/docs/tools/cli/get-started/){target=\_blank} tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command:
+
+=== "Mainnet"
+
+    ```bash
+    worm status mainnet ethereum INSERT_TRANSACTION_HASH
+    ```
+
+=== "Testnet"
+
+    ```bash
+    worm status testnet ethereum INSERT_TRANSACTION_HASH
+    ```
+
+See the [Wormhole CLI tool docs](/docs/tools/cli/get-started/){target=\_blank} for installation and usage.
+
+## Step-by-Step Tutorial
+
+For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/products/messaging/tutorials/cross-chain-contracts/) tutorial.
+--- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/messaging/tutorials/cross-chain-contracts/
 --- BEGIN CONTENT ---
@@ -5725,1027 +6746,6 @@ The demo repository includes a bonus script to check the VAA redemption status o
 You've successfully built a script to fetch, validate, and replace outdated signatures in VAAs using Wormholescan and the Wormhole SDK.
 
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for Guardian approval to finalize the process.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/messaging/get-started/
---- BEGIN CONTENT ---
----
-title: Get Started with Messaging
-description: Follow this guide to use Wormhole's core protocol to publish a multichain message and return transaction information with VAA identifiers.
-categories: Basics, Typescript SDK
----
-
-# Get Started with Messaging
-
-Wormhole's core functionality allows you to send any data packet from one supported chain to another. This guide demonstrates how to publish your first simple, arbitrary data message from an EVM environment source chain using the Wormhole TypeScript SDK's core messaging capabilities. 
-
-## Prerequisites
-
-Before you begin, ensure you have the following:
-
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
-- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
-- [Ethers.js](https://docs.ethers.org/v6/getting-started/){target=\_blank} installed (this example uses version 6)
-- A small amount of testnet tokens for gas fees. This example uses [Sepolia ETH](https://sepolia-faucet.pk910.de/){target=\_blank} but can be adapted for any supported network
-- A private key for signing blockchain transactions
-
-## Configure Your Messaging Environment
-
-1. Create a directory and initialize a Node.js project:
-
-    ```bash
-    mkdir core-message
-    cd core-message
-    npm init -y
-    ```
-
-2. Install TypeScript, tsx, Node.js type definitions, and Ethers.js:
-
-    ```bash
-    npm install --save-dev tsx typescript @types/node ethers
-    ```
-
-3. Create a `tsconfig.json` file if you don't have one. You can generate a basic one using the following command:
-
-    ```bash
-    npx tsc --init
-    ```
-
-    Make sure your `tsconfig.json` includes the following settings:
-
-    ```json 
-    {
-        "compilerOptions": {
-            // es2020 or newer
-            "target": "es2020",
-            // Use esnext if you configured your package.json with type: "module"
-            "module": "commonjs",
-            "esModuleInterop": true,
-            "forceConsistentCasingInFileNames": true,
-            "strict": true,
-            "skipLibCheck": true,
-            "resolveJsonModule": true
-            }
-    }
-    ```
-
-4. Install the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}:
-
-    ```bash
-    npm install @wormhole-foundation/sdk
-    ```
-
-5. Create a new file named `main.ts`:
-
-    ```bash
-    touch main.ts
-    ```
-
-## Construct and Publish Your Message
-
-1. Open `main.ts` and update the code there as follows:
-
-    ```ts title="main.ts"
-    import {
-  wormhole,
-  signSendWait,
-  toNative,
-  encoding,
-  type Chain,
-  type Network,
-  type NativeAddress,
-  type WormholeMessageId,
-  type UnsignedTransaction,
-  type TransactionId,
-  type WormholeCore,
-  type Signer as WormholeSdkSigner,
-  type ChainContext,
-} from '@wormhole-foundation/sdk';
-// Platform-specific modules
-import EvmPlatformLoader from '@wormhole-foundation/sdk/evm';
-import { getEvmSigner } from '@wormhole-foundation/sdk-evm';
-import {
-  ethers,
-  Wallet,
-  JsonRpcProvider,
-  Signer as EthersSigner,
-} from 'ethers';
-
-/**
- * The required value (SEPOLIA_PRIVATE_KEY) must
- * be loaded securely beforehand, for example via a keystore, secrets
- * manager, or environment variables (not recommended).
- */
-
-const SEPOLIA_PRIVATE_KEY = SEPOLIA_PRIVATE_KEY!;
-// Provide a private endpoint RPC URL for Sepolia, defaults to a public node
-// if not set
-const RPC_URL =
-  process.env.SEPOLIA_RPC_URL || 'https://ethereum-sepolia-rpc.publicnode.com';
-
-async function main() {
-  // Initialize Wormhole SDK
-  const network = 'Testnet';
-  const wh = await wormhole(network, [EvmPlatformLoader]);
-  console.log('Wormhole SDK Initialized.');
-
-  // Get the EVM signer and provider
-  let ethersJsSigner: EthersSigner;
-  let ethersJsProvider: JsonRpcProvider;
-
-  try {
-    if (!SEPOLIA_PRIVATE_KEY) {
-      console.error('Please set the SEPOLIA_PRIVATE_KEY environment variable.');
-      process.exit(1);
-    }
-
-    ethersJsProvider = new JsonRpcProvider(RPC_URL);
-    const wallet = new Wallet(SEPOLIA_PRIVATE_KEY);
-    ethersJsSigner = wallet.connect(ethersJsProvider);
-    console.log(
-      `Ethers.js Signer obtained for address: ${await ethersJsSigner.getAddress()}`,
-    );
-  } catch (error) {
-    console.error('Failed to get Ethers.js signer and provider:', error);
-    process.exit(1);
-  }
-
-  // Define the source chain context
-  const sourceChainName: Chain = 'Sepolia';
-  const sourceChainContext = wh.getChain(sourceChainName) as ChainContext&lt;
-    'Testnet',
-    'Sepolia',
-    'Evm'
-  &gt;;
-  console.log(`Source chain context obtained for: ${sourceChainContext.chain}`);
-
-  // Get the Wormhole SDK signer, which is a wrapper around the Ethers.js
-  // signer using the Wormhole SDK's signing and transaction handling
-  // capabilities
-  let sdkSigner: WormholeSdkSigner<network, chain="">;
-  try {
-    sdkSigner = await getEvmSigner(ethersJsProvider, ethersJsSigner);
-    console.log(
-      `Wormhole SDK Signer obtained for address: ${sdkSigner.address()}`,
-    );
-  } catch (error) {
-    console.error('Failed to get Wormhole SDK Signer:', error);
-    process.exit(1);
-  }
-
-  // Construct your message payload
-  const messageText = `HelloWormholeSDK-${Date.now()}`;
-  const payload: Uint8Array = encoding.bytes.encode(messageText);
-  console.log(`Message to send: "${messageText}"`);
-
-  // Define message parameters
-  const messageNonce = Math.floor(Math.random() * 1_000_000_000);
-  const consistencyLevel = 1;
-
-  try {
-    // Get the core protocol client
-    const coreProtocolClient: WormholeCore<network> =
-      await sourceChainContext.getWormholeCore();
-
-    // Generate the unsigned transactions
-    const whSignerAddress: NativeAddress<chain> = toNative(
-      sdkSigner.chain(),
-      sdkSigner.address(),
-    );
-    console.log(
-      `Preparing to publish message from ${whSignerAddress.toString()} on ${
-        sourceChainContext.chain
-      }...`,
-    );
-
-    const unsignedTxs: AsyncGenerator<unsignedtransaction<network, chain="">&gt; =
-      coreProtocolClient.publishMessage(
-        whSignerAddress, 
-        payload,
-        messageNonce,
-        consistencyLevel,
-      );
-
-    // Sign and send the transactions
-    console.log(
-      'Signing and sending the message publication transaction(s)...',
-    );
-    const txIds: TransactionId[] = await signSendWait(
-      sourceChainContext,
-      unsignedTxs,
-      sdkSigner,
-    );
-
-    if (!txIds || txIds.length === 0) {
-      throw new Error('No transaction IDs were returned from signSendWait.');
-    }
-    const primaryTxIdObject = txIds[txIds.length - 1];
-    const primaryTxid = primaryTxIdObject.txid;
-
-    console.log(`Primary transaction ID for parsing: ${primaryTxid}`);
-    console.log(
-      `View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/${primaryTxid}`,
-    );
-
-    console.log(
-      '\nWaiting a few seconds for transaction to propagate before parsing...',
-    );
-    await new Promise((resolve) =&gt; setTimeout(resolve, 8000));
-
-    // Retrieve VAA identifiers
-    console.log(
-      `Attempting to parse VAA identifiers from transaction: ${primaryTxid}...`,
-    );
-    const messageIds: WormholeMessageId[] =
-      await sourceChainContext.parseTransaction(primaryTxid);
-
-    if (messageIds &amp;&amp; messageIds.length &gt; 0) {
-      const wormholeMessageId = messageIds[0];
-      console.log('--- VAA Identifiers (WormholeMessageId) ---');
-      console.log('  Emitter Chain:', wormholeMessageId.chain);
-      console.log('  Emitter Address:', wormholeMessageId.emitter.toString());
-      console.log('  Sequence:', wormholeMessageId.sequence.toString());
-      console.log('-----------------------------------------');
-    } else {
-      console.error(
-        `Could not parse Wormhole message IDs from transaction ${primaryTxid}.`,
-      );
-    }
-  } catch (error) {
-    console.error(
-      'Error during message publishing or VAA identifier retrieval:',
-      error,
-    );
-    if (error instanceof Error &amp;&amp; error.stack) {
-      console.error('Stack Trace:', error.stack);
-    }
-  }
-}
-
-main().catch((e) =&gt; {
-  console.error('Critical error in main function (outer catch):', e);
-  if (e instanceof Error &amp;&amp; e.stack) {
-    console.error('Stack Trace:', e.stack);
-  }
-  process.exit(1);
-});</unsignedtransaction<network,></chain></network></network,>
-    ```
-
-    This script initializes the SDK, defines values for the source chain, creates an EVM signer, constructs the message, uses the core protocol to generate, sign, and send the transaction, and returns the VAA identifiers upon successful publication of the message.
-
-2. Run the script using the following command:
-
-    ```bash
-    npx tsx main.ts
-    ```
-
-    You will see terminal output similar to the following:
-
-    <div data-termynal="" id="termynal">
-<span data-ty="input"><span class="file-path"></span>npx tsx main.ts</span>
-<span data-ty="">Wormhole SDK Initialized.</span>
-<span data-ty="">Ethers.js Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
-<span data-ty="">Source chain context obtained for: Sepolia</span>
-<span data-ty="">Wormhole SDK Signer obtained for address: 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12</span>
-<span data-ty="">Message to send: "HelloWormholeSDK-1748362375390"</span>
-<span data-ty="">Preparing to publish message from 0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12 on Sepolia...</span>
-<span data-ty="">Signing and sending the message publication transaction(s)...</span>
-<span data-ty="">Primary Transaction ID for parsing: 0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
-<span data-ty="">View on Sepolia Etherscan: https://sepolia.etherscan.io/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508</span>
-<span data-ty="">Waiting a few seconds for transaction to propagate before parsing...</span>
-<span data-ty="">Attempting to parse VAA identifiers from transaction:
-    0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508...</span>
-<span data-ty="">--- VAA Identifiers (WormholeMessageId) ---</span>
-<span data-ty=""> Emitter Chain: Sepolia</span>
-<span data-ty=""> Emitter Address: 0x000000000000000000000000cd8bcd9a793a7381b3c66c763c3f463f70de4e12</span>
-<span data-ty=""> Sequence: 1</span>
-<span data-ty="">-----------------------------------------</span>
-<span data-ty="input"><span class="file-path"></span></span>
-</div>
-
-3. Make a note of the transaction ID and VAA identifier values. You can use the transaction ID to [view the transaction on Wormholescan](https://wormholescan.io/#/tx/0xeb34f35f91c72e4e5198509071d24fd25d8a979aa93e2f168de075e3568e1508?network=Testnet){target=\_blank}. The emitter chain, emitter address, and sequence values are used to retrieve and decode signed messages
-
-Congratulations! You've published your first multichain message using Wormhole's TypeScript SDK and core protocol functionality. Consider the following options to build upon what you've accomplished. 
-
-## Next Steps
-
-- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
-<!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
--->
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/messaging/guides/core-contracts/
---- BEGIN CONTENT ---
----
-title: Get Started with Core Contracts
-description: This guide walks through the key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts
-categories: Basics
----
-
-# Get Started with Core Contracts
-
-Wormhole's Core Contracts, deployed on each supported blockchain network, enable the fundamental operations of sending and receiving cross-chain messages.
-
-While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
-
-This guide will walk you through the variations and key methods of the Core Contracts, providing you with the knowledge needed to integrate them into your cross-chain contracts. To learn more about Core Contracts' features and how it works, please refer to the [Core Contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} page in the Learn section.
-
-## Prerequisites
-
-To interact with the Wormhole Core Contract, you'll need the following:
-
-- The [address of the Core Contract](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
-- The [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
-- The [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on
-
-## How to Interact with Core Contracts
-
-Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole Core Contracts. The primary functionality revolves around:
-
-- **Sending messages** - submitting messages to the Wormhole network for cross-chain communication
-- **Receiving and verifying messages** - validating messages received from other chains via the Wormhole network
-
-While the implementation details of the Core Contracts vary by network, the core functionality remains consistent across chains.
-
-### Sending Messages
-
-To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}.
-
-=== "EVM"
-
-    The `IWormhole.sol` interface provides the `publishMessage` function, which can be used to publish a message directly to the Core Contract:
-
-    ```solidity
-    function publishMessage(
-    uint32 nonce,
-    bytes memory payload,
-    uint8 consistencyLevel
-) external payable returns (uint64 sequence);
-    ```
-
-    ??? interface "Parameters"
-
-        `nonce` ++"uint32"++
-        
-        A free integer field that can be used however you like. Note that changing the `nonce` will result in a different digest.
-
-        ---
-
-        `payload` ++"bytes memory"++
-        
-        The content of the emitted message. Due to the constraints of individual blockchains, it may be capped to a certain maximum length.
-
-        ---
-
-        `consistencyLevel` ++"uint8"++
-        
-        A value that defines the required level of finality that must be reached before the Guardians will observe and attest to emitted events.
-
-    ??? interface "Returns"
-
-        `sequence` ++"uint64"++
-        
-        A unique number that increments for every message for a given emitter (and implicitly chain). This, combined with the emitter address and emitter chain ID, allows the VAA for this message to be queried from the [Wormholescan API](https://docs.wormholescan.io/){target=\_blank}.
-    
-    ??? interface "Example"
-
-        ```solidity
-        IWormhole wormhole = IWormhole(wormholeAddr);
-
-// Get the fee for publishing a message
-uint256 wormholeFee = wormhole.messageFee();
-
-// Check fee and send parameters
-
-// Create the HelloWorldMessage struct
-HelloWorldMessage memory parsedMessage = HelloWorldMessage({
-    payloadID: uint8(1),
-    message: helloWorldMessage
-});
-
-// Encode the HelloWorldMessage struct into bytes
-bytes memory encodedMessage = encodeMessage(parsedMessage);
-
-// Send the HelloWorld message by calling publishMessage on the
-// wormhole core contract and paying the Wormhole protocol fee.
-messageSequence = wormhole.publishMessage{value: wormholeFee}(
-    0, // batchID
-    encodedMessage,
-    wormholeFinality()
-);
-        ```
-
-        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/evm/src/01_hello_world){target=\_blank} repository on GitHub.
-
-=== "Solana"
-
-    The `wormhole_anchor_sdk::wormhole` module and the Wormhole program account can be used to pass a message directly to the Core Contract via the `wormhole::post_message` function:
-
-    ```rs
-    pub fn post_message<'info>(
-        ctx: CpiContext<'_, '_, '_, 'info, PostMessage<'info>>,
-        batch_id: u32,
-        payload: Vec<u8>,
-        finality: Finality
-    ) -> Result<()>
-    ```
-
-    ??? interface "Parameters"
-
-        `ctx` ++"CpiContext<'_, '_, '_, 'info, PostMessage<'info>>"++ 
-        
-        Provides the necessary context for executing the function, including the accounts and program information required for the Cross-Program Invocation (CPI).
-
-        ??? child "Type `pub struct CpiContext<'a, 'b, 'c, 'info, T>`"
-
-            ```rs
-            pub struct CpiContext<'a, 'b, 'c, 'info, T>
-            where
-                T: ToAccountMetas + ToAccountInfos<'info>,
-            {
-                pub accounts: T,
-                pub remaining_accounts: Vec<AccountInfo<'info>>,
-                pub program: AccountInfo<'info>,
-                pub signer_seeds: &'a [&'b [&'c [u8]]],
-            }
-            ```
-
-            For more information, please refer to the [`wormhole_anchor_sdk` Rust docs](https://docs.rs/anchor-lang/0.29.0/anchor_lang/context/struct.CpiContext.html){target=\_blank}.
-
-        ??? child "Type `PostMessage<'info>`"
-
-            ```rs
-            pub struct PostMessage<'info> {
-                pub config: AccountInfo<'info>,
-                pub message: AccountInfo<'info>,
-                pub emitter: AccountInfo<'info>,
-                pub sequence: AccountInfo<'info>,
-                pub payer: AccountInfo<'info>,
-                pub fee_collector: AccountInfo<'info>,
-                pub clock: AccountInfo<'info>,
-                pub rent: AccountInfo<'info>,
-                pub system_program: AccountInfo<'info>,
-            }
-            ```
-
-            For more information, please refer to the [`wormhole_anchor_sdk` Rust docs](https://docs.rs/wormhole-anchor-sdk/latest/wormhole_anchor_sdk/wormhole/instructions/struct.PostMessage.html){target=\_blank}.
-
-        ---
-
-        `batch_id` ++"u32"++
-        
-        An identifier for the message batch.
-
-        ---
-
-        `payload` ++"Vec<u8>"++
-        
-        The data being sent in the message. This is a variable-length byte array that contains the actual content or information being transmitted. To learn about the different types of payloads, check out the [VAAs](/docs/protocol/infrastructure/vaas#payload-types){target=\_blank} page.
-
-        ---
-
-        `finality` ++"Finality"++
-        
-        Specifies the level of finality or confirmation required for the message.
-        
-        ??? child "Type `Finality`"
-
-            ```rs
-            pub enum Finality {
-                Confirmed,
-                Finalized,
-            }
-            ```
-    
-    ??? interface "Returns"
-
-        ++"Result<()>"++
-        
-        The result of the function’s execution. If the function completes successfully, it returns `Ok(())`, otherwise it returns `Err(E)`, indicating that an error occurred along with the details about the error
-    
-    ??? interface "Example"
-
-        ```rust
-        let fee = ctx.accounts.wormhole_bridge.fee();
-// ... Check fee and send parameters
-
-let config = &amp;ctx.accounts.config
-let payload: Vec<u8> = HelloWorldMessage::Hello { message }.try_to_vec()?;
-
-// Invoke `wormhole::post_message`.
-wormhole::post_message(
-    CpiContext::new_with_signer(
-        ctx.accounts.wormhole_program.to_account_info(),
-        wormhole::PostMessage {
-            // ... Set fields
-        },
-        &amp;[
-            // ... Set seeds
-        ],
-    ),
-    config.batch_id,
-    payload,
-    config.finality.into(),
-)?;</u8>
-        ```
-
-        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
-
-Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://solana.com/docs/core/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
-
-VAAs are [multicast](/docs/protocol/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
-
-### Receiving Messages
-
-The way a message is received and handled depends on the environment.
-
-=== "EVM"
-
-    On EVM chains, the message passed is the raw VAA encoded as binary. The `IWormhole.sol` interface provides the `parseAndVerifyVM` function, which can be used to parse and verify the received message.
-
-    ```solidity
-    function parseAndVerifyVM(
-    bytes calldata encodedVM
-) external view returns (VM memory vm, bool valid, string memory reason);
-    ```
-
-    ??? interface "Parameters"
-
-        `encodedVM` ++"bytes calldata"++
-        
-        The encoded message as a Verified Action Approval (VAA), which contains all necessary information for verification and processing.
-
-    ??? interface "Returns"
-
-        `vm` ++"VM memory"++
-        
-        The valid parsed VAA, which will include the original `emitterAddress`, `sequenceNumber`, and `consistencyLevel`, among other fields outlined on the [VAAs](/docs/protocol/infrastructure/vaas/) page.
-
-        ??? child "Struct `VM`"
-
-            ```solidity
-            struct VM {
-                uint8 version;
-                uint32 timestamp;
-                uint32 nonce;
-                uint16 emitterChainId;
-                bytes32 emitterAddress;
-                uint64 sequence;
-                uint8 consistencyLevel;
-                bytes payload;
-                uint32 guardianSetIndex;
-                Signature[] signatures;
-                bytes32 hash;
-            }
-            ```
-
-            For more information, refer to the [`IWormhole.sol` interface](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol){target=\_blank}.
-
-        ---
-        
-        `valid` ++"bool"++
-        
-        A boolean indicating whether the VAA is valid or not.
-        
-        ---
-
-        `reason` ++"string"++
-        
-        If the VAA is not valid, a reason will be provided
-
-    ??? interface "Example"
-
-        ```solidity
-        function receiveMessage(bytes memory encodedMessage) public {
-    // Call the Wormhole core contract to parse and verify the encodedMessage
-    (
-        IWormhole.VM memory wormholeMessage,
-        bool valid,
-        string memory reason
-    ) = wormhole().parseAndVerifyVM(encodedMessage);
-
-    // Perform safety checks here
-
-    // Decode the message payload into the HelloWorldMessage struct
-    HelloWorldMessage memory parsedMessage = decodeMessage(
-        wormholeMessage.payload
-    );
-
-    // Your custom application logic here
-}
-        ```
-
-        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/evm/src/01_hello_world){target=\_blank} repository on GitHub.
-
-=== "Solana"
-
-    On Solana, the VAA is first posted and verified by the Core Contract, after which it can be read by the receiving contract and action taken.
-
-    Retrieve the raw message data:
-
-    ```rs
-    let posted_message = &ctx.accounts.posted;
-    posted_message.data()
-    ```
-
-    ??? interface "Example"
-
-        ```rust
-        pub fn receive_message(ctx: Context<receivemessage>, vaa_hash: [u8; 32]) -&gt; Result&lt;()&gt; {
-    let posted_message = &amp;ctx.accounts.posted
-
-    if let HelloWorldMessage::Hello { message } = posted_message.data() {
-        // Check message
-        // Your custom application logic here
-        Ok(())
-    } else {
-        Err(HelloWorldError::InvalidMessage.into())
-    }
-}
-</receivemessage>
-        ```
-
-        View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
-
-#### Validating the Emitter
-
-When processing cross-chain messages, it's critical to ensure that the message originates from a trusted sender (emitter). This can be done by verifying the emitter address and chain ID in the parsed VAA.
-
-Typically, contracts should provide a method to register trusted emitters and check incoming messages against this list before processing them. For example, the following check ensures that the emitter is registered and authorized:
-
-```solidity
-require(isRegisteredSender(emitterChainId, emitterAddress), "Invalid emitter");
-```
-
-This check can be applied after the VAA is parsed, ensuring only authorized senders can interact with the receiving contract. Trusted emitters can be registered using a method like `setRegisteredSender` during contract deployment or initialization.
-
-```typescript
-const tx = await receiverContract.setRegisteredSender(
-  sourceChain.chainId,
-  ethers.zeroPadValue(senderAddress as BytesLike, 32)
-);
-
-await tx.wait();
-```
-
-#### Additional Checks
-
-In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/protocol/infrastructure/vaas/){target=\_blank}, including:
-
-- **Sequence** - is this the expected sequence number? How should out-of-order deliveries be handled?
-- **Consistency level** - for the chain this message came from, is the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} level enough to guarantee the transaction won't be reverted after taking some action?
-
-The VAA digest is separate from the VAA body but is also relevant. It can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
-
-## Source Code References
-
-For a deeper understanding of the Core Contract implementation for a specific blockchain environment and to review the actual source code, please refer to the following links:
-
-- [Algorand Core Contract source code](https://github.com/wormhole-foundation/wormhole/blob/main/algorand/wormhole_core.py){target=\_blank}
-- [Aptos Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/aptos/wormhole){target=\_blank}
-- [EVM Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/ethereum/contracts){target=\_blank} ([`IWormhole.sol` interface](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/interfaces/IWormhole.sol){target=\_blank})
-- [NEAR Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/near/contracts/wormhole){target=\_blank}
-- [Solana Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/solana/bridge/program){target=\_blank}
-- [Sui Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/sui/wormhole){target=\_blank}
-- [Terra Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/terra/contracts/wormhole){target=\_blank}
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/messaging/guides/wormhole-relayers/
---- BEGIN CONTENT ---
----
-title: Wormhole-Deployed Relayers
-description: Learn about the Wormhole-deployed relayer configuration for seamless cross-chain messaging between contracts on different EVM blockchains without off-chain deployments.
-categories: Relayers, Basics
----
-
-# Wormhole Relayer
-
-The Wormhole-deployed relayers provide a mechanism for contracts on one blockchain to send messages to contracts on another without requiring off-chain infrastructure. Through the Wormhole relayer module, developers can use an untrusted delivery provider to transport VAAs, saving the need to build and maintain custom relaying solutions. The option to [run a custom relayer](/docs/protocol/infrastructure-guides/run-relayer/) is available for more complex needs.
-
-This section covers the components and interfaces involved in using the Wormhole relayer module, such as message sending and receiving, delivery guarantees, and considerations for building reliable and efficient cross-chain applications. Additionally, you'll find details on how to handle specific implementation scenarios and track message delivery progress using the Wormhole CLI tool.
-
-## Get Started with the Wormhole Relayer
-
-Before getting started, it's important to note that the Wormhole-deployed relayer configuration is currently **limited to EVM environments**. The complete list of EVM environment blockchains is on the [Supported Networks](/docs/products/reference/supported-networks/) page.
-
-To interact with the Wormhole relayer, you'll need to create contracts on the source and target chains to handle the sending and receiving of messages. No off-chain logic needs to be implemented to take advantage of Wormhole-powered relaying.
-
-<figure markdown="span">
-  ![Wormhole Relayer](/docs/images/products/messaging/guides/wormhole-relayers/relayer-1.webp)
-  <figcaption>The components outlined in blue must be implemented.</figcaption>
-</figure>
-
-### Wormhole Relayer Interfaces
-
-There are three relevant interfaces to discuss when utilizing the Wormhole relayer module:
-
-- [**`IWormholeRelayer`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayer.sol){target=\_blank} - the primary interface by which you send and receive messages. It allows you to request the sending of messages and VAAs
-- [**`IWormholeReceiver`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank} - this is the interface you are responsible for implementing. It allows the selected delivery provider to deliver messages/VAAs to your contract
-- [**`IDeliveryProvider`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IDeliveryProvider.sol){target=\_blank} - this interface represents the delivery pricing information for a given relayer network. Each delivery provider implements this on every blockchain they support delivering from
-
-## Interact with the Wormhole Relayer
-
-To start interacting with the Wormhole relayer in your contracts, you'll need to import the `IWormholeRelayer` interface and set up a reference using the contract address to the Wormhole-deployed relayer on the supported network of your choice.
-
-To easily integrate with the Wormhole relayer interface, you can use the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}.
-
-To retrieve the contract address of the Wormhole relayer, refer to the Wormhole relayer section on the [Contract Addresses](/docs/products/reference/contract-addresses/#wormhole-relayer) reference page.
-
-Your initial set up should resemble the following:
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.26;
-
-import "wormhole-solidity-sdk/interfaces/IWormholeRelayer.sol";
-
-contract Example {
-    IWormholeRelayer public wormholeRelayer;
-
-    constructor(address _wormholeRelayer) {
-        wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
-    }
-}
-```
-
-The code provided sets up the basic structure for your contract to interact with the Wormhole relayer using the address supplied to the constructor. By leveraging methods from the `IWormholeRelayer` interface, you can implement message sending and receiving functionalities. The following sections will detail the specific methods you need to use for these tasks.
-
-### Send a Message
-
-To send a message to a contract on another EVM chain, you can call the `sendPayloadToEvm` method provided by the `IWormholeRelayer` interface.
-
-```solidity
-function sendPayloadToEvm(
-    // Chain ID in Wormhole format
-    uint16 targetChain,     
-    // Contract Address on target chain we're sending a message to
-    address targetAddress,  
-    // The payload, encoded as bytes
-    bytes memory payload,   
-    // How much value to attach to the delivery transaction 
-    uint256 receiverValue,  
-    // The gas limit to set on the delivery transaction
-    uint256 gasLimit        
-) external payable returns (
-    // Unique, incrementing ID, used to identify a message
-    uint64 sequence
-);
-```
-
-!!! tip
-    To reduce transaction confirmation time, you can lower the consistency level using the [`sendToEvm`](https://github.com/wormhole-foundation/wormhole/blob/v{{repositories.wormhole.version}}/sdk/js/src/relayer/relayer/send.ts#L33){target=\_blank} method.
-
-The `sendPayloadToEvm` method is marked `payable` to receive fee payment for the transaction. The value to attach to the invocation is determined by calling the `quoteEVMDeliveryPrice`, which provides an estimate of the cost of gas on the target chain.
-
-```solidity
-function quoteEVMDeliveryPrice(
-    // Chain ID in Wormhole format
-    uint16 targetChain,
-    // How much value to attach to delivery transaction 
-    uint256 receiverValue,
-    // The gas limit to attach to the delivery transaction
-    uint256 gasLimit
-) external view returns (
-    // How much value to attach to the send call
-    uint256 nativePriceQuote, 
-    uint256 targetChainRefundPerGasUnused
-);
-```
-
-This method should be called before sending a message, and the value returned for `nativePriceQuote` should be attached to the call to send the payload to cover the transaction's cost on the target chain.
-
-In total, sending a message across EVM chains can be as simple as getting a fee quote and sending the message as follows:
-
-```solidity
-// Get a quote for the cost of gas for delivery
-(cost, ) = wormholeRelayer.quoteEVMDeliveryPrice(
-    targetChain,
-    valueToSend,
-    GAS_LIMIT
-);
-
-// Send the message
-wormholeRelayer.sendPayloadToEvm{value: cost}(
-    targetChain,
-    targetAddress,
-    abi.encode(payload),
-    valueToSend, 
-    GAS_LIMIT
-);
-```
-
-### Receive a Message
-
-To receive a message using a Wormhole relayer, the target contract must implement the [`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank} interface, as shown in the [previous section](#interact-with-the-wormhole-relayer).
-
-```solidity
-function receiveWormholeMessages(
-    bytes memory payload,           // Message passed by source contract 
-    bytes[] memory additionalVaas,  // Any additional VAAs that are needed (Note: these are unverified) 
-    bytes32 sourceAddress,          // The address of the source contract
-    uint16 sourceChain,             // The Wormhole chain ID
-    bytes32 deliveryHash            // A hash of contents, useful for replay protection
-) external payable;
-```
-
-The logic inside the function body may be whatever business logic is required to take action on the specific payload.
-
-## Delivery Guarantees
-
-The Wormhole relayer protocol is intended to create a service interface whereby mutually distrustful integrators and delivery providers can work together to provide a seamless dApp experience. You don't trust the delivery providers with your data, and the delivery providers don't trust your smart contract. The primary agreement between integrators and delivery providers is that when a delivery is requested, the provider will attempt to deliver the VAA within the provider's stated delivery timeframe.
-
-This creates a marketplace whereby providers can set different price levels and service guarantees. Delivery providers effectively accept the slippage risk premium of delivering your VAAs in exchange for a set fee rate. Thus, the providers agree to deliver your messages even if they do so at a loss.
-
-Delivery providers should set their prices such that they turn a profit on average but not necessarily on every single transfer. Thus, some providers may choose to set higher rates for tighter guarantees or lower rates for less stringent guarantees.
-
-## Delivery Statuses
-
-All deliveries result in one of the following four outcomes before the delivery provider's delivery timeframe. When they occur, these outcomes are emitted as EVM events from the Wormhole relayer contract. The four possible outcomes are:
-
-- (0) Delivery Success
-- (1) Receiver Failure
-- (2) Forward Request Success
-- (3) Forward Request Failure
-
-A receiver failure is a scenario in which the selected provider attempted the delivery but it could not be completely successfully. The three possible causes for a delivery failure are:
-
-- The target contract does not implement the `IWormholeReceiver` interface
-- The target contract threw an exception or reverted during the execution of `receiveWormholeMessages`
-- The target contract exceeded the specified `gasLimit` while executing `receiveWormholeMessages`
-
-All three of these scenarios can be avoided with correct design by the integrator, and thus, it is up to the integrator to resolve them. Any other scenario that causes a delivery to not be performed should be considered an outage by some component of the system, including potentially the blockchains themselves.
-
-`Forward Request Success` and `Forward Failure` represent when the delivery succeeded and the user requested a forward during the delivery. If the user has enough funds left over as a refund to complete the forward, the forward will be executed, and the status will be `Forward Request Success`. Otherwise, it will be `Forward Request Failure`.
-
-## Other Considerations
-
-Some implementation details should be considered during development to ensure safety and a pleasant UX. Ensure that your engineering efforts have appropriately considered each of the following areas:
-
-- Receiving a message from a relayer
-- Checking for expected emitter
-- Calling `parseAndVerify` on any additional VAAs
-- Replay protection
-- Message ordering (no guarantees on order of messages delivered)
-- Forwarding and call chaining
-- Refunding overpayment of `gasLimit`
-- Refunding overpayment of value sent
-
-## Track the Progress of Messages with the Wormhole CLI
-
-While no off-chain programs are required, a developer may want to track the progress of messages in flight. To track the progress of messages in flight, use the [Wormhole CLI](/docs/tools/cli/get-started/){target=\_blank} tool's `status` subcommand. As an example, you can use the following commands to track the status of a transfer by providing the environment, origin network, and transaction hash to the `worm status` command:
-
-=== "Mainnet"
-
-    ```bash
-    worm status mainnet ethereum INSERT_TRANSACTION_HASH
-    ```
-
-=== "Testnet"
-
-    ```bash
-    worm status testnet ethereum INSERT_TRANSACTION_HASH
-    ```
-
-See the [Wormhole CLI tool docs](/docs/tools/cli/get-started/){target=\_blank} for installation and usage.
-
-## Step-by-Step Tutorial
-
-For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/products/messaging/tutorials/cross-chain-contracts/) tutorial.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/messaging/overview/
---- BEGIN CONTENT ---
----
-title: Messaging Overview
-description: With Wormhole Messaging, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
-categories: Basics
----
-
-# Messaging Overview 
-
-Wormhole Messaging is the core protocol of the Wormhole ecosystem—a generic, multichain message-passing layer that enables secure, fast communication between blockchains. It solves the critical problem of blockchain isolation by allowing data and assets to move freely across networks, empowering developers to build true multichain applications.
-
-## Key Features
-
-- **Multichain messaging**: Send arbitrary data between blockchains, enabling xDapps, governance actions, or coordination across ecosystems.
-- **Decentralized validation**: A network of independent [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observes and signs multichain messages, producing [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} that ensure integrity.
-- **Composable architecture**: Works with smart contracts, token bridges, or decentralized applications, providing a flexible foundation for multichain use cases.
-
-## How It Works
-
-The messaging flow consists of several core components:
-
-1. **Source chain (emitter contract)**: A contract emits a message by calling the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the source chain.
-2. **Guardian Network**: [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} observe the message, validate it, and generate a signed [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}.
-3. **Relayers**: Off-chain or on-chain [relayers](/docs/protocol/infrastructure/relayer/){target=\_blank} transport the VAA to the destination chain.
-4. **Target chain (recipient contract)**: The [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank} on the destination chain verifies the VAA and triggers the specified application logic.
-
-![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)
-
-## Use Cases
-
-Wormhole Messaging enables a wide range of multichain applications. Below are common use cases and the Wormhole stack components you can use to build them.
-
-- **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
-
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate actions across chains.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch rates and prices in real-time.
-
-- **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
-
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Relay verified data.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Aggregate multi-chain sources.
-
-- **Gas Abstraction**
-
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate gas logic.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Handle native token swaps.
-
-- **Bridging Intent Library**
-
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Dispatch and execute intents.
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Execute user-defined bridging intents.
-
-- **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
-
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Facilitate decentralized interactions.
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Enable tokenized rewards.
-
-## Next Steps
-
-Follow these steps to work with Wormhole Messaging:
-
-- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
-- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/overview/
---- BEGIN CONTENT ---
----
-title: Compare Wormhole's Cross-Chain Solutions
-description: Compare Wormhole’s cross-chain solutions for bridging, native transfers, data queries, and governance to enable seamless blockchain interoperability.
-categories: Transfer, Basics
----
-
-# Products 
-
-Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
-
-Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
-
-Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
-
-## Transfer Products
-
-Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
-
-- [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
-- [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
-- [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
-
-<div markdown class="full-width">
-
-::spantable::
-
-|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
-|--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
-| Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-|                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
-|                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
-| Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
-|                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
-|                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
-|                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |
-| Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
-
-::end-spantable::
-
-</div>
-
-In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
-
-Beyond asset transfers, Wormhole provides additional tools for cross-chain data and governance.
-
-## Bridging UI
-
-[**Connect**](/docs/products/connect/overview/){target=\_blank} is a pre-built bridging UI for cross-chain token transfers, requiring minimal setup. Best for projects seeking an easy-to-integrate UI for bridging without modifying contracts.
-
-## Real-time Data
-
-[**Queries**](/docs/products/queries/overview/){target=\_blank} is a data retrieval service to fetch on-chain data from multiple networks. Best for applications that need multichain analytics, reporting, and data aggregation.
-
-## Multichain Governance
-
-[**MultiGov**](/docs/products/multigov/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/reference/glossary/

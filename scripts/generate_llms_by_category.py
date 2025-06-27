@@ -29,9 +29,35 @@ def infer_section_label(url, section_priority): # if we reorganize the website t
     """
     Returns which section label from section_priority is present in the URL path, or defaults to 'other' if none match.
     """
-    for section in section_priority:
-        if f"/{section}/" in url:
-            return section
+    # for section in section_priority:
+    #     if f"/{section}/" in url:
+    #         return section
+    # return "other"
+    try:
+        if "raw.githubusercontent.com" in url:
+            if "/products/" in url:
+                path = url.split("/products/")[1]
+            elif "/protocol/" in url:
+                path = url.split("/protocol/")[1]
+            elif "/tools/" in url:
+                path = url.split("/tools/")[1]
+            else:
+                return "other"
+            parts = path.strip("/").split("/")
+            if len(parts) > 1:
+                # check if the second folder is guides/concepts/tutorials
+                section = parts[1].lower()
+                for allowed in section_priority:
+                    if allowed == section:
+                        return allowed[:-1] if allowed.endswith("s") else allowed
+            # Fallback: filename-based detection
+            filename = parts[-1].lower()
+            if filename == "overview.md":
+                return "overview"
+            elif filename == "get-started.md":
+                return "get-started"
+    except Exception as e:
+        print(f"Error inferring section label for URL {url}: {e}")
     return "other"
 
 def sort_key_by_section(index_line, section_priority):
@@ -91,7 +117,7 @@ def extract_category(category, section_priority, shared_data=None):
             else:
                 raw_url = url  # fallback
 
-            index_lines.append(f"Doc-Page: {raw_url} [type: {section_label}]")
+            index_lines.append(f"Doc-Page: {raw_url} [type: {infer_section_label(raw_url, SECTION_PRIORITY)}]")
             content_blocks.append(f"Doc-Content: {url}\n--- BEGIN CONTENT ---\n{content.strip()}\n--- END CONTENT ---") # store full page
 
     if not content_blocks: # # if no doc pages matched, skip writing a file.
