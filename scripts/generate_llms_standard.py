@@ -46,16 +46,12 @@ def get_all_markdown_files(directory):
         if root == directory:
             continue
 
-        # Skip '.github'
-        if '.github' in root.split(os.sep):
+        # Skip any hidden directory (starts with '.')
+        if any(part.startswith('.') for part in root.split(os.sep)):
             continue
 
-        # Skip 'node_modules'
-        if 'node_modules' in root.split(os.sep):
-            continue
-
-        # Skip 'venv' directory
-        if 'venv' in root.split(os.sep):
+        # Skip standard noise folders
+        if any(excluded in root.split(os.sep) for excluded in ['.github', 'node_modules', 'venv']):
             continue
 
         for file in files:
