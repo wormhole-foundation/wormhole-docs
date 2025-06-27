@@ -8,9 +8,9 @@ categories: Transfer
 
 [Wormhole CCTP](/docs/products/cctp-bridge/overview/){target=\_blank} enables native USDC transfers between supported chains by burning tokens on the source chain and minting them on the destination. This provides native, canonical USDC movement without the need for wrapped tokens.
 
-In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual cross-chain USDC transfer using Circle's CCTP protocol.
+In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform an automatic cross-chain USDC transfer using Circle's CCTP protocol.
 
-You will initiate the transfer on the source chain, wait for Circle's attestation, and redeem the USDC on the destination chain.
+You will initiate the transfer on the source chain, and Wormhole's relayer will automatically handle Circle's attestation and redemption steps to complete the transfer on the destination chain.
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
 
 ## Perform a CCTP Transfer
 
-This section walks you through a complete manual USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, wait for the Circle attestation, and complete the redemption on Sepolia.
+This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on Sepolia.
 
 Start by defining utility functions for signer and token setup:
 
@@ -61,7 +61,7 @@ Start by defining utility functions for signer and token setup:
     --8<-- "code/products/cctp-bridge/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, add the script to perform the manual transfer using CCTP:
+2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP:
 
     ```ts title="transfer.ts"
     --8<-- "code/products/cctp-bridge/get-started/snippet-2.ts"
