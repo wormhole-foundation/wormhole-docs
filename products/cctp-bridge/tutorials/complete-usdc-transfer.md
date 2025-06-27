@@ -1,6 +1,7 @@
 ---
 title: Complete USDC Transfer Flow
 description: Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
+categories: CCTP, Transfer
 ---
 
 # Complete USDC Transfer Flow

@@ -1,7 +1,7 @@
 ---
 title: Get Started with Token Bridge
 description: Perform token transfers using Wormhole’s Token Bridge with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
-categories: Token-Bridge, Transfers
+categories: Token Bridge, Transfers
 ---
 
 # Get Started with Token Bridge
