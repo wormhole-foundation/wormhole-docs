@@ -13,21 +13,21 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/overview.md/ [type: overview]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/get-started.md/ [type: get-started]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/concepts/routes.md/ [type: concept]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/data.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/theme.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/faqs.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/hosted-version.md/ [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md/ [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/tutorials/react-dapp.md/ [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/concepts/routes.md [type: concept]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/data.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/theme.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/hosted-version.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/tutorials/react-dapp.md [type: tutorial]
 
 ## Full content for each doc page
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/overview.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/overview.md
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Connect
@@ -93,7 +93,7 @@ Add Connect to your app with these key setup steps:
 [timeline(wormhole-docs/.snippets/text/products/connect/overview/connect-timeline.json)]
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/get-started.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/get-started.md
 --- BEGIN CONTENT ---
 ---
 title: Get Started with Connect
@@ -210,7 +210,7 @@ Use the following guides to configure your Connect instance and integrate it int
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/concepts/routes.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/concepts/routes.md
 --- BEGIN CONTENT ---
 ---
 title: Routes
@@ -291,7 +291,7 @@ Note that if native tBTC is transferred out of these chains to any other outside
 This transfer method requires two transactions: one on the origin chain to burn or lock the tokens and one on the destination chain to mint them. To provide this option, enable the `tbtc` route in the configuration.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/data.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/data.md
 --- BEGIN CONTENT ---
 ---
 title: Connect Data Configuration
@@ -656,7 +656,7 @@ The wallet options automatically adjust based on the selected chain, providing a
 If you would like to offer Reown Cloud (formerly WalletConnect) as a supported wallet option, you'll need to obtain a project ID on the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/theme.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/theme.md
 --- BEGIN CONTENT ---
 ---
 title: Connect Theme & UI Customization
@@ -776,7 +776,7 @@ function App() {
 ```
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/faqs.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/faqs.md
 --- BEGIN CONTENT ---
 ---
 title: Connect FAQs
@@ -850,7 +850,7 @@ Additional notes:
             The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/hosted-version.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/hosted-version.md
 --- BEGIN CONTENT ---
 ---
 title: Integrate Connect via CDN
@@ -925,7 +925,7 @@ Use the following guides to configure your Connect instance:
 - **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Connect v1.0 Migration Guide
@@ -1493,7 +1493,7 @@ wormholeConnectHosted(container, {
 In this example, the `config` object defines the routes (in this case, using the Mayan route), while the `theme` object allows customization of the Connect interface (e.g., background color).
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md
 --- BEGIN CONTENT ---
 ---
 title: Features
@@ -1580,7 +1580,7 @@ This route appears if all of the following conditions are satisfied:
 - The relayer accepts the selected token to swap into the gas token
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md
 --- BEGIN CONTENT ---
 ---
 title: Connect Supported Networks
@@ -1618,7 +1618,7 @@ categories: Connect, Transfer
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/tutorials/react-dapp.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/tutorials/react-dapp.md
 --- BEGIN CONTENT ---
 ---
 title: Integrate Connect into a React DApp Tutorial
@@ -1811,28 +1811,28 @@ The following section contains foundational documentation shared across all Worm
 ---
 
 ## List of Shared Concept Pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md/ [type: overview]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md/ [type: overview]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md/ [type: get-started]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md/ [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md/ [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md/ [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md/ [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md/ [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/core-contracts.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/guardians.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/relayer.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/spy.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/vaas.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/introduction.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/security.md/ [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/core-contracts.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/guardians.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/relayer.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/spy.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/vaas.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/introduction.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/security.md [type: other]
 
 ## Full content for shared concepts:
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md
 --- BEGIN CONTENT ---
 ---
 title: Messaging Overview
@@ -1899,7 +1899,7 @@ Follow these steps to work with Wormhole Messaging:
 - [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md
 --- BEGIN CONTENT ---
 ---
 title: Compare Wormhole's Cross-Chain Solutions
@@ -1967,7 +1967,7 @@ Beyond asset transfers, Wormhole provides additional tools for cross-chain data 
 [**MultiGov**](/docs/products/multigov/overview/){target=\_blank} is a unified governance framework that manages multichain protocol governance through a single mechanism. Best for projects managing multichain governance and protocol updates.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md
 --- BEGIN CONTENT ---
 ---
 title: Get Started with Messaging
@@ -2274,7 +2274,7 @@ Congratulations! You've published your first multichain message using Wormhole's
 -->
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md
 --- BEGIN CONTENT ---
 ---
 title: Get Started with Core Contracts
@@ -2650,7 +2650,7 @@ For a deeper understanding of the Core Contract implementation for a specific bl
 - [Terra Core Contract source code](https://github.com/wormhole-foundation/wormhole/tree/main/terra/contracts/wormhole){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md
 --- BEGIN CONTENT ---
 ---
 title: Wormhole-Deployed Relayers
@@ -2853,7 +2853,7 @@ See the [Wormhole CLI tool docs](/docs/tools/cli/get-started/){target=\_blank} f
 For detailed, step-by-step guidance on creating cross-chain contracts that interact with the Wormhole relayer, refer to the [Create Cross-Chain Contracts](/docs/products/messaging/tutorials/cross-chain-contracts/) tutorial.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md
 --- BEGIN CONTENT ---
 ---
 title: Create Cross-Chain Contracts
@@ -3776,7 +3776,7 @@ You're now fully equipped to build cross-chain contracts using the Wormhole prot
 - Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md
 --- BEGIN CONTENT ---
 ---
 title: Cross-Chain Token Transfers
@@ -5391,7 +5391,7 @@ Congratulations! You've successfully built and deployed a cross-chain token tran
  - Write deployment scripts to manage and deploy contracts on different networks
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md
 --- BEGIN CONTENT ---
 ---
 title: Replace Outdated Signatures in VAAs
@@ -6487,7 +6487,7 @@ You've successfully built a script to fetch, validate, and replace outdated sign
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for Guardian approval to finalize the process.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md
 --- BEGIN CONTENT ---
 ---
 title: Glossary
@@ -6564,7 +6564,7 @@ A Spy is a daemon that eavesdrops on the messages passed between Guardians, typi
 A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md
 --- BEGIN CONTENT ---
 ---
 title: Architecture
@@ -6630,7 +6630,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md
 --- BEGIN CONTENT ---
 ---
 title: Ecosystem
@@ -6668,7 +6668,7 @@ Ultimately, these components aren’t siloed but designed to be combined. You co
 Unsure which bridging solution you need? Visit the [Product Comparison](/docs/products/overview/){target=\_blank} page to quickly match your requirements with the right Wormhole tool.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/core-contracts.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/core-contracts.md
 --- BEGIN CONTENT ---
 ---
 title: Core Contracts
@@ -6750,7 +6750,7 @@ Because the VAA creation is separate from relaying, the multicast model does not
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/guardians.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/guardians.md
 --- BEGIN CONTENT ---
 ---
 title: Guardians
@@ -6854,7 +6854,7 @@ These principles combine to create a clear pathway towards a fully trustless int
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/relayer.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/relayer.md
 --- BEGIN CONTENT ---
 ---
 title: Relayers
@@ -7021,7 +7021,7 @@ Developers should note that the choice of relayers depends on their project's sp
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/spy.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/spy.md
 --- BEGIN CONTENT ---
 ---
 title: Spy
@@ -7120,7 +7120,7 @@ A Spy can access the following categories of messages shared over the gossip pro
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/vaas.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/vaas.md
 --- BEGIN CONTENT ---
 ---
 title: VAAs
@@ -7334,7 +7334,7 @@ With the concepts now defined, it is possible to illustrate a full flow for mess
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/introduction.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/introduction.md
 --- BEGIN CONTENT ---
 ---
 title: Introduction to Wormhole
@@ -7420,7 +7420,7 @@ More demos are available in the [demos page](/docs/build/start-building/demos/){
 Wormhole supports a growing number of blockchains. Check out the [Supported Networks by Product](/docs/products/reference/supported-networks/){target=\_blank} page to see which networks are supported for each Wormhole product.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/security.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/security.md
 --- BEGIN CONTENT ---
 ---
 title: Security
@@ -7537,16 +7537,16 @@ The following section contains reference material for Wormhole, including chain 
 ---
 
 ## List of Shared Concept Pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md/ [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md/ [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: other]
 
 ## Full content for shared concepts:
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md
 --- BEGIN CONTENT ---
 ---
 title: Chain IDs
@@ -7671,7 +7671,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Finality | Consistency Levels
@@ -7727,7 +7727,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md
 --- BEGIN CONTENT ---
 ---
 title: Contract Addresses
@@ -8036,7 +8036,7 @@ categories: Reference
     Read-only deployments allow Wormhole messages to be received on chains not fully integrated with Wormhole Guardians. These deployments support cross-chain data verification but cannot originate messages. For example, a governance message can be sent from a fully integrated chain and processed on a read-only chain, but the read-only chain cannot send messages back.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md
 --- BEGIN CONTENT ---
 ---
 title: Supported Networks
@@ -8219,7 +8219,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md
 --- BEGIN CONTENT ---
 ---
 title: Testnet Faucets
@@ -8300,7 +8300,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 <!--TESTNET_FAUCETS-->
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md/
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md
 --- BEGIN CONTENT ---
 ---
 title: Wormhole Formatted Addresses

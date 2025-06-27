@@ -29,7 +29,6 @@ def infer_section_label(url, section_priority): # if we reorganize the website t
     """
     Returns which section label from section_priority is present in the URL path, or defaults to 'other' if none match.
     """
-    
     try:
         if "raw.githubusercontent.com" in url:
             if "/products/" in url:

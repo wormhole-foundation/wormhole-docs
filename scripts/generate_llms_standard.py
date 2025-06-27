@@ -185,12 +185,7 @@ def build_content_section(files,yaml_file):
         if '.snippets' in relative_path.split(os.sep):
             continue
 
-        #doc_url_path = re.sub(r'\.(md|mdx)$', '', relative_path)
         doc_url = f"{raw_base_url}/{relative_path.replace(os.sep, '/')}"
-
-        # Remove trailing /index from doc_url
-        if doc_url.endswith('/index'):
-            doc_url = doc_url[:-6]
 
         with open(file, 'r', encoding='utf-8') as file_content:
             content = file_content.read()
@@ -198,7 +193,7 @@ def build_content_section(files,yaml_file):
         # Replace snippet placeholders
         content = replace_snippet_placeholders(content, snippet_dir, yaml_file)
 
-        section += f"Doc-Content: {doc_url}/\n"
+        section += f"Doc-Content: {doc_url}\n"
         section += "--- BEGIN CONTENT ---\n"
         section += content.strip()
         section += "\n--- END CONTENT ---\n\n"
