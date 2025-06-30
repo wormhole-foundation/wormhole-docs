@@ -59,7 +59,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/helpers.ts'
     ```
 
-    You can view the [constants for platform names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/3eae2e91fc3a6fec859eb87cfa85a4c92c65466f/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms
+    You can view the [platform constants](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms.
 
 ## Verify Token Registration (Attestation)
 
