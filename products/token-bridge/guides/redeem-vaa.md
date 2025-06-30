@@ -10,7 +10,7 @@ This guide demonstrates submitting a signed VAA to the destination chain to comp
 
 - Initiation on the source chain and resulting message publication.
 - Signed VAA retrieval.
-- Submission on the destination chain where the VAA is verified and the transfer completed.
+- Redemption of the VAA with the destination chain where the source chain transaction is verified and the transfer completed.
 
 This example will use a known, signed VAA from a Token Bridge transfer using Moonbeam as the source chain and Solana as the destination but can be adapted for any supported chains.
 
@@ -20,7 +20,7 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
-- A wallet setup with a private key and small amount of gas tokens on your destination chain.
+- A wallet setup with a private key and small amount of gas tokens for your destination chain.
 
 ## Set Up Your Developer Environment
 
@@ -50,7 +50,19 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 5. Open `helper.ts` and add the following code:
     ```typescript title="helper.ts"
+    --8<-- 'code/products/token-bridge/guides/token-bridge-contracts/redeem-vaa/helper.ts'
+    ```
 
+## Redeem Signed VAA
+
+1. Create a new file called `completeTransfer.ts` which will hold the logic to redeem the VAA with the destination chain and complete the transfer:
+    ```bash 
+    touch completeTransfer.ts
+    ```
+
+2. Open the new file and add the following code:
+    ```typescript title="completeTransfer.ts"
+    
     ```
 
 
