@@ -22,11 +22,11 @@ async function transferTokens() {
   // Define token and amount to transfer
   const tokenId: TokenId = Wormhole.tokenId(
     sourceChain.chain,
-    'INSERT_TOKEN_CONTRACT_ADDRESS'
+    'INSERT_TOKEN_ADDRESS' // Replace with token address as string "0x1234...."
   );
   // Replace with amount you want to transfer
   // This is a human-readable number, e.g., 0.2 for 0.2 tokens
-  const amount = INSERT_AMOUNT;
+  const amount = 0.1;
   // Convert to raw units based on token decimals
   const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
   const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));
@@ -43,35 +43,37 @@ async function transferTokens() {
     );
   } catch (e) {
     console.log(
-      '⚠️ Token is NOT registered on destination. Attestation required before transfer can proceed...'
+      '⚠️ Token is NOT registered on destination. Attestation required...'
     );
+
+    // Define whether the transfer is automatic or manual
+    const automatic = true;
+    // Optional native gas amount for automatic transfers only
+    const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
+    // Get the decimals for the source chain
+    const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
+    // If automatic, convert to raw units, otherwise set to 0n
+    const nativeGas = BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals);
+    // Build the token transfer object
+    const xfer = await wh.tokenTransfer(
+      tokenId,
+      transferAmount,
+      sourceSigner.address,
+      destinationSigner.address,
+      automatic,
+      undefined, // no payload
+      nativeGas
+    );
+    console.log('🚀 Built transfer object:', xfer.transfer);
+    // Initiate, sign, and send the token transfer
+    const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
+    console.log('🔗 Source chain tx sent:', srcTxs);
+
+    if (automatic) {
+      console.log('✅ Automatic transfer: relayer is handling redemption.');
+      return;
+    }
   }
-  // Define whether the transfer is automatic or manual
-  const automatic = false;
-  // Build the token transfer object
-  const xfer = await wh.tokenTransfer(
-    tokenId,
-    transferAmount,
-    sourceSigner.address,
-    destinationSigner.address,
-    automatic,
-    undefined // no payload
-  );
-  console.log('🚀 Built transfer object:', xfer.transfer);
-
-  // Initiate, sign, and send the token transfer
-  const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
-  console.log('🔗 Source chain tx sent:', srcTxs);
-
-  // For manual transfers, wait for VAA
-  console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
-  const attIds = await xfer.fetchAttestation(120_000); // 2 minutes timeout
-  console.log('✅ Got attestation ID(s):', attIds);
-
-  // Complete the manual transfer on the destination chain
-  console.log('↪️ Redeeming transfer on destination...');
-  const destTxs = await xfer.completeTransfer(destinationSigner.signer);
-  console.log('🎉 Destination tx(s) submitted:', destTxs);
 }
 
 transferTokens().catch((e) => {

@@ -133,27 +133,56 @@ Registration via attestation is only required the first time a given token is se
 
 ## Initiate Transfer on Source Chain
 
-Follow these steps to add the rest of the logic to initiate the token transfer on the source chain:
+There are some differences in the scripting to initiate automatic versus manual Token Bridge transfers. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
 
-1. Open your `transfer.ts` file and add the following code after the attestation check:
+Differences between automatic and manual transfers that can influence your script include the following:
 
-    ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:49:88'
-    ```
+- **Native gas drop-off**: this feature is only available with automatic transfers. If used, you must specify the amount of native gas to send with the transfer.
+- **Destination signer**: with manual transfers, you must provide a destination signer for the additional blockchain transaction to manually redeem the transfer with the destination chain and release the tokens.
+- **Additional functions**: once you call `initiateTransfer` for automatic transfers, your transfer flow is complete. Manual transfers require some additional functions such as the following:
+    - **`fetchAttestation`**: waits for the signed VAA verifying the source chain transaction.
+    - **`completeTransfer`**: submits verified transactions to the destination chain to complete the transfer.
+    - **`isTransferComplete`**: checks destination chain and VAA info to verify is transfer is complete.
 
-    This code does the following:
+Follow these steps to complete your transfer script:
 
-    - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
-    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers.
-    - Builds the transfer object, initiates the transfer, signs and sends the transaction.
-    - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
+1. Select your transfer mode and add the rest of the logic to initiate the token transfer on the source chain:
+
+    === "Manual Transfer"
+
+        Open your `transfer.ts` file and add the following code after the attestation check:
+        ```typescript title="transfer.ts"
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:49:74'
+        ```
+
+        This code does the following:
+
+        - Defines the transfer as manual. 
+        - Builds the transfer object, initiates the transfer, signs the transaction and sends it.
+        - Waits for the signed VAA confirming the transaction on the source chain. 
+        - Submits the signed VAA to the destination chain to claim the tokens and complete the manual transfer.
+
+    === "Automatic Transfer"
+
+        Open your `transfer.ts` file and add the following code after the attestation check:
+        ```typescript title="transfer.ts"
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/autoTransfer.ts:49:76'
+        ```
+
+        This code does the following:
+
+        - Defines the transfer as automatic.
+        - Defines the amount of native gas to send.
+        - Builds the transfer object, initiates the transfer, signs the transaction and sends it.
+        - As long as both the source and destination chain support automatic transfer, the relayer takes care of completing the transaction and no further steps are required. 
+
 
 2. Run the script with the following command:
     ```bash
     npx tsx transfer.ts
     ```
 
-3. You will see terminal output similar to the following:
+3. You will see terminal output similar to the following (the example uses the manual flow script):
 
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-3.html'
 
