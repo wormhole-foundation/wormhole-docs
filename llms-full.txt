@@ -12821,7 +12821,7 @@ solana-keygen grind --starts-with ntt:1 --ignore-case
 
 If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
 
-If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+For hub-and-spoke and Solana as the hubchain skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt), otherwise follow the burn-and-mint instructions below for Solana as a spoke.
 
 Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
 
@@ -12932,14 +12932,6 @@ Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked i
     Find answers to common questions about NTT.
 
     [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
-
--   :octicons-question-16:{ .lg .middle } **View FAQs**
-
-    ---
-
-    Find answers to common questions about NTT.
-
-    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -13783,6 +13775,7 @@ categories: NTT, Transfer
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -15053,6 +15046,7 @@ categories: Reference
 | Celo | 0x306B68267Deb7c5DfCDa3619E22E9Ca39C374f84 |
 | Fantom | 0x7B1bD7a6b4E61c2a123AC6BC2cbfC614437D0470 |
 | Ink | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
+| Mezo | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Monad | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Moonbeam | 0x0591C25ebd0580E0d4F27A82Fc2e24E7489CB5e0 |
 | Optimism Sepolia | 0x93BAD53DDfB6132b0aC8E37f6029163E63372cEE |
@@ -15110,6 +15104,7 @@ categories: Reference
 === "Mainnet"
 
     | Acala | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
+| Aurora | 0x51b5123a7b0F9b2bA265f9c4C8de7D78D52f510F |
 | Corn | 0xa683c66045ad16abb1bCE5ad46A64d95f9A25785 |
 | Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Goat | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
@@ -15264,6 +15259,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -19811,7 +19807,7 @@ Doc-Content: https://wormhole.com/docs/tools/.solidity-sdk/.get-started/
 ---
 title: Get Started with the Solidity SDK
 description: Follow this guide to use the Wormhole Solidity SDK's interfaces and tools to help you quickly build on-chain integrations using smart contracts.
-categories: Basics, Solidity-SDK
+categories: Solidity-SDK
 ---
 
 # Get Started with the Solidity SDK
