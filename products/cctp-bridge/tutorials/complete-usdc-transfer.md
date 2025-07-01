@@ -310,4 +310,4 @@ By following these steps, you've learned how to:
 - Handle both manual and automatic relaying of transactions
 - Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
 
-Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
