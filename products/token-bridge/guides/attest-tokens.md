@@ -111,7 +111,7 @@ This code does the following:
 
 - **Gets the source chain Token Bridge context**: This is where the transaction is sent to create the attestation.
 - Defines the token to attest and the payer.
-- **Calls `createAttestation`**: defined in the [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
+- **Calls `createAttestation`**: defined in the [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
     - Accepts a `TokenAddress` representing the token on its native chain.
     - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
     - Prepares an attestation for the token including metadata such as address, symbol, and decimals.
