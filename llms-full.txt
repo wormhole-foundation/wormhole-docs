@@ -12689,9 +12689,31 @@ This guide walks you through deploying NTT on Solana, including setting up depen
 
 Before deploying NTT on Solana, ensure you have the following:
 
--  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
--  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
--  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+- [Rust](https://www.rust-lang.org/tools/install){target=\_blank} installed. 
+- The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
+
+    === "v3"
+        <table data-full-width="true" markdown>
+        <thead> 
+        <th>Dependency</th><th>Version</th>
+        </thead>
+        <tbody>
+        <tr><td>[Solana](https://docs.solanalabs.com/cli/install){target=\_blank}</td><td>`{{ ntt.solana_cli_version }}`</td></tr>
+        <tr><td>[Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank}</td><td>`{{ ntt.anchor_version }}`</td></tr>
+        </tbody>
+        </table>
+
+    === "v2/v1"
+        <table data-full-width="true" markdown>
+        <thead> 
+        <th>Dependency</th><th>Version</th>
+        </thead>
+        <tbody>
+        <tr><td>[Solana](https://docs.solanalabs.com/cli/install){target=\_blank}</td><td> `v1.18.10` </td></tr>
+        <tr><td>[Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank}</td><td> `v0.29.0`</td></tr>
+        </tbody>
+        </table>
+        
 
 Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
 
