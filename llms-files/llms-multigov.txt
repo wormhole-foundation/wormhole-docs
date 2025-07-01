@@ -3654,6 +3654,8 @@ categories: Reference
 | Sonic | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
 | Telos | 0x352A86168e6988A1aDF9A15Cb00017AAd3B67155 |
 | Terra | terra1dq03ugtd40zu9hcgdzrsq6z2z4hwhc9tqk2uy5 |
+| Terra 2.0 | terra12mrnzvhx3rpej6843uge2yyfppfyd3u9c3uq223q8sl48huz9juqffcnhp |
+| SNAXchain | 0xc1BA3CC4bFE724A08FbbFbF64F8db196738665f4 |
 | XPLA | xpla1jn8qmdda5m6f6fqu9qv46rt7ajhklg40ukpqchkejcvy8x7w26cqxamv3w |
 
 !!!note  
