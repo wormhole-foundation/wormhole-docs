@@ -79,8 +79,8 @@ Since attestation is a one-time process, it is good practice when working with e
 
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
 
-    - **Defines the token to check**: use the contract address on the source chain for this value.
-    - **Calls `getWrappedAsset`**: part of the [`Wormhole` class](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/connect/src/wormhole.ts#L47){target=\_blank}, the [`getWrappedAsset`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/connect/src/wormhole.ts#L205){target=\_blank} method:
+    - **Defines the token to check**: Use the contract address on the source chain for this value.
+    - **Calls [`getWrappedAsset`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L205){target=\_blank}**: part of the [`Wormhole` class](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L47){target=\_blank}, the method:
         - Accepts a [`TokenId`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
         - Checks for a corresponding wrapped version of the destination chain's Token Bridge contract.
         - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
@@ -109,7 +109,7 @@ To create the attestation transaction on the source chain, open `attest.ts` and 
 
 This code does the following:
 
-- **Gets the source chain Token Bridge context**: this is where the transaction is sent to create the attestation.
+- **Gets the source chain Token Bridge context**: This is where the transaction is sent to create the attestation.
 - Defines the token to attest and the payer.
 - **Calls `createAttestation`**: defined in the [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
     - Accepts a `TokenAddress` representing the token on its native chain.
@@ -150,4 +150,4 @@ Congratulations! You've successfully created and submitted an attestation to reg
 
 ## Next Steps
 
-- [**Transfer Wrapped Assets**](/docs/products/token-bridge/guides/attest-tokens): follow this guide to incorporate token attestation and registration into an end-to-end Token Bridge transfer flow.
+- [**Transfer Wrapped Assets**](/docs/products/token-bridge/guides/attest-tokens): Follow this guide to incorporate token attestation and registration into an end-to-end Token Bridge transfer flow.
