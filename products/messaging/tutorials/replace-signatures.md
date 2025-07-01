@@ -438,4 +438,4 @@ You've successfully built a script to fetch, validate, and replace outdated sign
 
 It's important to note that this tutorial does not update VAAs in the Wormhole network. Before redeeming the VAA, you must propose it for Guardian approval to finalize the process.
 
-Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

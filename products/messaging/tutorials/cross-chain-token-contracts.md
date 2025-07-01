@@ -610,4 +610,4 @@ Congratulations! You've successfully built and deployed a cross-chain token tran
  - Develop smart contracts to send and receive tokens across chains
  - Write deployment scripts to manage and deploy contracts on different networks
 
-Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

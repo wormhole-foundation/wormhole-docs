@@ -353,4 +353,4 @@ You've successfully built a cross-chain token transfer application using Wormhol
 
 The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
 
-Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

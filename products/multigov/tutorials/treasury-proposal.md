@@ -214,4 +214,4 @@ Once the proposal is executed, the encoded messages will be dispatched via Wormh
 
 ## Conclusion
 
-Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

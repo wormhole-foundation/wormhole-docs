@@ -370,4 +370,4 @@ You're now fully equipped to build cross-chain contracts using the Wormhole prot
 - Send a cross-chain message from one blockchain to another
 - Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
 
-Looking for more? Check out the [Wormhole Tutorial Demo Repo](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
