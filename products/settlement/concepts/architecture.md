@@ -1,6 +1,6 @@
 ---
 title: Settlement Protocol Architecture
-description: Explore Wormhole Settlement's native swap protocols, Mayan Swift, and MCTP—for scalable, efficient cross-chain asset transfers.
+description: Explore Wormhole Settlement's native swap protocols—Mayan Swift and MCTP—for scalable, efficient cross-chain asset transfers.
 categories: Settlement, Transfer
 ---
 
