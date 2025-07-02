@@ -106,6 +106,43 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 --8<-- 'code/products/connect/configuration/data/add-token.tsx'
 ```
 
+### Configuring Native Token Transfers (NTT)
+
+Wormhole Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, enabling the same token to be transferred natively across multiple chains without wrapping.
+
+To enable NTT routes, use the `nttRoutes(...)` helper and pass your custom NTT configuration directly into it. This will return the appropriate route constructors, which you can spread into your routes array.
+
+```ts
+import {
+  nttRoutes,
+} from '@wormhole-foundation/connect-sdk';
+
+const config: WormholeConnectConfig = {
+  routes: [
+    ...nttRoutes({
+      tokens: {
+        MyToken: [
+          {
+            chain: 'Ethereum',
+            token: '0xMyEthereumTokenAddress',
+          },
+          {
+            chain: 'Solana',
+            token: 'MySolanaTokenMintAddress',
+          },
+        ],
+      },
+    }),
+    // other routes
+  ],
+};
+```
+
+Each key inside `tokens` represents a canonical token supported on multiple chains. Each array entry includes the `chain` and the token's contract address or mint address on that chain.
+
+!!! note
+    Each token address specified in the NTT config must have a corresponding entry in [`tokensConfig`](#custom-tokens), whether it is a built-in or custom token.
+
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
 Connect offers a list of built-in tokens by default. You can see it below:
