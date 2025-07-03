@@ -335,24 +335,21 @@ const config: config.WormholeConnectConfig = {
 === "Hosted integration"
 
     ```ts
-    import WormholeConnect, {
-	wormholeConnectHosted,
-	type config,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { wormholeConnectHosted, type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	chains: ['Ethereum', 'Polygon', 'Solana'],
-	tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
-	rpcs: {
-		Ethereum: 'https://rpc.ankr.com/eth',
-		Solana: 'https://rpc.ankr.com/solana',
-	},
+  chains: ['Ethereum', 'Polygon', 'Solana'],
+  tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
+  rpcs: {
+    Ethereum: 'https://rpc.ankr.com/eth',
+    Solana: 'https://rpc.ankr.com/solana',
+  },
 };
 
 const container = document.getElementById('bridge-container');
 
 wormholeConnectHosted(container, {
-	config,
+  config,
 });
     ```
 
@@ -371,15 +368,15 @@ Connect lets you customize the available chains to match your project's needs. Y
     import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	chains: ['Ethereum', 'Polygon', 'Solana'],
-	rpcs: {
-		Ethereum: 'https://rpc.ankr.com/eth',
-		Solana: 'https://rpc.ankr.com/solana',
-	},
+  chains: ['Ethereum', 'Polygon', 'Solana'],
+  rpcs: {
+    Ethereum: 'https://rpc.ankr.com/eth',
+    Solana: 'https://rpc.ankr.com/solana',
+  },
 };
 
 function App() {
-	return <wormholeconnect config="{config}"></wormholeconnect>;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
     ```
 
@@ -389,17 +386,17 @@ function App() {
     import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	// You can use Connect with testnet chains by specifying "network":
-	network: 'Testnet',
-	chains: ['Sepolia', 'ArbitrumSepolia', 'BaseSepolia', 'Avalanche'],
-	rpcs: {
-		Avalanche: 'https://rpc.ankr.com/avalanche_fuji',
-		BaseSepolia: 'https://base-sepolia-rpc.publicnode.com',
-	},
+  // You can use Connect with testnet chains by specifying "network":
+  network: 'Testnet',
+  chains: ['Sepolia', 'ArbitrumSepolia', 'BaseSepolia', 'Avalanche'],
+  rpcs: {
+    Avalanche: 'https://rpc.ankr.com/avalanche_fuji',
+    BaseSepolia: 'https://base-sepolia-rpc.publicnode.com',
+  },
 };
 
 function App() {
-	return <wormholeconnect config="{config}"></wormholeconnect>;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
     ```
 
@@ -486,25 +483,25 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	tokensConfig: {
-		BONK: {
-			key: 'BONK',
-			symbol: 'BONK',
-			nativeChain: 'Ethereum',
-			icon: Icon.ETH,
-			tokenId: {
-				chain: 'Ethereum',
-				address: '0x1151CB3d861920e07a38e03eEAd12C32178567F6',
-			},
-			coinGeckoId: 'bonk',
-			decimals: 18,
-		},
-	},
-	wrappedTokens: {
-		BONK: {
-			Solana: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
-		},
-	},
+  tokensConfig: {
+    BONK: {
+      key: 'BONK',
+      symbol: 'BONK',
+      nativeChain: 'Ethereum',
+      icon: Icon.ETH,
+      tokenId: {
+        chain: 'Ethereum',
+        address: '0x1151CB3d861920e07a38e03eEAd12C32178567F6',
+      },
+      coinGeckoId: 'bonk',
+      decimals: 18,
+    },
+  },
+  wrappedTokens: {
+    BONK: {
+      Solana: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
+    },
+  },
 };
 ```
 
@@ -521,33 +518,33 @@ You can customize the tokens shown in the UI using the `tokens` property. The fo
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	chains: ['Ethereum', 'Solana'],
-	tokens: ['ETH', 'SOL', 'BONK'],
-	rpcs: {
-		Ethereum: 'https://rpc.ankr.com/eth',
-		Solana: 'https://rpc.ankr.com/solana',
-	},
-	tokensConfig: {
-		BONK: {
-			key: 'BONK',
-			symbol: 'BONK',
-			icon: 'https://assets.coingecko.com/coins/images/28600/large/bonk.jpg?1696527587',
-			tokenId: {
-				chain: 'Ethereum',
-				address: '0x1151CB3d861920e07a38e03eEAd12C32178567F6',
-			},
-			decimals: 18,
-		},
-	},
-	wrappedTokens: {
-		BONK: {
-			Solana: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
-		},
-	},
+  chains: ['Ethereum', 'Solana'],
+  tokens: ['ETH', 'SOL', 'BONK'],
+  rpcs: {
+    Ethereum: 'https://rpc.ankr.com/eth',
+    Solana: 'https://rpc.ankr.com/solana',
+  },
+  tokensConfig: {
+    BONK: {
+      key: 'BONK',
+      symbol: 'BONK',
+      icon: 'https://assets.coingecko.com/coins/images/28600/large/bonk.jpg?1696527587',
+      tokenId: {
+        chain: 'Ethereum',
+        address: '0x1151CB3d861920e07a38e03eEAd12C32178567F6',
+      },
+      decimals: 18,
+    },
+  },
+  wrappedTokens: {
+    BONK: {
+      Solana: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263',
+    },
+  },
 };
 
 function App() {
-	return <wormholeconnect config="{config}"></wormholeconnect>;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 ```
 
@@ -584,13 +581,13 @@ If you provide a token whitelist (see above), this is turned off automatically. 
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	ui: {
-		disableUserInputtedTokens: true,
-	},
+  ui: {
+    disableUserInputtedTokens: true,
+  },
 };
 
 function App() {
-	return <wormholeconnect config="{config}"></wormholeconnect>;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 ```
 
@@ -604,34 +601,34 @@ Landing transactions on Solana can require finely tuned priority fees when there
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	transactionSettings: {
-		Solana: {
-			priorityFee: {
-				// Number between 0-1, defaults to 0.9. Higher percentile yields higher fees.
-				// For example, you can set percentile to 0.95 to make Connect compute the
-				// 95th percentile priority fee amount based on recent transactions
-				percentile: 0.95,
+  transactionSettings: {
+    Solana: {
+      priorityFee: {
+        // Number between 0-1, defaults to 0.9. Higher percentile yields higher fees.
+        // For example, you can set percentile to 0.95 to make Connect compute the
+        // 95th percentile priority fee amount based on recent transactions
+        percentile: 0.95,
 
-				// Any number, defaults to 1.0. The fee amount is multiplied by this number.
-				// This can be used to further raise or lower the fees Connect is using.
-				// For example, percentile=0.95 and percentileMultiple=1.1 would use
-				// the 95th percentile fee, with a 10% increase
-				percentileMultiple: 1.1,
+        // Any number, defaults to 1.0. The fee amount is multiplied by this number.
+        // This can be used to further raise or lower the fees Connect is using.
+        // For example, percentile=0.95 and percentileMultiple=1.1 would use
+        // the 95th percentile fee, with a 10% increase
+        percentileMultiple: 1.1,
 
-				// Minimum fee you want to use in microlamports, regardless of recent transactions
-				// Defaults to 1
-				min: 200_000,
+        // Minimum fee you want to use in microlamports, regardless of recent transactions
+        // Defaults to 1
+        min: 200_000,
 
-				// Maximum fee you want to use in microlamports, regardless of recent transactions
-				// Defaults to 100,000,000
-				max: 5_000_000,
-			},
-		},
-	},
+        // Maximum fee you want to use in microlamports, regardless of recent transactions
+        // Defaults to 100,000,000
+        max: 5_000_000,
+      },
+    },
+  },
 };
 
 function App() {
-	return <wormholeconnect config="{config}"></wormholeconnect>;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 ```
 
@@ -669,10 +666,7 @@ You can customize Connect's color scheme by providing a `theme` prop.
 === "React integration"
 
     ```ts
-    import WormholeConnect, {
-  type config,
-  WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config, WormholeConnectTheme } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
   /* Your config... */
@@ -692,11 +686,7 @@ function App() {
 === "Hosted integration"
 
     ```ts
-    import WormholeConnect, {
-  type config,
-  WormholeConnectTheme,
-  wormholeConnectHosted,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config, WormholeConnectTheme, wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
   /* Your config... */
@@ -749,21 +739,21 @@ By setting the `showHamburgerMenu` option to `false,` you can add extra links. T
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	ui: {
-		showHamburgerMenu: false,
-		menu: [
-			{
-				label: 'Advance Tools',
-				href: 'https://portalbridge.com',
-				target: '_self',
-				order: 1,
-			},
-		],
-	},
+  ui: {
+    showHamburgerMenu: false,
+    menu: [
+      {
+        label: 'Advance Tools',
+        href: 'https://portalbridge.com',
+        target: '_self',
+        order: 1,
+      },
+    ],
+  },
 };
 
 function App() {
-	return <wormholeconnect config="{config}"></wormholeconnect>;
+  return <wormholeconnect config="{config}"></wormholeconnect>;
 }
 ```
 --- END CONTENT ---
@@ -1002,9 +992,7 @@ wormholeConnectHosted(container);
 You can provide config and theme parameters in a second function argument:
 
 ```js
-import {
-  wormholeConnectHosted,
-} from '@wormhole-foundation/wormhole-connect';
+import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
 // Existing DOM element where you want to mount Connect
 const container = document.getElementById('bridge-container');
@@ -1016,13 +1004,13 @@ wormholeConnectHosted(container, {
   config: {
     rpcs: {
       // ...
-    }
+    },
   },
   theme: {
     background: {
       default: '#004547',
-    }
-  }
+    },
+  },
 });
 ```
 
