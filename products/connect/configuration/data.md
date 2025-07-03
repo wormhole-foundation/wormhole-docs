@@ -106,6 +106,21 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 --8<-- 'code/products/connect/configuration/data/add-token.tsx'
 ```
 
+### Configuring Native Token Transfers (NTT)
+
+Wormhole Connect supports [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=_blank}, which allow the same token to move natively between supported chains using canonical contracts and transceivers.
+
+To enable NTT, pass a token configuration object to the `nttRoutes(...)` helper and include the result in the `routes` array using the spread operator.
+
+```typescript
+--8<-- 'code/products/connect/configuration/data/configure-ntt.tsx'
+```
+
+!!! note 
+    Each token listed in `nttRoutes` must also have a corresponding entry in [`tokensConfig`](#custom-tokens), either as a built-in or custom token. These entries must include `symbol`, `decimals`, and the `tokenId`.
+
+For a complete working example of NTT configuration in Wormhole Connect, see the [ntt-connect demo repository](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}.
+
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
 Connect offers a list of built-in tokens by default. You can see it below:
