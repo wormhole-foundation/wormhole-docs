@@ -114,12 +114,12 @@ export default function Home() {
     'use client';
 
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
   WormholeConnectTheme,
 } from '@wormhole-foundation/wormhole-connect';
 
 export default function Home() {
-  const config: WormholeConnectConfig = {
+  const config: config.WormholeConnectConfig = {
     network: 'Testnet',
     chains: ['Sui', 'Avalanche'],
 
@@ -317,10 +317,10 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
 
     ```ts
     import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Polygon', 'Solana'],
   tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
   rpcs: {
@@ -335,12 +335,9 @@ const config: WormholeConnectConfig = {
 === "Hosted integration"
 
     ```ts
-    import WormholeConnect, {
-  wormholeConnectHosted,
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { wormholeConnectHosted, type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Polygon', 'Solana'],
   tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
   rpcs: {
@@ -368,11 +365,9 @@ Connect lets you customize the available chains to match your project's needs. Y
 === "Mainnet"
 
     ```js
-    import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Polygon', 'Solana'],
   rpcs: {
     Ethereum: 'https://rpc.ankr.com/eth',
@@ -388,11 +383,9 @@ function App() {
 === "Testnet"
 
     ```js
-    import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   // You can use Connect with testnet chains by specifying "network":
   network: 'Testnet',
   chains: ['Sepolia', 'ArbitrumSepolia', 'BaseSepolia', 'Avalanche'],
@@ -442,10 +435,10 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 ```typescript
 import WormholeConnect, {
   AutomaticCCTPRoute,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [AutomaticCCTPRoute],
 };
 
@@ -461,12 +454,12 @@ import WormholeConnect, {
   DEFAULT_ROUTES,
   nttRoutes,
   MayanRouteSWIFT,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
@@ -487,11 +480,9 @@ This example configuration adds the BONK token to Connect. Note the `wrappedToke
 See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/types.ts#L182){target=\_blank} for the type definition of `TokensConfig`.
 
 ```typescript
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   tokensConfig: {
     BONK: {
       key: 'BONK',
@@ -524,11 +515,9 @@ Connect offers a list of built-in tokens by default. You can see it below:
 You can customize the tokens shown in the UI using the `tokens` property. The following example adds a custom token and limits Connect to showing only that token, along with the native gas tokens ETH and SOL.
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Solana'],
   tokens: ['ETH', 'SOL', 'BONK'],
   rpcs: {
@@ -563,10 +552,10 @@ You can whitelist tokens by symbol or by specifying tuples of [chain, address]. 
 
 ```jsx
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Solana'],
   tokens: [
     // Whitelist BONK on every whitelisted chain
@@ -589,14 +578,12 @@ As of version 2.0, Connect allows users to paste token addresses to bridge any t
 If you provide a token whitelist (see above), this is turned off automatically. However, you can also disable it explicitly like this:
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
-    disableUserInputtedTokens: true
-  }
+    disableUserInputtedTokens: true,
+  },
 };
 
 function App() {
@@ -611,11 +598,9 @@ Setting `ui.disableUserInputtedTokens` to `true` will disable the ability to pas
 Landing transactions on Solana can require finely tuned priority fees when there is congestion. You can tweak how Connect determines these with `transactionSettings`. All of the parameters in this configuration are optional; you can provide any combination of them.
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   transactionSettings: {
     Solana: {
       priorityFee: {
@@ -637,9 +622,9 @@ const config: WormholeConnectConfig = {
         // Maximum fee you want to use in microlamports, regardless of recent transactions
         // Defaults to 100,000,000
         max: 5_000_000,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 function App() {
@@ -681,12 +666,9 @@ You can customize Connect's color scheme by providing a `theme` prop.
 === "React integration"
 
     ```ts
-    import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config, WormholeConnectTheme } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   /* Your config... */
 };
 
@@ -704,13 +686,9 @@ function App() {
 === "Hosted integration"
 
     ```ts
-    import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-  wormholeConnectHosted,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config, WormholeConnectTheme, wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   /* Your config... */
 };
 
@@ -758,11 +736,9 @@ By setting the `showHamburgerMenu` option to `false,` you can add extra links. T
 | `order`  | Order where the new item should be injected |
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
     showHamburgerMenu: false,
     menu: [
@@ -920,13 +896,10 @@ Open the `App.tsx` file in your code editor of choice. You will see code similar
 
 ```typescript title="App.tsx"
 import './App.css';
-import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config, WormholeConnectTheme } from '@wormhole-foundation/wormhole-connect';
 
 function App() {
-  const config: WormholeConnectConfig = {
+  const config: config.WormholeConnectConfig = {
     // Define the network
     network: 'Testnet',
 
@@ -1016,9 +989,7 @@ wormholeConnectHosted(container);
 You can provide config and theme parameters in a second function argument:
 
 ```js
-import {
-  wormholeConnectHosted,
-} from '@wormhole-foundation/wormhole-connect';
+import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
 // Existing DOM element where you want to mount Connect
 const container = document.getElementById('bridge-container');
@@ -1030,13 +1001,13 @@ wormholeConnectHosted(container, {
   config: {
     rpcs: {
       // ...
-    }
+    },
   },
   theme: {
     background: {
       default: '#004547',
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -1104,6 +1075,8 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 === "v0.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       rpcs: {
         ethereum: 'INSERT_ETH_RPC_URL',
@@ -1114,7 +1087,9 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    import { type config } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
       rpcs: {
         Ethereum: 'INSERT_ETH_RPC_URL',
         Solana: 'INSERT_SOLANA_RPC_URL',
@@ -1131,6 +1106,8 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 === "v0.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       env: 'testnet',
     };
@@ -1138,7 +1115,9 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    import { type config } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
       network: 'Testnet',
     };
     ```
@@ -1147,7 +1126,7 @@ If you don’t explicitly set the `network` value, Connect will default to `Main
 
 ```typescript
 // Defaults to Mainnet
-const config: WormholeConnectConfig = {};
+const config: config.WormholeConnectConfig = {};
 ```
 
 For more information, refer to the [network constants list](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/networks.ts){target=\_blank}.
@@ -1159,6 +1138,8 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 === "v0.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       networks: ['solana', 'ethereum'],
     };
@@ -1166,7 +1147,9 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    import { type config } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
       chains: ['Solana', 'Ethereum'],
     };
     ```
@@ -1213,10 +1196,10 @@ To configure Connect to offer only USDC transfers via the CCTP route, use the fo
 ```typescript
 import WormholeConnect, {
   AutomaticCCTPRoute,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [AutomaticCCTPRoute],
 };
 
@@ -1232,12 +1215,12 @@ import WormholeConnect, {
   DEFAULT_ROUTES,
   nttRoutes,
   MayanRouteSWIFT,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
@@ -1295,10 +1278,10 @@ Key Changes to `tokensConfig`:
 
     ```typescript
     import WormholeConnect, {
-      WormholeConnectConfig,
+      type config,
     } from '@wormhole-foundation/wormhole-connect';
 
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       tokensConfig: {
         WETH: {
           key: 'WETH',
@@ -1382,10 +1365,10 @@ This change simplifies the configuration process by providing a cleaner, more fl
     ```typescript
     import WormholeConnect, {
       nttRoutes,
-      WormholeConnectConfig,
+      type config,
     } from '@wormhole-foundation/wormhole-connect';
 
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       routes: [
         ...nttRoutes({
           tokens: {
@@ -1451,10 +1434,10 @@ Additionally, there are two new properties under `ui`:
 
 ```typescript
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
     title: 'My Custom Bridge Example',
     getHelpUrl: 'https://examplehelp.com/',
@@ -1484,6 +1467,7 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 === "v0.x"
 
     ```typescript
+    
     const config: WormholeConnectConfig = {
       bridgeDefaults: {
         fromNetwork: 'solana',
@@ -1497,7 +1481,7 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 === "v1.x"
 
     ```typescript
-    const config: WormholeConnectConfig = {
+    const config: config.WormholeConnectConfig = {
       ui: {
         defaultInputs: {
           fromChain: 'Solana', // Chain names now capitalized
@@ -1522,6 +1506,10 @@ Important details:
 === "v0.x"
 
     ```typescript
+    import WormholeConnect, {
+      WormholeConnectConfig,
+    } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       customTheme: {
         primaryColor: '#4266f5',
@@ -1535,6 +1523,10 @@ Important details:
 === "v1.x"
 
     ```typescript
+    import WormholeConnect, {
+      WormholeConnectTheme,
+    } from '@wormhole-foundation/wormhole-connect';
+
     const theme: WormholeConnectTheme = {
       mode: 'dark', // Can be dynamically changed
       font: 'Arial',

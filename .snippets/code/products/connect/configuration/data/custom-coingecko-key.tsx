@@ -1,9 +1,7 @@
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-  ui: {
-    disableUserInputtedTokens: true,
-  },
+  coinGeckoApiKey: 'INSERT_API_KEY',
 };
 
 function App() {

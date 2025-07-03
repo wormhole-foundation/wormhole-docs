@@ -1,8 +1,6 @@
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Polygon', 'Solana'],
   rpcs: {
     Ethereum: 'https://rpc.ankr.com/eth',
