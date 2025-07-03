@@ -1,30 +1,27 @@
 import './App.css';
-import WormholeConnect, {
-	type config,
-	WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config, WormholeConnectTheme } from '@wormhole-foundation/wormhole-connect';
 
 function App() {
-	const config: config.WormholeConnectConfig = {
-		// Define the network
-		network: 'Testnet',
+  const config: config.WormholeConnectConfig = {
+    // Define the network
+    network: 'Testnet',
 
-		// Define the chains
-		chains: ['Sui', 'Avalanche'],
+    // Define the chains
+    chains: ['Sui', 'Avalanche'],
 
-		// UI configuration
-		ui: {
-			title: 'SUI Connect TS Demo',
-		},
-	};
+    // UI configuration
+    ui: {
+      title: 'SUI Connect TS Demo',
+    },
+  };
 
-	const theme: WormholeConnectTheme = {
-		// Define the theme
-		mode: 'dark',
-		primary: '#78c4b6',
-	};
+  const theme: WormholeConnectTheme = {
+    // Define the theme
+    mode: 'dark',
+    primary: '#78c4b6',
+  };
 
-	return <WormholeConnect config={config} theme={theme} />;
+  return <WormholeConnect config={config} theme={theme} />;
 }
 
 export default App;
