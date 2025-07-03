@@ -108,40 +108,18 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 
 ### Configuring Native Token Transfers (NTT)
 
-Wormhole Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, enabling the same token to be transferred natively across multiple chains without wrapping.
+Wormhole Connect supports [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=_blank}, which allow the same token to move natively between supported chains using canonical contracts and transceivers.
 
-To enable NTT routes, use the `nttRoutes(...)` helper and pass your custom NTT configuration directly into it. This will return the appropriate route constructors, which you can spread into your routes array.
+To enable NTT, pass a token configuration object to the `nttRoutes(...)` helper and include the result in the `routes` array using the spread operator.
 
-```ts
-import {
-  nttRoutes,
-} from '@wormhole-foundation/connect-sdk';
-
-const config: WormholeConnectConfig = {
-  routes: [
-    ...nttRoutes({
-      tokens: {
-        MyToken: [
-          {
-            chain: 'Ethereum',
-            token: '0xMyEthereumTokenAddress',
-          },
-          {
-            chain: 'Solana',
-            token: 'MySolanaTokenMintAddress',
-          },
-        ],
-      },
-    }),
-    // other routes
-  ],
-};
+```typescript
+--8<-- 'code/products/connect/configuration/data/configure-ntt.tsx'
 ```
 
-Each key inside `tokens` represents a canonical token supported on multiple chains. Each array entry includes the `chain` and the token's contract address or mint address on that chain.
+!!! note 
+    Each token listed in `nttRoutes` must also have a corresponding entry in [`tokensConfig`](#custom-tokens), either as a built-in or custom token. These entries must include `symbol`, `decimals`, and the `tokenId`.
 
-!!! note
-    Each token address specified in the NTT config must have a corresponding entry in [`tokensConfig`](#custom-tokens), whether it is a built-in or custom token.
+For a complete working example of NTT configuration in Wormhole Connect, see the [ntt-connect demo repository](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}.
 
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
