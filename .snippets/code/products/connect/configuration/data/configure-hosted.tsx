@@ -1,19 +1,16 @@
-import WormholeConnect, {
-	wormholeConnectHosted,
-	type config,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { wormholeConnectHosted, type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	chains: ['Ethereum', 'Polygon', 'Solana'],
-	tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
-	rpcs: {
-		Ethereum: 'https://rpc.ankr.com/eth',
-		Solana: 'https://rpc.ankr.com/solana',
-	},
+  chains: ['Ethereum', 'Polygon', 'Solana'],
+  tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
+  rpcs: {
+    Ethereum: 'https://rpc.ankr.com/eth',
+    Solana: 'https://rpc.ankr.com/solana',
+  },
 };
 
 const container = document.getElementById('bridge-container');
 
 wormholeConnectHosted(container, {
-	config,
+  config,
 });

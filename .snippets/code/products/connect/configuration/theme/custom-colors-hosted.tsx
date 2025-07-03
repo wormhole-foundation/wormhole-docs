@@ -1,8 +1,4 @@
-import WormholeConnect, {
-  type config,
-  WormholeConnectTheme,
-  wormholeConnectHosted,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config, WormholeConnectTheme, wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
   /* Your config... */
