@@ -1,10 +1,10 @@
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
   WormholeConnectTheme,
   wormholeConnectHosted,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   /* Your config... */
 };
 

@@ -1,17 +1,7 @@
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
 const config: config.WormholeConnectConfig = {
-	ui: {
-		showHamburgerMenu: false,
-		menu: [
-			{
-				label: 'Advance Tools',
-				href: 'https://portalbridge.com',
-				target: '_self',
-				order: 1,
-			},
-		],
-	},
+	coinGeckoApiKey: 'INSERT_API_KEY',
 };
 
 function App() {
