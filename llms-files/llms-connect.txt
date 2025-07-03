@@ -514,6 +514,85 @@ const config: WormholeConnectConfig = {
 };
 ```
 
+### Configuring Native Token Transfers (NTT)
+
+Wormhole Connect supports [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=_blank}, which allow the same token to move natively between supported chains using canonical contracts and transceivers.
+
+To enable NTT, pass a token configuration object to the `nttRoutes(...)` helper and include the result in the `routes` array using the spread operator.
+
+```typescript
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
+import { nttRoutes } from '@wormhole-foundation/wormhole-connect/ntt';
+
+const wormholeConfig: config.WormholeConnectConfig = {
+	network: 'Testnet',
+	chains: ['Solana', 'BaseSepolia'],
+	tokens: ['WSV'],
+	ui: {
+		title: 'Wormhole NTT UI',
+		defaultInputs: {
+			fromChain: 'Solana',
+			toChain: 'BaseSepolia',
+		},
+	},
+	routes: [
+		...nttRoutes({
+			tokens: {
+				WSV_NTT: [
+					{
+						chain: 'Solana',
+						manager: 'nMxHx1o8GUg2pv99y8JAQb5RyWNqDWixbxWCaBcurQx',
+						token: '2vLDzr7hUpLFHQotmR8EPcMTWczZUwCK31aefAzumkmv',
+						transceiver: [
+							{
+								address: 'AjL3f9FMHJ8VkNUHZqLYxa5aFy3aTN6LUWMv4qmdf5PN',
+								type: 'wormhole',
+							},
+						],
+					},
+					{
+						chain: 'BaseSepolia',
+						manager: '0xaE02Ff9C3781C5BA295c522fB469B87Dc5EE9205',
+						token: '0xb8dccDA8C166172159F029eb003d5479687452bD',
+						transceiver: [
+							{
+								address: '0xF4Af1Eac8995766b54210b179A837E3D59a9F146',
+								type: 'wormhole',
+							},
+						],
+					},
+				],
+			},
+		}),
+	],
+	tokensConfig: {
+		WSVsol: {
+			symbol: 'WSV',
+			tokenId: {
+				chain: 'Solana',
+				address: '2vLDzr7hUpLFHQotmR8EPcMTWczZUwCK31aefAzumkmv',
+			},
+			icon: 'https://wormhole.com/token.png',
+			decimals: 9,
+		},
+		WSVbase: {
+			symbol: 'WSV',
+			tokenId: {
+				chain: 'BaseSepolia',
+				address: '0xb8dccDA8C166172159F029eb003d5479687452bD',
+			},
+			icon: 'https://wormhole.com/token.png',
+			decimals: 9,
+		},
+	},
+};
+```
+
+!!! note 
+    Each token listed in `nttRoutes` must also have a corresponding entry in [`tokensConfig`](#custom-tokens), either as a built-in or custom token. These entries must include `symbol`, `decimals`, and the `tokenId`.
+
+For a complete working example of NTT configuration in Wormhole Connect, see the [ntt-connect demo repository](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}.
+
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
 Connect offers a list of built-in tokens by default. You can see it below:
