@@ -108,7 +108,7 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 
 ### Configuring Native Token Transfers (NTT)
 
-Wormhole Connect supports [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=_blank}, which allow the same token to move natively between supported chains using canonical contracts and transceivers.
+Connect supports [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
 
 To enable NTT, pass a token configuration object to the `nttRoutes(...)` helper and include the result in the `routes` array using the spread operator.
 
