@@ -3498,7 +3498,7 @@ Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=_
 To enable NTT in your app, follow these steps:
 
  1. Add NTT routes to the `routes` array by calling `nttRoutes(...)` with your token deployment config using the spread operator. This sets up the route logic for native token transfers.
- 2. Add metadata for each token in [`tokensConfig`](#custom-tokens). Every token listed in `nttRoutes` must have a corresponding entry in `tokensConfig`, either as a built-in or a custom token.
+ 2. Provide token metadata for each of the tokens listed in `nttRoutes` in the [`tokensConfig`](#custom-tokens) object. These entries must include `symbol`, `decimals`, and the `tokenId`.
 
 ```typescript
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
