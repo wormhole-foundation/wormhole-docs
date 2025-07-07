@@ -1,12 +1,12 @@
 ---
-title: Wormhole Connect v1.0 Migration Guide
-description: Learn how to migrate to Wormhole Connect v1.0, with step-by-step guidance on updating your package and configuration.
+title: Wormhole Connect Migration Guide
+description: Learn how to migrate to Wormhole Connect ^v1.0, with step-by-step guidance on updating your package and configuration.
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect v1.0 Migration Guide
+# Wormhole Connect Migration Guide
 
-The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
+The Wormhole Connect feature has been updated to **version 3.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
@@ -18,19 +18,19 @@ These updates ensure better performance and a smoother integration experience.
 
 ## Update the Connect Package
 
-To begin the migration process, update the Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/1.0.0-beta.6-development?activeTab=readme){target=\_blank} to the latest version 1.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
+To begin the migration process, update the Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank} to the latest version 3.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
 
 Run the following command in your terminal:
 
 ```bash
-npm install @wormhole-foundation/wormhole-connect@^1.0
+npm install @wormhole-foundation/wormhole-connect@^3.0
 ```
 
 This command installs the latest stable version of Wormhole Connect and prepares your environment for the new configuration changes.
 
 ## Update the `WormholeConnectConfig` Object
 
-In version 1.0, the `WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
+In version 3.0, the `config.WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
 
 ### Summary of Breaking Changes
 
@@ -47,7 +47,7 @@ These changes are explained in more detail below, with examples for easy referen
 
 ### Capitalize Chain Names
 
-In version 1.0, chain names are now consistent with the `Chain` type from the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, and must be capitalized. This affects all config properties where a chain is referenced, including `rpcs`, `rest`, `graphql`, and `chains`.
+In version 3.0, chain names are now consistent with the `Chain` type from the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, and must be capitalized. This affects all config properties where a chain is referenced, including `rpcs`, `rest`, `graphql`, and `chains`.
 
 === "v0.x"
 
@@ -64,6 +64,18 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 === "v1.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
+    const config: WormholeConnectConfig = {
+      rpcs: {
+        Ethereum: 'INSERT_ETH_RPC_URL',
+        Solana: 'INSERT_SOLANA_RPC_URL',
+      },
+    };
+    ```
+=== "v3.x"
+
+    ```typescript
     import { type config } from '@wormhole-foundation/wormhole-connect';
 
     const config: config.WormholeConnectConfig = {
@@ -74,7 +86,7 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
     };
     ```
 
-You can find the complete list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/core/base/src/constants/chains.ts#L12-L66){target=\_blank}.
+You can find the complete list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts#L6-L71){target=\_blank}.
 
 ### Rename `env` to `network`
 
@@ -90,6 +102,15 @@ The `env` property has been renamed to `network`, with capitalized values. This 
     };
     ```
 === "v1.x"
+
+    ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
+    const config: WormholeConnectConfig = {
+      network: 'Testnet',
+    };
+    ```
+=== "v3.x"
 
     ```typescript
     import { type config } from '@wormhole-foundation/wormhole-connect';
@@ -124,6 +145,15 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 === "v1.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
+    const config: WormholeConnectConfig = {
+      chains: ['Solana', 'Ethereum'],
+    };
+    ```
+=== "v3.x"
+
+    ```typescript
     import { type config } from '@wormhole-foundation/wormhole-connect';
 
     const config: config.WormholeConnectConfig = {
@@ -133,7 +163,7 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 
 ### Update `routes` to Use Route Plugins
 
-The `routes` property in Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
+The `routes` property in Connect version 3.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
 
 By default, if no `routes` property is set, Connect will provide routes for two core protocols:
 
@@ -208,7 +238,7 @@ This flexible plugin allows you to combine default routes (such as Token Bridge 
 
 ### Update the `tokensConfig` Structure
 
-In Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
+In Connect version 3.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
 
 Key Changes to `tokensConfig`:
 
@@ -255,6 +285,39 @@ Key Changes to `tokensConfig`:
 
     ```typescript
     import WormholeConnect, {
+      WormholeConnectConfig,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    const config: WormholeConnectConfig = {
+      tokensConfig: {
+        WETH: {
+          key: 'WETH',
+          symbol: 'WETH',
+          nativeChain: 'Ethereum', // Chain name now capitalized
+          icon: Icon.ETH,
+          tokenId: {
+            chain: 'Ethereum',
+            address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          },
+          coinGeckoId: 'ethereum',
+          color: '#62688F',
+          decimals: 18, // Simplified decimals field
+        },
+      },
+      wrappedTokens: {
+        WETH: {
+          Solana: '7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs',
+          /* additional chains */
+        },
+      },
+    };
+    ```
+=== "v3.x"
+
+    In v3.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
+
+    ```typescript
+    import WormholeConnect, {
       type config,
     } from '@wormhole-foundation/wormhole-connect';
 
@@ -285,7 +348,7 @@ Key Changes to `tokensConfig`:
 
 ### Update NTT Configuration
 
-In Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
+In Connect version 3.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
 
 Key changes:
 
@@ -342,6 +405,50 @@ This change simplifies the configuration process by providing a cleaner, more fl
     ```typescript
     import WormholeConnect, {
       nttRoutes,
+      WormholeConnectConfig,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    const config: WormholeConnectConfig = {
+      routes: [
+        ...nttRoutes({
+          tokens: {
+            Lido_wstETH: [
+              {
+                chain: 'Ethereum',
+                manager: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
+                token: '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
+                transceiver: [
+                  {
+                    address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
+                    type: 'wormhole',
+                  },
+                ],
+              },
+              {
+                chain: 'Bsc',
+                manager: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
+                token: '0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C',
+                transceiver: [
+                  {
+                    address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
+                    type: 'wormhole',
+                  },
+                ],
+              },
+            ],
+          },
+        }),
+        /* other routes */
+      ],
+    };
+    ```
+=== "v3.x"
+
+    In v3.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
+
+    ```typescript
+    import WormholeConnect, {
+      nttRoutes,
       type config,
     } from '@wormhole-foundation/wormhole-connect';
 
@@ -384,7 +491,7 @@ This change simplifies the configuration process by providing a cleaner, more fl
 
 ### Update UI Configuration
 
-In Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
+In Connect version 3.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
 
 Key UI changes:
 
@@ -439,7 +546,7 @@ const config: config.WormholeConnectConfig = {
 
 #### UI Configuration
 
-In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
+In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 3.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
 
 === "v0.x"
 
@@ -458,6 +565,21 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 === "v1.x"
 
     ```typescript
+    const config: WormholeConnectConfig = {
+      ui: {
+        defaultInputs: {
+          fromChain: 'Solana', // Chain names now capitalized
+          toChain: 'Ethereum',
+          tokenKey: 'USDC',
+          requiredChain: 'Solana',
+        },
+        showHamburgerMenu: true,
+      },
+    };
+    ```
+=== "v3.x"
+
+    ```typescript
     const config: config.WormholeConnectConfig = {
       ui: {
         defaultInputs: {
@@ -473,7 +595,7 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
 
 #### Remove `customTheme` and `mode` Properties
 
-In version 1.0, the `customTheme` and `mode` properties, which were previously used to set themes, have been removed. They have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
+In version 3.0, the `customTheme` and `mode` properties, which were previously used to set themes, have been removed. They have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
 
 Important details:
 
@@ -497,7 +619,7 @@ Important details:
 
     <WormholeConnect config={config} />;
     ```
-=== "v1.x"
+=== "^v1.x" 
 
     ```typescript
     import WormholeConnect, {
@@ -517,7 +639,7 @@ Important details:
 
 ### Removed Configuration Properties
 
-Several configuration properties have been removed in Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
+Several configuration properties have been removed in Connect version 3.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
 
 Removed config keys:
 
@@ -531,7 +653,7 @@ Removed config keys:
  - `customTheme`
  - `mode`
 
-If your current setup includes any of these properties, you can safely remove them, as they are no longer supported in v1.0.
+If your current setup includes any of these properties, you can safely remove them, as they are no longer supported in v3.0.
 
 ## Use the CDN-Hosted Version of Wormhole Connect
 
@@ -542,7 +664,7 @@ For those using the CDN-hosted version of Wormhole Connect, the package's instal
 1. Install the Connect package via npm:
 
     ```bash
-    npm install @wormhole-foundation/wormhole-connect@^1.0
+    npm install @wormhole-foundation/wormhole-connect@^3.0
     ```
 
 2. After installing the package, you can embed Connect into your page by adding the following code:
