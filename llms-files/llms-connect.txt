@@ -516,9 +516,12 @@ const config: WormholeConnectConfig = {
 
 ### Configuring Native Token Transfers (NTT)
 
-Connect supports [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
 
-To enable NTT, pass a token configuration object to the `nttRoutes(...)` helper and include the result in the `routes` array using the spread operator.
+To enable NTT in your app, follow these steps:
+
+ 1. Add NTT routes to the `routes` array by calling `nttRoutes(...)` with your token deployment config using the spread operator. This sets up the route logic for native token transfers.
+ 2. Add metadata for each token in [`tokensConfig`](#custom-tokens). Every token listed in `nttRoutes` must have a corresponding entry in `tokensConfig`, either as a built-in or a custom token.
 
 ```typescript
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
@@ -587,9 +590,6 @@ const wormholeConfig: config.WormholeConnectConfig = {
   },
 };
 ```
-
-!!! note 
-    Each token listed in `nttRoutes` must also have a corresponding entry in [`tokensConfig`](#custom-tokens), either as a built-in or custom token. These entries must include `symbol`, `decimals`, and the `tokenId`.
 
 For a complete working example of NTT configuration in Wormhole Connect, see the [ntt-connect demo repository](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}.
 
