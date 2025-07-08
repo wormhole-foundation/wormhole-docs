@@ -154,7 +154,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/get-started/
 ---
 title: Get Started with CCTP
 description: Transfer USDC across chains using Wormhole's CCTP integration with the TypeScript SDK, including setup, attestation, and redemption steps.
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # Get Started with CCTP
@@ -370,7 +370,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/guides/cctp-contract
 ---
 title: Interacting with CCTP Contracts
 description: Learn how to interact directly with Circle's CCTP Bridge contracts, including TokenMessenger, TokenMinter, and MessageTransmitter. 
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # Interact with CCTP Contracts
@@ -2992,7 +2992,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/overview/
 ---
 title: CCTP Bridge with Wormhole
 description: Learn how the integration of Circle's CCTP with Wormhole enables secure and efficient native USDC transfers and complex cross-chain interactions.
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # CCTP with Wormhole Overview 
@@ -3071,7 +3071,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/reference/supported-
 ---
 title: CCTP Supported Networks
 description: Explore all blockchains supported by Wormhole CCTP, including network availability, block explorers, and cross-chain transfer support.
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # Supported Networks
@@ -3100,6 +3100,7 @@ Doc-Content: https://wormhole.com/docs/products/cctp-bridge/tutorials/complete-u
 ---
 title: Complete USDC Transfer Flow
 description: Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
+categories: Transfer, CCTP
 ---
 
 # Complete USDC Transfer Flow
@@ -4916,7 +4917,7 @@ Doc-Content: https://wormhole.com/docs/products/connect/faqs/
 ---
 title: Connect FAQs
 description: Common questions and detailed answers about using Wormhole Connect, including supported assets, chains, customization, and integration options.
-categories: Connect, Transfer
+categories: Connect, Transfer, CCTP
 ---
 
 # Connect FAQs
