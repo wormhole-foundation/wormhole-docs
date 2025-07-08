@@ -62,3 +62,11 @@ Follow these steps to work with Wormhole Messaging:
 - [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
 - [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
 
+<!-- 
+TODO
+Advanced: Solana Shims
+For lower-cost, efficient integration with Core Bridge on Solana, consider using shim programs:
+Emission Shim — Emit messages without permanent state
+Verification Shim — Verify VAAs without rent cost
+Shim Deployment Guide
+-->
