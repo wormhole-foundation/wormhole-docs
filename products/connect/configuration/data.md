@@ -157,7 +157,7 @@ Your selected blockchain network determines the available wallet options when us
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
-If you would like to offer Reown Cloud (formerly WalletConnect) as a supported wallet option, you'll need to obtain a project ID on the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank} and set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
+If you would like to add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
 
 ```typescript
 --8<-- 'code/products/connect/configuration/data/wallet-connect.tsx'
