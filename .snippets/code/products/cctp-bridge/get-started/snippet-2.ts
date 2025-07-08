@@ -16,7 +16,7 @@ import { getSigner } from './helper';
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
-  // Define the amount of USDC to transfer (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
+  // Define the amount of USDC to transfer (in the smallest unit, so 1.000001 USDC = 1,000,001 units assuming 6 decimals)
   const amt = 1_000_001n;
 
   // Whether to use automatic delivery
