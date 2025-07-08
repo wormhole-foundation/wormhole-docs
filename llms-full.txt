@@ -16951,7 +16951,7 @@ Completing this guide will help you to accomplish the following:
 - Create and submit token attestation to register a wrapped version of a token on a destination chain.
 - Check for the wrapped version to become available on the destination chain and return the wrapped token address.
 
-The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana but can be adapted for any supported chains.
+The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge).
 
 ## Prerequisites
 
