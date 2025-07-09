@@ -1,8 +1,8 @@
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Solana'],
   tokens: [
     // Whitelist BONK on every whitelisted chain
