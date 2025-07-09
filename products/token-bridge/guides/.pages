@@ -1,3 +1,4 @@
 title: Guides
 nav:
-- 'Interact with Contracts': token-bridge-contracts.md
+- 'Transfer Assets Using TypeScript': transfer-wrapped-assets.md
+- 'Transfer Assets Using Solidity': token-bridge-contracts.md

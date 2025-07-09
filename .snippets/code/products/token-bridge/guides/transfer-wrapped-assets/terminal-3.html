@@ -1,0 +1,56 @@
+<div id="termynal" data-termynal>
+  <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+  <span data-ty>✅ Token already registered on destination: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca>
+  }
+}</span>
+  <span data-ty>🚀 Built transfer object: {
+  token: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0x39F2f26f247CcC223393396755bfde5ecaeb0648'
+    }
+  },
+  amount: 200000000000000000n,
+  from: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12'
+    }
+  },
+  to: {
+    chain: 'Solana',
+    address: SolanaAddress {
+      type: 'Native',
+      address: [PublicKey [PublicKey(21dmEFTFGBEVoUNjmrxumN6A2xFxNBQXTkK7AmMqNmqD)]]
+    }
+  },
+  automatic: false,
+  payload: undefined,
+  nativeGas: 0n
+}</span>
+  <span data-ty>🔗 Source chain tx sent: [
+  '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
+]</span>
+  <span data-ty>⏳ Waiting for attestation (VAA) for manual transfer...</span>
+  <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 0/30</span>
+  <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 1/30</span>
+  <span data-ty>.....</span>
+  <span data-ty>Retrying Wormholescan:GetVaaBytes, attempt 15/30</span>
+  <span data-ty>✅ Got attestation ID(s): [
+  {
+    chain: 'Moonbeam',
+    emitter: UniversalAddress { address: [Uint8Array] },
+    sequence: 1506n
+  }
+]</span>
+  <span data-ty>↪️ Redeeming transfer on destination...</span>
+  <span data-ty>🎉 Destination tx(s) submitted: [
+  '23NRfFZyKJTDLppJF4GovdegxYAuW2HeXTEFSKKNeA7V82aqTVYTkKeM8sCHCDWe7gWooLAPHARjbAheXoxbbwPk'
+]</span>
+  <span data-ty="input"><span class="file-path"></span></span>
+</div>
