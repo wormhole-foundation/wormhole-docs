@@ -1,4 +1,4 @@
 title: Guides
 nav:
 - 'Integrate via CDN': hosted-version.md
-- 'Migration to v3': upgrade.md
+- 'Version Migration': upgrade.md
