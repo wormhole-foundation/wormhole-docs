@@ -16,6 +16,9 @@ This guide will help you migrate to the new version in just a few simple steps. 
 
 These updates ensure better performance and a smoother integration experience.
 
+!!! tip "Note"
+    Connect versions `v1.x` and `v2.x` share the same configuration structure. This guide refers to both as `v1.x` for simplicity. You can follow the same steps whether you're upgrading from `v0`, `v1`, or `v2` to `v3`.
+
 ## Update the Connect Package
 
 To begin the migration process, update the Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank} to the latest version 3.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
