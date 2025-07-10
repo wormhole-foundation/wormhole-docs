@@ -26,4 +26,61 @@ Before you begin, ensure you have the following:
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
  - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
 
- 
+## Project Setup
+
+In this section, you will create the directory, initialize a Node.js project, install dependencies, and configure TypeScript.
+
+1. **Create the project** - set up the directory and navigate into it
+
+    ```bash
+    mkdir wormhole-scan-api-demo
+    cd wormhole-scan-api-demo
+    ```
+
+2. **Initialize a Node.js project** - generate a `package.json` file
+
+    ```bash
+    npm init -y
+    ```
+
+3. **Set up TypeScript** - create a `tsconfig.json` file
+
+    ```bash
+    touch tsconfig.json
+    ```
+
+    Then, add the following configuration:
+
+    ```json title="tsconfig.json"
+    --8<-- "code/products/messaging/tutorials/replace-signatures/replace-sigs-1.json"
+    ```
+
+4. **Install dependencies** - add the required packages
+
+    ```bash
+    npm install @wormhole-foundation/sdk axios
+    npm install -D tsx typescript @types/node
+    ```
+
+     - `@wormhole-foundation/sdk` – utility methods (e.g., chain ID helpers)
+     - `axios` – HTTP client for calling the WormholeScan API
+     - `tsx` – runs TypeScript files without compiling them
+     - `typescript` – adds TypeScript support
+     - `@types/node` – provides Node.js type definitions
+
+5. **Create the project structure** - set up the required directories and files
+
+    ```bash
+    mkdir -p src/helpers src/scripts
+
+    touch \
+    src/helpers/api-client.ts \
+    src/helpers/utils.ts \
+    src/helpers/types.ts \
+    src/scripts/fetch-ntt-tokens.ts \
+    src/scripts/fetch-operations.ts
+    ```
+
+     - `src/helpers/` – contains shared API logic, utilities, and type definitions
+     - `src/scripts/` – contains runnable scripts for fetching token and transfer data
+
