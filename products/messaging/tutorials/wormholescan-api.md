@@ -33,8 +33,8 @@ In this section, you will create the directory, initialize a Node.js project, in
 1. **Create the project** - set up the directory and navigate into it
 
     ```bash
-    mkdir wormhole-scan-api-demo
-    cd wormhole-scan-api-demo
+    mkdir wormholescan-api-demo
+    cd wormholescan-api-demo
     ```
 
 2. **Initialize a Node.js project** - generate a `package.json` file
