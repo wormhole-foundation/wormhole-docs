@@ -4,6 +4,8 @@ description: Learn about the owner and pauser access roles for the NTT manager c
 categories: NTT, Transfer
 ---
 
+# Access Control
+
 ## Owner and Pauser Roles
 
 Pausing the Native Toke Transfer (NTT) Manager Contract will disallow initiating new token transfers. While the contract is paused, in-flight transfers can still be redeemed (subject to rate limits if configured).

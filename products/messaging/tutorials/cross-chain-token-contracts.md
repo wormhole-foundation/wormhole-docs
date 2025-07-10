@@ -7,8 +7,6 @@ description: Learn how to create cross-chain token transfers using Wormhole's So
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank}
 
-## Introduction
-
 In this tutorial, you'll learn how to create a simple cross-chain token transfer system using the Wormhole protocol via the [Wormhole Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank}. We'll guide you through building and deploying smart contracts that enable seamless token transfers of IERC-20 tokens between blockchains. Whether you're a developer looking to explore cross-chain applications or just interested in the Wormhole protocol, this guide will help you understand the fundamentals.
 
 By the end of this tutorial, you'll have a working cross-chain token transfer system built with the powerful tools provided by the Wormhole Solidity SDK, which you can further customize and integrate into your projects.
@@ -18,7 +16,7 @@ By the end of this tutorial, you'll have a working cross-chain token transfer sy
 Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts
 - Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
 - [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
 - Wallet private key
@@ -249,7 +247,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core Contract.
 
-        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=_blank}.
+        For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=\_blank}.
 
         !!! note
             You can add your desired chains to this file by specifying the required fields for each chain. In this example, we use the Avalanche Fuji and Celo Alfajores Testnets.
@@ -611,3 +609,5 @@ Congratulations! You've successfully built and deployed a cross-chain token tran
  - Set up a new Solidity project using Foundry
  - Develop smart contracts to send and receive tokens across chains
  - Write deployment scripts to manage and deploy contracts on different networks
+
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

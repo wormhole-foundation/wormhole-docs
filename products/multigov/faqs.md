@@ -4,7 +4,7 @@ description: Find answers to common questions about MultiGov, covering cross-cha
 categories: MultiGov
 ---
 
-# FAQs
+# MultiGov FAQs
 
 ## What is MultiGov?
 
@@ -60,7 +60,7 @@ Tally will reach out to help get your DAO set up with MultiGov.
 
 To set up testing MultiGov for your DAO, you'll need:
 
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} and [Git](https://git-scm.com/downloads){target=\_blank} installed
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} and [Git](https://git-scm.com/downloads){target=\_blank} installed
 - Test ETH on the testnets you plan to use (e.g., Sepolia for hub, Optimism Sepolia for spoke)
 - Modify and deploy the hub and spoke contracts using the provided scripts
 - Set up the necessary environment variables and configurations

@@ -6,8 +6,6 @@ categories: MultiGov
 
 # Get Started with Multigov
 
-## Introduction
-
 [MultiGov](/docs/products/multigov/overview/){target=\_blank} enables multichain governance using Wormhole messaging. With MultiGov, token holders can create proposals, vote, and execute decisions from any supported chain, eliminating the need to bridge assets or rely on a single governance hub.
 
 This page walks you through the MultiGov deployment flow—from requesting access with Tally to choosing a network and following the appropriate deployment guide.

@@ -1,7 +1,7 @@
 ---
 title: CCTP Bridge with Wormhole
 description: Learn how the integration of Circle's CCTP with Wormhole enables secure and efficient native USDC transfers and complex cross-chain interactions.
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # CCTP with Wormhole Overview 
@@ -65,10 +65,6 @@ Integrating Wormhole's messaging with CCTP enables the secure transfer of native
     - [**CCTP**](/docs/products/cctp-bridge/get-started/): Transfer native USDC using Circle’s burn-and-mint protocol.
     - [**Wormhole TypeScript SDK**](/docs/tools/typescript-sdk/sdk-reference/): Automate attestation delivery and gas handling.
     - [**Connect**](/docs/products/connect/overview/): Embed multichain USDC transfers directly in your app.
-
-- **USDC-Powered Multichain Settlement**
-    - [**Settlement**](/docs/products/settlement/overview/): Use the Liquidity Layer to settle intents with native USDC.
-    - [**Wormhole TypeScript SDK**](/docs/tools/typescript-sdk/sdk-reference/): Initiate transfers, discover routes, and execute swaps seamlessly.
 
 ## Next Steps
 

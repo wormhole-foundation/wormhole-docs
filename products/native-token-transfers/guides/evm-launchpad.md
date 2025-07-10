@@ -4,9 +4,7 @@ description: Deploy a new token or extend an existing one across multiple chains
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers with Launchpad
-
-## Introduction
+# Deploy NTT with Launchpad
 
 The [Native Token Transfers (NTT) Launchpad](https://ntt.wormhole.com/){target=\_blank} is a Wormhole-managed UI application that provides a step-by-step interface for deploying NTT across multiple blockchains.
 

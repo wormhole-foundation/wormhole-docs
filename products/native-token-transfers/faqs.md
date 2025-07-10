@@ -4,11 +4,11 @@ description: Frequently asked questions about Wormhole Native Token Transfers, i
 categories: NTT, Transfer
 ---
 
-# Wormhole NTT FAQs
+# NTT FAQs
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
-Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=_blank} on GitHub.
+Yes, we have an example of cross-chain lending that leverages [Wormhole’s Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. In this example, collateral deposits (such as ETH on Ethereum) are bridged to a hub chain. Once the collateral is deposited, the borrowed assets, like wrapped BNB, are bridged to Binance Smart Chain. You can explore the full implementation in the [Wormhole Lending Examples repository](https://github.com/wormhole-foundation/example-wormhole-lending){target=\_blank} on GitHub.
 
 Alternatively, you can also implement cross-chain lending using [Wormhole’s core messaging](/docs/products/messaging/overview/){target=\_blank} instead of the Token Bridge, which avoids the limitations imposed by governor limits. ETH would be custodied on Ethereum, and BNB on the Binance spoke during this setup. When a user deposits ETH on Ethereum, a core bridge message is sent to the hub for accounting purposes. The hub then emits a message that can be redeemed on Binance to release the BNB. This approach allows for more direct asset control across chains while reducing reliance on Token Bridge limits.
 

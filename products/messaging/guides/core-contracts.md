@@ -6,8 +6,6 @@ categories: Basics
 
 # Get Started with Core Contracts
 
-## Introduction
-
 Wormhole's Core Contracts, deployed on each supported blockchain network, enable the fundamental operations of sending and receiving cross-chain messages.
 
 While the implementation details of the Core Contracts varies by network, the core functionality remains consistent across chains. Each version of the Core Contract facilitates secure and reliable cross-chain communication, ensuring that developers can effectively publish and verify messages.
@@ -169,7 +167,7 @@ To send a message, regardless of the environment or chain, the Core Contract is 
 
         View the complete Hello World example in the [Wormhole Scaffolding](https://github.com/wormhole-foundation/wormhole-scaffolding/tree/main/solana/programs/01_hello_world){target=\_blank} repository on GitHub.
 
-Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://docs.solana.com/developing/runtime-facilities/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
+Once the message is emitted from the Core Contract, the [Guardian Network](/docs/protocol/infrastructure/guardians/){target=\_blank} will observe the message and sign the digest of an Attestation [VAA](/docs/protocol/infrastructure/vaas/){target=\_blank}. On EVM chains, the body of the VAA is hashed twice with keccak256 to produce the signed digest message. On Solana, the [Solana secp256k1 program](https://solana.com/docs/core/programs#secp256k1-program){target=\_blank} will hash the message passed. In this case, the argument for the message should be a single hash of the body, not the twice-hashed body.
 
 VAAs are [multicast](/docs/protocol/infrastructure/core-contracts/#multicast){target=\_blank} by default. This means there is no default target chain for a given message. The application developer decides on the format of the message and its treatment upon receipt.
 

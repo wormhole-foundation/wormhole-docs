@@ -7,8 +7,6 @@ description: Learn to build a cross-chain native token transfer app using Wormho
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}
 
-## Introduction
-
 This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
 By leveraging Wormhole’s Token Bridge, this guide shows you how to build an application that supports multiple transfer types:
@@ -354,3 +352,5 @@ If you'd like to explore the complete project or need a reference while followin
 You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the Token Bridge method. This guide took you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains like Sui and Solana.
 
 The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
+
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

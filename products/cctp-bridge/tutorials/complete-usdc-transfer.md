@@ -1,13 +1,12 @@
 ---
 title: Complete USDC Transfer Flow
 description: Learn how to perform USDC cross-chain transfers using Wormhole SDK and Circle's CCTP. Supports manual, automatic, and partial transfer recovery.
+categories: Transfer, CCTP
 ---
 
 # Complete USDC Transfer Flow
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-cctp-transfer){target=\_blank}
-
-## Introduction
 
 In this guide, we will show you how to bridge native USDC across different blockchain networks using [Circle's Cross-Chain Transfer Protocol](/docs/products/cctp-bridge/overview/){target=\_blank} (CCTP) and [Wormhole’s TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/tree/main){target=\_blank}.
 
@@ -311,3 +310,5 @@ By following these steps, you've learned how to:
 - Set up cross-chain transfers for native USDC between supported chains
 - Handle both manual and automatic relaying of transactions
 - Recover and complete incomplete transfers using the transaction hash and the destination chain’s signer
+
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

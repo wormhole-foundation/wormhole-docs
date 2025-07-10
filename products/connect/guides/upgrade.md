@@ -6,8 +6,6 @@ categories: Connect, Transfer
 
 # Wormhole Connect v1.0 Migration Guide
 
-## Overview
-
 The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:

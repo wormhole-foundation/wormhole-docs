@@ -6,8 +6,6 @@ categories: Typescript-SDK
 
 # Building Protocols and Payloads
 
-## Introduction
-
 The [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} provides a flexible and powerful system for integrating cross-chain communication into your applications. A key feature of the SDK is its ability to define protocols—modular units representing distinct functionalities—and their associated payloads, which encapsulate the data required for specific operations within those protocols.
 
 This guide will help you understand how to build protocols and payloads in the SDK, covering:

@@ -1,12 +1,10 @@
 ---
 title: Get Started with CCTP
 description: Transfer USDC across chains using Wormhole's CCTP integration with the TypeScript SDK, including setup, attestation, and redemption steps.
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # Get Started with CCTP
-
-## Introduction
 
 [Wormhole CCTP](/docs/products/cctp-bridge/overview/){target=\_blank} enables native USDC transfers between supported chains by burning tokens on the source chain and minting them on the destination. This provides native, canonical USDC movement without the need for wrapped tokens.
 

@@ -6,8 +6,6 @@ categories: Basics
 
 # Architecture
 
-## Overview
-
 Wormhole has several noteworthy components. Before discussing each component in depth, this page will provide an overview of how the major pieces fit together.
 
 ![Wormhole architecture detailed diagram: source to target chain communication.](/docs/images/protocol/architecture/architecture-1.webp)

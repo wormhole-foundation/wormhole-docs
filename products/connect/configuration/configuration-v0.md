@@ -5,8 +5,6 @@ description: Configure Wormhole Connect v0 for React or HTML, set themes, define
 
 # Configure Your Connect Widget
 
-## Introduction {: #introduction }
-
 Wormhole Connect is a flexible React widget that streamlines cross-chain asset transfers and enables seamless interoperability by leveraging Wormhole's powerful infrastructure. Designed for easy integration into decentralized applications (dApps), Wormhole Connect abstracts the complexities of cross-chain communication, providing a user-friendly experience for both developers and end users.
 
 This guide provides detailed instructions on configuring Wormhole Connect and highlights the many ways it can be customized to fit your specific needs, from integrating supported blockchains and tokens to tailoring the user interface.
@@ -102,11 +100,11 @@ const config: WormholeConnectConfig = {
 The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
+    You will need to [register](https://portalbridge.com/legacy-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with Connect.
 
 This example configuration limits Connect to the Solana and Ethereum networks and a handful of tokens, including `BSKT`, which isn't built in by default and provided under the `tokensConfig` key.
 
-See [`src/config/types.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/development/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
+See [`src/config/types.ts`](https://github.com/wormhole-foundation/wormhole-connect/blob/production%400.3.21/wormhole-connect/src/config/types.ts){target=\_blank} for the type definition of `TokensConfig`.
 
 ```json
 --8<-- 'code/products/connect/configuration/configuration-v0/arbitrary-token.tsx'

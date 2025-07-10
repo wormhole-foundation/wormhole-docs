@@ -4,7 +4,7 @@ description: Deploy and configure Wormhole's Native Token Transfers (NTT) for So
 categories: NTT, Transfer
 ---
 
-# Deploy Native Token Transfers on Solana
+# Deploy NTT on Solana
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on Solana using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
@@ -14,9 +14,21 @@ This guide walks you through deploying NTT on Solana, including setting up depen
 
 Before deploying NTT on Solana, ensure you have the following:
 
--  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
--  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
--  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+- [Rust](https://www.rust-lang.org/tools/install){target=\_blank} installed. 
+- The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
+
+    === "v3"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} | `{{ ntt.solana_cli_version }}` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}` |
+
+    === "v2/v1"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} | `v1.18.10` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0` |
+
 
 Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
 
@@ -51,15 +63,13 @@ Deploying NTT with the CLI on Solana follows a structured process:
                     solana config set -um
                     ```
 
-                === "Testnet"
-                    ```bash
-                    solana config set -ut
-                    ```
-
-                === "Devnet"
+                === "Testnet (Solana's Devnet)"
                     ```bash
                     solana config set -ud
                     ```
+                
+                !!! note
+                    Solana's official testnet cluster is not supported for token creation or deployment with NTT. You must use the Solana devnet instead.
 
             4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
 
@@ -118,8 +128,14 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
 
     --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
 
-    !!! note
-        Testnet deployment settings work for both Solana Testnet and Devnet networks.
+        === "Testnet (Solana's Devnet)"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+!!! note
+    When deploying NTT to Solana in `Testnet` mode, you must use [**Devnet tokens**](https://faucet.solana.com/){target=\_blank}. Solana's official testnet cluster is not supported for token creation or deployment in NTT.
 
 ### Generate an NTT Program Key Pair
 
@@ -133,7 +149,7 @@ solana-keygen grind --starts-with ntt:1 --ignore-case
 
 If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
 
-If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+For hub-and-spoke and Solana as the hubchain skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt), otherwise follow the burn-and-mint instructions below for Solana as a spoke.
 
 Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
 
@@ -155,7 +171,6 @@ Follow these steps to set the mint authority using the NTT CLI:
 
 !!! warning
     If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
-
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on Solana by following these steps:
 
@@ -245,13 +260,5 @@ Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked i
     Find answers to common questions about NTT.
 
     [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
-
--   :octicons-question-16:{ .lg .middle } **View FAQs**
-
-    ---
-
-    Find answers to common questions about NTT.
-
-    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>

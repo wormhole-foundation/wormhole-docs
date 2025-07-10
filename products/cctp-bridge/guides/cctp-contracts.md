@@ -1,12 +1,10 @@
 ---
 title: Interacting with CCTP Contracts
 description: Learn how to interact directly with Circle's CCTP Bridge contracts, including TokenMessenger, TokenMinter, and MessageTransmitter. 
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # Interact with CCTP Contracts
-
-## Introduction
 
 Circle's [Cross-Chain Transfer Protocol (CCTP)](/docs/products/cctp-bridge/overview/){target=\_blank} is a permissionless utility that facilitates secure and efficient USDC transfers across blockchain networks through native burning and minting mechanisms.
 
@@ -30,7 +28,7 @@ The Circle Integration contract emits Wormhole messages with arbitrary payloads 
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
 !!! note
-    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/stablecoins/docs/supported-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
+    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/stablecoins/supported-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
 
 ??? code "Circle Integration contract"
     ```solidity
