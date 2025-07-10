@@ -139,10 +139,13 @@ These types are now ready to use in all scripts, including the upcoming one for 
 In this step, you will create a script that fetches a list of NTT tokens from Wormholescan and inspects detailed metadata for a few of them.
 
 This script does the following:
+
  - Retrieves all available NTT tokens via the API client
  - Picks the first 5 with platform data
  - Selects a random platform for each token (e.g., Ethereum, Arbitrum)
  - Fetches and logs metadata for that token on that platform
+
+You can control how many tokens are processed by modifying the `TOKENS_TO_PROCESS` constant near the top of the script.
 
 Add the following code to `src/scripts/fetch-ntt-tokens.ts`:
 
@@ -170,6 +173,8 @@ In this step, you will create a script to fetch NTT transfer operations using th
  - VAA and execution status
 
 You will log the first few operations in a readable format to better understand how transfers are structured.
+
+The script will use a specific emitter address to query transfers. You can easily change which token or manager you are tracking by modifying the `EMITTER_ADDRESS` constant near the top of the file.
 
 Add the following code to `src/scripts/fetch-operations.ts`:
 
