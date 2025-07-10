@@ -3,4 +3,3 @@ nav:
 - 'Create Messaging Contracts': cross-chain-contracts.md
 - 'Create Token Transfer Contracts': cross-chain-token-contracts.md
 - 'Replace Outdated Signatures in VAAs': replace-signatures.md
-- 'Query NTT Data and Transfers': wormholescan-api.md
