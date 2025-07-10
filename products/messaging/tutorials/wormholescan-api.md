@@ -1,13 +1,13 @@
 ---
-title: Explore NTT Tokens and Transfers with WormholeScan API
-description: Learn how to query Native Token Transfer (NTT) tokens and transfer operations using the WormholeScan API.
+title: Explore NTT Tokens and Transfers with Wormholescan API
+description: Learn how to query Native Token Transfer (NTT) tokens and transfer operations using the Wormholescan API.
 ---
 
-# Query NTT Data and Transfers with WormholeScan
+# Query NTT Data and Transfers with Wormholescan
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormholescan-api){target=\_blank}
 
-The [WormholeScan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/native-token-transfers/overview/) metadata, VAA details, and more.
+The [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/native-token-transfers/overview/) metadata, VAA details, and more.
 
 In this tutorial, you'll learn how to build a simple TypeScript project that:
 
@@ -63,7 +63,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     ```
 
      - `@wormhole-foundation/sdk` – utility methods (e.g., chain ID helpers)
-     - `axios` – HTTP client for calling the WormholeScan API
+     - `axios` – HTTP client for calling the Wormholescan API
      - `tsx` – runs TypeScript files without compiling them
      - `typescript` – adds TypeScript support
      - `@types/node` – provides Node.js type definitions
@@ -83,4 +83,48 @@ In this section, you will create the directory, initialize a Node.js project, in
 
      - `src/helpers/` – contains shared API logic, utilities, and type definitions
      - `src/scripts/` – contains runnable scripts for fetching token and transfer data
+
+## Create a Wormholescan API Client
+
+In this step, you'll create a lightweight API client to interact with Wormholescan. This helper will let you easily fetch Native Token Transfer (NTT) tokens and token transfer operations using a reusable get() method with built-in error handling. The client supports both mainnet and testnet endpoints.
+
+It exposes two core methods:
+
+ - `getNTTTokens()` – fetches the full list of NTT-enabled tokens
+ - `getTokenTransfers()` – fetches token transfer operations, with optional filters (chain, address, pagination, etc.)
+
+Under the hood, both methods use a generic `get(endpoint, params)` wrapper that handles URL construction and error reporting.
+
+Add the following code to `src/helpers/api-client.ts`:
+
+```typescript title="src/helpers/api-client.ts"
+--8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-2.ts"
+```
+
+## Add Utility Functions
+
+Next, you will define two utility functions that help interpret NTT tokens and operations from Wormholescan:
+
+ - `getRandomPlatform(token)` – selects a random platform for a given NTT token and returns its address and chain ID
+ - `getOperationStatus(operation)` – interprets the status of a token transfer operation (e.g. In Progress, Emitted, Completed)
+
+These utilities will be used in later scripts to randomly select a chain/token combo and display the transfer status more clearly.
+
+Add the following code to `src/helpers/utils.ts`:
+
+```typescript title="src/helpers/utils.ts"
+--8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-3.ts"
+```
+
+## Define Types for NTT Tokens and Transfers
+
+Before continuing with more scripts, let's define the TypeScript interfaces needed for type-safe API responses from WormholeScan. These types will be used throughout the project to validate and work with token metadata and transfer operations.
+
+Add the following content inside `src/helpers/types.ts`:
+
+```typescript title="src/helpers/types.ts"
+--8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-4.ts"
+```
+
+These types are now ready to use in all scripts, including the upcoming one for fetching transfer operations.
 
