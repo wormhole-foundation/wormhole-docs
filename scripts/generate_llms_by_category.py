@@ -27,31 +27,20 @@ os.makedirs(output_dir, exist_ok=True) # make the directory if it doesn't exist
 
 def infer_section_label(url, section_priority): # if we reorganize the website this will need to be changed
     """
-    Returns which section label from section_priority is present in the URL path, or defaults to 'other' if none match.
+    Returns the first matching section label from section_priority found in the URL path.
+    Falls back to filename or 'other' if none match.
     """
     try:
-        if "raw.githubusercontent.com" in url:
-            if "/products/" in url:
-                path = url.split("/products/")[1]
-            elif "/protocol/" in url:
-                path = url.split("/protocol/")[1]
-            elif "/tools/" in url:
-                path = url.split("/tools/")[1]
-            else:
-                return "other"
-            parts = path.strip("/").split("/")
-            if len(parts) > 1:
-                # check if the second folder is guides/concepts/tutorials
-                section = parts[1].lower()
-                for allowed in section_priority:
-                    if allowed == section:
-                        return allowed[:-1] if allowed.endswith("s") else allowed
-            # Fallback: filename-based detection
-            filename = parts[-1].lower()
-            if filename == "overview.md":
-                return "overview"
-            elif filename == "get-started.md":
-                return "get-started"
+        # Normalize URL for comparison
+        lowered_url = url.lower()
+        for section in section_priority:
+            if section.lower() in lowered_url:
+                return section.rstrip("s")  # remove plural if needed
+        # Fallback based on filename
+        if lowered_url.endswith("overview.md"):
+            return "overview"
+        elif lowered_url.endswith("get-started.md"):
+            return "get-started"
     except Exception as e:
         print(f"Error inferring section label for URL {url}: {e}")
     return "other"

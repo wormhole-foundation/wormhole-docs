@@ -15,10 +15,10 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 ## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-methods.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-networks.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/faqs.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/guides/use-queries.md [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-methods.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-networks.md [type: other]
 
 ## Full content for each doc page
 
@@ -244,6 +244,105 @@ Now that you've successfully run your first verifiable query, you are ready to g
 - [**Query Solana**](https://github.com/wormhole-foundation/demo-queries-ts/blob/main/src/query_solana_stake_pool.ts){target=\_blank}: Try fetching Solana stake pools to see how cross-chain queries apply beyond EVM.
 - [**Use Queries**](/docs/products/queries/guides/use-queries){target=\_blank}: Take a deeper look at the complete Queries lifecycle.
 - **Browse the [Supported Networks](/docs/products/queries/reference/supported-networks){target=\_blank}**: See where Queries are supported.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-methods.md
+--- BEGIN CONTENT ---
+---
+title: Queries Supported Methods
+description: Retrieve multichain data via historical timestamp queries, finality confirmation queries, and Solana lookups.
+categories: Queries
+---
+
+# Supported Methods
+
+Wormhole Queries provides on-demand access to [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank}-attested on-chain data through a simple REST endpoint. It offers a faster, gasless alternative to traditional transaction-based data retrieval, removing the need for gas fees and transaction finality delays. Requests are handled off-chain and processed by the Guardians, delivering verified data efficiently and cost-effectively.
+
+This page describes Wormhole Queries, their functionality, and available methods, aiming to assist new developers in utilizing the service.
+
+## Supported Query Types
+
+Wormhole currently supports five distinct query types, each designed for specific data retrieval tasks across various chains.
+
+!!! note 
+    For a more comprehensive technical description and further specifics on each query type, please consult the [white paper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md).
+
+
+### eth_call
+
+The [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} query type allows you to perform read-only calls to a smart contract on a specific block, identified by its number or hash. Some of eth_call's configurations include: 
+
+- **Batching** - group multiple calls, even to different contracts, into a single query targeting the same block, which is processed as one batch RPC call to simplify on-chain verification
+- **Capacity** - batch up to 255 individual in a single eth_call query 
+- **Result data** - provides the specified block's number, hash, timestamp, and the output from the contract call
+
+### eth_call_by_timestamp
+
+The [`eth_call_by_timestamp`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#timestamp-and-block-id-hints-in-eth_call_by_timestamp){target=\_blank} query is similar to a standard `eth_call` but targets a specific timestamp instead of a block ID. This is useful for retrieving on-chain data based on a precise point in time, especially for correlating information across different chains.
+
+The query returns your target timestamp and the latest block details at or before your specified `target_time` immediately preceding the subsequent block. 
+
+### eth_call_with_finality
+
+The [`eth_call_with_finality`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#desired-finality-in-eth_call_with_finality){target=\_blank} query type functions like a standard `eth_call`, but with an added critical assurance: it will only return the query results once the specified block has reached a designated level of finality on its chain.
+
+You can specify one of two finality levels for your query:
+
+- **Finalized** - indicates the highest level of assurance that a block is permanent and will not be altered or removed from the chain
+- **Safe** - refers to a block considered highly unlikely to be reorganized, offering a substantial degree of confidence, though the network's consensus may not fully finalize it
+
+!!! note
+    If the target blockchain does not natively support or recognize the safe finality tag, requesting safe finality will be treated as a request for finalized finality instead.
+
+### sol_account
+
+The [`sol_account`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana-queries){target=\_blank} query reads on-chain data for one or more specified accounts on the Solana blockchain. This functionality is similar to using Solana's native [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank} RPC method, enabling you to retrieve information for multiple accounts simultaneously
+
+### sol_pda
+
+The [`sol_pda`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana_queries){target=\_blank} query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/basics/pda){target=\_blank}. It streamlines the standard process of deriving a PDA and fetching its account data.
+
+This is particularly useful for accessing multiple PDAs owned by a specific program or for verifying Solana PDA derivations on another blockchain, such as how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account){target=\_blank}.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-networks.md
+--- BEGIN CONTENT ---
+---
+title: Queries Supported Networks
+description: Reference table of chains supported by Wormhole Queries, including method support, finality, and expected historical data availability.
+categories: Queries
+---
+
+# Supported Networks
+
+This page provides a quick reference for chains supported by Wormhole Queries, including each chain's Wormhole chain ID and the level of support for key methods: [`eth_call`](/docs/products/queries/reference/supported-methods/#eth_call){target=\_blank}, [`eth_call_by_timestamp`](/docs/products/queries/reference/supported-methods/#eth_call_by_timestamp){target=\_blank}, and [`eth_call_with_finality`](/docs/products/queries/reference/supported-methods/#eth_call_with_finality){target=\_blank}.
+
+The **Expected History** column shows how much recent state data is typically available for querying, though this can vary depending on the chain and the configuration of each Guardian node.
+
+The support shown in the table reflects what has been confirmed through testing. However, query success ultimately depends on whether the underlying call can be executed on each Guardian’s RPC node.
+
+For example, many chains use a fork of [Geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which by default retains 128 blocks of state in memory (unless archive mode is enabled). On Ethereum mainnet, this covers around 25 minutes of history—but on faster chains like Optimism, it may span only about three minutes. While Guardian nodes are expected to have access to recent state, there are currently no guarantees on how far back historical data is available.
+
+## Mainnet
+
+|     Chain     | Wormhole Chain ID | eth_call | eth_call_by_timestamp | eth_call_with_finality | Expected History |
+|:-------------:|:-----------------:|:--------:|:---------------------:|:----------------------:|:----------------:|
+|   Ethereum    |         2         |    ✅     |           ✅           |           ✅            |    128 blocks    |
+|      BSC      |         4         |    ✅     |           ✅           |           ✅            |    128 blocks    |
+|    Polygon    |         5         |    ✅     |           ✅           |           ✅            |    128 blocks    |
+|   Avalanche   |         6         |    ✅     |           ✅           |           ✅            |    32 blocks     |
+| Oasis Emerald |         7         |    ✅     |           ✅           |           ✅            |     archive      |
+|    Fantom     |        10         |    ✅     |           ✅           |           ✅            |    16 blocks     |
+|    Karura     |        11         |    ✅     |           ✅           |           ✅            |     archive      |
+|     Acala     |        12         |    ✅     |           ✅           |           ✅            |     archive      |
+|     Kaia      |        13         |    ✅     |           ✅           |           ✅            |    128 blocks    |
+|     Celo      |        14         |    ✅     |           ℹ️           |           ✅            |    128 blocks    |
+|   Moonbeam    |        16         |    ✅     |           ℹ️           |           ✅            |    256 blocks    |
+| Arbitrum One  |        23         |    ✅     |           ✅           |           ✅            |   ~6742 blocks   |
+|   Optimism    |        24         |    ✅     |           ✅           |           ❌            |    128 blocks    |
+|     Base      |        30         |    ✅     |           ✅           |           ✅            |     archive      |
+
+ℹ️`EthCallByTimestamp` arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/faqs.md
@@ -697,105 +796,6 @@ const tx = await contract.updateCounters(
 ```
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-methods.md
---- BEGIN CONTENT ---
----
-title: Queries Supported Methods
-description: Retrieve multichain data via historical timestamp queries, finality confirmation queries, and Solana lookups.
-categories: Queries
----
-
-# Supported Methods
-
-Wormhole Queries provides on-demand access to [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank}-attested on-chain data through a simple REST endpoint. It offers a faster, gasless alternative to traditional transaction-based data retrieval, removing the need for gas fees and transaction finality delays. Requests are handled off-chain and processed by the Guardians, delivering verified data efficiently and cost-effectively.
-
-This page describes Wormhole Queries, their functionality, and available methods, aiming to assist new developers in utilizing the service.
-
-## Supported Query Types
-
-Wormhole currently supports five distinct query types, each designed for specific data retrieval tasks across various chains.
-
-!!! note 
-    For a more comprehensive technical description and further specifics on each query type, please consult the [white paper](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md).
-
-
-### eth_call
-
-The [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} query type allows you to perform read-only calls to a smart contract on a specific block, identified by its number or hash. Some of eth_call's configurations include: 
-
-- **Batching** - group multiple calls, even to different contracts, into a single query targeting the same block, which is processed as one batch RPC call to simplify on-chain verification
-- **Capacity** - batch up to 255 individual in a single eth_call query 
-- **Result data** - provides the specified block's number, hash, timestamp, and the output from the contract call
-
-### eth_call_by_timestamp
-
-The [`eth_call_by_timestamp`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#timestamp-and-block-id-hints-in-eth_call_by_timestamp){target=\_blank} query is similar to a standard `eth_call` but targets a specific timestamp instead of a block ID. This is useful for retrieving on-chain data based on a precise point in time, especially for correlating information across different chains.
-
-The query returns your target timestamp and the latest block details at or before your specified `target_time` immediately preceding the subsequent block. 
-
-### eth_call_with_finality
-
-The [`eth_call_with_finality`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#desired-finality-in-eth_call_with_finality){target=\_blank} query type functions like a standard `eth_call`, but with an added critical assurance: it will only return the query results once the specified block has reached a designated level of finality on its chain.
-
-You can specify one of two finality levels for your query:
-
-- **Finalized** - indicates the highest level of assurance that a block is permanent and will not be altered or removed from the chain
-- **Safe** - refers to a block considered highly unlikely to be reorganized, offering a substantial degree of confidence, though the network's consensus may not fully finalize it
-
-!!! note
-    If the target blockchain does not natively support or recognize the safe finality tag, requesting safe finality will be treated as a request for finalized finality instead.
-
-### sol_account
-
-The [`sol_account`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana-queries){target=\_blank} query reads on-chain data for one or more specified accounts on the Solana blockchain. This functionality is similar to using Solana's native [`getMultipleAccounts`](https://solana.com/docs/rpc/http/getmultipleaccounts){target=\_blank} RPC method, enabling you to retrieve information for multiple accounts simultaneously
-
-### sol_pda
-
-The [`sol_pda`](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0013_ccq.md#solana_queries){target=\_blank} query reads data for one or more Solana [Program Derived Addresses](https://www.anchor-lang.com/docs/basics/pda){target=\_blank}. It streamlines the standard process of deriving a PDA and fetching its account data.
-
-This is particularly useful for accessing multiple PDAs owned by a specific program or for verifying Solana PDA derivations on another blockchain, such as how associated token accounts are all derived from the [Associated Token Account Program](https://spl.solana.com/associated-token-account){target=\_blank}.
---- END CONTENT ---
-
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/queries/reference/supported-networks.md
---- BEGIN CONTENT ---
----
-title: Queries Supported Networks
-description: Reference table of chains supported by Wormhole Queries, including method support, finality, and expected historical data availability.
-categories: Queries
----
-
-# Supported Networks
-
-This page provides a quick reference for chains supported by Wormhole Queries, including each chain's Wormhole chain ID and the level of support for key methods: [`eth_call`](/docs/products/queries/reference/supported-methods/#eth_call){target=\_blank}, [`eth_call_by_timestamp`](/docs/products/queries/reference/supported-methods/#eth_call_by_timestamp){target=\_blank}, and [`eth_call_with_finality`](/docs/products/queries/reference/supported-methods/#eth_call_with_finality){target=\_blank}.
-
-The **Expected History** column shows how much recent state data is typically available for querying, though this can vary depending on the chain and the configuration of each Guardian node.
-
-The support shown in the table reflects what has been confirmed through testing. However, query success ultimately depends on whether the underlying call can be executed on each Guardian’s RPC node.
-
-For example, many chains use a fork of [Geth](https://github.com/ethereum/go-ethereum){target=\_blank}, which by default retains 128 blocks of state in memory (unless archive mode is enabled). On Ethereum mainnet, this covers around 25 minutes of history—but on faster chains like Optimism, it may span only about three minutes. While Guardian nodes are expected to have access to recent state, there are currently no guarantees on how far back historical data is available.
-
-## Mainnet
-
-|     Chain     | Wormhole Chain ID | eth_call | eth_call_by_timestamp | eth_call_with_finality | Expected History |
-|:-------------:|:-----------------:|:--------:|:---------------------:|:----------------------:|:----------------:|
-|   Ethereum    |         2         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|      BSC      |         4         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|    Polygon    |         5         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|   Avalanche   |         6         |    ✅     |           ✅           |           ✅            |    32 blocks     |
-| Oasis Emerald |         7         |    ✅     |           ✅           |           ✅            |     archive      |
-|    Fantom     |        10         |    ✅     |           ✅           |           ✅            |    16 blocks     |
-|    Karura     |        11         |    ✅     |           ✅           |           ✅            |     archive      |
-|     Acala     |        12         |    ✅     |           ✅           |           ✅            |     archive      |
-|     Kaia      |        13         |    ✅     |           ✅           |           ✅            |    128 blocks    |
-|     Celo      |        14         |    ✅     |           ℹ️           |           ✅            |    128 blocks    |
-|   Moonbeam    |        16         |    ✅     |           ℹ️           |           ✅            |    256 blocks    |
-| Arbitrum One  |        23         |    ✅     |           ✅           |           ✅            |   ~6742 blocks   |
-|   Optimism    |        24         |    ✅     |           ✅           |           ❌            |    128 blocks    |
-|     Base      |        30         |    ✅     |           ✅           |           ✅            |     archive      |
-
-ℹ️`EthCallByTimestamp` arguments for `targetBlock` and `followingBlock` are currently required for requests to be successful on these chains.
---- END CONTENT ---
-
 ## Shared Concepts from basics
 
 The following section contains foundational documentation shared across all Wormhole products. It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole. This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
@@ -805,12 +805,12 @@ The following section contains foundational documentation shared across all Worm
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md [type: tutorial]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md [type: tutorial]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/core-contracts.md [type: other]
@@ -1263,6 +1263,83 @@ Congratulations! You've published your first multichain message using Wormhole's
 - [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md
+--- BEGIN CONTENT ---
+---
+title: Glossary
+description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
+categories: Basics
+---
+
+# Glossary
+
+This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
+
+## Chain ID
+
+Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
+
+You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products/reference/chain-ids/){target=\_blank} page.
+
+## Consistency Level
+
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
+
+## Delivery Provider
+
+A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
+
+## Emitter
+
+The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
+
+## Finality
+
+The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
+
+## Guardian
+
+A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
+
+## Guardian Network
+
+Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
+
+## Guardian Set
+
+The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
+
+## Heartbeat
+
+Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and convey details about its identity, uptime, version, and the status of the connected nodes.
+
+You can view the heartbeats on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+
+## Observation
+
+An Observation is a data structure describing a message emitted by the Core Contract and noticed by the Guardian node.
+
+## Relayer
+
+A relayer is any process that delivers VAAs to a destination.
+
+## Sequence
+
+A nonce, strictly increasing, which is tracked by the Wormhole Core Contract and unique to the emitter chain and address.
+
+## Spy
+
+A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
+
+## VAA
+
+[Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
+
+## Validator
+
+A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md
@@ -5484,83 +5561,6 @@ It's important to note that this tutorial does not update VAAs in the Wormhole n
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md
---- BEGIN CONTENT ---
----
-title: Glossary
-description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
-categories: Basics
----
-
-# Glossary
-
-This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
-
-## Chain ID
-
-Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
-
-You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products/reference/chain-ids/){target=\_blank} page.
-
-## Consistency Level
-
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
-
-## Delivery Provider
-
-A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
-
-## Emitter
-
-The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
-
-## Finality
-
-The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
-
-## Guardian
-
-A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
-
-## Guardian Network
-
-Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
-
-## Guardian Set
-
-The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
-
-## Heartbeat
-
-Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and convey details about its identity, uptime, version, and the status of the connected nodes.
-
-You can view the heartbeats on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
-
-## Observation
-
-An Observation is a data structure describing a message emitted by the Core Contract and noticed by the Guardian node.
-
-## Relayer
-
-A relayer is any process that delivers VAAs to a destination.
-
-## Sequence
-
-A nonce, strictly increasing, which is tracked by the Wormhole Core Contract and unique to the emitter chain and address.
-
-## Spy
-
-A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
-
-## VAA
-
-[Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
-
-## Validator
-
-A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
---- END CONTENT ---
-
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md
 --- BEGIN CONTENT ---
 ---
@@ -6534,12 +6534,12 @@ The following section contains reference material for Wormhole, including chain 
 ---
 
 ## List of Shared Concept Pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: reference]
 
 ## Full content for shared concepts:
 

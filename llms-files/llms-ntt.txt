@@ -15,6 +15,9 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 ## List of doc pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/cli-commands.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/managers-transceivers.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/supported-networks.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/architecture.md [type: concept]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/security.md [type: concept]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/configuration/access-control.md [type: other]
@@ -25,9 +28,6 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/evm-launchpad.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/post-deployment.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/troubleshoot.md [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/cli-commands.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/managers-transceivers.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/supported-networks.md [type: other]
 
 ## Full content for each doc page
 
@@ -322,6 +322,418 @@ You have scaffolded your NTT project and initialized the configuration file. Nex
 
 - [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
 - [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on Solana.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/cli-commands.md
+--- BEGIN CONTENT ---
+---
+title: NTT CLI Commands
+description: A comprehensive guide to the Native Token Transfers (NTT) CLI, detailing commands for managing token transfers across chains within the Wormhole ecosystem.
+categories: NTT, Transfer
+---
+
+# NTT CLI Commands
+
+The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
+
+If you haven't installed the NTT CLI yet, follow the [NTT Installation](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank} instructions to set it up before proceeding.
+
+## Table of Commands
+
+The following table lists the available NTT CLI commands, descriptions, and examples.
+
+To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
+
+### General Commands
+
+| Command                                 | Description                                            | Example                                                            |
+|-----------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------|
+| `ntt update`                            | update the NTT CLI                                     | `ntt update`                                                       |
+| `ntt new <path>`                        | create a new NTT project                               | `ntt new my-ntt-project`                                           |
+| `ntt add-chain <chain>`                 | add a chain to the deployment file                     | `ntt add-chain Ethereum --token 0x1234... --mode burning --latest` |
+| `ntt upgrade <chain>`                   | upgrade the contract on a specific chain               | `ntt upgrade Solana --ver 1.1.0`                                   |
+| `ntt clone <network> <chain> <address>` | initialize a deployment file from an existing contract | `ntt clone Mainnet Solana Sol5678...`                              |
+| `ntt init <network>`                    | initialize a deployment file                           | `ntt init devnet`                                                  |
+| `ntt pull`                              | pull the remote configuration                          | `ntt pull`                                                         |
+| `ntt push`                              | push the local configuration                           | `ntt push`                                                         |
+| `ntt status`                            | check the status of the deployment                     | `ntt status`                                                       |
+
+### Configuration Commands
+
+| Command                                      | Description                             | Example                                        |
+|----------------------------------------------|-----------------------------------------|------------------------------------------------|
+| `ntt config set-chain <chain> <key> <value>` | set a configuration value for a chain   | `ntt config set-chain Ethereum scan_api_key`   |
+| `ntt config unset-chain <chain> <key>`       | unset a configuration value for a chain | `ntt config unset-chain Ethereum scan_api_key` |
+| `ntt config get-chain <chain> <key>`         | get a configuration value for a chain   | `ntt config get-chain Ethereum scan_api_key`   |
+
+### Solana Commands
+
+| Command                                        | Description                                              | Example                                         |
+|------------------------------------------------|----------------------------------------------------------|-------------------------------------------------|
+| `ntt solana key-base58 <keypair>`              | print private key in base58                              | `ntt solana key-base58 /path/to/keypair.json`   |
+| `ntt solana token-authority <programId>`       | print the token authority address for a given program ID | `ntt solana token-authority Sol1234...`         |
+| `ntt solana ata <mint> <owner> <tokenProgram>` | print the token authority address for a given program ID | `ntt solana ata Mint123... Owner123... token22` |
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+
+-   :octicons-gear-16:{ .lg .middle } **Configure NTT**
+
+    ---
+
+    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
+
+    [:custom-arrow: Configure your NTT deployment](/docs/products/native-token-transfers/configuration/access-control/)
+
+-   :octicons-question-16:{ .lg .middle } **NTT FAQs**
+
+    ---
+
+    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
+
+    [:custom-arrow: Check out the FAQs](/docs/products/native-token-transfers/faqs/)
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/managers-transceivers.md
+--- BEGIN CONTENT ---
+---
+title: Managers and Transceivers
+description: Explore the roles of Managers and Transceivers in NTT cross-chain token transfers, including key functions, lifecycle events, and rate-limiting mechanisms.
+categories: NTT, Transfer
+---
+
+# Managers and Transceivers
+
+## Managers
+
+_Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
+
+- **`transfer`** - initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
+
+    ```solidity
+    function transfer(
+        uint256 amount, // amount (in atomic units)
+        uint16 recipientChain, // chain ID (Wormhole formatted) 
+        bytes32 recipient // recipient address (Wormhole formatted)
+    ) external payable nonReentrant whenNotPaused returns (uint64)
+    ```
+
+- **`quoteDeliveryPrice`** - calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer
+
+    ```solidity
+    function quoteDeliveryPrice(
+        uint16 recipientChain, // chain ID (Wormhole formatted) 
+        bytes memory transceiverInstructions // extra instructions for transceivers (Transceiver-dependent on whether extra instructions are used/accepted)
+    ) public view returns (uint256[] memory, uint256)
+    ```
+
+- **`setPeer`** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
+
+    ```solidity
+    function setPeer(
+        uint16 peerChainId, // chain ID (Wormhole formatted) 
+        bytes32 peerContract, // peer NTT Manager address (Wormhole formatted)
+        uint8 decimals, // token decimals on the peer chain
+        uint256 inboundLimit // inbound rate limit (in atomic units)
+    ) public onlyOwner
+    ```
+
+## Transceivers
+
+_Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers. Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
+
+- **`sendMessage`** - this external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
+
+    ```solidity
+    function sendMessage(
+        uint16 recipientChain,   // chain ID (Wormhole formatted)
+        TransceiverStructs.TransceiverInstruction memory instruction, // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
+        bytes memory nttManagerMessage, // serialized NTT Manager message, provided by the NTT Manager
+        bytes32 recipientNttManagerAddress, // NTT Manager address on the recipient chain (Wormhole formatted)
+        bytes32 refundAddress // address to receive refunds on the destination chain in case of excess quotes (Wormhole formatted)
+    ) external payable nonReentrant onlyNttManager
+    ```
+
+- **`quoteDeliveryPrice`** - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
+
+    ```solidity
+    function quoteDeliveryPrice(
+        uint16 targetChain,  // chain ID (Wormhole formatted) 
+        TransceiverStructs.TransceiverInstruction memory instruction // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
+    ) external view returns (uint256) 
+    ```
+
+## Lifecycle of a Message
+
+### EVM
+
+#### Transfer
+
+A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the transfer amount, the recipient chain, and the recipient address on the recipient chain. `transfer` also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the transceiver on the source chain. Depending on the mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned." Once the transfer has been forwarded to the transceiver, the `NttManager` emits the `TransferSent` event.
+
+**Events**
+
+```ts
+/// @notice Emitted when a message is sent from the nttManager.
+/// @dev Topic0
+/// 0x9716fe52fe4e02cf924ae28f19f5748ef59877c6496041b986fbad3dae6a8ecf
+/// @param recipient The recipient of the message.
+/// @param amount The amount transferred.
+/// @param fee The amount of ether sent along with the tx to cover the delivery fee.
+/// @param recipientChain The chain ID of the recipient.
+/// @param msgSequence The unique sequence ID of the message.
+event TransferSent(
+    bytes32 recipient, uint256 amount, uint256 fee, uint16 recipientChain, uint64 msgSequence
+);
+```
+
+#### Rate Limit
+
+A transfer can be rate-limited on both the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
+
+If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
+
+Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
+
+If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
+
+To deactivate the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is deactivated, the inbound and outbound rate limits can be set to 0.
+
+**Events**
+
+```ts
+/// @notice Emitted whenn an outbound transfer is queued.
+/// @dev Topic0
+/// 0x69add1952a6a6b9cb86f04d05f0cb605cbb469a50ae916139d34495a9991481f.
+/// @param queueSequence The location of the transfer in the queue.
+event OutboundTransferQueued(uint64 queueSequence);
+```
+
+```ts
+/// @notice Emitted when an outbound transfer is rate limited.
+/// @dev Topic0
+/// 0x754d657d1363ee47d967b415652b739bfe96d5729ccf2f26625dcdbc147db68b.
+/// @param sender The initial sender of the transfer.
+/// @param amount The amount to be transferred.
+/// @param currentCapacity The capacity left for transfers within the 24-hour window.
+event OutboundTransferRateLimited(
+    address indexed sender, uint64 sequence, uint256 amount, uint256 currentCapacity
+);
+```
+
+```ts
+/// @notice Emitted when an inbound transfer is queued
+/// @dev Topic0
+/// 0x7f63c9251d82a933210c2b6d0b0f116252c3c116788120e64e8e8215df6f3162.
+/// @param digest The digest of the message.
+event InboundTransferQueued(bytes32 digest);
+```
+
+#### Send
+
+Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer, or manually published via the core bridge).
+
+Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
+
+**Events**
+
+```ts
+/// @notice Emitted when a message is sent from the transceiver.
+/// @dev Topic0
+/// 0x53b3e029c5ead7bffc739118953883859d30b1aaa086e0dca4d0a1c99cd9c3f5.
+/// @param recipientChain The chain ID of the recipient.
+/// @param message The message.
+event SendTransceiverMessage(
+    uint16 recipientChain, TransceiverStructs.TransceiverMessage message
+);
+```
+
+#### Receive
+
+Once a message has been emitted by a transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding transceiver on the recipient chain. The relayer interacts with the transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
+
+This method should also forward the message to the `NttManager` on the destination chain. Note that the transceiver interface doesn't declare a signature for this method because receiving messages is specific to each transceiver, and a one-size-fits-all solution would be overly restrictive.
+
+The `NttManager` contract allows an M of N threshold for transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two transceivers deliver valid attestations. When a transceiver attests to a message, the contract emits the `MessageAttestedTo` event.
+
+NTT implements replay protection, so if a given transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
+
+If a message has already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
+
+**Events**
+
+```ts
+/// @notice Emitted when a relayed message is received.
+/// @dev Topic0
+/// 0xf557dbbb087662f52c815f6c7ee350628a37a51eae9608ff840d996b65f87475
+/// @param digest The digest of the message.
+/// @param emitterChainId The chain ID of the emitter.
+/// @param emitterAddress The address of the emitter.
+event ReceivedRelayedMessage(bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress);
+```
+
+```ts
+/// @notice Emitted when a message is received.
+/// @dev Topic0
+/// 0xf6fc529540981400dc64edf649eb5e2e0eb5812a27f8c81bac2c1d317e71a5f0.
+/// @param digest The digest of the message.
+/// @param emitterChainId The chain ID of the emitter.
+/// @param emitterAddress The address of the emitter.
+/// @param sequence The sequence of the message.
+event ReceivedMessage(
+    bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress, uint64 sequence
+);
+```
+
+```ts
+/// @notice Emitted when a message has already been executed to notify client of against retries.
+/// @dev Topic0
+/// 0x4069dff8c9df7e38d2867c0910bd96fd61787695e5380281148c04932d02bef2.
+/// @param sourceNttManager The address of the source nttManager.
+/// @param msgHash The keccak-256 hash of the message.
+event MessageAlreadyExecuted(bytes32 indexed sourceNttManager, bytes32 indexed msgHash);
+```
+
+#### Mint or Unlock
+
+Once a transfer has been successfully verified, the tokens can be minted (if the mode is "burning") or unlocked (if the mode is "locking") to the recipient on the destination chain. Note that the source token decimals are bounded between `0` and `TRIMMED_DECIMALS` as enforced in the wire format. The transfer amount is untrimmed (scaled-up) if the destination chain token decimals exceed `TRIMMED_DECIMALS`. Once the appropriate number of tokens have been minted or unlocked to the recipient, the `TransferRedeemed` event is emitted.
+
+**Events**
+
+```ts
+/// @notice Emitted when a transfer has been redeemed
+/// (either minted or unlocked on the recipient chain).
+/// @dev Topic0
+/// 0x504e6efe18ab9eed10dc6501a417f5b12a2f7f2b1593aed9b89f9bce3cf29a91.
+/// @param digest The digest of the message.
+event TransferRedeemed(bytes32 indexed digest);
+```
+
+### Solana
+
+#### Transfer
+
+A client calls the `transfer_lock` or `transfer_burn` instruction based on whether the program is in `LOCKING` or `BURNING` mode. The program mode is set during initialization. When transferring, the client must specify the amount of the transfer, the recipient chain, the recipient address on the recipient chain, and the boolean flag `should_queue` to specify whether the transfer should be queued if it hits the outbound rate limit. If `should_queue` is set to false, the transfer reverts instead of queuing if the rate limit were to be hit.
+
+!!! note
+    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in an `InvalidMode` error.
+
+Depending on the mode and instruction, the following will be produced in the program logs:
+
+```ts
+Program log: Instruction: TransferLock
+Program log: Instruction: TransferBurn
+```
+
+Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
+
+#### Rate Limit
+
+During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
+
+If the transfer amount fits within the current capacity:
+
+- Reduce the current capacity
+- Refill the inbound capacity for the destination chain
+- Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
+
+If the transfer amount doesn't fit within the current capacity:
+
+- If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
+- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
+
+#### Send
+
+The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
+
+For example, the Wormhole transceiver will send by calling `post_message` on the Wormhole program, so that the Wormhole Guardians can observe and verify the message.
+
+!!! note
+    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the outbound release isn't performed.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReleaseOutbound
+```
+
+#### Receive
+
+Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
+
+The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReceiveMessage
+```
+
+`redeem` checks the inbound rate limit and places the message in an Inbox. Logic works the same as the outbound rate limit mentioned previously.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: Redeem
+```
+
+#### Mint or Unlock
+
+The inbound transfer is released and the tokens are unlocked or minted to the recipient through either `release_inbound_mint` if the mode is `BURNING`, or `release_inbound_unlock` if the mode is `LOCKING`. Similar to transfer, using the wrong transfer instruction (such as `release_inbound_mint` for a program that is in locking mode) will result in `InvalidMode` error.
+
+!!! note
+    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the minting/unlocking isn't performed.
+
+Depending on the mode and instruction, the following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReleaseInboundMint
+Program log: Instruction: ReleaseInboundUnlock
+```
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/supported-networks.md
+--- BEGIN CONTENT ---
+---
+title: NTT Supported Networks
+description: See which blockchains support Wormhole’s Native Token Transfers (NTT), including mainnet, testnet, and devnet availability by chain.
+categories: NTT, Transfer
+---
+
+# Supported Networks
+
+<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
+<!--SUPPORTED_BLOCKCHAIN_NTT-->
+<div class="full-width" markdown="">
+| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Blast | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
+| SNAXchain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+</div>
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/architecture.md
@@ -1666,418 +2078,6 @@ If you encounter issues during the NTT deployment process, check the following c
         ```
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/cli-commands.md
---- BEGIN CONTENT ---
----
-title: NTT CLI Commands
-description: A comprehensive guide to the Native Token Transfers (NTT) CLI, detailing commands for managing token transfers across chains within the Wormhole ecosystem.
-categories: NTT, Transfer
----
-
-# NTT CLI Commands
-
-The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
-
-If you haven't installed the NTT CLI yet, follow the [NTT Installation](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank} instructions to set it up before proceeding.
-
-## Table of Commands
-
-The following table lists the available NTT CLI commands, descriptions, and examples.
-
-To explore detailed information about any NTT CLI command, including its options and examples, you can append `--help` to the command. This will display a comprehensive guide for the specific command.
-
-### General Commands
-
-| Command                                 | Description                                            | Example                                                            |
-|-----------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------|
-| `ntt update`                            | update the NTT CLI                                     | `ntt update`                                                       |
-| `ntt new <path>`                        | create a new NTT project                               | `ntt new my-ntt-project`                                           |
-| `ntt add-chain <chain>`                 | add a chain to the deployment file                     | `ntt add-chain Ethereum --token 0x1234... --mode burning --latest` |
-| `ntt upgrade <chain>`                   | upgrade the contract on a specific chain               | `ntt upgrade Solana --ver 1.1.0`                                   |
-| `ntt clone <network> <chain> <address>` | initialize a deployment file from an existing contract | `ntt clone Mainnet Solana Sol5678...`                              |
-| `ntt init <network>`                    | initialize a deployment file                           | `ntt init devnet`                                                  |
-| `ntt pull`                              | pull the remote configuration                          | `ntt pull`                                                         |
-| `ntt push`                              | push the local configuration                           | `ntt push`                                                         |
-| `ntt status`                            | check the status of the deployment                     | `ntt status`                                                       |
-
-### Configuration Commands
-
-| Command                                      | Description                             | Example                                        |
-|----------------------------------------------|-----------------------------------------|------------------------------------------------|
-| `ntt config set-chain <chain> <key> <value>` | set a configuration value for a chain   | `ntt config set-chain Ethereum scan_api_key`   |
-| `ntt config unset-chain <chain> <key>`       | unset a configuration value for a chain | `ntt config unset-chain Ethereum scan_api_key` |
-| `ntt config get-chain <chain> <key>`         | get a configuration value for a chain   | `ntt config get-chain Ethereum scan_api_key`   |
-
-### Solana Commands
-
-| Command                                        | Description                                              | Example                                         |
-|------------------------------------------------|----------------------------------------------------------|-------------------------------------------------|
-| `ntt solana key-base58 <keypair>`              | print private key in base58                              | `ntt solana key-base58 /path/to/keypair.json`   |
-| `ntt solana token-authority <programId>`       | print the token authority address for a given program ID | `ntt solana token-authority Sol1234...`         |
-| `ntt solana ata <mint> <owner> <tokenProgram>` | print the token authority address for a given program ID | `ntt solana ata Mint123... Owner123... token22` |
-
-## Where to Go Next
-
-<div class="grid cards" markdown>
-
-
--   :octicons-gear-16:{ .lg .middle } **Configure NTT**
-
-    ---
-
-    Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
-
-    [:custom-arrow: Configure your NTT deployment](/docs/products/native-token-transfers/configuration/access-control/)
-
--   :octicons-question-16:{ .lg .middle } **NTT FAQs**
-
-    ---
-
-    Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
-
-    [:custom-arrow: Check out the FAQs](/docs/products/native-token-transfers/faqs/)
-
-</div>
---- END CONTENT ---
-
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/managers-transceivers.md
---- BEGIN CONTENT ---
----
-title: Managers and Transceivers
-description: Explore the roles of Managers and Transceivers in NTT cross-chain token transfers, including key functions, lifecycle events, and rate-limiting mechanisms.
-categories: NTT, Transfer
----
-
-# Managers and Transceivers
-
-## Managers
-
-_Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
-
-- **`transfer`** - initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
-
-    ```solidity
-    function transfer(
-        uint256 amount, // amount (in atomic units)
-        uint16 recipientChain, // chain ID (Wormhole formatted) 
-        bytes32 recipient // recipient address (Wormhole formatted)
-    ) external payable nonReentrant whenNotPaused returns (uint64)
-    ```
-
-- **`quoteDeliveryPrice`** - calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer
-
-    ```solidity
-    function quoteDeliveryPrice(
-        uint16 recipientChain, // chain ID (Wormhole formatted) 
-        bytes memory transceiverInstructions // extra instructions for transceivers (Transceiver-dependent on whether extra instructions are used/accepted)
-    ) public view returns (uint256[] memory, uint256)
-    ```
-
-- **`setPeer`** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
-
-    ```solidity
-    function setPeer(
-        uint16 peerChainId, // chain ID (Wormhole formatted) 
-        bytes32 peerContract, // peer NTT Manager address (Wormhole formatted)
-        uint8 decimals, // token decimals on the peer chain
-        uint256 inboundLimit // inbound rate limit (in atomic units)
-    ) public onlyOwner
-    ```
-
-## Transceivers
-
-_Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers. Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
-
-- **`sendMessage`** - this external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
-
-    ```solidity
-    function sendMessage(
-        uint16 recipientChain,   // chain ID (Wormhole formatted)
-        TransceiverStructs.TransceiverInstruction memory instruction, // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
-        bytes memory nttManagerMessage, // serialized NTT Manager message, provided by the NTT Manager
-        bytes32 recipientNttManagerAddress, // NTT Manager address on the recipient chain (Wormhole formatted)
-        bytes32 refundAddress // address to receive refunds on the destination chain in case of excess quotes (Wormhole formatted)
-    ) external payable nonReentrant onlyNttManager
-    ```
-
-- **`quoteDeliveryPrice`** - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
-
-    ```solidity
-    function quoteDeliveryPrice(
-        uint16 targetChain,  // chain ID (Wormhole formatted) 
-        TransceiverStructs.TransceiverInstruction memory instruction // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
-    ) external view returns (uint256) 
-    ```
-
-## Lifecycle of a Message
-
-### EVM
-
-#### Transfer
-
-A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the transfer amount, the recipient chain, and the recipient address on the recipient chain. `transfer` also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the transceiver on the source chain. Depending on the mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned." Once the transfer has been forwarded to the transceiver, the `NttManager` emits the `TransferSent` event.
-
-**Events**
-
-```ts
-/// @notice Emitted when a message is sent from the nttManager.
-/// @dev Topic0
-/// 0x9716fe52fe4e02cf924ae28f19f5748ef59877c6496041b986fbad3dae6a8ecf
-/// @param recipient The recipient of the message.
-/// @param amount The amount transferred.
-/// @param fee The amount of ether sent along with the tx to cover the delivery fee.
-/// @param recipientChain The chain ID of the recipient.
-/// @param msgSequence The unique sequence ID of the message.
-event TransferSent(
-    bytes32 recipient, uint256 amount, uint256 fee, uint16 recipientChain, uint64 msgSequence
-);
-```
-
-#### Rate Limit
-
-A transfer can be rate-limited on both the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
-
-If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
-
-Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
-
-If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
-
-To deactivate the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is deactivated, the inbound and outbound rate limits can be set to 0.
-
-**Events**
-
-```ts
-/// @notice Emitted whenn an outbound transfer is queued.
-/// @dev Topic0
-/// 0x69add1952a6a6b9cb86f04d05f0cb605cbb469a50ae916139d34495a9991481f.
-/// @param queueSequence The location of the transfer in the queue.
-event OutboundTransferQueued(uint64 queueSequence);
-```
-
-```ts
-/// @notice Emitted when an outbound transfer is rate limited.
-/// @dev Topic0
-/// 0x754d657d1363ee47d967b415652b739bfe96d5729ccf2f26625dcdbc147db68b.
-/// @param sender The initial sender of the transfer.
-/// @param amount The amount to be transferred.
-/// @param currentCapacity The capacity left for transfers within the 24-hour window.
-event OutboundTransferRateLimited(
-    address indexed sender, uint64 sequence, uint256 amount, uint256 currentCapacity
-);
-```
-
-```ts
-/// @notice Emitted when an inbound transfer is queued
-/// @dev Topic0
-/// 0x7f63c9251d82a933210c2b6d0b0f116252c3c116788120e64e8e8215df6f3162.
-/// @param digest The digest of the message.
-event InboundTransferQueued(bytes32 digest);
-```
-
-#### Send
-
-Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer, or manually published via the core bridge).
-
-Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
-
-**Events**
-
-```ts
-/// @notice Emitted when a message is sent from the transceiver.
-/// @dev Topic0
-/// 0x53b3e029c5ead7bffc739118953883859d30b1aaa086e0dca4d0a1c99cd9c3f5.
-/// @param recipientChain The chain ID of the recipient.
-/// @param message The message.
-event SendTransceiverMessage(
-    uint16 recipientChain, TransceiverStructs.TransceiverMessage message
-);
-```
-
-#### Receive
-
-Once a message has been emitted by a transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding transceiver on the recipient chain. The relayer interacts with the transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
-
-This method should also forward the message to the `NttManager` on the destination chain. Note that the transceiver interface doesn't declare a signature for this method because receiving messages is specific to each transceiver, and a one-size-fits-all solution would be overly restrictive.
-
-The `NttManager` contract allows an M of N threshold for transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two transceivers deliver valid attestations. When a transceiver attests to a message, the contract emits the `MessageAttestedTo` event.
-
-NTT implements replay protection, so if a given transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
-
-If a message has already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
-
-**Events**
-
-```ts
-/// @notice Emitted when a relayed message is received.
-/// @dev Topic0
-/// 0xf557dbbb087662f52c815f6c7ee350628a37a51eae9608ff840d996b65f87475
-/// @param digest The digest of the message.
-/// @param emitterChainId The chain ID of the emitter.
-/// @param emitterAddress The address of the emitter.
-event ReceivedRelayedMessage(bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress);
-```
-
-```ts
-/// @notice Emitted when a message is received.
-/// @dev Topic0
-/// 0xf6fc529540981400dc64edf649eb5e2e0eb5812a27f8c81bac2c1d317e71a5f0.
-/// @param digest The digest of the message.
-/// @param emitterChainId The chain ID of the emitter.
-/// @param emitterAddress The address of the emitter.
-/// @param sequence The sequence of the message.
-event ReceivedMessage(
-    bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress, uint64 sequence
-);
-```
-
-```ts
-/// @notice Emitted when a message has already been executed to notify client of against retries.
-/// @dev Topic0
-/// 0x4069dff8c9df7e38d2867c0910bd96fd61787695e5380281148c04932d02bef2.
-/// @param sourceNttManager The address of the source nttManager.
-/// @param msgHash The keccak-256 hash of the message.
-event MessageAlreadyExecuted(bytes32 indexed sourceNttManager, bytes32 indexed msgHash);
-```
-
-#### Mint or Unlock
-
-Once a transfer has been successfully verified, the tokens can be minted (if the mode is "burning") or unlocked (if the mode is "locking") to the recipient on the destination chain. Note that the source token decimals are bounded between `0` and `TRIMMED_DECIMALS` as enforced in the wire format. The transfer amount is untrimmed (scaled-up) if the destination chain token decimals exceed `TRIMMED_DECIMALS`. Once the appropriate number of tokens have been minted or unlocked to the recipient, the `TransferRedeemed` event is emitted.
-
-**Events**
-
-```ts
-/// @notice Emitted when a transfer has been redeemed
-/// (either minted or unlocked on the recipient chain).
-/// @dev Topic0
-/// 0x504e6efe18ab9eed10dc6501a417f5b12a2f7f2b1593aed9b89f9bce3cf29a91.
-/// @param digest The digest of the message.
-event TransferRedeemed(bytes32 indexed digest);
-```
-
-### Solana
-
-#### Transfer
-
-A client calls the `transfer_lock` or `transfer_burn` instruction based on whether the program is in `LOCKING` or `BURNING` mode. The program mode is set during initialization. When transferring, the client must specify the amount of the transfer, the recipient chain, the recipient address on the recipient chain, and the boolean flag `should_queue` to specify whether the transfer should be queued if it hits the outbound rate limit. If `should_queue` is set to false, the transfer reverts instead of queuing if the rate limit were to be hit.
-
-!!! note
-    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in an `InvalidMode` error.
-
-Depending on the mode and instruction, the following will be produced in the program logs:
-
-```ts
-Program log: Instruction: TransferLock
-Program log: Instruction: TransferBurn
-```
-
-Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
-
-#### Rate Limit
-
-During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
-
-If the transfer amount fits within the current capacity:
-
-- Reduce the current capacity
-- Refill the inbound capacity for the destination chain
-- Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
-
-If the transfer amount doesn't fit within the current capacity:
-
-- If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
-- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
-
-#### Send
-
-The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
-
-For example, the Wormhole transceiver will send by calling `post_message` on the Wormhole program, so that the Wormhole Guardians can observe and verify the message.
-
-!!! note
-    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the outbound release isn't performed.
-
-The following will be produced in the program logs:
-
-```ts
-Program log: Instruction: ReleaseOutbound
-```
-
-#### Receive
-
-Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
-
-The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
-
-The following will be produced in the program logs:
-
-```ts
-Program log: Instruction: ReceiveMessage
-```
-
-`redeem` checks the inbound rate limit and places the message in an Inbox. Logic works the same as the outbound rate limit mentioned previously.
-
-The following will be produced in the program logs:
-
-```ts
-Program log: Instruction: Redeem
-```
-
-#### Mint or Unlock
-
-The inbound transfer is released and the tokens are unlocked or minted to the recipient through either `release_inbound_mint` if the mode is `BURNING`, or `release_inbound_unlock` if the mode is `LOCKING`. Similar to transfer, using the wrong transfer instruction (such as `release_inbound_mint` for a program that is in locking mode) will result in `InvalidMode` error.
-
-!!! note
-    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the minting/unlocking isn't performed.
-
-Depending on the mode and instruction, the following will be produced in the program logs:
-
-```ts
-Program log: Instruction: ReleaseInboundMint
-Program log: Instruction: ReleaseInboundUnlock
-```
---- END CONTENT ---
-
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/supported-networks.md
---- BEGIN CONTENT ---
----
-title: NTT Supported Networks
-description: See which blockchains support Wormhole’s Native Token Transfers (NTT), including mainnet, testnet, and devnet availability by chain.
-categories: NTT, Transfer
----
-
-# Supported Networks
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--SUPPORTED_BLOCKCHAIN_NTT-->
-<div class="full-width" markdown="">
-| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Solana | SVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Berachain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Blast | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
-| SNAXchain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-</div>
---- END CONTENT ---
-
 ## Shared Concepts from basics
 
 The following section contains foundational documentation shared across all Wormhole products. It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole. This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
@@ -2087,12 +2087,12 @@ The following section contains foundational documentation shared across all Worm
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/wormhole-relayers.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-contracts.md [type: tutorial]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/cross-chain-token-contracts.md [type: tutorial]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/ecosystem.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/core-contracts.md [type: other]
@@ -2545,6 +2545,83 @@ Congratulations! You've published your first multichain message using Wormhole's
 - [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/){target=\_blank}: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md
+--- BEGIN CONTENT ---
+---
+title: Glossary
+description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
+categories: Basics
+---
+
+# Glossary
+
+This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
+
+## Chain ID
+
+Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
+
+You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products/reference/chain-ids/){target=\_blank} page.
+
+## Consistency Level
+
+The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
+
+## Delivery Provider
+
+A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
+
+## Emitter
+
+The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
+
+## Finality
+
+The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
+
+## Guardian
+
+A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
+
+## Guardian Network
+
+Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
+
+## Guardian Set
+
+The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
+
+## Heartbeat
+
+Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and convey details about its identity, uptime, version, and the status of the connected nodes.
+
+You can view the heartbeats on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
+
+## Observation
+
+An Observation is a data structure describing a message emitted by the Core Contract and noticed by the Guardian node.
+
+## Relayer
+
+A relayer is any process that delivers VAAs to a destination.
+
+## Sequence
+
+A nonce, strictly increasing, which is tracked by the Wormhole Core Contract and unique to the emitter chain and address.
+
+## Spy
+
+A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
+
+## VAA
+
+[Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
+
+## Validator
+
+A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/core-contracts.md
@@ -6766,83 +6843,6 @@ It's important to note that this tutorial does not update VAAs in the Wormhole n
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md
---- BEGIN CONTENT ---
----
-title: Glossary
-description: Explore a comprehensive glossary of technical terms and key concepts used in the Wormhole network, covering Chain ID, Guardian, VAA, and more.
-categories: Basics
----
-
-# Glossary
-
-This glossary is an index of technical term definitions for words commonly used in Wormhole documentation.
-
-## Chain ID
-
-Wormhole assigns a unique `u16` integer chain ID to each supported blockchain. These chain IDs are specific to Wormhole and may differ from those used by blockchains to identify their networks.
-
-You can find each chain ID documented on the [Wormhole Chain IDs](/docs/products/reference/chain-ids/){target=\_blank} page.
-
-## Consistency Level
-
-The level of finality (consistency) a transaction should meet before being signed by a Guardian. See the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page for details.
-
-## Delivery Provider
-
-A Delivery Provider monitors for Wormhole Relayer delivery requests and delivers those requests to the intended target chain as instructed.
-
-## Emitter
-
-The emitter contract makes the call to the Wormhole Core Contract. The published message includes the emitter contract address and, a sequence number for the message is tracked to provide a unique ID.
-
-## Finality
-
-The finality of a transaction depends on its blockchain properties. Once a transaction is considered final, you can assume the resulting state changes it caused won't be reverted.
-
-## Guardian
-
-A [Guardian](/docs/protocol/infrastructure/guardians/){target=\_blank} is one of the 19 parties running validators in the Guardian Network contributing to the VAA multisig.
-
-## Guardian Network
-
-Validators in their own P2P network who serve as Wormhole's oracle by observing activity on-chain and generating signed messages attesting to that activity.
-
-## Guardian Set
-
-The Guardian Set is a set of guardians responsible for validating a message emitted from the core contracts. Occasionally, the members of the set will change through a governance action.
-
-## Heartbeat
-
-Each Guardian will issue a `heartbeat` on a 15-second interval to signal that it is still running and convey details about its identity, uptime, version, and the status of the connected nodes.
-
-You can view the heartbeats on the [Wormhole dashboard](https://wormhole-foundation.github.io/wormhole-dashboard/#/?endpoint=Mainnet){target=\_blank}.
-
-## Observation
-
-An Observation is a data structure describing a message emitted by the Core Contract and noticed by the Guardian node.
-
-## Relayer
-
-A relayer is any process that delivers VAAs to a destination.
-
-## Sequence
-
-A nonce, strictly increasing, which is tracked by the Wormhole Core Contract and unique to the emitter chain and address.
-
-## Spy
-
-A Spy is a daemon that eavesdrops on the messages passed between Guardians, typically to track VAAs as they get signed.
-
-## VAA
-
-[Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs) are the base data structure in the Wormhole ecosystem. They contain emitted messages along with information such as what contract emitted the message.
-
-## Validator
-
-A daemon configured to monitor a blockchain node and observe messages emitted by the Wormhole contracts.
---- END CONTENT ---
-
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/architecture.md
 --- BEGIN CONTENT ---
 ---
@@ -7816,12 +7816,12 @@ The following section contains reference material for Wormhole, including chain 
 ---
 
 ## List of Shared Concept Pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/chain-ids.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/contract-addresses.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/supported-networks.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/testnet-faucets.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/wormhole-formatted-addresses.md [type: reference]
 
 ## Full content for shared concepts:
 

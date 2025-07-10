@@ -4,7 +4,7 @@
   "raw_base_url": "https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main",
   "projectDescription": "A cross-chain messaging protocol used to move data and assets between blockchains.",
   "aiPromptTemplate": "## AI Prompt Template\n\nYou are an AI developer assistant for {PROJECT_NAME} ({PROJECT_URL}). Your task is to assist developers in understanding and using the product described in this file.\n- Provide accurate answers based on the included documentation.\n- Do not assume undocumented features, behaviors, or APIs.\n- If unsure, respond with “Not specified in the documentation.\n",
-  "sectionPriority": ["overview", "get-started", "guides", "concepts", "tutorials"],
+  "sectionPriority": ["overview", "get-started", "guides", "concepts", "tutorials", "reference"],
   "categories": [
     "NTT", 
     "Connect", 
