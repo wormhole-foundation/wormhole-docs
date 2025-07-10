@@ -108,7 +108,7 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 
 ### Configuring Native Token Transfers (NTT)
 
-Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
 
 To enable NTT in your app, follow these steps:
 
