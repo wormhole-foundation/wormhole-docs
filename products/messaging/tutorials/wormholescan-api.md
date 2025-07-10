@@ -9,7 +9,7 @@ description: Learn how to use the Wormholescan API and Wormhole SDK to fetch NTT
 
 The [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/native-token-transfers/overview/) metadata, VAA details, and more.
 
-In this tutorial, you'll learn how to build a simple TypeScript project that:
+In this guide, you'll learn how to build a simple TypeScript project that:
 
  - Lists NTT tokens available on Wormhole
  - Fetches metadata for a selected token across chains
@@ -52,7 +52,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     Then, add the following configuration:
 
     ```json title="tsconfig.json"
-    --8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-1.json"
+    --8<-- "code/products/messaging/guides/wormholescan-api/whscan-1.json"
     ```
 
 4. **Install dependencies** - add the required packages
@@ -104,7 +104,7 @@ Under the hood, both methods use a generic `get(endpoint, params)` wrapper that 
 Add the following code to `src/helpers/api-client.ts`:
 
 ```typescript title="src/helpers/api-client.ts"
---8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-2.ts"
+--8<-- "code/products/messaging/guides/wormholescan-api/whscan-2.ts"
 ```
 
 ### Add Utility Functions
@@ -119,7 +119,7 @@ These utilities will be used in later scripts to randomly select a chain/token c
 Add the following code to `src/helpers/utils.ts`:
 
 ```typescript title="src/helpers/utils.ts"
---8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-3.ts"
+--8<-- "code/products/messaging/guides/wormholescan-api/whscan-3.ts"
 ```
 
 ### Define Types for NTT Tokens and Transfers
@@ -129,7 +129,7 @@ Before proceeding with additional scripts, let's define the TypeScript interface
 Add the following content inside `src/helpers/types.ts`:
 
 ```typescript title="src/helpers/types.ts"
---8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-4.ts"
+--8<-- "code/products/messaging/guides/wormholescan-api/whscan-4.ts"
 ```
 
 These types are now ready to use in all scripts, including the upcoming one for fetching transfer operations.
@@ -150,7 +150,7 @@ You can control how many tokens are processed by modifying the `TOKENS_TO_PROCES
 Add the following code to `src/scripts/fetch-ntt-tokens.ts`:
 
 ```typescript title="src/scripts/fetch-ntt-tokens.ts"
---8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-5.ts"
+--8<-- "code/products/messaging/guides/wormholescan-api/whscan-5.ts"
 ```
 
 Run it with:
@@ -161,7 +161,7 @@ npx tsx src/scripts/fetch-ntt-tokens.ts
 
 If successful, the output will be:
 
---8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-6.html"
+--8<-- "code/products/messaging/guides/wormholescan-api/whscan-6.html"
 
 ## Fetch Transfer Operations
 
@@ -179,7 +179,7 @@ The script will use a specific emitter address to query transfers. You can easil
 Add the following code to `src/scripts/fetch-operations.ts`:
 
 ```typescript title="src/scripts/fetch-operations.ts"
---8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-7.ts"
+--8<-- "code/products/messaging/guides/wormholescan-api/whscan-7.ts"
 ```
 
 Run it with:
@@ -190,16 +190,10 @@ npx tsx src/scripts/fetch-operations.ts
 
 If successful, the output will look like this:
 
---8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-8.html"
+--8<-- "code/products/messaging/guides/wormholescan-api/whscan-8.html"
 
 ## Resources
 
 You can explore the complete project and find all necessary scripts and configurations in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-wormholescan-api){target=\_blank}.
 
 The repository includes everything covered in this guide, which is helpful for dashboards, bots, or alerting systems built on top of Wormholescan.
-
-## Conclusion
-
-In this tutorial, you built a small project that interacts with the Wormholescan API to fetch and inspect NTTs. You started by creating reusable helper functions and type definitions, then wrote scripts to retrieve token metadata and display recent transfer activity.
-
-This type of setup is a great starting point for more advanced use cases, such as monitoring cross-chain transactions, building dashboards, or triggering on-chain actions. You can easily expand on it by filtering specific tokens or wallets or by combining it with VAA logic for deeper insights.
