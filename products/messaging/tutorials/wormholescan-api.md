@@ -159,3 +159,30 @@ npx tsx src/scripts/fetch-ntt-tokens.ts
 If successful, the output will be:
 
 --8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-6.html"
+
+## Fetch Transfer Operations
+
+In this step, you will create a script to fetch NTT transfer operations using the Wormholescan API. These operations contain key details such as:
+
+ - Source and target chains
+ - Wallet addresses
+ - Token amount and metadata
+ - VAA and execution status
+
+You will log the first few operations in a readable format to better understand how transfers are structured.
+
+Add the following code to `src/scripts/fetch-operations.ts`:
+
+```typescript title="src/scripts/fetch-operations.ts"
+--8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-7.ts"
+```
+
+Run it with:
+
+```bash
+npx tsx src/scripts/fetch-operations.ts
+```
+
+If successful, the output will look like this:
+
+--8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-8.html"
