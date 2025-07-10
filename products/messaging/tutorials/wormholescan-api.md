@@ -124,7 +124,7 @@ Add the following code to `src/helpers/utils.ts`:
 
 ### Define Types for NTT Tokens and Transfers
 
-Before continuing with more scripts, let's define the TypeScript interfaces needed for type-safe API responses from WormholeScan. These types will be used throughout the project to validate and work with token metadata and transfer operations.
+Before continuing with more scripts, let's define the TypeScript interfaces needed for type-safe API responses from Wormholescan. These types will be used throughout the project to validate and work with token metadata and transfer operations.
 
 Add the following content inside `src/helpers/types.ts`:
 
@@ -134,3 +134,28 @@ Add the following content inside `src/helpers/types.ts`:
 
 These types are now ready to use in all scripts, including the upcoming one for fetching transfer operations.
 
+## Fetch and Inspect NTT Tokens
+
+In this step, you will create a script that fetches a list of NTT tokens from Wormholescan and inspects detailed metadata for a few of them.
+
+This script does the following:
+ - Retrieves all available NTT tokens via the API client
+ - Picks the first 5 with platform data
+ - Selects a random platform for each token (e.g., Ethereum, Arbitrum)
+ - Fetches and logs metadata for that token on that platform
+
+Add the following code to `src/scripts/fetch-ntt-tokens.ts`:
+
+```typescript title="src/scripts/fetch-ntt-tokens.ts"
+--8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-5.ts"
+```
+
+Run it with:
+
+```bash
+npx tsx src/scripts/fetch-ntt-tokens.ts
+```
+
+If successful, the output will be:
+
+--8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-6.html"
