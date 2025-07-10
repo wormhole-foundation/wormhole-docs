@@ -117,12 +117,12 @@ def extract_category(category, section_priority, shared_data=None):
     output_file = os.path.join(output_dir, f"llms-{category.lower().replace(' ', '-')}.txt") # write to output file
     with open(output_file, 'w', encoding='utf-8') as f:
 
-        # I# 1) Intro context block for LLMs purpose 
+        # 1) Intro context block for LLMs purpose 
         f.write(f"# {PROJECT_NAME} Developer Documentation (LLMS Format)\n\n")
         f.write(f"This file contains documentation for {PROJECT_NAME} ({PROJECT_URL}). {PROJECT_DESCRIPTION}\n")
         f.write("It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.\n\n")
 
-        # 2) check if it’s a “shared” category or a normal product category and write the prompt
+        # 2) Check if it’s a “shared” category or a normal product category and write the prompt
         if category.lower() in [sc['name'].lower() for sc in SHARED_CATEGORIES]:
             f.write(f"This file includes shared documentation for the category: {category}\n\n")
         else:
