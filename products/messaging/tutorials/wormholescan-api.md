@@ -19,3 +19,11 @@ This guide is useful if you're building a dashboard, writing monitoring tools, o
 
 We'll start from scratch and write everything step by step, no API keys or wallets required.
 
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
+
+ 
