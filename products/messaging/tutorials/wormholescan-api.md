@@ -84,7 +84,13 @@ In this section, you will create the directory, initialize a Node.js project, in
      - `src/helpers/` – contains shared API logic, utilities, and type definitions
      - `src/scripts/` – contains runnable scripts for fetching token and transfer data
 
-## Create a Wormholescan API Client
+## Create Helper Functions
+
+Before writing scripts that interact with Wormholescan, we will define a few reusable helper modules. These will handle API calls, extract token/chain data, and provide consistent TypeScript types for working with NTT tokens and transfers.
+
+These helpers will make it easier to write clean, focused scripts later on.
+
+### Create a Wormholescan API Client
 
 In this step, you'll create a lightweight API client to interact with Wormholescan. This helper will let you easily fetch Native Token Transfer (NTT) tokens and token transfer operations using a reusable get() method with built-in error handling. The client supports both mainnet and testnet endpoints.
 
@@ -101,7 +107,7 @@ Add the following code to `src/helpers/api-client.ts`:
 --8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-2.ts"
 ```
 
-## Add Utility Functions
+### Add Utility Functions
 
 Next, you will define two utility functions that help interpret NTT tokens and operations from Wormholescan:
 
@@ -116,7 +122,7 @@ Add the following code to `src/helpers/utils.ts`:
 --8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-3.ts"
 ```
 
-## Define Types for NTT Tokens and Transfers
+### Define Types for NTT Tokens and Transfers
 
 Before continuing with more scripts, let's define the TypeScript interfaces needed for type-safe API responses from WormholeScan. These types will be used throughout the project to validate and work with token metadata and transfer operations.
 
