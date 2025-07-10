@@ -1,5 +1,5 @@
 ---
-title: Explore NTT Tokens and Transfers with Wormholescan API
+title: Query NTT Data and Transfers with Wormholescan
 description: Learn how to use the Wormholescan API and Wormhole SDK to fetch NTT token and transfer data step by step using reusable TypeScript helpers.
 ---
 
