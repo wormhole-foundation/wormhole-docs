@@ -186,3 +186,15 @@ npx tsx src/scripts/fetch-operations.ts
 If successful, the output will look like this:
 
 --8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-8.html"
+
+## Resources
+
+You can explore the complete project and find all necessary scripts and configurations in Wormhole's [demo GitHub repository](https://github.com/wormhole-foundation/demo-wormholescan-api){target=\_blank}.
+
+The repository includes everything covered in this guide, useful for dashboards, bots, or alerting systems built on top of Wormholescan.
+
+## Conclusion
+
+In this tutorial, you built a small project that interacts with the Wormholescan API to fetch and inspect NTTs. You started by creating reusable helper functions and type definitions, then wrote scripts to retrieve token metadata and display recent transfer activity.
+
+This kind of setup is a great starting point for more advanced use cases, like monitoring cross-chain movement, building dashboards, or triggering on-chain actions. You can easily expand on it by filtering specific tokens or wallets, or by combining it with VAA logic for deeper insights.
