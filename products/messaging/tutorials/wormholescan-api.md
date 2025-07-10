@@ -52,7 +52,7 @@ In this section, you will create the directory, initialize a Node.js project, in
     Then, add the following configuration:
 
     ```json title="tsconfig.json"
-    --8<-- "code/products/messaging/tutorials/replace-signatures/replace-sigs-1.json"
+    --8<-- "code/products/messaging/tutorials/wormholescan-api/whscan-1.json"
     ```
 
 4. **Install dependencies** - add the required packages
@@ -74,11 +74,11 @@ In this section, you will create the directory, initialize a Node.js project, in
     mkdir -p src/helpers src/scripts
 
     touch \
-    src/helpers/api-client.ts \
-    src/helpers/utils.ts \
-    src/helpers/types.ts \
-    src/scripts/fetch-ntt-tokens.ts \
-    src/scripts/fetch-operations.ts
+        src/helpers/api-client.ts \
+        src/helpers/utils.ts \
+        src/helpers/types.ts \
+        src/scripts/fetch-ntt-tokens.ts \
+        src/scripts/fetch-operations.ts
     ```
 
      - `src/helpers/` – contains shared API logic, utilities, and type definitions
