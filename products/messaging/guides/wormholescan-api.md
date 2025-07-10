@@ -9,15 +9,13 @@ description: Learn how to use the Wormholescan API and Wormhole SDK to fetch NTT
 
 The [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/native-token-transfers/overview/) metadata, VAA details, and more.
 
-In this guide, you'll learn how to build a simple TypeScript project that:
+In this guide, you will learn how to build a simple TypeScript project that:
 
  - Lists NTT tokens available on Wormhole
  - Fetches metadata for a selected token across chains
  - Retrieves recent transfer operations using an emitter address
 
-This guide is helpful if you're building a dashboard, writing monitoring tools, or want to explore how data flows across Wormhole-connected chains.
-
-We'll start from scratch and write everything step by step; no API keys or wallets are required.
+This guide is helpful if you are building a dashboard, writing monitoring tools, or want to explore how data flows across Wormhole-connected chains.
 
 ## Prerequisites
 
@@ -92,7 +90,7 @@ These helpers will make it easier to write clean, focused scripts later on.
 
 ### Create a Wormholescan API Client
 
-In this step, you'll create a lightweight API client to interact with Wormholescan. This helper will enable you to easily fetch NTT tokens and perform token transfer operations using a reusable `get()` method with built-in error handling. The client supports both mainnet and testnet endpoints.
+In this step, you will create a lightweight API client to interact with Wormholescan. This helper will enable you to easily fetch NTT tokens and perform token transfer operations using a reusable `get()` method with built-in error handling. The client supports both mainnet and testnet endpoints.
 
 It exposes two core methods:
 
@@ -124,7 +122,7 @@ Add the following code to `src/helpers/utils.ts`:
 
 ### Define Types for NTT Tokens and Transfers
 
-Before proceeding with additional scripts, let's define the TypeScript interfaces required for type-safe API responses from Wormholescan. These types will be used throughout the project to validate and work with token metadata and transfer operations.
+Before proceeding, let's define the TypeScript interfaces required for type-safe API responses from Wormholescan. These types will be used throughout the project to validate and work with token metadata and transfer operations.
 
 Add the following content inside `src/helpers/types.ts`:
 
@@ -132,13 +130,11 @@ Add the following content inside `src/helpers/types.ts`:
 --8<-- "code/products/messaging/guides/wormholescan-api/whscan-4.ts"
 ```
 
-These types are now ready to use in all scripts, including the upcoming one for fetching transfer operations.
-
 ## Fetch and Inspect NTT Tokens
 
-In this step, you will create a script that fetches a list of NTT tokens from Wormholescan and inspects detailed metadata for a few of them.
+In this step, you will create a script that fetches a list of NTT tokens from Wormholescan and inspects detailed metadata for them.
 
-This script does the following:
+The script does the following:
 
  - Retrieves all available NTT tokens via the API client
  - Picks the first 5 with platform data
@@ -165,7 +161,7 @@ If successful, the output will be:
 
 ## Fetch Transfer Operations
 
-In this step, you will create a script to fetch NTT transfer operations using the Wormholescan API. These operations contain key details such as:
+Now, you will create a script to fetch NTT transfer operations using the Wormholescan API. These operations contain key details such as:
 
  - Source and target chains
  - Wallet addresses
