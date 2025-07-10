@@ -1,7 +1,7 @@
 ---
 title: CCTP Bridge with Wormhole
 description: Learn how the integration of Circle's CCTP with Wormhole enables secure and efficient native USDC transfers and complex cross-chain interactions.
-categories: CCTP, Transfer
+categories: Transfer, CCTP
 ---
 
 # CCTP with Wormhole Overview 

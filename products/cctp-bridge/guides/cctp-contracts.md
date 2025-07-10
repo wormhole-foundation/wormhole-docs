@@ -1,7 +1,7 @@
 ---
 title: Interacting with CCTP Contracts
 description: Learn how to interact directly with Circle's CCTP Bridge contracts, including TokenMessenger, TokenMinter, and MessageTransmitter. 
-categories: CCTP, Transfer
+categories: Transfer, CCTP
 ---
 
 # Interact with CCTP Contracts
