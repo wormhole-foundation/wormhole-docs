@@ -101,7 +101,7 @@ To use NTT, you must have a token already deployed on the source and destination
         solana balance
         ```
 
-    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}
 
         ```bash
         cargo install spl-token-cli
@@ -126,7 +126,7 @@ To use NTT, you must have a token already deployed on the source and destination
         ```
 
     !!! note
-        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 ## Install NTT CLI
 

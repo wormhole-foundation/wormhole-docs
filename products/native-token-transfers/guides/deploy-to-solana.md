@@ -78,7 +78,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
                 solana balance
                 ```
 
-            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}
 
                 ```bash
                 cargo install spl-token-cli
@@ -103,7 +103,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
                 ```
 
             !!! note
-                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 2. **Choose your deployment model**:
 
