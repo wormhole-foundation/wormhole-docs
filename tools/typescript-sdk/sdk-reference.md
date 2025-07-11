@@ -222,7 +222,7 @@ You can transfer native USDC using [Circle's CCTP](https://www.circle.com/cross-
 
 In the example below, the `wh.circleTransfer` function is used to initiate the transfer. It accepts the amount (in base units), sender and receiver chains and addresses, and an optional automatic flag to enable hands-free completion. You can also include an optional payload (set to `undefined` here) and specify a native gas drop-off if desired.
 
-When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual wait time [varies by network](https://developers.circle.com/stablecoins/required-block-confirmations#mainnet){target=\_blank}.
+When waiting for the VAA, a timeout of `60,000` milliseconds is used. The actual wait time [varies by network](https://developers.circle.com/cctp/required-block-confirmations#mainnet){target=\_blank}.
 
 ```ts
 --8<-- 'code/tools/typescript-sdk/sdk-reference/cctp.ts:69:112'
