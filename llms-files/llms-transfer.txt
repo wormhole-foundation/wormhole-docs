@@ -460,7 +460,7 @@ To verify the transaction and view its details, paste the transaction hash into 
 
 Now that you've completed a CCTP USDC transfer using the Wormhole SDK, you're ready to explore more advanced features and expand your integration:
 
- - [**Circle CCTP Documentation**](https://developers.circle.com/stablecoins/cctp-getting-started): Learn how USDC cross-chain transfers work and explore advanced CCTP features.
+ - [**Circle CCTP Documentation**](https://developers.circle.com/cctp): Learn how USDC cross-chain transfers work and explore advanced CCTP features.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/cctp-bridge/guides/cctp-contracts/
@@ -495,7 +495,7 @@ The Circle Integration contract emits Wormhole messages with arbitrary payloads 
 This contract can be found in [Wormhole's `wormhole-circle-integration` repository](https://github.com/wormhole-foundation/wormhole-circle-integration/){target=\_blank} on GitHub.
 
 !!! note
-    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/stablecoins/supported-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
+    Wormhole supports all CCTP-supported chains, but Circle currently supports only a [handful of chains](https://developers.circle.com/cctp/supported-domains){target=\_blank}. Please refer to the [CCTP section of the Contract Addresses](/docs/products/reference/contract-addresses/#cctp){target=\_blank} reference page to view the complete list of supported chains.
 
 ??? code "Circle Integration contract"
     ```solidity
@@ -3144,7 +3144,7 @@ sequenceDiagram
 ```
 
 !!! note 
-    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/stablecoins/supported-domains){target=\_blank}.
+    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/supported-domains){target=\_blank}.
 
 ## Use Cases
 
@@ -3161,7 +3161,7 @@ Now that you're familiar with CCTP, here is a list of resources for more hands-o
 
 - [**Get started with CCTP Bridge**](/docs/products/cctp-bridge/get-started/): Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
 - [**Complete USDC Transfer Flow**](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/): Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
-- [**Checkout Circle's CCTP Docs**](https://developers.circle.com/stablecoins/cctp-getting-started){target=\_blank}: Learn more about Circle's cross-chain transfer protocol in their documentation.
+- [**Checkout Circle's CCTP Docs**](https://developers.circle.com/cctp){target=\_blank}: Learn more about Circle's cross-chain transfer protocol in their documentation.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/cctp-bridge/reference/supported-networks/
@@ -5352,7 +5352,7 @@ To use NTT, you must have a token already deployed on the source and destination
         solana balance
         ```
 
-    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}
 
         ```bash
         cargo install spl-token-cli
@@ -5377,7 +5377,7 @@ To use NTT, you must have a token already deployed on the source and destination
         ```
 
     !!! note
-        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 ## Install NTT CLI
 
@@ -5763,7 +5763,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
                 solana balance
                 ```
 
-            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}
 
                 ```bash
                 cargo install spl-token-cli
@@ -5788,7 +5788,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
                 ```
 
             !!! note
-                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 2. **Choose your deployment model**:
 
