@@ -4207,6 +4207,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Dymension | 4007 | dymension_1100-1 |
 | Evmos | 4001 | evmos_9001-2 |
 | Fantom | 10 | 250 |
+| Fogo | 51 |  |
 | Gnosis | 25 | 100 |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 |  |
 | Injective | 19 | injective-1 |
@@ -4224,6 +4225,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Noble | 4009 | noble-1 |
 | Optimism | 24 | 10 |
 | Osmosis | 20 | osmosis-1 |
+| Plume | 55 | 98866 |
 | Polygon | 5 | 137 |
 | Provenance | 4008 | pio-mainnet-1 |
 | Pythnet | 26 |  |
@@ -4260,6 +4262,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Dymension | 4007 |  |
 | Evmos | 4001 | evmos_9000-4 |
 | Fantom | 10 | 4002 |
+| Fogo | 51 | 9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9 |
 | Gnosis | 25 | Chiado-10200 |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
 | Injective | 19 | injective-888 |
@@ -4277,6 +4280,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Noble | 4009 | grand-1 |
 | Optimism Sepolia | 10005 | Optimism Sepolia-11155420 |
 | Osmosis | 20 | osmo-test-5 |
+| Plume | 55 | 98867 |
 | Polygon Amoy | 10007 | Amoy-80002 |
 | Provenance | 4008 |  |
 | Pythnet | 26 |  |
@@ -4326,6 +4330,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Dymension |  |  | 0 |  | ~ 5s |  |
 | Evmos |  |  | 0 |  | ~ 2s |  |
 | Fantom | 200 |  |  | finalized | ~ 5s |  |
+| Fogo |  |  | 0 |  | ~ 14s |  |
 | Injective |  |  | 0 |  | ~ 3s |  |
 | Ink |  |  | 0 |  | ~ 9min |  |
 | Kaia | 200 |  |  | finalized | ~ 1s |  |
@@ -4338,6 +4343,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Neutron |  |  | 0 |  | ~ 5s |  |
 | Optimism | 200 | 201 |  | finalized | ~ 18min |  |
 | Osmosis |  |  | 0 |  | ~ 6s |  |
+| Plume |  |  | 0 |  | ~ 17s |  |
 | Polygon | 200 |  |  | finalized | ~ 66s | Details |
 | Scroll | 200 |  |  | finalized | ~ 16min |  |
 | Sei |  |  | 0 |  | ~ 1s |  |
@@ -4391,6 +4397,7 @@ categories: Reference
 | NEAR | contract.wormhole_crypto.near |
 | Neutron | neutron16rerygcpahqcxx5t8vjla46ym8ccn7xz7rtc6ju5ujcd36cmc7zs9zrunh |
 | Optimism | 0xEe91C335eab126dF5fDB3797EA9d6aD93aeC9722 |
+| Plume | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 | Polygon | 0x7A4B5a56256163F07b2C80A7cA55aBE66c4ec4d7 |
 | Pythnet | H3fxXJ86ADW2PNuDDmZJg6mzTtPxkYCpNuQUTgmJ7AjU |
 | Scroll | 0xbebdb6C8ddC678FfA9f8748f85C815C556Dd8ac6 |
@@ -4419,6 +4426,7 @@ categories: Reference
 | Celo | 0x88505117CA88e7dd2eC6EA1E13f0948db2D50D56 |
 | Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
+| Fogo | BhnQyKoQQgpuRTRo6D8Emz93PvXCYfVgHhnrR4T3qhw4 |
 | Gnosis | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
@@ -4434,6 +4442,7 @@ categories: Reference
 | Neutron | neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4 |
 | Optimism Sepolia | 0x31377888146f3253211EFEf5c676D41ECe7D58Fe |
 | Osmosis | osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx |
+| Plume | 0x81705b969cDcc6FbFde91a0C6777bE0EF3A75855 |
 | Polygon Amoy | 0x6b9C8671cdDC8dEab9c719bB87cBd3e782bA6a35 |
 | Pythnet | EUrRARh92Cdc54xrDn6qzaqjA77NRrCcfbr8kPwoTL4z |
 | Scroll | 0x055F47F1250012C6B20c436570a76e52c17Af2D5 |
@@ -4510,6 +4519,7 @@ categories: Reference
 | BNB Smart Chain | 0x9dcF9D205C9De35334D646BeE44b2D2859712A09 |
 | Celo | 0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153 |
 | Fantom | 0x599CEa2204B4FaECd584Ab1F2b6aCA137a0afbE8 |
+| Fogo | 78HdStBqCMioGii9D8mF3zQaWDqDZBQWTUwjjpdmbJKX |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
 | Injective | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh |
 | Ink | 0x376428e7f26D5867e69201b275553C45B09EE090 |
@@ -4753,6 +4763,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -4840,6 +4851,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Neon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Plume | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sei | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -4890,6 +4902,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Moonbeam | EVM | DEV | Official Moonbeam Faucet |
 | Neon | EVM | NEON | Official Neon Faucet |
 | Optimism Sepolia | EVM | ETH | Superchain Faucet |
+| Plume | EVM | PLUME | Official Plume Faucet |
 | Polygon Amoy | EVM | POL | Official Polygon Faucet |
 | Scroll | EVM | ETH | List of Faucets |
 | Unichain | EVM | ETH | QuickNode Faucet |
