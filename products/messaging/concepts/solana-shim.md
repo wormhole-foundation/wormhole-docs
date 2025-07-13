@@ -6,10 +6,7 @@ categories: Basics
 
 # Solana Shims
 
-Wormhole's Solana shims are optional helper programs that make message emission and verification cheaper and more flexible, without modifying the Core Bridge itself.
-
-
-Solana shims are auxiliary Solana programs (smart contracts) that act as wrappers or “adapters” around the Core Bridge contracts. They enable more efficient or flexible behavior for emission or verification of Wormhole messages without modifying the immutable core bridge.
+Solana shims are optional auxiliary programs that act as wrappers or “adapters” around the Core Bridge contracts. They enable cheaper and more flexible behavior for emission or verification of Wormhole messages without modifying the Core Bridge itself.
 
 Wormhole uses two shims:
 
