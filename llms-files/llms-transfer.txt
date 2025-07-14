@@ -6401,15 +6401,15 @@ ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_
 ```
 
 - **Set to SPL Multisig:**
-1. Create valid SPL Multisig:
-```bash
-ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
-```
+    1. Create valid SPL Multisig:
+    ```bash
+    ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ```
 
 2. Set to created SPL Multisig:
-```bash
-ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
-```
+    ```bash
+    ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ```
 
 **For deployed programs:**
 
@@ -6420,7 +6420,7 @@ ntt solana set-mint-authority --payer INSERT_KEYPAIR_JSON
 ```
 
 !!! note
-    Checkout [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main) for transferring token mint authority out of NTT.
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
 
 ## Deploy and Configure NTT
 
