@@ -4,7 +4,7 @@ import { wormholeScanTestnetAPI } from '../helpers/api-client';
 import { OperationsResponse } from '../helpers/types';
 import { getOperationStatus } from '../helpers/utils';
 
-const EMITTER_ADDRESS = '0xdF77F921a560F6882e4EC4bbDc2fF37a7A26D4Db';
+const EMITTER_ADDRESS = 'INSERT_EMITTER_ADDRESS';
 const PAGE_SIZE = 5;
 
 async function fetchTokenTransfers() {

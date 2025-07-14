@@ -5,7 +5,7 @@ import { NTTToken, NTTTokenDetail } from '../helpers/types';
 import { getRandomPlatform } from '../helpers/utils';
 
 // Configurable variable - easily adjust the number of tokens to process
-const TOKENS_TO_PROCESS = 5;
+const TOKENS_TO_PROCESS = INSERT_NUMBER_OF_TOKENS;
 
 async function fetchNTTTokens() {
   console.log('🔍 Fetching NTT tokens from WormholeScan API...\n');
