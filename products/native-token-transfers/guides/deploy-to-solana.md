@@ -183,7 +183,7 @@ ntt solana set-mint-authority --payer INSERT_KEYPAIR_JSON
 ```
 
 !!! note
-    Checkout [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main) for transferring token mint authority out of NTT.
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
 
 ## Deploy and Configure NTT
 
