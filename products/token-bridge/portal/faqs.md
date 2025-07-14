@@ -12,10 +12,10 @@ You can create a direct link to pre-fill chain and asset selections on [Portal B
 
 | Parameter     | Description                                                |
 |---------------|------------------------------------------------------------|
-| `sourceChain` | A source chain that will be pre-selected                   |
-| `targetChain` | A target chain that will be pre-selected                   |
-| `asset`       | The asset key on the source chain (e.g., SOL, USDC, etc.)  |
-| `targetAsset` | The asset key on the destination chain                     |
+| `sourceChain` | A source chain that will be pre-selected.                   |
+| `targetChain` | A target chain that will be pre-selected.                   |
+| `asset`       | The asset key on the source chain (e.g., SOL, USDC, etc.).  |
+| `targetAsset` | The asset key on the destination chain.                     |
 
 Example:
 
@@ -25,10 +25,10 @@ https://portalbridge.com/?sourceChain=solana&targetChain=ethereum&asset=SOL&targ
 
 This link will open Portal with:
  
- - **`sourceChain`** pre-selected as `solana`
- - **`targetChain`** pre-selected as `ethereum`
- - **`asset`** pre-selected as `SOL`
- - **`targetAsset`** pre-selected as `WSOL`
+ - **`sourceChain`** pre-selected as `solana`.
+ - **`targetChain`** pre-selected as `ethereum`.
+ - **`asset`** pre-selected as `SOL`.
+ - **`targetAsset`** pre-selected as `WSOL`.
 
 !!! note
     For [**NTT tokens**](/docs/products/native-token-transfers/overview/){target=\_blank}, you can define just one asset if the same token exists across chains.

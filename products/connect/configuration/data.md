@@ -57,7 +57,7 @@ By default, Connect offers two bridging protocols: Token Bridge (for Wormhole-wr
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
 - [**`TokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank}: Manually redeemed Wormhole Token Bridge route.
-- [**`AutomaticTokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}: Automatically redeemed (relayed) Token Bridge route. 
+- [**`AutomaticTokenBridgeRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}: Automatically redeemed (relayed) Token Bridge route.
 - [**`CCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank}: Manually redeemed CCTP route.
 - [**`AutomaticCCTPRoute`**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank}: Automatically redeemed (relayed) CCTP route.
 - **`DEFAULT_ROUTES`**: Array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`).
@@ -152,8 +152,8 @@ Landing transactions on Solana can require finely tuned priority fees when there
 
 Your selected blockchain network determines the available wallet options when using Wormhole Connect.
 
- - For EVM chains, wallets like MetaMask and Reown Cloud (formerly WalletConnect) are supported
- - For Solana, you'll see options such as Phantom, Torus, and Coin98
+ - For EVM chains, wallets like MetaMask and Reown Cloud (formerly WalletConnect) are supported.
+ - For Solana, you'll see options such as Phantom, Torus, and Coin98.
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 

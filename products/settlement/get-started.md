@@ -12,9 +12,9 @@ This guide walks you through performing a real token swap using the [Mayan Swift
 
 By the end, you'll have a working script that:
 
-- Resolves token transfer routes using Mayan Swift
-- Quotes and validates the best route
-- Initiates a swap on a source chain and completes the transfer on a destination chain
+- Resolves token transfer routes using Mayan Swift.
+- Quotes and validates the best route.
+- Initiates a swap on a source chain and completes the transfer on a destination chain.
 
 !!! note
     Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
@@ -24,7 +24,7 @@ By the end, you'll have a working script that:
 Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}
+- Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}.
 
 This example uses Ethereum as the source chain and Solana as the destination. As a result, you'll need an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the example to match your preferred chains.
 

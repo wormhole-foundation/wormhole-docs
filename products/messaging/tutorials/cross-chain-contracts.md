@@ -27,10 +27,10 @@ Additionally, we'll rely on the Wormhole relayer to automatically determine cros
 
 Before starting this tutorial, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts
-- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
-- Wallet private key
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts.
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees.
+- Wallet private key.
 
 ## Build Cross-Chain Messaging Contracts
 
@@ -38,8 +38,8 @@ In this section, we'll deploy two smart contracts: one to send a message from Av
 
 At a high level, our contracts will:
 
-1. Send a message from Avalanche to Celo using the Wormhole relayer
-2. Receive and process the message on Celo, logging the content of the message
+1. Send a message from Avalanche to Celo using the Wormhole relayer.
+2. Receive and process the message on Celo, logging the content of the message.
 
 Before diving into the deployment steps, let's first break down key parts of the contracts.
 
@@ -49,8 +49,8 @@ The `MessageSender` contract is responsible for quoting the cost of sending a me
 
 Key functions include:
 
- - **`quoteCrossChainCost`** - calculates the cost of delivering a message to the target chain using the Wormhole relayer
- - **`sendMessage`** - encodes the message and sends it to the target chain and contract address using the Wormhole relayer
+ - **`quoteCrossChainCost`**: Calculates the cost of delivering a message to the target chain using the Wormhole relayer.
+ - **`sendMessage`**: Encodes the message and sends it to the target chain and contract address using the Wormhole relayer.
 
 Here's the core of the contract:
 
@@ -76,9 +76,9 @@ In cross-chain messaging, validating the sender is essential to prevent unauthor
 
 Key implementation details include:
 
- - **`registeredSender`** - stores the address of the registered sender contract
- - **`setRegisteredSender`** - registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders
- - **`isRegisteredSender`** - restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication
+ - **`registeredSender`**: Stores the address of the registered sender contract.
+ - **`setRegisteredSender`**: Registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders.
+ - **`isRegisteredSender`**: Restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication.
 
 ```solidity
 --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-2.sol:12:13"
@@ -130,25 +130,25 @@ The repository includes:
 
 - Two Solidity contracts:
 
-    - **`MessageSender.sol`** - contract that sends the cross-chain message from Avalanche
-    - **`MessageReceiver.sol`** - contract that receives the cross-chain message on Celo
+    - **`MessageSender.sol`**: Contract that sends the cross-chain message from Avalanche.
+    - **`MessageReceiver.sol`**: Contract that receives the cross-chain message on Celo.
 
 - Deployment scripts located in the `script` directory:
 
-    - **`deploySender.ts`** - deploys the `MessageSender` contract to Avalanche
-    - **`deployReceiver.ts`** - deploys the `MessageReceiver` contract to Celo
-    - **`sendMessage.ts`** - sends a message from Avalanche to Celo
+    - **`deploySender.ts`**: Deploys the `MessageSender` contract to Avalanche.
+    - **`deployReceiver.ts`**: Deploys the `MessageReceiver` contract to Celo.
+    - **`sendMessage.ts`**: Sends a message from Avalanche to Celo.
 
 - Configuration files and ABI JSON files for easy deployment and interaction:
 
-    - **`chains.json`** - configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks
+    - **`chains.json`**: Configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks.
 
  - A dedicated `interfaces` directory inside the `src` folder for TypeScript type definitions:
 
-    - **`ChainsConfig.ts`** - defines the types for the `chains.json` configuration file
-    - **`DeployedContracts.ts`** - contains types for deployed contract addresses and related information
-    - **`MessageJsons.ts`** - includes types for ABI and bytecode JSONs used by the deployment scripts
-    - **`index.ts`** - serves as an export aggregator for the interfaces, simplifying imports in other files
+    - **`ChainsConfig.ts`**: Defines the types for the `chains.json` configuration file.
+    - **`DeployedContracts.ts`**: Contains types for deployed contract addresses and related information.
+    - **`MessageJsons.ts`**: Includes types for ABI and bytecode JSONs used by the deployment scripts.
+    - **`index.ts`**: Serves as an export aggregator for the interfaces, simplifying imports in other files.
 
 ### Important Setup Steps
 
@@ -261,7 +261,7 @@ The sender contract will handle quoting and sending messages cross-chain.
     npm run deploy:sender
     ```
 
-2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}
+2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}.
 
 --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-8.html"
 
@@ -289,40 +289,40 @@ Let's break down the script step by step.
 
 1. **Load configuration files**
 
-    1. **`chains.json`** - contains details about the supported Testnet chains, such as RPC URLs and relayer addresses
-    2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
+    1. **`chains.json`**: Contains details about the supported Testnet chains, such as RPC URLs and relayer addresses.
+    2. **`deployedContracts.json`**: Stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed.
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:11:23"
     ```
 
-2. **Configure the provider and signer** - the script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider
+2. **Configure the provider and signer**: The script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider.
 
-    Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
+    Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network.
         
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:47:48"
     ```
 
-    After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
+    After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it.
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:51:56"
     ```
 
-3. **Set up the message details** - the next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
+3. **Set up the message details**: The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo).
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:68:69"
     ```
 
-    You can customize the message that will be sent across chains:
+    You can customize the message that will be sent across chains.
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:72:72"
     ```
 
-4. **Estimate cross-chain cost** - before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
+4. **Estimate cross-chain cost**: Before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function.
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:75:75"
@@ -330,19 +330,19 @@ Let's break down the script step by step.
 
     This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
 
-5. **Send a message** - with everything set up, the message is sent using the `sendMessage` function:
+5. **Send a message**: With everything set up, the message is sent using the `sendMessage` function.
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:78:85"
     ```
 
-    After sending, the script waits for the transaction to be confirmed:
+    After sending, the script waits for the transaction to be confirmed.
 
     ```typescript
     --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-3.ts:88:88"
     ```
 
-6. **Run the script** - to send the message, run the following command:
+6. **Run the script**: To send the message, run the following command:
 
     ```bash
     npm run send:message
@@ -366,8 +366,8 @@ You can find the full code for the `sendMessage.ts` below.
 
 You're now fully equipped to build cross-chain contracts using the Wormhole protocol! With this tutorial, you've learned how to:
 
-- Deploy sender and receiver contracts on different Testnets
-- Send a cross-chain message from one blockchain to another
-- Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
+- Deploy sender and receiver contracts on different testnets.
+- Send a cross-chain message from one blockchain to another.
+- Monitor the status of your cross-chain transactions using Wormholescan and the Wormhole Solidity SDK.
 
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

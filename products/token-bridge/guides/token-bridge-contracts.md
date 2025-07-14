@@ -14,16 +14,16 @@ This page outlines the core contract methods needed to integrate Token Bridge fu
 
 To interact with the Wormhole Token Bridge, you'll need the following:
 
-- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with
-- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers
+- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
+- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers.
 
 ## How to Interact with Token Bridge Contracts
 
 The primary functions of the Token Bridge contracts revolve around:
 
-- **Attesting a token** - registering a new token for cross-chain transfers
-- **Transferring tokens** - locking and minting tokens across chains
-- **Transferring tokens with a payload** - including additional data with transfers
+- **Attesting a token**: Registering a new token for cross-chain transfers.
+- **Transferring tokens**: Locking and minting tokens across chains.
+- **Transferring tokens with a payload**: Including additional data with transfers.
 
 ### Attest a Token
 
@@ -91,27 +91,32 @@ function transferTokens(
 
     ---
 
-    `amount` ++"uint256"++  
+    `amount` ++"uint256"++
+ 
     The amount of tokens to be transferred.
 
     ---
 
-    `recipientChain` ++"uint16"++  
+    `recipientChain` ++"uint16"++
+
     The Wormhole chain ID of the destination chain.
 
     ---
 
-    `recipient` ++"bytes32"++  
+    `recipient` ++"bytes32"++
+
     The recipient's address on the destination chain.
 
     ---
 
-    `arbiterFee` ++"uint256"++  
+    `arbiterFee` ++"uint256"++
+
     Optional fee to be paid to an arbiter for relaying the transfer.
 
     ---
 
-    `nonce` ++"uint32"++  
+    `nonce` ++"uint32"++
+
     A unique identifier for the transaction.
 
 ??? interface "Returns"
@@ -139,8 +144,8 @@ function completeTransfer(bytes memory encodedVm) external;
     The signed VAA containing the transfer details.
 
 !!!note
-    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation
-    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain
+    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
+    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
 
 ### Transfer Tokens with Payload
 
@@ -167,27 +172,32 @@ function transferTokensWithPayload(
 
     ---
 
-    `amount` ++"uint256"++  
+    `amount` ++"uint256"++
+
     The amount of tokens to be transferred.
 
     ---
 
-    `recipientChain` ++"uint16"++  
+    `recipientChain` ++"uint16"++
+
     The Wormhole chain ID of the destination chain.
 
     ---
 
-    `recipient` ++"bytes32"++  
+    `recipient` ++"bytes32"++
+
     The recipient's address on the destination chain.
 
     ---
 
-    `nonce` ++"uint32"++  
+    `nonce` ++"uint32"++
+
     A unique identifier for the transaction.
 
     ---
 
-    `payload` ++"bytes memory"++  
+    `payload` ++"bytes memory"++
+
     Arbitrary data payload attached to the transaction.
 
 ??? interface "Returns"

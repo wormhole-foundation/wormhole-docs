@@ -14,14 +14,14 @@ The Launchpad automates deployment, reducing complexity and saving time.
 
 This guide covers:
 
- - Launching a new cross-chain token
- - Expanding an existing token for NTT
- - Managing tokens via the dashboard and settings
+ - Launching a new cross-chain token.
+ - Expanding an existing token for NTT.
+ - Managing tokens via the dashboard and settings.
 
 ## Prerequisites
 
- - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.)
- - Minimum ETH (or equivalent) for gas fees per deployment
+ - An EVM-compatible wallet (e.g., [MetaMask](https://metamask.io/){target=\_blank}, [Phantom](https://phantom.com/){target=\_blank}, etc.).
+ - Minimum ETH (or equivalent) for gas fees per deployment.
 
 ## Supported Blockchains
 
@@ -48,39 +48,39 @@ Once ready, choose an option to proceed:
 
 Deploy a new NTT-compatible token that can be transferred across multiple chains. This process sets up your token on a home network and deploys it to additional blockchains. Follow the below steps to get started:
 
-1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-1.webp)
     
-2. Select **Launch a Cross-Chain Token**
+2. Select **Launch a Cross-Chain Token**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-2.webp)
 
 3. Set the token details:
-    1. Select the **home network** from the dropdown menu
-    2. Enter the **name** for the token
-    3. Enter the **symbol** of the token 
-    4. Provide the **initial supply**
-    5. To the token details, click **Next**
+    1. Select the **home network** from the dropdown menu.
+    2. Enter the **name** for the token.
+    3. Enter the **symbol** of the token. 
+    4. Provide the **initial supply**.
+    5. To the token details, click **Next**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-3.webp)
 
 4. Select the deployment chains:
-    1. The home network where your token will be deployed will be populated (e.g., Optimism)
-    2. Choose any additional chains to deploy your token to (e.g., Base)
-    3. To continue, click **Next**
+    1. The home network where your token will be deployed will be populated (e.g., Optimism).
+    2. Choose any additional chains to deploy your token to (e.g., Base).
+    3. To continue, click **Next**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-4.webp)
 
-5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-5.webp)
 
-6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-6.webp)
 
-7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
 8. Once both deployments are completed, proceed to the [**Dashboard**](#explore-the-launchpad-dashboard) to manage your token.
 
@@ -88,39 +88,39 @@ Deploy a new NTT-compatible token that can be transferred across multiple chains
 
 Expand an existing token to support NTT across multiple chains. This process integrates your deployed token with NTT without modifying its original contract. Follow the steps below to get started:
 
-1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**
+1. Open the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank}, connect your wallet, and click **Get Started**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-1.webp)
 
-2. Select **Expand Your Existing Token**
+2. Select **Expand Your Existing Token**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-7.webp)
 
 3. Enter the token details:
-    1. Choose the home network where your token is already deployed (e.g., Optimism)
-    2. Choose any additional chains to deploy your token to (e.g., Base)
-    3. To continue, click **Next**
+    1. Choose the home network where your token is already deployed (e.g., Optimism).
+    2. Choose any additional chains to deploy your token to (e.g., Base).
+    3. To continue, click **Next**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-8.webp)
 
 4. Select the chains to deploy your token to:
-    1. The home network where your token is already deployed will be populated (e.g., Optimism)
-    2. Choose any additional chains to deploy your token to (e.g., Base)
-    1. Click **Next**
+    1. The home network where your token is already deployed will be populated (e.g., Optimism).
+    2. Choose any additional chains to deploy your token to (e.g., Base).
+    1. Click **Next**.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-9.webp)
 
-5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction
+5. To deploy on the first chain (Optimism), click on **Deploy**; if prompted, switch your wallet to the correct network and confirm the transaction.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-5.webp)
 
-6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet
+6. Once deployed, you can view the transaction in a block explorer and add the token to your wallet.
 
     ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-6.webp)
 
-7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step
+7. Repeat the previous step to deploy the token on the second chain (Base). The supply of tokens on Base will be zero since the tokens were all minted on Optimism in the previous step.
 
-8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details
+8. Now that your token has been deployed on multiple chains click [**Dashboard**](#explore-the-launchpad-dashboard) to review its details.
 
 ## Explore the Launchpad Dashboard
 
@@ -130,9 +130,9 @@ To access the **Dashboard** from the [Launchpad home page](https://ntt.wormhole.
 
 The dashboard provides a high-level view of your token across all deployed chains, including:
 
- - Token addresses for each chain
- - Supply distribution visualization
- - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings)
+ - Token addresses for each chain.
+ - Supply distribution visualization.
+ - List of deployed chains, including inbound and outbound transfer limits, which can be modified in [**Settings**](#settings).
 
 ![](/docs/images/products/native-token-transfers/guides/evm-launchpad/ntt-launchpad-11.webp)
 

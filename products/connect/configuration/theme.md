@@ -44,7 +44,7 @@ By setting the `showHamburgerMenu` option to **false**, you can deactivate the h
 
 #### Add Extra Menu Entry {: #add-extra-menu-entry }
 
-By setting the `showHamburgerMenu` option to `false,` you can add extra links. The following properties are accessed through the `menu[]` property (e.g., `menu[].label`):
+By setting the `showHamburgerMenu` option to `false`, you can add extra links. The following properties are accessed through the `menu[]` property (e.g., `menu[].label`):
 
 | Property |                 Description                 |
 |:--------:|:-------------------------------------------:|

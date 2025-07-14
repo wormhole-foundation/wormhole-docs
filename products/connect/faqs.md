@@ -10,9 +10,9 @@ categories: Connect, Transfer, CCTP
 
 Connect supports both native and wrapped assets across all Wormhole-supported blockchains. This includes:
 
- - Major stablecoins like USDT and USDC (via CCTP)
+ - Major stablecoins like USDT and USDC (via CCTP).
  - Native gas tokens such as ETH, SOL, etc.
- - Cross-chain asset swaps through integrators like Mayan
+ - Cross-chain asset swaps through integrators like Mayan.
 
 When bridging assets through the Wormhole Token Bridge, depending on the chain and token, assets may arrive as Wormhole-wrapped tokens on the destination chain.
 
@@ -61,10 +61,10 @@ Current relay fees:
 
 Additional notes:
 
-- **USDC to Solana** - Wormhole's native CCTP route does not currently support automatic relaying of USDC to Solana. However, you can transfer USDC to Solana using the [Mayan plugin](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} for the SDK. Mayan is a protocol that integrates Wormhole and CCTP to enable this functionality
-- **Frontend integrations**
-    - **Connect** - A pre-built UI available via [@wormhole-foundation/wormhole-connect](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}
-    - **TypeScript SDK** - A lower-level integration option, available via [@wormhole-foundation/sdk](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank}, allowing developers to build custom UIs
+- **USDC to Solana**: Wormhole's native CCTP route does not currently support automatic relaying of USDC to Solana. However, you can transfer USDC to Solana using the [Mayan plugin](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} for the SDK. Mayan is a protocol that integrates Wormhole and CCTP to enable this functionality.
+- **Frontend integrations:**
+    - **Connect**: A pre-built UI available via [@wormhole-foundation/wormhole-connect](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}.
+    - **TypeScript SDK**: A lower-level integration option, available via [@wormhole-foundation/sdk](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank}, allowing developers to build custom UIs.
 
         !!!note
             The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.

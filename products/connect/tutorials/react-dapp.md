@@ -17,10 +17,10 @@ While this tutorial will guide you through the process using a specific blockcha
 To get started with Connect, we'll first need to set up a basic environment that allows for cross-chain token transfers.
 Before starting this tutorial, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- A [Sui wallet](https://suiwallet.com/){target=\_blank} set up and ready for use
-- A [compatible wallet](https://support.avax.network/en/articles/5520938-what-are-the-official-avalanche-wallets){target=\_blank} for Avalanche Fuji, such as [MetaMask](https://metamask.io/){target=\_blank} 
-- Testnet tokens for [Sui](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank} and [Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} to cover gas fees 
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- A [Sui wallet](https://suiwallet.com/){target=\_blank} set up and ready for use.
+- A [compatible wallet](https://support.avax.network/en/articles/5520938-what-are-the-official-avalanche-wallets){target=\_blank} for Avalanche Fuji, such as [MetaMask](https://metamask.io/){target=\_blank}.
+- Testnet tokens for [Sui](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank} and [Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} to cover gas fees. 
 
 ## Set Up Connect for Sui Transfers
 
@@ -41,7 +41,6 @@ In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-starte
     ```bash
     cd connect-tutorial
     ```
-
 
 ### Install Connect
 
@@ -67,8 +66,8 @@ Now, we need to modify the default `page.tsx` file to integrate Connect. We are 
     --8<-- "code/products/connect/tutorials/react-dapp/snippet-2.ts"
     ```
 
-- Set `network` to `'Testnet'` - this ensures that Connect uses the testnet environment
-- Set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
+- **Set `network` to `'Testnet'`**: This ensures that Connect uses the testnet environment.
+- **Set `chains` to `['Sui', 'Avalanche']`**: Configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche.
 
 ### Customize Connect
 
@@ -90,28 +89,28 @@ Before transferring token ensure you have enough testnet SUI and Fuji tokens to 
 
 To transfer tokens from Sui to Fuji in the Connect interface:
 
-1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer
-2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
-3. Enter the amount of SUI tokens you wish to transfer
+1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer.
+2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network.
+3. Enter the amount of SUI tokens you wish to transfer.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-1.webp){.half}
 
-4. Choose to view other routes 
+4. Choose to view other routes.
     
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-2.webp){.half}
 
-5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
+5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji).
 
     !!! note
         It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-3.webp){.half}
 
-6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain
+6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-4.webp){.half}
 
-7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet
+7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp){.half}
 
@@ -137,10 +136,10 @@ In this tutorial, you've gained hands-on experience with integrating Connect to 
 
 By following these steps, you've learned how to:
 
-- Set up a React project tailored for cross-chain transfers
-- Install and configure Connect to support multiple blockchains
-- Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers
-- Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
+- Set up a React project tailored for cross-chain transfers.
+- Install and configure Connect to support multiple blockchains.
+- Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers.
+- Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks.
 
 With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
 

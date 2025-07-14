@@ -10,8 +10,8 @@ categories: Token-Bridge, Transfer
 
 No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
 
- - **On EVM chains** - when you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself
- - **On Solana** - the Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge
+ - **On EVM chains**: When you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself.
+ - **On Solana**: The Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge.
 
 The logic behind deploying these token contracts involves submitting an attestation VAA, which allows the Token Bridge to verify and deploy the wrapped token contract on the destination chain.
 
