@@ -1,0 +1,195 @@
+---
+title: Transfer Assets Using TypeScript
+description: Follow this guide to use Token Bridge to transfer wrapped assets. Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
+categories: Token-Bridge, Transfers, Typescript-SDK
+---
+
+# Transfer Assets Using TypeScript
+
+This guide demonstrates the transfer of wrapped assets using the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+
+Completing this guide will help you to accomplish the following:
+
+- Verify if a wrapped version of a token exists on a destination chain.
+- Create a token attestation to register a wrapped version of a token on a destination chain.
+- Transfer wrapped assets using Token Bridge automatic or manual transfers.
+- Fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
+- Manually redeem a signed VAA to claim tokens on a destination chain.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The contract address for the ERC-20 token you wish to transfer.
+- A wallet setup with the following:
+    - Private keys for your source and destination chains.
+    - A small amount of gas tokens on your source and destination chains.
+    - A balance on your source chain of the ERC-20 token you want to transfer.
+
+## Set Up Your Token Transfer Environment
+
+Follow these steps to initialize your project, install dependencies, and prepare your developer environment for multichain token transfers.
+
+1. Create a new directory and initialize a Node.js project using the following commands:
+   ```bash
+   mkdir token-bridge-demo
+   cd token-bridge-demo
+   npm init -y
+   ```
+
+2. Install dependencies, including the Wormhole TypeScript SDK:
+   ```bash
+   npm install @wormhole-foundation/sdk -D tsx typescript
+   ```
+
+3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
+4. Create a new file named `helpers.ts` to hold signer and decimal functions:
+   ```bash
+   touch helpers.ts
+   ```
+
+5. Open `helpers.ts` and add the following code:
+    ```typescript title="helpers.ts"
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/helpers.ts'
+    ```
+
+    You can view the [platform constants](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms.
+
+## Verify Token Registration (Attestation)
+
+Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
+
+Registration via attestation is only required the first time a given token is sent to that specific destination chain. Follow these steps to check the registration status of a token:
+
+1. Create a new file named `transfer.ts`:
+   ```bash
+   touch transfer.ts
+   ```
+
+2. Open your `transfer.ts` file and add the following code:
+    ```typescript title="transfer.ts"
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::48'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:89:95'
+    ```
+
+    This code does the following:
+
+    - Initializes a `wormhole` instance and defines the source and destination chains.
+    - Imports the signer and decimal functions from `helpers.ts`.
+    - Identifies the token and amount to transfer.
+    - Checks to see if a wrapped version of the ERC-20 token to transfer exists on the destination chain.
+
+3. Run the script using the following command:
+
+    ```bash
+    npx tsx transfer.ts
+    ```
+
+    If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising the attestation flow will run:
+
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-1.html'
+
+    If you see this message, follow the steps under "Need to register a token?" before continuing with the rest of the transfer flow code.
+
+    ??? example "Need to register a token?"
+        Token attestation is a one-time process to register a token on a destination chain. You should only follow these steps if your token registration check indicates a wrapped version does not exist on the destination chain.
+
+        1. Create a new file called `attestToken.ts`:
+            ```bash
+            touch attestToken.ts
+            ```
+
+        2. Open `attestToken.ts` and add the following code to create the attestation for token registration:
+            ```typescript title="attestToken.ts"
+            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/attestToken.ts::107'
+            ```
+
+            This code does the following:
+        
+            - Gets the Token Bridge protocol for the source chain.
+            - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction.
+            - Calls `createAttestation`, signs, and then sends the transaction.
+            - Waits for the signed VAA confirming the attestation creation.
+            - Sends the VAA to the destination chain to complete registration.
+            - Polls for the wrapped token to be available on the destination chain before continuing the transfer process.
+
+        3. Run the script with the following command:
+            
+            ```bash
+            npx tsx attestToken.ts
+            ```
+
+            When the attestation and registration are complete, you will see terminal output similar to the following:
+
+            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-2.html'
+
+        You can now go on to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain.
+
+## Initiate Transfer on Source Chain
+
+There are some differences in the scripting to initiate automatic versus manual Token Bridge transfers. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
+
+Differences between automatic and manual transfers that can influence your script include the following:
+
+- **Native gas drop-off**: this feature is only available with automatic transfers. If used, you must specify the amount of native gas to send with the transfer.
+- **Destination signer**: with manual transfers, you must provide a destination signer for the additional blockchain transaction to manually redeem the transfer with the destination chain and release the tokens.
+- **Additional functions**: once you call `initiateTransfer` for automatic transfers, your transfer flow is complete. Manual transfers require some additional functions such as the following:
+    - **`fetchAttestation`**: waits for the signed VAA verifying the source chain transaction.
+    - **`completeTransfer`**: submits verified transactions to the destination chain to complete the transfer.
+    - **`isTransferComplete`**: checks destination chain and VAA info to verify is transfer is complete.
+
+Follow these steps to complete your transfer script:
+
+1. Select your transfer mode and add the rest of the logic to initiate the token transfer on the source chain:
+
+    === "Manual Transfer"
+
+        Open your `transfer.ts` file and add the following code after the attestation check:
+        ```typescript title="transfer.ts"
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:49:74'
+        ```
+
+        This code does the following:
+
+        - Defines the transfer as manual. 
+        - Builds the transfer object, initiates the transfer, signs the transaction and sends it.
+        - Waits for the signed VAA confirming the transaction on the source chain. 
+        - Submits the signed VAA to the destination chain to claim the tokens and complete the manual transfer.
+
+    === "Automatic Transfer"
+
+        Open your `transfer.ts` file and add the following code after the attestation check:
+        ```typescript title="transfer.ts"
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/autoTransfer.ts:49:76'
+        ```
+
+        This code does the following:
+
+        - Defines the transfer as automatic.
+        - Defines the amount of native gas to send.
+        - Builds the transfer object, initiates the transfer, signs the transaction and sends it.
+        - As long as both the source and destination chain support automatic transfer, the relayer takes care of completing the transaction and no further steps are required. 
+
+
+2. Run the script with the following command:
+    ```bash
+    npx tsx transfer.ts
+    ```
+
+3. You will see terminal output similar to the following (the example uses the manual flow script):
+
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-3.html'
+
+Congratulations! You've now used Token Bridge to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
+
+## Next Steps
+
+- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working Token Bridge integration.
+- [**Interact with Token Bridge Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in Token Bridge contracts.
+- [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
