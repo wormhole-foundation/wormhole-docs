@@ -171,7 +171,7 @@ ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_
 
 2. Set to created SPL Multisig:
     ```bash
-ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
 
 **For deployed programs:**
