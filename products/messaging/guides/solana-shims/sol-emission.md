@@ -1,12 +1,150 @@
 ---
 title: Efficient Emission on Solana (Shim)
-description:
+description: TODO
 categories: Basics
 ---
 
-<!-- TODO add link in messaging overview -->
-
 # Efficient Emission on Solana (Shim)
+
+Wormhole’s Solana emission shim provides a cheaper and more efficient way to emit messages without creating a new account for each message. This program wraps `post_message_unreliable` and emits key data as an event, allowing Guardians to reconstruct messages directly from instruction data.
+
+<!--
+Creating a new account for each message" — What accounts?
+When you call post_message on the Solana Core Bridge, it creates a new message account to store the message data on-chain. 
+These message accounts are PDA accounts derived from your emitter and sequence.
+They are required so that Guardians can later read the message and produce a VAA.
+Once created, these accounts stay on-chain forever (unless cleaned up manually, which the current Core Bridge doesn’t support).
+
+Why this matters: Each message permanently consumes state on-chain, and the protocol payer loses the lamports reserved for rent on that account (see next point).
+
+Concept page note: Add a diagram or table explaining message accounts per emission and how shims avoid them.
+--> 
+
+
+## When to Use the Shim
+
+Use this shim if you:
+- Want to reduce rent costs on Solana
+- Don’t need long-term message re-observation via accounts
+- Want to maintain compatibility with Wormhole’s Guardian observation and message tracking
+
+<!-- 
+Reduce rent costs" — What is rent?
+Solana doesn’t have gas like EVM chains. Instead, accounts must pre-pay a fixed amount of SOL to stay rent-exempt.
+Every time a message account is created, the program must pay rent exemption (≈ 0.002 SOL)
+This is a non-refundable cost unless you close the account and reclaim the lamports (which Core Bridge doesn’t allow)
+So if your app emits 10,000 messages, you're losing ~20 SOL just in rent.
+The shim avoids this by not creating any new accounts.
+-->
+
+<!--  Concept page note: Explain tradeoffs of message permanence vs. cheaper emissions.  -->
+
+## How It Works
+
+The shim exposes a single `post_message` instruction which:
+- Accepts the same accounts and arguments as `post_message_unreliable`
+- Replaces the payload with an empty vector before calling the core bridge
+- Emits a CPI event with the sequence number and timestamp
+Add a short code snippet of calling it
+
+
+## Guardian Behavior
+
+Guardians are configured to:
+- Recognize instructions from the shim program
+- Extract `emitter`, `sequence`, `payload`, and `consistency_level` from instruction data
+- Use the emitted CPI (Cross-Program Invocation) event to capture `timestamp` and `sequence`
+Mention that Guardians must ignore the empty payload account written by post_message_unreliable.
+
+<!--
+What is a CPI Event? CPI = Cross-Program Invocation (like calling another contract).
+An Anchor CPI event is a special log emitted when your program calls another program (e.g., the Core Bridge). 
+These logs are: Emitted during runtime, Indexed and observable by Guardians, Contain structured data, like: { sequence, timestamp }
+In the emission shim:
+The shim emits a CPI event right after calling post_message_unreliable
+The Guardian reads this event from transaction logs
+No message account is needed
+--> 
+
+<!--  Concept page note: 
+Explain how Guardian observation works with shim events vs. accounts. 
+Add short explanation and link to Anchor CPI events: Anchor Events
+ -->
+
+
+## Known Limitations
+
+- **Still touches `fee_collector`**: so parallelism is still limited.
+- **One-time CPI depth increase**: The first call per emitter adds an extra CPI level.
+- **No account-based re-observation**: relies entirely on instruction data and logs.
+
+
+## Deployment Notes
+
+Link to the deployment page. Only include quick summary here:
+
+To deploy this shim:
+- Use the verifiable build process on Solana mainnet
+- Drop the upgrade authority after testing
+See Shim Deployment Guide for full instructions.
+
+
+## Cost Comparison
+
+| Method              | Lamports | CU     | USD Estimate |
+|---------------------|----------|--------|---------------|
+| Core `post_message` | 1.6M     | 25,097 | ~$0.36        |
+| Shim (no extras)    | 5,120    | 45,608 | ~$0.0011      |
+| Shim (w/ anchor IDL)| 5,120    | 45,782 | ~$0.0011      |
+
+<!-- 
+Why does cost drop despite higher CU? — What is CU? CU = Compute Units
+Solana charges based on lamports + compute usage
+Each transaction gets a budget of compute units (by default, ~200k, can go higher if you pay more)
+Think of CU as CPU cycles — the more you compute, the more CU is used
+The shim has slightly higher CU than Core Bridge (because of extra logic and logging), but:
+It avoids account creation, which is what costs most of the lamports
+So the total transaction cost is much cheaper, despite using more compute
+--> 
+<!--  Concept page note: Add explanation of why costs drop despite higher CU. Add cost model explanation: rent (lamports) vs compute (CU) -->
+
+## Migration Guidance
+
+If you're migrating from core `post_message`:
+- Do not reuse emitter and sequence combinations.
+- Shim uses the same emitter PDA pattern — keep sequence continuity.
+- Consider emitting an empty shim message on startup to prevent initial CPI depth edge case.
+
+<!-- 
+What is a PDA Account? PDA stands for Program Derived Address.
+It’s a type of deterministic account on Solana that a program can “own” and generate without having a private key.
+Think of it like: “A predictable address that only a specific program can write to.”
+In the context of Wormhole’s Core Bridge, every message that gets emitted is stored in a PDA account derived like this:
+    PDA = hash("Message" + emitter_address + sequence_number)
+This message PDA is unique for each (emitter, sequence)
+The Core Bridge program creates this account to store the message
+It ensures the message can be read later by Guardians
+Because PDAs are deterministic, anyone (including Guardians) can reconstruct their address and find the message account on-chain.
+
+PDA in Emission Shim Context
+The emission shim avoids PDA creation entirely. Instead of writing the message to a PDA:
+It emits the data as an event
+The Guardian picks up the message from instruction logs, not an on-chain account
+This is what enables rent savings.
+-->
+
+<!-- Concept page note: Add an illustration showing Core Bridge creating PDAs per message vs. Shim using logs --> 
+
+## Rollout & Guardian Support
+
+- Guardians must explicitly support this shim address.
+- Only once 13+ Guardians support it will VAAs be reliably produced.
+- Prior to that, shim emissions will not result in valid VAAs.
+
+
+<!------------------------------------>
+
+<!-- TODO add link in messaging overview -->
 
 Purpose: Introduces a new emission mechanism via a shim program to avoid:
 

@@ -4,9 +4,74 @@ description:
 categories: Basics
 ---
 
+# Efficient VAA Verification on Solana (Shim)
+
+<!-- Include this definition in the opening section of the Solana Shims concept page. --> 
+
+
+## When to Use 
+
+Use the shim if you:
+- Want to verify VAAs without paying for rent-exempt accounts
+- Need to verify large VAAs or Queries that don’t fit into a single tx
+- Want to keep your Solana contract lean and rent-efficient
+
+<!-- Concept page note: Add a table comparing core verification vs shim approach.  --> 
+
+## How It Works
+
+The shim includes three instructions:
+
+- `post_signatures`: Stores guardian signatures into a temporary account.
+- `verify_vaa`: Validates a VAA digest against those signatures using `secp256k1_recover`.
+- `close_signatures`: Reclaims rent by closing the temporary account.
+
+All verification happens inline. No persistent signature sets or posted VAAs are needed.
+
+
+## Technical Flow
+
+Add code snippets or descriptions of when each instruction is used:
+
+### Step 1 – Post signatures
+
+### Step 2 – Verify via CPI
+
+### Step 3 – Close 
+
+
+## Digest Calculation Reference
+
+Keep examples Verify VAA section — they’re helpful and precise. Optionally include a code snippet in TypeScript too if needed.
+
+
+## Tradeoffs & Limitations
+
+- **More CU, less SOL**: Using `secp256k1_recover` increases compute usage, but avoids rent costs.
+- **No persistent proof**: Unlike `post_vaa`, this doesn’t create a verifiable VAA account.
+- **Responsibility for cleanup**: You must close signature accounts to reclaim lamports.
+
+## Cost Comparison
+
+| Method           | CU Used | Lamports | USD Approx |
+|------------------|---------|----------|-------------|
+| Core (full)      | 146,709 | 3.87M    | $0.84       |
+| Shim (total)     | 365,504 | 15,040   | $0.0032     |
+
+
+<!-- Concept page note: Explain how more CU can still be cheaper due to rent savings.  --> 
+
+## Deployment
+
+See the Shim Deployment Guide to deploy the verify shim on Solana mainnet with verifiable builds and drop upgrade authority.
+
+
+
+<!------------------------------------>
+
 <!-- TODO add link in messaging overview and maybe queries too?-->
 
-# Efficient VAA Verification on Solana (Shim)
+
 
 Purpose: Introduces a new VAA verification mechanism via a shim that:
 
