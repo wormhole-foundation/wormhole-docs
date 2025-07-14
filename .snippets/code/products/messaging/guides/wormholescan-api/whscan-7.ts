@@ -5,7 +5,7 @@ import { OperationsResponse } from '../helpers/types';
 import { getOperationStatus } from '../helpers/utils';
 
 const EMITTER_ADDRESS = 'INSERT_EMITTER_ADDRESS';
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 'INSERT_NUMBER_OF_TRANSFERS_TO_FETCH'; // e.g., 10, 20, etc.
 
 async function fetchTokenTransfers() {
   console.log(
