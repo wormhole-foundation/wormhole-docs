@@ -337,10 +337,10 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     --8<-- "code/products/messaging/tutorials/replace-signatures/replace-sigs-4.ts:280:283"
     ```
 
-     - **`vaa`**: Original VAA bytes
-     - **`observations`**: Observed signatures from the network
-     - **`currentGuardians`**: Latest Guardian set
-     - **`guardianSetIndex`**: Current Guardian set index
+     - **`vaa`**: Original VAA bytes.
+     - **`observations`**: Observed signatures from the network.
+     - **`currentGuardians`**: Latest Guardian set.
+     - **`guardianSetIndex`**: Current Guardian set index.
 
 2. **Validate input data**: Ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The Guardian set should never be empty; if it is, this likely indicates an error in fetching the Guardian set in a previous step.
 

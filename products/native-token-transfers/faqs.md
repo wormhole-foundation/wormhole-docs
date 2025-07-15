@@ -30,7 +30,7 @@ Transferring ownership of Wormhole's NTT to a multisig is a two-step process for
 
 1. **Initiate transfer**: Use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig).
 2. **Claim ownership**: The multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer.
-3. **Single-step transfer (Riskier)** - you can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA)
+3. **Single-step transfer (Riskier)**: You can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA).
 
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
 
@@ -63,8 +63,8 @@ If the rate limits on Wormhole's NTT block tokens from being received on the tar
 
 To resolve this:
 
-1. **Adjust rate limits** - the rate limits must be modified by an administrator or through the appropriate configuration tools to allow the blocked transaction to proceed
-2. **Resume transaction flow** - once the rate limits are adjusted, you can resume the flow, which should be visible in the UI. The tokens will then be redeemable on the target chain
+1. **Adjust rate limits**: The rate limits must be modified by an administrator or through the appropriate configuration tools to allow the blocked transaction to proceed.
+2. **Resume transaction flow**: Once the rate limits are adjusted, you can resume the flow, which should be visible in the UI. The tokens will then be redeemable on the target chain.
 
 In most cases, the transaction will resume automatically once the rate limits are adjusted, and the UI will guide you through the redemption process.
 
@@ -80,8 +80,8 @@ Yes, the NTT manager acts like an escrow account for non-transferable tokens on 
 
 Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=\_blank}. The key methods involved include:
 
-- **Initiate and redeem functions** - these functions are essential for initiating token transfers and redeeming them on the destination chain
-- **Rate capacity methods** - methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion
+- **Initiate and redeem functions**: These functions are essential for initiating token transfers and redeeming them on the destination chain.
+- **Rate capacity methods**: Methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion.
 
 These functions ensure Connect can handle token transfers and manage chain-rate limits.
 

@@ -108,9 +108,9 @@ This section will guide you through deploying the cross-chain messaging contract
 ### Deployment Tools
 We use _Foundry_ to deploy our smart contracts. However, you can use any tool you're comfortable with, such as:
 
- - [Remix](https://remix.ethereum.org/){target=\_blank} for a browser-based IDE
- - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation){target=\_blank} for a more extensive JavaScript/TypeScript workflow
- - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for a CLI-focused experience with built-in scripting and testing features
+ - [Remix](https://remix.ethereum.org/){target=\_blank} for a browser-based IDE.
+ - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation){target=\_blank} for a more extensive JavaScript/TypeScript workflow.
+ - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for a CLI-focused experience with built-in scripting and testing features.
 
 The contracts and deployment steps remain the same regardless of your preferred tool. The key is to ensure you have the necessary Testnet funds and are deploying to the right networks.
 
@@ -152,7 +152,7 @@ The repository includes:
 
 ### Important Setup Steps
 
-1. **Add your private key** - create a `.env` file in the root of the project and add your private key:
+1. **Add your private key**: Create a `.env` file in the root of the project and add your private key.
     
     ```env
     touch .env
@@ -164,7 +164,7 @@ The repository includes:
     PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
 
-2. **Compile the contracts** - ensure everything is set up correctly by compiling the contracts:
+2. **Compile the contracts**: Ensure everything is set up correctly by compiling the contracts.
 
     ```bash
     forge build
@@ -178,7 +178,7 @@ The expected output should be similar to this:
 
 Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the following key tasks:
 
-1. **Load configuration and contract details** - each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network
+1. **Load configuration and contract details**: Each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network.
 
     === "`chains.json`"
 
@@ -201,7 +201,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
     !!! note
         The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores Testnets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/products/reference/contract-addresses/){target=\_blank}.
 
-2. **Set up provider and wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction
+2. **Set up provider and wallet**: The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction.
 
     === "`deploySender.ts`"
 
@@ -215,7 +215,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
         --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-6.ts:31:32"
         ```
 
-3. **Deploy the contract** - the contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on
+3. **Deploy the contract**: The contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on.
 
     === "`deploySender.ts`"
 
@@ -229,7 +229,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
         --8<-- "code/products/messaging/tutorials/cross-chain-contracts/snippet-6.ts:51:54"
         ```
 
-4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
+4. **Register the `MessageSender` on the target chain**: After you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed.
 
     This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
 
@@ -287,7 +287,7 @@ In this example, we will use the `sendMessage.ts` script to transmit a message f
 
 Let's break down the script step by step.
 
-1. **Load configuration files**
+1. **Load configuration files**:
 
     1. **`chains.json`**: Contains details about the supported Testnet chains, such as RPC URLs and relayer addresses.
     2. **`deployedContracts.json`**: Stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed.

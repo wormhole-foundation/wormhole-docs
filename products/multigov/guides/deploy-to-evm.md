@@ -70,7 +70,7 @@ When deploying MultiGov, several key parameters need to be set. Here are the mos
 - **`initialVotingDelay` ++"uint256"++**: The delay measured in seconds before voting on a proposal begins. For example, `86400` is one day.
 - **`initialProposalThreshold` ++"uint256"++**: The number of tokens needed to create a proposal.
 - **`initialQuorum` ++"uint256"++**: The minimum number of votes needed for a proposal to be successful.
-- **`initialVoteWeightWindow` ++"uint256"++:** A window where the minimum checkpointed voting weight is taken for a given address. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The voting window is measured in seconds, e.g., `86400` is one day.
+- **`initialVoteWeightWindow` ++"uint256"++**: A window where the minimum checkpointed voting weight is taken for a given address. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The voting window is measured in seconds, e.g., `86400` is one day.
 
     !!! note
         This helps mitigate cross-chain double voting.

@@ -57,23 +57,23 @@ Here are key use cases that highlight the power and versatility of the Token Bri
 
 - **Multichain Rewards and Token Utility in Decentralized Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Transfer tokens between chains.
-    - [**Messaging**](/docs/products/messaging/overview/): Facilitate the distribution and claiming processes of rewards.
+    - **[Token Bridge](/docs/products/token-bridge/get-started/)**: Transfer tokens between chains.
+    - **[Messaging](/docs/products/messaging/overview/)**: Facilitate the distribution and claiming processes of rewards.
 
 - **Tokenized Gaming Rewards**
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Handle the underlying lock-and-mint logic securely.
-    - [**Connect**](/docs/products/connect/overview/): Provide a user-friendly way to move game tokens across chains.
+    - **[Token Bridge](/docs/products/token-bridge/get-started/)**: Handle the underlying lock-and-mint logic securely.
+    - **[Connect](/docs/products/connect/overview/)**: Provide a user-friendly way to move game tokens across chains.
 
 - **Multichain DeFi Arbitrage**
 
-    - [**Token Bridge**](/docs/products/token-bridge/get-started/): Enables rapid and secure movement of DeFi assets.
-    - [**Connect**](/docs/products/connect/overview/): Provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms.
+    - **[Token Bridge](/docs/products/token-bridge/get-started/)**: Enables rapid and secure movement of DeFi assets.
+    - **[Connect](/docs/products/connect/overview/)**: Provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms.
 
 ## Next Steps
 
 If you are looking for more guided practice, take a look at: 
 
-- [**Get Started with Token Bridge**](/docs/products/token-bridge/get-started/): Perform token transfers using the Token Bridge, including manual and automatic transfers.
-- [**Complete Token Transfer Flow**](/docs/products/token-bridge/tutorials/transfer-workflow/): Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
-- [**Create Multichain Tokens**](/docs/products/token-bridge/tutorials/multichain-token/): Craft a multichain token using Wormhole's Portal Bridge.
+- **[Get Started with Token Bridge](/docs/products/token-bridge/get-started/)**: Perform token transfers using the Token Bridge, including manual and automatic transfers.
+- **[Complete Token Transfer Flow](/docs/products/token-bridge/tutorials/transfer-workflow/)**: Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
+- **[Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token/)**: Craft a multichain token using Wormhole's Portal Bridge.

@@ -14,27 +14,27 @@ This guide provides a conceptual overview of the Token Bridge and its integratio
 
 Cross-chain token transfers using the Token Bridge follow these steps:
 
-1. **Initiation on the Source Chain**  
+1. **Initiation on the Source Chain**
     The transfer begins when a user calls the Token Bridge contract on the source chain:
 
     - **Wrapped tokens**: The token is burned.
     - **Original tokens**: If the token is native to the source chain, the token is locked in the contract.
 
-2. **Transfer Message Publication**  
+2. **Transfer Message Publication**
     The Token Bridge contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
 
-3. **Message Observation and Signing**  
+3. **Message Observation and Signing**
     [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}—a decentralized network of validators—monitor the source chain for these message events. A supermajority (13 out of 19) signs the event to generate a [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}—a cryptographically signed attestation of the transfer.
 
     The VAA is then published to the Wormhole network.
 
-4. **VAA Submission to the Destination Chain**  
+4. **VAA Submission to the Destination Chain**
     The VAA must be submitted to the Token Bridge contract on the destination chain to complete the transfer. The Token Bridge contract then verifies the VAA by calling the Core Contract behind the scenes. This step can be handled in two ways:
 
     - **Automatic**: A relayer service detects the VAA and submits it to the Token Bridge contract.
     - **Manual**: The user or dApp retrieves the VAA and submits it directly to the Token Bridge contract.
 
-5. **Finalization of the Transfer on the Destination Chain**  
+5. **Finalization of the Transfer on the Destination Chain**
    After the VAA is verified on the destination chain, the Token Bridge contract completes the transfer:
 
     - **Wrapped tokens**: A wrapped representation of the original token is minted.
@@ -129,10 +129,10 @@ When completing an automatic transfer using the Token Bridge—either through [C
 
 The flow of an automatic transfer using the TBR looks like this:
 
-1. **Initiation on the Source Chain**  
+1. **Initiation on the Source Chain**
     The transfer begins when a user initiates a transfer on the source chain, which results in the TBR contract being called.
 
-2. **Prepare and Forward the Transfer**  
+2. **Prepare and Forward the Transfer**
     The TBR verifies the token, encodes transfer details (relayer fee, native gas request, recipient), and forwards the transfer to the Token Bridge.
 
 3. **Core Messaging Layer Processes the Transfer**  
@@ -142,7 +142,7 @@ The flow of an automatic transfer using the TBR looks like this:
 
     An off-chain relayer verifies the destination chain and token registration and then prepares to complete the transfer.
 
-5. **Relayer Computes Native Drop-Off and Submits the VAA** 
+5. **Relayer Computes Native Drop-Off and Submits the VAA**
 
     The relayer queries the destination TBR for the native gas amount, includes it in the transaction, and submits the signed VAA.
 

@@ -97,5 +97,5 @@ To verify the transaction and view its details, copy the transaction hash from t
 
 Now that you've completed a manual multichain token transfer, explore these guides to continue building:
 
- - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank}: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
- - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}: Learn how to issue tokens that work across chains.
+ - **[Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank}**: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
+ - **[Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}**: Learn how to issue tokens that work across chains.

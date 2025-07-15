@@ -25,9 +25,9 @@ To interact with the Wormhole relayer, you'll need to create contracts on the so
 
 There are three relevant interfaces to discuss when utilizing the Wormhole relayer module:
 
-- [**`IWormholeRelayer`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayer.sol){target=\_blank}: The primary interface by which you send and receive messages. It allows you to request the sending of messages and VAAs.
-- [**`IWormholeReceiver`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank}: This is the interface you are responsible for implementing. It allows the selected delivery provider to deliver messages/VAAs to your contract.
-- [**`IDeliveryProvider`**](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IDeliveryProvider.sol){target=\_blank}: This interface represents the delivery pricing information for a given relayer network. Each delivery provider implements this on every blockchain they support delivering from.
+- **[`IWormholeRelayer`](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayer.sol){target=\_blank}**: The primary interface by which you send and receive messages. It allows you to request the sending of messages and VAAs.
+- **[`IWormholeReceiver`](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeReceiver.sol){target=\_blank}**: This is the interface you are responsible for implementing. It allows the selected delivery provider to deliver messages/VAAs to your contract.
+- **[`IDeliveryProvider`](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IDeliveryProvider.sol){target=\_blank}**: This interface represents the delivery pricing information for a given relayer network. Each delivery provider implements this on every blockchain they support delivering from.
 
 ## Interact with the Wormhole Relayer
 
@@ -99,9 +99,9 @@ All deliveries result in one of the following four outcomes before the delivery 
 
 A receiver failure is a scenario in which the selected provider attempted the delivery but it could not be completely successfully. The three possible causes for a delivery failure are:
 
-- The target contract does not implement the `IWormholeReceiver` interface
-- The target contract threw an exception or reverted during the execution of `receiveWormholeMessages`
-- The target contract exceeded the specified `gasLimit` while executing `receiveWormholeMessages`
+- The target contract does not implement the `IWormholeReceiver` interface.
+- The target contract threw an exception or reverted during the execution of `receiveWormholeMessages`.
+- The target contract exceeded the specified `gasLimit` while executing `receiveWormholeMessages`.
 
 All three of these scenarios can be avoided with correct design by the integrator, and thus, it is up to the integrator to resolve them. Any other scenario that causes a delivery to not be performed should be considered an outage by some component of the system, including potentially the blockchains themselves.
 

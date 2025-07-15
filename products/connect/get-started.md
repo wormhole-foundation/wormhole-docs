@@ -50,7 +50,7 @@ Before you begin, make sure you have the following:
     npm start
     ```
 
-4. Open your browser to `http://localhost:3000` to view the application locally. It will look similar to the following:
+4. **Open your browser to `http**: //localhost:3000` to view the application locally.
 
     ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
 

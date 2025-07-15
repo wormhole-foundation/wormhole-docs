@@ -34,20 +34,20 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 
 - **Cross-Chain Treasury Management**
 
-    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank}: Vote on treasury actions from any supported chain.
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Transmit proposal execution to target chains.
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Optionally move assets.
+    - **[MultiGov](/docs/products/multigov/get-started/){target=\_blank}**: Vote on treasury actions from any supported chain.
+    - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Transmit proposal execution to target chains.
+    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Optionally move assets.
 
 - **Coordinated Protocol Upgrades Across Chains**
 
-    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank}: Create a unified proposal to upgrade contracts across networks.
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Send upgrade instructions as VAAs and deliver execution payloads to target chains.
+    - **[MultiGov](/docs/products/multigov/get-started/){target=\_blank}**: Create a unified proposal to upgrade contracts across networks.
+    - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Send upgrade instructions as VAAs and deliver execution payloads to target chains.
     
 - **Progressive Decentralization for Multichain DAOs**
 
-    - [**MultiGov**](/docs/products/multigov/get-started/){target=\_blank}: Extend governance to new chains while preserving coordination. 
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch on-chain vote weights from remote spokes.
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Aggregate results and execute actions via the hub.
+    - **[MultiGov](/docs/products/multigov/get-started/){target=\_blank}**: Extend governance to new chains while preserving coordination.
+    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch on-chain vote weights from remote spokes.
+    - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Aggregate results and execute actions via the hub.
 
 ## Next Steps
 

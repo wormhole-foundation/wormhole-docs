@@ -145,7 +145,7 @@ Here’s a breakdown of what happens in each step of the `sendCrossChainDeposit`
 
 3. **Payload encoding**: The recipient's address on the target chain is encoded into a payload using `abi.encode(recipient)`. This payload will be sent along with the token transfer, so the target contract knows who should receive the tokens on the destination chain.
 
-4. **Cross-chain transfer**: The `sendTokenWithPayloadToEvm` function is called to initiate the cross-chain token transfer. This function:
+4. **Cross-chain transfer**: The `sendTokenWithPayloadToEvm` function is called to initiate the cross-chain token transfer. This function does the following:
     - Specifies the `targetChain` (the Wormhole chain ID of the destination blockchain).
     - Sends the `targetReceiver` contract address on the target chain that will receive the tokens.
     - Attaches the payload containing the recipient's address.
@@ -452,7 +452,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         --8<-- "code/products/messaging/tutorials/cross-chain-token-transfers/snippet-4.ts"
         ```
 
-5. **Add your private key** - you'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf
+5. **Add your private key**: You'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf.
 
     Create a `.env` file in the root of the project and add your private key:
 
@@ -466,7 +466,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
     PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
     
-6. **Run the deployment script**
+6. **Run the deployment script**:
 
     1. Open a terminal and run the following command:
 

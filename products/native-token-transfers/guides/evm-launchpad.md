@@ -41,8 +41,8 @@ The NTT Launchpad currently supports deployments on the following mainnet chains
 
 Once ready, choose an option to proceed:
 
- - [**Launch a Cross-Chain Token**](#launch-a-cross-chain-token): Deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains.
- - [**Expand Your Existing Token**](#expand-your-existing-token): If you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract.
+ - **[Launch a Cross-Chain Token](#launch-a-cross-chain-token)**: Deploy a brand-new token that is NTT-ready from day one, enabling seamless transfers across multiple blockchains.
+ - **[Expand Your Existing Token](#expand-your-existing-token)**: If you already have a token deployed on different chains, integrate it with NTT to enable NTT without modifying its original contract.
 
 ## Launch a Cross-Chain Token
 

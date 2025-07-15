@@ -34,8 +34,8 @@ In version 1.0, the `WormholeConnectConfig` object underwent several breaking ch
 
 ### Summary of Breaking Changes
 
-- Chain names are now capitalized: `solana` → `Solana`.
-- `env` renamed to `network` and is now capitalized: `mainnet` → `Mainnet`.
+- Chain names are now capitalized. For example:`solana` → `Solana`.
+- `env` renamed to `network` and is now capitalized. For example: `mainnet` → `Mainnet`.
 - `networks` renamed to `chains`, with capitalized names.
 - `routes` updated to use route plugins.
 - `nttGroups` removed in favor of route plugin configuration.
@@ -385,14 +385,14 @@ Key UI changes:
 
 The following properties that were previously defined at the root level of the configuration are now part of the `ui` key:
 
- - `explorer` → `ui.explorer`: Specifies the explorer to use for viewing transactions.
- - `bridgeDefaults` → `ui.defaultInputs`: Sets default input values for the bridge, such as the source and destination chains and token.
- - `pageHeader` → `ui.pageHeader`: Sets the title and header for the page.
- - `menu` → `ui.menu`: Defines the menu items displayed in the interface.
- - `searchTx` → `ui.searchTx`: Configures the transaction search functionality.
- - `partnerLogo` → `ui.partnerLogo`: Displays a partner's logo on the interface.
- - `walletConnectProjectId` → `ui.walletConnectProjectId`: Integrates WalletConnect into the UI.
- - `showHamburgerMenu` → `ui.showHamburgerMenu`: Enables or disables the hamburger menu for navigation.
+ - **`explorer` → `ui.explorer`**: Specifies the explorer to use for viewing transactions.
+ - **`bridgeDefaults` → `ui.defaultInputs`**: Sets default input values for the bridge, such as the source and destination chains and token.
+ - **`pageHeader` → `ui.pageHeader`**: Sets the title and header for the page.
+ - **`menu` → `ui.menu`**: Defines the menu items displayed in the interface.
+ - **`searchTx` → `ui.searchTx`**: Configures the transaction search functionality.
+ - **`partnerLogo` → `ui.partnerLogo`**: Displays a partner's logo on the interface.
+ - **`walletConnectProjectId` → `ui.walletConnectProjectId`**: Integrates WalletConnect into the UI.
+ - **`showHamburgerMenu` → `ui.showHamburgerMenu`**: Enables or disables the hamburger menu for navigation.
 
 Additionally, there are two new properties under `ui`:
 
@@ -466,8 +466,8 @@ In version 1.0, the `customTheme` and `mode` properties, which were previously u
 
 Important details:
 
- - The `theme` prop is not part of the `config` object and is passed separately to Wormhole Connect
- - `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes
+ - The `theme` prop is not part of the `config` object and is passed separately to Connect.
+ - `config` cannot be modified after Connect has mounted, but the `theme` can be updated dynamically to support changes such as switching between light and dark modes or updating color schemes.
 
 === "v0.x"
 

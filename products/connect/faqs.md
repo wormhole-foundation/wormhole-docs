@@ -56,13 +56,13 @@ There is no minimum amount for bridging via CCTP if the user covers the gas fees
 
 Current relay fees:
 
-- Ethereum L1: ~4.2 USDC
-- Base, Optimism, Arbitrum, Avalanche: 0.3 USDC
+- **Ethereum L1**: ~4.2 USDC
+- **Base, Optimism, Arbitrum, Avalanche**: 0.3 USDC
 
 Additional notes:
 
 - **USDC to Solana**: Wormhole's native CCTP route does not currently support automatic relaying of USDC to Solana. However, you can transfer USDC to Solana using the [Mayan plugin](https://github.com/mayan-finance/wormhole-sdk-route){target=\_blank} for the SDK. Mayan is a protocol that integrates Wormhole and CCTP to enable this functionality.
-- **Frontend integrations:**
+- **Frontend integrations**:
     - **Connect**: A pre-built UI available via [@wormhole-foundation/wormhole-connect](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}.
     - **TypeScript SDK**: A lower-level integration option, available via [@wormhole-foundation/sdk](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank}, allowing developers to build custom UIs.
 

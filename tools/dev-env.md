@@ -20,9 +20,9 @@ Different approaches to development and testing are recommended at various stage
 
 During the initial development of an on-chain application, the best option is to use the native tools available in the environment. You can visit the following resources for more information:
 
-- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}** - select the folder for the desired network to learn about the recommended native toolset  
-- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}** - it's recommended to set up a mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received. 
-- **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}** - example mock Guardian test
+- **[Environment](https://github.com/wormhole-foundation/wormhole){target=\_blank}**: Select the folder for the desired network to learn about the recommended native toolset.
+- **[Mock Guardian](https://github.com/wormhole-foundation/wormhole/blob/main/sdk/js/src/mock/wormhole.ts){target=\_blank}**: It's recommended to set up a mock Guardian or Emitter to provide signed VAAsFor any program methods that require some message be sent or received.
+- **[Wormhole Scaffolding repository](https://github.com/wormhole-foundation/wormhole-scaffolding/blob/main/evm/ts-test/01_hello_world.ts){target=\_blank}**: Example mock Guardian test.
 
 Relying on native tools when possible allows for more rapid prototyping and iteration.  
 
