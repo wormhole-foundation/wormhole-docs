@@ -633,6 +633,85 @@ const config: WormholeConnectConfig = {
 };
 ```
 
+### Configuring Native Token Transfers (NTT)
+
+Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+
+To enable NTT in your app, follow these steps:
+
+ 1. Add NTT routes to the `routes` array by calling `nttRoutes(...)` with your token deployment config using the spread operator. This sets up the route logic for native token transfers.
+ 2. Provide token metadata for each of the tokens listed in `nttRoutes` in the [`tokensConfig`](#custom-tokens) object. These entries must include `symbol`, `decimals`, and the `tokenId`.
+
+```typescript
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
+import { nttRoutes } from '@wormhole-foundation/wormhole-connect/ntt';
+
+const wormholeConfig: config.WormholeConnectConfig = {
+  network: 'Testnet',
+  chains: ['Solana', 'BaseSepolia'],
+  tokens: ['WSV'],
+  ui: {
+    title: 'Wormhole NTT UI',
+    defaultInputs: {
+      fromChain: 'Solana',
+      toChain: 'BaseSepolia',
+    },
+  },
+  routes: [
+    ...nttRoutes({
+      tokens: {
+        WSV_NTT: [
+          {
+            chain: 'Solana',
+            manager: 'nMxHx1o8GUg2pv99y8JAQb5RyWNqDWixbxWCaBcurQx',
+            token: '2vLDzr7hUpLFHQotmR8EPcMTWczZUwCK31aefAzumkmv',
+            transceiver: [
+              {
+                address: 'AjL3f9FMHJ8VkNUHZqLYxa5aFy3aTN6LUWMv4qmdf5PN',
+                type: 'wormhole',
+              },
+            ],
+          },
+          {
+            chain: 'BaseSepolia',
+            manager: '0xaE02Ff9C3781C5BA295c522fB469B87Dc5EE9205',
+            token: '0xb8dccDA8C166172159F029eb003d5479687452bD',
+            transceiver: [
+              {
+                address: '0xF4Af1Eac8995766b54210b179A837E3D59a9F146',
+                type: 'wormhole',
+              },
+            ],
+          },
+        ],
+      },
+    }),
+  ],
+  tokensConfig: {
+    WSVsol: {
+      symbol: 'WSV',
+      tokenId: {
+        chain: 'Solana',
+        address: '2vLDzr7hUpLFHQotmR8EPcMTWczZUwCK31aefAzumkmv',
+      },
+      icon: 'https://wormhole.com/token.png',
+      decimals: 9,
+    },
+    WSVbase: {
+      symbol: 'WSV',
+      tokenId: {
+        chain: 'BaseSepolia',
+        address: '0xb8dccDA8C166172159F029eb003d5479687452bD',
+      },
+      icon: 'https://wormhole.com/token.png',
+      decimals: 9,
+    },
+  },
+};
+```
+
+For a complete working example of NTT configuration in Wormhole Connect, see the [ntt-connect demo repository](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}.
+
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
 Connect offers a list of built-in tokens by default. You can see it below:
@@ -773,12 +852,24 @@ function App() {
 
 Your selected blockchain network determines the available wallet options when using Wormhole Connect.
 
- - For EVM chains, wallets like MetaMask and Reown Cloud (formerly WalletConnect) are supported
- - For Solana, you'll see options such as Phantom, Torus, and Coin98
+ - For EVM chains, wallets like [MetaMask](https://metamask.io/){target=\_blank} and [Reown Cloud](https://reown.com/home){target=\_blank} (formerly WalletConnect) are supported
+ - For Solana, you'll see options such as [Phantom](https://phantom.com/){target=\_blank}, [Web3Auth](https://wallet.web3auth.io/){target=\_blank}, and [Coin98](https://coin98.com/){target=\_blank}
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
-If you would like to offer Reown Cloud (formerly WalletConnect) as a supported wallet option, you'll need to obtain a project ID on the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}.
+To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
+
+```typescript
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
+
+const wormholeConfig: config.WormholeConnectConfig = {
+  ...
+  walletConnectProjectId: 'INSERT_PROJECT_ID',
+};
+```
+
+!!! note
+    If the `walletConnectProjectId` is not set, Reown Cloud (WalletConnect) will be disabled from the available wallet list in the Connect UI.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/configuration/theme.md
@@ -1732,7 +1823,7 @@ export default function Home() {
 
 ### Customize Connect
 
-To further customize Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
+To further customize Connect for your application, such as adjusting the UI, adding custom tokens, enabling Reown (formerly known as WalletConnect), or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}.
 
 ### Run the Application
 
