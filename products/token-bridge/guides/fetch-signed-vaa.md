@@ -6,7 +6,7 @@ categories: Token-Bridge, Transfer
 
 # Fetch a Signed VAA
 
-This guide demonstrates fetching a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, first programmatically using the [TypeScript SDK](/docs/tools/typescript-sdk/get-started){target=\_blank}, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
+This guide demonstrates fetching a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, first programmatically using the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
 
 ## Prerequisites
 
@@ -84,5 +84,5 @@ Congratulations! You've now fetched a signed VAA using both the TypeScript SDK a
 
 ## Next Steps
 
-- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-bridge/guides/fetch-signed-vaa): Follow this guide to submit a signed VAA verifying a source chain transfer transaction to the destination chain to complete a manual transfer flow and release the tokens to the intended recipient.
-- [**Transfer Assets with TypeScript**](/docs/products/token-bridge/guides/transfer-wrapped-assets): This guide takes you end-to-end through the Token Bridge transfer flow for moving wrapped assets across blockchains, including automatic and manual transfers.
+- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-bridge/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA verifying a source chain transfer transaction to the destination chain to complete a manual transfer flow and release the tokens to the intended recipient.
+- [**Transfer Assets with TypeScript**](/docs/products/token-bridge/guides/transfer-wrapped-assets/): This guide takes you end-to-end through the Token Bridge transfer flow for moving wrapped assets across blockchains, including automatic and manual transfers.
