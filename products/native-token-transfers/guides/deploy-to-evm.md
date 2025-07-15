@@ -25,14 +25,14 @@ Wormhole’s NTT framework supports two [deployment models](/docs/products/nativ
     - `burn(uint256 amount)`
     - `mint(address account, uint256 amount)`
 
-    These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for all required functions, errors, and events.
+    You’ll also need to set the mint authority to the relevant `NttManager` contract. Example scripts are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
+
+    Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} as an example of the above mentioned functions and additionally optional errors, and events.
 
     ??? interface "`INttToken` Interface"
         ```solidity
         --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/INttToken.sol'
         ```
-
-    You’ll also need to set mint authority to the relevant `NttManager` contract. Example deployment scripts are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
 
 ??? interface "Hub-and-Spoke Mode"
 
