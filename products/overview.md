@@ -53,7 +53,7 @@ Wormhole provides two distinct mechanisms for transferring assets cross-chain: [
 |------------------------|----------------------------------------------------------------------------|-----------------------------------------------|
 | **Best for**           | DeFi governance, native assets with multichain liquidity                   | Consumer apps, games, wrapped-token use cases |
 | **Mechanism**          | Burn-and-mint or hub-and-spoke                                             | Lock-and-mint                                 |
-| **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting, and integrated Global Accountant |
+| **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting and integrated Global Accountant |
 | **Contract Ownership** | User retains ownership and upgrade authority on each chain                 | Managed via Wormhole Governance |
 | **Token Contracts**    | Native contracts owned by your protocol governance       | Wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process. |
 | **Integration**        | Customizable, flexible framework for advanced deployments                  | Straightforward, permissionless deployment    |
