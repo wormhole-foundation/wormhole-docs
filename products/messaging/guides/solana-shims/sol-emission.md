@@ -3,7 +3,7 @@ title: Efficient Emission on Solana (Shim)
 description: TODO
 categories: Basics
 ---
-
+<!-- TODO add link in messaging overview -->
 # Efficient Emission on Solana (Shim)
 
 Wormhole’s Solana emission shim provides a cheaper and more efficient way to emit messages without creating a new account for each message. This program wraps `post_message_unreliable` and emits key data as an event, allowing Guardians to reconstruct messages directly from instruction data.
@@ -144,7 +144,6 @@ This is what enables rent savings.
 
 <!------------------------------------>
 
-<!-- TODO add link in messaging overview -->
 
 Purpose: Introduces a new emission mechanism via a shim program to avoid:
 

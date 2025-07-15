@@ -1,9 +1,9 @@
 ---
 title: Efficient VAA Verification on Solana (Shim)
-description:
+description: TODO
 categories: Basics
 ---
-
+<!-- TODO add link in messaging overview and maybe queries too?-->
 # Efficient VAA Verification on Solana (Shim)
 
 <!-- Include this definition in the opening section of the Solana Shims concept page. --> 
@@ -69,7 +69,6 @@ See the Shim Deployment Guide to deploy the verify shim on Solana mainnet with v
 
 <!------------------------------------>
 
-<!-- TODO add link in messaging overview and maybe queries too?-->
 
 
 

@@ -1,6 +1,6 @@
 ---
-title: Solana Shim
-description:
+title: Solana Shims
+description: Understand how Wormhole uses shim programs on Solana to optimize message emission and VAA verification without modifying the Core Bridge.
 categories: Basics
 ---
 

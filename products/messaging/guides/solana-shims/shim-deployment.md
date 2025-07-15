@@ -1,9 +1,9 @@
 ---
 title: Solana Shim Deployment
-description:
+description: TODO
 categories: Basics
 ---
-<!--   --> 
+<!-- TODO add link in messaging overview -->
 # Solana Shim Contract Deployment
 
 This guide outlines how to deploy the two shim programs that optimize Wormhole Core Bridge operations on Solana.
@@ -90,7 +90,6 @@ note After this step, the programs are immutable.
 
 <!------------------------------------>
 
-<!-- TODO add link in messaging overview -->
 
 
 
