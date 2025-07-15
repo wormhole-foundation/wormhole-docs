@@ -1609,19 +1609,37 @@ For hub-and-spoke and Solana as the hubchain skip this section and proceed to [D
 
 Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
 
-Follow these steps to set the mint authority using the NTT CLI:
 
-1. **Derive the token authority** - generate the PDA, which will manage token minting
+Options to set the mint authority for your SPL token:
 
+**For undeployed programs:**
+
+- **Set to token authority PDA:**
+```bash
+ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+```
+
+- **Set to SPL Multisig:**
+    1. Create valid SPL Multisig:
     ```bash
-    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
+    ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
 
-2. **Set SPL token mint authority** - delegate minting control to the derived PDA 
-
+2. Set to created SPL Multisig:
     ```bash
-    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+    ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
+
+**For deployed programs:**
+
+- **Set to token authority PDA:**
+
+```bash
+ntt solana set-mint-authority --payer INSERT_KEYPAIR_JSON
+```
+
+!!! note
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
 
 ## Deploy and Configure NTT
 
@@ -1954,7 +1972,7 @@ The following table outlines post-deployment settings available on the NTT Manag
 
     ---
 
-    Check out an example project that uses a Vite-React TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
+    Check out an example project that uses a Next.js TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
 
     [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
 
