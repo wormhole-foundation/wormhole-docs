@@ -5,13 +5,13 @@ import { toChainId } from '@wormhole-foundation/sdk-base';
 
 async function main() {
   // Initialize the Wormhole SDK with the network and platform
-  // to match the source chain for the transaction ID.
+  // to match the source chain for the transaction ID
   const wh = await wormhole('Testnet', [evm]);
-  // Source chain transaction ID for the VAA you want to fetch.
+  // Source chain transaction ID for the VAA you want to fetch
   const txid =
-    'INSERT_TRANSACTION_ID'; // Replace with transaction ID as a string, e.g., '0x1234567890abcdef...';
+    'INSERT_TRANSACTION_ID';
   // Call getVaa to fetch the VAA associated with the transaction ID
-  // and decode returned data into human-readable format.
+  // and decode returned data into human-readable format
   const vaa = await wh.getVaa(txid, 'Uint8Array', 60000);
   if (!vaa) {
     console.error('❌ VAA not found');
