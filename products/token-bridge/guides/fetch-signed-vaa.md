@@ -6,7 +6,7 @@ categories: Token-Bridge, Transfer
 
 # Fetch a Signed VAA
 
-This guide demonstrates fetching a signed VAA, first programmatically using the TypeScript SDK, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
+This guide demonstrates fetching a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, first programmatically using the [TypeScript SDK](/docs/tools/typescript-sdk/get-started){target=\_blank}, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
 
 ## Prerequisites
 
@@ -20,6 +20,7 @@ Before you begin, ensure you have the following:
 Follow these steps to initialize your project, install dependencies, and prepare your developer environment:
 
 1. Create a new directory and initialize a Node.js project using the following commands:
+
     ```bash
     mkdir fetch-vaa
     cd fetch-vaa
@@ -27,6 +28,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
     ```
 
 2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}:
+
    ```bash
    npm install @wormhole-foundation/sdk -D tsx typescript
    ```
@@ -36,11 +38,13 @@ Follow these steps to initialize your project, install dependencies, and prepare
 Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
 
 1. Create a new file called `fetch-vaa.ts` using the following command:
+
     ```bash
     touch fetch-vaa.ts
     ```
 
 2. Open your `fetch-vaa.ts` file and add the following code:
+
     ```typescript title="fetch-vaa.ts"
     --8<-- 'code/products/token-bridge/guides/fetch-signed-vaa/fetch-vaa.ts'
     ```
@@ -53,6 +57,7 @@ Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
     - Returns the `vaa` object for any further processing.
 
 3. Run the script with the following command:
+
     ```bash
     npx tsx fetch-vaa.ts
     ```
@@ -65,7 +70,7 @@ Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
 
 You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI to manually search for a VAA using the source transaction ID, VAA ID, or a wallet address. This type of quick search is helpful during debugging or testing of your integration. Follow these steps to fetch a VAA using Wormholescan:
 
-1. From the [Wormholescan homepage](https://wormholescan.io/){target=\_blank}, use the dropdown menu in the top right corner to select either **Mainnet** or **Testnet**.
+1. On [Wormholescan](https://wormholescan.io/){target=\_blank}, use the dropdown menu in the top right corner to select either **Mainnet** or **Testnet**.
 
 2. Enter your transaction ID in the search bar and select "return" or "enter" to submit your search request. Alternatively, you can enter the wallet address of the transaction signer and return any transactions under that account.
 
