@@ -4540,7 +4540,7 @@ This guide will help you migrate to the new version in just a few simple steps. 
 These updates ensure better performance and a smoother integration experience.
 
 !!! tip "Note"
-    Connect versions `v1.x` and `v2.x` share the same configuration structure. This guide refers to both as `v1.x` for simplicity. You can follow the same steps whether you're upgrading from `v0`, `v1`, or `v2` to `v3`.
+    Connect versions v1.x and v2.x share the same configuration structure. This guide outlines a unified upgrade process to v3.x, regardless of whether you're using v0.x, v1.x, or v2.x.
 
 ## Update the Connect Package
 
