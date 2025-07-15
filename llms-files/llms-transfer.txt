@@ -30,6 +30,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/architecture.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/flow-of-a-transfer.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/concepts/security.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/configuration/access-control.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/configuration/rate-limiting.md [type: other]
@@ -42,8 +43,11 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/troubleshoot.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/overview.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/cli-commands.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/managers-transceivers.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/manager/evm.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/manager/solana.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/supported-networks.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/transceivers/evm.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/reference/transceivers/solana.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/concepts/architecture.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/settlement/faqs.md [type: other]
@@ -5428,6 +5432,156 @@ Finally, after the message is verified and attested to, the tokens can be either
 In both cases, once the tokens have been released, the transfer process is complete, and the recipient receives the tokens. Events are emitted to indicate that the transfer has been fully redeemed.
 --- END CONTENT ---
 
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/concepts/flow-of-a-transfer/
+--- BEGIN CONTENT ---
+---
+title: Managers and Transceivers
+description: Explore the roles of Managers and Transceivers in NTT cross-chain token transfers, including key functions, lifecycle events, and rate-limiting mechanisms.
+categories: NTT, Transfer
+---
+
+# Flow of an NTT Transfer
+
+This page outlines the full lifecycle of an NTT message, covering how transfers are initiated, sent, verified, and completed across supported chains. It highlights the distinct roles of the NTT Manager and Transceivers.
+
+_NTT Managers_ oversee transfers, handle rate-limiting and attestations, and manage multiple transceivers per token. They ensure tokens are locked or burned on the source chain before minting or unlocking on the destination chain.
+
+_Transceivers_ route transfers between source and destination managers, ensuring accurate message delivery and token transfers. They operate independently of Wormhole’s core and can support various verification backends.
+
+## Lifecycle of a Message Overview
+
+This section outlines the high-level NTT message lifecycle common to both EVM-compatible chains and Solana.
+
+1. **Transfer**: The client initiates the transfer, specifying the amount, recipient chain, and address, which is then forwarded to the transceiver on the source chain. Transfers on both source and destination chains can be rate-limited, causing them to be queued if limits are reached.
+2. **Send**: The transceiver takes the forwarded message and sends it using its own method (like Wormhole relaying). 
+3. **Receive**: An off-chain relayer delivers the message to the destination transceiver, which then processes it and passes it on to the destination manager. It also covers validation through multiple attestations and protections against replay.
+4. **Mint or Unlock**: After verification, the tokens are either minted or unlocked to the recipient on the destination chain, completing the transfer.
+
+While the core steps are similar, platform-specific implementation details—such as contract methods and program instructions differ.
+
+## EVM Chains
+
+### Transfer
+
+A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the transfer amount, the recipient chain, and the recipient address on the recipient chain. `transfer` also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the transceiver on the source chain. Depending on the mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned." Once the transfer has been forwarded to the transceiver, the `NttManager` emits the `TransferSent` event.
+
+### Rate Limit
+
+A transfer can be rate-limited on both the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
+
+If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
+
+Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
+
+If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
+
+To deactivate the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is deactivated, the inbound and outbound rate limits can be set to 0.
+
+### Send
+
+Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer, or manually published via the core bridge).
+
+Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
+
+### Receive
+
+Once a message has been emitted by a transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding transceiver on the recipient chain. The relayer interacts with the transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
+
+This method should also forward the message to the `NttManager` on the destination chain. Note that the transceiver interface doesn't declare a signature for this method because receiving messages is specific to each transceiver, and a one-size-fits-all solution would be overly restrictive.
+
+The `NttManager` contract allows an M of N threshold for transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two transceivers deliver valid attestations. When a transceiver attests to a message, the contract emits the `MessageAttestedTo` event.
+
+NTT implements replay protection, so if a given transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
+
+If a message has already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
+
+### Mint or Unlock
+
+Once a transfer has been successfully verified, the tokens can be minted (if the mode is "burning") or unlocked (if the mode is "locking") to the recipient on the destination chain. Note that the source token decimals are bounded between `0` and `TRIMMED_DECIMALS` as enforced in the wire format. The transfer amount is untrimmed (scaled-up) if the destination chain token decimals exceed `TRIMMED_DECIMALS`. Once the appropriate number of tokens have been minted or unlocked to the recipient, the `TransferRedeemed` event is emitted.
+
+## Solana
+
+### Transfer
+
+A client calls the `transfer_lock` or `transfer_burn` instruction based on whether the program is in `LOCKING` or `BURNING` mode. The program mode is set during initialization. When transferring, the client must specify the amount of the transfer, the recipient chain, the recipient address on the recipient chain, and the boolean flag `should_queue` to specify whether the transfer should be queued if it hits the outbound rate limit. If `should_queue` is set to false, the transfer reverts instead of queuing if the rate limit were to be hit.
+
+!!! note
+    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in an `InvalidMode` error.
+
+Depending on the mode and instruction, the following will be produced in the program logs:
+
+```ts
+Program log: Instruction: TransferLock
+Program log: Instruction: TransferBurn
+```
+
+Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
+
+### Rate Limit
+
+During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
+
+If the transfer amount fits within the current capacity:
+
+- Reduce the current capacity
+- Refill the inbound capacity for the destination chain
+- Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
+
+If the transfer amount doesn't fit within the current capacity:
+
+- If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
+- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
+
+### Send
+
+The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
+
+For example, the Wormhole transceiver will send by calling `post_message` on the Wormhole program, so that the Wormhole Guardians can observe and verify the message.
+
+!!! note
+    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the outbound release isn't performed.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReleaseOutbound
+```
+
+### Receive
+
+Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
+
+The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReceiveMessage
+```
+
+`redeem` checks the inbound rate limit and places the message in an Inbox. Logic works the same as the outbound rate limit mentioned previously.
+
+The following will be produced in the program logs:
+
+```ts
+Program log: Instruction: Redeem
+```
+
+### Mint or Unlock
+
+The inbound transfer is released and the tokens are unlocked or minted to the recipient through either `release_inbound_mint` if the mode is `BURNING`, or `release_inbound_unlock` if the mode is `LOCKING`. Similar to transfer, using the wrong transfer instruction (such as `release_inbound_mint` for a program that is in locking mode) will result in `InvalidMode` error.
+
+!!! note
+    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the minting/unlocking isn't performed.
+
+Depending on the mode and instruction, the following will be produced in the program logs:
+
+```ts
+Program log: Instruction: ReleaseInboundMint
+Program log: Instruction: ReleaseInboundUnlock
+```
+--- END CONTENT ---
+
 Doc-Content: https://wormhole.com/docs/products/native-token-transfers/concepts/security/
 --- BEGIN CONTENT ---
 ---
@@ -7034,301 +7188,3832 @@ To explore detailed information about any NTT CLI command, including its options
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://wormhole.com/docs/products/native-token-transfers/reference/managers-transceivers/
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/reference/manager/evm/
 --- BEGIN CONTENT ---
 ---
-title: Managers and Transceivers
-description: Explore the roles of Managers and Transceivers in NTT cross-chain token transfers, including key functions, lifecycle events, and rate-limiting mechanisms.
+title: Native Token Transfers Manager Contract (EVM)
+description: The NTT Manager Solidity contract enables cross-chain token transfers, peer registration, rate limiting, and message attestation within the NTT protocol.
 categories: NTT, Transfer
 ---
 
-# Managers and Transceivers
+# NTT Manager Contract Reference (EVM)
 
-## Managers
+The [NttManager]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/NttManager/NttManager.sol){target=\_blank} contract is responsible for managing the token and associated transceivers. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
 
-_Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
+## Structure Overview
 
-- **`transfer`** - initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
+The NTT Manager system is built using a layered inheritance structure composed of multiple base contracts and interfaces.
 
-    ```solidity
-    function transfer(
-        uint256 amount, // amount (in atomic units)
-        uint16 recipientChain, // chain ID (Wormhole formatted) 
-        bytes32 recipient // recipient address (Wormhole formatted)
-    ) external payable nonReentrant whenNotPaused returns (uint64)
-    ```
-
-- **`quoteDeliveryPrice`** - calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer
-
-    ```solidity
-    function quoteDeliveryPrice(
-        uint16 recipientChain, // chain ID (Wormhole formatted) 
-        bytes memory transceiverInstructions // extra instructions for transceivers (Transceiver-dependent on whether extra instructions are used/accepted)
-    ) public view returns (uint256[] memory, uint256)
-    ```
-
-- **`setPeer`** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
-
-    ```solidity
-    function setPeer(
-        uint16 peerChainId, // chain ID (Wormhole formatted) 
-        bytes32 peerContract, // peer NTT Manager address (Wormhole formatted)
-        uint8 decimals, // token decimals on the peer chain
-        uint256 inboundLimit // inbound rate limit (in atomic units)
-    ) public onlyOwner
-    ```
-
-## Transceivers
-
-_Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers. Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
-
-- **`sendMessage`** - this external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
-
-    ```solidity
-    function sendMessage(
-        uint16 recipientChain,   // chain ID (Wormhole formatted)
-        TransceiverStructs.TransceiverInstruction memory instruction, // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
-        bytes memory nttManagerMessage, // serialized NTT Manager message, provided by the NTT Manager
-        bytes32 recipientNttManagerAddress, // NTT Manager address on the recipient chain (Wormhole formatted)
-        bytes32 refundAddress // address to receive refunds on the destination chain in case of excess quotes (Wormhole formatted)
-    ) external payable nonReentrant onlyNttManager
-    ```
-
-- **`quoteDeliveryPrice`** - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
-
-    ```solidity
-    function quoteDeliveryPrice(
-        uint16 targetChain,  // chain ID (Wormhole formatted) 
-        TransceiverStructs.TransceiverInstruction memory instruction // extra instruction for the Transceiver (optional, dependent on whether extra instructions are used/accepted for this Transceiver)
-    ) external view returns (uint256) 
-    ```
-
-## Lifecycle of a Message
-
-### EVM
-
-#### Transfer
-
-A client calls on `transfer` to initiate an NTT transfer. The client must specify, at minimum, the transfer amount, the recipient chain, and the recipient address on the recipient chain. `transfer` also supports a flag to specify whether the `NttManager` should queue rate-limited transfers or revert. Clients can also include additional instructions to forward along to the transceiver on the source chain. Depending on the mode set in the initial configuration of the `NttManager` contract, transfers are either "locked" or "burned." Once the transfer has been forwarded to the transceiver, the `NttManager` emits the `TransferSent` event.
-
-**Events**
-
-```ts
-/// @notice Emitted when a message is sent from the nttManager.
-/// @dev Topic0
-/// 0x9716fe52fe4e02cf924ae28f19f5748ef59877c6496041b986fbad3dae6a8ecf
-/// @param recipient The recipient of the message.
-/// @param amount The amount transferred.
-/// @param fee The amount of ether sent along with the tx to cover the delivery fee.
-/// @param recipientChain The chain ID of the recipient.
-/// @param msgSequence The unique sequence ID of the message.
-event TransferSent(
-    bytes32 recipient, uint256 amount, uint256 fee, uint16 recipientChain, uint64 msgSequence
-);
+```text
+NttManager
+├── INttManager
+├── RateLimiter
+│   ├── IRateLimiter
+│   └── IRateLimiterEvents
+└── ManagerBase
+    ├── IManagerBase
+    ├── TransceiverRegistry
+    ├── PausableOwnable
+    ├── ReentrancyGuardUpgradeable
+    └── Implementation
 ```
 
-#### Rate Limit
+**Key Components:**
 
-A transfer can be rate-limited on both the source and destination chains. If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted.
+- **NttManager**: The main contract that combines all functionality for token transfers with rate limiting.
+- **ManagerBase**: Provides core management functionality including message handling, threshold management, and transceiver coordination.
+- **RateLimiter**: Adds rate limiting capabilities with queuing mechanisms for both inbound and outbound transfers.
+- **TransceiverRegistry**: Manages the registration, enabling, and disabling of transceivers.
+- **PausableOwnable**: Provides ownership and emergency pause functionality.
+- **ReentrancyGuardUpgradeable**: Protects against reentrancy attacks in an upgradeable context.
+- **Implementation**: Handles proxy implementation logic for upgradeable contracts.
 
-If the client attempts to release the transfer from the queue before the expiry of the `rateLimitDuration`, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
+## State Variables
 
-Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
+- `token` ++"address"++ — Address of the token that this NTT Manager is tied to.
+- `mode` ++"Mode"++ — Mode of the NTT Manager (LOCKING=0 or BURNING=1).
+- `chainId` ++"uint16"++ — Wormhole chain ID that the NTT Manager is deployed on.
+- `NTT_MANAGER_VERSION` ++"string"++ — The version string of the NttManager contract implementation.
+- `rateLimitDuration` ++"uint64"++ — Duration (in seconds) for limits to fully replenish.
 
-If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
+## Events
 
-To deactivate the rate limiter, set `_rateLimitDuration` to 0 and enable the `_skipRateLimiting` field in the `NttManager` constructor. Configuring this incorrectly will throw an error. If the rate limiter is deactivated, the inbound and outbound rate limits can be set to 0.
+### InboundTransferLimitUpdated
 
-**Events**
+Emitted when the inbound transfer limit is updated. *(Defined in RateLimiter.sol)*
 
-```ts
-/// @notice Emitted whenn an outbound transfer is queued.
-/// @dev Topic0
-/// 0x69add1952a6a6b9cb86f04d05f0cb605cbb469a50ae916139d34495a9991481f.
-/// @param queueSequence The location of the transfer in the queue.
-event OutboundTransferQueued(uint64 queueSequence);
+```sol
+event InboundTransferLimitUpdated(
+    uint16 chainId,
+    uint256 oldLimit,
+    uint256 newLimit
+)
 ```
 
-```ts
-/// @notice Emitted when an outbound transfer is rate limited.
-/// @dev Topic0
-/// 0x754d657d1363ee47d967b415652b739bfe96d5729ccf2f26625dcdbc147db68b.
-/// @param sender The initial sender of the transfer.
-/// @param amount The amount to be transferred.
-/// @param currentCapacity The capacity left for transfers within the 24-hour window.
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID for which the limit was updated.
+
+    ---
+
+    `oldLimit` ++"uint256"++
+
+    The previous inbound limit.
+
+    ---
+
+    `newLimit` ++"uint256"++
+
+    The new inbound limit.
+
+### InboundTransferQueued
+
+Emitted when an inbound transfer is queued due to rate limiting. *(Defined in RateLimiter.sol)*
+
+```sol
+event InboundTransferQueued(bytes32 digest)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the queued transfer.
+
+### MessageAlreadyExecuted
+
+Emitted when a message has already been executed to notify client against retries. *(Defined in ManagerBase.sol)*
+
+```sol
+event MessageAlreadyExecuted(
+    bytes32 indexed sourceNttManager,
+    bytes32 indexed msgHash
+)
+```
+
+??? interface "Parameters"
+
+    `sourceNttManager` ++"bytes32"++
+
+    The address of the source NttManager.
+
+    ---
+
+    `msgHash` ++"bytes32"++
+
+    The keccak-256 hash of the message.
+
+### MessageAttestedTo
+
+Emitted when a message has been attested to by a transceiver. *(Defined in ManagerBase.sol)*
+
+```sol
+event MessageAttestedTo(bytes32 digest, address transceiver, uint8 index)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the message.
+
+    ---
+
+    `transceiver` ++"address"++
+
+    The address of the transceiver that attested to the message.
+
+    ---
+
+    `index` ++"uint8"++
+
+    The index of the transceiver in the registry.
+
+### NotPaused
+
+Emitted when the contract is unpaused. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+event NotPaused(bool notPaused)
+```
+
+??? interface "Parameters"
+
+    `notPaused` ++"bool"++
+
+    Whether the contract is not paused.
+
+### OutboundTransferCancelled
+
+Emitted when an outbound transfer has been cancelled. *(Defined in NttManager.sol)*
+
+```sol
+event OutboundTransferCancelled(uint256 sequence, address recipient, uint256 amount)
+```
+
+??? interface "Parameters"
+
+    `sequence` ++"uint256"++
+
+    The sequence number being cancelled.
+
+    ---
+
+    `recipient` ++"address"++
+
+    The canceller and recipient of the funds.
+
+    ---
+
+    `amount` ++"uint256"++
+
+    The amount of the transfer being cancelled.
+
+### OutboundTransferLimitUpdated
+
+Emitted when the outbound transfer limit is updated. *(Defined in RateLimiter.sol)*
+
+```sol
+event OutboundTransferLimitUpdated(uint256 oldLimit, uint256 newLimit)
+```
+
+??? interface "Parameters"
+
+    `oldLimit` ++"uint256"++
+
+    The previous outbound limit.
+
+    ---
+
+    `newLimit` ++"uint256"++
+
+    The new outbound limit.
+
+### OutboundTransferQueued
+
+Emitted when an outbound transfer is queued due to rate limiting. *(Defined in RateLimiter.sol)*
+
+```sol
+event OutboundTransferQueued(uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `sequence` ++"uint64"++
+
+    The sequence number of the queued transfer.
+
+### OutboundTransferRateLimited
+
+Emitted when an outbound transfer is rate limited. *(Defined in RateLimiter.sol)*
+
+```sol
 event OutboundTransferRateLimited(
-    address indexed sender, uint64 sequence, uint256 amount, uint256 currentCapacity
-);
+    address sender,
+    uint64 sequence,
+    uint256 amount,
+    uint256 currentCapacity
+)
 ```
 
-```ts
-/// @notice Emitted when an inbound transfer is queued
-/// @dev Topic0
-/// 0x7f63c9251d82a933210c2b6d0b0f116252c3c116788120e64e8e8215df6f3162.
-/// @param digest The digest of the message.
-event InboundTransferQueued(bytes32 digest);
+??? interface "Parameters"
+
+    `sender` ++"address"++
+
+    The address that initiated the transfer.
+
+    ---
+
+    `sequence` ++"uint64"++
+
+    The sequence number of the transfer.
+
+    ---
+
+    `amount` ++"uint256"++
+
+    The amount being transferred.
+
+    ---
+
+    `currentCapacity` ++"uint256"++
+
+    The current available capacity.
+
+### OwnershipTransferred
+
+Emitted when ownership of the contract is transferred. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
 ```
 
-#### Send
+??? interface "Parameters"
 
-Once the `NttManager` forwards the message to the transceiver, the message is transmitted via the `sendMessage method`. The method signature is enforced by the transceiver but transceivers are free to determine their own implementation for transmitting messages. (e.g. a message routed through the Wormhole transceiver can be sent via Wormhole relaying, a custom relayer, or manually published via the core bridge).
+    `previousOwner` ++"address"++
 
-Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
+    The previous owner address.
 
-**Events**
+    ---
 
-```ts
-/// @notice Emitted when a message is sent from the transceiver.
-/// @dev Topic0
-/// 0x53b3e029c5ead7bffc739118953883859d30b1aaa086e0dca4d0a1c99cd9c3f5.
-/// @param recipientChain The chain ID of the recipient.
-/// @param message The message.
-event SendTransceiverMessage(
-    uint16 recipientChain, TransceiverStructs.TransceiverMessage message
-);
+    `newOwner` ++"address"++
+
+    The new owner address.
+
+### Paused
+
+Emitted when the contract is paused. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+event Paused(bool paused)
 ```
 
-#### Receive
+??? interface "Parameters"
 
-Once a message has been emitted by a transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding transceiver on the recipient chain. The relayer interacts with the transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
+    `paused` ++"bool"++
 
-This method should also forward the message to the `NttManager` on the destination chain. Note that the transceiver interface doesn't declare a signature for this method because receiving messages is specific to each transceiver, and a one-size-fits-all solution would be overly restrictive.
+    Whether the contract is paused.
 
-The `NttManager` contract allows an M of N threshold for transceiver attestations to determine whether a message can be safely executed. For example, if the threshold requirement is 1, the message will be executed after a single transceiver delivers a valid attestation. If the threshold requirement is 2, the message will only be executed after two transceivers deliver valid attestations. When a transceiver attests to a message, the contract emits the `MessageAttestedTo` event.
+### PauserTransferred
 
-NTT implements replay protection, so if a given transceiver attempts to deliver a message attestation twice, the contract reverts with `TransceiverAlreadyAttestedToMessage` error. NTT also implements replay protection against re-executing messages. This check also acts as reentrancy protection as well.
+Emitted when pauser capability is transferred. *(Defined in PausableUpgradeable.sol)*
 
-If a message has already been executed, the contract ends execution early and emits the `MessageAlreadyExecuted` event instead of reverting via an error. This mitigates the possibility of race conditions from transceivers attempting to deliver the same message when the threshold is less than the total number of available of transceivers (i.e. threshold < totalTransceivers) and notifies the client (off-chain process) so they don't attempt redundant message delivery.
-
-**Events**
-
-```ts
-/// @notice Emitted when a relayed message is received.
-/// @dev Topic0
-/// 0xf557dbbb087662f52c815f6c7ee350628a37a51eae9608ff840d996b65f87475
-/// @param digest The digest of the message.
-/// @param emitterChainId The chain ID of the emitter.
-/// @param emitterAddress The address of the emitter.
-event ReceivedRelayedMessage(bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress);
+```sol
+event PauserTransferred(address indexed oldPauser, address indexed newPauser)
 ```
 
-```ts
-/// @notice Emitted when a message is received.
-/// @dev Topic0
-/// 0xf6fc529540981400dc64edf649eb5e2e0eb5812a27f8c81bac2c1d317e71a5f0.
-/// @param digest The digest of the message.
-/// @param emitterChainId The chain ID of the emitter.
-/// @param emitterAddress The address of the emitter.
-/// @param sequence The sequence of the message.
-event ReceivedMessage(
-    bytes32 digest, uint16 emitterChainId, bytes32 emitterAddress, uint64 sequence
-);
+??? interface "Parameters"
+
+    `oldPauser` ++"address"++
+
+    The previous pauser address.
+
+    ---
+
+    `newPauser` ++"address"++
+
+    The new pauser address.
+
+### PeerUpdated
+
+Emitted when the peer contract is updated. *(Defined in NttManager.sol)*
+
+```sol
+event PeerUpdated(
+    uint16 indexed chainId_,
+    bytes32 oldPeerContract,
+    uint8 oldPeerDecimals,
+    bytes32 peerContract,
+    uint8 peerDecimals
+)
 ```
 
-```ts
-/// @notice Emitted when a message has already been executed to notify client of against retries.
-/// @dev Topic0
-/// 0x4069dff8c9df7e38d2867c0910bd96fd61787695e5380281148c04932d02bef2.
-/// @param sourceNttManager The address of the source nttManager.
-/// @param msgHash The keccak-256 hash of the message.
-event MessageAlreadyExecuted(bytes32 indexed sourceNttManager, bytes32 indexed msgHash);
+??? interface "Parameters"
+
+    `chainId_` ++"uint16"++
+
+    The chain ID of the peer contract.
+
+    ---
+
+    `oldPeerContract` ++"bytes32"++
+
+    The old peer contract address.
+
+    ---
+
+    `oldPeerDecimals` ++"uint8"++
+
+    The old peer contract decimals.
+
+    ---
+
+    `peerContract` ++"bytes32"++
+
+    The new peer contract address.
+
+    ---
+
+    `peerDecimals` ++"uint8"++
+
+    The new peer contract decimals.
+
+### ThresholdChanged
+
+Emitted when the threshold required for transceivers is changed. *(Defined in ManagerBase.sol)*
+
+```sol
+event ThresholdChanged(uint8 oldThreshold, uint8 threshold)
 ```
 
-#### Mint or Unlock
+??? interface "Parameters"
 
-Once a transfer has been successfully verified, the tokens can be minted (if the mode is "burning") or unlocked (if the mode is "locking") to the recipient on the destination chain. Note that the source token decimals are bounded between `0` and `TRIMMED_DECIMALS` as enforced in the wire format. The transfer amount is untrimmed (scaled-up) if the destination chain token decimals exceed `TRIMMED_DECIMALS`. Once the appropriate number of tokens have been minted or unlocked to the recipient, the `TransferRedeemed` event is emitted.
+    `oldThreshold` ++"uint8"++
 
-**Events**
+    The old threshold.
 
-```ts
-/// @notice Emitted when a transfer has been redeemed
-/// (either minted or unlocked on the recipient chain).
-/// @dev Topic0
-/// 0x504e6efe18ab9eed10dc6501a417f5b12a2f7f2b1593aed9b89f9bce3cf29a91.
-/// @param digest The digest of the message.
-event TransferRedeemed(bytes32 indexed digest);
+    ---
+
+    `threshold` ++"uint8"++
+
+    The new threshold.
+
+### TransceiverAdded
+
+Emitted when a transceiver is added to the NttManager. *(Defined in ManagerBase.sol)*
+
+```sol
+event TransceiverAdded(address transceiver, uint256 transceiversNum, uint8 threshold)
 ```
 
-### Solana
+??? interface "Parameters"
 
-#### Transfer
+    `transceiver` ++"address"++
 
-A client calls the `transfer_lock` or `transfer_burn` instruction based on whether the program is in `LOCKING` or `BURNING` mode. The program mode is set during initialization. When transferring, the client must specify the amount of the transfer, the recipient chain, the recipient address on the recipient chain, and the boolean flag `should_queue` to specify whether the transfer should be queued if it hits the outbound rate limit. If `should_queue` is set to false, the transfer reverts instead of queuing if the rate limit were to be hit.
+    The address of the transceiver.
 
-!!! note
-    Using the wrong transfer instruction, i.e. `transfer_lock` for a program that is in `BURNING` mode, will result in an `InvalidMode` error.
+    ---
 
-Depending on the mode and instruction, the following will be produced in the program logs:
+    `transceiversNum` ++"uint256"++
 
-```ts
-Program log: Instruction: TransferLock
-Program log: Instruction: TransferBurn
+    The current number of transceivers.
+
+    ---
+
+    `threshold` ++"uint8"++
+
+    The current threshold of transceivers.
+
+### TransceiverRemoved
+
+Emitted when a transceiver is removed from the NttManager. *(Defined in ManagerBase.sol)*
+
+```sol
+event TransceiverRemoved(address transceiver, uint8 threshold)
 ```
 
-Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
+??? interface "Parameters"
 
-#### Rate Limit
+    `transceiver` ++"address"++
 
-During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
+    The address of the transceiver.
 
-If the transfer amount fits within the current capacity:
+    ---
 
-- Reduce the current capacity
-- Refill the inbound capacity for the destination chain
-- Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
+    `threshold` ++"uint8"++
 
-If the transfer amount doesn't fit within the current capacity:
+    The current threshold of transceivers.
 
-- If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
-- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
+### TransferRedeemed
 
-#### Send
+Emitted when a transfer has been redeemed (either minted or unlocked on the recipient chain). *(Defined in NttManager.sol)*
 
-The caller then needs to request each transceiver to send messages via the `release_outbound` instruction. To execute this instruction, the caller needs to pass the account of the Outbox item to be released. The instruction will then verify that the transceiver is one of the specified senders for the message. Transceivers then send the messages based on the verification backend they are using.
-
-For example, the Wormhole transceiver will send by calling `post_message` on the Wormhole program, so that the Wormhole Guardians can observe and verify the message.
-
-!!! note
-    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the outbound release isn't performed.
-
-The following will be produced in the program logs:
-
-```ts
-Program log: Instruction: ReleaseOutbound
+```sol
+event TransferRedeemed(bytes32 indexed digest)
 ```
 
-#### Receive
+??? interface "Parameters"
 
-Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
+    `digest` ++"bytes32"++
 
-The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
+    The digest of the message.
 
-The following will be produced in the program logs:
+### TransferSent
 
-```ts
-Program log: Instruction: ReceiveMessage
+Emitted when a message is sent from the NttManager. *(Defined in NttManager.sol)*
+
+```sol
+event TransferSent(
+    bytes32 indexed recipient,
+    bytes32 indexed refundAddress,
+    uint256 amount,
+    uint256 fee,
+    uint16 recipientChain,
+    uint64 msgSequence
+)
 ```
 
-`redeem` checks the inbound rate limit and places the message in an Inbox. Logic works the same as the outbound rate limit mentioned previously.
+??? interface "Parameters"
 
-The following will be produced in the program logs:
+    `recipient` ++"bytes32"++
 
-```ts
-Program log: Instruction: Redeem
+    The recipient of the message.
+
+    ---
+
+    `refundAddress` ++"bytes32"++
+
+    The address on the destination chain to which the refund of unused gas will be paid.
+
+    ---
+
+    `amount` ++"uint256"++
+
+    The amount transferred.
+
+    ---
+
+    `fee` ++"uint256"++
+
+    The amount of ether sent along with the tx to cover the delivery fee.
+
+    ---
+
+    `recipientChain` ++"uint16"++
+
+    The chain ID of the recipient.
+
+    ---
+
+    `msgSequence` ++"uint64"++
+
+    The unique sequence ID of the message.
+
+### TransferSent (Digest Version)
+
+Emitted when a message is sent from the NttManager (digest version). *(Defined in NttManager.sol)*
+
+```sol
+event TransferSent(bytes32 indexed digest)
 ```
 
-#### Mint or Unlock
+??? interface "Parameters"
 
-The inbound transfer is released and the tokens are unlocked or minted to the recipient through either `release_inbound_mint` if the mode is `BURNING`, or `release_inbound_unlock` if the mode is `LOCKING`. Similar to transfer, using the wrong transfer instruction (such as `release_inbound_mint` for a program that is in locking mode) will result in `InvalidMode` error.
+    `digest` ++"bytes32"++
 
-!!! note
-    When `revert_on_delay` is true, the transaction will revert if the release timestamp hasn't been reached. When `revert_on_delay` is false, the transaction succeeds, but the minting/unlocking isn't performed.
+    The digest of the message.
 
-Depending on the mode and instruction, the following will be produced in the program logs:
+## Functions
 
-```ts
-Program log: Instruction: ReleaseInboundMint
-Program log: Instruction: ReleaseInboundUnlock
+### attestationReceived
+
+Called by transceivers when attestation is received. *(Defined in NttManager.sol)*
+
+```sol
+function attestationReceived(
+    uint16 sourceChainId,
+    bytes32 sourceNttManagerAddress,
+    TransceiverStructs.NttManagerMessage memory payload
+) external
+```
+
+??? interface "Parameters"
+
+    `sourceChainId` ++"uint16"++
+
+    The chain ID of the source.
+
+    ---
+
+    `sourceNttManagerAddress` ++"bytes32"++
+
+    The address of the source NttManager.
+
+    ---
+
+    `payload` ++"TransceiverStructs.NttManagerMessage"++
+
+    The message payload containing transfer details.
+
+    ??? child "`NttManagerMessage` struct"
+
+        `id` ++"bytes32"++
+
+        Unique message identifier (incrementally assigned on EVM chains).
+        
+        ---
+
+        `sender` ++"bytes32"++
+
+        Original message sender address.
+        
+        ---
+
+        `payload` ++"bytes"++
+
+        Payload that corresponds to the transfer type.
+
+> **Emits**: `MessageAlreadyExecuted` (if message was already executed), `OutboundTransferCancelled` or `TransferRedeemed` (if message execution succeeds), `TransferSent` (if message execution succeeds)
+
+### cancelOutboundQueuedTransfer
+
+Cancel an outbound transfer that's been queued due to rate limiting. *(Defined in NttManager.sol)*
+
+```sol
+function cancelOutboundQueuedTransfer(uint64 messageSequence) external
+```
+
+??? interface "Parameters"
+
+    `messageSequence` ++"uint64"++
+
+    The sequence number of the queued transfer to cancel.
+
+> **Emits**: `OutboundTransferCancelled`
+
+### completeInboundQueuedTransfer
+
+Complete an inbound transfer that's been queued due to rate limiting. *(Defined in NttManager.sol)*
+
+```sol
+function completeInboundQueuedTransfer(bytes32 digest) external
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the queued transfer.
+
+> **Emits**: `TransferRedeemed`
+
+### completeOutboundQueuedTransfer
+
+Complete an outbound transfer that's been queued due to rate limiting. *(Defined in NttManager.sol)*
+
+```sol
+function completeOutboundQueuedTransfer(uint64 messageSequence) external payable returns (uint64)
+```
+
+??? interface "Parameters"
+
+    `messageSequence` ++"uint64"++
+
+    The sequence number of the queued transfer.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    The sequence number of the completed transfer.
+
+> **Emits**: `TransferSent` (two variants)
+
+### executeMsg
+
+Execute a message when threshold is met. *(Defined in NttManager.sol)*
+
+```sol
+function executeMsg(
+    uint16 sourceChainId,
+    bytes32 sourceNttManagerAddress,
+    TransceiverStructs.NttManagerMessage memory message
+) external
+```
+
+??? interface "Parameters"
+
+    `sourceChainId` ++"uint16"++
+
+    The chain ID of the source.
+
+    ---
+
+    `sourceNttManagerAddress` ++"bytes32"++
+
+    The address of the source NttManager.
+
+    ---
+
+    `message` ++"TransceiverStructs.NttManagerMessage"++
+
+    The message to execute containing transfer details.
+
+    ??? child "`NttManagerMessage` struct"
+
+        `id` ++"bytes32"++
+
+        Unique message identifier (incrementally assigned on EVM chains).
+        
+        ---
+
+        `sender` ++"bytes32"++
+
+        Original message sender address.
+        
+        ---
+
+        `payload` ++"bytes"++
+
+        Payload that corresponds to the transfer type.
+
+> **Emits**: `MessageAlreadyExecuted` (if already executed), `OutboundTransferCancelled` or `TransferRedeemed` (depending on transfer type)
+
+### getCurrentInboundCapacity
+
+Returns the currently remaining inbound capacity from a chain. *(Defined in RateLimiter.sol)*
+
+```sol
+function getCurrentInboundCapacity(uint16 chainId) external view returns (uint256)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to check capacity for.
+
+??? interface "Returns"
+
+    `capacity` ++"uint256"++
+
+    The current available inbound capacity from the specified chain.
+
+### getCurrentOutboundCapacity
+
+Returns the currently remaining outbound capacity. *(Defined in RateLimiter.sol)*
+
+```sol
+function getCurrentOutboundCapacity() public view returns (uint256)
+```
+
+??? interface "Returns"
+
+    `capacity` ++"uint256"++
+
+    The current available outbound capacity.
+
+### getInboundLimitParams
+
+Returns the inbound rate limit parameters for a chain. *(Defined in RateLimiter.sol)*
+
+```sol
+function getInboundLimitParams(uint16 chainId_) external view returns (RateLimitParams memory)
+```
+
+??? interface "Parameters"
+
+    `chainId_` ++"uint16"++
+
+    The chain ID to get parameters for.
+
+??? interface "Returns"
+
+    `params` ++"RateLimitParams struct"++
+
+    The inbound rate limit parameters for the specified chain.
+
+    ??? child "`RateLimitParams` struct"
+
+        `limit` ++"TrimmedAmount"++
+
+        Current rate limit value.
+        
+        ---
+
+        `currentCapacity` ++"TrimmedAmount"++
+
+        The current capacity left.
+        
+        ---
+
+        `lastTxTimestamp` ++"uint64"++
+
+        Timestamp of when capacity was previously consumed.
+
+### getInboundQueuedTransfer
+
+Returns queued transfer details for inbound queue. *(Defined in RateLimiter.sol)*
+
+```sol
+function getInboundQueuedTransfer(bytes32 digest) external view returns (InboundQueuedTransfer memory)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the queued transfer.
+
+??? interface "Returns"
+
+    `transfer` ++"InboundQueuedTransfer struct"++
+
+    The queued transfer details.
+
+    ??? child "`InboundQueuedTransfer` struct"
+
+        `amount` ++"TrimmedAmount"++
+
+        The amount of the transfer, trimmed.
+        
+        ---
+
+        `txTimestamp` ++"uint64"++
+
+        The timestamp of the transfer.
+        
+        ---
+
+        `recipient` ++"address"++
+
+        The recipient of the transfer.
+
+### getMode
+
+Returns the mode (locking or burning) of the NttManager. *(Defined in ManagerBase.sol)*
+
+```sol
+function getMode() public view returns (uint8)
+```
+
+??? interface "Returns"
+
+    `mode` ++"uint8"++
+
+    The mode of the NttManager (0 for LOCKING, 1 for BURNING).
+
+    ??? child "`Mode` enum values"
+
+        `LOCKING` ++"0"++
+
+        Tokens are locked on the source chain and unlocked on the destination chain.
+        
+        ---
+
+        `BURNING` ++"1"++
+
+        Tokens are burned on the source chain and minted on the destination chain.
+
+### getMigratesImmutables
+
+Returns whether the contract migrates immutables. *(Defined in Implementation.sol)*
+
+```sol
+function getMigratesImmutables() external view returns (bool)
+```
+
+??? interface "Returns"
+
+    `migrates` ++"bool"++
+
+    Whether the contract migrates immutables.
+
+### getOutboundLimitParams
+
+Returns the outbound rate limit parameters. *(Defined in RateLimiter.sol)*
+
+```sol
+function getOutboundLimitParams() external view returns (RateLimitParams memory)
+```
+
+??? interface "Returns"
+
+    `params` ++"RateLimitParams struct"++
+
+    The outbound rate limit parameters.
+
+    ??? child "`RateLimitParams` struct"
+
+        `limit` ++"TrimmedAmount"++
+
+        Current rate limit value.
+        
+        ---
+
+        `currentCapacity` ++"TrimmedAmount"++
+
+        The current capacity left.
+        
+        ---
+
+        `lastTxTimestamp` ++"uint64"++
+
+        Timestamp of when capacity was previously consumed.
+
+### getOutboundQueuedTransfer
+
+Returns queued transfer details for outbound queue. *(Defined in RateLimiter.sol)*
+
+```sol
+function getOutboundQueuedTransfer(uint64 queueSequence) external view returns (OutboundQueuedTransfer memory)
+```
+
+??? interface "Parameters"
+
+    `queueSequence` ++"uint64"++
+
+    The sequence number of the queued transfer.
+
+??? interface "Returns"
+
+    `transfer` ++"OutboundQueuedTransfer struct"++
+
+    The queued transfer details.
+
+    ??? child "`OutboundQueuedTransfer` struct"
+
+        `recipient` ++"bytes32"++
+
+        The recipient of the transfer.
+        
+        ---
+
+        `refundAddress` ++"bytes32"++
+
+        The refund address for unused gas.
+        
+        ---
+
+        `amount` ++"TrimmedAmount"++
+
+        The amount of the transfer, trimmed.
+        
+        ---
+
+        `txTimestamp` ++"uint64"++
+
+        The timestamp of the transfer.
+        
+        ---
+
+        `recipientChain` ++"uint16"++
+
+        The chain of the recipient.
+        
+        ---
+
+        `sender` ++"address"++
+
+        The sender of the transfer.
+        
+        ---
+
+        `transceiverInstructions` ++"bytes"++
+
+        Additional instructions for the recipient chain.
+
+### getPeer
+
+Returns peer information for a given chain ID. *(Defined in NttManager.sol)*
+
+```sol
+function getPeer(uint16 chainId_) external view returns (NttManagerPeer memory)
+```
+
+??? interface "Parameters"
+
+    `chainId_` ++"uint16"++
+
+    The chain ID of the peer.
+
+??? interface "Returns"
+
+    `peer` ++"NttManagerPeer struct"++
+
+    The peer information for the given chain ID.
+
+    ??? child "`NttManagerPeer` struct"
+
+        `peerAddress` ++"bytes32"++
+
+        The address of the peer contract on the remote chain.
+        
+        ---
+
+        `tokenDecimals` ++"uint8"++
+
+        The number of decimals for the peer token.
+
+### getThreshold
+
+Returns the number of transceivers that must attest to a message. *(Defined in ManagerBase.sol)*
+
+```sol
+function getThreshold() external view returns (uint8)
+```
+
+??? interface "Returns"
+
+    `threshold` ++"uint8"++
+
+    The number of attestations required for a message to be considered valid.
+
+### getTransceiverInfo
+
+Returns the info for all enabled transceivers. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+function getTransceiverInfo() external view returns (TransceiverInfo[] memory)
+```
+
+??? interface "Returns"
+
+    `info` ++"TransceiverInfo[] memory"++
+
+    An array of transceiver information structs.
+
+    ??? child "`TransceiverInfo` struct"
+
+        `registered` ++"bool"++
+
+        Whether this transceiver is registered.
+        
+        ---
+
+        `enabled` ++"bool"++
+
+        Whether this transceiver is enabled.
+        
+        ---
+
+        `index` ++"uint8"++
+
+        Index of the transceiver.
+
+### getTransceivers
+
+Returns the enabled Transceiver contracts. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+function getTransceivers() external view returns (address[] memory)
+```
+
+??? interface "Returns"
+
+    `result` ++"address[] memory"++
+
+    An array of enabled transceiver addresses.
+
+### initialize
+
+Initializes the contract. *(Defined in Implementation.sol)*
+
+```sol
+function initialize() external payable
+```
+
+### isMessageApproved
+
+Checks if a message has been approved with at least the minimum threshold of attestations from distinct endpoints. *(Defined in ManagerBase.sol)*
+
+```sol
+function isMessageApproved(bytes32 digest) external view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The keccak-256 hash of the message.
+
+??? interface "Returns"
+
+    `approved` ++"bool"++
+
+    Whether the message has been approved.
+
+### isMessageExecuted
+
+Checks if a message has been executed. *(Defined in ManagerBase.sol)*
+
+```sol
+function isMessageExecuted(bytes32 digest) external view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The keccak-256 hash of the message.
+
+??? interface "Returns"
+
+    `executed` ++"bool"++
+
+    Whether the message has been executed.
+
+### isPaused
+
+Returns true if the contract is paused, and false otherwise. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+function isPaused() external view returns (bool)
+```
+
+??? interface "Returns"
+
+    `paused` ++"bool"++
+
+    Whether the contract is paused.
+
+### messageAttestations
+
+Returns the number of attestations for a given message. *(Defined in ManagerBase.sol)*
+
+```sol
+function messageAttestations(bytes32 digest) external view returns (uint8)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The keccak-256 hash of the message.
+
+??? interface "Returns"
+
+    `count` ++"uint8"++
+
+    The number of attestations for the message.
+
+### migrate
+
+Migrates the contract state to a new implementation. *(Defined in Implementation.sol)*
+
+```sol
+function migrate() external
+```
+
+### nextMessageSequence
+
+Returns the next message sequence. *(Defined in ManagerBase.sol)*
+
+```sol
+function nextMessageSequence() external view returns (uint64)
+```
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    The next message sequence number.
+
+### owner
+
+Returns the address of the current owner. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+function owner() external view returns (address)
+```
+
+??? interface "Returns"
+
+    `owner` ++"address"++
+
+    The address of the current owner.
+
+### pause
+
+Pauses the manager. *(Defined in ManagerBase.sol)*
+
+```sol
+function pause() external
+```
+
+> **Emits**: `Paused`
+
+### pauser
+
+Returns the current pauser account address. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+function pauser() external view returns (address)
+```
+
+??? interface "Returns"
+
+    `pauser` ++"address"++
+
+    The address of the current pauser.
+
+### quoteDeliveryPrice
+
+Fetches the delivery price for a given recipient chain transfer. *(Defined in ManagerBase.sol)*
+
+```sol
+function quoteDeliveryPrice(
+    uint16 recipientChain, 
+    bytes memory transceiverInstructions
+) public view returns (uint256[] memory, uint256)
+```
+
+??? interface "Parameters"
+
+    `recipientChain` ++"uint16"++
+
+    The chain ID of the recipient.
+
+    ---
+
+    `transceiverInstructions` ++"bytes"++
+
+    The transceiver-specific instructions for the transfer.
+
+??? interface "Returns"
+
+    `deliveryQuotes` ++"uint256[] memory"++
+
+    An array of delivery quotes from each transceiver.
+
+    ---
+
+    `totalPrice` ++"uint256"++
+
+    The total price for delivery across all transceivers.
+
+### removeTransceiver
+
+Removes the transceiver for the given chain. *(Defined in ManagerBase.sol)*
+
+```sol
+function removeTransceiver(address transceiver) external
+```
+
+??? interface "Parameters"
+
+    `transceiver` ++"address"++
+
+    The address of the transceiver contract to remove.
+
+### setInboundLimit
+
+Set the inbound transfer limit for a specific chain. *(Defined in NttManager.sol)*
+
+```sol
+function setInboundLimit(uint256 limit, uint16 chainId_) external
+```
+
+??? interface "Parameters"
+
+    `limit` ++"uint256"++
+
+    The new inbound transfer limit.
+
+    ---
+
+    `chainId_` ++"uint16"++
+
+    The chain ID to set the limit for.
+
+### setOutboundLimit
+
+Set the outbound transfer limit. *(Defined in NttManager.sol)*
+
+```sol
+function setOutboundLimit(uint256 limit) external
+```
+
+??? interface "Parameters"
+
+    `limit` ++"uint256"++
+
+    The new outbound transfer limit.
+
+### setPeer
+
+Set peer contract information for a specific chain. *(Defined in NttManager.sol)*
+
+```sol
+function setPeer(
+    uint16 peerChainId,
+    bytes32 peerContract,
+    uint8 decimals,
+    uint256 inboundLimit
+) external
+```
+
+??? interface "Parameters"
+
+    `peerChainId` ++"uint16"++
+
+    The chain ID of the peer.
+
+    ---
+
+    `peerContract` ++"bytes32"++
+
+    The address of the peer contract.
+
+    ---
+
+    `decimals` ++"uint8"++
+
+    The number of decimals for the peer token.
+
+    ---
+
+    `inboundLimit` ++"uint256"++
+
+    The inbound transfer limit for this peer.
+
+> **Emits**: `PeerUpdated`
+
+### setThreshold
+
+Sets the threshold for the number of attestations required for a message to be considered valid. *(Defined in ManagerBase.sol)*
+
+```sol
+function setThreshold(uint8 threshold) external
+```
+
+??? interface "Parameters"
+
+    `threshold` ++"uint8"++
+
+    The number of attestations required.
+
+> **Emits**: `ThresholdChanged`
+
+### setTransceiver
+
+Sets the transceiver for the given chain. *(Defined in ManagerBase.sol)*
+
+```sol
+function setTransceiver(address transceiver) external
+```
+
+??? interface "Parameters"
+
+    `transceiver` ++"address"++
+
+    The address of the transceiver contract.
+
+> **Emits**: `TransceiverAdded`
+
+### tokenDecimals
+
+Returns the number of decimals for the token. *(Defined in NttManager.sol)*
+
+```sol
+function tokenDecimals() external view returns (uint8)
+```
+
+??? interface "Returns"
+
+    `decimals` ++"uint8"++
+
+    The number of decimals for the token.
+
+### transceiverAttestedToMessage
+
+Returns if the transceiver has attested to the message. *(Defined in ManagerBase.sol)*
+
+```sol
+function transceiverAttestedToMessage(bytes32 digest, uint8 index) external view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The keccak-256 hash of the message.
+
+    ---
+
+    `index` ++"uint8"++
+
+    The index of the transceiver.
+
+??? interface "Returns"
+
+    `attested` ++"bool"++
+
+    Whether the transceiver has attested to the message.
+
+### transfer (basic)
+
+Transfer tokens (simple version). *(Defined in NttManager.sol)*
+
+```sol
+function transfer(
+    uint256 amount, 
+    uint16 recipientChain, 
+    bytes32 recipient
+) external payable returns (uint64)
+```
+
+??? interface "Parameters"
+
+    `amount` ++"uint256"++
+
+    The amount of tokens to transfer.
+
+    ---
+
+    `recipientChain` ++"uint16"++
+
+    The chain ID of the recipient.
+
+    ---
+
+    `recipient` ++"bytes32"++
+
+    The recipient address on the destination chain.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    The sequence number of the transfer.
+
+> **Emits**: `OutboundTransferRateLimited` (if rate limited), `TransferSent` (two variants, if successful)
+
+### transfer (advanced)
+
+Transfer tokens (full version with additional parameters). *(Defined in NttManager.sol)*
+
+```sol
+function transfer(
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    bytes32 refundAddress,
+    bool shouldQueue,
+    bytes memory transceiverInstructions
+) external payable returns (uint64)
+```
+
+??? interface "Parameters"
+
+    `amount` ++"uint256"++
+
+    The amount of tokens to transfer.
+
+    ---
+
+    `recipientChain` ++"uint16"++
+
+    The chain ID of the recipient.
+
+    ---
+
+    `recipient` ++"bytes32"++
+
+    The recipient address on the destination chain.
+
+    ---
+
+    `refundAddress` ++"bytes32"++
+
+    The address to refund unused gas to.
+
+    ---
+
+    `shouldQueue` ++"bool"++
+
+    Whether to queue the transfer if rate limited.
+
+    ---
+
+    `transceiverInstructions` ++"bytes"++
+
+    Additional instructions for transceivers.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    The sequence number of the transfer.
+
+> **Emits**: `OutboundTransferRateLimited` (if rate limited), `TransferSent` (two variants, if successful)
+
+### transferOwnership
+
+Transfer ownership of the Manager and all Transceiver contracts. *(Defined in ManagerBase.sol)*
+
+```sol
+function transferOwnership(address newOwner) external
+```
+
+??? interface "Parameters"
+
+    `newOwner` ++"address"++
+
+    The address of the new owner.
+
+> **Emits**: `OwnershipTransferred`
+
+### transferPauserCapability
+
+Transfers the ability to pause to a new account. *(Defined in PausableOwnable.sol)*
+
+```sol
+function transferPauserCapability(address newPauser) external
+```
+
+??? interface "Parameters"
+
+    `newPauser` ++"address"++
+
+    The address of the new pauser.
+
+> **Emits**: `PauserTransferred`
+
+### upgrade
+
+Upgrades to a new manager implementation. *(Defined in ManagerBase.sol)*
+
+```sol
+function upgrade(address newImplementation) external
+```
+
+??? interface "Parameters"
+
+    `newImplementation` ++"address"++
+
+    The address of the new implementation contract.
+
+### unpause
+
+Unpauses the manager. *(Defined in ManagerBase.sol)*
+
+```sol
+function unpause() external
+```
+
+> **Emits**: `NotPaused`
+
+## Errors
+
+### BurnAmountDifferentThanBalanceDiff
+
+Error when burn amount differs from balance difference. *(Defined in NttManager.sol)*
+
+```sol
+error BurnAmountDifferentThanBalanceDiff(uint256 burnAmount, uint256 balanceDiff);
+```
+
+??? interface "Parameters"
+
+    `burnAmount` ++"uint256"++
+
+    The amount that was burned.
+
+    ---
+
+    `balanceDiff` ++"uint256"++
+
+    The actual balance difference.
+
+### CallerNotTransceiver
+
+Error when the caller is not the transceiver. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+error CallerNotTransceiver(address caller);
+```
+
+??? interface "Parameters"
+
+    `caller` ++"address"++
+
+    The address that is not a transceiver.
+
+### CancellerNotSender
+
+Error when someone other than the original sender tries to cancel a queued outbound transfer. *(Defined in NttManager.sol)*
+
+```sol
+error CancellerNotSender(address canceller, address sender);
+```
+
+??? interface "Parameters"
+
+    `canceller` ++"address"++
+
+    The address attempting to cancel.
+
+    ---
+
+    `sender` ++"address"++
+
+    The original sender address.
+
+### CapacityCannotExceedLimit
+
+The new capacity cannot exceed the limit. *(Defined in RateLimiter.sol)*
+
+```sol
+error CapacityCannotExceedLimit(TrimmedAmount newCurrentCapacity, TrimmedAmount newLimit);
+```
+
+??? interface "Parameters"
+
+    `newCurrentCapacity` ++"TrimmedAmount"++
+
+    The new current capacity value.
+
+    ??? child "`TrimmedAmount` type"
+
+        `amount` ++"uint64"++
+
+        The amount value (64 bits).
+        
+        ---
+
+        `decimals` ++"uint8"++
+
+        The number of decimals (8 bits).
+
+    ---
+
+    `newLimit` ++"TrimmedAmount"++
+
+    The new limit value.
+
+    ??? child "`TrimmedAmount` type"
+
+        `amount` ++"uint64"++
+
+        The amount value (64 bits).
+        
+        ---
+
+        `decimals` ++"uint8"++
+
+        The number of decimals (8 bits).
+
+### DeliveryPaymentTooLow
+
+Payment for a transfer is too low. *(Defined in ManagerBase.sol)*
+
+```sol
+error DeliveryPaymentTooLow(uint256 requiredPayment, uint256 providedPayment);
+```
+
+??? interface "Parameters"
+
+    `requiredPayment` ++"uint256"++
+
+    The required payment amount.
+
+    ---
+
+    `providedPayment` ++"uint256"++
+
+    The payment amount that was provided.
+
+### DisabledTransceiver
+
+Error when the transceiver is disabled. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+error DisabledTransceiver(address transceiver);
+```
+
+??? interface "Parameters"
+
+    `transceiver` ++"address"++
+
+    The disabled transceiver address.
+
+### InboundQueuedTransferNotFound
+
+The inbound transfer is no longer queued. *(Defined in RateLimiter.sol)*
+
+```sol
+error InboundQueuedTransferNotFound(bytes32 digest);
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the queued transfer.
+
+### InboundQueuedTransferStillQueued
+
+The transfer is still queued. *(Defined in RateLimiter.sol)*
+
+```sol
+error InboundQueuedTransferStillQueued(bytes32 digest, uint256 transferTimestamp);
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the queued transfer.
+
+    ---
+
+    `transferTimestamp` ++"uint256"++
+
+    The timestamp of the transfer.
+
+### InvalidInitialization
+
+Error when the contract is in an invalid initialization state. *(Defined in Initializable.sol)*
+
+```sol
+error InvalidInitialization();
+```
+
+### InvalidMode
+
+The mode is invalid (neither LOCKING nor BURNING). *(Defined in NttManager.sol)*
+
+```sol
+error InvalidMode(uint8 mode);
+```
+
+??? interface "Parameters"
+
+    `mode` ++"uint8"++
+
+    The invalid mode value.
+
+### InvalidPauser
+
+Error when the pauser is not a valid pauser account. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+error InvalidPauser(address account);
+```
+
+??? interface "Parameters"
+
+    `account` ++"address"++
+
+    The invalid pauser account address.
+
+### InvalidPeer
+
+Peer for the chain does not match the configuration. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidPeer(uint16 chainId, bytes32 peerAddress);
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID of the peer.
+
+    ---
+
+    `peerAddress` ++"bytes32"++
+
+    The peer address that doesn't match.
+
+### InvalidPeerChainIdZero
+
+Peer chain ID cannot be zero. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidPeerChainIdZero();
+```
+
+### InvalidPeerDecimals
+
+Peer cannot have zero decimals. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidPeerDecimals();
+```
+
+### InvalidPeerSameChainId
+
+Peer cannot be on the same chain. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidPeerSameChainId();
+```
+
+### InvalidPeerZeroAddress
+
+Peer cannot be the zero address. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidPeerZeroAddress();
+```
+
+### InvalidRecipient
+
+Error when the recipient is invalid. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidRecipient();
+```
+
+### InvalidRefundAddress
+
+Error when the refund address is invalid. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidRefundAddress();
+```
+
+### InvalidTargetChain
+
+Error when trying to execute a message on an unintended target chain. *(Defined in NttManager.sol)*
+
+```sol
+error InvalidTargetChain(uint16 targetChain, uint16 thisChain);
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    The target chain ID from the message.
+
+    ---
+
+    `thisChain` ++"uint16"++
+
+    The current chain ID.
+
+### InvalidTransceiverZeroAddress
+
+Error when the transceiver is the zero address. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+error InvalidTransceiverZeroAddress();
+```
+
+### MessageNotApproved
+
+Error when the message is not approved. *(Defined in ManagerBase.sol)*
+
+```sol
+error MessageNotApproved(bytes32 msgHash);
+```
+
+??? interface "Parameters"
+
+    `msgHash` ++"bytes32"++
+
+    The hash of the message that is not approved.
+
+### NoEnabledTransceivers
+
+There are no transceivers enabled with the Manager. *(Defined in ManagerBase.sol)*
+
+```sol
+error NoEnabledTransceivers();
+```
+
+### NonRegisteredTransceiver
+
+Error when attempting to remove a transceiver that is not registered. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+error NonRegisteredTransceiver(address transceiver);
+```
+
+??? interface "Parameters"
+
+    `transceiver` ++"address"++
+
+    The non-registered transceiver address.
+
+### NotEnoughCapacity
+
+Not enough capacity to send the transfer. *(Defined in RateLimiter.sol)*
+
+```sol
+error NotEnoughCapacity(uint256 currentCapacity, uint256 amount);
+```
+
+??? interface "Parameters"
+
+    `currentCapacity` ++"uint256"++
+
+    The current available capacity.
+
+    ---
+
+    `amount` ++"uint256"++
+
+    The requested transfer amount.
+
+### NotInitializing
+
+Error when a function can only be called during initialization. *(Defined in Initializable.sol)*
+
+```sol
+error NotInitializing();
+```
+
+### NotMigrating
+
+Error when a function can only be called during migration. *(Defined in Implementation.sol)*
+
+```sol
+error NotMigrating();
+```
+
+### NotImplemented
+
+Feature is not implemented. *(Defined in INttManager.sol)*
+
+```sol
+error NotImplemented();
+```
+
+### OnlyDelegateCall
+
+Error when a function can only be called via delegate call. *(Defined in Implementation.sol)*
+
+```sol
+error OnlyDelegateCall();
+```
+
+### OwnableInvalidOwner
+
+Error when the owner is not a valid owner account. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+error OwnableInvalidOwner(address owner);
+```
+
+??? interface "Parameters"
+
+    `owner` ++"address"++
+
+    The invalid owner address.
+
+### OwnableUnauthorizedAccount
+
+Error when the caller account is not authorized to perform an operation. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+error OwnableUnauthorizedAccount(address account);
+```
+
+??? interface "Parameters"
+
+    `account` ++"address"++
+
+    The unauthorized account address.
+
+### OutboundQueuedTransferNotFound
+
+Outbound transfer is no longer queued. *(Defined in RateLimiter.sol)*
+
+```sol
+error OutboundQueuedTransferNotFound(uint64 queueSequence);
+```
+
+??? interface "Parameters"
+
+    `queueSequence` ++"uint64"++
+
+    The sequence number of the queued transfer.
+
+### OutboundQueuedTransferStillQueued
+
+Cannot complete the outbound transfer, still queued. *(Defined in RateLimiter.sol)*
+
+```sol
+error OutboundQueuedTransferStillQueued(uint64 queueSequence, uint256 transferTimestamp);
+```
+
+??? interface "Parameters"
+
+    `queueSequence` ++"uint64"++
+
+    The sequence number of the queued transfer.
+
+    ---
+
+    `transferTimestamp` ++"uint256"++
+
+    The timestamp of the transfer.
+
+### PeerNotRegistered
+
+Error when the manager doesn't have a peer registered for the destination chain. *(Defined in ManagerBase.sol)*
+
+```sol
+error PeerNotRegistered(uint16 chainId);
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID for which no peer is registered.
+
+### RefundFailed
+
+Error when the refund to the sender fails. *(Defined in ManagerBase.sol)*
+
+```sol
+error RefundFailed(uint256 refundAmount);
+```
+
+??? interface "Parameters"
+
+    `refundAmount` ++"uint256"++
+
+    The amount that failed to be refunded.
+
+### RequireContractIsNotPaused
+
+Error when a function requires the contract to not be paused. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+error RequireContractIsNotPaused();
+```
+
+### RequireContractIsPaused
+
+Error when a function requires the contract to be paused. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+error RequireContractIsPaused();
+```
+
+### RetrievedIncorrectRegisteredTransceivers
+
+Retrieved incorrect number of registered transceivers. *(Defined in ManagerBase.sol)*
+
+```sol
+error RetrievedIncorrectRegisteredTransceivers(uint256 retrieved, uint256 registered);
+```
+
+??? interface "Parameters"
+
+    `retrieved` ++"uint256"++
+
+    The number of transceivers retrieved.
+
+    ---
+
+    `registered` ++"uint256"++
+
+    The number of transceivers that should be registered.
+
+### StaticcallFailed
+
+Staticcall reverted. *(Defined in NttManager.sol)*
+
+```sol
+error StaticcallFailed();
+```
+
+### ThresholdTooHigh
+
+The threshold for transceiver attestations is too high. *(Defined in ManagerBase.sol)*
+
+```sol
+error ThresholdTooHigh(uint256 threshold, uint256 transceivers);
+```
+
+??? interface "Parameters"
+
+    `threshold` ++"uint256"++
+
+    The requested threshold value.
+
+    ---
+
+    `transceivers` ++"uint256"++
+
+    The number of available transceivers.
+
+### TooManyTransceivers
+
+Error when the number of registered transceivers exceeds 64. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+error TooManyTransceivers();
+```
+
+### TransceiverAlreadyAttestedToMessage
+
+Error when the transceiver already attested to the message. *(Defined in ManagerBase.sol)*
+
+```sol
+error TransceiverAlreadyAttestedToMessage(bytes32 NttManagerMessageHash);
+```
+
+??? interface "Parameters"
+
+    `NttManagerMessageHash` ++"bytes32"++
+
+    The hash of the NTT Manager message.
+
+### TransceiverAlreadyEnabled
+
+Error when attempting to enable a transceiver that is already enabled. *(Defined in TransceiverRegistry.sol)*
+
+```sol
+error TransceiverAlreadyEnabled(address transceiver);
+```
+
+??? interface "Parameters"
+
+    `transceiver` ++"address"++
+
+    The already enabled transceiver address.
+
+### TransferAmountHasDust
+
+The transfer has some dust. *(Defined in NttManager.sol)*
+
+```sol
+error TransferAmountHasDust(uint256 amount, uint256 dust);
+```
+
+??? interface "Parameters"
+
+    `amount` ++"uint256"++
+
+    The transfer amount.
+
+    ---
+
+    `dust` ++"uint256"++
+
+    The dust amount.
+
+### UndefinedRateLimiting
+
+If the rate limiting behavior isn't explicitly defined in the constructor. *(Defined in RateLimiter.sol)*
+
+```sol
+error UndefinedRateLimiting();
+```
+
+### UnexpectedDeployer
+
+The caller is not the deployer. *(Defined in NttManager.sol)*
+
+```sol
+error UnexpectedDeployer(address expectedOwner, address owner);
+```
+
+??? interface "Parameters"
+
+    `expectedOwner` ++"address"++
+
+    The expected owner address.
+
+    ---
+
+    `owner` ++"address"++
+
+    The actual owner address.
+
+### UnexpectedMsgValue
+
+An unexpected msg.value was passed with the call. *(Defined in NttManager.sol)*
+
+```sol
+error UnexpectedMsgValue();
+```
+
+### ZeroAmount
+
+Error when the transfer amount is zero. *(Defined in NttManager.sol)*
+
+```sol
+error ZeroAmount();
+```
+
+### ZeroThreshold
+
+The number of thresholds should not be zero. *(Defined in ManagerBase.sol)*
+
+```sol
+error ZeroThreshold();
+```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/reference/manager/solana/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Manager Program (Solana)
+description: The NTT Manager Solana program enables cross-chain token transfers, peer registration, rate limiting, and message attestation within the NTT protocol.
+categories: NTT, Transfer
+---
+
+# NTT Manager Program Reference (Solana)
+
+The NTT Manager program is responsible for managing the token and associated transceivers on Solana. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
+
+## Structure Overview
+
+The NTT Manager system on Solana is implemented as a single Anchor program. The program provides comprehensive token transfer management capabilities, supports both burning and locking modes, integrates with Solana's Token Program (including Token-2022), and provides rate limiting and security features.
+
+```text
+NTT Manager Program
+├── Core Instructions
+├── Administrative Instructions
+├── Rate Limiting
+├── Transceiver Management
+├── Peer Management
+└── Wormhole Integration
+```
+
+**Key Components:**
+
+- **NttManager Program**: The primary Solana program that coordinates token transfers, transceiver interactions, and peer communication for the NTT protocol.
+- **Core Instructors**: Handles token transfer instructions like transfer, redeem, and release.
+- **Administrative Instructions**: Manages ownership, configuration updates, and emergency pause functionality.
+- **Rate Limiting**: Implements configurable inbound and outbound transfer limits with time-based capacity replenishment.
+- **Transceiver Management**: Maintains a registry of enabled transceivers and allows dynamic registration/deregistration.
+- **Peer Management**: Manages authorized cross-chain peers.
+- **Wormhole Integration**: Built-in transceiver that connects the program to Wormhole's messaging layer.
+
+## Instructions
+
+### accept_token_authority
+
+Accepts token authority from a pending token authority transfer. *(Defined in NTT Manager)*
+
+```rust
+pub fn accept_token_authority(ctx: Context<AcceptTokenAuthority>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `mint` ++"mut InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `token_authority` ++"Signer"++
+
+    The new token authority accepting the transfer.
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+### accept_token_authority_from_multisig
+
+Accepts token authority from a multisig pending token authority transfer. *(Defined in NTT Manager)*
+
+```rust
+pub fn accept_token_authority_from_multisig(
+    ctx: Context<AcceptTokenAuthorityFromMultisig>
+) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `mint` ++"mut InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `multisig` ++"Account<Multisig>"++
+
+    The multisig account acting as the new token authority.
+
+    ---
+
+    `transaction` ++"Account<Transaction>"++
+
+    The multisig transaction account.
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+### broadcast_wormhole_id
+
+Broadcasts the NTT Manager ID via Wormhole. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn broadcast_wormhole_id(ctx: Context<BroadcastId>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for transaction fees.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `wormhole_bridge` ++"mut Account<BridgeData>"++
+
+    The Wormhole bridge data account.
+
+    ---
+
+    `wormhole_message` ++"mut Signer"++
+
+    The Wormhole message account.
+
+    ---
+
+    `wormhole_emitter` ++"Account<EmitterData>"++
+
+    The Wormhole emitter account.
+
+    ---
+
+    `wormhole_sequence` ++"mut Account<SequenceData>"++
+
+    The Wormhole sequence account.
+
+    ---
+
+    `wormhole_fee_collector` ++"mut Account<FeeCollectorData>"++
+
+    The Wormhole fee collector account.
+
+    ---
+
+    `clock` ++"Sysvar<Clock>"++
+
+    The clock sysvar.
+
+    ---
+
+    `rent` ++"Sysvar<Rent>"++
+
+    The rent sysvar.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+    ---
+
+    `wormhole_program` ++"Program<WormholeCoreBridge>"++
+
+    The Wormhole core bridge program.
+
+### broadcast_wormhole_peer
+
+Broadcasts peer information via Wormhole. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn broadcast_wormhole_peer(
+    ctx: Context<BroadcastPeer>,
+    args: BroadcastPeerArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"BroadcastPeerArgs"++
+
+    The broadcast peer arguments.
+
+    ??? child "`BroadcastPeerArgs` type"
+
+        `chain_id` ++"ChainId"++
+
+        The chain ID to broadcast peer information for.
+
+??? interface "Accounts"
+
+    Similar to `broadcast_wormhole_id` with additional peer-specific accounts.
+
+### claim_ownership
+
+Claims ownership of the NTT Manager after a transfer has been initiated. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn claim_ownership(ctx: Context<ClaimOwnership>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `new_owner` ++"Signer"++
+
+    The new owner claiming ownership.
+
+### claim_token_authority
+
+Claims token authority after a transfer has been initiated. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn claim_token_authority(ctx: Context<ClaimTokenAuthority>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `mint` ++"mut InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `token_authority` ++"Signer"++
+
+    The new token authority claiming authority.
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+### claim_token_authority_to_multisig
+
+Claims token authority to a multisig account. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn claim_token_authority_to_multisig(
+    ctx: Context<ClaimTokenAuthorityToMultisig>
+) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `mint` ++"mut InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `multisig` ++"Account<Multisig>"++
+
+    The multisig account claiming token authority.
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+### deregister_transceiver
+
+Removes a transceiver from the enabled set. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn deregister_transceiver(ctx: Context<DeregisterTransceiver>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `registered_transceiver` ++"mut Account<RegisteredTransceiver>"++
+
+    The registered transceiver account to deregister.
+
+### initialize
+
+Initializes the NTT Manager program with configuration parameters. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn initialize(ctx: Context<Initialize>, args: InitializeArgs) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"InitializeArgs"++
+
+    The initialization arguments.
+
+    ??? child "`InitializeArgs` type"
+
+        `chain_id` ++"u16"++
+
+        The chain ID for this deployment.
+        
+        ---
+
+        `limit` ++"u64"++
+
+        The initial rate limit for transfers.
+        
+        ---
+
+        `mode` ++"Mode"++
+
+        The mode (Burning or Locking) for token handling.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for initialization.
+
+    ---
+
+    `deployer` ++"Signer"++
+
+    The program deployer (must be upgrade authority).
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account to initialize.
+
+    ---
+
+    `mint` ++"InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `rate_limit` ++"mut Account<OutboxRateLimit>"++
+
+    The outbound rate limit account.
+
+    ---
+
+    `token_authority` ++"UncheckedAccount"++
+
+    The token authority account.
+
+    ---
+
+    `custody` ++"mut InterfaceAccount<TokenAccount>"++
+
+    The custody account (for locking mode).
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+    ---
+
+    `associated_token_program` ++"Program<AssociatedToken>"++
+
+    The associated token program.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### initialize_lut
+
+Initializes a lookup table for the program. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn initialize_lut(ctx: Context<InitializeLUT>, recent_slot: u64) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `recent_slot` ++"u64"++
+
+    A recent slot number for lookup table initialization.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for lookup table creation.
+
+    ---
+
+    `lut` ++"mut UncheckedAccount"++
+
+    The lookup table account to initialize.
+
+    ---
+
+    `lut_authority` ++"UncheckedAccount"++
+
+    The lookup table authority.
+
+    ---
+
+    `address_lookup_table_program` ++"Program<AddressLookupTableProgram>"++
+
+    The address lookup table program.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### mark_outbox_item_as_released
+
+Marks an outbox item as released by a specific transceiver. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn mark_outbox_item_as_released(ctx: Context<MarkOutboxItemAsReleased>) -> Result<bool>
+```
+
+??? interface "Returns"
+
+    `released` ++"bool"++
+
+    Whether the item was successfully marked as released.
+
+??? interface "Accounts"
+
+    `transceiver` ++"Signer"++
+
+    The transceiver marking the item as released.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `outbox_item` ++"mut Account<OutboxItem>"++
+
+    The outbox item to mark as released.
+
+    ---
+
+    `registered_transceiver` ++"Account<RegisteredTransceiver>"++
+
+    The registered transceiver account.
+
+### receive_wormhole_message
+
+Receives and processes a message from Wormhole. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn receive_wormhole_message(ctx: Context<ReceiveMessage>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for message processing.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `peer` ++"Account<NttManagerPeer>"++
+
+    The peer account for the sending chain.
+
+    ---
+
+    `inbox_item` ++"mut Account<InboxItem>"++
+
+    The inbox item account to create.
+
+    ---
+
+    `inbox_rate_limit` ++"mut Account<InboxRateLimit>"++
+
+    The inbound rate limit account.
+
+    ---
+
+    `vaa` ++"Account<PostedVaa<TransceiverMessage>>"++
+
+    The verified VAA containing the message.
+
+    ---
+
+    `transceiver_message` ++"mut UncheckedAccount"++
+
+    The transceiver message account.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### redeem
+
+Redeems a transfer by consuming a verified message. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn redeem(ctx: Context<Redeem>, args: RedeemArgs) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"RedeemArgs"++
+
+    The redeem arguments (currently empty struct).
+
+??? interface "Accounts"
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `transceiver_message` ++"Account<ValidatedTransceiverMessage<NativeTokenTransfer>>"++
+
+    The validated transceiver message.
+
+    ---
+
+    `inbox_item` ++"mut Account<InboxItem>"++
+
+    The inbox item being redeemed.
+
+### register_transceiver
+
+Registers a new transceiver with the NTT Manager. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn register_transceiver(ctx: Context<RegisterTransceiver>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for registration.
+
+    ---
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `registered_transceiver` ++"mut Account<RegisteredTransceiver>"++
+
+    The registered transceiver account to create.
+
+    ---
+
+    `transceiver` ++"UncheckedAccount"++
+
+    The transceiver program to register.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### release_inbound_mint
+
+Releases an inbound transfer by minting tokens to the recipient. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn release_inbound_mint(
+    ctx: Context<ReleaseInboundMint>,
+    args: ReleaseInboundArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"ReleaseInboundArgs"++
+
+    The release arguments.
+
+    ??? child "`ReleaseInboundArgs` type"
+
+        `revert_on_delay` ++"bool"++
+
+        Whether to revert if the transfer is still in delay.
+
+??? interface "Accounts"
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `inbox_item` ++"mut Account<InboxItem>"++
+
+    The inbox item to release.
+
+    ---
+
+    `inbox_rate_limit` ++"mut Account<InboxRateLimit>"++
+
+    The inbound rate limit account.
+
+    ---
+
+    `mint` ++"mut InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `recipient_token` ++"mut InterfaceAccount<TokenAccount>"++
+
+    The recipient's token account.
+
+    ---
+
+    `token_authority` ++"UncheckedAccount"++
+
+    The token authority account.
+
+    ---
+
+    `custody` ++"mut InterfaceAccount<TokenAccount>"++
+
+    The custody account.
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+### release_inbound_unlock
+
+Releases an inbound transfer by unlocking tokens from custody. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn release_inbound_unlock(
+    ctx: Context<ReleaseInboundUnlock>,
+    args: ReleaseInboundArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"ReleaseInboundArgs"++
+
+    The release arguments.
+
+    ??? child "`ReleaseInboundArgs` type"
+
+        `revert_on_delay` ++"bool"++
+
+        Whether to revert if the transfer is still in delay.
+
+??? interface "Accounts"
+
+    Similar to `release_inbound_mint` but unlocks tokens from custody instead of minting.
+
+### release_wormhole_outbound
+
+Releases an outbound transfer via Wormhole. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn release_wormhole_outbound(
+    ctx: Context<ReleaseOutbound>,
+    args: ReleaseOutboundArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"ReleaseOutboundArgs"++
+
+    The release outbound arguments.
+
+    ??? child "`ReleaseOutboundArgs` type"
+
+        `recipient_chain` ++"ChainId"++
+
+        The recipient chain ID.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for the release.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `outbox_item` ++"mut Account<OutboxItem>"++
+
+    The outbox item to release.
+
+    ---
+
+    `transceiver_message` ++"mut UncheckedAccount"++
+
+    The transceiver message account.
+
+    ---
+
+    Wormhole-specific accounts for message posting...
+
+### revert_token_authority
+
+Reverts a pending token authority change. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn revert_token_authority(ctx: Context<RevertTokenAuthority>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+### set_inbound_limit
+
+Sets the inbound transfer rate limit. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_inbound_limit(
+    ctx: Context<SetInboundLimit>,
+    args: SetInboundLimitArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"SetInboundLimitArgs"++
+
+    The inbound limit arguments.
+
+    ??? child "`SetInboundLimitArgs` type"
+
+        `limit` ++"u64"++
+
+        The new inbound rate limit.
+
+        ---
+
+        `chain_id` ++"ChainId"++
+
+        The chain ID to set the limit for.
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `rate_limit` ++"mut Account<InboxRateLimit>"++
+
+    The inbound rate limit account.
+
+### set_outbound_limit
+
+Sets the outbound transfer rate limit. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_outbound_limit(
+    ctx: Context<SetOutboundLimit>,
+    args: SetOutboundLimitArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"SetOutboundLimitArgs"++
+
+    The outbound limit arguments.
+
+    ??? child "`SetOutboundLimitArgs` type"
+
+        `limit` ++"u64"++
+
+        The new outbound rate limit.
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `rate_limit` ++"mut Account<OutboxRateLimit>"++
+
+    The outbound rate limit account.
+
+### set_paused
+
+Sets the pause state of the program. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_paused(ctx: Context<SetPaused>, pause: bool) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `pause` ++"bool"++
+
+    Whether to pause or unpause the program.
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+### set_peer
+
+Sets a peer NTT Manager on another chain. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_peer(ctx: Context<SetPeer>, args: SetPeerArgs) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"SetPeerArgs"++
+
+    The peer arguments.
+
+    ??? child "`SetPeerArgs` type"
+
+        `chain_id` ++"ChainId"++
+
+        The chain ID of the peer.
+
+        ---
+
+        `address` ++"[u8; 32]"++
+
+        The address of the peer NTT Manager.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for peer registration.
+
+    ---
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `peer` ++"mut Account<NttManagerPeer>"++
+
+    The peer account to create or update.
+
+    ---
+
+    `inbox_rate_limit` ++"mut Account<InboxRateLimit>"++
+
+    The inbound rate limit account for the peer.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### set_threshold
+
+Sets the threshold number of transceivers required for message approval. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_threshold(ctx: Context<SetThreshold>, threshold: u8) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `threshold` ++"u8"++
+
+    The new threshold value.
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+### set_token_authority
+
+Sets the token authority using a checked transfer process. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_token_authority(ctx: Context<SetTokenAuthorityChecked>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `new_token_authority` ++"UncheckedAccount"++
+
+    The new token authority account.
+
+### set_token_authority_one_step_unchecked
+
+Sets the token authority in a single step without checks. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_token_authority_one_step_unchecked(
+    ctx: Context<SetTokenAuthorityUnchecked>
+) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `mint` ++"mut InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `new_token_authority` ++"UncheckedAccount"++
+
+    The new token authority account.
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+### set_wormhole_peer
+
+Sets a Wormhole transceiver peer on another chain. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn set_wormhole_peer(
+    ctx: Context<SetTransceiverPeer>,
+    args: SetTransceiverPeerArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"SetTransceiverPeerArgs"++
+
+    The transceiver peer arguments.
+
+    ??? child "`SetTransceiverPeerArgs` type"
+
+        `chain_id` ++"ChainId"++
+
+        The chain ID of the peer.
+
+        ---
+
+        `address` ++"[u8; 32]"++
+
+        The address of the peer transceiver.
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The program owner.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `peer` ++"mut Account<WormholeTransceiverPeer>"++
+
+    The Wormhole transceiver peer account.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### transfer_burn
+
+Initiates an outbound transfer by burning tokens. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn transfer_burn(
+    ctx: Context<TransferBurn>,
+    args: TransferArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"TransferArgs"++
+
+    The transfer arguments.
+
+    ??? child "`TransferArgs` type"
+
+        `amount` ++"u64"++
+
+        The amount of tokens to transfer.
+
+        ---
+
+        `recipient_chain` ++"ChainId"++
+
+        The recipient chain ID.
+
+        ---
+
+        `recipient_address` ++"[u8; 32]"++
+
+        The recipient address on the target chain.
+
+        ---
+
+        `should_queue` ++"bool"++
+
+        Whether to queue the transfer if rate limited.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for the transfer.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `from` ++"mut InterfaceAccount<TokenAccount>"++
+
+    The sender's token account.
+
+    ---
+
+    `mint` ++"mut InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `outbox_item` ++"mut Account<OutboxItem>"++
+
+    The outbox item account to create.
+
+    ---
+
+    `outbox_rate_limit` ++"mut Account<OutboxRateLimit>"++
+
+    The outbound rate limit account.
+
+    ---
+
+    `session_authority` ++"UncheckedAccount"++
+
+    The session authority for the transfer.
+
+    ---
+
+    `token_authority` ++"UncheckedAccount"++
+
+    The token authority account.
+
+    ---
+
+    `token_program` ++"Interface<TokenInterface>"++
+
+    The token program interface.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### transfer_lock
+
+Initiates an outbound transfer by locking tokens in custody. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn transfer_lock(
+    ctx: Context<TransferLock>,
+    args: TransferArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"TransferArgs"++
+
+    The transfer arguments.
+
+    ??? child "`TransferArgs` type"
+
+        `amount` ++"u64"++
+
+        The amount of tokens to transfer.
+
+        ---
+
+        `recipient_chain` ++"ChainId"++
+
+        The recipient chain ID.
+
+        ---
+
+        `recipient_address` ++"[u8; 32]"++
+
+        The recipient address on the target chain.
+
+        ---
+
+        `should_queue` ++"bool"++
+
+        Whether to queue the transfer if rate limited.
+
+??? interface "Accounts"
+
+    Similar to `transfer_burn` but locks tokens in custody instead of burning.
+
+### transfer_ownership
+
+Initiates a two-step ownership transfer process. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn transfer_ownership(ctx: Context<TransferOwnership>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The current program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `new_owner` ++"UncheckedAccount"++
+
+    The proposed new owner.
+
+### transfer_ownership_one_step_unchecked
+
+Transfers ownership in a single step without verification. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn transfer_ownership_one_step_unchecked(ctx: Context<TransferOwnership>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `owner` ++"Signer"++
+
+    The current program owner.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The program configuration account.
+
+    ---
+
+    `new_owner` ++"UncheckedAccount"++
+
+    The new owner.
+
+### version
+
+Returns the program version string. *(Defined in example-native-token-transfers)*
+
+```rust
+pub fn version(_ctx: Context<Version>) -> Result<String>
+```
+
+??? interface "Returns"
+
+    `version` ++"String"++
+
+    The version string ("3.0.0").
+
+## Data Structures
+
+### Config
+
+The main program configuration account. *(Defined in config.rs)*
+
+```rust
+pub struct Config {
+    pub bump: u8,
+    pub owner: Pubkey,
+    pub pending_owner: Option<Pubkey>,
+    pub mint: Pubkey,
+    pub token_program: Pubkey,
+    pub mode: Mode,
+    pub chain_id: ChainId,
+    pub next_transceiver_id: u8,
+    pub threshold: u8,
+    pub enabled_transceivers: Bitmap,
+    pub paused: bool,
+    pub custody: Pubkey,
+}
+```
+
+??? interface "Fields"
+
+    `bump` ++"u8"++
+
+    The canonical bump for the config account.
+
+    ---
+
+    `owner` ++"Pubkey"++
+
+    The owner of the program.
+
+    ---
+
+    `pending_owner` ++"Option<Pubkey>"++
+
+    The pending next owner (before claiming ownership).
+
+    ---
+
+    `mint` ++"Pubkey"++
+
+    The mint address of the token managed by this program.
+
+    ---
+
+    `token_program` ++"Pubkey"++
+
+    The address of the token program (Token or Token-2022).
+
+    ---
+
+    `mode` ++"Mode"++
+
+    The mode that this program is running in (Burning or Locking).
+
+    ---
+
+    `chain_id` ++"ChainId"++
+
+    The chain ID of the chain that this program is running on.
+
+    ---
+
+    `next_transceiver_id` ++"u8"++
+
+    The next transceiver ID to use when registering a transceiver.
+
+    ---
+
+    `threshold` ++"u8"++
+
+    The number of transceivers that must attest to a transfer.
+
+    ---
+
+    `enabled_transceivers` ++"Bitmap"++
+
+    Bitmap of enabled transceivers.
+
+    ---
+
+    `paused` ++"bool"++
+
+    Whether the program is paused.
+
+    ---
+
+    `custody` ++"Pubkey"++
+
+    The custody account that holds tokens in locking mode.
+
+### Mode
+
+The operating mode of the NTT Manager. *(Defined in ntt-messages)*
+
+```rust
+pub enum Mode {
+    Locking,
+    Burning,
+}
+```
+
+??? interface "Variants"
+
+    `Locking`
+
+    Tokens are locked in custody and unlocked on release.
+
+    ---
+
+    `Burning`
+
+    Tokens are burned on transfer and minted on release.
+
+### ChainId
+
+A Wormhole chain identifier. *(Defined in ntt-messages)*
+
+```rust
+pub struct ChainId {
+    pub id: u16,
+}
+```
+
+??? interface "Fields"
+
+    `id` ++"u16"++
+
+    The numeric chain ID.
+
+## Errors
+
+### BadAmountAfterBurn
+
+Error when the amount after burning doesn't match expected. *(Defined in error.rs)*
+
+```rust
+BadAmountAfterBurn
+```
+
+### BadAmountAfterTransfer
+
+Error when the amount after transfer doesn't match expected. *(Defined in error.rs)*
+
+```rust
+BadAmountAfterTransfer
+```
+
+### BitmapIndexOutOfBounds
+
+Error when bitmap index is out of bounds. *(Defined in error.rs)*
+
+```rust
+BitmapIndexOutOfBounds
+```
+
+### CantReleaseYet
+
+Error when trying to release a transfer that is still in delay. *(Defined in error.rs)*
+
+```rust
+CantReleaseYet
+```
+
+### DisabledTransceiver
+
+Error when attempting to use a disabled transceiver. *(Defined in error.rs)*
+
+```rust
+DisabledTransceiver
+```
+
+### IncorrectRentPayer
+
+Error when the rent payer is incorrect. *(Defined in error.rs)*
+
+```rust
+IncorrectRentPayer
+```
+
+### InvalidChainId
+
+Error when an invalid chain ID is provided. *(Defined in error.rs)*
+
+```rust
+InvalidChainId
+```
+
+### InvalidDeployer
+
+Error when the deployer is not authorized. *(Defined in error.rs)*
+
+```rust
+InvalidDeployer
+```
+
+### InvalidMintAuthority
+
+Error when the mint authority is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidMintAuthority
+```
+
+### InvalidMode
+
+Error when an invalid mode is specified. *(Defined in error.rs)*
+
+```rust
+InvalidMode
+```
+
+### InvalidMultisig
+
+Error when a multisig account is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidMultisig
+```
+
+### InvalidNttManagerPeer
+
+Error when the NTT Manager peer is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidNttManagerPeer
+```
+
+### InvalidPendingOwner
+
+Error when the pending owner is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidPendingOwner
+```
+
+### InvalidPendingTokenAuthority
+
+Error when the pending token authority is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidPendingTokenAuthority
+```
+
+### InvalidRecipientAddress
+
+Error when the recipient address is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidRecipientAddress
+```
+
+### InvalidTransceiverPeer
+
+Error when the transceiver peer is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidTransceiverPeer
+```
+
+### InvalidTransceiverProgram
+
+Error when the transceiver program is invalid. *(Defined in error.rs)*
+
+```rust
+InvalidTransceiverProgram
+```
+
+### MessageAlreadySent
+
+Error when attempting to send a message that has already been sent. *(Defined in error.rs)*
+
+```rust
+MessageAlreadySent
+```
+
+### NoRegisteredTransceivers
+
+Error when no transceivers are registered. *(Defined in error.rs)*
+
+```rust
+NoRegisteredTransceivers
+```
+
+### NotPaused
+
+Error when expecting the program to be paused but it's not. *(Defined in error.rs)*
+
+```rust
+NotPaused
+```
+
+### OverflowExponent
+
+Error when there's an overflow in exponent calculation. *(Defined in error.rs)*
+
+```rust
+OverflowExponent
+```
+
+### OverflowScaledAmount
+
+Error when there's an overflow in scaled amount calculation. *(Defined in error.rs)*
+
+```rust
+OverflowScaledAmount
+```
+
+### Paused
+
+Error when the program is paused and operation is not allowed. *(Defined in error.rs)*
+
+```rust
+Paused
+```
+
+### ThresholdTooHigh
+
+Error when the threshold is set too high. *(Defined in error.rs)*
+
+```rust
+ThresholdTooHigh
+```
+
+### TransferAlreadyRedeemed
+
+Error when attempting to redeem a transfer that has already been redeemed. *(Defined in error.rs)*
+
+```rust
+TransferAlreadyRedeemed
+```
+
+### TransferCannotBeRedeemed
+
+Error when a transfer cannot be redeemed. *(Defined in error.rs)*
+
+```rust
+TransferCannotBeRedeemed
+```
+
+### TransferExceedsRateLimit
+
+Error when a transfer exceeds the rate limit. *(Defined in error.rs)*
+
+```rust
+TransferExceedsRateLimit
+```
+
+### TransferNotApproved
+
+Error when a transfer has not been approved by enough transceivers. *(Defined in error.rs)*
+
+```rust
+TransferNotApproved
+```
+
+### ZeroThreshold
+
+Error when the threshold is set to zero. *(Defined in error.rs)*
+
+```rust
+ZeroThreshold
 ```
 --- END CONTENT ---
 
@@ -7370,6 +11055,1784 @@ categories: NTT, Transfer
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/reference/transceivers/evm/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Transceivers Contracts (EVM)
+description: The NTT Transceiver Solidity contracts handle message transmission and verification across chains as part of the Native Token Transfers protocol.
+categories: NTT, Transfer
+---
+
+# Transceivers Contracts Reference (EVM)
+
+The NTT [Transceiver]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} contracts are responsible for sending and receiving messages between chains as part of the NTT protocol. They support multiple verification methods and operate alongside the NTT Manager to enable cross-chain token transfers.
+
+## Structure Overview
+
+The NTT Transceiver system is built using a layered inheritance structure with the base [`Transceiver`]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/Transceiver.sol){target=\_blank} contract providing common functionality and specific implementations like [`WormholeTransceiver`]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} adding protocol-specific features.
+
+```text
+WormholeTransceiver
+├── IWormholeTransceiver
+├── IWormholeReceiver
+└── WormholeTransceiverState
+    ├── IWormholeTransceiverState
+    └── Transceiver
+        ├── ITransceiver
+        ├── PausableOwnable
+        ├── ReentrancyGuardUpgradeable
+        └── Implementation
+```
+
+**Key Components:**
+
+- **Transceiver**: Base abstract contract providing common transceiver functionality including message transmission, ownership management, and upgrade capabilities.
+- **WormholeTransceiver**: Concrete implementation for Wormhole protocol, handling message verification through Wormhole Core and supporting multiple delivery methods (standard relaying, custom relaying, manual).
+- **WormholeTransceiverState**: State management contract for Wormhole-specific storage including peer registration, relaying configuration, and VAA consumption tracking.
+- **PausableOwnable**: Provides ownership and emergency pause functionality.
+- **ReentrancyGuardUpgradeable**: Protects against reentrancy attacks in an upgradeable context.
+- **Implementation**: Handles proxy implementation logic for upgradeable contracts.
+
+## State Variables
+
+- `nttManager` ++"address"++: Immutable address of the NTT Manager that this transceiver is tied to.
+- `nttManagerToken` ++"address"++: Immutable address of the token associated with the NTT deployment.
+- `deployer` ++"address"++: Immutable address of the contract deployer.
+- `WORMHOLE_TRANSCEIVER_VERSION` ++"string"++: The version string of the WormholeTransceiver contract implementation.
+- `consistencyLevel` ++"uint8"++: Immutable Wormhole consistency level for message finality.
+- `wormhole` ++"IWormhole"++: Immutable reference to the Wormhole Core bridge contract.
+- `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the Wormhole Relayer contract.
+- `specialRelayer` ++"ISpecialRelayer"++: Immutable reference to a custom relayer contract.
+- `gasLimit` ++"uint256"++: Immutable gas limit for cross-chain message delivery.
+
+## Events
+
+### NotPaused
+
+Emitted when the contract is unpaused. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+event NotPaused(bool notPaused)
+```
+
+??? interface "Parameters"
+
+    `notPaused` ++"bool"++
+
+    Whether the contract is not paused.
+
+### OwnershipTransferred
+
+Emitted when ownership is transferred. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+```
+
+??? interface "Parameters"
+
+    `previousOwner` ++"address"++
+
+    The address of the previous owner.
+
+    ---
+
+    `newOwner` ++"address"++
+
+    The address of the new owner.
+
+### Paused
+
+Emitted when the contract is paused. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+event Paused(bool paused)
+```
+
+??? interface "Parameters"
+
+    `paused` ++"bool"++
+
+    Whether the contract is paused.
+
+### PauserTransferred
+
+Emitted when the pauser capability is transferred. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+event PauserTransferred(address indexed oldPauser, address indexed newPauser)
+```
+
+??? interface "Parameters"
+
+    `oldPauser` ++"address"++
+
+    The address of the previous pauser.
+
+    ---
+
+    `newPauser` ++"address"++
+
+    The address of the new pauser.
+
+### ReceivedMessage
+
+Emitted when a message is received. *(Defined in IWormholeTransceiver.sol)*
+
+```sol
+event ReceivedMessage(
+    bytes32 digest,
+    uint16 emitterChainId,
+    bytes32 emitterAddress,
+    uint64 sequence
+)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the message.
+
+    ---
+
+    `emitterChainId` ++"uint16"++
+
+    The chain ID of the emitter.
+
+    ---
+
+    `emitterAddress` ++"bytes32"++
+
+    The address of the emitter.
+
+    ---
+
+    `sequence` ++"uint64"++
+
+    The sequence of the message.
+
+### ReceivedRelayedMessage
+
+Emitted when a relayed message is received. *(Defined in IWormholeTransceiver.sol)*
+
+```sol
+event ReceivedRelayedMessage(
+    bytes32 digest,
+    uint16 emitterChainId,
+    bytes32 emitterAddress
+)
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the message.
+
+    ---
+
+    `emitterChainId` ++"uint16"++
+
+    The chain ID of the emitter.
+
+    ---
+
+    `emitterAddress` ++"bytes32"++
+
+    The address of the emitter.
+
+### RelayingInfo
+
+Emitted when a message is sent from the transceiver. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+event RelayingInfo(
+    uint8 relayingType,
+    bytes32 refundAddress,
+    uint256 deliveryPayment
+)
+```
+
+??? interface "Parameters"
+
+    `relayingType` ++"uint8"++
+
+    The type of relaying.
+
+    ---
+
+    `refundAddress` ++"bytes32"++
+
+    The refund address for unused gas.
+
+    ---
+
+    `deliveryPayment` ++"uint256"++
+
+    The amount of ether sent along with the tx to cover the delivery fee.
+
+### SendTransceiverMessage
+
+Emitted when a message is sent from the transceiver. *(Defined in IWormholeTransceiver.sol)*
+
+```sol
+event SendTransceiverMessage(
+    uint16 recipientChain,
+    TransceiverStructs.TransceiverMessage message
+)
+```
+
+??? interface "Parameters"
+
+    `recipientChain` ++"uint16"++
+
+    The chain ID of the recipient.
+
+    ---
+
+    `message` ++"TransceiverStructs.TransceiverMessage"++
+
+    The message.
+
+    ??? child "`TransceiverMessage` type"
+
+        `sourceNttManagerAddress` ++"bytes32"++
+
+        The address of the source NTT Manager.
+        
+        ---
+
+        `recipientNttManagerAddress` ++"bytes32"++
+
+        The address of the recipient NTT Manager.
+        
+        ---
+
+        `nttManagerPayload` ++"bytes"++
+
+        The NTT Manager payload.
+        
+        ---
+
+        `transceiverPayload` ++"bytes"++
+
+        The transceiver-specific payload.
+
+### SetIsSpecialRelayingEnabled
+
+Emitted when special relaying is enabled for the given chain. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+event SetIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to set.
+
+    ---
+
+    `isRelayingEnabled` ++"bool"++
+
+    A boolean indicating whether special relaying is enabled.
+
+### SetIsWormholeEvmChain
+
+Emitted when the chain is EVM compatible. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+event SetIsWormholeEvmChain(uint16 chainId, bool isEvm)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to set.
+
+    ---
+
+    `isEvm` ++"bool"++
+
+    A boolean indicating whether relaying is enabled.
+
+### SetIsWormholeRelayingEnabled
+
+Emitted when relaying is enabled for the given chain. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+event SetIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to set.
+
+    ---
+
+    `isRelayingEnabled` ++"bool"++
+
+    A boolean indicating whether relaying is enabled.
+
+### SetWormholePeer
+
+Emitted when a peer transceiver is set. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+event SetWormholePeer(uint16 chainId, bytes32 peerContract)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID of the peer.
+
+    ---
+
+    `peerContract` ++"bytes32"++
+
+    The address of the peer contract.
+
+## Functions
+
+### encodeWormholeTransceiverInstruction
+
+Encodes the `WormholeTransceiverInstruction` into a byte array. *(Defined in WormholeTransceiver.sol)*
+
+```sol
+function encodeWormholeTransceiverInstruction(
+    WormholeTransceiverInstruction memory instruction
+) external pure returns (bytes memory)
+```
+
+??? interface "Parameters"
+
+    `instruction` ++"WormholeTransceiverInstruction"++
+
+    The `WormholeTransceiverInstruction` to encode.
+
+    ??? child "`WormholeTransceiverInstruction` type"
+
+        `shouldSkipRelayerSend` ++"bool"++
+
+        Whether to skip delivery via the relayer.
+
+??? interface "Returns"
+
+    `encoded` ++"bytes"++
+
+    The encoded instruction.
+
+### getMigratesImmutables
+
+Returns whether the contract migrates immutables during upgrades. *(Defined in Implementation.sol)*
+
+```sol
+function getMigratesImmutables() public view returns (bool)
+```
+
+??? interface "Returns"
+
+    `migratesImmutables` ++"bool"++
+
+    Whether the contract migrates immutables.
+
+### getNttManagerOwner
+
+Returns the owner address of the NTT Manager that this transceiver is related to. *(Defined in Transceiver.sol)*
+
+```sol
+function getNttManagerOwner() external view returns (address)
+```
+
+??? interface "Returns"
+
+    `owner` ++"address"++
+
+    The owner address of the NTT Manager.
+
+### getNttManagerToken
+
+Returns the address of the token associated with this NTT deployment. *(Defined in Transceiver.sol)*
+
+```sol
+function getNttManagerToken() external view returns (address)
+```
+
+??? interface "Returns"
+
+    `token` ++"address"++
+
+    The address of the token.
+
+### getTransceiverType
+
+Returns the string type of the transceiver. *(Defined in WormholeTransceiver.sol)*
+
+```sol
+function getTransceiverType() external pure returns (string memory)
+```
+
+??? interface "Returns"
+
+    `transceiverType` ++"string"++
+
+    The type of the transceiver (e.g., "wormhole").
+
+### getWormholePeer
+
+Returns the peer contract address for a given chain. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function getWormholePeer(uint16 chainId) public view returns (bytes32)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to query.
+
+??? interface "Returns"
+
+    `peerContract` ++"bytes32"++
+
+    The address of the peer contract on the given chain.
+
+### initialize
+
+Initializes the contract implementation. Only callable through delegate call. *(Defined in Implementation.sol)*
+
+```sol
+function initialize() external payable
+```
+
+### isPaused
+
+Returns whether the contract is currently paused. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+function isPaused() public view returns (bool)
+```
+
+??? interface "Returns"
+
+    `paused` ++"bool"++
+
+    Whether the contract is paused.
+
+### isSpecialRelayingEnabled
+
+Returns whether special relaying is enabled for a given chain. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function isSpecialRelayingEnabled(uint16 chainId) public view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to query.
+
+??? interface "Returns"
+
+    `isEnabled` ++"bool"++
+
+    Whether special relaying is enabled.
+
+### isVAAConsumed
+
+Returns whether a VAA has been consumed. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function isVAAConsumed(bytes32 hash) public view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `hash` ++"bytes32"++
+
+    The hash of the VAA.
+
+??? interface "Returns"
+
+    `consumed` ++"bool"++
+
+    Whether the VAA has been consumed.
+
+### isWormholeEvmChain
+
+Returns whether a chain is EVM compatible. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function isWormholeEvmChain(uint16 chainId) public view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to query.
+
+??? interface "Returns"
+
+    `isEvm` ++"bool"++
+
+    Whether the chain is EVM compatible.
+
+### isWormholeRelayingEnabled
+
+Returns whether relaying is enabled for a given chain. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function isWormholeRelayingEnabled(uint16 chainId) public view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID to query.
+
+??? interface "Returns"
+
+    `isEnabled` ++"bool"++
+
+    Whether relaying is enabled.
+
+### migrate
+
+Migrates the contract to a new implementation. Only callable during upgrades through delegate call. *(Defined in Implementation.sol)*
+
+```sol
+function migrate() external
+```
+
+### parseWormholeTransceiverInstruction
+
+Parses the encoded instruction and returns the instruction struct. *(Defined in WormholeTransceiver.sol)*
+
+```sol
+function parseWormholeTransceiverInstruction(
+    bytes memory encoded
+) external pure returns (WormholeTransceiverInstruction memory instruction)
+```
+
+??? interface "Parameters"
+
+    `encoded` ++"bytes"++
+
+    The encoded instruction.
+
+??? interface "Returns"
+
+    `instruction` ++"WormholeTransceiverInstruction"++
+
+    The parsed `WormholeTransceiverInstruction`.
+
+    ??? child "`WormholeTransceiverInstruction` type"
+
+        `shouldSkipRelayerSend` ++"bool"++
+
+        Whether to skip delivery via the relayer.
+
+### quoteDeliveryPrice
+
+Fetch the delivery price for a given recipient chain transfer. *(Defined in Transceiver.sol)*
+
+```sol
+function quoteDeliveryPrice(
+    uint16 recipientChain,
+    TransceiverStructs.TransceiverInstruction memory instruction
+) external view returns (uint256)
+```
+
+??? interface "Parameters"
+
+    `recipientChain` ++"uint16"++
+
+    The Wormhole chain ID of the target chain.
+
+    ---
+
+    `instruction` ++"TransceiverStructs.TransceiverInstruction"++
+
+    An additional Instruction provided by the Transceiver to be executed on the recipient chain.
+
+    ??? child "`TransceiverInstruction` type"
+
+        `index` ++"uint8"++
+
+        The index of the transceiver.
+        
+        ---
+
+        `payload` ++"bytes"++
+
+        The instruction payload.
+
+??? interface "Returns"
+
+    `deliveryPrice` ++"uint256"++
+
+    The cost of delivering a message to the recipient chain, in this chain's native token.
+
+### owner
+
+Returns the address of the current owner. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+function owner() public view returns (address)
+```
+
+??? interface "Returns"
+
+    `owner` ++"address"++
+
+    The address of the current owner.
+
+### pauser
+
+Returns the address of the current pauser. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+function pauser() public view returns (address)
+```
+
+??? interface "Returns"
+
+    `pauser` ++"address"++
+
+    The address of the current pauser.
+
+### receiveMessage
+
+Receive an attested message from the verification layer. *(Defined in WormholeTransceiver.sol)*
+
+```sol
+function receiveMessage(bytes memory encodedMessage) external
+```
+
+??? interface "Parameters"
+
+    `encodedMessage` ++"bytes"++
+
+    The attested message.
+
+> **Emits**: `ReceivedMessage`
+
+### receiveWormholeMessages
+
+Receives and processes Wormhole messages via the relayer. Only callable by the relayer. *(Defined in WormholeTransceiver.sol)*
+
+```sol
+function receiveWormholeMessages(
+    bytes memory payload,
+    bytes[] memory additionalMessages,
+    bytes32 sourceAddress,
+    uint16 sourceChain,
+    bytes32 deliveryHash
+) external payable
+```
+
+??? interface "Parameters"
+
+    `payload` ++"bytes"++
+
+    The message payload.
+
+    ---
+
+    `additionalMessages` ++"bytes[]"++
+
+    Additional messages array.
+
+    ---
+
+    `sourceAddress` ++"bytes32"++
+
+    The source address of the message.
+
+    ---
+
+    `sourceChain` ++"uint16"++
+
+    The source chain ID.
+
+    ---
+
+    `deliveryHash` ++"bytes32"++
+
+    The delivery hash.
+
+> **Emits**: `ReceivedRelayedMessage`
+
+### sendMessage
+
+Send a message to another chain. *(Defined in Transceiver.sol)*
+
+```sol
+function sendMessage(
+    uint16 recipientChain,
+    TransceiverStructs.TransceiverInstruction memory instruction,
+    bytes memory nttManagerMessage,
+    bytes32 recipientNttManagerAddress,
+    bytes32 refundAddress
+) external payable
+```
+
+??? interface "Parameters"
+
+    `recipientChain` ++"uint16"++
+
+    The Wormhole chain ID of the recipient.
+
+    ---
+
+    `instruction` ++"TransceiverStructs.TransceiverInstruction"++
+
+    An additional Instruction provided by the Transceiver to be executed on the recipient chain.
+
+    ??? child "`TransceiverInstruction` type"
+
+        `index` ++"uint8"++
+
+        The index of the transceiver.
+        
+        ---
+
+        `payload` ++"bytes"++
+
+        The instruction payload.
+
+    ---
+
+    `nttManagerMessage` ++"bytes"++
+
+    A message to be sent to the nttManager on the recipient chain.
+
+    ---
+
+    `recipientNttManagerAddress` ++"bytes32"++
+
+    The Wormhole formatted address of the peer NTT Manager on the recipient chain.
+
+    ---
+
+    `refundAddress` ++"bytes32"++
+
+    The Wormhole formatted address of the refund recipient.
+
+> **Emits**: `SendTransceiverMessage`, `RelayingInfo`
+
+### setIsSpecialRelayingEnabled
+
+Set whether special relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function setIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled) external
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The Wormhole chain ID to set.
+
+    ---
+
+    `isRelayingEnabled` ++"bool"++
+
+    A boolean indicating whether special relaying is enabled.
+
+> **Emits**: `SetIsSpecialRelayingEnabled`
+
+### setIsWormholeEvmChain
+
+Set whether the chain is EVM compatible. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function setIsWormholeEvmChain(uint16 chainId, bool isEvm) external
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The Wormhole chain ID to set.
+
+    ---
+
+    `isEvm` ++"bool"++
+
+    A boolean indicating whether the chain is an EVM chain.
+
+> **Emits**: `SetIsWormholeEvmChain`
+
+### setIsWormholeRelayingEnabled
+
+Set whether Wormhole relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function setIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled) external
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The Wormhole chain ID to set.
+
+    ---
+
+    `isRelayingEnabled` ++"bool"++
+
+    A boolean indicating whether relaying is enabled.
+
+> **Emits**: `SetIsWormholeRelayingEnabled`
+
+### setWormholePeer
+
+Set the Wormhole peer contract for the given chain. *(Defined in WormholeTransceiverState.sol)*
+
+```sol
+function setWormholePeer(uint16 chainId, bytes32 peerContract) external payable
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The Wormhole chain ID of the peer to set.
+
+    ---
+
+    `peerContract` ++"bytes32"++
+
+    The address of the peer contract on the given chain.
+
+> **Emits**: `SetWormholePeer`
+
+### transferOwnership
+
+Transfers ownership of the contract to a new account. Can only be called by the current owner. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+function transferOwnership(address newOwner) public
+```
+
+??? interface "Parameters"
+
+    `newOwner` ++"address"++
+
+    The address of the new owner.
+
+> **Emits**: `OwnershipTransferred`
+
+### transferPauserCapability
+
+Transfers the ability to pause to a new account. *(Defined in PausableOwnable.sol)*
+
+```sol
+function transferPauserCapability(address newPauser) public
+```
+
+??? interface "Parameters"
+
+    `newPauser` ++"address"++
+
+    The address of the new pauser.
+
+> **Emits**: `PauserTransferred`
+
+### transferTransceiverOwnership
+
+Transfers the ownership of the transceiver to a new address. *(Defined in Transceiver.sol)*
+
+```sol
+function transferTransceiverOwnership(address newOwner) external
+```
+
+??? interface "Parameters"
+
+    `newOwner` ++"address"++
+
+    The address of the new owner.
+
+> **Emits**: `OwnershipTransferred`
+
+### upgrade
+
+Upgrades the transceiver to a new implementation. *(Defined in Transceiver.sol)*
+
+```sol
+function upgrade(address newImplementation) external
+```
+
+??? interface "Parameters"
+
+    `newImplementation` ++"address"++
+
+    The address of the new implementation contract.
+
+## Errors
+
+### CallerNotNttManager
+
+The caller is not the NttManager. *(Defined in ITransceiver.sol)*
+
+```sol
+error CallerNotNttManager(address caller);
+```
+
+??? interface "Parameters"
+
+    `caller` ++"address"++
+
+    The address of the caller.
+
+### CallerNotRelayer
+
+The caller is not the relayer. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error CallerNotRelayer(address caller);
+```
+
+??? interface "Parameters"
+
+    `caller` ++"address"++
+
+    The caller.
+
+### CannotRenounceTransceiverOwnership
+
+Error when trying renounce transceiver ownership. *(Defined in ITransceiver.sol)*
+
+```sol
+error CannotRenounceTransceiverOwnership(address currentOwner);
+```
+
+??? interface "Parameters"
+
+    `currentOwner` ++"address"++
+
+    The current owner of the transceiver.
+
+### CannotTransferTransceiverOwnership
+
+Error when trying to transfer transceiver ownership. *(Defined in ITransceiver.sol)*
+
+```sol
+error CannotTransferTransceiverOwnership(address currentOwner, address newOwner);
+```
+
+??? interface "Parameters"
+
+    `currentOwner` ++"address"++
+
+    The current owner of the transceiver.
+
+    ---
+
+    `newOwner` ++"address"++
+
+    The new owner of the transceiver.
+
+### InvalidPauser
+
+The pauser is not a valid pauser account. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+error InvalidPauser(address account);
+```
+
+??? interface "Parameters"
+
+    `account` ++"address"++
+
+    The invalid pauser account.
+
+### InvalidRelayingConfig
+
+Error when the relaying configuration is invalid. *(Defined in IWormholeTransceiver.sol)*
+
+```sol
+error InvalidRelayingConfig(uint16 chainId);
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID that is invalid.
+
+### InvalidVaa
+
+Error if the VAA is invalid. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error InvalidVaa(string reason);
+```
+
+??? interface "Parameters"
+
+    `reason` ++"string"++
+
+    The reason the VAA is invalid.
+
+### InvalidWormholeChainIdZero
+
+The chain ID cannot be zero. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error InvalidWormholeChainIdZero();
+```
+
+### InvalidWormholePeer
+
+Error when the peer transceiver is invalid. *(Defined in IWormholeTransceiver.sol)*
+
+```sol
+error InvalidWormholePeer(uint16 chainId, bytes32 peerAddress);
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID of the peer.
+
+    ---
+
+    `peerAddress` ++"bytes32"++
+
+    The address of the invalid peer.
+
+### InvalidWormholePeerZeroAddress
+
+Error the peer contract cannot be the zero address. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error InvalidWormholePeerZeroAddress();
+```
+
+### NotMigrating
+
+The contract is not currently migrating. *(Defined in Implementation.sol)*
+
+```sol
+error NotMigrating();
+```
+
+### OnlyDelegateCall
+
+Function can only be called through delegate call. *(Defined in Implementation.sol)*
+
+```sol
+error OnlyDelegateCall();
+```
+
+### OwnableInvalidOwner
+
+The owner is not a valid owner account. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+error OwnableInvalidOwner(address owner);
+```
+
+??? interface "Parameters"
+
+    `owner` ++"address"++
+
+    The invalid owner address.
+
+### OwnableUnauthorizedAccount
+
+The caller account is not authorized to perform an operation. *(Defined in OwnableUpgradeable.sol)*
+
+```sol
+error OwnableUnauthorizedAccount(address account);
+```
+
+??? interface "Parameters"
+
+    `account` ++"address"++
+
+    The unauthorized account.
+
+### RequireContractIsNotPaused
+
+Contract is not paused, functionality is unblocked. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+error RequireContractIsNotPaused();
+```
+
+### RequireContractIsPaused
+
+Contract state is paused, blocking functionality. *(Defined in PausableUpgradeable.sol)*
+
+```sol
+error RequireContractIsPaused();
+```
+
+### PeerAlreadySet
+
+Error if the peer has already been set. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error PeerAlreadySet(uint16 chainId, bytes32 peerAddress);
+```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    The chain ID of the peer.
+
+    ---
+
+    `peerAddress` ++"bytes32"++
+
+    The address of the peer.
+
+### UnexpectedAdditionalMessages
+
+Additional messages are not allowed. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error UnexpectedAdditionalMessages();
+```
+--- END CONTENT ---
+
+Doc-Content: https://wormhole.com/docs/products/native-token-transfers/reference/transceivers/solana/
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Transceiver Program (Solana)
+description: The NTT Transceiver program handles message transmission and verification across chains as part of the Native Token Transfers protocol on Solana.
+categories: NTT, Transfer
+---
+
+# Transceivers Program Reference (Solana)
+
+The NTT Transceiver program is responsible for sending and receiving messages between chains as part of the NTT protocol on Solana. It supports multiple verification methods and operates alongside the NTT Manager program to enable cross-chain token transfers.
+
+## Structure Overview
+
+The NTT Transceiver system on Solana is implemented as a standalone Anchor program that provides Wormhole-based message verification and relay capabilities. The transceiver acts as a bridge between the NTT Manager and the Wormhole protocol, handling cross-chain message transmission and verification.
+
+```text
+NTT Transceiver Program
+├── Wormhole Integration
+│   ├── Message Transmission
+│   ├── Message Reception & Verification  
+│   ├── Peer Management
+│   └── Broadcasting Capabilities
+├── Admin Functions
+└── Message Processing
+```
+
+**Key Components:**
+
+- **NTT Transceiver Program**: Transmits, receives, and verifies NTT messages between chains, integrating with the Wormhole messaging layer.
+- **Wormhole Integration**: Enables native message transmission, reception, and verification using the Wormhole protocol.
+- **Administrative Functions**: Provides interfaces for setting up peer configurations and managing broadcast behavior.
+- **Message Processing**: Automatically processes inbound and outbound messages and forwards valid messages to the NTT Manager.
+
+## Instructions
+
+### broadcast_wormhole_id
+
+Broadcasts the transceiver ID via Wormhole to announce presence on the network. *(Defined in ntt-transceiver)*
+
+```rust
+pub fn broadcast_wormhole_id(ctx: Context<BroadcastId>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for the broadcast transaction.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The NTT Manager configuration account.
+
+    ---
+
+    `mint` ++"InterfaceAccount<Mint>"++
+
+    The mint account for the managed token.
+
+    ---
+
+    `wormhole_bridge` ++"mut Account<BridgeData>"++
+
+    The Wormhole bridge data account.
+
+    ---
+
+    `wormhole_message` ++"mut Signer"++
+
+    The Wormhole message account to create.
+
+    ---
+
+    `wormhole_emitter` ++"Account<EmitterData>"++
+
+    The Wormhole emitter account.
+
+    ---
+
+    `wormhole_sequence` ++"mut Account<SequenceData>"++
+
+    The Wormhole sequence tracking account.
+
+    ---
+
+    `wormhole_fee_collector` ++"mut Account<FeeCollectorData>"++
+
+    The Wormhole fee collector account.
+
+    ---
+
+    `clock` ++"Sysvar<Clock>"++
+
+    The clock sysvar.
+
+    ---
+
+    `rent` ++"Sysvar<Rent>"++
+
+    The rent sysvar.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+    ---
+
+    `ntt_program` ++"Program<NttProgram>"++
+
+    The NTT Manager program.
+
+    ---
+
+    `wormhole_program` ++"Program<WormholeProgram>"++
+
+    The Wormhole core bridge program.
+
+### broadcast_wormhole_peer
+
+Broadcasts peer transceiver information via Wormhole. *(Defined in ntt-transceiver)*
+
+```rust
+pub fn broadcast_wormhole_peer(
+    ctx: Context<BroadcastPeer>,
+    args: BroadcastPeerArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"BroadcastPeerArgs"++
+
+    The broadcast peer arguments.
+
+    ??? child "`BroadcastPeerArgs` type"
+
+        `chain_id` ++"ChainId"++
+
+        The chain ID to broadcast peer information for.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for the broadcast transaction.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The NTT Manager configuration account.
+
+    ---
+
+    `peer` ++"Account<WormholeTransceiverPeer>"++
+
+    The peer transceiver account containing peer information.
+
+    ---
+
+    `wormhole_bridge` ++"mut Account<BridgeData>"++
+
+    The Wormhole bridge data account.
+
+    ---
+
+    `wormhole_message` ++"mut Signer"++
+
+    The Wormhole message account to create.
+
+    ---
+
+    `wormhole_emitter` ++"Account<EmitterData>"++
+
+    The Wormhole emitter account.
+
+    ---
+
+    `wormhole_sequence` ++"mut Account<SequenceData>"++
+
+    The Wormhole sequence tracking account.
+
+    ---
+
+    `wormhole_fee_collector` ++"mut Account<FeeCollectorData>"++
+
+    The Wormhole fee collector account.
+
+    ---
+
+    `clock` ++"Sysvar<Clock>"++
+
+    The clock sysvar.
+
+    ---
+
+    `rent` ++"Sysvar<Rent>"++
+
+    The rent sysvar.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+    ---
+
+    `ntt_program` ++"Program<NttProgram>"++
+
+    The NTT Manager program.
+
+    ---
+
+    `wormhole_program` ++"Program<WormholeProgram>"++
+
+    The Wormhole core bridge program.
+
+### receive_wormhole_message
+
+Receives and processes an inbound message from Wormhole. *(Defined in ntt-transceiver)*
+
+```rust
+pub fn receive_wormhole_message(ctx: Context<ReceiveMessage>) -> Result<()>
+```
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for message processing.
+
+    ---
+
+    `config` ++"mut Account<Config>"++
+
+    The NTT Manager configuration account.
+
+    ---
+
+    `peer` ++"Account<WormholeTransceiverPeer>"++
+
+    The peer transceiver account for verification.
+
+    ---
+
+    `vaa` ++"Account<PostedVaa<TransceiverMessage>>"++
+
+    The verified VAA (Verifiable Action Approval) containing the message.
+
+    ---
+
+    `transceiver_message` ++"mut UncheckedAccount"++
+
+    The transceiver message account to create.
+
+    ---
+
+    `ntt_program` ++"Program<NttProgram>"++
+
+    The NTT Manager program.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+### release_wormhole_outbound
+
+Releases an outbound message via Wormhole. *(Defined in ntt-transceiver)*
+
+```rust
+pub fn release_wormhole_outbound(
+    ctx: Context<ReleaseOutbound>,
+    args: ReleaseOutboundArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"ReleaseOutboundArgs"++
+
+    The release outbound arguments.
+
+    ??? child "`ReleaseOutboundArgs` type"
+
+        `recipient_chain` ++"ChainId"++
+
+        The chain ID of the recipient chain.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for the release transaction.
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The NTT Manager configuration account.
+
+    ---
+
+    `outbox_item` ++"mut Account<OutboxItem>"++
+
+    The outbox item to be released.
+
+    ---
+
+    `registered_transceiver` ++"Account<RegisteredTransceiver>"++
+
+    The registered transceiver account.
+
+    ---
+
+    `transceiver_message` ++"mut UncheckedAccount"++
+
+    The transceiver message account to create.
+
+    ---
+
+    `wormhole_bridge` ++"mut Account<BridgeData>"++
+
+    The Wormhole bridge data account.
+
+    ---
+
+    `wormhole_message` ++"mut Signer"++
+
+    The Wormhole message account to create.
+
+    ---
+
+    `wormhole_emitter` ++"Account<EmitterData>"++
+
+    The Wormhole emitter account.
+
+    ---
+
+    `wormhole_sequence` ++"mut Account<SequenceData>"++
+
+    The Wormhole sequence tracking account.
+
+    ---
+
+    `wormhole_fee_collector` ++"mut Account<FeeCollectorData>"++
+
+    The Wormhole fee collector account.
+
+    ---
+
+    `clock` ++"Sysvar<Clock>"++
+
+    The clock sysvar.
+
+    ---
+
+    `rent` ++"Sysvar<Rent>"++
+
+    The rent sysvar.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+    ---
+
+    `ntt_program` ++"Program<NttProgram>"++
+
+    The NTT Manager program.
+
+    ---
+
+    `wormhole_program` ++"Program<WormholeProgram>"++
+
+    The Wormhole core bridge program.
+
+### set_wormhole_peer
+
+Sets or updates a peer transceiver on another chain. *(Defined in ntt-transceiver)*
+
+```rust
+pub fn set_wormhole_peer(
+    ctx: Context<SetTransceiverPeer>,
+    args: SetTransceiverPeerArgs
+) -> Result<()>
+```
+
+??? interface "Parameters"
+
+    `args` ++"SetTransceiverPeerArgs"++
+
+    The transceiver peer arguments.
+
+    ??? child "`SetTransceiverPeerArgs` type"
+
+        `chain_id` ++"ChainId"++
+
+        The chain ID of the peer.
+
+        ---
+
+        `address` ++"[u8; 32]"++
+
+        The address of the peer transceiver.
+
+??? interface "Accounts"
+
+    `payer` ++"mut Signer"++
+
+    The account paying for peer configuration.
+
+    ---
+
+    `owner` ++"Signer"++
+
+    The owner of the NTT Manager (must authorize peer changes).
+
+    ---
+
+    `config` ++"Account<Config>"++
+
+    The NTT Manager configuration account.
+
+    ---
+
+    `peer` ++"mut Account<WormholeTransceiverPeer>"++
+
+    The peer account to create or update.
+
+    ---
+
+    `system_program` ++"Program<System>"++
+
+    The system program.
+
+    ---
+
+    `ntt_program` ++"Program<NttProgram>"++
+
+    The NTT Manager program.
+
+### transceiver_type
+
+Returns the type identifier for this transceiver. *(Defined in ntt-transceiver)*
+
+```rust
+pub fn transceiver_type(_ctx: Context<TransceiverType>) -> Result<String>
+```
+
+??? interface "Returns"
+
+    `transceiver_type` ++"String"++
+
+    The transceiver type identifier ("wormhole").
+
+??? interface "Accounts"
+
+    No accounts required (empty context).
+
+## Data Structures
+
+### WormholeTransceiverPeer
+
+Stores information about a peer transceiver on another chain. *(Defined in peer.rs)*
+
+```rust
+pub struct WormholeTransceiverPeer {
+    pub bump: u8,
+    pub chain_id: ChainId,
+    pub address: [u8; 32],
+}
+```
+
+??? interface "Fields"
+
+    `bump` ++"u8"++
+
+    The canonical bump for the peer account.
+
+    ---
+
+    `chain_id` ++"ChainId"++
+
+    The chain ID of the peer.
+
+    ---
+
+    `address` ++"[u8; 32]"++
+
+    The address of the peer transceiver.
+
+### TransceiverMessage
+
+The message format used for cross-chain communication. *(Defined in messages.rs)*
+
+```rust
+pub struct TransceiverMessage<P> {
+    pub source_ntt_manager: [u8; 32],
+    pub recipient_ntt_manager: [u8; 32],
+    pub ntt_manager_payload: P,
+    pub transceiver_payload: Vec<u8>,
+}
+```
+
+??? interface "Fields"
+
+    `source_ntt_manager` ++"[u8; 32]"++
+
+    The address of the source NTT Manager.
+
+    ---
+
+    `recipient_ntt_manager` ++"[u8; 32]"++
+
+    The address of the recipient NTT Manager.
+
+    ---
+
+    `ntt_manager_payload` ++"P"++
+
+    The payload specific to the NTT Manager.
+
+    ---
+
+    `transceiver_payload` ++"Vec<u8>"++
+
+    Additional payload specific to the transceiver.
+
+### ChainId
+
+A Wormhole chain identifier. *(Defined in ntt-messages)*
+
+```rust
+pub struct ChainId {
+    pub id: u16,
+}
+```
+
+??? interface "Fields"
+
+    `id` ++"u16"++
+
+    The numeric chain ID.
+
+### BroadcastPeerArgs
+
+Arguments for broadcasting peer information. *(Defined in broadcast_peer.rs)*
+
+```rust
+pub struct BroadcastPeerArgs {
+    pub chain_id: ChainId,
+}
+```
+
+??? interface "Fields"
+
+    `chain_id` ++"ChainId"++
+
+    The chain ID to broadcast peer information for.
+
+### ReleaseOutboundArgs
+
+Arguments for releasing outbound messages. *(Defined in release_outbound.rs)*
+
+```rust
+pub struct ReleaseOutboundArgs {
+    pub recipient_chain: ChainId,
+}
+```
+
+??? interface "Fields"
+
+    `recipient_chain` ++"ChainId"++
+
+    The chain ID of the recipient chain.
+
+### SetTransceiverPeerArgs
+
+Arguments for setting transceiver peers. *(Defined in admin.rs)*
+
+```rust
+pub struct SetTransceiverPeerArgs {
+    pub chain_id: ChainId,
+    pub address: [u8; 32],
+}
+```
+
+??? interface "Fields"
+
+    `chain_id` ++"ChainId"++
+
+    The chain ID of the peer.
+
+    ---
+
+    `address` ++"[u8; 32]"++
+
+    The address of the peer transceiver.
+
+## Constants
+
+### TRANSCEIVER_TYPE
+
+The type identifier for this transceiver implementation. *(Defined in lib.rs)*
+
+```rust
+pub const TRANSCEIVER_TYPE: &str = "wormhole";
+```
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/overview/
