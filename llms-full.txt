@@ -161,9 +161,9 @@ categories: Transfer, CCTP
 
 [Wormhole CCTP](/docs/products/cctp-bridge/overview/){target=\_blank} enables native USDC transfers between supported chains by burning tokens on the source chain and minting them on the destination. This provides native, canonical USDC movement without the need for wrapped tokens.
 
-In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual cross-chain USDC transfer using Circle's CCTP protocol.
+In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform an automatic cross-chain USDC transfer using Circle's CCTP protocol.
 
-You will initiate the transfer on the source chain, wait for Circle's attestation, and redeem the USDC on the destination chain.
+You will initiate the transfer on the source chain, and Wormhole's relayer will automatically handle Circle's attestation and redemption steps to complete the transfer on the destination chain.
 
 ## Prerequisites
 
@@ -204,7 +204,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
 
 ## Perform a CCTP Transfer
 
-This section walks you through a complete manual USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, wait for the Circle attestation, and complete the redemption on Sepolia.
+This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on Sepolia.
 
 Start by defining utility functions for signer and token setup:
 
@@ -268,10 +268,10 @@ export async function getSigner<n c="" chain="" extends="" network,="">(
 </n,></c></n,></n,></n,></n>
     ```
 
-2. In `transfer.ts`, add the script to perform the manual transfer using CCTP:
+2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP:
 
     ```ts title="transfer.ts"
-    import { CircleTransfer, wormhole } from '@wormhole-foundation/sdk';
+    import { wormhole, amount } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import sui from '@wormhole-foundation/sdk/sui';
@@ -289,41 +289,29 @@ import { getSigner } from './helper';
   const source = await getSigner(sendChain);
   const destination = await getSigner(rcvChain);
 
-  // Define the amount of USDC to transfer (in the smallest unit, so 0.1 USDC = 100,000 units assuming 6 decimals)
-  const amt = 100_000n;
+  // Define the amount of USDC to transfer (in the smallest unit, so 1.000001 USDC = 1,000,001 units assuming 6 decimals)
+  const amt = 1_000_001n;
 
-  const automatic = false;
+  // Whether to use automatic delivery
+  const automatic = true;
+
+  // The amount of native gas to send with the transfer
+  const nativeGas = amount.units(amount.parse('0.1', 6));
 
   // Create the circleTransfer transaction (USDC-only)
   const xfer = await wh.circleTransfer(
     amt,
     source.address,
     destination.address,
-    automatic
+    automatic,
+    undefined,
+    nativeGas
   );
 
-  const quote = await CircleTransfer.quoteTransfer(
-    sendChain,
-    rcvChain,
-    xfer.transfer
-  );
-  console.log('Quote: ', quote);
-
-  // Step 1: Initiate the transfer on the source chain (Avalanche)
+  // Initiate the transfer on the source chain (Avalanche)
   console.log('Starting Transfer');
   const srcTxids = await xfer.initiateTransfer(source.signer);
   console.log(`Started Transfer: `, srcTxids);
-
-  // Step 2: Wait for Circle Attestation (VAA)
-  const timeout = 120 * 1000; // Timeout in milliseconds (120 seconds)
-  console.log('Waiting for Attestation');
-  const attestIds = await xfer.fetchAttestation(timeout);
-  console.log(`Got Attestation: `, attestIds);
-
-  // Step 3: Complete the transfer on the destination chain (Sepolia)
-  console.log('Completing Transfer');
-  const dstTxids = await xfer.completeTransfer(destination.signer);
-  console.log(`Completed Transfer: `, dstTxids);
 
   process.exit(0);
 })();
@@ -340,19 +328,8 @@ import { getSigner } from './helper';
     <div data-termynal="" id="termynal">
 <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
 <span data-ty="">Starting Transfer</span>
-<span data-ty="">Started Transfer: 
-        [ '0xdedbf496a1e658efb15bc57f120122b38a3714a560892be7a8c0a7f23c44aca2',
-		'0x9a8e41837e225edfa62d1913f850c01bd0552e55bf082fd9225df789455a465a' ]</span>
-<span data-ty=""> </span>
-<span data-ty="">Waiting for Attestation</span>
-<span data-ty="">Retrying Circle:GetAttestation, attempt 0/60</span>
-<span data-ty="">Retrying Circle:GetAttestation, attempt 1/60</span>
-<span data-ty=""> </span>
-<span data-ty="">Got Attestation: [{hash: '0x89f8651bf94cfd932ba5bcd2f7795a3fabc6a7c602075fa712c9c55022f5cca8'}]</span>
-<span data-ty=""> </span>
-<span data-ty="">Completing Transfer</span>
-<span data-ty="">Completed Transfer: 
-        [ '0x9b81bb30d2a68aa2ecc707a8a1b5af63448223a69b2ead6cf6d172ab880ad0c9']</span>
+<span data-ty="">Started Transfer:
+        [ '0xa3a545e65865c95f814132ac689c2ff5a20bfa3ca3d68bab48230708de342841']</span>
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
@@ -4644,6 +4621,85 @@ const config: WormholeConnectConfig = {
 };
 ```
 
+### Configuring Native Token Transfers (NTT)
+
+Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+
+To enable NTT in your app, follow these steps:
+
+ 1. Add NTT routes to the `routes` array by calling `nttRoutes(...)` with your token deployment config using the spread operator. This sets up the route logic for native token transfers.
+ 2. Provide token metadata for each of the tokens listed in `nttRoutes` in the [`tokensConfig`](#custom-tokens) object. These entries must include `symbol`, `decimals`, and the `tokenId`.
+
+```typescript
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
+import { nttRoutes } from '@wormhole-foundation/wormhole-connect/ntt';
+
+const wormholeConfig: config.WormholeConnectConfig = {
+  network: 'Testnet',
+  chains: ['Solana', 'BaseSepolia'],
+  tokens: ['WSV'],
+  ui: {
+    title: 'Wormhole NTT UI',
+    defaultInputs: {
+      fromChain: 'Solana',
+      toChain: 'BaseSepolia',
+    },
+  },
+  routes: [
+    ...nttRoutes({
+      tokens: {
+        WSV_NTT: [
+          {
+            chain: 'Solana',
+            manager: 'nMxHx1o8GUg2pv99y8JAQb5RyWNqDWixbxWCaBcurQx',
+            token: '2vLDzr7hUpLFHQotmR8EPcMTWczZUwCK31aefAzumkmv',
+            transceiver: [
+              {
+                address: 'AjL3f9FMHJ8VkNUHZqLYxa5aFy3aTN6LUWMv4qmdf5PN',
+                type: 'wormhole',
+              },
+            ],
+          },
+          {
+            chain: 'BaseSepolia',
+            manager: '0xaE02Ff9C3781C5BA295c522fB469B87Dc5EE9205',
+            token: '0xb8dccDA8C166172159F029eb003d5479687452bD',
+            transceiver: [
+              {
+                address: '0xF4Af1Eac8995766b54210b179A837E3D59a9F146',
+                type: 'wormhole',
+              },
+            ],
+          },
+        ],
+      },
+    }),
+  ],
+  tokensConfig: {
+    WSVsol: {
+      symbol: 'WSV',
+      tokenId: {
+        chain: 'Solana',
+        address: '2vLDzr7hUpLFHQotmR8EPcMTWczZUwCK31aefAzumkmv',
+      },
+      icon: 'https://wormhole.com/token.png',
+      decimals: 9,
+    },
+    WSVbase: {
+      symbol: 'WSV',
+      tokenId: {
+        chain: 'BaseSepolia',
+        address: '0xb8dccDA8C166172159F029eb003d5479687452bD',
+      },
+      icon: 'https://wormhole.com/token.png',
+      decimals: 9,
+    },
+  },
+};
+```
+
+For a complete working example of NTT configuration in Wormhole Connect, see the [ntt-connect demo repository](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}.
+
 ### Whitelisting Tokens {: #whitelisting-tokens }
 
 Connect offers a list of built-in tokens by default. You can see it below:
@@ -4784,12 +4840,24 @@ function App() {
 
 Your selected blockchain network determines the available wallet options when using Wormhole Connect.
 
- - For EVM chains, wallets like MetaMask and Reown Cloud (formerly WalletConnect) are supported
- - For Solana, you'll see options such as Phantom, Torus, and Coin98
+ - For EVM chains, wallets like [MetaMask](https://metamask.io/){target=\_blank} and [Reown Cloud](https://reown.com/home){target=\_blank} (formerly WalletConnect) are supported
+ - For Solana, you'll see options such as [Phantom](https://phantom.com/){target=\_blank}, [Web3Auth](https://wallet.web3auth.io/){target=\_blank}, and [Coin98](https://coin98.com/){target=\_blank}
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
-If you would like to offer Reown Cloud (formerly WalletConnect) as a supported wallet option, you'll need to obtain a project ID on the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}.
+To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
+
+```typescript
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
+
+const wormholeConfig: config.WormholeConnectConfig = {
+  ...
+  walletConnectProjectId: 'INSERT_PROJECT_ID',
+};
+```
+
+!!! note
+    If the `walletConnectProjectId` is not set, Reown Cloud (WalletConnect) will be disabled from the available wallet list in the Connect UI.
 --- END CONTENT ---
 
 Doc-Content: https://wormhole.com/docs/products/connect/configuration/theme/
@@ -6051,7 +6119,7 @@ export default function Home() {
 
 ### Customize Connect
 
-To further customize Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
+To further customize Connect for your application, such as adjusting the UI, adding custom tokens, enabling Reown (formerly known as WalletConnect), or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}.
 
 ### Run the Application
 
@@ -12856,19 +12924,37 @@ For hub-and-spoke and Solana as the hubchain skip this section and proceed to [D
 
 Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
 
-Follow these steps to set the mint authority using the NTT CLI:
 
-1. **Derive the token authority** - generate the PDA, which will manage token minting
+Options to set the mint authority for your SPL token:
 
+**For undeployed programs:**
+
+- **Set to token authority PDA:**
+```bash
+ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+```
+
+- **Set to SPL Multisig:**
+    1. Create valid SPL Multisig:
     ```bash
-    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
+    ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
 
-2. **Set SPL token mint authority** - delegate minting control to the derived PDA 
-
+2. Set to created SPL Multisig:
     ```bash
-    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+    ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
+
+**For deployed programs:**
+
+- **Set to token authority PDA:**
+
+```bash
+ntt solana set-mint-authority --payer INSERT_KEYPAIR_JSON
+```
+
+!!! note
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
 
 ## Deploy and Configure NTT
 
@@ -13201,7 +13287,7 @@ The following table outlines post-deployment settings available on the NTT Manag
 
     ---
 
-    Check out an example project that uses a Vite-React TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
+    Check out an example project that uses a Next.js TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
 
     [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
 
