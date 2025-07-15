@@ -74,7 +74,7 @@ Since attestation is a one-time process, it is good practice when working with e
 2. Open `attest.ts` and add the following code:
     ```typescript title="attest.ts"
     --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:1:37'
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:120:126'
+    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:121:128'
     ```
 
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
@@ -104,7 +104,7 @@ Since attestation is a one-time process, it is good practice when working with e
 
 To create the attestation transaction on the source chain, open `attest.ts` and replace the "// Attestation flow code" comment with the following code:
 ```typescript title="attest.ts"
---8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:39:57'
+--8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:39:58'
 ```
 
 This code does the following:
@@ -129,7 +129,7 @@ Follow these steps to complete your attestation flow logic:
 
 1. Add the following code to `attest.ts`:
     ```typescript title="attest.ts"
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:58:122'
+    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:59:120'
     ```
 
 2. Run the script using the following command:

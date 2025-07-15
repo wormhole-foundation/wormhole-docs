@@ -34,7 +34,7 @@ async function attestToken() {
     console.log(
       '⚠️ Token is NOT registered on destination. Running attestation flow...'
     );
-    // Attestation flow code
+    // Attestation on the Source Chain flow code
     // Retrieve the token bridge context for the source chain
     // This is where you will send the transaction to attest the token
     const tb = await sourceChain.getTokenBridge();
@@ -55,6 +55,7 @@ async function attestToken() {
         sourceSigner.signer
       );
       console.log('✅ Attestation transaction sent:', txids);
+      // Attestation on the Destination Chain flow code
       // Parse the transaction to get Wormhole message ID
       const messages = await sourceChain.parseTransaction(txids[0].txid);
       console.log('✅ Attestation messages:', messages);
