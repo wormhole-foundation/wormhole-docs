@@ -1,7 +1,7 @@
 ---
 title: Flow of a Token Bridge Transfer
 description: Learn how the Wormhole Token Bridge enables secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Flow of a Transfer

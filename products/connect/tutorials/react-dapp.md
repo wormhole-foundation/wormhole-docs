@@ -71,7 +71,7 @@ Now, we need to modify the default `page.tsx` file to integrate Connect. We are 
 
 ### Customize Connect
 
-To further customize Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
+To further customize Connect for your application, such as adjusting the UI, adding custom tokens, enabling Reown (formerly known as WalletConnect), or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}.
 
 ### Run the Application
 

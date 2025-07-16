@@ -1,7 +1,7 @@
 ---
 title: Get Started with the TypeScript SDK
 description: Follow this guide to install the Wormhole TypeScript SDK, initialize a Wormhole instance, and add the platforms your integration supports. 
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # Get Started with the TypeScript SDK

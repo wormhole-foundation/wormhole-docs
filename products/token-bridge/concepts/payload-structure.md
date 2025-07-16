@@ -1,7 +1,7 @@
 ---
 title: Token Bridge Payload Structure
 description: Discover the structure and purpose of each Token Bridge payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
-categories: Token-Bridge, Transfers
+categories: Token Bridge, Transfers
 ---
 
 # Message and Payload Structure

@@ -1,7 +1,7 @@
 ---
 title: Portal Bridge FAQs
 description: Learn how to use deep-linking on Portal Bridge and send tokens to any wallet address with simple URL parameters and custom recipient fields.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # FAQs

@@ -153,19 +153,40 @@ For hub-and-spoke and Solana as the hubchain skip this section and proceed to [D
 
 Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
 
-Follow these steps to set the mint authority using the NTT CLI:
+Options to set the mint authority for your SPL token:
 
-1. **Derive the token authority**: Generate the PDA, which will manage token minting.
+**For undeployed programs:**
 
-    ```bash
-    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
-    ```
-
-2. **Set SPL token mint authority**: Delegate minting control to the derived PDA. 
+- **Set to token authority PDA:**
 
     ```bash
-    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+    ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
+
+- **Set to SPL Multisig:**
+
+    1. Create valid SPL Multisig:
+
+        ```bash
+        ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+        ```
+
+    2. Set to created SPL Multisig:
+
+        ```bash
+        ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+        ```
+
+**For deployed programs:**
+
+- **Set to token authority PDA:**
+
+    ```bash
+    ntt solana set-mint-authority --payer INSERT_KEYPAIR_JSON
+    ```
+
+!!! note
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
 
 ## Deploy and Configure NTT
 
