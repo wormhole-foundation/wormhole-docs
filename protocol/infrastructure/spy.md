@@ -14,11 +14,11 @@ This page provides a comprehensive guide to where the Spy fits within the Wormho
 
 ## Key Features
 
-- **Real-time monitoring of Wormhole messages** - the Spy allows users to observe Wormhole messages as they are published across supported chains in near real-time
-- **Filterable and observable message streams** - users can filter message streams by chain, emitter, and other criteria, making it easier to track specific contracts or categories of interest
-- **Integration-friendly event streaming** - the Spy exposes gRPC and WebSocket interfaces, making it easy to integrate message observation into custom tooling, dashboards, or indexing services
-- **Support for multiple message protocols** - it can observe messages from different Wormhole messaging protocols (Token Bridge, CCTP, NTT, etc.), providing broad coverage of cross-chain activity
-- **Lightweight and infrastructure-ready** - the Spy is designed to run as part of indexing or backend services, not requiring validator-level infrastructure
+- **Real-time monitoring of Wormhole messages**: The Spy allows users to observe Wormhole messages as they are published across supported chains in near real-time.
+- **Filterable and observable message streams**: Users can filter message streams by chain, emitter, and other criteria, making it easier to track specific contracts or categories of interest.
+- **Integration-friendly event streaming**: The Spy exposes gRPC and WebSocket interfaces, making it easy to integrate message observation into custom tooling, dashboards, or indexing services.
+- **Support for multiple message protocols**: It can observe messages from different Wormhole messaging protocols (Token Bridge, CCTP, NTT, etc.), providing broad coverage of cross-chain activity.
+- **Lightweight and infrastructure-ready**: The Spy is designed to run as part of indexing or backend services, not requiring validator-level infrastructure.
 
 ## Integrator Use Case
 
@@ -30,17 +30,17 @@ This monitoring capability is especially beneficial for applications that need i
 
 A Spy can access the following categories of messages shared over the gossip protocol:
 
-- [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} - packets of multichain data
+- **[Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank}**: Packets of multichain data.
 
-    - The Spy can detect whether a VAA has been approved by the Guardian Network, making it a valuable tool for applications needing real-time multichain verification
+    - The Spy can detect whether a VAA has been approved by the Guardian Network, making it a valuable tool for applications needing real-time multichain verification.
 
-- [Observations](/docs/products/reference/glossary/#observation){target=\_blank} - emitted by Wormhole's core contracts, observations are picked up by the Guardians and relayed across the network
+- **[Observations](/docs/products/reference/glossary/#observation){target=\_blank}**: Emitted by Wormhole's core contracts, observations are picked up by the Guardians and relayed across the network.
 
-    - A Spy allow users to monitor these messages, adding transparency and insight into blockchain events
+    - A Spy allow users to monitor these messages, adding transparency and insight into blockchain events.
 
-- [Guardian heartbeats](/docs/products/reference/glossary/#heartbeat){target=\_blank} - heartbeat messages represent Guardian node status 
+- **[Guardian heartbeats](/docs/products/reference/glossary/#heartbeat){target=\_blank}**: Heartbeat messages represent Guardian node status.
 
-    - By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network
+    - By monitoring heartbeats, a Spy can signal the liveness and connectivity of Guardians in the network.
 
 ## Additional Resources
 

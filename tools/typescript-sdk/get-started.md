@@ -111,8 +111,8 @@ Follow these steps to confirm that the SDK is initialized correctly and can fetc
 
 Before you begin, make sure you have the following:
 
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed
- - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed.
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed.
 
 ??? example "Project setup instructions"
  

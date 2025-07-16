@@ -62,14 +62,14 @@ sequenceDiagram
 Integrating Wormhole's messaging with CCTP enables the secure transfer of native USDC across blockchains, unlocking key cross-chain use cases, which include:
 
 - **USDC Payments Across Chains**
-    - [**CCTP**](/docs/products/cctp-bridge/get-started/): Transfer native USDC using Circle’s burn-and-mint protocol.
-    - [**Wormhole TypeScript SDK**](/docs/tools/typescript-sdk/sdk-reference/): Automate attestation delivery and gas handling.
-    - [**Connect**](/docs/products/connect/overview/): Embed multichain USDC transfers directly in your app.
+    - **[CCTP](/docs/products/cctp-bridge/get-started/)**: Transfer native USDC using Circle’s burn-and-mint protocol.
+    - **[Wormhole TypeScript SDK](/docs/tools/typescript-sdk/sdk-reference/)**: Automate attestation delivery and gas handling.
+    - **[Connect](/docs/products/connect/overview/)**: Embed multichain USDC transfers directly in your app.
 
 ## Next Steps
 
 Now that you're familiar with CCTP, here is a list of resources for more hands-on practice:
 
-- [**Get started with CCTP Bridge**](/docs/products/cctp-bridge/get-started/): Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
-- [**Complete USDC Transfer Flow**](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/): Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
-- [**Checkout Circle's CCTP Docs**](https://developers.circle.com/stablecoins/cctp-getting-started){target=\_blank}: Learn more about Circle's cross-chain transfer protocol in their documentation.
+- **[Get started with CCTP Bridge](/docs/products/cctp-bridge/get-started/)**: Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
+- **[Complete USDC Transfer Flow](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)**: Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
+- **[Checkout Circle's CCTP Docs](https://developers.circle.com/stablecoins/cctp-getting-started){target=\_blank}**: Learn more about Circle's cross-chain transfer protocol in their documentation.

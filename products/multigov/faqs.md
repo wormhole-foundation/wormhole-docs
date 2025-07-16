@@ -14,10 +14,10 @@ MultiGov is a cross-chain governance system that extends traditional DAO governa
 
 MultiGov leverages Wormhole's robust cross-chain communication protocol. It implements several security measures:
 
-- Message origin verification to prevent unauthorized governance actions
-- Timely and consistent data checks to ensure vote aggregation is based on recent and synchronized chain states
-- Authorized participant validation to maintain the integrity of the governance process
-- Replay attack prevention by tracking executed messages
+- Message origin verification to prevent unauthorized governance actions.
+- Timely and consistent data checks to ensure vote aggregation is based on recent and synchronized chain states.
+- Authorized participant validation to maintain the integrity of the governance process.
+- Replay attack prevention by tracking executed messages.
 
 ## Can MultiGov integrate with any blockchain?
 
@@ -47,8 +47,8 @@ When a proposal is approved and the timelock period elapses, it's first executed
 
 To use MultiGov, your DAO must meet the following requirements:
 
-- **ERC20Votes token** - your DAO's token must implement the `ERC20Votes` standard and support `CLOCK_MODE` timestamps for compatibility with cross-chain governance
-- **Flexible voting support** - your DAO's Governor must support Flexible Voting to function as the Hub Governor. If your existing Governor does not support Flexible Voting, you can upgrade it to enable this feature
+- **ERC20Votes token**: Your DAO's token must implement the `ERC20Votes` standard and support `CLOCK_MODE` timestamps for compatibility with cross-chain governance.
+- **Flexible voting support**: Your DAO's Governor must support Flexible Voting to function as the Hub Governor. If your existing Governor does not support Flexible Voting, you can upgrade it to enable this feature.
 
 ## What do I need to set up MultiGov for my project?
 
@@ -60,10 +60,10 @@ Tally will reach out to help get your DAO set up with MultiGov.
 
 To set up testing MultiGov for your DAO, you'll need:
 
-- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} and [Git](https://git-scm.com/downloads){target=\_blank} installed
-- Test ETH on the testnets you plan to use (e.g., Sepolia for hub, Optimism Sepolia for spoke)
-- Modify and deploy the hub and spoke contracts using the provided scripts
-- Set up the necessary environment variables and configurations
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} and [Git](https://git-scm.com/downloads){target=\_blank} installed.
+- Test ETH on the testnets you plan to use (e.g., Sepolia for hub, Optimism Sepolia for spoke).
+- Modify and deploy the hub and spoke contracts using the provided scripts.
+- Set up the necessary environment variables and configurations.
 
 ## Can MultiGov be used with non-EVM chains?
 
@@ -79,10 +79,10 @@ Remember to thoroughly test your MultiGov implementation on testnets before depl
 
 MultiGov includes several mechanisms to handle network issues or temporary chain unavailability:
 
-1. **Asynchronous vote aggregation** - votes are aggregated periodically, allowing the system to continue functioning even if one chain is temporarily unavailable
-2. **Proposal extension** - the `HubGovernorProposalExtender` allows trusted actors to extend voting periods if needed, which can help mitigate issues caused by temporary network problems
-3. **Wormhole retry mechanism** - Wormhole's infrastructure includes retry mechanisms for failed message deliveries, helping ensure cross-chain messages eventually get through
-4. **Decentralized relayer network** - Wormhole's decentralized network of relayers helps maintain system availability even if some relayers are offline
+1. **Asynchronous vote aggregation**: Votes are aggregated periodically, allowing the system to continue functioning even if one chain is temporarily unavailable.
+2. **Proposal extension**: The `HubGovernorProposalExtender` allows trusted actors to extend voting periods if needed, which can help mitigate issues caused by temporary network problems.
+3. **Wormhole retry mechanism**: Wormhole's infrastructure includes retry mechanisms for failed message deliveries, helping ensure cross-chain messages eventually get through.
+4. **Decentralized relayer network**: Wormhole's decentralized network of relayers helps maintain system availability even if some relayers are offline.
 
 However, prolonged outages on the hub chain or critical spoke chains could potentially disrupt governance activities. Projects should have contingency plans for such scenarios.
 
@@ -94,7 +94,7 @@ Unlike traditional DAO governance, which typically operates on a single blockcha
 
 The main components of MultiGov include:
 
-- **Hub chain** - central coordination point for governance activities
-- **Spoke chains** - additional chains where token holders can participate in governance
-- **Wormhole integration** - enables secure cross-chain message passing
-- **Governance token** - allows holders to participate in governance across all integrated chains
+- **Hub chain**: Central coordination point for governance activities.
+- **Spoke chains**: Additional chains where token holders can participate in governance.
+- **Wormhole integration**: Enables secure cross-chain message passing.
+- **Governance token**: Allows holders to participate in governance across all integrated chains.

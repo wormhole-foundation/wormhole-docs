@@ -8,16 +8,16 @@ categories: NTT, Transfer
 
 If you encounter issues during the NTT deployment process, check the following common points:
 
-- **Solana and Anchor versions** - ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}
-    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
-    -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
-- **Token compliance on EVM** - verify that your token is an ERC20 token on the EVM chain
-- **Mint authority transfer**
-    - **For burn or spoke tokens on Solana** - ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/products/native-token-transfers/guides/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section
-    - **For EVM tokens** - confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/products/native-token-transfers/guides/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details
-- **Decimal configuration** - run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/products/native-token-transfers/guides/deploy-to-solana/#configure-ntt){target=\_blank} section
-- **Rate limit configuration** - increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/products/native-token-transfers/guides/deploy-to-evm/#configure-ntt){target=\_blank}
-- **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development** - run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file
+- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
+    - [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+    - [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+- **Token compliance on EVM**: Verify that your token is an ERC20 token on the EVM chain.
+- **Mint authority transfer**:
+    - **For burn or spoke tokens on Solana**: Ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/products/native-token-transfers/guides/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section.
+    - **For EVM tokens**: Confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/products/native-token-transfers/guides/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details.
+- **Decimal configuration**: Run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/products/native-token-transfers/guides/deploy-to-solana/#configure-ntt){target=\_blank} section.
+- **Rate limit configuration**: Increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/products/native-token-transfers/guides/deploy-to-evm/#configure-ntt){target=\_blank}.
+- **Docker environment**: Run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file. This provides an Ubuntu 20.04-based environment with all dependencies required for Wormhole NTT CLI development.
 
     ???- interface "Dockerfile"
 

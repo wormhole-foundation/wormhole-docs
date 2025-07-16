@@ -39,7 +39,7 @@ The diagram below shows how Mayan Swift handles a cross-chain intent when a user
 1. **Solver initiates on Arbitrum**: Solver swaps ARB → ETH and deposits ETH into an escrow on Arbitrum.
 2. **VAA emitted to Solana**: A [Verifiable Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank} triggers the solver to release SOL on Solana, which is swapped to WIF using an aggregator.
 3. **User receives WIF**: Once the user receives WIF, a second VAA is emitted to finalize the transfer and releases the ETH held in the escrow to the solver.
-4. **Failure handling**: If any step fails, the ETH in escrow is either retained or returned to the user — the solver only gets paid if execution succeeds.
+4. **Failure handling**: If any step fails, the ETH in escrow is either retained or returned to the user; the solver only gets paid if execution succeeds.
 
 ```mermaid
 sequenceDiagram
@@ -72,18 +72,18 @@ Mayan MCTP is a fallback protocol that wraps Circle’s CCTP into the Settlement
 
 - **Cross-Chain Perpetuals** 
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Provides fast token execution across chains.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch live prices and manage position state across chains.
+    - **[Settlement](/docs/products/settlement/get-started/){target=\_blank}**: Provides fast token execution across chains.
+    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch live prices and manage position state across chains.
 
 - **Bridging Intent Library**
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Handles user-defined bridge intents.
-    - [**Messaging**](/docs/products/messaging/overview/){target=\_blank}: Triggers cross-chain function calls.
+    - **[Settlement](/docs/products/settlement/get-started/){target=\_blank}**: Handles user-defined bridge intents.
+    - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Triggers cross-chain function calls.
 
 - **Multichain Prediction Markets**
 
-    - [**Settlement**](/docs/products/settlement/get-started/){target=\_blank}: Executes token flows between chains.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Gets market data and tracks state.
+    - **[Settlement](/docs/products/settlement/get-started/){target=\_blank}**: Executes token flows between chains.
+    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Gets market data and tracks state.
 
 ## Next Steps
 

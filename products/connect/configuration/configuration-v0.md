@@ -187,8 +187,8 @@ By default, Connect will offer its complete built-in list of routes, but you can
 
 When using Wormhole Connect, your selected blockchain network determines the available wallet options.
 
- - For EVM chains, wallets like MetaMask and WalletConnect are supported
- - For Solana, you'll see options such as Phantom, Torus, and Coin98
+ - For EVM chains, wallets like MetaMask and WalletConnect are supported.
+ - For Solana, you'll see options such as Phantom, Torus, and Coin98.
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
@@ -200,7 +200,7 @@ By setting the `showHamburgerMenu` option to **false**, you can deactivate the h
 
 #### Add Extra Menu Entry {: #add-extra-menu-entry }
 
-By setting the `showHamburgerMenu` option to `false,` you can add extra links. The following properties are accessed through the `menu[]` property (e.g., `menu[].label`):
+By setting the `showHamburgerMenu` option to `false`, you can add extra links. The following properties are accessed through the `menu[]` property (e.g., `menu[].label`):
 
 | Property |                 Description                 |
 |:--------:|:-------------------------------------------:|

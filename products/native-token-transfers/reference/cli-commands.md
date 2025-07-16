@@ -18,33 +18,33 @@ To explore detailed information about any NTT CLI command, including its options
 
 ### General Commands
 
-| Command                                 | Description                                            | Example                                                            |
-|-----------------------------------------|--------------------------------------------------------|--------------------------------------------------------------------|
-| `ntt update`                            | update the NTT CLI                                     | `ntt update`                                                       |
-| `ntt new <path>`                        | create a new NTT project                               | `ntt new my-ntt-project`                                           |
-| `ntt add-chain <chain>`                 | add a chain to the deployment file                     | `ntt add-chain Ethereum --token 0x1234... --mode burning --latest` |
-| `ntt upgrade <chain>`                   | upgrade the contract on a specific chain               | `ntt upgrade Solana --ver 1.1.0`                                   |
-| `ntt clone <network> <chain> <address>` | initialize a deployment file from an existing contract | `ntt clone Mainnet Solana Sol5678...`                              |
-| `ntt init <network>`                    | initialize a deployment file                           | `ntt init devnet`                                                  |
-| `ntt pull`                              | pull the remote configuration                          | `ntt pull`                                                         |
-| `ntt push`                              | push the local configuration                           | `ntt push`                                                         |
-| `ntt status`                            | check the status of the deployment                     | `ntt status`                                                       |
+| Command                                 | Description                                             | Example                                                            |
+|-----------------------------------------|---------------------------------------------------------|--------------------------------------------------------------------|
+| `ntt update`                            | Update the NTT CLI.                                     | `ntt update`                                                       |
+| `ntt new <path>`                        | Create a new NTT project.                               | `ntt new my-ntt-project`                                           |
+| `ntt add-chain <chain>`                 | Add a chain to the deployment file.                     | `ntt add-chain Ethereum --token 0x1234... --mode burning --latest` |
+| `ntt upgrade <chain>`                   | Upgrade the contract on a specific chain.               | `ntt upgrade Solana --ver 1.1.0`                                   |
+| `ntt clone <network> <chain> <address>` | Initialize a deployment file from an existing contract. | `ntt clone Mainnet Solana Sol5678...`                              |
+| `ntt init <network>`                    | Initialize a deployment file.                           | `ntt init devnet`                                                  |
+| `ntt pull`                              | Pull the remote configuration.                          | `ntt pull`                                                         |
+| `ntt push`                              | Push the local configuration.                           | `ntt push`                                                         |
+| `ntt status`                            | Check the status of the deployment.                     | `ntt status`                                                       |
 
 ### Configuration Commands
 
-| Command                                      | Description                             | Example                                        |
-|----------------------------------------------|-----------------------------------------|------------------------------------------------|
-| `ntt config set-chain <chain> <key> <value>` | set a configuration value for a chain   | `ntt config set-chain Ethereum scan_api_key`   |
-| `ntt config unset-chain <chain> <key>`       | unset a configuration value for a chain | `ntt config unset-chain Ethereum scan_api_key` |
-| `ntt config get-chain <chain> <key>`         | get a configuration value for a chain   | `ntt config get-chain Ethereum scan_api_key`   |
+| Command                                      | Description                              | Example                                        |
+|----------------------------------------------|------------------------------------------|------------------------------------------------|
+| `ntt config set-chain <chain> <key> <value>` | Set a configuration value for a chain.   | `ntt config set-chain Ethereum scan_api_key`   |
+| `ntt config unset-chain <chain> <key>`       | Unset a configuration value for a chain. | `ntt config unset-chain Ethereum scan_api_key` |
+| `ntt config get-chain <chain> <key>`         | Get a configuration value for a chain.   | `ntt config get-chain Ethereum scan_api_key`   |
 
 ### Solana Commands
 
-| Command                                        | Description                                              | Example                                         |
-|------------------------------------------------|----------------------------------------------------------|-------------------------------------------------|
-| `ntt solana key-base58 <keypair>`              | print private key in base58                              | `ntt solana key-base58 /path/to/keypair.json`   |
-| `ntt solana token-authority <programId>`       | print the token authority address for a given program ID | `ntt solana token-authority Sol1234...`         |
-| `ntt solana ata <mint> <owner> <tokenProgram>` | print the token authority address for a given program ID | `ntt solana ata Mint123... Owner123... token22` |
+| Command                                        | Description                                               | Example                                         |
+|------------------------------------------------|-----------------------------------------------------------|-------------------------------------------------|
+| `ntt solana key-base58 <keypair>`              | Print private key in base58.                              | `ntt solana key-base58 /path/to/keypair.json`   |
+| `ntt solana token-authority <programId>`       | Print the token authority address for a given program ID. | `ntt solana token-authority Sol1234...`         |
+| `ntt solana ata <mint> <owner> <tokenProgram>` | Print the token authority address for a given program ID. | `ntt solana ata Mint123... Owner123... token22` |
 
 ## Where to Go Next
 

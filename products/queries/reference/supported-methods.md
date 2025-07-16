@@ -22,9 +22,9 @@ Wormhole currently supports five distinct query types, each designed for specifi
 
 The [`eth_call`](https://ethereum.org/en/developers/docs/apis/json-rpc/#eth_call){target=\_blank} query type allows you to perform read-only calls to a smart contract on a specific block, identified by its number or hash. Some of eth_call's configurations include: 
 
-- **Batching** - group multiple calls, even to different contracts, into a single query targeting the same block, which is processed as one batch RPC call to simplify on-chain verification
-- **Capacity** - batch up to 255 individual in a single eth_call query 
-- **Result data** - provides the specified block's number, hash, timestamp, and the output from the contract call
+- **Batching**: Group multiple calls, even to different contracts, into a single query targeting the same block, which is processed as one batch RPC call to simplify on-chain verification.
+- **Capacity**: Batch up to 255 individual in a single `eth_call` query.
+- **Result data**: Provides the specified block's number, hash, timestamp, and the output from the contract call.
 
 ### eth_call_by_timestamp
 
@@ -38,8 +38,8 @@ The [`eth_call_with_finality`](https://github.com/wormhole-foundation/wormhole/b
 
 You can specify one of two finality levels for your query:
 
-- **Finalized** - indicates the highest level of assurance that a block is permanent and will not be altered or removed from the chain
-- **Safe** - refers to a block considered highly unlikely to be reorganized, offering a substantial degree of confidence, though the network's consensus may not fully finalize it
+- **Finalized**: Indicates the highest level of assurance that a block is permanent and will not be altered or removed from the chain.
+- **Safe**: Refers to a block considered highly unlikely to be reorganized, offering a substantial degree of confidence, though the network's consensus may not fully finalize it.
 
 !!! note
     If the target blockchain does not natively support or recognize the safe finality tag, requesting safe finality will be treated as a request for finalized finality instead.

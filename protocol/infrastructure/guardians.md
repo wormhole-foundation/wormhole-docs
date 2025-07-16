@@ -10,9 +10,9 @@ Wormhole relies on a set of 19 distributed nodes that monitor the state on sever
 
 Guardians fulfill their role in the messaging protocol as follows: 
 
-1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians
-2. Guardians combine their independent signatures to form a multisig
-3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state
+1. Each Guardian observes messages and signs the corresponding payloads in isolation from the other Guardians.
+2. Guardians combine their independent signatures to form a multisig.
+3. This multisig represents proof that a majority of the Wormhole network has observed and agreed upon a state.
 
 Wormhole refers to these multisigs as [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs).
 
@@ -22,11 +22,11 @@ The Guardian Network functions as Wormhole's decentralized oracle, ensuring secu
 
 The Guardian Network is designed to help Wormhole deliver on five key principles:
 
-- **Decentralization** - control of the network is distributed across many parties
-- **Modularity** - independent components (e.g., oracle, relayer, applications) ensure flexibility and upgradeability
-- **Chain agnosticism** - supports EVM, Solana, and other blockchains without relying on a single network
-- **Scalability** - can handle large transaction volumes and high-value transfers
-- **Upgradeable** - can change the implementation of its existing modules without breaking integrators to adapt to changes in decentralized computing
+- **Decentralization**: Control of the network is distributed across many parties.
+- **Modularity**: Independent components (e.g., oracle, relayer, applications) ensure flexibility and upgradeability.
+- **Chain agnosticism**: Supports EVM, Solana, and other blockchains without relying on a single network.
+- **Scalability**: Can handle large transaction volumes and high-value transfers.
+- **Upgradeable**: Can change the implementation of its existing modules without breaking integrators to adapt to changes in decentralized computing.
 
 The following sections explore each principle in detail. 
 
@@ -36,8 +36,8 @@ Decentralization remains the core concern for interoperability protocols. Earlie
 
 Two common approaches to decentralization have notable limitations:
 
-- **Proof-of-Stake (PoS)** - while PoS is often seen as a go-to model for decentralization, it's not well-suited for a network that verifies many blockchains and doesn't run its own smart contracts. Its security in this context is unproven, and it introduces complexities that make other design goals harder to achieve
-- **Zero-Knowledge Proofs (ZKPs)** - ZKPs offer a trustless and decentralized approach, but the technology is still early-stage. On-chain verification is often too computationally expensive—especially on less capable chains—so a multisig-based fallback is still required for practical deployment
+- **Proof-of-Stake (PoS)**: While PoS is often seen as a go-to model for decentralization, it's not well-suited for a network that verifies many blockchains and doesn't run its own smart contracts. Its security in this context is unproven, and it introduces complexities that make other design goals harder to achieve.
+- **Zero-Knowledge Proofs (ZKPs)**: ZKPs offer a trustless and decentralized approach, but the technology is still early-stage. On-chain verification is often too computationally expensive—especially on less capable chains—so a multisig-based fallback is still required for practical deployment.
 
 In the current De-Fi landscape, most major blockchains are secured by a small group of validator companies. Only a limited number of companies worldwide have the expertise and capital to run high-performance validators.
 
@@ -45,10 +45,10 @@ If a protocol could unite many of these top validator companies into a purpose-b
 
 To answer that, consider these key constraints and design decisions:
 
-- **Threshold signatures allow flexibility, but** - with threshold signatures, in theory, any number of validators could participate. However, threshold signatures are not yet widely supported across blockchains. Verifying them is expensive and complex, especially in a chain-agnostic system
-- **t-Schnorr multisig is more practical** - Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen
-- **19 validators is the optimal tradeoff** - a set of 19 participants presents a practical compromise between decentralization and efficiency. With a two-thirds consensus threshold, only 13 signatures must be verified on-chain—keeping gas costs reasonable while ensuring strong security
-- **Security through reputation, not tokens** - Wormhole relies on a network of established validator companies instead of token-based incentives. These 19 Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants
+- **Threshold signatures allow flexibility, but**: With threshold signatures, in theory, any number of validators could participate. However, threshold signatures are not yet widely supported across blockchains. Verifying them is expensive and complex, especially in a chain-agnostic system.
+- **t-Schnorr multisig is more practical**: Wormhole uses [t-Schnorr multisig](https://en.wikipedia.org/wiki/Schnorr_signature){target=\_blank}, which is broadly supported and relatively inexpensive to verify. However, verification costs scale linearly with the number of signers, so the size of the validator set needs to be carefully chosen.
+- **19 validators is the optimal tradeoff**: A set of 19 participants presents a practical compromise between decentralization and efficiency. With a two-thirds consensus threshold, only 13 signatures must be verified on-chain—keeping gas costs reasonable while ensuring strong security.
+- **Security through reputation, not tokens**: Wormhole relies on a network of established validator companies instead of token-based incentives. These 19 Guardians are among the most trusted operators in the industry—real entities with a track record, not anonymous participants.
 
 This forms the foundation for a purpose-built Proof-of-Authority (PoA) consensus model, where each Guardian has an equal stake. As threshold signatures gain broader support, the set can expand. Once ZKPs become widely viable, the network can evolve into a fully trustless system.
 
@@ -72,8 +72,8 @@ Performance is generally limited by the speed of the underlying blockchains, not
 
 Wormhole is designed to adapt and evolve in the following ways:
 
-- **Guardian Set expansion** – future updates may introduce threshold signatures to allow for more Guardians in the set
-- **ZKP integration** - as Zero-Knowledge Proofs become more widely supported, the network can transition to a fully trustless model
+- **Guardian Set expansion**: Future updates may introduce threshold signatures to allow for more Guardians in the set.
+- **ZKP integration**: As Zero-Knowledge Proofs become more widely supported, the network can transition to a fully trustless model.
 
 These principles combine to create a clear pathway towards a fully trustless interoperability layer that spans decentralized computing.
 
@@ -89,7 +89,7 @@ These principles combine to create a clear pathway towards a fully trustless int
 
     [:custom-arrow: Learn About Relayers](/docs/protocol/infrastructure/relayer/)
 
-- :octicons-tools-16:{ .lg .middle } **Query Guardian Data**
+-   :octicons-tools-16:{ .lg .middle } **Query Guardian Data**
 
     ---
 

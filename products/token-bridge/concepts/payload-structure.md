@@ -40,7 +40,7 @@ Fee uint256
 
     `TokenAddress` ++"bytes32"++
 
-    Address of the token. Left-zero-padded if shorter than 32 bytes
+    Address of the token. Left-zero-padded if shorter than 32 bytes.
     
     ---
 
@@ -161,7 +161,7 @@ Payload bytes
 
     `To` ++"bytes32"++
 
-    Address of the recipient. Must be a contract capable of parsing and handling the payload. Left-zero-padded if shorter than 32 bytes
+    Address of the recipient. Must be a contract capable of parsing and handling the payload. Left-zero-padded if shorter than 32 bytes.
 
     ---
 
@@ -213,7 +213,7 @@ EmitterAddress [32]uint8
 
     `ChainID` ++"uint16"++
 
-    The chain where this governance action should be applied. `0` is a valid value for all chains
+    The chain where this governance action should be applied. `0` is a valid value for all chains.
 
     ---
 
@@ -269,10 +269,10 @@ This message allows the Wormhole governance system to deploy new versions of the
 
 ## Summary of Payload Structure
 
-| Payload Type          | ID            | Purpose                                                                | Who Emits It           |
-|-----------------------|---------------|------------------------------------------------------------------------|------------------------|
-| `Transfer`            | PayloadID `1` | Moves tokens between chains by minting or releasing on the destination | Token Bridge contract  |
-| `AssetMeta`           | PayloadID `2` | Attests token metadata (decimals, symbol, name) before first transfer  | Token Bridge contract  |
-| `TransferWithPayload` | PayloadID `3` | Transfers tokens along with a custom payload for contract execution    | Token Bridge contract  |
-| `RegisterChain`       | Action `1`    | Registers a verified Token Bridge emitter for a foreign chain          | Wormhole governance    |
-| `UpgradeContract`     | Action `2`    | Upgrades the Token Bridge contract on a specific chain                 | Wormhole governance    |
+| Payload Type          | ID            | Purpose                                                                 | Who Emits It          |
+|-----------------------|---------------|-------------------------------------------------------------------------|-----------------------|
+| `Transfer`            | PayloadID `1` | Moves tokens between chains by minting or releasing on the destination. | Token Bridge contract |
+| `AssetMeta`           | PayloadID `2` | Attests token metadata (decimals, symbol, name) before first transfer.  | Token Bridge contract |
+| `TransferWithPayload` | PayloadID `3` | Transfers tokens along with a custom payload for contract execution.    | Token Bridge contract |
+| `RegisterChain`       | Action `1`    | Registers a verified Token Bridge emitter for a foreign chain.          | Wormhole governance   |
+| `UpgradeContract`     | Action `2`    | Upgrades the Token Bridge contract on a specific chain.                 | Wormhole governance   |

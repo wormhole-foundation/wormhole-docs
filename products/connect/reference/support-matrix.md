@@ -38,8 +38,8 @@ Wormhole is best known for its Token Bridge transfer method. It locks assets on 
 
 This route appears if both of the following conditions are satisfied:
 
- - Both the origin and destination chains support Token Bridge 
- - No non-Token Bridge routes are available for the selected token
+ - Both the origin and destination chains support Token Bridge.
+ - No non-Token Bridge routes are available for the selected token.
 
 ### Token Bridge Relayer {: #token-bridge-relayer}
 
@@ -49,10 +49,10 @@ Trustless relayers can execute the second transaction on behalf of the user, so 
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support Token Bridge
-- Both the origin and destination chains support Token Bridge relayer
-- No non-Token Bridge routes are available for the selected token
-- The relayer supports the selected token on the origin chain
+- Both the origin and destination chains support Token Bridge.
+- Both the origin and destination chains support Token Bridge relayer.
+- No non-Token Bridge routes are available for the selected token.
+- The relayer supports the selected token on the origin chain.
 
 ### Circle CCTP {: #circle-cctp}
 
@@ -60,8 +60,8 @@ This route appears if all of the following conditions are satisfied:
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support Circle CCTP
-- The selected token is native Circle-issued USDC
+- Both the origin and destination chains support Circle CCTP.
+- The selected token is native Circle-issued USDC.
 
 ### ETH Bridge {: #eth-bridge}
 
@@ -69,8 +69,8 @@ This route appears if all of the following conditions are satisfied:
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support the ETH Bridge
-- The selected token is native ETH, wstETH, or canonical wETH
+- Both the origin and destination chains support the ETH Bridge.
+- The selected token is native ETH, wstETH, or canonical wETH.
 
 ### Gas Drop Off {: #gas-drop-off}
 
@@ -78,6 +78,6 @@ A relayer can drop off some gas tokens on the destination chain by swapping some
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support gas drop off
-- An automatic route is selected
-- The relayer accepts the selected token to swap into the gas token
+- Both the origin and destination chains support gas drop off.
+- An automatic route is selected.
+- The relayer accepts the selected token to swap into the gas token.

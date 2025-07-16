@@ -56,7 +56,7 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
 
 #### Automatic Route {: #automatic-route-eth}
 
-Only the relayed route is available due to the complexity of the transaction that needs to be executed at the destination. To offer this option, enable the `ethBridge` and/or `wstETHBridge` route in the configuration to provide this option.
+Only the relayed route is available due to the complexity of the transaction that needs to be executed at the destination. To offer this option, enable the `ethBridge` and/or `wstETHBridge` route in the configuration.
 
 ## USDT Bridge Route {: #usdt-bridge-route}
 

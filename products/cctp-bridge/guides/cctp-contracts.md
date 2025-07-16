@@ -16,8 +16,8 @@ This guide will walk you through getting started with Wormhole's CCTP contracts 
 
 To interact with the Wormhole CCTP, you'll need the following:
 
-- [The address of the CCTP contract](/docs/products/reference/contract-addresses/#cctp){target=\_blank} on the chains you're deploying your contract on
-- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
+- [The address of the CCTP contract](/docs/products/reference/contract-addresses/#cctp){target=\_blank} on the chains you're deploying your contract on.
+- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on.
 
 ## Wormhole's CCTP Integration Contract
 
@@ -37,7 +37,7 @@ This contract can be found in [Wormhole's `wormhole-circle-integration` reposito
 
 The functions provided by the Circle Integration contract are as follows:
 
-- **`transferTokensWithPayload`** - calls the Circle Bridge contract to burn Circle-supported tokens. It emits a Wormhole message containing a user-specified payload with instructions for what to do with the Circle-supported assets once they have been minted on the target chain
+- **`transferTokensWithPayload`**: Calls the Circle Bridge contract to burn Circle-supported tokens. It emits a Wormhole message containing a user-specified payload with instructions for what to do with the Circle-supported assets once they have been minted on the target chain.
 
     ??? interface "Parameters"
 
@@ -87,7 +87,7 @@ The functions provided by the Circle Integration contract are as follows:
 
         Wormhole sequence number for this contract.
 
-- `redeemTokensWithPayload` - verifies the Wormhole message from the source chain and verifies that the passed Circle Bridge message is valid. It calls the Circle Bridge contract by passing the Circle message and attestation to the `receiveMessage` function, which is responsible for minting tokens to the specified mint recipient. It also verifies that the caller is the specified mint recipient to ensure atomic execution of the additional instructions in the Wormhole message
+- **`redeemTokensWithPayload`**: Verifies the Wormhole message from the source chain and verifies that the passed Circle Bridge message is valid. It calls the Circle Bridge contract by passing the Circle message and attestation to the `receiveMessage` function, which is responsible for minting tokens to the specified mint recipient. It also verifies that the caller is the specified mint recipient to ensure atomic execution of the additional instructions in the Wormhole message.
 
     ??? interface "Parameters"
 
@@ -169,7 +169,7 @@ The functions provided by the Circle Integration contract are as follows:
 
     ??? interface "Emits"
 
-        `Redeemed` - event emitted when Circle-supported assets have been minted to the `mintRecipient`
+        **`Redeemed`**: Event emitted when Circle-supported assets have been minted to the `mintRecipient`.
 
         ??? child "Event arguments"
 
@@ -193,9 +193,9 @@ The functions provided by the Circle Integration contract are as follows:
 
 Three key contracts power Circle's CCTP:
 
-- **`TokenMessenger`** - the entry point for cross-chain USDC transfers, routing messages to initiate USDC burns on the source chain, and mint USDC on the destination chain
-- **`MessageTransmitter`** - handles generic message passing, sending messages from the source chain and receiving them on the destination chain
-- **`TokenMinter`** - responsible for the actual minting and burning of USDC, utilizing chain-specific settings for both the burners and minters across different networks
+- **`TokenMessenger`**: The entry point for cross-chain USDC transfers, routing messages to initiate USDC burns on the source chain, and mint USDC on the destination chain.
+- **`MessageTransmitter`**: Handles generic message passing, sending messages from the source chain and receiving them on the destination chain.
+- **`TokenMinter`**: Responsible for the actual minting and burning of USDC, utilizing chain-specific settings for both the burners and minters across different networks.
 
 The following sections will examine these contracts in-depth, focusing on the methods invoked indirectly through function calls in the Wormhole Circle Integration contract.
 
@@ -221,7 +221,7 @@ Additionally, the contract provides methods for updating or replacing previously
 
 The functions provided by the Token Messenger contract are as follows:
 
-- **`depositForBurn`** - deposits and burns tokens from the sender to be minted on the destination domain. Minted tokens will be transferred to `mintRecipient`
+- **`depositForBurn`**: Deposits and burns tokens from the sender to be minted on the destination domain. Minted tokens will be transferred to `mintRecipient`.
 
     ??? interface "Parameters"
 
@@ -259,7 +259,7 @@ The functions provided by the Token Messenger contract are as follows:
 
         --8<-- 'text/products/cctp-bridge/guides/cctp-contracts/DepositForBurn-event.md'
 
-- **`depositForBurnWithCaller`** - deposits and burns tokens from the sender to be minted on the destination domain. This method differs from `depositForBurn` in that the mint on the destination domain can only be called by the designated `destinationCaller` address
+- **`depositForBurnWithCaller`**: Deposits and burns tokens from the sender to be minted on the destination domain. This method differs from `depositForBurn` in that the mint on the destination domain can only be called by the designated `destinationCaller` address.
 
     ??? interface "Parameters"
 
@@ -303,7 +303,7 @@ The functions provided by the Token Messenger contract are as follows:
 
         --8<-- 'text/products/cctp-bridge/guides/cctp-contracts/DepositForBurn-event.md'
 
-- **`replaceDepositForBurn`** — replaces a previous `BurnMessage` to modify the mint recipient and/or the destination caller. The replacement message reuses the `_nonce` created by the original message, which allows the original message's sender to update the details without requiring a new deposit
+- **`replaceDepositForBurn`**: Replaces a previous `BurnMessage` to modify the mint recipient and/or the destination caller. The replacement message reuses the `_nonce` created by the original message, which allows the original message's sender to update the details without requiring a new deposit.
 
     ??? interface "Parameters"
 
@@ -339,7 +339,7 @@ The functions provided by the Token Messenger contract are as follows:
 
         --8<-- 'text/products/cctp-bridge/guides/cctp-contracts/DepositForBurn-event.md'
 
-- **`handleReceiveMessage`** - handles an incoming message received by the local `MessageTransmitter` and takes the appropriate action. For a burn message, it mints the associated token to the requested recipient on the local domain.
+- **`handleReceiveMessage`**: Handles an incoming message received by the local `MessageTransmitter` and takes the appropriate action. For a burn message, it mints the associated token to the requested recipient on the local domain.
 
     ???+ note
 
@@ -420,7 +420,7 @@ Additional features include replacing previously sent messages, setting maximum 
 
 The functions provided by the Message Transmitter contract are as follows:
 
-- **`receiveMessage`** — processes and validates an incoming message and its attestation. If valid, it triggers further action based on the message body
+- **`receiveMessage`**: Processes and validates an incoming message and its attestation. If valid, it triggers further action based on the message body.
 
     ??? interface "Parameters"
 
@@ -474,7 +474,7 @@ The functions provided by the Message Transmitter contract are as follows:
             
             The body of the message.
 
-- **`sendMessage`** — sends a message to the destination domain and recipient. It increments the `nonce`, assigns a unique `nonce` to the message, and emits a `MessageSent` event
+- **`sendMessage`**: Sends a message to the destination domain and recipient. It increments the `nonce`, assigns a unique `nonce` to the message, and emits a `MessageSent` event.
 
     ??? interface "Parameters"
 
@@ -504,7 +504,7 @@ The functions provided by the Message Transmitter contract are as follows:
 
         --8<-- 'text/products/cctp-bridge/guides/cctp-contracts/MessageSent-event.md'
 
-- **`sendMessageWithCaller`** —  sends a message to the destination domain and recipient, requiring a specific caller to trigger the message on the target chain. It increments the `nonce`, assigns a unique `nonce` to the message, and emits a `MessageSent` event
+- **`sendMessageWithCaller`**: Sends a message to the destination domain and recipient, requiring a specific caller to trigger the message on the target chain. It increments the `nonce`, assigns a unique `nonce` to the message, and emits a `MessageSent` event.
 
     ??? interface "Parameters"
 
@@ -540,7 +540,7 @@ The functions provided by the Message Transmitter contract are as follows:
 
         --8<-- 'text/products/cctp-bridge/guides/cctp-contracts/MessageSent-event.md'
 
-- **`replaceMessage`** — replaces an original message with a new message body and/or updates the destination caller. The replacement message reuses the `_nonce` created by the original message
+- **`replaceMessage`**: Replaces an original message with a new message body and/or updates the destination caller. The replacement message reuses the `_nonce` created by the original message.
 
     ??? interface "Parameters"
 
@@ -591,7 +591,7 @@ To enhance control and flexibility, the contract includes mechanisms to pause op
 
 Most of the methods of the Token Minter contract can be called only by the registered Token Messenger. However, there is one publicly accessible method, a public view function that allows anyone to query the local token associated with a remote domain and token.
 
-- **`getLocalToken`** — a read-only function that returns the local token address associated with a given remote domain and token
+- **`getLocalToken`**: A read-only function that returns the local token address associated with a given remote domain and token.
 
     ??? interface "Parameters"
 
@@ -615,8 +615,8 @@ Most of the methods of the Token Minter contract can be called only by the regis
 
 Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole CCTP contracts. The primary functionality revolves around the following:
 
-- **Sending tokens with a message payload** - initiating a cross-chain transfer of Circle-supported assets along with a message payload to a specific target address on the target chain
-- **Receiving tokens with a message payload** - validating messages received from other chains via Wormhole and then minting the tokens for the recipient
+- **Sending tokens with a message payload**: Initiating a cross-chain transfer of Circle-supported assets along with a message payload to a specific target address on the target chain.
+- **Receiving tokens with a message payload**: Validating messages received from other chains via Wormhole and then minting the tokens for the recipient.
 
 ### Sending Tokens and Messages
 
@@ -679,17 +679,17 @@ When the `sendUSDCWithPayloadToEvm` function is called, the following series of 
 1. **USDC transfer initiation**:
 
     - The Circle Token Messenger contract is approved to spend the specified amount of USDC.
-    - The `depositForBurnWithCaller` function of the Token Messenger contract is invoked
-    - A key is returned, which is to be provided to the Wormhole relayer for message delivery
+    - The `depositForBurnWithCaller` function of the Token Messenger contract is invoked.
+    - A key is returned, which is to be provided to the Wormhole relayer for message delivery.
 
-2. **Message encoding** - the message `payload` is encoded for transmission via the Wormhole relayer. The encoded value also includes the `amount` so that it can be checked on the target chain
-3. **Retrieving delivery provider** - the current default delivery provider's address is retrieved
-4. **Cost calculation** - the transfer cost is calculated using the Wormhole relayer's `quoteEVMDeliveryPrice` function
+2. **Message encoding**: The message `payload` is encoded for transmission via the Wormhole relayer. The encoded value also includes the `amount` so that it can be checked on the target chain.
+3. **Retrieving delivery provider**: The current default delivery provider's address is retrieved.
+4. **Cost calculation**: The transfer cost is calculated using the Wormhole relayer's `quoteEVMDeliveryPrice` function.
 5. **Message dispatch**:
 
-    - The `sendToEvm` function of the Wormhole relayer is called with the encoded payload, the delivery provider's address, and the arguments passed to `sendUSDCWithPayloadToEvm`
-    - The function must be called with `msg.value` set to the previously calculated cost (from step 4)
-    - This function publishes an instruction for the delivery provider to relay the payload and VAAs specified by the key (from step 1) to the target address on the target chain
+    - The `sendToEvm` function of the Wormhole relayer is called with the encoded payload, the delivery provider's address, and the arguments passed to `sendUSDCWithPayloadToEvm`.
+    - The function must be called with `msg.value` set to the previously calculated cost (from step 4).
+    - This function publishes an instruction for the delivery provider to relay the payload and VAAs specified by the key (from step 1) to the target address on the target chain.
 
 A simple example implementation is as follows:
 
@@ -713,14 +713,14 @@ Using the Wormhole-deployed relayer automatically triggers the `receiveWormholeM
 
 Although you do not need to interact with the `receiveWormholeMessages` function directly, it's important to understand what it does. This function processes cross-chain messages and USDC transfers via Wormhole's Circle (CCTP) Bridge. Here's a summary of what it does:
 
-1. **Validate additional messages** - the function checks that there is at most one CCTP transfer message in the `additionalMessages` array, as it currently only supports processing a single CCTP transfer
+1. **Validate additional messages**: The function checks that there is at most one CCTP transfer message in the `additionalMessages` array, as it currently only supports processing a single CCTP transfer.
 2. **Redeem USDC**:
-    - If there is a CCTP message, it calls the `redeemUSDC` function of the `CCTPReceiver` contract to decode and redeem the USDC
-    - This results in the call of the `receiveMessage` function of Circle's Message Transmitter contract to redeem the USDC based on the provided message and signature
-    - The amount of USDC received is calculated by subtracting the contract's previous balance from the current balance after redeeming the USDC
-3. **Decode payload** - the incoming payload is decoded, extracting both the expected amount of USDC and a `userPayload` (which could be any additional data)
-4. **Verify the amount** - it ensures that the amount of USDC received matches the amount encoded in the payload. If the amounts don't match, the transaction is reverted
-5. **Handle the payload and USDC** - after verifying the amounts, `receivePayloadAndUSDC` is called, which is meant to handle the actual logic for processing the received payload and USDC transfer
+    - If there is a CCTP message, it calls the `redeemUSDC` function of the `CCTPReceiver` contract to decode and redeem the USDC.
+    - This results in the call of the `receiveMessage` function of Circle's Message Transmitter contract to redeem the USDC based on the provided message and signature.
+    - The amount of USDC received is calculated by subtracting the contract's previous balance from the current balance after redeeming the USDC.
+3. **Decode payload**: The incoming payload is decoded, extracting both the expected amount of USDC and a `userPayload` (which could be any additional data).
+4. **Verify the amount**: It ensures that the amount of USDC received matches the amount encoded in the payload. If the amounts don't match, the transaction is reverted.
+5. **Handle the payload and USDC**: After verifying the amounts, `receivePayloadAndUSDC` is called, which is meant to handle the actual logic for processing the received payload and USDC transfer.
 
 You'll need to implement the `receivePayloadAndUSDC` function to transfer the USDC and handle the payload as your application needs. A simple example implementation is as follows:
 

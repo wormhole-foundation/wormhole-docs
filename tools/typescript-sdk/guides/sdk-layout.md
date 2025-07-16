@@ -10,9 +10,9 @@ The [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){targe
 
 By understanding the layout mechanism, you’ll be able to:
 
- - Define data structures (numbers, arrays, and custom types)
- - Efficiently serialize and deserialize data using the SDK’s utilities
- - Handle protocol-specific layouts with ease
+ - Define data structures (numbers, arrays, and custom types).
+ - Efficiently serialize and deserialize data using the SDK’s utilities.
+ - Handle protocol-specific layouts with ease.
 
 This guide is beneficial for developers looking to integrate Wormhole into their applications or protocols, especially those dealing with complex payloads or cross-chain communication.
 
@@ -24,14 +24,14 @@ A layout defines how data structures should be serialized (converted into binary
 
 Layouts are composed of [layout items](https://github.com/nonergodic/layout/blob/main/src/items.ts){target=\_blank}, which describe individual fields or sets of fields in your data. Each layout item specifies:
 
- - **`name`** - name of the field
- - **`binary`** - type of data (e.g., `uint`, `bytes`)
- - **`size`** - byte length for fixed-size fields within uint and bytes items only
+ - **`name`**: Name of the field.
+ - **`binary`**: Type of data (e.g., `uint`, `bytes`).
+ - **`size`**: Byte length for fixed-size fields within uint and bytes items only.
 
 Layout items can represent:
 
- - **Primitive types** - basic data types like unsigned integers (`uint`) or byte arrays (`bytes`)
- - **Composite types** - more complex structures, such as arrays or nested objects
+ - **Primitive types**: Basic data types like unsigned integers (`uint`) or byte arrays (`bytes`).
+ - **Composite types**: More complex structures, such as arrays or nested objects.
 
 Below is an example of a layout that might be used to serialize a message across the Wormhole protocol:
 
@@ -41,10 +41,10 @@ Below is an example of a layout that might be used to serialize a message across
 
 In this example:
 
- - `sourceChain` is a 2-byte unsigned integer (`uint`) identifying the source blockchain
- - `orderSender` is a fixed-length 32-byte array representing the sender's address
- - `redeemer` is another 32-byte array used for the redeemer’s address
- - `redeemerMessage` is a variable-length byte sequence, with its length specified by a 4-byte integer
+ - `sourceChain` is a 2-byte unsigned integer (`uint`) identifying the source blockchain.
+ - `orderSender` is a fixed-length 32-byte array representing the sender's address.
+ - `redeemer` is another 32-byte array used for the redeemer’s address.
+ - `redeemerMessage` is a variable-length byte sequence, with its length specified by a 4-byte integer.
 
 This layout definition ensures that all necessary data fields are consistently encoded and can be correctly interpreted when they are deserialized.
 
@@ -100,10 +100,10 @@ Consider the following layout for a payload:
 
 In this example:
 
- - `sourceChain` is an unsigned integer (uint) of 2 bytes
- - `orderSender` is a 32-byte fixed-length byte array
- - `redeemer` is another 32-byte byte array
- - `redeemerMessage` is a length-prefixed byte array, with the length specified by a 4-byte integer
+ - `sourceChain` is an unsigned integer (uint) of 2 bytes.
+ - `orderSender` is a 32-byte fixed-length byte array.
+ - `redeemer` is another 32-byte byte array.
+ - `redeemerMessage` is a length-prefixed byte array, with the length specified by a 4-byte integer.
 
 ### Serialize Data
 
@@ -153,8 +153,8 @@ Refer to the following nested layout where a message contains nested fields:
 
 In this layout:
 
- - `source` is an object with two fields: `chainId` and `sender`
- - `redeemer` is another object with two fields: `address` and a length-prefixed `message`
+ - **`source` is an object with two fields**: `chainId` and `sender`.
+ - **`redeemer` is another object with two fields**: `address` and a length-prefixed `message`.
 
 ### Strong Typing
 
@@ -234,8 +234,8 @@ The [`universalAddressItem`](https://github.com/wormhole-foundation/wormhole-sdk
 
 This layout ensures consistent address handling by defining the following:
 
- - **Serialization** - converts a high-level `UniversalAddress` object into raw binary (32 bytes) for efficient storage or transmission
- - **Deserialization** - converts raw binary back into a `UniversalAddress` object, enabling further interaction in a human-readable or programmatic format
+ - **Serialization**: Converts a high-level `UniversalAddress` object into raw binary (32 bytes) for efficient storage or transmission.
+ - **Deserialization**: Converts raw binary back into a `UniversalAddress` object, enabling further interaction in a human-readable or programmatic format.
 
 ### Signature Layout
 
@@ -313,9 +313,9 @@ VAAs are the backbone of Wormhole’s cross-chain communication. Each VAA is a s
 
 The Wormhole SDK organizes the VAA structure into three key components:
 
- - [**Header**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank} - contains metadata such as the Guardian set index and an array of Guardian signatures
- - [**Envelope**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank} - includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/docs/products/reference/consistency-levels/){target=\_blank}
- - **Payload** - provides application-specific data, such as the actual message or operation being performed
+ - **[Header](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L37-L41){target=\_blank}**: Contains metadata such as the Guardian set index and an array of Guardian signatures.
+ - **[Envelope](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/vaa/vaa.ts#L44-L51){target=\_blank}**: Includes chain-specific details such as the emitter chain, address, sequence, and [consistency (finality) level](/docs/products/reference/consistency-levels/){target=\_blank}.
+ - **Payload**: Provides application-specific data, such as the actual message or operation being performed.
 
 **Header layout:**
 
@@ -347,8 +347,8 @@ The Payload contains the user-defined data specific to the application or protoc
 
 This example demonstrates a payload containing:
 
- - A type field specifying the operation type (e.g., transfer or governance action)
- - A data field that is length-prefixed and can store operation-specific information
+ - A type field specifying the operation type (e.g., transfer or governance action).
+ - A data field that is length-prefixed and can store operation-specific information.
 
 Dynamic payload layouts are selected at runtime using the `payloadLiteral` field, which maps to a predefined layout in the Wormhole SDK.
 
@@ -410,8 +410,8 @@ When working with the Wormhole SDK layout system, it's important to be aware of 
 
 When defining sizes for each data type, make sure to match the actual data length to the specified size to prevent serialization and deserialization errors:
 
- - **`uint` and `int`** - the specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure
- - **`bytes`** - the data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail
+ - **`uint` and `int`**: The specified size must be large enough to accommodate the data value. For instance, storing a value greater than 255 in a single byte (`uint8`) will fail since it exceeds the byte’s capacity. Similarly, an undersized integer (e.g., specifying 2 bytes for a 4-byte integer) can lead to data loss or deserialization failure.
+ - **`bytes`**: The data must match the specified byte length in the layout. For example, defining a field as 32 bytes (`size: 32`) requires the provided data to be exactly 32 bytes long; otherwise, serialization will fail.
 
 ```typescript
 // Pitfall: Mismatch between the size of data and the defined size in the layout
@@ -494,6 +494,6 @@ This approach ensures that discriminators are only built when required, helping 
 
 For further learning and practical experience, explore the following resources:
 
- - **Wormhole TypeScript SDK** - the [Wormhole SDK repository](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} contains the core implementation of layouts, including predefined layout items and utilities like `serializeLayout` and `deserializeLayout`
+ - **Wormhole TypeScript SDK**: The [Wormhole SDK repository](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} contains the core implementation of layouts, including predefined layout items and utilities like `serializeLayout` and `deserializeLayout`.
 
- - **Layout tests repository** - for hands-on experimentation, check out this [layout package repository](https://github.com/nonergodic/layout){target=\_blank}, which provides examples and unit tests to help you better understand serialization, deserialization, and the strong typing mechanism. Running these tests locally is a great way to deepen your understanding of how layouts function in real-world scenarios
+ - **Layout tests repository**: For hands-on experimentation, check out this [layout package repository](https://github.com/nonergodic/layout){target=\_blank}, which provides examples and unit tests to help you better understand serialization, deserialization, and the strong typing mechanism. Running these tests locally is a great way to deepen your understanding of how layouts function in real-world scenarios.
