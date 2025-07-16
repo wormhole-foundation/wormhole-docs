@@ -72,19 +72,19 @@ Here are some key use cases that highlight the power and versatility of Connect:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Connect**](/docs/products/connect/get-started/): Handles user-friendly asset transfers.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/): Moves native assets across chains.
-    - [**Queries**](/docs/products/queries/overview/): Fetches real-time prices for optimal trade execution.
+    - **[Connect](/docs/products/connect/get-started/)**: Handles user-friendly asset transfers.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Moves native assets across chains.
+    - **[Queries](/docs/products/queries/overview/)**: Fetches real-time prices for optimal trade execution.
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Connect**](/docs/products/connect/get-started/): Facilitates seamless payments in various tokens.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/): Ensures direct, native asset transfers.
+    - **[Connect](/docs/products/connect/get-started/)**: Facilitates seamless payments in various tokens.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
 
 - **Web3 Game Asset Transfers**
 
-    - [**Connect**](/docs/products/connect/get-started/): Provide a user-friendly way to move game tokens across chains.
-    - [**Token Bridge**](/docs/products/token-bridge/overview/): Handle the underlying lock-and-mint logic securely.
+    - **[Connect](/docs/products/connect/get-started/)**: Provide a user-friendly way to move game tokens across chains.
+    - **[Token Bridge](/docs/products/token-bridge/overview/)**: Handle the underlying lock-and-mint logic securely.
 
 ## Next Steps 
 
@@ -119,19 +119,12 @@ npm i @wormhole-foundation/wormhole-connect
 
 Before you begin, make sure you have the following:
 
-<<<<<<< HEAD
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
-- A [Sui wallet](https://suiwallet.com/){target=\_blank} set up and ready for use.
-- A [compatible wallet](https://support.avax.network/en/articles/5520938-what-are-the-official-avalanche-wallets){target=\_blank} for Avalanche Fuji, such as [MetaMask](https://metamask.io/){target=\_blank}.
-- Testnet tokens for [Sui](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank} and [Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} to cover gas fees. 
-=======
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
->>>>>>> origin
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
 
 - (Optional) To test a transfer from your demo app, you'll need:
 
-    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}
-    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required)
+    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}.
+    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required).
 
 ## Install and Set Up Project
 
@@ -148,48 +141,13 @@ Before you begin, make sure you have the following:
     npm install
     ```
 
-<<<<<<< HEAD
-### Install Connect
-
-Next, install the Connect package as a dependency by running the following command inside your project directory:
-
-```bash
-npm install @wormhole-foundation/wormhole-connect
-```
-
-### Integrate Connect into the Application
-
-Now, we need to modify the default `page.tsx` file to integrate Connect. We are going to use [version V1.0](/docs/products/connect/guides/upgrade/){target=\_blank} or later, make sure to check which version of Connect you are using. Open `src/app/page.tsx` and replace the content with the following code:
-
-=== "JavaScript"
-
-    ```js
-    'use client';
-
-import WormholeConnect from '@wormhole-foundation/wormhole-connect';
-
-const config = {
-  network: 'Testnet',
-  chains: ['Sui', 'Avalanche'],
-};
-
-const theme = {
-  mode: 'light',
-  primary: '#78c4b6',
-};
-
-export default function Home() {
-  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
-}
-=======
 3. Start the application:
 
     ```bash
     npm start
->>>>>>> origin
     ```
 
-4. Open your browser to `http://localhost:3000` to view the application locally. It will look similar to the following:
+4. **Open your browser to `http**: //localhost:3000` to view the application locally.
 
     ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
 
@@ -227,23 +185,7 @@ function App() {
   return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
 }
 
-<<<<<<< HEAD
-- **Set `network` to `'Testnet'`**: This ensures that Connect uses the testnet environment.
-- **Set `chains` to `['Sui', 'Avalanche']`**: Configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche.
-
-### Customize Connect
-
-To further customize Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
-
-### Run the Application
-
-Make sure you're in the root directory of your React app, and run the following command to start the application:
-
-```bash
-npm run dev
-=======
 export default App;
->>>>>>> origin
 ```
 
 The preceding sample code configures Connect by setting values inside `config` and `theme` as follows:
@@ -257,73 +199,15 @@ The preceding sample code configures Connect by setting values inside `config` a
 
 Congratulations! You've successfully used Connect to create a simple multichain token transfer application. You can now follow the prompts in the UI to connect your developer wallets and send a test transfer.
 
-<<<<<<< HEAD
-1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer.
-2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network.
-3. Enter the amount of SUI tokens you wish to transfer.
-=======
 ## Next Steps
->>>>>>> origin
 
 Use the following guides to configure your Connect instance and integrate it into your application:
 
-<<<<<<< HEAD
-4. Choose to view other routes.
-    
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-2.webp){.half}
-
-5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji).
-
-    !!! note
-        It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
-
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-3.webp){.half}
-
-6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain.
-
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-4.webp){.half}
-
-7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet.
-
-    ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp){.half}
-
-Once the transaction has been submitted, Connect will display the progress of the transfer. Monitor the status until you're prompted to complete the transaction on the destination chain. You can also track your transactions on [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
-
-## Claim Tokens on Fuji
-
-After the Sui transaction is complete, confirm the final transaction on Fuji by claiming the wrapped tokens. You will be asked to confirm the transaction with your Fuji wallet.
-
-![](/docs/images/products/connect/tutorials/react-dapp/connect-6.webp){.half}
-
-Once confirmed, check your Fuji wallet to verify that the wrapped SUI tokens have been successfully received.
-
-![](/docs/images/products/connect/tutorials/react-dapp/connect-7.webp){.half}
-
-## Resources
-
-If you'd like to explore the complete project or need a reference while following this tutorial, you can find the entire codebase in the [Sui-Connect GitHub repository](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}. The repository includes an integration of Connect in a React app for bridging tokens between the Sui and Fuji (Avalanche Testnet) networks.
-
-## Conclusion
-
-In this tutorial, you've gained hands-on experience with integrating Connect to enable cross-chain token transfers. You've learned to configure a React app for seamless interactions between Sui and Avalanche Fuji, providing users with the ability to bridge assets across chains with ease.
-
-By following these steps, you've learned how to:
-
-- Set up a React project tailored for cross-chain transfers.
-- Install and configure Connect to support multiple blockchains.
-- Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers.
-- Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks.
-
-With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
-
-Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
-=======
 - **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
 - **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
 - **[Integrate Connect into a React DApp](/docs/products/connect/tutorials/react-dapp/)**: Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
 
 <!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
->>>>>>> origin
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/support-matrix.md
@@ -368,8 +252,8 @@ Wormhole is best known for its Token Bridge transfer method. It locks assets on 
 
 This route appears if both of the following conditions are satisfied:
 
- - Both the origin and destination chains support Token Bridge 
- - No non-Token Bridge routes are available for the selected token
+ - Both the origin and destination chains support Token Bridge.
+ - No non-Token Bridge routes are available for the selected token.
 
 ### Token Bridge Relayer {: #token-bridge-relayer}
 
@@ -379,10 +263,10 @@ Trustless relayers can execute the second transaction on behalf of the user, so 
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support Token Bridge
-- Both the origin and destination chains support Token Bridge relayer
-- No non-Token Bridge routes are available for the selected token
-- The relayer supports the selected token on the origin chain
+- Both the origin and destination chains support Token Bridge.
+- Both the origin and destination chains support Token Bridge relayer.
+- No non-Token Bridge routes are available for the selected token.
+- The relayer supports the selected token on the origin chain.
 
 ### Circle CCTP {: #circle-cctp}
 
@@ -390,8 +274,8 @@ This route appears if all of the following conditions are satisfied:
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support Circle CCTP
-- The selected token is native Circle-issued USDC
+- Both the origin and destination chains support Circle CCTP.
+- The selected token is native Circle-issued USDC.
 
 ### ETH Bridge {: #eth-bridge}
 
@@ -399,8 +283,8 @@ This route appears if all of the following conditions are satisfied:
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support the ETH Bridge
-- The selected token is native ETH, wstETH, or canonical wETH
+- Both the origin and destination chains support the ETH Bridge.
+- The selected token is native ETH, wstETH, or canonical wETH.
 
 ### Gas Drop Off {: #gas-drop-off}
 
@@ -408,9 +292,9 @@ A relayer can drop off some gas tokens on the destination chain by swapping some
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support gas drop off
-- An automatic route is selected
-- The relayer accepts the selected token to swap into the gas token
+- Both the origin and destination chains support gas drop off.
+- An automatic route is selected.
+- The relayer accepts the selected token to swap into the gas token.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/reference/supported-networks.md
@@ -968,13 +852,8 @@ function App() {
 
 Your selected blockchain network determines the available wallet options when using Wormhole Connect.
 
-<<<<<<< HEAD
- - For EVM chains, wallets like MetaMask and Reown Cloud (formerly WalletConnect) are supported.
- - For Solana, you'll see options such as Phantom, Torus, and Coin98.
-=======
- - For EVM chains, wallets like [MetaMask](https://metamask.io/){target=\_blank} and [Reown Cloud](https://reown.com/home){target=\_blank} (formerly WalletConnect) are supported
- - For Solana, you'll see options such as [Phantom](https://phantom.com/){target=\_blank}, [Web3Auth](https://wallet.web3auth.io/){target=\_blank}, and [Coin98](https://coin98.com/){target=\_blank}
->>>>>>> origin
+ - For EVM chains, wallets like [MetaMask](https://metamask.io/){target=\_blank} and [Reown Cloud](https://reown.com/home){target=\_blank} (formerly WalletConnect) are supported.
+ - For Solana, you'll see options such as [Phantom](https://phantom.com/){target=\_blank}, [Web3Auth](https://wallet.web3auth.io/){target=\_blank}, and [Coin98](https://coin98.com/){target=\_blank}.
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
@@ -1187,128 +1066,7 @@ Additional notes:
             The TypeScript SDK was previously referred to as the "Connect SDK," but this naming has since been discontinued.
 --- END CONTENT ---
 
-<<<<<<< HEAD
-Doc-Content: https://wormhole.com/docs/products/connect/get-started/
---- BEGIN CONTENT ---
----
-title: Get Started with Connect
-description: Follow this guide to configure and use the Connect UI widget to easily add an intuitive, multichain asset transfer UI to your web applications.  
-categories: Connect, Transfer
----
-
-# Get Started with Connect
-
-:simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-connect){target=\_blank}
-
-Connect helps you to easily add an intuitive, multichain asset transfer UI to your web applications. The guide demonstrates how to configure the Connect widget, add it to a React application, and view it locally.
-
-## Install Connect
-
-To install the [Wormhole Connect npm package](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank}, run the following command:
-
-```bash
-npm i @wormhole-foundation/wormhole-connect
-```
-
-## Prerequisites
-
-Before you begin, make sure you have the following:
-
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
-
-- (Optional) To test a transfer from your demo app, you'll need:
-
-    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}.
-    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required).
-
-## Install and Set Up Project
-
-1. Clone the demo repository and navigate to the project directory:
-
-    ```bash
-    git clone https://github.com/wormhole-foundation/demo-basic-connect.git
-    cd demo-basic-connect
-    ```
-
-2. Install the dependencies:
-
-    ```bash
-    npm install
-    ```
-
-3. Start the application:
-
-    ```bash
-    npm start
-    ```
-
-4. **Open your browser to `http**: //localhost:3000` to view the application locally.
-
-    ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
-
-## Configure Connect
-
-Open the `App.tsx` file in your code editor of choice. You will see code similar to the following:
-
-```typescript title="App.tsx"
-import './App.css';
-import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
-
-function App() {
-  const config: WormholeConnectConfig = {
-    // Define the network
-    network: 'Testnet',
-
-    // Define the chains
-    chains: ['Sui', 'Avalanche'],
-
-    // UI configuration
-    ui: {
-      title: 'SUI Connect TS Demo',
-    },
-  };
-
-  const theme: WormholeConnectTheme = {
-    // Define the theme
-    mode: 'dark',
-    primary: '#78c4b6',
-  };
-
-  return <wormholeconnect config="{config}" theme="{theme}"></wormholeconnect>;
-}
-
-export default App;
-```
-
-The preceding sample code configures Connect by setting values inside `config` and `theme` as follows:
-
-- **Defines the network**: Options include `Mainnet`, `Testnet`, or `Devnet`.
-- **Defines chains to include**: This example uses Sui and Avalanche. See the complete list of [Connect-supported chain names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts){target=\_blank} if you would like to use different chains.
-- **Adds a title to UI**: (Optional) If defined, it will render above the widget in the UI.
-- **Defines the theme**: This example sets the mode to `dark` and adds a primary color.
-
-## Interact with Connect
-
-Congratulations! You've successfully used Connect to create a simple multichain token transfer application. You can now follow the prompts in the UI to connect your developer wallets and send a test transfer.
-
-## Next Steps
-
-Use the following guides to configure your Connect instance and integrate it into your application:
-
-- **[Data Configuration](/docs/products/connect/configuration/data/)**: Learn how to specify custom networks and RPC endpoints, integrate different bridging protocols, add new tokens, and more.
-- **[Theme Configuration](/docs/products/connect/configuration/theme/)**: Learn how to customize Connect's look and feel to match your application's branding.
-- **[Integrate Connect into a React DApp](/docs/products/connect/tutorials/react-dapp/)**: Learn how to integrate Connect into a React application, including setting up the widget and handling transfers.
-
-<!--TODO: links to other guides and tutorials. Definitely want to feature using Connect to interact with your NTT deployment-->
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/connect/guides/hosted-version/
-=======
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/hosted-version.md
->>>>>>> origin
 --- BEGIN CONTENT ---
 ---
 title: Integrate Connect via CDN
@@ -1975,10 +1733,10 @@ While this tutorial will guide you through the process using a specific blockcha
 To get started with Connect, we'll first need to set up a basic environment that allows for cross-chain token transfers.
 Before starting this tutorial, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- A [Sui wallet](https://suiwallet.com/){target=\_blank} set up and ready for use
-- A [compatible wallet](https://support.avax.network/en/articles/5520938-what-are-the-official-avalanche-wallets){target=\_blank} for Avalanche Fuji, such as [MetaMask](https://metamask.io/){target=\_blank} 
-- Testnet tokens for [Sui](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank} and [Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} to cover gas fees 
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- A [Sui wallet](https://suiwallet.com/){target=\_blank} set up and ready for use.
+- A [compatible wallet](https://support.avax.network/en/articles/5520938-what-are-the-official-avalanche-wallets){target=\_blank} for Avalanche Fuji, such as [MetaMask](https://metamask.io/){target=\_blank}.
+- Testnet tokens for [Sui](https://docs.sui.io/guides/developer/getting-started/get-coins){target=\_blank} and [Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} to cover gas fees. 
 
 ## Set Up Connect for Sui Transfers
 
@@ -1994,32 +1752,15 @@ In this tutorial, we'll use [Next.js](https://nextjs.org/docs/app/getting-starte
 
     We recommend enabling TypeScript and creating a `src/` directory during setup. Other options can be configured based on your preferences.
 
-<<<<<<< HEAD
-    - **[Connect](/docs/products/connect/get-started/)**: Handles user-friendly asset transfers.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Moves native assets across chains.
-    - **[Queries](/docs/products/queries/overview/)**: Fetches real-time prices for optimal trade execution.
-=======
 2. Navigate into the project directory:
->>>>>>> origin
 
     ```bash
     cd connect-tutorial
     ```
 
-<<<<<<< HEAD
-    - **[Connect](/docs/products/connect/get-started/)**: Facilitates seamless payments in various tokens.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
-=======
->>>>>>> origin
-
 ### Install Connect
 
-<<<<<<< HEAD
-    - **[Connect](/docs/products/connect/get-started/)**: Provide a user-friendly way to move game tokens across chains.
-    - **[Token Bridge](/docs/products/token-bridge/overview/)**: Handle the underlying lock-and-mint logic securely.
-=======
 Next, install the Connect package as a dependency by running the following command inside your project directory:
->>>>>>> origin
 
 ```bash
 npm install @wormhole-foundation/wormhole-connect
@@ -2079,8 +1820,8 @@ export default function Home() {
 }
     ```
 
-- Set `network` to `'Testnet'` - this ensures that Connect uses the testnet environment
-- Set `chains` to `['Sui', 'Avalanche']` - configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche
+- **Set `network` to `'Testnet'`**: This ensures that Connect uses the testnet environment.
+- **Set `chains` to `['Sui', 'Avalanche']`**: Configures the app to allow transfers between Sui and Avalanche Fuji, the testnet for Avalanche.
 
 ### Customize Connect
 
@@ -2102,28 +1843,28 @@ Before transferring token ensure you have enough testnet SUI and Fuji tokens to 
 
 To transfer tokens from Sui to Fuji in the Connect interface:
 
-1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer
-2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network
-3. Enter the amount of SUI tokens you wish to transfer
+1. Select **Sui** as the source network, connect your Sui wallet, and choose **SUI** as the asset you wish to transfer.
+2. Choose **Fuji** as the destination network and connect your wallet with the Fuji network.
+3. Enter the amount of SUI tokens you wish to transfer.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-1.webp){.half}
 
-4. Choose to view other routes 
+4. Choose to view other routes.
     
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-2.webp){.half}
 
-5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji)
+5. Select the manual bridge option, which will require two transactions: one on the source chain (Sui) and one on the destination chain (Fuji).
 
     !!! note
         It is recommended to use the manual bridge option for this tutorial. The automatic bridge feature is currently undergoing improvements, while the manual bridge ensures that transfers complete successfully.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-3.webp){.half}
 
-6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain
+6. Review and confirm the transfer on Sui. This will lock your tokens on the Sui chain.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-4.webp){.half}
 
-7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet
+7. Follow the on-screen prompts to approve the transaction. You will be asked to sign with your Sui wallet.
 
     ![](/docs/images/products/connect/tutorials/react-dapp/connect-5.webp){.half}
 
@@ -2149,10 +1890,10 @@ In this tutorial, you've gained hands-on experience with integrating Connect to 
 
 By following these steps, you've learned how to:
 
-- Set up a React project tailored for cross-chain transfers
-- Install and configure Connect to support multiple blockchains
-- Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers
-- Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
+- Set up a React project tailored for cross-chain transfers.
+- Install and configure Connect to support multiple blockchains.
+- Implement a streamlined UI for selecting source and destination chains, connecting wallets, and initiating transfers.
+- Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks.
 
 With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
 
@@ -2164,136 +1905,6 @@ Looking for more? Check out the [Wormhole Tutorial Demo repository](https://gith
 The following section contains foundational documentation shared across all Wormhole products. It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole. This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
 ---
 
-<<<<<<< HEAD
-## Feature Support Matrix {: #feature-support-matrix}
-
-*Scroll down for details about each column.*
-
-| **Network** | **Token Bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop Off** |
-|:-----------:|:----------------:|:------------------------:|:---------------:|:--------------:|:----------------:|
-|   Solana    |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
-|  Ethereum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
-|     BSC     |        ✅         |            ✅             |        ❌        |       ✅        |        ✅         |
-|   Polygon   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
-|  Avalanche  |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
-|   Fantom    |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|    Kaia     |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|    Celo     |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|  Moonbeam   |        ✅         |            ✅             |        ❌        |       ❌        |        ✅         |
-|  Injective  |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|     Sui     |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
-|    Aptos    |        ✅         |            ❌             |        ✅        |       ❌        |        ❌         |
-|  Arbitrum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
-|  Optimism   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
-|    Base     |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
-|     Sei     |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|   Scroll    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|    Blast    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-|   X Layer   |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
-
-## Feature Explanation {: #feature-explanation}
-
-### Token Bridge {: #token-bridge}
-
-Wormhole is best known for its Token Bridge transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
-
-This route appears if both of the following conditions are satisfied:
-
- - Both the origin and destination chains support Token Bridge.
- - No non-Token Bridge routes are available for the selected token.
-
-### Token Bridge Relayer {: #token-bridge-relayer}
-
-On the [routes](/docs/products/connect/concepts/routes/){target=\_blank} page, this is referred to as the automatic route in the Token Bridge section.
-
-Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee.
-
-This route appears if all of the following conditions are satisfied:
-
-- Both the origin and destination chains support Token Bridge.
-- Both the origin and destination chains support Token Bridge relayer.
-- No non-Token Bridge routes are available for the selected token.
-- The relayer supports the selected token on the origin chain.
-
-### Circle CCTP {: #circle-cctp}
-
-[Circle](https://www.circle.com/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank} chains.
-
-This route appears if all of the following conditions are satisfied:
-
-- Both the origin and destination chains support Circle CCTP.
-- The selected token is native Circle-issued USDC.
-
-### ETH Bridge {: #eth-bridge}
-
-[Powered by Uniswap liquidity pools](https://github.com/wormhole-foundation/example-uniswap-liquidity-layer){target=\_blank}, this route can transfer native ETH or wstETH between certain EVMs without going through the native bridges.
-
-This route appears if all of the following conditions are satisfied:
-
-- Both the origin and destination chains support the ETH Bridge.
-- The selected token is native ETH, wstETH, or canonical wETH.
-
-### Gas Drop Off {: #gas-drop-off}
-
-A relayer can drop off some gas tokens on the destination chain by swapping some of the assets transferred to the native gas token. This is useful if the user wishes to transfer assets to a chain where they don't already have gas. This way, they don't need to onboard into the ecosystem from a centralized exchange.
-
-This route appears if all of the following conditions are satisfied:
-
-- Both the origin and destination chains support gas drop off.
-- An automatic route is selected.
-- The relayer accepts the selected token to swap into the gas token.
---- END CONTENT ---
-
-Doc-Content: https://wormhole.com/docs/products/connect/reference/supported-networks/
---- BEGIN CONTENT ---
----
-title: Connect Supported Networks
-description: Explore all blockchains supported by Wormhole Connect, including network availability, block explorers, and cross-chain transfer support.
-categories: Connect, Transfer
----
-
-# Supported Networks
-
-<!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--SUPPORTED_BLOCKCHAIN_CONNECT-->
-<div class="full-width" markdown="">
-| Ethereum | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Solana | SVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Aptos | Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Arbitrum | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Avalanche | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Base | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Berachain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Blast | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mantle | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Osmosis | CosmWasm | :x: | :x: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Polygon | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-</div>
---- END CONTENT ---
-
-## Basics Concepts [shared: true]
-
-The following section contains foundational documentation shared across all Wormhole products.
-It describes the architecture and messaging infrastructure that serve as the backbone for all integrations built with Wormhole.
-This includes the core contracts, VAA (Verifiable Action Approval) structure, guardian set functionality, and message flow mechanisms.
-This context is provided to help understand how the system works under the hood, but responses should stay focused on the specific product unless the user explicitly asks about the general architecture.
-
----
-
-## List of shared concept pages:
-
-=======
 ## List of Shared Concept Pages:
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/overview.md [type: overview]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md [type: overview]
@@ -2313,7 +1924,6 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/infrastructure/vaas.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/introduction.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/protocol/security.md [type: other]
->>>>>>> origin
 
 ## Full content for shared concepts:
 
@@ -2352,36 +1962,36 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate actions across chains.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Transfer collateral as native assets.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Fetch rates and prices in real-time.
+    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate actions across chains.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
+    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Relay verified data.
-    - [**Queries**](/docs/products/queries/overview/){target=\_blank}: Aggregate multi-chain sources.
+    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Relay verified data.
+    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Aggregate multi-chain sources.
 
 - **Gas Abstraction**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Coordinate gas logic.
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/overview/){target=\_blank}: Handle native token swaps.
+    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate gas logic.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
 
 - **Bridging Intent Library**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Dispatch and execute intents.
-    - [**Settlement**](/docs/products/settlement/overview/){target=\_blank}: Execute user-defined bridging intents.
+    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Dispatch and execute intents.
+    - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Execute user-defined bridging intents.
 
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
-    - [**Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Facilitate decentralized interactions.
-    - [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank}: Enable tokenized rewards.
+    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Facilitate decentralized interactions.
+    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
 
 ## Next Steps
 
 Follow these steps to work with Wormhole Messaging:
 
-- [**Get Started with Messaging**](/docs/products/messaging/get-started/){target=\_blank}: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
-- [**Use Wormhole Relayers**](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}: Send and receive messages without off-chain infrastructure.
+- **[Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
+- **[Use Wormhole Relayers](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}**: Send and receive messages without off-chain infrastructure.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/overview.md
@@ -2404,9 +2014,9 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- [**Native Token Transfers (NTT)**](/docs/products/native-token-transfers/overview/){target=\_blank} - a mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks
-- [**Token Bridge**](/docs/products/token-bridge/overview/){target=\_blank} - a bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages
-- [**Settlement**](/docs/products/settlement/overview/){target=\_blank} - intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods
+- **[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
+- **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
+- **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods.
 
 <div markdown class="full-width">
 
@@ -3447,56 +3057,30 @@ Additionally, we'll rely on the Wormhole relayer to automatically determine cros
 
 Before starting this tutorial, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts
-- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
-- Wallet private key
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts.
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees.
+- Wallet private key.
 
-<<<<<<< HEAD
-    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate actions across chains.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
-    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch rates and prices in real-time.
-=======
 ## Build Cross-Chain Messaging Contracts
->>>>>>> origin
 
 In this section, we'll deploy two smart contracts: one to send a message from Avalanche Fuji and another to receive it on Celo Alfajores. The contracts interact with the Wormhole relayer to transmit messages across chains.
 
-<<<<<<< HEAD
-    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Relay verified data.
-    - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Aggregate multi-chain sources.
-=======
 At a high level, our contracts will:
->>>>>>> origin
 
-1. Send a message from Avalanche to Celo using the Wormhole relayer
-2. Receive and process the message on Celo, logging the content of the message
+1. Send a message from Avalanche to Celo using the Wormhole relayer.
+2. Receive and process the message on Celo, logging the content of the message.
 
-<<<<<<< HEAD
-    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate gas logic.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
-=======
 Before diving into the deployment steps, let's first break down key parts of the contracts.
->>>>>>> origin
 
 ### Sender Contract: MessageSender
 
-<<<<<<< HEAD
-    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Dispatch and execute intents.
-    - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Execute user-defined bridging intents.
-=======
 The `MessageSender` contract is responsible for quoting the cost of sending a message cross-chain and then sending that message. 
->>>>>>> origin
 
 Key functions include:
 
-<<<<<<< HEAD
-    - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Facilitate decentralized interactions.
-    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
-=======
- - **`quoteCrossChainCost`** - calculates the cost of delivering a message to the target chain using the Wormhole relayer
- - **`sendMessage`** - encodes the message and sends it to the target chain and contract address using the Wormhole relayer
->>>>>>> origin
+ - **`quoteCrossChainCost`**: Calculates the cost of delivering a message to the target chain using the Wormhole relayer.
+ - **`sendMessage`**: Encodes the message and sends it to the target chain and contract address using the Wormhole relayer.
 
 Here's the core of the contract:
 
@@ -3507,16 +3091,10 @@ uint16 targetChain,
     ) external payable {
         uint256 cost = quoteCrossChainCost(targetChain);
 
-<<<<<<< HEAD
-- **[Get Started with Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Use the core protocol to publish a multichain message and return transaction info with VAA identifiers.
-- **[Use Wormhole Relayers](/docs/products/messaging/guides/wormhole-relayers/){target=\_blank}**: Send and receive messages without off-chain infrastructure.
---- END CONTENT ---
-=======
         require(
             msg.value &gt;= cost,
             "Insufficient funds for cross-chain delivery"
         );
->>>>>>> origin
 
         wormholeRelayer.sendPayloadToEvm{value: cost}(
             targetChain,
@@ -3546,11 +3124,6 @@ contract MessageSender {
         wormholeRelayer = IWormholeRelayer(_wormholeRelayer);
     }
 
-<<<<<<< HEAD
-- **[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
-- **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
-- **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods.
-=======
     function quoteCrossChainCost(
         uint16 targetChain
     ) public view returns (uint256 cost) {
@@ -3560,7 +3133,6 @@ contract MessageSender {
             GAS_LIMIT
         );
     }
->>>>>>> origin
 
     function sendMessage(
         uint16 targetChain,
@@ -3595,9 +3167,9 @@ In cross-chain messaging, validating the sender is essential to prevent unauthor
 
 Key implementation details include:
 
- - **`registeredSender`** - stores the address of the registered sender contract
- - **`setRegisteredSender`** - registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders
- - **`isRegisteredSender`** - restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication
+ - **`registeredSender`**: Stores the address of the registered sender contract.
+ - **`setRegisteredSender`**: Registers the sender's contract address on the source chain. It ensures that only registered contracts can send messages, preventing unauthorized senders.
+ - **`isRegisteredSender`**: Restricts the processing of messages to only those from registered senders, preventing unauthorized cross-chain communication.
 
 ```solidity
 
@@ -3728,9 +3300,9 @@ This section will guide you through deploying the cross-chain messaging contract
 ### Deployment Tools
 We use _Foundry_ to deploy our smart contracts. However, you can use any tool you're comfortable with, such as:
 
- - [Remix](https://remix.ethereum.org/){target=\_blank} for a browser-based IDE
- - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation){target=\_blank} for a more extensive JavaScript/TypeScript workflow
- - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for a CLI-focused experience with built-in scripting and testing features
+ - [Remix](https://remix.ethereum.org/){target=\_blank} for a browser-based IDE.
+ - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation){target=\_blank} for a more extensive JavaScript/TypeScript workflow.
+ - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for a CLI-focused experience with built-in scripting and testing features.
 
 The contracts and deployment steps remain the same regardless of your preferred tool. The key is to ensure you have the necessary Testnet funds and are deploying to the right networks.
 
@@ -3750,29 +3322,29 @@ The repository includes:
 
 - Two Solidity contracts:
 
-    - **`MessageSender.sol`** - contract that sends the cross-chain message from Avalanche
-    - **`MessageReceiver.sol`** - contract that receives the cross-chain message on Celo
+    - **`MessageSender.sol`**: Contract that sends the cross-chain message from Avalanche.
+    - **`MessageReceiver.sol`**: Contract that receives the cross-chain message on Celo.
 
 - Deployment scripts located in the `script` directory:
 
-    - **`deploySender.ts`** - deploys the `MessageSender` contract to Avalanche
-    - **`deployReceiver.ts`** - deploys the `MessageReceiver` contract to Celo
-    - **`sendMessage.ts`** - sends a message from Avalanche to Celo
+    - **`deploySender.ts`**: Deploys the `MessageSender` contract to Avalanche.
+    - **`deployReceiver.ts`**: Deploys the `MessageReceiver` contract to Celo.
+    - **`sendMessage.ts`**: Sends a message from Avalanche to Celo.
 
 - Configuration files and ABI JSON files for easy deployment and interaction:
 
-    - **`chains.json`** - configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks
+    - **`chains.json`**: Configuration file that stores key information for the supported Testnets, including the Wormhole relayer addresses, RPC URLs, and chain IDs. You likely won't need to modify this file unless you're working with different networks.
 
  - A dedicated `interfaces` directory inside the `src` folder for TypeScript type definitions:
 
-    - **`ChainsConfig.ts`** - defines the types for the `chains.json` configuration file
-    - **`DeployedContracts.ts`** - contains types for deployed contract addresses and related information
-    - **`MessageJsons.ts`** - includes types for ABI and bytecode JSONs used by the deployment scripts
-    - **`index.ts`** - serves as an export aggregator for the interfaces, simplifying imports in other files
+    - **`ChainsConfig.ts`**: Defines the types for the `chains.json` configuration file.
+    - **`DeployedContracts.ts`**: Contains types for deployed contract addresses and related information.
+    - **`MessageJsons.ts`**: Includes types for ABI and bytecode JSONs used by the deployment scripts.
+    - **`index.ts`**: Serves as an export aggregator for the interfaces, simplifying imports in other files.
 
 ### Important Setup Steps
 
-1. **Add your private key** - create a `.env` file in the root of the project and add your private key:
+1. **Add your private key**: Create a `.env` file in the root of the project and add your private key.
     
     ```env
     touch .env
@@ -3784,7 +3356,7 @@ The repository includes:
     PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
 
-2. **Compile the contracts** - ensure everything is set up correctly by compiling the contracts:
+2. **Compile the contracts**: Ensure everything is set up correctly by compiling the contracts.
 
     ```bash
     forge build
@@ -3805,7 +3377,7 @@ The expected output should be similar to this:
 
 Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the following key tasks:
 
-1. **Load configuration and contract details** - each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network
+1. **Load configuration and contract details**: Each script begins by loading the necessary configuration details, such as the network's RPC URL and the contract's ABI and bytecode. This information is essential for deploying the contract to the correct blockchain network.
 
     === "`chains.json`"
 
@@ -3867,7 +3439,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
     !!! note
         The `chains.json` file contains the configuration details for the Avalanche Fuji and Celo Alfajores Testnets. You can modify this file to add more networks if needed. For a complete list of contract addresses, visit the [reference page](/docs/products/reference/contract-addresses/){target=\_blank}.
 
-2. **Set up provider and wallet** - the scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction
+2. **Set up provider and wallet**: The scripts establish a connection to the blockchain using a provider and create a wallet instance using a private key. This wallet is responsible for signing the deployment transaction.
 
     === "`deploySender.ts`"
 
@@ -3881,7 +3453,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
         const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
         ```
 
-3. **Deploy the contract** - the contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on
+3. **Deploy the contract**: The contract is deployed to the network specified in the configuration. Upon successful deployment, the contract address is returned, which is crucial for interacting with the contract later on.
 
     === "`deploySender.ts`"
 
@@ -3899,7 +3471,7 @@ Both deployment scripts, `deploySender.ts` and `deployReceiver.ts`, perform the 
   await receiverContract.waitForDeployment();
         ```
 
-4. **Register the `MessageSender` on the target chain** - after you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed
+4. **Register the `MessageSender` on the target chain**: After you deploy the `MessageReceiver` contract on the Celo Alfajores network, the sender contract address from Avalanche Fuji needs to be registered. This ensures that only messages from the registered `MessageSender` contract are processed.
 
     This additional step is essential to enforce emitter validation, preventing unauthorized senders from delivering messages to the `MessageReceiver` contract
 
@@ -4125,7 +3697,7 @@ The sender contract will handle quoting and sending messages cross-chain.
     npm run deploy:sender
     ```
 
-2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}
+2. Once deployed, the contract address will be displayed. You may check the contract on the [Avalanche Fuji Explorer](https://testnet.snowtrace.io/){target=\_blank}.
 
 <div data-termynal="" id="termynal">
 <span data-ty="input"><span class="file-path"></span>npm run deploy:sender</span>
@@ -4157,10 +3729,10 @@ In this example, we will use the `sendMessage.ts` script to transmit a message f
 
 Let's break down the script step by step.
 
-1. **Load configuration files**
+1. **Load configuration files**:
 
-    1. **`chains.json`** - contains details about the supported Testnet chains, such as RPC URLs and relayer addresses
-    2. **`deployedContracts.json`** - stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed
+    1. **`chains.json`**: Contains details about the supported Testnet chains, such as RPC URLs and relayer addresses.
+    2. **`deployedContracts.json`**: Stores the addresses of the deployed sender and receiver contracts. This file is dynamically updated when contracts are deployed, but users can also manually add their own deployed contract addresses if needed.
 
     ```typescript
     fs.readFileSync(
@@ -4177,15 +3749,15 @@ Let's break down the script step by step.
   );
     ```
 
-2. **Configure the provider and signer** - the script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider
+2. **Configure the provider and signer**: The script first reads the chain configurations and extracts the contract addresses. One essential step in interacting with a blockchain is setting up a _provider_. A provider is your connection to the blockchain network. It allows your script to interact with the blockchain, retrieve data, and send transactions. In this case, we're using a JSON-RPC provider.
 
-    Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network:
+    Next, we configure the wallet, which will be used to sign transactions. The wallet is created using the private key and the provider. This ensures that all transactions sent from this wallet are broadcast to the Avalanche Fuji network.
         
     ```typescript
     const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
     ```
 
-    After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it:
+    After setting up the wallet, the script loads the ABI for the `MessageSender.sol` contract and creates an instance of it.
 
     ```typescript
     fs.readFileSync(
@@ -4195,19 +3767,19 @@ Let's break down the script step by step.
   );
     ```
 
-3. **Set up the message details** - the next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo):
+3. **Set up the message details**: The next part of the script defines the target chain (Celo) and the target address (the receiver contract on Celo).
 
     ```typescript
     const targetAddress = deployedContracts.celo.MessageReceiver;
     ```
 
-    You can customize the message that will be sent across chains:
+    You can customize the message that will be sent across chains.
 
     ```typescript
     
     ```
 
-4. **Estimate cross-chain cost** - before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function:
+4. **Estimate cross-chain cost**: Before sending the message, we dynamically calculate the cross-chain cost using the `quoteCrossChainCost` function.
 
     ```typescript
     
@@ -4215,7 +3787,7 @@ Let's break down the script step by step.
 
     This ensures that the transaction includes enough funds to cover the gas fees for the cross-chain message.
 
-5. **Send a message** - with everything set up, the message is sent using the `sendMessage` function:
+5. **Send a message**: With everything set up, the message is sent using the `sendMessage` function.
 
     ```typescript
     targetChain,
@@ -4227,13 +3799,13 @@ Let's break down the script step by step.
   );
     ```
 
-    After sending, the script waits for the transaction to be confirmed:
+    After sending, the script waits for the transaction to be confirmed.
 
     ```typescript
     
     ```
 
-6. **Run the script** - to send the message, run the following command:
+6. **Run the script**: To send the message, run the following command:
 
     ```bash
     npm run send:message
@@ -4371,9 +3943,9 @@ main().catch((error) =&gt; {
 
 You're now fully equipped to build cross-chain contracts using the Wormhole protocol! With this tutorial, you've learned how to:
 
-- Deploy sender and receiver contracts on different Testnets
-- Send a cross-chain message from one blockchain to another
-- Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
+- Deploy sender and receiver contracts on different testnets.
+- Send a cross-chain message from one blockchain to another.
+- Monitor the status of your cross-chain transactions using Wormholescan and the Wormhole Solidity SDK.
 
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
@@ -4398,11 +3970,11 @@ By the end of this tutorial, you'll have a working cross-chain token transfer sy
 
 Before you begin, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts
-- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
-- [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer
-- Wallet private key
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts.
+- Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees.
+- [USDC Testnet](https://faucet.circle.com/){target=\_blank} tokens on Avalanche-Fuji or/and Celo-Alfajores for cross-chain transfer.
+- Wallet private key.
 
 ## Valid Tokens for Transfer
 
@@ -4412,26 +3984,30 @@ To simplify this process, we've included a tool for verifying if a token has an 
 
 ???- tip "Check Token Attestation"
     1. Clone the [repository](https://github.com/wormhole-foundation/demo-cross-chain-token-transfer){target=\_blank} and navigate to the project directory:
+
         ```bash
         git clone https://github.com/wormhole-foundation/demo-cross-chain-token-transfer.git
         cd cross-chain-token-transfers
         ```
+
     2. Install the dependencies:
+
         ```bash
         npm install
         ```
     
     3. Run the script to check token attestation:
+
         ```bash
         npm run verify
         ```
 
     4. Follow the prompts:
 
-        1. Enter the RPC URL of the target chain
-        2. Enter the `TokenBridge` contract address on the target chain
-        3. Enter the token contract address on the source chain
-        4. Enter the source chain ID
+        1. Enter the RPC URL of the target chain.
+        2. Enter the `TokenBridge` contract address on the target chain.
+        3. Enter the token contract address on the source chain.
+        4. Enter the source chain ID.
 
     5. The expected output when the token has an attestation:
         
@@ -4483,8 +4059,8 @@ In this section, we'll build two smart contracts to send tokens from a source ch
 
 At a high level, our contracts will:
 
-1. Send tokens from one blockchain to another using the Wormhole protocol
-2. Receive and process the tokens on the target chain, ensuring they are correctly transferred to the intended recipient
+1. Send tokens from one blockchain to another using the Wormhole protocol.
+2. Receive and process the tokens on the target chain, ensuring they are correctly transferred to the intended recipient.
 
 Before diving into the contract implementation steps, let’s first break down the key parts of the contracts.
 
@@ -4576,13 +4152,13 @@ contract CrossChainSender is TokenSender {
 
 Here’s a breakdown of what happens in each step of the `sendCrossChainDeposit` function:
 
-1. **Cost calculation** - the function starts by calculating the cost of the cross-chain transfer using `quoteCrossChainDeposit`(`targetChain`). This cost includes both the delivery fee and the Wormhole message fee. The `sendCrossChainDeposit` function then checks that the user has sent the correct amount of Ether to cover this cost (`msg.value`)
+1. **Cost calculation**: The function starts by calculating the cost of the cross-chain transfer using `quoteCrossChainDeposit`(`targetChain`). This cost includes both the delivery fee and the Wormhole message fee. The `sendCrossChainDeposit` function then checks that the user has sent the correct amount of Ether to cover this cost (`msg.value`).
 
-2. **Token transfer to contract** - the next step is to transfer the specified amount of tokens from the user to the contract itself using `IERC-20(token).transferFrom(msg.sender, address(this), amount)`. This ensures that the contract has custody of the tokens before initiating the cross-chain transfer
+2. **Token transfer to contract**: The next step is to transfer the specified amount of tokens from the user to the contract itself using `IERC-20(token).transferFrom(msg.sender, address(this), amount)`. This ensures that the contract has custody of the tokens before initiating the cross-chain transfer.
 
-3. **Payload encoding** - The recipient's address on the target chain is encoded into a payload using `abi.encode(recipient)`. This payload will be sent along with the token transfer, so the target contract knows who should receive the tokens on the destination chain
+3. **Payload encoding**: The recipient's address on the target chain is encoded into a payload using `abi.encode(recipient)`. This payload will be sent along with the token transfer, so the target contract knows who should receive the tokens on the destination chain.
 
-4. **Cross-chain transfer** - the `sendTokenWithPayloadToEvm` function is called to initiate the cross-chain token transfer. This function:
+4. **Cross-chain transfer**: The `sendTokenWithPayloadToEvm` function is called to initiate the cross-chain token transfer. This function does the following:
     - Specifies the `targetChain` (the Wormhole chain ID of the destination blockchain).
     - Sends the `targetReceiver` contract address on the target chain that will receive the tokens.
     - Attaches the payload containing the recipient's address.
@@ -4720,9 +4296,9 @@ contract CrossChainReceiver is TokenReceiver {
 
     This function ensures that:
 
-    - It only processes one token transfer at a time
-    - The `sourceAddress` is checked against a list of registered senders using the `isRegisteredSender` modifier, which verifies if the emitter is allowed to send tokens to this contract
-    - The recipient address is decoded from the payload, and the received tokens are transferred to them using the ERC-20 interface
+    - It only processes one token transfer at a time.
+    - The `sourceAddress` is checked against a list of registered senders using the `isRegisteredSender` modifier, which verifies if the emitter is allowed to send tokens to this contract.
+    - The recipient address is decoded from the payload, and the received tokens are transferred to them using the ERC-20 interface.
 
 After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes through the standard Wormhole message lifecycle. Once a [VAA (Verifiable Action Approval)](/docs/protocol/infrastructure/vaas/){target=\_blank} is available, the delivery provider will call `receivePayloadAndTokens` on the target chain and target address specified, with the appropriate inputs.
 
@@ -4740,15 +4316,15 @@ After we call `sendTokenWithPayloadToEvm` on the source chain, the message goes 
 }
     ```
 
-    - **`tokenHomeAddress`** - the original address of the token on its native chain. This is the same as the token field in the call to `sendTokenWithPayloadToEvm` unless the original token sent is a Wormhole-wrapped token. In that case, this will be the address of the original version of the token (on its native chain) in Wormhole address format (left-padded with 12 zeros)
+    - **`tokenHomeAddress`**: The original address of the token on its native chain. This is the same as the token field in the call to `sendTokenWithPayloadToEvm` unless the original token sent is a Wormhole-wrapped token. In that case, this will be the address of the original version of the token (on its native chain) in Wormhole address format (left-padded with 12 zeros).
 
-    - **`tokenHomeChain`** - the Wormhole chain ID corresponding to the home address above. This will typically be the source chain unless the original token sent is a Wormhole-wrapped asset, which will be the chain of the unwrapped version of the token
+    - **`tokenHomeChain`**: The Wormhole chain ID corresponding to the home address above. This will typically be the source chain unless the original token sent is a Wormhole-wrapped asset, which will be the chain of the unwrapped version of the token.
 
-    - **`tokenAddress`** - the address of the IERC-20 token on the target chain that has been transferred to this contract. If `tokenHomeChain` equals the target chain, this will be the same as `tokenHomeAddress`; otherwise, it will be the Wormhole-wrapped version of the token sent
+    - **`tokenAddress`**: The address of the IERC-20 token on the target chain that has been transferred to this contract. If `tokenHomeChain` equals the target chain, this will be the same as `tokenHomeAddress`; otherwise, it will be the Wormhole-wrapped version of the token sent.
 
-    - **`amount`** - the token amount sent to you with the same units as the original token. Since `TokenBridge` only sends with eight decimals of precision, if your token has 18 decimals, this will be the "amount" you sent, rounded down to the nearest multiple of 10^10
+    - **`amount`**: The token amount sent to you with the same units as the original token. Since `TokenBridge` only sends with eight decimals of precision, if your token has 18 decimals, this will be the "amount" you sent, rounded down to the nearest multiple of 10^10.
 
-    - **`amountNormalized`** - the amount of token divided by (1 if decimals ≤ 8, else 10^(decimals - 8))
+    - **`amountNormalized`**: The amount of token divided by (1 if decimals ≤ 8, else 10^(decimals - 8)).
 
 You can find the complete code for the `CrossChainReceiver.sol` contract below:
 
@@ -4801,7 +4377,7 @@ contract CrossChainReceiver is TokenReceiver {
 
 Now that you've written the `CrossChainSender` and `CrossChainReceiver` contracts, it's time to deploy them to your chosen networks.
 
-1. **Set up deployment configuration** - before deploying, you must configure the networks and the deployment environment. This information is stored in a configuration file
+1. **Set up deployment configuration**: Before deploying, you must configure the networks and the deployment environment. This information is stored in a configuration file.
 
     1. Create a directory named deploy-config in the root of your project:
 
@@ -4840,7 +4416,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 }
         ```
 
-        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core Contract.
+        This file specifies the details for each chain where you plan to deploy your contracts, including the RPC URL, the `TokenBridge` address, the Wormhole relayer, and the Wormhole Core contract.
 
         For a complete list of Wormhole contract addresses on various blockchains, refer to the [Wormhole Contract Addresses](/docs/products/reference/contract-addresses/){target=\_blank}.
 
@@ -4853,9 +4429,9 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
         echo '{}' > deploy-config/contracts.json
         ```
 
-        This file can be left blank initially. It will be automatically updated with the deployed contract addresses after a successful deployment
+        This file can be left blank initially. It will be automatically updated with the deployed contract addresses after a successful deployment.
 
-2. **Set up your Node.js environment** - you'll need to set up your Node.js environment to run the deployment script
+2. **Set up your Node.js environment**: You'll need to set up your Node.js environment to run the deployment script.
 
     1. Initialize a Node.js project:
 
@@ -4877,7 +4453,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 
         These dependencies are required for the deployment script to work properly.
 
-3. **Compile your smart contracts** - compile your smart contracts using Foundry. This ensures that your contracts are up-to-date and ready for deployment
+3. **Compile your smart contracts**: Compile your smart contracts using Foundry. This ensures that your contracts are up-to-date and ready for deployment.
 
     - Run the following command to compile your contracts:
 
@@ -4898,7 +4474,7 @@ Now that you've written the `CrossChainSender` and `CrossChainReceiver` contract
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
-4. **Write the deployment script** - you’ll need a script to automate the deployment of your contracts. Let’s create the deployment script
+4. **Write the deployment script**: You’ll need a script to automate the deployment of your contracts. Let’s create the deployment script.
 
     1. Create a new file named `deploy.ts` in the `/script` directory:
 
@@ -4977,8 +4553,8 @@ function selectChain(
   const targetChain = selectChain(chains, 'target');
         ```
 
-        - The `main` function is the entry point for the deployment script
-        - We then call the `loadConfig` function we previously defined to load the chain configuration from the `config.json` file
+        - The `main` function is the entry point for the deployment script.
+        - We then call the `loadConfig` function we previously defined to load the chain configuration from the `config.json` file.
 
     6. Set up provider and wallet: 
     
@@ -5002,9 +4578,9 @@ function selectChain(
   );
         ```
 
-        - This code reads the `CrossChainSender.json` file, the compiled output of the `CrossChainSender.sol` contract
-        - The file is in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated during contract compilation
-        - It uses the `fs.readFileSync` function to read the file and `JSON.parse` to convert the file contents (in JSON format) into a JavaScript object
+        - This code reads the `CrossChainSender.json` file, the compiled output of the `CrossChainSender.sol` contract.
+        - The file is in the `../out/` directory, which contains the ABI (Application Binary Interface) and bytecode generated during contract compilation.
+        - It uses the `fs.readFileSync` function to read the file and `JSON.parse` to convert the file contents (in JSON format) into a JavaScript object.
 
     8. Extract the contract ABI and bytecode:
 
@@ -5012,8 +4588,8 @@ function selectChain(
         const bytecode = senderJson.bytecode;
         ```
 
-        - **ABI (Application Binary Interface)** - defines the structure of the contract’s functions, events, and data types, allowing the front end to interact with the contract on the blockchain
-        - **Bytecode** - this is the compiled machine code that will be deployed to the blockchain to create the contract
+        - **ABI (Application Binary Interface)**: Defines the structure of the contract’s functions, events, and data types, allowing the front end to interact with the contract on the blockchain.
+        - **Bytecode**: This is the compiled machine code that will be deployed to the blockchain to create the contract.
 
     9. Create the Contract Factory:
 
@@ -5024,8 +4600,8 @@ function selectChain(
   );
         ```
 
-        - **`ethers.ContractFactory`** - creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain
-        - This is a crucial step for deploying the contract since the factory will create and deploy the `CrossChainSender` contract
+        - **`ethers.ContractFactory`**: Creates a new contract factory using the ABI, bytecode, and a wallet (representing the signer). The contract factory is responsible for deploying instances of the contract to the blockchain.
+        - This is a crucial step for deploying the contract since the factory will create and deploy the `CrossChainSender` contract.
 
     10. Deploy the `CrossChainSender` and `CrossChainReceiver` contracts:
 
@@ -5071,10 +4647,10 @@ function selectChain(
 
         For the `CrossChainReceiver` contract:
 
-        - It defines the wallet related to the target chain
-        - The logic reads the compiled ABI and bytecode from the JSON file generated during compilation
-        - It creates a new contract factory using the ABI, bytecode, and wallet
-        - It deploys the contract to the selected chain passing in the Wormhole Relayer, `TokenBridge`, and Wormhole addresses
+        - It defines the wallet related to the target chain.
+        - The logic reads the compiled ABI and bytecode from the JSON file generated during compilation.
+        - It creates a new contract factory using the ABI, bytecode, and wallet.
+        - It deploys the contract to the selected chain passing in the Wormhole Relayer, `TokenBridge`, and Wormhole addresses.
 
     11. Save the deployed contract addresses:
 
@@ -5184,8 +4760,8 @@ main().catch((error) =&gt; {
 
         The try-catch block wraps the deployment logic to catch any errors that may occur.
 
-        - If the error is due to insufficient funds, it logs a clear message about needing more gas fees
-        - For any other errors, it logs the specific error message to help with debugging
+        - If the error is due to insufficient funds, it logs a clear message about needing more gas fees.
+        - For any other errors, it logs the specific error message to help with debugging.
 
         The `process.exit(1)` ensures that the script exits with a failure status code if any error occurs.
 
@@ -5397,7 +4973,7 @@ main().catch((error) =&gt; {
 });
         ```
 
-5. **Add your private key** - you'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf
+5. **Add your private key**: You'll need to provide your private key. It allows your deployment script to sign the transactions that deploy the smart contracts to the blockchain. Without it, the script won't be able to interact with the blockchain on your behalf.
 
     Create a `.env` file in the root of the project and add your private key:
 
@@ -5411,7 +4987,7 @@ main().catch((error) =&gt; {
     PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
     
-6. **Run the deployment script**
+6. **Run the deployment script**:
 
     1. Open a terminal and run the following command:
 
@@ -5423,8 +4999,8 @@ main().catch((error) =&gt; {
 
     2. Check the deployment output:
 
-        - You will see the deployed contract addresses printed in the terminal if successful. The `contracts.json` file will be updated with these addresses
-        - If you encounter an error, the script will provide feedback, such as insufficient funds for gas
+        - You will see the deployed contract addresses printed in the terminal if successful. The `contracts.json` file will be updated with these addresses.
+        - If you encounter an error, the script will provide feedback, such as insufficient funds for gas.
 
 If you followed the logic provided in the full code above, your terminal output should look something like this:
 
@@ -5463,7 +5039,7 @@ In this step, you'll write a script to transfer tokens across chains using the `
 
 ### Transfer Script
 
-1. **Set up the transfer script**
+1. Set up the transfer script:
 
     1. Create a new file named `transfer.ts` in the `/script` directory:
 
@@ -5589,9 +5165,9 @@ function selectTargetChain(deployedContracts: DeployedContracts): {
 }
         ```
 
-2. **Implement the token transfer logic**
+2. Implement the token transfer logic:
 
-    1. Start the `main` function:
+    1. **Create the `main` function**: Add the token transfer logic, including the chain and contract details, wallet and provider for the source chain, and the `CrossChainSender` contract for interaction.
     
         ```typescript
         const chains = loadConfig();
@@ -5631,12 +5207,8 @@ function selectTargetChain(deployedContracts: DeployedContracts): {
     wallet
   );
         ```
-    
-        The `main` function is where the token transfer logic will reside. It loads the chain and contract details, sets up the wallet and provider, and loads the `CrossChainSender` contract.
 
-    2. Ask the user for token transfer details:
-
-        You'll now ask the user for the token contract address, the recipient address on the target chain, and the amount of tokens to transfer.
+    2. **Ask the user for token transfer details**: You'll now ask the user for the token contract address, the recipient address on the target chain, and the amount of tokens to transfer.
 
         ```typescript
         'Enter the token contract address: '
@@ -5667,9 +5239,7 @@ function selectTargetChain(deployedContracts: DeployedContracts): {
 
         This section of the script prompts the user for the token contract address and the recipient's address, fetches the token's decimal value, and parses the amount accordingly.
 
-    3. Initiate the transfer:
-
-        Finally, initiate the cross-chain transfer and log the details.
+    3. **Initiate the transfer**: Finally, initiate the cross-chain transfer and log the details.
 
         ```typescript
         // Approve the CrossChainSender contract to transfer tokens on behalf of the user
@@ -5704,15 +5274,13 @@ function selectTargetChain(deployedContracts: DeployedContracts): {
 
         This part of the script first approves the token transfer, then initiates the cross-chain transfer using the `CrossChainSender` contract, and finally logs the transaction hash for the user to track.
 
-    4. Finalize the script:
+    4. **Finalize the script**: Call the `main` function and handle any errors that may occur during the token transfer process.
 
         ```typescript
         console.error(error);
   process.exit(1);
 });
         ```
-
-        This section finalizes the script by calling the `main` function and handling any errors that may occur during the token transfer process.
 
 You can find the full code for the `transfer.ts` file below:
 
@@ -5933,9 +5501,7 @@ main().catch((error) =&gt; {
 
 Now that your transfer script is ready, it’s time to execute it and perform a cross-chain token transfer.
 
-1. **Run the transfer script**
-
-    Open your terminal and run the transfer script:
+1. **Run the transfer script**: Open your terminal and run the transfer script.
 
     ```bash
     npx ts-node script/transfer.ts
@@ -5943,11 +5509,11 @@ Now that your transfer script is ready, it’s time to execute it and perform a 
 
     This command will start the script, prompting you to select the source and target chains, input the token address, recipient address, and the amount of tokens to transfer.
 
-2. **Follow the prompts** - the script will guide you through selecting the source and target chains and entering the necessary details for the token transfer. Once you provide all the required information, the script will initiate the token transfer
+2. **Follow the prompts**: The script will guide you through selecting the source and target chains and entering the necessary details for the token transfer. Once you provide all the required information, the script will initiate the token transfer.
 
-3. **Verify the transaction** - after running the script, you should see a confirmation message with the transaction hash. You can use this transaction hash to check the transfer status on the respective blockchain explorers
+3. **Verify the transaction**: After running the script, you should see a confirmation message with the transaction hash. You can use this transaction hash to check the transfer status on the respective blockchain explorers.
 
-You can verify the transaction on the [Wormhole Explorer](https://wormholescan.io/){target=\_balnk} using the link provided in the terminal output. This explorer also offers the option to add the transferred token to your MetaMask wallet automatically.
+You can verify the transaction on the [Wormhole Explorer](https://wormholescan.io/){target=\_blank} using the link provided in the terminal output. This explorer also offers the option to add the transferred token to your MetaMask wallet automatically.
 
 If you followed the logic provided in the `transfer.ts` file above, your terminal output should look something like this:
 
@@ -5988,9 +5554,9 @@ If you'd like to explore the complete project or need a reference while followin
 
 Congratulations! You've successfully built and deployed a cross-chain token transfer system using Solidity and the Wormhole protocol. You've learned how to:
 
- - Set up a new Solidity project using Foundry
- - Develop smart contracts to send and receive tokens across chains
- - Write deployment scripts to manage and deploy contracts on different networks
+ - Set up a new Solidity project using Foundry.
+ - Develop smart contracts to send and receive tokens across chains.
+ - Write deployment scripts to manage and deploy contracts on different networks.
 
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
@@ -6015,10 +5581,10 @@ Instead of discarding these VAAs, we can fetch updated signatures and replace th
 
 In this tutorial, you'll build a script from scratch to:
 
-- Fetch a VAA from [Wormholescan](https://wormholescan.io/#/developers/api-doc){target=\_blank}
-- Validate its signatures against the latest Guardian set
-- Replace outdated signatures using the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}
-- Output a valid VAA ready for submission
+- Fetch a VAA from [Wormholescan](https://wormholescan.io/#/developers/api-doc){target=\_blank}.
+- Validate its signatures against the latest Guardian set.
+- Replace outdated signatures using the [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}.
+- Output a valid VAA ready for submission.
 
 By the end, you'll have a script that ensures VAAs remain valid and processable, avoiding transaction failures.
 
@@ -6026,27 +5592,27 @@ By the end, you'll have a script that ensures VAAs remain valid and processable,
 
 Before you begin, ensure you have the following:
 
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
- - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+ - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
 
 ## Project Setup
 
 In this section, you will create the directory, initialize a Node.js project, install dependencies, and configure TypeScript.
 
-1. **Create the project** - set up the directory and navigate into it
+1. **Create the project**: Set up the directory and navigate into it.
 
     ```bash
     mkdir wormhole-scan-api-demo
     cd wormhole-scan-api-demo
     ```
 
-2. **Initialize a Node.js project** - generate a `package.json` file
+2. **Initialize a Node.js project**: Generate a `package.json` file.
 
     ```bash
     npm init -y
     ```
 
-3. **Set up TypeScript** - create a `tsconfig.json` file
+3. **Set up TypeScript**: Create a `tsconfig.json` file.
 
     ```bash
     touch tsconfig.json
@@ -6067,19 +5633,19 @@ In this section, you will create the directory, initialize a Node.js project, in
 }
     ```
 
-4. **Install dependencies** - add the required packages
+4. **Install dependencies**: Add the required packages.
 
     ```bash
     npm install @wormhole-foundation/sdk axios web3 tsx @types/node
     ```
 
-     - `@wormhole-foundation/sdk` - handles VAAs and cross-chain interactions  
-     - `axios` - makes HTTP requests to the Wormholescan API  
-     - `web3` - interacts with Ethereum transactions and contracts  
-     - `tsx` - executes TypeScript files without compilation  
-     - `@types/node` - provides Node.js type definitions 
+     - **`@wormhole-foundation/sdk`**: Handles VAAs and cross-chain interactions.  
+     - **`axios`**: Makes HTTP requests to the Wormholescan API.  
+     - **`web3`**: Interacts with Ethereum transactions and contracts.  
+     - **`tsx`**: Executes TypeScript files without compilation.  
+     - **`@types/node`**: Provides Node.js type definitions. 
 
-5. **Create the project structure** - set up the required directories and files
+5. **Create the project structure**: Set up the required directories and files.
 
     ```bash
     mkdir -p src/config && touch src/config/constants.ts src/config/layouts.ts
@@ -6087,11 +5653,11 @@ In this section, you will create the directory, initialize a Node.js project, in
     mkdir -p src/scripts && touch scripts/replaceSignatures.ts
     ```
 
-     - **`src/config/*`** - stores public configuration variables and layouts for serializing and deserializing data structures
-     - **`src/helpers/*`** - contains utility functions
-     - **`src/scripts/*`** - contains scripts for fetching and replacing signatures
+     - **`src/config/*`**: Stores public configuration variables and layouts for serializing and deserializing data structures.
+     - **`src/helpers/*`**: Contains utility functions.
+     - **`src/scripts/*`**: Contains scripts for fetching and replacing signatures.
 
-6. **Set variables** - define key constants in `src/config/constants.ts`
+6. **Set variables**: Define key constants in `src/config/constants.ts`.
 
     ```bash title="src/config/constants.ts"
     export const RPC = 'https://ethereum-rpc.publicnode.com';
@@ -6110,13 +5676,13 @@ export const TXS = [
 ];
     ```
 
-     - **`RPC`** - endpoint for interacting with an Ethereum RPC node
-     - **`ETH_CORE`** - [Wormhole's Core Contract address on Ethereum](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs
-     - **`WORMHOLESCAN_API`** - base URL for querying the Wormholescan API to fetch VAA data and Guardian sets
-     - **`LOG_MESSAGE_PUBLISHED_TOPIC`** - the event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts
-     - **`TXS`** - list of example transaction hashes that will be used for testing
+     - **`RPC`**: Endpoint for interacting with an Ethereum RPC node.
+     - **`ETH_CORE`**: [Wormhole's Core Contract address on Ethereum](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} responsible for verifying VAAs.
+     - **`WORMHOLESCAN_API`**: Base URL for querying the Wormholescan API to fetch VAA data and Guardian sets.
+     - **`LOG_MESSAGE_PUBLISHED_TOPIC`**: The event signature hash for `LogMessagePublished`, a Wormhole contract event that signals when a VAA has been emitted. This is used to identify relevant logs in transaction receipts.
+     - **`TXS`**: List of example transaction hashes that will be used for testing.
 
-7. **Define data structure for working with VAAs** - specify the ABI for the Wormhole Core Contract's `parseAndVerifyVM` function, which parses and verifies VAAs. Defining the data structure, also referred to as a [layout](/docs/tools/typescript-sdk/guides/sdk-layout/){target=\_blank}, for this function ensures accurate decoding and validation of VAAs
+7. **Define data structure for working with VAAs**: Specify the ABI for the Wormhole Core Contract's `parseAndVerifyVM` function, which parses and verifies VAAs. Defining the data structure, also referred to as a [layout](/docs/tools/typescript-sdk/guides/sdk-layout/){target=\_blank}, for this function ensures accurate decoding and validation of VAAs.
 
     ```typescript title="src/config/layouts.ts"
     export const PARSE_AND_VERIFY_VM_ABI = {
@@ -6191,21 +5757,21 @@ The VAA ID is structured as follows:
 chain/emitter/sequence
 ```
 
- - `chain` - the [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} (Ethereum is 2)
- - `emitter` - the contract address that emitted the VAA
- - `sequence` - a unique identifier for the event
+ - **`chain`**: The [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} (Ethereum is 2).
+ - **`emitter`**: The contract address that emitted the VAA.
+ - **`sequence`**: A unique identifier for the event.
 
 We must assemble the ID correctly since this is the format the Wormholescan API expects when querying VAAs.
 
 Follow the below steps to process the transaction logs and construct the VAA ID:
 
-1. **Get the transaction receipt** - iterate over the array of transaction hashes and fetch the receipt to access its logs
+1. **Get the transaction receipt**: Iterate over the array of transaction hashes and fetch the receipt to access its logs.
 
-2. **Find the Wormhole event** - iterate over the transaction logs and check for events emitted by the Wormhole Core contract. Look specifically for `LogMessagePublished` events, which indicate a VAA was created
+2. **Find the Wormhole event**: Iterate over the transaction logs and check for events emitted by the Wormhole Core contract. Look specifically for `LogMessagePublished` events, which indicate a VAA was created.
 
-3. **Extract the emitter and sequence number** - if a matching event is found, extract the emitter address from `log.topics[1]` and remove the `0x` prefix. Then, the sequence number from `log.data` is extracted, converting it from hex to an integer
+3. **Extract the emitter and sequence number**: If a matching event is found, extract the emitter address from `log.topics[1]` and remove the `0x` prefix. Then, the sequence number from `log.data` is extracted, converting it from hex to an integer.
 
-4. **Construct the VAA ID** - format the extracted data in `chain/emitter/sequence` format
+4. **Construct the VAA ID**: Format the extracted data in `chain/emitter/sequence` format.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 const vaaIds: string[] = [];
@@ -6246,13 +5812,14 @@ const vaaIds: string[] = [];
 ???- code "Try it out: VAA ID retrieval"
     If you want to try out the function before moving forward, create a test file inside the `test` directory: 
 
-    1. **Create the directory and file** - add a script to call `fetchVaaId` and print the result
+    1. Create the directory and file:
 
         ```bash
         mkdir -p test
         touch test/fetchVaaId.run.ts
         ```  
-    2. **Add the function call**  
+
+    2. Add the function call:  
 
         ```typescript title="test/fetchVaaId.run.ts"
         import { fetchVaaId } from '../src/helpers/vaaHelper';
@@ -6274,7 +5841,7 @@ const testFetchVaaId = async () =&gt; {
 testFetchVaaId();
         ```  
 
-    3. **Run the script**  
+    3. Run the script:  
 
         ```bash
         npx tsx test/fetchVaaId.run.ts
@@ -6319,13 +5886,13 @@ vaaIds: string[]
 ???- code "Try it out: VAA retrieval"
     If you want to try the function before moving forward, create a script inside the `test` directory  
 
-    1. **Create the script file**
+    1. Create the script file:
 
         ```bash
         touch test/fetchVaa.run.ts
         ```
 
-    2. **Add the function call**  
+    2. Add the function call:
 
         ```typescript title="test/fetchVaa.run.ts"
         import { fetchVaaId, fetchVaa } from '../src/helpers/vaaHelper';
@@ -6355,7 +5922,7 @@ const testFetchVaa = async () =&gt; {
 testFetchVaa();
         ```
 
-    3. **Run the script**  
+    3. Run the script:
 
         ```bash
         npx tsx test/fetchVaa.run.ts
@@ -6381,11 +5948,11 @@ Open `src/helpers/vaaHelper.ts` and add the `checkVaaValidity()` function. This 
 
 Follow these steps to implement the function:  
 
-1. **Prepare the VAA for verification** - construct the VAA payload in a format that can be sent to the Wormhole Core contract
+1. **Prepare the VAA for verification**: Construct the VAA payload in a format that can be sent to the Wormhole Core contract.
 
-2. **Send an `eth_call` request** - submit the VAA to an Ethereum RPC node, calling the `parseAndVerifyVM` function on the Wormhole Core contract
+2. **Send an `eth_call` request**: Submit the VAA to an Ethereum RPC node, calling the `parseAndVerifyVM` function on the Wormhole Core contract.
 
-3. **Decode the response** - check whether the VAA is valid. If it contains outdated signatures, further action will be required to replace them
+3. **Decode the response**: Check whether the VAA is valid. If it contains outdated signatures, further action will be required to replace them.
 
 ```typescript title="src/helpers/vaaHelper.ts"
 try {
@@ -6431,13 +5998,13 @@ try {
 ???- code "Try it out: VAA Validity"
     If you want to try the function before moving forward, create a script inside the `test` directory
 
-    1. **Create the script file**
+    1. Create the script file:
 
         ```bash
         touch test/checkVaaValidity.run.ts
         ```
 
-    2. **Add the function call**
+    2. Add the function call:
 
         ```typescript title="test/checkVaaValidity.run.ts"
         import {
@@ -6476,7 +6043,7 @@ const testCheckVaaValidity = async () =&gt; {
 testCheckVaaValidity();
         ```
 
-    3. **Run the script**
+    3. Run the script:
 
         ```bash
         npx tsx test/checkVaaValidity.run.ts
@@ -6529,13 +6096,13 @@ try {
 ???- code "Try it out: Fetch Observations"
     If you want to try the function before moving forward, create a script inside the `test` directory
 
-    1. **Create the script file**
+    1. Create the script file:
 
         ```bash
         touch test/fetchObservations.run.ts
         ```
 
-    2. **Add the function call**
+    2. Add the function call:
 
         ```typescript title="test/fetchObservations.run.ts"
         import { fetchVaaId, fetchObservations } from '../src/helpers/vaaHelper';
@@ -6569,7 +6136,7 @@ const testFetchObservations = async () =&gt; {
 testFetchObservations();
         ```
 
-    3. **Run the script**
+    3. Run the script:
 
         ```bash
         npx tsx test/fetchObservations.run.ts
@@ -6621,13 +6188,13 @@ export async function fetchGuardianSet() {
 ???- code "Try it out: Fetch Guardian Set"
     If you want to try the function before moving forward, create a script inside the `test` directory
 
-    1. **Create the script file**
+    1. Create the script file:
 
         ```bash
         touch test/fetchGuardianSet.run.ts
         ```
 
-    2. **Add the function call**
+    2. Add the function call:
 
         ```typescript title="test/fetchGuardianSet.run.ts"
         import { fetchGuardianSet } from '../src/helpers/vaaHelper';
@@ -6642,7 +6209,7 @@ const testFetchGuardianSet = async () =&gt; {
 testFetchGuardianSet();
         ```
 
-    3. **Run the script**
+    3. Run the script:
 
         ```bash
         npx tsx test/fetchGuardianSet.run.ts
@@ -6671,7 +6238,7 @@ testFetchGuardianSet();
 
 With the full VAA, Guardian signatures, and the latest Guardian set, we can now update outdated signatures while maintaining the required signature count.
 
-1. **Create the `replaceSignatures()` function** - open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block
+1. **Create the `replaceSignatures()` function**: Open `src/helpers/vaaHelper.ts` and add the function header. To catch and handle errors properly, all logic will be wrapped inside a `try` block.
 
     ```typescript title="src/helpers/vaaHelper.ts"
     vaa: string | Uint8Array<arraybufferlike>,
@@ -6688,12 +6255,12 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 }
     ```
 
-     - **`vaa`** - original VAA bytes
-     - **`observations`** - observed signatures from the network
-     - **`currentGuardians`** - latest Guardian set
-     - **`guardianSetIndex`** - current Guardian set index
+     - **`vaa`**: Original VAA bytes.
+     - **`observations`**: Observed signatures from the network.
+     - **`currentGuardians`**: Latest Guardian set.
+     - **`guardianSetIndex`**: Current Guardian set index.
 
-2. **Validate input data** - ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The Guardian set should never be empty; if it is, this likely indicates an error in fetching the Guardian set in a previous step
+2. **Validate input data**: Ensure all required parameters are present before proceeding. If any required input is missing, the function throws an error to prevent execution with incomplete data. The Guardian set should never be empty; if it is, this likely indicates an error in fetching the Guardian set in a previous step.
 
     ```typescript
     if (currentGuardians.length === 0)
@@ -6701,7 +6268,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     if (observations.length === 0) throw new Error('No observations provided.');
     ```
 
-3. **Filter valid signatures** - remove signatures from inactive Guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA
+3. **Filter valid signatures**: Remove signatures from inactive Guardians, keeping only valid ones. If there aren't enough valid signatures to replace the outdated ones, execution is halted to prevent an incomplete or invalid VAA.
 
     ```typescript
     currentGuardians.includes(sig.guardianAddr)
@@ -6711,7 +6278,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
       throw new Error('No valid signatures found. Cannot proceed.');
     ```
 
-4. **Convert valid signatures** - ensure signatures are correctly formatted for verification. Convert hex-encoded signatures if necessary and extract their components
+4. **Convert valid signatures**: Ensure signatures are correctly formatted for verification. Convert hex-encoded signatures if necessary and extract their components.
 
     ```typescript
     .map((sig) =&gt; {
@@ -6746,7 +6313,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
       ); // Remove null values
     ```
 
-5. **Deserialize the VAA** - convert the raw VAA data into a structured format for further processing
+5. **Deserialize the VAA**: Convert the raw VAA data into a structured format for further processing.
 
     ```typescript
     try {
@@ -6756,7 +6323,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     }
     ```
 
-6. **Identify outdated signatures** - compare the current VAA signatures with the newly formatted ones to detect which signatures belong to outdated Guardians. Remove these outdated signatures to ensure only valid ones remain
+6. **Identify outdated signatures**: Compare the current VAA signatures with the newly formatted ones to detect which signatures belong to outdated Guardians. Remove these outdated signatures to ensure only valid ones remain.
 
     ```typescript
     .filter(
@@ -6774,7 +6341,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     );
     ```
 
-7. **Replace outdated signatures** - substitute outdated signatures with valid ones while maintaining the correct number of signatures. If there aren’t enough valid replacements, execution stops
+7. **Replace outdated signatures**: Substitute outdated signatures with valid ones while maintaining the correct number of signatures. If there aren’t enough valid replacements, execution stops.
 
     ```typescript
     (sig) =&gt;
@@ -6797,7 +6364,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     updatedSignatures.sort((a, b) =&gt; a.guardianIndex - b.guardianIndex);
     ```
 
-8. **Serialize the updated VAA** - reconstruct the VAA with the updated signatures and convert it into a format suitable for submission
+8. **Serialize the updated VAA**: Reconstruct the VAA with the updated signatures and convert it into a format suitable for submission.
 
     ```typescript
     ...parsedVaa,
@@ -6813,7 +6380,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
     }
     ```
 
-9. **Send the updated VAA for verification and handle errors** - submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for Guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution
+9. **Send the updated VAA for verification and handle errors**: Submit the updated VAA to an Ethereum RPC node for validation, ensuring it can be proposed for Guardian approval. If an error occurs during submission or signature replacement, log the issue and prevent further execution.
 
     ```typescript
     if (!(patchedVaa instanceof Uint8Array))
@@ -6992,7 +6559,7 @@ With the full VAA, Guardian signatures, and the latest Guardian set, we can now 
 
 Now that we have all the necessary helper functions, we will create a script to automate replacing outdated VAA signatures. This script will retrieve a transaction’s VAA sequentially, check its validity, fetch the latest Guardian set, and update its signatures. By the end, it will output a correctly signed VAA that can be proposed for Guardian approval.
 
-1. **Open the file** - inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs
+1. **Open the file**: Inside `src/scripts/replaceSignatures.ts`, import the required helper functions needed to process the VAAs.
 
     ```typescript title="src/scripts/replaceSignatures.ts"
     fetchVaaId,
@@ -7005,7 +6572,7 @@ Now that we have all the necessary helper functions, we will create a script to 
 import { TXS } from '../config/constants';
     ```
 
-2. **Define the main execution function** - add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process
+2. **Define the main execution function**: Add the following function inside `src/scripts/replaceSignatures.ts` to process each transaction in `TXS`, going step by step through the signature replacement process.
 
     ```typescript
     try {
@@ -7050,7 +6617,7 @@ import { TXS } from '../config/constants';
 }
     ```
 
-3. **Make the script executable** - ensure it runs when executed
+3. **Make the script executable**: Ensure it runs when executed.
 
     ```typescript
     
