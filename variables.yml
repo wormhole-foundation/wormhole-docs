@@ -8,3 +8,7 @@ repositories:
   wormhole:
     repository_url: https://github.com/wormhole-foundation/wormhole
     version: 2.35.0
+  native_token_transfers:
+    repository_url: https://github.com/wormhole-foundation/native-token-transfers
+    evm_version: v1.2.0+evm
+    sol_version: v3.0.0+solana
