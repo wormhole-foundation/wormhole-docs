@@ -321,16 +321,11 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 |                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
 |                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
 | Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
 |                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
 |                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
 |                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |
 | Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
@@ -8930,16 +8925,11 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 |                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
 |                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
 | Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
 |                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
 |                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
 |                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |
 | Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
