@@ -4,9 +4,9 @@ description: Create and submit a token attestation to register a token for trans
 categories: Token-Bridge, Transfer
 ---
 
-# Token Attestation
+# Attest Tokens
 
-This guide demonstrates token attestation for registering a token for transfer using the [Token Bridge](/docs/products/token-bridge/overview) protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
+This guide demonstrates token attestation for registering a token for transfer using the [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
 
 Completing this guide will help you to accomplish the following:
 
@@ -14,7 +14,7 @@ Completing this guide will help you to accomplish the following:
 - Create and submit token attestation to register a wrapped version of a token on a destination chain.
 - Check for the wrapped version to become available on the destination chain and return the wrapped token address.
 
-The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge).
+The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank}.
 
 ## Prerequisites
 
@@ -27,21 +27,23 @@ Before you begin, ensure you have the following:
     - Private keys for your source and destination chains.
     - A small amount of gas tokens on your source and destination chains.
 
-## Set Up Your Developer Environment
+## Set Up Your Development Environment
 
 Follow these steps to initialize your project, install dependencies, and prepare your developer environment for token attestation.
 
 1. Create a new directory and initialize a Node.js project using the following commands:
-   ```bash
-   mkdir attest-token
-   cd attest-token
-   npm init -y
-   ```
 
-2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}:
-   ```bash
-   npm install @wormhole-foundation/sdk -D tsx typescript
-   ```
+    ```bash
+    mkdir attest-token
+    cd attest-token
+    npm init -y
+    ```
+
+2. Install dependencies, including the [Wormhole TypeScript SDK]({{repositories.wormhole_sdk.repository_url}}){target=\_blank}:
+
+    ```bash
+    npm install @wormhole-foundation/sdk -D tsx typescript
+    ```
 
 3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
 
@@ -49,29 +51,33 @@ Follow these steps to initialize your project, install dependencies, and prepare
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
 4. Create a new file named `helper.ts` to hold signer functions:
-   ```bash
-   touch helper.ts
-   ```
+
+    ```bash
+    touch helper.ts
+    ```
 
 5. Open `helper.ts` and add the following code:
+
     ```typescript title="helper.ts"
     --8<-- 'code/products/token-bridge/guides/attest-tokens/helper.ts'
     ```
 
-    You can view the [constants for platform names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/3eae2e91fc3a6fec859eb87cfa85a4c92c65466f/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms
+    You can view the list of [supported platform constants]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
 
-## Check for Wrapped Version
+## Check for a Wrapped Version of a Token
 
 If you are working with a newly created token that you know has never been transferred to the destination chain, you can continue to the [Create Attestation on the Source Chain](#create-attestation-on-the-source-chain) section.
 
 Since attestation is a one-time process, it is good practice when working with existing tokens to incorporate a check for wrapped versions into your Token Bridge transfer flow. Follow these steps to check for a wrapped version of a token:
 
 1. Create a new file called `attest.ts` to hold the wrapped version check and attestation logic:
+
     ```bash
     touch attest.ts
     ```
 
 2. Open `attest.ts` and add the following code:
+
     ```typescript title="attest.ts"
     --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:1:37'
     --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:121:128'
@@ -80,12 +86,13 @@ Since attestation is a one-time process, it is good practice when working with e
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
 
     - **Defines the token to check**: Use the contract address on the source chain for this value.
-    - **Calls [`getWrappedAsset`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L205){target=\_blank}**: part of the [`Wormhole` class](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L47){target=\_blank}, the method:
-        - Accepts a [`TokenId`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
+    - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L205){target=\_blank}**: Part of the [`Wormhole` class]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L47){target=\_blank}, the method:
+        - Accepts a [`TokenId`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
         - Checks for a corresponding wrapped version of the destination chain's Token Bridge contract.
         - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
 
 3. Run the script using the following command:
+
     ```bash
     npx tsx attest.ts
     ```
@@ -102,7 +109,8 @@ Since attestation is a one-time process, it is good practice when working with e
 
 ## Create Attestation on the Source Chain
 
-To create the attestation transaction on the source chain, open `attest.ts` and replace the "// Attestation flow code" comment with the following code:
+To create the attestation transaction on the source chain, open `attest.ts` and replace the `// Attestation flow code` comment with the following code:
+
 ```typescript title="attest.ts"
 --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:39:58'
 ```
@@ -111,7 +119,7 @@ This code does the following:
 
 - **Gets the source chain Token Bridge context**: This is where the transaction is sent to create the attestation.
 - Defines the token to attest and the payer.
-- **Calls `createAttestation`**: defined in the [`TokenBridge` interface](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
+- **Calls `createAttestation`**: Defined in the [`TokenBridge` interface]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
     - Accepts a `TokenAddress` representing the token on its native chain.
     - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
     - Prepares an attestation for the token including metadata such as address, symbol, and decimals.
@@ -128,11 +136,13 @@ The attestation flow finishes with the following:
 Follow these steps to complete your attestation flow logic:
 
 1. Add the following code to `attest.ts`:
+
     ```typescript title="attest.ts"
     --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:59:120'
     ```
 
 2. Run the script using the following command:
+
     ```bash
     npx tsx attest.ts
     ```
@@ -146,7 +156,7 @@ Follow these steps to complete your attestation flow logic:
         --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts'
         ```
 
-Congratulations! You've successfully created and submitted an attestation to register a token for transfer via Token Bridge. Consider the following options to build upon what you've achieved.
+Congratulations! You've successfully created and submitted an attestation to register a token for transfer via Token Bridge.
 
 ## Next Steps
 

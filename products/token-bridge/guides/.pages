@@ -1,4 +1,4 @@
 title: Guides
 nav:
 - 'Transfer Assets with Solidity': token-bridge-contracts.md
-- 'Token Attestation': attest-tokens.md
+- 'Attest Tokens': attest-tokens.md

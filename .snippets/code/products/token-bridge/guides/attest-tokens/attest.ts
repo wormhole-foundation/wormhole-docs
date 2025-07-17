@@ -20,7 +20,7 @@ async function attestToken() {
     sourceChain.chain,
     'INSERT_TOKEN_CONTRACT_ADDRESS'
   );
-  // Check if the token is registered with destinationChain token bridge contract
+  // Check if the token is registered with the destination chain Token Bridge contract
   // Registered = returns the wrapped token ID
   // Not registered = runs the attestation flow to register the token
   let wrappedToken: TokenId;
@@ -31,12 +31,12 @@ async function attestToken() {
       wrappedToken.address
     );
   } catch (e) {
+    // Attestation on the source chain flow code
     console.log(
       '⚠️ Token is NOT registered on destination. Running attestation flow...'
     );
-    // Attestation on the Source Chain flow code
-    // Retrieve the token bridge context for the source chain
-    // This is where you will send the transaction to attest the token
+
+    // Retrieve the Token Bridge context for the source chain
     const tb = await sourceChain.getTokenBridge();
     // Get the signer for the source chain
     const sourceSigner = await getSigner(sourceChain);
@@ -46,16 +46,16 @@ async function attestToken() {
       tokenId.address.toString()
     );
     const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
-    // Call the `createAttestation` method to create a new attestation
-    // and sign and send the transaction
+    // Create a new attestation and sign and send the transaction
     for await (const tx of tb.createAttestation(token, payer)) {
       const txids = await signSendWait(
         sourceChain,
         tb.createAttestation(token),
         sourceSigner.signer
       );
+      // Attestation on the destination chain flow code
       console.log('✅ Attestation transaction sent:', txids);
-      // Attestation on the Destination Chain flow code
+      
       // Parse the transaction to get Wormhole message ID
       const messages = await sourceChain.parseTransaction(txids[0].txid);
       console.log('✅ Attestation messages:', messages);
@@ -69,7 +69,7 @@ async function attestToken() {
         timeout
       );
       if (!vaa) throw new Error('❌ VAA not found before timeout.');
-      // Get the token bridge context for the destination chain
+      // Get the Token Bridge context for the destination chain
       // and submit the attestation VAA
       const destTb = await destinationChain.getTokenBridge();
       // Get the signer for the destination chain

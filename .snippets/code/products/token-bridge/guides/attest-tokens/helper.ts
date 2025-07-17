@@ -27,8 +27,8 @@ export async function getSigner<N extends Network, C extends Chain>(
   let signer: Signer<any, any>;
   const platform = chain.platform.utils()._platform;
 
-  // Customize the signer by adding or removing platforms as needed
-  // Be sure to import the necessary packages for the platforms you want to support
+  // Customize the signer by adding or removing platforms as needed. Be sure
+  // to import the necessary packages for the platforms you want to support
   switch (platform) {
     case 'Evm':
       signer = await (
