@@ -17,18 +17,10 @@
     cd my-ntt-project
     ```
 
-3. Create the deployment config**:
+3. Create the deployment config using the following command. This will generate a `deployment.json` file where your settings are stored:
 
     === "Mainnet"
 
         ```bash
         ntt init Mainnet
         ```
-
-    === "Testnet"
-
-        ```bash
-        ntt init Testnet
-        ```
-
-    This generates a `deployment.json` file where your deployment settings will be stored.

@@ -1,12 +1,10 @@
 ---
 title: Flow of a Token Bridge Transfer
 description: Learn how the Wormhole Token Bridge enables secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
-categories: Token-Bridge, Transfer
+categories: Token Bridge, Transfer
 ---
 
 # Flow of a Transfer
-
-## Introduction
 
 The [Wormhole Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own Token Bridge contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
@@ -119,7 +117,7 @@ Here's a quick breakdown of the key differences:
 
 The user who initiated the transfer should complete the transfer within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
 
-If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=_blank} tutorial to update the VAA with signatures from the current Guardian Set.
+If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=\_blank} tutorial to update the VAA with signatures from the current Guardian Set.
 
 ## Token Bridge Relayer (TBR)
 

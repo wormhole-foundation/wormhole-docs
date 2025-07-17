@@ -1,12 +1,10 @@
 ---
 title: Data Layouts
 description: Learn how to efficiently define, serialize, and deserialize data structures using Wormhole SDK's layout system for cross-chain communication.
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # Data Layouts
-
-## Introduction
 
 The [Wormhole SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} uses the [layout package](https://www.npmjs.com/package/binary-layout){target=\_blank} to define, serialize, and deserialize data structures efficiently. This modular system ensures consistent data formatting and cross-environment compatibility, benefiting projects that require robust handling of structured data.
 

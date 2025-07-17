@@ -1,13 +1,12 @@
 ---
 title: Create Cross-Chain Contracts
 description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo Testnets and send messages across chains.
+categories: Basics
 ---
 
 # Create Cross-Chain Messaging Contracts
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormhole-messaging){target=\_blank}
-
-## Introduction
 
 Wormhole's cross-chain messaging allows smart contracts to interact seamlessly across multiple blockchains. This enables developers to build decentralized applications that leverage the strengths of different networks, whether it's Avalanche, Celo, Ethereum, or beyond. In this tutorial, we'll explore using [Wormhole's Solidity SDK](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} to create cross-chain contracts to send and receive messages across chains.
 
@@ -30,7 +29,7 @@ Additionally, we'll rely on the Wormhole relayer to automatically determine cros
 Before starting this tutorial, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for deploying contracts
+- [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for deploying contracts
 - Testnet tokens for [Avalanche-Fuji](https://core.app/tools/testnet-faucet/?token=C){target=\_blank} and [Celo-Alfajores](https://faucet.celo.org/alfajores){target=\_blank} to cover gas fees
 - Wallet private key
 
@@ -112,7 +111,7 @@ We use _Foundry_ to deploy our smart contracts. However, you can use any tool yo
 
  - [Remix](https://remix.ethereum.org/){target=\_blank} for a browser-based IDE
  - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation){target=\_blank} for a more extensive JavaScript/TypeScript workflow
- - [Foundry](https://book.getfoundry.sh/getting-started/installation){target=\_blank} for a CLI-focused experience with built-in scripting and testing features
+ - [Foundry](https://getfoundry.sh/introduction/installation/){target=\_blank} for a CLI-focused experience with built-in scripting and testing features
 
 The contracts and deployment steps remain the same regardless of your preferred tool. The key is to ensure you have the necessary Testnet funds and are deploying to the right networks.
 
@@ -371,3 +370,5 @@ You're now fully equipped to build cross-chain contracts using the Wormhole prot
 - Deploy sender and receiver contracts on different Testnets
 - Send a cross-chain message from one blockchain to another
 - Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
+
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

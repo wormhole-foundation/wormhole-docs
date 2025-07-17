@@ -1,12 +1,10 @@
 ---
 title: VAAs and Protocols
 description: Understand how VAAs enable cross-chain messaging and how to handle them using Wormhole's TypeScript and Solidity SDKs.
-categories: Typescript-SDK
+categories: Typescript SDK
 ---
 
 # VAAs and Protocols
-
-## Introduction
 
 Wormhole's core functionality revolves around [Verifiable Action Approvals](/docs/protocol/infrastructure/vaas/){target=\_blank} (VAAs), which are signed messages enabling secure and decentralized communication across chains. This guide focuses on their practical usage within the Wormhole ecosystem, specifically when working with protocol-specific messages in the [TypeScript](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and [Solidity](https://github.com/wormhole-foundation/wormhole-solidity-sdk){target=\_blank} SDKs.
 

@@ -28,7 +28,7 @@ To use NTT, you must have a token already deployed on the source and destination
 ???- interface "Deploy an ERC-20 Token on EVM"
     Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-    1. **Install Foundry** - install the [Forge CLI](https://book.getfoundry.sh/getting-started/installation){target=\_blank}
+    1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
     2. **Clone the repository** – fetch the example contract repository
 
@@ -101,7 +101,7 @@ To use NTT, you must have a token already deployed on the source and destination
         solana balance
         ```
 
-    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}
 
         ```bash
         cargo install spl-token-cli
@@ -126,7 +126,7 @@ To use NTT, you must have a token already deployed on the source and destination
         ```
 
     !!! note
-        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+        NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 ## Install NTT CLI
 
@@ -145,6 +145,17 @@ The NTT CLI is recommended to deploy and manage your cross-chain token configura
     ```bash
     ntt --version
     ```
+
+??? warning "Command not found?"
+    If the `ntt` command is not recognized after installation, ensure that [Bun](https://bun.sh/) is installed and that its binary directory is included in your shell’s PATH.
+    
+    Append this line to your shell config (e.g., `~/.zshrc` or `~/.bashrc`):
+
+    ```bash
+    echo 'export PATH="$HOME/.bun/bin:$PATH"' >> ~/.zshrc
+    ```
+
+    Then, restart your terminal or run `source ~/.zshrc`.
 
 ## Initialize a New NTT Project
 

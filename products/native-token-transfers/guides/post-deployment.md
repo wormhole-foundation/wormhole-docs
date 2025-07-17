@@ -4,7 +4,7 @@ description: Learn post-deployment guidelines for optimizing Wormhole NTT, which
 categories: NTT, Transfer
 ---
 
-# Native Token Transfers Post Deployment
+# NTT Post-Deployment Steps
 
 To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
 
@@ -43,7 +43,7 @@ The following table outlines post-deployment settings available on the NTT Manag
 
     ---
 
-    Check out an example project that uses a Vite-React TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
+    Check out an example project that uses a Next.js TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
 
     [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
 

@@ -1,7 +1,7 @@
 title: Developer Tools
 nav:
 - typescript-sdk
-- solidity-sdk
+# - solidity-sdk
 - cli
 - 'Wormholescan Explorer': https://wormholescan.io/
 - 'Wormholescan API': https://wormholescan.io/#/developers/api-doc

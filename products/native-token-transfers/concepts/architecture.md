@@ -4,10 +4,9 @@ description: Explore Wormhole's Native Token Transfers architecture, which cover
 categories: NTT, Transfer
 ---
 
-## Introduction
+# NTT Architecture
 
 The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components that work together to manage cross-chain communication and token operations complexities.
-
 
 ## System Components
 
