@@ -6591,7 +6591,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9001-2 |
 | Fantom | 10 | 250 |
 | Fogo | 51 |  |
-| Gnosis | 25 | 100 |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 |  |
 | Injective | 19 | injective-1 |
 | Ink | 46 |  |
@@ -6646,7 +6645,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9000-4 |
 | Fantom | 10 | 4002 |
 | Fogo | 51 | 9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9 |
-| Gnosis | 25 | Chiado-10200 |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
 | Injective | 19 | injective-888 |
 | Ink | 46 | 763373 |
@@ -6769,7 +6767,6 @@ categories: Reference
 | BNB Smart Chain | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
-| Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
@@ -6810,7 +6807,6 @@ categories: Reference
 | Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
 | Fogo | BhnQyKoQQgpuRTRo6D8Emz93PvXCYfVgHhnrR4T3qhw4 |
-| Gnosis | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
 | Ink | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
@@ -7275,7 +7271,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | BNB Smart Chain | EVM | BNB | Official BNB Faucet |
 | Celo | EVM | CELO | Official Celo Faucet |
 | Fantom | EVM | FTM | Official Fantom Faucet |
-| Gnosis | EVM | xDAI | Official Gnosis Faucet |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
 | Ink | EVM | ETH | Official Ink Faucet |
 | Kaia | EVM | KAIA | Official Kaia Faucet |
