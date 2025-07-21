@@ -397,7 +397,7 @@ event GuardianSetAdded(
 
     ---
 
-    Check the full list of Wormhole Core Contract addresses across supported chains.
+    Check the complete list of Wormhole Core Contract addresses across supported chains.
 
     [:custom-arrow: View Addresses](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank}
 
