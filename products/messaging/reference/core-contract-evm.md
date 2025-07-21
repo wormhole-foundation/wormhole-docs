@@ -1,20 +1,12 @@
 ---
 title: Core Contract Reference (EVM)
-description: Reference for the Wormhole Core contract deployed on EVM chains. Includes the proxy structure, exposed events and functions.
+description: Reference for the Wormhole Core contract deployed on EVM chains. Includes the proxy structure, exposed events, and functions.
 categories: Basics
 ---
 
 # Core Contract Reference (EVM)
 
-The Wormhole Core contract on EVM chains is a proxy-based contract responsible for receiving and verifying Wormhole messages (VAAs). It implements the messaging interface and delegates logic to upgradeable implementation contracts.
-
-## Overview
-
-- Proxy contract: [`Wormhole.sol`](link_to_github_contract)
-- Implements EIP-1967 upgradeable proxy pattern via `ERC1967Proxy`.
-- Verifies and stores message digests (VAAs).
-- Emits events on message publication.
-- Used by protocols to publish messages into Wormhole.
+The [Wormhole Core Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank} chains is a proxy-based contract responsible for receiving and verifying Wormhole messages (VAAs). It implements the messaging interface and delegates logic to upgradeable implementation contracts.
 
 ## Architecture
 
@@ -56,7 +48,7 @@ function publishMessage(
 
     `consistencyLevel` ++"uint8"++
 
-    Finality requirement for Guardian attestation (e.g. safe or finalized).
+    Finality requirement for Guardian attestation (e.g., safe or finalized).
 
 ??? interface "Returns"
 
@@ -68,7 +60,7 @@ function publishMessage(
 
 Returns the index of the currently active Guardian set.
 
-Each VAA includes the index of the Guardian set that signed it. This function lets contracts retrieve the current index to ensure the VAA is verified against the correct set.
+Each VAA includes the index of the Guardian set that signed it. This function allows contracts to retrieve the current index, ensuring the VAA is verified against the correct set.
 
 ```solidity
 function getCurrentGuardianSetIndex() external view returns (uint32)
@@ -138,7 +130,7 @@ function messageFee() public view returns (uint256)
 
     `fee` ++"uint256"++
 
-    Fee in wei required to successfully publish a message. Must be sent as `msg.value`.
+    Fee in wei required to publish a message successfully. Must be sent as `msg.value`.
 
 ### `nextSequence`
 
@@ -218,7 +210,7 @@ function verifyVM(bytes memory encodedVM)
 
     `isValid` ++"bool"++
 
-    `true` if the signatures are valid and meet quorum.
+    `true` if the signatures are valid and meet the quorum.
 
     ---
 
@@ -248,7 +240,7 @@ function verifySignatures(
 
     `signatures` ++"Structs.Signature[]"++
 
-    Array of Guardian signatures.
+    An array of Guardian signatures.
 
     ---
 
@@ -260,7 +252,7 @@ function verifySignatures(
 
     `isValid` ++"bool"++
 
-    `true` if the required number of valid signatures are present.
+    `true` if the required number of valid signatures is present.
 
 ### `quorum`
 
