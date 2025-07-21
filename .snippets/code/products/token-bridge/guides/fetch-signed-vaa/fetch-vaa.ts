@@ -11,7 +11,7 @@ async function main() {
   const txid =
     'INSERT_TRANSACTION_ID';
   // Call getVaa to fetch the VAA associated with the transaction ID
-  // and decode returned data into human-readable format
+  // and decode returned data into a human-readable format
   const vaa = await wh.getVaa(txid, 'Uint8Array', 60000);
   if (!vaa) {
     console.error('❌ VAA not found');
