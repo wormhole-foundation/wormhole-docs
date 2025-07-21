@@ -42,7 +42,7 @@ NttManager
 - `mode` ++"Mode"++ — Mode of the NTT Manager (LOCKING=0 or BURNING=1).
 - `chainId` ++"uint16"++ — Wormhole chain ID that the NTT Manager is deployed on.
 - `NTT_MANAGER_VERSION` ++"string"++ — The version string of the NttManager contract implementation.
-- `rateLimitDuration` ++"uint64"++ — Duration (in seconds) for limits to fully replenish.
+- `rateLimitDuration` ++"uint64"++ — Duration (in seconds) until limits fully replenish.
 
 ## Events
 
@@ -262,13 +262,13 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 
     `previousOwner` ++"address"++
 
-    The previous owner address.
+    The previous owner's address.
 
     ---
 
     `newOwner` ++"address"++
 
-    The new owner address.
+    The new owner's address.
 
 ### Paused
 
@@ -296,13 +296,13 @@ event PauserTransferred(address indexed oldPauser, address indexed newPauser)
 
     `oldPauser` ++"address"++
 
-    The previous pauser address.
+    The previous pauser's address.
 
     ---
 
     `newPauser` ++"address"++
 
-    The new pauser address.
+    The new pauser's address.
 
 ### PeerUpdated
 
@@ -497,7 +497,7 @@ event TransferSent(bytes32 indexed digest)
 
 ### attestationReceived
 
-Called by transceivers when attestation is received. *(Defined in NttManager.sol)*
+Called by transceivers when the attestation is received. *(Defined in NttManager.sol)*
 
 ```sol
 function attestationReceived(
@@ -543,7 +543,7 @@ function attestationReceived(
 
         Payload that corresponds to the transfer type.
 
-> **Emits**: `MessageAlreadyExecuted` (if message was already executed), `OutboundTransferCancelled` or `TransferRedeemed` (if message execution succeeds), `TransferSent` (if message execution succeeds)
+> **Emits**: `MessageAlreadyExecuted` (if the message was already executed), `OutboundTransferCancelled` or `TransferRedeemed` (if the message execution succeeds), `TransferSent` (if the message execution succeeds)
 
 ### cancelOutboundQueuedTransfer
 
@@ -601,7 +601,7 @@ function completeOutboundQueuedTransfer(uint64 messageSequence) external payable
 
 ### executeMsg
 
-Execute a message when threshold is met. *(Defined in NttManager.sol)*
+Execute a message when the threshold is met. *(Defined in NttManager.sol)*
 
 ```sol
 function executeMsg(
@@ -647,7 +647,7 @@ function executeMsg(
 
         Payload that corresponds to the transfer type.
 
-> **Emits**: `MessageAlreadyExecuted` (if already executed), `OutboundTransferCancelled` or `TransferRedeemed` (depending on transfer type)
+> **Emits**: `MessageAlreadyExecuted` (if already executed), `OutboundTransferCancelled`, or `TransferRedeemed` (depending on the transfer type)
 
 ### getCurrentInboundCapacity
 
@@ -745,7 +745,7 @@ function getInboundQueuedTransfer(bytes32 digest) external view returns (Inbound
 
         `amount` ++"TrimmedAmount"++
 
-        The amount of the transfer, trimmed.
+        The trimmed amount of the transfer.
         
         ---
 
@@ -1478,7 +1478,7 @@ function unpause() external
 
 ### BurnAmountDifferentThanBalanceDiff
 
-Error when burn amount differs from balance difference. *(Defined in NttManager.sol)*
+Error when the burn amount differs from the balance difference. *(Defined in NttManager.sol)*
 
 ```sol
 error BurnAmountDifferentThanBalanceDiff(uint256 burnAmount, uint256 balanceDiff);
@@ -1528,7 +1528,7 @@ error CancellerNotSender(address canceller, address sender);
 
     `sender` ++"address"++
 
-    The original sender address.
+    The original sender's address.
 
 ### CapacityCannotExceedLimit
 
@@ -1680,7 +1680,7 @@ error InvalidPauser(address account);
 
 ### InvalidPeer
 
-Peer for the chain does not match the configuration. *(Defined in NttManager.sol)*
+The peer for the chain does not match the configuration. *(Defined in NttManager.sol)*
 
 ```sol
 error InvalidPeer(uint16 chainId, bytes32 peerAddress);
@@ -1700,7 +1700,7 @@ error InvalidPeer(uint16 chainId, bytes32 peerAddress);
 
 ### InvalidPeerChainIdZero
 
-Peer chain ID cannot be zero. *(Defined in NttManager.sol)*
+The peer chain ID cannot be zero. *(Defined in NttManager.sol)*
 
 ```sol
 error InvalidPeerChainIdZero();
@@ -1708,7 +1708,7 @@ error InvalidPeerChainIdZero();
 
 ### InvalidPeerDecimals
 
-Peer cannot have zero decimals. *(Defined in NttManager.sol)*
+The peer cannot have zero decimals. *(Defined in NttManager.sol)*
 
 ```sol
 error InvalidPeerDecimals();
@@ -1716,7 +1716,7 @@ error InvalidPeerDecimals();
 
 ### InvalidPeerSameChainId
 
-Peer cannot be on the same chain. *(Defined in NttManager.sol)*
+The peer cannot be on the same chain. *(Defined in NttManager.sol)*
 
 ```sol
 error InvalidPeerSameChainId();
@@ -1724,7 +1724,7 @@ error InvalidPeerSameChainId();
 
 ### InvalidPeerZeroAddress
 
-Peer cannot be the zero address. *(Defined in NttManager.sol)*
+The peer cannot be the zero address. *(Defined in NttManager.sol)*
 
 ```sol
 error InvalidPeerZeroAddress();
@@ -1906,7 +1906,7 @@ error OutboundQueuedTransferNotFound(uint64 queueSequence);
 
 ### OutboundQueuedTransferStillQueued
 
-Cannot complete the outbound transfer, still queued. *(Defined in RateLimiter.sol)*
+Cannot complete the outbound transfer. The transfer is still queued. *(Defined in RateLimiter.sol)*
 
 ```sol
 error OutboundQueuedTransferStillQueued(uint64 queueSequence, uint256 transferTimestamp);
@@ -1970,7 +1970,7 @@ error RequireContractIsPaused();
 
 ### RetrievedIncorrectRegisteredTransceivers
 
-Retrieved incorrect number of registered transceivers. *(Defined in ManagerBase.sol)*
+Retrieved an incorrect number of registered transceivers. *(Defined in ManagerBase.sol)*
 
 ```sol
 error RetrievedIncorrectRegisteredTransceivers(uint256 retrieved, uint256 registered);

@@ -448,7 +448,7 @@ function getWormholePeer(uint16 chainId) public view returns (bytes32)
 
 ### initialize
 
-Initializes the contract implementation. Only callable through delegate call. *(Defined in Implementation.sol)*
+Initializes the contract implementation. Only callable through a delegate call. *(Defined in Implementation.sol)*
 
 ```sol
 function initialize() external payable
@@ -550,7 +550,7 @@ function isWormholeRelayingEnabled(uint16 chainId) public view returns (bool)
 
 ### migrate
 
-Migrates the contract to a new implementation. Only callable during upgrades through delegate call. *(Defined in Implementation.sol)*
+Migrates the contract to a new implementation. Only callable during upgrades through a delegate call. *(Defined in Implementation.sol)*
 
 ```sol
 function migrate() external

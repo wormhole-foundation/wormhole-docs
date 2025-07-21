@@ -1366,7 +1366,7 @@ pub struct Config {
 
     `pending_owner` ++"Option<Pubkey>"++
 
-    The pending next owner (before claiming ownership).
+    The pending owner (before claiming ownership).
 
     ---
 

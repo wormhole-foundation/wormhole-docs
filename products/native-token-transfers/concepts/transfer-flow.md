@@ -63,7 +63,7 @@ Cross-chain token transfers using NTT follow these steps:
     - **Burning mode**: New tokens are minted to the recipient.
     - **Locking mode**: If tokens are native to the destination chain, they are released from the contract to the recipient.
 
-**Consider the following example**: Alice wants to send 100 ALICE tokens from Ethereum to Solana using NTT in burn mode. The ALICE is burned on Ethereum's NTT Manager, transceivers attest to the transfer, and equivalent ALICE is minted on Solana. The diagram below illustrates this transfer flow.
+**Consider the following example**: Alice wants to send 100 ALICE tokens from Ethereum to Solana using NTT in burn mode. The ALICE is burned on Ethereum's NTT Manager, transceivers attest to the transfer, and an equivalent amount of ALICE is minted on Solana. The diagram below illustrates this transfer flow.
 
 ```mermaid
 sequenceDiagram
@@ -129,7 +129,7 @@ Once the `NttManager` forwards the message to the transceiver, the message is tr
 
 Once the message has been transmitted, the contract emits the `SendTransceiverMessage` event.
 
-### Receiving the Message**
+### Receiving the Message
 
 Once a message has been emitted by a transceiver on the source chain, an off-chain process (for example, a relayer) will forward the message to the corresponding transceiver on the recipient chain. The relayer interacts with the transceiver via an entry point to receive messages. For example, the relayer will call the `receiveWormholeMessage` method on the `WormholeTransceiver` contract to execute the message. The `ReceiveRelayedMessage` event is emitted during this process.
 
@@ -197,7 +197,7 @@ Program log: Instruction: ReleaseOutbound
 
 Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
 
-The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entry point instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
+The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entry point instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approval (VAA) and stores it in a `VerifiedTransceiverMessage` account.
 
 The following will be produced in the program logs:
 
