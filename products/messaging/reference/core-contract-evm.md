@@ -380,3 +380,25 @@ event GuardianSetAdded(
     `index` ++"uint32"++
 
     Index of the newly added Guardian set.
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-link-external-16:{ .lg .middle } **View on Etherscan** 
+
+    ---  
+
+    See the deployed Core Contract on Ethereum and interact via the “Read as Proxy” tab. 
+
+    [:custom-arrow: View Contract on Etherscan](https://etherscan.io/address/0x98f3c9e6e3face36baad05fe09d375ef1464288b#readProxyContract){target=\_blank}
+
+-   :octicons-table-16:{ .lg .middle } **View All Deployment Addresses**
+
+    ---
+
+    Check the full list of Wormhole Core Contract addresses across supported chains.
+
+    [:custom-arrow: View Addresses](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank}
+
+</div>
