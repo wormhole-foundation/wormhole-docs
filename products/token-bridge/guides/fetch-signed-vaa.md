@@ -76,7 +76,7 @@ You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI t
 
     ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-1.webp)
 
-3. Inspect the returned search results. Note the source transaction ID, current status, transaction details, and the VAA ID are included.
+3. Inspect the returned search results. Note that the source transaction ID, current status, transaction details, and the VAA ID are included.
 
     ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-2.webp)
 
