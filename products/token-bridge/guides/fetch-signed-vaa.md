@@ -10,10 +10,10 @@ This guide demonstrates how to fetch a signed [Verified Action Approval (VAA)](/
 
 ## Prerequisites
 
-Before you begin, ensure you have the following:
+Before you begin, ensure you have the following installed:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
-- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=_blank}
+- [TypeScript](https://www.typescriptlang.org/download/){target=_blank} (installed globally)
 
 ## Set Up Your Developer Environment
 
@@ -80,9 +80,9 @@ You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI t
 
     ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-2.webp)
 
-Congratulations! You've now fetched a signed VAA using both the TypeScript SDK and Wormholescan UI. These skills are valuable when developing manual transfer or messaging processes, as well as debugging and testing an integration build. Consider the following options to build upon what you've achieved.
+Congratulations! You've now fetched a signed VAA using both the TypeScript SDK and Wormholescan UI. These skills are valuable when developing manual transfer or messaging processes, as well as debugging and testing an integration build. 
 
-## Next Steps
+<!-- ## Next Steps
 
 - [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-bridge/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA that verifies a source chain transfer transaction to the destination chain, completing a manual transfer flow and releasing the tokens to the intended recipient.
-- [**Transfer Assets with TypeScript**](/docs/products/token-bridge/guides/transfer-wrapped-assets/): This guide takes you through the Token Bridge transfer flow end-to-end for moving wrapped assets across blockchains, including both automatic and manual transfers.
+- [**Transfer Assets with TypeScript**](/docs/products/token-bridge/guides/transfer-wrapped-assets/): This guide takes you through the Token Bridge transfer flow end-to-end for moving wrapped assets across blockchains, including both automatic and manual transfers. -->
