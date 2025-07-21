@@ -6,7 +6,7 @@ categories: Token-Bridge, Transfer
 
 # Fetch a Signed VAA
 
-This guide demonstrates fetching a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, first programmatically using the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
+This guide demonstrates how to fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, first programmatically using the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
 
 ## Prerequisites
 
