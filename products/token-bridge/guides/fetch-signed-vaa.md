@@ -84,5 +84,5 @@ Congratulations! You've now fetched a signed VAA using both the TypeScript SDK a
 
 ## Next Steps
 
-- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-bridge/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA verifying a source chain transfer transaction to the destination chain to complete a manual transfer flow and release the tokens to the intended recipient.
+- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-bridge/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA that verifies a source chain transfer transaction to the destination chain, completing a manual transfer flow and releasing the tokens to the intended recipient.
 - [**Transfer Assets with TypeScript**](/docs/products/token-bridge/guides/transfer-wrapped-assets/): This guide takes you end-to-end through the Token Bridge transfer flow for moving wrapped assets across blockchains, including automatic and manual transfers.
