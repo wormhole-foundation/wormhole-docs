@@ -5,6 +5,14 @@ categories: Basics
 ---
 <!-- TODO add link in messaging overview -->
 
+# Efficient Emission on Solana (Shim)
+
+This guide explains how to use [Wormhole’s emission shim](/docs/products/messaging/concepts/solana-shim/){target=\_blank} on Solana to reduce the cost of message emission. The shim enables integrators to emit messages without creating a new account for each message, minimizing rent costs and state bloat while maintaining Guardian compatibility.
+
+
+
+
+
 <!--
 Show step-by-step how to use the emission shim to emit messages from Solana with reduced rent/cost, explain relevant API/program flows, and note critical migration and sequence-handling details.
 
@@ -26,7 +34,7 @@ Parallelization limits not solved, etc.
 
 Link to Deployment Guide:
 For deploying/upgrading the shim.
--->
+
 
 # Efficient Emission on Solana (Shim)
 
@@ -98,7 +106,7 @@ If you're migrating from core `post_message`:
 - Prior to that, shim emissions will not result in valid VAAs.
 
 
-<!------------------------------------>
+<!-----------------------------------
 
 
 Purpose: Introduces a new emission mechanism via a shim program to avoid:
@@ -263,3 +271,5 @@ Test that emitting a message via core bridge `post_message` and `post_message_un
 ## Rollback
 
 Disable the guardian detection of shim instructions. This could be gated behind a feature flag, if desired.
+
+-->
