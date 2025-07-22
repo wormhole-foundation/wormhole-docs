@@ -1,6 +1,6 @@
 ---
 title: Core Contract (EVM)
-description: Reference for the Wormhole Core contract deployed on EVM chains. Includes the proxy structure, exposed events, and functions.
+description: Reference for the Wormhole Core contract deployed on EVM chains. Includes the proxy structure, exposed events, functions, and usage tips.
 categories: Basics
 ---
 
