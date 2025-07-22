@@ -6,7 +6,9 @@ categories: Basics
 
 # Efficient Emission on Solana (Shim)
 
-This guide explains how to use [Wormhole’s emission shim](/docs/products/messaging/concepts/solana-shim/){target=\_blank} on Solana to reduce the cost of message emission. The shim enables integrators to emit messages without creating a new account for each message, minimizing rent costs and state bloat while maintaining Guardian compatibility.
+This guide explains how to use Wormhole’s emission shim on Solana to reduce the cost of message emission. The shim enables integrators to emit messages without creating a new account for each message, minimizing rent costs and state bloat while maintaining Guardian compatibility.
+
+For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. For deployment steps, see [Shim Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}.
 
 ## Using the Emission Shim
 
@@ -17,7 +19,7 @@ The emission shim exposes a [`post_message`](https://github.com/wormhole-foundat
 Your transaction to the shim’s post_message should include:
 
 - `bridge`: Core Bridge config (mutable).
-- `message`: PDA for posted message (signer, but not unique per message-the shim reuses it).
+- `message`: PDA for posted message (account is reused by the shim, not unique per message).
 - `emitter`: The emitter address (Signer).
 - `sequence`: PDA for sequence tracking (mutable).
 - `payer`: Pays compute and (if needed) new account rent (Signer).
@@ -46,7 +48,7 @@ shim_program
     )?;
 ```
 
-## How the Emission Shim Works
+## How It Works
 
 - **Shim Contract**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.
 - **Sequence Handling**: Reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
@@ -93,13 +95,6 @@ Guardians are configured to:
 
 At least 13/19 Guardians must monitor the shim for your emissions to reliably result in VAAs. Until then, shim emissions may not be processed by the full network.
 
-## Limitations 
-
-- **Rent**: No persistent account rent is paid for every emission—cost is now dominated by compute and the emission fee.
-- **Logs**: Since all observability is log-based, re-observation is only possible while Solana transaction history is available.
-- **Parallelization**: Still limited by the `fee_collector` account being mutable.
-- **CPI Depth**: The first shim call for an emitter adds one extra stack depth. This is only relevant if you are near the Solana CPI limit (4).
-
 ## Deployment
 
 - Build and deploy the emission shim to Solana using a verifiable build.
@@ -107,10 +102,19 @@ At least 13/19 Guardians must monitor the shim for your emissions to reliably re
 - Drop upgrade authority after confirming correct operation.
 - See the [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for detailed deployment steps.
 
-## Security Considerations
+## Limitations and Security Considerations 
+
+- **Rent**: No persistent account rent is paid for every emission—cost is now dominated by compute and the emission fee.
+- **Logs**: Since all observability is log-based, re-observation is only possible while Solana transaction history is available.
+- **Parallelization**: Still limited by the `fee_collector` account being mutable.
+- **CPI Depth**: The first shim call for an emitter adds one extra stack depth. This is only relevant if you are near the Solana CPI limit (4).
 
 Always ensure that every (emitter, sequence) pair is unique. Never emit two messages with the same combination, or you may create unredeemable VAAs. Once you’ve confirmed the shim works as intended, drop upgrade authority to prevent future tampering.
+
+
 
 ## Conclusion
 
 By using the emission shim, you can dramatically reduce rent costs when emitting Wormhole messages from Solana, while ensuring compatibility with Guardian observation and core bridge sequencing.
+
+Ready to deploy? See the [Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for full instructions.
