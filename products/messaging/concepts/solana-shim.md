@@ -43,7 +43,7 @@ To understand how shims work, it helps to know a few Solana basics:
     - In the legacy model, each message uses a unique PDA (derived from emitter and sequence number) to store data.
     - Shim difference: Emission shim skips PDA creation and instead puts message data in transaction logs, so nothing is left behind on-chain.
 - **CPI (Cross-Program Invocation)**: Solana’s version of one smart contract calling another. Used by shims to invoke logic in the Core Bridge or other programs. 
-- **[Anchor CPI Event](https://www.anchor-lang.com/docs){target=\_blank}**: 
+- **[Anchor CPI Event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}**: 
     - A structured log emitted during a CPI call, observable in transaction logs, used by the emission shim to report sequence number, timestamp, and payload.
     - The emission shim emits these events so Guardians can observe messages directly from transaction logs (rather than accounts).
 
