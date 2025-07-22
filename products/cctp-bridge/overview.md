@@ -1,7 +1,7 @@
 ---
 title: CCTP Bridge with Wormhole
 description: Learn how the integration of Circle's CCTP with Wormhole enables secure and efficient native USDC transfers and complex cross-chain interactions.
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # CCTP with Wormhole Overview 
@@ -55,7 +55,7 @@ sequenceDiagram
 ```
 
 !!! note 
-    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/stablecoins/supported-domains){target=\_blank}.
+    For a cross-chain transfer to be successful, both the source and destination chains must be among those supported by [Circle's CCTP](https://developers.circle.com/cctp/supported-domains){target=\_blank}.
 
 ## Use Cases
 
@@ -72,4 +72,4 @@ Now that you're familiar with CCTP, here is a list of resources for more hands-o
 
 - [**Get started with CCTP Bridge**](/docs/products/cctp-bridge/get-started/): Perform a multichain USDC transfer from Avalanche to Sepolia using Wormhole's TypeScript SDK and Circle's CCTP.
 - [**Complete USDC Transfer Flow**](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/): Execute a USDC cross-chain transfer using Wormhole SDK and Circle's CCTP, covering manual, automatic, and partial transfer recovery.
-- [**Checkout Circle's CCTP Docs**](https://developers.circle.com/stablecoins/cctp-getting-started){target=\_blank}: Learn more about Circle's cross-chain transfer protocol in their documentation.
+- [**Checkout Circle's CCTP Docs**](https://developers.circle.com/cctp){target=\_blank}: Learn more about Circle's cross-chain transfer protocol in their documentation.

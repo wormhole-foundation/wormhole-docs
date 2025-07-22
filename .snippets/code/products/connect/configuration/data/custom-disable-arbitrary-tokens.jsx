@@ -1,11 +1,9 @@
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
-    disableUserInputtedTokens: true
-  }
+    disableUserInputtedTokens: true,
+  },
 };
 
 function App() {
