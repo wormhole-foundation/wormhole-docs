@@ -8,137 +8,77 @@ categories: Basics
 
 Wormhole shims on Solana are lightweight programs that enable cheaper and more flexible message emission and verification while preserving Guardian observation guarantees. They are designed for integrators who want to reduce Solana rent costs without sacrificing core protocol security or Guardian compatibility.
 
-This page explains how they work, why they exist, and what tradeoffs come with using them.
+This page explains what shims are, why they were created, how they work, and what this means for integrators.
 
-## Why Shims Exist
+## The Core Bridge Account Problem
 
-The [Core Bridge](/docs/protocol/infrastructure/core-contracts/) is immutable and secure, but on Solana it comes with specific limitations:
+When you emit a message on Solana using the legacy [Wormhole Core Bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account—specifically, a PDA (Program Derived Address) account—for every message. These accounts must be rent-exempt, meaning SOL is locked up for each one and cannot be recovered, since Core Bridge does not allow these accounts to be closed. Over time, this results in two big problems:
 
-- **Emission**: The `post_message` instruction creates a new message account for every call, which permanently consumes state and lamports—even after the VAA has been generated and used. While `post_message_unreliable` allows account reuse, it offers no way to recover messages once overwritten and requires the payload size to exactly match the existing account, as it predates support for account resizing.
-- **Verification**: The `post_vaa` instruction requires creating multiple temporary accounts to verify and store a VAA, resulting in added rent costs and on-chain storage overhead.
+- **Permanent On-Chain State**: Every message leaves behind a permanent account, increasing long-term storage needs on Solana.
+- **Lost Lamports to Rent**: Integrators lose SOL for every message, with no way to recover it even after the message has served its purpose. 
 
-Solana shims solve these problems _without modifying the Core Bridge_, enabling optimized workflows for Solana-based applications.
+Solana doesn’t use gas like EVM chains. Instead, programs must prepay “rent” in SOL for each account. These lamports can only be reclaimed if the account is closed, which isn’t possible for Core Bridge message accounts.
 
-## How Shims Fit into Wormhole
+While `post_message_unreliable` allows for account reuse, it has strict limitations: overwritten messages are lost forever, and account reuse can cause sequence conflicts or duplicate VAAs. Guardians expect every message to have a unique emitter and sequence, so reusing accounts risks breaking core protocol guarantees.
 
-Shims are not replacements for the Core Bridge — they are lightweight programs that extend its functionality, specifically on Solana, to reduce cost and simplify integration.
+Verification adds even more cost: the `post_vaa` instruction creates even more temporary accounts for signatures and VAA data—each adding further rent costs and storage overhead. These accounts aren’t automatically cleaned up, so the cost and on-chain state only grow with usage.
 
-- **Emission**: Emits messages by wrapping `post_message_unreliable`, but avoids storing full payloads on-chain. Instead, it emits a CPI event containing the sequence number and timestamp. Guardians observe this event and reconstruct the message from the instruction data, ensuring it remains fully verifiable — without requiring a new message account or rent payment for each emission.
+This design does ensure reliability—messages and verification data are always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification:
 
-- **Verifcation**: Verifies VAAs using the `secp256k1_recover` syscall to check guardian signatures against a VAA digest directly. It avoids creating `signature_set` or `vaa` accounts entirely. This means integrators can verify VAAs without incurring permanent storage costs and even handle large payloads that wouldn't fit in a single transaction.
+## What Are the Solana Shim Contracts?
 
-These shims preserve all Wormhole security guarantees — like unique emitter/sequence digests and guardian-based verification — while minimizing rent costs and improving flexibility on Solana.
+To address the limitations of the Core Bridge, Wormhole deploys two specialized Solana programs called shims:
 
-Guardians are updated to support shims by:
+- **Post Message Shim (`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`)**: Emits Wormhole messages efficiently, without creating new message accounts for each emission, reducing rent costs.
+- **Verify VAA Shim (`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`)**: Verifies VAAs on-chain without leaving permanent accounts.
 
-- Recognizing shim program IDs and identifying emissions or verifications initiated through them
-- Extracting message data directly from instruction data and emitted events rather than relying on message or VAA accounts
-- Treating shim-based messages the same as Wormhole messages, preserving the same emitter address, sequence number, and consistency level as core-originated messages
+Both shims act as lightweight wrappers around the existing Core Bridge. No upgrade to the main contract is required; Guardian infrastructure continues to work exactly as before.
 
-This ensures that VAAs generated from shim emissions are identical in structure and security to those emitted directly via the Core Bridge.
+## Key Solana Concepts
 
-## Post Message Shim
+To understand how shims work, it helps to know a few Solana basics:
 
-The Post Message Shim allows Solana programs to emit Wormhole messages without creating a new message account for each emission, significantly reducing rent costs.
+- **PDA (Program Derived Address)**: 
+    - Deterministic, program-owned accounts created without private keys.
+    - In the legacy model, each message uses a unique PDA (derived from emitter and sequence number) to store data.
+    - Shim difference: Emission shim skips PDA creation and instead puts message data in transaction logs, so nothing is left behind on-chain.
+- **CPI (Cross-Program Invocation)**: Solana’s version of one smart contract calling another. Used by shims to invoke logic in the Core Bridge or other programs. 
+- **[Anchor CPI Event](https://www.anchor-lang.com/docs){target=\_blank}**: 
+    - A structured log emitted during a CPI call, observable in transaction logs, used by the emission shim to report sequence number, timestamp, and payload.
+    - The emission shim emits these events so Guardians can observe messages directly from transaction logs (rather than accounts).
 
-- Internally calls `post_message_unreliable` on the Core Bridge but writes an empty payload to the message account.
-- Emits a [CPI event](https://book.anchor-lang.com/anchor_in_depth/events.html#cpi-events) containing the sequence and timestamp.
-- Guardians observe the instruction data and event logs to reconstruct the full message, including the actual payload
-Still touches the fee_collector account, which means emissions remain serialized across integrators
-Use this shim when:
-You want to reduce the cost of emitting messages on Solana
-You don’t need permanent message accounts for re-observation or archival purposes
+## Guardian Observation Methods
 
+|                      | Legacy Model.                  | Shim Model                            |
+|----------------------|--------------------------------|---------------------------------------|
+| Message Storage      | On-chain message account (PDA) | Transaction logs (CPI event)          |
+| Data Permanence      | On-chain forever               | In logs (until RPC history is pruned) |
+| Guardian Observation | Reads account data             | Reads transaction logs                |
+| Cost                 | High (rent + compute)          | Low (compute only, no rent)           |
+| Sequence Handling    | Account-based                  | Event-based                           |
+| Closing Accounts     | Not possible                   | Not needed                            |
 
+With shims, the message’s existence depends on the transaction log, so cost drops, but indefinite on-chain visibility is no longer guaranteed.
 
+## Transaction Costs
 
+Solana charges for two main resources when processing transactions: compute units (for execution) and rent (for storing data on-chain). Understanding how each contributes to overall cost is key to seeing why shims are so much cheaper.
 
-This shim emits Wormhole messages with the same sequence tracking, but avoids account bloat:
+- **Compute Units (CU)**: Solana measures CPU resource usage per transaction as “compute units.” Each transaction has a CU limit (usually ~200,000, can be increased for a fee).
+- **Rent**: One-time cost in SOL to keep an account on-chain. Most of the Core Bridge’s cost comes from rent, not CUs.
 
-- Calls `post_message_unreliable` with an empty payload account
-- Emits a  with timestamp and sequence
-- Guardian reconstructs the message from instruction data + CPI event
-- Still touches the `fee_collector` (so not parallelizable), but avoids rent costs
+!!!note "Why is the shim cheaper?"
+    Even though the shim uses slightly more compute (extra logic for logging), it avoids account creation entirely. Since rent is the most significant cost, the total emission cost drops.
 
-Use it when:
-- You need cheaper emissions
-- You don’t rely on permanent message accounts for re-observation
+## Safety, Tradeoffs & Limitations
 
-## Verify VAA Shim
+Shims keep all security guarantees of the Core Bridge, except that messages and verification data are not permanently stored on-chain. If a Guardian misses the transaction log (for example, if their node history is too short), re-observation is only possible as long as the transaction history is available.
 
-This shim performs signature verification without the core bridge’s `signature_set` or `vaa` accounts:
+While the Solana shims dramatically reduce costs and prevent long-term account bloat, but at the cost of message permanence. With shims, messages and verification data are no longer stored in permanent on-chain accounts; instead, they exist only in transaction logs for a limited period. This means Guardians must observe these logs promptly, or the opportunity to process the message may be lost once the node’s transaction history is pruned. As a result, shims are ideal for integrators who prioritize cost savings and efficiency over indefinite on-chain availability. However, for use cases that require permanent on-chain message history and auditability, the legacy Core Bridge approach remains the safer choice, despite its higher rent costs and storage requirements.
 
-- Posts guardian signatures to a temporary account
-- Verifies the VAA digest via CPI (using `secp256k1_recover`)
-- Lets integrators reclaim rent by closing the account after use
-- Supports large VAA bodies (e.g. Queries) that wouldn’t fit in a single tx
+## Next Steps
 
-Use it when:
-- You want to save costs and clean up rent
-- You need to verify VAAs (or QueryResponses) inside your own Solana programs
+- [Efficient Emission on Solana (Shim)](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
+- [Efficient Verification on Solana (Shim)](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
+- [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}
 
-## Security Guarantees
-
-- **Same emitters and sequences** → message digest stays unique
-- **No duplicate VAAs** → guardians skip zero-payload emissions
-- **No upgradeable behavior** → upgrade authority should be dropped after deployment
-- **Digest replay protection** remains intact
-
-## Tradeoffs and Limitations
-
-| Feature | Core Bridge | Shim |
-|--------|-------------|------|
-| Rent Cost | High | Low |
-| Guardian Compatibility | Built-in | Requires update |
-| Parallel Emission | Limited | Still limited (fee_collector) |
-| Re-observation | Permanent | Temporary |
-| VAA Size Limit | Yes | No (via accounts) |
-
-## Deployment and Adoption
-
-- Shims are deployed on mainnet with verifiable builds
-- Guardians need to opt into observing the shim’s program ID
-- Deployment and testing instructions are available in the [Shim Deployment Guide](../guides/shim-deployment.md)
-
-## Learn More
-
-- [Efficient Message Emission on Solana](../guides/efficient-solana-emission.md)
-- [Efficient VAA Verification on Solana](../guides/efficient-solana-verification.md)
-- [Shim Deployment Guide](../guides/shim-deployment.md)
-
-
-<!--- 
-
-diagram or table explaining message accounts per emission and how shims avoid them. ??
-Explain tradeoffs of message permanence vs. cheaper emissions.
-
-Add short explanation and link to Anchor CPI events: Anchor Events
-Explain how Guardian observation works with shim events vs. accounts.
-Add explanation of why costs drop despite higher CU. Add cost model explanation: rent (lamports) vs compute (CU)
-
-Add an illustration showing Core Bridge creating PDAs per message vs. Shim using logs
-
-Add a table comparing core verification vs shim approach.
-
-Explain how more CU can still be cheaper due to rent savings.
-
-Explain what "verifiable builds" are and why dropping upgrade authority matters.
-
-
-
-
-Wormhole uses two shims:
-
-- post_message_shim: for emitting messages cheaply
-- verify_vaa_shim: for verifying VAAs in a cost-effective way
-
-how messages/VAAs are handled on Solana
-important distinctions vs. the traditional Core Bridge model
-technical constraints like account creation, CPI limits, Guardian observation behavior, etc.
-
-how it's used in practice
-how Guardian observation works
-why it's safe
-what tradeoffs
-
---->

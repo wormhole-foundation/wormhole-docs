@@ -4,6 +4,28 @@ description: TODO
 categories: Basics
 ---
 <!-- TODO add link in messaging overview and maybe queries too?-->
+
+<!--
+Walk through verifying VAAs using the verification shim, cleaning up after verification, and reducing rent. Show integrators the practical usage and how it replaces the legacy approach.
+
+Intro & Problem Recap:
+Old verification required permanent accounts/rent, what this guide enables.
+
+How Verification Shim Works:
+Flow: post signatures → verify_vaa → close_signatures
+Which accounts/data are required, sequence, and digest handling
+Guardian set expiry edge cases
+
+How to Integrate:
+Code snippets (invoke, CPI, closing accounts, reclaiming rent)
+
+Limitations & Security:
+Trust model, what happens if you don’t close, compatibility
+
+Link to Deployment Guide:
+For how to get the shim on-chain.
+-->
+
 # Efficient VAA Verification on Solana (Shim)
 
 <!-- Include this definition in the opening section of the Solana Shims concept page. --> 

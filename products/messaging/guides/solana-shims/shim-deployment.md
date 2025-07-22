@@ -4,6 +4,31 @@ description: TODO
 categories: Basics
 ---
 <!-- TODO add link in messaging overview -->
+
+<!--
+Give clear, minimal, production-focused instructions for deploying the post message and verify VAA shim contracts on Solana, testing them, and hardening upgrade authority. Should also be the landing spot for rollout instructions, keys, and links to build artifacts/scripts.
+
+Prerequisites:
+(Verifiable build, where to get code/artifacts, needed keys, 1Password reference)
+
+Deploy Steps:
+Build (with command)
+Deploy each contract (with command and explanation of options, what the addresses are)
+
+Testing:
+How to test each shim, using the repo scripts (link to them)
+What to expect (no observation until guardian is set, testnet/mainnet differences)
+
+Lock Down:
+How and why to drop upgrade authority, with command.
+
+Guardian Rollout:
+How guardians should verify and set config, when to re-test emission
+
+FAQ/Troubleshooting:
+Node history limits, verifiable build hashes, etc.
+-->
+
 # Solana Shim Contract Deployment
 
 This guide outlines how to deploy the two shim programs that optimize Wormhole Core Bridge operations on Solana.
