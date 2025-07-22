@@ -3,7 +3,6 @@ title: Solana Shim Deployment
 description: Deploy and verify the Wormhole emission and verification shims on Solana mainnet using verifiable builds and secure procedures.
 categories: Basics
 ---
-<!-- TODO add link in messaging overview -->
 
 # Solana Shim Contract Deployment
 
@@ -15,16 +14,23 @@ This guide explains how to deploy and validate the two shim programs that optimi
 - Access to 1Password for the shim program keypairs.
 - Familiarity with [verifiable builds](https://solana.com/developers/guides/advanced/verified-builds).
 - Sufficient SOL for deploying to mainnet.
-- (Optional but recommended) Docker for reproducible builds.
 
 ## Shim
 
 - **Emission Shim (`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`)**: Emits messages without creating a permanent account per message.
 - **Verification Shim (`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`)**: Verifies VAAs without leaving data on-chain.
 
+!!!note
+    Program keypairs are stored securely in 1Password. Do not generate new keys.
+
 ##  Build Verifiable Artifacts
 
 Clone the Wormhole repo and build the shims for mainnet with reproducible output:
+
+```bash
+git clone https://github.com/wormhole-foundation/wormhole.git
+cd wormhole/svm/wormhole-core-shims
+```
 
 ```bash
 NETWORK=mainnet SVM=solana make build-artifacts
@@ -32,7 +38,6 @@ NETWORK=mainnet SVM=solana make build-artifacts
 
 - Artifacts will be output to `artifacts-mainnet/`.
 - Do not modify these binaries before deployment.
-- You must build on the same machine or Docker image used to deploy in order to verify later.
 
 ## Deploy to Mainnet
 
@@ -58,7 +63,7 @@ After deploy, you (the deployer) retain upgrade authority. Do not integrate or a
 
 ## Test the Shims
 
-Run the provided s[test script](https://github.com/wormhole-foundation/wormhole/tree/main/solana/scripts){target=\_blank} from the monorepo:
+Run the provided [test script](https://github.com/wormhole-foundation/wormhole/tree/main/solana/scripts){target=\_blank} from the monorepo:
 
 - [Emit Shim Test](https://github.com/wormhole-foundation/wormhole/blob/main/solana/scripts/post_message_shim_test.ts){target=\_blank}
 - [Verify Shim Test](https://github.com/wormhole-foundation/wormhole/blob/main/solana/scripts/verify_vaa_shim_test.ts){target=\_blank}

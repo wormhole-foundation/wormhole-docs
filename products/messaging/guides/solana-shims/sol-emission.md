@@ -3,7 +3,6 @@ title: Efficient Emission on Solana (Shim)
 description: Learn how to reduce rent costs when emitting Wormhole messages on Solana by using the emission shim instead of post_message.
 categories: Basics
 ---
-<!-- TODO add link in messaging overview -->
 
 # Efficient Emission on Solana (Shim)
 

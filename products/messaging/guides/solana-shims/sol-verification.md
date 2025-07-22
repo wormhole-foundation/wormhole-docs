@@ -3,7 +3,6 @@ title: Efficient VAA Verification on Solana (Shim)
 description: Efficiently verify Wormhole VAAs on Solana without leaving rent-exempt accounts, using the core bridge’s standard instructions.
 categories: Basics
 ---
-<!-- TODO add link in messaging overview and maybe queries too?-->
 
 # Efficient VAA Verification on Solana (Shim)
 
