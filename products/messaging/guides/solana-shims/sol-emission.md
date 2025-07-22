@@ -47,7 +47,6 @@ shim_program
     )?;
 ```
 
-
 ## How the Emission Shim Works
 
 - **Shim Contract**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.

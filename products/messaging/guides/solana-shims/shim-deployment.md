@@ -1,12 +1,103 @@
 ---
 title: Solana Shim Deployment
-description: TODO
+description: Deploy and verify the Wormhole emission and verification shims on Solana mainnet using verifiable builds and secure procedures.
 categories: Basics
 ---
 <!-- TODO add link in messaging overview -->
 
+# Solana Shim Contract Deployment
+
+This guide explains how to deploy and validate the two shim programs that optimize Wormhole Core Bridge operations on Solana mainnet. Follow these steps to ensure reliable, Guardian-compatible usage with minimal rent overhead.
+
+## Prerequisites
+
+- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) installed.
+- Access to 1Password for the shim program keypairs.
+- Familiarity with [verifiable builds](https://solana.com/developers/guides/advanced/verified-builds).
+- Sufficient SOL for deploying to mainnet.
+- (Optional but recommended) Docker for reproducible builds.
+
+## Shim
+
+- **Emission Shim (`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`)**: Emits messages without creating a permanent account per message.
+- **Verification Shim (`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`)**: Verifies VAAs without leaving data on-chain.
+
+##  Build Verifiable Artifacts
+
+Clone the Wormhole repo and build the shims for mainnet with reproducible output:
+
+```bash
+NETWORK=mainnet SVM=solana make build-artifacts
+```
+
+- Artifacts will be output to `artifacts-mainnet/`.
+- Do not modify these binaries before deployment.
+- You must build on the same machine or Docker image used to deploy in order to verify later.
+
+## Deploy to Mainnet
+
+Deploy each program with the matching pre-generated keypair and choose a suitable compute unit price:
+
+Emission Shim:
+```bash
+solana program deploy -u m \
+  --with-compute-unit-price <PRICE_IN_LAMPORTS> \
+  --program-id path/to/post_message_shim_keypair.json \
+  artifacts-mainnet/wormhole_post_message_shim.so
+```
+
+Verification Shim:
+```bash
+solana program deploy -u m \
+  --with-compute-unit-price <PRICE_IN_LAMPORTS> \
+  --program-id path/to/verify_vaa_shim_keypair.json \
+  artifacts-mainnet/wormhole_verify_vaa_shim.so
+```
+
+After deploy, you (the deployer) retain upgrade authority. Do not integrate or announce the program yet.
+
+## Test the Shims
+
+Run the provided s[test script](https://github.com/wormhole-foundation/wormhole/tree/main/solana/scripts){target=\_blank} from the monorepo:
+
+- [Emit Shim Test](https://github.com/wormhole-foundation/wormhole/blob/main/solana/scripts/post_message_shim_test.ts){target=\_blank}
+- [Verify Shim Test](https://github.com/wormhole-foundation/wormhole/blob/main/solana/scripts/verify_vaa_shim_test.ts){target=\_blank}
+
+Checklist:
+
+- Post Message Shim should emit successfully, but not be picked up by Guardians unless configured
+- A Guardian with shim config enabled should observe the emission via tx
+- Verify Shim should accept a valid mainnet VAA and reject invalid ones
+
+!!!note 
+    Transaction logs for testing are only available for ~30 minutes—complete your checks promptly.
+
+## Verify the Deployment
+
+You and other contributors can independently verify the deployed program matches the artifact:
+
+```bash
+solana-verify -u m get-program-hash EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at
+solana-verify -u m get-program-hash EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX
+```
+
+Full instructions for verifying builds are available in the [Solana documentation](https://solana.com/it/developers/guides/advanced/verified-builds#verify-against-public-api){target=\_blank}.
+
+## Drop Upgrade Authority
+
+Once testing is complete and you are confident in the deployment, make both programs immutable:
+
+```bash
+solana program set-upgrade-authority -u m --final EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at
+solana program set-upgrade-authority -u m --final EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX
+```
+
+After this, no further changes to program code are possible. Only drop upgrade authority after full verification.
+
+
+
+
 <!--
-Give clear, minimal, production-focused instructions for deploying the post message and verify VAA shim contracts on Solana, testing them, and hardening upgrade authority. Should also be the landing spot for rollout instructions, keys, and links to build artifacts/scripts.
 
 Prerequisites:
 (Verifiable build, where to get code/artifacts, needed keys, 1Password reference)
@@ -22,66 +113,10 @@ What to expect (no observation until guardian is set, testnet/mainnet difference
 Lock Down:
 How and why to drop upgrade authority, with command.
 
-Guardian Rollout:
-How guardians should verify and set config, when to re-test emission
 
-FAQ/Troubleshooting:
-Node history limits, verifiable build hashes, etc.
--->
-
-# Solana Shim Contract Deployment
-
-This guide outlines how to deploy the two shim programs that optimize Wormhole Core Bridge operations on Solana.
-
-- Uses verifiable builds
-- Deploys with pre-defined program IDs
-- Drops upgrade authority after validation
-- Ensures Guardian compatibility and observation
-
-## Program Overview 
-
-The two shim programs serve distinct purposes:
-
-| Shim             | Purpose                           | Program ID                                     |
-|------------------|-----------------------------------|------------------------------------------------|
-| Post Message     | Emits messages without rent cost  | `EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX` |
-| Verify VAA       | Verifies VAAs without storing data| `EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at` |
-
-These program IDs are fixed and their keypairs are stored securely in 1Password. This ensures continuity with previously generated IDLs and Guardian configs.
-
-<!--  Concept page note: Explain what "verifiable builds" are and why dropping upgrade authority matters. --> 
-
-## Build the Programs
-
-Build verifiable artifacts for both shims
-NETWORK=mainnet SVM=solana make build-artifacts
-
-This creates compiled binaries in artifacts-mainnet/.
-You must build on the same machine or Docker image used to deploy in order to verify later.
-
-
-## Deploy to Mainnet
-
- Deploy Post Message Shim
-solana program deploy -u m \
-  --with-compute-unit-price PRICE_IN_LAMPORTS \
-  --program-id path/to/post_message_shim_keypair.json \
-  artifacts-mainnet/wormhole_post_message_shim.so
-
- Deploy Verify VAA Shim
-solana program deploy -u m \
-  --with-compute-unit-price PRICE_IN_LAMPORTS \
-  --program-id path/to/verify_vaa_shim_keypair.json \
-  artifacts-mainnet/wormhole_verify_vaa_shim.so
-
-This results in the deployer retaining the upgrade authority temporarily.
 
 ## Test Both Shims
 
-Use the testing scripts provided in the monorepo:
-
-- [Emit Shim Test](https://github.com/wormhole-foundation/wormhole/blob/main/solana/scripts/post_message_shim_test.ts)
-- [Verify Shim Test](https://github.com/wormhole-foundation/wormhole/blob/main/solana/scripts/verify_vaa_shim_test.ts)
 
 Testing checklist:
 - Post Message Shim should emit successfully, but not be picked up by Guardians unless configured
@@ -113,7 +148,7 @@ note After this step, the programs are immutable.
 
 
 
-<!------------------------------------>
+<!-----------------------------------
 
 
 
@@ -176,5 +211,7 @@ Post Message shim: `EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`
     solana program set-upgrade-authority -u m --final EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX
     ```
     
-4. Then request that the guardians verify the publish message shim for themselves and set their config to the public key.
+4. Then request that the guardians verify the publish message shim for themselves and set their config to the public key.  provide instructions  to perform the verification just following https://solana.com/it/developers/guides/advanced/verified-builds#verify-against-public-api
 5. Repeat the post message shim emission tests after 13 guardians have enabled.
+
+-->
