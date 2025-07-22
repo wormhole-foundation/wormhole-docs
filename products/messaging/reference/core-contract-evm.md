@@ -1,10 +1,10 @@
 ---
-title: Core Contract Reference (EVM)
+title: Core Contract (EVM)
 description: Reference for the Wormhole Core contract deployed on EVM chains. Includes the proxy structure, exposed events, and functions.
 categories: Basics
 ---
 
-# Core Contract Reference (EVM)
+# Core Contract (EVM)
 
 The [Wormhole Core Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank} chains is a proxy-based contract responsible for receiving and verifying Wormhole messages (VAAs). It implements the messaging interface and delegates logic to upgradeable implementation contracts.
 
