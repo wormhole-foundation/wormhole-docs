@@ -160,7 +160,7 @@ Options to set the mint authority for your SPL token:
 
 - **Set to token authority PDA:**
 ```bash
-ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+ntt set-mint-authority --chain Solana --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
 ```
 
 - **Set to SPL Multisig:**
@@ -171,7 +171,7 @@ ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_
 
     2. Set to created SPL Multisig:
     ```bash
-    ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ntt set-mint-authority --chain Solana --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
 
 **For deployed programs:**
@@ -179,7 +179,7 @@ ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_
 - **Set to token authority PDA:**
 
 ```bash
-ntt solana set-mint-authority --payer INSERT_KEYPAIR_JSON
+ntt set-mint-authority --chain Solana --payer INSERT_KEYPAIR_JSON
 ```
 
 !!! note
