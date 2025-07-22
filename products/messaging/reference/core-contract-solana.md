@@ -163,7 +163,7 @@ VerifySignatures {
     - `Payer`: Pays for account creation and fees.
     - `GuardianSet`: PDA holding the current guardian set.
     - `SignatureSet`: PDA that will store the verified signature data.
-    - `InstructionsSysvar`: Required to access prior instructions (e.g. secp256k1 sigverify).
+    - `InstructionsSysvar`: Required to access prior instructions (e.g., secp256k1 sigverify).
     - `Rent`, `SystemProgram`: Solana system accounts.
 
 ??? interface "Parameters"
@@ -217,7 +217,7 @@ PostVAA {
 
     `timestamp` ++"u32"++
 
-    Time the message was submitted by the emitter.
+    The time the emitter submitted the message.
 
     ---
 
