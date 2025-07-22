@@ -5,6 +5,14 @@ categories: Basics
 ---
 <!-- TODO add link in messaging overview and maybe queries too?-->
 
+# Efficient VAA Verification on Solana (Shim)
+
+This guide explains how to verify Wormhole VAAs on Solana using the verification shim, so you can avoid leaving behind rent-exempt signature set and posted VAA accounts.
+
+
+
+
+
 <!--
 Walk through verifying VAAs using the verification shim, cleaning up after verification, and reducing rent. Show integrators the practical usage and how it replaces the legacy approach.
 
@@ -24,11 +32,11 @@ Trust model, what happens if you don’t close, compatibility
 
 Link to Deployment Guide:
 For how to get the shim on-chain.
--->
 
-# Efficient VAA Verification on Solana (Shim)
 
-<!-- Include this definition in the opening section of the Solana Shims concept page. --> 
+
+
+<!-- Include this definition in the opening section of the Solana Shims concept page. 
 
 
 ## When to Use 
@@ -38,7 +46,7 @@ Use the shim if you:
 - Need to verify large VAAs or Queries that don’t fit into a single tx
 - Want to keep your Solana contract lean and rent-efficient
 
-<!-- Concept page note: Add a table comparing core verification vs shim approach.  --> 
+<!-- Concept page note: Add a table comparing core verification vs shim approach.  
 
 ## How It Works
 
@@ -81,7 +89,7 @@ Keep examples Verify VAA section — they’re helpful and precise. Optionally i
 | Shim (total)     | 365,504 | 15,040   | $0.0032     |
 
 
-<!-- Concept page note: Explain how more CU can still be cheaper due to rent savings.  --> 
+<!-- Concept page note: Explain how more CU can still be cheaper due to rent savings.  
 
 ## Deployment
 
@@ -89,7 +97,7 @@ See the Shim Deployment Guide to deploy the verify shim on Solana mainnet with v
 
 
 
-<!------------------------------------>
+<!------------------------------------
 
 
 
@@ -270,3 +278,5 @@ Test that verifying a valid VAA digest and signatures via the shim’s `verify_v
 ## Rollback
 
 N/A
+
+-->
