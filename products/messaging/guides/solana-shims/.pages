@@ -1,0 +1,5 @@
+title: Solana Shims
+nav:
+- 'Efficient Solana Emission': sol-emission.md
+- 'Efficient Solana Verification': sol-verification.md
+- 'Shim Deployment': shim-deployment.md
