@@ -1,7 +1,6 @@
 ---
 title: W Staking
-description: TODO
-categories: Basics
+description: Integrate W staking into your app on EVM and Solana. Learn flows, contract calls, and delegate discovery using the Tally API.
 ---
 
 # W Staking Integration
