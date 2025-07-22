@@ -1,180 +1,38 @@
 ---
 title: Efficient VAA Verification on Solana (Shim)
-description: TODO
+description: Efficiently verify Wormhole VAAs on Solana without leaving rent-exempt accounts, using the core bridge’s standard instructions.
 categories: Basics
 ---
 <!-- TODO add link in messaging overview and maybe queries too?-->
 
 # Efficient VAA Verification on Solana (Shim)
 
-This guide explains how to verify Wormhole VAAs on Solana using the verification shim, so you can avoid leaving behind rent-exempt signature set and posted VAA accounts.
+This guide explains how to efficiently verify Wormhole VAAs on Solana by leveraging the core bridge’s [`verify_signatures`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/verify_signature.rs){target=\_blank} and [`post_vaa`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_vaa.rs){target=\_blank} instructions, and cleaning up temporary accounts after use.
 
+The goal is to accumulate all guardian signatures into a temporary `SignatureSet` account using `verify_signatures`, verify the VAA and guardian set using `post_vaa`, and immediately close any accounts you created for this process.
 
+Note that there is no dedicated “shim” contract, the “shim” is a usage pattern that avoids leaving behind permanent accounts.
 
+## Integration Flow
 
+The verification shim replaces the legacy multi-account pattern with a flow where you only create a temporary signature set account. After verification, you can close it to reclaim your lamports.
 
-<!--
-Walk through verifying VAAs using the verification shim, cleaning up after verification, and reducing rent. Show integrators the practical usage and how it replaces the legacy approach.
+1. **Create a temporary SignatureSet account**: Fund it as rent-exempt for the required size.
+2. **Call `verify_signatures`** as many times as needed, using the secp256k1 syscall and all guardian signatures. The SignatureSet account will accumulate valid signatures.
+3. **Call `post_vaa`** to check guardian set validity, consensus, and VAA integrity.
+   - If verification succeeds, proceed with your on-chain logic (e.g., updating state, processing transfers).
+   - The `PostedVAA` account is created, but you do **not** need to keep it around for rent; it can be closed after use if you control it.
+4. **Immediately close** the `SignatureSet` and any `PostedVAA` accounts you created to reclaim lamports, if you are the payer.
 
-Intro & Problem Recap:
-Old verification required permanent accounts/rent, what this guide enables.
+```mermaid
+graph LR
+    A[Create SignatureSet] --> B[verify_signatures]
+    B --> C[post_vaa]
+    C --> D[Process Logic]
+    D --> E[Close SignatureSet & PostedVAA]
+```
 
-How Verification Shim Works:
-Flow: post signatures → verify_vaa → close_signatures
-Which accounts/data are required, sequence, and digest handling
-Guardian set expiry edge cases
-
-How to Integrate:
-Code snippets (invoke, CPI, closing accounts, reclaiming rent)
-
-Limitations & Security:
-Trust model, what happens if you don’t close, compatibility
-
-Link to Deployment Guide:
-For how to get the shim on-chain.
-
-
-
-
-<!-- Include this definition in the opening section of the Solana Shims concept page. 
-
-
-## When to Use 
-
-Use the shim if you:
-- Want to verify VAAs without paying for rent-exempt accounts
-- Need to verify large VAAs or Queries that don’t fit into a single tx
-- Want to keep your Solana contract lean and rent-efficient
-
-<!-- Concept page note: Add a table comparing core verification vs shim approach.  
-
-## How It Works
-
-The shim includes three instructions:
-
-- `post_signatures`: Stores guardian signatures into a temporary account.
-- `verify_vaa`: Validates a VAA digest against those signatures using `secp256k1_recover`.
-- `close_signatures`: Reclaims rent by closing the temporary account.
-
-All verification happens inline. No persistent signature sets or posted VAAs are needed.
-
-
-## Technical Flow
-
-Add code snippets or descriptions of when each instruction is used:
-
-### Step 1 – Post signatures
-
-### Step 2 – Verify via CPI
-
-### Step 3 – Close 
-
-
-## Digest Calculation Reference
-
-Keep examples Verify VAA section — they’re helpful and precise. Optionally include a code snippet in TypeScript too if needed.
-
-
-## Tradeoffs & Limitations
-
-- **More CU, less SOL**: Using `secp256k1_recover` increases compute usage, but avoids rent costs.
-- **No persistent proof**: Unlike `post_vaa`, this doesn’t create a verifiable VAA account.
-- **Responsibility for cleanup**: You must close signature accounts to reclaim lamports.
-
-## Cost Comparison
-
-| Method           | CU Used | Lamports | USD Approx |
-|------------------|---------|----------|-------------|
-| Core (full)      | 146,709 | 3.87M    | $0.84       |
-| Shim (total)     | 365,504 | 15,040   | $0.0032     |
-
-
-<!-- Concept page note: Explain how more CU can still be cheaper due to rent savings.  
-
-## Deployment
-
-See the Shim Deployment Guide to deploy the verify shim on Solana mainnet with verifiable builds and drop upgrade authority.
-
-
-
-<!------------------------------------
-
-
-
-
-Purpose: Introduces a new VAA verification mechanism via a shim that:
-
-- Avoids permanent rent costs (no signature set or posted VAA accounts left behind)
-- Leverages secp256k1_recover to directly verify signatures
-- Allows processing large VAAs or Queries across multiple txs
-
-Shim Has 3 Instructions:
-- post_signatures — creates/extends a GuardianSignatures account
-- verify_vaa — CPI-invoked to validate signatures against digest
-- close_signatures — closes the account to refund lamports
-
-
-# Objective
-
-Reduce the cost of Core Bridge message verification on Solana. Provide a new verification mechanism without making changes to the existing core bridge.
-
-# **Background**
-
-The current way most integrators on Solana verify VAAs is via the following process.
-
-1. Call `createSecp256k1Instruction` (native instruction) and [`verify_signatures`](https://github.com/wormhole-foundation/wormhole/blob/db1ee86bfbaf16383c46150a44b1437a522514da/solana/bridge/program/src/api/verify_signature.rs#L67) on the Core bridge, potentially multiple times, in order to verify and store all of the signatures from the VAA into a signature set account, as the signature data for 13 signatures is too long to fit into a single transaction. (There used to be a compute unit restriction as well, but that is no longer an issue as a higher limit can now be requested.)
-2. Call [`post_vaa`](https://github.com/wormhole-foundation/wormhole/blob/db1ee86bfbaf16383c46150a44b1437a522514da/solana/bridge/program/src/api/post_vaa.rs#L102) on the Core bridge in order to validate the signature set account against the VAA and post the VAA data into an account.
-3. Call some instruction on your program which takes a posted VAA account and assumes its validity.
-
-Notably, the signature set account is not closed, nor is the posted VAA account, and there exists no mechanism to close them either. This means that posters permanently lose the lamports dedicated to the rent exemption for these accounts.
-
-However, some integrations, such as [Solana World ID](https://github.com/wormholelabs-xyz/solana-world-id-program/tree/main) use a different approach:
-
-1. Call [`post_signatures`](https://github.com/wormholelabs-xyz/solana-world-id-program/blob/68f1740b2b9bad9d86bd933001a3716a2a993930/programs/solana-world-id-program/src/instructions/post_signatures.rs#L46) on your program, potentially multiple times, in order to store the signature data on-chain in a guardian signatures account.
-2. Call some instruction on your program which takes a [Core bridge guardian set](https://github.com/wormholelabs-xyz/solana-world-id-program/blob/68f1740b2b9bad9d86bd933001a3716a2a993930/programs/solana-world-id-program/src/instructions/update_root_with_query.rs#L70) account, the [guardian signatures](https://github.com/wormholelabs-xyz/solana-world-id-program/blob/68f1740b2b9bad9d86bd933001a3716a2a993930/programs/solana-world-id-program/src/instructions/update_root_with_query.rs#L74) account, and [performs the required checks and verification](https://github.com/wormholelabs-xyz/solana-world-id-program/blob/68f1740b2b9bad9d86bd933001a3716a2a993930/programs/solana-world-id-program/src/instructions/update_root_with_query.rs#L113). If the verification is successful, it performs whatever action is needed and closes the signatures account, refunding the lamports.
-
-This approach does not require leaving any on-chain artifacts and is more cost effective. Part of the reason this is now possible in less instructions is due to the `secp256k1_recover` syscall and ability to increase the compute unit budget.
-
-<aside>
-💡
-
-This will also provide integrators the flexibility to post the VAA payload separately as well if needed for payloads that won’t fit into a transaction.
-
-</aside>
-
-# **Goals**
-
-- Recommend a documented mechanism for verifying VAAs which does not require permanently storing accounts.
-- Provide a reusable approach to perform the bulk of the work, as possible.
-- Provide a cost savings estimation compared to the `post_vaa` approach.
-
-# Non-Goals
-
-- Provide an on-chain program which generates an artifact of verification, akin to `post_vaa`.
-
-# **Overview**
-
-Save end-user costs on Solana VAA verification by providing a shim which integrators can CPI call to perform verification. This shim will allow the client to clean up any artifacts generated during the verification process, ultimately resulting in a lower cost verification.
-
-# Detailed Design
-
-## Technical Details
-
-The shim will have three instructions which can be leveraged over two transactions, resulting in less transactions and rent costs than the core bridge approach.
-
-This explicitly takes only operates on the signatures, guardian set, and digest, making it compatible with both v1 VAAs and Queries while maintaining a static instruction size for verification. 
-
-As a bonus, this also allows for verification of VAA bodies that are larger than can fit in a single instruction, which was not possible with the existing core bridge. Integrators can pass the VAA body via instruction data or account, as suits their needs. How they choose to do so is outside the scope of this design. 
-
-### Post Signatures
-
-Creates or appends to a GuardianSignatures account for subsequent use by verify_vaa. This is necessary as the Wormhole VAA body, which has an arbitrary size, and 13 guardian signatures (a quorum of the current 19 mainnet guardians, 66 bytes each) alongside the required accounts is likely larger than the transaction size limit on Solana (1232 bytes). This will also allow for the verification of other messages which guardians sign, such as QueryResults.
-
-This instruction allows for the initial payer to append additional signatures to the account by calling the instruction again. This may be necessary if a quorum of signatures from the current guardian set grows larger than can fit into a single transaction.
-
-The GuardianSignatures account can be closed by the initial payer via close_signatures, which will refund the initial payer.
-
-### Verify VAA
+## Verify VAA
 
 This instruction is intended to be invoked via CPI call. It verifies a digest against a GuardianSignatures account and a core bridge GuardianSet. Prior to this call, and likely in a separate transaction, `post_signatures` must be called to create the account. Immediately after this call, `close_signatures` should be called to reclaim the lamports.
 
@@ -192,24 +50,11 @@ use wormhole_query_sdk::MESSAGE_PREFIX;
 let message_hash = [
   MESSAGE_PREFIX,
   &solana_program::keccak::hashv(&[&bytes]).to_bytes(),
-]
-.concat();
+].concat();
 let digest = keccak::hash(message_hash.as_slice()).to_bytes();
 ```
 
-### Close Signatures
-
-Allows the initial payer to close the signature account, reclaiming the rent taken by `post_signatures`.
-
-## Protocol Integration
-
-There are no changes required to the protocol.
-
-## **API / database schema**
-
-N/A
-
-# **Caveats**
+## Caveats
 
 This shim will need to include the following patch made to the core bridge when calculating the expiry for guardian sets.
 
@@ -229,54 +74,24 @@ Unlike the core bridge, it will not need to perform signature set deny-listing, 
 
 Since it is planned to be non-upgradeable, any similar mitigation strategies will not be possible. e.g. the only way to expire a guardian set will be for the core bridge to properly expire it.
 
-# **Alternatives Considered**
 
-- Integrators perform verification logic themselves - this design does not prohibit integrators from doing this and having each integrator implement verification in their own program is a significant amount of code duplication to recommend. The purpose here is to provide an easy mechanism for integrators to verify VAAs.
-- Post VAA data to an account - for some integrators, the VAA body may fit into their instruction data, so avoiding the account would save cost and added complexity. For integrators with larger payloads, they can first post the body into an account and process it in a subsequent instruction. They may have other efficiencies to gain in how they do that, such as automatically closing the account after verifying the VAA and performing the desired action, so it seemed best to leave this up to the integrator.
-- Provide an artifact of verification, akin to the core bridge’s `post_vaa` - while this has the advantage of using only 1 account instead of 3, it has the disadvantage of being another temporary account to clean up *and* does not enforce that the VAA is *currently* valid, but rather that it was at some time in the past. Since the advent of [Address Lookup Tables](https://solana.com/docs/advanced/lookup-tables), using more accounts is less of an issue than it once was, and ensuring that the VAA is actually valid when you consume it is a security gain.
+## Limitations and Considerations
 
-# **Security Considerations**
+- You must be the payer and/or account owner to reclaim lamports from SignatureSet and PostedVAA accounts.
+- The verification proof is ephemeral—no permanent on-chain record unless you keep the account.
+- Compute usage (CU) is higher for the rent-efficient pattern, but total cost is dramatically lower than keeping permanent accounts.
+- All validation guarantees remain as strong as with the legacy method.
+- If you do not close accounts you create, rent will be lost as before.
 
-See Caveats.
+## Security
 
-After initial testing is complete and proper configuration and functionality of the shim is confirmed, the upgrade authority should be discarded in order to improve trust assumptions and avoid possible compromise of the key.
+- Only close accounts after all logic is complete; never close in the middle of validation.
+- This approach assumes you do not need to later re-validate the VAA from an on-chain artifact.
 
-# Test Plan
+## Deployment
 
-Gas cost analysis should be performed for verifying VAAs with and without the shim.
+No special deployment is required—these are standard core bridge instructions. For advanced multi-program flows, see the [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for detailed deployment steps.
 
-# Performance Impact
+## Conclusion
 
-This should greatly reduce the cost of verifying messages on Solana, as it will save the current rent exemption cost per signature set and posted VAA account.
-
-It does, however, increase the compute units required by using `secp256k1_recover` instead of the native instruction.
-
-```jsx
-core (1/4): lamports  1346520, SOL  0.00134652,  $ 0.2929219608,  CU 37058
-core (2/4): lamports    40000, SOL  0.00004,     $ 0.0087016,     CU 25016
-core (3/4): lamports  2482760, SOL  0.00248276,  $ 0.5400996104,  CU 82333
-core (4/4): lamports     4992, SOL  0.000004992, $ 0.00108595968, CU  2302
-total:                3874272,      0.003874272, $ 0.84280913088,   146709
-
-shim (1/2): lamports  7206656, SOL  0.007206656, $ 1.56773594623, CU  13872
-shim (2/2): lamports -7191616, SOL -0.007191616, $-1.56446414463, CU 351632
-total:                  15040,      0.000015040, $ 0.00327180150,    365504
-
-savings:              3859232,      0.003859232, $ 0.8395373294,    -218795
-```
-
-That is ~200k CU for ~.3% of the cost.
-
-# Rollout
-
-This only requires deployment of the shim Solana program. If desired, upgrade authority of the shim can be maintained for a limited time while testing.
-
-## Acceptance Criteria
-
-Test that verifying a valid VAA digest and signatures via the shim’s `verify_vaa` succeeds. Test that an expired guardian set, incorrect digest, bad signatures, etc, fail.
-
-## Rollback
-
-N/A
-
--->
+By following this flow, you can efficiently verify VAAs on Solana with minimal rent overhead, leaving no unnecessary state behind on-chain.
