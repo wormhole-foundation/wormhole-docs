@@ -22,12 +22,12 @@ npm i @wormhole-foundation/wormhole-connect
 
 Before you begin, make sure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
 
 - (Optional) To test a transfer from your demo app, you'll need:
 
-    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}
-    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required)
+    - A wallet with [Sui testnet tokens](https://faucet.sui.io/){target=\_blank}.
+    - A wallet with an Avalanche Fuji address (to use as the recipient; no tokens required).
 
 ## Install and Set Up Project
 
@@ -50,7 +50,7 @@ Before you begin, make sure you have the following:
     npm start
     ```
 
-4. Open your browser to `http://localhost:3000` to view the application locally. It will look similar to the following:
+4. **Open your browser to `http**: //localhost:3000` to view the application locally.
 
     ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
 

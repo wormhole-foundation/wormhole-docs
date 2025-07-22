@@ -14,17 +14,19 @@ Once your project setup is complete, follow this guide to configure, compile, an
 
 To deploy MultiGov on Solana, ensure you have the following installed:  
 
- - Install [Git](https://git-scm.com/downloads){target=\_blank}  
- - Install [Node.js](https://nodejs.org/){target=\_blank} **`v20.10.0`**
- - Install [Solana CLI](https://docs.anza.xyz/cli/install/){target=\_blank} **`v1.18.20`**
- - Install [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`v0.30.1`**
- - Install [Rust](https://www.rust-lang.org/tools/install){target=\_blank} **`v1.80.1`**
- - Install [Docker](https://www.docker.com/get-started/){target=\_blank}
- - Clone the repository:  
-    ```bash
-    git clone https://github.com/wormhole-foundation/multigov.git  
-    cd multigov/solana/
-    ```
+ - [Git](https://git-scm.com/downloads){target=\_blank}  
+ - [Node.js](https://nodejs.org/){target=\_blank} **`v20.10.0`**
+ - [Solana CLI](https://docs.anza.xyz/cli/install/){target=\_blank} **`v1.18.20`**
+ - [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`v0.30.1`**
+ - [Rust](https://www.rust-lang.org/tools/install){target=\_blank} **`v1.80.1`**
+ - [Docker](https://www.docker.com/get-started/){target=\_blank}
+
+Then, clone the repository:  
+
+```bash
+git clone https://github.com/wormhole-foundation/multigov.git  
+cd multigov/solana/
+```
 
 ## Build the Project
 
@@ -67,30 +69,28 @@ solana balance -k ./app/keypairs/deployer.json
 ```
 
 !!! warning 
-    When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees.
+    When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees:
 
-    - 7.60219224 SOL for deployment costs
-    - 0.00542 SOL for transaction fees
+    - 7.60219224 SOL for deployment costs.
+    - 0.00542 SOL for transaction fees.
 
 ### Fund the Deployer Account  
 
 If the account does not have enough SOL, use one of the following methods to add funds.  
 
- - **Transfer SOL from another account** - if you already have SOL in another account, transfer it using a wallet (Phantom, Solflare, etc.) or in the terminal 
+ - **Transfer SOL from another account**: If you already have SOL in another account, transfer it using a wallet (Phantom, Solflare, etc.) or in the terminal.
 
     ```bash
     solana transfer <deployer_account_address> <amount> --from /path/to/funder.json
     ```
 
- - **Request an airdrop (devnet only)** - if deploying to devnet, you can request free SOL
+ - **Request an airdrop (devnet only)**: If deploying to devnet, you can request free SOL.
 
     ```bash
     solana airdrop 2 -k ./app/keypairs/deployer.json
     ```
 
- - **Use a Solana faucet (devnet only)** - you can use online faucets to receive 10 free SOL
-
-    - [Solana Faucet](https://faucet.solana.com/){target=\_blank}
+ - **Use a Solana faucet (devnet only)**: You can use the official [Solana faucet](https://faucet.solana.com/){target=\_blank} to receive 10 free SOL.
 
 ## Deploy the MultiGov Staking Program
 
@@ -176,11 +176,11 @@ After deploying the program and initializing the IDL, execute the following scri
 
 When deploying MultiGov on Solana, several key parameters need to be set. Here are the most important configuration points:  
 
- - `maxCheckpointsAccountLimit` ++"u64"++ - the maximum number of checkpoints an account can have. For example, `654998` is used in production, while `15` might be used for testing
- - `hubChainId` `u16` - the chain ID of the hub network where proposals are primarily managed. For example, `10002` for Sepolia testnet
- - `hubProposalMetadata` ++"[u8; 20]"++ - an array of bytes representing the address of the Hub Proposal Metadata contract on Ethereum. This is used to identify proposals from the hub 
- - `voteWeightWindowLength` ++"u64"++ - specifies the length of the checkpoint window in seconds in which the minimum voting weight is taken. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The vote weight window helps solve problems such as manipulating votes in a chain 
- - `votingTokenMint` ++"Pubkey"++ - the mint address of the token used for voting  
- - `governanceAuthority` ++"Pubkey"++ - the account's public key with the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
- - `vestingAdmin` ++"Pubkey"++ - the account's public key for managing vesting operations. The `vestingAdmin` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup
- - `hubDispatcher` ++"Pubkey"++ - the Solana public key derived from an Ethereum address on the hub chain that dispatches messages to the spoke chains. This is crucial for ensuring that only authorized messages from the hub are executed on the spoke
+ - **`maxCheckpointsAccountLimit` ++"u64"++**: The maximum number of checkpoints an account can have. For example, `654998` is used in production, while `15` might be used for testing.
+ - **`hubChainId` ++"u16"++**: The chain ID of the hub network where proposals are primarily managed. For example, `10002` for Sepolia testnet.
+ - **`hubProposalMetadata` ++"[u8; 20]"++**: An array of bytes representing the address of the Hub Proposal Metadata contract on Ethereum. This is used to identify proposals from the hub.
+ - **`voteWeightWindowLength` ++"u64"++**: Specifies the length of the checkpoint window in seconds in which the minimum voting weight is taken. The window ends at the vote start for a proposal and begins at the vote start minus the vote weight window. The vote weight window helps solve problems such as manipulating votes in a chain.
+ - **`votingTokenMint` ++"Pubkey"++**: The mint address of the token used for voting.
+ - **`governanceAuthority` ++"Pubkey"++**: The account's public key with the authority to govern the staking system. The `governanceAuthority` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup.
+ - **`vestingAdmin` ++"Pubkey"++**: The account's public key for managing vesting operations. The `vestingAdmin` should not be the default Pubkey, as this would indicate an uninitialized or incorrectly configured setup.
+ - **`hubDispatcher` ++"Pubkey"++**: The Solana public key derived from an Ethereum address on the hub chain that dispatches messages to the spoke chains. This is crucial for ensuring that only authorized messages from the hub are executed on the spoke.

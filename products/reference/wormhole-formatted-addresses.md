@@ -52,26 +52,26 @@ The `UniversalAddress` class is essential for working with Wormhole formatted ad
 
 Key functions:
 
- - **`new UniversalAddress()`** - use the `UniversalAddress` constructor to convert native addresses into the Wormhole format
+ - **`new UniversalAddress()`**: Use the `UniversalAddress` constructor to convert native addresses into the Wormhole format.
 
     ```typescript
     const universalAddress = new UniversalAddress('0x123...', 'hex');
     ```
 
- - **`toUniversalAddress()`** - converts a platform-specific address into the Wormhole formatted 32-byte hex address
+ - **`toUniversalAddress()`**: Converts a platform-specific address into the Wormhole formatted 32-byte hex address.
 
     ```typescript
     const ethAddress: NativeAddress<'Evm'> = toNative('Ethereum', '0x0C9...');
     const universalAddress = ethAddress.toUniversalAddress().toString();
     ```
 
- - **`toNative()`** - converts the Wormhole formatted address back to a native address for a specific blockchain platform
+ - **`toNative()`**: Converts the Wormhole formatted address back to a native address for a specific blockchain platform.
 
     ```typescript
     const nativeAddress = universalAddress.toNative('Evm');
     ```
 
- - **`toString()`** - returns the Wormhole formatted address as a hex string, which can be used in various SDK operations
+ - **`toString()`**: Returns the Wormhole formatted address as a hex string, which can be used in various SDK operations.
 
     ```typescript
     console.log(universalAddress.toString());

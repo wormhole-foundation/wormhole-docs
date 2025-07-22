@@ -36,18 +36,18 @@ Simply replace `INSERT_ADDRESS_HERE` with the address you want to query. The API
 
 To manually submit a VAA (Verifiable Action Approval) to a destination chain, follow these steps:
 
-1. **Obtain the VAA in Base64 format** - navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format
+1. **Obtain the VAA in Base64 format**: Navigate to the **Advanced** tab in [Wormholescan](https://wormholescan.io/){target=\_blank} to find the VAA associated with the transaction you want to submit and copy the VAA in base64 format.
 
     ```bash
     https://wormholescan.io/#/tx/INSERT_TX_HASH?view=advanced
     ```
 
-2. **Convert the VAA to hex** - you must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python
+2. **Convert the VAA to hex**: You must convert the base64 VAA into a hexadecimal (hex) format before submitting it to the destination chain. This can be done using various online tools or via command-line utilities like `xxd` or a script in a language like Python.
 
-3. **Submit the VAA through Etherscan (for EVM chains)** - once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`)
+3. **Submit the VAA through Etherscan (for EVM chains)**: Once the VAA is in hex format, go to the [Etherscan UI](https://etherscan.io/){target=\_blank} and submit it through the [`TokenBridge`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank} contract’s method (such as the `CompleteTransfer` function or `CompleteTransferWithPayload`).
 
-    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/products/reference/contract-addresses/){target=\_blank} section
+    - The `TokenBridge` contract addresses for each chain are available in the [Wormhole contract addresses](/docs/products/reference/contract-addresses/){target=\_blank} section.
 
-    - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field
+    - Interact with the smart contract through the Etherscan UI by pasting the hex-encoded VAA into the appropriate field.
 
 Following these steps, you can manually submit a VAA in the proper format to a destination chain.

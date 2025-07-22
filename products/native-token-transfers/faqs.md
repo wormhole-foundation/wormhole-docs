@@ -28,9 +28,9 @@ By importing this package, the Wormhole SDK can register and utilize the require
 
 Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
 
-1. **Initiate transfer** - use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig)
-2. **Claim ownership** - the multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer
-3. **Single-step transfer (Riskier)** - you can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA)
+1. **Initiate transfer**: Use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig).
+2. **Claim ownership**: The multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer.
+3. **Single-step transfer (Riskier)**: You can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA).
 
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
 
@@ -38,7 +38,7 @@ For a practical demonstration of transferring ownership of Wormhole's NTT to a m
 
 To specify a custom RPC for Wormhole's NTT, create an `overrides.json` file in the root of your deployment directory. This file allows you to define custom RPC endpoints, which can be helpful when you need to connect to specific nodes or networks for better performance, security, or control over the RPC connection.
 
-Below’s an example of how the `overrides.json` file should be structured:
+Below is an example of how the `overrides.json` file should be structured:
 
 ???- code "`overrides.json`"
     ```json
@@ -63,8 +63,8 @@ If the rate limits on Wormhole's NTT block tokens from being received on the tar
 
 To resolve this:
 
-1. **Adjust rate limits** - the rate limits must be modified by an administrator or through the appropriate configuration tools to allow the blocked transaction to proceed
-2. **Resume transaction flow** - once the rate limits are adjusted, you can resume the flow, which should be visible in the UI. The tokens will then be redeemable on the target chain
+1. **Adjust rate limits**: The rate limits must be modified by an administrator or through the appropriate configuration tools to allow the blocked transaction to proceed.
+2. **Resume transaction flow**: Once the rate limits are adjusted, you can resume the flow, which should be visible in the UI. The tokens will then be redeemable on the target chain.
 
 In most cases, the transaction will resume automatically once the rate limits are adjusted, and the UI will guide you through the redemption process.
 
@@ -80,8 +80,8 @@ Yes, the NTT manager acts like an escrow account for non-transferable tokens on 
 
 Connect relies on the NTT SDK for integration, with platform-specific implementations for both [Solana](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/ts/sdk/ntt.ts){target=\_blank} and [EVM](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/ts/src/ntt.ts){target=\_blank}. The key methods involved include:
 
-- **Initiate and redeem functions** - these functions are essential for initiating token transfers and redeeming them on the destination chain
-- **Rate capacity methods** - methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion
+- **Initiate and redeem functions**: These functions are essential for initiating token transfers and redeeming them on the destination chain.
+- **Rate capacity methods**: Methods for fetching inbound and outbound rate limits are also critical for controlling the flow of tokens and preventing congestion.
 
 These functions ensure Connect can handle token transfers and manage chain-rate limits.
 
@@ -103,8 +103,8 @@ No, using Hetzner servers for Solana deployments is not recommended. Hetzner has
 
 You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank}.
 
-- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message
-- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message
+- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message.
+- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message.
 
 !!!Important
     You cannot pass the additional data as part of the entry point directly. Instead, the data must be queried on-chain via the `_handleMsg` method, ensuring the payload is properly included and processed.
@@ -113,11 +113,11 @@ You can include an extra payload in NTT messages by overriding specific methods 
 
 Shortcomings of xERC20:
 
-- **Single point of failure** - xERC20 relies on multiple bridges, but a compromise in any single bridge can jeopardize the token. It enforces a 1-of-n design rather than a more robust m-of-n approach
-- **No pausing** - xERC20 lacks mechanisms to pause operations during emergencies
-- **No access control** - there are no built-in access controls for managing token transfers securely
-- **Limited rate limiting** - rate limits are bridge-specific and cannot be set per chain, reducing flexibility and security
-- **No integration with relaying systems** - xERC20 does not natively support relayer systems, limiting its usability in automated or dynamic setups
+- **Single point of failure**: xERC20 relies on multiple bridges, but a compromise in any single bridge can jeopardize the token. It enforces a 1-of-n design rather than a more robust m-of-n approach.
+- **No pausing**: xERC20 lacks mechanisms to pause operations during emergencies.
+- **No access control**: There are no built-in access controls for managing token transfers securely.
+- **Limited rate limiting**: Rate limits are bridge-specific and cannot be set per chain, reducing flexibility and security.
+- **No integration with relaying systems**: xERC20 does not natively support relayer systems, limiting its usability in automated or dynamic setups.
 
 While xERC20 is an extension of the ERC20 standard, NTT is designed as a framework rather than a rigid standard. It is compatible with any token that supports `burn` and `mint` functions and allows the NTT manager to act as a minter. 
 
@@ -129,9 +129,9 @@ To begin transferring tokens to a chain in burning mode when no tokens are locke
 
 Yes. NTT tokens can be used with chains that do not support NTT by leveraging the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. For example:
 
-- **Wrapped token scenario** - a token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token)
-- **Unwrapping requirement** - tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism
-- **Messaging consistency** - the Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT
+- **Wrapped token scenario**: A token, such as the W token, can be bridged to non-NTT networks using the Token Bridge. When the token is bridged to a chain like Sui, a wrapped version of the token is created (e.g., Wrapped W token).
+- **Unwrapping requirement**: Tokens bridged using the Token Bridge cannot be directly transferred to NTT-supported chains. To transfer them, they must first be unwrapped on the non-NTT chain and then transferred via the appropriate mechanism.
+- **Messaging consistency**: The Token Bridge exclusively uses Wormhole messaging, ensuring consistent communication across all chains, whether or not they support NTT.
 
 This approach ensures interoperability while maintaining the integrity of the token's cross-chain movement.
 
