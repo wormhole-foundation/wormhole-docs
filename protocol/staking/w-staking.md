@@ -5,7 +5,7 @@ description: Integrate W staking into your app on EVM and Solana. Learn flows, c
 
 # W Staking Integration
 
-This guide walks through integrating native W staking for both EVM chains (Ethereum, Optimism, Arbitrum, Base) and Solana, including high-level differences, contract calls, and recommended delegate discovery via the Tally API.
+This guide walks you through integrating native W staking for both EVM chains (Ethereum, Optimism, Arbitrum, Base) and Solana, including high-level differences, contract calls, and recommended delegate discovery via the Tally API.
 
 ## Overview
 
@@ -38,7 +38,7 @@ const tx = await writeContractAsync({
 Use the `delegates(address)` view function to check the current delegate for a given address.
 
 !!!note "Important Notes"
-    - Only one delegate per wallet.
+    - There can only be one delegate per wallet. 
     - You can delegate to yourself or someone else.
     - Wormhole maintains a list of delegates using the Tally API (covers EVM and Solana).
 
@@ -49,7 +49,7 @@ On Solana, staking means moving W tokens into a stake account and assigning a de
 ### Staking Flow (Solana)
 
 ```js 
- // Initialize staking program and config
+ // Initialize the staking program and config
  // See Program IDs and ABIs section for more details
   
   const program = new anchor.Program<Staking>(simplerStakingIDL, {
@@ -60,7 +60,7 @@ On Solana, staking means moving W tokens into a stake account and assigning a de
     program.programId,
   )
 
-	// PDA derivations for user and delegate
+  // PDA derivations for user and delegate
 	
   const [stakeAccountMetadata] = PublicKey.findProgramAddressSync(
     [Buffer.from('stake_metadata'), userPublicKey.toBuffer()],
@@ -113,7 +113,7 @@ On Solana, staking means moving W tokens into a stake account and assigning a de
     program.programId,
   )
   
-// 1. Ensure ATA exists for user
+// 1. Ensure ATA exists for the user
 const userATA = getAssociatedTokenAddressSync(WTokenSolanaPublicKey, userPublicKey, false)
 const ataInfo = await connection.getAccountInfo(userATA)
 if (!ataInfo) {
@@ -127,7 +127,7 @@ if (!ataInfo) {
   )
 }
 
-// 2. Create user's stake account if needed
+// 2. Create the user's stake account if needed
   
 const userStakeAccountInfo = await connection.getAccountInfo(stakeAccountMetadata)
 if (!userStakeAccountInfo) {
@@ -153,7 +153,7 @@ if (!userStakeAccountInfo) {
 const transferIx = createTransferInstruction(userATA, stakeAccountCustody, userPublicKey, amount)
 createStakeAccTx.add(transferIx)
 
-// 4. Create delegate account if not self-delegation
+// 4. Create a delegate account if not self-delegation
   
 const delegateeAccountInfo = await connection.getAccountInfo(delegateeStakeAccountMetadata)
 const isSelfDelegation = delegateePublicKey.equals(userPublicKey)
@@ -211,10 +211,10 @@ createStakeAccTx.add(delegateIx)
 
 Staking Steps:
 
-1. Ensure user has a W token ATA.
-2. Create stake account if it doesn't exist.
+1. Ensure the user has a W token ATA.
+2. Create a stake account if it doesn't exist.
 3. Transfer tokens to the stake custody account.
-4. Create delegate stake account if needed.
+4. Create a delegate stake account if needed.
 5. Send the `delegate()` instruction.
 
 ### Unstaking Flow (Solana)
@@ -245,8 +245,8 @@ const withdrawIx = await program.methods
 withdrawTx.add(withdrawIx)
 ```
 
-1. Confirm user’s stake metadata and custody accounts.
-2. Call `withdrawTokens()` to move tokens back to user’s ATA.
+1. Confirm the user’s stake metadata and custody accounts.
+2. Call `withdrawTokens()` to move tokens back to the user’s ATA.
 
 !!!note "Important Notes"
     - Solana integration uses `@solana/web3.js`, `@solana/spl-token`, and `@coral-xyz/anchor`.
@@ -273,10 +273,10 @@ Wormhole leverages the [Tally API](https://apidocs.tally.xyz/){target=\_blank} t
 - Current MultiGov Program ID: `MGoV9M6YUsdhJzjzH9JMCW2tRe1LLxF1CjwqKC7DR1B`
 - IDL: [Solscan IDL](https://solscan.io/account/MGoV9M6YUsdhJzjzH9JMCW2tRe1LLxF1CjwqKC7DR1B#anchorProgramIdl){target=\_blank}
 
-For Anchor Program Integration (like the sample code above): You need the IDL file
+To integrate with an Anchor program, you need the IDL file (as shown in the sample code above) : 
 
-- Get it from: [Solscan IDL](https://solscan.io/account/MGoV9M6YUsdhJzjzH9JMCW2tRe1LLxF1CjwqKC7DR1B#anchorProgramIdl)
-- Used in:
+- You can retrieve it from: [Solscan IDL](https://solscan.io/account/MGoV9M6YUsdhJzjzH9JMCW2tRe1LLxF1CjwqKC7DR1B#anchorProgramIdl){target=\_blank}
+- As seen in:
 
 ```js
 const program = new anchor.Program<Staking>(simplerStakingIDL, {
@@ -284,7 +284,7 @@ const program = new anchor.Program<Staking>(simplerStakingIDL, {
 })
 ```
 
-For PDA derivations, Tally API integration, or custom integrations you will need the Program ID. Example PDA derivation use case:
+For PDA derivations, Tally API integration, or custom integrations, you will need the Program ID. Example PDA derivation use case:
 
 ```js
 // If you already have the IDL/program above, use program.programId
@@ -297,7 +297,7 @@ const [pda] = PublicKey.findProgramAddressSync(
 )
 ```
 
-Example Tally API call using ProgramID:
+Implementation of a Tally API call using ProgramID:
 
 ```js
 solanaGovernorId = 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp:MGoV9M6YUsdhJzjzH9JMCW2tRe1LLxF1CjwqKC7DR1B'
