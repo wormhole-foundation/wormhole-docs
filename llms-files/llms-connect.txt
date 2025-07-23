@@ -157,13 +157,10 @@ Open the `App.tsx` file in your code editor of choice. You will see code similar
 
 ```typescript title="App.tsx"
 import './App.css';
-import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config, WormholeConnectTheme } from '@wormhole-foundation/wormhole-connect';
 
 function App() {
-  const config: WormholeConnectConfig = {
+  const config: config.WormholeConnectConfig = {
     // Define the network
     network: 'Testnet',
 
@@ -436,10 +433,10 @@ Configure Wormhole Connect by passing a `WormholeConnectConfig` object as the `c
 
     ```ts
     import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Polygon', 'Solana'],
   tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
   rpcs: {
@@ -454,12 +451,9 @@ const config: WormholeConnectConfig = {
 === "Hosted integration"
 
     ```ts
-    import WormholeConnect, {
-  wormholeConnectHosted,
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { wormholeConnectHosted, type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Polygon', 'Solana'],
   tokens: ['ETH', 'WETH', 'MATIC', 'WMATIC'],
   rpcs: {
@@ -487,11 +481,9 @@ Connect lets you customize the available chains to match your project's needs. Y
 === "Mainnet"
 
     ```js
-    import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Polygon', 'Solana'],
   rpcs: {
     Ethereum: 'https://rpc.ankr.com/eth',
@@ -507,11 +499,9 @@ function App() {
 === "Testnet"
 
     ```js
-    import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   // You can use Connect with testnet chains by specifying "network":
   network: 'Testnet',
   chains: ['Sepolia', 'ArbitrumSepolia', 'BaseSepolia', 'Avalanche'],
@@ -561,10 +551,10 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 ```typescript
 import WormholeConnect, {
   AutomaticCCTPRoute,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [AutomaticCCTPRoute],
 };
 
@@ -580,12 +570,12 @@ import WormholeConnect, {
   DEFAULT_ROUTES,
   nttRoutes,
   MayanRouteSWIFT,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
@@ -606,11 +596,9 @@ This example configuration adds the BONK token to Connect. Note the `wrappedToke
 See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/types.ts#L182){target=\_blank} for the type definition of `TokensConfig`.
 
 ```typescript
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   tokensConfig: {
     BONK: {
       key: 'BONK',
@@ -722,11 +710,9 @@ Connect offers a list of built-in tokens by default. You can see it below:
 You can customize the tokens shown in the UI using the `tokens` property. The following example adds a custom token and limits Connect to showing only that token, along with the native gas tokens ETH and SOL.
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Solana'],
   tokens: ['ETH', 'SOL', 'BONK'],
   rpcs: {
@@ -761,10 +747,10 @@ You can whitelist tokens by symbol or by specifying tuples of [chain, address]. 
 
 ```jsx
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   chains: ['Ethereum', 'Solana'],
   tokens: [
     // Whitelist BONK on every whitelisted chain
@@ -787,14 +773,12 @@ As of version 2.0, Connect allows users to paste token addresses to bridge any t
 If you provide a token whitelist (see above), this is turned off automatically. However, you can also disable it explicitly like this:
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
-    disableUserInputtedTokens: true
-  }
+    disableUserInputtedTokens: true,
+  },
 };
 
 function App() {
@@ -809,11 +793,9 @@ Setting `ui.disableUserInputtedTokens` to `true` will disable the ability to pas
 Landing transactions on Solana can require finely tuned priority fees when there is congestion. You can tweak how Connect determines these with `transactionSettings`. All of the parameters in this configuration are optional; you can provide any combination of them.
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   transactionSettings: {
     Solana: {
       priorityFee: {
@@ -835,9 +817,9 @@ const config: WormholeConnectConfig = {
         // Maximum fee you want to use in microlamports, regardless of recent transactions
         // Defaults to 100,000,000
         max: 5_000_000,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 function App() {
@@ -891,12 +873,9 @@ You can customize Connect's color scheme by providing a `theme` prop.
 === "React integration"
 
     ```ts
-    import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config, WormholeConnectTheme } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   /* Your config... */
 };
 
@@ -914,13 +893,9 @@ function App() {
 === "Hosted integration"
 
     ```ts
-    import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-  wormholeConnectHosted,
-} from '@wormhole-foundation/wormhole-connect';
+    import WormholeConnect, { type config, WormholeConnectTheme, wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   /* Your config... */
 };
 
@@ -968,11 +943,9 @@ By setting the `showHamburgerMenu` option to `false,` you can add extra links. T
 | `order`  | Order where the new item should be injected |
 
 ```jsx
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
     showHamburgerMenu: false,
     menu: [
@@ -1109,9 +1082,7 @@ wormholeConnectHosted(container);
 You can provide config and theme parameters in a second function argument:
 
 ```js
-import {
-  wormholeConnectHosted,
-} from '@wormhole-foundation/wormhole-connect';
+import { wormholeConnectHosted } from '@wormhole-foundation/wormhole-connect';
 
 // Existing DOM element where you want to mount Connect
 const container = document.getElementById('bridge-container');
@@ -1123,13 +1094,13 @@ wormholeConnectHosted(container, {
   config: {
     rpcs: {
       // ...
-    }
+    },
   },
   theme: {
     background: {
       default: '#004547',
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -1144,14 +1115,14 @@ Use the following guides to configure your Connect instance:
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/connect/guides/upgrade.md
 --- BEGIN CONTENT ---
 ---
-title: Wormhole Connect v1.0 Migration Guide
-description: Learn how to migrate to Wormhole Connect v1.0, with step-by-step guidance on updating your package and configuration.
+title: Wormhole Connect Migration Guide
+description: Learn how to migrate to Wormhole Connect ^v1.0, with step-by-step guidance on updating your package and configuration.
 categories: Connect, Transfer
 ---
 
-# Wormhole Connect v1.0 Migration Guide
+# Wormhole Connect Migration Guide
 
-The Wormhole Connect feature has been updated to **version 1.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
+The Wormhole Connect feature has been updated to **version 3.0**, introducing a modernized design and improved routing for faster native-to-native token transfers. This stable release comes with several breaking changes in how to configure the application, requiring minor updates to your integration.
 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
@@ -1161,21 +1132,24 @@ This guide will help you migrate to the new version in just a few simple steps. 
 
 These updates ensure better performance and a smoother integration experience.
 
+!!! tip "Note"
+    Connect versions v1.x and v2.x share the same configuration structure. This guide outlines a unified upgrade process to v3.x, regardless of whether you're using v0.x, v1.x, or v2.x.
+
 ## Update the Connect Package
 
-To begin the migration process, update the Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect/v/1.0.0-beta.6-development?activeTab=readme){target=\_blank} to the latest version 1.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
+To begin the migration process, update the Connect [**npm package**](https://www.npmjs.com/package/@wormhole-foundation/wormhole-connect){target=\_blank} to the latest version 3.0. Updating to the latest version provides access to the newest features and improvements, including the modernized design and enhanced routing capabilities.
 
 Run the following command in your terminal:
 
 ```bash
-npm install @wormhole-foundation/wormhole-connect@^1.0
+npm install @wormhole-foundation/wormhole-connect@^3.0
 ```
 
 This command installs the latest stable version of Wormhole Connect and prepares your environment for the new configuration changes.
 
 ## Update the `WormholeConnectConfig` Object
 
-In version 1.0, the `WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
+In version 3.0, the `config.WormholeConnectConfig` object underwent several breaking changes. Most of these changes are minor and can be applied quickly. Below is a summary of the key changes, followed by detailed examples.
 
 ### Summary of Breaking Changes
 
@@ -1192,11 +1166,13 @@ These changes are explained in more detail below, with examples for easy referen
 
 ### Capitalize Chain Names
 
-In version 1.0, chain names are now consistent with the `Chain` type from the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, and must be capitalized. This affects all config properties where a chain is referenced, including `rpcs`, `rest`, `graphql`, and `chains`.
+In version 3.0, chain names are now consistent with the `Chain` type from the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}, and must be capitalized. This affects all config properties where a chain is referenced, including `rpcs`, `rest`, `graphql`, and `chains`.
 
 === "v0.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       rpcs: {
         ethereum: 'INSERT_ETH_RPC_URL',
@@ -1207,6 +1183,8 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
 === "v1.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       rpcs: {
         Ethereum: 'INSERT_ETH_RPC_URL',
@@ -1214,8 +1192,20 @@ In version 1.0, chain names are now consistent with the `Chain` type from the [W
       },
     };
     ```
+=== "v3.x"
 
-You can find the complete list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/fa4ba4bc349a7caada809f209090d79a3c5962fe/core/base/src/constants/chains.ts#L12-L66){target=\_blank}.
+    ```typescript
+    import { type config } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
+      rpcs: {
+        Ethereum: 'INSERT_ETH_RPC_URL',
+        Solana: 'INSERT_SOLANA_RPC_URL',
+      },
+    };
+    ```
+
+You can find the complete list of supported chain names in the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/chains.ts#L6-L71){target=\_blank}.
 
 ### Rename `env` to `network`
 
@@ -1224,6 +1214,8 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 === "v0.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       env: 'testnet',
     };
@@ -1231,7 +1223,18 @@ The `env` property has been renamed to `network`, with capitalized values. This 
 === "v1.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
+      network: 'Testnet',
+    };
+    ```
+=== "v3.x"
+
+    ```typescript
+    import { type config } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
       network: 'Testnet',
     };
     ```
@@ -1240,7 +1243,7 @@ If you don’t explicitly set the `network` value, Connect will default to `Main
 
 ```typescript
 // Defaults to Mainnet
-const config: WormholeConnectConfig = {};
+const config: config.WormholeConnectConfig = {};
 ```
 
 For more information, refer to the [network constants list](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/base/src/constants/networks.ts){target=\_blank}.
@@ -1252,6 +1255,8 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 === "v0.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       networks: ['solana', 'ethereum'],
     };
@@ -1259,14 +1264,25 @@ The `networks` property, which allowed whitelisting chains, is now renamed `chai
 === "v1.x"
 
     ```typescript
+    import { WormholeConnectConfig } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
+      chains: ['Solana', 'Ethereum'],
+    };
+    ```
+=== "v3.x"
+
+    ```typescript
+    import { type config } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
       chains: ['Solana', 'Ethereum'],
     };
     ```
 
 ### Update `routes` to Use Route Plugins
 
-The `routes` property in Connect version 1.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
+The `routes` property in Connect version 3.0 has significantly improved. Previously, `routes` was a simple array of strings. The latest version has been transformed into a flexible plugin system, allowing you to include specific routes for various protocols.
 
 By default, if no `routes` property is set, Connect will provide routes for two core protocols:
 
@@ -1306,10 +1322,10 @@ To configure Connect to offer only USDC transfers via the CCTP route, use the fo
 ```typescript
 import WormholeConnect, {
   AutomaticCCTPRoute,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [AutomaticCCTPRoute],
 };
 
@@ -1325,12 +1341,12 @@ import WormholeConnect, {
   DEFAULT_ROUTES,
   nttRoutes,
   MayanRouteSWIFT,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
 import { myNttConfig } from './consts'; // Custom NTT configuration
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [...DEFAULT_ROUTES, ...nttRoutes(myNttConfig), MayanRouteSWIFT],
 };
 
@@ -1341,7 +1357,7 @@ This flexible plugin allows you to combine default routes (such as Token Bridge 
 
 ### Update the `tokensConfig` Structure
 
-In Connect version 1.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
+In Connect version 3.0, the `tokensConfig` property has been updated to simplify the structure and improve flexibility for token handling across chains. The previous configuration has been streamlined, and a new key, `wrappedTokens,` has been introduced to handle foreign assets more effectively.
 
 Key Changes to `tokensConfig`:
 
@@ -1415,10 +1431,43 @@ Key Changes to `tokensConfig`:
       },
     };
     ```
+=== "v3.x"
+
+    In v3.0, `foreignAssets` has been replaced with `wrappedTokens`, simplifying token transfers across chains by directly mapping wrapped token addresses. The `decimals` value is now a simple number representing the token’s decimals on its native chain.
+
+    ```typescript
+    import WormholeConnect, {
+      type config,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
+      tokensConfig: {
+        WETH: {
+          key: 'WETH',
+          symbol: 'WETH',
+          nativeChain: 'Ethereum', // Chain name now capitalized
+          icon: Icon.ETH,
+          tokenId: {
+            chain: 'Ethereum',
+            address: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+          },
+          coinGeckoId: 'ethereum',
+          color: '#62688F',
+          decimals: 18, // Simplified decimals field
+        },
+      },
+      wrappedTokens: {
+        WETH: {
+          Solana: '7vfCXTUXx5WJV5JADk17DUJ4ksgau7utNKj4b963voxs',
+          /* additional chains */
+        },
+      },
+    };
+    ```
 
 ### Update NTT Configuration
 
-In Connect version 1.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
+In Connect version 3.0, the `nttGroups` property, which was used to configure Native Token Transfers (NTT), has been removed. Instead, the NTT configuration is passed directly to the NTT route constructor. This update simplifies the setup and provides more flexibility for defining NTT routes.
 
 Key changes:
 
@@ -1512,12 +1561,56 @@ This change simplifies the configuration process by providing a cleaner, more fl
       ],
     };
     ```
+=== "v3.x"
+
+    In v3.0, `nttGroups` has been removed, and the configuration is passed to the NTT route constructor as an argument. The tokens and corresponding transceivers are now clearly defined within the `nttRoutes` configuration.
+
+    ```typescript
+    import WormholeConnect, {
+      nttRoutes,
+      type config,
+    } from '@wormhole-foundation/wormhole-connect';
+
+    const config: config.WormholeConnectConfig = {
+      routes: [
+        ...nttRoutes({
+          tokens: {
+            Lido_wstETH: [
+              {
+                chain: 'Ethereum',
+                manager: '0xb948a93827d68a82F6513Ad178964Da487fe2BD9',
+                token: '0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0',
+                transceiver: [
+                  {
+                    address: '0xA1ACC1e6edaB281Febd91E3515093F1DE81F25c0',
+                    type: 'wormhole',
+                  },
+                ],
+              },
+              {
+                chain: 'Bsc',
+                manager: '0x6981F5621691CBfE3DdD524dE71076b79F0A0278',
+                token: '0x26c5e01524d2E6280A48F2c50fF6De7e52E9611C',
+                transceiver: [
+                  {
+                    address: '0xbe3F7e06872E0dF6CD7FF35B7aa4Bb1446DC9986',
+                    type: 'wormhole',
+                  },
+                ],
+              },
+            ],
+          },
+        }),
+        /* other routes */
+      ],
+    };
+    ```
 
     In this new structure, NTT routes are passed directly through the `nttRoutes` function, with the `token`, `chain`, `manager` and `transceiver` clearly defined for each supported asset.
 
 ### Update UI Configuration
 
-In Connect version 1.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
+In Connect version 3.0, the user interface configuration has been significantly updated. Several previously scattered UI properties have now been consolidated under a new `ui` key, making the UI configuration cleaner and easier to manage.
 
 Key UI changes:
 
@@ -1544,10 +1637,10 @@ Additionally, there are two new properties under `ui`:
 
 ```typescript
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   ui: {
     title: 'My Custom Bridge Example',
     getHelpUrl: 'https://examplehelp.com/',
@@ -1572,11 +1665,12 @@ const config: WormholeConnectConfig = {
 
 #### UI Configuration
 
-In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 1.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
+In the old structure, UI-related settings like `explorer` and `bridgeDefaults` were defined at the root level of the configuration. In version 3.0, these properties are now organized under the `ui` key, improving the configuration's readability and manageability.
 
 === "v0.x"
 
     ```typescript
+    
     const config: WormholeConnectConfig = {
       bridgeDefaults: {
         fromNetwork: 'solana',
@@ -1602,10 +1696,25 @@ In the old structure, UI-related settings like `explorer` and `bridgeDefaults` w
       },
     };
     ```
+=== "v3.x"
+
+    ```typescript
+    const config: config.WormholeConnectConfig = {
+      ui: {
+        defaultInputs: {
+          fromChain: 'Solana', // Chain names now capitalized
+          toChain: 'Ethereum',
+          tokenKey: 'USDC',
+          requiredChain: 'Solana',
+        },
+        showHamburgerMenu: true,
+      },
+    };
+    ```
 
 #### Remove `customTheme` and `mode` Properties
 
-In version 1.0, the `customTheme` and `mode` properties, which were previously used to set themes, have been removed. They have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
+In version 3.0, the `customTheme` and `mode` properties, which were previously used to set themes, have been removed. They have been replaced by a new top-level prop called `theme`, which allows for more flexibility and dynamic updates to themes.
 
 Important details:
 
@@ -1615,6 +1724,10 @@ Important details:
 === "v0.x"
 
     ```typescript
+    import WormholeConnect, {
+      WormholeConnectConfig,
+    } from '@wormhole-foundation/wormhole-connect';
+
     const config: WormholeConnectConfig = {
       customTheme: {
         primaryColor: '#4266f5',
@@ -1625,9 +1738,13 @@ Important details:
 
     <WormholeConnect config={config} />;
     ```
-=== "v1.x"
+=== "^v1.x" 
 
     ```typescript
+    import WormholeConnect, {
+      WormholeConnectTheme,
+    } from '@wormhole-foundation/wormhole-connect';
+
     const theme: WormholeConnectTheme = {
       mode: 'dark', // Can be dynamically changed
       font: 'Arial',
@@ -1641,7 +1758,7 @@ Important details:
 
 ### Removed Configuration Properties
 
-Several configuration properties have been removed in Connect version 1.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
+Several configuration properties have been removed in Connect version 3.0. These keys no longer have any effect, and providing values for them in the configuration will not result in any changes.
 
 Removed config keys:
 
@@ -1655,7 +1772,7 @@ Removed config keys:
  - `customTheme`
  - `mode`
 
-If your current setup includes any of these properties, you can safely remove them, as they are no longer supported in v1.0.
+If your current setup includes any of these properties, you can safely remove them, as they are no longer supported in v3.0.
 
 ## Use the CDN-Hosted Version of Wormhole Connect
 
@@ -1666,7 +1783,7 @@ For those using the CDN-hosted version of Wormhole Connect, the package's instal
 1. Install the Connect package via npm:
 
     ```bash
-    npm install @wormhole-foundation/wormhole-connect@^1.0
+    npm install @wormhole-foundation/wormhole-connect@^3.0
     ```
 
 2. After installing the package, you can embed Connect into your page by adding the following code:
@@ -1796,12 +1913,12 @@ export default function Home() {
     'use client';
 
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
   WormholeConnectTheme,
 } from '@wormhole-foundation/wormhole-connect';
 
 export default function Home() {
-  const config: WormholeConnectConfig = {
+  const config: config.WormholeConnectConfig = {
     network: 'Testnet',
     chains: ['Sui', 'Avalanche'],
 
@@ -2026,20 +2143,30 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 |                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Supported Assets @span         | Wrapped Assets                        | :x:                | :white_check_mark: | :white_check_mark: |
 |                                | Native Assets                         | :white_check_mark: | :x:                | :white_check_mark: |
-|                                | ERC-721s (NFTs)                       | :x:                | :white_check_mark: | :white_check_mark: |
 | Features @span                 | Out-of-the-Box UI                     | :x:                | :x:                | :white_check_mark: |
 |                                | Event-Based Actions                   | :white_check_mark: | :white_check_mark: | :x:                |
 |                                | Intent-Based Execution                | :x:                | :x:                | :white_check_mark: |
 |                                | Fast Settlement                       | :x:                | :x:                | :white_check_mark: |
-|                                | Liquidity Optimization                | :x:                | :x:                | :white_check_mark: |
-| Integration Details @span      |                                       |                    |                    |                    |
 | Requirements @span             | Contract Deployment                   | :white_check_mark: | :x:                |:x:                 |
-| Ease of Integration            | Implementation Complexity             | :green_circle: :green_circle: :white_circle: <br> Moderate | :green_circle: :green_circle: :white_circle: <br> Moderate |:green_circle: :white_circle: :white_circle: <br> Low |
-| Technology @span               | Supported Languages                   | Solidity, Rust | Solidity, Rust, TypeScript | TypeScript |
 
 ::end-spantable::
 
 </div>
+
+## Choose a Transfer Mechanism
+
+Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
+
+| Feature                | Native Token Transfers                                                     | Token Bridge                                  |
+|------------------------|----------------------------------------------------------------------------|-----------------------------------------------|
+| **Best for**           | DeFi governance, native assets with multichain liquidity                   | Consumer apps, games, wrapped-token use cases |
+| **Mechanism**          | Burn-and-mint or hub-and-spoke                                             | Lock-and-mint                                 |
+| **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting and integrated Global Accountant |
+| **Contract Ownership** | User retains ownership and upgrade authority on each chain                 | Managed via Wormhole Governance |
+| **Token Contracts**    | Native contracts owned by your protocol governance       | Wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process. |
+| **Integration**        | Customizable, flexible framework for advanced deployments                  | Straightforward, permissionless deployment    |
+| **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank}   | [Portal Bridge UI](https://portalbridge.com/){target=\_blank} |
+
 
 In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
 
@@ -7683,7 +7810,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9001-2 |
 | Fantom | 10 | 250 |
 | Fogo | 51 |  |
-| Gnosis | 25 | 100 |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 |  |
 | Injective | 19 | injective-1 |
 | Ink | 46 |  |
@@ -7738,7 +7864,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9000-4 |
 | Fantom | 10 | 4002 |
 | Fogo | 51 | 9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9 |
-| Gnosis | 25 | Chiado-10200 |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
 | Injective | 19 | injective-888 |
 | Ink | 46 | 763373 |
@@ -7861,7 +7986,6 @@ categories: Reference
 | BNB Smart Chain | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
-| Gnosis | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
@@ -7902,7 +8026,6 @@ categories: Reference
 | Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
 | Fogo | BhnQyKoQQgpuRTRo6D8Emz93PvXCYfVgHhnrR4T3qhw4 |
-| Gnosis | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
 | Ink | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
@@ -8214,7 +8337,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | SNAXchain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8254,7 +8377,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sei | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: |  |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Terra 2.0 | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8277,6 +8400,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sonic | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sui | Sui Move VM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8315,7 +8439,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Converge | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Gnosis | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8330,7 +8453,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sei | CosmWasm | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Seievm | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: |  |
+| Seievm | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | SNAXchain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Sonic | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8367,7 +8490,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | BNB Smart Chain | EVM | BNB | Official BNB Faucet |
 | Celo | EVM | CELO | Official Celo Faucet |
 | Fantom | EVM | FTM | Official Fantom Faucet |
-| Gnosis | EVM | xDAI | Official Gnosis Faucet |
 | HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
 | Ink | EVM | ETH | Official Ink Faucet |
 | Kaia | EVM | KAIA | Official Kaia Faucet |
@@ -8380,6 +8502,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Plume | EVM | PLUME | Official Plume Faucet |
 | Polygon Amoy | EVM | POL | Official Polygon Faucet |
 | Scroll | EVM | ETH | List of Faucets |
+| Seievm | EVM | SEI | Sei Atlantic-2 Faucet |
 | Unichain | EVM | ETH | QuickNode Faucet |
 | World Chain | EVM | ETH | Alchemy Faucet |
 | X Layer | EVM | OKB | X Layer Official Faucet |
