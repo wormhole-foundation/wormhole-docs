@@ -194,7 +194,7 @@ function publishMessage(
 
 ### getCurrentGuardianSetIndex
 
-Returns the index of the currently active Guardian set. *(Defined in Governance.sol)*
+Returns the index of the currently active Guardian set. *(Defined in Getters.sol)*
 
 Each VAA includes the index of the Guardian set that signed it. This function allows contracts to retrieve the current index, ensuring the VAA is verified against the correct set.
 
@@ -210,7 +210,7 @@ function getCurrentGuardianSetIndex() external view returns (uint32)
 
 ### getGuardianSet
 
-Retrieves metadata for a given Guardian set index. *(Defined in Governance.sol)*
+Retrieves metadata for a given Guardian set index. *(Defined in Getters.sol)*
 
 ```solidity
 function getGuardianSet(uint32 index) external view returns (address[] memory keys, uint32 expirationTime)
@@ -236,7 +236,7 @@ function getGuardianSet(uint32 index) external view returns (address[] memory ke
 
 ### getGuardianSetExpiry
 
-Returns the expiration time of a specific Guardian set index. *(Defined in Governance.sol)*
+Returns the expiration time of a specific Guardian set index. *(Defined in Getters.sol)*
 
 ```solidity
 function getGuardianSetExpiry(uint32 index) external view returns (uint32)
@@ -256,7 +256,7 @@ function getGuardianSetExpiry(uint32 index) external view returns (uint32)
 
 ### messageFee
 
-Returns the current fee (in native tokens) required to publish a message. *(Defined in Governance.sol)*
+Returns the current fee (in native tokens) required to publish a message. *(Defined in Getters.sol)*
 
 ```solidity
 function messageFee() public view returns (uint256)
@@ -270,7 +270,7 @@ function messageFee() public view returns (uint256)
 
 ### nextSequence
 
-Retrieves the next sequence number for a given emitter address. *(Defined in Governance.sol)*
+Retrieves the next sequence number for a given emitter address. *(Defined in Getters.sol)*
 
 ```solidity
 function nextSequence(address emitter) external view returns (uint64)
@@ -406,7 +406,7 @@ function quorum() public view returns (uint8)
 
 ### chainId
 
-Returns Wormhole chain ID used internally by the protocol. *(Defined in Governance.sol)*
+Returns Wormhole chain ID used internally by the protocol. *(Defined in Getters.sol)*
 
 ```solidity
 function chainId() public view returns (uint16)
@@ -420,7 +420,7 @@ function chainId() public view returns (uint16)
 
 ### evmChainId
 
-Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in Governance.sol)*
+Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in Getters.sol)*
 
 ```solidity
 function evmChainId() public view returns (uint256)
