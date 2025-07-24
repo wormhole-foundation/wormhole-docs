@@ -44,6 +44,91 @@ Wormhole.sol (Proxy)
  - `messageFee` ++"uint256"++ - The amount (in native gas token) required to post a message. Set via governance.
  - `evmChainId` ++"uint256"++ - The actual EVM chain ID (e.g. 1 for Ethereum, 10 for Optimism). Used in fork recovery.
 
+## Events
+
+### LogMessagePublished
+
+Emitted when a message is published via `publishMessage`.
+
+```solidity
+event LogMessagePublished(
+    address indexed sender,
+    uint64 sequence,
+    uint32 nonce,
+    bytes payload,
+    uint8 consistencyLevel
+)
+```
+
+??? interface "Parameters"
+
+    `sender` ++"address"++  
+
+    Address that called `publishMessage`.
+
+    ---
+
+    `sequence` ++"uint64"++
+
+    The sequence number of the message.
+
+    ---
+
+    `nonce` ++"uint32"++
+
+    The provided nonce.
+
+    ---
+
+    `payload` ++"bytes"++
+
+    The payload that was published.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Finality level requested.
+
+### ContractUpgraded
+
+Emitted when the Core Contract is upgraded to a new implementation via governance.
+
+```solidity
+event ContractUpgraded(
+    address indexed oldContract,
+    address indexed newContract
+)
+```
+
+??? interface "Parameters"
+
+    `oldContract` ++"address"++
+
+    The address of the previous implementation.
+
+    ---
+
+    `newContract` ++"address"++
+
+    The address of the new implementation.
+
+### GuardianSetAdded
+
+Emitted when a new Guardian set is registered via governance.
+
+```solidity
+event GuardianSetAdded(
+    uint32 indexed index
+)
+```
+
+??? interface "Parameters"
+
+    `index` ++"uint32"++
+
+    Index of the newly added Guardian set.
+
 ## Functions
 
 ### publishMessage
@@ -321,91 +406,6 @@ function evmChainId() public view returns (uint256)
     `id` ++"uint256"++
 
     Native EVM chain ID for the current network.
-
-## Events
-
-### LogMessagePublished
-
-Emitted when a message is published via `publishMessage`.
-
-```solidity
-event LogMessagePublished(
-    address indexed sender,
-    uint64 sequence,
-    uint32 nonce,
-    bytes payload,
-    uint8 consistencyLevel
-)
-```
-
-??? interface "Parameters"
-
-    `sender` ++"address"++  
-
-    Address that called `publishMessage`.
-
-    ---
-
-    `sequence` ++"uint64"++
-
-    The sequence number of the message.
-
-    ---
-
-    `nonce` ++"uint32"++
-
-    The provided nonce.
-
-    ---
-
-    `payload` ++"bytes"++
-
-    The payload that was published.
-
-    ---
-
-    `consistencyLevel` ++"uint8"++
-
-    Finality level requested.
-
-### ContractUpgraded
-
-Emitted when the Core Contract is upgraded to a new implementation via governance.
-
-```solidity
-event ContractUpgraded(
-    address indexed oldContract,
-    address indexed newContract
-)
-```
-
-??? interface "Parameters"
-
-    `oldContract` ++"address"++
-
-    The address of the previous implementation.
-
-    ---
-
-    `newContract` ++"address"++
-
-    The address of the new implementation.
-
-### GuardianSetAdded
-
-Emitted when a new Guardian set is registered via governance.
-
-```solidity
-event GuardianSetAdded(
-    uint32 indexed index
-)
-```
-
-??? interface "Parameters"
-
-    `index` ++"uint32"++
-
-    Index of the newly added Guardian set.
 
 ## Errors
 
