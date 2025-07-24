@@ -32,6 +32,18 @@ Wormhole.sol (Proxy)
  - **Setters.sol**: Contains internal functions for mutating contract state.
  - **Structs.sol**: Defines core data structures like GuardianSet and VM (VAA Message) used across multiple modules.
 
+## State Variables
+
+ - `provider` ++"Structs.Provider"++ - Holds metadata like `chainId`, `governanceChainId`, and `governanceContract`. This is a nested struct.
+ - `guardianSets` ++"mapping(uint32 => GuardianSet)"++ - Mapping of all guardian sets by index.
+ - `guardianSetIndex` ++"uint32"++ - Index of the currently active guardian set.
+ - `guardianSetExpiry` ++"uint32"++ - How long a guardian set remains valid after it's replaced (in seconds).
+ - `sequences` ++"mapping(address => uint64)"++ - Tracks message sequences per emitter (used to enforce message ordering).
+ - `consumedGovernanceActions` ++"mapping(bytes32 => bool)"++ - Used to prevent governance VAAs from being reused (replay protection).
+ - `initializedImplementations` ++"mapping(address => bool)"++ - Tracks which implementation addresses have been initialized (for upgrade safety).
+ - `messageFee` ++"uint256"++ - The amount (in native gas token) required to post a message. Set via governance.
+ - `evmChainId` ++"uint256"++ - The actual EVM chain ID (e.g. 1 for Ethereum, 10 for Optimism). Used in fork recovery.
+
 ## Functions
 
 ### publishMessage
