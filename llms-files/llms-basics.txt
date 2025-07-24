@@ -1027,6 +1027,15 @@ lib.rs
  - **error.rs** (not listed above): Defines custom error types used across the program for precise failure handling.
  - **wasm.rs** (not listed above): Provides WebAssembly bindings for testing and external tooling; not used on-chain.
 
+## State Accounts
+
+ - `bridge` ++"BridgeData"++ – Stores global config like the active guardian set index, message fee, and guardian set expiration time. (Derived at PDA seed ["Bridge"])
+ - `guardianSets` ++"GuardianSetData"++ – Mapping of guardian sets by index. Each guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed ["GuardianSet", index])
+ - `sequences` ++"SequenceTracker"++ – Tracks the last sequence number used by each emitter, enforcing strict message ordering. (Derived at PDA seed ["Sequence", emitter])
+ - `postedVAAs` ++"PostedVAAData"++ – Stores verified and finalized VAAs, preventing replay. (Derived at PDA seed ["PostedVAA", hash])
+ - `claims` ++"ClaimData"++ – Tracks consumed governance VAAs to ensure replay protection. (Derived at PDA seed ["Claim", emitter, sequence])
+ - `feeCollector` ++"FeeCollector"++ – Holds lamports collected via message fees, and can be drained via governance. (Derived at PDA seed ["fee_collector"])
+
 ## Functions
 
 ### initialize
