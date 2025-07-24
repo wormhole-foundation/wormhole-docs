@@ -2509,7 +2509,7 @@ The [Wormhole Core Contract on EVM](https://github.com/wormhole-foundation/wormh
 
 ## Structure Overview
 
-The Wormhole Core system on EVM uses an upgradeable proxy architecture, separating interface and logic. The proxy delegates calls to an implementation contract, which is composed of multiple modular components.
+The Wormhole Core system consists of a proxy contract and a modular implementation constructed through layered inheritance.
 
 ```text
 Wormhole.sol (Proxy)
@@ -3004,7 +3004,7 @@ Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs
 --- BEGIN CONTENT ---
 ---
 title: Core Contract (Solana)
-description: Reference for the Wormhole Core program deployed on Solana. Includes instruction definitions, architecture, and implementation notes.
+description: Reference for the Wormhole Core program on Solana. Covers architecture, PDA accounts, and instructions for posting, verifying, and processing VAAs.
 categories: Basics
 ---
 
@@ -3012,28 +3012,40 @@ categories: Basics
 
 The [Wormhole Core Program on Solana](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/lib.rs){target=\_blank} is a native Solana program responsible for posting, verifying, and relaying Wormhole messages (VAAs). It implements core messaging functionality, guardian set updates, and upgradeability.
 
-## Architecture
+## Structure Overview
+
+The Wormhole Core program on Solana is implemented using modular Rust files. Logic is separated across instruction dispatch, account definitions, core types, and signature verification.
 
 ```text
-Wormhole Core (Program)
-├── Instruction handlers
-│   ├── Post and verify messages
-│   ├── Guardian set upgrades
-│   └── Contract upgrades
-├── PDA accounts
-│   ├── Bridge state
-│   ├── Guardian sets
-│   ├── Posted VAAs
-│   ├── Sequence and signature sets
-│   └── Fee collector
-└── Log-based tracing (no native events)
+lib.rs
+├── instructions.rs
+├── accounts.rs
+├── api.rs
+│   ├── post_message
+│   ├── verify_signatures
+│   ├── post_vaa
+│   ├── upgrade_contract
+│   └── upgrade_guardian_set
+├── types.rs
+└── vaa.rs
 ```
+
+**Key Components:**
+
+ - **lib.rs**: Program entry point and instruction dispatcher. Registers all handlers and exposes the on-chain processor.
+ - **instructions.rs**: Defines the WormholeInstruction enum and maps it to individual instruction handlers.
+ - **accounts.rs**: Specifies the account constraints and validation logic for each instruction.
+ - **api.rs**: Contains the main logic for processing instructions such as message posting, VAA verification, upgrades, and governance actions.
+ - **types.rs**: Defines shared structs and enums used throughout the program, including configuration and GuardianSet formats.
+ - **vaa.rs**: Implements VAA parsing, hashing, and signature-related logic used to verify Wormhole messages.
+ - **error.rs** (not listed above): Defines custom error types used across the program for precise failure handling.
+ - **wasm.rs** (not listed above): Provides WebAssembly bindings for testing and external tooling; not used on-chain.
 
 ## Functions
 
 ### initialize
 
-Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time.
+Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time. *(Defined in api/initialize.rs)*
 
 ```rust
 initialize(
@@ -3072,7 +3084,7 @@ initialize(
 
 ### post_message
 
-Posts a Wormhole message to the Solana Core contract.
+Posts a Wormhole message to the Solana Core contract. *(Defined in api/post_message.rs)*
 
 ```rust
 PostMessage {
@@ -3114,7 +3126,7 @@ PostMessage {
 
 ### post_message_unreliable
 
-Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical.
+Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical. *(Defined in api/post_message_unreliable.rs)*
 
 ```rust
 PostMessageUnreliable {
@@ -3154,7 +3166,7 @@ PostMessageUnreliable {
 
 ### verify_signatures
 
-Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA.
+Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA. *(Defined in api/verify_signatures.rs)*
 
 ```rust
 VerifySignatures {
@@ -3180,7 +3192,7 @@ VerifySignatures {
 
 ### post_vaa
 
-Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed.
+Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed. *(Defined in api/post_vaa.rs)*
 
 ```rust
 PostVAA {
@@ -3263,7 +3275,7 @@ PostVAA {
 
 ### set_fees
 
-Updates the message posting fee for the core bridge contract.
+Updates the message posting fee for the core bridge contract. *(Defined in api/governance.rs)*
 
 ```rust
 SetFees {}
@@ -3281,13 +3293,13 @@ This function is called via governance and requires a valid governance VAA. The 
 
 ### transfer_fees
 
-Transfers the accumulated message posting fees from the contract to a specified recipient.
+Transfers the accumulated message posting fees from the contract to a specified recipient. *(Defined in api/governance.rs)*
 
 ```rust
 TransferFees {}
 ```
 
-This function is triggered via a governance VAA and transfers the fee balance from the FeeCollector to the recipient address specified in the VAA payload.
+This function is triggered via a governance VAA and transfers the fee balance from the `FeeCollector` to the recipient address specified in the VAA payload.
 
 ??? interface "Accounts"
 
@@ -3301,7 +3313,7 @@ This function is triggered via a governance VAA and transfers the fee balance fr
 
 ### upgrade_contract
 
-Upgrades the deployed Wormhole program using a governance VAA.
+Upgrades the deployed Wormhole program using a governance VAA. *(Defined in api/governance.rs)*
 
 ```rust
 UpgradeContract {}
@@ -3326,7 +3338,7 @@ This instruction allows authorized governance messages to trigger an upgrade of 
 
 ### upgrade_guardian_set
 
-Upgrades the current guardian set using a governance VAA.
+Upgrades the current guardian set using a governance VAA. *(Defined in api/governance.rs)*
 
 ```rust
 UpgradeGuardianSet {}
@@ -3343,6 +3355,88 @@ This instruction replaces the active guardian set with a new one, allowing the W
     - `GuardianSetOld`: Current (active) guardian set PDA.
     - `GuardianSetNew`: PDA for the newly proposed guardian set.
     - `SystemProgram`: Standard Solana system accounts.
+
+## Errors
+
+### GuardianSetMismatch
+
+The guardian set index does not match the expected value.*(Defined in error.rs)*
+
+### InstructionAtWrongIndex
+
+The instruction was found at the wrong index. *(Defined in error.rs)*
+
+### InsufficientFees
+
+Insufficient fees were provided to post the message. *(Defined in error.rs)*
+
+### InvalidFeeRecipient
+
+The recipient address does not match the one specified in the governance VAA. *(Defined in error.rs)*
+
+### InvalidGovernanceAction
+
+The action specified in the governance payload is invalid. *(Defined in error.rs)*
+
+### InvalidGovernanceChain
+
+The governance VAA was not emitted by a valid governance chain. *(Defined in error.rs)*
+
+### InvalidGovernanceKey
+
+The emitter address in the governance VAA is not the expected governance key. *(Defined in error.rs)*
+
+### InvalidGovernanceModule
+
+The module string in the governance VAA header is invalid. *(Defined in error.rs)*
+
+### InvalidGovernanceWithdrawal
+
+Fee withdrawal would cause the fee collector account to drop below rent-exempt balance. *(Defined in error.rs)*
+
+### InvalidGuardianSetUpgrade
+
+The guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in error.rs)*
+
+### InvalidHash
+
+The hash computed from the VAA does not match the expected result. *(Defined in error.rs)*
+
+### InvalidSecpInstruction
+
+The SECP256k1 instruction used for signature verification is malformed. *(Defined in error.rs)*
+
+### MathOverflow
+
+An arithmetic overflow occurred during computation. *(Defined in error.rs)*
+
+### PostVAAConsensusFailed
+
+Not enough valid signatures were collected to achieve quorum. *(Defined in error.rs)*
+
+### PostVAAGuardianSetExpired
+
+The guardian set used to verify the VAA has already expired. *(Defined in error.rs)*
+
+### TooManyGuardians
+
+The guardian set exceeds the maximum allowed number of guardians. *(Defined in error.rs)*
+
+### VAAAlreadyExecuted
+
+The VAA has already been executed and cannot be processed again. *(Defined in error.rs)*
+
+### VAAInvalid
+
+The VAA is structurally invalid or fails to decode. *(Defined in error.rs)*
+
+### InvalidPayloadLength
+
+The payload length is incorrect or malformed. *(Defined in error.rs)*
+
+### EmitterChanged
+
+The emitter address changed unexpectedly. *(Defined in error.rs)*
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md
