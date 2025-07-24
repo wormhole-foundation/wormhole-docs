@@ -351,3 +351,86 @@ This instruction replaces the active guardian set with a new one, allowing the W
     - `GuardianSetOld`: Current (active) guardian set PDA.
     - `GuardianSetNew`: PDA for the newly proposed guardian set.
     - `SystemProgram`: Standard Solana system accounts.
+
+## Errors
+
+### GuardianSetMismatch
+
+The guardian set index does not match the expected value.*(Defined in error.rs)*
+
+### InstructionAtWrongIndex
+
+The instruction was found at the wrong index. *(Defined in error.rs)*
+
+### InsufficientFees
+
+Insufficient fees were provided to post the message. *(Defined in error.rs)*
+
+### InvalidFeeRecipient
+
+The recipient address does not match the one specified in the governance VAA. *(Defined in error.rs)*
+
+### InvalidGovernanceAction
+
+The action specified in the governance payload is invalid. *(Defined in error.rs)*
+
+### InvalidGovernanceChain
+
+The governance VAA was not emitted by a valid governance chain. *(Defined in error.rs)*
+
+### InvalidGovernanceKey
+
+The emitter address in the governance VAA is not the expected governance key. *(Defined in error.rs)*
+
+### InvalidGovernanceModule
+
+The module string in the governance VAA header is invalid. *(Defined in error.rs)*
+
+### InvalidGovernanceWithdrawal
+
+Fee withdrawal would cause the fee collector account to drop below rent-exempt balance. *(Defined in error.rs)*
+
+### InvalidGuardianSetUpgrade
+
+The guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in error.rs)*
+
+### InvalidHash
+
+The hash computed from the VAA does not match the expected result. *(Defined in error.rs)*
+
+### InvalidSecpInstruction
+
+The SECP256k1 instruction used for signature verification is malformed. *(Defined in error.rs)*
+
+### MathOverflow
+
+An arithmetic overflow occurred during computation. *(Defined in error.rs)*
+
+### PostVAAConsensusFailed
+
+Not enough valid signatures were collected to achieve quorum. *(Defined in error.rs)*
+
+### PostVAAGuardianSetExpired
+
+The guardian set used to verify the VAA has already expired. *(Defined in error.rs)*
+
+### TooManyGuardians
+
+The guardian set exceeds the maximum allowed number of guardians. *(Defined in error.rs)*
+
+### VAAAlreadyExecuted
+
+The VAA has already been executed and cannot be processed again. *(Defined in error.rs)*
+
+### VAAInvalid
+
+The VAA is structurally invalid or fails to decode. *(Defined in error.rs)*
+
+### InvalidPayloadLength
+
+The payload length is incorrect or malformed. *(Defined in error.rs)*
+
+### EmitterChanged
+
+The emitter address changed unexpectedly. *(Defined in error.rs)*
+
