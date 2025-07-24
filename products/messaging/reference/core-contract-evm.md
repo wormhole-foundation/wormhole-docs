@@ -1,6 +1,6 @@
 ---
 title: Core Contract (EVM)
-description: Reference for the Wormhole Core contract deployed on EVM chains. Includes the proxy structure, exposed events, functions, and usage tips.
+description: Reference for the Wormhole Core contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
 categories: Basics
 ---
 
@@ -16,6 +16,7 @@ The Wormhole Core system on EVM uses an upgradeable proxy architecture, separati
 Wormhole.sol (Proxy)
 └── Implementation.sol
     └── Governance.sol
+        ├── Getters.sol
         ├── GovernanceStructs.sol
         ├── Messages.sol
         ├── Setters.sol
@@ -27,6 +28,7 @@ Wormhole.sol (Proxy)
  - **Wormhole.sol**: The upgradeable proxy contract that delegates all logic to `Implementation.sol`.
  - **Implementation.sol**: The main logic contract, which handles message publication and initialization. Inherits from Governance.sol.
  - **Governance.sol**: Core governance logic for processing upgrades, setting fees, and updating the Guardian set. Also responsible for verifying governance VAAs and performing privileged actions.
+ - **Getters.sol**: Exposes view functions to access internal contract state, such as current Guardian sets, fees, and contract configuration.
  - **GovernanceStructs.sol**: Provides structures and helpers for processing governance-related VAAs.
  - **Messages.sol**: Handles VAA parsing and verification.
  - **Setters.sol**: Contains internal functions for mutating contract state.
