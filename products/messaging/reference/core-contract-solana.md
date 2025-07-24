@@ -27,7 +27,7 @@ Wormhole Core (Program)
 
 ## Functions
 
-### `initialize`
+### initialize
 
 Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time.
 
@@ -66,7 +66,7 @@ initialize(
 
     List of guardian public key hashes (Ethereum-style addresses).
 
-### `post_message`
+### post_message
 
 Posts a Wormhole message to the Solana Core contract.
 
@@ -108,7 +108,7 @@ PostMessage {
 
     `1` = Confirmed, `2` = Finalized.
 
-### `post_message_unreliable`
+### post_message_unreliable
 
 Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical.
 
@@ -148,7 +148,7 @@ PostMessageUnreliable {
 
     Level of finality required before the message is processed. `1` = Confirmed, `2` = Finalized.
 
-### `verify_signatures`
+### verify_signatures
 
 Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA.
 
@@ -174,7 +174,7 @@ VerifySignatures {
 
     Used to correlate secp256k1 verify instructions with guardian set entries.
 
-### `post_vaa`
+### post_vaa
 
 Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed.
 
@@ -257,7 +257,7 @@ PostVAA {
 
     Arbitrary data being transferred in the message.
 
-### `set_fees`
+### set_fees
 
 Updates the message posting fee for the core bridge contract.
 
@@ -275,7 +275,7 @@ This function is called via governance and requires a valid governance VAA. The 
     - `Claim`: PDA that ensures this governance message hasn't been processed already.
     - `SystemProgram`: Required by Solana for creating/initializing accounts.
 
-### `transfer_fees`
+### transfer_fees
 
 Transfers the accumulated message posting fees from the contract to a specified recipient.
 
@@ -295,7 +295,7 @@ This function is triggered via a governance VAA and transfers the fee balance fr
     - `Claim`: PDA that ensures this governance message hasn't been processed already.
     - `Rent`, `SystemProgram`: Standard Solana system accounts.
 
-### `upgrade_contract`
+### upgrade_contract
 
 Upgrades the deployed Wormhole program using a governance VAA.
 
@@ -320,7 +320,7 @@ This instruction allows authorized governance messages to trigger an upgrade of 
     - `BPFLoaderUpgradeable`: Solana system program for upgrades.
     - `SystemProgram`: Required by Solana for creating/initializing accounts.
 
-### `upgrade_guardian_set`
+### upgrade_guardian_set
 
 Upgrades the current guardian set using a governance VAA.
 

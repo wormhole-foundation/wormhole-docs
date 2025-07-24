@@ -20,7 +20,7 @@ Wormhole (Proxy)
 
 ## Functions
 
-### `publishMessage`
+### publishMessage
 
 Publishes a message to Wormhole's Guardian Network.
 
@@ -56,7 +56,7 @@ function publishMessage(
 
     Unique sequence number assigned to this message.
 
-### `getCurrentGuardianSetIndex`
+### getCurrentGuardianSetIndex
 
 Returns the index of the currently active Guardian set.
 
@@ -72,7 +72,7 @@ function getCurrentGuardianSetIndex() external view returns (uint32)
 
     The index of the active Guardian set used to verify signatures.
 
-### `getGuardianSet`
+### getGuardianSet
 
 Retrieves metadata for a given Guardian set index.
 
@@ -98,7 +98,7 @@ function getGuardianSet(uint32 index) external view returns (address[] memory ke
 
     Timestamp after which the Guardian set is considered expired.
 
-### `getGuardianSetExpiry`
+### getGuardianSetExpiry
 
 Returns the expiration time of a specific Guardian set index.
 
@@ -118,7 +118,7 @@ function getGuardianSetExpiry(uint32 index) external view returns (uint32)
 
     UNIX timestamp after which the set is no longer valid.
 
-### `messageFee`
+### messageFee
 
 Returns the current fee (in native tokens) required to publish a message.
 
@@ -132,7 +132,7 @@ function messageFee() public view returns (uint256)
 
     Fee in wei required to publish a message successfully. Must be sent as `msg.value`.
 
-### `nextSequence`
+### nextSequence
 
 Retrieves the next sequence number for a given emitter address.
 
@@ -152,7 +152,7 @@ function nextSequence(address emitter) external view returns (uint64)
 
     The next sequence number for the specified emitter.
 
-### `parseAndVerifyVM`
+### parseAndVerifyVM
 
 Verifies signatures and parses a signed VAA.
 
@@ -191,7 +191,7 @@ function parseAndVerifyVM(bytes memory encodedVM)
 
     Reason for invalidity if `valid` is false (invalid).
 
-### `verifyVM`
+### verifyVM
 
 Performs low-level VAA signature verification.
 
@@ -218,7 +218,7 @@ function verifyVM(bytes memory encodedVM)
 
     Explanation for failure if `isValid` is `false`.
 
-### `verifySignatures`
+### verifySignatures
 
 Used to verify individual Guardian signatures against a VAA digest.
 
@@ -254,7 +254,7 @@ function verifySignatures(
 
     `true` if the required number of valid signatures is present.
 
-### `quorum`
+### quorum
 
 Returns the number of Guardian signatures required to reach quorum.
 
@@ -268,7 +268,7 @@ function quorum() public view returns (uint8)
 
     Number of valid Guardian signatures required to reach consensus for VAA verification.
 
-### `chainId`
+### chainId
 
 Returns Wormhole chain ID used internally by the protocol.
 
@@ -282,7 +282,7 @@ function chainId() public view returns (uint16)
 
     Wormhole-specific chain identifier. 
 
-### `evmChainId`
+### evmChainId
 
 Returns the EVM chain ID (i.e., value from block.chainid).
 
@@ -298,7 +298,7 @@ function evmChainId() public view returns (uint256)
 
 ## Events
 
-### `LogMessagePublished`
+### LogMessagePublished
 
 Emitted when a message is published via `publishMessage`.
 
@@ -342,7 +342,7 @@ event LogMessagePublished(
 
     Finality level requested.
 
-### `ContractUpgraded`
+### ContractUpgraded
 
 Emitted when the Core Contract is upgraded to a new implementation via governance.
 
@@ -365,7 +365,7 @@ event ContractUpgraded(
 
     The address of the new implementation.
 
-### `GuardianSetAdded`
+### GuardianSetAdded
 
 Emitted when a new Guardian set is registered via governance.
 
