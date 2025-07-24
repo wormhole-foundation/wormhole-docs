@@ -10,7 +10,7 @@ The [Wormhole Core Contract on EVM](https://github.com/wormhole-foundation/wormh
 
 ## Structure Overview
 
-The Wormhole Core system on EVM uses an upgradeable proxy architecture, separating interface and logic. The proxy delegates calls to an implementation contract, which is composed of multiple modular components.
+The Wormhole Core system consists of a proxy contract and a modular implementation constructed through layered inheritance.
 
 ```text
 Wormhole.sol (Proxy)
