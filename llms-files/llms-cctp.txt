@@ -4027,7 +4027,7 @@ Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs
 --- BEGIN CONTENT ---
 ---
 title: Core Contract (EVM)
-description: Reference for the Wormhole Core contract deployed on EVM chains. Includes the proxy structure, exposed events, functions, and usage tips.
+description: Reference for the Wormhole Core contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
 categories: Basics
 ---
 
@@ -4035,299 +4035,49 @@ categories: Basics
 
 The [Wormhole Core Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank} chains is a proxy-based contract responsible for receiving and verifying Wormhole messages (VAAs). It implements the messaging interface and delegates logic to upgradeable implementation contracts.
 
-## Architecture
+## Structure Overview
+
+The Wormhole Core system on EVM uses an upgradeable proxy architecture, separating interface and logic. The proxy delegates calls to an implementation contract, which is composed of multiple modular components.
 
 ```text
-Wormhole (Proxy)
-└── Implementation (Upgradeable logic contract)
-    ├── Message validation logic
-    ├── Guardian set management
-    └── Event emission
+Wormhole.sol (Proxy)
+└── Implementation.sol
+    └── Governance.sol
+        ├── Getters.sol
+        ├── GovernanceStructs.sol
+        ├── Messages.sol
+        ├── Setters.sol
+        └── Structs.sol
 ```
 
-## Functions
-
-### `publishMessage`
-
-Publishes a message to Wormhole's Guardian Network.
-
-```solidity
-function publishMessage(
-    uint32 nonce,
-    bytes memory payload,
-    uint8 consistencyLevel
-) public payable returns (uint64 sequence)
-```
-
-??? interface "Parameters"
-
-    `nonce` ++"uint32"++
-
-    Custom sequence identifier for the emitter.
-
-    ---
-
-    `payload` ++"bytes"++
-
-    Arbitrary user data to be included in the message.
-
-    ---
-
-    `consistencyLevel` ++"uint8"++
-
-    Finality requirement for Guardian attestation (e.g., safe or finalized).
-
-??? interface "Returns"
-
-    `sequence` ++"uint64"++
-
-    Unique sequence number assigned to this message.
-
-### `getCurrentGuardianSetIndex`
-
-Returns the index of the currently active Guardian set.
-
-Each VAA includes the index of the Guardian set that signed it. This function allows contracts to retrieve the current index, ensuring the VAA is verified against the correct set.
-
-```solidity
-function getCurrentGuardianSetIndex() external view returns (uint32)
-```
-
-??? interface "Returns"
-
-    `index` ++"uint32"++
-
-    The index of the active Guardian set used to verify signatures.
-
-### `getGuardianSet`
-
-Retrieves metadata for a given Guardian set index.
-
-```solidity
-function getGuardianSet(uint32 index) external view returns (address[] memory keys, uint32 expirationTime)
-```
-
-??? interface "Parameters"
-
-    `index` ++"uint32"++
-
-    Guardian set index to query.
-
-??? interface "Returns"
-
-    `keys` ++"address[]"++
-
-    Public keys of the guardians in this set.
-
-    ---
-
-    `expirationTime` ++"uint32"++
-
-    Timestamp after which the Guardian set is considered expired.
-
-### `getGuardianSetExpiry`
-
-Returns the expiration time of a specific Guardian set index.
-
-```solidity
-function getGuardianSetExpiry(uint32 index) external view returns (uint32)
-```
-
-??? interface "Parameters"
-
-    `index` ++"uint32"++
-
-    The index of the Guardian set to query.
-
-??? interface "Returns"
-
-    `expiry` ++"uint32"++
-
-    UNIX timestamp after which the set is no longer valid.
-
-### `messageFee`
-
-Returns the current fee (in native tokens) required to publish a message.
-
-```solidity
-function messageFee() public view returns (uint256)
-```
-
-??? interface "Returns"
-
-    `fee` ++"uint256"++
-
-    Fee in wei required to publish a message successfully. Must be sent as `msg.value`.
-
-### `nextSequence`
-
-Retrieves the next sequence number for a given emitter address.
-
-```solidity
-function nextSequence(address emitter) external view returns (uint64)
-```
-
-??? interface "Parameters"
-
-    `emitter` ++"address"++
-
-    The address for which the next sequence will be issued.
-
-??? interface "Returns"
-
-    `sequence` ++"uint64"++
-
-    The next sequence number for the specified emitter.
-
-### `parseAndVerifyVM`
-
-Verifies signatures and parses a signed VAA.
-
-```solidity
-function parseAndVerifyVM(bytes memory encodedVM)
-    external
-    view
-    returns (
-        VM memory vm,
-        bool valid,
-        string memory reason
-    )
-```
-
-??? interface "Parameters"
-
-    `encodedVM` ++"bytes"++
-
-    Serialized signed VAA from Guardians.
-
-??? interface "Returns"
-
-    `vm` ++"VM memory"++
-
-    Full parsed VAA contents
-
-    ---
-
-    `valid` ++"bool"++
-
-    Whether the VAA is valid according to the current Guardian set.
-
-    ---
-
-    `reason` ++"string"++
-
-    Reason for invalidity if `valid` is false (invalid).
-
-### `verifyVM`
-
-Performs low-level VAA signature verification.
-
-```solidity
-function verifyVM(bytes memory encodedVM)
-    public view returns (bool isValid, string memory reason)
-```
-
-??? interface "Parameters"
-
-    `encodedVM` ++"bytes"++
-
-    Serialized signed VAA to verify.
-
-??? interface "Returns"
-
-    `isValid` ++"bool"++
-
-    `true` if the signatures are valid and meet the quorum.
-
-    ---
-
-    `reason` ++"string"++
-
-    Explanation for failure if `isValid` is `false`.
-
-### `verifySignatures`
-
-Used to verify individual Guardian signatures against a VAA digest.
-
-```solidity
-function verifySignatures(
-    bytes32 hash,
-    Structs.Signature[] memory signatures,
-    GuardianSet memory guardianSet
-) public view returns (bool)
-```
-
-??? interface "Parameters"
-
-    `hash` ++"bytes32"++
-
-    The message digest to verify.
-
-    ---
-
-    `signatures` ++"Structs.Signature[]"++
-
-    An array of Guardian signatures.
-
-    ---
-
-    `guardianSet` ++"GuardianSet memory"++
-
-    Guardian set to validate against.
-
-??? interface "Returns"
-
-    `isValid` ++"bool"++
-
-    `true` if the required number of valid signatures is present.
-
-### `quorum`
-
-Returns the number of Guardian signatures required to reach quorum.
-
-```solidity
-function quorum() public view returns (uint8)
-```
-
-??? interface "Returns"
-
-    `quorum` ++"uint8"++
-
-    Number of valid Guardian signatures required to reach consensus for VAA verification.
-
-### `chainId`
-
-Returns Wormhole chain ID used internally by the protocol.
-
-```solidity
-function chainId() public view returns (uint16)
-```
-
-??? interface "Returns"
-
-    `id` ++"uint16"++
-
-    Wormhole-specific chain identifier. 
-
-### `evmChainId`
-
-Returns the EVM chain ID (i.e., value from block.chainid).
-
-```solidity
-function evmChainId() public view returns (uint256)
-```
-
-??? interface "Returns"
-
-    `id` ++"uint256"++
-
-    Native EVM chain ID for the current network.
+**Key Components:**
+
+ - **Wormhole.sol**: The upgradeable proxy contract that delegates all logic to `Implementation.sol`.
+ - **Implementation.sol**: The main logic contract, which handles message publication and initialization. Inherits from Governance.sol.
+ - **Governance.sol**: Core governance logic for processing upgrades, setting fees, and updating the Guardian set. Also responsible for verifying governance VAAs and performing privileged actions.
+ - **Getters.sol**: Exposes view functions to access internal contract state, such as current Guardian sets, fees, and contract configuration.
+ - **GovernanceStructs.sol**: Provides structures and helpers for processing governance-related VAAs.
+ - **Messages.sol**: Handles VAA parsing and verification.
+ - **Setters.sol**: Contains internal functions for mutating contract state.
+ - **Structs.sol**: Defines core data structures like GuardianSet and VM (VAA Message) used across multiple modules.
+
+## State Variables
+
+ - `provider` ++"Structs.Provider"++ - Holds metadata like `chainId`, `governanceChainId`, and `governanceContract`. This is a nested struct.
+ - `guardianSets` ++"mapping(uint32 => GuardianSet)"++ - Mapping of all guardian sets by index.
+ - `guardianSetIndex` ++"uint32"++ - Index of the currently active guardian set.
+ - `guardianSetExpiry` ++"uint32"++ - How long a guardian set remains valid after it's replaced (in seconds).
+ - `sequences` ++"mapping(address => uint64)"++ - Tracks message sequences per emitter (used to enforce message ordering).
+ - `consumedGovernanceActions` ++"mapping(bytes32 => bool)"++ - Used to prevent governance VAAs from being reused (replay protection).
+ - `initializedImplementations` ++"mapping(address => bool)"++ - Tracks which implementation addresses have been initialized (for upgrade safety).
+ - `messageFee` ++"uint256"++ - The amount (in native gas token) required to post a message. Set via governance.
+ - `evmChainId` ++"uint256"++ - The actual EVM chain ID (e.g. 1 for Ethereum, 10 for Optimism). Used in fork recovery.
 
 ## Events
 
-### `LogMessagePublished`
+### LogMessagePublished
 
-Emitted when a message is published via `publishMessage`.
+Emitted when a message is published via `publishMessage`. *(Defined in Implementation.sol)*
 
 ```solidity
 event LogMessagePublished(
@@ -4369,9 +4119,9 @@ event LogMessagePublished(
 
     Finality level requested.
 
-### `ContractUpgraded`
+### ContractUpgraded
 
-Emitted when the Core Contract is upgraded to a new implementation via governance.
+Emitted when the Core Contract is upgraded to a new implementation via governance. *(Defined in Governance.sol)*
 
 ```solidity
 event ContractUpgraded(
@@ -4392,9 +4142,9 @@ event ContractUpgraded(
 
     The address of the new implementation.
 
-### `GuardianSetAdded`
+### GuardianSetAdded
 
-Emitted when a new Guardian set is registered via governance.
+Emitted when a new Guardian set is registered via governance. *(Defined in Governance.sol)*
 
 ```solidity
 event GuardianSetAdded(
@@ -4408,27 +4158,374 @@ event GuardianSetAdded(
 
     Index of the newly added Guardian set.
 
-## Where to Go Next
+### LogGuardianSetChanged
 
-<div class="grid cards" markdown>
+Emitted when the active Guardian set is changed. *(Defined in State.sol)*
 
--   :octicons-link-external-16:{ .lg .middle } **View on Etherscan** 
+```solidity
+event LogGuardianSetChanged(
+    uint32 oldGuardianIndex,
+    uint32 newGuardianIndex
+)
+```
 
-    ---  
+??? interface "Parameters"
 
-    See the deployed Core Contract on Ethereum and interact via the “Read as Proxy” tab. 
+    `oldGuardianIndex` ++"uint32"++
 
-    [:custom-arrow: View Contract on Etherscan](https://etherscan.io/address/0x98f3c9e6e3face36baad05fe09d375ef1464288b#readProxyContract){target=\_blank}
-
--   :octicons-table-16:{ .lg .middle } **View All Deployment Addresses**
+    The previous active guardian set index.
 
     ---
 
-    Check the complete list of Wormhole Core Contract addresses across supported chains.
+    `newGuardianIndex` ++"uint32"++
 
-    [:custom-arrow: View Addresses](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank}
+    The new active guardian set index.
 
-</div>
+
+
+## Functions
+
+### publishMessage
+
+Publishes a message to Wormhole's Guardian Network. *(Defined in Implementation.sol)*
+
+```solidity
+function publishMessage(
+    uint32 nonce,
+    bytes memory payload,
+    uint8 consistencyLevel
+) public payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `nonce` ++"uint32"++
+
+    Custom sequence identifier for the emitter.
+
+    ---
+
+    `payload` ++"bytes"++
+
+    Arbitrary user data to be included in the message.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Finality requirement for Guardian attestation (e.g., safe or finalized).
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Unique sequence number assigned to this message.
+
+### getCurrentGuardianSetIndex
+
+Returns the index of the currently active Guardian set. *(Defined in Getters.sol)*
+
+Each VAA includes the index of the Guardian set that signed it. This function allows contracts to retrieve the current index, ensuring the VAA is verified against the correct set.
+
+```solidity
+function getCurrentGuardianSetIndex() external view returns (uint32)
+```
+
+??? interface "Returns"
+
+    `index` ++"uint32"++
+
+    The index of the active Guardian set used to verify signatures.
+
+### getGuardianSet
+
+Retrieves metadata for a given Guardian set index. *(Defined in Getters.sol)*
+
+```solidity
+function getGuardianSet(uint32 index) external view returns (address[] memory keys, uint32 expirationTime)
+```
+
+??? interface "Parameters"
+
+    `index` ++"uint32"++
+
+    Guardian set index to query.
+
+??? interface "Returns"
+
+    `keys` ++"address[]"++
+
+    Public keys of the guardians in this set.
+
+    ---
+
+    `expirationTime` ++"uint32"++
+
+    Timestamp after which the Guardian set is considered expired.
+
+### getGuardianSetExpiry
+
+Returns the expiration time of a specific Guardian set index. *(Defined in Getters.sol)*
+
+```solidity
+function getGuardianSetExpiry(uint32 index) external view returns (uint32)
+```
+
+??? interface "Parameters"
+
+    `index` ++"uint32"++
+
+    The index of the Guardian set to query.
+
+??? interface "Returns"
+
+    `expiry` ++"uint32"++
+
+    UNIX timestamp after which the set is no longer valid.
+
+### messageFee
+
+Returns the current fee (in native tokens) required to publish a message. *(Defined in Getters.sol)*
+
+```solidity
+function messageFee() public view returns (uint256)
+```
+
+??? interface "Returns"
+
+    `fee` ++"uint256"++
+
+    Fee in wei required to publish a message successfully. Must be sent as `msg.value`.
+
+### nextSequence
+
+Retrieves the next sequence number for a given emitter address. *(Defined in Getters.sol)*
+
+```solidity
+function nextSequence(address emitter) external view returns (uint64)
+```
+
+??? interface "Parameters"
+
+    `emitter` ++"address"++
+
+    The address for which the next sequence will be issued.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    The next sequence number for the specified emitter.
+
+### parseAndVerifyVM
+
+Verifies signatures and parses a signed VAA. *(Defined in Messages.sol)*
+
+```solidity
+function parseAndVerifyVM(bytes memory encodedVM)
+    external
+    view
+    returns (
+        VM memory vm,
+        bool valid,
+        string memory reason
+    )
+```
+
+??? interface "Parameters"
+
+    `encodedVM` ++"bytes"++
+
+    Serialized signed VAA from Guardians.
+
+??? interface "Returns"
+
+    `vm` ++"VM memory"++
+
+    Full parsed VAA contents
+
+    ---
+
+    `valid` ++"bool"++
+
+    Whether the VAA is valid according to the current Guardian set.
+
+    ---
+
+    `reason` ++"string"++
+
+    Reason for invalidity if `valid` is false (invalid).
+
+### verifyVM
+
+Performs low-level VAA signature verification. *(Defined in Messages.sol)*
+
+```solidity
+function verifyVM(bytes memory encodedVM)
+    public view returns (bool isValid, string memory reason)
+```
+
+??? interface "Parameters"
+
+    `encodedVM` ++"bytes"++
+
+    Serialized signed VAA to verify.
+
+??? interface "Returns"
+
+    `isValid` ++"bool"++
+
+    `true` if the signatures are valid and meet the quorum.
+
+    ---
+
+    `reason` ++"string"++
+
+    Explanation for failure if `isValid` is `false`.
+
+### verifySignatures
+
+Used to verify individual Guardian signatures against a VAA digest. *(Defined in Messages.sol)*
+
+```solidity
+function verifySignatures(
+    bytes32 hash,
+    Structs.Signature[] memory signatures,
+    GuardianSet memory guardianSet
+) public view returns (bool)
+```
+
+??? interface "Parameters"
+
+    `hash` ++"bytes32"++
+
+    The message digest to verify.
+
+    ---
+
+    `signatures` ++"Structs.Signature[]"++
+
+    An array of Guardian signatures.
+
+    ---
+
+    `guardianSet` ++"GuardianSet memory"++
+
+    Guardian set to validate against.
+
+??? interface "Returns"
+
+    `isValid` ++"bool"++
+
+    `true` if the required number of valid signatures is present.
+
+### quorum
+
+Returns the number of Guardian signatures required to reach quorum. *(Defined in Governance.sol)*
+
+```solidity
+function quorum() public view returns (uint8)
+```
+
+??? interface "Returns"
+
+    `quorum` ++"uint8"++
+
+    Number of valid Guardian signatures required to reach consensus for VAA verification.
+
+### chainId
+
+Returns Wormhole chain ID used internally by the protocol. *(Defined in Getters.sol)*
+
+```solidity
+function chainId() public view returns (uint16)
+```
+
+??? interface "Returns"
+
+    `id` ++"uint16"++
+
+    Wormhole-specific chain identifier. 
+
+### evmChainId
+
+Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in Getters.sol)*
+
+```solidity
+function evmChainId() public view returns (uint256)
+```
+
+??? interface "Returns"
+
+    `id` ++"uint256"++
+
+    Native EVM chain ID for the current network.
+
+## Errors
+
+### invalid fee
+
+Reverts when the message fee (`msg.value`) sent is not equal to the required fee returned by `messageFee()`. *(Defined in Implementation.sol)*
+
+### unsupported
+
+Reverts on any call to the fallback function. The contract does not support arbitrary calls. *(Defined in Implementation.sol)*
+
+### the Wormhole contract does not accept assets
+
+Reverts when native tokens (ETH) are sent directly to the contract via the receive() function. *(Defined in Implementation.sol)*
+
+### already initialized
+
+Reverts when trying to call `initialize()` on an implementation that has already been initialized. *(Defined in Implementation.sol, via `initializer` modifier)*
+
+### unknown chain id
+
+Reverts inside the `initialize()` function if the chain ID stored by the contract does not match any known Wormhole chain. *(Defined in Implementation.sol)*
+
+### invalid fork
+
+Reverts when attempting to perform a governance action intended only for forked chains on a non-forked chain. *(Defined in Governance.sol)*
+
+### invalid module
+
+Reverts if the VAA’s module field doesn’t match the expected "Core" module. *(Defined in Governance.sol)*
+
+### invalid chain
+
+Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in Governance.sol)*
+
+### new guardian set is empty
+
+Reverts when trying to register a new Guardian set that has no keys. *(Defined in Governance.sol)*
+
+### index must increase in steps of 1
+
+Reverts when the new Guardian set index is not exactly one greater than the current. *(Defined in Governance.sol)*
+
+### not a fork
+
+Reverts when trying to recover chain ID on a non-forked chain. *(Defined in Governance.sol)*
+
+### invalid EVM Chain
+
+Reverts if the recovered chain ID doesn't match the current `block.chainid`. *(Defined in Governance.sol)*
+
+### governance action already consumed
+
+Reverts when the same governance VAA is submitted more than once. *(Defined in Governance.sol)*
+
+### wrong governance contract
+
+Reverts when the governance VAA’s emitter address doesn't match the expected governance contract address. *(Defined in Governance.sol)*
+
+### wrong governance chain
+
+Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in Governance.sol)*
+
+### not signed by current guardian set
+
+Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in Governance.sol)*
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/core-contract-solana.md
@@ -4462,7 +4559,7 @@ Wormhole Core (Program)
 
 ## Functions
 
-### `initialize`
+### initialize
 
 Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time.
 
@@ -4501,7 +4598,7 @@ initialize(
 
     List of guardian public key hashes (Ethereum-style addresses).
 
-### `post_message`
+### post_message
 
 Posts a Wormhole message to the Solana Core contract.
 
@@ -4543,7 +4640,7 @@ PostMessage {
 
     `1` = Confirmed, `2` = Finalized.
 
-### `post_message_unreliable`
+### post_message_unreliable
 
 Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical.
 
@@ -4583,7 +4680,7 @@ PostMessageUnreliable {
 
     Level of finality required before the message is processed. `1` = Confirmed, `2` = Finalized.
 
-### `verify_signatures`
+### verify_signatures
 
 Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA.
 
@@ -4609,7 +4706,7 @@ VerifySignatures {
 
     Used to correlate secp256k1 verify instructions with guardian set entries.
 
-### `post_vaa`
+### post_vaa
 
 Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed.
 
@@ -4692,7 +4789,7 @@ PostVAA {
 
     Arbitrary data being transferred in the message.
 
-### `set_fees`
+### set_fees
 
 Updates the message posting fee for the core bridge contract.
 
@@ -4710,7 +4807,7 @@ This function is called via governance and requires a valid governance VAA. The 
     - `Claim`: PDA that ensures this governance message hasn't been processed already.
     - `SystemProgram`: Required by Solana for creating/initializing accounts.
 
-### `transfer_fees`
+### transfer_fees
 
 Transfers the accumulated message posting fees from the contract to a specified recipient.
 
@@ -4730,7 +4827,7 @@ This function is triggered via a governance VAA and transfers the fee balance fr
     - `Claim`: PDA that ensures this governance message hasn't been processed already.
     - `Rent`, `SystemProgram`: Standard Solana system accounts.
 
-### `upgrade_contract`
+### upgrade_contract
 
 Upgrades the deployed Wormhole program using a governance VAA.
 
@@ -4755,7 +4852,7 @@ This instruction allows authorized governance messages to trigger an upgrade of 
     - `BPFLoaderUpgradeable`: Solana system program for upgrades.
     - `SystemProgram`: Required by Solana for creating/initializing accounts.
 
-### `upgrade_guardian_set`
+### upgrade_guardian_set
 
 Upgrades the current guardian set using a governance VAA.
 
@@ -4774,28 +4871,6 @@ This instruction replaces the active guardian set with a new one, allowing the W
     - `GuardianSetOld`: Current (active) guardian set PDA.
     - `GuardianSetNew`: PDA for the newly proposed guardian set.
     - `SystemProgram`: Standard Solana system accounts.
-
-## Where to Go Next
-
-<div class="grid cards" markdown>
-
--   :octicons-link-external-16:{ .lg .middle } **View on Solana Explorer**
-
-    ---
-
-    See the deployed Core Program and interact with the accounts on-chain.
-
-    [:custom-arrow: View Program](https://explorer.solana.com/address/worm2ZoG2kUd4vFXhvjh93UUH596ayRfgQ2MgjNMTth){target=\_blank}
-
--   :octicons-table-16:{ .lg .middle } **View All Deployment Addresses**
-
-    ---
-
-    Check the complete list of Wormhole Core Program addresses across supported chains.
-
-    [:custom-arrow: View Addresses](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank}
-
-</div>
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/glossary.md
