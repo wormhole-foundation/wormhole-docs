@@ -1307,11 +1307,7 @@ Before deploying NTT contracts on EVM chains, you need to scaffold a project and
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
     
-    Before proceeding, make sure you have the NTT CLI installed and a project initialized. 
-
-Follow these steps (or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}):
-
-1. Install the NTT CLI:
+    1. Install the NTT CLI:
 
     ```bash
     curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
@@ -1553,11 +1549,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
 
-    Before proceeding, make sure you have the NTT CLI installed and a project initialized. 
-
-Follow these steps (or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}):
-
-1. Install the NTT CLI:
+    1. Install the NTT CLI:
 
     ```bash
     curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
