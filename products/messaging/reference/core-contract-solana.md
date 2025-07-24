@@ -41,7 +41,7 @@ lib.rs
 
 ### initialize
 
-Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time.
+Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time. *(Defined in api/initialize.rs)*
 
 ```rust
 initialize(
@@ -80,7 +80,7 @@ initialize(
 
 ### post_message
 
-Posts a Wormhole message to the Solana Core contract.
+Posts a Wormhole message to the Solana Core contract. *(Defined in api/post_message.rs)*
 
 ```rust
 PostMessage {
@@ -122,7 +122,7 @@ PostMessage {
 
 ### post_message_unreliable
 
-Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical.
+Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical. *(Defined in api/post_message_unreliable.rs)*
 
 ```rust
 PostMessageUnreliable {
@@ -162,7 +162,7 @@ PostMessageUnreliable {
 
 ### verify_signatures
 
-Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA.
+Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA. *(Defined in api/verify_signatures.rs)*
 
 ```rust
 VerifySignatures {
@@ -188,7 +188,7 @@ VerifySignatures {
 
 ### post_vaa
 
-Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed.
+Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed. *(Defined in api/post_vaa.rs)*
 
 ```rust
 PostVAA {
@@ -271,7 +271,7 @@ PostVAA {
 
 ### set_fees
 
-Updates the message posting fee for the core bridge contract.
+Updates the message posting fee for the core bridge contract. *(Defined in api/governance.rs)*
 
 ```rust
 SetFees {}
@@ -289,13 +289,13 @@ This function is called via governance and requires a valid governance VAA. The 
 
 ### transfer_fees
 
-Transfers the accumulated message posting fees from the contract to a specified recipient.
+Transfers the accumulated message posting fees from the contract to a specified recipient. *(Defined in api/governance.rs)*
 
 ```rust
 TransferFees {}
 ```
 
-This function is triggered via a governance VAA and transfers the fee balance from the FeeCollector to the recipient address specified in the VAA payload.
+This function is triggered via a governance VAA and transfers the fee balance from the `FeeCollector` to the recipient address specified in the VAA payload.
 
 ??? interface "Accounts"
 
@@ -309,7 +309,7 @@ This function is triggered via a governance VAA and transfers the fee balance fr
 
 ### upgrade_contract
 
-Upgrades the deployed Wormhole program using a governance VAA.
+Upgrades the deployed Wormhole program using a governance VAA. *(Defined in api/governance.rs)*
 
 ```rust
 UpgradeContract {}
@@ -334,7 +334,7 @@ This instruction allows authorized governance messages to trigger an upgrade of 
 
 ### upgrade_guardian_set
 
-Upgrades the current guardian set using a governance VAA.
+Upgrades the current guardian set using a governance VAA. *(Defined in api/governance.rs)*
 
 ```rust
 UpgradeGuardianSet {}
