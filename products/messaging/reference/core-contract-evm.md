@@ -8,15 +8,29 @@ categories: Basics
 
 The [Wormhole Core Contract on EVM](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank} chains is a proxy-based contract responsible for receiving and verifying Wormhole messages (VAAs). It implements the messaging interface and delegates logic to upgradeable implementation contracts.
 
-## Architecture
+## Structure Overview
+
+The Wormhole Core system on EVM uses an upgradeable proxy architecture, separating interface and logic. The proxy delegates calls to an implementation contract, which is composed of multiple modular components.
 
 ```text
-Wormhole (Proxy)
-└── Implementation (Upgradeable logic contract)
-    ├── Message validation logic
-    ├── Guardian set management
-    └── Event emission
+Wormhole.sol (Proxy)
+└── Implementation.sol
+    └── Governance.sol
+        ├── GovernanceStructs.sol
+        ├── Messages.sol
+        ├── Setters.sol
+        └── Structs.sol
 ```
+
+**Key Components:**
+
+ - **Wormhole.sol**: The upgradeable proxy contract that delegates all logic to `Implementation.sol`.
+ - **Implementation.sol**: The main logic contract, which handles message publication and initialization. Inherits from Governance.sol.
+ - **Governance.sol**: Core governance logic for processing upgrades, setting fees, and updating the Guardian set. Also responsible for verifying governance VAAs and performing privileged actions.
+ - **GovernanceStructs.sol**: Provides structures and helpers for processing governance-related VAAs.
+ - **Messages.sol**: Handles VAA parsing and verification.
+ - **Setters.sol**: Contains internal functions for mutating contract state.
+ - **Structs.sol**: Defines core data structures like GuardianSet and VM (VAA Message) used across multiple modules.
 
 ## Functions
 
