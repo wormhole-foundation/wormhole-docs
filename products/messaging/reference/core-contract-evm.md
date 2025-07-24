@@ -48,7 +48,7 @@ Wormhole.sol (Proxy)
 
 ### LogMessagePublished
 
-Emitted when a message is published via `publishMessage`.
+Emitted when a message is published via `publishMessage`. *(Defined in Implementation.sol)*
 
 ```solidity
 event LogMessagePublished(
@@ -92,7 +92,7 @@ event LogMessagePublished(
 
 ### ContractUpgraded
 
-Emitted when the Core Contract is upgraded to a new implementation via governance.
+Emitted when the Core Contract is upgraded to a new implementation via governance. *(Defined in Governance.sol)*
 
 ```solidity
 event ContractUpgraded(
@@ -115,7 +115,7 @@ event ContractUpgraded(
 
 ### GuardianSetAdded
 
-Emitted when a new Guardian set is registered via governance.
+Emitted when a new Guardian set is registered via governance. *(Defined in Governance.sol)*
 
 ```solidity
 event GuardianSetAdded(
@@ -128,6 +128,31 @@ event GuardianSetAdded(
     `index` ++"uint32"++
 
     Index of the newly added Guardian set.
+
+### LogGuardianSetChanged
+
+Emitted when the active Guardian set is changed. *(Defined in State.sol)*
+
+```solidity
+event LogGuardianSetChanged(
+    uint32 oldGuardianIndex,
+    uint32 newGuardianIndex
+)
+```
+
+??? interface "Parameters"
+
+    `oldGuardianIndex` ++"uint32"++
+
+    The previous active guardian set index.
+
+    ---
+
+    `newGuardianIndex` ++"uint32"++
+
+    The new active guardian set index.
+
+
 
 ## Functions
 
