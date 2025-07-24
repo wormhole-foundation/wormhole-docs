@@ -8,22 +8,34 @@ categories: Basics
 
 The [Wormhole Core Program on Solana](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/lib.rs){target=\_blank} is a native Solana program responsible for posting, verifying, and relaying Wormhole messages (VAAs). It implements core messaging functionality, guardian set updates, and upgradeability.
 
-## Architecture
+## Structure Overview
+
+The Wormhole Core program on Solana is implemented using modular Rust files. Logic is separated across instruction dispatch, account definitions, core types, and signature verification.
 
 ```text
-Wormhole Core (Program)
-├── Instruction handlers
-│   ├── Post and verify messages
-│   ├── Guardian set upgrades
-│   └── Contract upgrades
-├── PDA accounts
-│   ├── Bridge state
-│   ├── Guardian sets
-│   ├── Posted VAAs
-│   ├── Sequence and signature sets
-│   └── Fee collector
-└── Log-based tracing (no native events)
+lib.rs
+├── instructions.rs
+├── accounts.rs
+├── api.rs
+│   ├── post_message
+│   ├── verify_signatures
+│   ├── post_vaa
+│   ├── upgrade_contract
+│   └── upgrade_guardian_set
+├── types.rs
+└── vaa.rs
 ```
+
+**Key Components:**
+
+ - **lib.rs**: Program entry point and instruction dispatcher. Registers all handlers and exposes the on-chain processor.
+ - **instructions.rs**: Defines the WormholeInstruction enum and maps it to individual instruction handlers.
+ - **accounts.rs**: Specifies the account constraints and validation logic for each instruction.
+ - **api.rs**: Contains the main logic for processing instructions such as message posting, VAA verification, upgrades, and governance actions.
+ - **types.rs**: Defines shared structs and enums used throughout the program, including configuration and GuardianSet formats.
+ - **vaa.rs**: Implements VAA parsing, hashing, and signature-related logic used to verify Wormhole messages.
+ - **error.rs** (not listed above): Defines custom error types used across the program for precise failure handling.
+ - **wasm.rs** (not listed above): Provides WebAssembly bindings for testing and external tooling; not used on-chain.
 
 ## Functions
 
