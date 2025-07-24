@@ -3043,6 +3043,8 @@ lib.rs
 
 ## State Accounts
 
+Below are on-chain PDAs used to store persistent state for the core contract. All are derived using deterministic seeds with the program ID.
+
  - `bridge` ++"BridgeData"++ – Stores global config like the active guardian set index, message fee, and guardian set expiration time. (Derived at PDA seed ["Bridge"])
  - `guardianSets` ++"GuardianSetData"++ – Mapping of guardian sets by index. Each guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed ["GuardianSet", index])
  - `sequences` ++"SequenceTracker"++ – Tracks the last sequence number used by each emitter, enforcing strict message ordering. (Derived at PDA seed ["Sequence", emitter])
@@ -3369,7 +3371,7 @@ This instruction replaces the active guardian set with a new one, allowing the W
 
 ### GuardianSetMismatch
 
-The guardian set index does not match the expected value.*(Defined in error.rs)*
+The guardian set index does not match the expected value. *(Defined in error.rs)*
 
 ### InstructionAtWrongIndex
 
