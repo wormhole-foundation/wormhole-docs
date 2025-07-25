@@ -7,7 +7,7 @@ import {
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
-import { getSigner, getTokenDecimals } from './helpers';
+import { getSigner } from './helpers';
 
 async function attestToken() {
   // Initialize wh instance
@@ -25,12 +25,12 @@ async function attestToken() {
   // Define token and amount to transfer
   const tokenId: TokenId = Wormhole.tokenId(
     sourceChain.chain,
-    '0x9b2ff7B2B5A459853224a3317b786d8E85026660',
+    '0x9b2ff7B2B5A459853224a3317b786d8E85026660'
   );
   // Define the token to attest and a payer address
   const token: TokenAddress<typeof sourceChain.chain> = toNative(
     sourceChain.chain,
-    tokenId.address.toString(),
+    tokenId.address.toString()
   );
   const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
   // Call the `createAttestation` method to create a new attestation
@@ -39,7 +39,7 @@ async function attestToken() {
     const txids = await signSendWait(
       sourceChain,
       tb.createAttestation(token),
-      sourceSigner.signer,
+      sourceSigner.signer
     );
     console.log('✅ Attestation transaction sent:', txids);
     // Parse the transaction to get Wormhole message ID
@@ -52,7 +52,7 @@ async function attestToken() {
     const vaa = await wh.getVaa(
       messages[0]!,
       'TokenBridge:AttestMeta',
-      timeout,
+      timeout
     );
     if (!vaa) throw new Error('❌ VAA not found before timeout.');
     // Get the token bridge context for the destination chain
@@ -60,12 +60,12 @@ async function attestToken() {
     const destTb = await destinationChain.getTokenBridge();
     const payer = toNative(
       destinationChain.chain,
-      destinationSigner.signer.address(),
+      destinationSigner.signer.address()
     );
     const destTxids = await signSendWait(
       destinationChain,
       destTb.submitAttestation(vaa, payer),
-      destinationSigner.signer,
+      destinationSigner.signer
     );
     console.log('✅ Attestation submitted on destination:', destTxids);
   }
@@ -82,12 +82,12 @@ async function attestToken() {
       const wrapped = await wh.getWrappedAsset(destinationChain.chain, tokenId);
       console.log(
         `✅ Wrapped token is now available on ${destinationChain.chain}:`,
-        wrapped.address,
+        wrapped.address
       );
       registered = true;
     } catch {
       console.log(
-        `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`,
+        `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
       );
       await new Promise((res) => setTimeout(res, interval));
     }
@@ -95,7 +95,7 @@ async function attestToken() {
 
   if (!registered) {
     throw new Error(
-      `❌ Token attestation did not complete in time on ${destinationChain.chain}`,
+      `❌ Token attestation did not complete in time on ${destinationChain.chain}`
     );
   }
   console.log('🚀 Token attestation complete! Proceed with transfer...');
