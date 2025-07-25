@@ -22,10 +22,10 @@ async function attestToken() {
   // Retrieve the token bridge context for the source chain
   // This is where you will send the transaction to attest the token
   const tb = await sourceChain.getTokenBridge();
-  // Define token and amount to transfer
+  // Define the token to attest
   const tokenId: TokenId = Wormhole.tokenId(
     sourceChain.chain,
-    '0x9b2ff7B2B5A459853224a3317b786d8E85026660'
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
   );
   // Define the token to attest and a payer address
   const token: TokenAddress<typeof sourceChain.chain> = toNative(
