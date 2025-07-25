@@ -1,8 +1,4 @@
-import {
-  wormhole,
-  Wormhole,
-  TokenId,
-} from '@wormhole-foundation/sdk';
+import { wormhole, Wormhole, TokenId } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { getSigner, getTokenDecimals } from './helpers';
@@ -71,11 +67,6 @@ async function transferTokens() {
   const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
   console.log('🔗 Source chain tx sent:', srcTxs);
 
-  // If automatic, no further action is required. The relayer completes the transfer.
-  if (automatic) {
-    console.log('✅ Automatic transfer: relayer is handling redemption.');
-    return;
-  }
   // For manual transfers, wait for VAA
   console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
   const attIds = await xfer.fetchAttestation(120_000); // 2 minutes timeout
