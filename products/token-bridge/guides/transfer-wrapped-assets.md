@@ -133,9 +133,9 @@ Registration via attestation is only required the first time a given token is se
 
 ## Initiate Transfer on Source Chain
 
-Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [automatic vs. manual transfers](/docs/products/token-bridge/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
+Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [Automatic vs. Manual Transfers](/docs/products/token-bridge/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
 
-Follow these steps to add the rest of the logic to initiate the token transfer on the source chain:
+Follow these steps to add the remaining logic to initiate the token transfer on the source chain. Add the below code where the comment says `// Insert Initiate Transfer on Source Chain code` in your `transfer.ts` file:
 
 1. Open your `transfer.ts` file and add the following code:
 
