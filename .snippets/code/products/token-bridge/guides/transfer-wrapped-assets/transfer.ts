@@ -69,7 +69,8 @@ async function transferTokens() {
 
   // For manual transfers, wait for VAA
   console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
-  const attIds = await xfer.fetchAttestation(120_000); // 2 minutes timeout
+  const timeout = 2 * 60 * 1000; // 2 minutes timeout
+  const attIds = await xfer.fetchAttestation(timeout);
   console.log('✅ Got attestation ID(s):', attIds);
 
   // Complete the manual transfer on the destination chain
