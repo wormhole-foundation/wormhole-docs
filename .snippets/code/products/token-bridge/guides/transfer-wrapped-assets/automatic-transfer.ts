@@ -1,8 +1,4 @@
-import {
-  wormhole,
-  Wormhole,
-  TokenId,
-} from '@wormhole-foundation/sdk';
+import { wormhole, Wormhole, TokenId } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { getSigner, getTokenDecimals } from './helpers';
@@ -45,8 +41,8 @@ async function transferTokens() {
     );
   }
   // Insert Initiate Transfer on Source Chain code
-  // Define manual transfer
-  const automatic = false;
+  // Define automatic transfer
+  const automatic = true;
   // Optional native gas amount for automatic transfers only
   const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
   // Get the decimals for the source chain
@@ -72,19 +68,9 @@ async function transferTokens() {
   console.log('🔗 Source chain tx sent:', srcTxs);
 
   // If automatic, no further action is required. The relayer completes the transfer.
-  if (automatic) {
-    console.log('✅ Automatic transfer: relayer is handling redemption.');
-    return;
-  }
-  // For manual transfers, wait for VAA
-  console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
-  const attIds = await xfer.fetchAttestation(120_000); // 2 minutes timeout
-  console.log('✅ Got attestation ID(s):', attIds);
+  console.log('✅ Automatic transfer: relayer is handling redemption.');
 
-  // Complete the manual transfer on the destination chain
-  console.log('↪️ Redeeming transfer on destination...');
-  const destTxs = await xfer.completeTransfer(destinationSigner.signer);
-  console.log('🎉 Destination tx(s) submitted:', destTxs);
+  process.exit(0);
 }
 
 transferTokens().catch((e) => {

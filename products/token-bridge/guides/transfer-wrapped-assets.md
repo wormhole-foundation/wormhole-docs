@@ -74,8 +74,8 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::49'
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:90:96'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::47'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:88:93'
     ```
 
     This code does the following:
@@ -137,9 +137,17 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
 
 1. Open your `transfer.ts` file and add the following code:
 
-    ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:50:89'
-    ```
+    === "Manual Transfer"
+
+        ```typescript title="transfer.ts"
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:48:87'
+        ```
+                
+    === "Automatic Transfer"
+
+        ```ts title="transfer.ts"
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/automatic-transfer.ts:44:73'
+        ```
 
     This code does the following:
 
