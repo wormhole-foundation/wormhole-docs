@@ -1,16 +1,16 @@
 ---
 title: Get Started with CCTP
 description: Transfer USDC across chains using Wormhole's CCTP integration with the TypeScript SDK, including setup, attestation, and redemption steps.
-categories: Transfer
+categories: Transfer, CCTP
 ---
 
 # Get Started with CCTP
 
 [Wormhole CCTP](/docs/products/cctp-bridge/overview/){target=\_blank} enables native USDC transfers between supported chains by burning tokens on the source chain and minting them on the destination. This provides native, canonical USDC movement without the need for wrapped tokens.
 
-In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform a manual cross-chain USDC transfer using Circle's CCTP protocol.
+In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform an automatic cross-chain USDC transfer using Circle's CCTP protocol.
 
-You will initiate the transfer on the source chain, wait for Circle's attestation, and redeem the USDC on the destination chain.
+You will initiate the transfer on the source chain, and Wormhole's relayer will automatically handle Circle's attestation and redemption steps to complete the transfer on the destination chain.
 
 ## Prerequisites
 
@@ -51,7 +51,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
 
 ## Perform a CCTP Transfer
 
-This section walks you through a complete manual USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, wait for the Circle attestation, and complete the redemption on Sepolia.
+This section walks you through a complete automatic USDC transfer using Wormhole's CCTP integration. You will initiate the transfer on Avalanche Fuji, and Wormhole's relayer will automatically handle the Circle attestation and finalize the redemption on Sepolia.
 
 Start by defining utility functions for signer and token setup:
 
@@ -61,7 +61,7 @@ Start by defining utility functions for signer and token setup:
     --8<-- "code/products/cctp-bridge/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, add the script to perform the manual transfer using CCTP:
+2. In `transfer.ts`, add the script to perform the automatic transfer using CCTP:
 
     ```ts title="transfer.ts"
     --8<-- "code/products/cctp-bridge/get-started/snippet-2.ts"
@@ -83,4 +83,4 @@ To verify the transaction and view its details, paste the transaction hash into 
 
 Now that you've completed a CCTP USDC transfer using the Wormhole SDK, you're ready to explore more advanced features and expand your integration:
 
- - [**Circle CCTP Documentation**](https://developers.circle.com/stablecoins/cctp-getting-started): Learn how USDC cross-chain transfers work and explore advanced CCTP features.
+ - [**Circle CCTP Documentation**](https://developers.circle.com/cctp){target=\_blank}: Learn how USDC cross-chain transfers work and explore advanced CCTP features.

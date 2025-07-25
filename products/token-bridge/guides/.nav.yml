@@ -2,3 +2,4 @@ title: Guides
 nav:
 - 'Transfer Wrapped Assets': transfer-wrapped-assets.md
 - 'Interact with Contracts': token-bridge-contracts.md
+- 'Fetch a Signed VAA': fetch-signed-vaa.md

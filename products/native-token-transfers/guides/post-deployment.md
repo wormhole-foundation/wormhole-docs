@@ -43,7 +43,7 @@ The following table outlines post-deployment settings available on the NTT Manag
 
     ---
 
-    Check out an example project that uses a Vite-React TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
+    Check out an example project that uses a Next.js TypeScript application and integrates it with Connect, a customizable widget for cross-chain asset transfers.
 
     [:custom-arrow: Explore the NTT Connect demo](https://github.com/wormhole-foundation/demo-ntt-connect)
 
@@ -54,5 +54,13 @@ The following table outlines post-deployment settings available on the NTT Manag
     Reference an example project that uses the Wormhole TypeScript SDK to facilitate token transfers between different blockchain networks after deploying the NTT framework.
 
     [:custom-arrow: Explore the NTT TypeScript SDK demo](https://github.com/wormhole-foundation/demo-ntt-ts-sdk)
+
+-   :octicons-eye-16:{ .lg .middle } **Query NTT Token and Transfer Data**
+
+    ---
+
+    Learn how to explore NTT by querying token metadata and transfer activity using the Wormholescan API in a TypeScript project.
+
+    [:custom-arrow: Try the NTT Token and Transfers Guide](/docs/products/messaging/guides/wormholescan-api)
 
 </div>

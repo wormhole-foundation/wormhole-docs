@@ -14,9 +14,21 @@ This guide walks you through deploying NTT on Solana, including setting up depen
 
 Before deploying NTT on Solana, ensure you have the following:
 
--  [Rust](https://www.rust-lang.org/tools/install){target=\_blank} 
--  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
--  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
+- [Rust](https://www.rust-lang.org/tools/install){target=\_blank} installed.
+- The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
+
+    === "v3"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} | `{{ ntt.solana_cli_version }}` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}` |
+
+    === "v2/v1"
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} | `v1.18.10` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0` |
+
 
 Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
 
@@ -66,7 +78,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
                 solana balance
                 ```
 
-            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://spl.solana.com/token){target=\_blank}
+            5. **Install SPL Token CLI** - install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}
 
                 ```bash
                 cargo install spl-token-cli
@@ -91,7 +103,7 @@ Deploying NTT with the CLI on Solana follows a structured process:
                 ```
 
             !!! note
-                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://spl.solana.com/transfer-hook-interface){target=\_blank}.
+                NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 2. **Choose your deployment model**:
 
@@ -137,23 +149,41 @@ solana-keygen grind --starts-with ntt:1 --ignore-case
 
 If you use burn-and-mint mode, follow these steps to enable the NTT program to mint tokens on Solana. This involves deriving the PDA as the token authority and updating the SPL token's minting permissions.
 
-If you want to use hub-and-spoke, skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt).
+For hub-and-spoke and Solana as the hubchain skip this section and proceed to [Deploy and Configure NTT](#deploy-and-configure-ntt), otherwise follow the burn-and-mint instructions below for Solana as a spoke.
 
 Before updating the mint authority, you must create metadata for your SPL token. You can visit this repository to see an example of [how to create metadata for your SPL token](https://github.com/wormhole-foundation/demo-metaplex-metadata/blob/main/src/token-metadata.ts){target=\_blank}.
 
-Follow these steps to set the mint authority using the NTT CLI:
 
-1. **Derive the token authority** - generate the PDA, which will manage token minting
+Options to set the mint authority for your SPL token:
 
+**For undeployed programs:**
+
+- **Set to token authority PDA:**
+```bash
+ntt set-mint-authority --chain Solana --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+```
+
+- **Set to SPL Multisig:**
+    1. Create valid SPL Multisig:
     ```bash
-    ntt solana token-authority INSERT_YOUR_NTT_PROGRAM_KEY_PAIR
+    ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
 
-2. **Set SPL token mint authority** - delegate minting control to the derived PDA 
-
+    2. Set to created SPL Multisig:
     ```bash
-    spl-token authorize INSERT_TOKEN_ADDRESS mint INSERT_DERIVED_PDA
+    ntt set-mint-authority --chain Solana --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
+
+**For deployed programs:**
+
+- **Set to token authority PDA:**
+
+```bash
+ntt set-mint-authority --chain Solana --payer INSERT_KEYPAIR_JSON
+```
+
+!!! note
+    Check out [this utility script](https://github.com/wormhole-foundation/demo-ntt-token-mint-authority-transfer/tree/main){target=\_blank} for transferring token mint authority out of NTT.
 
 ## Deploy and Configure NTT
 
@@ -248,13 +278,5 @@ Failed Solana deployments don't result in lost SOL. Instead, SOL may be locked i
     Find answers to common questions about NTT.
 
     [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
-
--   :octicons-question-16:{ .lg .middle } **View FAQs**
-
-    ---
-
-    Find answers to common questions about NTT.
-
-    [:custom-arrow: View FAQs](/docs/build/transfers/native-token-transfers/faqs){target=\_blank}
 
 </div>

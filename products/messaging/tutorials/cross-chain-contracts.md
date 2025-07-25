@@ -1,6 +1,7 @@
 ---
 title: Create Cross-Chain Contracts
 description: Learn how to create cross-chain contracts using Wormhole's Solidity SDK. Deploy contracts on Avalanche and Celo Testnets and send messages across chains.
+categories: Basics
 ---
 
 # Create Cross-Chain Messaging Contracts
@@ -369,3 +370,5 @@ You're now fully equipped to build cross-chain contracts using the Wormhole prot
 - Deploy sender and receiver contracts on different Testnets
 - Send a cross-chain message from one blockchain to another
 - Monitor the status of your cross-chain transactions using the Wormhole Explorer and Wormhole-Solidity-SDK
+
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.

@@ -72,7 +72,7 @@ Now, we need to modify the default `page.tsx` file to integrate Connect. We are 
 
 ### Customize Connect
 
-To further customize Connect for your application, such as adjusting the UI, adding custom tokens, or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}. 
+To further customize Connect for your application, such as adjusting the UI, adding custom tokens, enabling Reown (formerly known as WalletConnect), or configuring specific chain settings, you can refer to the [Connect Configuration guide](/docs/products/connect/configuration/data/){target=\_blank}.
 
 ### Run the Application
 
@@ -143,3 +143,5 @@ By following these steps, you've learned how to:
 - Execute a token transfer from Sui to Avalanche Fuji, monitoring each step and confirming the transaction on both networks
 
 With these tools and knowledge, you're now equipped to build powerful cross-chain applications using Connect, opening up possibilities for users to move assets across ecosystems securely and efficiently.
+
+Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
