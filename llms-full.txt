@@ -18233,7 +18233,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
    npm install @wormhole-foundation/sdk -D tsx typescript
    ```
 
-3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -18338,15 +18338,9 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    import {
-  wormhole,
-  Wormhole,
-  TokenId,
-  TokenAddress,
-} from '@wormhole-foundation/sdk';
+    import { wormhole, Wormhole, TokenId } from '@wormhole-foundation/sdk';
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
-import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
 import { getSigner, getTokenDecimals } from './helpers';
 
 async function transferTokens() {
@@ -18386,7 +18380,8 @@ async function transferTokens() {
       '⚠️ Token is NOT registered on destination. Attestation required before transfer can proceed...'
     );
   }
-  // Define whether the transfer is automatic or manual
+  // Insert Initiate Transfer on Source Chain code
+  // Define manual transfer
   const automatic = false;
   // Optional native gas amount for automatic transfers only
   const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
@@ -18412,14 +18407,10 @@ async function transferTokens() {
   const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
   console.log('🔗 Source chain tx sent:', srcTxs);
 
-  // If automatic, no further action is required. The relayer completes the transfer.
-  if (automatic) {
-    console.log('✅ Automatic transfer: relayer is handling redemption.');
-    return;
-  }
   // For manual transfers, wait for VAA
   console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
-  const attIds = await xfer.fetchAttestation(120_000); // 2 minutes timeout
+  const timeout = 2 * 60 * 1000; // 2 minutes timeout
+  const attIds = await xfer.fetchAttestation(timeout);
   console.log('✅ Got attestation ID(s):', attIds);
 
   // Complete the manual transfer on the destination chain
@@ -18432,7 +18423,9 @@ transferTokens().catch((e) =&gt; {
   console.error('❌ Error in transferTokens', e);
   process.exit(1);
 });
-    transferTokens().catch((e) =&gt; {
+    }
+
+transferTokens().catch((e) =&gt; {
   console.error('❌ Error in transferTokens', e);
   process.exit(1);
 });
@@ -18480,7 +18473,7 @@ transferTokens().catch((e) =&gt; {
 import evm from '@wormhole-foundation/sdk/evm';
 import solana from '@wormhole-foundation/sdk/solana';
 import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
-import { getSigner, getTokenDecimals } from './helpers';
+import { getSigner } from './helpers';
 
 async function attestToken() {
   // Initialize wh instance
@@ -18498,12 +18491,12 @@ async function attestToken() {
   // Define token and amount to transfer
   const tokenId: TokenId = Wormhole.tokenId(
     sourceChain.chain,
-    '0x9b2ff7B2B5A459853224a3317b786d8E85026660',
+    '0x9b2ff7B2B5A459853224a3317b786d8E85026660'
   );
   // Define the token to attest and a payer address
   const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
     sourceChain.chain,
-    tokenId.address.toString(),
+    tokenId.address.toString()
   );
   const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
   // Call the `createAttestation` method to create a new attestation
@@ -18512,7 +18505,7 @@ async function attestToken() {
     const txids = await signSendWait(
       sourceChain,
       tb.createAttestation(token),
-      sourceSigner.signer,
+      sourceSigner.signer
     );
     console.log('✅ Attestation transaction sent:', txids);
     // Parse the transaction to get Wormhole message ID
@@ -18525,7 +18518,7 @@ async function attestToken() {
     const vaa = await wh.getVaa(
       messages[0]!,
       'TokenBridge:AttestMeta',
-      timeout,
+      timeout
     );
     if (!vaa) throw new Error('❌ VAA not found before timeout.');
     // Get the token bridge context for the destination chain
@@ -18533,12 +18526,12 @@ async function attestToken() {
     const destTb = await destinationChain.getTokenBridge();
     const payer = toNative(
       destinationChain.chain,
-      destinationSigner.signer.address(),
+      destinationSigner.signer.address()
     );
     const destTxids = await signSendWait(
       destinationChain,
       destTb.submitAttestation(vaa, payer),
-      destinationSigner.signer,
+      destinationSigner.signer
     );
     console.log('✅ Attestation submitted on destination:', destTxids);
   }
@@ -18555,12 +18548,12 @@ async function attestToken() {
       const wrapped = await wh.getWrappedAsset(destinationChain.chain, tokenId);
       console.log(
         `✅ Wrapped token is now available on ${destinationChain.chain}:`,
-        wrapped.address,
+        wrapped.address
       );
       registered = true;
     } catch {
       console.log(
-        `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`,
+        `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
       );
       await new Promise((res) =&gt; setTimeout(res, interval));
     }
@@ -18568,7 +18561,7 @@ async function attestToken() {
 
   if (!registered) {
     throw new Error(
-      `❌ Token attestation did not complete in time on ${destinationChain.chain}`,
+      `❌ Token attestation did not complete in time on ${destinationChain.chain}`
     );
   }
   console.log('🚀 Token attestation complete! Proceed with transfer...');
@@ -18639,12 +18632,56 @@ attestToken().catch((e) =&gt; {
 
 ## Initiate Transfer on Source Chain
 
-Follow these steps to add the rest of the logic to initiate the token transfer on the source chain:
+Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [Automatic vs. Manual Transfers](/docs/products/token-bridge/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
+
+Follow these steps to add the remaining logic to initiate the token transfer on the source chain. Add the below code where the comment says `// Insert Initiate Transfer on Source Chain code` in your `transfer.ts` file:
 
 1. Open your `transfer.ts` file and add the following code:
 
-    ```typescript title="transfer.ts"
-    const automatic = false;
+    === "Manual Transfer"
+
+        ```typescript title="transfer.ts"
+        const automatic = false;
+  // Optional native gas amount for automatic transfers only
+  const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
+  // Get the decimals for the source chain
+  const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
+  // If automatic, convert to raw units, otherwise set to 0n
+  const nativeGas = automatic
+    ? BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals)
+    : 0n;
+  // Build the token transfer object
+  const xfer = await wh.tokenTransfer(
+    tokenId,
+    transferAmount,
+    sourceSigner.address,
+    destinationSigner.address,
+    automatic,
+    undefined, // no payload
+    nativeGas
+  );
+  console.log('🚀 Built transfer object:', xfer.transfer);
+
+  // Initiate, sign, and send the token transfer
+  const srcTxs = await xfer.initiateTransfer(sourceSigner.signer);
+  console.log('🔗 Source chain tx sent:', srcTxs);
+
+  // For manual transfers, wait for VAA
+  console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
+  const timeout = 2 * 60 * 1000; // 2 minutes timeout
+  const attIds = await xfer.fetchAttestation(timeout);
+  console.log('✅ Got attestation ID(s):', attIds);
+
+  // Complete the manual transfer on the destination chain
+  console.log('↪️ Redeeming transfer on destination...');
+  const destTxs = await xfer.completeTransfer(destinationSigner.signer);
+  console.log('🎉 Destination tx(s) submitted:', destTxs);
+        ```
+                
+    === "Automatic Transfer"
+
+        ```ts title="transfer.ts"
+        const automatic = true;
   // Optional native gas amount for automatic transfers only
   const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
   // Get the decimals for the source chain
@@ -18670,26 +18707,16 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
   console.log('🔗 Source chain tx sent:', srcTxs);
 
   // If automatic, no further action is required. The relayer completes the transfer.
-  if (automatic) {
-    console.log('✅ Automatic transfer: relayer is handling redemption.');
-    return;
-  }
-  // For manual transfers, wait for VAA
-  console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
-  const attIds = await xfer.fetchAttestation(120_000); // 2 minutes timeout
-  console.log('✅ Got attestation ID(s):', attIds);
+  console.log('✅ Automatic transfer: relayer is handling redemption.');
 
-  // Complete the manual transfer on the destination chain
-  console.log('↪️ Redeeming transfer on destination...');
-  const destTxs = await xfer.completeTransfer(destinationSigner.signer);
-  console.log('🎉 Destination tx(s) submitted:', destTxs);
-    ```
+  process.exit(0);
+        ```
 
     This code does the following:
 
-    - Defines the transfer as automatic or manual. To use automatic transfer, both the source and destination chain must have an existing `tokenBridgeRelayer` contract. You can check the list of [deployed `tokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
+    - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `TokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
     - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers.
-    - Builds the transfer object, initiates the transfer, signs and sends the transaction.
+    - Builds the transfer object, initiates the transfer, signs the transaction, and sends it.
     - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
 
 2. Run the script with the following command:
