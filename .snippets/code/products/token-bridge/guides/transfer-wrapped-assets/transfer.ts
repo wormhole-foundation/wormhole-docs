@@ -46,6 +46,7 @@ async function transferTokens() {
       '⚠️ Token is NOT registered on destination. Attestation required before transfer can proceed...'
     );
   }
+  // Insert Initiate Transfer on Source Chain code
   // Define whether the transfer is automatic or manual
   const automatic = false;
   // Optional native gas amount for automatic transfers only

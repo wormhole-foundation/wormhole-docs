@@ -44,7 +44,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
    npm install @wormhole-foundation/sdk -D tsx typescript
    ```
 
-3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -74,8 +74,8 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::48'
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:89:95'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::49'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:90:96'
     ```
 
     This code does the following:
@@ -138,7 +138,7 @@ Follow these steps to add the rest of the logic to initiate the token transfer o
 1. Open your `transfer.ts` file and add the following code:
 
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:49:88'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:50:89'
     ```
 
     This code does the following:
