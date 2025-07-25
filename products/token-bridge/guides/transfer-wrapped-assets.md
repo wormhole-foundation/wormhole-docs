@@ -6,13 +6,13 @@ categories: Token-Bridge, Transfers, Typescript-SDK
 
 # Transfer Wrapped Assets
 
-This guide demonstrates the transfer of wrapped assets using the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+This guide demonstrates the transfer of wrapped assets using the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
 
-Completing this guide will help you to accomplish the following:
+Completing this guide will help you accomplish the following:
 
 - Verify if a wrapped version of a token exists on a destination chain.
 - Create a token attestation to register a wrapped version of a token on a destination chain.
-- Transfer wrapped assets using Token Bridge automatic or manual transfers.
+- Transfer wrapped assets using Token Bridge's automatic or manual transfers.
 - Fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 - Manually redeem a signed VAA to claim tokens on a destination chain.
 
