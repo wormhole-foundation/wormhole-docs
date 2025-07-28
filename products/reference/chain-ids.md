@@ -25,4 +25,4 @@ The following table documents the chain IDs used by Wormhole and places them alo
 
     Wormhole integrators are encouraged to understand the security assumptions of any chain before trusting messages from it.
 
-    See [Wormhole’s security program](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#chain-integrators) for recommended practices.
+    See [Wormhole’s security program](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#chain-integrators){target=\_blank} for recommended practices.
