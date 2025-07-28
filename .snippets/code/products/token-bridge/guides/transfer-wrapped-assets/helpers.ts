@@ -20,7 +20,8 @@ import sui from '@wormhole-foundation/sdk/sui';
  * manager, or environment variables (not recommended).
  */
 export async function getSigner<N extends Network, C extends Chain>(
-  chain: ChainContext<N, C>
+  chain: ChainContext<N, C>,
+  gasLimit?: bigint
 ): Promise<{
   chain: ChainContext<N, C>;
   signer: SignAndSendSigner<N, C>;
@@ -33,9 +34,11 @@ export async function getSigner<N extends Network, C extends Chain>(
   // Be sure to import the necessary packages for the platforms you want to support
   switch (platform) {
     case 'Evm':
-      signer = await (
+      const evmSignerOptions = gasLimit ? { gasLimit } : {};
+      (signer = await (
         await evm()
-      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!);
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!)),
+        evmSignerOptions;
       break;
     case 'Solana':
       signer = await (

@@ -15,9 +15,13 @@ async function attestToken() {
   // Define sourceChain and destinationChain, get chain contexts
   const sourceChain = wh.getChain('Moonbeam');
   const destinationChain = wh.getChain('Solana');
+
+  // Define gas limit for EVM chains (optional)
+  const gasLimit = BigInt(2_500_000);
+
   // Load signers for both chains
   const sourceSigner = await getSigner(sourceChain);
-  const destinationSigner = await getSigner(destinationChain);
+  const destinationSigner = await getSigner(destinationChain, gasLimit);
 
   // Retrieve the token bridge context for the source chain
   // This is where you will send the transaction to attest the token
