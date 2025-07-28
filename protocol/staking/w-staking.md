@@ -14,7 +14,7 @@ This guide walks you through integrating native W staking for both EVM chains (E
 | **How staking works** | Delegate your W tokens to another address.<br>Tokens stay in your wallet. | Move W tokens into a stake account and assign a delegate. |
 | **Unstaking**         |  Delegation removed; no token movement.           | Withdraw tokens from stake account.            |
 | **Partial staking**   | Not supported (delegation applies to full balance). | Supported. Stake any amount of W.           |
-| **Voting Power**      | Delegate gets full voting rights for your W balance. | Delegate gets voting rights only for staked amount. |
+| **Voting Power**      | The delegate gets full voting rights for your W balance. | The delegate gets voting rights only for the staked amount. |
 
 ## EVM Integration (ETH, OP, ARB, BASE)
 
