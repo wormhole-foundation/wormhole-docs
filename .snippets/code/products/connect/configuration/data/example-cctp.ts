@@ -1,9 +1,9 @@
 import WormholeConnect, {
   AutomaticCCTPRoute,
-  WormholeConnectConfig,
+  type config,
 } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   routes: [AutomaticCCTPRoute],
 };
 

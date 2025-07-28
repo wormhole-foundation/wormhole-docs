@@ -1,11 +1,8 @@
 import './App.css';
-import WormholeConnect, {
-  WormholeConnectConfig,
-  WormholeConnectTheme,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config, WormholeConnectTheme } from '@wormhole-foundation/wormhole-connect';
 
 function App() {
-  const config: WormholeConnectConfig = {
+  const config: config.WormholeConnectConfig = {
     // Define the network
     network: 'Testnet',
 

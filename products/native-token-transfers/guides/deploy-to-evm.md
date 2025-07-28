@@ -32,7 +32,7 @@ Wormhole’s NTT framework supports two [deployment models](/docs/products/nativ
         --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/INttToken.sol'
         ```
 
-    You’ll also need to set mint authority to the relevant `NttManager` contract. Example deployment scripts are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
+    You’ll also need to set mint authority to the relevant `NttManager` contract.
 
 ??? interface "Hub-and-Spoke Mode"
 
@@ -42,6 +42,8 @@ Wormhole’s NTT framework supports two [deployment models](/docs/products/nativ
     - Tokens are minted or burned on Polygon
 
     This setup maintains a consistent total supply across all chains.
+
+Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
 
 ## NTT Manager Deployment Parameters
 

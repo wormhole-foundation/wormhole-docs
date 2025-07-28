@@ -1,8 +1,6 @@
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   transactionSettings: {
     Solana: {
       priorityFee: {
@@ -24,9 +22,9 @@ const config: WormholeConnectConfig = {
         // Maximum fee you want to use in microlamports, regardless of recent transactions
         // Defaults to 100,000,000
         max: 5_000_000,
-      }
-    }
-  }
+      },
+    },
+  },
 };
 
 function App() {
