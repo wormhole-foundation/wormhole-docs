@@ -18267,7 +18267,8 @@ import sui from '@wormhole-foundation/sdk/sui';
  * manager, or environment variables (not recommended).
  */
 export async function getSigner<n c="" chain="" extends="" network,="">(
-  chain: ChainContext<n, c="">
+  chain: ChainContext<n, c="">,
+  gasLimit?: bigint
 ): Promise&lt;{
   chain: ChainContext<n, c="">;
   signer: SignAndSendSigner<n, c="">;
@@ -18280,9 +18281,11 @@ export async function getSigner<n c="" chain="" extends="" network,="">(
   // Be sure to import the necessary packages for the platforms you want to support
   switch (platform) {
     case 'Evm':
-      signer = await (
+      const evmSignerOptions = gasLimit ? { gasLimit } : {};
+      (signer = await (
         await evm()
-      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!);
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!)),
+        evmSignerOptions;
       break;
     case 'Solana':
       signer = await (
@@ -18479,9 +18482,13 @@ async function attestToken() {
   // Define sourceChain and destinationChain, get chain contexts
   const sourceChain = wh.getChain('Moonbeam');
   const destinationChain = wh.getChain('Solana');
+
+  // Define gas limit for EVM chains (optional)
+  const gasLimit = BigInt(2_500_000);
+
   // Load signers for both chains
   const sourceSigner = await getSigner(sourceChain);
-  const destinationSigner = await getSigner(destinationChain);
+  const destinationSigner = await getSigner(destinationChain, gasLimit);
 
   // Retrieve the token bridge context for the source chain
   // This is where you will send the transaction to attest the token
