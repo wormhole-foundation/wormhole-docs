@@ -10,42 +10,109 @@ categories: NTT, Transfer
 
 This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
-## Deploy Your Token and Ensure Compatibility
+## Prerequisite
 
-If you still need to do so, deploy the token contract to the destination or spoke chains.
+Before deploying NTT on EVM chains, ensure you have the following prerequisites:
 
-### Requirements for Token Deployment
+- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
+- [Bun installed](https://bun.sh/){target=\_blank}
+- A wallet private key with tokens on supported chains
+- ERC-20 tokens already deployed on the source and destination chains
 
-Wormhole’s NTT framework supports two [deployment models](/docs/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke. **Both require an ERC-20 token (new or existing).**
+## Overview of the Deployment Process
 
-??? interface "Burn-and-Mint"
+Deploying NTT on EVM chains follows a structured process:
 
-    Tokens must implement the following non-standard ERC-20 functions:
+1. **Choose your token setup**: Use an existing ERC-20 token or deploy a new one.
 
-    - `burn(uint256 amount)`
-    - `mint(address account, uint256 amount)`
+    ???- interface "Deploy an ERC-20 Token on EVM"
+        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-    These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for all required functions, errors, and events.
+        1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
-    ??? interface "`INttToken` Interface"
-        ```solidity
-        --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/INttToken.sol'
-        ```
+        2. **Clone the repository** – fetch the example contract repository
 
-    You’ll also need to set mint authority to the relevant `NttManager` contract.
+            ```bash
+            git clone https://github.com/wormhole-foundation/example-ntt-token.git
+            cd example-ntt-token
+            ```
+        
+        3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
 
-??? interface "Hub-and-Spoke Mode"
+            ```bash
+            forge create --broadcast \
+                --rpc-url INSERT_RPC_URL \
+                --private-key INSERT_YOUR_PRIVATE_KEY \
+                src/PeerToken.sol:PeerToken \
+                --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
+            ```
 
-    Tokens only need to be ERC-20 compliant. The hub chain serves as the source of truth for supply consistency, while only spoke chains need to support minting and burning. For example, if Ethereum is the hub and Polygon is a spoke:
+        4. **Mint tokens** – send tokens to your address
 
-    - Tokens are locked on Ethereum
-    - Tokens are minted or burned on Polygon
+            ```bash
+            cast send INSERT_TOKEN_ADDRESS \
+                "mint(address,uint256)" \
+                INSERT_RECIPIENT_ADDRESS \
+                INSERT_AMOUNT_IN_WEI \
+                --private-key INSERT_YOUR_PRIVATE_KEY \
+                --rpc-url INSERT_RPC_URL
+            ```
 
-    This setup maintains a consistent total supply across all chains.
+        !!! note
+            This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
 
-Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
+2. **Choose your deployment model**: Choose a deployment model. Wormhole’s NTT framework supports two [deployment models](/docs/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke.
 
-## NTT Manager Deployment Parameters
+    ??? interface "Burn-and-Mint"
+
+        Tokens must implement the following non-standard ERC-20 functions:
+
+        - `burn(uint256 amount)`
+        - `mint(address account, uint256 amount)`
+
+        These functions aren't part of the standard ERC-20 interface. Refer to the [`INttToken` interface](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} for all required functions, errors, and events.
+
+        ??? interface "`INttToken` Interface"
+            ```solidity
+            --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/INttToken.sol'
+            ```
+
+        You’ll also need to set mint authority to the relevant `NttManager` contract.
+
+    ??? interface "Hub-and-Spoke Mode"
+
+        Tokens only need to be ERC-20 compliant. The hub chain serves as the source of truth for supply consistency, while only spoke chains need to support minting and burning. For example, if Ethereum is the hub and Polygon is a spoke:
+
+        - Tokens are locked on Ethereum
+        - Tokens are minted or burned on Polygon
+
+        This setup maintains a consistent total supply across all chains.
+
+    Example deployment scripts for both models are available in the [`example-ntt-token` GitHub repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank}.
+
+3. **Configure your chains**: Use the NTT CLI to add EVM chains and configure deployment parameters.
+4. **Set Mint Authority**: Set the NTT Manager as a minter for your tokens on the relevant chains.
+    - For burn-and-mint mode, set the NTT Manager as a minter on all chains. 
+    - For hub-and-spoke, set the NTT Manager as a minter only on spoke chains.
+
+## Set Up NTT
+
+Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
+
+The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+
+???- interface "Install the NTT CLI and Scaffold a New Project"
+    
+    --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+
+### NTT Manager Deployment Parameters
 
 This table compares the configuration parameters available when deploying the NTT Manager using the CLI versus a manual deployment with a Forge script. It highlights which options are configurable via each method, whether values are auto-detected or hardcoded, and includes additional comments to help guide deployment decisions.
 
@@ -65,23 +132,11 @@ This table compares the configuration parameters available when deploying the NT
 | `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
 
 
-## Deploy NTT
+## Deploy NTT 
 
-Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
+Once you've set up NTT, proceed with adding your EVM chains and deploying contracts.
 
-???- interface "Install the NTT CLI and Scaffold a New Project"
-    
-    --8<-- 'text/products/native-token-transfers/guides/install-ntt-project.md'
-
-        === "Testnet"
-
-            ```bash
-            ntt init Testnet
-            ```
-
-Once you've completed those steps, return here to proceed with adding your EVM chains and deploying contracts.
-
-Ensure you have set up your environment correctly: 
+Ensure you have set up your environment correctly:
 
 ```bash
 export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
@@ -131,7 +186,7 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
 
 After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
 
-## Set Token Minter to NTT Manager
+## Set Mint Authority
 
 The final step in the deployment process is to set the NTT Manager as a minter of your token on all chains you have deployed to in `burning` mode. When performing a hub-and-spoke deployment, it is only necessary to set the NTT Manager as a minter of the token on each spoke chain.
 
@@ -147,5 +202,40 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 
 By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
 
-!!!important
-    To proceed with testing and find integration examples, check out the [NTT Post Deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank} page.
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
+
+    ---
+
+    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy NTT with Launchpad**
+
+    ---
+
+    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/evm-launchpad/){target=\_blank}
+
+-   :octicons-globe-16:{ .lg .middle } **Deploy NTT on Solana**  
+
+    ---  
+
+    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
+
+    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+
+</div>
