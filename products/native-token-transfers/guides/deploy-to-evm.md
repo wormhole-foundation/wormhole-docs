@@ -228,7 +228,7 @@ By default, NTT transfers to EVM blockchains support automatic relaying via the 
 
     After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
 
-    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+    [:custom-arrow: Deploy NTT on Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
