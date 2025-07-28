@@ -5,16 +5,16 @@ description: Integrate W staking into your app on EVM and Solana. Learn flows, c
 
 # W Staking Integration
 
-This guide walks you through integrating native W staking for both EVM chains (Ethereum, Optimism, Arbitrum, Base) and Solana, including high-level differences, contract calls, and recommended delegate discovery via the Tally API.
+W staking allows users to stake their W tokens to participate in governance and earn staking rewards in return, while retaining control over their tokens. This guide walks you through integrating native W staking for both EVM chains (Ethereum, Optimism, Arbitrum, Base) and Solana, including high-level differences, contract calls, and recommended delegate discovery via the Tally API.
 
 ## Overview
 
-|                       | EVM (ETH, OP, ARB, BASE)                          | Solana                                         |
-|-----------------------|---------------------------------------------------|------------------------------------------------|
-| **How staking works** | Delegate your W tokens to another address.<br>Tokens stay in your wallet. | Move W tokens into a stake account and assign a delegate. |
-| **Unstaking**         |  Delegation removed; no token movement.           | Withdraw tokens from stake account.            |
-| **Partial staking**   | Not supported (delegation applies to full balance). | Supported. Stake any amount of W.           |
-| **Voting Power**      | The delegate gets full voting rights for your W balance. | The delegate gets voting rights only for the staked amount. |
+|                     | EVM (ETH, OP, ARB, BASE)                          | Solana                                         |
+|---------------------|---------------------------------------------------|------------------------------------------------|
+| **Staking**         | Delegate your W tokens to another address.<br>Tokens stay in your wallet. | Move W tokens into a stake account and assign a delegate. |
+| **Unstaking**       | Delegation removed; no token movement.                   | Withdraw tokens from stake account.     |
+| **Partial Staking** | Not supported (delegation applies to your full balance). | Supported; stake any amount of W.       |
+| **Voting Power**    | The delegate gets full voting rights for your W balance. | The delegate gets voting rights only for the staked amount. |
 
 ## EVM Integration (ETH, OP, ARB, BASE)
 
@@ -32,8 +32,8 @@ const tx = await writeContractAsync({
 })
 ```
 
-- To stake, pass the delegate address.
-- To unstake, pass the zero address (`0x000...000`).
+- To stake, pass the `delegateAddress`.
+- To unstake, pass the `zeroAddress` (`0x000...000`).
 
 Use the `delegates(address)` view function to check the current delegate for a given address.
 
@@ -48,72 +48,70 @@ On Solana, staking means moving W tokens into a stake account and assigning a de
 
 ### Staking Flow (Solana)
 
-```js 
- // Initialize the staking program and config
- // See Program IDs and ABIs section for more details
+Initialize the staking program and config. See [Program IDs and ABIs section](/docs/protocol/staking/w-staking/#program-ids-and-abis) for more details.
+
+```js   
+const program = new anchor.Program<Staking>(simplerStakingIDL, {
+  connection,
+})
+const [config] = PublicKey.findProgramAddressSync(
+  [Buffer.from('config')],
+  program.programId,
+)
+
+// PDA derivations for user and delegate
+const [stakeAccountMetadata] = PublicKey.findProgramAddressSync(
+  [Buffer.from('stake_metadata'), userPublicKey.toBuffer()],
+  program.programId,
+)
+
+const [stakeAccountCheckpoints] = PublicKey.findProgramAddressSync(
+  [Buffer.from('owner'), userPublicKey.toBuffer(), Buffer.from([0, 0])],
+  program.programId,
+)
+
+const [custodyAuthority] = PublicKey.findProgramAddressSync(
+  [Buffer.from('authority'), userPublicKey.toBuffer()],
+  program.programId,
+)
+
+const [stakeAccountCustody] = PublicKey.findProgramAddressSync(
+  [Buffer.from('custody'), userPublicKey.toBuffer()],
+  program.programId,
+)
+
+const [eventAuthority] = PublicKey.findProgramAddressSync(
+  [Buffer.from('__event_authority')],
+  program.programId,
+)
+
+const [currentDelegateStakeAccountMetadata] =
+  PublicKey.findProgramAddressSync(
+    [Buffer.from('stake_metadata'), currentDelegatePublicKey.toBuffer()],
+    program.programId,
+  )
+
+const [currentDelegateStakeAccountCheckpoints] =
+  PublicKey.findProgramAddressSync(
+    [
+      Buffer.from('owner'),
+      currentDelegatePublicKey.toBuffer(),
+      Buffer.from([0, 0]),
+    ],
+    program.programId,
+  )
+
+const [delegateeStakeAccountMetadata] = PublicKey.findProgramAddressSync(
+  [Buffer.from('stake_metadata'), delegateePublicKey.toBuffer()],
+  program.programId,
+)
+
+const [delegateeStakeAccountCheckpoints] = PublicKey.findProgramAddressSync(
+  [Buffer.from('owner'), delegateePublicKey.toBuffer(), Buffer.from([0, 0])],
+  program.programId,
+)
   
-  const program = new anchor.Program<Staking>(simplerStakingIDL, {
-    connection,
-  })
-  const [config] = PublicKey.findProgramAddressSync(
-    [Buffer.from('config')],
-    program.programId,
-  )
-
-  // PDA derivations for user and delegate
-	
-  const [stakeAccountMetadata] = PublicKey.findProgramAddressSync(
-    [Buffer.from('stake_metadata'), userPublicKey.toBuffer()],
-    program.programId,
-  )
-
-  const [stakeAccountCheckpoints] = PublicKey.findProgramAddressSync(
-    [Buffer.from('owner'), userPublicKey.toBuffer(), Buffer.from([0, 0])],
-    program.programId,
-  )
-
-  const [custodyAuthority] = PublicKey.findProgramAddressSync(
-    [Buffer.from('authority'), userPublicKey.toBuffer()],
-    program.programId,
-  )
-
-  const [stakeAccountCustody] = PublicKey.findProgramAddressSync(
-    [Buffer.from('custody'), userPublicKey.toBuffer()],
-    program.programId,
-  )
-
-  const [eventAuthority] = PublicKey.findProgramAddressSync(
-    [Buffer.from('__event_authority')],
-    program.programId,
-  )
-
-  const [currentDelegateStakeAccountMetadata] =
-    PublicKey.findProgramAddressSync(
-      [Buffer.from('stake_metadata'), currentDelegatePublicKey.toBuffer()],
-      program.programId,
-    )
-
-  const [currentDelegateStakeAccountCheckpoints] =
-    PublicKey.findProgramAddressSync(
-      [
-        Buffer.from('owner'),
-        currentDelegatePublicKey.toBuffer(),
-        Buffer.from([0, 0]),
-      ],
-      program.programId,
-    )
-
-  const [delegateeStakeAccountMetadata] = PublicKey.findProgramAddressSync(
-    [Buffer.from('stake_metadata'), delegateePublicKey.toBuffer()],
-    program.programId,
-  )
-
-  const [delegateeStakeAccountCheckpoints] = PublicKey.findProgramAddressSync(
-    [Buffer.from('owner'), delegateePublicKey.toBuffer(), Buffer.from([0, 0])],
-    program.programId,
-  )
-  
-// 1. Ensure ATA exists for the user
+// 1. Ensure ATA (Associated Token Account) exists for the user
 const userATA = getAssociatedTokenAddressSync(WTokenSolanaPublicKey, userPublicKey, false)
 const ataInfo = await connection.getAccountInfo(userATA)
 if (!ataInfo) {
@@ -128,7 +126,6 @@ if (!ataInfo) {
 }
 
 // 2. Create the user's stake account if needed
-  
 const userStakeAccountInfo = await connection.getAccountInfo(stakeAccountMetadata)
 if (!userStakeAccountInfo) {
   const createUserStakeIx = await program.methods
@@ -149,12 +146,10 @@ if (!userStakeAccountInfo) {
 }
 
 // 3. Transfer tokens to custody
-
 const transferIx = createTransferInstruction(userATA, stakeAccountCustody, userPublicKey, amount)
 createStakeAccTx.add(transferIx)
 
 // 4. Create a delegate account if not self-delegation
-  
 const delegateeAccountInfo = await connection.getAccountInfo(delegateeStakeAccountMetadata)
 const isSelfDelegation = delegateePublicKey.equals(userPublicKey)
 if (!delegateeAccountInfo && !isSelfDelegation) {
@@ -209,9 +204,9 @@ const delegateIx = await program.methods
 createStakeAccTx.add(delegateIx)
 ```
 
-Staking Steps:
+Staking steps:
 
-1. Ensure the user has a W token ATA.
+1. Ensure the user has a W token ATA (Associated Token Account).
 2. Create a stake account if it doesn't exist.
 3. Transfer tokens to the stake custody account.
 4. Create a delegate stake account if needed.
@@ -224,7 +219,7 @@ const withdrawIx = await program.methods
 .withdrawTokens(
     new BN(amount.toString()),
     delegateePublicKey, // current delegate (who owns your stake)
-    userPublicKey, // withdraw back to yourself
+    userPublicKey, // recipient of the withdrawn tokens
 )
 .accountsStrict({
     payer: walletProvider.publicKey,
@@ -246,12 +241,12 @@ withdrawTx.add(withdrawIx)
 ```
 
 1. Confirm the user’s stake metadata and custody accounts.
-2. Call `withdrawTokens()` to move tokens back to the user’s ATA.
+2. Call `withdrawTokens()` to move tokens back to the user’s ATA (Associated Token Account).
 
 !!!note "Important Notes"
     - Solana integration uses `@solana/web3.js`, `@solana/spl-token`, and `@coral-xyz/anchor`.
     - Delegating to an active voter is generally recommended (see [Tally API](https://apidocs.tally.xyz/){target=\_blank}).
-    - Both self- and third-party delegation are supported.
+    - Both self and third-party delegation are supported.
 
 ## Using the Tally API
 
