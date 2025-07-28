@@ -41,24 +41,20 @@ async function transferTokens() {
     );
   }
   // Insert Initiate Transfer on Source Chain code
-  // Define automatic transfer
-  const automatic = true;
   // Optional native gas amount for automatic transfers only
   const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
   // Get the decimals for the source chain
   const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
   // If automatic, convert to raw units, otherwise set to 0n
-  const nativeGas = automatic
-    ? BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals)
-    : 0n;
+  const nativeGas = BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals);
+
   // Build the token transfer object
   const xfer = await wh.tokenTransfer(
     tokenId,
     transferAmount,
     sourceSigner.address,
     destinationSigner.address,
-    automatic,
-    undefined, // no payload
+    'AutomaticTokenBridge',
     nativeGas
   );
   console.log('🚀 Built transfer object:', xfer.transfer);

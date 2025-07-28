@@ -41,25 +41,14 @@ async function transferTokens() {
     );
   }
   // Insert Initiate Transfer on Source Chain code
-  // Define manual transfer
-  const automatic = false;
-  // Optional native gas amount for automatic transfers only
-  const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
-  // Get the decimals for the source chain
-  const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
-  // If automatic, convert to raw units, otherwise set to 0n
-  const nativeGas = automatic
-    ? BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals)
-    : 0n;
   // Build the token transfer object
   const xfer = await wh.tokenTransfer(
     tokenId,
     transferAmount,
     sourceSigner.address,
     destinationSigner.address,
-    automatic,
-    undefined, // no payload
-    nativeGas
+    'TokenBridge',
+    undefined // no payload
   );
   console.log('🚀 Built transfer object:', xfer.transfer);
 
@@ -69,7 +58,7 @@ async function transferTokens() {
 
   // For manual transfers, wait for VAA
   console.log('⏳ Waiting for attestation (VAA) for manual transfer...');
-  const timeout = 2 * 60 * 1000; // 2 minutes timeout
+  const timeout = 10 * 60 * 1000; // 10 minutes timeout
   const attIds = await xfer.fetchAttestation(timeout);
   console.log('✅ Got attestation ID(s):', attIds);
 

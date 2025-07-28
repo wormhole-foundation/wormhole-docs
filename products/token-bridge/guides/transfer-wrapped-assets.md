@@ -74,7 +74,7 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::42'
+    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::43'
     --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:80:85'
     ```
 
