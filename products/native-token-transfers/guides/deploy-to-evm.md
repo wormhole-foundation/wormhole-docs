@@ -10,7 +10,7 @@ categories: NTT, Transfer
 
 This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
-## Prerequisite
+## Prerequisites
 
 Before deploying NTT on EVM chains, ensure you have the following prerequisites:
 
