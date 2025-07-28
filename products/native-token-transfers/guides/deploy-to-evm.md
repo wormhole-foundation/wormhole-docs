@@ -220,7 +220,7 @@ By default, NTT transfers to EVM blockchains support automatic relaying via the 
 
     Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/evm-launchpad/){target=\_blank}
+    [:custom-arrow: Deploy with Launchpad](/docs/products/native-token-transfers/guides/evm-launchpad/){target=\_blank}
 
 -   :octicons-globe-16:{ .lg .middle } **Deploy NTT on Solana**  
 
