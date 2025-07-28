@@ -13468,20 +13468,20 @@ This table compares the configuration parameters available when deploying the NT
 | `outboundLimit`         | Computed               | Auto-detected/Hardcoded             | Similar| Relative to rate limit             |
 
 
-## Deploy NTT 
+## Deploy and Configure NTT
 
 Once you've set up NTT, proceed with adding your EVM chains and deploying contracts.
 
-Ensure you have set up your environment correctly:
+1. **Environment Setup**: Ensure you have set up your environment correctly:
 
-```bash
-export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
-```
+    ```bash
+    export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
+    ```
 
-Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
+2. **Deploy NTT to EVM**: Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
-```bash
-# Set scanner API Keys as environment variables
+    ```bash
+    # Set scanner API Keys as environment variables
 export SEPOLIA_SCAN_API_KEY=INSERT_ETHERSCAN_SEPOLIA_API_KEY
 export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
 
@@ -13489,25 +13489,29 @@ export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
 # The contracts will be automatically verified using the scanner API keys above
 ntt add-chain Sepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
 ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
-```
+    ```
+    The `ntt add-chain` command takes the following parameters:
 
-While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
+    - Name of each chain.
+    - Version of NTT to deploy (use `--latest` for the latest contract versions).
+    - Mode - either `burning` or `locking`.
+    - Your token contract address.
 
-The `ntt add-chain` command takes the following parameters:
+    While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
 
-- Name of each chain
-- Version of NTT to deploy (use `--latest` for the latest contract versions)
-- Mode (either `burning` or `locking`)
-- Your token contract address
+3. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
-The NTT CLI prints detailed logs and transaction hashes, so you can see exactly what's happening under the hood.
+    ```bash
+    ntt status
+    ```
 
-## Configure NTT
+    If needed, sync your local configuration with the on-chain configuration:
 
-The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. You can run:
+    ```bash
+    ntt pull
+    ```
 
-- `ntt status` - checks whether your `deployment.json` file is consistent with what is on-chain
-- `ntt pull` - syncs your `deployment.json` file with the on-chain configuration and set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
 
     For Solana, the limits are set with 9 decimal places:
       ```json
@@ -13524,9 +13528,13 @@ The NTT CLI takes inspiration from [git](https://git-scm.com/){target=\_blank}. 
       ```
 
     This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
-  
-- `ntt push` - syncs the on-chain configuration with local changes made to your `deployment.json` file
 
+5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file
+
+    ```bash
+    ntt push 
+    ```
+  
 After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
 
 ## Set Mint Authority
