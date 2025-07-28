@@ -185,7 +185,7 @@ if (!delegateeAccountInfo && !isSelfDelegation) {
   createStakeAccTx.add(createDelegateeStakeIx)
 }
 
-// 5. Send delegate instruction
+// 5. Send delegate instructions
 const delegateIx = await program.methods
   .delegate(delegateePublicKey, currentDelegatePublicKey)
   .accountsStrict({
