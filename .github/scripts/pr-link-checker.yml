@@ -5,7 +5,7 @@ on:
 
 jobs:
   check-docs-links:
-    uses: papermoonio/workflows/.github/workflows/core-pr-link-checker.yml@main
+    uses: papermoonio/workflows/.github/workflows/core-pr-link-checker.yml@v1.2.3
     with:
       mkdocs_repo: papermoonio/wormhole-mkdocs
       docs_repo: wormhole-foundation/wormhole-docs
