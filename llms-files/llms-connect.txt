@@ -147,7 +147,7 @@ Before you begin, make sure you have the following:
     npm start
     ```
 
-4. **Open your browser to `http**: //localhost:3000` to view the application locally.
+4. Open your browser to `http://localhost:3000` to view the application locally.
 
     ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
 
@@ -1126,7 +1126,7 @@ The Wormhole Connect feature has been updated to **version 3.0**, introducing a 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
  - Update to the latest Connect package.
- - Apply configuration changes to the **`WormholeConnectConfig`** object.
+ - Apply configuration changes to the `WormholeConnectConfig` object.
  - Understand new routing capabilities and plugin options.
 
 These updates ensure better performance and a smoother integration experience.

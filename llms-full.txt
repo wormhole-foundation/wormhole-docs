@@ -3108,7 +3108,7 @@ Before you begin, ensure you have the following:
  - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
  - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
  - [USDC tokens](https://faucet.circle.com/){target=\_blank} on supported chains. This tutorial uses Avalanche and Sepolia as examples.
- - A wallet with a private key, funded with native tokens (Testnet or Mainnet) for gas fees.
+ - A wallet with a private key, funded with native tokens (testnet or mainnet) for gas fees.
 
 ## Supported Chains
 
@@ -5084,7 +5084,7 @@ Before you begin, make sure you have the following:
     npm start
     ```
 
-4. **Open your browser to `http**: //localhost:3000` to view the application locally.
+4. Open your browser to `http://localhost:3000` to view the application locally.
 
     ![Deployed Connect Widget](/docs/images/products/connect/tutorials/react-dapp/get-started/connect-get-started-01.webp)
 
@@ -5232,7 +5232,7 @@ The Wormhole Connect feature has been updated to **version 3.0**, introducing a 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
  - Update to the latest Connect package.
- - Apply configuration changes to the **`WormholeConnectConfig`** object.
+ - Apply configuration changes to the `WormholeConnectConfig` object.
  - Understand new routing capabilities and plugin options.
 
 These updates ensure better performance and a smoother integration experience.
@@ -12027,8 +12027,8 @@ solana balance -k ./app/keypairs/deployer.json
 !!! warning 
     When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees:
 
-    - 7.60219224 SOL for deployment costs.
-    - 0.00542 SOL for transaction fees.
+    - 7.60219224 SOL for deployment costs
+    - 0.00542 SOL for transaction fees
 
 ### Fund the Deployer Account  
 
@@ -17268,26 +17268,31 @@ This guide provides a conceptual overview of the Token Bridge and its integratio
 Cross-chain token transfers using the Token Bridge follow these steps:
 
 1. **Initiation on the Source Chain**
+
     The transfer begins when a user calls the Token Bridge contract on the source chain:
 
     - **Wrapped tokens**: The token is burned.
     - **Original tokens**: If the token is native to the source chain, the token is locked in the contract.
 
 2. **Transfer Message Publication**
+
     The Token Bridge contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
 
 3. **Message Observation and Signing**
+
     [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank}—a decentralized network of validators—monitor the source chain for these message events. A supermajority (13 out of 19) signs the event to generate a [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}—a cryptographically signed attestation of the transfer.
 
     The VAA is then published to the Wormhole network.
 
 4. **VAA Submission to the Destination Chain**
+
     The VAA must be submitted to the Token Bridge contract on the destination chain to complete the transfer. The Token Bridge contract then verifies the VAA by calling the Core Contract behind the scenes. This step can be handled in two ways:
 
     - **Automatic**: A relayer service detects the VAA and submits it to the Token Bridge contract.
     - **Manual**: The user or dApp retrieves the VAA and submits it directly to the Token Bridge contract.
 
 5. **Finalization of the Transfer on the Destination Chain**
+
    After the VAA is verified on the destination chain, the Token Bridge contract completes the transfer:
 
     - **Wrapped tokens**: A wrapped representation of the original token is minted.
@@ -17383,12 +17388,15 @@ When completing an automatic transfer using the Token Bridge—either through [C
 The flow of an automatic transfer using the TBR looks like this:
 
 1. **Initiation on the Source Chain**
+
     The transfer begins when a user initiates a transfer on the source chain, which results in the TBR contract being called.
 
 2. **Prepare and Forward the Transfer**
+
     The TBR verifies the token, encodes transfer details (relayer fee, native gas request, recipient), and forwards the transfer to the Token Bridge.
 
 3. **Core Messaging Layer Processes the Transfer**  
+
     The Token Bridge emits a message to the Core Contract. Guardians observe the message and produce a signed VAA attesting to the transfer. 
 
 4. **Off-Chain Relayer Observes the VAA**
@@ -22959,9 +22967,9 @@ Understanding the structure of VAAs is fundamental to working with Wormhole's SD
 
 | Section  | Description                                                                                            |
 |----------|--------------------------------------------------------------------------------------------------------|
-| Header   | Includes the version and guardian signature information required to verify the VAA                     |
-| Envelope | Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp |
-| Payload  | Represents the actual message, in raw bytes, without a length prefix                                   |
+| Header   | Includes the version and guardian signature information required to verify the VAA.                     |
+| Envelope | Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp. |
+| Payload  | Represents the actual message, in raw bytes, without a length prefix.                                   |
 
 The VAA's body combines the Envelope and Payload. The Wormhole Guardians signed the core data and hashed (using `keccak256`) to generate the VAA's unique identifier.
 
