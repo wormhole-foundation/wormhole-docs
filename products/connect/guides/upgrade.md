@@ -11,7 +11,7 @@ The Wormhole Connect feature has been updated to **version 3.0**, introducing a 
 This guide will help you migrate to the new version in just a few simple steps. By following this migration guide, you'll learn how to:
 
  - Update to the latest Connect package.
- - Apply configuration changes to the **`WormholeConnectConfig`** object.
+ - Apply configuration changes to the `WormholeConnectConfig` object.
  - Understand new routing capabilities and plugin options.
 
 These updates ensure better performance and a smoother integration experience.
