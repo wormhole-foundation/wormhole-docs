@@ -586,7 +586,7 @@ function parseWormholeTransceiverInstruction(
 
 ### quoteDeliveryPrice
 
-Fetch the delivery price for a given recipient chain transfer. *(Defined in Transceiver.sol)*
+Fetches the delivery price for a given recipient chain transfer. *(Defined in Transceiver.sol)*
 
 ```sol
 function quoteDeliveryPrice(
@@ -655,7 +655,7 @@ function pauser() public view returns (address)
 
 ### receiveMessage
 
-Receive an attested message from the verification layer. *(Defined in WormholeTransceiver.sol)*
+Receives an attested message from the verification layer. *(Defined in WormholeTransceiver.sol)*
 
 ```sol
 function receiveMessage(bytes memory encodedMessage) external
@@ -717,7 +717,7 @@ function receiveWormholeMessages(
 
 ### sendMessage
 
-Send a message to another chain. *(Defined in Transceiver.sol)*
+Sends a message to another chain. *(Defined in Transceiver.sol)*
 
 ```sol
 function sendMessage(
@@ -775,7 +775,7 @@ function sendMessage(
 
 ### setIsSpecialRelayingEnabled
 
-Set whether special relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
+Sets whether special relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
 
 ```sol
 function setIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled) external
@@ -797,7 +797,7 @@ function setIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled) ext
 
 ### setIsWormholeEvmChain
 
-Set whether the chain is EVM compatible. *(Defined in WormholeTransceiverState.sol)*
+Sets whether the chain is EVM compatible. *(Defined in WormholeTransceiverState.sol)*
 
 ```sol
 function setIsWormholeEvmChain(uint16 chainId, bool isEvm) external
@@ -819,7 +819,7 @@ function setIsWormholeEvmChain(uint16 chainId, bool isEvm) external
 
 ### setIsWormholeRelayingEnabled
 
-Set whether Wormhole relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
+Sets whether Wormhole relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
 
 ```sol
 function setIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled) external
@@ -841,7 +841,7 @@ function setIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled) ex
 
 ### setWormholePeer
 
-Set the Wormhole peer contract for the given chain. *(Defined in WormholeTransceiverState.sol)*
+Sets the Wormhole peer contract for the given chain. *(Defined in WormholeTransceiverState.sol)*
 
 ```sol
 function setWormholePeer(uint16 chainId, bytes32 peerContract) external payable
