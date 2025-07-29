@@ -71,8 +71,8 @@ solana balance -k ./app/keypairs/deployer.json
 !!! warning 
     When deploying the MultiGov Staking Program, the deployer account must have enough SOL to cover deployment costs and transaction fees:
 
-    - 7.60219224 SOL for deployment costs.
-    - 0.00542 SOL for transaction fees.
+    - 7.60219224 SOL for deployment costs
+    - 0.00542 SOL for transaction fees
 
 ### Fund the Deployer Account  
 
