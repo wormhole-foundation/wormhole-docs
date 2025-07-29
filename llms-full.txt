@@ -20865,7 +20865,7 @@ createStakeAccTx.add(delegateIx)
 Staking steps:
 
 1. Ensure the user has a W token ATA (Associated Token Account).
-2. Create a stake account if it doesn't exist.
+2. Create a stake account if one doesn't already exist.
 3. Transfer tokens to the stake custody account.
 4. Create a delegate stake account if needed.
 5. Send the `delegate()` instruction.
