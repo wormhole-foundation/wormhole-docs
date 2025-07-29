@@ -21,9 +21,9 @@ Understanding the structure of VAAs is fundamental to working with Wormhole's SD
 
 | Section  | Description                                                                                            |
 |----------|--------------------------------------------------------------------------------------------------------|
-| Header   | Includes the version and guardian signature information required to verify the VAA                     |
-| Envelope | Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp |
-| Payload  | Represents the actual message, in raw bytes, without a length prefix                                   |
+| Header   | Includes the version and guardian signature information required to verify the VAA.                     |
+| Envelope | Contains metadata about the emitted message, such as the emitter chain, emitter address, and timestamp. |
+| Payload  | Represents the actual message, in raw bytes, without a length prefix.                                   |
 
 The VAA's body combines the Envelope and Payload. The Wormhole Guardians signed the core data and hashed (using `keccak256`) to generate the VAA's unique identifier.
 
