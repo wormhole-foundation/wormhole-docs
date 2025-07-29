@@ -6,7 +6,7 @@ categories: MultiGov
 
 # Flow of a Proposal 
 
-MultiGov enables decentralized governance across multiple blockchains by allowing a proposal to be created on a designated hub chain and voted on from various spoke chains. Votes are aggregated and the proposal is executed once consensus is reached.
+[MultiGov](/docs/products/multigov/overview/){target=\_blank} enables decentralized governance across multiple blockchains by allowing a proposal to be created on a designated hub chain and voted on from various spoke chains. Votes are aggregated and the proposal is executed once consensus is reached.
 
 This page outlines the full lifecycle of a proposal and the actors and modules involved at each step.
 
@@ -17,15 +17,13 @@ This page outlines the full lifecycle of a proposal and the actors and modules i
 - **SpokeGovernor**: Contract on spoke chains allowing users to vote and relaying those votes cross-chain.
 - **Wormhole Messaging**: The underlying cross-chain transport layer for vote aggregation and execution messages.
 - **Relayer**: Off-chain or on-chain service that submits Wormhole VAAs on destination chains.
-- **Executor (optional)**: Target contract or system that the proposal affects when executed.
-
-
+- **Executor**: Target contract or system that the proposal affects when executed.
 
 ## Proposal Flow 
 
 1. **Proposal Created on Hub**: 
 
-    The **Proposer**, typically a DAO member or smart contract, creates a proposal by interacting with the **HubGovernor** contract on the hub chain. This proposal includes metadata, action payloads, and the voting timeline. Once submitted, it becomes immutable and is broadcast to all supported spoke chains.
+    The **Proposer**, typically a DAO member or smart contract, creates a proposal and submits it to the **HubGovernor** contract on the hub chain. This proposal includes proposal targets, calldata, metadata, payloads, and the voting timeline. Once submitted, it becomes immutable and is broadcast to all supported spoke chains.
 
 2. **Voting Period Begins**: 
 
