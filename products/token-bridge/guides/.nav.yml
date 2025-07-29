@@ -1,3 +1,4 @@
 title: Guides
 nav:
 - 'Interact with Contracts': token-bridge-contracts.md
+- 'Fetch a Signed VAA': fetch-signed-vaa.md
