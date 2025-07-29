@@ -79,7 +79,7 @@ Deploying NTT on EVM chains follows a structured process:
 
         You’ll also need to set mint authority to the relevant `NttManager` contract.
 
-    ??? interface "Hub-and-Spoke Mode"
+    ??? interface "Hub-and-Spoke"
 
         Tokens only need to be ERC-20 compliant. The hub chain serves as the source of truth for supply consistency, while only spoke chains need to support minting and burning. For example, if Ethereum is the hub and Polygon is a spoke:
 
@@ -142,7 +142,7 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
     export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
 
-2. **Deploy NTT to EVM**: Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
+2. **Deploy NTT to EVM**: Add each chain you'll be deploying to using the `ntt add-chain` command. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
     ```bash
     --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/initialize.txt'
@@ -186,7 +186,7 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
 
     This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
 
-5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file
+5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
     ```bash
     ntt push 
