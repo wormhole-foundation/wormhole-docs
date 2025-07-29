@@ -27,13 +27,13 @@ The following table outlines post-deployment settings available on the NTT Manag
 
 | Setting                 | Effect                                   |
 |-------------------------|------------------------------------------|
-| `pause`                 | Pauses the manager                       |
-| `unpause`               | Unpauses the manager                     |
-| `setOwner`              | Changes the manager owner                |
-| `setPauser`             | Changes the pauser role                  |
-| `setOutboundLimit`      | Sets outbound transfer limit             |
-| `setInboundLimit`       | Sets inbound transfer limit (per chain)  |
-| `setTransceiverPauser ` | Changes pauser for a transceiver         |
+| `pause`                 | Pauses the manager.                      |
+| `unpause`               | Unpauses the manager.                    |
+| `setOwner`              | Changes the manager owner.               |
+| `setPauser`             | Changes the pauser role.                 |
+| `setOutboundLimit`      | Sets outbound transfer limit.            |
+| `setInboundLimit`       | Sets inbound transfer limit (per chain). |
+| `setTransceiverPauser ` | Changes pauser for a transceiver.        |
 
 ## Where to Go Next
 
