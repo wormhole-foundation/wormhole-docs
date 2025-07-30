@@ -21194,7 +21194,7 @@ W staking allows users to stake their W tokens to participate in governance and 
 | **Staking**         | Delegate your W tokens to another address.<br>Tokens stay in your wallet. | Move W tokens into a stake account and assign a delegate. |
 | **Unstaking**       | Delegation removed; no token movement.                   | Withdraw tokens from stake account.     |
 | **Partial Staking** | Not supported (delegation applies to your full balance). | Supported; stake any amount of W.       |
-| **Voting Power**    | The delegate gets full voting rights for your W balance. | The delegate gets voting rights only for the staked amount. |
+| **Voting Power**    | The delegate gets full voting rights for your W balance. | The delegate gets voting rights only for the amount staked. |
 
 ## EVM Integration (ETH, OP, ARB, BASE)
 
