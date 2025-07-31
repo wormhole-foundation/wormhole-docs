@@ -12,11 +12,11 @@ For more background, see [Solana Shims concept page](/docs/products/messaging/co
 
 ## Using the Emission Shim
 
-The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that matches the signature and accounts of `post_message_unreliable`. If you are already emitting messages via Wormhole, integrating the shim is a minimal change—primarily just switching the program address.
+The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that matches the signature and accounts of `post_message_unreliable`. If you are already emitting messages via Wormhole, integrating the shim is a minimal change, primarily just switching the program address.
 
 ### Required Accounts
 
-Your transaction to the shim’s post_message should include:
+Your transaction to the shim’s `post_message` should include:
 
 - `bridge`: Core Bridge config (mutable).
 - `message`: PDA for posted message (account is reused by the shim, not unique per message).
@@ -104,7 +104,7 @@ At least 13/19 Guardians must monitor the shim for your emissions to reliably re
 
 ## Limitations and Security Considerations 
 
-- **Rent**: No persistent account rent is paid for every emission—cost is now dominated by compute and the emission fee.
+- **Rent**: No persistent account rent is paid for every emission; the cost is now dominated by compute and the emission fee.
 - **Logs**: Since all observability is log-based, re-observation is only possible while Solana transaction history is available.
 - **Parallelization**: Still limited by the `fee_collector` account being mutable.
 - **CPI Depth**: The first shim call for an emitter adds one extra stack depth. This is only relevant if you are near the Solana CPI limit (4).

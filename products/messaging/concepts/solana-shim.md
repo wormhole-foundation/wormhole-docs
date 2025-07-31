@@ -12,7 +12,7 @@ This page explains what shims are, why they were created, how they work, and wha
 
 ## The Core Bridge Account Problem
 
-When you emit a message on Solana using the legacy [Wormhole Core Bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account—specifically, a PDA (Program Derived Address) account—for every message. These accounts must be rent-exempt, meaning SOL is locked up for each one and cannot be recovered, since Core Bridge does not allow these accounts to be closed. Over time, this results in two big problems:
+When you emit a message on Solana using the legacy [Wormhole Core Bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account, specifically, a PDA (Program Derived Address) account, for every message. These accounts must be rent-exempt, meaning SOL is locked up for each one and cannot be recovered, since Core Bridge does not allow these accounts to be closed. Over time, this results in two big problems:
 
 - **Permanent On-Chain State**: Every message leaves behind a permanent account, increasing long-term storage needs on Solana.
 - **Lost Lamports to Rent**: Integrators lose SOL for every message, with no way to recover it even after the message has served its purpose. 
@@ -23,7 +23,7 @@ While `post_message_unreliable` allows for account reuse, it has strict limitati
 
 Verification adds even more cost: the `post_vaa` instruction creates even more temporary accounts for signatures and VAA data—each adding further rent costs and storage overhead. These accounts aren’t automatically cleaned up, so the cost and on-chain state only grow with usage.
 
-This design does ensure reliability—messages and verification data are always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification:
+This design does ensure reliability, messages and verification data are always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
 
 ## What Are the Solana Shim Contracts?
 
@@ -49,7 +49,7 @@ To understand how shims work, it helps to know a few Solana basics:
 
 ## Guardian Observation Methods
 
-|                      | Legacy Model.                  | Shim Model                            |
+|                      | Legacy Model                   | Shim Model                            |
 |----------------------|--------------------------------|---------------------------------------|
 | Message Storage      | On-chain message account (PDA) | Transaction logs (CPI event)          |
 | Data Permanence      | On-chain forever               | In logs (until RPC history is pruned) |
@@ -64,7 +64,7 @@ With shims, the message’s existence depends on the transaction log, so cost dr
 
 Solana charges for two main resources when processing transactions: compute units (for execution) and rent (for storing data on-chain). Understanding how each contributes to overall cost is key to seeing why shims are so much cheaper.
 
-- **Compute Units (CU)**: Solana measures CPU resource usage per transaction as “compute units.” Each transaction has a CU limit (usually ~200,000, can be increased for a fee).
+- **Compute Units (CU)**: Solana measures CPU resource usage per transaction as “compute units”. Each transaction has a CU limit (usually ~200,000, can be increased for a fee).
 - **Rent**: One-time cost in SOL to keep an account on-chain. Most of the Core Bridge’s cost comes from rent, not CUs.
 
 !!!note "Why is the shim cheaper?"

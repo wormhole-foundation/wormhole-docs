@@ -18,7 +18,7 @@ For more background, see [Solana Shims concept page](/docs/products/messaging/co
 
 The verification shim replaces the legacy multi-account pattern with a flow where you only create a temporary signature set account. After verification, you can close it to reclaim your lamports.
 
-1. **Create a temporary SignatureSet account**: Fund it as rent-exempt for the required size.
+1. **Create a temporary `SignatureSet` account**: Fund it as rent-exempt for the required size.
 2. **Call `verify_signatures`** as many times as needed, using the secp256k1 syscall and all guardian signatures. The SignatureSet account will accumulate valid signatures.
 3. **Call `post_vaa`** to check guardian set validity, consensus, and VAA integrity.
    - If verification succeeds, proceed with your on-chain logic (e.g., updating state, processing transfers).
@@ -77,7 +77,7 @@ Since it is planned to be non-upgradeable, any similar mitigation strategies wil
 
 ## Deployment
 
-No special deployment is required—these are standard core bridge instructions. For advanced multi-program flows, see the [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for detailed deployment steps.
+No special deployment is required; these are standard core bridge instructions. For advanced multi-program flows, see the [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for detailed deployment steps.
 
 ## Limitations and Security Considerations
 

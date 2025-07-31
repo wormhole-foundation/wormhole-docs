@@ -12,8 +12,8 @@ If you’re new to shims, start with the [Solana Shims Concepts page](/docs/prod
 
 ## Prerequisites
 
-- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools) installed.
-- Familiarity with [verifiable builds](https://solana.com/developers/guides/advanced/verified-builds).
+- [Rust and Solana CLI](https://docs.solana.com/cli/install-solana-cli-tools){target=\_blank} installed.
+- Familiarity with [verifiable builds](https://solana.com/developers/guides/advanced/verified-builds){target=\_blank}.
 - Sufficient SOL for deploying to mainnet.
 
 ## Shim
@@ -73,7 +73,7 @@ Checklist:
 - Verify Shim should accept a valid mainnet VAA and reject invalid ones
 
 !!!note 
-    Transaction logs for testing are only available for ~30 minutes—complete your checks promptly.
+    Transaction logs for testing are only available for ~30 minutes; complete your checks promptly.
 
 ## Verify the Deployment
 
@@ -95,4 +95,4 @@ solana program set-upgrade-authority -u m --final EFaNWErqAtVWufdNb7yofSHHfWFos8
 solana program set-upgrade-authority -u m --final EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX
 ```
 
-After this, no further changes to program code are possible. Only drop upgrade authority after full verification.
+After this, no further changes to the program code are possible. Only drop upgrade authority after full verification.
