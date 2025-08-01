@@ -63,7 +63,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Monad | 48 |  |
 | Moonbeam | 16 | 1284 |
 | NEAR | 15 | mainnet |
-| Neon | 17 | 245022934 |
 | Neutron | 4003 | neutron-1 |
 | Noble | 4009 | noble-1 |
 | Optimism | 24 | 10 |
@@ -114,7 +113,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Monad | 48 | 10143 |
 | Moonbeam | 16 | Moonbase-Alphanet-1287 |
 | NEAR | 15 | testnet |
-| Neon | 17 | 245022940 |
 | Neutron | 4003 | pion-1 |
 | Noble | 4009 | grand-1 |
 | Optimism Sepolia | 10005 | Optimism Sepolia-11155420 |
@@ -282,7 +280,6 @@ categories: Reference
 | Monad | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Moonbeam | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 |
 | NEAR | wormhole.wormhole.testnet |
-| Neon | 0x268557122Ffd64c85750d630b716471118F323c8 |
 | Neutron | neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4 |
 | Optimism Sepolia | 0x31377888146f3253211EFEf5c676D41ECe7D58Fe |
 | Osmosis | osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx |
@@ -367,7 +364,6 @@ categories: Reference
 | Monad | 0xF323dcDe4d33efe83cf455F78F9F6cc656e6B659 |
 | Moonbeam | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96 |
 | NEAR | token.wormhole.testnet |
-| Neon | 0xEe3dB83916Ccdc3593b734F7F2d16D630F39F1D0 |
 | Optimism Sepolia | 0x99737Ec4B815d816c49A385943baf0380e75c0Ac |
 | Polygon Amoy | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
 | Scroll | 0x22427d90B7dA3fA4642F7025A854c7254E4e45BF |
@@ -407,8 +403,10 @@ categories: Reference
 | Ink | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Kaia | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Mantle | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Mezo | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Moonbeam | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Optimism | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Plume | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Polygon | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Scroll | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Seievm | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
@@ -564,10 +562,11 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Plume | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -603,7 +602,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -675,7 +673,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Plume | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -723,7 +720,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Mantle | EVM | MNT | Official Mantle Faucet |
 | Monad | EVM | MON | Official Monad Faucet |
 | Moonbeam | EVM | DEV | Official Moonbeam Faucet |
-| Neon | EVM | NEON | Official Neon Faucet |
 | Optimism Sepolia | EVM | ETH | Superchain Faucet |
 | Plume | EVM | PLUME | Official Plume Faucet |
 | Polygon Amoy | EVM | POL | Official Polygon Faucet |
