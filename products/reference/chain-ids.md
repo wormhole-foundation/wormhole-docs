@@ -15,3 +15,17 @@ The following table documents the chain IDs used by Wormhole and places them alo
     Wormhole Contributors recommend that all connected chains implement robust security practices including (but not exclusively): open sourcing code and running public bug bounty programs, undergoing security audits and publishing those reports, using version control with adequate access controls and mandatory code review, and high unit and integration test coverage where the results of those tests are available publicly. Connected chains that can't verifiably prove that they've implemented a high percentage of these practices may be noted below with the :warning: symbol. Wormhole integrators are encouraged to understand the security assumptions of any chain before trusting messages from it. See the recommended security practices for chains in [Wormhole's security program](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#chain-integrators){target=\_blank}.
 
 --8<-- 'text/products/reference/chain-ids/chain-ids.md'
+
+!!! warning
+    Wormhole Contributors recommend that all connected chains implement robust security practices, including (but not exclusively):
+
+    - Open-sourcing code and running public bug bounty programs  
+    - Undergoing security audits and publishing those reports  
+    - Using version control with adequate access controls and mandatory code review 
+    - High unit and integration test coverage, where the results of those tests are available publicly
+
+    Chains that can't verifiably prove they meet most of these may be marked with a :warning: symbol.
+
+    Wormhole integrators are encouraged to understand the security assumptions of any chain before trusting messages from it.
+
+    See [Wormhole’s security program](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#chain-integrators){target=\_blank} for recommended practices.
