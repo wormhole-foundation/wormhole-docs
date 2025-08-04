@@ -13537,7 +13537,7 @@ Use the Solana and Anchor versions listed above to avoid compatibility issues wh
 
 ## Overview of the Deployment Process
 
-Deploying NTT with the CLI on Solana follows a structured process:
+Deploying NTT with the CLI on SVM chains follows a structured process:
 
 1. **Choose your token setup**:
 
@@ -13707,7 +13707,7 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --m
 
     2. Set to created SPL Multisig:
     ```bash
-    ntt set-mint-authority --chain Solana --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
 
 **For deployed programs:**
