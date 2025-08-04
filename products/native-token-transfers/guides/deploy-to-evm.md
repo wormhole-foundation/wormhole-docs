@@ -28,16 +28,16 @@ Deploying NTT on EVM chains follows a structured process:
     ???- interface "Deploy an ERC-20 Token on EVM"
         Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-        1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
+        1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
-        2. **Clone the repository** – fetch the example contract repository
+        2. **Clone the repository**: Fetch the example contract repository
 
             ```bash
             git clone https://github.com/wormhole-foundation/example-ntt-token.git
             cd example-ntt-token
             ```
         
-        3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
+        3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses
 
             ```bash
             forge create --broadcast \
@@ -47,7 +47,7 @@ Deploying NTT on EVM chains follows a structured process:
                 --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
             ```
 
-        4. **Mint tokens** – send tokens to your address
+        4. **Mint tokens**: Send tokens to your address
 
             ```bash
             cast send INSERT_TOKEN_ADDRESS \
@@ -144,9 +144,13 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
 
 2. **Deploy NTT to EVM**: Add each chain you'll be deploying to using the `ntt add-chain` command. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
+    <!--
     ```bash
     --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/initialize.txt'
     ```
+    -->
+    --8<-- "code/products/native-token-transfers/guides/deploy-to-evm/terminal01.html"
+
     The `ntt add-chain` command takes the following parameters:
 
     - Name of each chain.
@@ -156,7 +160,7 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
 
     While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
 
-3. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
+3. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
     ```bash
     ntt status
