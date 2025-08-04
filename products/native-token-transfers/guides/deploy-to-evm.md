@@ -136,10 +136,12 @@ This table compares the configuration parameters available when deploying the NT
 
 Once you've set up NTT, proceed with adding your EVM chains and deploying contracts.
 
-1. **Environment Setup**: Ensure you have set up your environment correctly:
+1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal and run the `export` commands:
 
     ```bash
     export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
+    export SEPOLIA_SCAN_API_KEY=INSERT_ETHERSCAN_SEPOLIA_API_KEY
+    export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
     ```
 
 2. **Deploy NTT to EVM**: Add each chain you'll be deploying to using the `ntt add-chain` command. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
