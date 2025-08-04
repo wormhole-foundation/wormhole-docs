@@ -1601,15 +1601,15 @@ Wormhole.sol (Proxy)
 
 ## State Variables
 
- - `provider` ++"Structs.Provider"++ - Holds metadata like `chainId`, `governanceChainId`, and `governanceContract`. This is a nested struct.
- - `guardianSets` ++"mapping(uint32 => GuardianSet)"++ - Mapping of all guardian sets by index.
- - `guardianSetIndex` ++"uint32"++ - Index of the currently active guardian set.
- - `guardianSetExpiry` ++"uint32"++ - How long a guardian set remains valid after it's replaced (in seconds).
- - `sequences` ++"mapping(address => uint64)"++ - Tracks message sequences per emitter (used to enforce message ordering).
- - `consumedGovernanceActions` ++"mapping(bytes32 => bool)"++ - Used to prevent governance VAAs from being reused (replay protection).
- - `initializedImplementations` ++"mapping(address => bool)"++ - Tracks which implementation addresses have been initialized (for upgrade safety).
- - `messageFee` ++"uint256"++ - The amount (in native gas token) required to post a message. Set via governance.
- - `evmChainId` ++"uint256"++ - The actual EVM chain ID (e.g. 1 for Ethereum, 10 for Optimism). Used in fork recovery.
+ - **`provider` ++"Structs.Provider"++**: Holds metadata like `chainId`, `governanceChainId`, and `governanceContract`. This is a nested struct.
+ - **`guardianSets` ++"mapping(uint32 => GuardianSet)"++**: Mapping of all guardian sets by index.
+ - **`guardianSetIndex` ++"uint32"++**: Index of the currently active guardian set.
+ - **`guardianSetExpiry` ++"uint32"++**: How long a guardian set remains valid after it's replaced (in seconds).
+ - **`sequences` ++"mapping(address => uint64)"++**: Tracks message sequences per emitter (used to enforce message ordering).
+ - **`consumedGovernanceActions` ++"mapping(bytes32 => bool)"++**: Used to prevent governance VAAs from being reused (replay protection).
+ - **`initializedImplementations` ++"mapping(address => bool)"++**: Tracks which implementation addresses have been initialized (for upgrade safety).
+ - **`messageFee` ++"uint256"++**: The amount (in native gas token) required to post a message. Set via governance.
+ - **`evmChainId` ++"uint256"++**: The actual EVM chain ID (e.g. 1 for Ethereum, 10 for Optimism). Used in fork recovery.
 
 ## Events
 
@@ -2011,7 +2011,7 @@ Reverts on any call to the fallback function. The contract does not support arbi
 
 ### the Wormhole contract does not accept assets
 
-Reverts when native tokens (ETH) are sent directly to the contract via the receive() function. *(Defined in Implementation.sol)*
+Reverts when native tokens (ETH) are sent directly to the contract via the `receive()` function. *(Defined in Implementation.sol)*
 
 ### already initialized
 
@@ -2111,14 +2111,14 @@ lib.rs
 
 Below are on-chain PDAs used to store persistent state for the core contract. All are derived using deterministic seeds with the program ID.
 
- - `bridge` ++"BridgeData"++ – Stores global config like the active guardian set index, message fee, and guardian set expiration time. (Derived at PDA seed ["Bridge"])
- - `guardianSets` ++"GuardianSetData"++ – Mapping of guardian sets by index. Each guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed ["GuardianSet", index])
- - `sequences` ++"SequenceTracker"++ – Tracks the last sequence number used by each emitter, enforcing strict message ordering. (Derived at PDA seed ["Sequence", emitter])
- - `postedVAAs` ++"PostedVAAData"++ – Stores verified and finalized VAAs, preventing replay. (Derived at PDA seed ["PostedVAA", hash])
- - `claims` ++"ClaimData"++ – Tracks consumed governance VAAs to ensure replay protection. (Derived at PDA seed ["Claim", emitter, sequence])
- - `feeCollector` ++"FeeCollector"++ – Holds lamports collected via message fees, and can be drained via governance. (Derived at PDA seed ["fee_collector"])
+ - **`bridge` ++"BridgeData"++**: Stores global config like the active guardian set index, message fee, and guardian set expiration time. (Derived at PDA seed `["Bridge"]`)
+ - **`guardianSets` ++"GuardianSetData"++**: Mapping of guardian sets by index. Each guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed `["GuardianSet", index]`)
+ - **`sequences` ++"SequenceTracker"++**: Tracks the last sequence number used by each emitter, enforcing strict message ordering. (Derived at PDA seed `["Sequence", emitter]`)
+ - **`postedVAAs` ++"PostedVAAData"++**: Stores verified and finalized VAAs, preventing replay. (Derived at PDA seed `["PostedVAA", hash]`)
+ - **`claims` ++"ClaimData"++**: Tracks consumed governance VAAs to ensure replay protection. (Derived at PDA seed `["Claim", emitter, sequence]`)
+ - **`feeCollector` ++"FeeCollector"++**: Holds lamports collected via message fees, and can be drained via governance. (Derived at PDA seed `["fee_collector"]`)
 
-## Functions
+## Instructions
 
 ### initialize
 
