@@ -1431,7 +1431,7 @@ description: Deploy and configure Wormhole's Native Token Transfers (NTT) for SV
 categories: NTT, Transfer
 ---
 
-# Deploy NTT to SVM
+# Deploy NTT to SVM Chains
 
 [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on SVM chains using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
