@@ -1,4 +1,5 @@
 title: Guides
 nav:
-- 'Interact with Contracts': token-bridge-contracts.md
+- 'Transfer Assets with Solidity': token-bridge-contracts.md
+- 'Attest Tokens': attest-tokens.md
 - 'Fetch a Signed VAA': fetch-signed-vaa.md
