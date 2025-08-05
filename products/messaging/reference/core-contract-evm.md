@@ -44,7 +44,7 @@ Wormhole.sol (Proxy)
  - **`consumedGovernanceActions` ++"mapping(bytes32 => bool)"++**: Used to prevent governance VAAs from being reused (replay protection).
  - **`initializedImplementations` ++"mapping(address => bool)"++**: Tracks which implementation addresses have been initialized (for upgrade safety).
  - **`messageFee` ++"uint256"++**: The amount (in native gas token) required to post a message. Set via governance.
- - **`evmChainId` ++"uint256"++**: The actual EVM chain ID (e.g. 1 for Ethereum, 10 for Optimism). Used in fork recovery.
+ - **`evmChainId` ++"uint256"++**: The actual EVM chain ID (e.g., 1 for Ethereum, 10 for Optimism). Used in fork recovery.
 
 ## Events
 
