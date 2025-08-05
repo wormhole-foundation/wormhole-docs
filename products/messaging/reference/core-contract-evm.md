@@ -154,8 +154,6 @@ event LogGuardianSetChanged(
 
     The new active Guardian set index.
 
-
-
 ## Functions
 
 ### publishMessage

@@ -444,4 +444,3 @@ The payload length is incorrect or malformed. *(Defined in error.rs)*
 ### EmitterChanged
 
 The emitter address changed unexpectedly. *(Defined in error.rs)*
-
