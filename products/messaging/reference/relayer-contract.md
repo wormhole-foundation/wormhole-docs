@@ -1099,3 +1099,11 @@ Reverts if `initialize()` is called on an implementation that was already initia
 ### ImplementationAddressIsZero()
 
 Reverts if `setup()` is called with a zero implementation address. (Defined in [DeliveryProviderSetup.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderSetup.sol){target=\_blank})
+
+### UnexpectedExecutionInfoVersion
+
+Reverts when the `executionInfoVersion` in the delivery VAA does not match the expected version. (Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})
+
+### VersionMismatchOverride
+
+Reverts when the override’s `executionInfoVersion` does not match the original delivery’s version. (Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})
