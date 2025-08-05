@@ -696,6 +696,42 @@ function quoteEVMDeliveryPrice(
 ) external view returns (LocalNative nativePriceQuote, GasPrice targetChainRefundPerGasUnused)
 ```
 
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination-chain wei to forward to the target contract.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit to call the target contract with.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Address of the chosen provider (implements `IDeliveryProvider`).
+
+??? interface "Returns"
+
+    `nativePriceQuote` ++"LocalNative"++
+
+    Source-chain price to request this delivery.
+
+    ---
+
+    `targetChainRefundPerGasUnused` ++"GasPrice"++
+
+    Refund rate per unit of unused gas on the destination chain.
+
 ### quoteDeliveryPrice (generic)
 
 Generic quote (versioned execution params), returning price and provider’s encoded execution info. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
@@ -709,6 +745,42 @@ function quoteDeliveryPrice(
 ) external view returns (LocalNative nativePriceQuote, bytes memory encodedExecutionInfo)
 ```
 
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination-chain wei to forward to the target contract.
+
+    ---
+
+    `encodedExecutionParameters` ++"bytes"++
+
+    Versioned execution parameters (e.g., for `EVM_V1`, encodes the gas limit).
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Address of the chosen provider (implements `IDeliveryProvider`).
+
+??? interface "Returns"
+
+    `nativePriceQuote` ++"LocalNative"++
+
+    Source-chain price to request this delivery.
+
+    ---
+
+    `encodedExecutionInfo` ++"bytes"++
+
+    Provider’s encoded execution info (e.g., for `EVM_V1`, includes gas limit and refund-per-gas).
+
 ### quoteNativeForChain
 
 Converts a source-chain amount into extra value that will be delivered on the target chain. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
@@ -721,6 +793,24 @@ function quoteNativeForChain(
 ) external view returns (TargetNative targetChainAmount)
 ```
 
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `currentChainAmount` ++"LocalNative"++
+
+    Amount paid on the source chain to fund **extra** receiver value.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Address of the chosen provider (implements `IDeliveryProvider`).
+
 ### getDefaultDeliveryProvider
 
 Returns the current default delivery provider address. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
@@ -728,6 +818,12 @@ Returns the current default delivery provider address. (Defined in [WormholeRela
 ```solidity
 function getDefaultDeliveryProvider() external view returns (address deliveryProvider)
 ```
+
+??? interface "Returns"
+
+    `deliveryProvider` ++"address"++
+
+    Address of the default `IDeliveryProvider` on this chain.
 
 ### deliver
 
