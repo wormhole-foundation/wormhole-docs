@@ -29,10 +29,10 @@ lib.rs
 **Key Components:**
 
  - **lib.rs**: Program entry point and instruction dispatcher. Registers all handlers and exposes the on-chain processor.
- - **instructions.rs**: Defines the WormholeInstruction enum and maps it to individual instruction handlers.
+ - **instructions.rs**: Defines the `WormholeInstruction` enum and maps it to individual instruction handlers.
  - **accounts.rs**: Specifies the account constraints and validation logic for each instruction.
  - **api.rs**: Contains the main logic for processing instructions such as message posting, VAA verification, upgrades, and governance actions.
- - **types.rs**: Defines shared structs and enums used throughout the program, including configuration and GuardianSet formats.
+ - **types.rs**: Defines shared structs and enums used throughout the program, including configuration and `GuardianSet` formats.
  - **vaa.rs**: Implements VAA parsing, hashing, and signature-related logic used to verify Wormhole messages.
  - **error.rs** (not listed above): Defines custom error types used across the program for precise failure handling.
  - **wasm.rs** (not listed above): Provides WebAssembly bindings for testing and external tooling; not used on-chain.
@@ -65,11 +65,11 @@ initialize(
 
 ??? interface "Accounts"
 
-    - `Bridge`: PDA to store global configuration.
-    - `GuardianSet`: PDA for Guardian set at index 0.
-    - `FeeCollector`: PDA to collect message posting fees.
-    - `Payer`: Funds account creation.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Bridge`**: PDA to store global configuration.
+    - **`GuardianSet`**: PDA for Guardian set at index 0.
+    - **`FeeCollector`**: PDA to collect message posting fees.
+    - **`Payer`**: Funds account creation.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -103,13 +103,13 @@ PostMessage {
 
 ??? interface "Accounts"
 
-    - `Bridge`: PDA for global config.
-    - `Message`: PDA where the posted message will be stored.
-    - `Emitter`: The emitting account (must sign).
-    - `Sequence`: PDA tracking the emitter’s message sequence.
-    - `Payer`: Pays for account creation and fees.
-    - `FeeCollector`: PDA that collects message fees.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Bridge`**: PDA for global config.
+    - **`Message`**: PDA where the posted message will be stored.
+    - **`Emitter`**: The emitting account (must sign).
+    - **`Sequence`**: PDA tracking the emitter’s message sequence.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`FeeCollector`**: PDA that collects message fees.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -145,13 +145,13 @@ PostMessageUnreliable {
 
 ??? interface "Accounts"
 
-    - `Bridge`: PDA for global config.
-    - `Message`: PDA where the posted message will be stored.
-    - `Emitter`: The emitting account (must sign).
-    - `Sequence`: PDA tracking the emitter’s message sequence.
-    - `Payer`: Pays for account creation and fees.
-    - `FeeCollector`: PDA that collects message fees.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Bridge`**: PDA for global config.
+    - **`Message`**: PDA where the posted message will be stored.
+    - **`Emitter`**: The emitting account (must sign).
+    - **`Sequence`**: PDA tracking the emitter’s message sequence.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`FeeCollector`**: PDA that collects message fees.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -183,11 +183,11 @@ VerifySignatures {
 
 ??? interface "Accounts"
 
-    - `Payer`: Pays for account creation and fees.
-    - `GuardianSet`: PDA holding the current Guardian set.
-    - `SignatureSet`: PDA that will store the verified signature data.
-    - `InstructionsSysvar`: Required to access prior instructions (e.g., secp256k1 sigverify).
-    - `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`GuardianSet`**: PDA holding the current Guardian set.
+    - **`SignatureSet`**: PDA that will store the verified signature data.
+    - **`InstructionsSysvar`**: Required to access prior instructions (e.g., secp256k1 sigverify).
+    - **`Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -217,12 +217,12 @@ PostVAA {
 
 ??? interface "Accounts"
 
-    - `GuardianSet`: PDA of the Guardian set used to verify the VAA.
-    - `Bridge`: Global Wormhole state.
-    - `SignatureSet`: Verified signature PDA (from verify_signatures).
-    - `PostedVAA`: PDA where the VAA will be stored.
-    - `Payer`: Funds the account creation.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`GuardianSet`**: PDA of the Guardian set used to verify the VAA.
+    - **`Bridge`**: Global Wormhole state.
+    - **`SignatureSet`**: Verified signature PDA (from verify_signatures).
+    - **`PostedVAA`**: PDA where the VAA will be stored.
+    - **`Payer`**: Funds the account creation.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -292,11 +292,11 @@ This function is called via governance and requires a valid governance VAA. The 
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: The PostedVAA account containing the governance message.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `SystemProgram`: Required by Solana for creating/initializing accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: The PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`SystemProgram`**: Required by Solana for creating/initializing accounts.
 
 ### transfer_fees
 
@@ -310,13 +310,13 @@ This function is triggered via a governance VAA and transfers the fee balance fr
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: PostedVAA account containing the governance message.
-    - `FeeCollector`: PDA holding the accumulated fees.
-    - `Recipient`: The account that will receive the fees.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `Rent`, `SystemProgram`: Standard Solana system accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`FeeCollector`**: PDA holding the accumulated fees.
+    - **`Recipient`**: The account that will receive the fees.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`Rent`, `SystemProgram`**: Standard Solana system accounts.
 
 ### upgrade_contract
 
@@ -330,18 +330,18 @@ This instruction allows authorized governance messages to trigger an upgrade of 
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: PostedVAA account containing the governance message.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `UpgradeAuthority`: PDA with authority to perform the upgrade (seeded with "upgrade").
-    - `Spill`: Account that receives remaining funds from the upgrade buffer.
-    - `NewContract`: Account holding the new program data.
-    - `ProgramData`: Metadata account for the upgradable program.
-    - `Program`: Current program to be upgraded.
-    - `Rent`, `Clock`: System accounts used during the upgrade process.
-    - `BPFLoaderUpgradeable`: Solana system program for upgrades.
-    - `SystemProgram`: Required by Solana for creating/initializing accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`UpgradeAuthority`**: PDA with authority to perform the upgrade (seeded with "upgrade").
+    - **`Spill`**: Account that receives remaining funds from the upgrade buffer.
+    - **`NewContract`**: Account holding the new program data.
+    - **`ProgramData`**: Metadata account for the upgradable program.
+    - **`Program`**: Current program to be upgraded.
+    - **`Rent`, `Clock`**: System accounts used during the upgrade process.
+    - **`BPFLoaderUpgradeable`**: Solana system program for upgrades.
+    - **`SystemProgram`**: Required by Solana for creating/initializing accounts.
 
 ### upgrade_guardian_set
 
@@ -355,13 +355,13 @@ This instruction replaces the active Guardian set with a new one, allowing the W
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: PostedVAA account containing the governance message.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `GuardianSetOld`: Current (active) Guardian set PDA.
-    - `GuardianSetNew`: PDA for the newly proposed Guardian set.
-    - `SystemProgram`: Standard Solana system accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`GuardianSetOld`**: Current (active) Guardian set PDA.
+    - **`GuardianSetNew`**: PDA for the newly proposed Guardian set.
+    - **`SystemProgram`**: Standard Solana system accounts.
 
 ## Errors
 
