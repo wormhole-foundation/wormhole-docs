@@ -1602,20 +1602,20 @@ Wormhole.sol (Proxy)
 ## State Variables
 
  - **`provider` ++"Structs.Provider"++**: Holds metadata like `chainId`, `governanceChainId`, and `governanceContract`. This is a nested struct.
- - **`guardianSets` ++"mapping(uint32 => GuardianSet)"++**: Mapping of all guardian sets by index.
- - **`guardianSetIndex` ++"uint32"++**: Index of the currently active guardian set.
- - **`guardianSetExpiry` ++"uint32"++**: How long a guardian set remains valid after it's replaced (in seconds).
+ - **`guardianSets` ++"mapping(uint32 => GuardianSet)"++**: Mapping of all Guardian sets by index.
+ - **`guardianSetIndex` ++"uint32"++**: Index of the currently active Guardian set.
+ - **`guardianSetExpiry` ++"uint32"++**: How long a Guardian set remains valid after it's replaced (in seconds).
  - **`sequences` ++"mapping(address => uint64)"++**: Tracks message sequences per emitter (used to enforce message ordering).
  - **`consumedGovernanceActions` ++"mapping(bytes32 => bool)"++**: Used to prevent governance VAAs from being reused (replay protection).
  - **`initializedImplementations` ++"mapping(address => bool)"++**: Tracks which implementation addresses have been initialized (for upgrade safety).
  - **`messageFee` ++"uint256"++**: The amount (in native gas token) required to post a message. Set via governance.
- - **`evmChainId` ++"uint256"++**: The actual EVM chain ID (e.g. 1 for Ethereum, 10 for Optimism). Used in fork recovery.
+ - **`evmChainId` ++"uint256"++**: The actual EVM chain ID (e.g., 1 for Ethereum, 10 for Optimism). Used in fork recovery.
 
 ## Events
 
 ### LogMessagePublished
 
-Emitted when a message is published via `publishMessage`. *(Defined in Implementation.sol)*
+Emitted when a message is published via `publishMessage`. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ```solidity
 event LogMessagePublished(
@@ -1659,7 +1659,7 @@ event LogMessagePublished(
 
 ### ContractUpgraded
 
-Emitted when the Core Contract is upgraded to a new implementation via governance. *(Defined in Governance.sol)*
+Emitted when the Core Contract is upgraded to a new implementation via governance. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ```solidity
 event ContractUpgraded(
@@ -1682,7 +1682,7 @@ event ContractUpgraded(
 
 ### GuardianSetAdded
 
-Emitted when a new Guardian set is registered via governance. *(Defined in Governance.sol)*
+Emitted when a new Guardian set is registered via governance. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ```solidity
 event GuardianSetAdded(
@@ -1698,7 +1698,7 @@ event GuardianSetAdded(
 
 ### LogGuardianSetChanged
 
-Emitted when the active Guardian set is changed. *(Defined in State.sol)*
+Emitted when the active Guardian set is changed. *(Defined in [State.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/State.sol){target=\_blank})*
 
 ```solidity
 event LogGuardianSetChanged(
@@ -1711,21 +1711,19 @@ event LogGuardianSetChanged(
 
     `oldGuardianIndex` ++"uint32"++
 
-    The previous active guardian set index.
+    The previous active Guardian set index.
 
     ---
 
     `newGuardianIndex` ++"uint32"++
 
-    The new active guardian set index.
-
-
+    The new active Guardian set index.
 
 ## Functions
 
 ### publishMessage
 
-Publishes a message to Wormhole's Guardian Network. *(Defined in Implementation.sol)*
+Publishes a message to Wormhole's Guardian Network. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ```solidity
 function publishMessage(
@@ -1761,7 +1759,7 @@ function publishMessage(
 
 ### getCurrentGuardianSetIndex
 
-Returns the index of the currently active Guardian set. *(Defined in Getters.sol)*
+Returns the index of the currently active Guardian set. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 Each VAA includes the index of the Guardian set that signed it. This function allows contracts to retrieve the current index, ensuring the VAA is verified against the correct set.
 
@@ -1777,7 +1775,7 @@ function getCurrentGuardianSetIndex() external view returns (uint32)
 
 ### getGuardianSet
 
-Retrieves metadata for a given Guardian set index. *(Defined in Getters.sol)*
+Retrieves metadata for a given Guardian set index. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function getGuardianSet(uint32 index) external view returns (address[] memory keys, uint32 expirationTime)
@@ -1803,7 +1801,7 @@ function getGuardianSet(uint32 index) external view returns (address[] memory ke
 
 ### getGuardianSetExpiry
 
-Returns the expiration time of a specific Guardian set index. *(Defined in Getters.sol)*
+Returns the expiration time of a specific Guardian set index. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function getGuardianSetExpiry(uint32 index) external view returns (uint32)
@@ -1823,7 +1821,7 @@ function getGuardianSetExpiry(uint32 index) external view returns (uint32)
 
 ### messageFee
 
-Returns the current fee (in native tokens) required to publish a message. *(Defined in Getters.sol)*
+Returns the current fee (in native tokens) required to publish a message. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function messageFee() public view returns (uint256)
@@ -1837,7 +1835,7 @@ function messageFee() public view returns (uint256)
 
 ### nextSequence
 
-Retrieves the next sequence number for a given emitter address. *(Defined in Getters.sol)*
+Retrieves the next sequence number for a given emitter address. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function nextSequence(address emitter) external view returns (uint64)
@@ -1857,7 +1855,7 @@ function nextSequence(address emitter) external view returns (uint64)
 
 ### parseAndVerifyVM
 
-Verifies signatures and parses a signed VAA. *(Defined in Messages.sol)*
+Verifies signatures and parses a signed VAA. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
 
 ```solidity
 function parseAndVerifyVM(bytes memory encodedVM)
@@ -1896,7 +1894,7 @@ function parseAndVerifyVM(bytes memory encodedVM)
 
 ### verifyVM
 
-Performs low-level VAA signature verification. *(Defined in Messages.sol)*
+Performs low-level VAA signature verification. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
 
 ```solidity
 function verifyVM(bytes memory encodedVM)
@@ -1923,7 +1921,7 @@ function verifyVM(bytes memory encodedVM)
 
 ### verifySignatures
 
-Used to verify individual Guardian signatures against a VAA digest. *(Defined in Messages.sol)*
+Used to verify individual Guardian signatures against a VAA digest. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
 
 ```solidity
 function verifySignatures(
@@ -1959,7 +1957,7 @@ function verifySignatures(
 
 ### quorum
 
-Returns the number of Guardian signatures required to reach quorum. *(Defined in Governance.sol)*
+Returns the number of Guardian signatures required to reach quorum. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ```solidity
 function quorum() public view returns (uint8)
@@ -1973,7 +1971,7 @@ function quorum() public view returns (uint8)
 
 ### chainId
 
-Returns Wormhole chain ID used internally by the protocol. *(Defined in Getters.sol)*
+Returns Wormhole chain ID used internally by the protocol. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function chainId() public view returns (uint16)
@@ -1987,7 +1985,7 @@ function chainId() public view returns (uint16)
 
 ### evmChainId
 
-Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in Getters.sol)*
+Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function evmChainId() public view returns (uint256)
@@ -2001,69 +1999,69 @@ function evmChainId() public view returns (uint256)
 
 ## Errors
 
-### invalid fee
+### Invalid Fee
 
-Reverts when the message fee (`msg.value`) sent is not equal to the required fee returned by `messageFee()`. *(Defined in Implementation.sol)*
+Reverts when the message fee (`msg.value`) sent is not equal to the required fee returned by `messageFee()`. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
-### unsupported
+### Unsupported
 
-Reverts on any call to the fallback function. The contract does not support arbitrary calls. *(Defined in Implementation.sol)*
+Reverts on any call to the fallback function. The contract does not support arbitrary calls. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
-### the Wormhole contract does not accept assets
+### The Wormhole Contract Does Not Accept Assets
 
-Reverts when native tokens (ETH) are sent directly to the contract via the `receive()` function. *(Defined in Implementation.sol)*
+Reverts when native tokens (ETH) are sent directly to the contract via the `receive()` function. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
-### already initialized
+### Already Initialized
 
-Reverts when trying to call `initialize()` on an implementation that has already been initialized. *(Defined in Implementation.sol, via `initializer` modifier)*
+Reverts when trying to call `initialize()` on an implementation that has already been initialized. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank}, via `initializer` modifier)*
 
-### unknown chain id
+### Unknown Chain ID
 
-Reverts inside the `initialize()` function if the chain ID stored by the contract does not match any known Wormhole chain. *(Defined in Implementation.sol)*
+Reverts inside the `initialize()` function if the chain ID stored by the contract does not match any known Wormhole chain. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
-### invalid fork
+### Invalid Fork
 
-Reverts when attempting to perform a governance action intended only for forked chains on a non-forked chain. *(Defined in Governance.sol)*
+Reverts when attempting to perform a governance action intended only for forked chains on a non-forked chain. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### invalid module
+### Invalid Module
 
-Reverts if the VAA’s module field doesn’t match the expected "Core" module. *(Defined in Governance.sol)*
+Reverts if the VAA’s module field doesn’t match the expected "Core" module. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### invalid chain
+### Invalid Chain
 
-Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in Governance.sol)*
+Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### new guardian set is empty
+### New Guardian Set is Empty
 
-Reverts when trying to register a new Guardian set that has no keys. *(Defined in Governance.sol)*
+Reverts when trying to register a new Guardian set that has no keys. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### index must increase in steps of 1
+### Index Must Increase in Steps of 1
 
-Reverts when the new Guardian set index is not exactly one greater than the current. *(Defined in Governance.sol)*
+Reverts when the new Guardian set index is not exactly one greater than the current. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### not a fork
+### Not a Fork
 
-Reverts when trying to recover chain ID on a non-forked chain. *(Defined in Governance.sol)*
+Reverts when trying to recover chain ID on a non-forked chain. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### invalid EVM Chain
+### Invalid EVM Chain
 
-Reverts if the recovered chain ID doesn't match the current `block.chainid`. *(Defined in Governance.sol)*
+Reverts if the recovered chain ID doesn't match the current `block.chainid`. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### governance action already consumed
+### Governance Action Already Consumed
 
-Reverts when the same governance VAA is submitted more than once. *(Defined in Governance.sol)*
+Reverts when the same governance VAA is submitted more than once. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### wrong governance contract
+### Wrong Governance Contract
 
-Reverts when the governance VAA’s emitter address doesn't match the expected governance contract address. *(Defined in Governance.sol)*
+Reverts when the governance VAA’s emitter address doesn't match the expected governance contract address. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### wrong governance chain
+### Wrong Governance Chain
 
-Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in Governance.sol)*
+Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
-### not signed by current guardian set
+### Not Signed by Current Guardian Set
 
-Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in Governance.sol)*
+Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/core-contract-solana.md
@@ -2076,7 +2074,7 @@ categories: Basics
 
 # Core Contract (Solana)
 
-The [Wormhole Core Program on Solana](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/lib.rs){target=\_blank} is a native Solana program responsible for posting, verifying, and relaying Wormhole messages (VAAs). It implements core messaging functionality, guardian set updates, and upgradeability.
+The [Wormhole Core Program on Solana](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/lib.rs){target=\_blank} is a native Solana program responsible for posting, verifying, and relaying Wormhole messages (VAAs). It implements core messaging functionality, Guardian set updates, and upgradeability.
 
 ## Structure Overview
 
@@ -2099,10 +2097,10 @@ lib.rs
 **Key Components:**
 
  - **lib.rs**: Program entry point and instruction dispatcher. Registers all handlers and exposes the on-chain processor.
- - **instructions.rs**: Defines the WormholeInstruction enum and maps it to individual instruction handlers.
+ - **instructions.rs**: Defines the `WormholeInstruction` enum and maps it to individual instruction handlers.
  - **accounts.rs**: Specifies the account constraints and validation logic for each instruction.
  - **api.rs**: Contains the main logic for processing instructions such as message posting, VAA verification, upgrades, and governance actions.
- - **types.rs**: Defines shared structs and enums used throughout the program, including configuration and GuardianSet formats.
+ - **types.rs**: Defines shared structs and enums used throughout the program, including configuration and `GuardianSet` formats.
  - **vaa.rs**: Implements VAA parsing, hashing, and signature-related logic used to verify Wormhole messages.
  - **error.rs** (not listed above): Defines custom error types used across the program for precise failure handling.
  - **wasm.rs** (not listed above): Provides WebAssembly bindings for testing and external tooling; not used on-chain.
@@ -2111,8 +2109,8 @@ lib.rs
 
 Below are on-chain PDAs used to store persistent state for the core contract. All are derived using deterministic seeds with the program ID.
 
- - **`bridge` ++"BridgeData"++**: Stores global config like the active guardian set index, message fee, and guardian set expiration time. (Derived at PDA seed `["Bridge"]`)
- - **`guardianSets` ++"GuardianSetData"++**: Mapping of guardian sets by index. Each guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed `["GuardianSet", index]`)
+ - **`bridge` ++"BridgeData"++**: Stores global config like the active Guardian set index, message fee, and Guardian set expiration time. (Derived at PDA seed `["Bridge"]`)
+ - **`guardianSets` ++"GuardianSetData"++**: Mapping of Guardian sets by index. Each Guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed `["GuardianSet", index]`)
  - **`sequences` ++"SequenceTracker"++**: Tracks the last sequence number used by each emitter, enforcing strict message ordering. (Derived at PDA seed `["Sequence", emitter]`)
  - **`postedVAAs` ++"PostedVAAData"++**: Stores verified and finalized VAAs, preventing replay. (Derived at PDA seed `["PostedVAA", hash]`)
  - **`claims` ++"ClaimData"++**: Tracks consumed governance VAAs to ensure replay protection. (Derived at PDA seed `["Claim", emitter, sequence]`)
@@ -2122,7 +2120,7 @@ Below are on-chain PDAs used to store persistent state for the core contract. Al
 
 ### initialize
 
-Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time. *(Defined in api/initialize.rs)*
+Initializes the Wormhole Core contract on Solana with a Guardian set and fee configuration. This should be called only once at deployment time. *(Defined in [api/initialize.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/initialize.rs){target=\_blank})*
 
 ```rust
 initialize(
@@ -2135,11 +2133,11 @@ initialize(
 
 ??? interface "Accounts"
 
-    - `Bridge`: PDA to store global configuration.
-    - `GuardianSet`: PDA for guardian set at index 0.
-    - `FeeCollector`: PDA to collect message posting fees.
-    - `Payer`: Funds account creation.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Bridge`**: PDA to store global configuration.
+    - **`GuardianSet`**: PDA for Guardian set at index 0.
+    - **`FeeCollector`**: PDA to collect message posting fees.
+    - **`Payer`**: Funds account creation.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -2151,17 +2149,17 @@ initialize(
 
     `guardian_set_expiration_time` ++"u32"++
 
-    Time in seconds after which the guardian set expires.
+    Time in seconds after which the Guardian set expires.
 
     ---
 
     `initial_guardians` ++"[[u8; 20]]"++
 
-    List of guardian public key hashes (Ethereum-style addresses).
+    List of Guardian public key hashes (Ethereum-style addresses).
 
 ### post_message
 
-Posts a Wormhole message to the Solana Core contract. *(Defined in api/post_message.rs)*
+Posts a Wormhole message to the Solana Core contract. *(Defined in [api/post_message.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank})*
 
 ```rust
 PostMessage {
@@ -2173,13 +2171,13 @@ PostMessage {
 
 ??? interface "Accounts"
 
-    - `Bridge`: PDA for global config.
-    - `Message`: PDA where the posted message will be stored.
-    - `Emitter`: The emitting account (must sign).
-    - `Sequence`: PDA tracking the emitter’s message sequence.
-    - `Payer`: Pays for account creation and fees.
-    - `FeeCollector`: PDA that collects message fees.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Bridge`**: PDA for global config.
+    - **`Message`**: PDA where the posted message will be stored.
+    - **`Emitter`**: The emitting account (must sign).
+    - **`Sequence`**: PDA tracking the emitter’s message sequence.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`FeeCollector`**: PDA that collects message fees.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -2203,7 +2201,7 @@ PostMessage {
 
 ### post_message_unreliable
 
-Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical. *(Defined in api/post_message_unreliable.rs)*
+Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical. *(Defined in [api/post_message.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank})*
 
 ```rust
 PostMessageUnreliable {
@@ -2215,13 +2213,13 @@ PostMessageUnreliable {
 
 ??? interface "Accounts"
 
-    - `Bridge`: PDA for global config.
-    - `Message`: PDA where the posted message will be stored.
-    - `Emitter`: The emitting account (must sign).
-    - `Sequence`: PDA tracking the emitter’s message sequence.
-    - `Payer`: Pays for account creation and fees.
-    - `FeeCollector`: PDA that collects message fees.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Bridge`**: PDA for global config.
+    - **`Message`**: PDA where the posted message will be stored.
+    - **`Emitter`**: The emitting account (must sign).
+    - **`Sequence`**: PDA tracking the emitter’s message sequence.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`FeeCollector`**: PDA that collects message fees.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -2239,11 +2237,11 @@ PostMessageUnreliable {
 
     `consistency_level` ++"u8"++
 
-    Level of finality required before the message is processed. `1` = Confirmed, `2` = Finalized.
+    Level of finality required before the message is processed. `1` = Confirmed, `32` = Finalized.
 
 ### verify_signatures
 
-Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA. *(Defined in api/verify_signatures.rs)*
+Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA. *(Defined in [api/verify_signatures.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/verify_signature.rs){target=\_blank})*
 
 ```rust
 VerifySignatures {
@@ -2253,23 +2251,23 @@ VerifySignatures {
 
 ??? interface "Accounts"
 
-    - `Payer`: Pays for account creation and fees.
-    - `GuardianSet`: PDA holding the current guardian set.
-    - `SignatureSet`: PDA that will store the verified signature data.
-    - `InstructionsSysvar`: Required to access prior instructions (e.g., secp256k1 sigverify).
-    - `Rent`, `SystemProgram`: Solana system accounts.
+    - **`Payer`**: Pays for account creation and fees.
+    - **`GuardianSet`**: PDA holding the current Guardian set.
+    - **`SignatureSet`**: PDA that will store the verified signature data.
+    - **`InstructionsSysvar`**: Required to access prior instructions (e.g., secp256k1 sigverify).
+    - **`Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
     `signers` ++"[i8; 19]"++
 
-    A mapping from guardian index to its position in the instruction payload (or -1 if not present).
+    A mapping from Guardian index to its position in the instruction payload (or -1 if not present).
 
-    Used to correlate secp256k1 verify instructions with guardian set entries.
+    Used to correlate secp256k1 verify instructions with Guardian set entries.
 
 ### post_vaa
 
-Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed. *(Defined in api/post_vaa.rs)*
+Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed. *(Defined in [api/post_vaa.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_vaa.rs){target=\_blank})*
 
 ```rust
 PostVAA {
@@ -2287,12 +2285,12 @@ PostVAA {
 
 ??? interface "Accounts"
 
-    - `GuardianSet`: PDA of the guardian set used to verify the VAA.
-    - `Bridge`: Global Wormhole state.
-    - `SignatureSet`: Verified signature PDA (from verify_signatures).
-    - `PostedVAA`: PDA where the VAA will be stored.
-    - `Payer`: Funds the account creation.
-    - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
+    - **`GuardianSet`**: PDA of the Guardian set used to verify the VAA.
+    - **`Bridge`**: Global Wormhole state.
+    - **`SignatureSet`**: Verified signature PDA (from verify_signatures).
+    - **`PostedVAA`**: PDA where the VAA will be stored.
+    - **`Payer`**: Funds the account creation.
+    - **`Clock`, `Rent`, `SystemProgram`**: Solana system accounts.
 
 ??? interface "Parameters"
 
@@ -2352,7 +2350,7 @@ PostVAA {
 
 ### set_fees
 
-Updates the message posting fee for the core bridge contract. *(Defined in api/governance.rs)*
+Updates the message posting fee for the core bridge contract. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 SetFees {}
@@ -2362,15 +2360,15 @@ This function is called via governance and requires a valid governance VAA. The 
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: The PostedVAA account containing the governance message.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `SystemProgram`: Required by Solana for creating/initializing accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: The PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`SystemProgram`**: Required by Solana for creating/initializing accounts.
 
 ### transfer_fees
 
-Transfers the accumulated message posting fees from the contract to a specified recipient. *(Defined in api/governance.rs)*
+Transfers the accumulated message posting fees from the contract to a specified recipient. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 TransferFees {}
@@ -2380,17 +2378,17 @@ This function is triggered via a governance VAA and transfers the fee balance fr
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: PostedVAA account containing the governance message.
-    - `FeeCollector`: PDA holding the accumulated fees.
-    - `Recipient`: The account that will receive the fees.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `Rent`, `SystemProgram`: Standard Solana system accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`FeeCollector`**: PDA holding the accumulated fees.
+    - **`Recipient`**: The account that will receive the fees.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`Rent`, `SystemProgram`**: Standard Solana system accounts.
 
 ### upgrade_contract
 
-Upgrades the deployed Wormhole program using a governance VAA. *(Defined in api/governance.rs)*
+Upgrades the deployed Wormhole program using a governance VAA. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 UpgradeContract {}
@@ -2400,120 +2398,120 @@ This instruction allows authorized governance messages to trigger an upgrade of 
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: PostedVAA account containing the governance message.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `UpgradeAuthority`: PDA with authority to perform the upgrade (seeded with "upgrade").
-    - `Spill`: Account that receives remaining funds from the upgrade buffer.
-    - `NewContract`: Account holding the new program data.
-    - `ProgramData`: Metadata account for the upgradable program.
-    - `Program`: Current program to be upgraded.
-    - `Rent`, `Clock`: System accounts used during the upgrade process.
-    - `BPFLoaderUpgradeable`: Solana system program for upgrades.
-    - `SystemProgram`: Required by Solana for creating/initializing accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`UpgradeAuthority`**: PDA with authority to perform the upgrade (seeded with "upgrade").
+    - **`Spill`**: Account that receives remaining funds from the upgrade buffer.
+    - **`NewContract`**: Account holding the new program data.
+    - **`ProgramData`**: Metadata account for the upgradable program.
+    - **`Program`**: Current program to be upgraded.
+    - **`Rent`, `Clock`**: System accounts used during the upgrade process.
+    - **`BPFLoaderUpgradeable`**: Solana system program for upgrades.
+    - **`SystemProgram`**: Required by Solana for creating/initializing accounts.
 
 ### upgrade_guardian_set
 
-Upgrades the current guardian set using a governance VAA. *(Defined in api/governance.rs)*
+Upgrades the current Guardian set using a governance VAA. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 UpgradeGuardianSet {}
 ```
 
-This instruction replaces the active guardian set with a new one, allowing the Wormhole network to rotate its validator keys securely through governance.
+This instruction replaces the active Guardian set with a new one, allowing the Wormhole network to rotate its validator keys securely through governance.
 
 ??? interface "Accounts"
 
-    - `Payer`: Funds transaction execution.
-    - `Bridge`: PDA storing global Wormhole state.
-    - `Message`: PostedVAA account containing the governance message.
-    - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `GuardianSetOld`: Current (active) guardian set PDA.
-    - `GuardianSetNew`: PDA for the newly proposed guardian set.
-    - `SystemProgram`: Standard Solana system accounts.
+    - **`Payer`**: Funds transaction execution.
+    - **`Bridge`**: PDA storing global Wormhole state.
+    - **`Message`**: PostedVAA account containing the governance message.
+    - **`Claim`**: PDA that ensures this governance message hasn't been processed already.
+    - **`GuardianSetOld`**: Current (active) Guardian set PDA.
+    - **`GuardianSetNew`**: PDA for the newly proposed Guardian set.
+    - **`SystemProgram`**: Standard Solana system accounts.
 
 ## Errors
 
 ### GuardianSetMismatch
 
-The guardian set index does not match the expected value. *(Defined in error.rs)*
+The Guardian set index does not match the expected value. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InstructionAtWrongIndex
 
-The instruction was found at the wrong index. *(Defined in error.rs)*
+The instruction was found at the wrong index. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InsufficientFees
 
-Insufficient fees were provided to post the message. *(Defined in error.rs)*
+Insufficient fees were provided to post the message. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidFeeRecipient
 
-The recipient address does not match the one specified in the governance VAA. *(Defined in error.rs)*
+The recipient address does not match the one specified in the governance VAA. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceAction
 
-The action specified in the governance payload is invalid. *(Defined in error.rs)*
+The action specified in the governance payload is invalid. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceChain
 
-The governance VAA was not emitted by a valid governance chain. *(Defined in error.rs)*
+The governance VAA was not emitted by a valid governance chain. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceKey
 
-The emitter address in the governance VAA is not the expected governance key. *(Defined in error.rs)*
+The emitter address in the governance VAA is not the expected governance key. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceModule
 
-The module string in the governance VAA header is invalid. *(Defined in error.rs)*
+The module string in the governance VAA header is invalid. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceWithdrawal
 
-Fee withdrawal would cause the fee collector account to drop below rent-exempt balance. *(Defined in error.rs)*
+Fee withdrawal would cause the fee collector account to drop below rent-exempt balance. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGuardianSetUpgrade
 
-The guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in error.rs)*
+The Guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidHash
 
-The hash computed from the VAA does not match the expected result. *(Defined in error.rs)*
+The hash computed from the VAA does not match the expected result. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidSecpInstruction
 
-The SECP256k1 instruction used for signature verification is malformed. *(Defined in error.rs)*
+The SECP256k1 instruction used for signature verification is malformed. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### MathOverflow
 
-An arithmetic overflow occurred during computation. *(Defined in error.rs)*
+An arithmetic overflow occurred during computation. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### PostVAAConsensusFailed
 
-Not enough valid signatures were collected to achieve quorum. *(Defined in error.rs)*
+Not enough valid signatures were collected to achieve quorum. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### PostVAAGuardianSetExpired
 
-The guardian set used to verify the VAA has already expired. *(Defined in error.rs)*
+The Guardian set used to verify the VAA has already expired. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### TooManyGuardians
 
-The guardian set exceeds the maximum allowed number of guardians. *(Defined in error.rs)*
+The Guardian set exceeds the maximum allowed number of guardians. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### VAAAlreadyExecuted
 
-The VAA has already been executed and cannot be processed again. *(Defined in error.rs)*
+The VAA has already been executed and cannot be processed again. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### VAAInvalid
 
-The VAA is structurally invalid or fails to decode. *(Defined in error.rs)*
+The VAA is structurally invalid or fails to decode. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidPayloadLength
 
-The payload length is incorrect or malformed. *(Defined in error.rs)*
+The payload length is incorrect or malformed. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### EmitterChanged
 
-The emitter address changed unexpectedly. *(Defined in error.rs)*
+The emitter address changed unexpectedly. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/reference/relayer-contract.md
