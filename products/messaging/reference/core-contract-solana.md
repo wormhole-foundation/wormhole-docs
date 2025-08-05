@@ -6,7 +6,7 @@ categories: Basics
 
 # Core Contract (Solana)
 
-The [Wormhole Core Program on Solana](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/lib.rs){target=\_blank} is a native Solana program responsible for posting, verifying, and relaying Wormhole messages (VAAs). It implements core messaging functionality, guardian set updates, and upgradeability.
+The [Wormhole Core Program on Solana](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/lib.rs){target=\_blank} is a native Solana program responsible for posting, verifying, and relaying Wormhole messages (VAAs). It implements core messaging functionality, Guardian set updates, and upgradeability.
 
 ## Structure Overview
 
@@ -41,8 +41,8 @@ lib.rs
 
 Below are on-chain PDAs used to store persistent state for the core contract. All are derived using deterministic seeds with the program ID.
 
- - **`bridge` ++"BridgeData"++**: Stores global config like the active guardian set index, message fee, and guardian set expiration time. (Derived at PDA seed `["Bridge"]`)
- - **`guardianSets` ++"GuardianSetData"++**: Mapping of guardian sets by index. Each guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed `["GuardianSet", index]`)
+ - **`bridge` ++"BridgeData"++**: Stores global config like the active Guardian set index, message fee, and Guardian set expiration time. (Derived at PDA seed `["Bridge"]`)
+ - **`guardianSets` ++"GuardianSetData"++**: Mapping of Guardian sets by index. Each Guardian set includes public key hashes and creation/expiration times. (Derived at PDA seed `["GuardianSet", index]`)
  - **`sequences` ++"SequenceTracker"++**: Tracks the last sequence number used by each emitter, enforcing strict message ordering. (Derived at PDA seed `["Sequence", emitter]`)
  - **`postedVAAs` ++"PostedVAAData"++**: Stores verified and finalized VAAs, preventing replay. (Derived at PDA seed `["PostedVAA", hash]`)
  - **`claims` ++"ClaimData"++**: Tracks consumed governance VAAs to ensure replay protection. (Derived at PDA seed `["Claim", emitter, sequence]`)
@@ -52,7 +52,7 @@ Below are on-chain PDAs used to store persistent state for the core contract. Al
 
 ### initialize
 
-Initializes the Wormhole Core contract on Solana with a guardian set and fee configuration. This should be called only once at deployment time. *(Defined in api/initialize.rs)*
+Initializes the Wormhole Core contract on Solana with a Guardian set and fee configuration. This should be called only once at deployment time. *(Defined in api/initialize.rs)*
 
 ```rust
 initialize(
@@ -66,7 +66,7 @@ initialize(
 ??? interface "Accounts"
 
     - `Bridge`: PDA to store global configuration.
-    - `GuardianSet`: PDA for guardian set at index 0.
+    - `GuardianSet`: PDA for Guardian set at index 0.
     - `FeeCollector`: PDA to collect message posting fees.
     - `Payer`: Funds account creation.
     - `Clock`, `Rent`, `SystemProgram`: Solana system accounts.
@@ -81,13 +81,13 @@ initialize(
 
     `guardian_set_expiration_time` ++"u32"++
 
-    Time in seconds after which the guardian set expires.
+    Time in seconds after which the Guardian set expires.
 
     ---
 
     `initial_guardians` ++"[[u8; 20]]"++
 
-    List of guardian public key hashes (Ethereum-style addresses).
+    List of Guardian public key hashes (Ethereum-style addresses).
 
 ### post_message
 
@@ -184,7 +184,7 @@ VerifySignatures {
 ??? interface "Accounts"
 
     - `Payer`: Pays for account creation and fees.
-    - `GuardianSet`: PDA holding the current guardian set.
+    - `GuardianSet`: PDA holding the current Guardian set.
     - `SignatureSet`: PDA that will store the verified signature data.
     - `InstructionsSysvar`: Required to access prior instructions (e.g., secp256k1 sigverify).
     - `Rent`, `SystemProgram`: Solana system accounts.
@@ -193,9 +193,9 @@ VerifySignatures {
 
     `signers` ++"[i8; 19]"++
 
-    A mapping from guardian index to its position in the instruction payload (or -1 if not present).
+    A mapping from Guardian index to its position in the instruction payload (or -1 if not present).
 
-    Used to correlate secp256k1 verify instructions with guardian set entries.
+    Used to correlate secp256k1 verify instructions with Guardian set entries.
 
 ### post_vaa
 
@@ -217,7 +217,7 @@ PostVAA {
 
 ??? interface "Accounts"
 
-    - `GuardianSet`: PDA of the guardian set used to verify the VAA.
+    - `GuardianSet`: PDA of the Guardian set used to verify the VAA.
     - `Bridge`: Global Wormhole state.
     - `SignatureSet`: Verified signature PDA (from verify_signatures).
     - `PostedVAA`: PDA where the VAA will be stored.
@@ -345,13 +345,13 @@ This instruction allows authorized governance messages to trigger an upgrade of 
 
 ### upgrade_guardian_set
 
-Upgrades the current guardian set using a governance VAA. *(Defined in api/governance.rs)*
+Upgrades the current Guardian set using a governance VAA. *(Defined in api/governance.rs)*
 
 ```rust
 UpgradeGuardianSet {}
 ```
 
-This instruction replaces the active guardian set with a new one, allowing the Wormhole network to rotate its validator keys securely through governance.
+This instruction replaces the active Guardian set with a new one, allowing the Wormhole network to rotate its validator keys securely through governance.
 
 ??? interface "Accounts"
 
@@ -359,15 +359,15 @@ This instruction replaces the active guardian set with a new one, allowing the W
     - `Bridge`: PDA storing global Wormhole state.
     - `Message`: PostedVAA account containing the governance message.
     - `Claim`: PDA that ensures this governance message hasn't been processed already.
-    - `GuardianSetOld`: Current (active) guardian set PDA.
-    - `GuardianSetNew`: PDA for the newly proposed guardian set.
+    - `GuardianSetOld`: Current (active) Guardian set PDA.
+    - `GuardianSetNew`: PDA for the newly proposed Guardian set.
     - `SystemProgram`: Standard Solana system accounts.
 
 ## Errors
 
 ### GuardianSetMismatch
 
-The guardian set index does not match the expected value. *(Defined in error.rs)*
+The Guardian set index does not match the expected value. *(Defined in error.rs)*
 
 ### InstructionAtWrongIndex
 
@@ -403,7 +403,7 @@ Fee withdrawal would cause the fee collector account to drop below rent-exempt b
 
 ### InvalidGuardianSetUpgrade
 
-The guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in error.rs)*
+The Guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in error.rs)*
 
 ### InvalidHash
 
@@ -423,11 +423,11 @@ Not enough valid signatures were collected to achieve quorum. *(Defined in error
 
 ### PostVAAGuardianSetExpired
 
-The guardian set used to verify the VAA has already expired. *(Defined in error.rs)*
+The Guardian set used to verify the VAA has already expired. *(Defined in error.rs)*
 
 ### TooManyGuardians
 
-The guardian set exceeds the maximum allowed number of guardians. *(Defined in error.rs)*
+The Guardian set exceeds the maximum allowed number of guardians. *(Defined in error.rs)*
 
 ### VAAAlreadyExecuted
 
