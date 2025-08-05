@@ -44,3 +44,255 @@ DeliveryProvider.sol (Standalone)
  - **`chainHash` ++"uint256"++**: EVM chain ID hash used for cross-checking delivery source chain.
  - **`implementation` ++"address"++**: Address of the current logic contract (used in proxy pattern).
 
+### Events
+
+### SendEvent
+
+Emitted when a delivery request is sent to another chain. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
+
+```solidity
+event SendEvent(
+    uint64 indexed sequence,
+    uint16 indexed targetChain,
+    address indexed refundAddress,
+    uint256 cost,
+    bytes payload
+)
+```
+
+??? interface "Parameters"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the Wormhole message sent.
+
+    ---
+
+    `targetChain` ++"uint16"++
+    Wormhole chain ID of the target chain.
+
+    ---
+
+    `refundAddress` ++"address"++
+    Address that will receive any excess fees refunded.
+
+    ---
+
+    `cost` ++"uint256"++
+    Total cost paid for the delivery (message fee + gas).
+
+    ---
+
+    `payload` ++"bytes"++
+    The encoded delivery request payload.
+
+### Delivery
+
+Emitted when a delivery is executed on the destination chain. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=_blank})
+
+```solidity
+event Delivery(
+    uint64 indexed sourceSequence,
+    uint16 indexed sourceChain,
+    address indexed recipient,
+    bytes32 deliveryHash,
+    uint256 gasUsed
+)
+```
+
+??? interface "Parameters"
+
+    `sourceSequence` ++"uint64"++
+
+    Sequence number of the original delivery request.
+
+    ---
+
+    `sourceChain` ++"uint16"++
+    Wormhole chain ID where the delivery request originated.
+
+    ---
+
+    `recipient` ++"address"++
+    Contract that received the delivery.
+
+    ---
+
+    `deliveryHash` ++"bytes32"++
+    Hash of the delivery request.
+
+    ---
+
+    `gasUsed` ++"uint256"++
+    Actual gas used for execution.
+
+### DeliverySuccess
+
+Emitted when a delivery finishes successfully. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
+
+```solidity
+event DeliverySuccess(
+    bytes32 indexed deliveryHash
+)
+```
+
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the successfully completed delivery.
+
+### DeliveryFailure
+
+Emitted when a delivery fails during execution. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
+
+```solidity
+event DeliveryFailure(
+    bytes32 indexed deliveryHash,
+    string reason
+)
+```
+
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the delivery request that failed.
+
+    ---
+
+    `reason` ++"string"++
+
+    Reason for failure (error message).
+
+### RewardAddressSet
+
+Emitted when the reward address for a delivery provider is updated. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/DeliveryProvider.sol){target=\_blank})
+
+```solidity
+event RewardAddressSet(
+    address indexed newRewardAddress
+)
+```
+
+??? interface "Parameters"
+
+    `newRewardAddress` ++"address"++
+
+    Address where rewards for this delivery provider will be sent.  
+
+### GasPriceUpdated
+
+Emitted when the gas price for a specific chain is updated. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/DeliveryProvider.sol){target=\_blank})
+
+```solidity
+event GasPriceUpdated(
+    uint16 indexed targetChain,
+    uint256 newGasPrice
+)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID for which the gas price was updated.  
+
+    ---  
+
+    `newGasPrice` ++"uint256"++
+
+    New gas price (in the smallest denomination of the native token for that chain).  
+
+### TargetChainAddressUpdated
+
+Emitted when the relayer’s address on a target chain is updated. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/DeliveryProvider.sol){target=\_blank})
+
+```solidity
+event TargetChainAddressUpdated(
+    uint16 indexed targetChain,
+    bytes32 newAddress
+)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the target chain.  
+
+    ---  
+
+    `newAddress` ++"bytes32"++
+
+    New relayer address on the target chain (in Wormhole format).  
+
+### AssetConversionBufferUpdated
+
+Emitted when the asset conversion buffer is updated. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/DeliveryProvider.sol){target=\_blank})
+
+```solidity
+event AssetConversionBufferUpdated(
+    uint16 indexed targetChain,
+    uint16 buffer
+)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the target chain.  
+
+    ---  
+
+    `buffer` ++"uint16"++
+
+    Buffer percentage applied to asset conversion rates for this chain.  
+
+### AssetConversionUpdated
+
+Emitted when the asset conversion rate for a target chain is updated. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/DeliveryProvider.sol){target=\_blank})
+
+```solidity
+event AssetConversionUpdated(
+    uint16 indexed targetChain,
+    uint256 conversionRate
+)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the target chain.  
+
+    ---  
+
+    `conversionRate` ++"uint256"++
+
+    New conversion rate (in smallest denomination of the asset).  
+
+### TargetChainDefaultDeliveryProviderSet
+
+Emitted when the default delivery provider for a target chain is updated. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/DeliveryProvider.sol){target=\_blank})
+
+```solidity
+event TargetChainDefaultDeliveryProviderSet(
+    uint16 indexed targetChain,
+    address indexed newDeliveryProvider
+)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the target chain.  
+
+    ---  
+
+    `newDeliveryProvider` ++"address"++
+
+    Address of the new default delivery provider for this chain.  
+
