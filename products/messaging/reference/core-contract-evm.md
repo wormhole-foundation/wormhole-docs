@@ -37,9 +37,9 @@ Wormhole.sol (Proxy)
 ## State Variables
 
  - **`provider` ++"Structs.Provider"++**: Holds metadata like `chainId`, `governanceChainId`, and `governanceContract`. This is a nested struct.
- - **`guardianSets` ++"mapping(uint32 => GuardianSet)"++**: Mapping of all guardian sets by index.
- - **`guardianSetIndex` ++"uint32"++**: Index of the currently active guardian set.
- - **`guardianSetExpiry` ++"uint32"++**: How long a guardian set remains valid after it's replaced (in seconds).
+ - **`guardianSets` ++"mapping(uint32 => GuardianSet)"++**: Mapping of all Guardian sets by index.
+ - **`guardianSetIndex` ++"uint32"++**: Index of the currently active Guardian set.
+ - **`guardianSetExpiry` ++"uint32"++**: How long a Guardian set remains valid after it's replaced (in seconds).
  - **`sequences` ++"mapping(address => uint64)"++**: Tracks message sequences per emitter (used to enforce message ordering).
  - **`consumedGovernanceActions` ++"mapping(bytes32 => bool)"++**: Used to prevent governance VAAs from being reused (replay protection).
  - **`initializedImplementations` ++"mapping(address => bool)"++**: Tracks which implementation addresses have been initialized (for upgrade safety).
@@ -146,13 +146,13 @@ event LogGuardianSetChanged(
 
     `oldGuardianIndex` ++"uint32"++
 
-    The previous active guardian set index.
+    The previous active Guardian set index.
 
     ---
 
     `newGuardianIndex` ++"uint32"++
 
-    The new active guardian set index.
+    The new active Guardian set index.
 
 
 
@@ -468,7 +468,7 @@ Reverts if the VAA’s module field doesn’t match the expected "Core" module. 
 
 Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in Governance.sol)*
 
-### new guardian set is empty
+### new Guardian set is empty
 
 Reverts when trying to register a new Guardian set that has no keys. *(Defined in Governance.sol)*
 
@@ -496,6 +496,6 @@ Reverts when the governance VAA’s emitter address doesn't match the expected g
 
 Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in Governance.sol)*
 
-### not signed by current guardian set
+### not signed by current Guardian set
 
 Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in Governance.sol)*
