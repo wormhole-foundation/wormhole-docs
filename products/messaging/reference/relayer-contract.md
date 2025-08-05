@@ -989,3 +989,45 @@ function submitContractUpgrade(bytes memory encodedVm) external
     `encodedVm` ++"bytes"++
 
     Signed governance VM that encodes the new implementation address.
+
+## Errors
+
+### InvalidDeliveryVaa
+
+Thrown when the delivery VAA fails parseAndVerifyVM. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### InvalidEmitter
+
+Emitted when the VAA emitter is not the registered Wormhole Relayer for the source chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### InsufficientRelayerFunds
+
+Reverts if msg.value is less than the required execution + refund budget on the target chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### TargetChainIsNotThisChain
+
+Reverts when the instruction’s targetChain does not match the current chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### MessageKeysLengthDoesNotMatchMessagesLength
+
+Reverts when the provided message keys do not match the number of delivered messages. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### VaaKeysDoNotMatchVaas
+
+Reverts when described VAAs don’t match the actual VAAs delivered. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### InvalidOverrideGasLimit
+
+Reverts if a redelivery override sets a gas limit lower than the original. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### InvalidOverrideReceiverValue
+
+Reverts if a redelivery override sets a receiver value lower than the original. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### InvalidMsgValue
+
+Reverts when msg.value does not equal wormholeMessageFee + deliveryQuote + paymentForExtraReceiverValue. (Used in WormholeRelayerBase.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+
+### ReentrantDelivery
+
+Reverts on re-entrant calls to relayer entrypoints guarded by nonReentrant. (Used in WormholeRelayerBase.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
