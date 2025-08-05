@@ -811,6 +811,12 @@ function quoteNativeForChain(
 
     Address of the chosen provider (implements `IDeliveryProvider`).
 
+??? interface "Returns"
+
+    `targetChainAmount` ++"TargetNative"++
+
+    Extra destination-chain wei that will be added to the call’s value.
+
 ### getDefaultDeliveryProvider
 
 Returns the current default delivery provider address. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
