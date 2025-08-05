@@ -50,7 +50,7 @@ Wormhole.sol (Proxy)
 
 ### LogMessagePublished
 
-Emitted when a message is published via `publishMessage`. *(Defined in Implementation.sol)*
+Emitted when a message is published via `publishMessage`. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ```solidity
 event LogMessagePublished(
@@ -94,7 +94,7 @@ event LogMessagePublished(
 
 ### ContractUpgraded
 
-Emitted when the Core Contract is upgraded to a new implementation via governance. *(Defined in Governance.sol)*
+Emitted when the Core Contract is upgraded to a new implementation via governance. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ```solidity
 event ContractUpgraded(
@@ -117,7 +117,7 @@ event ContractUpgraded(
 
 ### GuardianSetAdded
 
-Emitted when a new Guardian set is registered via governance. *(Defined in Governance.sol)*
+Emitted when a new Guardian set is registered via governance. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ```solidity
 event GuardianSetAdded(
@@ -133,7 +133,7 @@ event GuardianSetAdded(
 
 ### LogGuardianSetChanged
 
-Emitted when the active Guardian set is changed. *(Defined in State.sol)*
+Emitted when the active Guardian set is changed. *(Defined in [State.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/State.sol){target=\_blank})*
 
 ```solidity
 event LogGuardianSetChanged(
@@ -158,7 +158,7 @@ event LogGuardianSetChanged(
 
 ### publishMessage
 
-Publishes a message to Wormhole's Guardian Network. *(Defined in Implementation.sol)*
+Publishes a message to Wormhole's Guardian Network. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ```solidity
 function publishMessage(
@@ -194,7 +194,7 @@ function publishMessage(
 
 ### getCurrentGuardianSetIndex
 
-Returns the index of the currently active Guardian set. *(Defined in Getters.sol)*
+Returns the index of the currently active Guardian set. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 Each VAA includes the index of the Guardian set that signed it. This function allows contracts to retrieve the current index, ensuring the VAA is verified against the correct set.
 
@@ -210,7 +210,7 @@ function getCurrentGuardianSetIndex() external view returns (uint32)
 
 ### getGuardianSet
 
-Retrieves metadata for a given Guardian set index. *(Defined in Getters.sol)*
+Retrieves metadata for a given Guardian set index. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function getGuardianSet(uint32 index) external view returns (address[] memory keys, uint32 expirationTime)
@@ -236,7 +236,7 @@ function getGuardianSet(uint32 index) external view returns (address[] memory ke
 
 ### getGuardianSetExpiry
 
-Returns the expiration time of a specific Guardian set index. *(Defined in Getters.sol)*
+Returns the expiration time of a specific Guardian set index. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function getGuardianSetExpiry(uint32 index) external view returns (uint32)
@@ -256,7 +256,7 @@ function getGuardianSetExpiry(uint32 index) external view returns (uint32)
 
 ### messageFee
 
-Returns the current fee (in native tokens) required to publish a message. *(Defined in Getters.sol)*
+Returns the current fee (in native tokens) required to publish a message. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function messageFee() public view returns (uint256)
@@ -270,7 +270,7 @@ function messageFee() public view returns (uint256)
 
 ### nextSequence
 
-Retrieves the next sequence number for a given emitter address. *(Defined in Getters.sol)*
+Retrieves the next sequence number for a given emitter address. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function nextSequence(address emitter) external view returns (uint64)
@@ -290,7 +290,7 @@ function nextSequence(address emitter) external view returns (uint64)
 
 ### parseAndVerifyVM
 
-Verifies signatures and parses a signed VAA. *(Defined in Messages.sol)*
+Verifies signatures and parses a signed VAA. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
 
 ```solidity
 function parseAndVerifyVM(bytes memory encodedVM)
@@ -329,7 +329,7 @@ function parseAndVerifyVM(bytes memory encodedVM)
 
 ### verifyVM
 
-Performs low-level VAA signature verification. *(Defined in Messages.sol)*
+Performs low-level VAA signature verification. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
 
 ```solidity
 function verifyVM(bytes memory encodedVM)
@@ -356,7 +356,7 @@ function verifyVM(bytes memory encodedVM)
 
 ### verifySignatures
 
-Used to verify individual Guardian signatures against a VAA digest. *(Defined in Messages.sol)*
+Used to verify individual Guardian signatures against a VAA digest. *(Defined in [Messages.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Messages.sol){target=\_blank})*
 
 ```solidity
 function verifySignatures(
@@ -392,7 +392,7 @@ function verifySignatures(
 
 ### quorum
 
-Returns the number of Guardian signatures required to reach quorum. *(Defined in Governance.sol)*
+Returns the number of Guardian signatures required to reach quorum. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ```solidity
 function quorum() public view returns (uint8)
@@ -406,7 +406,7 @@ function quorum() public view returns (uint8)
 
 ### chainId
 
-Returns Wormhole chain ID used internally by the protocol. *(Defined in Getters.sol)*
+Returns Wormhole chain ID used internally by the protocol. *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function chainId() public view returns (uint16)
@@ -420,7 +420,7 @@ function chainId() public view returns (uint16)
 
 ### evmChainId
 
-Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in Getters.sol)*
+Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function evmChainId() public view returns (uint256)
@@ -436,64 +436,64 @@ function evmChainId() public view returns (uint256)
 
 ### Invalid Fee
 
-Reverts when the message fee (`msg.value`) sent is not equal to the required fee returned by `messageFee()`. *(Defined in Implementation.sol)*
+Reverts when the message fee (`msg.value`) sent is not equal to the required fee returned by `messageFee()`. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ### Unsupported
 
-Reverts on any call to the fallback function. The contract does not support arbitrary calls. *(Defined in Implementation.sol)*
+Reverts on any call to the fallback function. The contract does not support arbitrary calls. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ### The Wormhole Contract Does Not Accept Assets
 
-Reverts when native tokens (ETH) are sent directly to the contract via the `receive()` function. *(Defined in Implementation.sol)*
+Reverts when native tokens (ETH) are sent directly to the contract via the `receive()` function. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ### Already Initialized
 
-Reverts when trying to call `initialize()` on an implementation that has already been initialized. *(Defined in Implementation.sol, via `initializer` modifier)*
+Reverts when trying to call `initialize()` on an implementation that has already been initialized. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank}, via `initializer` modifier)*
 
 ### Unknown Chain ID
 
-Reverts inside the `initialize()` function if the chain ID stored by the contract does not match any known Wormhole chain. *(Defined in Implementation.sol)*
+Reverts inside the `initialize()` function if the chain ID stored by the contract does not match any known Wormhole chain. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Implementation.sol){target=\_blank})*
 
 ### Invalid Fork
 
-Reverts when attempting to perform a governance action intended only for forked chains on a non-forked chain. *(Defined in Governance.sol)*
+Reverts when attempting to perform a governance action intended only for forked chains on a non-forked chain. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Invalid Module
 
-Reverts if the VAA’s module field doesn’t match the expected "Core" module. *(Defined in Governance.sol)*
+Reverts if the VAA’s module field doesn’t match the expected "Core" module. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Invalid Chain
 
-Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in Governance.sol)*
+Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### New Guardian Set is Empty
 
-Reverts when trying to register a new Guardian set that has no keys. *(Defined in Governance.sol)*
+Reverts when trying to register a new Guardian set that has no keys. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Index Must Increase in Steps of 1
 
-Reverts when the new Guardian set index is not exactly one greater than the current. *(Defined in Governance.sol)*
+Reverts when the new Guardian set index is not exactly one greater than the current. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Not a Fork
 
-Reverts when trying to recover chain ID on a non-forked chain. *(Defined in Governance.sol)*
+Reverts when trying to recover chain ID on a non-forked chain. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Invalid EVM Chain
 
-Reverts if the recovered chain ID doesn't match the current `block.chainid`. *(Defined in Governance.sol)*
+Reverts if the recovered chain ID doesn't match the current `block.chainid`. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Governance Action Already Consumed
 
-Reverts when the same governance VAA is submitted more than once. *(Defined in Governance.sol)*
+Reverts when the same governance VAA is submitted more than once. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Wrong Governance Contract
 
-Reverts when the governance VAA’s emitter address doesn't match the expected governance contract address. *(Defined in Governance.sol)*
+Reverts when the governance VAA’s emitter address doesn't match the expected governance contract address. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Wrong Governance Chain
 
-Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in Governance.sol)*
+Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
 
 ### Not Signed by Current Guardian Set
 
-Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in Governance.sol)*
+Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in [Governance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Governance.sol){target=\_blank})*
