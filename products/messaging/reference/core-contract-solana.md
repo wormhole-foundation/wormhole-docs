@@ -52,7 +52,7 @@ Below are on-chain PDAs used to store persistent state for the core contract. Al
 
 ### initialize
 
-Initializes the Wormhole Core contract on Solana with a Guardian set and fee configuration. This should be called only once at deployment time. *(Defined in api/initialize.rs)*
+Initializes the Wormhole Core contract on Solana with a Guardian set and fee configuration. This should be called only once at deployment time. *(Defined in [api/initialize.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/initialize.rs){target=\_blank})*
 
 ```rust
 initialize(
@@ -91,7 +91,7 @@ initialize(
 
 ### post_message
 
-Posts a Wormhole message to the Solana Core contract. *(Defined in api/post_message.rs)*
+Posts a Wormhole message to the Solana Core contract. *(Defined in [api/post_message.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank})*
 
 ```rust
 PostMessage {
@@ -133,7 +133,7 @@ PostMessage {
 
 ### post_message_unreliable
 
-Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical. *(Defined in api/post_message_unreliable.rs)*
+Posts a Wormhole message without requiring reliable delivery. Used for lightweight publishing when finality isn't critical. *(Defined in [api/post_message.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank})*
 
 ```rust
 PostMessageUnreliable {
@@ -169,11 +169,11 @@ PostMessageUnreliable {
 
     `consistency_level` ++"u8"++
 
-    Level of finality required before the message is processed. `1` = Confirmed, `2` = Finalized.
+    Level of finality required before the message is processed. `1` = Confirmed, `32` = Finalized.
 
 ### verify_signatures
 
-Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA. *(Defined in api/verify_signatures.rs)*
+Verifies Guardian signatures over a VAA body hash. This is the first step in VAA processing and is required before posting the VAA. *(Defined in [api/verify_signatures.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/verify_signature.rs){target=\_blank})*
 
 ```rust
 VerifySignatures {
@@ -199,7 +199,7 @@ VerifySignatures {
 
 ### post_vaa
 
-Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed. *(Defined in api/post_vaa.rs)*
+Finalizes a VAA after signature verification. This stores the message on-chain and marks it as consumed. *(Defined in [api/post_vaa.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_vaa.rs){target=\_blank})*
 
 ```rust
 PostVAA {
@@ -282,7 +282,7 @@ PostVAA {
 
 ### set_fees
 
-Updates the message posting fee for the core bridge contract. *(Defined in api/governance.rs)*
+Updates the message posting fee for the core bridge contract. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 SetFees {}
@@ -300,7 +300,7 @@ This function is called via governance and requires a valid governance VAA. The 
 
 ### transfer_fees
 
-Transfers the accumulated message posting fees from the contract to a specified recipient. *(Defined in api/governance.rs)*
+Transfers the accumulated message posting fees from the contract to a specified recipient. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 TransferFees {}
@@ -320,7 +320,7 @@ This function is triggered via a governance VAA and transfers the fee balance fr
 
 ### upgrade_contract
 
-Upgrades the deployed Wormhole program using a governance VAA. *(Defined in api/governance.rs)*
+Upgrades the deployed Wormhole program using a governance VAA. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 UpgradeContract {}
@@ -345,7 +345,7 @@ This instruction allows authorized governance messages to trigger an upgrade of 
 
 ### upgrade_guardian_set
 
-Upgrades the current Guardian set using a governance VAA. *(Defined in api/governance.rs)*
+Upgrades the current Guardian set using a governance VAA. *(Defined in [api/governance.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/governance.rs){target=\_blank})*
 
 ```rust
 UpgradeGuardianSet {}
@@ -367,80 +367,80 @@ This instruction replaces the active Guardian set with a new one, allowing the W
 
 ### GuardianSetMismatch
 
-The Guardian set index does not match the expected value. *(Defined in error.rs)*
+The Guardian set index does not match the expected value. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InstructionAtWrongIndex
 
-The instruction was found at the wrong index. *(Defined in error.rs)*
+The instruction was found at the wrong index. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InsufficientFees
 
-Insufficient fees were provided to post the message. *(Defined in error.rs)*
+Insufficient fees were provided to post the message. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidFeeRecipient
 
-The recipient address does not match the one specified in the governance VAA. *(Defined in error.rs)*
+The recipient address does not match the one specified in the governance VAA. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceAction
 
-The action specified in the governance payload is invalid. *(Defined in error.rs)*
+The action specified in the governance payload is invalid. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceChain
 
-The governance VAA was not emitted by a valid governance chain. *(Defined in error.rs)*
+The governance VAA was not emitted by a valid governance chain. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceKey
 
-The emitter address in the governance VAA is not the expected governance key. *(Defined in error.rs)*
+The emitter address in the governance VAA is not the expected governance key. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceModule
 
-The module string in the governance VAA header is invalid. *(Defined in error.rs)*
+The module string in the governance VAA header is invalid. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGovernanceWithdrawal
 
-Fee withdrawal would cause the fee collector account to drop below rent-exempt balance. *(Defined in error.rs)*
+Fee withdrawal would cause the fee collector account to drop below rent-exempt balance. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidGuardianSetUpgrade
 
-The Guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in error.rs)*
+The Guardian set upgrade VAA is invalid (e.g., skipped index or mismatched current index). *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidHash
 
-The hash computed from the VAA does not match the expected result. *(Defined in error.rs)*
+The hash computed from the VAA does not match the expected result. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidSecpInstruction
 
-The SECP256k1 instruction used for signature verification is malformed. *(Defined in error.rs)*
+The SECP256k1 instruction used for signature verification is malformed. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### MathOverflow
 
-An arithmetic overflow occurred during computation. *(Defined in error.rs)*
+An arithmetic overflow occurred during computation. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### PostVAAConsensusFailed
 
-Not enough valid signatures were collected to achieve quorum. *(Defined in error.rs)*
+Not enough valid signatures were collected to achieve quorum. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### PostVAAGuardianSetExpired
 
-The Guardian set used to verify the VAA has already expired. *(Defined in error.rs)*
+The Guardian set used to verify the VAA has already expired. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### TooManyGuardians
 
-The Guardian set exceeds the maximum allowed number of guardians. *(Defined in error.rs)*
+The Guardian set exceeds the maximum allowed number of guardians. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### VAAAlreadyExecuted
 
-The VAA has already been executed and cannot be processed again. *(Defined in error.rs)*
+The VAA has already been executed and cannot be processed again. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### VAAInvalid
 
-The VAA is structurally invalid or fails to decode. *(Defined in error.rs)*
+The VAA is structurally invalid or fails to decode. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### InvalidPayloadLength
 
-The payload length is incorrect or malformed. *(Defined in error.rs)*
+The payload length is incorrect or malformed. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
 
 ### EmitterChanged
 
-The emitter address changed unexpectedly. *(Defined in error.rs)*
+The emitter address changed unexpectedly. *(Defined in [error.rs](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/error.rs){target=\_blank})*
