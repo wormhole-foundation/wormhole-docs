@@ -756,6 +756,18 @@ Checks whether a delivery attempt has been made for a given hash. (Defined in [W
 function deliveryAttempted(bytes32 deliveryHash) external view returns (bool attempted)
 ```
 
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the delivery VAA.
+
+??? interface "Returns"
+
+    `attempted` ++"bool"++
+
+    `true` if a success or failure block was recorded for this hash.
+
 ### deliverySuccessBlock
 
 Block number when a delivery was successfully executed. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
@@ -763,6 +775,18 @@ Block number when a delivery was successfully executed. (Defined in [WormholeRel
 ```solidity
 function deliverySuccessBlock(bytes32 deliveryHash) external view returns (uint256 blockNumber)
 ```
+
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the delivery VAA.
+
+??? interface "Returns"
+
+    `blockNumber` ++"uint256"++
+
+    Block number where the delivery was marked successful (0 if never successful).
 
 ### deliveryFailureBlock
 
@@ -772,6 +796,18 @@ Block number of the latest failed delivery attempt. (Defined in [WormholeRelayer
 function deliveryFailureBlock(bytes32 deliveryHash) external view returns (uint256 blockNumber)
 ```
 
+??? interface "Parameters"
+
+    `deliveryHash` ++"bytes32"++
+
+    Hash of the delivery VAA.
+
+??? interface "Returns"
+
+    `blockNumber` ++"uint256"++
+
+    Block number of the most recent failed attempt (0 if none).
+
 ### getRegisteredWormholeRelayerContract
 
 Returns the registered Wormhole Relayer contract address (wormhole format) for a given chain ID. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
@@ -779,6 +815,18 @@ Returns the registered Wormhole Relayer contract address (wormhole format) for a
 ```solidity
 function getRegisteredWormholeRelayerContract(uint16 chainId) external view returns (bytes32)
 ```
+
+??? interface "Parameters"
+
+    `chainId` ++"uint16"++
+
+    Wormhole chain ID.
+
+??? interface "Returns"
+
+    `address` ++"bytes32"++
+
+    Wormhole-formatted address of the relayer contract registered for `chainId` (zero if none).
 
 ### registerWormholeRelayerContract
 
@@ -788,6 +836,12 @@ Registers a Wormhole Relayer contract deployed on another chain (governance VM r
 function registerWormholeRelayerContract(bytes memory encodedVm) external
 ```
 
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes"++
+
+    Signed governance VM that encodes the `foreignChainId` and `foreignContractAddress`.
+
 ### setDefaultDeliveryProvider
 
 Sets the default delivery provider via a governance VM. (Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})
@@ -796,6 +850,12 @@ Sets the default delivery provider via a governance VM. (Defined in [WormholeRel
 function setDefaultDeliveryProvider(bytes memory encodedVm) external
 ```
 
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes"++
+
+    Signed governance VM that encodes the new provider address.
+
 ### submitContractUpgrade
 
 Upgrades the Wormhole Relayer contract to a new implementation (governance VM required). (Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})
@@ -803,3 +863,9 @@ Upgrades the Wormhole Relayer contract to a new implementation (governance VM re
 ```solidity
 function submitContractUpgrade(bytes memory encodedVm) external
 ```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes"++
+
+    Signed governance VM that encodes the new implementation address.
