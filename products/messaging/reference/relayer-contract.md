@@ -74,7 +74,7 @@ event SendEvent(
 
     `paymentForExtraReceiverValue` ++"LocalNative"++
 
-    Extra amount (in source-chain currency units) used to top up receiver value on the target chain.
+    Extra amount (in source-chain currency units) used to top up the receiver value on the target chain.
 
 ### Delivery
 
@@ -140,13 +140,13 @@ event Delivery(
 
     `additionalStatusInfo` ++"bytes"++
 
-    Empty on success; otherwise truncated return data from the revert.
+    Empty on success; otherwise, truncated return data from the revert.
 
     ---
 
     `overridesInfo` ++"bytes"++
 
-    Empty if not an override; otherwise an encoded `DeliveryOverride`.
+    Empty if not an override; otherwise, an encoded `DeliveryOverride`.
 
 ### ContractUpgraded (WormholeRelayer)
 
