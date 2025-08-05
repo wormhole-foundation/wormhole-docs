@@ -258,7 +258,7 @@ event RewardAddressUpdated(
 
 ### TargetChainAddressUpdated
 
-Emitted when the Delivery Provider’s peer address for a target chain is updated. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+Emitted when the Delivery Provider's peer address for a target chain is updated. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
 
 ```solidity
 event TargetChainAddressUpdated(
@@ -304,7 +304,7 @@ event DeliverGasOverheadUpdated(
 
 ### WormholeRelayerUpdated
 
-Emitted when the Delivery Provider’s associated Wormhole Relayer address is updated. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+Emitted when the Delivery Provider's associated Wormhole Relayer address is updated. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
 
 ```solidity
 event WormholeRelayerUpdated(
@@ -320,7 +320,7 @@ event WormholeRelayerUpdated(
 
 ### AssetConversionBufferUpdated
 
-Emitted when the Delivery Provider’s asset conversion buffer is updated. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+Emitted when the Delivery Provider's asset conversion buffer is updated. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
 
 ```solidity
 event AssetConversionBufferUpdated(
@@ -734,7 +734,7 @@ function quoteEVMDeliveryPrice(
 
 ### quoteDeliveryPrice (generic)
 
-Generic quote (versioned execution params), returning price and provider’s encoded execution info. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+Generic quote (versioned execution params), returning price and provider's encoded execution info. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
 
 ```solidity
 function quoteDeliveryPrice(
@@ -779,7 +779,7 @@ function quoteDeliveryPrice(
 
     `encodedExecutionInfo` ++"bytes"++
 
-    Provider’s encoded execution info (e.g., for `EVM_V1`, includes gas limit and refund-per-gas).
+    Provider's encoded execution info (e.g., for `EVM_V1`, includes gas limit and refund-per-gas).
 
 ### quoteNativeForChain
 
@@ -815,7 +815,7 @@ function quoteNativeForChain(
 
     `targetChainAmount` ++"TargetNative"++
 
-    Extra destination-chain wei that will be added to the call’s value.
+    Extra destination-chain wei that will be added to the call's value.
 
 ### getDefaultDeliveryProvider
 
@@ -1006,7 +1006,7 @@ Reverts if `msg.value` is less than the required execution + refund budget on th
 
 ### TargetChainIsNotThisChain
 
-Reverts when the instruction’s `targetChain` does not match the current chain. (Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}), defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
+Reverts when the instruction's `targetChain` does not match the current chain. (Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}), defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### MessageKeysLengthDoesNotMatchMessagesLength
 
@@ -1014,7 +1014,7 @@ Reverts when the provided message keys do not match the number of delivered mess
 
 ### VaaKeysDoNotMatchVaas
 
-Reverts when described VAAs don’t match the actual VAAs delivered. (Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}), defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
+Reverts when described VAAs don't match the actual VAAs delivered. (Used in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank}), defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### InvalidOverrideGasLimit
 
@@ -1042,7 +1042,7 @@ Reverts if a required price value for a chain is zero during quoting/conversion.
 
 ### Overflow(uint256 value, uint256 max)
 
-Reverts when an internal quote exceeds a type’s allowed maximum (e.g., gas overhead/price bounds). (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+Reverts when an internal quote exceeds a type's allowed maximum (e.g., gas overhead/price bounds). (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
 
 ### MaxRefundGreaterThanGasLimitCost(uint256 maxRefund, uint256 gasLimitCost)
 
@@ -1054,7 +1054,7 @@ Declared to guard source-chain refund limits vs. gas-limit cost. (Defined in [De
 
 ### ExceedsMaximumBudget(uint16 targetChain, uint256 exceedingValue, uint256 maximumBudget)
 
-Reverts when required target-chain wei (receiver value + gas) exceeds that chain’s configured maximum budget. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+Reverts when required target-chain wei (receiver value + gas) exceeds that chain's configured maximum budget. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
 
 ### ChainIdIsZero()
 
@@ -1070,11 +1070,11 @@ Reverts if a price update sets native currency price to zero. (Defined in [Deliv
 
 ### FailedToInitializeImplementation(string reason)
 
-Reverts if the implementation’s `initialize()` delegatecall fails during upgrade/setup. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank} and [DeliveryProviderSetup.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderSetup.sol){target=\_blank})
+Reverts if the implementation's `initialize()` delegatecall fails during upgrade/setup. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank} and [DeliveryProviderSetup.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderSetup.sol){target=\_blank})
 
 ### WrongChainId()
 
-Reverts when an operation is invoked with a chainId that doesn’t match the contract’s configured chain. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+Reverts when an operation is invoked with a chainId that doesn't match the contract's configured chain. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
 
 ### AddressIsZero()
 
@@ -1106,4 +1106,4 @@ Reverts when the `executionInfoVersion` in the delivery VAA does not match the e
 
 ### VersionMismatchOverride
 
-Reverts when the override’s `executionInfoVersion` does not match the original delivery’s version. (Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})
+Reverts when the override's `executionInfoVersion` does not match the original delivery's version. (Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})
