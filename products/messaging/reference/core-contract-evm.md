@@ -434,66 +434,66 @@ function evmChainId() public view returns (uint256)
 
 ## Errors
 
-### invalid fee
+### Invalid Fee
 
 Reverts when the message fee (`msg.value`) sent is not equal to the required fee returned by `messageFee()`. *(Defined in Implementation.sol)*
 
-### unsupported
+### Unsupported
 
 Reverts on any call to the fallback function. The contract does not support arbitrary calls. *(Defined in Implementation.sol)*
 
-### the Wormhole contract does not accept assets
+### The Wormhole Contract Does Not Accept Assets
 
 Reverts when native tokens (ETH) are sent directly to the contract via the `receive()` function. *(Defined in Implementation.sol)*
 
-### already initialized
+### Already Initialized
 
 Reverts when trying to call `initialize()` on an implementation that has already been initialized. *(Defined in Implementation.sol, via `initializer` modifier)*
 
-### unknown chain id
+### Unknown Chain ID
 
 Reverts inside the `initialize()` function if the chain ID stored by the contract does not match any known Wormhole chain. *(Defined in Implementation.sol)*
 
-### invalid fork
+### Invalid Fork
 
 Reverts when attempting to perform a governance action intended only for forked chains on a non-forked chain. *(Defined in Governance.sol)*
 
-### invalid module
+### Invalid Module
 
 Reverts if the VAA’s module field doesn’t match the expected "Core" module. *(Defined in Governance.sol)*
 
-### invalid chain
+### Invalid Chain
 
 Reverts if the VAA’s target chain doesn’t match the chain on which this contract is deployed. *(Defined in Governance.sol)*
 
-### new Guardian set is empty
+### New Guardian Set is Empty
 
 Reverts when trying to register a new Guardian set that has no keys. *(Defined in Governance.sol)*
 
-### index must increase in steps of 1
+### Index Must Increase in Steps of 1
 
 Reverts when the new Guardian set index is not exactly one greater than the current. *(Defined in Governance.sol)*
 
-### not a fork
+### Not a Fork
 
 Reverts when trying to recover chain ID on a non-forked chain. *(Defined in Governance.sol)*
 
-### invalid EVM Chain
+### Invalid EVM Chain
 
 Reverts if the recovered chain ID doesn't match the current `block.chainid`. *(Defined in Governance.sol)*
 
-### governance action already consumed
+### Governance Action Already Consumed
 
 Reverts when the same governance VAA is submitted more than once. *(Defined in Governance.sol)*
 
-### wrong governance contract
+### Wrong Governance Contract
 
 Reverts when the governance VAA’s emitter address doesn't match the expected governance contract address. *(Defined in Governance.sol)*
 
-### wrong governance chain
+### Wrong Governance Chain
 
 Reverts when the governance VAA’s emitter chain doesn't match the expected governance chain (Solana). *(Defined in Governance.sol)*
 
-### not signed by current Guardian set
+### Not Signed by Current Guardian Set
 
 Reverts if the Guardian set index in the VAA doesn’t match the current Guardian set. *(Defined in Governance.sol)*
