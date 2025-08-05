@@ -655,15 +655,33 @@ function quoteEVMDeliveryPrice(
 ) external view returns (LocalNative nativePriceQuote, GasPrice targetChainRefundPerGasUnused)
 ```
 
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination-chain wei that will be forwarded to the target contract.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit that will be used to call the target contract.
+
 ??? interface "Returns"
 
-`nativePriceQuote` ++"LocalNative"++
+    `nativePriceQuote` ++"LocalNative"++
 
-Source-chain price to request the delivery.
+    Source-chain price to request the delivery.
 
-`targetChainRefundPerGasUnused` ++"GasPrice"++
+    `targetChainRefundPerGasUnused` ++"GasPrice"++
 
-Refund rate per unused gas on target chain.
+    Refund rate per unused gas on target chain.
 
 ### quoteEVMDeliveryPrice (explicit provider)
 
