@@ -348,4 +348,458 @@ event AssetConversionBufferUpdated(
 
     Buffer denominator.
 
+## Functions
 
+### sendPayloadToEvm
+
+Publishes an instruction for the default delivery provider to relay a payload to an EVM target. Must be called with `msg.value == quoteEVMDeliveryPrice(targetChain, receiverValue, gasLimit)`. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function sendPayloadToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    Gas gasLimit
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++  
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"address"++  
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---
+
+    `payload` ++"bytes"++  
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++  
+    Value (destination-chain wei) to forward to `targetAddress`.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit for calling `targetAddress`.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### sendPayloadToEvm (with refund)
+
+Same as above, but sends any refund to refundAddress on refundChain. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function sendPayloadToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    Gas gasLimit,
+    uint16 refundChain,
+    address refundAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `targetChain` ++"uint16"++
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"address"++
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---
+
+    `payload` ++"bytes"++
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+    Value (destination-chain wei) to forward to `targetAddress`.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+    Gas limit for calling `targetAddress`.
+
+    ---
+
+    `refundChain` ++"uint16"++
+    Wormhole chain ID where refunds should be sent.
+
+    ---
+
+    `refundAddress` ++"address"++
+
+    Address on `refundChain` to receive refunds.
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where refunds should be sent.
+
+    ---
+
+    `refundAddress` ++"address"++
+
+    Address on `refundChain` to receive refunds.
+    
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### sendVaasToEvm (with refund)
+
+Publishes an instruction (default delivery provider) to relay a payload and additional VAAs. Refunds go to `refundAddress` on `refundChain`. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function sendVaasToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    Gas gasLimit,
+    VaaKey[] memory vaaKeys,
+    uint16 refundChain,
+    address refundAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `vaaKeys` ++"VaaKey[]"++
+
+    Additional Wormhole messages to deliver.
+
+    *(Other parameters as in `sendPayloadToEvm` with refund.)*
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### sendToEvm (MessageKeys)
+
+Publishes an instruction using a specific delivery provider, optionally attaching extra receiver value funded on the source chain and arbitrary MessageKeys (e.g., VAAs or other supported keys). (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function sendToEvm(
+    uint16 targetChain,
+    address targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    LocalNative paymentForExtraReceiverValue,
+    Gas gasLimit,
+    uint16 refundChain,
+    address refundAddress,
+    address deliveryProviderAddress,
+    MessageKey[] memory messageKeys,
+    uint8 consistencyLevel
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++  
+    Extra source-chain amount converted and added to `receiverValue`.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++  
+    Chosen provider (must implement `IDeliveryProvider`).
+
+    ---
+
+    `messageKeys` ++"MessageKey[]"++  
+    External messages to deliver (provider must support each `keyType`).
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Consistency level for publishing the instruction.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### send (MessageKeys, generic)
+
+Generic chain-agnostic form (addresses are Wormhole-formatted bytes32, and execution params are encoded). (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function send(
+    uint16 targetChain,
+    bytes32 targetAddress,
+    bytes memory payload,
+    TargetNative receiverValue,
+    LocalNative paymentForExtraReceiverValue,
+    bytes memory encodedExecutionParameters,
+    uint16 refundChain,
+    bytes32 refundAddress,
+    address deliveryProviderAddress,
+    MessageKey[] memory messageKeys,
+    uint8 consistencyLevel
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `encodedExecutionParameters` ++"bytes"++
+
+    Versioned execution params (e.g., EVM gas limit).
+
+    *(Other parameters as in `sendToEvm`.)*
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the published delivery instruction.
+
+### resendToEvm
+
+Requests a previously published delivery instruction to be redelivered (EVM convenience). (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function resendToEvm(
+    VaaKey memory deliveryVaaKey,
+    uint16 targetChain,
+    TargetNative newReceiverValue,
+    Gas newGasLimit,
+    address newDeliveryProviderAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `deliveryVaaKey` ++"VaaKey"++  
+    Identifies the original delivery instruction VAA.
+
+    ---
+
+    `newReceiverValue` ++"TargetNative"++  
+    Updated value sent to the target contract.
+
+    ---
+
+    `newGasLimit` ++"Gas"++  
+    Updated gas limit (must be ≥ original).
+
+    ---
+
+    `newDeliveryProviderAddress` ++"address"++
+
+    New provider to use.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the redelivery instruction.
+
+### resend (generic)
+
+Generic redelivery (chain-agnostic execution params). (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function resend(
+    VaaKey memory deliveryVaaKey,
+    uint16 targetChain,
+    TargetNative newReceiverValue,
+    bytes memory newEncodedExecutionParameters,
+    address newDeliveryProviderAddress
+) external payable returns (uint64 sequence)
+```
+
+??? interface "Parameters"
+
+    `newEncodedExecutionParameters` ++"bytes"++
+
+    Versioned execution parameters for redelivery.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+
+    Sequence number of the redelivery instruction.
+
+### quoteEVMDeliveryPrice (default provider)
+
+Returns the price and refund-per-gas info for an EVM delivery using the default provider. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function quoteEVMDeliveryPrice(
+    uint16 targetChain,
+    TargetNative receiverValue,
+    Gas gasLimit
+) external view returns (LocalNative nativePriceQuote, GasPrice targetChainRefundPerGasUnused)
+```
+
+??? interface "Returns"
+
+`nativePriceQuote` ++"LocalNative"++
+
+Source-chain price to request the delivery.
+
+`targetChainRefundPerGasUnused` ++"GasPrice"++
+
+Refund rate per unused gas on target chain.
+
+### quoteEVMDeliveryPrice (explicit provider)
+
+Same as above, but quotes using a given provider. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function quoteEVMDeliveryPrice(
+    uint16 targetChain,
+    TargetNative receiverValue,
+    Gas gasLimit,
+    address deliveryProviderAddress
+) external view returns (LocalNative nativePriceQuote, GasPrice targetChainRefundPerGasUnused)
+```
+
+### quoteDeliveryPrice (generic)
+
+Generic quote (versioned execution params), returning price and provider’s encoded execution info. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function quoteDeliveryPrice(
+    uint16 targetChain,
+    TargetNative receiverValue,
+    bytes memory encodedExecutionParameters,
+    address deliveryProviderAddress
+) external view returns (LocalNative nativePriceQuote, bytes memory encodedExecutionInfo)
+```
+
+### quoteNativeForChain
+
+Converts a source-chain amount into extra value that will be delivered on the target chain. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function quoteNativeForChain(
+    uint16 targetChain,
+    LocalNative currentChainAmount,
+    address deliveryProviderAddress
+) external view returns (TargetNative targetChainAmount)
+```
+
+### getDefaultDeliveryProvider
+
+Returns the current default delivery provider address. (Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})
+
+```solidity
+function getDefaultDeliveryProvider() external view returns (address deliveryProvider)
+```
+
+### deliver
+
+Called by a delivery provider to execute a delivery on the target chain. (Defined in [WormholeRelayerDelivery.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerDelivery.sol){target=\_blank})
+
+```solidity
+function deliver(
+    bytes[] memory encodedVMs,
+    bytes memory encodedDeliveryVAA,
+    address payable relayerRefundAddress,
+    bytes memory deliveryOverrides
+) external payable
+```
+
+??? interface "Parameters"
+
+    `encodedVMs` ++"bytes[]"+
+
+    Signed Wormhole messages to relay.
+
+    ---
+
+    `encodedDeliveryVAA` ++"bytes"++
+
+    Signed WormholeRelayer instruction VAA.
+
+    ---
+
+    `relayerRefundAddress` ++"address payable"++
+
+    Address to receive any relayer refund.
+
+    ---
+
+    `deliveryOverrides` ++"bytes"++
+
+    Optional encoded overrides (or empty).
+
+### deliveryAttempted
+
+Checks whether a delivery attempt has been made for a given hash. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
+
+```solidity
+function deliveryAttempted(bytes32 deliveryHash) external view returns (bool attempted)
+```
+
+### deliverySuccessBlock
+
+Block number when a delivery was successfully executed. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
+
+```solidity
+function deliverySuccessBlock(bytes32 deliveryHash) external view returns (uint256 blockNumber)
+```
+
+### deliveryFailureBlock
+
+Block number of the latest failed delivery attempt. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
+
+```solidity
+function deliveryFailureBlock(bytes32 deliveryHash) external view returns (uint256 blockNumber)
+```
+
+### getRegisteredWormholeRelayerContract
+
+Returns the registered Wormhole Relayer contract address (wormhole format) for a given chain ID. (Defined in [WormholeRelayerBase.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerBase.sol){target=\_blank})
+
+```solidity
+function getRegisteredWormholeRelayerContract(uint16 chainId) external view returns (bytes32)
+```
+
+### registerWormholeRelayerContract
+
+Registers a Wormhole Relayer contract deployed on another chain (governance VM required). (Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})
+
+```solidity
+function registerWormholeRelayerContract(bytes memory encodedVm) external
+```
+
+### setDefaultDeliveryProvider
+
+Sets the default delivery provider via a governance VM. (Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})
+
+```solidity
+function setDefaultDeliveryProvider(bytes memory encodedVm) external
+```
+
+### submitContractUpgrade
+
+Upgrades the Wormhole Relayer contract to a new implementation (governance VM required). (Defined in [WormholeRelayerGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerGovernance.sol){target=\_blank})
+
+```solidity
+function submitContractUpgrade(bytes memory encodedVm) external
+```
