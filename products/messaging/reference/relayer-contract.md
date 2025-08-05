@@ -994,40 +994,108 @@ function submitContractUpgrade(bytes memory encodedVm) external
 
 ### InvalidDeliveryVaa
 
-Thrown when the delivery VAA fails parseAndVerifyVM. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Thrown when the delivery VAA fails parseAndVerifyVM. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### InvalidEmitter
 
-Emitted when the VAA emitter is not the registered Wormhole Relayer for the source chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Emitted when the VAA emitter is not the registered Wormhole Relayer for the source chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### InsufficientRelayerFunds
 
-Reverts if msg.value is less than the required execution + refund budget on the target chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts if msg.value is less than the required execution + refund budget on the target chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### TargetChainIsNotThisChain
 
-Reverts when the instruction’s targetChain does not match the current chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts when the instruction’s targetChain does not match the current chain. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### MessageKeysLengthDoesNotMatchMessagesLength
 
-Reverts when the provided message keys do not match the number of delivered messages. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts when the provided message keys do not match the number of delivered messages. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### VaaKeysDoNotMatchVaas
 
-Reverts when described VAAs don’t match the actual VAAs delivered. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts when described VAAs don’t match the actual VAAs delivered. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### InvalidOverrideGasLimit
 
-Reverts if a redelivery override sets a gas limit lower than the original. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts if a redelivery override sets a gas limit lower than the original. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### InvalidOverrideReceiverValue
 
-Reverts if a redelivery override sets a receiver value lower than the original. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts if a redelivery override sets a receiver value lower than the original. (Used in WormholeRelayerDelivery.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### InvalidMsgValue
 
-Reverts when msg.value does not equal wormholeMessageFee + deliveryQuote + paymentForExtraReceiverValue. (Used in WormholeRelayerBase.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts when msg.value does not equal wormholeMessageFee + deliveryQuote + paymentForExtraReceiverValue. (Used in WormholeRelayerBase.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
 
 ### ReentrantDelivery
 
-Reverts on re-entrant calls to relayer entrypoints guarded by nonReentrant. (Used in WormholeRelayerBase.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=_blank})
+Reverts on re-entrant calls to relayer entrypoints guarded by nonReentrant. (Used in WormholeRelayerBase.sol, defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
+
+### CallerNotApproved(address msgSender)
+
+Custom error declared for access checks. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+
+### PriceIsZero(uint16 chain)
+
+Reverts if a required price value for a chain is zero during quoting/conversion. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+
+### Overflow(uint256 value, uint256 max)
+
+Reverts when an internal quote exceeds a type’s allowed maximum (e.g., gas overhead/price bounds). (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+
+### MaxRefundGreaterThanGasLimitCost(uint256 maxRefund, uint256 gasLimitCost)
+
+Declared to guard refund limits vs. gas-limit cost. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+
+### MaxRefundGreaterThanGasLimitCostOnSourceChain(uint256 maxRefund, uint256 gasLimitCost)
+
+Declared to guard source-chain refund limits vs. gas-limit cost. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+
+### ExceedsMaximumBudget(uint16 targetChain, uint256 exceedingValue, uint256 maximumBudget)
+
+Reverts when required target-chain wei (receiver value + gas) exceeds that chain’s configured maximum budget. (Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})
+
+### ChainIdIsZero()
+
+Reverts if an update is attempted with chainId = 0. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### GasPriceIsZero()
+
+Reverts if a price update sets gas price to zero. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### NativeCurrencyPriceIsZero()
+
+Reverts if a price update sets native currency price to zero. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### FailedToInitializeImplementation(string reason)
+
+Reverts if the implementation’s initialize() delegatecall fails during upgrade/setup. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank} and [DeliveryProviderSetup.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderSetup.sol){target=\_blank})
+
+### WrongChainId()
+
+Reverts when an operation is invoked with a chainId that doesn’t match the contract’s configured chain. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### AddressIsZero()
+
+Reverts if a zero address is provided where a nonzero address is required (e.g., ownership handoff). (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### CallerMustBePendingOwner()
+
+Reverts if confirmOwnershipTransferRequest is called by an address other than pendingOwner. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### CallerMustBeOwner()
+
+Reverts on functions guarded by onlyOwner when msg.sender is not the owner. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### CallerMustBeOwnerOrPricingWallet()
+
+Reverts on functions guarded by onlyOwnerOrPricingWallet when caller is neither. (Defined in [DeliveryProviderGovernance.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderGovernance.sol){target=\_blank})
+
+### ImplementationAlreadyInitialized()
+
+Reverts if initialize() is called on an implementation that was already initialized. (Defined in [DeliveryProviderImplementation.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderImplementation.sol){target=\_blank})
+
+### ImplementationAddressIsZero()
+
+Reverts if setup() is called with a zero implementation address. (Defined in [DeliveryProviderSetup.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProviderSetup.sol){target=\_blank})
