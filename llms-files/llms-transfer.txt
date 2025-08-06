@@ -7758,7 +7758,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
 
 ### Recovering Rent for Failed SVM Deployments
 
-Failed SVM deployments don't result in lost of tokens. Instead, the native tokens may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
+Failed SVM deployments don't result in loss of tokens. Instead, the native tokens may be locked in deployment buffer accounts that persist after interruptions. To recover these funds, refer to the [Solana program deployment guide](https://solana.com/docs/programs/deploying#program-buffer-accounts){target=\_blank} for instructions on identifying and closing these buffer accounts.
 
 ## Where to Go Next
 
