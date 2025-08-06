@@ -20509,7 +20509,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 Consider the following examples of potential applications enabled by Wormhole:
 
 - **Cross-chain exchange**: Using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access.
-- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}**: Projects with communities spread across multiple blockchains can use Wormhole to relay votes from each chain to a designated governance chain, enabling unified decision-making through combined proposals.
+- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-guide){target=\_blank}**: Projects with communities spread across multiple blockchains can use Wormhole to relay votes from each chain to a designated governance chain, enabling unified decision-making through combined proposals.
 - **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued on another network, such as Ethereum.
 
 ## Explore
@@ -20852,7 +20852,7 @@ Commands:
 Options:
       --help      Show help                                            [boolean]
       --version   Show version number                                  [boolean]
-  -m, --module    Module to query  [choices: "Core", "NFTBridge", "TokenBridge"]
+  -m, --module    Module to query  [choices: "Core", "TokenBridge"]
   -n, --network   Network   [required] [choices: "mainnet", "testnet", "devnet"]
       --account   Near deployment account                    [string] [required]
       --attach    Attach some near                                      [string]
@@ -21204,6 +21204,9 @@ Options:
   -n, --network  Network    [required] [choices: "mainnet", "testnet", "devnet"]
     ```
 
+
+<!--
+TODO - CHANGE THE EXAMPLE TO NOT USE NFT BRIDGE
 ## Examples
 
 ### Generate a VAA
@@ -21415,6 +21418,8 @@ To get the RPC address for BSC Mainnet, for example, you can provide the followi
 ```bash
 worm info rpc mainnet bsc
 ```
+
+-->
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/dev-env.md
