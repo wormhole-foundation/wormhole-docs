@@ -217,7 +217,7 @@ To use NTT, you must have a token already deployed on the source and destination
             solana config set --url INSERT_FOGO_TESTNET_RPC_URL
             ```
 
-    4. **Fund your wallet**: Ensure your wallet has enough SOL to create a token and cover transaction fees.
+    4. **Fund your wallet**: Ensure your wallet has enough native tokens to cover transaction fees.
 
         - On Solana Devnet, you can request an airdrop:
 
