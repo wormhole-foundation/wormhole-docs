@@ -116,8 +116,6 @@ Deploying NTT with the CLI on Solana follows a structured process:
 
 Following this process, your token will fully integrate with NTT, enabling seamless transfers between Solana and other chains.
 
-By default, NTT transfers to Solana require manual [relaying](/docs/protocol/infrastructure/relayer/){target=\_blank}, meaning users must complete a transaction on Solana to finalize the transfer. For automatic relaying, where transactions are completed without user intervention, additional setup is required. [Contact Wormhole contributors](https://forms.clickup.com/45049775/f/1aytxf-10244/JKYWRUQ70AUI99F32Q){target=\_blank} to enable automatic relaying support for your deployment.
-
 ## Set Up NTT
 
 To integrate your token with NTT on Solana, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
@@ -160,7 +158,7 @@ Options to set the mint authority for your SPL token:
 
 - **Set to token authority PDA:**
 ```bash
-ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+ntt set-mint-authority --chain Solana --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
 ```
 
 - **Set to SPL Multisig:**
@@ -171,7 +169,7 @@ ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_
 
     2. Set to created SPL Multisig:
     ```bash
-    ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
+    ntt set-mint-authority --chain Solana --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --multisig INSERT_MULTISIG_ADDRESS --payer INSERT_KEYPAIR_JSON
     ```
 
 **For deployed programs:**
@@ -179,7 +177,7 @@ ntt solana set-mint-authority --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_
 - **Set to token authority PDA:**
 
 ```bash
-ntt solana set-mint-authority --payer INSERT_KEYPAIR_JSON
+ntt set-mint-authority --chain Solana --payer INSERT_KEYPAIR_JSON
 ```
 
 !!! note
