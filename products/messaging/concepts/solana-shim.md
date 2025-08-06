@@ -12,16 +12,16 @@ This page explains what shims are, why they were created, how they work, and wha
 
 ## The Core Bridge Account Problem
 
-When you emit a message on Solana using the legacy [Wormhole Core Bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account, specifically, a PDA (Program Derived Address) account, for every message. These accounts must be rent-exempt, meaning SOL is locked up for each one and cannot be recovered, since Core Bridge does not allow these accounts to be closed. Over time, this results in two big problems:
+When you emit a message on Solana using the legacy [Wormhole Core Bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account—a Program Derived Address (PDA)—for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since Core Bridge does not allow these accounts to be closed. Over time, this results in two big problems:
 
 - **Permanent On-Chain State**: Every message leaves behind a permanent account, increasing long-term storage needs on Solana.
-- **Lost Lamports to Rent**: Integrators lose SOL for every message, with no way to recover it even after the message has served its purpose. 
+- **Lost Lamports to Rent**: Integrators lose SOL for every message, as the lamports needed for rent exemption remain locked in the message accounts indefinitely.
 
-Solana doesn’t use gas like EVM chains. Instead, programs must prepay “rent” in SOL for each account. These lamports can only be reclaimed if the account is closed, which isn’t possible for Core Bridge message accounts.
+Solana’s rent-exemption model is designed to ensure account persistence, but this is not a limitation of the protocol itself. The real constraint is the legacy `post_message` function, which always creates a new, non-reclaimable account per emission. Even after a message is consumed, these accounts cannot be closed or reused, resulting in unrecoverable rent costs.
 
-While `post_message_unreliable` allows for account reuse, it has strict limitations: overwritten messages are lost forever, and account reuse can cause sequence conflicts or duplicate VAAs. Guardians expect every message to have a unique emitter and sequence, so reusing accounts risks breaking core protocol guarantees.
+Although the `post_message_unreliable` function allows for account reuse, it has strict limitations: overwritten messages are lost forever, and reused accounts can cause sequence conflicts or duplicate VAAs. Guardians expect every message to have a unique emitter and sequence, so reusing accounts risks breaking core protocol guarantees.
 
-Verification adds even more cost: the `post_vaa` instruction creates even more temporary accounts for signatures and VAA data—each adding further rent costs and storage overhead. These accounts aren’t automatically cleaned up, so the cost and on-chain state only grow with usage.
+Verification adds even more cost: the `post_vaa` instruction creates even more temporary accounts for signatures and VAA data, further increasing rent costs and on-chain state. These accounts aren’t automatically cleaned up, so the cost and on-chain state only grow with usage.
 
 This design does ensure reliability, messages and verification data are always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
 
@@ -29,8 +29,8 @@ This design does ensure reliability, messages and verification data are always a
 
 To address the limitations of the Core Bridge, Wormhole deploys two specialized Solana programs called shims:
 
-- **Post Message Shim (`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`)**: Emits Wormhole messages efficiently, without creating new message accounts for each emission, reducing rent costs.
-- **Verify VAA Shim (`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`)**: Verifies VAAs on-chain without leaving permanent accounts.
+- **[Post Message Shim (`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`)](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}**: Emits Wormhole messages efficiently, without creating new message accounts for each emission, reducing rent costs.
+- **[Verify VAA Shim (`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`)](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}**: Verifies VAAs on-chain without leaving permanent accounts.
 
 Both shims act as lightweight wrappers around the existing Core Bridge. No upgrade to the main contract is required; Guardian infrastructure continues to work exactly as before.
 
