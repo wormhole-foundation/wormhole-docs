@@ -34,6 +34,19 @@ To address the limitations of the Core Bridge, Wormhole deploys two specialized 
 
 Both shims act as lightweight wrappers around the existing Core Bridge. No upgrade to the main contract is required; Guardian infrastructure continues to work exactly as before.
 
+### “Shim” Emission and Verification
+
+Wormhole shims on Solana refer to two different approaches depending on whether you are emitting messages or verifying VAAs:
+
+- Emission Shim: The emission shim is an actual Solana program that you must deploy. It wraps the Core Bridge’s `post_message_unreliable` instruction and emits message data as a log event. Integrators send messages through this program to avoid rent costs and state bloat. You must deploy and interact with the emission shim as a separate contract.
+
+- Verification “Shim”: The verification shim is not a new program or contract. Instead, it refers to a rent-efficient usage pattern of the existing Core Bridge instructions (`verify_signatures` and `post_vaa`). In this flow, you create the minimum required temporary accounts for VAA verification, perform your checks, then immediately close those accounts to reclaim rent. All logic is handled by the standard Core Bridge contract—no additional contract deployment is needed.
+
+| Purpose            | Is it a new program? | Deployment Required? | How it works                                |
+|--------------------|----------------------|----------------------|---------------------------------------------|
+| Emission Shim      | Yes                  | Yes                  | Deploy the shim, call its instruction       |
+| Verification Shim  | No                   | No                   | Use standard Core Bridge; close temp accounts after verification |
+
 ## Key Solana Concepts
 
 To understand how shims work, it helps to know a few Solana basics:

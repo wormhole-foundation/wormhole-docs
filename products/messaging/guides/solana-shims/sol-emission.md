@@ -10,6 +10,11 @@ This guide explains how to use Wormhole’s emission shim on Solana to reduce th
 
 For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. For deployment steps, see [Shim Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}.
 
+!!!info "What does 'shim' mean here?"
+    - For emission, the shim is a new Solana program that you deploy and use instead of the legacy `post_message` instruction.
+    - For verification, the 'shim' is not a program but a pattern—simply clean up temporary accounts after using existing Core Bridge instructions.
+    - See [Shim Emission and Verification](/docs/products/messaging/concepts/solana-shim/#shim-emission-and-verification) for more details.
+
 ## Using the Emission Shim
 
 The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that matches the signature and accounts of `post_message_unreliable`. If you are already emitting messages via Wormhole, integrating the shim is a minimal change, primarily just switching the program address.

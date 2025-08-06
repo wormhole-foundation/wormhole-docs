@@ -10,7 +10,10 @@ This guide explains how to efficiently verify Wormhole VAAs on Solana by leverag
 
 The goal is to accumulate all guardian signatures into a temporary `SignatureSet` account using `verify_signatures`, verify the VAA and guardian set using `post_vaa`, and immediately close any accounts you created for this process.
 
-Note that the shim is not a new contract or program. Instead, it’s a rent-efficient usage pattern of the existing Wormhole Core Bridge instructions (`verify_signatures` and `post_vaa`). By following this approach, you only create temporary accounts for the verification process and clean them up immediately afterward—leaving no permanent on-chain state.
+!!!info "What does 'shim' mean here?"
+    - For emission, the shim is a new lightweight program.  
+    - For verification, the 'shim' is just a smart use of existing instructions.
+    - See [Shim Emission and Verification](/docs/products/messaging/concepts/solana-shim/#shim-emission-and-verification){target=\_blank} for more details.
 
 For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. For deployment steps, see [Shim Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}.
 
