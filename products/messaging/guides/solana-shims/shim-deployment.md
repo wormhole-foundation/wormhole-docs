@@ -4,7 +4,7 @@ description: Step-by-step instructions for building, deploying, verifying, and h
 categories: Basics
 ---
 
-# Solana Shim Contract Deployment
+# Solana Shim Program Deployment
 
 This guide explains how to deploy and validate the two shim programs that optimize Wormhole Core Bridge operations on Solana mainnet. Follow these steps to ensure reliable, Guardian-compatible usage with minimal rent overhead.
 
