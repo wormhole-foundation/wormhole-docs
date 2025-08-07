@@ -49,7 +49,7 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 Consider the following examples of potential applications enabled by Wormhole:
 
 - **Cross-chain exchange**: Using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access.
-- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-guide){target=\_blank}**: Projects with communities spread across multiple blockchains can use Wormhole to relay votes from each chain to a designated governance chain, enabling unified decision-making through combined proposals.
+- [**Cross-chain governance**](https://wormhole.com/blog/stake-for-governance-guide){target=\_blank}: Projects with communities spread across multiple blockchains can use Wormhole to relay votes from each chain to a designated governance chain, enabling unified decision-making through combined proposals.
 - **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued on another network, such as Ethereum.
 
 ## Explore
