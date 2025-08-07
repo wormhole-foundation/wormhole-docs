@@ -3901,10 +3901,6 @@ function sendPayloadToEvm(
 
     Address on `refundChain` to receive refunds.
 
-    `refundChain` ++"uint16"++
-
-    Wormhole chain ID where refunds should be sent.
-    
 ??? interface "Returns"
 
     `sequence` ++"uint64"++
