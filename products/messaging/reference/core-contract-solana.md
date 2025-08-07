@@ -129,7 +129,7 @@ PostMessage {
 
     Level of finality required before the message is processed.
 
-    `1` = Confirmed, `2` = Finalized.
+    `1` = Confirmed, `32` = Finalized.
 
 ### post_message_unreliable
 
@@ -272,7 +272,7 @@ PostVAA {
 
     Required confirmation level before the message is accepted.
     
-    `1` = Confirmed, `2` = Finalized.
+    `1` = Confirmed, `32` = Finalized.
 
     ---
 
