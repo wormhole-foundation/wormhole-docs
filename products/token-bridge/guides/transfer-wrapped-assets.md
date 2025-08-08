@@ -148,13 +148,13 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
     === "Automatic Transfer"
 
         ```ts title="transfer.ts"
-        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/automatic-transfer.ts:44:73'
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/automatic-transfer.ts:44'
         ```
 
     This code does the following:
 
     - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `TokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
-    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers.
+    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
     - Builds the transfer object, initiates the transfer, signs the transaction, and sends it.
     - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
 
@@ -165,7 +165,13 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
 
 3. You will see terminal output similar to the following:
 
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-3.html'
+    === "Manual Transfer"
+
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-3.html'
+
+    === "Automatic Transfer"
+
+        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-4.html'
 
 Congratulations! You've now used Token Bridge to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 
