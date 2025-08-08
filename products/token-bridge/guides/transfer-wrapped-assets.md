@@ -22,6 +22,7 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The Wormhole TypeScript SDK version 3.0 or above.
 - The contract address for the ERC-20 token you wish to transfer.
 - A wallet setup with the following:
     - Private keys for your source and destination chains.
