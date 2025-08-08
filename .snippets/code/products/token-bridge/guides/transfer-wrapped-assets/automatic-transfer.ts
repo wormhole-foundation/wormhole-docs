@@ -45,7 +45,7 @@ async function transferTokens() {
   const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
   // Get the decimals for the source chain
   const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
-  // If automatic, convert to raw units, otherwise set to 0n
+  // Convert to raw units, otherwise set to 0n
   const nativeGas = BigInt(Number(nativeGasAmount) * 10 ** nativeGasDecimals);
 
   // Build the token transfer object

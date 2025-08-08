@@ -155,7 +155,7 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
     This code does the following:
 
     - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `TokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
-    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
+    - Sets an optional amount for [native gas drop-off](/docs/products/token-bridge/concepts/transfer-flow/#flow-of-an-automatic-transfer-via-tbr){target=\_blank}. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
     - Builds the transfer object, initiates the transfer, signs the transaction, and sends it.
     - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
 
