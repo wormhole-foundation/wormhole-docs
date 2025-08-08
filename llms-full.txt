@@ -18732,6 +18732,7 @@ Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
 - [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The Wormhole TypeScript SDK version 3.0 or above.
 - The contract address for the ERC-20 token you wish to transfer.
 - A wallet setup with the following:
     - Private keys for your source and destination chains.
@@ -19188,7 +19189,51 @@ transferTokens().catch((e) =&gt; {
     === "Automatic Transfer"
 
         ```ts title="transfer.ts"
-        const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
+        import { wormhole, Wormhole, TokenId } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner, getTokenDecimals } from './helpers';
+
+async function transferTokens() {
+  // Initialize wh instance
+  const wh = await wormhole('Testnet', [evm, solana]);
+  // Define sourceChain and destinationChain, get chain contexts
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+  // Load signers for both chains
+  const sourceSigner = await getSigner(sourceChain);
+  const destinationSigner = await getSigner(destinationChain);
+
+  // Define token and amount to transfer
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
+  );
+  // Replace with amount you want to transfer
+  // This is a human-readable number, e.g., 0.2 for 0.2 tokens
+  const amount = INSERT_AMOUNT;
+  // Convert to raw units based on token decimals
+  const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
+  const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));
+
+  // Check if the token is registered with destinationChain token bridge contract
+  // Registered = returns the wrapped token ID, continues with transfer
+  // Not registered = runs the attestation flow to register the token
+  let wrappedToken: TokenId;
+  try {
+    wrappedToken = await wh.getWrappedAsset(destinationChain.chain, tokenId);
+    console.log(
+      '✅ Token already registered on destination:',
+      wrappedToken.address
+    );
+  } catch (e) {
+    console.log(
+      '⚠️ Token is NOT registered on destination. Attestation required before transfer can proceed...'
+    );
+  }
+  // Insert Initiate Transfer on Source Chain code
+  // Optional native gas amount for automatic transfers only
+  const nativeGasAmount = '0.001'; // 0.001 of native gas in human-readable format
   // Get the decimals for the source chain
   const nativeGasDecimals = destinationChain.config.nativeTokenDecimals;
   // If automatic, convert to raw units, otherwise set to 0n
@@ -19217,12 +19262,14 @@ transferTokens().catch((e) =&gt; {
 
 transferTokens().catch((e) =&gt; {
   console.error('❌ Error in transferTokens', e);
+  process.exit(1);
+});
         ```
 
     This code does the following:
 
     - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `TokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
-    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token for gas fees. Native gas drop-off is currently only supported for automatic transfers.
+    - Sets an optional amount for native gas drop-off. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
     - Builds the transfer object, initiates the transfer, signs the transaction, and sends it.
     - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
 
@@ -19233,7 +19280,9 @@ transferTokens().catch((e) =&gt; {
 
 3. You will see terminal output similar to the following:
 
-    <div data-termynal="" id="termynal">
+    === "Manual Transfer"
+
+        <div data-termynal="" id="termynal">
 <span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
 <span data-ty="">✅ Token already registered on destination: SolanaAddress {
   type: 'Native',
@@ -19264,9 +19313,8 @@ transferTokens().catch((e) =&gt; {
       address: [PublicKey [PublicKey(21dmEFTFGBEVoUNjmrxumN6A2xFxNBQXTkK7AmMqNmqD)]]
     }
   },
-  automatic: false,
-  payload: undefined,
-  nativeGas: 0n
+  protocol: 'TokenBridge',
+  payload: undefined
 }</span>
 <span data-ty="">🔗 Source chain tx sent: [
   '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
@@ -19287,6 +19335,49 @@ transferTokens().catch((e) =&gt; {
 <span data-ty="">🎉 Destination tx(s) submitted: [
   '23NRfFZyKJTDLppJF4GovdegxYAuW2HeXTEFSKKNeA7V82aqTVYTkKeM8sCHCDWe7gWooLAPHARjbAheXoxbbwPk'
 ]</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    === "Automatic Transfer"
+
+        <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx transfer.ts</span>
+<span data-ty="">✅ Token already registered on destination: SolanaAddress {
+  type: 'Native',
+  address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: <bn: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca="">
+  }
+}</bn:></span>
+<span data-ty="">🚀 Built transfer object: {
+  token: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0x39F2f26f247CcC223393396755bfde5ecaeb0648'
+    }
+  },
+  amount: 200000000000000000n,
+  from: {
+    chain: 'Moonbeam',
+    address: EvmAddress {
+      type: 'Native',
+      address: '0xCD8Bcd9A793a7381b3C66C763c3f463f70De4e12'
+    }
+  },
+  to: {
+    chain: 'Solana',
+    address: SolanaAddress {
+      type: 'Native',
+      address: [PublicKey [PublicKey(21dmEFTFGBEVoUNjmrxumN6A2xFxNBQXTkK7AmMqNmqD)]]
+    }
+  },
+  protocol: 'AutomaticTokenBridge',
+  nativeGas: 10000000000000000n
+}</span>
+<span data-ty="">🔗 Source chain tx sent: [
+  '0xf318a1098a81063ac8acc9ca117eeb41ae9abfd9cb550a976721d2fa978f313a'
+]</span>
+<span data-ty="">✅ Automatic transfer: relayer is handling redemption.</span>
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
