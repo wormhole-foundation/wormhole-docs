@@ -28,16 +28,16 @@ To use NTT, you must have a token already deployed on the source and destination
 ???- interface "Deploy an ERC-20 Token on EVM"
     Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-    1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
+    1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
-    2. **Clone the repository** – fetch the example contract repository
+    2. **Clone the repository**: Fetch the example contract repository.
 
         ```bash
         git clone https://github.com/wormhole-foundation/example-ntt-token.git
         cd example-ntt-token
         ```
-    
-    3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
+
+    3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
 
         ```bash
         forge create --broadcast \
@@ -47,7 +47,7 @@ To use NTT, you must have a token already deployed on the source and destination
             --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
         ```
 
-    4. **Mint tokens** – send tokens to your address
+    4. **Mint tokens**: Send tokens to your address.
 
         ```bash
         cast send INSERT_TOKEN_ADDRESS \
@@ -65,61 +65,68 @@ To use NTT, you must have a token already deployed on the source and destination
 ???- interface "Create and Mint SPL Tokens"
     This section walks you through generating a Solana wallet, deploying an SPL token, creating a token account, and minting tokens.
 
-    1. **Generate a Solana key pair** - run the following command to create a new wallet:
+    1. **Generate a key pair**: Run the following command to create a new wallet compatible with supported SVM chains.
 
         ```bash
         solana-keygen grind --starts-with w:1 --ignore-case
         ```
 
-    2. **Set Solana configuration** - configure the Solana CLI to use the generated key pair using the following command:
+    2. **Set CLI keypair configuration**: Configure the Solana CLI to use the generated key pair.
 
         ```bash
         solana config set --keypair INSERT_PATH_TO_KEYPAIR_JSON
         ```
 
-    3. **Select an RPC URL** - configure Solana to use the appropriate network using one of the following commands:
+    3. **Select an RPC URL**: Set the CLI to point to the appropriate network for your deployment.
 
-        === "Mainnet"
+        === "Solana Mainnet"
             ```bash
             solana config set -um
             ```
 
-        === "Testnet"
+        === "Solana Testnet"
             ```bash
             solana config set -ut
             ```
 
-        === "Devnet"
+        === "Solana Devnet"
             ```bash
             solana config set -ud
             ```
 
-    4. **Fund your wallet** - ensure you have enough SOL to create a token. If deploying on devnet, request an airdrop with the following commands:
+        === "Fogo Testnet"
+            ```bash
+            solana config set --url INSERT_FOGO_TESTNET_RPC_URL
+            ```
 
-        ```bash
-        solana airdrop 2
-        solana balance
-        ```
+    4. **Fund your wallet**: Ensure your wallet has enough native tokens to cover transaction fees.
 
-    5. **Install SPL Token CLI** - install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}
+        - On Solana Devnet, you can request an airdrop:
+
+            ```bash
+            solana airdrop 2
+            solana balance
+            ```
+
+    5. **Install SPL Token CLI**: Install or update the required [CLI tool](https://www.solana-program.com/docs/token#setup){target=\_blank}.
 
         ```bash
         cargo install spl-token-cli
         ```
 
-    6. **Create a new SPL token** - initialize the token on Solana
+    6. **Create a new SPL token**: Initialize the token on your connected SVM chain.
 
         ```bash
         spl-token create-token
         ```
 
-    7. **Create a token account** - generate an account to hold the token
+    7. **Create a token account**: Generate an account to hold the token.
 
         ```bash
         spl-token create-account INSERT_TOKEN_ADDRESS
         ```
 
-    8. **Mint tokens** - send 1000 tokens to the created account
+    8. **Mint tokens**: Send 1000 tokens to the created account.
 
         ```bash
         spl-token mint INSERT_TOKEN_ADDRESS 1000
@@ -203,4 +210,4 @@ In the deployment steps, you will add your supported chains, their token address
 You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
 
 - [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
-- [Deploy to Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on Solana.
+- [Deploy to SVM](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on SVM-compatible chains.
