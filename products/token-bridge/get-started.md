@@ -36,10 +36,10 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     npm init -y
     ```
 
-2. Install the required dependencies:
+2. Install the required dependencies. In this guide, you’ll use the TypeScript SDK version `2.4.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@2.4.0
     npm install -D tsx typescript
     ```
 

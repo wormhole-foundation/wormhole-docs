@@ -149,10 +149,10 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     npm init -y
     ```
 
-2. Install the required dependencies:
+2. Install the required dependencies. In this guide, you’ll use the TypeScript SDK version `2.4.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@2.4.0
     npm install -D tsx typescript
     ```
 
@@ -1445,10 +1445,11 @@ In this section, we’ll guide you through initializing the project, installing 
     echo ".env" >> .gitignore
     ```
 
-3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
+3. **Install dependencies** - install the required dependencies. In this tutorial, we will use the TypeScript SDK version `2.4.0`, along with helper libraries
+
 
     ```bash
-    npm install @wormhole-foundation/sdk dotenv tsx
+    npm install @wormhole-foundation/sdk@2.4.0 dotenv tsx
     ```
 
 4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
@@ -7792,7 +7793,7 @@ Critical problems Wormhole addresses include:
 Wormhole provides a suite of tools and protocols that support a wide range of use cases:
 
 - **Cross-chain messaging**: Securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications.
-- **Asset transfers**: Facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}.
+- **Asset transfers**: Facilitate the movement of tokens across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}.
 - **Developer tools**: Leverage Wormhole’s [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank},<!-- [Solidity SDK](/docs/tools/solidity-sdk/get-started/),--> [Wormholescan](https://wormholescan.io/){target=\_blank}, and the [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} and documentation to build and deploy cross-chain applications quickly and efficiently.
 
 ## What Isn't Wormhole?
@@ -7805,8 +7806,8 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 Consider the following examples of potential applications enabled by Wormhole:
 
 - **Cross-chain exchange**: Using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access.
-- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}**: NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
-- **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum.
+- [**Cross-chain governance**](https://wormhole.com/blog/stake-for-governance-guide){target=\_blank}: Projects with communities spread across multiple blockchains can use Wormhole to relay votes from each chain to a designated governance chain, enabling unified decision-making through combined proposals.
+- **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued on another network, such as Ethereum.
 
 ## Explore
 
