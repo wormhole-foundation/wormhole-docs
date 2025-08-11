@@ -136,7 +136,7 @@ By the end, you'll have a working script that:
 
 - Resolves token transfer routes using Mayan Swift
 - Quotes and validates the best route
-- Initiates a swap on a source chain and completes the transfer on a destination chain
+- Initiates a swap on a source chain and completes the transfer on a destination chain (no destination signer required for Mayan Swift)
 
 !!! note
     Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
@@ -146,9 +146,10 @@ By the end, you'll have a working script that:
 Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}
+- One source-chain wallet funded with native gas on a [Swift-supported chain](/docs/products/reference/supported-networks/#settlement){target=\_blank}
+- A destination wallet address on the target chain (no destination signer or gas required)
 
-This example uses Ethereum as the source chain and Solana as the destination. As a result, you'll need an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the example to match your preferred chains.
+This example utilizes Ethereum as the source chain and Solana as the destination chain. You’ll need ETH for gas on Ethereum only. You do not need SOL or a Solana signer; you’ll provide a Solana recipient address, and Mayan Swift’s relayer handles the destination leg. You can adapt the example to match your preferred chains.
 
 ## Set Up a Project
 
@@ -180,18 +181,21 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
     touch src/helpers.ts src/swap.ts .env .gitignore
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/cast-wallet){target=\_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading a source private key and an Ethereum mainnet RPC URL from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/cast-wallet){target=\_blank}. The RPC is required so the SDK can sign and send the source-chain transaction reliably.
+
+    !!! note
+        Some auto-selected public RPCs may require API keys or rate-limit intermittently. Providing your own mainnet RPC URL avoids 401/500 errors and timeouts during `initiate` and status polling.
 
     !!! warning
         If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
 ## Perform a Token Swap
 
-This section shows you how to perform a token swap using the Mayan Swift route. You will define a helper function to configure the source and destination chain signers.
+This section shows you how to perform a token swap using the Mayan Swift route. You will define a helper function to configure the source chain signer.
 
-Then, you'll create a script that initiates a transfer on Ethereum, uses the Mayan Swift resolver to find valid routes, sends the transaction, and completes the transfer on Solana.
+Then, you'll create a script that initiates a transfer on Ethereum, uses the Mayan Swift resolver to find valid routes, sends the transaction, and lets the route complete the transfer on Solana.
 
-1. Open `helper.ts` and define the `getSigner` utility function to load private keys, instantiate signers for Ethereum and Solana, and return the signers along with the Wormhole-formatted address:
+1. Open `helper.ts` and define the `getSigner` utility function to load private key, instantiate signer for your source chain, and return the signer along with the Wormhole-formatted address:
 
     ```ts title="src/helpers.ts"
     import {
@@ -204,13 +208,15 @@ Then, you'll create a script that initiates a transfer on Ethereum, uses the May
 } from '@wormhole-foundation/sdk-connect';
 import { getEvmSignerForKey } from '@wormhole-foundation/sdk-evm';
 import { getSolanaSigner } from '@wormhole-foundation/sdk-solana';
+import { JsonRpcProvider } from "ethers";
 
 /**
- * Returns a signer for the given chain using locally scoped credentials.
- * The required values (MAINNET_ETH_PRIVATE_KEY, MAINNET_SOL_PRIVATE_KEY)
+ * Create a helper function that returns a signer for the given chain using locally scoped credentials.
+ * The required values (MAINNET_ETH_PRIVATE_KEY, ETHEREUM_MAINNET_RPC)
  * must be loaded securely beforehand, for example via a keystore,
  * secrets manager, or environment variables (not recommended).
  */
+
 // Define Transfer Interface
 export interface SignerContext<n c="" chain="" extends="" network,=""> {
   signer: Signer<n, c="">;
@@ -223,13 +229,15 @@ export async function getSigner<n c="" chain="" extends="" network,="">(
   let signer: Signer;
   const platform = chain.platform.utils()._platform;
   switch (platform) {
-    case 'Solana':
+    case "Solana":
       signer = await getSolanaSigner(
         await chain.getRpc(),
-        getEnv('MAINNET_SOL_PRIVATE_KEY')
+        getEnv("MAINNET_SOL_PRIVATE_KEY")
       );
       break;
     case 'Evm':
+      const rpcUrl = process.env.ETHEREUM_MAINNET_RPC;
+      const rpc = new JsonRpcProvider(rpcUrl, { chainId: 1, name: "mainnet" });
       signer = await getEvmSignerForKey(
         await chain.getRpc(),
         getEnv('MAINNET_ETH_PRIVATE_KEY')
@@ -258,10 +266,18 @@ import { getSigner } from './helpers';
 
 (async function () {
   // Setup
-  const wh = new Wormhole('Mainnet', [EvmPlatform, SolanaPlatform]);
+  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform], {
+    chains: {
+      Ethereum: { rpc: process.env.ETHEREUM_MAINNET_RPC! }, // e.g. https://ethereum-rpc.publicnode.com
+      Solana: {
+        rpc: process.env.SOLANA_MAINNET_RPC ?? "https://api.mainnet-beta.solana.com",
+      },
+    },
+  });
 
   const sendChain = wh.getChain('Ethereum');
   const destChain = wh.getChain('Solana');
+  const destAddress = Wormhole.chainAddress(destChain.chain, "YOUR_DESTINATION_ADDRESS");
 
   //  To transfer native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, 'native');
@@ -282,7 +298,6 @@ import { getSigner } from './helpers';
 
   // Load signers and addresses from helpers
   const sender = await getSigner(sendChain);
-  const receiver = await getSigner(destChain);
 
   // Creating a transfer request fetches token details
   // since all routes will need to know about the tokens
@@ -297,7 +312,7 @@ import { getSigner } from './helpers';
 
   // Specify the amount as a decimal string
   const transferParams = {
-    amount: '0.002',
+    amount: '0.001',
     options: bestRoute.getDefaultOptions(),
   };
 
@@ -321,14 +336,14 @@ import { getSigner } from './helpers';
     tr,
     sender.signer,
     quote,
-    receiver.address
+    destAddress
   );
   console.log('Initiated transfer with receipt: ', receipt);
 
   await routes.checkAndCompleteTransfer(
     bestRoute,
     receipt,
-    receiver.signer,
+    undefined,
     15 * 60 * 1000
   );
 })();
@@ -6299,7 +6314,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Monad | 48 |  |
 | Moonbeam | 16 | 1284 |
 | NEAR | 15 | mainnet |
-| Neon | 17 | 245022934 |
 | Neutron | 4003 | neutron-1 |
 | Noble | 4009 | noble-1 |
 | Optimism | 24 | 10 |
@@ -6339,7 +6353,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9000-4 |
 | Fantom | 10 | 4002 |
 | Fogo | 51 | 9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
 | Injective | 19 | injective-888 |
 | Ink | 46 | 763373 |
 | Kaia | 13 | Kairos-1001 |
@@ -6402,6 +6416,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Evmos |  |  | 0 |  | ~ 2s |  |
 | Fantom | 200 |  |  | finalized | ~ 5s |  |
 | Fogo |  |  | 0 |  | ~ 14s |  |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } |  |  | 0 |  | ~ 2s |  |
 | Injective |  |  | 0 |  | ~ 3s |  |
 | Ink |  |  | 0 |  | ~ 9min |  |
 | Kaia | 200 |  |  | finalized | ~ 1s |  |
@@ -6456,7 +6471,7 @@ categories: Reference
 | BNB Smart Chain | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | Kaia | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7 |
@@ -6493,7 +6508,7 @@ categories: Reference
 | Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
 | Fogo | BhnQyKoQQgpuRTRo6D8Emz93PvXCYfVgHhnrR4T3qhw4 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
 | Ink | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Kaia | 0x1830CC6eE66c84D2F177B94D544967c774E624cA |
@@ -6577,7 +6592,7 @@ categories: Reference
 | Celo | 0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153 |
 | Fantom | 0x599CEa2204B4FaECd584Ab1F2b6aCA137a0afbE8 |
 | Fogo | 78HdStBqCMioGii9D8mF3zQaWDqDZBQWTUwjjpdmbJKX |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
 | Injective | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh |
 | Ink | 0x376428e7f26D5867e69201b275553C45B09EE090 |
 | Kaia | 0xC7A13BE098720840dEa132D860fDfa030884b09A |
@@ -6782,6 +6797,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -6815,7 +6831,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -6888,7 +6904,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Converge | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -6936,7 +6952,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | BNB Smart Chain | EVM | BNB | Official BNB Faucet |
 | Celo | EVM | CELO | Official Celo Faucet |
 | Fantom | EVM | FTM | Official Fantom Faucet |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
 | Ink | EVM | ETH | Official Ink Faucet |
 | Kaia | EVM | KAIA | Official Kaia Faucet |
 | Linea | EVM | ETH | List of Faucets |
