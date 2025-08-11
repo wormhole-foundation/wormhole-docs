@@ -2,10 +2,7 @@ import { Wormhole, routes } from '@wormhole-foundation/sdk-connect';
 import { EvmPlatform } from '@wormhole-foundation/sdk-evm';
 import { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
 import { MayanRouteSWIFT } from '@mayanfinance/wormhole-sdk-route';
-import dotenv from "dotenv";
 import { getSigner } from './helpers';
-
-dotenv.config();
 
 (async function () {
   // Setup
