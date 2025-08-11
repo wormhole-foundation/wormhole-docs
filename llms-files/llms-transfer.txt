@@ -1875,6 +1875,7 @@ categories: NTT, Transfer
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -1942,7 +1943,7 @@ categories: Token Bridge, Transfer
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -6816,7 +6817,7 @@ Each manager is assigned to a specific token but can operate across multiple cha
 A manager is responsible for:
 
 - **Handling token transfer flow**: Upon a transfer request, `NttManager` either locks or burns tokens depending on the configuration, emits a `TransferSent` event, and ensures tokens can’t be accessed on the source chain before leasing them on the destination chain. This process safeguards against double-spending and maintains a secure transfer.
-- **Rate-limiting**: The `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers
+- **Rate-limiting**: The `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers.
     - **Outbound**: Transfers exceeding the outbound limit are queued (if `shouldQueue` is true) or reverted.
     - **Inbound**: Similar limits apply on the destination chain, delaying transfers if capacity is exceeded.
 
@@ -6864,10 +6865,10 @@ For more details, to collaborate, or to see examples of custom transceivers, [co
 
 The NTT contracts maintain minimal state on‑chain to safely route transfers, prevent replays, and manage throughput across multiple chains. This state is primarily managed by the NTT Manager, its Rate Limiter, and the Transceiver Registry:
 
- - **Message Attestations** – records which transceivers have attested to each cross‑chain message, enforces the M‑of‑N attestation threshold, and prevents re‑execution of processed messages
- - **Peer Registrations** – maps each remote chain to its associated NTT Manager and token decimal configuration, ensuring only trusted peers can mint/unlock tokens
- - **Rate Limiting** – enforces inbound and outbound throughput caps and queues transfers when limits are exceeded, protecting liquidity and downstream networks
- - **Transceiver Registry** – maintains the list of registered and enabled transceivers, along with their bitmap index, allowing governance to add/remove messaging providers
+ - **Message Attestations**: Records which transceivers have attested to each cross‑chain message, enforces the M‑of‑N attestation threshold, and prevents re‑execution of processed messages.
+ - **Peer Registrations**: Maps each remote chain to its associated NTT Manager and token decimal configuration, ensuring only trusted peers can mint/unlock tokens.
+ - **Rate Limiting**: Enforces inbound and outbound throughput caps and queues transfers when limits are exceeded, protecting liquidity and downstream networks.
+ - **Transceiver Registry**: Maintains the list of registered and enabled transceivers, along with their bitmap index, allowing governance to add/remove messaging providers.
 
 ## Lifecycle of a Message
 
@@ -6879,8 +6880,8 @@ The process begins when a client initiates a transfer. For EVM, this is done usi
 
 In both cases:
 
-- If the source chain is in locking mode, the tokens are locked on the source chain to be unlocked on the destination chain
-- If the source chain is in burning mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain
+- If the source chain is in locking mode, the tokens are locked on the source chain to be unlocked on the destination chain.
+- If the source chain is in burning mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain.
 
 Once initiated, an event (such as `TransferSent` on EVM or a corresponding log on SVM) is emitted to signal that the transfer process has started.
 
@@ -6888,8 +6889,8 @@ Once initiated, an event (such as `TransferSent` on EVM or a corresponding log o
 
 Both EVM and SVM implement rate-limiting for transfers to prevent abuse or network overload. Rate limits apply to both the source and destination chains. If transfers exceed the current capacity, depending on whether the `shouldQueue` flag is set to true, they can be queued.
 
-- On EVM, the transfer is added to an outbound queue if it hits the rate limit, with a delay corresponding to the configured rate limit duration. If `shouldQueue` is set to false, the transfer is reverted with an error
-- On SVM, the transfer is added to an **Outbox** via the `insert_into_outbox` method, and if the rate limit is hit, the transfer is queued with a `release_timestamp`. If `shouldQueue` is false, the transfer is reverted with a `TransferExceedsRateLimit` error
+- On EVM, the transfer is added to an outbound queue if it hits the rate limit, with a delay corresponding to the configured rate limit duration. If `shouldQueue` is set to false, the transfer is reverted with an error.
+- On SVM, the transfer is added to an **Outbox** via the `insert_into_outbox` method, and if the rate limit is hit, the transfer is queued with a `release_timestamp`. If `shouldQueue` is false, the transfer is reverted with a `TransferExceedsRateLimit` error.
 
 Both chains emit events or logs when transfers are rate-limited or queued.
 
@@ -15277,7 +15278,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Monad | 48 |  |
 | Moonbeam | 16 | 1284 |
 | NEAR | 15 | mainnet |
-| Neon | 17 | 245022934 |
 | Neutron | 4003 | neutron-1 |
 | Noble | 4009 | noble-1 |
 | Optimism | 24 | 10 |
@@ -15317,7 +15317,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9000-4 |
 | Fantom | 10 | 4002 |
 | Fogo | 51 | 9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
 | Injective | 19 | injective-888 |
 | Ink | 46 | 763373 |
 | Kaia | 13 | Kairos-1001 |
@@ -15380,6 +15380,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Evmos |  |  | 0 |  | ~ 2s |  |
 | Fantom | 200 |  |  | finalized | ~ 5s |  |
 | Fogo |  |  | 0 |  | ~ 14s |  |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } |  |  | 0 |  | ~ 2s |  |
 | Injective |  |  | 0 |  | ~ 3s |  |
 | Ink |  |  | 0 |  | ~ 9min |  |
 | Kaia | 200 |  |  | finalized | ~ 1s |  |
@@ -15434,7 +15435,7 @@ categories: Reference
 | BNB Smart Chain | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | Kaia | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7 |
@@ -15471,7 +15472,7 @@ categories: Reference
 | Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
 | Fogo | BhnQyKoQQgpuRTRo6D8Emz93PvXCYfVgHhnrR4T3qhw4 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
 | Ink | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Kaia | 0x1830CC6eE66c84D2F177B94D544967c774E624cA |
@@ -15555,7 +15556,7 @@ categories: Reference
 | Celo | 0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153 |
 | Fantom | 0x599CEa2204B4FaECd584Ab1F2b6aCA137a0afbE8 |
 | Fogo | 78HdStBqCMioGii9D8mF3zQaWDqDZBQWTUwjjpdmbJKX |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
 | Injective | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh |
 | Ink | 0x376428e7f26D5867e69201b275553C45B09EE090 |
 | Kaia | 0xC7A13BE098720840dEa132D860fDfa030884b09A |
@@ -15760,6 +15761,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -15793,7 +15795,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -15866,7 +15868,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Converge | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -15914,7 +15916,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | BNB Smart Chain | EVM | BNB | Official BNB Faucet |
 | Celo | EVM | CELO | Official Celo Faucet |
 | Fantom | EVM | FTM | Official Fantom Faucet |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
 | Ink | EVM | ETH | Official Ink Faucet |
 | Kaia | EVM | KAIA | Official Kaia Faucet |
 | Linea | EVM | ETH | List of Faucets |
