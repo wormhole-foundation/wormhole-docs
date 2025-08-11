@@ -8,13 +8,27 @@ import {
 } from '@wormhole-foundation/sdk-connect';
 import { getEvmSignerForKey } from '@wormhole-foundation/sdk-evm';
 import { getSolanaSigner } from '@wormhole-foundation/sdk-solana';
+import { JsonRpcProvider } from "ethers";
+import { config as dotenv } from "dotenv"; dotenv(); 
 
 /**
- * Returns a signer for the given chain using locally scoped credentials.
- * The required values (MAINNET_ETH_PRIVATE_KEY, MAINNET_SOL_PRIVATE_KEY)
+ * Create a heloer function that returns a signer for the given chain using locally scoped credentials.
+ * The required values (MAINNET_ETH_PRIVATE_KEY, ETHEREUM_MAINNET_RPC)
  * must be loaded securely beforehand, for example via a keystore,
  * secrets manager, or environment variables (not recommended).
  */
+
+// Example helper function to get environment variables
+function getEnv(key: string): string {
+  if (typeof process === undefined) return "";
+  const val = process.env[key];
+  if (!val)
+    throw new Error(
+      `Missing env var ${key}, did you forget to set values in your keystore?`
+    );
+  return val;
+}
+
 // Define Transfer Interface
 export interface SignerContext<N extends Network, C extends Chain> {
   signer: Signer<N, C>;
@@ -27,13 +41,15 @@ export async function getSigner<N extends Network, C extends Chain>(
   let signer: Signer;
   const platform = chain.platform.utils()._platform;
   switch (platform) {
-    case 'Solana':
+    case "Solana":
       signer = await getSolanaSigner(
         await chain.getRpc(),
-        getEnv('MAINNET_SOL_PRIVATE_KEY')
+        getEnv("MAINNET_SOL_PRIVATE_KEY")
       );
       break;
     case 'Evm':
+      const rpcUrl = process.env.ETHEREUM_MAINNET_RPC;
+      const rpc = new JsonRpcProvider(rpcUrl, { chainId: 1, name: "mainnet" });
       signer = await getEvmSignerForKey(
         await chain.getRpc(),
         getEnv('MAINNET_ETH_PRIVATE_KEY')

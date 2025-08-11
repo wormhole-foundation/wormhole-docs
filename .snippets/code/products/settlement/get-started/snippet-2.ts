@@ -2,14 +2,25 @@ import { Wormhole, routes } from '@wormhole-foundation/sdk-connect';
 import { EvmPlatform } from '@wormhole-foundation/sdk-evm';
 import { SolanaPlatform } from '@wormhole-foundation/sdk-solana';
 import { MayanRouteSWIFT } from '@mayanfinance/wormhole-sdk-route';
+import dotenv from "dotenv";
 import { getSigner } from './helpers';
+
+dotenv.config();
 
 (async function () {
   // Setup
-  const wh = new Wormhole('Mainnet', [EvmPlatform, SolanaPlatform]);
+  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform], {
+    chains: {
+      Ethereum: { rpc: process.env.ETHEREUM_MAINNET_RPC! }, // e.g. https://ethereum-rpc.publicnode.com
+      Solana: {
+        rpc: process.env.SOLANA_MAINNET_RPC ?? "https://api.mainnet-beta.solana.com",
+      },
+    },
+  });
 
   const sendChain = wh.getChain('Ethereum');
   const destChain = wh.getChain('Solana');
+  const destAddress = Wormhole.chainAddress(destChain.chain, "YOUR_DESTINATION_ADDRESS");
 
   //  To transfer native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, 'native');
@@ -30,7 +41,6 @@ import { getSigner } from './helpers';
 
   // Load signers and addresses from helpers
   const sender = await getSigner(sendChain);
-  const receiver = await getSigner(destChain);
 
   // Creating a transfer request fetches token details
   // since all routes will need to know about the tokens
@@ -45,7 +55,7 @@ import { getSigner } from './helpers';
 
   // Specify the amount as a decimal string
   const transferParams = {
-    amount: '0.002',
+    amount: '0.001',
     options: bestRoute.getDefaultOptions(),
   };
 
@@ -69,14 +79,14 @@ import { getSigner } from './helpers';
     tr,
     sender.signer,
     quote,
-    receiver.address
+    destAddress
   );
   console.log('Initiated transfer with receipt: ', receipt);
 
   await routes.checkAndCompleteTransfer(
     bestRoute,
     receipt,
-    receiver.signer,
+    undefined,
     15 * 60 * 1000
   );
 })();
