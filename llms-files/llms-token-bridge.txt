@@ -149,10 +149,10 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     npm init -y
     ```
 
-2. Install the required dependencies:
+2. Install the required dependencies. In this guide, you’ll use the TypeScript SDK version `2.4.0`:
 
     ```bash
-    npm install @wormhole-foundation/sdk
+    npm install @wormhole-foundation/sdk@2.4.0
     npm install -D tsx typescript
     ```
 
@@ -436,7 +436,6 @@ categories: Token Bridge, Transfer
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -1446,10 +1445,11 @@ In this section, we’ll guide you through initializing the project, installing 
     echo ".env" >> .gitignore
     ```
 
-3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
+3. **Install dependencies** - install the required dependencies. In this tutorial, we will use the TypeScript SDK version `2.4.0`, along with helper libraries
+
 
     ```bash
-    npm install @wormhole-foundation/sdk dotenv tsx
+    npm install @wormhole-foundation/sdk@2.4.0 dotenv tsx
     ```
 
 4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
@@ -7793,7 +7793,7 @@ Critical problems Wormhole addresses include:
 Wormhole provides a suite of tools and protocols that support a wide range of use cases:
 
 - **Cross-chain messaging**: Securely transfer arbitrary data between blockchains, enabling the development of cross-chain decentralized applications.
-- **Asset transfers**: Facilitate the movement of tokens and NFTs across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}.
+- **Asset transfers**: Facilitate the movement of tokens across supported chains with ease, powered by protocols built on Wormhole like [Portal](https://portalbridge.com/){target=\_blank}.
 - **Developer tools**: Leverage Wormhole’s [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank},<!-- [Solidity SDK](/docs/tools/solidity-sdk/get-started/),--> [Wormholescan](https://wormholescan.io/){target=\_blank}, and the [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} and documentation to build and deploy cross-chain applications quickly and efficiently.
 
 ## What Isn't Wormhole?
@@ -7806,8 +7806,8 @@ Wormhole provides a suite of tools and protocols that support a wide range of us
 Consider the following examples of potential applications enabled by Wormhole:
 
 - **Cross-chain exchange**: Using [Wormhole Connect](/docs/products/connect/overview/){target=\_blank}, developers can build exchanges that allow deposits from any Wormhole-connected chain, significantly increasing liquidity access.
-- **[Cross-chain governance](https://wormhole.com/blog/stake-for-governance-is-now-live-for-w-token-holders){target=\_blank}**: NFT collections on different networks can use Wormhole to communicate votes cast on their respective chains to a designated "voting" chain for combined proposals
-- **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued as NFTs on another network, such as Ethereum.
+- [**Cross-chain governance**](https://wormhole.com/blog/stake-for-governance-guide){target=\_blank}: Projects with communities spread across multiple blockchains can use Wormhole to relay votes from each chain to a designated governance chain, enabling unified decision-making through combined proposals.
+- **Cross-chain game**: Games can be developed on a performant network like Solana, with rewards issued on another network, such as Ethereum.
 
 ## Explore
 
@@ -7980,6 +7980,11 @@ The following table documents the chain IDs used by Wormhole and places them alo
 !!! note
     Please note, Wormhole chain IDs are different than the more commonly referenced EVM [chain IDs](https://eips.ethereum.org/EIPS/eip-155){target=\_blank}, specified in the Mainnet and Testnet ID columns.
 
+!!!warning
+    Wormhole Contributors recommend that all connected chains implement robust security practices including (but not exclusively): open sourcing code and running public bug bounty programs, undergoing security audits and publishing those reports, using version control with adequate access controls and mandatory code review, and high unit and integration test coverage where the results of those tests are available publicly. Connected chains that can't verifiably prove that they've implemented a high percentage of these practices may be noted below with the :warning: symbol. 
+    
+    Wormhole integrators are encouraged to understand the security assumptions of any chain before trusting messages from it. See the recommended security practices for chains in [Wormhole's security program](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#chain-integrators){target=\_blank}.
+
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--CHAIN_IDS-->
 
@@ -8002,7 +8007,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9001-2 |
 | Fantom | 10 | 250 |
 | Fogo | 51 |  |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 |  |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 |  |
 | Injective | 19 | injective-1 |
 | Ink | 46 |  |
 | Kaia | 13 | 8217 |
@@ -8064,7 +8069,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Monad | 48 | 10143 |
 | Moonbeam | 16 | Moonbase-Alphanet-1287 |
 | NEAR | 15 | testnet |
-| Neon | 17 | 245022940 |
 | Neutron | 4003 | pion-1 |
 | Noble | 4009 | grand-1 |
 | Optimism Sepolia | 10005 | Optimism Sepolia-11155420 |
@@ -8084,20 +8088,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | World Chain | 45 | 4801 |
 | X Layer | 37 | 195 |
 <!--CHAIN_IDS-->
-
-!!! warning
-    Wormhole Contributors recommend that all connected chains implement robust security practices, including (but not exclusively):
-
-    - Open-sourcing code and running public bug bounty programs  
-    - Undergoing security audits and publishing those reports  
-    - Using version control with adequate access controls and mandatory code review 
-    - High unit and integration test coverage, where the results of those tests are available publicly
-
-    Chains that can't verifiably prove they meet most of these may be marked with a :warning: symbol.
-
-    Wormhole integrators are encouraged to understand the security assumptions of any chain before trusting messages from it.
-
-    See [Wormhole’s security program](https://github.com/wormhole-foundation/wormhole/blob/main/SECURITY.md#chain-integrators){target=\_blank} for recommended practices.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/reference/consistency-levels.md
@@ -8232,7 +8222,6 @@ categories: Reference
 | Monad | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Moonbeam | 0xa5B7D85a8f27dd7907dc8FdC21FA5657D5E2F901 |
 | NEAR | wormhole.wormhole.testnet |
-| Neon | 0x268557122Ffd64c85750d630b716471118F323c8 |
 | Neutron | neutron1enf63k37nnv9cugggpm06mg70emcnxgj9p64v2s8yx7a2yhhzk2q6xesk4 |
 | Optimism Sepolia | 0x31377888146f3253211EFEf5c676D41ECe7D58Fe |
 | Osmosis | osmo1hggkxr0hpw83f8vuft7ruvmmamsxmwk2hzz6nytdkzyup9krt0dq27sgyx |
@@ -8317,7 +8306,6 @@ categories: Reference
 | Monad | 0xF323dcDe4d33efe83cf455F78F9F6cc656e6B659 |
 | Moonbeam | 0xbc976D4b9D57E57c3cA52e1Fd136C45FF7955A96 |
 | NEAR | token.wormhole.testnet |
-| Neon | 0xEe3dB83916Ccdc3593b734F7F2d16D630F39F1D0 |
 | Optimism Sepolia | 0x99737Ec4B815d816c49A385943baf0380e75c0Ac |
 | Polygon Amoy | 0xC7A204bDBFe983FCD8d8E61D02b475D4073fF97e |
 | Scroll | 0x22427d90B7dA3fA4642F7025A854c7254E4e45BF |
@@ -8357,8 +8345,10 @@ categories: Reference
 | Ink | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Kaia | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Mantle | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Mezo | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Moonbeam | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Optimism | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
+| Plume | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Polygon | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Scroll | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
 | Seievm | 0x27428DD2d3DD32A4D7f7C497eAaa23130d894911 |
@@ -8514,10 +8504,11 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Mezo | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Mezo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Plume | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Seievm | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8553,7 +8544,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Monad | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | NEAR | NEAR VM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Scroll | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8625,7 +8615,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Mezo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Monad | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Moonbeam | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| Neon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Optimism | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Plume | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Polygon | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8673,7 +8662,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Mantle | EVM | MNT | Official Mantle Faucet |
 | Monad | EVM | MON | Official Monad Faucet |
 | Moonbeam | EVM | DEV | Official Moonbeam Faucet |
-| Neon | EVM | NEON | Official Neon Faucet |
 | Optimism Sepolia | EVM | ETH | Superchain Faucet |
 | Plume | EVM | PLUME | Official Plume Faucet |
 | Polygon Amoy | EVM | POL | Official Polygon Faucet |
