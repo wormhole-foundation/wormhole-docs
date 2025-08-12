@@ -13,16 +13,16 @@ The NTT [Transceiver]({{repositories.native_token_transfers.repository_url}}/blo
 The NTT Transceiver system is built using a layered inheritance structure with the base [`Transceiver`]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/Transceiver.sol){target=\_blank} contract providing common functionality and specific implementations like [`WormholeTransceiver`]({{repositories.native_token_transfers.repository_url}}/blob/{{repositories.native_token_transfers.evm_version}}/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank} adding protocol-specific features.
 
 ```text
-WormholeTransceiver
-├── IWormholeTransceiver
-├── IWormholeReceiver
-└── WormholeTransceiverState
-    ├── IWormholeTransceiverState
-    └── Transceiver
-        ├── ITransceiver
-        ├── PausableOwnable
-        ├── ReentrancyGuardUpgradeable
-        └── Implementation
+WormholeTransceiver.sol
+├── IWormholeTransceiver.sol
+├── IWormholeReceiver.sol
+└── WormholeTransceiverState.sol
+    ├── IWormholeTransceiverState.sol
+    └── Transceiver.sol
+        ├── ITransceiver.sol
+        ├── PausableOwnable.sol
+        ├── ReentrancyGuardUpgradeable.sol
+        └── Implementation.sol
 ```
 
 **Key Components:**
