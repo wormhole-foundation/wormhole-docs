@@ -32,7 +32,7 @@ export async function getSigner<N extends Network, C extends Chain>(
     case "Solana":
       signer = await getSolanaSigner(
         await chain.getRpc(),
-        getEnv("MAINNET_SOL_PRIVATE_KEY")
+       "MAINNET_SOL_PRIVATE_KEY"
       );
       break;
     case 'Evm':

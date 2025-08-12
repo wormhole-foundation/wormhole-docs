@@ -17,7 +17,7 @@ import { getSigner } from './helpers';
 
   const sendChain = wh.getChain('Ethereum');
   const destChain = wh.getChain('Solana');
-  const destAddress = Wormhole.chainAddress(destChain.chain, "YOUR_DESTINATION_ADDRESS");
+  const destAddress = Wormhole.chainAddress(destChain.chain, "INSERT_DESTINATION_ADDRESS");
 
   //  To transfer native ETH on Ethereum to native SOL on Solana
   const source = Wormhole.tokenId(sendChain.chain, 'native');
