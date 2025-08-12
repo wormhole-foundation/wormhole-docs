@@ -298,7 +298,7 @@ event SetIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled)
 
 ### SetIsWormholeEvmChain
 
-Emitted when the chain is EVM compatible. *(Defined in IWormholeTransceiverState.sol)*
+Emitted when the EVM-compatibility flag is set for a chain. *(Defined in IWormholeTransceiverState.sol)*
 
 ```sol
 event SetIsWormholeEvmChain(uint16 chainId, bool isEvm)
@@ -1168,3 +1168,52 @@ Additional messages are not allowed. *(Defined in IWormholeTransceiverState.sol)
 ```sol
 error UnexpectedAdditionalMessages();
 ```
+
+### TransferAlreadyCompleted
+
+The transfer has already been completed. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error TransferAlreadyCompleted(bytes32 digest);
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++  
+
+    The digest of the completed transfer message.  
+
+### UnexpectedRecipientNttManagerAddress
+
+The recipient NTT Manager address in the message does not match this transceiver’s NTT Manager. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error UnexpectedRecipientNttManagerAddress(bytes32 recipientNttManagerAddress);
+```
+
+??? interface "Parameters"
+
+    `recipientNttManagerAddress` ++"bytes32"++  
+
+    The unexpected NTT Manager address from the message.  
+
+### InvalidFork
+
+The current EVM chain ID does not match the stored chain ID, indicating a possible fork. *(Defined in IWormholeTransceiverState.sol)*
+
+```sol
+error InvalidFork(uint256 expectedChainId, uint256 actualChainId);
+```
+
+??? interface "Parameters"
+
+    `expectedChainId` ++"uint256"++  
+
+    The chain ID stored at deployment.  
+
+    ---  
+
+    `actualChainId` ++"uint256"++  
+
+    The chain ID returned by the current network.  
+
