@@ -1,7 +1,7 @@
 ---
 title: Transfer Wrapped Assets
 description: Follow this guide to use Token Bridge to transfer wrapped assets. Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
-categories: Token-Bridge, Transfers, Typescript-SDK
+categories: Token Bridge, Transfer, Typescript SDK
 ---
 
 # Transfer Wrapped Assets
