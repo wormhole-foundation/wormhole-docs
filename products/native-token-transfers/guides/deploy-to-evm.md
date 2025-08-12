@@ -146,12 +146,9 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
 
 2. **Deploy NTT to EVM**: Add each chain you'll be deploying to using the `ntt add-chain` command. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
-    <!--
     ```bash
-    --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/initialize.txt'
+    --8<-- 'code/products/native-token-transfers/guides/deploy-to-evm/initialize.txt:4'
     ```
-    -->
-    --8<-- "code/products/native-token-transfers/guides/deploy-to-evm/terminal01.html"
 
     The `ntt add-chain` command takes the following parameters:
 
@@ -174,23 +171,23 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
     ntt pull
     ```
 
-4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example, if your token has 18 decimals on Ethereum and 6 decimals on Arbitrum::
 
-    For Solana, the limits are set with 9 decimal places:
+    To Ethereum, the limits are set with 18 decimal places:
       ```json
       "inbound": {
-          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+          "Arbitrum": "1000.000000000000000000" // inbound limit from Arbitrum to Ethereum
       }
       ```
 
-    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
+    To Arbitrum, the limits are set with 6 decimal places:
       ```json
       "inbound": {
-          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+          "Ethereum": "1000.000000" // inbound limit from Ethereum to Arbitrum
       }
       ```
 
-    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
+    This ensures your rate limits align with the token’s precision on each chain, preventing mismatches that could block or miscalculate transfers. Before setting these values, confirm your token’s decimals on each chain by checking the token contract on the relevant block explorer.
 
 5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
@@ -227,22 +224,6 @@ By default, NTT transfers to EVM blockchains support automatic relaying via the 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
     [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
-
--   :octicons-tools-16:{ .lg .middle } **Deploy NTT with Launchpad**
-
-    ---
-
-    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
-
-    [:custom-arrow: Deploy with Launchpad](/docs/products/native-token-transfers/guides/evm-launchpad/){target=\_blank}
-
--   :octicons-globe-16:{ .lg .middle } **Deploy NTT on Solana**  
-
-    ---  
-
-    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
-
-    [:custom-arrow: Deploy NTT on Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
