@@ -13,17 +13,17 @@ The [NttManager]({{repositories.native_token_transfers.repository_url}}/blob/{{r
 The NTT Manager system is built using a layered inheritance structure composed of multiple base contracts and interfaces.
 
 ```text
-NttManager
-├── INttManager
-├── RateLimiter
-│   ├── IRateLimiter
-│   └── IRateLimiterEvents
-└── ManagerBase
-    ├── IManagerBase
-    ├── TransceiverRegistry
-    ├── PausableOwnable
-    ├── ReentrancyGuardUpgradeable
-    └── Implementation
+NttManager.sol
+├── INttManager.sol
+├── RateLimiter.sol
+│   ├── IRateLimiter.sol
+│   └── IRateLimiterEvents.sol
+└── ManagerBase.sol
+    ├── IManagerBase.sol
+    ├── TransceiverRegistry.sol
+    ├── PausableOwnable.sol
+    ├── ReentrancyGuardUpgradeable.sol
+    └── Implementation.sol
 ```
 
 **Key Components:**
