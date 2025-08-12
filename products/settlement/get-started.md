@@ -56,16 +56,16 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
 
     ```bash
     mkdir src
-    touch src/helpers.ts src/swap.ts .env .gitignore
+    touch src/helpers.ts src/swap.ts .gitignore
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading a source private key and an Ethereum mainnet RPC URL from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/cast-wallet){target=\_blank}. The RPC is required so the SDK can sign and send the source-chain transaction reliably.
+4. Set up secure access to your wallets. This guide assumes you are loading a source private key and an Ethereum mainnet RPC URL from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/wallet/new){target=\_blank}. The RPC is required so the SDK can sign and send the source-chain transaction reliably.
 
     !!! note
         Some auto-selected public RPCs may require API keys or rate-limit intermittently. Providing your own mainnet RPC URL avoids 401/500 errors and timeouts during `initiate` and status polling.
 
     !!! warning
-        If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
 ## Perform a Token Swap
 
