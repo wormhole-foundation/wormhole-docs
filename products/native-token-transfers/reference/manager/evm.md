@@ -1796,12 +1796,12 @@ error InvalidTransceiverZeroAddress();
 Error when the message is not approved. *(Defined in ManagerBase.sol)*
 
 ```sol
-error MessageNotApproved(bytes32 digest);
+error MessageNotApproved(bytes32 msgHash);
 ```
 
 ??? interface "Parameters"
 
-    `digest` ++"bytes32"++
+    `msgHash` ++"bytes32"++
 
     The hash of the message that is not approved.
 
@@ -2018,12 +2018,12 @@ error StaticcallFailed();
 The threshold for transceiver attestations is too high. *(Defined in ManagerBase.sol)*
 
 ```sol
-error ThresholdTooHigh(uint8 threshold, uint256 transceivers);
+error ThresholdTooHigh(uint256 threshold, uint256 transceivers);
 ```
 
 ??? interface "Parameters"
 
-    `threshold` ++"uint8"++
+    `threshold` ++"uint256"++
 
     The requested threshold value.
 
@@ -2046,12 +2046,12 @@ error TooManyTransceivers();
 Error when the transceiver already attested to the message. *(Defined in ManagerBase.sol)*
 
 ```sol
-error TransceiverAlreadyAttestedToMessage(bytes32 NttManagerMessageHash);
+error TransceiverAlreadyAttestedToMessage(bytes32 nttManagerMessageHash);
 ```
 
 ??? interface "Parameters"
 
-    `NttManagerMessageHash` ++"bytes32"++
+    `nttManagerMessageHash` ++"bytes32"++
 
     The hash of the NTT Manager message.
 
