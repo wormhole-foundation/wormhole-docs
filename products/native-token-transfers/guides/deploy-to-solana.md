@@ -20,13 +20,13 @@ Before deploying NTT on SVM chains, ensure you have the following:
     === "v3"
         | Dependency | Version |
         |------------|---------|
-        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} | `{{ ntt.solana_cli_version }}` |
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `{{ ntt.solana_cli_version }}` |
         | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}` |
 
     === "v2/v1"
         | Dependency | Version |
         |------------|---------|
-        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} | `v1.18.10` |
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `v1.18.10` |
         | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0` |
 
 
