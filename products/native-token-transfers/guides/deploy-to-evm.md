@@ -14,10 +14,10 @@ This guide walks you through deploying NTT on EVM chains, including setting up d
 
 Before deploying NTT on EVM chains, ensure you have the following prerequisites:
 
-- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
-- [Bun installed](https://bun.sh/){target=\_blank}
-- A wallet private key with tokens on supported chains
-- ERC-20 tokens already deployed on the source and destination chains
+- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
+- [Bun installed](https://bun.sh/){target=\_blank}.
+- A wallet private key with tokens on supported chains.
+- ERC-20 tokens already deployed on the source and destination chains.
 
 ## Overview of the Deployment Process
 
@@ -28,16 +28,16 @@ Deploying NTT on EVM chains follows a structured process:
     ???- interface "Deploy an ERC-20 Token on EVM"
         Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-        1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
+        1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
-        2. **Clone the repository**: Fetch the example contract repository
+        2. **Clone the repository**: Fetch the example contract repository.
 
             ```bash
             git clone https://github.com/wormhole-foundation/example-ntt-token.git
             cd example-ntt-token
             ```
         
-        3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses
+        3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
 
             ```bash
             forge create --broadcast \
@@ -47,7 +47,7 @@ Deploying NTT on EVM chains follows a structured process:
                 --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
             ```
 
-        4. **Mint tokens**: Send tokens to your address
+        4. **Mint tokens**: Send tokens to your address.
 
             ```bash
             cast send INSERT_TOKEN_ADDRESS \
@@ -83,8 +83,8 @@ Deploying NTT on EVM chains follows a structured process:
 
         Tokens only need to be ERC-20 compliant. The hub chain serves as the source of truth for supply consistency, while only spoke chains need to support minting and burning. For example, if Ethereum is the hub and Polygon is a spoke:
 
-        - Tokens are locked on Ethereum
-        - Tokens are minted or burned on Polygon
+        - Tokens are locked on Ethereum.
+        - Tokens are minted or burned on Polygon.
 
         This setup maintains a consistent total supply across all chains.
 
@@ -204,12 +204,12 @@ The final step in the deployment process is to set the NTT Manager as a minter o
 !!! note
     The required NTT Manager address can be found in the `deployment.json` file.
 
-- If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function
+- If you followed the [`INttToken`](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/INttToken.sol){target=\_blank} interface, you can execute the `setMinter(address newMinter)` function.
     ```json
     cast send $TOKEN_ADDRESS "setMinter(address)" $NTT_MANAGER_ADDRESS --private-key $ETH_PRIVATE_KEY --rpc-url $YOUR_RPC_URL  
     ```
 
-- If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter
+- If you have a custom process to manage token minters, you should now follow that process to add the corresponding NTT Manager as a minter.
 
 By default, NTT transfers to EVM blockchains support automatic relaying via the Wormhole relayer, which doesn't require the user to perform a transaction on the destination chain to complete the transfer.
 
@@ -224,6 +224,14 @@ By default, NTT transfers to EVM blockchains support automatic relaying via the 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
     [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy NTT to SVM Chains**
+
+    ---
+
+    Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
+
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
