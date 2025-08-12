@@ -38,11 +38,28 @@ NttManager
 
 ## State Variables
 
-- `token` ++"address"++ — Address of the token that this NTT Manager is tied to.
-- `mode` ++"Mode"++ — Mode of the NTT Manager (LOCKING=0 or BURNING=1).
-- `chainId` ++"uint16"++ — Wormhole chain ID that the NTT Manager is deployed on.
-- `NTT_MANAGER_VERSION` ++"string"++ — The version string of the NttManager contract implementation.
-- `rateLimitDuration` ++"uint64"++ — Duration (in seconds) until limits fully replenish.
+### Core Identification
+
+- `token` ++"address"++: Address of the token that this NTT Manager is tied to.
+- `mode` ++"Mode"++: Mode of the NTT Manager (LOCKING=0 or BURNING=1).
+- `chainId` ++"uint16"++: Wormhole chain ID that the NTT Manager is deployed on.
+- `NTT_MANAGER_VERSION` ++"string"++: The version string of the NttManager contract implementation.
+- `rateLimitDuration` ++"uint64"++: Duration (in seconds) until limits fully replenish.
+
+### Cross-chain Peers and Governance Thresholds
+
+- `peers` ++"mapping(uint16 ⇒ NttManagerPeer)"++: Mapping of peer chain IDs to their peer NTT Manager address and token decimals.
+- `messageAttestations` ++"mapping(bytes32 ⇒ AttestationInfo)"++: Tracks whether a message has been executed and the bitmap of transceivers that have attested to it.
+- `THRESHOLD_SLOT` ++"uint8"++: Number of attestation approvals required for message execution.
+- `MESSAGE_SEQUENCE_SLOT` ++"uint64"++: Monotonic sequence number for outgoing messages.
+
+### Rate Limiting and Queues
+
+- `rateLimitDuration` ++"uint64"++: Duration (in seconds) until limits fully replenish.
+- `outboundLimitParams` ++"RateLimitParams"++: Parameters controlling outbound transfer rate limits, including capacity and last transaction timestamp.
+- `inboundLimitParams` ++"mapping(uint16 ⇒ RateLimitParams)"++: Parameters controlling inbound transfer rate limits per peer chain.
+- `outboundQueue` ++"mapping(uint64 ⇒ OutboundQueuedTransfer)"++: Queue of outbound transfers when rate limits are exceeded, keyed by sequence number.
+- `inboundQueue` ++"mapping(bytes32 ⇒ InboundQueuedTransfer)"++: Queue of inbound transfers when rate limits are exceeded, keyed by message digest.
 
 ## Events
 
