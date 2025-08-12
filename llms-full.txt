@@ -12672,10 +12672,10 @@ For more details, to collaborate, or to see examples of custom transceivers, [co
 
 The NTT contracts maintain minimal state on‑chain to safely route transfers, prevent replays, and manage throughput across multiple chains. This state is primarily managed by the NTT Manager, its Rate Limiter, and the Transceiver Registry:
 
- - **Message Attestations**: Records which transceivers have attested to each cross‑chain message, enforces the M‑of‑N attestation threshold, and prevents re‑execution of processed messages.
- - **Peer Registrations**: Maps each remote chain to its associated NTT Manager and token decimal configuration, ensuring only trusted peers can mint/unlock tokens.
- - **Rate Limiting**: Enforces inbound and outbound throughput caps and queues transfers when limits are exceeded, protecting liquidity and downstream networks.
- - **Transceiver Registry**: Maintains the list of registered and enabled transceivers, along with their bitmap index, allowing governance to add/remove messaging providers.
+ - **Message attestations**: Records which transceivers have attested to each cross‑chain message, enforces the M‑of‑N attestation threshold, and prevents re‑execution of processed messages.
+ - **Peer registrations**: Maps each remote chain to its associated NTT Manager and token decimal configuration, ensuring only trusted peers can mint/unlock tokens.
+ - **Rate limiting**: Enforces inbound and outbound throughput caps and queues transfers when limits are exceeded, protecting liquidity and downstream networks.
+ - **Transceiver registry**: Maintains the list of registered and enabled transceivers, along with their bitmap index, allowing governance to add/remove messaging providers.
 
 ## Lifecycle of a Message
 
