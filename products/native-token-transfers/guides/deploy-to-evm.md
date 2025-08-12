@@ -182,8 +182,8 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
 
     To Arbitrum, the limits are set with 6 decimal places:
       ```json
-      "inbound": {
-          "Ethereum": "1000.000000" // inbound limit from Ethereum to Arbitrum
+      "outbound": {
+          "Ethereum": "1000.000000" // outbound limit from Ethereum to Arbitrum
       }
       ```
 
