@@ -1181,7 +1181,7 @@ function quoteDeliveryPrice(
 
 ### removeTransceiver
 
-Removes the transceiver for the given chain. *(Defined in ManagerBase.sol)*
+Removes/disables a transceiver address in the registry of a given chain. *(Defined in ManagerBase.sol)*
 
 ```sol
 function removeTransceiver(address transceiver) external
