@@ -32,15 +32,15 @@ export async function getSigner<N extends Network, C extends Chain>(
     case "Solana":
       signer = await getSolanaSigner(
         await chain.getRpc(),
-        getEnv("MAINNET_SOL_PRIVATE_KEY")
+        "MAINNET_SOL_PRIVATE_KEY"
       );
       break;
     case 'Evm':
-      const rpcUrl = process.env.ETHEREUM_MAINNET_RPC;
+      const rpcUrl = ETHEREUM_MAINNET_RPC;
       const rpc = new JsonRpcProvider(rpcUrl, { chainId: 1, name: "mainnet" });
       signer = await getEvmSignerForKey(
         await chain.getRpc(),
-        getEnv('MAINNET_ETH_PRIVATE_KEY')
+        'MAINNET_ETH_PRIVATE_KEY'
       );
       break;
     default:
