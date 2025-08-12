@@ -61,7 +61,7 @@ Deploying NTT on EVM chains follows a structured process:
         !!! note
             This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
 
-2. **Choose your deployment model**: Choose a deployment model. Wormhole’s NTT framework supports two [deployment models](/docs/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke.
+2. **Choose your deployment model**: Choose a deployment model. The NTT framework supports two [deployment models](/docs/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke.
 
     ??? interface "Burn-and-Mint"
 
