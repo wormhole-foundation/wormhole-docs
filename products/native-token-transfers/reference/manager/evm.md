@@ -323,7 +323,7 @@ event PauserTransferred(address indexed oldPauser, address indexed newPauser)
 
 ### PeerUpdated
 
-Emitted when the peer contract is updated. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Emitted when the peer contract is updated. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 event PeerUpdated(
@@ -367,7 +367,7 @@ event PeerUpdated(
 
 ### ThresholdChanged
 
-Emitted when the threshold required for transceivers is changed. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Emitted when the threshold required for transceivers is changed. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 event ThresholdChanged(uint8 oldThreshold, uint8 threshold)
@@ -387,7 +387,7 @@ event ThresholdChanged(uint8 oldThreshold, uint8 threshold)
 
 ### TransceiverAdded
 
-Emitted when a transceiver is added to the NttManager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Emitted when a transceiver is added to the NttManager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 event TransceiverAdded(address transceiver, uint256 transceiversNum, uint8 threshold)
@@ -413,7 +413,7 @@ event TransceiverAdded(address transceiver, uint256 transceiversNum, uint8 thres
 
 ### TransceiverRemoved
 
-Emitted when a transceiver is removed from the NttManager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Emitted when a transceiver is removed from the NttManager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 event TransceiverRemoved(address transceiver, uint8 threshold)
@@ -433,7 +433,7 @@ event TransceiverRemoved(address transceiver, uint8 threshold)
 
 ### TransferRedeemed
 
-Emitted when a transfer has been redeemed (either minted or unlocked on the recipient chain). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Emitted when a transfer has been redeemed (either minted or unlocked on the recipient chain). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 event TransferRedeemed(bytes32 indexed digest)
@@ -447,7 +447,7 @@ event TransferRedeemed(bytes32 indexed digest)
 
 ### TransferSent
 
-Emitted when a message is sent from the NttManager. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Emitted when a message is sent from the NttManager. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 event TransferSent(
@@ -498,7 +498,7 @@ event TransferSent(
 
 ### TransferSent (Digest Version)
 
-Emitted when a message is sent from the NttManager (digest version). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Emitted when a message is sent from the NttManager (digest version). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 event TransferSent(bytes32 indexed digest)
@@ -514,7 +514,7 @@ event TransferSent(bytes32 indexed digest)
 
 ### attestationReceived
 
-Called by transceivers when the attestation is received. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Called by transceivers when the attestation is received. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function attestationReceived(
@@ -564,7 +564,7 @@ function attestationReceived(
 
 ### cancelOutboundQueuedTransfer
 
-Cancel an outbound transfer that's been queued due to rate limiting. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Cancel an outbound transfer that's been queued due to rate limiting. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function cancelOutboundQueuedTransfer(uint64 messageSequence) external
@@ -580,7 +580,7 @@ function cancelOutboundQueuedTransfer(uint64 messageSequence) external
 
 ### completeInboundQueuedTransfer
 
-Complete an inbound transfer that's been queued due to rate limiting. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Complete an inbound transfer that's been queued due to rate limiting. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function completeInboundQueuedTransfer(bytes32 digest) external
@@ -596,7 +596,7 @@ function completeInboundQueuedTransfer(bytes32 digest) external
 
 ### completeOutboundQueuedTransfer
 
-Complete an outbound transfer that's been queued due to rate limiting. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Complete an outbound transfer that's been queued due to rate limiting. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function completeOutboundQueuedTransfer(uint64 messageSequence) external payable returns (uint64)
@@ -618,7 +618,7 @@ function completeOutboundQueuedTransfer(uint64 messageSequence) external payable
 
 ### executeMsg
 
-Execute a message when the threshold is met. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Execute a message when the threshold is met. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function executeMsg(
@@ -668,7 +668,7 @@ function executeMsg(
 
 ### getCurrentInboundCapacity
 
-Returns the currently remaining inbound capacity from a chain. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Returns the currently remaining inbound capacity from a chain. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 function getCurrentInboundCapacity(uint16 chainId) external view returns (uint256)
@@ -688,7 +688,7 @@ function getCurrentInboundCapacity(uint16 chainId) external view returns (uint25
 
 ### getCurrentOutboundCapacity
 
-Returns the currently remaining outbound capacity. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Returns the currently remaining outbound capacity. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 function getCurrentOutboundCapacity() public view returns (uint256)
@@ -702,7 +702,7 @@ function getCurrentOutboundCapacity() public view returns (uint256)
 
 ### getInboundLimitParams
 
-Returns the inbound rate limit parameters for a chain. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Returns the inbound rate limit parameters for a chain. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 function getInboundLimitParams(uint16 chainId_) external view returns (RateLimitParams memory)
@@ -740,7 +740,7 @@ function getInboundLimitParams(uint16 chainId_) external view returns (RateLimit
 
 ### getInboundQueuedTransfer
 
-Returns queued transfer details for inbound queue. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Returns queued transfer details for inbound queue. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 function getInboundQueuedTransfer(bytes32 digest) external view returns (InboundQueuedTransfer memory)
@@ -778,7 +778,7 @@ function getInboundQueuedTransfer(bytes32 digest) external view returns (Inbound
 
 ### getMode
 
-Returns the mode (locking or burning) of the NttManager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Returns the mode (locking or burning) of the NttManager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function getMode() public view returns (uint8)
@@ -804,7 +804,7 @@ function getMode() public view returns (uint8)
 
 ### getMigratesImmutables
 
-Returns whether the contract migrates immutables. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Implementation.sol){target=\_blank})*
+Returns whether the contract migrates immutables. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 function getMigratesImmutables() external view returns (bool)
@@ -818,7 +818,7 @@ function getMigratesImmutables() external view returns (bool)
 
 ### getOutboundLimitParams
 
-Returns the outbound rate limit parameters. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Returns the outbound rate limit parameters. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 function getOutboundLimitParams() public pure virtual returns (RateLimitParams memory)
@@ -850,7 +850,7 @@ function getOutboundLimitParams() public pure virtual returns (RateLimitParams m
 
 ### getOutboundQueuedTransfer
 
-Returns queued transfer details for outbound queue. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Returns queued transfer details for outbound queue. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 function getOutboundQueuedTransfer(uint64 queueSequence) external view returns (OutboundQueuedTransfer memory)
@@ -912,7 +912,7 @@ function getOutboundQueuedTransfer(uint64 queueSequence) external view returns (
 
 ### getPeer
 
-Returns peer information for a given chain ID. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Returns peer information for a given chain ID. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function getPeer(uint16 chainId_) external view returns (NttManagerPeer memory)
@@ -944,7 +944,7 @@ function getPeer(uint16 chainId_) external view returns (NttManagerPeer memory)
 
 ### getThreshold
 
-Returns the number of transceivers that must attest to a message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Returns the number of transceivers that must attest to a message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function getThreshold() external view returns (uint8)
@@ -1004,7 +1004,7 @@ function getTransceivers() external pure returns (address[] memory result)
 
 ### initialize
 
-Initializes the contract. *(Defined in Implementation.sol)*
+Initializes the contract. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 function initialize() external payable
@@ -1012,7 +1012,7 @@ function initialize() external payable
 
 ### isMessageApproved
 
-Checks if a message has been approved with at least the minimum threshold of attestations from distinct endpoints. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Checks if a message has been approved with at least the minimum threshold of attestations from distinct endpoints. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function isMessageApproved(bytes32 digest) external view returns (bool)
@@ -1032,7 +1032,7 @@ function isMessageApproved(bytes32 digest) external view returns (bool)
 
 ### isMessageExecuted
 
-Checks if a message has been executed. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Checks if a message has been executed. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function isMessageExecuted(bytes32 digest) external view returns (bool)
@@ -1052,7 +1052,7 @@ function isMessageExecuted(bytes32 digest) external view returns (bool)
 
 ### isPaused
 
-Returns true if the contract is paused, and false otherwise. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/PausableUpgradeable.sol){target=\_blank})*
+Returns true if the contract is paused, and false otherwise. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 function isPaused() external view returns (bool)
@@ -1066,7 +1066,7 @@ function isPaused() external view returns (bool)
 
 ### messageAttestations
 
-Returns the number of attestations for a given message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Returns the number of attestations for a given message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function messageAttestations(bytes32 digest) external view returns (uint8)
@@ -1086,7 +1086,7 @@ function messageAttestations(bytes32 digest) external view returns (uint8)
 
 ### migrate
 
-Migrates the contract state to a new implementation. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Implementation.sol){target=\_blank})*
+Migrates the contract state to a new implementation. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 function migrate() external
@@ -1094,7 +1094,7 @@ function migrate() external
 
 ### nextMessageSequence
 
-Returns the next message sequence. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Returns the next message sequence. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function nextMessageSequence() external view returns (uint64)
@@ -1108,7 +1108,7 @@ function nextMessageSequence() external view returns (uint64)
 
 ### owner
 
-Returns the address of the current owner. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/OwnableUpgradeable.sol){target=\_blank})*
+Returns the address of the current owner. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 function owner() external view returns (address)
@@ -1122,7 +1122,7 @@ function owner() external view returns (address)
 
 ### pause
 
-Pauses the manager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Pauses the manager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function pause() external
@@ -1132,7 +1132,7 @@ function pause() external
 
 ### pauser
 
-Returns the current pauser account address. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/PausableUpgradeable.sol){target=\_blank})*
+Returns the current pauser account address. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 function pauser() external view returns (address)
@@ -1146,7 +1146,7 @@ function pauser() external view returns (address)
 
 ### quoteDeliveryPrice
 
-Fetches the delivery price for a given recipient chain transfer. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Fetches the delivery price for a given recipient chain transfer. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function quoteDeliveryPrice(
@@ -1181,7 +1181,7 @@ function quoteDeliveryPrice(
 
 ### removeTransceiver
 
-Removes/disables a transceiver address in the registry of a given chain. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Removes/disables a transceiver address in the registry of a given chain. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function removeTransceiver(address transceiver) external
@@ -1195,7 +1195,7 @@ function removeTransceiver(address transceiver) external
 
 ### setInboundLimit
 
-Set the inbound transfer limit for a specific chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Set the inbound transfer limit for a specific chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function setInboundLimit(uint256 limit, uint16 chainId_) external
@@ -1215,7 +1215,7 @@ function setInboundLimit(uint256 limit, uint16 chainId_) external
 
 ### setOutboundLimit
 
-Set the outbound transfer limit. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Set the outbound transfer limit. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function setOutboundLimit(uint256 limit) external
@@ -1229,7 +1229,7 @@ function setOutboundLimit(uint256 limit) external
 
 ### setPeer
 
-Set peer contract information for a specific chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Set peer contract information for a specific chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function setPeer(
@@ -1268,7 +1268,7 @@ function setPeer(
 
 ### setThreshold
 
-Sets the threshold for the number of attestations required for a message to be considered valid. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Sets the threshold for the number of attestations required for a message to be considered valid. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function setThreshold(uint8 threshold) external
@@ -1284,7 +1284,7 @@ function setThreshold(uint8 threshold) external
 
 ### setTransceiver
 
-Sets the transceiver for the given chain. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Sets the transceiver for the given chain. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function setTransceiver(address transceiver) external
@@ -1300,7 +1300,7 @@ function setTransceiver(address transceiver) external
 
 ### tokenDecimals
 
-Returns the number of decimals for the token. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Returns the number of decimals for the token. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function tokenDecimals() external view returns (uint8)
@@ -1314,7 +1314,7 @@ function tokenDecimals() external view returns (uint8)
 
 ### transceiverAttestedToMessage
 
-Returns if the transceiver has attested to the message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Returns if the transceiver has attested to the message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function transceiverAttestedToMessage(bytes32 digest, uint8 index) external view returns (bool)
@@ -1340,7 +1340,7 @@ function transceiverAttestedToMessage(bytes32 digest, uint8 index) external view
 
 ### transfer (basic)
 
-Transfer tokens (simple version). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Transfer tokens (simple version). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function transfer(
@@ -1378,7 +1378,7 @@ function transfer(
 
 ### transfer (advanced)
 
-Transfer tokens (full version with additional parameters). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Transfer tokens (full version with additional parameters). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 function transfer(
@@ -1437,7 +1437,7 @@ function transfer(
 
 ### transferOwnership
 
-Transfer ownership of the Manager and all Transceiver contracts. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Transfer ownership of the Manager and all Transceiver contracts. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function transferOwnership(address newOwner) external
@@ -1453,7 +1453,7 @@ function transferOwnership(address newOwner) external
 
 ### transferPauserCapability
 
-Transfers the ability to pause to a new account. *(Defined in [PausableOwnable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/PausableOwnable.sol){target=\_blank})*
+Transfers the ability to pause to a new account. *(Defined in [PausableOwnable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableOwnable.sol){target=\_blank})*
 
 ```sol
 function transferPauserCapability(address newPauser) external
@@ -1469,7 +1469,7 @@ function transferPauserCapability(address newPauser) external
 
 ### upgrade
 
-Upgrades to a new manager implementation. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Upgrades to a new manager implementation. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function upgrade(address newImplementation) external
@@ -1483,7 +1483,7 @@ function upgrade(address newImplementation) external
 
 ### unpause
 
-Unpauses the manager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Unpauses the manager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 function unpause() external
@@ -1495,7 +1495,7 @@ function unpause() external
 
 ### BurnAmountDifferentThanBalanceDiff
 
-Error when the burn amount differs from the balance difference. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Error when the burn amount differs from the balance difference. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error BurnAmountDifferentThanBalanceDiff(uint256 burnAmount, uint256 balanceDiff);
@@ -1515,7 +1515,7 @@ error BurnAmountDifferentThanBalanceDiff(uint256 burnAmount, uint256 balanceDiff
 
 ### CallerNotTransceiver
 
-Error when the caller is not the transceiver. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/registry/TransceiverRegistry.sol){target=\_blank})*
+Error when the caller is not the transceiver. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/TransceiverRegistry.sol){target=\_blank})*
 
 ```sol
 error CallerNotTransceiver(address caller);
@@ -1529,7 +1529,7 @@ error CallerNotTransceiver(address caller);
 
 ### CancellerNotSender
 
-Error when someone other than the original sender tries to cancel a queued outbound transfer. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Error when someone other than the original sender tries to cancel a queued outbound transfer. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error CancellerNotSender(address canceller, address sender);
@@ -1549,7 +1549,7 @@ error CancellerNotSender(address canceller, address sender);
 
 ### CapacityCannotExceedLimit
 
-The new capacity cannot exceed the limit. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+The new capacity cannot exceed the limit. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 error CapacityCannotExceedLimit(TrimmedAmount newCurrentCapacity, TrimmedAmount newLimit);
@@ -1593,7 +1593,7 @@ error CapacityCannotExceedLimit(TrimmedAmount newCurrentCapacity, TrimmedAmount 
 
 ### DeliveryPaymentTooLow
 
-Payment for a transfer is too low. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Payment for a transfer is too low. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error DeliveryPaymentTooLow(uint256 requiredPayment, uint256 providedPayment);
@@ -1613,7 +1613,7 @@ error DeliveryPaymentTooLow(uint256 requiredPayment, uint256 providedPayment);
 
 ### DisabledTransceiver
 
-Error when the transceiver is disabled. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/registry/TransceiverRegistry.sol){target=\_blank})*
+Error when the transceiver is disabled. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/TransceiverRegistry.sol){target=\_blank})*
 
 ```sol
 error DisabledTransceiver(address transceiver);
@@ -1627,7 +1627,7 @@ error DisabledTransceiver(address transceiver);
 
 ### InboundQueuedTransferNotFound
 
-The inbound transfer is no longer queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+The inbound transfer is no longer queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 error InboundQueuedTransferNotFound(bytes32 digest);
@@ -1641,7 +1641,7 @@ error InboundQueuedTransferNotFound(bytes32 digest);
 
 ### InboundQueuedTransferStillQueued
 
-The transfer is still queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+The transfer is still queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 error InboundQueuedTransferStillQueued(bytes32 digest, uint256 transferTimestamp);
@@ -1661,7 +1661,7 @@ error InboundQueuedTransferStillQueued(bytes32 digest, uint256 transferTimestamp
 
 ### InvalidInitialization
 
-Error when the contract is in an invalid initialization state. *(Defined in [Initializable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Initializable.sol){target=\_blank})*
+Error when the contract is in an invalid initialization state. *(Defined in [Initializable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/Initializable.sol){target=\_blank})*
 
 ```sol
 error InvalidInitialization();
@@ -1669,7 +1669,7 @@ error InvalidInitialization();
 
 ### InvalidMode
 
-The mode is invalid (neither LOCKING nor BURNING). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The mode is invalid (neither LOCKING nor BURNING). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidMode(uint8 mode);
@@ -1683,7 +1683,7 @@ error InvalidMode(uint8 mode);
 
 ### InvalidPauser
 
-Error when the pauser is not a valid pauser account. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/PausableUpgradeable.sol){target=\_blank})*
+Error when the pauser is not a valid pauser account. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error InvalidPauser(address account);
@@ -1697,7 +1697,7 @@ error InvalidPauser(address account);
 
 ### InvalidPeer
 
-The peer for the chain does not match the configuration. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The peer for the chain does not match the configuration. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidPeer(uint16 chainId, bytes32 peerAddress);
@@ -1717,7 +1717,7 @@ error InvalidPeer(uint16 chainId, bytes32 peerAddress);
 
 ### InvalidPeerChainIdZero
 
-The peer chain ID cannot be zero. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The peer chain ID cannot be zero. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidPeerChainIdZero();
@@ -1725,7 +1725,7 @@ error InvalidPeerChainIdZero();
 
 ### InvalidPeerDecimals
 
-The peer cannot have zero decimals. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The peer cannot have zero decimals. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidPeerDecimals();
@@ -1733,7 +1733,7 @@ error InvalidPeerDecimals();
 
 ### InvalidPeerSameChainId
 
-The peer cannot be on the same chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The peer cannot be on the same chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidPeerSameChainId();
@@ -1741,7 +1741,7 @@ error InvalidPeerSameChainId();
 
 ### InvalidPeerZeroAddress
 
-The peer cannot be the zero address. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The peer cannot be the zero address. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidPeerZeroAddress();
@@ -1749,7 +1749,7 @@ error InvalidPeerZeroAddress();
 
 ### InvalidRecipient
 
-Error when the recipient is invalid. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Error when the recipient is invalid. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidRecipient();
@@ -1757,7 +1757,7 @@ error InvalidRecipient();
 
 ### InvalidRefundAddress
 
-Error when the refund address is invalid. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Error when the refund address is invalid. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidRefundAddress();
@@ -1765,7 +1765,7 @@ error InvalidRefundAddress();
 
 ### InvalidTargetChain
 
-Error when trying to execute a message on an unintended target chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Error when trying to execute a message on an unintended target chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error InvalidTargetChain(uint16 targetChain, uint16 thisChain);
@@ -1785,7 +1785,7 @@ error InvalidTargetChain(uint16 targetChain, uint16 thisChain);
 
 ### InvalidTransceiverZeroAddress
 
-Error when the transceiver is the zero address. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/registry/TransceiverRegistry.sol){target=\_blank})*
+Error when the transceiver is the zero address. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/TransceiverRegistry.sol){target=\_blank})*
 
 ```sol
 error InvalidTransceiverZeroAddress();
@@ -1793,7 +1793,7 @@ error InvalidTransceiverZeroAddress();
 
 ### MessageNotApproved
 
-Error when the message is not approved. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Error when the message is not approved. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error MessageNotApproved(bytes32 msgHash);
@@ -1807,7 +1807,7 @@ error MessageNotApproved(bytes32 msgHash);
 
 ### NoEnabledTransceivers
 
-There are no transceivers enabled with the Manager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+There are no transceivers enabled with the Manager. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error NoEnabledTransceivers();
@@ -1815,7 +1815,7 @@ error NoEnabledTransceivers();
 
 ### NonRegisteredTransceiver
 
-Error when attempting to remove a transceiver that is not registered. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/registry/TransceiverRegistry.sol){target=\_blank})*
+Error when attempting to remove a transceiver that is not registered. *(Defined in [TransceiverRegistry.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/TransceiverRegistry.sol){target=\_blank})*
 
 ```sol
 error NonRegisteredTransceiver(address transceiver);
@@ -1829,7 +1829,7 @@ error NonRegisteredTransceiver(address transceiver);
 
 ### NotEnoughCapacity
 
-Not enough capacity to send the transfer. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Not enough capacity to send the transfer. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 error NotEnoughCapacity(uint256 currentCapacity, uint256 amount);
@@ -1849,7 +1849,7 @@ error NotEnoughCapacity(uint256 currentCapacity, uint256 amount);
 
 ### NotInitializing
 
-Error when a function can only be called during initialization. *(Defined in [Initializable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/initializable/Initializable.sol){target=\_blank})*
+Error when a function can only be called during initialization. *(Defined in [Initializable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/Initializable.sol){target=\_blank})*
 
 ```sol
 error NotInitializing();
@@ -1909,7 +1909,7 @@ error OwnableUnauthorizedAccount(address account);
 
 ### OutboundQueuedTransferNotFound
 
-Outbound transfer is no longer queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Outbound transfer is no longer queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 error OutboundQueuedTransferNotFound(uint64 queueSequence);
@@ -1923,7 +1923,7 @@ error OutboundQueuedTransferNotFound(uint64 queueSequence);
 
 ### OutboundQueuedTransferStillQueued
 
-Cannot complete the outbound transfer. The transfer is still queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/rate_limit/RateLimiter.sol){target=\_blank})*
+Cannot complete the outbound transfer. The transfer is still queued. *(Defined in [RateLimiter.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/RateLimiter.sol){target=\_blank})*
 
 ```sol
 error OutboundQueuedTransferStillQueued(uint64 queueSequence, uint256 transferTimestamp);
@@ -1943,7 +1943,7 @@ error OutboundQueuedTransferStillQueued(uint64 queueSequence, uint256 transferTi
 
 ### PeerNotRegistered
 
-Error when the manager doesn't have a peer registered for the destination chain. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Error when the manager doesn't have a peer registered for the destination chain. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error PeerNotRegistered(uint16 chainId);
@@ -1957,7 +1957,7 @@ error PeerNotRegistered(uint16 chainId);
 
 ### RefundFailed
 
-Error when the refund to the sender fails. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Error when the refund to the sender fails. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error RefundFailed(uint256 refundAmount);
@@ -1971,7 +1971,7 @@ error RefundFailed(uint256 refundAmount);
 
 ### RequireContractIsNotPaused
 
-Error when a function requires the contract to not be paused. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/PausableUpgradeable.sol){target=\_blank})*
+Error when a function requires the contract to not be paused. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error RequireContractIsNotPaused();
@@ -1979,7 +1979,7 @@ error RequireContractIsNotPaused();
 
 ### RequireContractIsPaused
 
-Error when a function requires the contract to be paused. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/PausableUpgradeable.sol){target=\_blank})*
+Error when a function requires the contract to be paused. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error RequireContractIsPaused();
@@ -1987,7 +1987,7 @@ error RequireContractIsPaused();
 
 ### RetrievedIncorrectRegisteredTransceivers
 
-Retrieved an incorrect number of registered transceivers. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Retrieved an incorrect number of registered transceivers. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error RetrievedIncorrectRegisteredTransceivers(uint256 retrieved, uint256 registered);
@@ -2007,7 +2007,7 @@ error RetrievedIncorrectRegisteredTransceivers(uint256 retrieved, uint256 regist
 
 ### StaticcallFailed
 
-Staticcall reverted. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Staticcall reverted. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error StaticcallFailed();
@@ -2015,7 +2015,7 @@ error StaticcallFailed();
 
 ### ThresholdTooHigh
 
-The threshold for transceiver attestations is too high. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+The threshold for transceiver attestations is too high. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error ThresholdTooHigh(uint256 threshold, uint256 transceivers);
@@ -2043,7 +2043,7 @@ error TooManyTransceivers();
 
 ### TransceiverAlreadyAttestedToMessage
 
-Error when the transceiver already attested to the message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+Error when the transceiver already attested to the message. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error TransceiverAlreadyAttestedToMessage(bytes32 nttManagerMessageHash);
@@ -2071,7 +2071,7 @@ error TransceiverAlreadyEnabled(address transceiver);
 
 ### TransferAmountHasDust
 
-The transfer has some dust. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The transfer has some dust. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error TransferAmountHasDust(uint256 amount, uint256 dust);
@@ -2099,7 +2099,7 @@ error UndefinedRateLimiting();
 
 ### UnexpectedDeployer
 
-The caller is not the deployer. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+The caller is not the deployer. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error UnexpectedDeployer(address expectedOwner, address owner);
@@ -2119,7 +2119,7 @@ error UnexpectedDeployer(address expectedOwner, address owner);
 
 ### UnexpectedMsgValue
 
-An unexpected msg.value was passed with the call. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+An unexpected msg.value was passed with the call. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error UnexpectedMsgValue();
@@ -2127,7 +2127,7 @@ error UnexpectedMsgValue();
 
 ### ZeroAmount
 
-Error when the transfer amount is zero. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Error when the transfer amount is zero. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error ZeroAmount();
@@ -2135,7 +2135,7 @@ error ZeroAmount();
 
 ### ZeroThreshold
 
-The number of thresholds should not be zero. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/ManagerBase.sol){target=\_blank})*
+The number of thresholds should not be zero. *(Defined in [ManagerBase.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/ManagerBase.sol){target=\_blank})*
 
 ```sol
 error ZeroThreshold();
@@ -2143,7 +2143,7 @@ error ZeroThreshold();
 
 ### TransferAlreadyCompleted
 
-Thrown when trying to complete an inbound transfer that was already processed. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Thrown when trying to complete an inbound transfer that was already processed. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error TransferAlreadyCompleted(bytes32 digest);
@@ -2157,7 +2157,7 @@ error TransferAlreadyCompleted(bytes32 digest);
 
 ### UnexpectedRecipientNttManagerAddress
 
-Thrown when the recipient NTT Manager address in the message does not match this contract. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/managers/NttManager.sol){target=\_blank})*
+Thrown when the recipient NTT Manager address in the message does not match this contract. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
 
 ```sol
 error UnexpectedRecipientNttManagerAddress(bytes32 recipientNttManagerAddress);
