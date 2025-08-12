@@ -21,8 +21,8 @@ These examples will help you understand how the Token Bridge works across EVM an
 
 Before you begin, make sure you have the following:
 
- - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
- - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}
+ - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
+ - Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
 
 This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){target=\_blank} and an EVM wallet with [Sepolia ETH](https://www.alchemy.com/faucets/ethereum-sepolia){target=\_blank} for the manual transfer example, and [Avalanche Fuji](https://core.app/tools/testnet-faucet/?subnet=c&token=c){target=\_blank} and [Celo Alfajores](https://faucet.celo.org/alfajores){target=\_blank} wallets funded with testnet tokens for the automatic transfer. You can adapt the examples to match your preferred chains.
 
@@ -66,7 +66,7 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
     --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
     ```
 
-2. In `transfer.ts`, add the script for your preferred transfer mode. The `automatic` flag controls transfer behavior passed to `tokenTransfer()`; set it to `false` for manual transfers and `true` for automatic transfers
+2. In `transfer.ts`, add the script for your preferred transfer mode. The `automatic` flag controls transfer behavior passed to `tokenTransfer()`; set it to `false` for manual transfers and `true` for automatic transfers.
 
     === "Manual Transfer"
 
@@ -97,5 +97,5 @@ To verify the transaction and view its details, copy the transaction hash from t
 
 Now that you've completed a manual multichain token transfer, explore these guides to continue building:
 
- - [Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank}: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
- - [Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}: Learn how to issue tokens that work across chains.
+ - **[Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank}**: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
+ - **[Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}**: Learn how to issue tokens that work across chains.

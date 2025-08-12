@@ -47,9 +47,9 @@ Understanding key Wormhole concepts—and how the SDK abstracts them—will help
 
 The SDK includes `Platform` modules, which create a standardized interface for interacting with the chains of a supported platform. The contents of a module vary by platform but can include:
 
-- [Protocols](#protocols) preconfigured to suit the selected platform
-- Definitions and configurations for types, signers, addresses, and chains 
-- Helpers configured for dealing with unsigned transactions on the selected platform
+- [Protocols](#protocols) preconfigured to suit the selected platform.
+- Definitions and configurations for types, signers, addresses, and chains.
+- Helpers configured for dealing with unsigned transactions on the selected platform.
 
 These modules expose key functions and types from the native ecosystem, reducing the need for full packages and keeping dependencies lightweight.
 
@@ -70,10 +70,10 @@ These modules expose key functions and types from the native ecosystem, reducing
 
 `ChainContext` (from the `@wormhole-foundation/sdk-definitions` package) provides a unified interface for interacting with connected chains. It:
 
-- Holds network, chain, and platform configurations
-- Caches RPC and protocol clients
-- Exposes both platform-inherited and chain-specific methods
-- Defines the core types used across the SDK: `Network`, `Chain`, and `Platform`
+- Holds network, chain, and platform configurations.
+- Caches RPC and protocol clients.
+- Exposes both platform-inherited and chain-specific methods.
+- Defines the core types used across the SDK such as the `Network`, `Chain`, and `Platform`.
 
 ```ts
 // Get the chain context for the source and destination chains
@@ -119,7 +119,7 @@ To sign transactions programmatically with the Wormhole SDK, you can use [Ethers
 These components work together to create, sign, and submit a transaction to the blockchain:
 
 - **`provider`**: Connects to the Ethereum or EVM-compatible network, enabling data access and transaction submission.
-- **`signer`** : Represents the account that signs transactions using a private key.
+- **`signer`**: Represents the account that signs transactions using a private key.
 - **`Wallet`**: Combines provider and signer to create, sign, and send transactions programmatically.
 
 ### Protocols
