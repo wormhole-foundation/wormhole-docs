@@ -97,7 +97,7 @@ Emitted when a message has already been executed to notify client against retrie
 ```sol
 event MessageAlreadyExecuted(
     bytes32 indexed sourceNttManager,
-    bytes32 indexed msgHash
+    bytes32 indexed digest
 )
 ```
 
@@ -109,7 +109,7 @@ event MessageAlreadyExecuted(
 
     ---
 
-    `msgHash` ++"bytes32"++
+    `digest` ++"bytes32"++
 
     The keccak-256 hash of the message.
 
@@ -804,7 +804,7 @@ function getMigratesImmutables() external view returns (bool)
 Returns the outbound rate limit parameters. *(Defined in RateLimiter.sol)*
 
 ```sol
-function getOutboundLimitParams() external view returns (RateLimitParams memory)
+function getOutboundLimitParams() public pure virtual returns (RateLimitParams memory)
 ```
 
 ??? interface "Returns"
@@ -976,7 +976,7 @@ function getTransceiverInfo() external view returns (TransceiverInfo[] memory)
 Returns the enabled Transceiver contracts. *(Defined in TransceiverRegistry.sol)*
 
 ```sol
-function getTransceivers() external view returns (address[] memory)
+function getTransceivers() external pure returns (address[] memory result)
 ```
 
 ??? interface "Returns"
@@ -1779,12 +1779,12 @@ error InvalidTransceiverZeroAddress();
 Error when the message is not approved. *(Defined in ManagerBase.sol)*
 
 ```sol
-error MessageNotApproved(bytes32 msgHash);
+error MessageNotApproved(bytes32 digest);
 ```
 
 ??? interface "Parameters"
 
-    `msgHash` ++"bytes32"++
+    `digest` ++"bytes32"++
 
     The hash of the message that is not approved.
 
@@ -2001,12 +2001,12 @@ error StaticcallFailed();
 The threshold for transceiver attestations is too high. *(Defined in ManagerBase.sol)*
 
 ```sol
-error ThresholdTooHigh(uint256 threshold, uint256 transceivers);
+error ThresholdTooHigh(uint8 threshold, uint256 transceivers);
 ```
 
 ??? interface "Parameters"
 
-    `threshold` ++"uint256"++
+    `threshold` ++"uint8"++
 
     The requested threshold value.
 

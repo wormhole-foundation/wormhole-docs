@@ -349,7 +349,7 @@ Encodes the `WormholeTransceiverInstruction` into a byte array. *(Defined in Wor
 ```sol
 function encodeWormholeTransceiverInstruction(
     WormholeTransceiverInstruction memory instruction
-) external pure returns (bytes memory)
+) public pure returns (bytes memory)
 ```
 
 ??? interface "Parameters"
@@ -389,7 +389,7 @@ function getMigratesImmutables() public view returns (bool)
 Returns the owner address of the NTT Manager that this transceiver is related to. *(Defined in Transceiver.sol)*
 
 ```sol
-function getNttManagerOwner() external view returns (address)
+function getNttManagerOwner() public view returns (address)
 ```
 
 ??? interface "Returns"
@@ -403,7 +403,7 @@ function getNttManagerOwner() external view returns (address)
 Returns the address of the token associated with this NTT deployment. *(Defined in Transceiver.sol)*
 
 ```sol
-function getNttManagerToken() external view returns (address)
+function getNttManagerToken() public view virtual returns (address)
 ```
 
 ??? interface "Returns"
@@ -563,7 +563,7 @@ Parses the encoded instruction and returns the instruction struct. *(Defined in 
 ```sol
 function parseWormholeTransceiverInstruction(
     bytes memory encoded
-) external pure returns (WormholeTransceiverInstruction memory instruction)
+) public pure returns (WormholeTransceiverInstruction memory instruction)
 ```
 
 ??? interface "Parameters"

@@ -25,7 +25,7 @@ NTT Manager Program
 **Key Components:**
 
 - **NttManager Program**: The primary Solana program that coordinates token transfers, transceiver interactions, and peer communication for the NTT protocol.
-- **Core Instructors**: Handles token transfer instructions like transfer, redeem, and release.
+- **Core Instructions**: Handles token transfer instructions like transfer, redeem, and release.
 - **Administrative Instructions**: Manages ownership, configuration updates, and emergency pause functionality.
 - **Rate Limiting**: Implements configurable inbound and outbound transfer limits with time-based capacity replenishment.
 - **Transceiver Management**: Maintains a registry of enabled transceivers and allows dynamic registration/deregistration.
