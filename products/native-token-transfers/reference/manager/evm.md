@@ -2140,3 +2140,31 @@ The number of thresholds should not be zero. *(Defined in ManagerBase.sol)*
 ```sol
 error ZeroThreshold();
 ```
+
+### TransferAlreadyCompleted
+
+Thrown when trying to complete an inbound transfer that was already processed. *(Defined in NttManager.sol)*
+
+```sol
+error TransferAlreadyCompleted(bytes32 digest);
+```
+
+??? interface "Parameters"
+
+    `digest` ++"bytes32"++
+
+    The digest of the transfer message that has already been completed.
+
+### UnexpectedRecipientNttManagerAddress
+
+Thrown when the recipient NTT Manager address in the message does not match this contract. *(Defined in NttManager.sol)*
+
+```sol
+error UnexpectedRecipientNttManagerAddress(bytes32 recipientNttManagerAddress);
+```
+
+??? interface "Parameters"
+
+    `recipientNttManagerAddress` ++"bytes32"++
+
+    The unexpected NTT Manager address from the message.
