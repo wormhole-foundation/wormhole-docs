@@ -36,15 +36,31 @@ WormholeTransceiver
 
 ## State Variables
 
+### Core Identification
+
 - `nttManager` ++"address"++: Immutable address of the NTT Manager that this transceiver is tied to.
 - `nttManagerToken` ++"address"++: Immutable address of the token associated with the NTT deployment.
 - `deployer` ++"address"++: Immutable address of the contract deployer.
-- `WORMHOLE_TRANSCEIVER_VERSION` ++"string"++: The version string of the WormholeTransceiver contract implementation.
+
+### Version
+
+- `WORMHOLE_TRANSCEIVER_VERSION` ++"string"++: Version string of the WormholeTransceiver implementation.
+
+### Messaging and Relaying Configuration
+
 - `consistencyLevel` ++"uint8"++: Immutable Wormhole consistency level for message finality.
 - `wormhole` ++"IWormhole"++: Immutable reference to the Wormhole Core bridge contract.
 - `wormholeRelayer` ++"IWormholeRelayer"++: Immutable reference to the Wormhole Relayer contract.
 - `specialRelayer` ++"ISpecialRelayer"++: Immutable reference to a custom relayer contract.
 - `gasLimit` ++"uint256"++: Immutable gas limit for cross-chain message delivery.
+
+### Peer Configuration and Replay Protection
+
+- `WORMHOLE_CONSUMED_VAAS_SLOT` ++"mapping(bytes32 ⇒ bool)"++: Tracks consumed VAA hashes for replay protection. Exposed via isVAAConsumed.
+- `WORMHOLE_PEERS_SLOT` ++"mapping(uint16 ⇒ bytes32)"++: Wormhole chain ID → peer transceiver address. Exposed via getWormholePeer.
+- `WORMHOLE_RELAYING_ENABLED_CHAINS_SLOT` ++"mapping(uint16 ⇒ BooleanFlag)"++: Per-chain flag for enabling standard relaying. Exposed via isWormholeRelayingEnabled.
+- `SPECIAL_RELAYING_ENABLED_CHAINS_SLOT` ++"mapping(uint16 ⇒ BooleanFlag)"++: Per-chain flag for enabling special relaying. Exposed via isSpecialRelayingEnabled.
+- `WORMHOLE_EVM_CHAIN_IDS` ++"mapping(uint16 ⇒ BooleanFlag)"++: Per-chain EVM-compatibility flag used to choose the relaying path. Exposed via isWormholeEvmChain.
 
 ## Events
 
