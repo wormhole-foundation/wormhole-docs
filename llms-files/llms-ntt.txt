@@ -725,6 +725,7 @@ categories: NTT, Transfer
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -1237,16 +1238,16 @@ Deploying NTT on EVM chains follows a structured process:
     ???- interface "Deploy an ERC-20 Token on EVM"
         Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
-        1. **Install Foundry** - install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
+        1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}
 
-        2. **Clone the repository** – fetch the example contract repository
+        2. **Clone the repository**: Fetch the example contract repository
 
             ```bash
             git clone https://github.com/wormhole-foundation/example-ntt-token.git
             cd example-ntt-token
             ```
         
-        3. **Deploy the token contract** – deploy to testnet with your preferred name, symbol, minter, and owner addresses
+        3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses
 
             ```bash
             forge create --broadcast \
@@ -1256,7 +1257,7 @@ Deploying NTT on EVM chains follows a structured process:
                 --constructor-args "INSERT_TOKEN_NAME" "INSERT_TOKEN_SYMBOL" INSERT_MINTER_ADDRESS INSERT_OWNER_ADDRESS
             ```
 
-        4. **Mint tokens** – send tokens to your address
+        4. **Mint tokens**: Send tokens to your address
 
             ```bash
             cast send INSERT_TOKEN_ADDRESS \
@@ -1323,7 +1324,7 @@ interface INttToken {
 
         You’ll also need to set mint authority to the relevant `NttManager` contract.
 
-    ??? interface "Hub-and-Spoke Mode"
+    ??? interface "Hub-and-Spoke"
 
         Tokens only need to be ERC-20 compliant. The hub chain serves as the source of truth for supply consistency, while only spoke chains need to support minting and burning. For example, if Ethereum is the hub and Polygon is a spoke:
 
@@ -1405,13 +1406,15 @@ This table compares the configuration parameters available when deploying the NT
 
 Once you've set up NTT, proceed with adding your EVM chains and deploying contracts.
 
-1. **Environment Setup**: Ensure you have set up your environment correctly:
+1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal and run the `export` commands:
 
     ```bash
     export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
+    export SEPOLIA_SCAN_API_KEY=INSERT_ETHERSCAN_SEPOLIA_API_KEY
+    export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
     ```
 
-2. **Deploy NTT to EVM**: Add each chain you'll be deploying to. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
+2. **Deploy NTT to EVM**: Add each chain you'll be deploying to using the `ntt add-chain` command. The following example demonstrates configuring NTT in burn-and-mint mode on Ethereum Sepolia and Arbitrum Sepolia:
 
     ```bash
     # Set scanner API Keys as environment variables
@@ -1423,6 +1426,7 @@ export ARBITRUMSEPOLIA_SCAN_API_KEY=INSERT_ARBISCAN_SEPOLIA_API_KEY
 ntt add-chain Sepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
 ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_ADDRESS
     ```
+
     The `ntt add-chain` command takes the following parameters:
 
     - Name of each chain.
@@ -1432,7 +1436,7 @@ ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_
 
     While not recommended, you can pass the `-skip-verify` flag to the `ntt add-chain` command if you want to skip contract verification.
 
-3. **Verify deployment status** - after deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
+3. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command:
 
     ```bash
     ntt status
@@ -1444,25 +1448,25 @@ ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_
     ntt pull
     ```
 
-4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example:
+4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example, if your token has 18 decimals on Ethereum and 6 decimals on Arbitrum::
 
-    For Solana, the limits are set with 9 decimal places:
+    To Ethereum, the limits are set with 18 decimal places:
       ```json
       "inbound": {
-          "Sepolia": "1000.000000000" // inbound limit from Sepolia to Solana
+          "Arbitrum": "1000.000000000000000000" // inbound limit from Arbitrum to Ethereum
       }
       ```
 
-    For Sepolia (Ethereum Testnet), the limits are set with 18 decimal places:
+    To Arbitrum, the limits are set with 6 decimal places:
       ```json
       "inbound": {
-          "Solana": "1000.000000000000000000" // inbound limit from Solana to Sepolia
+          "Ethereum": "1000.000000" // inbound limit from Ethereum to Arbitrum
       }
       ```
 
-    This initial configuration ensures that the rate limits are correctly represented for each chain's token precision
+    This ensures your rate limits align with the token’s precision on each chain, preventing mismatches that could block or miscalculate transfers. Before setting these values, confirm your token’s decimals on each chain by checking the token contract on the relevant block explorer.
 
-5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file
+5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
     ```bash
     ntt push 
@@ -1497,22 +1501,6 @@ By default, NTT transfers to EVM blockchains support automatic relaying via the 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
     [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
-
--   :octicons-tools-16:{ .lg .middle } **Deploy NTT with Launchpad**
-
-    ---
-
-    Deploy a new token or extend an existing one across multiple chains with the NTT Launchpad. Manage transfers, supply, and settings—all from a single platform.
-
-    [:custom-arrow: Deploy with Launchpad](/docs/products/native-token-transfers/guides/evm-launchpad/){target=\_blank}
-
--   :octicons-globe-16:{ .lg .middle } **Deploy NTT on Solana**  
-
-    ---  
-
-    After deploying NTT on Solana, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
-
-    [:custom-arrow: Deploy NTT on Solana](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
@@ -8014,7 +8002,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Monad | 48 |  |
 | Moonbeam | 16 | 1284 |
 | NEAR | 15 | mainnet |
-| Neon | 17 | 245022934 |
 | Neutron | 4003 | neutron-1 |
 | Noble | 4009 | noble-1 |
 | Optimism | 24 | 10 |
@@ -8054,7 +8041,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Evmos | 4001 | evmos_9000-4 |
 | Fantom | 10 | 4002 |
 | Fogo | 51 | 9GGSFo95raqzZxWqKM5tGYvJp5iv4Dm565S4r8h5PEu9 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 47 | 998 |
 | Injective | 19 | injective-888 |
 | Ink | 46 | 763373 |
 | Kaia | 13 | Kairos-1001 |
@@ -8117,6 +8104,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Evmos |  |  | 0 |  | ~ 2s |  |
 | Fantom | 200 |  |  | finalized | ~ 5s |  |
 | Fogo |  |  | 0 |  | ~ 14s |  |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } |  |  | 0 |  | ~ 2s |  |
 | Injective |  |  | 0 |  | ~ 3s |  |
 | Ink |  |  | 0 |  | ~ 9min |  |
 | Kaia | 200 |  |  | finalized | ~ 1s |  |
@@ -8171,7 +8159,7 @@ categories: Reference
 | BNB Smart Chain | 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B |
 | Celo | 0xa321448d90d4e5b0A732867c18eA198e75CAC48E |
 | Fantom | 0x126783A6Cb203a3E35344528B26ca3a0489a1485 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x7C0faFc4384551f063e05aee704ab943b8B53aB3 |
 | Injective | inj17p9rzwnnfxcjp32un9ug7yhhzgtkhvl9l2q74d |
 | Ink | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | Kaia | 0x0C21603c4f3a6387e241c0091A7EA39E43E90bb7 |
@@ -8208,7 +8196,7 @@ categories: Reference
 | Converge | 0x556B259cFaCd9896B2773310080c7c3bcE90Ff01 |
 | Fantom | 0x1BB3B4119b7BA9dfad76B0545fb3F531383c3bB7 |
 | Fogo | BhnQyKoQQgpuRTRo6D8Emz93PvXCYfVgHhnrR4T3qhw4 |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Injective | inj1xx3aupmgv3ce537c0yce8zzd3sz567syuyedpg |
 | Ink | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | Kaia | 0x1830CC6eE66c84D2F177B94D544967c774E624cA |
@@ -8292,7 +8280,7 @@ categories: Reference
 | Celo | 0x05ca6037eC51F8b712eD2E6Fa72219FEaE74E153 |
 | Fantom | 0x599CEa2204B4FaECd584Ab1F2b6aCA137a0afbE8 |
 | Fogo | 78HdStBqCMioGii9D8mF3zQaWDqDZBQWTUwjjpdmbJKX |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | 0x4a8bc80Ed5a4067f1CCf107057b8270E0cC11A78 |
 | Injective | inj1q0e70vhrv063eah90mu97sazhywmeegp7myvnh |
 | Ink | 0x376428e7f26D5867e69201b275553C45B09EE090 |
 | Kaia | 0xC7A13BE098720840dEa132D860fDfa030884b09A |
@@ -8497,6 +8485,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | BNB Smart Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Mantle | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8530,7 +8519,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Fogo | SVM | :x: | :white_check_mark: | :x: | :material-web:Website:octicons-package-16:Block Explorer |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs |
 | Injective | CosmWasm | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8603,7 +8592,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Celo | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Converge | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website |
 | Fantom | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs |
 | Ink | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Kaia | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | Linea | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
@@ -8651,7 +8640,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | BNB Smart Chain | EVM | BNB | Official BNB Faucet |
 | Celo | EVM | CELO | Official Celo Faucet |
 | Fantom | EVM | FTM | Official Fantom Faucet |
-| HyperEVM :material-information-outline:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
+| HyperEVM :material-alert:{ title='⚠️ The HyperEVM integration is experimental, as its node software is not open source. Use Wormhole messaging on HyperEVM with caution.' } | EVM | mock USDC | Official Hyperliquid Faucet |
 | Ink | EVM | ETH | Official Ink Faucet |
 | Kaia | EVM | KAIA | Official Kaia Faucet |
 | Linea | EVM | ETH | List of Faucets |
