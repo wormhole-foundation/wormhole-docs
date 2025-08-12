@@ -66,7 +66,7 @@ WormholeTransceiver
 
 ### NotPaused
 
-Emitted when the contract is unpaused. *(Defined in PausableUpgradeable.sol)*
+Emitted when the contract is unpaused. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 event NotPaused(bool notPaused)
@@ -80,7 +80,7 @@ event NotPaused(bool notPaused)
 
 ### OwnershipTransferred
 
-Emitted when ownership is transferred. *(Defined in OwnableUpgradeable.sol)*
+Emitted when ownership is transferred. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
@@ -100,7 +100,7 @@ event OwnershipTransferred(address indexed previousOwner, address indexed newOwn
 
 ### Paused
 
-Emitted when the contract is paused. *(Defined in PausableUpgradeable.sol)*
+Emitted when the contract is paused. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 event Paused(bool paused)
@@ -114,7 +114,7 @@ event Paused(bool paused)
 
 ### PauserTransferred
 
-Emitted when the pauser capability is transferred. *(Defined in PausableUpgradeable.sol)*
+Emitted when the pauser capability is transferred. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 event PauserTransferred(address indexed oldPauser, address indexed newPauser)
@@ -134,7 +134,7 @@ event PauserTransferred(address indexed oldPauser, address indexed newPauser)
 
 ### ReceivedMessage
 
-Emitted when a message is received. *(Defined in IWormholeTransceiver.sol)*
+Emitted when a message is received. *(Defined in [IWormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 event ReceivedMessage(
@@ -171,7 +171,7 @@ event ReceivedMessage(
 
 ### ReceivedRelayedMessage
 
-Emitted when a relayed message is received. *(Defined in IWormholeTransceiver.sol)*
+Emitted when a relayed message is received. *(Defined in [IWormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 event ReceivedRelayedMessage(
@@ -201,7 +201,7 @@ event ReceivedRelayedMessage(
 
 ### RelayingInfo
 
-Emitted when a message is sent from the transceiver. *(Defined in IWormholeTransceiverState.sol)*
+Emitted when a message is sent from the transceiver. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 event RelayingInfo(
@@ -231,7 +231,7 @@ event RelayingInfo(
 
 ### SendTransceiverMessage
 
-Emitted when a message is sent from the transceiver. *(Defined in IWormholeTransceiver.sol)*
+Emitted when a message is sent from the transceiver. *(Defined in [IWormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 event SendTransceiverMessage(
@@ -278,7 +278,7 @@ event SendTransceiverMessage(
 
 ### SetIsSpecialRelayingEnabled
 
-Emitted when special relaying is enabled for the given chain. *(Defined in IWormholeTransceiverState.sol)*
+Emitted when special relaying is enabled for the given chain. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 event SetIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled)
@@ -298,7 +298,7 @@ event SetIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled)
 
 ### SetIsWormholeEvmChain
 
-Emitted when the EVM-compatibility flag is set for a chain. *(Defined in IWormholeTransceiverState.sol)*
+Emitted when the EVM-compatibility flag is set for a chain. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 event SetIsWormholeEvmChain(uint16 chainId, bool isEvm)
@@ -318,7 +318,7 @@ event SetIsWormholeEvmChain(uint16 chainId, bool isEvm)
 
 ### SetIsWormholeRelayingEnabled
 
-Emitted when relaying is enabled for the given chain. *(Defined in IWormholeTransceiverState.sol)*
+Emitted when relaying is enabled for the given chain. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 event SetIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled)
@@ -338,7 +338,7 @@ event SetIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled)
 
 ### SetWormholePeer
 
-Emitted when a peer transceiver is set. *(Defined in IWormholeTransceiverState.sol)*
+Emitted when a peer transceiver is set. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 event SetWormholePeer(uint16 chainId, bytes32 peerContract)
@@ -360,7 +360,7 @@ event SetWormholePeer(uint16 chainId, bytes32 peerContract)
 
 ### encodeWormholeTransceiverInstruction
 
-Encodes the `WormholeTransceiverInstruction` into a byte array. *(Defined in WormholeTransceiver.sol)*
+Encodes the `WormholeTransceiverInstruction` into a byte array. *(Defined in [WormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 function encodeWormholeTransceiverInstruction(
@@ -388,7 +388,7 @@ function encodeWormholeTransceiverInstruction(
 
 ### getMigratesImmutables
 
-Returns whether the contract migrates immutables during upgrades. *(Defined in Implementation.sol)*
+Returns whether the contract migrates immutables during upgrades. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 function getMigratesImmutables() public view returns (bool)
@@ -402,7 +402,7 @@ function getMigratesImmutables() public view returns (bool)
 
 ### getNttManagerOwner
 
-Returns the owner address of the NTT Manager that this transceiver is related to. *(Defined in Transceiver.sol)*
+Returns the owner address of the NTT Manager that this transceiver is related to. *(Defined in [Transceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank})*
 
 ```sol
 function getNttManagerOwner() public view returns (address)
@@ -416,7 +416,7 @@ function getNttManagerOwner() public view returns (address)
 
 ### getNttManagerToken
 
-Returns the address of the token associated with this NTT deployment. *(Defined in Transceiver.sol)*
+Returns the address of the token associated with this NTT deployment. *(Defined in [Transceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank})*
 
 ```sol
 function getNttManagerToken() public view virtual returns (address)
@@ -430,7 +430,7 @@ function getNttManagerToken() public view virtual returns (address)
 
 ### getTransceiverType
 
-Returns the string type of the transceiver. *(Defined in WormholeTransceiver.sol)*
+Returns the string type of the transceiver. *(Defined in [WormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 function getTransceiverType() external pure returns (string memory)
@@ -444,7 +444,7 @@ function getTransceiverType() external pure returns (string memory)
 
 ### getWormholePeer
 
-Returns the peer contract address for a given chain. *(Defined in WormholeTransceiverState.sol)*
+Returns the peer contract address for a given chain. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function getWormholePeer(uint16 chainId) public view returns (bytes32)
@@ -464,7 +464,7 @@ function getWormholePeer(uint16 chainId) public view returns (bytes32)
 
 ### initialize
 
-Initializes the contract implementation. Only callable through a delegate call. *(Defined in Implementation.sol)*
+Initializes the contract implementation. Only callable through a delegate call. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 function initialize() external payable
@@ -472,7 +472,7 @@ function initialize() external payable
 
 ### isPaused
 
-Returns whether the contract is currently paused. *(Defined in PausableUpgradeable.sol)*
+Returns whether the contract is currently paused. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 function isPaused() public view returns (bool)
@@ -486,7 +486,7 @@ function isPaused() public view returns (bool)
 
 ### isSpecialRelayingEnabled
 
-Returns whether special relaying is enabled for a given chain. *(Defined in WormholeTransceiverState.sol)*
+Returns whether special relaying is enabled for a given chain. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function isSpecialRelayingEnabled(uint16 chainId) public view returns (bool)
@@ -506,7 +506,7 @@ function isSpecialRelayingEnabled(uint16 chainId) public view returns (bool)
 
 ### isVAAConsumed
 
-Returns whether a VAA has been consumed. *(Defined in WormholeTransceiverState.sol)*
+Returns whether a VAA has been consumed. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function isVAAConsumed(bytes32 hash) public view returns (bool)
@@ -526,7 +526,7 @@ function isVAAConsumed(bytes32 hash) public view returns (bool)
 
 ### isWormholeEvmChain
 
-Returns whether a chain is EVM compatible. *(Defined in WormholeTransceiverState.sol)*
+Returns whether a chain is EVM compatible. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function isWormholeEvmChain(uint16 chainId) public view returns (bool)
@@ -546,7 +546,7 @@ function isWormholeEvmChain(uint16 chainId) public view returns (bool)
 
 ### isWormholeRelayingEnabled
 
-Returns whether relaying is enabled for a given chain. *(Defined in WormholeTransceiverState.sol)*
+Returns whether relaying is enabled for a given chain. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function isWormholeRelayingEnabled(uint16 chainId) public view returns (bool)
@@ -566,7 +566,7 @@ function isWormholeRelayingEnabled(uint16 chainId) public view returns (bool)
 
 ### migrate
 
-Migrates the contract to a new implementation. Only callable during upgrades through a delegate call. *(Defined in Implementation.sol)*
+Migrates the contract to a new implementation. Only callable during upgrades through a delegate call. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 function migrate() external
@@ -574,7 +574,7 @@ function migrate() external
 
 ### parseWormholeTransceiverInstruction
 
-Parses the encoded instruction and returns the instruction struct. *(Defined in WormholeTransceiver.sol)*
+Parses the encoded instruction and returns the instruction struct. *(Defined in [WormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 function parseWormholeTransceiverInstruction(
@@ -602,7 +602,7 @@ function parseWormholeTransceiverInstruction(
 
 ### quoteDeliveryPrice
 
-Fetches the delivery price for a given recipient chain transfer. *(Defined in Transceiver.sol)*
+Fetches the delivery price for a given recipient chain transfer. *(Defined in [Transceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank})*
 
 ```sol
 function quoteDeliveryPrice(
@@ -643,7 +643,7 @@ function quoteDeliveryPrice(
 
 ### owner
 
-Returns the address of the current owner. *(Defined in OwnableUpgradeable.sol)*
+Returns the address of the current owner. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 function owner() public view returns (address)
@@ -657,7 +657,7 @@ function owner() public view returns (address)
 
 ### pauser
 
-Returns the address of the current pauser. *(Defined in PausableUpgradeable.sol)*
+Returns the address of the current pauser. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 function pauser() public view returns (address)
@@ -671,7 +671,7 @@ function pauser() public view returns (address)
 
 ### receiveMessage
 
-Receives an attested message from the verification layer. *(Defined in WormholeTransceiver.sol)*
+Receives an attested message from the verification layer. *(Defined in [WormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 function receiveMessage(bytes memory encodedMessage) external
@@ -687,7 +687,7 @@ function receiveMessage(bytes memory encodedMessage) external
 
 ### receiveWormholeMessages
 
-Receives and processes Wormhole messages via the relayer. Only callable by the relayer. *(Defined in WormholeTransceiver.sol)*
+Receives and processes Wormhole messages via the relayer. Only callable by the relayer. *(Defined in [WormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 function receiveWormholeMessages(
@@ -733,7 +733,7 @@ function receiveWormholeMessages(
 
 ### sendMessage
 
-Sends a message to another chain. *(Defined in Transceiver.sol)*
+Sends a message to another chain. *(Defined in [Transceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank})*
 
 ```sol
 function sendMessage(
@@ -791,7 +791,7 @@ function sendMessage(
 
 ### setIsSpecialRelayingEnabled
 
-Sets whether special relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
+Sets whether special relaying is enabled for the given chain. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function setIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled) external
@@ -813,7 +813,7 @@ function setIsSpecialRelayingEnabled(uint16 chainId, bool isRelayingEnabled) ext
 
 ### setIsWormholeEvmChain
 
-Sets whether the chain is EVM compatible. *(Defined in WormholeTransceiverState.sol)*
+Sets whether the chain is EVM compatible. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function setIsWormholeEvmChain(uint16 chainId, bool isEvm) external
@@ -835,7 +835,7 @@ function setIsWormholeEvmChain(uint16 chainId, bool isEvm) external
 
 ### setIsWormholeRelayingEnabled
 
-Sets whether Wormhole relaying is enabled for the given chain. *(Defined in WormholeTransceiverState.sol)*
+Sets whether Wormhole relaying is enabled for the given chain. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function setIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled) external
@@ -857,7 +857,7 @@ function setIsWormholeRelayingEnabled(uint16 chainId, bool isRelayingEnabled) ex
 
 ### setWormholePeer
 
-Sets the Wormhole peer contract for the given chain. *(Defined in WormholeTransceiverState.sol)*
+Sets the Wormhole peer contract for the given chain. *(Defined in [WormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/WormholeTransceiver/WormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 function setWormholePeer(uint16 chainId, bytes32 peerContract) external payable
@@ -879,7 +879,7 @@ function setWormholePeer(uint16 chainId, bytes32 peerContract) external payable
 
 ### transferOwnership
 
-Transfers ownership of the contract to a new account. Can only be called by the current owner. *(Defined in OwnableUpgradeable.sol)*
+Transfers ownership of the contract to a new account. Can only be called by the current owner. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 function transferOwnership(address newOwner) public
@@ -895,7 +895,7 @@ function transferOwnership(address newOwner) public
 
 ### transferPauserCapability
 
-Transfers the ability to pause to a new account. *(Defined in PausableOwnable.sol)*
+Transfers the ability to pause to a new account. *(Defined in [PausableOwnable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableOwnable.sol){target=\_blank})*
 
 ```sol
 function transferPauserCapability(address newPauser) public
@@ -911,7 +911,7 @@ function transferPauserCapability(address newPauser) public
 
 ### transferTransceiverOwnership
 
-Transfers the ownership of the transceiver to a new address. *(Defined in Transceiver.sol)*
+Transfers the ownership of the transceiver to a new address. *(Defined in [Transceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank})*
 
 ```sol
 function transferTransceiverOwnership(address newOwner) external
@@ -927,7 +927,7 @@ function transferTransceiverOwnership(address newOwner) external
 
 ### upgrade
 
-Upgrades the transceiver to a new implementation. *(Defined in Transceiver.sol)*
+Upgrades the transceiver to a new implementation. *(Defined in [Transceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank})*
 
 ```sol
 function upgrade(address newImplementation) external
@@ -943,7 +943,7 @@ function upgrade(address newImplementation) external
 
 ### CallerNotNttManager
 
-The caller is not the NttManager. *(Defined in ITransceiver.sol)*
+The caller is not the NttManager. *(Defined in [ITransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/ITransceiver.sol){target=\_blank})*
 
 ```sol
 error CallerNotNttManager(address caller);
@@ -957,7 +957,7 @@ error CallerNotNttManager(address caller);
 
 ### CallerNotRelayer
 
-The caller is not the relayer. *(Defined in IWormholeTransceiverState.sol)*
+The caller is not the relayer. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error CallerNotRelayer(address caller);
@@ -971,7 +971,7 @@ error CallerNotRelayer(address caller);
 
 ### CannotRenounceTransceiverOwnership
 
-Error when trying renounce transceiver ownership. *(Defined in ITransceiver.sol)*
+Error when trying renounce transceiver ownership. *(Defined in [ITransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/ITransceiver.sol){target=\_blank})*
 
 ```sol
 error CannotRenounceTransceiverOwnership(address currentOwner);
@@ -985,7 +985,7 @@ error CannotRenounceTransceiverOwnership(address currentOwner);
 
 ### CannotTransferTransceiverOwnership
 
-Error when trying to transfer transceiver ownership. *(Defined in ITransceiver.sol)*
+Error when trying to transfer transceiver ownership. *(Defined in [ITransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/ITransceiver.sol){target=\_blank})*
 
 ```sol
 error CannotTransferTransceiverOwnership(address currentOwner, address newOwner);
@@ -1005,7 +1005,7 @@ error CannotTransferTransceiverOwnership(address currentOwner, address newOwner)
 
 ### InvalidPauser
 
-The pauser is not a valid pauser account. *(Defined in PausableUpgradeable.sol)*
+The pauser is not a valid pauser account. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error InvalidPauser(address account);
@@ -1019,7 +1019,7 @@ error InvalidPauser(address account);
 
 ### InvalidRelayingConfig
 
-Error when the relaying configuration is invalid. *(Defined in IWormholeTransceiver.sol)*
+Error when the relaying configuration is invalid. *(Defined in [IWormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 error InvalidRelayingConfig(uint16 chainId);
@@ -1033,7 +1033,7 @@ error InvalidRelayingConfig(uint16 chainId);
 
 ### InvalidVaa
 
-Error if the VAA is invalid. *(Defined in IWormholeTransceiverState.sol)*
+Error if the VAA is invalid. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error InvalidVaa(string reason);
@@ -1047,7 +1047,7 @@ error InvalidVaa(string reason);
 
 ### InvalidWormholeChainIdZero
 
-The chain ID cannot be zero. *(Defined in IWormholeTransceiverState.sol)*
+The chain ID cannot be zero. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error InvalidWormholeChainIdZero();
@@ -1055,7 +1055,7 @@ error InvalidWormholeChainIdZero();
 
 ### InvalidWormholePeer
 
-Error when the peer transceiver is invalid. *(Defined in IWormholeTransceiver.sol)*
+Error when the peer transceiver is invalid. *(Defined in [IWormholeTransceiver.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiver.sol){target=\_blank})*
 
 ```sol
 error InvalidWormholePeer(uint16 chainId, bytes32 peerAddress);
@@ -1075,7 +1075,7 @@ error InvalidWormholePeer(uint16 chainId, bytes32 peerAddress);
 
 ### InvalidWormholePeerZeroAddress
 
-Error the peer contract cannot be the zero address. *(Defined in IWormholeTransceiverState.sol)*
+Error the peer contract cannot be the zero address. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error InvalidWormholePeerZeroAddress();
@@ -1083,7 +1083,7 @@ error InvalidWormholePeerZeroAddress();
 
 ### NotMigrating
 
-The contract is not currently migrating. *(Defined in Implementation.sol)*
+The contract is not currently migrating. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 error NotMigrating();
@@ -1091,7 +1091,7 @@ error NotMigrating();
 
 ### OnlyDelegateCall
 
-Function can only be called through delegate call. *(Defined in Implementation.sol)*
+Function can only be called through delegate call. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 error OnlyDelegateCall();
@@ -1099,7 +1099,7 @@ error OnlyDelegateCall();
 
 ### OwnableInvalidOwner
 
-The owner is not a valid owner account. *(Defined in OwnableUpgradeable.sol)*
+The owner is not a valid owner account. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error OwnableInvalidOwner(address owner);
@@ -1113,7 +1113,7 @@ error OwnableInvalidOwner(address owner);
 
 ### OwnableUnauthorizedAccount
 
-The caller account is not authorized to perform an operation. *(Defined in OwnableUpgradeable.sol)*
+The caller account is not authorized to perform an operation. *(Defined in [OwnableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/external/OwnableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error OwnableUnauthorizedAccount(address account);
@@ -1127,7 +1127,7 @@ error OwnableUnauthorizedAccount(address account);
 
 ### RequireContractIsNotPaused
 
-Contract is not paused, functionality is unblocked. *(Defined in PausableUpgradeable.sol)*
+Contract is not paused, functionality is unblocked. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error RequireContractIsNotPaused();
@@ -1135,7 +1135,7 @@ error RequireContractIsNotPaused();
 
 ### RequireContractIsPaused
 
-Contract state is paused, blocking functionality. *(Defined in PausableUpgradeable.sol)*
+Contract state is paused, blocking functionality. *(Defined in [PausableUpgradeable.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/PausableUpgradeable.sol){target=\_blank})*
 
 ```sol
 error RequireContractIsPaused();
@@ -1143,7 +1143,7 @@ error RequireContractIsPaused();
 
 ### PeerAlreadySet
 
-Error if the peer has already been set. *(Defined in IWormholeTransceiverState.sol)*
+Error if the peer has already been set. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error PeerAlreadySet(uint16 chainId, bytes32 peerAddress);
@@ -1163,7 +1163,7 @@ error PeerAlreadySet(uint16 chainId, bytes32 peerAddress);
 
 ### UnexpectedAdditionalMessages
 
-Additional messages are not allowed. *(Defined in IWormholeTransceiverState.sol)*
+Additional messages are not allowed. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error UnexpectedAdditionalMessages();
@@ -1171,7 +1171,7 @@ error UnexpectedAdditionalMessages();
 
 ### TransferAlreadyCompleted
 
-The transfer has already been completed. *(Defined in IWormholeTransceiverState.sol)*
+The transfer has already been completed. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error TransferAlreadyCompleted(bytes32 digest);
@@ -1185,7 +1185,7 @@ error TransferAlreadyCompleted(bytes32 digest);
 
 ### UnexpectedRecipientNttManagerAddress
 
-The recipient NTT Manager address in the message does not match this transceiver’s NTT Manager. *(Defined in IWormholeTransceiverState.sol)*
+The recipient NTT Manager address in the message does not match this transceiver’s NTT Manager. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error UnexpectedRecipientNttManagerAddress(bytes32 recipientNttManagerAddress);
@@ -1199,7 +1199,7 @@ error UnexpectedRecipientNttManagerAddress(bytes32 recipientNttManagerAddress);
 
 ### InvalidFork
 
-The current EVM chain ID does not match the stored chain ID, indicating a possible fork. *(Defined in IWormholeTransceiverState.sol)*
+The current EVM chain ID does not match the stored chain ID, indicating a possible fork. *(Defined in [IWormholeTransceiverState.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/interfaces/IWormholeTransceiverState.sol){target=\_blank})*
 
 ```sol
 error InvalidFork(uint256 expectedChainId, uint256 actualChainId);
