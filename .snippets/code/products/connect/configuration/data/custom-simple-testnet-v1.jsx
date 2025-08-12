@@ -1,8 +1,6 @@
-import WormholeConnect, {
-  WormholeConnectConfig,
-} from '@wormhole-foundation/wormhole-connect';
+import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
 
-const config: WormholeConnectConfig = {
+const config: config.WormholeConnectConfig = {
   // You can use Connect with testnet chains by specifying "network":
   network: 'Testnet',
   chains: ['Sepolia', 'ArbitrumSepolia', 'BaseSepolia', 'Avalanche'],

@@ -1,0 +1,14 @@
+name: 'PR Docs Link Check'
+
+on:
+  pull_request:
+
+jobs:
+  check-docs-links:
+    uses: papermoonio/workflows/.github/workflows/core-pr-link-checker.yml@main
+      mkdocs_repo: papermoonio/wormhole-mkdocs
+      docs_repo: wormhole-foundation/wormhole-docs
+      docs_checkout: wormhole-docs
+      url: https://wormhole.com/docs
+    secrets:
+      GH_TOKEN: ${{ secrets.GH_PR_404_CHECKER }}

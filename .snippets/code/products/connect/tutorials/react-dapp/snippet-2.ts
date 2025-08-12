@@ -1,12 +1,12 @@
 'use client';
 
 import WormholeConnect, {
-  WormholeConnectConfig,
+  type config,
   WormholeConnectTheme,
 } from '@wormhole-foundation/wormhole-connect';
 
 export default function Home() {
-  const config: WormholeConnectConfig = {
+  const config: config.WormholeConnectConfig = {
     network: 'Testnet',
     chains: ['Sui', 'Avalanche'],
 

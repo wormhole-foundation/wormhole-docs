@@ -8,7 +8,7 @@ Commands:
 Options:
       --help      Show help                                            [boolean]
       --version   Show version number                                  [boolean]
-  -m, --module    Module to query  [choices: "Core", "NFTBridge", "TokenBridge"]
+  -m, --module    Module to query  [choices: "Core", "TokenBridge"]
   -n, --network   Network   [required] [choices: "mainnet", "testnet", "devnet"]
       --account   Near deployment account                    [string] [required]
       --attach    Attach some near                                      [string]
