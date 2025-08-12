@@ -120,6 +120,9 @@ Options:
     --8<-- 'code/tools/cli/get-started/verify-vaa.txt'
     ```
 
+
+<!--
+TODO - CHANGE THE EXAMPLE TO NOT USE NFT BRIDGE
 ## Examples
 
 ### Generate a VAA
@@ -205,3 +208,5 @@ To get the RPC address for BSC Mainnet, for example, you can provide the followi
 ```bash
 worm info rpc mainnet bsc
 ```
+
+-->
