@@ -211,7 +211,7 @@ Once a transfer has been successfully verified, the tokens can be minted (if the
 event TransferRedeemed(bytes32 indexed digest);
 ```
 
-### Solana
+### SVM
 
 #### Transfer
 
@@ -231,7 +231,7 @@ Outbound transfers are always added to an Outbox via the `insert_into_outbox` me
 
 #### Rate Limit
 
-During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
+During the transfer process, the program checks rate limits via the `consume_or_delay` function. The SVM rate-limiting logic is equivalent to the EVM rate-limiting logic.
 
 If the transfer amount fits within the current capacity:
 
@@ -263,7 +263,7 @@ Program log: Instruction: ReleaseOutbound
 
 Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
 
-The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
+The Wormhole transceiver receives a verified Wormhole message on SVM chains via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
 
 The following will be produced in the program logs:
 
