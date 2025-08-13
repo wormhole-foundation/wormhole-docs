@@ -8279,11 +8279,51 @@ function sendVaasToEvm(
 
 ??? interface "Parameters"
 
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---  
+
+    `targetAddress` ++"address"++
+
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---  
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---  
+
+    `receiverValue` ++"TargetNative"++
+
+    Value (destination-chain Wei) to forward to `targetAddress`.
+
+    ---  
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit for calling `targetAddress`.
+
+    ---  
+
     `vaaKeys` ++"VaaKey[]"++
 
-    Additional Wormhole messages to deliver.
+    Extra Wormhole messages (VAAs) to deliver along with `payload`.
 
-    *(Other parameters as in `sendPayloadToEvm` with refund.)*
+    ---  
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where any refund will be sent.
+
+    ---  
+
+    `refundAddress` ++"address"++
+
+    Address on `refundChain` that receives any refund.
 
 ??? interface "Returns"
 
@@ -8313,27 +8353,68 @@ function sendToEvm(
 
 ??? interface "Parameters"
 
-    `paymentForExtraReceiverValue` ++"LocalNative"++  
-    
-    Extra source-chain amount converted and added to `receiverValue`.
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"address"++
+
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++  
+    Value (destination-chain wei) to forward to `targetAddress`.
+
+    ---
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++
+
+    Extra **source-chain** amount. The delivery provider converts this to destination native and **adds it** to `receiverValue`.
+
+    ---
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit for calling `targetAddress` on the destination chain.
+
+    ---
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where any refund will be sent.
+
+    ---
+
+    `refundAddress` ++"address"++
+
+    Address on `refundChain` that receives any refund.
 
     ---
 
     `deliveryProviderAddress` ++"address"++
-    
-    Chosen provider (must implement `IDeliveryProvider`).
+
+    Chosen delivery provider (must implement `IDeliveryProvider`).
 
     ---
 
     `messageKeys` ++"MessageKey[]"++
-    
-    External messages to deliver (provider must support each `keyType`).
+
+    External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider; otherwise the call reverts.
 
     ---
 
     `consistencyLevel` ++"uint8"++
 
-    Consistency level for publishing the instruction.
+    Wormhole publishing consistency (e.g., instant vs. finalized) used when emitting the delivery instruction.
 
 ??? interface "Returns"
 
@@ -8363,11 +8444,69 @@ function send(
 
 ??? interface "Parameters"
 
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"bytes32"++
+
+    **Wormhole-format** 32-byte address of the destination contract.
+
+    ---
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+
+    Amount of destination-chain native (e.g., wei) forwarded to `targetAddress`.
+
+    ---
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++
+
+    Extra **source-chain** native to be converted by the delivery provider and **added** to `receiverValue`.
+
+    ---
+
     `encodedExecutionParameters` ++"bytes"++
 
-    Versioned execution params (e.g., EVM gas limit).
+    Versioned execution params for the target chain (e.g., for EVM use `encodeEvmExecutionParamsV1(EvmExecutionParamsV1(gasLimit))`).
 
-    *(Other parameters as in `sendToEvm`.)*
+    ---
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where any refund will be sent.
+
+    ---
+
+    `refundAddress` ++"bytes32"++
+
+    **Wormhole-format** address on `refundChain` that receives any refund.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+
+    Chosen delivery provider (must implement `IDeliveryProvider`).
+
+    ---
+
+    `messageKeys` ++"MessageKey[]"++
+
+    External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+
+    Wormhole publishing consistency used when emitting the delivery instruction.
 
 ??? interface "Returns"
 
@@ -8392,26 +8531,32 @@ function resendToEvm(
 ??? interface "Parameters"
 
     `deliveryVaaKey` ++"VaaKey"++
-    
+
     Identifies the original delivery instruction VAA.
 
-    ---
+    ---  
+
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID where the message should be redelivered.
+
+    ---  
 
     `newReceiverValue` ++"TargetNative"++
-    
+
     Updated value sent to the target contract.
 
-    ---
+    ---  
 
     `newGasLimit` ++"Gas"++
-    
-    Updated gas limit (must be ≥ original).
 
-    ---
+    Updated gas limit for the target call.
+
+    ---  
 
     `newDeliveryProviderAddress` ++"address"++
 
-    New provider to use.
+    Delivery provider to use for the redelivery.
 
 ??? interface "Returns"
 
@@ -8435,9 +8580,33 @@ function resend(
 
 ??? interface "Parameters"
 
-    `newEncodedExecutionParameters` ++"bytes"++
+    `deliveryVaaKey` ++"VaaKey"++
+    
+    Identifies the original delivery instruction VAA.
 
-    Versioned execution parameters for redelivery.
+    ---  
+
+    `targetChain` ++"uint16"++
+    
+    Wormhole chain ID where the message should be redelivered.
+
+    ---  
+
+    `newReceiverValue` ++"TargetNative"++
+    
+    Updated value to forward to the target contract on the destination chain.
+
+    ---  
+
+    `newEncodedExecutionParameters` ++"bytes"++
+    
+    Versioned, chain-specific execution params for the redelivery (e.g., for EVM use `encodeEvmExecutionParamsV1(EvmExecutionParamsV1(gasLimit))`).
+
+    ---  
+
+    `newDeliveryProviderAddress` ++"address"++
+    
+    Delivery provider to use for the redelivery (must implement `IDeliveryProvider`).
 
 ??? interface "Returns"
 
