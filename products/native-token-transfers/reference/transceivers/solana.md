@@ -30,6 +30,10 @@ NTT Transceiver Program
 - **Administrative Functions**: Provides interfaces for setting up peer configurations and managing broadcast behavior.
 - **Message Processing**: Automatically processes inbound and outbound messages and forwards valid messages to the NTT Manager.
 
+## State Accounts
+
+`TransceiverPeer` ++"account (PDA: "transceiver_peer")"++: Per-chain peer entry for the Wormhole transceiver path; stores the peer transceiver `address` (wormhole-formatted `[u8; 32]`) and `bump`.
+
 ## Instructions
 
 ### broadcast_wormhole_id
@@ -155,7 +159,7 @@ pub fn broadcast_wormhole_peer(
 
     ---
 
-    `peer` ++"Account<WormholeTransceiverPeer>"++
+    `peer` ++"Account<TransceiverPeer>"++
 
     The peer transceiver account containing peer information.
 
@@ -241,7 +245,7 @@ pub fn receive_wormhole_message(ctx: Context<ReceiveMessage>) -> Result<()>
 
     ---
 
-    `peer` ++"Account<WormholeTransceiverPeer>"++
+    `peer` ++"Account<TransceiverPeer>"++
 
     The peer transceiver account for verification.
 
@@ -431,7 +435,7 @@ pub fn set_wormhole_peer(
 
     ---
 
-    `peer` ++"mut Account<WormholeTransceiverPeer>"++
+    `peer` ++"mut Account<TransceiverPeer>"++
 
     The peer account to create or update.
 
@@ -467,35 +471,28 @@ pub fn transceiver_type(_ctx: Context<TransceiverType>) -> Result<String>
 
 ## Data Structures
 
-### WormholeTransceiverPeer
+### TransceiverPeer
 
 Stores information about a peer transceiver on another chain. *(Defined in peer.rs)*
 
 ```rust
-pub struct WormholeTransceiverPeer {
+pub struct TransceiverPeer {
     pub bump: u8,
-    pub chain_id: ChainId,
     pub address: [u8; 32],
 }
 ```
 
 ??? interface "Fields"
 
-    `bump` ++"u8"++
-
+    bump ++"u8"++
+    
     The canonical bump for the peer account.
-
-    ---
-
-    `chain_id` ++"ChainId"++
-
-    The chain ID of the peer.
 
     ---
 
     `address` ++"[u8; 32]"++
 
-    The address of the peer transceiver.
+    The wormhole-formatted address of the peer transceiver.
 
 ### TransceiverMessage
 
