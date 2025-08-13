@@ -1,5 +1,6 @@
 title: Guides
 nav:
+- 'Transfer Wrapped Assets': transfer-wrapped-assets.md
 - 'Transfer Assets with Solidity': token-bridge-contracts.md
 - 'Attest Tokens': attest-tokens.md
 - 'Fetch a Signed VAA': fetch-signed-vaa.md
