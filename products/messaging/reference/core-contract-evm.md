@@ -1,7 +1,7 @@
 ---
 title: Core Contract (EVM)
 description: Reference for the Wormhole Core contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
-categories: Basics
+categories: Reference
 ---
 
 # Core Contract (EVM)

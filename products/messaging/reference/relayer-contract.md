@@ -1,7 +1,7 @@
 ---
 title: Relayer Contract
 description: Reference for the Wormhole Relayer contract on EVM chains. Covers the proxy structure, components, state variables, functions, events, and errors.
-categories: Basics
+categories: Reference
 ---
 
 # Relayer Contract
@@ -48,7 +48,7 @@ DeliveryProvider.sol (Standalone)
 
 ### SendEvent
 
-Emitted when a send instruction is published and payment is handled. (Defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})
+Emitted when a send instruction is published and payment is handled. *(Defined in [IWormholeRelayerTyped.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/interfaces/relayer/IWormholeRelayerTyped.sol){target=\_blank})*
 
 ```solidity
 event SendEvent(
@@ -366,23 +366,27 @@ function sendPayloadToEvm(
 
 ??? interface "Parameters"
 
-    `targetChain` ++"uint16"++  
+    `targetChain` ++"uint16"++
+    
     Wormhole chain ID of the destination chain.
 
     ---
 
-    `targetAddress` ++"address"++  
+    `targetAddress` ++"address"++
+    
     Contract on the destination chain (must implement `IWormholeReceiver`).
 
     ---
 
-    `payload` ++"bytes"++  
+    `payload` ++"bytes"++
+    
     Bytes delivered to `targetAddress`.
 
     ---
 
-    `receiverValue` ++"TargetNative"++  
-    Value (destination-chain wei) to forward to `targetAddress`.
+    `receiverValue` ++"TargetNative"++
+    
+    Value (destination-chain Wei) to forward to `targetAddress`.
 
     ---
 
@@ -415,31 +419,37 @@ function sendPayloadToEvm(
 ??? interface "Parameters"
 
     `targetChain` ++"uint16"++
+    
     Wormhole chain ID of the destination chain.
 
     ---
 
     `targetAddress` ++"address"++
+    
     Contract on the destination chain (must implement `IWormholeReceiver`).
 
     ---
 
     `payload` ++"bytes"++
+    
     Bytes delivered to `targetAddress`.
 
     ---
 
     `receiverValue` ++"TargetNative"++
-    Value (destination-chain wei) to forward to `targetAddress`.
+    
+    Value (destination-chain Wei) to forward to `targetAddress`.
 
     ---
 
     `gasLimit` ++"Gas"++
+    
     Gas limit for calling `targetAddress`.
 
     ---
 
     `refundChain` ++"uint16"++
+    
     Wormhole chain ID where refunds should be sent.
 
     ---
@@ -508,16 +518,19 @@ function sendToEvm(
 ??? interface "Parameters"
 
     `paymentForExtraReceiverValue` ++"LocalNative"++  
+    
     Extra source-chain amount converted and added to `receiverValue`.
 
     ---
 
-    `deliveryProviderAddress` ++"address"++  
+    `deliveryProviderAddress` ++"address"++
+    
     Chosen provider (must implement `IDeliveryProvider`).
 
     ---
 
-    `messageKeys` ++"MessageKey[]"++  
+    `messageKeys` ++"MessageKey[]"++
+    
     External messages to deliver (provider must support each `keyType`).
 
     ---
@@ -582,17 +595,20 @@ function resendToEvm(
 
 ??? interface "Parameters"
 
-    `deliveryVaaKey` ++"VaaKey"++  
+    `deliveryVaaKey` ++"VaaKey"++
+    
     Identifies the original delivery instruction VAA.
 
     ---
 
-    `newReceiverValue` ++"TargetNative"++  
+    `newReceiverValue` ++"TargetNative"++
+    
     Updated value sent to the target contract.
 
     ---
 
-    `newGasLimit` ++"Gas"++  
+    `newGasLimit` ++"Gas"++
+    
     Updated gas limit (must be ≥ original).
 
     ---
@@ -668,6 +684,8 @@ function quoteEVMDeliveryPrice(
     `nativePriceQuote` ++"LocalNative"++
 
     Source-chain price to request the delivery.
+    
+    ---
 
     `targetChainRefundPerGasUnused` ++"GasPrice"++
 
