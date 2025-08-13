@@ -6,7 +6,7 @@ categories: NTT, Transfer
 
 # NTT Manager Program Reference (Solana)
 
-The NTT Manager program is responsible for managing the token and associated transceivers on Solana. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
+The [NTT Manager program](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/lib.rs){target=\_blank} is responsible for managing the token and associated transceivers on Solana. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
 
 ## Structure Overview
 
