@@ -769,37 +769,59 @@ pub fn release_wormhole_outbound(
 
     ??? child "`ReleaseOutboundArgs` type"
 
-        `recipient_chain` ++"ChainId"++
+        `revert_on_delay` ++"bool"++
 
-        The recipient chain ID.
+        If `true`, revert when the rate limiter would delay release; if `false`, return early without error.
 
 ??? interface "Accounts"
 
     `payer` ++"mut Signer"++
 
-    The account paying for the release.
+    The fee payer.
 
     ---
 
-    `config` ++"Account<Config>"++
+    `config` ++"NotPausedConfig"++
 
-    The program configuration account.
+    Wrapper enforcing the Manager is not paused; derefs to `Account<Config>`.
 
     ---
 
     `outbox_item` ++"mut Account<OutboxItem>"++
 
-    The outbox item to release.
+    The outbound item to release; must not already be marked released by this transceiver.
 
     ---
 
-    `transceiver_message` ++"mut UncheckedAccount"++
+    `transceiver` ++"Account<RegisteredTransceiver>"++
 
-    The transceiver message account.
+    Must match this program ID and be enabled in `config`.
 
     ---
 
-    Wormhole-specific accounts for message posting...
+    `wormhole_message` ++"mut UncheckedAccount"++
+
+    PDA seeded as `[b"message", outbox_item.key()]`; initialized/written by Wormhole Core.
+
+    ---
+
+    `emitter` ++"UncheckedAccount"++
+
+    PDA seeded as `[b"emitter"]`; used as the Wormhole emitter.
+
+    ---
+
+    `wormhole` ++"WormholeAccounts"++
+
+    Bundle of Wormhole Core accounts:
+
+     - `bridge: Account<wormhole::BridgeData>`
+     - `fee_collector: UncheckedAccount`
+     - `sequence: UncheckedAccount`
+     - `program: Program<wormhole::program::Wormhole>`
+     - `system_program: Program<System>`
+     - `clock: Sysvar<Clock>`
+     - `rent: Sysvar<Rent>`
 
 ### revert_token_authority
 
