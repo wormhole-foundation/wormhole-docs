@@ -21,7 +21,7 @@ Each manager is assigned to a specific token but can operate across multiple cha
 A manager is responsible for:
 
 - **Handling token transfer flow**: Upon a transfer request, `NttManager` either locks or burns tokens depending on the configuration, emits a `TransferSent` event, and ensures tokens can’t be accessed on the source chain before leasing them on the destination chain. This process safeguards against double-spending and maintains a secure transfer.
-- **Rate-limiting**: The `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers
+- **Rate-limiting**: The `NttManager` contract includes rate-limiting functionality to prevent overloading the network or flooding the target chain. The `NttManager` applies rate limits to manage transfer flow and prevent network congestion. Limits apply to both outgoing and incoming transfers.
     - **Outbound**: Transfers exceeding the outbound limit are queued (if `shouldQueue` is true) or reverted.
     - **Inbound**: Similar limits apply on the destination chain, delaying transfers if capacity is exceeded.
 
@@ -65,6 +65,15 @@ The verifier performs checks based on predefined criteria and issues approval fo
 
 For more details, to collaborate, or to see examples of custom transceivers, [contact](https://discord.com/invite/wormholecrypto){target=\_blank} Wormhole contributors.
 
+## On-Chain State
+
+The NTT contracts maintain minimal state on‑chain to safely route transfers, prevent replays, and manage throughput across multiple chains. This state is primarily managed by the NTT Manager, its Rate Limiter, and the Transceiver Registry:
+
+ - **Message attestations**: Records which transceivers have attested to each cross‑chain message, enforces the M‑of‑N attestation threshold, and prevents re‑execution of processed messages.
+ - **Peer registrations**: Maps each remote chain to its associated NTT Manager and token decimal configuration, ensuring only trusted peers can mint/unlock tokens.
+ - **Rate limiting**: Enforces inbound and outbound throughput caps and queues transfers when limits are exceeded, protecting liquidity and downstream networks.
+ - **Transceiver registry**: Maintains the list of registered and enabled transceivers, along with their bitmap index, allowing governance to add/remove messaging providers.
+
 ## Lifecycle of a Message
 
 The lifecycle of a message in the Wormhole ecosystem for Native Token Transfers (NTT) involves multiple steps to ensure secure and accurate cross-chain token transfers. This lifecycle can vary depending on the blockchain being used, and the following explanations focus on the EVM and SVM implementations. The key stages include initiating the transfer, handling rate limits, sending and receiving messages, and finally, minting or unlocking tokens on the destination chain.
@@ -75,8 +84,8 @@ The process begins when a client initiates a transfer. For EVM, this is done usi
 
 In both cases:
 
-- If the source chain is in locking mode, the tokens are locked on the source chain to be unlocked on the destination chain
-- If the source chain is in burning mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain
+- If the source chain is in locking mode, the tokens are locked on the source chain to be unlocked on the destination chain.
+- If the source chain is in burning mode, the tokens are burned on the source chain, and new tokens are minted on the destination chain.
 
 Once initiated, an event (such as `TransferSent` on EVM or a corresponding log on SVM) is emitted to signal that the transfer process has started.
 
@@ -84,8 +93,8 @@ Once initiated, an event (such as `TransferSent` on EVM or a corresponding log o
 
 Both EVM and SVM implement rate-limiting for transfers to prevent abuse or network overload. Rate limits apply to both the source and destination chains. If transfers exceed the current capacity, depending on whether the `shouldQueue` flag is set to true, they can be queued.
 
-- On EVM, the transfer is added to an outbound queue if it hits the rate limit, with a delay corresponding to the configured rate limit duration. If `shouldQueue` is set to false, the transfer is reverted with an error
-- On SVM, the transfer is added to an **Outbox** via the `insert_into_outbox` method, and if the rate limit is hit, the transfer is queued with a `release_timestamp`. If `shouldQueue` is false, the transfer is reverted with a `TransferExceedsRateLimit` error
+- On EVM, the transfer is added to an outbound queue if it hits the rate limit, with a delay corresponding to the configured rate limit duration. If `shouldQueue` is set to false, the transfer is reverted with an error.
+- On SVM, the transfer is added to an **Outbox** via the `insert_into_outbox` method, and if the rate limit is hit, the transfer is queued with a `release_timestamp`. If `shouldQueue` is false, the transfer is reverted with a `TransferExceedsRateLimit` error.
 
 Both chains emit events or logs when transfers are rate-limited or queued.
 
