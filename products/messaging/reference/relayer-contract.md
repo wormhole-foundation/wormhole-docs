@@ -483,11 +483,51 @@ function sendVaasToEvm(
 
 ??? interface "Parameters"
 
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---  
+
+    `targetAddress` ++"address"++
+
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---  
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---  
+
+    `receiverValue` ++"TargetNative"++
+
+    Value (destination-chain Wei) to forward to `targetAddress`.
+
+    ---  
+
+    `gasLimit` ++"Gas"++
+
+    Gas limit for calling `targetAddress`.
+
+    ---  
+
     `vaaKeys` ++"VaaKey[]"++
 
-    Additional Wormhole messages to deliver.
+    Extra Wormhole messages (VAAs) to deliver along with `payload`.
 
-    *(Other parameters as in `sendPayloadToEvm` with refund.)*
+    ---  
+
+    `refundChain` ++"uint16"++
+
+    Wormhole chain ID where any refund will be sent.
+
+    ---  
+
+    `refundAddress` ++"address"++
+    
+    Address on `refundChain` that receives any refund.
 
 ??? interface "Returns"
 
