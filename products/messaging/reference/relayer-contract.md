@@ -735,31 +735,31 @@ function resendToEvm(
 ??? interface "Parameters"
 
     `deliveryVaaKey` ++"VaaKey"++
-    
+
     Identifies the original delivery instruction VAA.
 
     ---  
 
     `targetChain` ++"uint16"++
-    
+
     Wormhole chain ID where the message should be redelivered.
 
     ---  
 
     `newReceiverValue` ++"TargetNative"++
-    
+
     Updated value sent to the target contract.
 
     ---  
 
     `newGasLimit` ++"Gas"++
-    
+
     Updated gas limit for the target call.
 
     ---  
 
     `newDeliveryProviderAddress` ++"address"++
-    
+
     Delivery provider to use for the redelivery.
 
 ??? interface "Returns"
@@ -784,9 +784,33 @@ function resend(
 
 ??? interface "Parameters"
 
-    `newEncodedExecutionParameters` ++"bytes"++
+    `deliveryVaaKey` ++"VaaKey"++
+    
+    Identifies the original delivery instruction VAA.
 
-    Versioned execution parameters for redelivery.
+    ---  
+
+    `targetChain` ++"uint16"++
+    
+    Wormhole chain ID where the message should be redelivered.
+
+    ---  
+
+    `newReceiverValue` ++"TargetNative"++
+    
+    Updated value to forward to the target contract on the destination chain.
+
+    ---  
+
+    `newEncodedExecutionParameters` ++"bytes"++
+    
+    Versioned, chain-specific execution params for the redelivery (e.g., for EVM use `encodeEvmExecutionParamsV1(EvmExecutionParamsV1(gasLimit))`).
+
+    ---  
+
+    `newDeliveryProviderAddress` ++"address"++
+    
+    Delivery provider to use for the redelivery (must implement `IDeliveryProvider`).
 
 ??? interface "Returns"
 
