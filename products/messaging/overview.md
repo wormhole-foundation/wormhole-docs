@@ -67,5 +67,4 @@ For lower-cost, efficient integration with Core Bridge on Solana, consider using
 - [**Solana Shims**](/docs/products/messaging/concepts/solana-shim/){target=\_blank} : Learn about the purpose and benefits of using shims on Solana.
 - [**Emission Shim**](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}: Emit messages without creating permanent accounts, reducing rent costs.
 - [**Verification Shim**](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}: Efficiently verify Wormhole VAAs without leaving rent-exempt accounts.
-- [**Shim Deployment Guide**](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}: Deploy and verify the Wormhole emission and verification shims on Solana mainnet using verifiable builds.
 

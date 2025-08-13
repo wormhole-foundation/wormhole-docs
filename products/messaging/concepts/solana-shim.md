@@ -12,18 +12,18 @@ This page explains what shims are, why they were created, how they work, and wha
 
 ## The Core Bridge Account Problem
 
-When you emit a message on Solana using the legacy [Wormhole Core Bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account—a Program Derived Address (PDA)—for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since Core Bridge does not allow these accounts to be closed. Over time, this results in two big problems:
+When you emit a message on Solana using the legacy [Wormhole Core Bridge](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, it creates a new on-chain account — a Program Derived Address (PDA) — for every message. Each of these accounts must hold enough SOL to be rent-exempt, locking up lamports that cannot be reclaimed since Core Bridge does not allow these accounts to be closed. Over time, this results in two big problems:
 
 - **Permanent On-Chain State**: Every message leaves behind a permanent account, increasing long-term storage needs on Solana.
 - **Lost Lamports to Rent**: Integrators lose SOL for every message, as the lamports needed for rent exemption remain locked in the message accounts indefinitely.
 
 Solana’s rent-exemption model is designed to ensure account persistence, but this is not a limitation of the protocol itself. The real constraint is the legacy `post_message` function, which always creates a new, non-reclaimable account per emission. Even after a message is consumed, these accounts cannot be closed or reused, resulting in unrecoverable rent costs.
 
-Although the `post_message_unreliable` function allows for account reuse, it has strict limitations: overwritten messages are lost forever, and reused accounts can cause sequence conflicts or duplicate VAAs. Guardians expect every message to have a unique emitter and sequence, so reusing accounts risks breaking core protocol guarantees.
+Although the `post_message_unreliable` function allows for account reuse, it has strict limitations: once a message is overwritten, there is no way to recover it, making it non-re-observable if missed by Guardians. It also requires that the new payload size matches the existing account size, as the feature predates Solana account resizing.
 
-Verification adds even more cost: the `post_vaa` instruction creates even more temporary accounts for signatures and VAA data, further increasing rent costs and on-chain state. These accounts aren’t automatically cleaned up, so the cost and on-chain state only grow with usage.
+Verification adds even more cost: the `post_vaa` instruction creates creates additional temporary accounts for signatures and VAA data, further increasing rent costs and on-chain state. These accounts aren’t automatically cleaned up, so the cost and on-chain state only grow with usage.
 
-This design does ensure reliability, messages and verification data are always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
+This design does ensure reliability, as messages data is always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
 
 ## What Are the Solana Shim Contracts?
 
@@ -32,20 +32,20 @@ To address the limitations of the Core Bridge, Wormhole deploys two specialized 
 - **[Post Message Shim (`EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX`)](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}**: Emits Wormhole messages efficiently, without creating new message accounts for each emission, reducing rent costs.
 - **[Verify VAA Shim (`EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at`)](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}**: Verifies VAAs on-chain without leaving permanent accounts.
 
-Both shims act as lightweight wrappers around the existing Core Bridge. No upgrade to the main contract is required; Guardian infrastructure continues to work exactly as before.
+Both shims act as lightweight wrappers around the existing Core Bridge. No upgrade to the Core Bridge itself is required. However, for the Post Message Shim, the Guardian network made some operational changes so that messages emitted via the shim could still be observed reliably:
 
-### “Shim” Emission and Verification
+- Read message data directly from the shim instruction instead of the Core Bridge message account.
+- Ignore the Core Bridge’s unreliable message account to prevent duplicate VAAs.
+- Allow re-observation of messages by transaction ID.
+- Guardian RPCs retain transaction history longer so shim-emitted messages remain observable.
+
+### Emission and Verification
 
 Wormhole shims on Solana refer to two different approaches depending on whether you are emitting messages or verifying VAAs:
 
-- Emission Shim: The emission shim is an actual Solana program that you must deploy. It wraps the Core Bridge’s `post_message_unreliable` instruction and emits message data as a log event. Integrators send messages through this program to avoid rent costs and state bloat. You must deploy and interact with the emission shim as a separate contract.
+- **Emission Shim**: The emission shim is a Solana program deployed at [EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}. It wraps the Core Bridge’s `post_message_unreliable` instruction and emits message data as a log event instead of storing it in a rent-exempt message account. This reduces rent costs and prevents long-term state bloat. Guardians are configured to observe messages from this canonical shim, so integrators can simply send messages through it without additional setup.
 
-- Verification “Shim”: The verification shim is not a new program or contract. Instead, it refers to a rent-efficient usage pattern of the existing Core Bridge instructions (`verify_signatures` and `post_vaa`). In this flow, you create the minimum required temporary accounts for VAA verification, perform your checks, then immediately close those accounts to reclaim rent. All logic is handled by the standard Core Bridge contract—no additional contract deployment is needed.
-
-| Purpose            | Is it a new program? | Deployment Required? | How it works                                |
-|--------------------|----------------------|----------------------|---------------------------------------------|
-| Emission Shim      | Yes                  | Yes                  | Deploy the shim, call its instruction       |
-| Verification Shim  | No                   | No                   | Use standard Core Bridge; close temp accounts after verification |
+- **Verification Shim**: The verification shim is a Solana program deployed at [EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at](https://explorer.solana.com/address/EFaNWErqAtVWufdNb7yofSHHfWFos843DFpu4JBw24at){target=\_blank}. It provides a [`verify_hash`](https://github.com/wormhole-foundation/wormhole/blob/4656bd4a72cb99f4e94a771a802856c9451af844/svm/wormhole-core-shims/programs/verify-vaa/src/lib.rs#L195){target=\_blank} instruction that checks the provided Guardian signatures against the active Guardian set for the digest of the VAA. It ensures quorum, validates each signature in order, recovers the public keys, and matches them against the Guardian set. If all checks pass, the VAA is considered verified without creating rent-exempt accounts that persist on-chain. This replaces using the Core Bridge’s `verify_signatures` and `post_vaa` directly. No new deployment is required—integrators can call the canonical shim—but existing programs may need changes to adopt this approach, as the logic is handled entirely within the shim program rather than the Core Bridge.
 
 ## Key Solana Concepts
 
