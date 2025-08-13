@@ -113,11 +113,11 @@ The `transfer` function is called with details of the transfer, and the `Transfe
 
 ### Rate Limiting
 
-If a transfer is rate-limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted. 
+If a transfer is rate limited on the source chain and the `shouldQueue` flag is enabled, it is added to an outbound queue. The transfer can be released after the configured `_rateLimitDuration` has expired via the `completeOutboundQueuedTransfer` method. The `OutboundTransferQueued` and `OutboundTransferRateLimited` events are emitted. 
 
 If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `OutboundQueuedTransferStillQueued` error.
 
-Similarly, rate-limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
+Similarly, rate limited transfers on the destination chain are added to an inbound queue. These transfers can be released from the queue via the `completeInboundQueuedTransfer` method, and the `InboundTransferQueued` event is emitted.
 
 If the client attempts to release the transfer from the queue before the `rateLimitDuration` expires, the contract reverts with an `InboundQueuedTransferStillQueued` error.
 
@@ -161,7 +161,7 @@ Program log: Instruction: TransferLock
 Program log: Instruction: TransferBurn
 ```
 
-Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate-limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
+Outbound transfers are always added to an Outbox via the `insert_into_outbox` method. This method checks the transfer against the configured outbound rate limit amount to determine whether the transfer should be rate limited. An `OutboxItem` is a Solana Account that holds details of the outbound transfer. The transfer can be released from the Outbox immediately if no rate limit is hit. The transfer can be released from the Outbox immediately unless a rate limit is hit, in which case it will only be released after the delay duration associated with the rate limit has expired.
 
 ### Rate Limiting
 
@@ -229,7 +229,7 @@ Program log: Instruction: ReleaseInboundUnlock
 
 ## Rate Limiting
 
-A transfer can be rate-limited on both the source and destination chains. 
+A transfer can be rate limited on both the source and destination chains. 
 
 ### Outbound Rate Limiting (Source Chain)
 
@@ -256,7 +256,7 @@ A transfer can be rate-limited on both the source and destination chains.
 
 ## Queued Transfer Management
 
-When transfers are rate-limited, NTT provides management functions.
+When transfers are rate limited, NTT provides management functions.
 
 ### Outbound Queued Transfers
 
