@@ -171,7 +171,7 @@ Once you've set up NTT, proceed with adding your EVM chains and deploying contra
     ntt pull
     ```
 
-4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example, if your token has 18 decimals on Ethereum and 6 decimals on Arbitrum::
+4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example, if your token has 18 decimals on Ethereum and 6 decimals on Arbitrum:
 
     To Ethereum, the limits are set with 18 decimal places:
       ```json
