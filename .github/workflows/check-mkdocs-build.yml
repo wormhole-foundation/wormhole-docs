@@ -1,9 +1,8 @@
 name: CheckMkDocsBuild
 on:
   # Trigger the workflow on a new pull request on main
-  pull_request_target:
-    branches:
-      - main
+  pull_request:
+    branches: [main, dev]
 
 jobs:
   build-docs-site:
