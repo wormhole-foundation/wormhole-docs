@@ -587,37 +587,37 @@ function sendToEvm(
     ---
 
     `gasLimit` ++"Gas"++
-    
+
     Gas limit for calling `targetAddress` on the destination chain.
 
     ---
 
     `refundChain` ++"uint16"++
-    
+
     Wormhole chain ID where any refund will be sent.
 
     ---
 
     `refundAddress` ++"address"++
-    
+
     Address on `refundChain` that receives any refund.
 
     ---
 
     `deliveryProviderAddress` ++"address"++
-    
+
     Chosen delivery provider (must implement `IDeliveryProvider`).
 
     ---
 
     `messageKeys` ++"MessageKey[]"++
-    
+
     External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider; otherwise the call reverts.
 
     ---
 
     `consistencyLevel` ++"uint8"++
-    
+
     Wormhole publishing consistency (e.g., instant vs. finalized) used when emitting the delivery instruction.
 
 ??? interface "Returns"
@@ -648,11 +648,69 @@ function send(
 
 ??? interface "Parameters"
 
+    `targetChain` ++"uint16"++
+    
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"bytes32"++
+    
+    **Wormhole-format** 32-byte address of the destination contract.
+
+    ---
+
+    `payload` ++"bytes"++
+    
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++
+    
+    Amount of destination-chain native (e.g., wei) forwarded to `targetAddress`.
+
+    ---
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++
+    
+    Extra **source-chain** native to be converted by the delivery provider and **added** to `receiverValue`.
+
+    ---
+
     `encodedExecutionParameters` ++"bytes"++
+    
+    Versioned execution params for the target chain (e.g., for EVM use `encodeEvmExecutionParamsV1(EvmExecutionParamsV1(gasLimit))`).
 
-    Versioned execution params (e.g., EVM gas limit).
+    ---
 
-    *(Other parameters as in `sendToEvm`.)*
+    `refundChain` ++"uint16"++
+    
+    Wormhole chain ID where any refund will be sent.
+
+    ---
+
+    `refundAddress` ++"bytes32"++
+    
+    **Wormhole-format** address on `refundChain` that receives any refund.
+
+    ---
+
+    `deliveryProviderAddress` ++"address"++
+    
+    Chosen delivery provider (must implement `IDeliveryProvider`).
+
+    ---
+
+    `messageKeys` ++"MessageKey[]"++
+    
+    External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider.
+
+    ---
+
+    `consistencyLevel` ++"uint8"++
+    
+    Wormhole publishing consistency used when emitting the delivery instruction.
 
 ??? interface "Returns"
 
