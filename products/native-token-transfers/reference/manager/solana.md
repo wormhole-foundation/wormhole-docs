@@ -43,9 +43,19 @@ NTT Manager Program
 - `NttManagerPeer` ++"account (PDA: "peer")"++: Per-chain peer manager metadata—`address` (wormhole-formatted) and `token_decimals`. Stored in a PDA seeded by chain id.
 - `ValidatedTransceiverMessage` ++"account (PDA: "transceiver_message")"++: Validated inbound transceiver message container (`from_chain`, `message`), with helpers for discriminator checks and parsing.
 
+### Rate Limiting and Queues
+
+- `InboxRateLimit` ++"account (PDA: "inbox_rate_limit")"++: Inbound rate-limit state (per peer chain), wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
+- `OutboxRateLimit` ++"account (PDA: "outbox_rate_limit")"++: Global outbound rate-limit state, wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
+- `InboxItem` ++"account (PDA: "inbox_item")"++: Per-inbound message item with `amount`, `recipient_address`, `votes` (bitmap), and `release_status` state machine (`NotApproved` → `ReleaseAfter(ts)` → `Released`).
+- `OutboxItem` ++"account (PDA: "outbox_item")"++: Per-outbound transfer item tracking delivery/release state (`amount`, `sender`, `recipient` fields and release metadata).
+
 ### Authority and Admin Flow
 
-- `PendingTokenAuthority` ++"account (PDA: "pending_token_authority")"++: Tracks pending mint authority transitions and the `rent_payer`. 
+- `PendingTokenAuthority` ++"account (PDA: "pending_token_authority")"++: Tracks pending mint authority transitions and the `rent_payer`.
+
+### PDAs
+
 - `TOKEN_AUTHORITY` ++"PDA (seed: "token_authority")"++: Program-derived token authority used by the burn/lock flows. (PDA seed constant in `lib.rs`.) 
 - `SESSION_AUTHORITY` ++"PDA (seed: "session_authority")"++: Per-transfer session authority used by `transfer_*` instructions (user approves this PDA to spend, then it burns/locks). (Seed constant and rationale in `lib.rs` comments.)
 
