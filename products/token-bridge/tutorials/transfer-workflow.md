@@ -52,10 +52,11 @@ In this section, we’ll guide you through initializing the project, installing 
     echo ".env" >> .gitignore
     ```
 
-3. **Install dependencies** - install the required dependencies, including the Wormhole SDK and helper libraries
+3. **Install dependencies** - install the required dependencies. In this tutorial, we will use the TypeScript SDK version `2.4.0`, along with helper libraries
+
 
     ```bash
-    npm install @wormhole-foundation/sdk dotenv tsx
+    npm install @wormhole-foundation/sdk@2.4.0 dotenv tsx
     ```
 
 4. **Set up environment variables** - to securely store your private key, create a `.env` file in the root of your project
