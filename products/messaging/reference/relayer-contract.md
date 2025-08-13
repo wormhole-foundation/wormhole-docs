@@ -649,67 +649,67 @@ function send(
 ??? interface "Parameters"
 
     `targetChain` ++"uint16"++
-    
+
     Wormhole chain ID of the destination chain.
 
     ---
 
     `targetAddress` ++"bytes32"++
-    
+
     **Wormhole-format** 32-byte address of the destination contract.
 
     ---
 
     `payload` ++"bytes"++
-    
+
     Bytes delivered to `targetAddress`.
 
     ---
 
     `receiverValue` ++"TargetNative"++
-    
+
     Amount of destination-chain native (e.g., wei) forwarded to `targetAddress`.
 
     ---
 
     `paymentForExtraReceiverValue` ++"LocalNative"++
-    
+
     Extra **source-chain** native to be converted by the delivery provider and **added** to `receiverValue`.
 
     ---
 
     `encodedExecutionParameters` ++"bytes"++
-    
+
     Versioned execution params for the target chain (e.g., for EVM use `encodeEvmExecutionParamsV1(EvmExecutionParamsV1(gasLimit))`).
 
     ---
 
     `refundChain` ++"uint16"++
-    
+
     Wormhole chain ID where any refund will be sent.
 
     ---
 
     `refundAddress` ++"bytes32"++
-    
+
     **Wormhole-format** address on `refundChain` that receives any refund.
 
     ---
 
     `deliveryProviderAddress` ++"address"++
-    
+
     Chosen delivery provider (must implement `IDeliveryProvider`).
 
     ---
 
     `messageKeys` ++"MessageKey[]"++
-    
+
     External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider.
 
     ---
 
     `consistencyLevel` ++"uint8"++
-    
+
     Wormhole publishing consistency used when emitting the delivery instruction.
 
 ??? interface "Returns"
@@ -738,23 +738,29 @@ function resendToEvm(
     
     Identifies the original delivery instruction VAA.
 
-    ---
+    ---  
+
+    `targetChain` ++"uint16"++
+    
+    Wormhole chain ID where the message should be redelivered.
+
+    ---  
 
     `newReceiverValue` ++"TargetNative"++
     
     Updated value sent to the target contract.
 
-    ---
+    ---  
 
     `newGasLimit` ++"Gas"++
     
-    Updated gas limit (must be ≥ original).
+    Updated gas limit for the target call.
 
-    ---
+    ---  
 
     `newDeliveryProviderAddress` ++"address"++
-
-    New provider to use.
+    
+    Delivery provider to use for the redelivery.
 
 ??? interface "Returns"
 
