@@ -32,6 +32,23 @@ NTT Manager Program
 - **Peer Management**: Manages authorized cross-chain peers.
 - **Wormhole Integration**: Built-in transceiver that connects the program to Wormhole's messaging layer.
 
+## State Accounts
+
+### Core Configuration
+
+- `Config` ++"account (PDA: "config")"++: Primary program configuration: owner/pending_owner, managed `mint`, `token_program` (SPL Token or Token-2022), mode (burn vs. lock), chain_id, `next_transceiver_id`, attestation `threshold`, `enabled_transceivers` bitmap, `paused`, and `custody` (lock mode).
+
+### Cross-chain Peers and Governance Thresholds
+
+- `NttManagerPeer` ++"account (PDA: "peer")"++: Per-chain peer manager metadata—`address` (wormhole-formatted) and `token_decimals`. Stored in a PDA seeded by chain id.
+- `ValidatedTransceiverMessage` ++"account (PDA: "transceiver_message")"++: Validated inbound transceiver message container (`from_chain`, `message`), with helpers for discriminator checks and parsing.
+
+### Authority and Admin Flow
+
+- `PendingTokenAuthority` ++"account (PDA: "pending_token_authority")"++: Tracks pending mint authority transitions and the `rent_payer`. 
+- `TOKEN_AUTHORITY` ++"PDA (seed: "token_authority")"++: Program-derived token authority used by the burn/lock flows. (PDA seed constant in `lib.rs`.) 
+- `SESSION_AUTHORITY` ++"PDA (seed: "session_authority")"++: Per-transfer session authority used by `transfer_*` instructions (user approves this PDA to spend, then it burns/locks). (Seed constant and rationale in `lib.rs` comments.)
+
 ## Instructions
 
 ### accept_token_authority
