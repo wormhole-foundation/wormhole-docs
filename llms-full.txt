@@ -16816,7 +16816,7 @@ categories: NTT, Transfer
 
 # NTT Manager Program Reference (Solana)
 
-The NTT Manager program is responsible for managing the token and associated transceivers on Solana. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
+The [NTT Manager program](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/lib.rs){target=\_blank} is responsible for managing the token and associated transceivers on Solana. It enables cross-chain token transfers, peer registration, rate limiting, and message attestation for the NTT protocol.
 
 ## Structure Overview
 
@@ -16841,6 +16841,33 @@ NTT Manager Program
 - **Transceiver Management**: Maintains a registry of enabled transceivers and allows dynamic registration/deregistration.
 - **Peer Management**: Manages authorized cross-chain peers.
 - **Wormhole Integration**: Built-in transceiver that connects the program to Wormhole's messaging layer.
+
+## State Accounts
+
+### Core Configuration
+
+- `Config` ++"account (PDA: "config")"++: Primary program configuration: owner/pending_owner, managed `mint`, `token_program` (SPL Token or Token-2022), mode (burn vs. lock), chain_id, `next_transceiver_id`, attestation `threshold`, `enabled_transceivers` bitmap, `paused`, and `custody` (lock mode).
+
+### Cross-chain Peers and Governance Thresholds
+
+- `NttManagerPeer` ++"account (PDA: "peer")"++: Per-chain peer manager metadata—`address` (wormhole-formatted) and `token_decimals`. Stored in a PDA seeded by chain id.
+- `ValidatedTransceiverMessage` ++"account (PDA: "transceiver_message")"++: Validated inbound transceiver message container (`from_chain`, `message`), with helpers for discriminator checks and parsing.
+
+### Rate Limiting and Queues
+
+- `InboxRateLimit` ++"account (PDA: "inbox_rate_limit")"++: Inbound rate-limit state (per peer chain), wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
+- `OutboxRateLimit` ++"account (PDA: "outbox_rate_limit")"++: Global outbound rate-limit state, wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
+- `InboxItem` ++"account (PDA: "inbox_item")"++: Per-inbound message item with `amount`, `recipient_address`, `votes` (bitmap), and `release_status` state machine (`NotApproved` → `ReleaseAfter(ts)` → `Released`).
+- `OutboxItem` ++"account (PDA: "outbox_item")"++: Per-outbound transfer item tracking delivery/release state (`amount`, `sender`, `recipient` fields and release metadata).
+
+### Authority and Admin Flow
+
+- `PendingTokenAuthority` ++"account (PDA: "pending_token_authority")"++: Tracks pending mint authority transitions and the `rent_payer`.
+
+### PDAs
+
+- `TOKEN_AUTHORITY` ++"PDA (seed: "token_authority")"++: Program-derived token authority used by the burn/lock flows. (PDA seed constant in `lib.rs`.) 
+- `SESSION_AUTHORITY` ++"PDA (seed: "session_authority")"++: Per-transfer session authority used by `transfer_*` instructions (user approves this PDA to spend, then it burns/locks). (Seed constant and rationale in `lib.rs` comments.)
 
 ## Instructions
 
@@ -19802,6 +19829,10 @@ NTT Transceiver Program
 - **Administrative Functions**: Provides interfaces for setting up peer configurations and managing broadcast behavior.
 - **Message Processing**: Automatically processes inbound and outbound messages and forwards valid messages to the NTT Manager.
 
+## State Accounts
+
+`TransceiverPeer` ++"account (PDA: "transceiver_peer")"++: Per-chain peer entry for the Wormhole transceiver path; stores the peer transceiver `address` (wormhole-formatted `[u8; 32]`) and `bump`.
+
 ## Instructions
 
 ### broadcast_wormhole_id
@@ -19927,7 +19958,7 @@ pub fn broadcast_wormhole_peer(
 
     ---
 
-    `peer` ++"Account<WormholeTransceiverPeer>"++
+    `peer` ++"Account<TransceiverPeer>"++
 
     The peer transceiver account containing peer information.
 
@@ -20013,7 +20044,7 @@ pub fn receive_wormhole_message(ctx: Context<ReceiveMessage>) -> Result<()>
 
     ---
 
-    `peer` ++"Account<WormholeTransceiverPeer>"++
+    `peer` ++"Account<TransceiverPeer>"++
 
     The peer transceiver account for verification.
 
@@ -20203,7 +20234,7 @@ pub fn set_wormhole_peer(
 
     ---
 
-    `peer` ++"mut Account<WormholeTransceiverPeer>"++
+    `peer` ++"mut Account<TransceiverPeer>"++
 
     The peer account to create or update.
 
@@ -20239,35 +20270,28 @@ pub fn transceiver_type(_ctx: Context<TransceiverType>) -> Result<String>
 
 ## Data Structures
 
-### WormholeTransceiverPeer
+### TransceiverPeer
 
 Stores information about a peer transceiver on another chain. *(Defined in peer.rs)*
 
 ```rust
-pub struct WormholeTransceiverPeer {
+pub struct TransceiverPeer {
     pub bump: u8,
-    pub chain_id: ChainId,
     pub address: [u8; 32],
 }
 ```
 
 ??? interface "Fields"
 
-    `bump` ++"u8"++
-
+    bump ++"u8"++
+    
     The canonical bump for the peer account.
-
-    ---
-
-    `chain_id` ++"ChainId"++
-
-    The chain ID of the peer.
 
     ---
 
     `address` ++"[u8; 32]"++
 
-    The address of the peer transceiver.
+    The wormhole-formatted address of the peer transceiver.
 
 ### TransceiverMessage
 
