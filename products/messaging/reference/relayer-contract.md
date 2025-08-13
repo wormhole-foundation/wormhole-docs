@@ -526,7 +526,7 @@ function sendVaasToEvm(
     ---  
 
     `refundAddress` ++"address"++
-    
+
     Address on `refundChain` that receives any refund.
 
 ??? interface "Returns"
@@ -557,27 +557,68 @@ function sendToEvm(
 
 ??? interface "Parameters"
 
-    `paymentForExtraReceiverValue` ++"LocalNative"++  
+    `targetChain` ++"uint16"++
+
+    Wormhole chain ID of the destination chain.
+
+    ---
+
+    `targetAddress` ++"address"++
+
+    Contract on the destination chain (must implement `IWormholeReceiver`).
+
+    ---
+
+    `payload` ++"bytes"++
+
+    Bytes delivered to `targetAddress`.
+
+    ---
+
+    `receiverValue` ++"TargetNative"++  
+    Value (destination-chain wei) to forward to `targetAddress`.
+
+    ---
+
+    `paymentForExtraReceiverValue` ++"LocalNative"++
+
+    Extra **source-chain** amount. The delivery provider converts this to destination native and **adds it** to `receiverValue`.
+
+    ---
+
+    `gasLimit` ++"Gas"++
     
-    Extra source-chain amount converted and added to `receiverValue`.
+    Gas limit for calling `targetAddress` on the destination chain.
+
+    ---
+
+    `refundChain` ++"uint16"++
+    
+    Wormhole chain ID where any refund will be sent.
+
+    ---
+
+    `refundAddress` ++"address"++
+    
+    Address on `refundChain` that receives any refund.
 
     ---
 
     `deliveryProviderAddress` ++"address"++
     
-    Chosen provider (must implement `IDeliveryProvider`).
+    Chosen delivery provider (must implement `IDeliveryProvider`).
 
     ---
 
     `messageKeys` ++"MessageKey[]"++
     
-    External messages to deliver (provider must support each `keyType`).
+    External messages to deliver (e.g., VAAs). Each key’s `keyType` **must** be supported by the delivery provider; otherwise the call reverts.
 
     ---
 
     `consistencyLevel` ++"uint8"++
-
-    Consistency level for publishing the instruction.
+    
+    Wormhole publishing consistency (e.g., instant vs. finalized) used when emitting the delivery instruction.
 
 ??? interface "Returns"
 
