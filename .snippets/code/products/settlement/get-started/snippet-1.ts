@@ -17,7 +17,7 @@ import { JsonRpcProvider } from "ethers";
  * secrets manager, or environment variables (not recommended).
  */
 
-// Define Transfer Interface
+// Define transfer interface.
 export interface SignerContext<N extends Network, C extends Chain> {
   signer: Signer<N, C>;
   address: ChainAddress<C>;

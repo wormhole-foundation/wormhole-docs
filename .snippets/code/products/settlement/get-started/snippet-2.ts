@@ -18,7 +18,7 @@ import { getSigner } from './helpers';
   const destChain = wh.getChain('Solana');
   const destAddress = Wormhole.chainAddress(destChain.chain, "INSERT_DESTINATION_ADDRESS");
 
-  //  To transfer native ETH on Ethereum to native SOL on Solana
+  //  To transfer native ETH on Ethereum to native SOL on Solana.
   const source = Wormhole.tokenId(sendChain.chain, 'native');
   const destination = Wormhole.tokenId(destChain.chain, 'native');
 
@@ -35,11 +35,11 @@ import { getSigner } from './helpers';
   );
   console.log(dstTokens.slice(0, 5));
 
-  // Load signers and addresses from helpers
+  // Load signers and addresses from helpers.
   const sender = await getSigner(sendChain);
 
   // Creating a transfer request fetches token details
-  // since all routes will need to know about the tokens
+  // since all routes will need to know about the tokens.
   const tr = await routes.RouteTransferRequest.create(wh, {
     source,
     destination,
@@ -49,7 +49,7 @@ import { getSigner } from './helpers';
   const foundRoutes = await resolver.findRoutes(tr);
   const bestRoute = foundRoutes[0]!;
 
-  // Specify the amount as a decimal string
+  // Specify the amount as a decimal string.
   const transferParams = {
     amount: '0.001',
     options: bestRoute.getDefaultOptions(),
