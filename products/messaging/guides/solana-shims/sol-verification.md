@@ -10,12 +10,7 @@ This guide explains how to efficiently verify Wormhole VAAs on Solana by leverag
 
 The goal is to accumulate all guardian signatures into a temporary `SignatureSet` account using `verify_signatures`, verify the VAA and guardian set using `post_vaa`, and immediately close any accounts you created for this process.
 
-!!!info "What does 'shim' mean here?"
-    - For emission, the shim is a new lightweight program.  
-    - For verification, the 'shim' is just a smart use of existing instructions.
-    - See [Shim Emission and Verification](/docs/products/messaging/concepts/solana-shim/#shim-emission-and-verification){target=\_blank} for more details.
-
-For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. For deployment steps, see [Shim Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}.
+For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
 
 ## How It Works
 
@@ -25,8 +20,7 @@ The verification shim replaces the legacy multi-account pattern with a flow wher
 2. **Call `verify_signatures`** as many times as needed, using the secp256k1 syscall and all guardian signatures. The SignatureSet account will accumulate valid signatures.
 3. **Call `post_vaa`** to check guardian set validity, consensus, and VAA integrity.
    - If verification succeeds, proceed with your on-chain logic (e.g., updating state, processing transfers).
-   - The `PostedVAA` account is created, but you do **not** need to keep it around for rent; it can be closed after use if you control it.
-4. **Immediately close** the `SignatureSet` and any `PostedVAA` accounts you created to reclaim lamports, if you are the payer.
+4. **Immediately close** the `GuardianSignatures` account via `close_signatures` to reclaim lamports, if you are the payer.
 
 ```mermaid
 graph LR
@@ -58,30 +52,6 @@ let message_hash = [
 let digest = keccak::hash(message_hash.as_slice()).to_bytes();
 ```
 
-## Caveats
-
-This shim will need to include the following patch made to the core bridge when calculating the expiry for guardian sets.
-
-```rust
-pub fn is_active(&self, timestamp: &u32) -> bool {
-    // Note: This is a fix for Wormhole on mainnet.  The initial guardian set was never expired
-    // so we block it here.
-    if self.index == 0 && self.creation_time == 1628099186 {
-        false
-    } else {
-        self.expiration_time == 0 || self.expiration_time >= *timestamp
-    }
-}
-```
-
-Unlike the core bridge, it will not need to perform signature set deny-listing, as it does the verification directly through `secp256k1_recover`. 
-
-Since it is planned to be non-upgradeable, any similar mitigation strategies will not be possible. e.g. the only way to expire a guardian set will be for the core bridge to properly expire it.
-
-## Deployment
-
-No special deployment is required; these are standard core bridge instructions. For advanced multi-program flows, see the [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for detailed deployment steps.
-
 ## Limitations and Security Considerations
 
 - You must be the payer and/or account owner to reclaim lamports from SignatureSet and PostedVAA accounts.
@@ -89,11 +59,8 @@ No special deployment is required; these are standard core bridge instructions. 
 - Compute usage (CU) is higher for the rent-efficient pattern, but total cost is dramatically lower than keeping permanent accounts.
 - All validation guarantees remain as strong as with the legacy method.
 - If you do not close accounts you create, rent will be lost as before.
-- Only close accounts after all logic is complete; never close in the middle of validation.
 - This approach assumes you do not need to later re-validate the VAA from an on-chain artifact.
 
 ## Conclusion
 
 By following this flow, you can efficiently verify VAAs on Solana with minimal rent overhead, leaving no unnecessary state behind on-chain.
-
-Ready to deploy? See the [Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for full instructions.

@@ -8,12 +8,7 @@ categories: Basics
 
 This guide explains how to use Wormhole’s emission shim on Solana to reduce the cost of message emission. The shim enables integrators to emit messages without creating a new account for each message, minimizing rent costs and state bloat while maintaining Guardian compatibility.
 
-For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. For deployment steps, see [Shim Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}.
-
-!!!info "What does 'shim' mean here?"
-    - For emission, the shim is a new Solana program that you deploy and use instead of the legacy `post_message` instruction.
-    - For verification, the 'shim' is not a program but a pattern—simply clean up temporary accounts after using existing Core Bridge instructions.
-    - See [Shim Emission and Verification](/docs/products/messaging/concepts/solana-shim/#shim-emission-and-verification) for more details.
+For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
 
 ## Using the Emission Shim
 
@@ -85,7 +80,6 @@ The emission fee is still paid. The sequence is tracked on the core bridge as us
 
 If migrating from the legacy emission path:
 
-- Continue incrementing your emitter’s sequence number; do not reset or overlap with any previous values.
 - No account resizing needed; the shim handles variable-length payloads by always passing an empty payload to the core bridge.
 - For on-chain programs that only call the shim via CPI, consider emitting a dummy/empty message after migration to avoid edge cases with initial CPI depth (Solana limits the depth of cross-program calls).
 - You still pay the Wormhole fee via `fee_collector` (parallelization limits apply).
@@ -95,17 +89,10 @@ If migrating from the legacy emission path:
 Guardians are configured to:
 
 - Watch for instructions to the emission shim’s program address.
-- Extract the message data, emitter, sequence, and nonce from instruction data and the CPI event, not from an on-chain message PDA.
+- Extract the message data, emitter, sequence, and nonce from instruction data and the CPI event, not from an on-chain message.
 - Ignore the empty account that the core bridge might write (since the payload is empty), preventing duplicate VAAs.
 
 At least 13/19 Guardians must monitor the shim for your emissions to reliably result in VAAs. Until then, shim emissions may not be processed by the full network.
-
-## Deployment
-
-- Build and deploy the emission shim to Solana using a verifiable build.
-- Test the program on mainnet or testnet.
-- Drop upgrade authority after confirming correct operation.
-- See the [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for detailed deployment steps.
 
 ## Limitations and Security Considerations 
 
@@ -114,12 +101,6 @@ At least 13/19 Guardians must monitor the shim for your emissions to reliably re
 - **Parallelization**: Still limited by the `fee_collector` account being mutable.
 - **CPI Depth**: The first shim call for an emitter adds one extra stack depth. This is only relevant if you are near the Solana CPI limit (4).
 
-Always ensure that every (emitter, sequence) pair is unique. Never emit two messages with the same combination, or you may create unredeemable VAAs. Once you’ve confirmed the shim works as intended, drop upgrade authority to prevent future tampering.
-
-
-
 ## Conclusion
 
 By using the emission shim, you can dramatically reduce rent costs when emitting Wormhole messages from Solana, while ensuring compatibility with Guardian observation and core bridge sequencing.
-
-Ready to deploy? See the [Deployment guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank} for full instructions.
