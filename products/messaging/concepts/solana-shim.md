@@ -23,7 +23,7 @@ Verification adds even more cost: the `post_vaa` instruction creates additional 
 
 This design ensures reliability, as message data is always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
 
-## What Are the Solana Shim Contracts?
+## What Are the Solana Shim Programs?
 
 To address the limitations of the Core Bridge, Wormhole deploys two specialized Solana programs called shims:
 

@@ -50,7 +50,7 @@ shim_program
 
 ## How It Works
 
-- **Shim Contract**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.
+- **Shim Program**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.
 - **Sequence Handling**: Reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
 - **Message Account**: Calls `post_message_unreliable` on the core bridge, writing an empty payload, so no unique message is stored on-chain.
 - **Guardian Role**: Guardians reconstruct the message from instruction data and the emitted event, not from a persistent account.
