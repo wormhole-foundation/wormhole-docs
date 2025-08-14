@@ -592,7 +592,7 @@ Verification adds even more cost: the `post_vaa` instruction creates additional 
 
 This design ensures reliability, as message data is always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
 
-## What Are the Solana Shim Contracts?
+## What Are the Solana Shim Programs?
 
 To address the limitations of the Core Bridge, Wormhole deploys two specialized Solana programs called shims:
 
@@ -1100,7 +1100,7 @@ shim_program
 
 ## How It Works
 
-- **Shim Contract**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.
+- **Shim Program**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.
 - **Sequence Handling**: Reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
 - **Message Account**: Calls `post_message_unreliable` on the core bridge, writing an empty payload, so no unique message is stored on-chain.
 - **Guardian Role**: Guardians reconstruct the message from instruction data and the emitted event, not from a persistent account.
