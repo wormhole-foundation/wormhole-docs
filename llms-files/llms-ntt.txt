@@ -8017,7 +8017,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Ethereum | 200 | 201 |  | finalized | ~ 19min | Details |
 | Solana |  | 0 | 1 |  | ~ 14s | Details |
 | Algorand |  |  | 0 |  | ~ 4s | Details |
-| Aptos |  |  | 0 |  | ~ 4s |  |
+| Aptos |  |  | 0 |  | ~ 4s | Details |
 | Arbitrum | 200 | 201 |  | finalized | ~ 18min | Details |
 | Avalanche | 200 |  |  | finalized | ~ 2s | Details |
 | Base | 200 | 201 |  | finalized | ~ 18min |  |
