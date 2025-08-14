@@ -12,7 +12,7 @@ This guide walks you through performing a real token swap using the [Mayan Swift
 
 By the end, you'll have a working script that:
 
-- Resolves token transfer routes using Mayan Swift
+- Resolves token transfer routes using Mayan Swift.
 - Quotes and validates the best route
 - Initiates a swap on a source chain and completes the transfer on a destination chain (no destination signer required for Mayan Swift)
 
