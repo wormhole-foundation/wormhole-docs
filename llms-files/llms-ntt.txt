@@ -1391,7 +1391,7 @@ The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){tar
 
 Once you've set up NTT, proceed with adding your EVM chains and deploying contracts.
 
-1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal and run the `export` commands:
+1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal, and run the `export` commands:
 
     ```bash
     export ETH_PRIVATE_KEY=INSERT_PRIVATE_KEY
@@ -1446,7 +1446,7 @@ ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_
       }
       ```
 
-    This ensures your rate limits align with the token’s precision on each chain, preventing mismatches that could block or miscalculate transfers. Before setting these values, confirm your token’s decimals on each chain by checking the token contract on the relevant block explorer.
+    This configuration ensures your rate limits align with the token’s precision on each chain, preventing mismatches that could block or miscalculate transfers. Before setting these values, confirm your token’s decimals on each chain by checking the token contract on the relevant block explorer.
 
 5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
@@ -1474,7 +1474,7 @@ By default, NTT transfers to EVM blockchains support automatic relaying via the 
 
 ## NTT Manager Deployment Parameters
 
-This table compares the configuration parameters available when deploying the NTT Manager using the CLI versus a manual deployment with a Forge script. It highlights which options are configurable via each method, whether values are auto-detected or hardcoded, and includes additional comments to help guide deployment decisions.
+This table compares the configuration parameters available when deploying the NTT Manager using the CLI versus those available during a manual deployment with a Forge script. It highlights which options are configurable via each method, whether values are auto-detected or hardcoded, and includes additional comments to help guide deployment decisions.
 
 | <div style="width:150px">Parameter</div> | Forge Script           | CLI                                 | Both   | Comments                                     |
 |-------------------------|------------------------|-------------------------------------|--------|----------------------------------------------|
