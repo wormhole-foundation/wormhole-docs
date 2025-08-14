@@ -14,7 +14,7 @@ By the end, you'll have a working script that:
 
 - Resolves token transfer routes using Mayan Swift.
 - Quotes and validates the best route.
-- Initiates a swap on a source chain and completes the transfer on a destination chain (no destination signer required for Mayan Swift)
+- Initiates a swap on a source chain and completes the transfer on a destination chain (no destination signer required for Mayan Swift).
 
 !!! note
     Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
