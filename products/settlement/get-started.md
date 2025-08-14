@@ -23,8 +23,8 @@ By the end, you'll have a working script that:
 
 Before you begin, ensure you have the following:
 
-- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine
-- One source-chain wallet funded with native gas on a [Swift-supported chain](/docs/products/reference/supported-networks/#settlement){target=\_blank}
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- One source-chain wallet funded with native gas on a [Swift-supported chain](/docs/products/reference/supported-networks/#settlement){target=\_blank}.
 - A destination wallet address on the target chain (no destination signer or gas required).
 
 This example utilizes Ethereum as the source chain and Solana as the destination chain. You’ll need ETH for gas on Ethereum only. You do not need SOL or a Solana signer; you’ll provide a Solana recipient address, and Mayan Swift’s relayer handles the destination leg. You can adapt the example to match your preferred chains.
