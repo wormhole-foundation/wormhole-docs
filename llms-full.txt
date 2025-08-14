@@ -13214,8 +13214,6 @@ To use NTT, you must have a token already deployed on the source and destination
 
 ## Install NTT CLI
 
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
-
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
 
 1. Run the installation command in your terminal:
@@ -15642,7 +15640,7 @@ categories: Reference
 The following table documents the chain IDs used by Wormhole and places them alongside the more commonly referenced [EVM Chain IDs](https://chainlist.org/){target=\_blank}.
 
 !!! note
-    Please note, Wormhole chain IDs are different than the more commonly referenced EVM [chain IDs](https://eips.ethereum.org/EIPS/eip-155){target=\_blank}, specified in the Mainnet and Testnet ID columns.
+    Please note, Wormhole chain IDs are different than the more commonly referenced [EVM chain IDs](https://chainlist.org/){target=\_blank}, specified in the Mainnet and Testnet ID columns.
 
 !!!warning
     Wormhole Contributors recommend that all connected chains implement robust security practices including (but not exclusively): open sourcing code and running public bug bounty programs, undergoing security audits and publishing those reports, using version control with adequate access controls and mandatory code review, and high unit and integration test coverage where the results of those tests are available publicly. Connected chains that can't verifiably prove that they've implemented a high percentage of these practices may be noted below with the :warning: symbol. 
