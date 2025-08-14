@@ -14,10 +14,10 @@ This page summarizes the key functions of the Core Contract and outlines how the
 
 Key functions of the Wormhole Core Contract include the following:
 
-- **Multichain messaging** - standardizes and secures the format of messages to facilitate consistent communication for message transfer between Wormhole-connected blockchain networks, allowing developers to leverage the unique features of each network
-- **Verification and validation** - verifies and validates all VAAs received on the target chain by confirming the Guardian signature to ensure the message is legitimate and has not been manipulated or altered
-- **Guardian Network coordination** - coordinates with Wormhole's Guardian Network to facilitate secure, trustless communication across chains and ensure that only validated interactions are processed to enhance the protocol's overall security and reliability
-- **Event emission for monitoring**  - emits events for every multichain message processed, allowing for network activity monitoring like tracking message statuses, debugging, and applications that can react to multichain events in real time
+- **Multichain messaging**: Standardizes and secures the format of messages to facilitate consistent communication for message transfer between Wormhole-connected blockchain networks, allowing developers to leverage the unique features of each network.
+- **Verification and validation**: Verifies and validates all VAAs received on the target chain by confirming the Guardian signature to ensure the message is legitimate and has not been manipulated or altered.
+- **Guardian Network coordination**: Coordinates with Wormhole's Guardian Network to facilitate secure, trustless communication across chains and ensure that only validated interactions are processed to enhance the protocol's overall security and reliability.
+- **Event emission for monitoring**: Emits events for every multichain message processed, allowing for network activity monitoring like tracking message statuses, debugging, and applications that can react to multichain events in real time.
 
 ## How the Core Contract Works
 
@@ -25,9 +25,9 @@ The Wormhole Core Contract is central in facilitating secure and efficient multi
 
 The following describes the role of the Wormhole Core Contract in message transfers:
 
-1. **Message submission** - when a user initiates a multichain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification
-2. **Guardian verification** - the Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA
-3. **Message reception and execution** - on the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions
+1. **Message submission**: When a user initiates a multichain transaction, the Wormhole Core Contract on the source chain packages the transaction data into a standardized message payload and submits it to the Guardian Network for verification.
+2. **Guardian verification**: The Guardians independently observe and sign the message. Once enough Guardians have signed the message, the collection of signatures is combined with the message and metadata to produce a VAA.
+3. **Message reception and execution**: On the target chain, the Wormhole Core Contract receives the verified message, checks the Guardians' signatures, and executes the corresponding actions like minting tokens, updating states, or calling specific smart contract functions.
 
 For a closer look at how messages flow between chains and all of the components involved, you can refer to the [Architecture Overview](/docs/protocol/architecture/) page.
 
@@ -35,9 +35,9 @@ For a closer look at how messages flow between chains and all of the components 
 
 You can send multichain messages by calling a function against the source chain Core Contract, which then publishes the message. Message publishing strategies can differ by chain; however, generally, the Core Contract posts the following items to the blockchain logs:
 
-- `emitterAddress` - the contract which made the call to publish the message
-- `sequenceNumber` - a unique number that increments for every message for a given emitter (and implicitly chain)
-- `consistencyLevel`- the level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page
+- **`emitterAddress`**: The contract which made the call to publish the message.
+- **`sequenceNumber`**: A unique number that increments for every message for a given emitter (and implicitly chain).
+- **`consistencyLevel`**: The level of finality to reach before the Guardians will observe and attest the emitted event. This is a defense against reorgs and rollbacks since a transaction, once considered "final,"  is guaranteed not to have the state changes it caused rolled back. Since different chains use different consensus mechanisms, each one has different finality assumptions, so this value is treated differently on a chain-by-chain basis. See the options for finality for each chain in the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} reference page.
 
 There are no fees to publish a message except when publishing on Solana, but this is subject to change in the future.
 

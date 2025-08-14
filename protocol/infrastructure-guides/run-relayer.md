@@ -27,9 +27,9 @@ To start building a custom relayer, it's essential to grasp the components you'l
 
 Regardless of the environment, to get the VAA you intend to relay, you need:
 
-- The `emitter` address
-- The `sequence` ID of the message you're interested in
-- The `chainId` for the chain that emitted the message
+- The `emitter` address.
+- The `sequence` ID of the message you're interested in.
+- The `chainId` for the chain that emitted the message.
 
 With these three components, you're able to uniquely identify a VAA and process it.
 
@@ -55,9 +55,9 @@ npm i @wormhole-foundation/relayer-engine
 
 In the following example, you'll:
 
-1. Set up a `StandardRelayerApp`, passing configuration options for our relayer
-2. Add a filter to capture only those messages our app cares about, with a callback to do _something_ with the VAA once received
-3. Start the relayer app
+1. Set up a `StandardRelayerApp`, passing configuration options for our relayer.
+2. Add a filter to capture only those messages our app cares about, with a callback to do _something_ with the VAA once received.
+3. Start the relayer app.
 
 ```typescript
 --8<-- 'code/protocol/infrastructure-guides/run-relayer/snippet-1.ts'
