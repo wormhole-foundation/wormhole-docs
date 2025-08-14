@@ -266,7 +266,7 @@ function messageFee() public view returns (uint256)
 
     `fee` ++"uint256"++
 
-    Fee in wei required to publish a message successfully. Must be sent as `msg.value`.
+    Fee in Wei required to publish a message successfully. Must be sent as `msg.value`.
 
 ### nextSequence
 
@@ -420,7 +420,7 @@ function chainId() public view returns (uint16)
 
 ### evmChainId
 
-Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+Returns the EVM chain ID (i.e., value from `block.chainid`). *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function evmChainId() public view returns (uint256)
