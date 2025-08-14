@@ -1457,19 +1457,16 @@ ntt add-chain ArbitrumSepolia --latest --mode burning --token INSERT_YOUR_TOKEN_
     ntt pull
     ```
 
-4. **Configure rate limits**: Set up rate limits with the appropriate number of decimals, depending on the specific chain. For example, if your token has 18 decimals on Ethereum and 6 decimals on Arbitrum:
+4. **Configure rate limits**: Set up inbound and outbound rate limits. By default, limits are set to 0 and must be updated before deployment. For EVM chains, values must be set using 18 decimals.
 
-    To Ethereum, the limits are set with 18 decimal places:
+    Open your `deployment.json` file and adjust the values based on your use case:
+
       ```json
       "inbound": {
           "Arbitrum": "1000.000000000000000000" // inbound limit from Arbitrum to Ethereum
       }
-      ```
-
-    To Arbitrum, the limits are set with 6 decimal places:
-      ```json
       "outbound": {
-          "Ethereum": "1000.000000" // outbound limit from Ethereum to Arbitrum
+          "Ethereum": "1000.000000000000000000" // outbound limit from Ethereum to Arbitrum
       }
       ```
 
