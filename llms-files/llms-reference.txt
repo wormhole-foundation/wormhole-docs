@@ -288,7 +288,7 @@ function messageFee() public view returns (uint256)
 
     `fee` ++"uint256"++
 
-    Fee in wei required to publish a message successfully. Must be sent as `msg.value`.
+    Fee in Wei required to publish a message successfully. Must be sent as `msg.value`.
 
 ### nextSequence
 
@@ -442,7 +442,7 @@ function chainId() public view returns (uint16)
 
 ### evmChainId
 
-Returns the EVM chain ID (i.e., value from block.chainid). *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
+Returns the EVM chain ID (i.e., value from `block.chainid`). *(Defined in [Getters.sol](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/Getters.sol){target=\_blank})*
 
 ```solidity
 function evmChainId() public view returns (uint256)
@@ -1043,13 +1043,13 @@ event SendEvent(
 
     `deliveryQuote` ++"LocalNative"++
 
-    Price charged by the delivery provider (in source-chain currency units).
+    Price charged by the delivery provider (in source chain currency units).
 
     ---
 
     `paymentForExtraReceiverValue` ++"LocalNative"++
 
-    Extra amount (in source-chain currency units) used to top up the receiver value on the target chain.
+    Extra amount (in source chain currency units) used to top up the receiver value on the target chain.
 
 ### Delivery
 
@@ -1361,7 +1361,7 @@ function sendPayloadToEvm(
 
     `receiverValue` ++"TargetNative"++
     
-    Value (destination-chain Wei) to forward to `targetAddress`.
+    Value (destination chain Wei) to forward to `targetAddress`.
 
     ---
 
@@ -1413,7 +1413,7 @@ function sendPayloadToEvm(
 
     `receiverValue` ++"TargetNative"++
     
-    Value (destination-chain Wei) to forward to `targetAddress`.
+    Value (destination chain Wei) to forward to `targetAddress`.
 
     ---
 
@@ -1478,7 +1478,7 @@ function sendVaasToEvm(
 
     `receiverValue` ++"TargetNative"++
 
-    Value (destination-chain Wei) to forward to `targetAddress`.
+    Value (destination chain Wei) to forward to `targetAddress`.
 
     ---  
 
@@ -1551,13 +1551,13 @@ function sendToEvm(
     ---
 
     `receiverValue` ++"TargetNative"++  
-    Value (destination-chain wei) to forward to `targetAddress`.
+    Value (destination chain Wei) to forward to `targetAddress`.
 
     ---
 
     `paymentForExtraReceiverValue` ++"LocalNative"++
 
-    Extra **source-chain** amount. The delivery provider converts this to destination native and **adds it** to `receiverValue`.
+    Extra source chain amount. The delivery provider converts this to destination native and adds it to `receiverValue`.
 
     ---
 
@@ -1631,7 +1631,7 @@ function send(
 
     `targetAddress` ++"bytes32"++
 
-    **Wormhole-format** 32-byte address of the destination contract.
+    Wormhole-formatted 32-byte address of the destination contract.
 
     ---
 
@@ -1643,13 +1643,13 @@ function send(
 
     `receiverValue` ++"TargetNative"++
 
-    Amount of destination-chain native (e.g., wei) forwarded to `targetAddress`.
+    Amount of destination chain native (e.g., Wei) forwarded to `targetAddress`.
 
     ---
 
     `paymentForExtraReceiverValue` ++"LocalNative"++
 
-    Extra **source-chain** native to be converted by the delivery provider and **added** to `receiverValue`.
+    Extra source chain native to be converted by the delivery provider and added to `receiverValue`.
 
     ---
 
@@ -1667,7 +1667,7 @@ function send(
 
     `refundAddress` ++"bytes32"++
 
-    **Wormhole-format** address on `refundChain` that receives any refund.
+    Wormhole-formatted address on `refundChain` that receives any refund.
 
     ---
 
@@ -1815,7 +1815,7 @@ function quoteEVMDeliveryPrice(
 
     `receiverValue` ++"TargetNative"++
 
-    Amount of destination-chain wei that will be forwarded to the target contract.
+    Amount of destination chain Wei that will be forwarded to the target contract.
 
     ---
 
@@ -1827,7 +1827,7 @@ function quoteEVMDeliveryPrice(
 
     `nativePriceQuote` ++"LocalNative"++
 
-    Source-chain price to request the delivery.
+    Source chain price to request the delivery.
     
     ---
 
@@ -1858,7 +1858,7 @@ function quoteEVMDeliveryPrice(
 
     `receiverValue` ++"TargetNative"++
 
-    Amount of destination-chain wei to forward to the target contract.
+    Amount of destination chain Wei to forward to the target contract.
 
     ---
 
@@ -1876,7 +1876,7 @@ function quoteEVMDeliveryPrice(
 
     `nativePriceQuote` ++"LocalNative"++
 
-    Source-chain price to request this delivery.
+    Source chain price to request this delivery.
 
     ---
 
@@ -1907,7 +1907,7 @@ function quoteDeliveryPrice(
 
     `receiverValue` ++"TargetNative"++
 
-    Amount of destination-chain wei to forward to the target contract.
+    Amount of destination chain Wei to forward to the target contract.
 
     ---
 
@@ -1925,7 +1925,7 @@ function quoteDeliveryPrice(
 
     `nativePriceQuote` ++"LocalNative"++
 
-    Source-chain price to request this delivery.
+    Source chain price to request this delivery.
 
     ---
 
@@ -1935,7 +1935,7 @@ function quoteDeliveryPrice(
 
 ### quoteNativeForChain
 
-Converts a source-chain amount into extra value that will be delivered on the target chain. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
+Converts a source chain amount into extra value that will be delivered on the target chain. *(Defined in [WormholeRelayerSend.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/wormholeRelayer/WormholeRelayerSend.sol){target=\_blank})*
 
 ```solidity
 function quoteNativeForChain(
@@ -1955,7 +1955,7 @@ function quoteNativeForChain(
 
     `currentChainAmount` ++"LocalNative"++
 
-    Amount paid on the source chain to fund **extra** receiver value.
+    Amount paid on the source chain to fund extra receiver value.
 
     ---
 
@@ -1967,7 +1967,7 @@ function quoteNativeForChain(
 
     `targetChainAmount` ++"TargetNative"++
 
-    Extra destination-chain wei that will be added to the call's value.
+    Extra destination chain Wei that will be added to the call's value.
 
 ### getDefaultDeliveryProvider
 
@@ -2198,15 +2198,15 @@ Reverts when an internal quote exceeds a type's allowed maximum (e.g., gas overh
 
 ### MaxRefundGreaterThanGasLimitCost(uint256 maxRefund, uint256 gasLimitCost)
 
-Declared to guard refund limits vs. gas-limit cost. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+Declared to guard refund limits vs. gas limit cost. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
 
 ### MaxRefundGreaterThanGasLimitCostOnSourceChain(uint256 maxRefund, uint256 gasLimitCost)
 
-Declared to guard source-chain refund limits vs. gas-limit cost. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+Declared to guard source chain refund limits vs. gas limit cost. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
 
 ### ExceedsMaximumBudget(uint16 targetChain, uint256 exceedingValue, uint256 maximumBudget)
 
-Reverts when required target-chain wei (receiver value + gas) exceeds that chain's configured maximum budget. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
+Reverts when required target-chain Wei (receiver value + gas) exceeds that chain's configured maximum budget. *(Defined in [DeliveryProvider.sol](https://github.com/wormhole-foundation/wormhole/blob/main/relayer/ethereum/contracts/relayer/deliveryProvider/DeliveryProvider.sol){target=\_blank})*
 
 ### ChainIdIsZero()
 
