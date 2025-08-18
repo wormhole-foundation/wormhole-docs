@@ -53,7 +53,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Facilitate decentralized interactions.
-    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
+    - **[Wrapped Token Transfers](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
 
 ## Next Steps
 

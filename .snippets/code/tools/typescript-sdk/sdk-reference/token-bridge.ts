@@ -36,7 +36,7 @@ import { SignerStuff, getSigner, waitLog } from './helpers/index.js';
   // const token = Wormhole.tokenId("Avalanche", "0xb10563644a6AB8948ee6d7f5b0a1fb15AaEa1E03");
 
   // Normalized given token decimals later but can just pass bigints as base units
-  // Note: The Token bridge will dedust past 8 decimals
+  // Note: The WTT (Token Bridge) will dedust past 8 decimals
   // This means any amount specified past that point will be returned
   // To the caller
   const amt = '0.05';
