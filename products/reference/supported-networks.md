@@ -18,7 +18,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 
 --8<-- 'text/products/reference/supported-networks/ntt.md'
 
-### Wrapped Token Transfers (WTT)
+### WTT
 
 --8<-- 'text/products/reference/supported-networks/token-bridge.md'
 

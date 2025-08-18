@@ -17,7 +17,7 @@ This page outlines the core contract methods needed to integrate WTT functionali
 
 To interact with the Wormhole WTT, you'll need the following:
 
-- [The address of the WTT contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
+- [The address of the WTT contract](/docs/products/reference/contract-addresses/#wrapped-token-transfers-wtt){target=\_blank} on the chains you're working with.
 - [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers.
 
 ## How to Interact with WTT Contracts

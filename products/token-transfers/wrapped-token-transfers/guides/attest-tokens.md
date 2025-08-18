@@ -14,7 +14,7 @@ Completing this guide will help you accomplish the following:
 - Create and submit a token attestation to register a wrapped version of a token on a destination chain.
 - Check for the wrapped version to become available on the destination chain and return the wrapped token address.
 
-The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana, but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank}.
+The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana, but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#wrapped-token-transfers-wtt){target=\_blank}.
 
 !!! note "Terminology" 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.

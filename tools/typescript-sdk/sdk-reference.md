@@ -187,7 +187,7 @@ The most familiar protocol built on Wormhole is WTT. Each supported chain has a 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge-snippet.ts'
+--8<-- 'code/tools/typescript-sdk/sdk-reference/wtt-snippet.ts'
 ```
 
 ## Transfers
@@ -209,15 +209,15 @@ The example below shows how to initiate and complete a `TokenTransfer`. After cr
 For automatic transfers, the process ends after initiation. Manual transfers require attestation before completion.
 
 ```ts
---8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge.ts:120:158'
+--8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts:120:158'
 ```
 
 ??? code "View the complete script"
     ```ts hl_lines="122"
-    --8<-- 'code/tools/typescript-sdk/sdk-reference/token-bridge.ts'
+    --8<-- 'code/tools/typescript-sdk/sdk-reference/wtt.ts'
     ```
 
-Internally, this uses the [`TokenBridge`](#token-bridge) protocol client to transfer tokens.
+Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
 
 ### Native USDC Transfers
 

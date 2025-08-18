@@ -6,7 +6,7 @@ categories: WTT, Transfer, Typescript SDK
 
 # Transfer Wrapped Assets
 
-This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#wtt){target=\_blank}.
 
 Completing this guide will help you accomplish the following:
 
@@ -38,8 +38,8 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 1. Create a new directory and initialize a Node.js project using the following commands:
    ```bash
-   mkdir token-bridge-demo
-   cd token-bridge-demo
+   mkdir wtt-demo
+   cd wtt-demo
    npm init -y
    ```
 
@@ -182,5 +182,5 @@ Congratulations! You've now used WTT to transfer wrapped assets using the Wormho
 ## Next Steps
 
 - [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
-- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts/): This guide explores the Solidity functions used in WTT contracts.
+- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts/): This guide explores the Solidity functions used in WTT contracts.
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
