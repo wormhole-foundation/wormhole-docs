@@ -1,5 +1,5 @@
 ---
-title: Transfer Tokens via Token Bridge Tutorial
+title: Transfer Tokens via Wrapped Token Transfers (WTT) Tutorial
 description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
 categories: Token Bridge, Transfers
 ---
@@ -8,18 +8,21 @@ categories: Token Bridge, Transfers
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}
 
-This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} protocol. The WTT protocol enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
-By leveraging Wormhole’s Token Bridge, this guide shows you how to build an application that supports multiple transfer types:
+By leveraging Wormhole’s WTT, this guide shows you how to build an application that supports multiple transfer types:
 
  - EVM to EVM (e.g., Ethereum to Avalanche)
  - EVM to non-EVM chains (e.g., Ethereum to Solana)
  - Non-EVM to EVM chains (e.g., Sui to Avalanche)
  - Non-EVM to non-EVM chains (e.g., Solana to Sui)
 
-Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the Token Bridge method from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
+Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the WTT protocol from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
 
-At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s Token Bridge method.
+At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s WTT protocol.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -75,7 +78,7 @@ In this section, we’ll guide you through initializing the project, installing 
     !!! note
         Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
 
-5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays.
+5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
 
     1. Create the helpers file.
 
@@ -193,7 +196,7 @@ If the token is already wrapped, the script exits. Otherwise, it generates an at
 
 ## Token Transfers
 
-In this section, you'll create a script to transfer native tokens across chains using Wormhole's Token Bridge method. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
+In this section, you'll create a script to transfer native tokens across chains using Wormhole's WTT protocol. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
 
 ### Configure Transfer Details
 
@@ -248,7 +251,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
     ```
 
     !!! note
-        Automatic transfers are only supported for EVM chains. For non-EVM chains like Solana and Sui, you must manually handle the attestation and finalization steps.
+        Automatic transfers are only supported for EVM chains. For non-EVM chains, such as Solana and Sui, you must manually handle the attestation and finalization steps.
     
 9. **Define decimals**: Fetch the number of decimals for the token on the source chain (Sui) using the `getTokenDecimals` function.
 
@@ -270,7 +273,7 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 
 ### Token Transfer Logic
 
-This section defines the `tokenTransfer` function, which manages the core steps for cross-chain transfer execution. This function will handle initiating the transfer on the source chain, retrieving the attestation, and completing the transfer on the destination chain.
+This section defines the `tokenTransfer` function, which manages the core steps for executing cross-chain transfers. This function will handle initiating the transfer on the source chain, retrieving the attestation, and completing the transfer on the destination chain.
 
 #### Defining the Token Transfer Function
 
@@ -283,7 +286,7 @@ The `tokenTransfer` function initiates and manages the transfer process, handlin
 
 #### Steps to Transfer Tokens
 
-The `tokenTransfer` function consists of several key steps to facilitate the cross-chain transfer. Let’s break down each step:
+The `tokenTransfer` function comprises several key steps to facilitate cross-chain transfers. Let’s break down each step:
 
 1. **Initialize the transfer object**: The `tokenTransfer` function begins by creating a `TokenTransfer` object, `xfer`, which tracks the state of the transfer process and provides access to relevant methods for each transfer step.
 
@@ -350,7 +353,7 @@ If you'd like to explore the complete project or need a reference while followin
 
 ## Conclusion
 
-You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the Token Bridge method. This guide took you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains like Sui and Solana.
+You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the WTT protocol. This guide walks you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains, such as Sui and Solana.
 
 The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
 
