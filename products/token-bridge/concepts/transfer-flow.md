@@ -1,5 +1,5 @@
 ---
-title: Flow of a Wrapped Token Transfers (WTT)
+title: Flow of Wrapped Token Transfers (WTT)
 description: Learn how the Wormhole Wrapped Token Transfers enable secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
 categories: Token Bridge, Transfer
 ---
