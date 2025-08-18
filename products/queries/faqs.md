@@ -10,11 +10,11 @@ categories: Queries
 
  - The [Query TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses
 
-- The [Solidity `QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repository as an example use case
+- The [Solidity `QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repository as an example use case.
 
-- [`QueryRequestBuilder.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol){target=\_blank} can be used for mocking query requests and responses in Forge tests
+- [`QueryRequestBuilder.sol`](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/testing/QueryRequestBuilder.sol){target=\_blank} can be used for mocking query requests and responses in Forge tests.
 
-- The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main/node/pkg/query){target=\_blank} can also be used to create query requests and parse query responses
+- The [Go query package](https://github.com/wormhole-foundation/wormhole/tree/main/node/pkg/query){target=\_blank} can also be used to create query requests and parse query responses.
 
 !!! note
     A Rust SDK for Solana is being actively investigated by the Wormhole contributors. See the [Solana Queries Verification](https://github.com/wormholelabs-xyz/example-queries-solana-verify){target=\_blank} repository as a proof of concept.

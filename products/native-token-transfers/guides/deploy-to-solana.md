@@ -36,7 +36,7 @@ Use the Solana and Anchor versions listed above to avoid compatibility issues wh
 
 Deploying NTT with the CLI on SVM chains follows a structured process:
 
-1. **Choose your token setup**:
+1. Choose your token setup:
 
      - **Use an existing SPL token**: If your token is already deployed on a [supported SVM chain](/docs/products/reference/supported-networks/#ntt){target=\_blank}, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
      - **Create a new SPL token**: If you don't already have an SPL token deployed, you'll need to deploy and configure it on a supported SVM chain before integrating with Wormhole's NTT.
@@ -166,10 +166,12 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --token INSERT_TOKEN_ADDRESS --m
 ```
 
 - **Set to SPL Multisig:**
+
     1. Create valid SPL Multisig:
-    ```bash
-    ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
-    ```
+
+        ```bash
+        ntt solana create-spl-multisig INSERT_MINTER_PUBKEY_1 INSERT_MINTER_PUBKEY_2 ... --token INSERT_TOKEN_ADDRESS --manager INSERT_NTT_PROGRAM_ADDRESS --payer INSERT_KEYPAIR_JSON
+        ```
 
     2. Set to created SPL Multisig:
     ```bash

@@ -8,7 +8,7 @@ categories: NTT, Transfer
 
 ## Introduction
 
-The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
+The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
 
 If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}.
 
@@ -16,10 +16,10 @@ If you are looking for a no-code experience to deploy on mainnet, you can explor
 
 Before you begin, make sure you have:
 
-- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}
-- [Bun installed](https://bun.sh/){target=\_blank}
-- A wallet private key with tokens on supported chains
-- ERC-20 or SPL tokens already deployed on the source and destination chains
+- [Node.js and npm installed](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank}.
+- [Bun installed](https://bun.sh/){target=\_blank}.
+- A wallet private key with tokens on supported chains.
+- ERC-20 or SPL tokens already deployed on the source and destination chains.
 
 ## Don’t Have a Token Yet?
 
@@ -36,7 +36,6 @@ To use NTT, you must have a token already deployed on the source and destination
         git clone https://github.com/wormhole-foundation/example-ntt-token.git
         cd example-ntt-token
         ```
-
     3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
 
         ```bash
@@ -136,8 +135,6 @@ To use NTT, you must have a token already deployed on the source and destination
         NTT versions `>=v2.0.0+solana` support SPL tokens with [transfer hooks](https://www.solana-program.com/docs/transfer-hook-interface){target=\_blank}.
 
 ## Install NTT CLI
-
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/ltZmeyjUxRk?start=1685' frameborder='0' allowfullscreen></iframe></div>
 
 The NTT CLI is recommended to deploy and manage your cross-chain token configuration.
 

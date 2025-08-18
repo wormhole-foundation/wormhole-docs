@@ -4,7 +4,7 @@ description: Learn how to initiate a proposal on a hub chain, vote from spoke ch
 categories: MultiGov
 ---
 
-# Cross-Chain treasury management proposal
+# Cross-Chain Treasury Management Proposal
 
 This guide walks through the process of creating and executing a cross-chain governance proposal to mint W tokens to both the Optimism and Arbitrum treasuries. In this tutorial, we'll cover how to create a proposal on the hub chain (Ethereum Mainnet), cast votes from spoke chains (Optimism and Arbitrum), aggregate votes, and execute the proposal.
 
@@ -16,10 +16,10 @@ In the following code snippet, we initialize the proposal with two transactions,
 
 Key actions:
 
-- Define the proposal targets (two transactions to the Message Dispatcher)
-- Set values for each transaction (in this case, both are 0 as we're not transferring any native ETH)
-- Encode the calldata for minting 10 W tokens on Optimism and sending 15 ETH to Arbitrum
-- Finally, we submit the proposal to the `HubGovernor` contract
+- Define the proposal targets (two transactions to the Message Dispatcher).
+- Set values for each transaction (in this case, both are 0 as we're not transferring any native ETH).
+- Encode the calldata for minting 10 W tokens on Optimism and sending 15 ETH to Arbitrum.
+- Finally, we submit the proposal to the `HubGovernor` contract.
 
 ```solidity
 HubGovernor governor = HubGovernor(GOVERNOR_ADDRESS);
@@ -101,8 +101,8 @@ Once the proposal is created on the hub chain, stakeholders can cast their votes
 
 Key actions:
 
-- Connect to the `SpokeVoteAggregator` contract on the spoke chain. This contract aggregates votes from the spoke chains and relays them to the hub chain
-- Cast a vote in support of the proposal
+- Connect to the `SpokeVoteAggregator` contract on the spoke chain. This contract aggregates votes from the spoke chains and relays them to the hub chain.
+- Cast a vote in support of the proposal.
 
 ```solidity
 // Connect to the SpokeVoteAggregator contract of the desired chain
@@ -142,7 +142,7 @@ In the background process, votes cast on the spoke chains are aggregated and sen
 
 Key actions:
 
-- Aggregate votes from different chains and submit them to the hub chain for tallying
+- Aggregate votes from different chains and submit them to the hub chain for tallying.
 
 ```solidity
 // Aggregate votes sent to Hub (this would typically be done by a "crank turner" off-chain)
@@ -167,7 +167,7 @@ After the proposal passes and the votes are tallied, the next step is to execute
 
 Key actions:
 
-- Execute the proposal after the voting period ends and the proposal passes
+- Execute the proposal after the voting period ends and the proposal passes.
 - The `execute` function finalizes the proposal execution by dispatching the cross-chain governance actions. The `descriptionHash` ensures that the executed proposal matches the one that was voted on.
 
 ```solidity
