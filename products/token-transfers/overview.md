@@ -4,9 +4,9 @@ description: Transfer tokens across chains using Wormhole's Native Token Transfe
 categories: WTT, NTT, Transfer
 ---
 
-# Token Transfers Overview
+## Token Transfers Overview
 
-Wormhole Token Transfers let you move assets seamlessly across chains. Developers can choose between [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, which enable direct movement of native tokens, or [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, which use a lock-and-mint model for broad compatibility. Both approaches are secured by the Wormhole Guardians and integrate with the same cross-chain messaging layer.
+Wormhole Token Transfers let you move assets seamlessly across chains. Developers can choose between [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, which enable direct movement of native tokens, or [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, which use a lock-and-mint model for broad compatibility. Both approaches are secured by the Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} and integrate with the same cross-chain messaging layer.
 
 ## How Token Transfers Work
 
@@ -30,3 +30,13 @@ At a high level, the flow looks like this:
 | **Setup Effort**         | Higher (deploy contracts, configure relayers)                       | Lower (no custom contracts required)                          |
 | **User Experience**      | Seamless, users interact with the same token everywhere            | Wrapped assets may need explorer metadata updates for clarity |
 | **Best For**             | Projects that want full control of their cross-chain token          | Projects that want a quick, managed solution for bridging     |
+
+!!! note "Terminology"
+    In the SDK and smart contracts, Wrapped Token Transfers (WTT) are referred to as Token Bridge. In documentation, we use WTT for clarity. Both terms describe the same protocol.
+
+## Next Steps
+
+If you are looking for more guided practice, take a look at:
+
+- **[Get Started with NTT](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank}**: Learn how to deploy and register contracts to transfer native tokens across chains.
+- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Perform token transfers using WTT, including manual and automatic transfers.

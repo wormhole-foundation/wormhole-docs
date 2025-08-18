@@ -4,11 +4,11 @@ description: Perform token transfers using Wormhole’s WTT with the TypeScript 
 categories: WTT, Transfers
 ---
 
-# Get Started with Wrapped Token Transfers (WTT)
+# Get Started with WTT
 
 ## Introduction
 
-Wormhole's [WTT](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
+Wormhole's [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
