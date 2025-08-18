@@ -21,6 +21,17 @@ At a high level, the flow looks like this:
     - **NTT**: Tokens are minted or released from escrow.
     - **WTT**: Wrapped tokens are minted to the recipient’s wallet.
 
+```mermaid
+flowchart LR
+    A[User] --> B[Source chain\nWormhole contract]
+    B --> C[Guardians\nsign VAA]
+    C --> D[Destination chain\nWormhole contract]
+    D -->|NTT| E[Mint or release\nnative tokens]
+    D -->|WTT| F[Mint wrapped\ntokens]
+    E --> G[Recipient]
+    F --> G[Recipient]
+```
+
 ## Choosing Between NTT and WTT
 
 | Feature                  | NTT (Native Token Transfers)                                        | WTT (Wrapped Token Transfers)                                 |
