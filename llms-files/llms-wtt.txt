@@ -13,23 +13,81 @@ You are an AI developer assistant for Wormhole (https://wormhole.com). Your task
 - If unsure, respond with “Not specified in the documentation.
 
 ## List of doc pages:
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/overview.md [type: overview]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/get-started.md [type: get-started]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/reference/supported-networks.md [type: reference]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/payload-structure.md [type: concept]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/transfer-flow.md [type: concept]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/faqs.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/attest-tokens.md [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/fetch-signed-vaa.md [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/token-bridge-contracts.md [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/portal/faqs.md [type: other]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/tutorials/multichain-token.md [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/tutorials/transfer-workflow.md [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/overview.md [type: overview]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/get-started.md [type: get-started]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/reference/supported-networks.md [type: reference]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/concepts/payload-structure.md [type: concept]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow.md [type: concept]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/attest-tokens.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/portal/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md [type: tutorial]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow.md [type: tutorial]
 
 ## Full content for each doc page
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/overview.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/overview.md
+--- BEGIN CONTENT ---
+---
+title: Token Transfers Overview
+description: Transfer tokens across chains using Wormhole's Native Token Transfers (NTT) for direct movement or Wrapped Token Transfers (WTT) for lock-and-mint.
+categories: WTT, NTT, Transfer
+---
+
+## Token Transfers Overview
+
+Wormhole Token Transfers let you move assets seamlessly across chains. Developers can choose between [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, which enable direct movement of native tokens, or [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, which use a lock-and-mint model for broad compatibility. Both approaches are secured by the Wormhole [Guardians](/docs/protocol/infrastructure/guardians/){target=\_blank} and integrate with the same cross-chain messaging layer.
+
+## How Token Transfers Work
+
+Both NTT and WTT rely on Guardian-signed messages ([VAAs](/docs/protocol/infrastructure/vaas/){target=\_blank}) to move tokens securely across chains. The difference lies in how tokens are represented on the destination chain.
+
+At a high level, the flow looks like this:
+
+1. A user sends tokens to the Wormhole contract on the source chain.
+2. The contract emits a message, which is signed by the Guardians as a VAA.
+3. The VAA is submitted to the destination chain.
+4. Depending on the transfer type:
+    - **NTT**: Tokens are minted or released from escrow.
+    - **WTT**: Wrapped tokens are minted to the recipient’s wallet.
+
+```mermaid
+flowchart LR
+    A[User] --> B[Source chain\nWormhole contract]
+    B --> C[Guardians\nsign VAA]
+    C --> D[Destination chain\nWormhole contract]
+    D -->|NTT| E[Mint or release\nnative tokens]
+    D -->|WTT| F[Mint wrapped\ntokens]
+    E --> G[Recipient]
+    F --> G[Recipient]
+```
+
+## Choosing Between NTT and WTT
+
+| Feature                  | NTT (Native Token Transfers)                                        | WTT (Wrapped Token Transfers)                                 |
+| ------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **Token Representation** | Maintains the same token across chains                              | Creates a new wrapped version on the destination chain        |
+| **Contract Ownership**   | Requires projects to deploy and manage their own transfer contracts | Contracts are owned and managed by Wormhole                   |
+| **Setup Effort**         | Higher (deploy contracts, configure relayers)                       | Lower (no custom contracts required)                          |
+| **User Experience**      | Seamless, users interact with the same token everywhere            | Wrapped assets may need explorer metadata updates for clarity |
+| **Best For**             | Projects that want full control of their cross-chain token          | Projects that want a fast, managed bridging solution          |
+
+!!! note "Terminology"
+    In the SDK and smart contracts, Wrapped Token Transfers (WTT) are referred to as Token Bridge. In documentation, we use WTT for clarity. Both terms describe the same protocol.
+
+## Next Steps
+
+If you are looking for more guided practice, take a look at:
+
+- **[Get Started with NTT](/docs/products/token-transfers/native-token-transfers/get-started/){target=\_blank}**: Learn how to deploy and register contracts to transfer native tokens across chains.
+- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Perform token transfers using WTT, including manual and automatic transfers.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/overview.md
 --- BEGIN CONTENT ---
 ---
 title: Wrapped Token Transfers (WTT) Overview
@@ -108,11 +166,11 @@ Here are key use cases that highlight the power and versatility of WTT.
 If you are looking for more guided practice, take a look at: 
 
 - **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/)**: Perform token transfers using WTT, including manual and automatic transfers.
-- **[Complete Token Transfer Flow](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow//)**: Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
+- **[Complete Token Transfer Flow](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)**: Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
 - **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token//)**: Craft a multichain token using Wormhole's Portal Bridge.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/get-started.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/get-started.md
 --- BEGIN CONTENT ---
 ---
 title: Get Started with Wrapped Token Transfers (WTT)
@@ -120,11 +178,11 @@ description: Perform token transfers using Wormhole’s WTT with the TypeScript 
 categories: WTT, Transfers
 ---
 
-# Get Started with Wrapped Token Transfers (WTT)
+# Get Started with WTT
 
 ## Introduction
 
-Wormhole's [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
+Wormhole's [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
@@ -403,11 +461,11 @@ To verify the transaction and view its details, copy the transaction hash from t
 
 Now that you've completed a manual multichain token transfer, explore these guides to continue building:
 
- - **[Complete Token Transfer Workflow](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow/){target=\_blank}**: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
+ - **[Complete Token Transfer Workflow](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/){target=\_blank}**: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
  - **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/){target=\_blank}**: Learn how to issue tokens that work across chains.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/reference/supported-networks.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/reference/supported-networks.md
 --- BEGIN CONTENT ---
 ---
 title: Wrapped Token Transfers (WTT) Supported Networks
@@ -454,7 +512,7 @@ categories: WTT, Transfer
 </div>
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/payload-structure.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/concepts/payload-structure.md
 --- BEGIN CONTENT ---
 ---
 title: Wrapped Token Transfers (WTT) Payload Structure
@@ -739,7 +797,7 @@ This message allows the Wormhole governance system to deploy new versions of the
 | `UpgradeContract`     | Action `2`    | Upgrades the WTT contract on a specific chain.                 | Wormhole governance   |
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/transfer-flow.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow.md
 --- BEGIN CONTENT ---
 ---
 title: Flow of Wrapped Token Transfers (WTT)
@@ -948,7 +1006,7 @@ Now that you’ve seen how a transfer works, try both types yourself to experien
 - [Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/faqs.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/faqs.md
 --- BEGIN CONTENT ---
 ---
 title: Wrapped Token Transfers (WTT) FAQs
@@ -988,7 +1046,7 @@ Updating the metadata (such as the token image, name, or symbol) of a wrapped to
 To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/attest-tokens.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/attest-tokens.md
 --- BEGIN CONTENT ---
 ---
 title: Token Attestation
@@ -1498,7 +1556,7 @@ Congratulations! You've successfully created and submitted an attestation to reg
 - [**Transfer Wrapped Assets**](/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/): Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/fetch-signed-vaa.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa.md
 --- BEGIN CONTENT ---
 ---
 title: Fetch a Signed VAA
@@ -1632,11 +1690,11 @@ Congratulations! You've now fetched a signed VAA using both the TypeScript SDK a
 
 <!-- ## Next Steps
 
-- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-bridge/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA that verifies a source chain transfer transaction to the destination chain, completing a manual transfer flow and releasing the tokens to the intended recipient.
-- [**Transfer Assets with TypeScript**](/docs/products/token-bridge/guides/transfer-wrapped-assets/): This guide takes you through the Token Bridge transfer flow end-to-end for moving wrapped assets across blockchains, including both automatic and manual transfers. -->
+- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA that verifies a source chain transfer transaction to the destination chain, completing a manual transfer flow and releasing the tokens to the intended recipient.
+- [**Transfer Assets with TypeScript**](/docs/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets/): This guide takes you through the Token Bridge transfer flow end-to-end for moving wrapped assets across blockchains, including both automatic and manual transfers. -->
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/token-bridge-contracts.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts.md
 --- BEGIN CONTENT ---
 ---
 title: Get Started with Wrapped Token Transfers (WTT)
@@ -1921,7 +1979,7 @@ For a deeper understanding of WTT implementation and to review the actual source
 A practical implementation of the Wormhole WTT can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md
 --- BEGIN CONTENT ---
 ---
 title: Transfer Wrapped Assets
@@ -2555,7 +2613,7 @@ Congratulations! You've now used WTT to transfer wrapped assets using the Wormho
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/portal/faqs.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/portal/faqs.md
 --- BEGIN CONTENT ---
 ---
 title: Portal Bridge FAQs
@@ -2604,7 +2662,7 @@ This flexibility allows you to enter any wallet address as the recipient rather 
 This field is optional. If left empty, the tokens will be sent to your connected wallet.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/tutorials/multichain-token.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token.md
 --- BEGIN CONTENT ---
 ---
 title: Create Multichain Tokens
@@ -2704,7 +2762,7 @@ It is recommended that you update your token’s metadata on blockchain explorer
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/tutorials/transfer-workflow.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow.md
 --- BEGIN CONTENT ---
 ---
 title: Transfer Tokens via Wrapped Token Transfers (WTT) Tutorial
@@ -2959,7 +3017,7 @@ import { getSigner } from '../helpers/helpers';
   }
     ```
 
-    If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow//#token-transfers). Otherwise, an attestation must be generated.
+    If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/#token-transfers). Otherwise, an attestation must be generated.
 
 7. **Set up the source chain signer**: The signer creates and submits the attestation transaction.
 

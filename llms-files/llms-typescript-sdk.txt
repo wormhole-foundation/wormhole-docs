@@ -17,7 +17,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/get-started.md [type: get-started]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/sdk-reference.md [type: reference]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/tutorials/replace-signatures.md [type: tutorial]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/guides/protocols-payloads.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/guides/sdk-layout.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/tools/typescript-sdk/guides/vaas-protocols.md [type: guide]
@@ -674,7 +674,7 @@ Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and
 
 - [Get familiar with the SDK](/docs/tools/typescript-sdk/sdk-reference/)
 - [Send a multichain message](/docs/products/messaging/get-started/)
-- [Transfer assets via WTT](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow//)
+- [Transfer assets via WTT](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
 - [Transfer USDC via the CCTP Bridge](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)
 --- END CONTENT ---
 
@@ -2905,7 +2905,7 @@ It's important to note that this tutorial does not update VAAs in the Wormhole n
 Looking for more? Check out the [Wormhole Tutorial Demo repository](https://github.com/wormhole-foundation/demo-tutorials){target=\_blank} for additional examples.
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md
 --- BEGIN CONTENT ---
 ---
 title: Transfer Wrapped Assets
