@@ -11,7 +11,7 @@ To enable secure and flexible cross-chain token transfers, the [Wrapped Token Tr
 This page provides a detailed overview of each payload type.
 
 !!! note "Terminology" 
-    The sdk and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Transfer
 

@@ -4,14 +4,14 @@ description: Learn how the Wormhole Wrapped Token Transfers enable secure, cross
 categories: Token Bridge, Transfer
 ---
 
-# Flow of a Transfer
+# Flow of a WTT Transfer
 
-The [Wormhole Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions such as locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
+The Wormhole [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions such as locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
 This guide provides a conceptual overview of WTT and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
 
 !!! note "Terminology" 
-    The sdk and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Transfer Flow
 
@@ -53,27 +53,27 @@ Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ET
 ```mermaid
 sequenceDiagram
     participant Alice as Alice
-    participant TokenBridgeEth as WTT Ethereum<br>(Source Chain)
+    participant WTTEth as WTT Ethereum<br>(Source Chain)
     participant CoreEth as Core Contract Ethereum<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeSol as WTT Solana<br>(Destination Chain)
+    participant WTTSol as WTT Solana<br>(Destination Chain)
     participant CoreSol as Core Contract Solana<br>(Destination Chain)
 
-    Alice->>TokenBridgeEth: Initiate ETH transfer<br>(lock ETH)
-    TokenBridgeEth->>CoreEth: Publish transfer message
+    Alice->>WTTEth: Initiate ETH transfer<br>(lock ETH)
+    WTTEth->>CoreEth: Publish transfer message
     CoreEth-->>Guardians: Emit message event
     Guardians->>Guardians: Sign and publish VAA
 
     alt Automatic VAA submission
-        Guardians->>TokenBridgeSol: Relayer submits VAA
+        Guardians->>WTTSol: Relayer submits VAA
     else Manual VAA submission
         Alice->>Guardians: Retrieve VAA
-        Alice->>TokenBridgeSol: Submit VAA
+        Alice->>WTTSol: Submit VAA
     end
 
-    TokenBridgeSol->>CoreSol: Verify VAA
-    CoreSol-->>TokenBridgeSol: VAA verified
-    TokenBridgeSol-->>Alice: Mint wrapped ETH on Solana (complete transfer)
+    WTTSol->>CoreSol: Verify VAA
+    CoreSol-->>WTTSol: VAA verified
+    WTTSol-->>Alice: Mint wrapped ETH on Solana (complete transfer)
 ```
 
 Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Ethereum. The wrapped ETH is burned on Solana’s WTT, and the equivalent 5 ETH are released on Ethereum. The diagram below illustrates this transfer flow.
@@ -81,29 +81,28 @@ Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Et
 ```mermaid
 sequenceDiagram
     participant User as Alice
-    participant TokenBridgeSrc as WTT Solana<br>(Source Chain)
+    participant WTTSrc as WTT Solana<br>(Source Chain)
     participant CoreSrc as Core Contract Solana<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeDst as WTT Ethereum<br>(Destination Chain)
+    participant WTTDst as WTT Ethereum<br>(Destination Chain)
     participant CoreDst as Core Contract Ethereum<br>(Destination Chain)
 
-    User->>TokenBridgeSrc: Initiate transfer <br> (burn wrapped ETH)
-    TokenBridgeSrc->>CoreSrc: Publish message
+    User->>WTTSrc: Initiate transfer <br> (burn wrapped ETH)
+    WTTSrc->>CoreSrc: Publish message
     CoreSrc-->>Guardians: Emit message event
     Guardians->>Guardians: Sign and publish VAA
 
     alt Automatic VAA submission
-        Guardians->>TokenBridgeDst: Relayer submits VAA
+        Guardians->>WTTDst: Relayer submits VAA
     else Manual VAA submission
         User->>Guardians: Retrieve VAA
-        User->>TokenBridgeDst: User submits VAA directly
+        User->>WTTDst: User submits VAA directly
     end
 
-    TokenBridgeDst->>CoreDst: Verify VAA
-    CoreDst-->>TokenBridgeDst: VAA verified
-    TokenBridgeDst-->>User: Release native ETH on Ethereum (Complete transfer)
+    WTTDst->>CoreDst: Verify VAA
+    CoreDst-->>WTTDst: VAA verified
+    WTTDst-->>User: Release native ETH on Ethereum (Complete transfer)
 ```
-
 
 ## Automatic vs. Manual Transfers
 
@@ -171,12 +170,12 @@ The following diagram illustrates the key steps in the source chain during a tra
 sequenceDiagram
     participant User
     participant SourceTBR as Source Chain TBR
-    participant SourceTB as Source Chain WTT
+    participant SourceWTT as Source Chain WTT
     participant Messaging as Core Messaging Layer
 
     User->>SourceTBR: Initiate transfer (token, <br>recipient, fees, native gas)
-    SourceTBR->>SourceTB: Forward transfer (burn or lock tokens)
-    SourceTB->>Messaging: Publish transfer message
+    SourceTBR->>SourceWTT: Forward transfer (burn or lock tokens)
+    SourceWTT->>Messaging: Publish transfer message
 ```
 
 Once the core messaging layer processes the transfer, the destination chain handles completion as shown below:
@@ -186,14 +185,14 @@ sequenceDiagram
     participant Messaging as Core Messaging Layer
     participant Relayer as Off-chain Relayer
     participant DestTBR as Destination Chain TBR
-    participant DestTB as Destination Chain <br> WTT
+    participant DestWTT as Destination Chain <br> WTT
     participant DestUser as User <br> (Destination Chain)
 
     Messaging->>Relayer: Emit signed VAA for transfer
     Relayer->>Relayer: Verifies destination chain and token registration
     Relayer->>DestTBR: Query native gas amount
     Relayer->>DestTBR: Submit signed VAA
-    DestTBR->>DestTB: Validate VAA
+    DestTBR->>DestWTT: Validate VAA
     DestTBR->>DestTBR: Take custody of tokens
     DestTBR->>DestUser: Send tokens (after fees & native gas)
     DestTBR->>Relayer: Pay relayer fee & refund excess

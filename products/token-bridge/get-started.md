@@ -18,7 +18,7 @@ In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wor
 These examples will help you understand how WTT works across EVM and non-EVM chains.
 
 !!! note "Terminology" 
-    The sdk and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
