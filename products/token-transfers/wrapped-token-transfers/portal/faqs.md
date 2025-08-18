@@ -40,6 +40,6 @@ This link will open Portal with:
 After selecting your tokens and connecting your source wallet on [Portal](https://portalbridge.com/){target=\_blank}, you'll be prompted to connect your destination wallet. At this step, alongside wallet options like MetaMask or Phantom, you'll also see an option labeled "Send to a wallet address".
 This flexibility allows you to enter any wallet address as the recipient rather than connecting a destination wallet, enabling you to send tokens to a predefined recipient, such as a team wallet, treasury address, or cold storage wallet.
 
-![](/docs/images/products/token-bridge/portal-bridge/faqs/portal-wallet-address.webp){.half}
+![](/docs/images/products/wrapped-token-transfers/portal-bridge/faqs/portal-wallet-address.webp){.half}
 
 This field is optional. If left empty, the tokens will be sent to your connected wallet.

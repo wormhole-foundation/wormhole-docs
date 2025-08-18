@@ -18597,11 +18597,11 @@ You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI t
 
 2. Enter your transaction ID in the search bar and select "return" or "enter" to submit your search request. Alternatively, you can enter the wallet address of the transaction signer and return any transactions under that account.
 
-    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-1.webp)
+    ![](/docs/images/products/wrapped-token-transfers/guides/fetch-vaa/fetch-vaa-1.webp)
 
 3. Inspect the returned search results. Note that the source transaction ID, current status, transaction details, and the VAA ID are included.
 
-    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-2.webp)
+    ![](/docs/images/products/wrapped-token-transfers/guides/fetch-vaa/fetch-vaa-2.webp)
 
 Congratulations! You've now fetched a signed VAA using both the TypeScript SDK and Wormholescan UI. These skills are valuable when developing manual transfer or messaging processes, as well as debugging and testing an integration build. 
 
@@ -19657,7 +19657,7 @@ This link will open Portal with:
 After selecting your tokens and connecting your source wallet on [Portal](https://portalbridge.com/){target=\_blank}, you'll be prompted to connect your destination wallet. At this step, alongside wallet options like MetaMask or Phantom, you'll also see an option labeled "Send to a wallet address".
 This flexibility allows you to enter any wallet address as the recipient rather than connecting a destination wallet, enabling you to send tokens to a predefined recipient, such as a team wallet, treasury address, or cold storage wallet.
 
-![](/docs/images/products/token-bridge/portal-bridge/faqs/portal-wallet-address.webp){.half}
+![](/docs/images/products/wrapped-token-transfers/portal-bridge/faqs/portal-wallet-address.webp){.half}
 
 This field is optional. If left empty, the tokens will be sent to your connected wallet.
 --- END CONTENT ---
@@ -19741,7 +19741,7 @@ The first step in creating a multichain token is registering your token on its s
 4. Locate the **Asset** field and paste the token contract address.
 5. Click **Next** to proceed.
 
-![Source Chain Registration Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-1.webp)
+![Source Chain Registration Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-1.webp)
 
 ## Register the Token on the Target Chain
 
@@ -19751,7 +19751,7 @@ After registering your token on the source chain, the next step is to select the
 2. Connect your wallet to the target chain.
 3. Click **Next** to finalize the registration process.
 
-![Target Chain Registration Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-2.webp)
+![Target Chain Registration Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-2.webp)
 
 ## Send an Attestation
 
@@ -19760,7 +19760,7 @@ Attestation is a key step in the process. It verifies your token’s metadata, e
 1. Click **Attest** to initiate the attestation process.
 2. Approve the transaction in your wallet when prompted.
 
-![Send Attestation Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-3.webp)
+![Send Attestation Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-3.webp)
 
 !!! note
     - Attestation is crucial for token metadata to appear correctly on blockchain explorers like Etherscan, allowing users to identify and trust your token.
@@ -19773,11 +19773,11 @@ The final step is to create the wrapped token on the target chain. This token re
 1. Click **Create** to generate the wrapped token.
 2. Approve the transaction in your wallet when prompted.
 
-![Create Wrapped Token Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-4.webp)
+![Create Wrapped Token Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-4.webp)
 
 Upon successful creation, you will see a confirmation screen displaying key details such as the source chain, target chain, and transaction status. This helps verify that the process was completed correctly. Refer to the image below as an example:
 
-![Confirmation Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-5.webp)
+![Confirmation Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-5.webp)
 
 ## Additional Steps and Recommendations
 

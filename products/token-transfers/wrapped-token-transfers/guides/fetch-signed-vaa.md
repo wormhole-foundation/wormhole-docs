@@ -74,11 +74,11 @@ You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI t
 
 2. Enter your transaction ID in the search bar and select "return" or "enter" to submit your search request. Alternatively, you can enter the wallet address of the transaction signer and return any transactions under that account.
 
-    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-1.webp)
+    ![](/docs/images/products/wrapped-token-transfers/guides/fetch-vaa/fetch-vaa-1.webp)
 
 3. Inspect the returned search results. Note that the source transaction ID, current status, transaction details, and the VAA ID are included.
 
-    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-2.webp)
+    ![](/docs/images/products/wrapped-token-transfers/guides/fetch-vaa/fetch-vaa-2.webp)
 
 Congratulations! You've now fetched a signed VAA using both the TypeScript SDK and Wormholescan UI. These skills are valuable when developing manual transfer or messaging processes, as well as debugging and testing an integration build. 
 

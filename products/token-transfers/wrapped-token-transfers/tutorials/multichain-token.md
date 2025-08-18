@@ -28,7 +28,7 @@ The first step in creating a multichain token is registering your token on its s
 4. Locate the **Asset** field and paste the token contract address.
 5. Click **Next** to proceed.
 
-![Source Chain Registration Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-1.webp)
+![Source Chain Registration Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-1.webp)
 
 ## Register the Token on the Target Chain
 
@@ -38,7 +38,7 @@ After registering your token on the source chain, the next step is to select the
 2. Connect your wallet to the target chain.
 3. Click **Next** to finalize the registration process.
 
-![Target Chain Registration Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-2.webp)
+![Target Chain Registration Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-2.webp)
 
 ## Send an Attestation
 
@@ -47,7 +47,7 @@ Attestation is a key step in the process. It verifies your token’s metadata, e
 1. Click **Attest** to initiate the attestation process.
 2. Approve the transaction in your wallet when prompted.
 
-![Send Attestation Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-3.webp)
+![Send Attestation Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-3.webp)
 
 !!! note
     - Attestation is crucial for token metadata to appear correctly on blockchain explorers like Etherscan, allowing users to identify and trust your token.
@@ -60,11 +60,11 @@ The final step is to create the wrapped token on the target chain. This token re
 1. Click **Create** to generate the wrapped token.
 2. Approve the transaction in your wallet when prompted.
 
-![Create Wrapped Token Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-4.webp)
+![Create Wrapped Token Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-4.webp)
 
 Upon successful creation, you will see a confirmation screen displaying key details such as the source chain, target chain, and transaction status. This helps verify that the process was completed correctly. Refer to the image below as an example:
 
-![Confirmation Screen](/docs/images/products/token-bridge/tutorials/multichain-tokens/multichain-token-5.webp)
+![Confirmation Screen](/docs/images/products/wrapped-token-transfers/tutorials/multichain-tokens/multichain-token-5.webp)
 
 ## Additional Steps and Recommendations
 
