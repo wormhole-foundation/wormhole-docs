@@ -7101,7 +7101,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
-### Wrapped Token Transfers (WTT)
+### WTT
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->

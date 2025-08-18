@@ -1228,7 +1228,7 @@ async function tokenTransfer<n extends="" network="">(
 </tokentransfer<n></n,></n,></n></n>
     ```
 
-Internally, this uses the [`TokenBridge`](#token-bridge) protocol client to transfer tokens.
+Internally, this uses the [`TokenBridge`](#wrapped-token-transfers-wtt) protocol client to transfer tokens.
 
 ### Native USDC Transfers
 
@@ -2947,8 +2947,8 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 1. Create a new directory and initialize a Node.js project using the following commands:
    ```bash
-   mkdir token-bridge-demo
-   cd token-bridge-demo
+   mkdir wtt-demo
+   cd wtt-demo
    npm init -y
    ```
 
@@ -3535,7 +3535,7 @@ Congratulations! You've now used WTT to transfer wrapped assets using the Wormho
 ## Next Steps
 
 - [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
-- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts/): This guide explores the Solidity functions used in WTT contracts.
+- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts/): This guide explores the Solidity functions used in WTT contracts.
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
 --- END CONTENT ---
 
@@ -10997,7 +10997,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
-### Wrapped Token Transfers (WTT)
+### WTT
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->

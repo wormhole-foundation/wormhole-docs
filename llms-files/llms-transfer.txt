@@ -57,8 +57,8 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/faqs.md [type: other]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/attest-tokens.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/fetch-signed-vaa.md [type: guide]
-Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/portal/faqs.md [type: other]
 
 ## Full content for each doc page
@@ -8687,7 +8687,7 @@ Completing this guide will help you accomplish the following:
 - Create and submit a token attestation to register a wrapped version of a token on a destination chain.
 - Check for the wrapped version to become available on the destination chain and return the wrapped token address.
 
-The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana, but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank}.
+The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana, but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#wrapped-token-transfers-wtt){target=\_blank}.
 
 !!! note "Terminology" 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
@@ -9317,291 +9317,6 @@ Congratulations! You've now fetched a signed VAA using both the TypeScript SDK a
 - [**Transfer Assets with TypeScript**](/docs/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets/): This guide takes you through the Token Bridge transfer flow end-to-end for moving wrapped assets across blockchains, including both automatic and manual transfers. -->
 --- END CONTENT ---
 
-Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts.md
---- BEGIN CONTENT ---
----
-title: Get Started with Wrapped Token Transfers (WTT)
-description: Learn how to integrate Wormhole's Wrapped Token Transfers (WTT) for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
-categories: WTT, Transfer
----
-
-# Interact with Wrapped Token Transfer (WTT) Contracts
-
-Wormhole's Wrapped Token Transfers (WTT) enable seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, WTT supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
-
-This page outlines the core contract methods needed to integrate WTT functionality into your smart contracts. To understand the theoretical workings of WTT, refer to the [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} page in the Learn section.
-
-!!! note "Terminology" 
-    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
-
-## Prerequisites
-
-To interact with the Wormhole WTT, you'll need the following:
-
-- [The address of the WTT contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
-- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers.
-
-## How to Interact with WTT Contracts
-
-The primary functions of the WTT contracts revolve around:
-
-- **Attesting a token**: Registering a new token for cross-chain transfers.
-- **Transferring tokens**: Locking and minting tokens across chains.
-- **Transferring tokens with a payload**: Including additional data with transfers.
-
-### Attest a Token
-
-Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so WTT can recognize it and create a wrapped version if necessary.
-
-The attestation process doesn't require you to manually input token details, such as name, symbol, or decimals. Instead, the WTT contract retrieves these values from the token contract itself when you call the `attestToken()` method.
-
-```solidity
-function attestToken(
-    address tokenAddress,
-    uint32 nonce
-) external payable returns (uint64 sequence);
-```
-
-??? interface "Parameters"
-
-    `tokenAddress` ++"address"++
-        
-    The contract address of the token to be attested.
-
-    ---
-
-    `nonce` ++"uint32"++  
-
-    An arbitrary value provided by the caller to ensure uniqueness.
-
-??? interface "Returns"
-
-    `sequence` ++"uint64"++
-    
-    A unique identifier for the attestation transaction.
-
-??? interface "Example"
-
-    ```solidity
-    IWormhole wormhole = IWormhole(wormholeAddr);
-ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
-
-uint256 wormholeFee = wormhole.messageFee();
-
-tokenBridge.attestToken{value: wormholeFee}(
-    address(tokenImpl), // the token contract to attest
-    234                 // nonce for the transfer
-);
-    ```
-
-When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
-
-You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
-
-### Transfer Tokens 
-
-Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, the VAA is used to mint or release the corresponding amount of wrapped tokens.
-
-Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
-
-```solidity
-function transferTokens(
-    address token,
-    uint256 amount,
-    uint16 recipientChain,
-    bytes32 recipient,
-    uint256 arbiterFee,
-    uint32 nonce
-) external payable returns (uint64 sequence);
-```
-
-??? interface "Parameters"
-
-    `token` ++"address"++
-        
-    The address of the token being transferred.
-
-    ---
-
-    `amount` ++"uint256"++
- 
-    The amount of tokens to be transferred.
-
-    ---
-
-    `recipientChain` ++"uint16"++
-
-    The Wormhole chain ID of the destination chain.
-
-    ---
-
-    `recipient` ++"bytes32"++
-
-    The recipient's address on the destination chain.
-
-    ---
-
-    `arbiterFee` ++"uint256"++
-
-    Optional fee to be paid to an arbiter for relaying the transfer.
-
-    ---
-
-    `nonce` ++"uint32"++
-
-    A unique identifier for the transaction.
-
-??? interface "Returns"
-
-    `sequence` ++"uint64"++
-    
-    A unique identifier for the transfer transaction.
-
-??? interface "Example"
-
-    ```solidity
-    IWormhole wormhole = IWormhole(wormholeAddr);
-ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
-
-// Get the fee for publishing a message
-uint256 wormholeFee = wormhole.messageFee();
-
-tokenBridge.transferTokens{value: wormholeFee}(
-    token,           // address of the ERC-20 token to transfer
-    amount,          // amount of tokens to transfer
-    recipientChain,  // Wormhole chain ID of the destination chain
-    recipient,       // recipient address on the destination chain (as bytes32)
-    arbiterFee,      // fee for relayer
-    nonce            // nonce for this transfer
-);
-    ```
-
-Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
-
-```solidity
-function completeTransfer(bytes memory encodedVm) external;
-```
-
-??? interface "Parameters"
-
-    `encodedVm` ++"bytes memory"++
-    
-    The signed VAA containing the transfer details.
-
-!!!note
-    - WTT normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
-    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
-
-### Transfer Tokens with Payload
-
-While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
-
-Call `transferTokensWithPayload()` instead of `transferTokens()` to include a custom payload (arbitrary bytes) with the token transfer.
-
-```solidity
-function transferTokensWithPayload(
-    address token,
-    uint256 amount,
-    uint16 recipientChain,
-    bytes32 recipient,
-    uint32 nonce,
-    bytes memory payload
-) external payable returns (uint64 sequence);
-```
-
-??? interface "Parameters"
-
-    `token` ++"address"++
-    
-    The address of the token being transferred.
-
-    ---
-
-    `amount` ++"uint256"++
-
-    The amount of tokens to be transferred.
-
-    ---
-
-    `recipientChain` ++"uint16"++
-
-    The Wormhole chain ID of the destination chain.
-
-    ---
-
-    `recipient` ++"bytes32"++
-
-    The recipient's address on the destination chain.
-
-    ---
-
-    `nonce` ++"uint32"++
-
-    A unique identifier for the transaction.
-
-    ---
-
-    `payload` ++"bytes memory"++
-
-    Arbitrary data payload attached to the transaction.
-
-??? interface "Returns"
-    
-    `sequence` ++"uint64"++
-    
-    A unique identifier for the transfer transaction.
-
-??? interface "Example"
-
-    ```solidity
-    IWormhole wormhole = IWormhole(wormholeAddr);
-ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
-
-// Get the fee for publishing a message
-uint256 wormholeFee = wormhole.messageFee();
-
-tokenBridge.transferTokensWithPayload{value: wormholeFee}(
-    token,           // address of the ERC-20 token to transfer
-    amount,          // amount of tokens to transfer
-    recipientChain,  // Wormhole chain ID of the destination chain
-    recipient,       // recipient address on the destination chain (as bytes32)
-    nonce,           // nonce for this transfer
-    additionalPayload // additional payload data
-);
-    ```
-
-After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
-
-Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
-
-```solidity
-function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
-```
-
-??? interface "Parameters"
-
-    `encodedVm` ++"bytes memory"++
-
-    The signed VAA containing the transfer details.
-
-??? interface "Returns"
-
-    `bytes memory`
-
-    The extracted payload data.
-
-## Source Code References
-
-For a deeper understanding of WTT implementation and to review the actual source code, please refer to the following links:
-
-- [WTT contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
-- [WTT interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
-
-## Portal Bridge
-
-A practical implementation of the Wormhole WTT can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
---- END CONTENT ---
-
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/transfer-wrapped-assets.md
 --- BEGIN CONTENT ---
 ---
@@ -9644,8 +9359,8 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 1. Create a new directory and initialize a Node.js project using the following commands:
    ```bash
-   mkdir token-bridge-demo
-   cd token-bridge-demo
+   mkdir wtt-demo
+   cd wtt-demo
    npm init -y
    ```
 
@@ -10232,8 +9947,293 @@ Congratulations! You've now used WTT to transfer wrapped assets using the Wormho
 ## Next Steps
 
 - [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
-- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts/): This guide explores the Solidity functions used in WTT contracts.
+- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts/): This guide explores the Solidity functions used in WTT contracts.
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/guides/wtt-contracts.md
+--- BEGIN CONTENT ---
+---
+title: Get Started with Wrapped Token Transfers (WTT)
+description: Learn how to integrate Wormhole's Wrapped Token Transfers (WTT) for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+categories: WTT, Transfer
+---
+
+# Interact with Wrapped Token Transfer (WTT) Contracts
+
+Wormhole's Wrapped Token Transfers (WTT) enable seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, WTT supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+
+This page outlines the core contract methods needed to integrate WTT functionality into your smart contracts. To understand the theoretical workings of WTT, refer to the [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} page in the Learn section.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+## Prerequisites
+
+To interact with the Wormhole WTT, you'll need the following:
+
+- [The address of the WTT contract](/docs/products/reference/contract-addresses/#wrapped-token-transfers-wtt){target=\_blank} on the chains you're working with.
+- [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers.
+
+## How to Interact with WTT Contracts
+
+The primary functions of the WTT contracts revolve around:
+
+- **Attesting a token**: Registering a new token for cross-chain transfers.
+- **Transferring tokens**: Locking and minting tokens across chains.
+- **Transferring tokens with a payload**: Including additional data with transfers.
+
+### Attest a Token
+
+Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so WTT can recognize it and create a wrapped version if necessary.
+
+The attestation process doesn't require you to manually input token details, such as name, symbol, or decimals. Instead, the WTT contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+
+```solidity
+function attestToken(
+    address tokenAddress,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `tokenAddress` ++"address"++
+        
+    The contract address of the token to be attested.
+
+    ---
+
+    `nonce` ++"uint32"++  
+
+    An arbitrary value provided by the caller to ensure uniqueness.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the attestation transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.attestToken{value: wormholeFee}(
+    address(tokenImpl), // the token contract to attest
+    234                 // nonce for the transfer
+);
+    ```
+
+When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
+
+You must ensure the token is ERC-20 compliant. If it does not implement the standard functions, the attestation may fail or produce incomplete metadata.
+
+### Transfer Tokens 
+
+Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, the VAA is used to mint or release the corresponding amount of wrapped tokens.
+
+Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
+
+```solidity
+function transferTokens(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint256 arbiterFee,
+    uint32 nonce
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+        
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++
+ 
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++
+
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++
+
+    The recipient's address on the destination chain.
+
+    ---
+
+    `arbiterFee` ++"uint256"++
+
+    Optional fee to be paid to an arbiter for relaying the transfer.
+
+    ---
+
+    `nonce` ++"uint32"++
+
+    A unique identifier for the transaction.
+
+??? interface "Returns"
+
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokens{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    arbiterFee,      // fee for relayer
+    nonce            // nonce for this transfer
+);
+    ```
+
+Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
+
+```solidity
+function completeTransfer(bytes memory encodedVm) external;
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+    
+    The signed VAA containing the transfer details.
+
+!!!note
+    - WTT normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
+    - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
+
+### Transfer Tokens with Payload
+
+While a standard token transfer moves tokens between chains, a transfer with a payload allows you to embed arbitrary data in the VAA. This data can be used on the destination chain to execute additional logic—such as automatically depositing tokens into a DeFi protocol, initiating a swap on a DEX, or interacting with a custom smart contract.
+
+Call `transferTokensWithPayload()` instead of `transferTokens()` to include a custom payload (arbitrary bytes) with the token transfer.
+
+```solidity
+function transferTokensWithPayload(
+    address token,
+    uint256 amount,
+    uint16 recipientChain,
+    bytes32 recipient,
+    uint32 nonce,
+    bytes memory payload
+) external payable returns (uint64 sequence);
+```
+
+??? interface "Parameters"
+
+    `token` ++"address"++
+    
+    The address of the token being transferred.
+
+    ---
+
+    `amount` ++"uint256"++
+
+    The amount of tokens to be transferred.
+
+    ---
+
+    `recipientChain` ++"uint16"++
+
+    The Wormhole chain ID of the destination chain.
+
+    ---
+
+    `recipient` ++"bytes32"++
+
+    The recipient's address on the destination chain.
+
+    ---
+
+    `nonce` ++"uint32"++
+
+    A unique identifier for the transaction.
+
+    ---
+
+    `payload` ++"bytes memory"++
+
+    Arbitrary data payload attached to the transaction.
+
+??? interface "Returns"
+    
+    `sequence` ++"uint64"++
+    
+    A unique identifier for the transfer transaction.
+
+??? interface "Example"
+
+    ```solidity
+    IWormhole wormhole = IWormhole(wormholeAddr);
+ITokenBridge tokenBridge = ITokenBridge(tokenBridgeAddr);
+
+// Get the fee for publishing a message
+uint256 wormholeFee = wormhole.messageFee();
+
+tokenBridge.transferTokensWithPayload{value: wormholeFee}(
+    token,           // address of the ERC-20 token to transfer
+    amount,          // amount of tokens to transfer
+    recipientChain,  // Wormhole chain ID of the destination chain
+    recipient,       // recipient address on the destination chain (as bytes32)
+    nonce,           // nonce for this transfer
+    additionalPayload // additional payload data
+);
+    ```
+
+After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.
+
+Only the designated recipient contract can redeem tokens. This ensures that the intended contract securely handles the attached payload. On successful redemption, the tokens are minted (if foreign) or released (if native) to the recipient address on the destination chain. For payload transfers, the designated contract can execute the payload's logic at this time.
+
+```solidity
+function completeTransferWithPayload(bytes memory encodedVm) external returns (bytes memory);
+```
+
+??? interface "Parameters"
+
+    `encodedVm` ++"bytes memory"++
+
+    The signed VAA containing the transfer details.
+
+??? interface "Returns"
+
+    `bytes memory`
+
+    The extracted payload data.
+
+## Source Code References
+
+For a deeper understanding of WTT implementation and to review the actual source code, please refer to the following links:
+
+- [WTT contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [WTT interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+
+## Portal Bridge
+
+A practical implementation of the Wormhole WTT can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/wrapped-token-transfers/portal/faqs.md
@@ -16590,7 +16590,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
-### Wrapped Token Transfers (WTT)
+### WTT
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->
