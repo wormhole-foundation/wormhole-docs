@@ -199,7 +199,7 @@ This example uses an Avalanche Fuji wallet with [USDC](https://faucet.circle.com
     touch transfer.ts helper.ts
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading your `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -3887,7 +3887,7 @@ export function buildConfig(
     cta: customConfig?.cta,
     explorer: customConfig?.explorer,
     attestUrl: {
-      mainnet: 'https://portalbridge.com/advanced-tools/#/register',
+      mainnet: 'https://portalbridge.com/legacy-tools/#/register',
       devnet: '',
       testnet:
         'https://wormhole-foundation.github.io/example-token-bridge-ui/#/register',
@@ -4582,7 +4582,7 @@ This flexible plugin allows you to combine default routes (such as Token Bridge 
 The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
+    You will need to [register](https://portalbridge.com/legacy-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
 
 This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
 
@@ -4832,7 +4832,7 @@ Your selected blockchain network determines the available wallet options when us
 
 The wallet options automatically adjust based on the selected chain, providing a seamless user experience without additional configuration.
 
-To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://cloud.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
+To add Reown Cloud (formerly known as WalletConnect) as a supported wallet option, you need to obtain a project ID from the [Reown Cloud dashboard](https://dashboard.reown.com/){target=\_blank}. Once you have the project ID, set it in your `WormholeConnectConfig` under the `walletConnectProjectId` property.
 
 ```typescript
 import WormholeConnect, { type config } from '@wormhole-foundation/wormhole-connect';
@@ -13004,7 +13004,7 @@ The source chain's transceiver includes the destination chain's transceiver in t
 
 ## How do I create a verifier or transceiver?
 
-To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
+To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
 
 For reference, you can review the [Axelar transceiver implementation](https://github.com/wormhole-foundation/example-wormhole-axelar-wsteth/blob/main/src/axelar/AxelarTransceiver.sol){target=\_blank}.
 
@@ -13016,8 +13016,8 @@ No, using Hetzner servers for Solana deployments is not recommended. Hetzner has
 
 You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank}.
 
-- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message.
-- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message.
+- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message
+- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message
 
 !!!Important
     You cannot pass the additional data as part of the entry point directly. Instead, the data must be queried on-chain via the `_handleMsg` method, ensuring the payload is properly included and processed.
@@ -13621,16 +13621,16 @@ Before deploying NTT on SVM chains, ensure you have the following:
 - The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
 
     === "v3"
-        | Dependency                                                              | Version                        |
-        |-------------------------------------------------------------------------|--------------------------------|
-        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank}       | `{{ ntt.solana_cli_version }}` |
-        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}`     |
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `{{ ntt.solana_cli_version }}` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}` |
 
     === "v2/v1"
-        | Dependency                                                              | Version    |
-        |-------------------------------------------------------------------------|------------|
-        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank}       | `v1.18.10` |
-        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0`  |
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `v1.18.10` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0` |
 
 
 Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
@@ -14184,7 +14184,7 @@ categories: NTT, Transfer
 If you encounter issues during the NTT deployment process, check the following common points:
 
 - **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
-    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+    -  [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} **`{{ ntt.solana_cli_version }}`**
     -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 - **Token compliance on EVM**: Verify that your token is an ERC20 token on the EVM chain.
 - **Mint authority transfer**:
@@ -14865,7 +14865,7 @@ categories: Queries
 
 ## What libraries are available to handle queries?
 
- - The [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses.
+ - The [Query TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses
 
 - The [Solidity `QueryResponseLib` library](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/libraries/QueryResponse.sol){target=\_blank} can be used to parse and verify query responses on EVM chains. See the [Solana Stake Pool](https://github.com/wormholelabs-xyz/example-queries-solana-stake-pool){target=\_blank} repository as an example use case.
 
@@ -14894,7 +14894,7 @@ The Guardian node calculates an ECDSA signature using [`Sign` function of the cr
 See the [Guardian Key Usage](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0009_guardian_signer.md){target=\_blank} white paper for more background. Once this signature is created, the Guardian's index in the Guardian set is appended to the end.
 
 !!! note
-    If you are used to `ecrecover` you will notice that the `v` byte is `0` or `1` as opposed to `27` or `28`. The `signaturesToEvmStruct` method in the [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} accounts for this as well as structuring the signatures into an `IWormhole.SignatureStruct[]`.
+    If you are used to `ecrecover` you will notice that the `v` byte is `0` or `1` as opposed to `27` or `28`. The `signaturesToEvmStruct` method in the [Query TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} accounts for this as well as structuring the signatures into an `IWormhole.SignatureStruct[]`.
 
 ## Can anyone run a query proxy server?
 
@@ -15255,7 +15255,7 @@ Here's an example for Ethereum Mainnet, where the `-a` parameter is the [Core Co
 npx @wormhole-foundation/wormhole-cli evm hijack -a 0x98f3c9e6E3fAce36bAAd05FE09d375Ef1464288B -g 0xbeFA429d57cD18b7F8A4d91A2da9AB4AF05d0FBe
 ```
 
-If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using [Anvil](https://book.getfoundry.sh/anvil/){target=\_blank}) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://book.getfoundry.sh/reference/anvil/#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
+If you are using `EthCallWithFinality`, you will need to mine additional blocks (32 if using [Anvil](https://getfoundry.sh/anvil/overview#anvil){target=\_blank}) after the latest transaction for it to become finalized. Anvil supports [auto-mining](https://book.getfoundry.sh/reference/anvil/#mining-modes){target=\_blank} with the `-b` flag if you want to test code that waits naturally for the chain to advance. For integration tests, you may want to simply `anvil_mine` with `0x20`.
 
 ## Make a Query Request
 
@@ -17649,7 +17649,7 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
     touch transfer.ts helper.ts
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading your `SOL_PRIVATE_KEY` and `EVM_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -17937,7 +17937,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
     npm install @wormhole-foundation/sdk -D tsx typescript
     ```
 
-3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://getfoundry.sh/cast/reference/wallet/#cast-wallet){target=\_blank}.
 
     !!! warning
         If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
@@ -19701,7 +19701,7 @@ After creating your multichain token, there are a few optional but highly recomm
 
 ### Add Your Token to the Wormhole Metadata List (Legacy)
 
-For legacy compatibility in the [**Advanced Tools**](https://portalbridge.com/advanced-tools/){target=\_blank} section of Portal Bridge, you can request updates to your token metadata. Follow these steps:
+For legacy compatibility in the [**Advanced Tools**](https://portalbridge.com/legacy-tools/){target=\_blank} section of Portal Bridge, you can request updates to your token metadata. Follow these steps:
 
 1. Join the [Wormhole Discord server](https://discord.com/invite/wormholecrypto){target=\_blank}.
 2. Submit a request for metadata updates in the appropriate support channel.
