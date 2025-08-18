@@ -1,14 +1,17 @@
 ---
-title: Token Bridge Payload Structure
-description: Discover the structure and purpose of each Token Bridge payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
+title: Wrapped Token Transfers (WTT) Payload Structure
+description: Discover the structure and purpose of each WTT payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
 categories: Token Bridge, Transfers
 ---
 
 # Message and Payload Structure
 
-To enable secure and flexible cross-chain token transfers, the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
+To enable secure and flexible cross-chain token transfers, the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
 
-This page outlines each payload type in detail.
+This page provides a detailed overview of each payload type.
+
+!!! note "Terminology" 
+    The sdk and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Transfer
 
@@ -86,7 +89,7 @@ Name [32]uint8
 
     `PayloadID` ++"uint8"++
 
-    Value must be `2`, indicating a `AssetMeta` operation.
+    Value must be `2`, indicating an `AssetMeta` operation.
 
     ---
 
@@ -104,7 +107,7 @@ Name [32]uint8
 
     `Decimals` ++"uint8"++
 
-    Number of decimals the token uses on its native chain (not truncated to 8).
+    Number of decimals the token uses on its native chain (not truncated to 8 decimal places).
 
     ---
 
@@ -186,7 +189,7 @@ Unlike `Transfer`, the `TransferWithPayload` message must be redeemed by the rec
 
 ## RegisterChain
 
-The `RegisterChain` governance payload (Action ID = `1`) registers a Token Bridge emitter address for a foreign chain. This ensures the bridge only accepts messages from known peers.
+The `RegisterChain` governance payload (Action ID = `1`) registers a WTT emitter address for a foreign chain. This ensures the bridge only accepts messages from known peers.
 
 ```text
 Module [32]byte
@@ -201,7 +204,7 @@ EmitterAddress [32]uint8
 
     `Module` ++"[32]byte"++
 
-    Module identifier. Left-padded with `TokenBridge` for Token Bridge.
+    Module identifier. Left-padded with `TokenBridge` for WTT.
 
     ---
 
@@ -231,7 +234,7 @@ This payload can only be emitted by the Wormhole governance contract, ensuring t
 
 ## UpgradeContract
 
-The `UpgradeContract` governance payload (Action ID = `2`) facilitates upgrades to the Token Bridge contract on a specific chain.
+The `UpgradeContract` governance payload (Action ID = `2`) facilitates upgrades to the WTT contract on a specific chain.
 
 ```text
 Module [32]byte
@@ -245,7 +248,7 @@ NewContract [32]uint8
 
     `Module` ++"[32]byte"++
 
-    Module identifier, left-padded with `TokenBridge` for Token Bridge.
+    Module identifier, left-padded with `TokenBridge` for WTT.
 
     ---
 
@@ -263,7 +266,7 @@ NewContract [32]uint8
 
     `NewContract` ++"[32]uint8"++
 
-    Address of the new Token Bridge contract, left-zero-padded to 32 bytes.
+    Address of the new WTT contract, left-zero-padded to 32 bytes.
 
 This message allows the Wormhole governance system to deploy new versions of the bridge while retaining control over interoperability and security.
 
@@ -271,8 +274,8 @@ This message allows the Wormhole governance system to deploy new versions of the
 
 | Payload Type          | ID            | Purpose                                                                 | Who Emits It          |
 |-----------------------|---------------|-------------------------------------------------------------------------|-----------------------|
-| `Transfer`            | PayloadID `1` | Moves tokens between chains by minting or releasing on the destination. | Token Bridge contract |
-| `AssetMeta`           | PayloadID `2` | Attests token metadata (decimals, symbol, name) before first transfer.  | Token Bridge contract |
-| `TransferWithPayload` | PayloadID `3` | Transfers tokens along with a custom payload for contract execution.    | Token Bridge contract |
-| `RegisterChain`       | Action `1`    | Registers a verified Token Bridge emitter for a foreign chain.          | Wormhole governance   |
-| `UpgradeContract`     | Action `2`    | Upgrades the Token Bridge contract on a specific chain.                 | Wormhole governance   |
+| `Transfer`            | PayloadID `1` | Moves tokens between chains by minting or releasing on the destination. | WTT contract |
+| `AssetMeta`           | PayloadID `2` | Attests token metadata (decimals, symbol, name) before first transfer.  | WTT contract |
+| `TransferWithPayload` | PayloadID `3` | Transfers tokens along with a custom payload for contract execution.    | WTT contract |
+| `RegisterChain`       | Action `1`    | Registers a verified WTT emitter for a foreign chain.          | Wormhole governance   |
+| `UpgradeContract`     | Action `2`    | Upgrades the WTT contract on a specific chain.                 | Wormhole governance   |
