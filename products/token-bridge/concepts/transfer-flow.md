@@ -1,12 +1,12 @@
 ---
 title: Flow of a Wrapped Token Transfers (WTT)
-description: Learn how the Wormhole Wrapped Token Transfers enables secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
+description: Learn how the Wormhole Wrapped Token Transfers enable secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
 categories: Token Bridge, Transfer
 ---
 
 # Flow of a Transfer
 
-The [Wormhole Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
+The [Wormhole Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions such as locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
 This guide provides a conceptual overview of WTT and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
 
@@ -123,11 +123,11 @@ Here's a quick breakdown of the key differences:
 
 ### Completing Manual Transfers
 
-The user who initiated the transfer should complete the transfer within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
+The user who initiated the transfer must complete it within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
 
 If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=\_blank} tutorial to update the VAA with signatures from the current Guardian Set.
 
-## WTT Relayer
+## WTT Relayer (TBR)
 
 When completing an automatic transfer using WTT, either through [Connect](/docs/products/connect/overview/){target=\_blank} or programmatically via the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, the WTT Relayer (TBR) manages the interaction with the underlying WTT contracts on [supported chains where the TBR is available](/docs/products/connect/reference/support-matrix/){target=\_blank}.
 
@@ -165,7 +165,7 @@ The flow of an automatic transfer using the TBR looks like this:
 
     The TBR sends the remaining tokens and native gas to the user, pays the off-chain relayer fee, and refunds any excess native tokens.
 
-The following diagram illustrates the key steps on the source chain during a transfer:
+The following diagram illustrates the key steps in the source chain during a transfer:
 
 ```mermaid
 sequenceDiagram
@@ -201,6 +201,6 @@ sequenceDiagram
 
 ## Next Steps
 
-Now that you’ve seen how a transfer works try both types yourself to experience the full process:
+Now that you’ve seen how a transfer works, try both types yourself to experience the full process:
 
 - [Get Started with WTT](/docs/products/token-bridge/get-started/){target=\_blank}
