@@ -1,21 +1,24 @@
 ---
-title: Get Started with Token Bridge
-description: Perform token transfers using Wormhole’s Token Bridge with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
+title: Get Started with Wrapped Token Transfers (WTT)
+description: Perform token transfers using Wormhole’s WTT with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
 categories: Token Bridge, Transfers
 ---
 
-# Get Started with Token Bridge
+# Get Started with Wrapped Token Transfers (WTT)
 
 ## Introduction
 
-Wormhole's [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
+Wormhole's [WTT](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
  - **Manual transfer**: Where you control each step.
  - **Automatic transfer**: Where a relayer finalizes the transfer for you.
 
-These examples will help you understand how the Token Bridge works across EVM and non-EVM chains.
+These examples will help you understand how WTT works across EVM and non-EVM chains.
+
+!!! note "Terminology" 
+    The sdk and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -31,8 +34,8 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
 1. Create a new directory and initialize a Node.js project:
 
     ```bash
-    mkdir token-bridge
-    cd token-bridge
+    mkdir wh-wtt
+    cd wh-wtt
     npm init -y
     ```
 
