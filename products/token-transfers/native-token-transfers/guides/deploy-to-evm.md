@@ -26,7 +26,7 @@ Deploying NTT on EVM chains follows a structured process:
 1. **Choose your token setup**: Use an existing ERC-20 token or deploy a new one.
 
     ???- interface "Deploy an ERC-20 Token on EVM"
-        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
         1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
@@ -34,7 +34,7 @@ Deploying NTT on EVM chains follows a structured process:
 
             ```bash
             git clone https://github.com/wormhole-foundation/example-ntt-token.git
-            cd example-ntt-token
+            cd example-ntt-token-evm
             ```
         
         3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
