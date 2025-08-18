@@ -6,7 +6,7 @@ categories: WTT, Transfers
 
 # Message and Payload Structure
 
-To enable secure and flexible cross-chain token transfers, the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
+To enable secure and flexible cross-chain token transfers, the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
 
 This page provides a detailed overview of each payload type.
 

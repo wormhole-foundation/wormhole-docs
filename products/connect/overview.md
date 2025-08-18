@@ -53,7 +53,7 @@ Here are some key use cases that highlight the power and versatility of Connect:
 - **Web3 Game Asset Transfers**
 
     - **[Connect](/docs/products/connect/get-started/)**: Provide a user-friendly way to move game tokens across chains.
-    - **[Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/)**: Handle the underlying lock-and-mint logic securely.
+    - **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/)**: Handle the underlying lock-and-mint logic securely.
 
 ## Next Steps 
 

@@ -6,7 +6,7 @@ categories: WTT, Transfer
 
 # Token Attestation
 
-This guide demonstrates token attestation for registering a token for transfer using the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview){target=\_blank} protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
+This guide demonstrates token attestation for registering a token for transfer using the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
 
 Completing this guide will help you accomplish the following:
 
@@ -163,4 +163,4 @@ Congratulations! You've successfully created and submitted an attestation to reg
 
 ## Next Steps
 
-- [**Transfer Wrapped Assets**](/docs/products/token-bridge/guides/attest-tokens): Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.
+- [**Transfer Wrapped Assets**](/docs/products/token-transfers/wrapped-token-transfers/guides/attest-tokens/): Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.

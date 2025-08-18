@@ -8,7 +8,7 @@ categories: WTT, Transfers
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}
 
-This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} protocol. The WTT protocol enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol. The WTT protocol enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
 By leveraging Wormhole’s WTT, this guide shows you how to build an application that supports multiple transfer types:
 
@@ -145,7 +145,7 @@ In this section, you'll create a script that automates this process by checking 
     --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:19:31"
     ```
 
-    If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/products/token-bridge/tutorials/transfer-workflow/#token-transfers). Otherwise, an attestation must be generated.
+    If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/#token-transfers). Otherwise, an attestation must be generated.
 
 7. **Set up the source chain signer**: The signer creates and submits the attestation transaction.
 

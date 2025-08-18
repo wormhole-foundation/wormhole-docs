@@ -6,7 +6,7 @@ categories: WTT, Transfer
 
 # Flow of a WTT Transfer
 
-The Wormhole [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions such as locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
+The Wormhole [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions such as locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
 This guide provides a conceptual overview of WTT and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
 
@@ -202,4 +202,4 @@ sequenceDiagram
 
 Now that you’ve seen how a transfer works, try both types yourself to experience the full process:
 
-- [Get Started with WTT](/docs/products/token-bridge/get-started/){target=\_blank}
+- [Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}

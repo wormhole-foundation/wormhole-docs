@@ -8,7 +8,7 @@ categories: WTT, Transfers
 
 ## Introduction
 
-Wormhole's [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
+Wormhole's [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
@@ -100,5 +100,5 @@ To verify the transaction and view its details, copy the transaction hash from t
 
 Now that you've completed a manual multichain token transfer, explore these guides to continue building:
 
- - **[Complete Token Transfer Workflow](/docs/products/token-bridge/tutorials/transfer-workflow){target=\_blank}**: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
- - **[Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token){target=\_blank}**: Learn how to issue tokens that work across chains.
+ - **[Complete Token Transfer Workflow](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/){target=\_blank}**: Build a reusable application that supports multiple chain combinations and transfer modes (manual and automatic).
+ - **[Create Multichain Tokens](/docs/products/token-transfers/wrapped-token-transfers/tutorials/multichain-token/){target=\_blank}**: Learn how to issue tokens that work across chains.

@@ -174,7 +174,7 @@ The `routes` property in Connect version 3.0 has significantly improved. Previou
 
 By default, if no `routes` property is set, Connect will provide routes for two core protocols:
 
- - [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank}
+ - [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}
  - [CCTP](/docs/products/cctp-bridge/overview/){target=\_blank}
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.

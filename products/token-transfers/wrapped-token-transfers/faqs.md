@@ -8,7 +8,7 @@ categories: WTT, Transfer
 
 ## Can ownership of wrapped tokens be transferred from the WTT?
 
-No. Ownership of wrapped token contracts cannot be transferred, because the [WTT](/docs/products/token-bridge/overview/){target=\_blank} deploys and retains control of these contracts and tokens.
+No. Ownership of wrapped token contracts cannot be transferred, because the [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} deploys and retains control of these contracts and tokens.
 
  - **On EVM chains**: When you attest a token, the WTT deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the WTT contract itself.
  - **On Solana**: The WTT deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the WTT.

@@ -193,5 +193,5 @@ Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and
 
 - [Get familiar with the SDK](/docs/tools/typescript-sdk/sdk-reference/)
 - [Send a multichain message](/docs/products/messaging/get-started/)
-- [Transfer assets via WTT](/docs/products/token-bridge/tutorials/transfer-workflow/)
+- [Transfer assets via WTT](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
 - [Transfer USDC via the CCTP Bridge](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)

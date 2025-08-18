@@ -6,7 +6,7 @@ categories: WTT, Transfer, Typescript SDK
 
 # Transfer Wrapped Assets
 
-This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
 
 Completing this guide will help you accomplish the following:
 
@@ -137,7 +137,7 @@ Registration via attestation is only required the first time a given token is se
 
 ## Initiate Transfer on Source Chain
 
-Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [Automatic vs. Manual Transfers](/docs/products/token-bridge/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
+Before initializing the token transfer, decide whether to use an automatic or manual transaction. Refer to the [Automatic vs. Manual Transfers](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow/#automatic-vs-manual-transfers){target=_blank} section for a comparison of both options.
 
 Follow these steps to add the remaining logic to initiate the token transfer on the source chain. Add the below code where the comment says `// Insert Initiate Transfer on Source Chain code` in your `transfer.ts` file:
 
@@ -158,7 +158,7 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
     This code does the following:
 
     - Defines the transfer as automatic or manual. For automatic transfers, both the source and destination chain must have an existing `TokenBridgeRelayer` contract, which listens for and completes transfers on your behalf. You can check the list of [deployed `TokenBridgeRelayer` contracts](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/a48c9132015279ca6a2d3e9c238a54502b16fc7e/core/base/src/constants/contracts/tokenBridgeRelayer.ts){target=\_blank} in the Wormhole SDK repo to see if your desired chains are supported.
-    - Sets an optional amount for [native gas drop-off](/docs/products/token-bridge/concepts/transfer-flow/#flow-of-an-automatic-transfer-via-tbr){target=\_blank}. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
+    - Sets an optional amount for [native gas drop-off](/docs/products/token-transfers/wrapped-token-transfers/concepts/transfer-flow/#flow-of-an-automatic-transfer-via-tbr){target=\_blank}. This option allows you to send a small amount of the destination chain's native token to cover gas fees. Native gas drop-off is currently only supported for automatic transfers.
     - Builds the transfer object, initiates the transfer, signs the transaction, and sends it.
     - If the transfer is automatic, the flow ends. Otherwise, the script waits for the signed VAA confirming the transaction on the source chain. The signed VAA is then submitted to the destination chain to claim the tokens and complete the manual transfer.
 
@@ -182,5 +182,5 @@ Congratulations! You've now used WTT to transfer wrapped assets using the Wormho
 ## Next Steps
 
 - [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
-- [**Interact with WTT Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in WTT contracts.
+- [**Interact with WTT Contracts**](/docs/products/token-transfers/wrapped-token-transfers/guides/token-bridge-contracts/): This guide explores the Solidity functions used in WTT contracts.
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
