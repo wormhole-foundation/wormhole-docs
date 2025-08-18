@@ -1,25 +1,25 @@
 ---
-title: Get Started with Token Bridge
-description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+title: Get Started with Wrapped Token Transfers (WTT)
+description: Learn how to integrate Wormhole's Wrapped Token Transfers (WTT) for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
 categories: Token Bridge, Transfer
 ---
 
-# Interact with Token Bridge Contracts
+# Interact with Wrapped Token Transfer (WTT) Contracts
 
-Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+Wormhole's Wrapped Token Transfers (WTT) enable seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, WTT supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
-This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
+This page outlines the core contract methods needed to integrate WTT functionality into your smart contracts. To understand the theoretical workings of WTT, refer to the [WTT](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
 
 ## Prerequisites
 
-To interact with the Wormhole Token Bridge, you'll need the following:
+To interact with the Wormhole WTT, you'll need the following:
 
-- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
+- [The address of the WTT contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
 - [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers.
 
-## How to Interact with Token Bridge Contracts
+## How to Interact with WTT Contracts
 
-The primary functions of the Token Bridge contracts revolve around:
+The primary functions of the WTT contracts revolve around:
 
 - **Attesting a token**: Registering a new token for cross-chain transfers.
 - **Transferring tokens**: Locking and minting tokens across chains.
@@ -27,9 +27,9 @@ The primary functions of the Token Bridge contracts revolve around:
 
 ### Attest a Token
 
-Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
+Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so WTT can recognize it and create a wrapped version if necessary.
 
-The attestation process doesn't require you to manually input token details like name, symbol, or decimals. Instead, the Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+The attestation process doesn't require you to manually input token details, such as name, symbol, or decimals. Instead, the WTT contract retrieves these values from the token contract itself when you call the `attestToken()` method.
 
 ```solidity
 function attestToken(
@@ -68,7 +68,7 @@ You must ensure the token is ERC-20 compliant. If it does not implement the stan
 
 ### Transfer Tokens 
 
-Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
+Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, the VAA is used to mint or release the corresponding amount of wrapped tokens.
 
 Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
 
@@ -144,7 +144,7 @@ function completeTransfer(bytes memory encodedVm) external;
     The signed VAA containing the transfer details.
 
 !!!note
-    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
+    - WTT normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
     - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
 
 ### Transfer Tokens with Payload
@@ -234,11 +234,11 @@ function completeTransferWithPayload(bytes memory encodedVm) external returns (b
 
 ## Source Code References
 
-For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+For a deeper understanding of WTT implementation and to review the actual source code, please refer to the following links:
 
-- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
-- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+- [WTT contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [WTT interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
 
 ## Portal Bridge
 
-A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
+A practical implementation of the Wormhole WTT can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
