@@ -60,7 +60,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 5. Open `helpers.ts` and add the following code:
     ```typescript title="helpers.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/helpers.ts'
+    --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/helpers.ts'
     ```
 
     You can view the [constants for platform names](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/3eae2e91fc3a6fec859eb87cfa85a4c92c65466f/core/base/src/constants/platforms.ts#L6){target=\_blank} in the GitHub repo for a list of supported platforms
@@ -78,8 +78,8 @@ Registration via attestation is only required the first time a given token is se
 
 2. Open your `transfer.ts` file and add the following code:
     ```typescript title="transfer.ts"
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts::43'
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:69:74'
+    --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/transfer.ts::43'
+    --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/transfer.ts:69:74'
     ```
 
     This code does the following:
@@ -97,7 +97,7 @@ Registration via attestation is only required the first time a given token is se
 
     If the token is registered on the destination chain, the address of the existing wrapped asset is returned, and you can continue to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain. If the token is not registered, you will see a message similar to the following advising the attestation flow will run:
 
-    --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-1.html'
+    --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/terminal-1.html'
 
     If you see this message, follow the steps under "Need to register a token?" before continuing with the rest of the transfer flow code.
 
@@ -111,7 +111,7 @@ Registration via attestation is only required the first time a given token is se
 
         2. Open `attestToken.ts` and add the following code to create the attestation for token registration:
             ```typescript title="attestToken.ts"
-            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/attestToken.ts::107'
+            --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/attestToken.ts::107'
             ```
 
             This code does the following:
@@ -131,7 +131,7 @@ Registration via attestation is only required the first time a given token is se
 
             When the attestation and registration are complete, you will see terminal output similar to the following:
 
-            --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-2.html'
+            --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/terminal-2.html'
 
         You can now go on to [initiate the transfer](#initiate-transfer-on-source-chain) on the source chain.
 
@@ -146,13 +146,13 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
     === "Manual Transfer"
 
         ```typescript title="transfer.ts"
-        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/transfer.ts:44:68'
+        --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/transfer.ts:44:68'
         ```
                 
     === "Automatic Transfer"
 
         ```ts title="transfer.ts"
-        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/automatic-transfer.ts:44:69'
+        --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/automatic-transfer.ts:44:69'
         ```
 
     This code does the following:
@@ -171,11 +171,11 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
 
     === "Manual Transfer"
 
-        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-3.html'
+        --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/terminal-3.html'
 
     === "Automatic Transfer"
 
-        --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-4.html'
+        --8<-- 'code/products/wrapped-token-transfers/guides/transfer-wrapped-assets/terminal-4.html'
 
 Congratulations! You've now used WTT to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 

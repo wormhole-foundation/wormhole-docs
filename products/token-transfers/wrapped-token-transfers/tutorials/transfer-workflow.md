@@ -90,7 +90,7 @@ In this section, we’ll guide you through initializing the project, installing 
     2. Open the `helpers.ts` file and add the following code.
 
         ```typescript
-        --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-1.ts"
+        --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-1.ts"
         ```
 
         - **`getEnv`**: Fetches environment variables like your private key from the `.env` file.
@@ -115,13 +115,13 @@ In this section, you'll create a script that automates this process by checking 
 2. **Open `create-wrapped.ts` and import the required modules**: Import the necessary SDK modules to interact with Wormhole, EVM, Solana, and Sui chains, as well as helper functions for signing and sending transactions.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:1:6"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:1:6"
     ```
 
 3. **Initialize the Wormhole SDK**: Initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:8:9"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:8:9"
     ```
 
     !!! note
@@ -130,19 +130,19 @@ In this section, you'll create a script that automates this process by checking 
 4. **Configure transfer parameters**: Specify Arbitrum Sepolia as the source chain and Base Sepolia as the destination, retrieve the token ID from the source chain for transfer, and set the gas limit (optional).
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:12:15"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:12:15"
     ```
 
 5. **Set up the destination chain signer**: The signer authorizes transactions, such as submitting the attestation.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:18:18"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:18:18"
     ```
 
 6. **Check if the token is wrapped on the destination chain**: Verify if the token already exists as a wrapped asset before creating an attestation.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:19:31"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:19:31"
     ```
 
     If the token is already wrapped, the script exits, and you may proceed to the [next section](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/#token-transfers). Otherwise, an attestation must be generated.
@@ -150,38 +150,38 @@ In this section, you'll create a script that automates this process by checking 
 7. **Set up the source chain signer**: The signer creates and submits the attestation transaction.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:34:34"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:34:34"
     ```
 
 8. **Create an attestation transaction**: Generate and send an attestation for the token on the source chain to register it on the destination chain, then save the transaction ID to verify the attestation in the next step.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:37:46"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:37:46"
     ```
 
 9. **Retrieve the signed VAA**: Once the attestation transaction is confirmed, use `parseTransaction(txid)` to extract Wormhole messages, then retrieve the signed VAA from the messages. The timeout defines how long to wait for the VAA before failure.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:49:58"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:49:58"
     ```
 
 10. **Submit the attestation on the destination chain**: Submit the signed VAA using `submitAttestation(vaa, recipient)` to create the wrapped token on the destination chain, then send the transaction and await confirmation.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:65:70"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:65:70"
     ```
 
 11. **Wait for the wrapped asset to be available**: Poll until the wrapped token is available on the destination chain.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts:74:88"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts:74:88"
     ```
 
     If the token is not found, it logs a message and retries after a short delay. Once the wrapped asset is detected, its address is returned.
 
 ??? code "Complete script"
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-2.ts"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-2.ts"
     ```
 
 ### Run the Wrapped Token Creation
@@ -211,43 +211,43 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 2. Open the `native-transfer.ts` file and begin by importing the necessary modules from the SDK and helper files.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:1:14"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:1:14"
     ```
 
 3. **Initialize the Wormhole SDK**: Initialize the `wormhole` function for the `Testnet` environment and specify the platforms (EVM, Solana, and Sui) to support.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:15:16"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:15:16"
     ```
 
 4. **Set up source and destination chains**: Specify the source chain (Sui) and the destination chain (Solana) using the `getChain` method. This allows us to define where to send the native tokens and where to receive them.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:19:20"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:19:20"
     ```
 
 5. **Configure the signers**: Use the `getSigner` function to retrieve the signers responsible for signing transactions on the respective chains. This ensures that transactions are correctly authorized on both the source and destination chains.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:23:24"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:23:24"
     ```
 
 6. **Define the token to transfer**: Specify the native token on the source chain (Sui in this example) by creating a `TokenId` object.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:27:27"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:27:27"
     ```
 
 7. **Define the transfer amount**: The amount of native tokens to transfer is specified. In this case, we're transferring 1 unit.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:30:30"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:30:30"
     ```
 
 8. **Set transfer mode**: Specify that the transfer should be manual by setting `automatic = false`. This means you will need to handle the attestation and finalization steps yourself.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:33:33"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:33:33"
     ```
 
     !!! note
@@ -256,19 +256,19 @@ Before initiating a cross-chain transfer, you must set up the chain context and 
 9. **Define decimals**: Fetch the number of decimals for the token on the source chain (Sui) using the `getTokenDecimals` function.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:36:36"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:36:36"
     ```
 
 10. **Perform the token transfer and exit the process**: Initiate the transfer by calling the `tokenTransfer` function, which we’ll define in the next step. This function takes an object containing all required details for executing the transfer, including the `source` and `destination` chains, `token`, `mode`, and transfer `amount`.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:39:45"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:39:45"
     ```
 
     Finally, we use `process.exit(0);` to close the script once the transfer completes.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:47:48"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:47:48"
     ```
 
 ### Token Transfer Logic
@@ -280,8 +280,8 @@ This section defines the `tokenTransfer` function, which manages the core steps 
 The `tokenTransfer` function initiates and manages the transfer process, handling all necessary steps to move tokens across chains with the Wormhole SDK. This function uses types from the SDK and our `helpers.ts` file to ensure chain compatibility.
 
 ```typescript
---8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:50:61"
---8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:96"
+--8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:50:61"
+--8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:96"
 ```
 
 #### Steps to Transfer Tokens
@@ -291,19 +291,19 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
 1. **Initialize the transfer object**: The `tokenTransfer` function begins by creating a `TokenTransfer` object, `xfer`, which tracks the state of the transfer process and provides access to relevant methods for each transfer step.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:63:70"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:63:70"
     ```
 
 2. **Estimate transfer fees and validate amount**: We obtain a fee quote for the transfer before proceeding. This step is significant in automatic mode (`automatic = true`), where the quote will include additional fees for relaying.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:72:80"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:72:80"
     ```
 
 3. **Submit the transaction to the source chain**: Initiate the transfer on the source chain by submitting the transaction using `route.source.signer`, starting the token transfer process.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:84:85"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:84:85"
     ```
 
      - **`srcTxids`**: The resulting transaction IDs are printed to the console. These IDs can be used to track the transfer’s progress on the source chain and [Wormhole network](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
@@ -321,18 +321,18 @@ The `tokenTransfer` function comprises several key steps to facilitate cross-cha
 4. **Wait for the attestation**: Retrieve the Wormhole attestation (VAA), which serves as cryptographic proof of the transfer. In manual mode, you must wait for the VAA before redeeming the transfer on the destination chain.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:90:90"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:90:90"
     ```
 
 5. **Complete the transfer on the destination chain**: Redeem the VAA on the destination chain to finalize the transfer.
 
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts:94:95"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts:94:95"
     ```
 
 ??? code "Complete script"
     ```typescript
-    --8<-- "code/products/token-bridge/tutorials/transfer-workflow/token-bridge-3.ts"
+    --8<-- "code/products/wrapped-token-transfers/tutorials/transfer-workflow/token-bridge-3.ts"
     ```
 
 ### Run the Native Token Transfer

@@ -46,7 +46,7 @@ Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
 2. Open your `fetch-vaa.ts` file and add the following code:
 
     ```typescript title="fetch-vaa.ts"
-    --8<-- 'code/products/token-bridge/guides/fetch-signed-vaa/fetch-vaa.ts'
+    --8<-- 'code/products/wrapped-token-transfers/guides/fetch-signed-vaa/fetch-vaa.ts'
     ```
 
     This code does the following:
@@ -64,7 +64,7 @@ Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
 
 4. You will see terminal output similar to the following:
 
-    --8<-- 'code/products/token-bridge/guides/fetch-signed-vaa/terminal-1.html'
+    --8<-- 'code/products/wrapped-token-transfers/guides/fetch-signed-vaa/terminal-1.html'
 
 ## Fetch VAA via Wormholescan
 

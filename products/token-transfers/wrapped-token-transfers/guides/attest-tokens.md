@@ -62,7 +62,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
 5. Open `helper.ts` and add the following code:
 
     ```typescript title="helper.ts"
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/helper.ts'
+    --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/helper.ts'
     ```
 
     You can view the list of [supported platform constants]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
@@ -82,8 +82,8 @@ Since attestation is a one-time process, it is good practice when working with e
 2. Open `attest.ts` and add the following code:
 
     ```typescript title="attest.ts"
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:1:37'
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:121:128'
+    --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/attest.ts:1:37'
+    --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/attest.ts:121:128'
     ```
 
     After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
@@ -102,20 +102,20 @@ Since attestation is a one-time process, it is good practice when working with e
 
 4. If the token has a wrapped version registered with the destination chain WTT contract, you will see terminal output similar to the following:
 
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/terminal01.html'
+    --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/terminal01.html'
 
     You can safely use WTT to transfer this token to the destination chain.
 
     If a wrapped version isn't found on the destination chain, your terminal output will be similar to the following, and you must attest the token before transfer:
 
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/terminal02.html'
+    --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/terminal02.html'
 
 ## Create Attestation on the Source Chain
 
 To create the attestation transaction on the source chain, open `attest.ts` and replace the `// Attestation flow code` comment with the following code:
 
 ```typescript title="attest.ts"
---8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:39:58'
+--8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/attest.ts:39:58'
 ```
 
 This code does the following:
@@ -141,7 +141,7 @@ Follow these steps to complete your attestation flow logic:
 1. Add the following code to `attest.ts`:
 
     ```typescript title="attest.ts"
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts:59:120'
+    --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/attest.ts:59:120'
     ```
 
 2. Run the script using the following command:
@@ -152,11 +152,11 @@ Follow these steps to complete your attestation flow logic:
 
 3. You will see terminal output similar to the following:
 
-    --8<-- 'code/products/token-bridge/guides/attest-tokens/terminal03.html'
+    --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/terminal03.html'
 
     ??? example "View complete script"
         ```typescript title="attest.ts"
-        --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts'
+        --8<-- 'code/products/wrapped-token-transfers/guides/attest-tokens/attest.ts'
         ```
 
 Congratulations! You've successfully created and submitted an attestation to register a token for transfer via WTT.

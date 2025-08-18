@@ -62,7 +62,7 @@ function attestToken(
 ??? interface "Example"
 
     ```solidity
-    --8<-- 'code/products/token-bridge/guides/token-bridge-contracts/attestToken.sol'
+    --8<-- 'code/products/wrapped-token-transfers/guides/token-bridge-contracts/attestToken.sol'
     ```
 
 When `attestToken()` is called, the contract emits a Verifiable Action Approval (VAA) containing the token's metadata, which the Guardians sign and publish.
@@ -131,7 +131,7 @@ function transferTokens(
 ??? interface "Example"
 
     ```solidity
-    --8<-- 'code/products/token-bridge/guides/token-bridge-contracts/transferTokens.sol'
+    --8<-- 'code/products/wrapped-token-transfers/guides/token-bridge-contracts/transferTokens.sol'
     ```
 
 Once a transfer VAA is obtained from the Wormhole Guardian network, the final step is to redeem the tokens on the destination chain. Redemption verifies the VAA's authenticity and releases (or mints) tokens to the specified recipient. To redeem the tokens, call `completeTransfer()`.
@@ -212,7 +212,7 @@ function transferTokensWithPayload(
 ??? interface "Example"
 
     ```solidity
-    --8<-- 'code/products/token-bridge/guides/token-bridge-contracts/transferTokensWithPayload.sol'
+    --8<-- 'code/products/wrapped-token-transfers/guides/token-bridge-contracts/transferTokensWithPayload.sol'
     ```
 
 After initiating a transfer on the source chain, the Wormhole Guardian network observes and signs the resulting message, creating a Verifiable Action Approval (VAA). You'll need to fetch this VAA and then call `completeTransferWithPayload()`.

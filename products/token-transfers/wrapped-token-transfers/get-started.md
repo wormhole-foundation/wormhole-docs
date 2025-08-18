@@ -66,7 +66,7 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
 1. Open `helper.ts` and define utility functions to load private keys, instantiate signers for Solana and EVM chains, and retrieve token decimals as needed:
 
     ```ts title="helper.ts"
-    --8<-- "code/products/token-bridge/get-started/snippet-1.ts"
+    --8<-- "code/products/wrapped-token-transfers/get-started/snippet-1.ts"
     ```
 
 2. In `transfer.ts`, add the script for your preferred transfer mode. The `automatic` flag controls transfer behavior passed to `tokenTransfer()`; set it to `false` for manual transfers and `true` for automatic transfers.
@@ -74,13 +74,13 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
     === "Manual Transfer"
 
         ```ts title="transfer.ts"
-        --8<-- "code/products/token-bridge/get-started/snippet-2.ts"
+        --8<-- "code/products/wrapped-token-transfers/get-started/snippet-2.ts"
         ```
     
     === "Automatic Transfer"
 
         ```ts title="transfer.ts"
-        --8<-- "code/products/token-bridge/get-started/snippet-3.ts"
+        --8<-- "code/products/wrapped-token-transfers/get-started/snippet-3.ts"
         ```
 
 
@@ -92,7 +92,7 @@ In the manual transfer, you initiate a transfer on Solana, wait for Guardian sig
 
     If successful, the expected output should be similar to this:
 
-    --8<-- "code/products/token-bridge/get-started/snippet-4.html"
+    --8<-- "code/products/wrapped-token-transfers/get-started/snippet-4.html"
 
 To verify the transaction and view its details, copy the transaction hash from the output and paste it into [Wormholescan](https://wormholescan.io/#/?network=Testnet){target=\_blank}.
 
