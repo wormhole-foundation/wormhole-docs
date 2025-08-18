@@ -29,7 +29,7 @@ At a high level, the flow looks like this:
 | **Contract Ownership**   | Requires projects to deploy and manage their own transfer contracts | Contracts are owned and managed by Wormhole                   |
 | **Setup Effort**         | Higher (deploy contracts, configure relayers)                       | Lower (no custom contracts required)                          |
 | **User Experience**      | Seamless, users interact with the same token everywhere            | Wrapped assets may need explorer metadata updates for clarity |
-| **Best For**             | Projects that want full control of their cross-chain token          | Projects that want a quick, managed solution for bridging     |
+| **Best For**             | Projects that want full control of their cross-chain token          | Projects that want a fast, managed bridging solution          |
 
 !!! note "Terminology"
     In the SDK and smart contracts, Wrapped Token Transfers (WTT) are referred to as Token Bridge. In documentation, we use WTT for clarity. Both terms describe the same protocol.
