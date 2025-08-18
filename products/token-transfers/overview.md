@@ -21,3 +21,12 @@ At a high level, the flow looks like this:
     - **NTT**: Tokens are minted or released from escrow.
     - **WTT**: Wrapped tokens are minted to the recipient’s wallet.
 
+## Choosing Between NTT and WTT
+
+| Feature                  | NTT (Native Token Transfers)                                        | WTT (Wrapped Token Transfers)                                 |
+| ------------------------ | ------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **Token Representation** | Maintains the same token across chains                              | Creates a new wrapped version on the destination chain        |
+| **Contract Ownership**   | Requires projects to deploy and manage their own transfer contracts | Contracts are owned and managed by Wormhole                   |
+| **Setup Effort**         | Higher (deploy contracts, configure relayers)                       | Lower (no custom contracts required)                          |
+| **User Experience**      | Seamless, users interact with the same token everywhere            | Wrapped assets may need explorer metadata updates for clarity |
+| **Best For**             | Projects that want full control of their cross-chain token          | Projects that want a quick, managed solution for bridging     |
