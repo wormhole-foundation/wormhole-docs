@@ -12,7 +12,7 @@ categories: Reference
 
 ## Wrapped Token Transfers (WTT)
 
---8<-- 'text/products/reference/contract-addresses/token-bridge.md'
+--8<-- 'text/products/reference/contract-addresses/wtt.md'
 
 ## Wormhole Relayer
 
