@@ -153,7 +153,7 @@ From this section, you can also:
 
 ### Role Management
 
-This section displays key [roles](/docs/products/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
+This section displays key [roles](/docs/products/token-transfers/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
 
  - **Manager’s Owner**: The owner through the `NTTOwner` proxy.
  - **Pauser**: The address authorized to pause transfers.
@@ -162,7 +162,7 @@ This section displays key [roles](/docs/products/native-token-transfers/configur
 
 ### Security Threshold
 
-Determine and update how transceivers interact with the token. [Transceivers](/docs/products/native-token-transfers/concepts/architecture/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
+Determine and update how transceivers interact with the token. [Transceivers](/docs/products/token-transfers/native-token-transfers/concepts/architecture/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
 
 A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
 

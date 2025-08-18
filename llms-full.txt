@@ -4562,7 +4562,7 @@ const config: config.WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Wormhole Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Wormhole Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import WormholeConnect, {
@@ -4622,7 +4622,7 @@ const config: config.WormholeConnectConfig = {
 
 ### Configuring Native Token Transfers (NTT)
 
-Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+Connect supports [NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
 
 To enable NTT in your app, follow these steps:
 
@@ -5451,7 +5451,7 @@ const config: config.WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Connect is configured with routes for both default protocols (WTT & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Connect is configured with routes for both default protocols (WTT & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import WormholeConnect, {
@@ -5996,13 +5996,13 @@ Here are some key use cases that highlight the power and versatility of Connect:
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
     - **[Connect](/docs/products/connect/get-started/)**: Handles user-friendly asset transfers.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Moves native assets across chains.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/)**: Moves native assets across chains.
     - **[Queries](/docs/products/queries/overview/)**: Fetches real-time prices for optimal trade execution.
 
 - **Cross-Chain Payment Widgets**
 
     - **[Connect](/docs/products/connect/get-started/)**: Facilitates seamless payments in various tokens.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
 
 - **Web3 Game Asset Transfers**
 
@@ -7228,7 +7228,7 @@ description: Learn how to use the Wormholescan API and Wormhole SDK to fetch NTT
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-wormholescan-api){target=\_blank}
 
-The [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/native-token-transfers/overview/) metadata, [VAA details](/docs/protocol/infrastructure/vaas/){target=\_blank}, and more.
+The [Wormholescan API](https://wormholescan.io/#/developers/api-doc){target=\_blank} provides a public interface for exploring cross-chain activity powered by Wormhole. You can use it to fetch token transfer operations, [Native Token Transfer (NTT)](/docs/products/token-transfers/native-token-transfers/overview/) metadata, [VAA details](/docs/protocol/infrastructure/vaas/){target=\_blank}, and more.
 
 In this guide, you will learn how to build a simple TypeScript project that:
 
@@ -7894,7 +7894,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate actions across chains.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
     - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
@@ -7905,7 +7905,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Gas Abstraction**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate gas logic.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
 
 - **Bridging Intent Library**
 
@@ -12666,7 +12666,7 @@ How it works:
 ![NTT architecture diagram](/docs/images/products/native-token-transfers/concepts/architecture/architecture-1.webp)
 
 !!! note
-    [Learn more](/docs/products/native-token-transfers/concepts/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
+    [Learn more](/docs/products/token-transfers/native-token-transfers/concepts/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
 
 #### Custom Transceivers
 
@@ -13095,7 +13095,7 @@ categories: NTT, Transfer
 
 ## Introduction
 
-The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
+The [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
 
 If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}.
 
@@ -13293,8 +13293,8 @@ In the deployment steps, you will add your supported chains, their token address
 
 You have scaffolded your NTT project and initialized the configuration file. Next, follow the appropriate guide below to configure your supported chains and deploy NTT contracts:
 
-- [Deploy to EVM](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
-- [Deploy to SVM](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on SVM-compatible chains.
+- [Deploy to EVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}: Deploy NTT on EVM-compatible chains.
+- [Deploy to SVM](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}: Deploy NTT on SVM-compatible chains.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/native-token-transfers/guides/deploy-to-evm.md
@@ -13307,7 +13307,7 @@ categories: NTT, Transfer
 
 # Deploy NTT to EVM Chains
 
-[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
@@ -13435,7 +13435,7 @@ interface INttToken {
 
 Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
 
-The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+The [NTT CLI](/docs/products/token-transfers/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
     
@@ -13587,7 +13587,7 @@ This table compares the configuration parameters available when deploying the NT
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Deploy NTT to SVM Chains**
 
@@ -13595,7 +13595,7 @@ This table compares the configuration parameters available when deploying the NT
 
     Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
 
-    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
@@ -13603,7 +13603,7 @@ This table compares the configuration parameters available when deploying the NT
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -13618,7 +13618,7 @@ categories: NTT, Transfer
 
 # Deploy NTT to SVM Chains
 
-[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on SVM chains using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on SVM chains using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on SVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode. By the end, a fully deployed NTT will be set up, allowing your token to transfer between SVM chains.
 
@@ -13737,7 +13737,7 @@ Following this process, your token will fully integrate with NTT, enabling seaml
 
 To integrate your token with NTT on a SVM chain, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
 
-The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+The [NTT CLI](/docs/products/token-transfers/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
 
@@ -13829,7 +13829,7 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --payer INSERT_KEYPAIR_JSON
 ## Deploy and Configure NTT
 
 !!! warning
-    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/token-transfers/native-token-transfers/faqs//#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on the SVM chain by following these steps:
 
@@ -13894,7 +13894,7 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     After deploying NTT on SVM chains, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
 
-    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
 
@@ -13902,7 +13902,7 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
 
@@ -13918,7 +13918,7 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
 
 </div>
 --- END CONTENT ---
@@ -14080,7 +14080,7 @@ From this section, you can also:
 
 ### Role Management
 
-This section displays key [roles](/docs/products/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
+This section displays key [roles](/docs/products/token-transfers/native-token-transfers/configuration/access-control/){target=\_blank} involved in token governance. You can view and modify these roles by selecting a new address and confirming the update.
 
  - **Manager’s Owner**: The owner through the `NTTOwner` proxy.
  - **Pauser**: The address authorized to pause transfers.
@@ -14089,7 +14089,7 @@ This section displays key [roles](/docs/products/native-token-transfers/configur
 
 ### Security Threshold
 
-Determine and update how transceivers interact with the token. [Transceivers](/docs/products/native-token-transfers/concepts/architecture/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
+Determine and update how transceivers interact with the token. [Transceivers](/docs/products/token-transfers/native-token-transfers/concepts/architecture/#transceivers){target=\_blank} route NTT transfers between blockchains, ensuring tokens are correctly sent and received across networks.
 
 A higher transceiver threshold increases security by requiring more approvals before processing a transfer, but it may also slow down transactions. A lower threshold allows faster transfers but reduces redundancy in message verification.  
 
@@ -14123,7 +14123,7 @@ categories: NTT, Transfer
 To offer the best user experience and ensure the most robust deployment, Wormhole contributors recommend the following after you have deployed Native Token Transfers (NTT):
 
 - Implement a robust testing plan for your multichain token before launching.
-- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/products/native-token-transfers/configuration/access-control/){target=\_blank} for more details on ownership and rate limits.
+- Ensure comprehensive, documented security measures are followed for custody of contract ownership, control of keys, and access control roles. Check the [NTT configuration](/docs/products/token-transfers/native-token-transfers/configuration/access-control/){target=\_blank} for more details on ownership and rate limits.
 - Consider a streamlined, customizable frontend such as [Connect](/docs/products/connect/overview/){target=\_blank} for an optimized user experience.
 - Alternatively, the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank} allows for a direct integration into your infrastructure.
 - Ensure ecosystem actors such as block explorers, automated security tools (such as BlockAid and Blowfish), and wallets (such as MetaMask, Backpack, and Phantom) are aware of your multichain deployment and that it is labeled appropriately.
@@ -14192,15 +14192,15 @@ categories: NTT, Transfer
 
 If you encounter issues during the NTT deployment process, check the following common points:
 
-- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
+- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
     -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
     -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 - **Token compliance on EVM**: Verify that your token is an ERC20 token on the EVM chain.
 - **Mint authority transfer**:
-    - **For burn or spoke tokens on SVM chains**: Ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/products/native-token-transfers/guides/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section.
-    - **For EVM tokens**: Confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/products/native-token-transfers/guides/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details.
-- **Decimal configuration**: Run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/products/native-token-transfers/guides/deploy-to-solana/#configure-ntt){target=\_blank} section.
-- **Rate limit configuration**: Increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/products/native-token-transfers/guides/deploy-to-evm/#configure-ntt){target=\_blank} section.
+    - **For burn or spoke tokens on SVM chains**: Ensure the token mint authority was transferred as described in the [set SPL Token Mint Authority](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/#set-spl-token-mint-authority){target=\_blank} section.
+    - **For EVM tokens**: Confirm the token minter was set to the NTT Manager. Refer to the [set Token Minter to NTT Manager](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/#set-token-minter-to-ntt-manager){target=\_blank} section for details.
+- **Decimal configuration**: Run `ntt pull` to correctly configure the decimals in your `deployment.json` file. More details in the [configure NTT](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/#configure-ntt){target=\_blank} section.
+- **Rate limit configuration**: Increase your rate limits to a value greater than zero. A rate limit of zero can cause transactions to get stuck. Learn more on how to [configure rate limits](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/#configure-ntt){target=\_blank} section.
 - **Docker environment based on Ubuntu 20.04 with all dependencies required for Wormhole NTT CLI development**: Run `docker compose up -d` to start the container in your terminal from the directory containing the `docker-compose.yml` file.
 
     ???- interface "Dockerfile"
@@ -14330,39 +14330,39 @@ Here's a breakdown of the key steps involved when deploying NTT:
 
 - **Prepare tokens**: Ensure your ERC-20 or SPL tokens are ready.
 - **Choose deployment model**: Choose your cross-chain token model: either burn-and-mint or hub-and-spoke.
-- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}.
+- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/token-transfers/native-token-transfers/reference/cli-commands/){target=\_blank}.
 - **Initialization**: Specify target chains and token details, and set up your CLI environment if using it.
 - **Deploy contracts**: Deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees.
 - **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles.
-- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
+- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/token-transfers/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
 
 ## Use Cases 
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Transmits native assets across chains.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Transmits native assets across chains.
     - **[Connect](/docs/products/connect/overview/)**: Manages user-friendly asset transfers.
     - **[Queries](/docs/products/queries/overview/)**: Acquires real-time prices for optimal trade execution.
 
 - **Borrowing and Lending Across Chains**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Moves collateral as native assets.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Moves collateral as native assets.
     - **[Messaging](/docs/products/messaging/overview/)**: Propagates loan requests and liquidations across chains.
     - **[Queries](/docs/products/queries/overview/)**: Retrieves interest rates and asset prices in real-time.
 
 - **Gas Abstraction**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Facilitates native token conversion for gas payments.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Facilitates native token conversion for gas payments.
     - **[Messaging](/docs/products/messaging/overview/)**: Sends gas fee payments across chains.
 
 - **Cross-Chain Payment Widgets**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Ensures direct, native asset transfers.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Ensures direct, native asset transfers.
     - **[Connect](/docs/products/connect/overview/)**: Facilitates seamless payments in various tokens.
 
 - **Cross-Chain Staking**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Transfers staked assets natively between networks.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Transfers staked assets natively between networks.
     - **[Messaging](/docs/products/messaging/overview/)**: Moves staking rewards and governance signals across chains.
 
 ## Next Steps
@@ -14384,7 +14384,7 @@ categories: NTT, Transfer
 
 The NTT Command-Line Interface (CLI) is a powerful tool for managing native token transfers across multiple blockchain networks within the Wormhole ecosystem. This page provides a comprehensive list of available commands, their descriptions, and examples to help you interact with and configure the NTT system effectively. Whether initializing deployments, updating configurations, or working with specific chains, the NTT CLI simplifies these operations through its intuitive commands.
 
-If you haven't installed the NTT CLI yet, follow the [NTT Installation](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank} instructions to set it up before proceeding.
+If you haven't installed the NTT CLI yet, follow the [NTT Installation](/docs/products/token-transfers/native-token-transfers/get-started/#install-ntt-cli){target=\_blank} instructions to set it up before proceeding.
 
 ## Table of Commands
 
@@ -14433,7 +14433,7 @@ To explore detailed information about any NTT CLI command, including its options
 
     Find information on configuring NTT, including guidance on setting Owner and Pauser access control roles and management of rate-limiting.
 
-    [:custom-arrow: Configure your NTT deployment](/docs/products/native-token-transfers/configuration/access-control/)
+    [:custom-arrow: Configure your NTT deployment](/docs/products/token-transfers/native-token-transfers/configuration/access-control/)
 
 -   :octicons-question-16:{ .lg .middle } **NTT FAQs**
 
@@ -14441,7 +14441,7 @@ To explore detailed information about any NTT CLI command, including its options
 
     Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
 
-    [:custom-arrow: Check out the FAQs](/docs/products/native-token-transfers/faqs/)
+    [:custom-arrow: Check out the FAQs](/docs/products/token-transfers/native-token-transfers/faqs//)
 
 </div>
 --- END CONTENT ---
@@ -14804,7 +14804,7 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- **[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
+- **[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
 - **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
 - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods.
 
@@ -14830,7 +14830,7 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ## Choose a Transfer Mechanism
 
-Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
+Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
 
 | Feature                | Native Token Transfers                                                     | Wrapped Token Transfers                                  |
 |------------------------|----------------------------------------------------------------------------|-----------------------------------------------|
@@ -15507,13 +15507,13 @@ Queries enable a wide range of cross-chain applications. Below are common use ca
 
     - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch rates and prices in real-time.
     - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Sync actions between chains.
-    - **[Native Token Transfer](/docs/products/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
+    - **[Native Token Transfer](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
 
 - **Cross-Chain Swaps and Liquidity Aggregation (e.g., [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank})**
 
     - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch live prices for optimal trade execution.
     - **[Connect](/docs/products/connect/overview/){target=\_blank}**: Handle user-friendly asset transfers.
-    - **[Native Token Transfer](/docs/products/native-token-transfers/overview/){target=\_blank}**: Moves native tokens.
+    - **[Native Token Transfer](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Moves native tokens.
 
 - **Real-Time Price Feeds and Trading Strategies (e.g., [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank})**
 
@@ -19590,7 +19590,7 @@ This link will open Portal with:
  - **`targetAsset`** pre-selected as `WSOL`.
 
 !!! note
-    For [**NTT tokens**](/docs/products/native-token-transfers/overview/){target=\_blank}, you can define just one asset if the same token exists across chains.
+    For [**NTT tokens**](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, you can define just one asset if the same token exists across chains.
 
     Example: [https://portalbridge.com/?sourceChain=ethereum&targetChain=solana&asset=W](https://portalbridge.com/?sourceChain=ethereum&targetChain=solana&asset=W){target=\_blank}
 
@@ -20659,7 +20659,7 @@ This page will guide you through the structural layout of these tools—how they
 The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
 
 - **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments).
-- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
+- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
 - **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}<!--, [Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank},--> and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
 - **Foundation layer**: At the base, the [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} system and the [core contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
 

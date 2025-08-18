@@ -16,7 +16,7 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- **[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
+- **[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
 - **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
 - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods.
 
@@ -42,7 +42,7 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ## Choose a Transfer Mechanism
 
-Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
+Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
 
 | Feature                | Native Token Transfers                                                     | Wrapped Token Transfers                                  |
 |------------------------|----------------------------------------------------------------------------|-----------------------------------------------|

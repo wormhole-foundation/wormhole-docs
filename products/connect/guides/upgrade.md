@@ -222,7 +222,7 @@ const config: config.WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Connect is configured with routes for both default protocols (WTT & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Connect is configured with routes for both default protocols (WTT & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import WormholeConnect, {

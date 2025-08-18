@@ -42,13 +42,13 @@ Here are some key use cases that highlight the power and versatility of Connect:
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
     - **[Connect](/docs/products/connect/get-started/)**: Handles user-friendly asset transfers.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Moves native assets across chains.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/)**: Moves native assets across chains.
     - **[Queries](/docs/products/queries/overview/)**: Fetches real-time prices for optimal trade execution.
 
 - **Cross-Chain Payment Widgets**
 
     - **[Connect](/docs/products/connect/get-started/)**: Facilitates seamless payments in various tokens.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
 
 - **Web3 Game Asset Transfers**
 

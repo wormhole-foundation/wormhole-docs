@@ -51,7 +51,7 @@ How it works:
 ![NTT architecture diagram](/docs/images/products/native-token-transfers/concepts/architecture/architecture-1.webp)
 
 !!! note
-    [Learn more](/docs/products/native-token-transfers/concepts/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
+    [Learn more](/docs/products/token-transfers/native-token-transfers/concepts/architecture/#lifecycle-of-a-message){target=\_blank} about the architecture of Native Token Transfers message lifecycles.
 
 #### Custom Transceivers
 

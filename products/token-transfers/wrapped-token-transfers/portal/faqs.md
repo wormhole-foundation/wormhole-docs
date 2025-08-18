@@ -31,7 +31,7 @@ This link will open Portal with:
  - **`targetAsset`** pre-selected as `WSOL`.
 
 !!! note
-    For [**NTT tokens**](/docs/products/native-token-transfers/overview/){target=\_blank}, you can define just one asset if the same token exists across chains.
+    For [**NTT tokens**](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, you can define just one asset if the same token exists across chains.
 
     Example: [https://portalbridge.com/?sourceChain=ethereum&targetChain=solana&asset=W](https://portalbridge.com/?sourceChain=ethereum&targetChain=solana&asset=W){target=\_blank}
 

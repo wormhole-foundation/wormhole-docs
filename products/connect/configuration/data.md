@@ -86,7 +86,7 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Wormhole Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Wormhole Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 --8<-- 'code/products/connect/configuration/data/example-all-routes.ts'
@@ -111,7 +111,7 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 
 ### Configuring Native Token Transfers (NTT)
 
-Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+Connect supports [NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
 
 To enable NTT in your app, follow these steps:
 

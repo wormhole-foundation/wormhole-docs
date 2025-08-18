@@ -6,7 +6,7 @@ categories: NTT, Transfer
 
 # Deploy NTT to SVM Chains
 
-[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on SVM chains using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of SPL tokens on SVM chains using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on SVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode. By the end, a fully deployed NTT will be set up, allowing your token to transfer between SVM chains.
 
@@ -125,7 +125,7 @@ Following this process, your token will fully integrate with NTT, enabling seaml
 
 To integrate your token with NTT on a SVM chain, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
 
-The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+The [NTT CLI](/docs/products/token-transfers/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
 
@@ -192,7 +192,7 @@ ntt set-mint-authority --chain INSERT_SVM_CHAIN --payer INSERT_KEYPAIR_JSON
 ## Deploy and Configure NTT
 
 !!! warning
-    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/native-token-transfers/faqs/#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
+    If deploying to Solana mainnet, you must use a custom RPC. See how to [set it up in your project](/docs/products/token-transfers/native-token-transfers/faqs//#how-can-i-specify-a-custom-rpc-for-ntt){target=\_blank} using an `overrides.json` file. For optimal performance, consider using a staked RPC connection from either Triton or Helius.
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on the SVM chain by following these steps:
 
@@ -257,7 +257,7 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     After deploying NTT on SVM chains, deploy and integrate it on EVM chains to enable seamless multichain transfers.  
 
-    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
+    [:custom-arrow: Deploy NTT on EVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
 
@@ -265,7 +265,7 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Add NTT to Your dApp**
 
@@ -281,6 +281,6 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
 
 </div>

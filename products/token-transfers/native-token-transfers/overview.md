@@ -37,39 +37,39 @@ Here's a breakdown of the key steps involved when deploying NTT:
 
 - **Prepare tokens**: Ensure your ERC-20 or SPL tokens are ready.
 - **Choose deployment model**: Choose your cross-chain token model: either burn-and-mint or hub-and-spoke.
-- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank}.
+- **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/token-transfers/native-token-transfers/reference/cli-commands/){target=\_blank}.
 - **Initialization**: Specify target chains and token details, and set up your CLI environment if using it.
 - **Deploy contracts**: Deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees.
 - **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles.
-- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
+- **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/token-transfers/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
 
 ## Use Cases 
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Transmits native assets across chains.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Transmits native assets across chains.
     - **[Connect](/docs/products/connect/overview/)**: Manages user-friendly asset transfers.
     - **[Queries](/docs/products/queries/overview/)**: Acquires real-time prices for optimal trade execution.
 
 - **Borrowing and Lending Across Chains**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Moves collateral as native assets.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Moves collateral as native assets.
     - **[Messaging](/docs/products/messaging/overview/)**: Propagates loan requests and liquidations across chains.
     - **[Queries](/docs/products/queries/overview/)**: Retrieves interest rates and asset prices in real-time.
 
 - **Gas Abstraction**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Facilitates native token conversion for gas payments.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Facilitates native token conversion for gas payments.
     - **[Messaging](/docs/products/messaging/overview/)**: Sends gas fee payments across chains.
 
 - **Cross-Chain Payment Widgets**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Ensures direct, native asset transfers.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Ensures direct, native asset transfers.
     - **[Connect](/docs/products/connect/overview/)**: Facilitates seamless payments in various tokens.
 
 - **Cross-Chain Staking**
 
-    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Transfers staked assets natively between networks.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/get-started/)**: Transfers staked assets natively between networks.
     - **[Messaging](/docs/products/messaging/overview/)**: Moves staking rewards and governance signals across chains.
 
 ## Next Steps

@@ -6,7 +6,7 @@ categories: NTT, Transfer
 
 # Deploy NTT to EVM Chains
 
-[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of ERC-20 tokens on [supported EVM-compatible chains](/docs/products/reference/supported-networks/#ntt){target=\_blank} using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
 
 This guide walks you through deploying NTT on EVM chains, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
 
@@ -61,7 +61,7 @@ Deploying NTT on EVM chains follows a structured process:
         !!! note
             This token uses 18 decimals by default. All minting values must be specified in `wei` (1 token = 10^18).
 
-2. **Choose your deployment model**: Choose a deployment model. The NTT framework supports two [deployment models](/docs/products/native-token-transfers/overview#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke.
+2. **Choose your deployment model**: Choose a deployment model. The NTT framework supports two [deployment models](/docs/products/token-transfers/native-token-transfers/overview/#deployment-models){target=\_blank}: burn-and-mint and hub-and-spoke.
 
     ??? interface "Burn-and-Mint"
 
@@ -99,7 +99,7 @@ Deploying NTT on EVM chains follows a structured process:
 
 Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
 
-The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+The [NTT CLI](/docs/products/token-transfers/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
     
@@ -219,7 +219,7 @@ This table compares the configuration parameters available when deploying the NT
 
     Follow the NTT Post Deployment Guide for integration examples and testing instructions.
 
-    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+    [:custom-arrow: Test Your NTT deployment](/docs/products/token-transfers/native-token-transfers/guides/post-deployment/){target=\_blank}
 
 -   :octicons-tools-16:{ .lg .middle } **Deploy NTT to SVM Chains**
 
@@ -227,7 +227,7 @@ This table compares the configuration parameters available when deploying the NT
 
     Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
 
-    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
 
 -   :octicons-question-16:{ .lg .middle } **View FAQs**
 
@@ -235,6 +235,6 @@ This table compares the configuration parameters available when deploying the NT
 
     Find answers to common questions about NTT.
 
-    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+    [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
 
 </div>
