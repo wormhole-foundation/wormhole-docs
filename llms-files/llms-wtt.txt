@@ -3,7 +3,7 @@
 This file contains documentation for Wormhole (https://wormhole.com). A cross-chain messaging protocol used to move data and assets between blockchains.
 It is intended for use with large language models (LLMs) to support developers working with Wormhole. The content includes selected pages from the official docs, organized by product category and section.
 
-This file includes documentation for the product: Token Bridge
+This file includes documentation for the product: WTT
 
 ## AI Prompt Template
 
@@ -19,6 +19,8 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/payload-structure.md [type: concept]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/transfer-flow.md [type: concept]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/faqs.md [type: other]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/attest-tokens.md [type: guide]
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/fetch-signed-vaa.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/token-bridge-contracts.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md [type: guide]
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/portal/faqs.md [type: other]
@@ -30,20 +32,20 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/overview.md
 --- BEGIN CONTENT ---
 ---
-title: Token Bridge Overview
-description: With Wormhole Token Bridge, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
-categories: Token Bridge, Transfer
+title: Wrapped Token Transfers (WTT) Overview
+description: With Wormhole WTT, you can enable secure, multichain communication, build multichain apps, sync data, and coordinate actions across blockchains.
+categories: WTT, Transfer
 ---
 
-# Token Bridge Overview
+## Wrapped Token Transfers Overview
 
-The Token Bridge is a Wormhole module for bridging wrapped tokens across various blockchain networks. Locking assets on one network and minting corresponding wrapped tokens on another facilitates secure, efficient, and composable multichain token movement.
+Wrapped Token Transfers (WTT) is a Wormhole module for bridging wrapped tokens across various blockchain networks. Locking assets on one network and minting corresponding wrapped tokens on another facilitates secure, efficient, and composable multichain token movement.
 
-This overview covers Token Bridge's main features, general processes, and possible next steps to begin building a cross-chain application.
+This overview covers WTT's main features, general processes, and possible next steps to begin building a cross-chain application.
 
 ## Key Features
 
-Token Bridge is built to solve interoperability problems in multichain token transfers. Key features include:
+WTT is built to solve interoperability problems in multichain token transfers. Key features include:
 
 - **Interoperability**: Transfer standards-compliant tokens (e.g., ERC-20, SPL) across over 30 [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
 - **Lock-and-mint mechanism**: Mint wrapped tokens backed 1:1 by locked assets on the source chain.
@@ -53,7 +55,7 @@ Token Bridge is built to solve interoperability problems in multichain token tra
 
 ## How It Works
 
-The Token Bridge provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
+WTT provides a reliable foundation for multichain interoperability at scale. The transfer process follows these key steps:
 
 1. **Attestation**: The token’s metadata (e.g., symbol, name, decimals) is registered on the destination chain. This step is only required once per token.
 2. **Locking**: On the source chain, the native token is locked in a custody account.
@@ -70,7 +72,7 @@ sequenceDiagram
     participant GuardianNetwork
     participant Solana
 
-    Alice->>Ethereum: Lock ETH in Token Bridge contract
+    Alice->>Ethereum: Lock ETH in WTT contract
     Ethereum->>GuardianNetwork: Emit transfer message
     GuardianNetwork->>GuardianNetwork: Verify and sign message
 
@@ -80,32 +82,32 @@ sequenceDiagram
     Solana->>Alice: Deliver wrapped ETH on Solana
 ```
 
-For a more in-depth understanding of how the Token Bridge works, see the [Flow of a Transfer](/docs/products/token-bridge/concepts/transfer-flow/){target=\_blank} page.
+For a more in-depth understanding of how WTT works, see the [Flow of a Transfer](/docs/products/token-bridge/concepts/transfer-flow/){target=\_blank} page.
 
 ## Use Cases
 
-Here are key use cases that highlight the power and versatility of the Token Bridge.
+Here are key use cases that highlight the power and versatility of WTT.
 
 - **Multichain Rewards and Token Utility in Decentralized Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})** 
 
-    - **[Token Bridge](/docs/products/token-bridge/get-started/)**: Transfer tokens between chains.
+    - **[WTT](/docs/products/token-bridge/get-started/)**: Transfer tokens between chains.
     - **[Messaging](/docs/products/messaging/overview/)**: Facilitate the distribution and claiming processes of rewards.
 
 - **Tokenized Gaming Rewards**
 
-    - **[Token Bridge](/docs/products/token-bridge/get-started/)**: Handle the underlying lock-and-mint logic securely.
+    - **[WTT](/docs/products/token-bridge/get-started/)**: Handle the underlying lock-and-mint logic securely.
     - **[Connect](/docs/products/connect/overview/)**: Provide a user-friendly way to move game tokens across chains.
 
 - **Multichain DeFi Arbitrage**
 
-    - **[Token Bridge](/docs/products/token-bridge/get-started/)**: Enables rapid and secure movement of DeFi assets.
+    - **[WTT](/docs/products/token-bridge/get-started/)**: Enables rapid and secure movement of DeFi assets.
     - **[Connect](/docs/products/connect/overview/)**: Provides a UI widget to onboard users and facilitate seamless multichain swaps within DeFi aggregator platforms.
 
 ## Next Steps
 
 If you are looking for more guided practice, take a look at: 
 
-- **[Get Started with Token Bridge](/docs/products/token-bridge/get-started/)**: Perform token transfers using the Token Bridge, including manual and automatic transfers.
+- **[Get Started with WTT](/docs/products/token-bridge/get-started/)**: Perform token transfers using WTT, including manual and automatic transfers.
 - **[Complete Token Transfer Flow](/docs/products/token-bridge/tutorials/transfer-workflow/)**: Build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains.
 - **[Create Multichain Tokens](/docs/products/token-bridge/tutorials/multichain-token/)**: Craft a multichain token using Wormhole's Portal Bridge.
 --- END CONTENT ---
@@ -113,23 +115,26 @@ If you are looking for more guided practice, take a look at:
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/get-started.md
 --- BEGIN CONTENT ---
 ---
-title: Get Started with Token Bridge
-description: Perform token transfers using Wormhole’s Token Bridge with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
-categories: Token Bridge, Transfers
+title: Get Started with Wrapped Token Transfers (WTT)
+description: Perform token transfers using Wormhole’s WTT with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
+categories: WTT, Transfers
 ---
 
-# Get Started with Token Bridge
+# Get Started with Wrapped Token Transfers (WTT)
 
 ## Introduction
 
-Wormhole's [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
+Wormhole's [WTT](/docs/products/token-bridge/overview){target=\_blank} enables seamless multichain token transfers by locking tokens on a source chain and minting equivalent wrapped tokens on a destination chain. This mechanism preserves token properties such as name, symbol, and decimal precision across chains.
 
 In this guide, you will use the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} to perform two types of transfers. <!-- If you're new to transfer modes, see the [Transfer Modes page](TODO){target=\_blank} for a detailed explanation. commenting because we don't have this page-->
 
  - **Manual transfer**: Where you control each step.
  - **Automatic transfer**: Where a relayer finalizes the transfer for you.
 
-These examples will help you understand how the Token Bridge works across EVM and non-EVM chains.
+These examples will help you understand how WTT works across EVM and non-EVM chains.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -145,8 +150,8 @@ This guide uses a Solana wallet with [devnet SOL](https://faucet.solana.com/){ta
 1. Create a new directory and initialize a Node.js project:
 
     ```bash
-    mkdir token-bridge
-    cd token-bridge
+    mkdir wh-wtt
+    cd wh-wtt
     npm init -y
     ```
 
@@ -405,9 +410,9 @@ Now that you've completed a manual multichain token transfer, explore these guid
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/reference/supported-networks.md
 --- BEGIN CONTENT ---
 ---
-title: Token Bridge Supported Networks
-description: Explore all blockchains supported by Wormhole Token Bridge, including network availability, block explorers, and cross-chain transfer support.
-categories: Token Bridge, Transfer
+title: Wrapped Token Transfers (WTT) Supported Networks
+description: Explore all blockchains supported by Wormhole WTT, including network availability, block explorers, and cross-chain transfer support.
+categories: WTT, Transfer
 ---
 
 # Supported Networks
@@ -452,16 +457,19 @@ categories: Token Bridge, Transfer
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/payload-structure.md
 --- BEGIN CONTENT ---
 ---
-title: Token Bridge Payload Structure
-description: Discover the structure and purpose of each Token Bridge payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
-categories: Token Bridge, Transfers
+title: Wrapped Token Transfers (WTT) Payload Structure
+description: Discover the structure and purpose of each WTT payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
+categories: WTT, Transfers
 ---
 
 # Message and Payload Structure
 
-To enable secure and flexible cross-chain token transfers, the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
+To enable secure and flexible cross-chain token transfers, the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} defines a set of standardized payloads. These payloads are embedded in [Verifiable Action Approvals (VAAs)](/docs/protocol/infrastructure/vaas/){target=\_blank} and processed by bridge contracts on the source and destination chains. Each payload has a unique format and serves a specific role in the lifecycle of token bridging.
 
-This page outlines each payload type in detail.
+This page provides a detailed overview of each payload type.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Transfer
 
@@ -539,7 +547,7 @@ Name [32]uint8
 
     `PayloadID` ++"uint8"++
 
-    Value must be `2`, indicating a `AssetMeta` operation.
+    Value must be `2`, indicating an `AssetMeta` operation.
 
     ---
 
@@ -557,7 +565,7 @@ Name [32]uint8
 
     `Decimals` ++"uint8"++
 
-    Number of decimals the token uses on its native chain (not truncated to 8).
+    Number of decimals the token uses on its native chain (not truncated to 8 decimal places).
 
     ---
 
@@ -639,7 +647,7 @@ Unlike `Transfer`, the `TransferWithPayload` message must be redeemed by the rec
 
 ## RegisterChain
 
-The `RegisterChain` governance payload (Action ID = `1`) registers a Token Bridge emitter address for a foreign chain. This ensures the bridge only accepts messages from known peers.
+The `RegisterChain` governance payload (Action ID = `1`) registers a WTT emitter address for a foreign chain. This ensures the bridge only accepts messages from known peers.
 
 ```text
 Module [32]byte
@@ -654,7 +662,7 @@ EmitterAddress [32]uint8
 
     `Module` ++"[32]byte"++
 
-    Module identifier. Left-padded with `TokenBridge` for Token Bridge.
+    Module identifier. Left-padded with `TokenBridge` for WTT.
 
     ---
 
@@ -684,7 +692,7 @@ This payload can only be emitted by the Wormhole governance contract, ensuring t
 
 ## UpgradeContract
 
-The `UpgradeContract` governance payload (Action ID = `2`) facilitates upgrades to the Token Bridge contract on a specific chain.
+The `UpgradeContract` governance payload (Action ID = `2`) facilitates upgrades to the WTT contract on a specific chain.
 
 ```text
 Module [32]byte
@@ -698,7 +706,7 @@ NewContract [32]uint8
 
     `Module` ++"[32]byte"++
 
-    Module identifier, left-padded with `TokenBridge` for Token Bridge.
+    Module identifier, left-padded with `TokenBridge` for WTT.
 
     ---
 
@@ -716,7 +724,7 @@ NewContract [32]uint8
 
     `NewContract` ++"[32]uint8"++
 
-    Address of the new Token Bridge contract, left-zero-padded to 32 bytes.
+    Address of the new WTT contract, left-zero-padded to 32 bytes.
 
 This message allows the Wormhole governance system to deploy new versions of the bridge while retaining control over interoperability and security.
 
@@ -724,41 +732,44 @@ This message allows the Wormhole governance system to deploy new versions of the
 
 | Payload Type          | ID            | Purpose                                                                 | Who Emits It          |
 |-----------------------|---------------|-------------------------------------------------------------------------|-----------------------|
-| `Transfer`            | PayloadID `1` | Moves tokens between chains by minting or releasing on the destination. | Token Bridge contract |
-| `AssetMeta`           | PayloadID `2` | Attests token metadata (decimals, symbol, name) before first transfer.  | Token Bridge contract |
-| `TransferWithPayload` | PayloadID `3` | Transfers tokens along with a custom payload for contract execution.    | Token Bridge contract |
-| `RegisterChain`       | Action `1`    | Registers a verified Token Bridge emitter for a foreign chain.          | Wormhole governance   |
-| `UpgradeContract`     | Action `2`    | Upgrades the Token Bridge contract on a specific chain.                 | Wormhole governance   |
+| `Transfer`            | PayloadID `1` | Moves tokens between chains by minting or releasing on the destination. | WTT contract |
+| `AssetMeta`           | PayloadID `2` | Attests token metadata (decimals, symbol, name) before first transfer.  | WTT contract |
+| `TransferWithPayload` | PayloadID `3` | Transfers tokens along with a custom payload for contract execution.    | WTT contract |
+| `RegisterChain`       | Action `1`    | Registers a verified WTT emitter for a foreign chain.          | Wormhole governance   |
+| `UpgradeContract`     | Action `2`    | Upgrades the WTT contract on a specific chain.                 | Wormhole governance   |
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/concepts/transfer-flow.md
 --- BEGIN CONTENT ---
 ---
-title: Flow of a Token Bridge Transfer
-description: Learn how the Wormhole Token Bridge enables secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
-categories: Token Bridge, Transfer
+title: Flow of Wrapped Token Transfers (WTT)
+description: Learn how the Wormhole Wrapped Token Transfers enable secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
+categories: WTT, Transfer
 ---
 
-# Flow of a Transfer
+# Flow of a WTT Transfer
 
-The [Wormhole Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own Token Bridge contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
+The Wormhole [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions such as locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
-This guide provides a conceptual overview of the Token Bridge and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
+This guide provides a conceptual overview of WTT and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Transfer Flow
 
-Cross-chain token transfers using the Token Bridge follow these steps:
+Cross-chain token transfers using WTT follow these steps:
 
 1. **Initiation on the Source Chain**
 
-    The transfer begins when a user calls the Token Bridge contract on the source chain:
+    The transfer begins when a user calls the WTT contract on the source chain:
 
     - **Wrapped tokens**: The token is burned.
     - **Original tokens**: If the token is native to the source chain, the token is locked in the contract.
 
 2. **Transfer Message Publication**
 
-    The Token Bridge contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
+    The WTT contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
 
 3. **Message Observation and Signing**
 
@@ -768,78 +779,77 @@ Cross-chain token transfers using the Token Bridge follow these steps:
 
 4. **VAA Submission to the Destination Chain**
 
-    The VAA must be submitted to the Token Bridge contract on the destination chain to complete the transfer. The Token Bridge contract then verifies the VAA by calling the Core Contract behind the scenes. This step can be handled in two ways:
+    The VAA must be submitted to the WTT contract on the destination chain to complete the transfer. The WTT contract then verifies the VAA by calling the Core Contract behind the scenes. This step can be handled in two ways:
 
-    - **Automatic**: A relayer service detects the VAA and submits it to the Token Bridge contract.
-    - **Manual**: The user or dApp retrieves the VAA and submits it directly to the Token Bridge contract.
+    - **Automatic**: A relayer service detects the VAA and submits it to the WTT contract.
+    - **Manual**: The user or dApp retrieves the VAA and submits it directly to the WTT contract.
 
 5. **Finalization of the Transfer on the Destination Chain**
 
-   After the VAA is verified on the destination chain, the Token Bridge contract completes the transfer:
+   After the VAA is verified on the destination chain, the WTT contract completes the transfer:
 
     - **Wrapped tokens**: A wrapped representation of the original token is minted.
     - **Original tokens**: If the token is native to the destination chain, the token is released to the recipient.
 
-Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ETH is locked on Ethereum’s Token Bridge, and an equivalent amount of wrapped ETH is minted on Solana. The diagram below illustrates this transfer flow.
+Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ETH is locked on Ethereum’s WTT, and an equivalent amount of wrapped ETH is minted on Solana. The diagram below illustrates this transfer flow.
 
 ```mermaid
 sequenceDiagram
     participant Alice as Alice
-    participant TokenBridgeEth as Token Bridge Ethereum<br>(Source Chain)
+    participant WTTEth as WTT Ethereum<br>(Source Chain)
     participant CoreEth as Core Contract Ethereum<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeSol as Token Bridge Solana<br>(Destination Chain)
+    participant WTTSol as WTT Solana<br>(Destination Chain)
     participant CoreSol as Core Contract Solana<br>(Destination Chain)
 
-    Alice->>TokenBridgeEth: Initiate ETH transfer<br>(lock ETH)
-    TokenBridgeEth->>CoreEth: Publish transfer message
+    Alice->>WTTEth: Initiate ETH transfer<br>(lock ETH)
+    WTTEth->>CoreEth: Publish transfer message
     CoreEth-->>Guardians: Emit message event
     Guardians->>Guardians: Sign and publish VAA
 
     alt Automatic VAA submission
-        Guardians->>TokenBridgeSol: Relayer submits VAA
+        Guardians->>WTTSol: Relayer submits VAA
     else Manual VAA submission
         Alice->>Guardians: Retrieve VAA
-        Alice->>TokenBridgeSol: Submit VAA
+        Alice->>WTTSol: Submit VAA
     end
 
-    TokenBridgeSol->>CoreSol: Verify VAA
-    CoreSol-->>TokenBridgeSol: VAA verified
-    TokenBridgeSol-->>Alice: Mint wrapped ETH on Solana (complete transfer)
+    WTTSol->>CoreSol: Verify VAA
+    CoreSol-->>WTTSol: VAA verified
+    WTTSol-->>Alice: Mint wrapped ETH on Solana (complete transfer)
 ```
 
-Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Ethereum. The wrapped ETH is burned on Solana’s Token Bridge, and the equivalent 5 ETH are released on Ethereum. The diagram below illustrates this transfer flow.
+Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Ethereum. The wrapped ETH is burned on Solana’s WTT, and the equivalent 5 ETH are released on Ethereum. The diagram below illustrates this transfer flow.
 
 ```mermaid
 sequenceDiagram
     participant User as Alice
-    participant TokenBridgeSrc as Token Bridge Solana<br>(Source Chain)
+    participant WTTSrc as WTT Solana<br>(Source Chain)
     participant CoreSrc as Core Contract Solana<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeDst as Token Bridge Ethereum<br>(Destination Chain)
+    participant WTTDst as WTT Ethereum<br>(Destination Chain)
     participant CoreDst as Core Contract Ethereum<br>(Destination Chain)
 
-    User->>TokenBridgeSrc: Initiate transfer <br> (burn wrapped ETH)
-    TokenBridgeSrc->>CoreSrc: Publish message
+    User->>WTTSrc: Initiate transfer <br> (burn wrapped ETH)
+    WTTSrc->>CoreSrc: Publish message
     CoreSrc-->>Guardians: Emit message event
     Guardians->>Guardians: Sign and publish VAA
 
     alt Automatic VAA submission
-        Guardians->>TokenBridgeDst: Relayer submits VAA
+        Guardians->>WTTDst: Relayer submits VAA
     else Manual VAA submission
         User->>Guardians: Retrieve VAA
-        User->>TokenBridgeDst: User submits VAA directly
+        User->>WTTDst: User submits VAA directly
     end
 
-    TokenBridgeDst->>CoreDst: Verify VAA
-    CoreDst-->>TokenBridgeDst: VAA verified
-    TokenBridgeDst-->>User: Release native ETH on Ethereum (Complete transfer)
+    WTTDst->>CoreDst: Verify VAA
+    CoreDst-->>WTTDst: VAA verified
+    WTTDst-->>User: Release native ETH on Ethereum (Complete transfer)
 ```
-
 
 ## Automatic vs. Manual Transfers
 
-The Token Bridge supports two modes of transfer, depending on whether the VAA submission step is handled automatically or manually:
+WTT supports two modes of transfer, depending on whether the VAA submission step is handled automatically or manually:
 
 - **Automatic**: A relayer service listens for new VAAs and automatically submits them to the destination chain.
 - **Manual**: The user (or dApp) must retrieve the VAA and manually submit it to the destination chain.
@@ -855,15 +865,15 @@ Here's a quick breakdown of the key differences:
 
 ### Completing Manual Transfers
 
-The user who initiated the transfer should complete the transfer within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
+The user who initiated the transfer must complete it within 24 hours for manual transfers. Guardian Sets are guaranteed to be valid for at least that long. If a user waits longer, the Guardian Set may have changed between initiation and redemption, causing the VAA to be rejected.
 
 If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=\_blank} tutorial to update the VAA with signatures from the current Guardian Set.
 
-## Token Bridge Relayer (TBR)
+## WTT Relayer (TBR)
 
-When completing an automatic transfer using the Token Bridge—either through [Connect](/docs/products/connect/overview/){target=\_blank} or programmatically via the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}—the Token Bridge Relayer (TBR) manages the interaction with the underlying Token Bridge contracts on [supported chains where the TBR is available](/docs/products/connect/reference/support-matrix/){target=\_blank}.
+When completing an automatic transfer using WTT, either through [Connect](/docs/products/connect/overview/){target=\_blank} or programmatically via the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, the WTT Relayer (TBR) manages the interaction with the underlying WTT contracts on [supported chains where the TBR is available](/docs/products/connect/reference/support-matrix/){target=\_blank}.
 
-<!-- TODO: add link to supported chains for TBR, pull this data in from the SDK and add it to the Token Bridge reference section. Eventually remove link to connect matrix -->
+<!-- TODO: add link to supported chains for TBR, pull this data in from the SDK and add it to WTT reference section. Eventually remove link to connect matrix -->
 
 ### Flow of an Automatic Transfer via TBR
 
@@ -875,11 +885,11 @@ The flow of an automatic transfer using the TBR looks like this:
 
 2. **Prepare and Forward the Transfer**
 
-    The TBR verifies the token, encodes transfer details (relayer fee, native gas request, recipient), and forwards the transfer to the Token Bridge.
+    The TBR verifies the token, encodes transfer details (relayer fee, native gas request, recipient), and forwards the transfer to WTT.
 
 3. **Core Messaging Layer Processes the Transfer**  
 
-    The Token Bridge emits a message to the Core Contract. Guardians observe the message and produce a signed VAA attesting to the transfer. 
+    WTT emits a message to the Core Contract. Guardians observe the message and produce a signed VAA attesting to the transfer. 
 
 4. **Off-Chain Relayer Observes the VAA**
 
@@ -891,24 +901,24 @@ The flow of an automatic transfer using the TBR looks like this:
 
 6. **TBR Validates and Completes the Transfer**
     
-    The destination TBR validates the VAA by invoking the Token Bridge contract, confirms it's from a registered TBR, verifies the token and native gas request, and then takes custody of the tokens.
+    The destination TBR validates the VAA by invoking the WTT contract, confirms it's from a registered TBR, verifies the token and native gas request, and then takes custody of the tokens.
 
-6. **Asset Distribution on the Destination Chain**
+7. **Asset Distribution on the Destination Chain**
 
     The TBR sends the remaining tokens and native gas to the user, pays the off-chain relayer fee, and refunds any excess native tokens.
 
-The following diagram illustrates the key steps on the source chain during a transfer:
+The following diagram illustrates the key steps in the source chain during a transfer:
 
 ```mermaid
 sequenceDiagram
     participant User
     participant SourceTBR as Source Chain TBR
-    participant SourceTB as Source Chain Token Bridge
+    participant SourceWTT as Source Chain WTT
     participant Messaging as Core Messaging Layer
 
     User->>SourceTBR: Initiate transfer (token, <br>recipient, fees, native gas)
-    SourceTBR->>SourceTB: Forward transfer (burn or lock tokens)
-    SourceTB->>Messaging: Publish transfer message
+    SourceTBR->>SourceWTT: Forward transfer (burn or lock tokens)
+    SourceWTT->>Messaging: Publish transfer message
 ```
 
 Once the core messaging layer processes the transfer, the destination chain handles completion as shown below:
@@ -918,14 +928,14 @@ sequenceDiagram
     participant Messaging as Core Messaging Layer
     participant Relayer as Off-chain Relayer
     participant DestTBR as Destination Chain TBR
-    participant DestTB as Destination Chain <br> Token Bridge
+    participant DestWTT as Destination Chain <br> WTT
     participant DestUser as User <br> (Destination Chain)
 
     Messaging->>Relayer: Emit signed VAA for transfer
     Relayer->>Relayer: Verifies destination chain and token registration
     Relayer->>DestTBR: Query native gas amount
     Relayer->>DestTBR: Submit signed VAA
-    DestTBR->>DestTB: Validate VAA
+    DestTBR->>DestWTT: Validate VAA
     DestTBR->>DestTBR: Take custody of tokens
     DestTBR->>DestUser: Send tokens (after fees & native gas)
     DestTBR->>Relayer: Pay relayer fee & refund excess
@@ -933,29 +943,29 @@ sequenceDiagram
 
 ## Next Steps
 
-Now that you’ve seen how a transfer works try both types yourself to experience the full process:
+Now that you’ve seen how a transfer works, try both types yourself to experience the full process:
 
-- [Get Started with Token Bridge](/docs/products/token-bridge/get-started/){target=\_blank}
+- [Get Started with WTT](/docs/products/token-bridge/get-started/){target=\_blank}
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/faqs.md
 --- BEGIN CONTENT ---
 ---
-title: Token Bridge FAQs
-description: Find answers to common questions about the Wormhole Token Bridge, including managing wrapped assets and understanding gas fees.
-categories: Token Bridge, Transfer
+title: Wrapped Token Transfers (WTT) FAQs
+description: Find answers to common questions about the Wormhole WTT, including managing wrapped assets and understanding gas fees.
+categories: WTT, Transfer
 ---
 
-# Token Bridge FAQs
+# Wrapped Token Transfers (WTT) FAQs
 
-## Can ownership of wrapped tokens be transferred from the Token Bridge?
+## Can ownership of wrapped tokens be transferred from the WTT?
 
-No, you cannot transfer ownership of wrapped token contracts from the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} because the Token Bridge deploys and retains ownership of these contracts and tokens.
+No. Ownership of wrapped token contracts cannot be transferred, because the [WTT](/docs/products/token-bridge/overview/){target=\_blank} deploys and retains control of these contracts and tokens.
 
- - **On EVM chains**: When you attest a token, the Token Bridge deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the Token Bridge contract itself.
- - **On Solana**: The Token Bridge deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the Token Bridge.
+ - **On EVM chains**: When you attest a token, the WTT deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the WTT contract itself.
+ - **On Solana**: The WTT deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the WTT.
 
-The logic behind deploying these token contracts involves submitting an attestation VAA, which allows the Token Bridge to verify and deploy the wrapped token contract on the destination chain.
+The logic behind deploying these token contracts involves submitting an attestation VAA, which allows the WTT to verify and deploy the wrapped token contract on the destination chain.
 
 Relevant contracts:
 
@@ -965,7 +975,7 @@ Relevant contracts:
 
 ## How do I update the metadata of a wrapped token?
 
-Because wrapped tokens are deployed and controlled by the Token Bridge program, which is under the authority of the Wormhole Guardians, there is no direct way for you to update their metadata. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
+Wrapped tokens are deployed and controlled by the WTT program under Guardian authority. You cannot update their metadata directly. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
 
 ## How do I calculate the current gas costs for Ethereum Mainnet VAA verification?
 
@@ -973,35 +983,686 @@ You can refer to the [core-bridge repository](https://github.com/nonergodic/core
 
 ## How can I update my wrapped token image on Solscan?
 
-Updating the metadata (such as the token image, name, or symbol) of a wrapped token on [Solscan](https://solscan.io/){target=\_blank} requires [contacting the Solscan team](https://solscan.io/contactus){target=\_blank} directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the Token Bridge, not individual developers or projects.
+Updating the metadata (such as the token image, name, or symbol) of a wrapped token on [Solscan](https://solscan.io/){target=\_blank} requires [contacting the Solscan team](https://solscan.io/contactus){target=\_blank} directly. Wormhole cannot make these updates for you because the wrapped token contracts are owned and controlled by the WTT program, not individual developers or projects.
 
 To request an update, contact Solscan via [support@solscan.io](mailto:support@solscan.io) or their [contact form](https://solscan.io/contactus){target=\_blank}.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/attest-tokens.md
+--- BEGIN CONTENT ---
+---
+title: Token Attestation
+description: Create and submit a token attestation to register a token for a Wrapped Token Transfers (WTT) using the TypeScript SDK. Required before first-time transfers.
+categories: WTT, Transfer
+---
+
+# Token Attestation
+
+This guide demonstrates token attestation for registering a token for transfer using the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview){target=\_blank} protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
+
+Completing this guide will help you accomplish the following:
+
+- Verify if a wrapped version of a token exists on a destination chain.
+- Create and submit a token attestation to register a wrapped version of a token on a destination chain.
+- Check for the wrapped version to become available on the destination chain and return the wrapped token address.
+
+The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana, but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank}.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
+- [TypeScript](https://www.typescriptlang.org/download/){target=\_blank} installed globally.
+- The contract address for the token you wish to register.
+- A wallet setup with the following:
+    - Private keys for your source and destination chains.
+    - A small amount of gas tokens on your source and destination chains.
+
+## Set Up Your Development Environment
+
+Follow these steps to initialize your project, install dependencies, and prepare your developer environment for token attestation.
+
+1. Create a new directory and initialize a Node.js project using the following commands:
+
+    ```bash
+    mkdir attest-token
+    cd attest-token
+    npm init -y
+    ```
+
+2. Install dependencies, including the [Wormhole TypeScript SDK]({{repositories.wormhole_sdk.repository_url}}){target=\_blank}:
+
+    ```bash
+    npm install @wormhole-foundation/sdk -D tsx typescript
+    ```
+
+3. Set up secure access to your wallets. This guide assumes you are loading your private key values from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [`cast wallet`](https://book.getfoundry.sh/reference/cast/cast-wallet){target=\_blank}.
+
+    !!! warning
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
+
+4. Create a new file named `helper.ts` to hold signer functions:
+
+    ```bash
+    touch helper.ts
+    ```
+
+5. Open `helper.ts` and add the following code:
+
+    ```typescript title="helper.ts"
+    import {
+  Chain,
+  ChainAddress,
+  ChainContext,
+  Wormhole,
+  Network,
+  Signer,
+} from '@wormhole-foundation/sdk';
+import type { SignAndSendSigner } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import sui from '@wormhole-foundation/sdk/sui';
+
+/**
+ * Returns a signer for the given chain using locally scoped credentials.
+ * The required values (EVM_PRIVATE_KEY, SOL_PRIVATE_KEY, SUI_MNEMONIC) must
+ * be loaded securely beforehand, for example via a keystore, secrets
+ * manager, or environment variables (not recommended).
+ */
+export async function getSigner<n c="" chain="" extends="" network,="">(
+  chain: ChainContext<n, c="">
+): Promise&lt;{
+  chain: ChainContext<n, c="">;
+  signer: SignAndSendSigner<n, c="">;
+  address: ChainAddress<c>;
+}&gt; {
+  let signer: Signer<any, any="">;
+  const platform = chain.platform.utils()._platform;
+
+  // Customize the signer by adding or removing platforms as needed. Be sure
+  // to import the necessary packages for the platforms you want to support
+  switch (platform) {
+    case 'Evm':
+      signer = await (
+        await evm()
+      ).getSigner(await chain.getRpc(), EVM_PRIVATE_KEY!);
+      break;
+    case 'Solana':
+      signer = await (
+        await solana()
+      ).getSigner(await chain.getRpc(), SOL_PRIVATE_KEY!);
+      break;
+    case 'Sui':
+      signer = await (
+        await sui()
+      ).getSigner(await chain.getRpc(), SUI_MNEMONIC!);
+      break;
+    default:
+      throw new Error(`Unsupported platform: ${platform}`);
+  }
+
+  const typedSigner = signer as SignAndSendSigner<n, c="">;
+
+  return {
+    chain,
+    signer: typedSigner,
+    address: Wormhole.chainAddress(chain.chain, signer.address()),
+  };
+}
+</n,></any,></c></n,></n,></n,></n>
+    ```
+
+    You can view the list of [supported platform constants]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/base/src/constants/platforms.ts#L6){target=_blank} in the Wormhole SDK GitHub repo.
+
+## Check for a Wrapped Version of a Token
+
+If you are working with a newly created token that you know has never been transferred to the destination chain, you can continue to the [Create Attestation on the Source Chain](#create-attestation-on-the-source-chain) section.
+
+Since attestation is a one-time process, it is good practice when working with existing tokens to incorporate a check for wrapped versions into your WTT flow. Follow these steps to check for a wrapped version of a token:
+
+1. Create a new file called `attest.ts` to hold the wrapped version check and attestation logic:
+
+    ```bash
+    touch attest.ts
+    ```
+
+2. Open `attest.ts` and add the following code:
+
+    ```typescript title="attest.ts"
+    wormhole,
+  Wormhole,
+  TokenId,
+  TokenAddress,
+} from '@wormhole-foundation/sdk';
+import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from './helper';
+
+async function attestToken() {
+  // Initialize wormhole instance, define the network, platforms, and chains
+  const wh = await wormhole('Testnet', [evm, solana]);
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+
+  // Define the token to check for a wrapped version
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
+  );
+  // Check if the token is registered with the destination chain WTT (Token Bridge) contract
+  // Registered = returns the wrapped token ID
+  // Not registered = runs the attestation flow to register the token
+  let wrappedToken: TokenId;
+  try {
+    wrappedToken = await wh.getWrappedAsset(destinationChain.chain, tokenId);
+    console.log(
+      '✅ Token already registered on destination:',
+      wrappedToken.address
+    );
+  } catch (e) {
+    // Attestation on the source chain flow code
+    console.log(
+      '⚠️ Token is NOT registered on destination. Running attestation flow...'
+    );
+    }
+
+attestToken().catch((e) =&gt; {
+  console.error('❌ Error in attestToken', e);
+  process.exit(1);
+});
+</typeof>
+    ```
+
+    After initializing a Wormhole instance and defining the source and destination chains, this code does the following:
+
+    - **Defines the token to check**: Use the contract address on the source chain for this value.
+    - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L205){target=\_blank}**: Part of the [`Wormhole` class]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L47){target=\_blank}, the method does the following:
+        - Accepts a [`TokenId`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
+        - Checks for a corresponding wrapped version of the destination chain's WTT contract.
+        - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
+
+3. Run the script using the following command:
+
+    ```bash
+    npx tsx attest.ts
+    ```
+
+4. If the token has a wrapped version registered with the destination chain WTT contract, you will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+<span data-ty="">✅ Token already registered on destination: SolanaAddress {
+    type: 'Native',
+    address: PublicKey [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] {
+    _bn: BN: 1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca
+    }
+    }</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    You can safely use WTT to transfer this token to the destination chain.
+
+    If a wrapped version isn't found on the destination chain, your terminal output will be similar to the following, and you must attest the token before transfer:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation flow...</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+## Create Attestation on the Source Chain
+
+To create the attestation transaction on the source chain, open `attest.ts` and replace the `// Attestation flow code` comment with the following code:
+
+```typescript title="attest.ts"
+const tb = await sourceChain.getTokenBridge();
+    // Get the signer for the source chain
+    const sourceSigner = await getSigner(sourceChain);
+    // Define the token to attest and a payer address
+    const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
+      sourceChain.chain,
+      tokenId.address.toString()
+    );
+    const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
+    // Create a new attestation and sign and send the transaction
+    for await (const tx of tb.createAttestation(token, payer)) {
+      const txids = await signSendWait(
+        sourceChain,
+        tb.createAttestation(token),
+        sourceSigner.signer
+      );
+      // Attestation on the destination chain flow code
+      console.log('✅ Attestation transaction sent:', txids);
+```
+
+This code does the following:
+
+- **Gets the source chain WTT context**: This is where the transaction is sent to create the attestation.
+- Defines the token to attest and the payer.
+- **Calls `createAttestation`**: Defined in the [`TokenBridge` interface]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
+    - Accepts a `TokenAddress` representing the token on its native chain.
+    - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
+    - Prepares an attestation for the token, including metadata such as address, symbol, and decimals.
+    - Returns an `AsyncGenerator` that yields unsigned transactions, which are then signed and sent to initiate the attestation process on the source chain.
+
+## Submit Attestation on Destination Chain
+
+The attestation flow finishes with the following: 
+
+- Using the transaction ID returned from the `createAttestation` transaction on the source chain to retrieve the associated signed `TokenBridge:AttestMeta` VAA.
+- Submitting the signed VAA to the destination chain to provide Guardian-backed verification of the attestation transaction on the source chain. 
+- The destination chain uses the attested metadata to create the wrapped version of the token and register it with its WTT contract.
+
+Follow these steps to complete your attestation flow logic:
+
+1. Add the following code to `attest.ts`:
+
+    ```typescript title="attest.ts"
+    const messages = await sourceChain.parseTransaction(txids[0].txid);
+      console.log('✅ Attestation messages:', messages);
+      // Set a timeout for fetching the VAA, this can take several minutes
+      // depending on the source chain network and finality
+      const timeout = 25 * 60 * 1000;
+      // Fetch the VAA for the attestation message
+      const vaa = await wh.getVaa(
+        messages[0]!,
+        'TokenBridge:AttestMeta',
+        timeout
+      );
+      if (!vaa) throw new Error('❌ VAA not found before timeout.');
+      // Get the WTT (Token Bridge) contract text for the destination chain
+      // and submit the attestation VAA
+      const destTb = await destinationChain.getTokenBridge();
+      // Get the signer for the destination chain
+      const destinationSigner = await getSigner(destinationChain);
+      const payer = toNative(
+        destinationChain.chain,
+        destinationSigner.signer.address()
+      );
+      const destTxids = await signSendWait(
+        destinationChain,
+        destTb.submitAttestation(vaa, payer),
+        destinationSigner.signer
+      );
+      console.log('✅ Attestation submitted on destination:', destTxids);
+    }
+    // Poll for the wrapped token to appear on the destination chain
+    const maxAttempts = 50; // ~5 minutes with 6s interval
+    const interval = 6000;
+    let attempt = 0;
+    let registered = false;
+
+    while (attempt &lt; maxAttempts &amp;&amp; !registered) {
+      attempt++;
+      try {
+        const wrapped = await wh.getWrappedAsset(
+          destinationChain.chain,
+          tokenId
+        );
+        console.log(
+          `✅ Wrapped token is now available on ${destinationChain.chain}:`,
+          wrapped.address
+        );
+        registered = true;
+      } catch {
+        console.log(
+          `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
+        );
+        await new Promise((res) =&gt; setTimeout(res, interval));
+      }
+    }
+    if (!registered) {
+      throw new Error(
+        `❌ Token attestation did not complete in time on ${destinationChain.chain}`
+      );
+    }
+    console.log(
+      `🚀 Token attestation complete! Token registered with ${destinationChain.chain}.`
+    );
+    ```
+
+2. Run the script using the following command:
+
+    ```bash
+    npx tsx attest.ts
+    ```
+
+3. You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx attest.ts</span>
+<span data-ty="">⚠️ Token is NOT registered on destination. Running attestation
+    flow...</span>
+<span data-ty="">✅ Attestation transaction sent: [ { chain: 'Moonbeam', txid:
+    '0xbaf7429e1099cac6f39ef7e3c30e38776cfb5b6be837dcd8793374c8ee491799' }
+    ]</span>
+<span data-ty="">✅ Attestation messages: [ { chain: 'Moonbeam', emitter: UniversalAddress {
+    address: [Uint8Array] }, sequence: 1507n } ]</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 0/750</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 1/750</span>
+<span data-ty="">.....</span>
+<span data-ty="">Retrying Wormholescan:GetVaaBytes, attempt 10/750</span>
+<span data-ty="">📨 Submitting attestation VAA to Solana...</span>
+<span data-ty="">✅ Attestation submitted on destination: [ { chain: 'Solana', txid:
+    '3R4oF5P85jK3wKgkRs5jmE8BBLoM4wo2hWSgXXL6kA8efbj2Vj9vfuFSb53xALqYZuv3FnXDwJNuJfiKKDwpDH1r'
+    } ]</span>
+<span data-ty="">✅ Wrapped token is now available on Solana: SolanaAddress { type:
+    'Native', address: PublicKey
+    [PublicKey(2qjSAGrpT2eTb673KuGAR5s6AJfQ1X5Sg177Qzuqt7yB)] { _bn: BN:
+    1b578bb9b7a04a1aab3b5b64b550d8fc4f73ab343c9cf8532d2976b77ec4a8ca } }</span>
+<span data-ty="">🚀 Token attestation complete!</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+    ??? example "View complete script"
+        ```typescript title="attest.ts"
+        import {
+  wormhole,
+  Wormhole,
+  TokenId,
+  TokenAddress,
+} from '@wormhole-foundation/sdk';
+import { signSendWait, toNative } from '@wormhole-foundation/sdk-connect';
+import evm from '@wormhole-foundation/sdk/evm';
+import solana from '@wormhole-foundation/sdk/solana';
+import { getSigner } from './helper';
+
+async function attestToken() {
+  // Initialize wormhole instance, define the network, platforms, and chains
+  const wh = await wormhole('Testnet', [evm, solana]);
+  const sourceChain = wh.getChain('Moonbeam');
+  const destinationChain = wh.getChain('Solana');
+
+  // Define the token to check for a wrapped version
+  const tokenId: TokenId = Wormhole.tokenId(
+    sourceChain.chain,
+    'INSERT_TOKEN_CONTRACT_ADDRESS'
+  );
+  // Check if the token is registered with the destination chain WTT (Token Bridge) contract
+  // Registered = returns the wrapped token ID
+  // Not registered = runs the attestation flow to register the token
+  let wrappedToken: TokenId;
+  try {
+    wrappedToken = await wh.getWrappedAsset(destinationChain.chain, tokenId);
+    console.log(
+      '✅ Token already registered on destination:',
+      wrappedToken.address
+    );
+  } catch (e) {
+    // Attestation on the source chain flow code
+    console.log(
+      '⚠️ Token is NOT registered on destination. Running attestation flow...'
+    );
+
+    // Retrieve the WTT (Token Bridge) contract text for the source chain
+    const tb = await sourceChain.getTokenBridge();
+    // Get the signer for the source chain
+    const sourceSigner = await getSigner(sourceChain);
+    // Define the token to attest and a payer address
+    const token: TokenAddress<typeof sourcechain.chain=""> = toNative(
+      sourceChain.chain,
+      tokenId.address.toString()
+    );
+    const payer = toNative(sourceChain.chain, sourceSigner.signer.address());
+    // Create a new attestation and sign and send the transaction
+    for await (const tx of tb.createAttestation(token, payer)) {
+      const txids = await signSendWait(
+        sourceChain,
+        tb.createAttestation(token),
+        sourceSigner.signer
+      );
+      // Attestation on the destination chain flow code
+      console.log('✅ Attestation transaction sent:', txids);
+      
+      // Parse the transaction to get Wormhole message ID
+      const messages = await sourceChain.parseTransaction(txids[0].txid);
+      console.log('✅ Attestation messages:', messages);
+      // Set a timeout for fetching the VAA, this can take several minutes
+      // depending on the source chain network and finality
+      const timeout = 25 * 60 * 1000;
+      // Fetch the VAA for the attestation message
+      const vaa = await wh.getVaa(
+        messages[0]!,
+        'TokenBridge:AttestMeta',
+        timeout
+      );
+      if (!vaa) throw new Error('❌ VAA not found before timeout.');
+      // Get the WTT (Token Bridge) contract text for the destination chain
+      // and submit the attestation VAA
+      const destTb = await destinationChain.getTokenBridge();
+      // Get the signer for the destination chain
+      const destinationSigner = await getSigner(destinationChain);
+      const payer = toNative(
+        destinationChain.chain,
+        destinationSigner.signer.address()
+      );
+      const destTxids = await signSendWait(
+        destinationChain,
+        destTb.submitAttestation(vaa, payer),
+        destinationSigner.signer
+      );
+      console.log('✅ Attestation submitted on destination:', destTxids);
+    }
+    // Poll for the wrapped token to appear on the destination chain
+    const maxAttempts = 50; // ~5 minutes with 6s interval
+    const interval = 6000;
+    let attempt = 0;
+    let registered = false;
+
+    while (attempt &lt; maxAttempts &amp;&amp; !registered) {
+      attempt++;
+      try {
+        const wrapped = await wh.getWrappedAsset(
+          destinationChain.chain,
+          tokenId
+        );
+        console.log(
+          `✅ Wrapped token is now available on ${destinationChain.chain}:`,
+          wrapped.address
+        );
+        registered = true;
+      } catch {
+        console.log(
+          `⏳ Waiting for wrapped token to register on ${destinationChain.chain}...`
+        );
+        await new Promise((res) =&gt; setTimeout(res, interval));
+      }
+    }
+    if (!registered) {
+      throw new Error(
+        `❌ Token attestation did not complete in time on ${destinationChain.chain}`
+      );
+    }
+    console.log(
+      `🚀 Token attestation complete! Token registered with ${destinationChain.chain}.`
+    );
+  }
+}
+
+attestToken().catch((e) =&gt; {
+  console.error('❌ Error in attestToken', e);
+  process.exit(1);
+});
+</typeof>
+        ```
+
+Congratulations! You've successfully created and submitted an attestation to register a token for transfer via WTT.
+
+## Next Steps
+
+- [**Transfer Wrapped Assets**](/docs/products/token-bridge/guides/attest-tokens): Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/fetch-signed-vaa.md
+--- BEGIN CONTENT ---
+---
+title: Fetch a Signed VAA
+description: Learn how to fetch a signed VAA, a key step in the manual Wrapped Token Transfer (WTT) flow.
+categories: WTT, Transfer
+---
+
+# Fetch a Signed VAA
+
+This guide demonstrates how to fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}, first programmatically using the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, then manually using the [Wormholescan](https://wormholescan.io/){target=\_blank} explorer. VAA retrieval is a key step in manual messaging and transfer flows. Knowing how to locate a relevant VAA can also help with debugging and monitoring transactions while building out your integration.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=_blank}
+- [TypeScript](https://www.typescriptlang.org/download/){target=_blank} (installed globally)
+
+## Set Up Your Developer Environment
+
+Follow these steps to initialize your project, install dependencies, and prepare your developer environment:
+
+1. Create a new directory and initialize a Node.js project using the following commands:
+
+    ```bash
+    mkdir fetch-vaa
+    cd fetch-vaa
+    npm init -y
+    ```
+
+2. Install dependencies, including the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}:
+
+   ```bash
+   npm install @wormhole-foundation/sdk -D tsx typescript
+   ```
+
+## Fetch VAA via TypeScript SDK
+
+Follow these steps to search for and retrieve a VAA using the TypeScript SDK:
+
+1. Create a new file called `fetch-vaa.ts` using the following command:
+
+    ```bash
+    touch fetch-vaa.ts
+    ```
+
+2. Open your `fetch-vaa.ts` file and add the following code:
+
+    ```typescript title="fetch-vaa.ts"
+    import { wormhole } from '@wormhole-foundation/sdk';
+import evm from '@wormhole-foundation/sdk/evm';
+import { serialize } from '@wormhole-foundation/sdk-definitions';
+import { toChainId } from '@wormhole-foundation/sdk-base';
+
+async function main() {
+  // Initialize the Wormhole SDK with the network and platform
+  // to match the source chain for the transaction ID
+  const wh = await wormhole('Testnet', [evm]);
+  // Source chain transaction ID for the VAA you want to fetch
+  const txid =
+    'INSERT_TRANSACTION_ID';
+  // Call getVaa to fetch the VAA associated with the transaction ID
+  // and decode returned data into a human-readable format
+  const vaa = await wh.getVaa(txid, 'Uint8Array', 60000);
+  if (!vaa) {
+    console.error('❌ VAA not found');
+    process.exit(1);
+  }
+  const { emitterChain, emitterAddress, sequence } = vaa;
+  const chainId = toChainId(emitterChain);
+  const emitterHex = emitterAddress.toString();
+
+  const vaaBytes = serialize(vaa);
+  const vaaHex = Buffer.from(vaaBytes).toString('hex');
+
+  console.log('✅ VAA Info');
+  console.log(`Chain: ${chainId}`);
+  console.log(`Emitter: ${emitterHex}`);
+  console.log(`Sequence: ${sequence}`);
+  console.log('---');
+  console.log(`VAA Bytes (hex):\n${vaaHex}`);
+  // Return the VAA object for further processing if needed
+  return vaa;
+}
+
+main().catch(console.error);
+    ```
+
+    This code does the following:
+
+    - Initializes a Wormhole instance with the same `network` and `platform` as the source chain transfer transaction.
+    - Accepts the transaction ID from the source chain transfer transaction.
+    - Prints the associated `chain`, `emitter`, `sequence`, and VAA bytes to the terminal.
+    - Returns the `vaa` object for any further processing.
+
+3. Run the script with the following command:
+
+    ```bash
+    npx tsx fetch-vaa.ts
+    ```
+
+4. You will see terminal output similar to the following:
+
+    <div data-termynal="" id="termynal">
+<span data-ty="input"><span class="file-path"></span>npx tsx fetch-vaa.ts</span>
+<span data-ty="">✅ VAA Info</span>
+<span data-ty="">Chain: 16</span>
+<span data-ty="">Emitter: 0x000000000000000000000000bc976d4b9d57e57c3ca52e1fd136c45ff7955a96</span>
+<span data-ty="">Sequence: 1512</span>
+<span data-ty="">---</span>
+<span data-ty="">VAA Bytes (hex):</span>
+<span data-ty="">010000000001004d34d189b894acf4c16b9f456f908ca8b60aa9b2fa77cfa6ebc18f864818c21a7e18b6c4f72415f441be4d2b666c5b897d354cec0e950b935b15806d002d39670168557fb6000000000010000000000000000000000000bc976d4b9d57e57c3ca52e1fd136c45ff7955a9600000000000005e8010100000000000000000000000000000000000000000000000000000000009896800000000000000000000000009b2ff7b2b5a459853224a3317b786d8e85026660001084b1e2f8a26ddff1a55eed46add73a9b556256f2afda1072f6cfdab1dcb2d53000010000000000000000000000000000000000000000000000000000000000000000</span>
+<span data-ty="input"><span class="file-path"></span></span>
+</div>
+
+## Fetch VAA via Wormholescan
+
+You can also use [Wormholescan's](https://wormholescan.io/){target=\_blank} UI to manually search for a VAA using the source transaction ID, VAA ID, or a wallet address. This type of quick search is helpful during debugging or testing of your integration. Follow these steps to fetch a VAA using Wormholescan:
+
+1. On [Wormholescan](https://wormholescan.io/){target=\_blank}, use the dropdown menu in the top right corner to select either **Mainnet** or **Testnet**.
+
+2. Enter your transaction ID in the search bar and select "return" or "enter" to submit your search request. Alternatively, you can enter the wallet address of the transaction signer and return any transactions under that account.
+
+    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-1.webp)
+
+3. Inspect the returned search results. Note that the source transaction ID, current status, transaction details, and the VAA ID are included.
+
+    ![](/docs/images/products/token-bridge/guides/fetch-vaa/fetch-vaa-2.webp)
+
+Congratulations! You've now fetched a signed VAA using both the TypeScript SDK and Wormholescan UI. These skills are valuable when developing manual transfer or messaging processes, as well as debugging and testing an integration build. 
+
+<!-- ## Next Steps
+
+- [**Redeem Signed VAA to Complete Transfer**](/docs/products/token-bridge/guides/fetch-signed-vaa/): Follow this guide to submit a signed VAA that verifies a source chain transfer transaction to the destination chain, completing a manual transfer flow and releasing the tokens to the intended recipient.
+- [**Transfer Assets with TypeScript**](/docs/products/token-bridge/guides/transfer-wrapped-assets/): This guide takes you through the Token Bridge transfer flow end-to-end for moving wrapped assets across blockchains, including both automatic and manual transfers. -->
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/token-bridge-contracts.md
 --- BEGIN CONTENT ---
 ---
-title: Get Started with Token Bridge
-description: Learn how to integrate Wormhole's Token Bridge for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
-categories: Token Bridge, Transfer
+title: Get Started with Wrapped Token Transfers (WTT)
+description: Learn how to integrate Wormhole's Wrapped Token Transfers (WTT) for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
+categories: WTT, Transfer
 ---
 
-# Interact with Token Bridge Contracts
+# Interact with Wrapped Token Transfer (WTT) Contracts
 
-Wormhole's Token Bridge enables seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, the Token Bridge supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
+Wormhole's Wrapped Token Transfers (WTT) enable seamless cross-chain token transfers using a lock-and-mint mechanism. The bridge locks tokens on the source chain and mints them as wrapped assets on the destination chain. Additionally, WTT supports [Token Transfers with Messages](/docs/protocol/infrastructure/vaas/#token-transfer-with-message){target=\_blank}, where arbitrary byte payloads can be attached to the token transfer, enabling more complex chain interactions. 
 
-This page outlines the core contract methods needed to integrate Token Bridge functionality into your smart contracts. To understand the theoretical workings of the Token Bridge, refer to the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section. 
+This page outlines the core contract methods needed to integrate WTT functionality into your smart contracts. To understand the theoretical workings of WTT, refer to the [WTT](/docs/products/token-bridge/overview/){target=\_blank} page in the Learn section.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
-To interact with the Wormhole Token Bridge, you'll need the following:
+To interact with the Wormhole WTT, you'll need the following:
 
-- [The address of the Token Bridge contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
+- [The address of the WTT contract](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank} on the chains you're working with.
 - [The Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're targeting for token transfers.
 
-## How to Interact with Token Bridge Contracts
+## How to Interact with WTT Contracts
 
-The primary functions of the Token Bridge contracts revolve around:
+The primary functions of the WTT contracts revolve around:
 
 - **Attesting a token**: Registering a new token for cross-chain transfers.
 - **Transferring tokens**: Locking and minting tokens across chains.
@@ -1009,9 +1670,9 @@ The primary functions of the Token Bridge contracts revolve around:
 
 ### Attest a Token
 
-Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so the Token Bridge can recognize it and create a wrapped version if necessary.
+Suppose a token has never been transferred to the target chain before transferring it cross-chain. In that case, its metadata must be registered so WTT can recognize it and create a wrapped version if necessary.
 
-The attestation process doesn't require you to manually input token details like name, symbol, or decimals. Instead, the Token Bridge contract retrieves these values from the token contract itself when you call the `attestToken()` method.
+The attestation process doesn't require you to manually input token details, such as name, symbol, or decimals. Instead, the WTT contract retrieves these values from the token contract itself when you call the `attestToken()` method.
 
 ```solidity
 function attestToken(
@@ -1058,7 +1719,7 @@ You must ensure the token is ERC-20 compliant. If it does not implement the stan
 
 ### Transfer Tokens 
 
-Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, that VAA is used to mint or release the corresponding amount of wrapped tokens.
+Once a token is attested, a cross-chain token transfer can be initiated following the lock-and-mint mechanism. On the source chain, tokens are locked (or burned if they're already a wrapped asset), and a VAA is emitted. On the destination chain, the VAA is used to mint or release the corresponding amount of wrapped tokens.
 
 Call `transferTokens()` to lock/burn tokens and produce a VAA with transfer details.
 
@@ -1147,7 +1808,7 @@ function completeTransfer(bytes memory encodedVm) external;
     The signed VAA containing the transfer details.
 
 !!!note
-    - The Token Bridge normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
+    - WTT normalizes token amounts to 8 decimals when passing them between chains. Make sure your application accounts for potential decimal truncation.
     - The VAA ensures the integrity of the message. Only after the Guardians sign the VAA can it be redeemed on the destination chain.
 
 ### Transfer Tokens with Payload
@@ -1250,35 +1911,38 @@ function completeTransferWithPayload(bytes memory encodedVm) external returns (b
 
 ## Source Code References
 
-For a deeper understanding of the Token Bridge implementation and to review the actual source code, please refer to the following links:
+For a deeper understanding of WTT implementation and to review the actual source code, please refer to the following links:
 
-- [Token Bridge contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
-- [Token Bridge interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
+- [WTT contract](https://github.com/wormhole-foundation/wormhole/blob/main/ethereum/contracts/bridge/Bridge.sol){target=\_blank}
+- [WTT interface](https://github.com/wormhole-foundation/wormhole-solidity-sdk/blob/main/src/interfaces/ITokenBridge.sol){target=\_blank}
 
 ## Portal Bridge
 
-A practical implementation of the Wormhole Token Bridge can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
+A practical implementation of the Wormhole WTT can be seen in [Portal Bridge](https://portalbridge.com/){target=\_blank}, which provides an easy-to-use interface for transferring tokens across multiple blockchain networks. It leverages the Wormhole infrastructure to handle cross-chain asset transfers seamlessly, offering users a convenient way to bridge their assets while ensuring security and maintaining token integrity.
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/guides/transfer-wrapped-assets.md
 --- BEGIN CONTENT ---
 ---
 title: Transfer Wrapped Assets
-description: Follow this guide to use Token Bridge to transfer wrapped assets. Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
-categories: Token Bridge, Transfer, Typescript SDK
+description: Follow this guide to use Wrapped Token Transfers (WTT). Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
+categories: WTT, Transfer, Typescript SDK
 ---
 
 # Transfer Wrapped Assets
 
-This guide demonstrates the transfer of wrapped assets using the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
 
 Completing this guide will help you accomplish the following:
 
 - Verify if a wrapped version of a token exists on a destination chain.
 - Create a token attestation to register a wrapped version of a token on a destination chain.
-- Transfer wrapped assets using Token Bridge's automatic or manual transfers.
+- Transfer wrapped assets using WTT's automatic or manual transfers.
 - Fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 - Manually redeem a signed VAA to claim tokens on a destination chain.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -1406,7 +2070,7 @@ export async function getTokenDecimals<n extends="" network="">(
 
 ## Verify Token Registration (Attestation)
 
-Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
+Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's WTT contract to create a corresponding wrapped version with the same attributes as the native token.
 
 Registration via attestation is only required the first time a given token is sent to that specific destination chain. Follow these steps to check the registration status of a token:
 
@@ -1444,7 +2108,7 @@ async function transferTokens() {
   const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
   const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));
 
-  // Check if the token is registered with destinationChain token bridge contract
+  // Check if the token is registered with destinationChain WTT (Token Bridge) contract
   // Registered = returns the wrapped token ID, continues with transfer
   // Not registered = runs the attestation flow to register the token
   let wrappedToken: TokenId;
@@ -1555,7 +2219,7 @@ async function attestToken() {
   const sourceSigner = await getSigner(sourceChain);
   const destinationSigner = await getSigner(destinationChain, gasLimit);
 
-  // Retrieve the token bridge context for the source chain
+  // Retrieve the WTT (Token Bridge) context for the source chain
   // This is where you will send the transaction to attest the token
   const tb = await sourceChain.getTokenBridge();
   // Define the token to attest
@@ -1591,7 +2255,7 @@ async function attestToken() {
       timeout
     );
     if (!vaa) throw new Error('❌ VAA not found before timeout.');
-    // Get the token bridge context for the destination chain
+    // Get the WTT (Token Bridge) context for the source chaindestination chain
     // and submit the attestation VAA
     const destTb = await destinationChain.getTokenBridge();
     const payer = toNative(
@@ -1646,7 +2310,7 @@ attestToken().catch((e) =&gt; {
 
             This code does the following:
         
-            - Gets the Token Bridge protocol for the source chain.
+            - Gets the WTT protocol for the source chain.
             - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction.
             - Calls `createAttestation`, signs, and then sends the transaction.
             - Waits for the signed VAA confirming the attestation creation.
@@ -1882,12 +2546,12 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
 <span data-ty="input"><span class="file-path"></span></span>
 </div>
 
-Congratulations! You've now used Token Bridge to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
+Congratulations! You've now used WTT to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 
 ## Next Steps
 
-- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working Token Bridge integration.
-- [**Interact with Token Bridge Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in Token Bridge contracts.
+- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
+- [**Interact with WTT Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in WTT contracts.
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
 --- END CONTENT ---
 
@@ -1896,7 +2560,7 @@ Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs
 ---
 title: Portal Bridge FAQs
 description: Learn how to use deep-linking on Portal Bridge and send tokens to any wallet address with simple URL parameters and custom recipient fields.
-categories: Token Bridge, Transfer
+categories: WTT, Transfer
 ---
 
 # FAQs
@@ -1945,7 +2609,7 @@ Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs
 ---
 title: Create Multichain Tokens
 description: Learn how to create a multichain token, bridge tokens across blockchains, and update metadata for seamless multichain interoperability.
-categories: Token Bridge, Transfers
+categories: WTT, Transfers
 ---
 
 # Create Multichain Tokens
@@ -2043,27 +2707,30 @@ Looking for more? Check out the [Wormhole Tutorial Demo repository](https://gith
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-bridge/tutorials/transfer-workflow.md
 --- BEGIN CONTENT ---
 ---
-title: Transfer Tokens via Token Bridge Tutorial
+title: Transfer Tokens via Wrapped Token Transfers (WTT) Tutorial
 description: Learn to build a cross-chain native token transfer app using Wormhole’s TypeScript SDK, supporting native token transfers across EVM and non-EVM chains
-categories: Token Bridge, Transfers
+categories: WTT, Transfers
 ---
 
 # Complete Token Transfer Workflow
 
 :simple-github: [Source code on GitHub](https://github.com/wormhole-foundation/demo-basic-ts-sdk/){target=\_blank}
 
-This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} method. The Token Bridge method enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
+This tutorial guides you through building a cross-chain token transfer application using the [Wormhole TypeScript SDK](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank} and its [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} protocol. The WTT protocol enables secure and efficient cross-chain asset transfers across different blockchain networks, allowing users to move tokens seamlessly.
 
-By leveraging Wormhole’s Token Bridge, this guide shows you how to build an application that supports multiple transfer types:
+By leveraging Wormhole’s WTT, this guide shows you how to build an application that supports multiple transfer types:
 
  - EVM to EVM (e.g., Ethereum to Avalanche)
  - EVM to non-EVM chains (e.g., Ethereum to Solana)
  - Non-EVM to EVM chains (e.g., Sui to Avalanche)
  - Non-EVM to non-EVM chains (e.g., Solana to Sui)
 
-Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the Token Bridge method from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
+Existing solutions for cross-chain transfers can be complex and inefficient, requiring multiple steps and transaction fees. However, the WTT protocol from Wormhole simplifies the process by handling the underlying attestation, transaction validation, and message passing across blockchains.
 
-At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s Token Bridge method.
+At the end of this guide, you’ll have a fully functional setup for transferring assets across chains using Wormhole’s WTT protocol.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -2119,7 +2786,7 @@ In this section, we’ll guide you through initializing the project, installing 
     !!! note
         Ensure your private key contains native tokens for gas on both the source and destination chains. For Sui, you must provide a mnemonic instead of a private key.
 
-5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, set up signers for different chains, and manage transaction relays.
+5. **Create a `helpers.ts` file**: To simplify the interaction between chains, create a file to store utility functions for fetching your private key, setting up signers for different chains, and managing transaction relays.
 
     1. Create the helpers file.
 
@@ -2463,7 +3130,7 @@ If the token is already wrapped, the script exits. Otherwise, it generates an at
 
 ## Token Transfers
 
-In this section, you'll create a script to transfer native tokens across chains using Wormhole's Token Bridge method. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
+In this section, you'll create a script to transfer native tokens across chains using Wormhole's WTT protocol. The script will handle the transfer of Sui native tokens to Solana, demonstrating the seamless cross-chain transfer capabilities of the Wormhole SDK. Since both chains are non-EVM compatible, you'll need to manually handle the attestation and finalization steps.
 
 ### Configure Transfer Details
 
@@ -2529,7 +3196,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
     ```
 
     !!! note
-        Automatic transfers are only supported for EVM chains. For non-EVM chains like Solana and Sui, you must manually handle the attestation and finalization steps.
+        Automatic transfers are only supported for EVM chains. For non-EVM chains, such as Solana and Sui, you must manually handle the attestation and finalization steps.
     
 9. **Define decimals**: Fetch the number of decimals for the token on the source chain (Sui) using the `getTokenDecimals` function.
 
@@ -2556,7 +3223,7 @@ import { SignerStuff, getSigner, getTokenDecimals } from '../helpers/helpers';
 
 ### Token Transfer Logic
 
-This section defines the `tokenTransfer` function, which manages the core steps for cross-chain transfer execution. This function will handle initiating the transfer on the source chain, retrieving the attestation, and completing the transfer on the destination chain.
+This section defines the `tokenTransfer` function, which manages the core steps for executing cross-chain transfers. This function will handle initiating the transfer on the source chain, retrieving the attestation, and completing the transfer on the destination chain.
 
 #### Defining the Token Transfer Function
 
@@ -2675,7 +3342,7 @@ async function tokenTransfer<n extends="" network="">(
 
 #### Steps to Transfer Tokens
 
-The `tokenTransfer` function consists of several key steps to facilitate the cross-chain transfer. Let’s break down each step:
+The `tokenTransfer` function comprises several key steps to facilitate cross-chain transfers. Let’s break down each step:
 
 1. **Initialize the transfer object**: The `tokenTransfer` function begins by creating a `TokenTransfer` object, `xfer`, which tracks the state of the transfer process and provides access to relevant methods for each transfer step.
 
@@ -2851,7 +3518,7 @@ If you'd like to explore the complete project or need a reference while followin
 
 ## Conclusion
 
-You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the Token Bridge method. This guide took you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains like Sui and Solana.
+You've successfully built a cross-chain token transfer application using Wormhole's TypeScript SDK and the WTT protocol. This guide walks you through the setup, configuration, and transfer logic required to move native tokens across non-EVM chains, such as Sui and Solana.
 
 The same transfer logic will apply if you’d like to extend this application to different chain combinations, including EVM-compatible chains.
 
@@ -2942,7 +3609,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Facilitate decentralized interactions.
-    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
+    - **[Wrapped Token Transfers](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
 
 ## Next Steps
 
@@ -2964,7 +3631,7 @@ categories: Transfer, Basics
 
 Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
 
-Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Wrapped Token Transfers (WTT) for a secure lock-and-mint mechanism.
 
 Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
 
@@ -2973,14 +3640,14 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
 - **[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
-- **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
+- **[Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
 - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods.
 
 <div markdown class="full-width">
 
 ::spantable::
 
-|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|                                | Criteria                              | NTT                | WTT                | Settlement         |
 |--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
 | Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 |                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
@@ -2998,20 +3665,20 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ## Choose a Transfer Mechanism
 
-Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
+Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
 
-| Feature                | Native Token Transfers                                                     | Token Bridge                                  |
+| Feature                | Native Token Transfers                                                     | Wrapped Token Transfers                                  |
 |------------------------|----------------------------------------------------------------------------|-----------------------------------------------|
 | **Best for**           | DeFi governance, native assets with multichain liquidity                   | Consumer apps, games, wrapped-token use cases |
 | **Mechanism**          | Burn-and-mint or hub-and-spoke                                             | Lock-and-mint                                 |
 | **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting and integrated Global Accountant |
 | **Contract Ownership** | User retains ownership and upgrade authority on each chain                 | Managed via Wormhole Governance |
-| **Token Contracts**    | Native contracts owned by your protocol governance       | Wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process. |
+| **Token Contracts**    | Native contracts owned by your protocol governance       | Wrapped asset contract owned by the Wormhole WTT contract, upgradeable via a 13/19 Guardian governance process. |
 | **Integration**        | Customizable, flexible framework for advanced deployments                  | Straightforward, permissionless deployment    |
 | **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank}   | [Portal Bridge UI](https://portalbridge.com/){target=\_blank} |
 
 
-In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Wrapped Token Transfers (WTT) and how to select the best option for your use case:
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
 
@@ -3332,7 +3999,7 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- **[Get Started with Token Bridge](/docs/products/token-bridge/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
+- **[Get Started with WTT](/docs/products/token-bridge/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
 --- END CONTENT ---
@@ -3449,7 +4116,7 @@ While the implementation details of the Core Contracts vary by network, the core
 
 ### Sending Messages
 
-To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}.
+To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank}.
 
 === "EVM"
 
@@ -4985,7 +5652,7 @@ To simplify this process, we've included a tool for verifying if a token has an 
 <span data-ty=""> &gt; npx ts-node script/check-attestation.ts</span>
 <span data-ty=""> </span>
 <span data-ty=""> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
-<span data-ty=""> Enter the Token Bridge contract address on the TARGET chain: 0x05...E153</span>
+<span data-ty=""> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
 <span data-ty=""> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
 <span data-ty=""> Enter the SOURCE chain ID: 6</span>
 <span data-ty=""> The token is attested on the target chain. Wrapped token address: 0xDDB349c976cA2C873644F21f594767Eb5390C831</span>
@@ -7652,7 +8319,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
 
     - In some applications, the target contract acts as the entry point and performs verification via the Core Contract.
-    - In products like the Token Bridge, the Token Bridge contract itself interacts with the Core Contract.
+    - In products like the Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
 
 ## On-Chain Components
 
@@ -7715,7 +8382,7 @@ This page will guide you through the structural layout of these tools—how they
 The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
 
 - **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments).
-- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
+- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, [WTT](/docs/products/token-bridge/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
 - **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}<!--, [Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank},--> and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
 - **Foundation layer**: At the base, the [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} system and the [core contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
 
@@ -7787,7 +8454,7 @@ Multicast refers to simultaneously broadcasting a single message or transaction 
 
 This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
@@ -8106,7 +8773,7 @@ This page provides a comprehensive guide to where the Spy fits within the Wormho
 - **Real-time monitoring of Wormhole messages**: The Spy allows users to observe Wormhole messages as they are published across supported chains in near real-time.
 - **Filterable and observable message streams**: Users can filter message streams by chain, emitter, and other criteria, making it easier to track specific contracts or categories of interest.
 - **Integration-friendly event streaming**: The Spy exposes gRPC and WebSocket interfaces, making it easy to integrate message observation into custom tooling, dashboards, or indexing services.
-- **Support for multiple message protocols**: It can observe messages from different Wormhole messaging protocols (Token Bridge, CCTP, NTT, etc.), providing broad coverage of cross-chain activity.
+- **Support for multiple message protocols**: It can observe messages from different Wormhole messaging protocols (WTT, CCTP, NTT, etc.), providing broad coverage of cross-chain activity.
 - **Lightweight and infrastructure-ready**: The Spy is designed to run as part of indexing or backend services, not requiring validator-level infrastructure.
 
 ## Integrator Use Case
@@ -8264,7 +8931,7 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 ### Token Transfer
 
-Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Token Bridge is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
+Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Wrapped Token Transfer (WTT) is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
 
 Transferring tokens from the sending chain to the destination chain requires the following steps:
 
@@ -8289,7 +8956,7 @@ Note that the destination chain is agnostic regarding how the tokens on the send
 
 ### Attestation
 
-While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, the Token Bridge supports token attestation.
+While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, WTT supports token attestation.
 
 To create a token attestation, the sending chain emits a message containing metadata about a token, which the destination chain may use to preserve the name, symbol, and decimal precision of a token address.
 
@@ -8314,7 +8981,7 @@ Be aware of the following considerations when working with attestations:
 
 - Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8.
 
-- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer.
+- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, WTT requires an attestation for each token transfer.
 
 ### Token Transfer with Message
 
@@ -8331,7 +8998,7 @@ This VAA type was previously known as Contract Controlled Transfer and is also s
 - **`token_chain` ++"u16"++**: Numeric ID for the source chain.
 - **`to` ++"u8[32]"++**: Address on the destination chain.
 - **`to_chain` ++"u16"++**: Numeric ID for the destination chain.
-- **`from_address` ++"u8[32]"++**: Address that called the Token Bridge on the source chain.
+- **`from_address` ++"u8[32]"++**: Address that called WTT on the source chain.
 - **`payload` ++"[]byte"++**: Message, arbitrary bytes, app-specific.
 
 ### Governance
@@ -8361,7 +9028,7 @@ new_contract: 0x348567293758957162374959376192374884562522281937446234828323
 The meaning of each numeric action is pre-defined and documented in the Wormhole design documents. For each application, the relevant definitions can be found via these links:
 
 - [Core governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
-- [Token Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
+- [WTT governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
 
 ## Lifetime of a Message
 
@@ -8523,7 +9190,7 @@ Governance is the process through which contract upgrades happen. Guardians manu
 
 This means that governance actions are held to the same security standard as the rest of the system. A two-thirds supermajority of the Guardians is required to pass any governance action.
 
-Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed token bridge contracts. When a Guardian signs such a message, its signature implies a vote on the action in question. Once more than two-thirds of the Guardians have signed, the message and governance action are considered valid.
+Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed Wrapped Token Transfers (WTT) contracts. When a Guardian signs such a message, its signature implies a vote on the action in question. Once more than two-thirds of the Guardians have signed, the message and governance action are considered valid.
 
 All governance actions and contract upgrades have been managed via Wormhole's on-chain governance system.
 
@@ -8892,7 +9559,7 @@ categories: Reference
 | Sui | 0x5a5160ca3c2037f4b4051344096ef7a48ebf4400b3f385e57ea90e1628a8bde0 |
 <!--CORE_ADDRESS-->
 
-## Token Bridge
+## Wrapped Token Transfers (WTT)
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--TOKEN_BRIDGE_ADDRESS-->
@@ -9163,7 +9830,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
-### Token Bridge
+### Wrapped Token Transfers (WTT)
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
 <!--SUPPORTED_BLOCKCHAIN_TOKENBRIDGE-->
