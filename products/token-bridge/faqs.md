@@ -8,7 +8,7 @@ categories: Token Bridge, Transfer
 
 ## Can ownership of wrapped tokens be transferred from the WTT?
 
-No, you cannot transfer ownership of wrapped token contracts from the [WTT](/docs/products/token-bridge/overview/){target=\_blank} because the WTT deploys and retains ownership of these contracts and tokens.
+No. Ownership of wrapped token contracts cannot be transferred, because the [WTT](/docs/products/token-bridge/overview/){target=\_blank} deploys and retains control of these contracts and tokens.
 
  - **On EVM chains**: When you attest a token, the WTT deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the WTT contract itself.
  - **On Solana**: The WTT deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the WTT.
@@ -23,7 +23,7 @@ Relevant contracts:
 
 ## How do I update the metadata of a wrapped token?
 
-Because wrapped tokens are deployed and controlled by the WTT program, which is under the authority of the Wormhole Guardians, there is no direct way for you to update their metadata. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
+Wrapped tokens are deployed and controlled by the WTT program under Guardian authority. You cannot update their metadata directly. Instead, you must coordinate with the respective block explorer teams to request and apply metadata changes.
 
 ## How do I calculate the current gas costs for Ethereum Mainnet VAA verification?
 
