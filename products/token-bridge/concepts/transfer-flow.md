@@ -1,29 +1,32 @@
 ---
-title: Flow of a Token Bridge Transfer
-description: Learn how the Wormhole Token Bridge enables secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
+title: Flow of a Wrapped Token Transfers (WTT)
+description: Learn how the Wormhole Wrapped Token Transfers enables secure, cross-chain token transfers by combining token-specific logic with Wormhole's core message-passing layer.
 categories: Token Bridge, Transfer
 ---
 
 # Flow of a Transfer
 
-The [Wormhole Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own Token Bridge contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
+The [Wormhole Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} enables token transfers across blockchains by combining token-specific logic with [Wormhole's core messaging layer](/docs/protocol/architecture/){target=\_blank}. Each supported chain runs its own WTT contract, which manages actions like locking, burning, minting, and releasing tokens. These contracts communicate directly with Wormhole's core message-passing layer to securely transmit messages between chains.
 
-This guide provides a conceptual overview of the Token Bridge and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
+This guide provides a conceptual overview of WTT and its integration with the messaging layer. It outlines each step of the transfer flow and explains how different transfer types work in practice.
+
+!!! note "Terminology" 
+    The sdk and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Transfer Flow
 
-Cross-chain token transfers using the Token Bridge follow these steps:
+Cross-chain token transfers using WTT follow these steps:
 
 1. **Initiation on the Source Chain**
 
-    The transfer begins when a user calls the Token Bridge contract on the source chain:
+    The transfer begins when a user calls the WTT contract on the source chain:
 
     - **Wrapped tokens**: The token is burned.
     - **Original tokens**: If the token is native to the source chain, the token is locked in the contract.
 
 2. **Transfer Message Publication**
 
-    The Token Bridge contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
+    The WTT contract invokes the Wormhole [Core Contract](/docs/protocol/infrastructure/core-contracts/){target=\_blank}, which emits an on-chain message event describing the transfer.
 
 3. **Message Observation and Signing**
 
@@ -33,27 +36,27 @@ Cross-chain token transfers using the Token Bridge follow these steps:
 
 4. **VAA Submission to the Destination Chain**
 
-    The VAA must be submitted to the Token Bridge contract on the destination chain to complete the transfer. The Token Bridge contract then verifies the VAA by calling the Core Contract behind the scenes. This step can be handled in two ways:
+    The VAA must be submitted to the WTT contract on the destination chain to complete the transfer. The WTT contract then verifies the VAA by calling the Core Contract behind the scenes. This step can be handled in two ways:
 
-    - **Automatic**: A relayer service detects the VAA and submits it to the Token Bridge contract.
-    - **Manual**: The user or dApp retrieves the VAA and submits it directly to the Token Bridge contract.
+    - **Automatic**: A relayer service detects the VAA and submits it to the WTT contract.
+    - **Manual**: The user or dApp retrieves the VAA and submits it directly to the WTT contract.
 
 5. **Finalization of the Transfer on the Destination Chain**
 
-   After the VAA is verified on the destination chain, the Token Bridge contract completes the transfer:
+   After the VAA is verified on the destination chain, the WTT contract completes the transfer:
 
     - **Wrapped tokens**: A wrapped representation of the original token is minted.
     - **Original tokens**: If the token is native to the destination chain, the token is released to the recipient.
 
-Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ETH is locked on Ethereum’s Token Bridge, and an equivalent amount of wrapped ETH is minted on Solana. The diagram below illustrates this transfer flow.
+Consider this example: Alice wants to send 5 ETH from Ethereum to Solana. The ETH is locked on Ethereum’s WTT, and an equivalent amount of wrapped ETH is minted on Solana. The diagram below illustrates this transfer flow.
 
 ```mermaid
 sequenceDiagram
     participant Alice as Alice
-    participant TokenBridgeEth as Token Bridge Ethereum<br>(Source Chain)
+    participant TokenBridgeEth as WTT Ethereum<br>(Source Chain)
     participant CoreEth as Core Contract Ethereum<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeSol as Token Bridge Solana<br>(Destination Chain)
+    participant TokenBridgeSol as WTT Solana<br>(Destination Chain)
     participant CoreSol as Core Contract Solana<br>(Destination Chain)
 
     Alice->>TokenBridgeEth: Initiate ETH transfer<br>(lock ETH)
@@ -73,15 +76,15 @@ sequenceDiagram
     TokenBridgeSol-->>Alice: Mint wrapped ETH on Solana (complete transfer)
 ```
 
-Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Ethereum. The wrapped ETH is burned on Solana’s Token Bridge, and the equivalent 5 ETH are released on Ethereum. The diagram below illustrates this transfer flow.
+Maybe Alice wants to transfer her wrapped ETH on Solana back to native ETH on Ethereum. The wrapped ETH is burned on Solana’s WTT, and the equivalent 5 ETH are released on Ethereum. The diagram below illustrates this transfer flow.
 
 ```mermaid
 sequenceDiagram
     participant User as Alice
-    participant TokenBridgeSrc as Token Bridge Solana<br>(Source Chain)
+    participant TokenBridgeSrc as WTT Solana<br>(Source Chain)
     participant CoreSrc as Core Contract Solana<br>(Source Chain)
     participant Guardians
-    participant TokenBridgeDst as Token Bridge Ethereum<br>(Destination Chain)
+    participant TokenBridgeDst as WTT Ethereum<br>(Destination Chain)
     participant CoreDst as Core Contract Ethereum<br>(Destination Chain)
 
     User->>TokenBridgeSrc: Initiate transfer <br> (burn wrapped ETH)
@@ -104,7 +107,7 @@ sequenceDiagram
 
 ## Automatic vs. Manual Transfers
 
-The Token Bridge supports two modes of transfer, depending on whether the VAA submission step is handled automatically or manually:
+WTT supports two modes of transfer, depending on whether the VAA submission step is handled automatically or manually:
 
 - **Automatic**: A relayer service listens for new VAAs and automatically submits them to the destination chain.
 - **Manual**: The user (or dApp) must retrieve the VAA and manually submit it to the destination chain.
@@ -124,11 +127,11 @@ The user who initiated the transfer should complete the transfer within 24 hour
 
 If this occurs, follow the [Replace Outdated Signatures in VAAs](){target=\_blank} tutorial to update the VAA with signatures from the current Guardian Set.
 
-## Token Bridge Relayer (TBR)
+## WTT Relayer
 
-When completing an automatic transfer using the Token Bridge—either through [Connect](/docs/products/connect/overview/){target=\_blank} or programmatically via the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}—the Token Bridge Relayer (TBR) manages the interaction with the underlying Token Bridge contracts on [supported chains where the TBR is available](/docs/products/connect/reference/support-matrix/){target=\_blank}.
+When completing an automatic transfer using WTT, either through [Connect](/docs/products/connect/overview/){target=\_blank} or programmatically via the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}, the WTT Relayer (TBR) manages the interaction with the underlying WTT contracts on [supported chains where the TBR is available](/docs/products/connect/reference/support-matrix/){target=\_blank}.
 
-<!-- TODO: add link to supported chains for TBR, pull this data in from the SDK and add it to the Token Bridge reference section. Eventually remove link to connect matrix -->
+<!-- TODO: add link to supported chains for TBR, pull this data in from the SDK and add it to WTT reference section. Eventually remove link to connect matrix -->
 
 ### Flow of an Automatic Transfer via TBR
 
@@ -140,11 +143,11 @@ The flow of an automatic transfer using the TBR looks like this:
 
 2. **Prepare and Forward the Transfer**
 
-    The TBR verifies the token, encodes transfer details (relayer fee, native gas request, recipient), and forwards the transfer to the Token Bridge.
+    The TBR verifies the token, encodes transfer details (relayer fee, native gas request, recipient), and forwards the transfer to WTT.
 
 3. **Core Messaging Layer Processes the Transfer**  
 
-    The Token Bridge emits a message to the Core Contract. Guardians observe the message and produce a signed VAA attesting to the transfer. 
+    WTT emits a message to the Core Contract. Guardians observe the message and produce a signed VAA attesting to the transfer. 
 
 4. **Off-Chain Relayer Observes the VAA**
 
@@ -156,9 +159,9 @@ The flow of an automatic transfer using the TBR looks like this:
 
 6. **TBR Validates and Completes the Transfer**
     
-    The destination TBR validates the VAA by invoking the Token Bridge contract, confirms it's from a registered TBR, verifies the token and native gas request, and then takes custody of the tokens.
+    The destination TBR validates the VAA by invoking the WTT contract, confirms it's from a registered TBR, verifies the token and native gas request, and then takes custody of the tokens.
 
-6. **Asset Distribution on the Destination Chain**
+7. **Asset Distribution on the Destination Chain**
 
     The TBR sends the remaining tokens and native gas to the user, pays the off-chain relayer fee, and refunds any excess native tokens.
 
@@ -168,7 +171,7 @@ The following diagram illustrates the key steps on the source chain during a tra
 sequenceDiagram
     participant User
     participant SourceTBR as Source Chain TBR
-    participant SourceTB as Source Chain Token Bridge
+    participant SourceTB as Source Chain WTT
     participant Messaging as Core Messaging Layer
 
     User->>SourceTBR: Initiate transfer (token, <br>recipient, fees, native gas)
@@ -183,7 +186,7 @@ sequenceDiagram
     participant Messaging as Core Messaging Layer
     participant Relayer as Off-chain Relayer
     participant DestTBR as Destination Chain TBR
-    participant DestTB as Destination Chain <br> Token Bridge
+    participant DestTB as Destination Chain <br> WTT
     participant DestUser as User <br> (Destination Chain)
 
     Messaging->>Relayer: Emit signed VAA for transfer
@@ -200,4 +203,4 @@ sequenceDiagram
 
 Now that you’ve seen how a transfer works try both types yourself to experience the full process:
 
-- [Get Started with Token Bridge](/docs/products/token-bridge/get-started/){target=\_blank}
+- [Get Started with WTT](/docs/products/token-bridge/get-started/){target=\_blank}
