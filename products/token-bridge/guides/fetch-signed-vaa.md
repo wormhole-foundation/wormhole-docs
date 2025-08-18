@@ -1,7 +1,7 @@
 ---
 title: Fetch a Signed VAA
 description: Learn how to fetch a signed VAA, a key step in the manual Wrapped Token Transfer (WTT) flow.
-categories: Token Bridge, Transfer
+categories: WTT, Transfer
 ---
 
 # Fetch a Signed VAA

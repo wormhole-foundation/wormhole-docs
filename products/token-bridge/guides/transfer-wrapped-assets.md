@@ -1,7 +1,7 @@
 ---
 title: Transfer Wrapped Assets
 description: Follow this guide to use Wrapped Token Transfers (WTT). Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
-categories: Token Bridge, Transfer, Typescript SDK
+categories: WTT, Transfer, Typescript SDK
 ---
 
 # Transfer Wrapped Assets

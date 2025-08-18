@@ -1,7 +1,7 @@
 ---
 title: Token Attestation
 description: Create and submit a token attestation to register a token for a Wrapped Token Transfers (WTT) using the TypeScript SDK. Required before first-time transfers.
-categories: Token Bridge, Transfer
+categories: WTT, Transfer
 ---
 
 # Token Attestation

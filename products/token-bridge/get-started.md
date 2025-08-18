@@ -1,7 +1,7 @@
 ---
 title: Get Started with Wrapped Token Transfers (WTT)
 description: Perform token transfers using Wormhole’s WTT with the TypeScript SDK, including manual (Solana–Sepolia) and automatic (Fuji–Alfajores).
-categories: Token Bridge, Transfers
+categories: WTT, Transfers
 ---
 
 # Get Started with Wrapped Token Transfers (WTT)

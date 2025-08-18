@@ -1,7 +1,7 @@
 ---
 title: Get Started with Wrapped Token Transfers (WTT)
 description: Learn how to integrate Wormhole's Wrapped Token Transfers (WTT) for seamless multichain token transfers with a lock-and-mint mechanism and cross-chain asset management.
-categories: Token Bridge, Transfer
+categories: WTT, Transfer
 ---
 
 # Interact with Wrapped Token Transfer (WTT) Contracts

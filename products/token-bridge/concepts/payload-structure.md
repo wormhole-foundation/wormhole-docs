@@ -1,7 +1,7 @@
 ---
 title: Wrapped Token Transfers (WTT) Payload Structure
 description: Discover the structure and purpose of each WTT payload, including Transfer, TransferWithPayload, AssetMeta, and governance messages.
-categories: Token Bridge, Transfers
+categories: WTT, Transfers
 ---
 
 # Message and Payload Structure
