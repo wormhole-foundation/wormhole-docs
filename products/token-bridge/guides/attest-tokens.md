@@ -1,20 +1,23 @@
 ---
 title: Token Attestation
-description: Create and submit a token attestation to register a token for transfer with Token Bridge using the TypeScript SDK. Required before first-time transfers.
-categories: Token-Bridge, Transfer
+description: Create and submit a token attestation to register a token for a Wrapped Token Transfers (WTT) using the TypeScript SDK. Required before first-time transfers.
+categories: Token Bridge, Transfer
 ---
 
-# Attest Tokens
+# Token Attestation
 
-This guide demonstrates token attestation for registering a token for transfer using the [Token Bridge](/docs/products/token-bridge/overview){target=\_blank} protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
+This guide demonstrates token attestation for registering a token for transfer using the [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview){target=\_blank} protocol. An attestation of the token's metadata (e.g., symbol, name, decimals) ensures consistent handling by the destination chain for ease of multichain interoperability. These steps are only required the first time a token is sent to a particular destination chain.
 
-Completing this guide will help you to accomplish the following:
+Completing this guide will help you accomplish the following:
 
 - Verify if a wrapped version of a token exists on a destination chain.
-- Create and submit token attestation to register a wrapped version of a token on a destination chain.
+- Create and submit a token attestation to register a wrapped version of a token on a destination chain.
 - Check for the wrapped version to become available on the destination chain and return the wrapped token address.
 
-The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank}.
+The example will register an arbitrary ERC-20 token deployed to Moonbase Alpha for transfer to Solana, but can be adapted for any [supported chains](/docs/products/reference/contract-addresses/#token-bridge){target=\_blank}.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -68,7 +71,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 If you are working with a newly created token that you know has never been transferred to the destination chain, you can continue to the [Create Attestation on the Source Chain](#create-attestation-on-the-source-chain) section.
 
-Since attestation is a one-time process, it is good practice when working with existing tokens to incorporate a check for wrapped versions into your Token Bridge transfer flow. Follow these steps to check for a wrapped version of a token:
+Since attestation is a one-time process, it is good practice when working with existing tokens to incorporate a check for wrapped versions into your WTT flow. Follow these steps to check for a wrapped version of a token:
 
 1. Create a new file called `attest.ts` to hold the wrapped version check and attestation logic:
 
@@ -88,7 +91,7 @@ Since attestation is a one-time process, it is good practice when working with e
     - **Defines the token to check**: Use the contract address on the source chain for this value.
     - **Calls [`getWrappedAsset`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L205){target=\_blank}**: Part of the [`Wormhole` class]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/connect/src/wormhole.ts#L47){target=\_blank}, the method does the following:
         - Accepts a [`TokenId`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/platforms/aptos/protocols/tokenBridge/src/types.ts#L12){target=\_blank} representing a token on the source chain.
-        - Checks for a corresponding wrapped version of the destination chain's Token Bridge contract.
+        - Checks for a corresponding wrapped version of the destination chain's WTT contract.
         - Returns the `TokenId` for the wrapped token on the destination chain if a wrapped version exists.
 
 3. Run the script using the following command:
@@ -97,13 +100,13 @@ Since attestation is a one-time process, it is good practice when working with e
     npx tsx attest.ts
     ```
 
-4. If the token has a wrapped version registered with the destination chain Token Bridge contract, you will see terminal output similar to the following:
+4. If the token has a wrapped version registered with the destination chain WTT contract, you will see terminal output similar to the following:
 
     --8<-- 'code/products/token-bridge/guides/attest-tokens/terminal01.html'
 
-    You can safely use Token Bridge to transfer this token to the destination chain.
+    You can safely use WTT to transfer this token to the destination chain.
 
-    If a wrapped version isn't found on the destination chain, your terminal output will be similar to the following and you must attest the token before transfer:
+    If a wrapped version isn't found on the destination chain, your terminal output will be similar to the following, and you must attest the token before transfer:
 
     --8<-- 'code/products/token-bridge/guides/attest-tokens/terminal02.html'
 
@@ -117,12 +120,12 @@ To create the attestation transaction on the source chain, open `attest.ts` and 
 
 This code does the following:
 
-- **Gets the source chain Token Bridge context**: This is where the transaction is sent to create the attestation.
+- **Gets the source chain WTT context**: This is where the transaction is sent to create the attestation.
 - Defines the token to attest and the payer.
 - **Calls `createAttestation`**: Defined in the [`TokenBridge` interface]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L123){target=\_blank}, the [`createAttestation`]({{repositories.wormhole_sdk.repository_url}}/blob/{{repositories.wormhole_sdk.version}}/core/definitions/src/protocols/tokenBridge/tokenBridge.ts#L188){target=\_blank} method does the following:
     - Accepts a `TokenAddress` representing the token on its native chain.
     - Accepts an optional `payer` address to cover the transaction fees for the attestation transaction.
-    - Prepares an attestation for the token including metadata such as address, symbol, and decimals.
+    - Prepares an attestation for the token, including metadata such as address, symbol, and decimals.
     - Returns an `AsyncGenerator` that yields unsigned transactions, which are then signed and sent to initiate the attestation process on the source chain.
 
 ## Submit Attestation on Destination Chain
@@ -131,7 +134,7 @@ The attestation flow finishes with the following:
 
 - Using the transaction ID returned from the `createAttestation` transaction on the source chain to retrieve the associated signed `TokenBridge:AttestMeta` VAA.
 - Submitting the signed VAA to the destination chain to provide Guardian-backed verification of the attestation transaction on the source chain. 
-- The destination chain uses the attested metadata to create the wrapped version of the token and register it with its Token Bridge contract.
+- The destination chain uses the attested metadata to create the wrapped version of the token and register it with its WTT contract.
 
 Follow these steps to complete your attestation flow logic:
 
@@ -156,8 +159,8 @@ Follow these steps to complete your attestation flow logic:
         --8<-- 'code/products/token-bridge/guides/attest-tokens/attest.ts'
         ```
 
-Congratulations! You've successfully created and submitted an attestation to register a token for transfer via Token Bridge.
+Congratulations! You've successfully created and submitted an attestation to register a token for transfer via WTT.
 
 ## Next Steps
 
-- [**Transfer Wrapped Assets**](/docs/products/token-bridge/guides/attest-tokens): Follow this guide to incorporate token attestation and registration into an end-to-end Token Bridge transfer flow.
+- [**Transfer Wrapped Assets**](/docs/products/token-bridge/guides/attest-tokens): Follow this guide to incorporate token attestation and registration into an end-to-end WTT flow.
