@@ -6526,7 +6526,7 @@ categories: Reference
 ## Wrapped Token Transfers (WTT)
 
 <!-- The content in this file is auto-generated. Do not modify this file directly. Please see the README.md in the wormhole-mkdocs/scripts directory to learn how to update this page. -->
-<!--TOKEN_BRIDGE_ADDRESS-->
+<!--WTT_ADDRESS-->
 
 === "Mainnet"
 
@@ -6601,7 +6601,7 @@ categories: Reference
 | BNB Smart Chain | 0x0290FB167208Af455bB137780163b7B7a9a10C16 |
 | NEAR | token.test.near |
 | Sui | 0xa6a3da85bbe05da5bfd953708d56f1a3a023e7fb58e5a824a3d4de3791e8f690 |
-<!--TOKEN_BRIDGE_ADDRESS-->
+<!--WTT_ADDRESS-->
 
 ## Wormhole Relayer
 
