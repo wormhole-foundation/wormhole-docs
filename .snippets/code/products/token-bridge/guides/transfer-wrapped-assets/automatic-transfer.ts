@@ -25,7 +25,7 @@ async function transferTokens() {
   const decimals = await getTokenDecimals(wh, tokenId, sourceChain);
   const transferAmount = BigInt(Math.floor(amount * 10 ** decimals));
 
-  // Check if the token is registered with destinationChain token bridge contract
+  // Check if the token is registered with destinationChain token bridge (WTT) contract
   // Registered = returns the wrapped token ID, continues with transfer
   // Not registered = runs the attestation flow to register the token
   let wrappedToken: TokenId;

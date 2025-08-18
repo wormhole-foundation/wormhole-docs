@@ -23,7 +23,7 @@ async function attestToken() {
   const sourceSigner = await getSigner(sourceChain);
   const destinationSigner = await getSigner(destinationChain, gasLimit);
 
-  // Retrieve the token bridge context for the source chain
+  // Retrieve the token bridge (WTT) context for the source chain
   // This is where you will send the transaction to attest the token
   const tb = await sourceChain.getTokenBridge();
   // Define the token to attest
@@ -59,7 +59,7 @@ async function attestToken() {
       timeout
     );
     if (!vaa) throw new Error('❌ VAA not found before timeout.');
-    // Get the token bridge context for the destination chain
+    // Get the token bridge (WTT) context for the destination chain
     // and submit the attestation VAA
     const destTb = await destinationChain.getTokenBridge();
     const payer = toNative(

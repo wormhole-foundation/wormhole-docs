@@ -20,7 +20,7 @@ async function attestToken() {
     sourceChain.chain,
     'INSERT_TOKEN_CONTRACT_ADDRESS'
   );
-  // Check if the token is registered with the destination chain Token Bridge contract
+  // Check if the token is registered with the destination chain Token Bridge (WTT) contract
   // Registered = returns the wrapped token ID
   // Not registered = runs the attestation flow to register the token
   let wrappedToken: TokenId;
@@ -36,7 +36,7 @@ async function attestToken() {
       '⚠️ Token is NOT registered on destination. Running attestation flow...'
     );
 
-    // Retrieve the Token Bridge context for the source chain
+    // Retrieve the Token Bridge (WTT) context for the source chain
     const tb = await sourceChain.getTokenBridge();
     // Get the signer for the source chain
     const sourceSigner = await getSigner(sourceChain);
@@ -69,7 +69,7 @@ async function attestToken() {
         timeout
       );
       if (!vaa) throw new Error('❌ VAA not found before timeout.');
-      // Get the Token Bridge context for the destination chain
+      // Get the Token Bridge (WTT) context for the destination chain
       // and submit the attestation VAA
       const destTb = await destinationChain.getTokenBridge();
       // Get the signer for the destination chain
