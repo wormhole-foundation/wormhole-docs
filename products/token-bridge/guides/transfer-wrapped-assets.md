@@ -1,20 +1,23 @@
 ---
 title: Transfer Wrapped Assets
-description: Follow this guide to use Token Bridge to transfer wrapped assets. Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
+description: Follow this guide to use Wrapped Token Transfers (WTT). Includes automatic and manual flows, token attestation, VAA fetching, and manual redemption.
 categories: Token Bridge, Transfer, Typescript SDK
 ---
 
 # Transfer Wrapped Assets
 
-This guide demonstrates the transfer of wrapped assets using the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
+This guide demonstrates how to implement [Wrapped Token Transfers (WTT)](/docs/products/token-bridge/overview/){target=\_blank} protocol via the [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}. This example will transfer an arbitrary ERC-20 token from Moonbase Alpha to Solana, but can be adapted for any [supported chains](/docs/products/reference/supported-networks/#token-bridge){target=\_blank}.
 
 Completing this guide will help you accomplish the following:
 
 - Verify if a wrapped version of a token exists on a destination chain.
 - Create a token attestation to register a wrapped version of a token on a destination chain.
-- Transfer wrapped assets using Token Bridge's automatic or manual transfers.
+- Transfer wrapped assets using WTT's automatic or manual transfers.
 - Fetch a signed [Verified Action Approval (VAA)](/docs/protocol/infrastructure/vaas/){target=\_blank}.
 - Manually redeem a signed VAA to claim tokens on a destination chain.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## Prerequisites
 
@@ -64,7 +67,7 @@ Follow these steps to initialize your project, install dependencies, and prepare
 
 ## Verify Token Registration (Attestation)
 
-Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's Token Bridge contract to create a corresponding wrapped version with the same attributes as the native token.
+Tokens must be registered on the destination chain before they can be bridged. This process involves submitting an attestation with the native token metadata to the destination chain, which enables the destination chain's WTT contract to create a corresponding wrapped version with the same attributes as the native token.
 
 Registration via attestation is only required the first time a given token is sent to that specific destination chain. Follow these steps to check the registration status of a token:
 
@@ -113,7 +116,7 @@ Registration via attestation is only required the first time a given token is se
 
             This code does the following:
         
-            - Gets the Token Bridge protocol for the source chain.
+            - Gets the WTT protocol for the source chain.
             - Defines the token to attest for registration on the destination chain and the payer to sign for the transaction.
             - Calls `createAttestation`, signs, and then sends the transaction.
             - Waits for the signed VAA confirming the attestation creation.
@@ -174,10 +177,10 @@ Follow these steps to add the remaining logic to initiate the token transfer on 
 
         --8<-- 'code/products/token-bridge/guides/transfer-wrapped-assets/terminal-4.html'
 
-Congratulations! You've now used Token Bridge to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
+Congratulations! You've now used WTT to transfer wrapped assets using the Wormhole TypeScript SDK. Consider the following options to build upon what you've achieved. 
 
 ## Next Steps
 
-- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working Token Bridge integration.
-- [**Interact with Token Bridge Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in Token Bridge contracts.
+- [**Portal Bridge**](https://portalbridge.com/){target=\_blank}: Visit this site to interact with Wormhole's Portal Bridge, featuring a working WTT integration.
+- [**Interact with WTT Contracts**](/docs/products/token-bridge/guides/token-bridge-contracts/): This guide explores the Solidity functions used in WTT contracts.
 - [**`TokenBridge` and `AutomaticTokenBridge` interfaces**](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridge.ts){target=\_blank}: View the source code defining these key interfaces and their associated namespaces.
