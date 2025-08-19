@@ -1,6 +1,6 @@
 ---
 title: Flow of a MultiGov Proposal
-description: 
+description: Learn about the complete lifecycle of MultiGov proposals, from creation to execution across multiple chains, including the roles of key actors and modules.
 categories: MultiGov
 ---
 
