@@ -6,7 +6,7 @@ categories: MultiGov
 
 # Flow of a Proposal 
 
-[MultiGov](/docs/products/multigov/overview/){target=\_blank} enables decentralized governance across multiple blockchains by allowing a proposal to be created on a designated hub chain and voted on from various spoke chains. Votes are aggregated and the proposal is executed once consensus is reached.
+[MultiGov](/docs/products/multigov/overview/){target=\_blank} enables decentralized governance across multiple blockchains by allowing a proposal to be created on a designated hub chain and voted on from various spoke chains. Votes are aggregated, and the proposal is executed once consensus is reached.
 
 This page outlines the full lifecycle of a proposal and the actors and modules involved at each step.
 
@@ -45,11 +45,9 @@ This page outlines the full lifecycle of a proposal and the actors and modules i
 
     The **HubGovernor** evaluates the total votes, checks quorum thresholds, and determines whether the proposal passed or failed. If successful, it marks the proposal as ready for execution. Failed proposals are simply archived.
 
-
 7. **Proposal Executed**: 
 
     The **HubGovernor** executes the proposal. If the action payload is on the hub chain, it’s executed directly. If actions target spoke chains, messages are composed and sent via **Wormhole Messaging**, then delivered by a **Relayer** to the target **Executor** contract or system.
-
 
 
 ```mermaid
@@ -80,7 +78,3 @@ sequenceDiagram
     Note right of HubGovernor: No action taken
   end
 ```
-
-
-
-## Next Steps
