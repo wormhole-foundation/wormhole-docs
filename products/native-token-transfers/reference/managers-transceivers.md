@@ -10,7 +10,7 @@ categories: NTT, Transfer
 
 _Managers_ oversee the token transfer process and handle rate-limiting and message attestation. They manage interactions with multiple transceivers and ensure that tokens are locked or burned on the source chain before being minted or unlocked on the destination chain. Each NTT manager corresponds to a single token but can control multiple transceivers. Key functions include:
 
-- **`transfer`** - initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain
+- **`transfer`**: Initiate the transfer process where tokens on the source chain are locked or burned. This process ensures that an equivalent amount of tokens can be minted or unlocked on the destination chain.
 
     ```solidity
     function transfer(
@@ -20,7 +20,7 @@ _Managers_ oversee the token transfer process and handle rate-limiting and messa
     ) external payable nonReentrant whenNotPaused returns (uint64)
     ```
 
-- **`quoteDeliveryPrice`** - calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer
+- **`quoteDeliveryPrice`**: Calculate the cost of sending messages across chains by querying the transceivers for estimates on message delivery fees, allowing users to know the price before initiating a transfer.
 
     ```solidity
     function quoteDeliveryPrice(
@@ -29,7 +29,7 @@ _Managers_ oversee the token transfer process and handle rate-limiting and messa
     ) public view returns (uint256[] memory, uint256)
     ```
 
-- **`setPeer`** - to maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected
+- **`setPeer`**: To maintain secure cross-chain communication, managers establish trust relationships between different instances of NTT manager contracts across chains. By recognizing each other as peers, they ensure that the token transfers happen securely and that rate limits on inbound transactions are respected.
 
     ```solidity
     function setPeer(
@@ -44,7 +44,7 @@ _Managers_ oversee the token transfer process and handle rate-limiting and messa
 
 _Transceivers_ are responsible for routing NTT transfers through the manager on the source chain and ensuring they are delivered to the corresponding manager on the recipient chain. They work with managers to ensure that messages are accurately processed and tokens are correctly transferred, providing a reliable system for cross-chain token transfers. Transceivers can be defined independently of the Wormhole core and modified to support any verification backend. Key functions:
 
-- **`sendMessage`** - this external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system
+- **`sendMessage`**: This external function sends token transfer messages to a specified recipient chain. It encodes the token transfer details into a message format recognized by the system.
 
     ```solidity
     function sendMessage(
@@ -56,7 +56,7 @@ _Transceivers_ are responsible for routing NTT transfers through the manager on 
     ) external payable nonReentrant onlyNttManager
     ```
 
-- **`quoteDeliveryPrice`** - provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees
+- **`quoteDeliveryPrice`**: Provides an estimation of the cost associated with delivering a message to a target chain and gauges transaction fees.
 
     ```solidity
     function quoteDeliveryPrice(
@@ -211,7 +211,7 @@ Once a transfer has been successfully verified, the tokens can be minted (if the
 event TransferRedeemed(bytes32 indexed digest);
 ```
 
-### Solana
+### SVM
 
 #### Transfer
 
@@ -231,18 +231,18 @@ Outbound transfers are always added to an Outbox via the `insert_into_outbox` me
 
 #### Rate Limit
 
-During the transfer process, the program checks rate limits via the `consume_or_delay` function. The Solana rate-limiting logic is equivalent to the EVM rate-limiting logic.
+During the transfer process, the program checks rate limits via the `consume_or_delay` function. The SVM rate-limiting logic is equivalent to the EVM rate-limiting logic.
 
 If the transfer amount fits within the current capacity:
 
-- Reduce the current capacity
-- Refill the inbound capacity for the destination chain
+- Reduce the current capacity.
+- Refill the inbound capacity for the destination chain.
 - Add the transfer to the Outbox with `release_timestamp` set to the current timestamp, so it can be released immediately.
 
 If the transfer amount doesn't fit within the current capacity:
 
 - If `shouldQueue = true`, add the transfer to the Outbox with `release_timestamp` set to the current timestamp plus the configured `RATE_LIMIT_DURATION`.
-- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error
+- If `shouldQueue = false`, revert with a `TransferExceedsRateLimit` error.
 
 #### Send
 
@@ -263,7 +263,7 @@ Program log: Instruction: ReleaseOutbound
 
 Similar to EVM, transceivers vary in how they receive messages since message relaying and verification methods may differ between implementations.
 
-The Wormhole transceiver receives a verified Wormhole message on Solana via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
+The Wormhole transceiver receives a verified Wormhole message on SVM chains via the `receive_message` entrypoint instruction. Callers can use the `receive_wormhole_message` Anchor library function to execute this instruction. The instruction verifies the Wormhole Verified Action Approvals (VAAs) and stores it in a `VerifiedTransceiverMessage` account.
 
 The following will be produced in the program logs:
 

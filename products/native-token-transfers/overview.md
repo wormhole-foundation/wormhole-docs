@@ -25,7 +25,7 @@ NTT offers two operational modes for your existing tokens:
 
 ## Supported Token Standards
 
-Native Token Transfers (NTT) primarily support ERC-20 tokens, the most widely used standard for fungible assets on Ethereum and other EVM-compatible chains, including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required. It also supports fungible SPL tokens on Solana for secure cross-chain transfers.
+Native Token Transfers primarily support ERC-20 tokens, the most widely used standard for fungible assets on Ethereum and other EVM-compatible chains, including ERC-20 Burnable tokens, which can be burned on the source chain during cross-chain transfers when required. It also supports fungible SPL tokens on SVM-supported chains for secure cross-chain transfers.
 
 The NttManager is a contract that oversees the secure and reliable transfer of native tokens across supported blockchains. It leverages the standard IERC20 interface and OpenZeppelin’s SafeERC20 library to interact with these tokens securely across chains.
 
@@ -47,30 +47,30 @@ Here's a breakdown of the key steps involved when deploying NTT:
 
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transmits native assets across chains.
-    - [**Connect**](/docs/products/connect/overview/): Manages user-friendly asset transfers.
-    - [**Queries**](/docs/products/queries/overview/): Acquires real-time prices for optimal trade execution.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Transmits native assets across chains.
+    - **[Connect](/docs/products/connect/overview/)**: Manages user-friendly asset transfers.
+    - **[Queries](/docs/products/queries/overview/)**: Acquires real-time prices for optimal trade execution.
 
 - **Borrowing and Lending Across Chains**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Moves collateral as native assets.
-    - [**Messaging**](/docs/products/messaging/overview/): Propagates loan requests and liquidations across chains.
-    - [**Queries**](/docs/products/queries/overview/): Retrieves interest rates and asset prices in real-time.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Moves collateral as native assets.
+    - **[Messaging](/docs/products/messaging/overview/)**: Propagates loan requests and liquidations across chains.
+    - **[Queries](/docs/products/queries/overview/)**: Retrieves interest rates and asset prices in real-time.
 
 - **Gas Abstraction**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Facilitates native token conversion for gas payments.
-    - [**Messaging**](/docs/products/messaging/overview/): Sends gas fee payments across chains.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Facilitates native token conversion for gas payments.
+    - **[Messaging](/docs/products/messaging/overview/)**: Sends gas fee payments across chains.
 
 - **Cross-Chain Payment Widgets**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Ensures direct, native asset transfers.
-    - [**Connect**](/docs/products/connect/overview/): Facilitates seamless payments in various tokens.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Ensures direct, native asset transfers.
+    - **[Connect](/docs/products/connect/overview/)**: Facilitates seamless payments in various tokens.
 
 - **Cross-Chain Staking**
 
-    - [**Native Token Transfers**](/docs/products/native-token-transfers/get-started/): Transfers staked assets natively between networks.
-    - [**Messaging**](/docs/products/messaging/overview/): Moves staking rewards and governance signals across chains.
+    - **[Native Token Transfers](/docs/products/native-token-transfers/get-started/)**: Transfers staked assets natively between networks.
+    - **[Messaging](/docs/products/messaging/overview/)**: Moves staking rewards and governance signals across chains.
 
 ## Next Steps
 

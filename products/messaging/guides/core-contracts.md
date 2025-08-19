@@ -16,16 +16,16 @@ This guide will walk you through the variations and key methods of the Core Cont
 
 To interact with the Wormhole Core Contract, you'll need the following:
 
-- The [address of the Core Contract](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on
-- The [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on
-- The [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on
+- The [address of the Core Contract](/docs/products/reference/contract-addresses/#core-contracts){target=\_blank} on the chains you're deploying your contract on.
+- The [Wormhole chain ID](/docs/products/reference/chain-ids/){target=\_blank} of the chains you're deploying your contract on.
+- The [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} (consistency) levels (required finality) for the chains you're deploying your contract on.
 
 ## How to Interact with Core Contracts
 
 Before writing your own contracts, it's essential to understand the key functions and events of the Wormhole Core Contracts. The primary functionality revolves around:
 
-- **Sending messages** - submitting messages to the Wormhole network for cross-chain communication
-- **Receiving and verifying messages** - validating messages received from other chains via the Wormhole network
+- **Sending messages**: Submitting messages to the Wormhole network for cross-chain communication.
+- **Receiving and verifying messages**: Validating messages received from other chains via the Wormhole network.
 
 While the implementation details of the Core Contracts vary by network, the core functionality remains consistent across chains.
 
@@ -274,8 +274,8 @@ This check can be applied after the VAA is parsed, ensuring only authorized send
 
 In addition to environment-specific checks that should be performed, a contract should take care to check other [fields in the body](/docs/protocol/infrastructure/vaas/){target=\_blank}, including:
 
-- **Sequence** - is this the expected sequence number? How should out-of-order deliveries be handled?
-- **Consistency level** - for the chain this message came from, is the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} level enough to guarantee the transaction won't be reverted after taking some action?
+- **Sequence**: Is this the expected sequence number? How should out-of-order deliveries be handled?
+- **Consistency level**: For the chain this message came from, is the [Wormhole Finality](/docs/products/reference/consistency-levels/){target=\_blank} level enough to guarantee the transaction won't be reverted after taking some action?
 
 The VAA digest is separate from the VAA body but is also relevant. It can be used for replay protection by checking if the digest has already been seen. Since the payload itself is application-specific, there may be other elements to check to ensure safety.
 

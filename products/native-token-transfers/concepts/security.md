@@ -20,9 +20,9 @@ Integrators should implement governance mechanisms to manage the addition and re
 
 The registry component of the NTT system is crucial for maintaining a trusted list of transceivers and managing their status. Governance processes for the following actions can be submitted directly to the corresponding contract on-chain, whether it is one or multiple of the bridging contracts or one of the token contracts:
 
-- Adding or removing a transceiver address from the registry
-- Setting the token contract address on a bridging contract
-- Setting the Wormhole Core Contract address on a bridging contract
-- Setting the registered bridging contract address on the token contract
+- Adding or removing a transceiver address from the registry.
+- Setting the token contract address on a bridging contract.
+- Setting the Wormhole Core Contract address on a bridging contract.
+- Setting the registered bridging contract address on the token contract.
 
 This governance model ensures that the system remains secure while being adaptable to new requirements in any environment where it is deployed.
