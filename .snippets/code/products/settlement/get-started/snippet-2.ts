@@ -5,14 +5,7 @@ import { MayanRouteSWIFT } from '@mayanfinance/wormhole-sdk-route';
 import { getSigner } from './helpers';
 
 (async function () {
-  // Setup
-  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform], {
-    chains: {
-      Ethereum: { rpc: ETHEREUM_MAINNET_RPC! }, // e.g. https://ethereum-rpc.publicnode.com
-      Solana: { rpc: SOLANA_MAINNET_RPC ?? "https://api.mainnet-beta.solana.com",
-      },
-    },
-  });
+  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
 
   const sendChain = wh.getChain('Ethereum');
   const destChain = wh.getChain('Solana');
@@ -79,10 +72,11 @@ import { getSigner } from './helpers';
   );
   console.log('Initiated transfer with receipt: ', receipt);
 
+  const timeout = 15 * 60 * 1000;
   await routes.checkAndCompleteTransfer(
     bestRoute,
     receipt,
     undefined,
-    15 * 60 * 1000
+    timeout
   );
 })();
