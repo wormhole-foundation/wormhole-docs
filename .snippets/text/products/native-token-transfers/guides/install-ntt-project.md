@@ -1,7 +1,3 @@
-Before proceeding, make sure you have the NTT CLI installed and a project initialized. 
-
-Follow these steps (or see the [Get Started guide](/docs/products/native-token-transfers/get-started/#install-ntt-cli){target=\_blank}):
-
 1. Install the NTT CLI:
 
     ```bash
