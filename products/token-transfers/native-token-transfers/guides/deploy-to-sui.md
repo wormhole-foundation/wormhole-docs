@@ -142,13 +142,13 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     === "Burn-and-Mint"
 
         ```bash
-        ntt add-chain Sui --latest --mode burning --token INSERT_TOKEN_ADDRESS --sui-treasury-cap YOUR_TREASURY_CAP_ID --sui-package-path YOU_SUI_PACKAGE_PATH 
+        ntt add-chain Sui --latest --mode burning --token INSERT_TOKEN_ADDRESS --sui-treasury-cap YOUR_TREASURY_CAP_ID 
         ```
 
     === "Hub-and-Spoke"
 
         ```bash
-        ntt add-chain Sui --latest --mode locking --token INSERT_TOKEN_ADDRESS --sui-treasury-cap YOUR_TREASURY_CAP_ID --sui-package-path YOU_SUI_PACKAGE_PATH 
+        ntt add-chain Sui --latest --mode locking --token INSERT_TOKEN_ADDRESS
         ```
 
 2. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
