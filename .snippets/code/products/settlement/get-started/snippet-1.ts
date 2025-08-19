@@ -36,8 +36,6 @@ export async function getSigner<N extends Network, C extends Chain>(
       );
       break;
     case 'Evm':
-      const rpcUrl = ETHEREUM_MAINNET_RPC;
-      const rpc = new JsonRpcProvider(rpcUrl, { chainId: 1, name: "mainnet" });
       signer = await getEvmSignerForKey(
         await chain.getRpc(),
         'MAINNET_ETH_PRIVATE_KEY'
