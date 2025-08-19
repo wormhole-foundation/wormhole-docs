@@ -23,7 +23,7 @@ Verification adds even more cost: the `post_vaa` instruction creates additional 
 
 This design ensures reliability, as message data is always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
 
-## What Are the Solana Shim Programs?
+## What Are the Solana Shims?
 
 To address the limitations of the Core Bridge, Wormhole deploys two specialized Solana programs called shims:
 
@@ -43,7 +43,7 @@ Wormhole shims on Solana refer to two different approaches depending on whether 
 
 **Emission Shim**
 
-A Solana program deployed at [EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}. It wraps the Core Bridge’s `post_message_unreliable` instruction and emits message data as a log event instead of storing it in a rent-exempt message account. This eliminates rent costs and prevents long-term state bloat. Guardians are configured to observe this canonical shim, allowing integrators to send messages through it without additional setup.
+A Solana program deployed at [EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}. It wraps the Core Bridge’s `post_message_unreliable` instruction and emits message data as a log event instead of storing it in a rent-exempt message account. This removes rent costs and avoids long-term state bloat. Guardians are configured to observe this canonical shim, allowing integrators to send messages through it without additional setup.
 
 - **How it works**: Call the [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=_blank} instruction on the Post Message Shim program. This emits the Wormhole message as a log event instead of creating a rent-exempt message account.
 
@@ -67,14 +67,14 @@ To understand how shims work, it helps to know a few Solana basics:
 
 ## Guardian Observation Methods
 
-|                      | Legacy Model                   | Shim Model                            |
-|----------------------|--------------------------------|---------------------------------------|
-| Message Storage      | On-chain message account       | Transaction logs (CPI event)          |
-| Data Permanence      | On-chain forever               | In logs (until RPC history is pruned) |
-| Guardian Observation | Reads account data             | Reads transaction logs                |
-| Cost                 | High (rent + compute)          | Low (compute only, no rent)           |
-| Sequence Handling    | Account-based                  | Account-based                         |
-| Closing Accounts     | Not possible                   | Not needed                            |
+|                      | Legacy Model           | Shim Model               |
+|----------------------|------------------------|--------------------------|
+| Message Storage      | On-chain account       | Transaction logs (CPI)   |
+| Data Permanence      | Permanent              | Until RPC history pruned |
+| Guardian Observation | Reads account data     | Reads transaction logs   |
+| Cost                 | High (rent + compute)  | Low (compute only)       |
+| Sequence Handling    | Account-based          | Account-based            |
+| Closing Accounts     | Not possible           | Not needed               |
 
 With shims, the message’s existence depends on the transaction log, so cost drops, but indefinite on-chain visibility is no longer guaranteed. Sequence tracking remains the same as the legacy model, so integrators can switch between the two without disrupting sequence numbers.
 
@@ -96,7 +96,5 @@ This trade-off is consistent with all other Wormhole chain implementations, none
 
 ## Next Steps
 
-- [Efficient Emission on Solana (Shim)](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
-- [Efficient Verification on Solana (Shim)](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
-- [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}
-
+- [Efficient Emission on Solana](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
+- [Efficient Verification on Solana](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
