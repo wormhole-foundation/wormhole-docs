@@ -130,7 +130,7 @@ categories: Settlement, Transfer
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
-This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=\_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}.
+This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=\_blank} with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}.
 
 By the end, you'll have a working script that:
 
@@ -236,8 +236,6 @@ export async function getSigner<n c="" chain="" extends="" network,="">(
       );
       break;
     case 'Evm':
-      const rpcUrl = ETHEREUM_MAINNET_RPC;
-      const rpc = new JsonRpcProvider(rpcUrl, { chainId: 1, name: "mainnet" });
       signer = await getEvmSignerForKey(
         await chain.getRpc(),
         'MAINNET_ETH_PRIVATE_KEY'
@@ -265,14 +263,7 @@ import { MayanRouteSWIFT } from '@mayanfinance/wormhole-sdk-route';
 import { getSigner } from './helpers';
 
 (async function () {
-  // Setup
-  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform], {
-    chains: {
-      Ethereum: { rpc: ETHEREUM_MAINNET_RPC! }, // e.g. https://ethereum-rpc.publicnode.com
-      Solana: { rpc: SOLANA_MAINNET_RPC ?? "https://api.mainnet-beta.solana.com",
-      },
-    },
-  });
+  const wh = new Wormhole("Mainnet", [EvmPlatform, SolanaPlatform]);
 
   const sendChain = wh.getChain('Ethereum');
   const destChain = wh.getChain('Solana');
@@ -339,11 +330,12 @@ import { getSigner } from './helpers';
   );
   console.log('Initiated transfer with receipt: ', receipt);
 
+  const timeout = 15 * 60 * 1000;
   await routes.checkAndCompleteTransfer(
     bestRoute,
     receipt,
     undefined,
-    15 * 60 * 1000
+    timeout
   );
 })();
     ```
