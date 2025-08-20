@@ -1350,6 +1350,9 @@ interface INttToken {
 
 Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
 
+!!! note
+    If you already have an NTT deployment to another chain (like Solana), you can skip the `ntt new` and `ntt init` commands. Simply navigate to your existing NTT project directory and proceed directly to the [Deploy and Configure NTT](#deploy-and-configure-ntt) section.
+
 The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
@@ -1651,6 +1654,9 @@ Following this process, your token will fully integrate with NTT, enabling seaml
 ## Set Up NTT
 
 To integrate your token with NTT on a SVM chain, you must initialize the deployment and configure its parameters. This process sets up the required contracts and may generate key pairs if they don't exist. These key pairs are used to sign transactions and authorize actions within the NTT deployment.
+
+!!! note
+    If you already have an NTT deployment to another chain (like Ethereum), you can skip the `ntt new` and `ntt init` commands. Simply navigate to your existing NTT project directory and proceed directly to the [Generate an NTT Program Key Pair](#generate-an-ntt-program-key-pair) section.
 
 The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
