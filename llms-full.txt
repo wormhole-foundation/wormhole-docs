@@ -3039,12 +3039,17 @@ sequenceDiagram
 
 Check the [CCTP Supported Networks](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank} to see which routes are available.
 
-## When to use CCTP
+## When to Use CCTP
 
-- Use CCTP when sending USDC between [CCTP-enabled chains](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank}. This route appears only if both chains support Circle CCTP and the asset is native USDC.
-- Use CCTP with a payload when you want the destination contract to run logic as the USDC is minted on the target chain. 
-- If you only need to send data without moving USDC, use [Messaging](/docs/products/messaging/overview/){target=\_blank}.
-- If the destination isn't CCTP-enabled for USDC, the transfer routes via [WTT](/docs/products/token-bridge/overview/){target=\_blank}. You can still include a payload that the recipient contract executes during redemption.
+CCTP is the right choice in the following situations:
+
+- **Sending USDC between [CCTP-enabled chains](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank}**: This route appears only if both chains support Circle CCTP and the asset is native USDC.
+- **Sending USDC with an attached payload**: The destination contract can execute logic as the tokens are minted on the target chain.
+
+For other transfers, consider these options:
+
+- **Data-only transfers without moving USDC**: Use [Messaging](/docs/products/messaging/overview/){target=\_blank}.
+- **Destinations without CCTP support**: The transfer routes via [WTT](/docs/products/token-bridge/overview/){target=\_blank}, with the option to include a payload executed on redemption.
 
 ## Use Cases
 
