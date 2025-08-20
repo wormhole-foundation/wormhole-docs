@@ -1,6 +1,6 @@
 ---
 title: Routes
-description: Explore Wormhole Connect's routing capabilities for asset transfers, featuring Wrapped Token Transfers (WTT), CCTP, NTT, and various blockchain-specific routes for optimal UX. 
+description: Explore Wormhole Connect's routing capabilities for asset transfers, featuring WTT, CCTP, NTT, and various blockchain-specific routes for optimal UX. 
 categories: Connect, Transfer
 ---
 
