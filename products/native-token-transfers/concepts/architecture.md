@@ -8,6 +8,23 @@ categories: NTT, Transfer
 
 The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components, which work together to manage the complexities of cross-chain communication and token operations.
 
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through NTT as a flexible framework, covering key features, deployment modes, the roles of verifiers and managers, and more:
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/Od5cTaxjTiw?si=-ZAj5eRkJb_qgCqn' frameborder='0' allowfullscreen></iframe></div>
+
+???- interface "Video Chapters"
+
+    - [00:00](https://www.youtube.com/watch?v=Od5cTaxjTiw){target=\_blank}: Going Multichain with Full Control
+    - [00:46](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=46s){target=\_blank}: Core Concept: A Framework, Not a Token Standard
+    - [01:18](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=78s){target=\_blank}: NTT Key Features
+    - [01:51](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=111s){target=\_blank}: Burn and Mint Deployment Model
+    - [02:14](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=134s){target=\_blank}: Hub and Spoke Deployment Model
+    - [02:40](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=160s){target=\_blank}: Understanding the Roles of the Verifiers (Transceivers)
+    - [04:01](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=241s){target=\_blank}: Understanding the Role of the NTT Managers
+    - [04:24](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=264s){target=\_blank}: Access Control: Owner vs. Pauser Roles
+    - [05:15](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=315s){target=\_blank}: Combine NTT with Other Wormhole Products
+    - [05:59](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=359s){target=\_blank}: Framework Overview & Conclusion
+
 ## System Components
 
 The NTT framework is composed of managers, which oversee the transfer process, and transceivers, which handle cross-chain messaging, ensuring smooth and reliable token transfers.
