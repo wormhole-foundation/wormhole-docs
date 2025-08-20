@@ -53,7 +53,7 @@ Attestation is a key step in the process. It verifies your token’s metadata, e
     - Attestation is crucial for token metadata to appear correctly on blockchain explorers like Etherscan, allowing users to identify and trust your token.
     - Ensure you have sufficient funds to cover transaction fees on the target chain.
 
-## Create the Wrapped Token
+## Create a Wrapped Token
 
 The final step is to create the wrapped token on the target chain. This token represents the original asset and enables its use within the target blockchain.
 
