@@ -355,6 +355,10 @@ categories: Queries
 
 # Queries FAQs
 
+## What is Queries?
+
+Queries is Wormhole's on-demand, Guardian-attested data service. It lets you fetch real-time, verifiable on-chain data via a simple REST endpoint and use the signed result on-chain without sending a transaction or paying gas. You can request data on one chain and use the verified result on another. For a quick video summary, watch the [Queries speed round](https://www.youtube.com/watch?v=q-s8j7GAlfQ){target=\_blank}.
+
 ## What libraries are available to handle queries?
 
  - The [Query TypeScript SDK](https://npmjs.com/package/@wormhole-foundation/wormhole-query-sdk){target=\_blank} can be used to create query requests, mock query responses for testing, and parse query responses. The SDK also includes utilities for posting query responses.

@@ -128,7 +128,7 @@ categories: NTT, Transfer
 
 The [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} framework enables seamless cross-chain token movement without wrapping or liquidity pools. This guide shows you how to install the NTT CLI, which is used to configure and deploy native token contracts, and scaffold your first project for deployment on testnet or mainnet.
 
-If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}.
+If you are looking for a no-code experience to deploy on mainnet, you can explore the [NTT Launchpad](https://ntt.wormhole.com){target=\_blank}. For a coding walkthrough, watch the [NTT deployment demo](https://www.youtube.com/watch?v=ltZmeyjUxRk&t=1686s){target=\_blank}.
 
 ## Prerequisites
 
@@ -752,6 +752,23 @@ categories: NTT, Transfer
 
 The Native Token Transfers (NTT) architecture within the Wormhole ecosystem offers a robust framework for secure and efficient token transfers across multiple blockchains. This architecture relies on the manager and transceiver core components, which work together to manage the complexities of cross-chain communication and token operations.
 
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through NTT as a flexible framework, covering key features, deployment modes, the roles of verifiers and managers, and more:
+
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/Od5cTaxjTiw?si=-ZAj5eRkJb_qgCqn' frameborder='0' allowfullscreen></iframe></div>
+
+???- interface "Video Chapters"
+
+    - [00:00](https://www.youtube.com/watch?v=Od5cTaxjTiw){target=\_blank}: Going Multichain with Full Control
+    - [00:46](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=46s){target=\_blank}: Core Concept: A Framework, Not a Token Standard
+    - [01:18](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=78s){target=\_blank}: NTT Key Features
+    - [01:51](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=111s){target=\_blank}: Burn and Mint Deployment Model
+    - [02:14](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=134s){target=\_blank}: Hub and Spoke Deployment Model
+    - [02:40](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=160s){target=\_blank}: Understanding the Roles of the Verifiers (Transceivers)
+    - [04:01](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=241s){target=\_blank}: Understanding the Role of the NTT Managers
+    - [04:24](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=264s){target=\_blank}: Access Control: Owner vs. Pauser Roles
+    - [05:15](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=315s){target=\_blank}: Combine NTT with Other Wormhole Products
+    - [05:59](https://www.youtube.com/watch?v=Od5cTaxjTiw&t=359s){target=\_blank}: Framework Overview & Conclusion
+
 ## System Components
 
 The NTT framework is composed of managers, which oversee the transfer process, and transceivers, which handle cross-chain messaging, ensuring smooth and reliable token transfers.
@@ -1056,6 +1073,12 @@ categories: NTT, Transfer
 ---
 
 # NTT FAQs
+
+## What is NTT?
+
+Native Token Transfers (NTT) is a framework for moving your own token across multiple chains without wrapping. It preserves your token's native contract design on every chain and keeps control in your hands for metadata, ownership, upgrades, and custom features.
+
+NTT includes configurable controls like rate limiting and access control, and supports deployment modes that fit either new or existing tokens. For a quick video summary, watch the [NTT speed round](https://youtu.be/wdU_6tAeGyg?si=-2wWxC8IZegzB1vl){target=\_blank}.
 
 ## Do you have an example of how cross-chain lending can be implemented using Wormhole?
 
