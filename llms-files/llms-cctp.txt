@@ -85,13 +85,13 @@ sequenceDiagram
 
 ## CCTP vs Wrapped Token Transfers (WTT)
 
-| Aspect | CCTP (native USDC) | WTT (wrapped tokens) |
-|---|---|---|
-| Supported assets | Circle-issued USDC | Standards-compliant tokens (e.g., ERC-20, SPL) |
-| Mechanism | Burn on source, mint on destination | Lock on source, mint wrapped on destination |
-| Result on destination | Native USDC | Wormhole-wrapped token |
-| Payload | Optional payload; executed on the destination when USDC is minted | Transfer with payload; executed by the recipient contract during redemption |
-| Use it for | Native USDC between CCTP-enabled chains | Non-USDC assets, or USDC when CCTP isn't supported on the destination |
+| Feature               | CCTP (native USDC)                                                | WTT (wrapped tokens)                                                        |
+|-----------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| Supported assets      | Circle-issued USDC                                                | Standards-compliant tokens (e.g., ERC-20, SPL)                              |
+| Mechanism             | Burn on source, mint on destination                               | Lock on source, mint wrapped on destination                                 |
+| Result on destination | Native USDC                                                       | Wormhole-wrapped token                                                      |
+| Payload               | Optional transfer with payload; executed on the destination when USDC is minted | Optional transfer with payload; executed by the recipient contract during redemption |
+| Use it for            | Native USDC between CCTP-enabled chains                           | Non-USDC assets, or USDC when CCTP isn't supported on the destination       |
 
 Check the [CCTP Supported Networks](/docs/products/cctp-bridge/reference/supported-networks/){target=\_blank} to see which routes are available.
 
