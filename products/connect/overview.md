@@ -13,7 +13,7 @@ With the Wormhole Connect widget, you can enable users to perform multichain ass
 Connect's notable features include:
 
 - **In-app multichain transfers**: Bridge assets without leaving your app.
-- **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Wrapped Token Transfers (WTT), CCTP, or NTT.
+- **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as WTT, CCTP, or NTT.
 - **Customizable UI**: Style the bridge interface to match your brand.
 - **Optional destination gas**: Provide gas for initial transactions on the target chain.
 - **Wrapped and native assets support**: Supports both wrapped and native tokens and integrates with Settlement.
@@ -53,7 +53,7 @@ Here are some key use cases that highlight the power and versatility of Connect:
 - **Web3 Game Asset Transfers**
 
     - **[Connect](/docs/products/connect/get-started/)**: Provide a user-friendly way to move game tokens across chains.
-    - **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/)**: Handle the underlying lock-and-mint logic securely.
+    - **[Wrapped Token Transfers](/docs/products/token-transfers/wrapped-token-transfers/overview/)**: Handle the underlying lock-and-mint logic securely.
 
 ## Next Steps 
 
