@@ -3601,7 +3601,7 @@ Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs
 --- BEGIN CONTENT ---
 ---
 title: Routes
-description: Explore Wormhole Connect's routing capabilities for asset transfers, featuring Wrapped Token Transfers (WTT), CCTP, NTT, and various blockchain-specific routes for optimal UX. 
+description: Explore Wormhole Connect's routing capabilities for asset transfers, featuring WTT, CCTP, NTT, and various blockchain-specific routes for optimal UX. 
 categories: Connect, Transfer
 ---
 
@@ -5968,7 +5968,7 @@ With the Wormhole Connect widget, you can enable users to perform multichain ass
 Connect's notable features include:
 
 - **In-app multichain transfers**: Bridge assets without leaving your app.
-- **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Wrapped Token Transfers (WTT), CCTP, or NTT.
+- **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as WTT, CCTP, or NTT.
 - **Customizable UI**: Style the bridge interface to match your brand.
 - **Optional destination gas**: Provide gas for initial transactions on the target chain.
 - **Wrapped and native assets support**: Supports both wrapped and native tokens and integrates with Settlement.
@@ -6008,7 +6008,7 @@ Here are some key use cases that highlight the power and versatility of Connect:
 - **Web3 Game Asset Transfers**
 
     - **[Connect](/docs/products/connect/get-started/)**: Provide a user-friendly way to move game tokens across chains.
-    - **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/)**: Handle the underlying lock-and-mint logic securely.
+    - **[Wrapped Token Transfers](/docs/products/token-transfers/wrapped-token-transfers/overview/)**: Handle the underlying lock-and-mint logic securely.
 
 ## Next Steps 
 
@@ -6021,7 +6021,7 @@ Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs
 --- BEGIN CONTENT ---
 ---
 title: Features
-description: Explore a comprehensive Feature Support matrix and explain Wormhole's capabilities across networks for Token Bridge, CCTP, ETH Bridge, and more. 
+description: Explore a comprehensive Feature Support matrix and explain Wormhole's capabilities across networks for WTT, CCTP, ETH Bridge, and more. 
 categories: Connect, Transfer
 ---
 
@@ -17967,7 +17967,7 @@ Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs
 --- BEGIN CONTENT ---
 ---
 title: Token Attestation
-description: Create and submit a token attestation to register a token for a Wrapped Token Transfers (WTT) using the TypeScript SDK. Required before first-time transfers.
+description: Register a token with the Wrapped Token Transfers (WTT) protocol by creating and submitting a token attestation. Required before first-time transfers.
 categories: WTT, Transfer
 ---
 
