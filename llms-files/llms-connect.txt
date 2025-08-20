@@ -346,16 +346,16 @@ categories: Connect, Transfer
 
 This page explains the concept of routes in Wormhole Connect. To configure routes for your widget, check the [Wormhole Connect Configuration](/docs/products/connect/configuration/data/){target=\_blank}.
 
-Routes are methods by which the widget will transfer the assets. Wormhole Connect supports Wrapped Token Transfers (WTT) transfers for any arbitrary token, and for specific tokens, it also supports more advanced transfer methods that provide superior UX.
+Routes are methods by which the widget will transfer the assets. Wormhole Connect supports Wrapped Token Transfers (WTT) for transferring any arbitrary token, and for specific tokens, it also supports more advanced transfer methods that provide superior UX.
 
-When you select the source chain, source token, and destination chain, Wormhole Connect will display the best routes available for that particular combination. In practice, if routes other than the WTT are available, only those will be displayed. Check the [feature matrix](/docs/products/connect/reference/support-matrix/){target=\_blank} to see under which exact conditions the routes appear.
+When you select the source chain, source token, and destination chain, Wormhole Connect will display the best routes available for that particular combination. In practice, if routes other than WTT are available, only those will be displayed. Check the [feature matrix](/docs/products/connect/reference/support-matrix/){target=\_blank} to see under which exact conditions the routes appear.
 
 !!! note "Terminology" 
     The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 ## WTT Routes {: #wtt-routes}
 
-WTT is Wormhole's best-known transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
+WTT locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
 #### Manual Route {: #manual-route}
 
@@ -991,7 +991,7 @@ Connect supports both native and wrapped assets across all Wormhole-supported bl
  - Native gas tokens such as ETH, SOL, etc.
  - Cross-chain asset swaps through integrators like Mayan.
 
-When bridging assets through the Wormhole Wrapped Token Transfers (WTT), depending on the chain and token, assets may arrive as Wormhole-wrapped tokens on the destination chain.
+When bridging assets through Wrapped Token Transfers (WTT), depending on the chain and token, assets may arrive as Wormhole-wrapped tokens on the destination chain.
 
 ## What chains does Connect support? 
 
@@ -1346,7 +1346,7 @@ const config: config.WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Connect is configured with routes for both default protocols (WTT & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import WormholeConnect, {
