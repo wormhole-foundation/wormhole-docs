@@ -483,7 +483,7 @@ import { getSigner } from './helpers/index.js';
     60_000
   );
 
-  // Now get the WTT (Token Bridge) on the redeem side
+  // Now get WTT (Token Bridge) on the redeem side
   const rcvTb = await rcv.getTokenBridge();
 
   // Create a transaction stream for redeeming
@@ -9486,7 +9486,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
 
     - In some applications, the target contract acts as the entry point and performs verification via the Core Contract.
-    - In products like the Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
+    - In products like Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
 
 ## On-Chain Components
 

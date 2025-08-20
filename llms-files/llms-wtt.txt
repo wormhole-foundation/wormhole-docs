@@ -1018,12 +1018,12 @@ categories: WTT, Transfer
 
 ## Can ownership of wrapped tokens be transferred from the WTT?
 
-No. Ownership of wrapped token contracts cannot be transferred, because the [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} deploys and retains control of these contracts and tokens.
+No. Ownership of wrapped token contracts cannot be transferred, because [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} deploys and retains control of these contracts and tokens.
 
- - **On EVM chains**: When you attest a token, the WTT deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the WTT contract itself.
- - **On Solana**: The WTT deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the WTT.
+ - **On EVM chains**: When you attest a token, WTT deploys a new ERC-20 contract as a beacon proxy. The upgrade authority for these contracts is the WTT contract itself.
+ - **On Solana**: The WTT deploys a new SPL token, where the upgrade authority is a Program Derived Address (PDA) controlled by the WTT contract.
 
-The logic behind deploying these token contracts involves submitting an attestation VAA, which allows the WTT to verify and deploy the wrapped token contract on the destination chain.
+The logic behind deploying these token contracts involves submitting an attestation VAA, which allows WTT to verify and deploy the wrapped token contract on the destination chain.
 
 Relevant contracts:
 
@@ -2719,7 +2719,7 @@ Attestation is a key step in the process. It verifies your token’s metadata, e
     - Attestation is crucial for token metadata to appear correctly on blockchain explorers like Etherscan, allowing users to identify and trust your token.
     - Ensure you have sufficient funds to cover transaction fees on the target chain.
 
-## Create the Wrapped Token
+## Create a Wrapped Token
 
 The final step is to create the wrapped token on the target chain. This token represents the original asset and enables its use within the target blockchain.
 
@@ -8377,7 +8377,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
 
     - In some applications, the target contract acts as the entry point and performs verification via the Core Contract.
-    - In products like the Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
+    - In products like Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
 
 ## On-Chain Components
 
