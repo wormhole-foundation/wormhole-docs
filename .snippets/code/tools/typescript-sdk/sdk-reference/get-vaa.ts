@@ -60,7 +60,7 @@ import { getSigner } from './helpers/index.js';
     60_000
   );
 
-  // Now get the WTT (Token Bridge) on the redeem side
+  // Now get WTT (Token Bridge) on the redeem side
   const rcvTb = await rcv.getTokenBridge();
 
   // Create a transaction stream for redeeming

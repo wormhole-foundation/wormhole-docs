@@ -99,9 +99,9 @@ This flexible plugin allows you to combine default routes (such as WTT and CCTP)
 The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the WTT to get the contract addresses necessary for it to work with that protocol.
+    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with WTT to get the contract addresses necessary for it to work with that protocol.
 
-This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the WTT.
+This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with WTT.
 
 See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/types.ts#L182){target=\_blank} for the type definition of `TokensConfig`.
 
