@@ -65,6 +65,6 @@ To explore detailed information about any NTT CLI command, including its options
 
     Frequently asked questions about Wormhole Native Token Transfers, including cross-chain lending, SDK usage, custom RPCs, and integration challenges.
 
-    [:custom-arrow: Check out the FAQs](/docs/products/token-transfers/native-token-transfers/faqs//)
+    [:custom-arrow: Check out the FAQs](/docs/products/token-transfers/native-token-transfers/faqs/)
 
 </div>
