@@ -8,13 +8,13 @@ categories: Settlement, Transfer
 
 [Settlement](/docs/products/settlement/overview/){target=\_blank} is Wormhole’s intent-based execution layer, enabling fast, multichain token transfers. It coordinates routing logic, relayers, and on-chain infrastructure to let users express what they want to be done, not how.
 
-This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=\_blank}, one of the three integrated Settlement protocols, with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}.
+This guide walks you through performing a real token swap using the [Mayan Swift route](https://mayan.finance){target=\_blank} with the [Wormhole TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}.
 
 By the end, you'll have a working script that:
 
 - Resolves token transfer routes using Mayan Swift.
 - Quotes and validates the best route.
-- Initiates a swap on a source chain and completes the transfer on a destination chain.
+- Initiates a swap on a source chain and completes the transfer on a destination chain (no destination signer required for Mayan Swift).
 
 !!! note
     Mayan Swift currently supports **mainnet only**. Attempting to run this demo on a testnet will fail.
@@ -24,9 +24,10 @@ By the end, you'll have a working script that:
 Before you begin, ensure you have the following:
 
 - [Node.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm){target=\_blank} installed on your machine.
-- Wallets funded with tokens on two [supported chains](/docs/products/reference/supported-networks/#settlement){target=\_blank}.
+- One source-chain wallet funded with native gas on a [Swift-supported chain](/docs/products/reference/supported-networks/#settlement){target=\_blank}.
+- A destination wallet address on the target chain (no destination signer or gas required).
 
-This example uses Ethereum as the source chain and Solana as the destination. As a result, you'll need an Ethereum wallet with ETH for gas and a Solana wallet with SOL for fees. You can adapt the example to match your preferred chains.
+This example utilizes Ethereum as the source chain and Solana as the destination chain. You’ll need ETH for gas on Ethereum only. You do not need SOL or a Solana signer; you’ll provide a Solana recipient address, and Mayan Swift’s relayer handles the destination leg. You can adapt the example to match your preferred chains.
 
 ## Set Up a Project
 
@@ -55,21 +56,24 @@ Start by scaffolding a basic Node.js project and installing the required SDKs.
 
     ```bash
     mkdir src
-    touch src/helpers.ts src/swap.ts .env .gitignore
+    touch src/helpers.ts src/swap.ts .gitignore
     ```
 
-4. Set up secure access to your wallets. This guide assumes you are loading your `MAINNET_ETH_PRIVATE_KEY` and `MAINNET_SOL_PRIVATE_KEY` from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/cast-wallet){target=\_blank}.
+4. Set up secure access to your wallets. This guide assumes you are loading a source private key and an Ethereum mainnet RPC URL from a secure keystore of your choice, such as a secrets manager or a CLI-based tool like [cast wallet](https://getfoundry.sh/cast/reference/wallet/new){target=\_blank}. The RPC is required so the SDK can sign and send the source-chain transaction reliably.
+
+    !!! note
+        Some auto-selected public RPCs may require API keys or rate-limit intermittently. Providing your own mainnet RPC URL avoids 401/500 errors and timeouts during `initiate` and status polling.
 
     !!! warning
-        If you use a .env file during development, add it to your .gitignore to exclude it from version control. Never commit private keys or mnemonics to your repository.
+        If you use a `.env` file during development, add it to your `.gitignore` to exclude it from version control. Never commit private keys or mnemonics to your repository.
 
 ## Perform a Token Swap
 
-This section shows you how to perform a token swap using the Mayan Swift route. You will define a helper function to configure the source and destination chain signers.
+This section shows you how to perform a token swap using the Mayan Swift route. You will define a helper function to configure the source chain signer.
 
-Then, you'll create a script that initiates a transfer on Ethereum, uses the Mayan Swift resolver to find valid routes, sends the transaction, and completes the transfer on Solana.
+Then, you'll create a script that initiates a transfer on Ethereum, uses the Mayan Swift resolver to find valid routes, sends the transaction, and lets the route complete the transfer on Solana.
 
-1. Open `helper.ts` and define the `getSigner` utility function to load private keys, instantiate signers for Ethereum and Solana, and return the signers along with the Wormhole-formatted address:
+1. Open `helper.ts` and define the `getSigner` utility function to load private key, instantiate signer for your source chain, and return the signer along with the Wormhole-formatted address:
 
     ```ts title="src/helpers.ts"
     --8<-- "code/products/settlement/get-started/snippet-1.ts"
@@ -106,5 +110,5 @@ You can tailor the example to your use case by adjusting:
 
 Once you've chosen a path, follow the corresponding guide to start building:
 
-- **[`demo-mayanswift`](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}**: Check out the repository for the full code example.
+- [**`demo-mayanswift`**](https://github.com/wormhole-foundation/demo-mayanswift){target=\_blank}: Check out the repository for the full code example.
 <!-- - [**Use Mayan Swift with the SDK**](TODO){target=\_blank} – plug into Settlement using the [TypeScript SDK](https://www.npmjs.com/package/@wormhole-foundation/sdk){target=\_blank} for rapid integration -->
