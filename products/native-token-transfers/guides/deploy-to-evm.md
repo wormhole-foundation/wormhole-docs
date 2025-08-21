@@ -99,6 +99,9 @@ Deploying NTT on EVM chains follows a structured process:
 
 Before deploying NTT contracts on EVM chains, you need to scaffold a project and initialize your deployment configuration.
 
+!!! note
+    If you already have an NTT deployment to another chain (like Solana), you can skip the `ntt new` and `ntt init` commands. Simply navigate to your existing NTT project directory and proceed directly to the [Deploy and Configure NTT](#deploy-and-configure-ntt) section.
+
 The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
 
 ???- interface "Install the NTT CLI and Scaffold a New Project"
