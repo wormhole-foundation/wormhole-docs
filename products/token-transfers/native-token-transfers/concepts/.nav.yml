@@ -1,4 +1,5 @@
 title: Concepts
 nav:
 - 'Architecture': architecture.md
+- 'Flow of a Transfer': transfer-flow.md
 - 'Security': security.md
