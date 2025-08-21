@@ -446,6 +446,7 @@ categories: Token Bridge, Transfer
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPLEVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 --- END CONTENT ---
 
@@ -8681,6 +8682,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Unichain | 44 |  |
 | World Chain | 45 | 480 |
 | X Layer | 37 | 196 |
+| XRPLEVM | 57 | 1440000 |
 
 === "Testnet"
 
@@ -8731,6 +8733,7 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Unichain | 44 | Unichain Sepolia-1301 |
 | World Chain | 45 | 4801 |
 | X Layer | 37 | 195 |
+| XRPLEVM | 57 | 1449000 |
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
@@ -8789,6 +8792,7 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Unichain | 200 | 201 |  | finalized | ~ 18min |  |
 | World Chain |  |  | 0 |  | ~ 18min |  |
 | X Layer | 200 | 201 |  | finalized | ~ 16min |  |
+| XRPLEVM |  |  | 0 |  | ~ 10s |  |
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
@@ -8840,6 +8844,7 @@ categories: Reference
 | Unichain | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | World Chain | 0xcbcEe4e081464A15d8Ad5f58BB493954421eB506 |
 | X Layer | 0x194B123c5E96B9b2E49763619985790Dc241CAC0 |
+| XRPLEVM | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 
 === "Testnet"
 
@@ -8880,6 +8885,7 @@ categories: Reference
 | Unichain | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | World Chain | 0xe5E02cD12B6FcA153b0d7fF4bF55730AE7B3C93A |
 | X Layer | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780 |
+| XRPLEVM | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 
 === "Devnet"
 
@@ -8925,6 +8931,7 @@ categories: Reference
 | Unichain | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | World Chain | 0xc309275443519adca74c9136b02A38eF96E3a1f6 |
 | X Layer | 0x5537857664B0f9eFe38C9f320F75fEf23234D904 |
+| XRPLEVM | 0x47F5195163270345fb4d7B9319Eda8C64C75E278 |
 
 === "Testnet"
 
@@ -8960,6 +8967,7 @@ categories: Reference
 | Unichain | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | World Chain | 0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2 |
 | X Layer | 0xdA91a06299BBF302091B053c6B9EF86Eff0f930D |
+| XRPLEVM | 0x7d8eBc211C4221eA18E511E4f0fD50c5A539f275 |
 
 === "Devnet"
 
@@ -9019,6 +9027,7 @@ categories: Reference
 | Polygon Amoy | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Seievm | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Unichain | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
+| XRPLEVM | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 
 === "Devnet"
 
@@ -9161,6 +9170,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPLEVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
 ### Token Bridge
@@ -9199,6 +9209,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPLEVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
 ### CCTP
@@ -9271,6 +9282,7 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
+| XRPLEVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 --- END CONTENT ---
 
@@ -9316,6 +9328,7 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Unichain | EVM | ETH | QuickNode Faucet |
 | World Chain | EVM | ETH | Alchemy Faucet |
 | X Layer | EVM | OKB | X Layer Official Faucet |
+| XRPLEVM | EVM | XRP | XRPL Official Faucet |
 
 ### SVM
 
