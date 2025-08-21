@@ -28,13 +28,13 @@ NttManager.sol
 
 **Key Components:**
 
-- **NttManager.sol**: The main contract that combines all functionality for token transfers with rate limiting.
-- **ManagerBase.sol**: Provides core management functionality including message handling, threshold management, and transceiver coordination.
-- **RateLimiter.sol**: Adds rate limiting capabilities with queuing mechanisms for both inbound and outbound transfers.
-- **TransceiverRegistry.sol**: Manages the registration, enabling, and disabling of transceivers.
-- **PausableOwnable.sol**: Provides ownership and emergency pause functionality.
-- **ReentrancyGuardUpgradeable.sol**: Protects against reentrancy attacks in an upgradeable context.
-- **Implementation.sol**: Handles proxy implementation logic for upgradeable contracts.
+- **`NttManager.sol`**: The main contract that combines all functionality for token transfers with rate limiting.
+- **`ManagerBase.sol`**: Provides core management functionality including message handling, threshold management, and transceiver coordination.
+- **`RateLimiter.sol`**: Adds rate limiting capabilities with queuing mechanisms for both inbound and outbound transfers.
+- **`TransceiverRegistry.sol`**: Manages the registration, enabling, and disabling of transceivers.
+- **`PausableOwnable.sol`**: Provides ownership and emergency pause functionality.
+- **`ReentrancyGuardUpgradeable.sol`**: Protects against reentrancy attacks in an upgradeable context.
+- **`Implementation.sol`**: Handles proxy implementation logic for upgradeable contracts.
 
 ## State Variables
 

@@ -27,12 +27,12 @@ WormholeTransceiver.sol
 
 **Key Components:**
 
-- **Transceiver.sol**: Base abstract contract providing common transceiver functionality including message transmission, ownership management, and upgrade capabilities.
-- **WormholeTransceiver.sol**: Concrete implementation for Wormhole protocol, handling message verification through Wormhole Core and supporting multiple delivery methods (standard relaying, custom relaying, manual).
-- **WormholeTransceiverState.sol**: State management contract for Wormhole-specific storage including peer registration, relaying configuration, and VAA consumption tracking.
-- **PausableOwnable.sol**: Provides ownership and emergency pause functionality.
-- **ReentrancyGuardUpgradeable.sol**: Protects against reentrancy attacks in an upgradeable context.
-- **Implementation.sol**: Handles proxy implementation logic for upgradeable contracts.
+- **`Transceiver.sol`**: Base abstract contract providing common transceiver functionality including message transmission, ownership management, and upgrade capabilities.
+- **`WormholeTransceiver.sol`**: Concrete implementation for Wormhole protocol, handling message verification through Wormhole Core and supporting multiple delivery methods (standard relaying, custom relaying, manual).
+- **`WormholeTransceiverState.sol`**: State management contract for Wormhole-specific storage including peer registration, relaying configuration, and VAA consumption tracking.
+- **`PausableOwnable.sol`**: Provides ownership and emergency pause functionality.
+- **`ReentrancyGuardUpgradeable.sol`**: Protects against reentrancy attacks in an upgradeable context.
+- **`Implementation.sol`**: Handles proxy implementation logic for upgradeable contracts.
 
 ## State Variables
 
