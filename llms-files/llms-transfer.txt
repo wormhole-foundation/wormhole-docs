@@ -1589,13 +1589,13 @@ NttManager.sol
 
 **Key Components:**
 
-- **NttManager**: The main contract that combines all functionality for token transfers with rate limiting.
-- **ManagerBase**: Provides core management functionality including message handling, threshold management, and transceiver coordination.
-- **RateLimiter**: Adds rate limiting capabilities with queuing mechanisms for both inbound and outbound transfers.
-- **TransceiverRegistry**: Manages the registration, enabling, and disabling of transceivers.
-- **PausableOwnable**: Provides ownership and emergency pause functionality.
-- **ReentrancyGuardUpgradeable**: Protects against reentrancy attacks in an upgradeable context.
-- **Implementation**: Handles proxy implementation logic for upgradeable contracts.
+- **NttManager.sol**: The main contract that combines all functionality for token transfers with rate limiting.
+- **ManagerBase.sol**: Provides core management functionality including message handling, threshold management, and transceiver coordination.
+- **RateLimiter.sol**: Adds rate limiting capabilities with queuing mechanisms for both inbound and outbound transfers.
+- **TransceiverRegistry.sol**: Manages the registration, enabling, and disabling of transceivers.
+- **PausableOwnable.sol**: Provides ownership and emergency pause functionality.
+- **ReentrancyGuardUpgradeable.sol**: Protects against reentrancy attacks in an upgradeable context.
+- **Implementation.sol**: Handles proxy implementation logic for upgradeable contracts.
 
 ## State Variables
 
@@ -3771,28 +3771,28 @@ NTT Manager Program
 
 ### Core Configuration
 
-- `Config` ++"account (PDA: "config")"++: Primary program configuration: owner/pending_owner, managed `mint`, `token_program` (SPL Token or Token-2022), mode (burn vs. lock), chain_id, `next_transceiver_id`, attestation `threshold`, `enabled_transceivers` bitmap, `paused`, and `custody` (lock mode).
+- `Config` ++"account (PDA: 'config')"++: Primary program configuration: owner/pending_owner, managed `mint`, `token_program` (SPL Token or Token-2022), mode (burn vs. lock), chain_id, `next_transceiver_id`, attestation `threshold`, `enabled_transceivers` bitmap, `paused`, and `custody` (lock mode).
 
 ### Cross-chain Peers and Governance Thresholds
 
-- `NttManagerPeer` ++"account (PDA: "peer")"++: Per-chain peer manager metadata—`address` (wormhole-formatted) and `token_decimals`. Stored in a PDA seeded by chain id.
-- `ValidatedTransceiverMessage` ++"account (PDA: "transceiver_message")"++: Validated inbound transceiver message container (`from_chain`, `message`), with helpers for discriminator checks and parsing.
+- `NttManagerPeer` ++"account (PDA: 'peer')"++: Per-chain peer manager metadata—`address` (wormhole-formatted) and `token_decimals`. Stored in a PDA seeded by chain id.
+- `ValidatedTransceiverMessage` ++"account (PDA: 'transceiver_message')"++: Validated inbound transceiver message container (`from_chain`, `message`), with helpers for discriminator checks and parsing.
 
 ### Rate Limiting and Queues
 
-- `InboxRateLimit` ++"account (PDA: "inbox_rate_limit")"++: Inbound rate-limit state (per peer chain), wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
-- `OutboxRateLimit` ++"account (PDA: "outbox_rate_limit")"++: Global outbound rate-limit state, wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
-- `InboxItem` ++"account (PDA: "inbox_item")"++: Per-inbound message item with `amount`, `recipient_address`, `votes` (bitmap), and `release_status` state machine (`NotApproved` → `ReleaseAfter(ts)` → `Released`).
-- `OutboxItem` ++"account (PDA: "outbox_item")"++: Per-outbound transfer item tracking delivery/release state (`amount`, `sender`, `recipient` fields and release metadata).
+- `InboxRateLimit` ++"account (PDA: 'inbox_rate_limit')"++: Inbound rate-limit state (per peer chain), wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
+- `OutboxRateLimit` ++"account (PDA: 'outbox_rate_limit')"++: Global outbound rate-limit state, wrapping `RateLimitState` (`limit`, `capacity_at_last_tx`, `last_tx_timestamp`).
+- `InboxItem` ++"account (PDA: 'inbox_item')"++: Per-inbound message item with `amount`, `recipient_address`, `votes` (bitmap), and `release_status` state machine (`NotApproved` → `ReleaseAfter(ts)` → `Released`).
+- `OutboxItem` ++"account (PDA: 'outbox_item')"++: Per-outbound transfer item tracking delivery/release state (`amount`, `sender`, `recipient` fields and release metadata).
 
 ### Authority and Admin Flow
 
-- `PendingTokenAuthority` ++"account (PDA: "pending_token_authority")"++: Tracks pending mint authority transitions and the `rent_payer`.
+- `PendingTokenAuthority` ++"account (PDA: 'pending_token_authority')"++: Tracks pending mint authority transitions and the `rent_payer`.
 
 ### PDAs
 
-- `TOKEN_AUTHORITY` ++"PDA (seed: "token_authority")"++: Program-derived token authority used by the burn/lock flows. (PDA seed constant in `lib.rs`.) 
-- `SESSION_AUTHORITY` ++"PDA (seed: "session_authority")"++: Per-transfer session authority used by `transfer_*` instructions (user approves this PDA to spend, then it burns/locks). (Seed constant and rationale in `lib.rs` comments.)
+- `TOKEN_AUTHORITY` ++"PDA (seed: 'token_authority')"++: Program-derived token authority used by the burn/lock flows. (PDA seed constant in `lib.rs`.)
+- `SESSION_AUTHORITY` ++"PDA (seed: 'session_authority')"++: Per-transfer session authority used by `transfer_*` instructions (user approves this PDA to spend, then it burns/locks). (Seed constant and rationale in `lib.rs` comments.)
 
 ## Instructions
 
@@ -5551,12 +5551,12 @@ WormholeTransceiver.sol
 
 **Key Components:**
 
-- **Transceiver**: Base abstract contract providing common transceiver functionality including message transmission, ownership management, and upgrade capabilities.
-- **WormholeTransceiver**: Concrete implementation for Wormhole protocol, handling message verification through Wormhole Core and supporting multiple delivery methods (standard relaying, custom relaying, manual).
-- **WormholeTransceiverState**: State management contract for Wormhole-specific storage including peer registration, relaying configuration, and VAA consumption tracking.
-- **PausableOwnable**: Provides ownership and emergency pause functionality.
-- **ReentrancyGuardUpgradeable**: Protects against reentrancy attacks in an upgradeable context.
-- **Implementation**: Handles proxy implementation logic for upgradeable contracts.
+- **Transceiver.sol**: Base abstract contract providing common transceiver functionality including message transmission, ownership management, and upgrade capabilities.
+- **WormholeTransceiver.sol**: Concrete implementation for Wormhole protocol, handling message verification through Wormhole Core and supporting multiple delivery methods (standard relaying, custom relaying, manual).
+- **WormholeTransceiverState.sol**: State management contract for Wormhole-specific storage including peer registration, relaying configuration, and VAA consumption tracking.
+- **PausableOwnable.sol**: Provides ownership and emergency pause functionality.
+- **ReentrancyGuardUpgradeable.sol**: Protects against reentrancy attacks in an upgradeable context.
+- **Implementation.sol**: Handles proxy implementation logic for upgradeable contracts.
 
 ## State Variables
 
@@ -6778,7 +6778,7 @@ NTT Transceiver Program
 
 ## State Accounts
 
-`TransceiverPeer` ++"account (PDA: "transceiver_peer")"++: Per-chain peer entry for the Wormhole transceiver path; stores the peer transceiver `address` (wormhole-formatted `[u8; 32]`) and `bump`.
+`TransceiverPeer` ++"account (PDA: 'transceiver_peer')"++: Per-chain peer entry for the Wormhole transceiver path; stores the peer transceiver `address` (wormhole-formatted `[u8; 32]`) and `bump`.
 
 ## Instructions
 
