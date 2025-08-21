@@ -73,6 +73,7 @@ Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/re
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/get-started.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/deploy-to-evm.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/deploy-to-solana.md
+Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/deploy-to-sui.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/evm-launchpad.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/post-deployment.md
 Doc-Page: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/troubleshoot.md
@@ -17781,15 +17782,37 @@ import '@wormhole-foundation/sdk-evm-ntt';
 
 By importing this package, the Wormhole SDK can register and utilize the required protocols for EVM chains, enabling cross-chain token transfers using the NTT framework. Ensure to include this import at the start of your code, especially before attempting any interactions with EVM chains in your project.
 
-## How can I transfer ownership of NTT to a multisig?
+## How can I transfer ownership of NTT to a multisig on Solana?
 
-Transferring ownership of Wormhole's NTT to a multisig is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
+Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step process for safety. This ensures that ownership is not transferred to an address that cannot claim it. Refer to the `transfer_ownership` method in the [NTT Manager Contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/solana/programs/example-native-token-transfers/src/instructions/admin/transfer_ownership.rs#L55){target=\_blank} to initiate the transfer.
 
 1. **Initiate transfer**: Use the `transfer_ownership` method on the NTT Manager contract to set the new owner (the multisig).
 2. **Claim ownership**: The multisig must then claim ownership via the `claim_ownership` instruction. If not claimed, the current owner can cancel the transfer.
 3. **Single-step transfer (Riskier)**: You can also use the `transfer_ownership_one_step_unchecked` method to transfer ownership in a single step, but if the new owner cannot sign, the contract may become locked. Be cautious and ensure the new owner is a Program Derived Address (PDA).
 
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
+
+## How can I transfer ownership of NTT to a multisig on Sui?
+1. Find out the **AdminCap & UpgradeCap** for your NTT manager with this command:
+```bash
+    sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
+```
+
+2. **Transfer AdminCap object** over to a multisig:
+```bash
+    sui client transfer --to MULTISIG_ADDRESS --object-id ADMIN_CAP_ID_STEP1
+```
+
+3. **Transfer UpgradeCap object** over to a multisig:
+```bash
+    sui client transfer --to MULTISIG_ADDRESS --object-id UPGRADE_CAP_ID_STEP1
+```
+
+4. **Check new owner** of AdminCap object 
+```bash
+    sui client object ADMIN_CAP_ID_STEP1 --json \
+        | jq -r '.owner'
+```
 
 ## How can I specify a custom RPC for NTT?
 
@@ -18162,7 +18185,7 @@ Deploying NTT on EVM chains follows a structured process:
 1. **Choose your token setup**: Use an existing ERC-20 token or deploy a new one.
 
     ???- interface "Deploy an ERC-20 Token on EVM"
-        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
+        Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-evm){target=\_blank} to deploy a basic ERC-20 token contract on testnet.
 
         1. **Install Foundry**: Install the [Forge CLI](https://getfoundry.sh/introduction/installation/){target=\_blank}.
 
@@ -18170,7 +18193,7 @@ Deploying NTT on EVM chains follows a structured process:
 
             ```bash
             git clone https://github.com/wormhole-foundation/example-ntt-token.git
-            cd example-ntt-token
+            cd example-ntt-token-evm
             ```
         
         3. **Deploy the token contract**: Deploy to testnet with your preferred name, symbol, minter, and owner addresses.
@@ -18760,6 +18783,262 @@ Failed SVM deployments don't result in loss of tokens. Instead, the native token
     Find answers to common questions about NTT.
 
     [:custom-arrow: View FAQs](/docs/products/token-transfers/native-token-transfers/faqs/){target=\_blank}
+
+</div>
+--- END CONTENT ---
+
+Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/token-transfers/native-token-transfers/guides/deploy-to-sui.md
+--- BEGIN CONTENT ---
+---
+title: Native Token Transfers Sui Deployment
+description: Deploy and configure Wormhole’s Native Token Transfers (NTT) for Sui, including setup, token compatibility, mint/burn modes, and CLI usage.
+categories: NTT, Transfer
+---
+
+# Deploy NTT to Sui
+
+[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} enable seamless multichain transfers of Sui tokens using Wormhole's messaging protocol. Instead of creating wrapped tokens, NTT allows native assets to move across chains while maintaining their original properties.
+
+This guide walks you through deploying NTT on Sui, including setting up dependencies, configuring token compatibility, and using the NTT CLI to deploy in hub-and-spoke or burn-and-mint mode.
+
+## Prerequisites
+
+Before deploying NTT on Sui, ensure you have the following prerequisites:
+
+- [Sui Client CLI installed](https://docs.sui.io/guides/developer/getting-started/sui-install){target=\_blank}.
+
+## Overview of the Deployment Process
+
+Deploying NTT on the Sui network follows a structured process:
+
+1. **Choose your token setup**:
+
+     - **Use an existing Sui token**: If your token is already deployed on the Sui network, you can skip token creation and move directly to the [Set Up NTT](#set-up-ntt) section.
+     - **Create a new Sui token**: If you don't already have a Sui token deployed, you'll need to deploy and configure it on the Sui network before integrating with Wormhole's NTT.
+
+        ???- interface "Create and Deploy Sui Tokens"
+            This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
+
+            1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
+
+                ```bash
+                git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
+                cd example-ntt-token-sui
+                ```
+
+            2. **Set up a new wallet on testnet**: Before building and deploying your token, you'll need to create a new wallet on the Sui testnet and fund it with test tokens.
+
+                1. **Create a new testnet environment**: Configure your Sui client for testnet.
+
+                ```bash
+                sui client new-env --alias testnet --rpc https://fullnode.testnet.sui.io:443
+                ```
+
+                2. **Generate a new address**: Create a new Ed25519 address for your wallet.
+
+                ```bash
+                sui client new-address ed25519
+                ```
+
+                3. **Switch to the new address**: The above command will output a new address. Copy this address and switch to it.
+
+                ```bash
+                sui client switch --address YOUR_ADDRESS_STEP2
+                ```
+
+                4. **Fund your wallet**: Use the faucet to get test tokens.
+
+                ```bash
+                sui client faucet
+                ```
+
+                5. **Verify funding**: Check that your wallet has been funded.
+
+                ```bash
+                sui client balance
+                ```
+
+            3. **Build the project**: Compile the Move contract.
+
+                ```bash
+                sui move build
+                ```
+
+            4. **Deploy the token contract**: Deploy to testnet.
+
+                ```bash
+                sui client publish --gas-budget 10000000
+                ```
+
+            5. **Mint tokens**: Send tokens to your address.
+
+                ```bash
+                sui client call \
+                --package YOUR_DEPLOYED_PACKAGE_ID_STEP4 \
+                --module MODULE_NAME_STEP1 \
+                --function mint \
+                --args TREASURYCAP_ID_STEP4 AMOUNT_WITH_DECIMALS RECIPIENT_ADDRESS \
+                --gas-budget 10000000
+                ```
+
+            !!! note
+                This token uses 9 decimals by default. All minting values must be specified with that in mind (1 token = 10^9).
+
+2. **Choose your deployment model**:
+
+    - **Hub-and-spoke**: Tokens are locked on a hub chain and minted on destination spoke chains. Since the token supply remains controlled by the hub chain, no changes to the minting authority are required.
+    - **Burn-and-mint**: Tokens are burned on the source chain and minted on the destination chain. This requires transferring the Sui Treasury cap object to the NTT manager.
+
+3. **Deploy and configure NTT**: Use the NTT CLI to initialize and deploy the NTT program, specifying your Sui token and deployment mode.
+
+
+## Set Up NTT
+
+Before deploying NTT contracts on Sui, you need to scaffold a project and initialize your deployment configuration.
+
+!!! note
+    If you already have an NTT deployment to another chain (like Solana), you can skip the `ntt new` and `ntt init` commands. Simply navigate to your existing NTT project directory and proceed directly to the [Deploy and Configure NTT](#deploy-and-configure-ntt) section.
+
+The [NTT CLI](/docs/products/native-token-transfers/reference/cli-commands/){target=\_blank} manages deployments, configures settings, and interacts with the NTT system. Follow these steps to set up NTT using the CLI tool:
+
+???- interface "Install the NTT CLI and Scaffold a New Project"
+    
+    1. Install the NTT CLI:
+
+    ```bash
+    curl -fsSL https://raw.githubusercontent.com/wormhole-foundation/native-token-transfers/main/cli/install.sh | bash
+    ```
+
+    Verify installation:
+
+    ```bash
+    ntt --version
+    ```
+
+2. Initialize a new NTT project:
+
+    ```bash
+    ntt new my-ntt-project
+    cd my-ntt-project
+    ```
+
+3. Create the deployment config using the following command. This will generate a `deployment.json` file where your settings are stored:
+
+    === "Mainnet"
+
+        ```bash
+        ntt init Mainnet
+        ```
+
+        === "Testnet"
+
+            ```bash
+            ntt init Testnet
+            ```
+
+## Deploy and Configure NTT
+
+Once you've set up NTT, proceed with deploying the contracts.
+
+1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal, and run the `export` commands:
+
+    ```bash
+    sui keytool export --key-identity goofy
+    ```
+    **Note**: Replace `goofy` with your actual key alias. This command exports the private key in the format required by the NTT add-chain command.
+
+    ```bash
+    export SUI_PRIVATE_KEY=INSERT_PRIVATE_KEY
+    ```
+
+After setting up your deployment, finalize the configuration and deploy the NTT program on to the Sui network by following these steps:
+
+2. **Deploy NTT to Sui**: Run the appropriate command based on your deployment mode.
+
+!!! warning 
+    In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager in order for the NTT manager to have the capability to mint tokens
+
+    === "Burn-and-Mint"
+
+        ```bash
+        ntt add-chain Sui --latest --mode burning --token INSERT_TOKEN_ADDRESS --sui-treasury-cap YOUR_TREASURY_CAP_ID 
+        ```
+
+    === "Hub-and-Spoke"
+
+        ```bash
+        ntt add-chain Sui --latest --mode locking --token INSERT_TOKEN_ADDRESS
+        ```
+
+3. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
+
+    ```bash
+    ntt status
+    ```
+
+    If needed, sync your local configuration with the on-chain state:
+
+    ```bash
+    ntt pull
+    ```
+
+4. **Configure inbound and outbound rate limits**: By default, the inbound and outbound limits are set to `0` and must be updated before deployment. 
+
+    Open your `deployment.json` file and adjust the values based on your use case:  
+
+    ```json
+    "inbound": {
+        "Sepolia": "1000.000000000" // inbound limit from Sepolia to Sui
+    },
+    "outbound": {
+        "Sepolia": "1000.000000000" // outbound limit from Sui to Sepolia
+    }
+    ```
+
+5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
+
+    ```bash
+    ntt push
+    ```
+  
+After you deploy the NTT contracts, ensure that the deployment is properly configured and your local representation is consistent with the actual on-chain state by running `ntt status` and following the instructions shown on the screen.
+
+
+## Where to Go Next
+
+<div class="grid cards" markdown>
+
+-   :octicons-tools-16:{ .lg .middle } **Test Your Deployment**
+
+    ---
+
+    Follow the NTT Post Deployment Guide for integration examples and testing instructions.
+
+    [:custom-arrow: Test Your NTT deployment](/docs/products/native-token-transfers/guides/post-deployment/){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy NTT to SVM Chains**
+
+    ---
+
+    Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for SVM chains.
+
+    [:custom-arrow: Deploy NTT to SVM Chains](/docs/products/native-token-transfers/guides/deploy-to-solana/){target=\_blank}
+
+-   :octicons-question-16:{ .lg .middle } **View FAQs**
+
+    ---
+
+    Find answers to common questions about NTT.
+
+    [:custom-arrow: View FAQs](/docs/products/native-token-transfers/faqs){target=\_blank}
+
+-   :octicons-tools-16:{ .lg .middle } **Deploy NTT to EVM Chains**
+
+    ---
+
+    Follow the guide to deploy and configure Wormhole's Native Token Transfers (NTT) for EVM chains.
+
+    [:custom-arrow: Deploy NTT to EVM Chains](/docs/products/native-token-transfers/guides/deploy-to-evm/){target=\_blank}
 
 </div>
 --- END CONTENT ---

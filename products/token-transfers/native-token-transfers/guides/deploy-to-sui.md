@@ -28,10 +28,10 @@ Deploying NTT on the Sui network follows a structured process:
         ???- interface "Create and Deploy Sui Tokens"
             This section walks you through setting up a wallet, deploying a Sui Coin contract, and minting tokens on testnet.
 
-            1. **Clone the repository**: Use the [example NTT token repository](https://github.com/evgeniko/example-ntt-token-sui){target=\_blank} to deploy a Sui Coin contract on testnet.
+            1. **Clone the repository**: Use the [example NTT token repository](https://github.com/wormhole-foundation/example-ntt-token-sui.git){target=\_blank} to deploy a Sui Coin contract on testnet.
 
                 ```bash
-                git clone https://github.com/evgeniko/example-ntt-token-sui.git
+                git clone https://github.com/wormhole-foundation/example-ntt-token-sui.git
                 cd example-ntt-token-sui
                 ```
 
@@ -126,11 +126,10 @@ Once you've set up NTT, proceed with deploying the contracts.
 
 1. **Environment Setup**: Ensure you have set up your environment correctly, open your terminal, and run the `export` commands:
 
-```bash
-sui keytool export --key-identity goofy
-```
-**Note**: Replace `goofy` with your actual key alias. This command exports the private key in the format required by the NTT add-chain command.
-
+    ```bash
+    sui keytool export --key-identity goofy
+    ```
+    **Note**: Replace `goofy` with your actual key alias. This command exports the private key in the format required by the NTT add-chain command.
 
     ```bash
     export SUI_PRIVATE_KEY=INSERT_PRIVATE_KEY
@@ -138,10 +137,11 @@ sui keytool export --key-identity goofy
 
 After setting up your deployment, finalize the configuration and deploy the NTT program on to the Sui network by following these steps:
 
-1. **Deploy NTT to Sui**: Run the appropriate command based on your deployment mode.
+2. **Deploy NTT to Sui**: Run the appropriate command based on your deployment mode.
 
 !!! warning 
     In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager in order for the NTT manager to have the capability to mint tokens
+
     === "Burn-and-Mint"
 
         ```bash
@@ -154,7 +154,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
         ntt add-chain Sui --latest --mode locking --token INSERT_TOKEN_ADDRESS
         ```
 
-2. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
+3. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
 
     ```bash
     ntt status
@@ -166,7 +166,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     ntt pull
     ```
 
-3. **Configure inbound and outbound rate limits**: By default, the inbound and outbound limits are set to `0` and must be updated before deployment. 
+4. **Configure inbound and outbound rate limits**: By default, the inbound and outbound limits are set to `0` and must be updated before deployment. 
 
     Open your `deployment.json` file and adjust the values based on your use case:  
 
@@ -179,7 +179,7 @@ After setting up your deployment, finalize the configuration and deploy the NTT 
     }
     ```
 
-4. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
+5. **Push the final deployment**: Once rate limits are set, sync the on-chain configuration with local changes made to your `deployment.json` file.
 
     ```bash
     ntt push
