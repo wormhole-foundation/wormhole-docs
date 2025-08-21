@@ -32,7 +32,7 @@ NTT Transceiver Program
 
 ## State Accounts
 
-`TransceiverPeer` ++"account (PDA: "transceiver_peer")"++: Per-chain peer entry for the Wormhole transceiver path; stores the peer transceiver `address` (wormhole-formatted `[u8; 32]`) and `bump`.
+`TransceiverPeer` ++"account (PDA: 'transceiver_peer')"++: Per-chain peer entry for the Wormhole transceiver path; stores the peer transceiver `address` (wormhole-formatted `[u8; 32]`) and `bump`.
 
 ## Instructions
 
