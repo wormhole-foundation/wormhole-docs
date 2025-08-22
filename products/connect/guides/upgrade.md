@@ -174,7 +174,7 @@ The `routes` property in Connect version 3.0 has significantly improved. Previou
 
 By default, if no `routes` property is set, Connect will provide routes for two core protocols:
 
- - [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}
+ - [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}
  - [CCTP](/docs/products/cctp-bridge/overview/){target=\_blank}
 
 For most use cases, integrators require more than the default routes. The new `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including both default and third-party routes.
@@ -184,8 +184,8 @@ For most use cases, integrators require more than the default routes. The new `r
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
 ???- tip "`route` Plugins"
-    - **`TokenBridgeRoute`**: Manually redeemed Token Bridge route.
-    - **`AutomaticTokenBridgeRoute`**: Automatically redeemed (relayed) Token Bridge route.
+    - **`TokenBridgeRoute`**: Manually redeemed WTT route.
+    - **`AutomaticTokenBridgeRoute`**: Automatically redeemed (relayed) WTT route.
     - **`CCTPRoute`**: Manually redeemed CCTP route.
     - **`AutomaticCCTPRoute`**: Automatically redeemed (relayed) CCTP route.
     - **`DEFAULT_ROUTES`**: Array containing the four preceding routes (TokenBridgeRoute, AutomaticTokenBridgeRoute, CCTPRoute, AutomaticCCTPRoute).
@@ -222,7 +222,7 @@ const config: config.WormholeConnectConfig = {
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Connect is configured with routes for both default protocols (Token Bridge & CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 import WormholeConnect, {
@@ -241,7 +241,7 @@ const config: config.WormholeConnectConfig = {
 <WormholeConnect config={config} />;
 ```
 
-This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
+This flexible plugin allows you to combine default routes (such as WTT and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
 
 ### Update the `tokensConfig` Structure
 
@@ -250,7 +250,7 @@ In Connect version 3.0, the `tokensConfig` property has been updated to simplify
 Key Changes to `tokensConfig`:
 
  - **Capitalized chain names**: All chain names, like `ethereum`, must now be capitalized, such as `Ethereum`, to maintain consistency with the rest of the Wormhole SDK.
- - **`wrappedTokens`**: This new key replaces `foreignAssets` and defines the wrapped token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via token bridge routes.
+ - **`wrappedTokens`**: This new key replaces `foreignAssets` and defines the wrapped token addresses on foreign chains, making it easier to manage cross-chain transfers. It consolidates the wrapped token addresses into a cleaner structure. These addresses must be specified to enable token transfers to and from the foreign chain via WTT routes.
  - **Simplified decimals**: Instead of using a map of decimal values for different chains, you now only need to provide a single decimals value for the token's native chain.
 
 === "v0.x"

@@ -50,14 +50,17 @@ Connect lets you customize the available chains to match your project's needs. Y
 
 ### Configuring Routes
 
-By default, Connect offers two bridging protocols: Token Bridge (for Wormhole-wrapped tokens) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
+By default, Connect offers two bridging protocols: Wrapped Token Transfers (WTT) and Circle's CCTP (for native USDC). For most use cases, integrators require more than these default routes. The `routes` property allows you to specify which protocols to include and exclude any routes unnecessary for your application, including default and third-party routes.
+
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
 #### Available Route Plugins
 
 The `@wormhole-foundation/wormhole-connect` package offers a variety of `route` plugins to give you flexibility in handling different protocols. You can choose from the following `route` exports for your integration:
 
-- **[`TokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank}**: Manually redeemed Wormhole Token Bridge route.
-- **[`AutomaticTokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}**: Automatically redeemed (relayed) Token Bridge route.
+- **[`TokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/manual.ts){target=\_blank}**: Manually redeemed Wormhole WTT route.
+- **[`AutomaticTokenBridgeRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/tokenBridge/automatic.ts){target=\_blank}**: Automatically redeemed (relayed) WTT route.
 - **[`CCTPRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/manual.ts){target=\_blank}**: Manually redeemed CCTP route.
 - **[`AutomaticCCTPRoute`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/connect/src/routes/cctp/automatic.ts){target=\_blank}**: Automatically redeemed (relayed) CCTP route.
 - **`DEFAULT_ROUTES`**: Array containing the four preceding routes (`TokenBridgeRoute`, `AutomaticTokenBridgeRoute`, `CCTPRoute`, `AutomaticCCTPRoute`).
@@ -83,22 +86,22 @@ To configure Wormhole Connect to offer only USDC transfers via the CCTP route, u
 
 #### Example: Offer All Default Routes and Third-Party Plugins
 
-In this example, Wormhole Connect is configured with routes for both default protocols (Token Bridge and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
+In this example, Wormhole Connect is configured with routes for both default protocols (WTT and CCTP), as well as third-party protocols like [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Mayan Swap](https://swap.mayan.finance/){target=\_blank}.
 
 ```typescript
 --8<-- 'code/products/connect/configuration/data/example-all-routes.ts'
 ```
 
-This flexible plugin allows you to combine default routes (such as Token Bridge and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
+This flexible plugin allows you to combine default routes (such as WTT and CCTP) with third-party protocols, offering complete control over which routes are available in your application.
 
 ### Adding Custom Tokens {: #custom-tokens }
 
 The following section shows how to add an arbitrary token to your deployment of Connect.
 
 !!! note
-    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with the Token Bridge to get the contract addresses necessary for it to work with that protocol.
+    You will need to [register](https://portalbridge.com/advanced-tools/#/register){target=\_blank} your token with WTT to get the contract addresses necessary for it to work with that protocol.
 
-This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with the Token Bridge.
+This example configuration adds the BONK token to Connect. Note the `wrappedTokens` property, which is required for use with WTT.
 
 See the [Connect source code](https://github.com/wormhole-foundation/wormhole-connect/blob/production%403.0.0/wormhole-connect/src/config/types.ts#L182){target=\_blank} for the type definition of `TokensConfig`.
 
@@ -108,7 +111,7 @@ See the [Connect source code](https://github.com/wormhole-foundation/wormhole-co
 
 ### Configuring Native Token Transfers (NTT)
 
-Connect supports [NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
+Connect supports [NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, which allows native tokens to move between supported chains using NTT-deployed contracts, such as managers and transceivers.
 
 To enable NTT in your app, follow these steps:
 
