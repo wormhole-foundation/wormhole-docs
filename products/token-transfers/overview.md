@@ -23,11 +23,11 @@ At a high level, the flow looks like this:
 
 ```mermaid
 flowchart LR
-    A[User] --> B[Source chain\nWormhole contract]
-    B --> C[Guardians\nsign VAA]
-    C --> D[Destination chain\nWormhole contract]
-    D -->|NTT| E[Mint or release\nnative tokens]
-    D -->|WTT| F[Mint wrapped\ntokens]
+    A[User] --> B[Source chain<br/>Wormhole contract]
+    B --> C[Guardians<br/>sign VAA]
+    C --> D[Destination chain<br/>Wormhole contract]
+    D -->|NTT| E[Mint or release<br/>native tokens]
+    D -->|WTT| F[Mint wrapped<br/>tokens]
     E --> G[Recipient]
     F --> G[Recipient]
 ```
