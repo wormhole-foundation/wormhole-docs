@@ -25403,7 +25403,7 @@ Wormhole provides two distinct mechanisms for transferring assets cross-chain: [
 | **Mechanism**          | Burn-and-mint or hub-and-spoke                                             | Lock-and-mint                                 |
 | **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting and integrated Global Accountant |
 | **Contract Ownership** | User retains ownership and upgrade authority on each chain                 | Managed via Wormhole Governance |
-| **Token Contracts**    | Native contracts owned by your protocol governance, maintain the same token across chains       | Wrapped asset contract owned by the Wormhole WTT contract, create a new wrapped version on the destination chain  |
+| **Token Contracts**    | Native contracts owned by your protocol governance, maintains the same token across chains       | Wrapped asset contract owned by the Wormhole WTT contract, creates a new wrapped version on the destination chain  |
 | **Integration**        | Customizable, flexible framework for advanced deployments                  | Straightforward, permissionless deployment    |
 | **User Experience**      | Seamless, users interact with the same token everywhere            | Wrapped assets may need explorer metadata updates for clarity |
 | **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank}   | [Portal Bridge UI](https://portalbridge.com/){target=\_blank} |
