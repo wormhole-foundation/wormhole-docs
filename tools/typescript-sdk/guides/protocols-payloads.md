@@ -162,11 +162,14 @@ Below is an example of how the Wormhole SDK builds a discriminator to distinguis
  - [`layoutDiscriminator`](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/9105de290c91babbf8ad031bd89cc75ee38739c8/core/base/src/utils/layout.ts#L16){target=\_blank} takes a list of layouts and generates a function that can identify the appropriate layout for a given serialized payload.
  - The `allowAmbiguous` parameter determines whether layouts with overlapping characteristics are permitted.
 
-### Real-World Example: Token Bridge Protocol
+### Real-World Example: Wrapped Token Transfers (WTT) Protocol
 
 Integrating protocols with their respective payloads exemplifies how the Wormhole SDK leverages layouts and type-safe registration mechanisms to ensure efficient cross-chain communication. This section focuses on how protocols like `TokenBridge` use payloads to facilitate specific operations.
 
-#### Token Bridge Protocol and Payloads
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
+#### WTT Protocol and Payloads
 
 The `TokenBridge` protocol enables cross-chain token transfers through its payloads. Key payloads include:
 
@@ -210,7 +213,7 @@ This registration links the `TokenBridge` payload literals to their respective l
 
 You can explore the complete `TokenBridge` protocol and payload definitions in the [`TokenBridge` layout file](https://github.com/wormhole-foundation/wormhole-sdk-ts/blob/main/core/definitions/src/protocols/tokenBridge/tokenBridgeLayout.ts){target=\_blank}.
 
-#### Token Bridge Payloads
+#### WTT Payloads
 
 The following payloads are registered for the `TokenBridge` protocol:
 

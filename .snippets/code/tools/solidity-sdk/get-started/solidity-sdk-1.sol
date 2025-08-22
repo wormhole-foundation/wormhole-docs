@@ -7,7 +7,7 @@ import "lib/wormhole-solidity-sdk/src/interfaces/IERC20.sol";
 // Extend the TokenSender contract inherited from TokenBase
 contract CrossChainSender is TokenSender {
     uint256 constant GAS_LIMIT = 250_000;
-    // Initialize the contract with the Wormhole relayer, Token Bridge,
+    // Initialize the contract with the Wormhole relayer, WTT (Token Bridge),
     // and Wormhole Core Contract addresses
     constructor(
         address _wormholeRelayer,

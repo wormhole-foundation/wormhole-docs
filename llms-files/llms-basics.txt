@@ -63,7 +63,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Borrowing and Lending Across Chains (e.g., [Folks Finance](https://wormhole.com/case-studies/folks-finance){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate actions across chains.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
     - **[Queries](/docs/products/queries/overview/){target=\_blank}**: Fetch rates and prices in real-time.
 
 - **Oracle Networks (e.g., [Pyth](https://wormhole.com/case-studies/pyth){target=\_blank})**
@@ -74,7 +74,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Gas Abstraction**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Coordinate gas logic.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Handle native token swaps.
 
 - **Bridging Intent Library**
 
@@ -84,7 +84,7 @@ Wormhole Messaging enables a wide range of multichain applications. Below are co
 - **Decentralized Social Platforms (e.g., [Chingari](https://chingari.io/){target=\_blank})**
 
     - **[Messaging](/docs/products/messaging/get-started/){target=\_blank}**: Facilitate decentralized interactions.
-    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Enable tokenized rewards.
+    - **[Wrapped Token Transfers](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}**: Enable tokenized rewards.
 
 ## Next Steps
 
@@ -106,7 +106,7 @@ categories: Transfer, Basics
 
 Wormhole provides a comprehensive suite of cross-chain solutions, enabling seamless asset transfers, data retrieval, and governance across blockchain ecosystems.
 
-Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Token Bridge for a secure lock-and-mint mechanism.
+Wormhole provides multiple options for asset transfers: Connect for a plug-and-play bridging UI, Native Token Transfers (NTT) for moving native assets without wrapped representations, and Wrapped Token Transfers (WTT) for a secure lock-and-mint mechanism.
 
 Beyond transfers, Wormhole extends interoperability with tools for cross-chain data access, decentralized governance, and an intent-based protocol through Wormhole Settlement.
 
@@ -114,15 +114,15 @@ Beyond transfers, Wormhole extends interoperability with tools for cross-chain d
 
 Wormhole offers different solutions for cross-chain asset transfer, each designed for various use cases and integration requirements.
 
-- **[Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
-- **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
+- **[Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: A mechanism to transfer native tokens cross-chain seamlessly without conversion to a wrapped asset. Best for projects that require maintaining token fungibility and native chain functionality across multiple networks.
+- **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}**: A bridging solution that uses a lock and mint mechanism. Best for projects that need cross-chain liquidity using wrapped assets and the ability to send messages.
 - **[Settlement](/docs/products/settlement/overview/){target=\_blank}**: Intent-based protocols enabling fast multichain transfers, optimized liquidity flows, and interoperability without relying on traditional bridging methods.
 
 <div markdown class="full-width">
 
 ::spantable::
 
-|                                | Criteria                              | NTT                | Token Bridge       | Settlement         |
+|                                | Criteria                              | NTT                | WTT                | Settlement         |
 |--------------------------------|---------------------------------------|--------------------|--------------------|--------------------|
 | Supported Transfer Types @span | Token Transfers                       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 |                                | Token Transfers with Payloads         | :white_check_mark: | :white_check_mark: | :white_check_mark: |
@@ -140,20 +140,20 @@ Wormhole offers different solutions for cross-chain asset transfer, each designe
 
 ## Choose a Transfer Mechanism
 
-Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/native-token-transfers/overview/){target=\_blank} and [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
+Wormhole provides two distinct mechanisms for transferring assets cross-chain: [Native Token Transfers (NTT)](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank} and [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}. Both options offer distinct integration paths and feature sets tailored to your requirements, as outlined below.
 
-| Feature                | Native Token Transfers                                                     | Token Bridge                                  |
+| Feature                | Native Token Transfers                                                     | Wrapped Token Transfers                                  |
 |------------------------|----------------------------------------------------------------------------|-----------------------------------------------|
 | **Best for**           | DeFi governance, native assets with multichain liquidity                   | Consumer apps, games, wrapped-token use cases |
 | **Mechanism**          | Burn-and-mint or hub-and-spoke                                             | Lock-and-mint                                 |
 | **Security**           | Configurable rate limiting, pausing, access control, threshold attestations. Integrated Global Accountant | Preconfigured rate limiting and integrated Global Accountant |
 | **Contract Ownership** | User retains ownership and upgrade authority on each chain                 | Managed via Wormhole Governance |
-| **Token Contracts**    | Native contracts owned by your protocol governance       | Wrapped asset contract owned by the Wormhole Token Bridge contract, upgradeable via a 13/19 Guardian governance process. |
+| **Token Contracts**    | Native contracts owned by your protocol governance       | Wrapped asset contract owned by the Wormhole WTT contract, upgradeable via a 13/19 Guardian governance process. |
 | **Integration**        | Customizable, flexible framework for advanced deployments                  | Straightforward, permissionless deployment    |
 | **Examples**           | [NTT Connect](https://github.com/wormhole-foundation/demo-ntt-connect){target=\_blank}, [NTT TypeScript SDK](https://github.com/wormhole-foundation/demo-ntt-ts-sdk){target=\_blank}   | [Portal Bridge UI](https://portalbridge.com/){target=\_blank} |
 
 
-In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Token Bridge and how to select the best option for your use case:
+In the following video, Wormhole Foundation DevRel Pauline Barnades walks you through the key differences between Wormhole’s Native Token Transfers (NTT) and Wrapped Token Transfers (WTT) and how to select the best option for your use case:
 
 <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/wKDf3dyH0OM?si=Gr_iMB1jSs_5Pokm' frameborder='0' allowfullscreen></iframe></div>
 
@@ -474,7 +474,7 @@ Congratulations! You've published your first multichain message using Wormhole's
 
 ## Next Steps
 
-- **[Get Started with Token Bridge](/docs/products/token-bridge/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Token Bridge's lock and mint mechanism to send tokens across chains.
+- **[Get Started with WTT](/docs/products/token-transfers/wrapped-token-transfers/get-started/){target=\_blank}**: Follow this guide to start working with multichain token transfers using Wormhole Wrapped Token Transfers' lock and mint mechanism to send tokens across chains.
 <!-- - [**Get Started with the Solidity SDK**](/docs/tools/solidity-sdk/get-started/){target=\_blank}: Smart contract developers can follow this on-chain integration guide to use Wormhole Solidity SDK-based sender and receiver contracts to send testnet USDC across chains.
 -->
 --- END CONTENT ---
@@ -591,7 +591,7 @@ While the implementation details of the Core Contracts vary by network, the core
 
 ### Sending Messages
 
-To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}.
+To send a message, regardless of the environment or chain, the Core Contract is invoked with a message argument from an [emitter](/docs/products/reference/glossary/#emitter){target=\_blank}. This emitter might be your contract or an existing application such as the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}.
 
 === "EVM"
 
@@ -2127,7 +2127,7 @@ To simplify this process, we've included a tool for verifying if a token has an 
 <span data-ty=""> &gt; npx ts-node script/check-attestation.ts</span>
 <span data-ty=""> </span>
 <span data-ty=""> Enter the TARGET chain RPC URL: https://alfajores-forno.celo-testnet.org</span>
-<span data-ty=""> Enter the Token Bridge contract address on the TARGET chain: 0x05...E153</span>
+<span data-ty=""> Enter the WTT contract address on the TARGET chain: 0x05...E153</span>
 <span data-ty=""> Enter the token contract address on the SOURCE chain: 0x54...bc65</span>
 <span data-ty=""> Enter the SOURCE chain ID: 6</span>
 <span data-ty=""> The token is attested on the target chain. Wrapped token address: 0xDDB349c976cA2C873644F21f594767Eb5390C831</span>
@@ -4794,7 +4794,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
 
     - In some applications, the target contract acts as the entry point and performs verification via the Core Contract.
-    - In products like the Token Bridge, the Token Bridge contract itself interacts with the Core Contract.
+    - In products like Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
 
 ## On-Chain Components
 
@@ -4857,7 +4857,7 @@ This page will guide you through the structural layout of these tools—how they
 The diagram shows a high-level view of Wormhole’s modular stack, illustrating how different tools are grouped into four layers:
 
 - **Application and user-facing products**: The top layer includes user-centric solutions such as [Connect](/docs/products/connect/overview/){target=\_blank} (a simple bridging interface) and the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for streamlined native asset deployments).
-- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/native-token-transfers/overview/){target=\_blank}, [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
+- **Asset and data transfer layer**: Below it sits the core bridging and data solutions—[NTT](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}, [WTT](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}, [Queries](/docs/products/queries/overview/){target=\_blank}, [Settlement](/docs/products/settlement/overview/){target=\_blank}, and [MultiGov](/docs/products/multigov/overview/){target=\_blank}—that handle the movement of tokens, real-time data fetching, advanced cross-chain settlements, and cross-chain governance.
 - **Integration layer**: The [TypeScript SDK](/docs/tools/typescript-sdk/get-started/){target=\_blank}<!--, [Solidity SDK](/docs/tools/solidity-sdk/get-started/){target=\_blank},--> and [WormholeScan API](https://wormholescan.io/#/){target=\_blank} provide developer-friendly libraries and APIs to integrate cross-chain capabilities into applications.
 - **Foundation layer**: At the base, the [Wormhole messaging](/docs/products/messaging/overview/){target=\_blank} system and the [core contracts](/docs/protocol/infrastructure/core-contracts/){target=\_blank} secure the entire network, providing essential verification and cross-chain message delivery.
 
@@ -4929,7 +4929,7 @@ Multicast refers to simultaneously broadcasting a single message or transaction 
 
 This multicast-by-default model makes it easy to synchronize state across the entire ecosystem. A blockchain can make its data available to every chain in a single action with low latency, which reduces the complexity of the n^2 problems encountered by routing data to many blockchains.
 
-This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Token Bridge](/docs/products/token-bridge/overview/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
+This doesn't mean an application _cannot_ specify a destination address or chain. For example, the [Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank} and [Wormhole relayer](/docs/protocol/infrastructure/relayer/){target=\_blank} contracts require that some destination details be passed and verified on the destination chain.
 
 Because the VAA creation is separate from relaying, the multicast model does not incur an additional cost when a single chain is targeted. If the data isn't needed on a certain blockchain, don't relay it there, and it won't cost anything.
 
@@ -5248,7 +5248,7 @@ This page provides a comprehensive guide to where the Spy fits within the Wormho
 - **Real-time monitoring of Wormhole messages**: The Spy allows users to observe Wormhole messages as they are published across supported chains in near real-time.
 - **Filterable and observable message streams**: Users can filter message streams by chain, emitter, and other criteria, making it easier to track specific contracts or categories of interest.
 - **Integration-friendly event streaming**: The Spy exposes gRPC and WebSocket interfaces, making it easy to integrate message observation into custom tooling, dashboards, or indexing services.
-- **Support for multiple message protocols**: It can observe messages from different Wormhole messaging protocols (Token Bridge, CCTP, NTT, etc.), providing broad coverage of cross-chain activity.
+- **Support for multiple message protocols**: It can observe messages from different Wormhole messaging protocols (WTT, CCTP, NTT, etc.), providing broad coverage of cross-chain activity.
 - **Lightweight and infrastructure-ready**: The Spy is designed to run as part of indexing or backend services, not requiring validator-level infrastructure.
 
 ## Integrator Use Case
@@ -5406,7 +5406,7 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 ### Token Transfer
 
-Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Token Bridge is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
+Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Wrapped Token Transfer (WTT) is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
 
 Transferring tokens from the sending chain to the destination chain requires the following steps:
 
@@ -5431,7 +5431,7 @@ Note that the destination chain is agnostic regarding how the tokens on the send
 
 ### Attestation
 
-While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, the Token Bridge supports token attestation.
+While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, WTT supports token attestation.
 
 To create a token attestation, the sending chain emits a message containing metadata about a token, which the destination chain may use to preserve the name, symbol, and decimal precision of a token address.
 
@@ -5456,7 +5456,7 @@ Be aware of the following considerations when working with attestations:
 
 - Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8.
 
-- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer.
+- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, WTT requires an attestation for each token transfer.
 
 ### Token Transfer with Message
 
@@ -5473,7 +5473,7 @@ This VAA type was previously known as Contract Controlled Transfer and is also s
 - **`token_chain` ++"u16"++**: Numeric ID for the source chain.
 - **`to` ++"u8[32]"++**: Address on the destination chain.
 - **`to_chain` ++"u16"++**: Numeric ID for the destination chain.
-- **`from_address` ++"u8[32]"++**: Address that called the Token Bridge on the source chain.
+- **`from_address` ++"u8[32]"++**: Address that called WTT on the source chain.
 - **`payload` ++"[]byte"++**: Message, arbitrary bytes, app-specific.
 
 ### Governance
@@ -5503,7 +5503,7 @@ new_contract: 0x348567293758957162374959376192374884562522281937446234828323
 The meaning of each numeric action is pre-defined and documented in the Wormhole design documents. For each application, the relevant definitions can be found via these links:
 
 - [Core governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
-- [Token Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
+- [WTT governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
 
 ## Lifetime of a Message
 
@@ -5665,7 +5665,7 @@ Governance is the process through which contract upgrades happen. Guardians manu
 
 This means that governance actions are held to the same security standard as the rest of the system. A two-thirds supermajority of the Guardians is required to pass any governance action.
 
-Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed token bridge contracts. When a Guardian signs such a message, its signature implies a vote on the action in question. Once more than two-thirds of the Guardians have signed, the message and governance action are considered valid.
+Governance messages can target any of the various wormhole modules, including the core contracts and all currently deployed Wrapped Token Transfers (WTT) contracts. When a Guardian signs such a message, its signature implies a vote on the action in question. Once more than two-thirds of the Guardians have signed, the message and governance action are considered valid.
 
 All governance actions and contract upgrades have been managed via Wormhole's on-chain governance system.
 

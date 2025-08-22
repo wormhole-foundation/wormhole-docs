@@ -38,13 +38,13 @@ Queries enable a wide range of cross-chain applications. Below are common use ca
 
     - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch rates and prices in real-time.
     - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Sync actions between chains.
-    - **[Native Token Transfer](/docs/products/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Transfer collateral as native assets.
 
 - **Cross-Chain Swaps and Liquidity Aggregation (e.g., [StellaSwap](https://app.stellaswap.com/exchange/swap){target=\_blank})**
 
     - **[Queries](/docs/products/queries/get-started/){target=\_blank}**: Fetch live prices for optimal trade execution.
     - **[Connect](/docs/products/connect/overview/){target=\_blank}**: Handle user-friendly asset transfers.
-    - **[Native Token Transfer](/docs/products/native-token-transfers/overview/){target=\_blank}**: Moves native tokens.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/){target=\_blank}**: Moves native tokens.
 
 - **Real-Time Price Feeds and Trading Strategies (e.g., [Infinex](https://wormhole.com/case-studies/infinex){target=\_blank})**
 

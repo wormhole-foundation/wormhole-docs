@@ -10,9 +10,9 @@ categories: Reference
 
 --8<-- 'text/products/reference/contract-addresses/core-contracts.md'
 
-## Token Bridge
+## Wrapped Token Transfers (WTT)
 
---8<-- 'text/products/reference/contract-addresses/token-bridge.md'
+--8<-- 'text/products/reference/contract-addresses/wtt.md'
 
 ## Wormhole Relayer
 
