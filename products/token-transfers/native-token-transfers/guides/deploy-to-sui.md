@@ -135,12 +135,12 @@ Once you've set up NTT, proceed with deploying the contracts.
     export SUI_PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
 
-    After setting up your deployment, finalize the configuration and deploy the NTT program on to the Sui network by following the below steps.
+    After setting up your deployment, finalize the configuration and deploy the NTT program onto the Sui network by following the steps below.
 
 2. **Deploy NTT to Sui**: Run the appropriate command based on your deployment mode.
 
     !!! warning 
-        In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager in order for the NTT manager to have the capability to mint tokens. 
+        In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager, enabling the NTT manager to mint tokens. 
         **Important**: Once the treasury-cap object is moved to the NTT manager, you will no longer be able to modify the token's metadata (such as name, symbol, or icon).
 
     === "Burn-and-Mint"
