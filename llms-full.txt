@@ -17798,17 +17798,17 @@ For a practical demonstration of transferring ownership of Wormhole's NTT to a m
     sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
 ```
 
-2. **Transfer AdminCap object** over to a multisig:
+2. Transfer `AdminCap` object over to a multisig:
 ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id ADMIN_CAP_ID_STEP1
 ```
 
-3. **Transfer UpgradeCap object** over to a multisig:
+3. Transfer `UpgradeCap` object over to a multisig:
 ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id UPGRADE_CAP_ID_STEP1
 ```
 
-4. **Check new owner** of AdminCap object 
+4. Check new owner of `AdminCap` object:
 ```bash
     sui client object ADMIN_CAP_ID_STEP1 --json \
         | jq -r '.owner'
