@@ -35,7 +35,7 @@ Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step p
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
 
 ## How can I transfer ownership of NTT to a multisig on Sui?
-1. Find out the **AdminCap & UpgradeCap** for your NTT manager with this command:
+1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager with this command:
 ```bash
     sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
 ```
