@@ -17793,7 +17793,7 @@ Transferring ownership of Wormhole's NTT to a multisig on Solana is a two-step p
 For a practical demonstration of transferring ownership of Wormhole's NTT to a multisig on Solana, visit the [GitHub demo](https://github.com/wormhole-foundation/demo-ntt-solana-multisig-tools){target=\_blank} providing scripts and guidance for managing an NTT program using Squads multisig functionality, including ownership transfer procedures.
 
 ## How can I transfer ownership of NTT to a multisig on Sui?
-1. Find out the **AdminCap & UpgradeCap** for your NTT manager with this command:
+1. Find out the `AdminCap` and `UpgradeCap` for your NTT manager with this command:
 ```bash
     sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
 ```
@@ -18951,13 +18951,13 @@ Once you've set up NTT, proceed with deploying the contracts.
     export SUI_PRIVATE_KEY=INSERT_PRIVATE_KEY
     ```
 
-After setting up your deployment, finalize the configuration and deploy the NTT program on to the Sui network by following these steps:
+    After setting up your deployment, finalize the configuration and deploy the NTT program onto the Sui network by following the steps below.
 
 2. **Deploy NTT to Sui**: Run the appropriate command based on your deployment mode.
 
-!!! warning 
-    In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager in order for the NTT manager to have the capability to mint tokens. 
-    **Important**: Once the treasury-cap object is moved to the NTT manager, you will no longer be able to modify the token's metadata (such as name, symbol, or icon).
+    !!! warning 
+        In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager, enabling the NTT manager to mint tokens. 
+        **Important**: Once the treasury-cap object is moved to the NTT manager, you will no longer be able to modify the token's metadata (such as name, symbol, or icon).
 
     === "Burn-and-Mint"
 
