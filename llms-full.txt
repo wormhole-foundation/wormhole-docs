@@ -14639,7 +14639,6 @@ categories: MultiGov
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XRPL-EVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 --- END CONTENT ---
 
@@ -15787,7 +15786,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Unichain | 44 |  |
 | World Chain | 45 | 480 |
 | X Layer | 37 | 196 |
-| XRPL-EVM | 57 | 1440000 |
 
 === "Testnet"
 
@@ -15838,7 +15836,6 @@ The following table documents the chain IDs used by Wormhole and places them alo
 | Unichain | 44 | Unichain Sepolia-1301 |
 | World Chain | 45 | 4801 |
 | X Layer | 37 | 195 |
-| XRPL-EVM | 57 | 1449000 |
 <!--CHAIN_IDS-->
 --- END CONTENT ---
 
@@ -15897,7 +15894,6 @@ The following table documents each chain's `consistencyLevel` values (i.e., fina
 | Unichain | 200 | 201 |  | finalized | ~ 18min |  |
 | World Chain |  |  | 0 |  | ~ 18min |  |
 | X Layer | 200 | 201 |  | finalized | ~ 16min |  |
-| XRPL-EVM |  |  | 0 |  | ~ 10s |  |
 <!--CONSISTENCY_LEVELS-->
 --- END CONTENT ---
 
@@ -15949,7 +15945,6 @@ categories: Reference
 | Unichain | 0xCa1D5a146B03f6303baF59e5AD5615ae0b9d146D |
 | World Chain | 0xcbcEe4e081464A15d8Ad5f58BB493954421eB506 |
 | X Layer | 0x194B123c5E96B9b2E49763619985790Dc241CAC0 |
-| XRPL-EVM | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 
 === "Testnet"
 
@@ -15990,7 +15985,6 @@ categories: Reference
 | Unichain | 0xBB73cB66C26740F31d1FabDC6b7A46a038A300dd |
 | World Chain | 0xe5E02cD12B6FcA153b0d7fF4bF55730AE7B3C93A |
 | X Layer | 0xA31aa3FDb7aF7Db93d18DDA4e19F811342EDF780 |
-| XRPL-EVM | 0xaBf89de706B583424328B54dD05a8fC986750Da8 |
 
 === "Devnet"
 
@@ -16036,7 +16030,6 @@ categories: Reference
 | Unichain | 0x3Ff72741fd67D6AD0668d93B41a09248F4700560 |
 | World Chain | 0xc309275443519adca74c9136b02A38eF96E3a1f6 |
 | X Layer | 0x5537857664B0f9eFe38C9f320F75fEf23234D904 |
-| XRPL-EVM | 0x47F5195163270345fb4d7B9319Eda8C64C75E278 |
 
 === "Testnet"
 
@@ -16072,7 +16065,6 @@ categories: Reference
 | Unichain | 0xa10f2eF61dE1f19f586ab8B6F2EbA89bACE63F7a |
 | World Chain | 0x430855B4D43b8AEB9D2B9869B74d58dda79C0dB2 |
 | X Layer | 0xdA91a06299BBF302091B053c6B9EF86Eff0f930D |
-| XRPL-EVM | 0x7d8eBc211C4221eA18E511E4f0fD50c5A539f275 |
 
 === "Devnet"
 
@@ -16132,7 +16124,6 @@ categories: Reference
 | Polygon Amoy | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Seievm | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 | Unichain | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
-| XRPL-EVM | 0x362fca37E45fe1096b42021b543f462D49a5C8df |
 
 === "Devnet"
 
@@ -16352,7 +16343,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XRPL-EVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
 ### WTT
@@ -16391,7 +16381,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XRPL-EVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 
 ### CCTP
@@ -16464,7 +16453,6 @@ Wormhole supports many blockchains across mainnet, testnet, and devnets. You can
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XRPL-EVM | EVM | :white_check_mark: | :white_check_mark: | :white_check_mark: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 --- END CONTENT ---
 
@@ -16510,7 +16498,6 @@ Don't let the need for testnet tokens get in the way of buildling your next grea
 | Unichain | EVM | ETH | QuickNode Faucet |
 | World Chain | EVM | ETH | Alchemy Faucet |
 | X Layer | EVM | OKB | X Layer Official Faucet |
-| XRPL-EVM | EVM | XRP | XRPL Official Faucet |
 
 ### SVM
 
@@ -17871,7 +17858,7 @@ The source chain's transceiver includes the destination chain's transceiver in t
 
 ## How do I create a verifier or transceiver?
 
-To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
+To run your verifier, you need to implement a transceiver. This involves approximately 200 lines of code, leveraging the base functionality provided by the [abstract transceiver contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/Transceiver/Transceiver.sol){target=\_blank}.
 
 For reference, you can review the [Axelar transceiver implementation](https://github.com/wormhole-foundation/example-wormhole-axelar-wsteth/blob/main/src/axelar/AxelarTransceiver.sol){target=\_blank}.
 
@@ -17883,8 +17870,8 @@ No, using Hetzner servers for Solana deployments is not recommended. Hetzner has
 
 You can include an extra payload in NTT messages by overriding specific methods in the [NttManager contract](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank}.
 
-- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message.
-- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/example-native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message.
+- On the source chain, override the [`_handleMsg` function](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L216-L226){target=\_blank} to query any additional data you need for the transfer. The extra payload can then be added to the message.
+- On the destination chain override the [`_handleAdditionalPayload` function](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol#L262-L275){target=\_blank} to process and utilize the extra payload sent in the message.
 
 !!!Important
     You cannot pass the additional data as part of the entry point directly. Instead, the data must be queried on-chain via the `_handleMsg` method, ensuring the payload is properly included and processed.
@@ -18491,16 +18478,16 @@ Before deploying NTT on SVM chains, ensure you have the following:
 - The correct versions of the Solana CLI and Anchor installed, depending on your NTT version:
 
     === "v3"
-        | Dependency                                                              | Version                        |
-        |-------------------------------------------------------------------------|--------------------------------|
-        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank}       | `{{ ntt.solana_cli_version }}` |
-        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}`     |
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `{{ ntt.solana_cli_version }}` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `{{ ntt.anchor_version }}` |
 
     === "v2/v1"
-        | Dependency                                                              | Version    |
-        |-------------------------------------------------------------------------|------------|
-        | [Solana](https://docs.solanalabs.com/cli/install){target=\_blank}       | `v1.18.10` |
-        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0`  |
+        | Dependency | Version |
+        |------------|---------|
+        | [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} | `v1.18.10` |
+        | [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} | `v0.29.0` |
 
 
 Use the Solana and Anchor versions listed above to avoid compatibility issues while following this guide.
@@ -19317,8 +19304,8 @@ categories: NTT, Transfer
 
 If you encounter issues during the NTT deployment process, check the following common points:
 
-- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/token-transfers/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
-    -  [Solana](https://docs.solanalabs.com/cli/install){target=\_blank} **`{{ ntt.solana_cli_version }}`**
+- **Solana and Anchor versions**: Ensure you are using the expected versions of Solana and Anchor as outlined in the [deployment page](/docs/products/native-token-transfers/guides/deploy-to-solana/#install-dependencies){target=\_blank}.
+    -  [Solana](https://docs.anza.xyz/cli/install/){target=\_blank} **`{{ ntt.solana_cli_version }}`**
     -  [Anchor](https://www.anchor-lang.com/docs/installation){target=\_blank} **`{{ ntt.anchor_version }}`**
 - **Token compliance on EVM**: Verify that your token is an ERC20 token on the EVM chain.
 - **Mint authority transfer**:
@@ -23531,7 +23518,6 @@ categories: NTT, Transfer
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :x: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XRPL-EVM | EVM | :x: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 --- END CONTENT ---
 
@@ -28003,7 +27989,6 @@ categories: WTT, Transfer
 | Unichain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | World Chain | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 | X Layer | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
-| XRPL-EVM | EVM | :white_check_mark: | :white_check_mark: | :x: | :material-web:Website:material-file-document:Developer Docs:octicons-package-16:Block Explorer |
 </div>
 --- END CONTENT ---
 
