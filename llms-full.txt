@@ -17781,17 +17781,17 @@ For a practical demonstration of transferring ownership of Wormhole's NTT to a m
     sui client object $SUI_NTT_MANAGER_ADDRESS --json 2>/dev/null | jq -r '"AdminCap ID: \(.content.fields.admin_cap_id)\nUpgradeCap ID: \(.content.fields.upgrade_cap_id)"'
 ```
 
-2. **Transfer AdminCap object** over to a multisig:
+2. Transfer `AdminCap` object over to a multisig:
 ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id ADMIN_CAP_ID_STEP1
 ```
 
-3. **Transfer UpgradeCap object** over to a multisig:
+3. Transfer `UpgradeCap` object over to a multisig:
 ```bash
     sui client transfer --to MULTISIG_ADDRESS --object-id UPGRADE_CAP_ID_STEP1
 ```
 
-4. **Check new owner** of AdminCap object 
+4. Check new owner of `AdminCap` object:
 ```bash
     sui client object ADMIN_CAP_ID_STEP1 --json \
         | jq -r '.owner'
@@ -18938,6 +18938,10 @@ Once you've set up NTT, proceed with deploying the contracts.
 
 2. **Deploy NTT to Sui**: Run the appropriate command based on your deployment mode.
 
+    !!! note
+        The `--token` parameter requires the full Sui coin type in the format `0xADDRESS::module::struct`. 
+        For example, `0x2::sui::SUI` for the native SUI token, or `0x1234567890abcdef::my_module::MyToken` for a custom token.
+
     !!! warning 
         In burning mode, the NTT CLI moves the treasury-cap object during the add-chain command to the NTT manager, enabling the NTT manager to mint tokens. 
         **Important**: Once the treasury-cap object is moved to the NTT manager, you will no longer be able to modify the token's metadata (such as name, symbol, or icon).
@@ -18945,13 +18949,13 @@ Once you've set up NTT, proceed with deploying the contracts.
     === "Burn-and-Mint"
 
         ```bash
-        ntt add-chain Sui --latest --mode burning --token INSERT_TOKEN_ADDRESS --sui-treasury-cap YOUR_TREASURY_CAP_ID 
+        ntt add-chain Sui --latest --mode burning --token INSERT_FULL_COIN_TYPE --sui-treasury-cap YOUR_TREASURY_CAP_ID 
         ```
 
     === "Hub-and-Spoke"
 
         ```bash
-        ntt add-chain Sui --latest --mode locking --token INSERT_TOKEN_ADDRESS
+        ntt add-chain Sui --latest --mode locking --token INSERT_FULL_COIN_TYPE
         ```
 
 3. **Verify deployment status**: After deployment, check if your `deployment.json` file matches the on-chain configuration using the following command.
