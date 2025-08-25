@@ -855,7 +855,7 @@ Cross-chain token transfers using WTT follow these steps:
 
 5. **Finalization of the Transfer on the Destination Chain**
 
-   After the VAA is verified on the destination chain, the WTT contract completes the transfer:
+    After the VAA is verified on the destination chain, the WTT contract completes the transfer:
 
     - **Wrapped tokens**: A wrapped representation of the original token is minted.
     - **Original tokens**: If the token is native to the destination chain, the token is released to the recipient.
