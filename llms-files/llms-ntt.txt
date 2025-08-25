@@ -2336,7 +2336,7 @@ error NotInitializing();
 
 ### NotMigrating
 
-Error when a function can only be called during migration. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/implementation/Implementation.sol){target=\_blank})*
+Error when a function can only be called during migration. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 error NotMigrating();
@@ -2352,7 +2352,7 @@ error NotImplemented();
 
 ### OnlyDelegateCall
 
-Error when a function can only be called via delegate call. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/implementation/Implementation.sol){target=\_blank})*
+Error when a function can only be called via delegate call. *(Defined in [Implementation.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/libraries/Implementation.sol){target=\_blank})*
 
 ```sol
 error OnlyDelegateCall();
