@@ -1,6 +1,6 @@
 ---
 title: Routes
-description: Explore Wormhole Connect's routing capabilities for asset transfers, featuring Token Bridge, CCTP, NTT, and various blockchain-specific routes for optimal UX. 
+description: Explore Wormhole Connect's routing capabilities for asset transfers, featuring WTT, CCTP, NTT, and various blockchain-specific routes for optimal UX. 
 categories: Connect, Transfer
 ---
 
@@ -8,13 +8,16 @@ categories: Connect, Transfer
 
 This page explains the concept of routes in Wormhole Connect. To configure routes for your widget, check the [Wormhole Connect Configuration](/docs/products/connect/configuration/data/){target=\_blank}.
 
-Routes are methods by which the widget will transfer the assets. Wormhole Connect supports Token Bridge transfers for any arbitrary token, and for specific tokens, it also supports more advanced transfer methods that provide superior UX.
+Routes are methods by which the widget will transfer the assets. Wormhole Connect supports Wrapped Token Transfers (WTT) for transferring any arbitrary token, and for specific tokens, it also supports more advanced transfer methods that provide superior UX.
 
-When you select the source chain, source token, and destination chain, Wormhole Connect will display the best routes available for that particular combination. In practice, if routes other than the Token Bridge are available, only those will be displayed. Check the [feature matrix](/docs/products/connect/reference/support-matrix/){target=\_blank} to see under which exact conditions the routes appear.
+When you select the source chain, source token, and destination chain, Wormhole Connect will display the best routes available for that particular combination. In practice, if routes other than WTT are available, only those will be displayed. Check the [feature matrix](/docs/products/connect/reference/support-matrix/){target=\_blank} to see under which exact conditions the routes appear.
 
-## Token Bridge Routes {: #token-bridge-routes}
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
 
-The Token Bridge is Wormhole's best-known transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
+## WTT Routes {: #wtt-routes}
+
+WTT locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
 #### Manual Route {: #manual-route}
 
@@ -28,7 +31,7 @@ Trustless relayers can execute the second transaction on the user's behalf, so t
  
 [Circle](https://www.circle.com/){target=\_blank}, the issuer of USDC, provides a native way for native USDC to be transferred between [CCTP-enabled](https://www.circle.com/cross-chain-transfer-protocol){target=\_blank} chains. Wormhole Connect can facilitate such transfers.
 
-Note that if native USDC is transferred from the CCTP-enabled chains to any other outside of this list, the transfer will be routed through the Token Bridge, and the resulting asset will be a Wormhole-wrapped token instead of native USDC.
+Note that if native USDC is transferred from the CCTP-enabled chains to any other outside of this list, the transfer will be routed through WTT, and the resulting asset will be a Wormhole-wrapped token instead of native USDC.
 
 #### Manual Route {: #manual-route-cctp}
 
@@ -40,7 +43,7 @@ Trustless relayers can execute the second transaction on the user's behalf. Ther
 
 ## Native Token Transfers (NTT) Routes {: #native-token-transfers-ntt-routes}
 
-[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/native-token-transfers/){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike the Token Bridge. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/docs/products/connect/configuration/data/){target=\_blank} with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repository](https://github.com/wormhole-foundation/native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
+[Wormhole's Native Token Transfer (NTT) framework](https://github.com/wormhole-foundation/native-token-transfers/){target=\_blank} enables token issuers to retain full ownership of their tokens across any number of chains, unlike WTT. The token issuer must deploy NTT contracts, and Wormhole Connect needs to be [configured](/docs/products/connect/configuration/data/){target=\_blank} with the appropriate `nttGroups` before such tokens are recognized as transferrable via NTT. Refer to the [documentation in the NTT repository](https://github.com/wormhole-foundation/native-token-transfers?tab=readme-ov-file#overview){target=\_blank} for more information about the contracts needed and the framework in general.
 
 #### Manual Route {: #manual-route-ntt}
 
@@ -68,9 +71,9 @@ Only the relayed route is available due to the complexity of the transaction tha
 
 ## tBTC Route {: #tbtc-route}
 
-You can bridge [Threshold's Bitcoin](https://threshold.network/){target=\_blank} via this hybrid solution that combines the Token Bridge and Threshold's contracts. Native tBTC is first locked in the Wormhole Token Bridge, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (e.g., Solana, Polygon, Arbitrum, Optimism, or Base).
+You can bridge [Threshold's Bitcoin](https://threshold.network/){target=\_blank} via this hybrid solution that combines WTT and Threshold's contracts. Native tBTC is first locked in the Wormhole WTT, transferred to the destination in the form of Wormhole-wrapped tBTC, which is then immediately locked in Threshold's contract that mints native tBTC for it. The net result is that the user ends up with native tBTC on chains where this Threshold contract is deployed (e.g., Solana, Polygon, Arbitrum, Optimism, or Base).
 
-Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through the Token Bridge, and the resulting asset will be a Wormhole-wrapped token instead of native tBTC.
+Note that if native tBTC is transferred out of these chains to any other outside of this list, the transfer will be routed through WTT, and the resulting asset will be a Wormhole-wrapped token instead of native tBTC.
 
 #### Manual Route {: #manual-route-tbtc}
 

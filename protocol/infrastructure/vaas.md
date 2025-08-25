@@ -73,7 +73,7 @@ Different applications built on Wormhole may specify a format for the payloads a
 
 ### Token Transfer
 
-Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Token Bridge is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
+Many bridges use a lockup/mint and burn/unlock mechanism to transfer tokens between chains. Wormhole's generic message-passing protocol handles the routing of lock and burn events across chains to ensure Wormhole's Wrapped Token Transfer (WTT) is chain-agnostic and can be rapidly integrated into any network with a Wormhole contract.
 
 Transferring tokens from the sending chain to the destination chain requires the following steps:
 
@@ -98,7 +98,7 @@ Note that the destination chain is agnostic regarding how the tokens on the send
 
 ### Attestation
 
-While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, the Token Bridge supports token attestation.
+While the destination chain can trust the message from the sending chain to inform it of token lockup events, it has no way of verifying the correct token is locked up. To solve this, WTT supports token attestation.
 
 To create a token attestation, the sending chain emits a message containing metadata about a token, which the destination chain may use to preserve the name, symbol, and decimal precision of a token address.
 
@@ -123,7 +123,7 @@ Be aware of the following considerations when working with attestations:
 
 - Be mindful that different on-chain systems may have different VAA parsers, resulting in different names/symbols on different chains if the string is long or contains invalid UTF8.
 
-- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, the Token Bridge requires an attestation for each token transfer.
+- Without knowing a token's decimal precision, the destination chain cannot correctly mint the number of tokens when processing a transfer. For this reason, WTT requires an attestation for each token transfer.
 
 ### Token Transfer with Message
 
@@ -140,7 +140,7 @@ This VAA type was previously known as Contract Controlled Transfer and is also s
 - **`token_chain` ++"u16"++**: Numeric ID for the source chain.
 - **`to` ++"u8[32]"++**: Address on the destination chain.
 - **`to_chain` ++"u16"++**: Numeric ID for the destination chain.
-- **`from_address` ++"u8[32]"++**: Address that called the Token Bridge on the source chain.
+- **`from_address` ++"u8[32]"++**: Address that called WTT on the source chain.
 - **`payload` ++"[]byte"++**: Message, arbitrary bytes, app-specific.
 
 ### Governance
@@ -167,7 +167,7 @@ Below is an example message containing a governance action triggering a code upg
 The meaning of each numeric action is pre-defined and documented in the Wormhole design documents. For each application, the relevant definitions can be found via these links:
 
 - [Core governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0002_governance_messaging.md){target=\_blank}
-- [Token Bridge governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
+- [WTT governance actions](https://github.com/wormhole-foundation/wormhole/blob/main/whitepapers/0003_token_bridge.md){target=\_blank}
 
 ## Lifetime of a Message
 

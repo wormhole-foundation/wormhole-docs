@@ -14,7 +14,7 @@ Connect supports both native and wrapped assets across all Wormhole-supported bl
  - Native gas tokens such as ETH, SOL, etc.
  - Cross-chain asset swaps through integrators like Mayan.
 
-When bridging assets through the Wormhole Token Bridge, depending on the chain and token, assets may arrive as Wormhole-wrapped tokens on the destination chain.
+When bridging assets through Wrapped Token Transfers (WTT), depending on the chain and token, assets may arrive as Wormhole-wrapped tokens on the destination chain.
 
 ## What chains does Connect support? 
 

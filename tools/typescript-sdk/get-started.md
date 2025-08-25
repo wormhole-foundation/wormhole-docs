@@ -8,11 +8,11 @@ categories: Typescript SDK
 
 :simple-github: [Repository on GitHub](https://github.com/wormhole-foundation/wormhole-sdk-ts){target=\_blank}
 
-The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Native Token Transfers, Token Bridge, CCTP, and Settlement, giving developers a consistent API across multiple chains.
+The Wormhole TypeScript SDK provides a unified, type-safe interface for building cross-chain applications. It is a foundational toolkit that supports interaction with core Wormhole protocols, including Native Token Transfers (NTT), Wrapped Token Transfers (WTT), CCTP, and Settlement, giving developers a consistent API across multiple chains.
 
 This guide helps you install the SDK, initialize a `Wormhole` instance to support your desired network and blockchain platforms, and return chain-specific information to verify successful initialization.
 
-If you want to build more advanced integrations, such as token transfers using the Token Bridge or CCTP Bridge, skip ahead to [Next Steps](#next-steps).
+If you want to build more advanced integrations, such as token transfers using WTT or CCTP Bridge, skip ahead to [Next Steps](#next-steps).
 
 ## Install the SDK
 
@@ -53,7 +53,7 @@ npm install @wormhole-foundation/sdk-evm
         - `@wormhole-foundation/sdk-cosmwasm-core`
         - `@wormhole-foundation/sdk-sui-core`
 
-    - Token Bridge
+    - WTT
         - `@wormhole-foundation/sdk-evm-tokenbridge`
         - `@wormhole-foundation/sdk-solana-tokenbridge`
         - `@wormhole-foundation/sdk-algorand-tokenbridge`
@@ -193,5 +193,5 @@ Congratulations! You’ve successfully installed the Wormhole TypeScript SDK and
 
 - [Get familiar with the SDK](/docs/tools/typescript-sdk/sdk-reference/)
 - [Send a multichain message](/docs/products/messaging/get-started/)
-- [Transfer assets via the Token Bridge](/docs/products/token-bridge/tutorials/transfer-workflow/)
+- [Transfer assets via WTT](/docs/products/token-transfers/wrapped-token-transfers/tutorials/transfer-workflow/)
 - [Transfer USDC via the CCTP Bridge](/docs/products/cctp-bridge/tutorials/complete-usdc-transfer/)
