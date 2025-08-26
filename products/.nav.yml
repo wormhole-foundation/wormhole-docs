@@ -1,9 +1,8 @@
 nav:
  - 'Product Overview': overview.md
+ - token-transfers
  - connect
- - native-token-transfers
  - settlement
- - token-bridge
  - cctp-bridge
  - multigov
  - queries

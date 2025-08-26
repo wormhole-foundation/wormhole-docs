@@ -20,7 +20,7 @@ The preceding diagram outlines the end-to-end flow of multichain communication t
     The flow from the relayer to the target chain involves an entry point contract, which could vary based on the use case:
 
     - In some applications, the target contract acts as the entry point and performs verification via the Core Contract.
-    - In products like the Token Bridge, the Token Bridge contract itself interacts with the Core Contract.
+    - In products like Wrapped Token Transfers (WTT), the WTT contract itself interacts with the Core Contract.
 
 ## On-Chain Components
 
