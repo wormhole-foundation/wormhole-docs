@@ -12,21 +12,28 @@ For more background, see [Solana Shims concept page](/docs/products/messaging/co
 
 ## Using the Emission Shim
 
-The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that matches the signature and accounts of `post_message_unreliable`. If you are already emitting messages via Wormhole, integrating the shim is a minimal change, primarily just switching the program address.
+The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that is closely modeled on the Core Bridge’s `post_message_unreliable`, but not identical. Integrators should follow the [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=\_blank} when wiring accounts.
+
+The main differences are:
+
+- The shim uses a PDA per emitter for message accounts (so you don’t need to generate a new keypair each time).
+- It emits the message data via an Anchor CPI event for Guardians to observe, instead of storing it in a persistent rent-exempt account.
 
 ### Required Accounts
 
-Your transaction to the shim’s `post_message` should include:
+When calling the shim’s `post_message` instruction, you should include the following:
 
-- `bridge`: Core Bridge config (mutable).
-- `message`: PDA for posted message (account is reused by the shim, not unique per message).
-- `emitter`: The emitter address (Signer).
-- `sequence`: PDA for sequence tracking (mutable).
-- `payer`: Pays compute and (if needed) new account rent (Signer).
-- `fee_collector`: Fee account (mutable).
+- `bridge`: Core Bridge config.
+- `message`: PDA derived from the emitter; reused by the shim instead of generating new accounts.
+- `emitter`: The emitter address (signer).
+- `sequence`: PDA for sequence tracking.
+- `payer`: Pays compute and any rent needed on first use (signer).
+- `fee_collector`: Fee account.
 - `clock`: Sysvar for current time.
-
-These are exactly as expected for the regular core bridge interface.
+- `system_program`: Standard Solana system program (for account creation on first use).
+- `wormhole_program`: The Wormhole Core Bridge program.
+- `event_authority`: PDA used by the shim to emit log events (Anchor CPI events).
+- `program`: The shim program itself.
 
 ### Data Payload
 
@@ -50,8 +57,8 @@ shim_program
 
 ## How It Works
 
-- **Shim Program**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.
-- **Sequence Handling**: Reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
+- **Shim Program**: Provides a `post_message` instruction modeled on the Core Bridge’s `post_message_unreliable`.
+- **Sequence Handling**: The Core Bridge still manages sequence numbers. It reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
 - **Message Account**: Calls `post_message_unreliable` on the core bridge, writing an empty payload, so no unique message is stored on-chain.
 - **Guardian Role**: Guardians reconstruct the message from instruction data and the emitted event, not from a persistent account.
 
@@ -72,9 +79,7 @@ The typical flow in your on-chain logic:
 1. Prepare the accounts.
 2. Call the shim’s `post_message`, passing your payload, nonce, and desired consistency level.
 
-For most integrators, the only adjustment is to change the program ID to the shim and, if migrating mid-sequence, ensure you do not reuse any (emitter, sequence) pairs. Sequence tracking continues as before; only the storage model changes.
-
-The emission fee is still paid. The sequence is tracked on the core bridge as usual. However, instead of storing your message in a new PDA account, the shim emits a CPI event with the sequence and timestamp, and passes an empty payload to the core bridge. All the data needed for Guardians is captured in the transaction logs.
+The emission fee is still paid, and sequence numbers are still managed by the Core Bridge as before. The difference is that instead of creating a new message account for each emission, the shim emits a CPI event with the the message data. All the information Guardians need is captured in the transaction logs, without leaving behind permanent accounts.
 
 ## Migration Guidance
 
@@ -92,7 +97,7 @@ Guardians are configured to:
 - Extract the message data, emitter, sequence, and nonce from instruction data and the CPI event, not from an on-chain message.
 - Ignore the empty account that the core bridge might write (since the payload is empty), preventing duplicate VAAs.
 
-At least 13/19 Guardians must monitor the shim for your emissions to reliably result in VAAs. Until then, shim emissions may not be processed by the full network.
+All 19 Guardians are configured to observe shim emissions on mainnet. As with all Wormhole messages, at least 13 of 19 Guardians must attest for a VAA to be produced and the shim emissions to be processed by the network.
 
 ## Limitations and Security Considerations 
 
@@ -104,3 +109,9 @@ At least 13/19 Guardians must monitor the shim for your emissions to reliably re
 ## Conclusion
 
 By using the emission shim, you can dramatically reduce rent costs when emitting Wormhole messages from Solana, while ensuring compatibility with Guardian observation and core bridge sequencing.
+
+
+<!--
+file should focus more on the concrete steps a new integrator would take to publish messages via the emission shim. example program instruction.
+https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/programs/wormhole-integrator-example/src/instructions/post_message.rs
+-->
