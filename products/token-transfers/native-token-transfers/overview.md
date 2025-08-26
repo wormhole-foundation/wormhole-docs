@@ -40,7 +40,7 @@ Here's a breakdown of the key steps involved when deploying NTT:
 - **Choose deployment tool**: Use the [NTT Launchpad](https://ntt.wormhole.com/){target=\_blank} (for EVM chains only) or the [NTT CLI](/docs/products/token-transfers/native-token-transfers/reference/cli-commands/){target=\_blank}.
 - **Initialization**: Specify target chains and token details, and set up your CLI environment if using it.
 - **Deploy contracts**: Deploy NTT Manager contracts to all selected chains, confirming transactions and covering gas fees.
-- **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections, and assign administrative roles.
+- **Finalize configurations**: Grant minting authority, configure rate limits, establish peer manager connections (bilateral via [`setPeer`](/docs/products/token-transfers/native-token-transfers/reference/manager/evm/#setpeer){target=\_blank} / [`set_peer`](/docs/products/token-transfers/native-token-transfers/reference/manager/solana/#set_peer){target=\_blank}; local configuration, no cross-chain message), and assign administrative roles.
 - **Monitor and maintain**: Verify deployment, monitor total supply with the [Global Accountant](/docs/products/token-transfers/native-token-transfers/concepts/security/#global-accountant){target=\_blank}, and adjust configurations as needed.
 
 ## Use Cases 

@@ -959,7 +959,11 @@ pub fn set_paused(ctx: Context<SetPaused>, pause: bool) -> Result<()>
 
 ### set_peer
 
-Sets a peer NTT Manager on another chain. *(Defined in example-native-token-transfers)*
+Sets a peer NTT Manager on another chain; this is local program configuration (no cross-chain message) and must be executed on both chains. If either side is unset or mismatched, messages from that peer will fail verification on receive. *(Defined in example-native-token-transfers)*
+
+!!! tip "Example"
+    - **On Chain A**: Register Chain B with B’s manager address (address); this creates/updates the peer account (PDA "peer") and the inbound rate-limit account for B.
+    - **On Chain B**: Register Chain A the same way.
 
 ```rust
 pub fn set_peer(ctx: Context<SetPeer>, args: SetPeerArgs) -> Result<()>

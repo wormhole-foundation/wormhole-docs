@@ -1229,7 +1229,11 @@ function setOutboundLimit(uint256 limit) external
 
 ### setPeer
 
-Set peer contract information for a specific chain. *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
+Set peer contract information for a specific chain; this is local manager configuration (no cross-chain message) and must be called on both chains. If either side is unset or mismatched, inbound verification or amount trimming fails ([`InvalidPeer`](/docs/products/token-transfers/native-token-transfers/reference/manager/evm/#invalidpeer), [`InvalidPeerDecimals`](/docs/products/token-transfers/native-token-transfers/reference/manager/evm/#invalidpeerdecimals)). *(Defined in [NttManager.sol](https://github.com/wormhole-foundation/native-token-transfers/blob/main/evm/src/NttManager/NttManager.sol){target=\_blank})*
+
+!!! tip "Example"
+    - **On Chain A**: Register Chain B as a peer with B’s manager address (`peerContract`), B’s token decimals (`decimals`), and the inbound limit from B → A (`inboundLimit`).
+    - **On Chain B**: Register Chain A the same way (A’s manager, A’s token decimals, inbound limit from A → B).
 
 ```sol
 function setPeer(
