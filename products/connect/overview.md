@@ -13,7 +13,7 @@ With the Wormhole Connect widget, you can enable users to perform multichain ass
 Connect's notable features include:
 
 - **In-app multichain transfers**: Bridge assets without leaving your app.
-- **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as Token Bridge, CCTP, or NTT.
+- **Customizable features**: Specify chains and custom RPCs, manage tokens, and select bridging [routes](/docs/products/connect/concepts/routes/){target=\_blank} such as WTT, CCTP, or NTT.
 - **Customizable UI**: Style the bridge interface to match your brand.
 - **Optional destination gas**: Provide gas for initial transactions on the target chain.
 - **Wrapped and native assets support**: Supports both wrapped and native tokens and integrates with Settlement.
@@ -42,18 +42,18 @@ Here are some key use cases that highlight the power and versatility of Connect:
 - **Cross-Chain Swaps and Liquidity Aggregation**
 
     - **[Connect](/docs/products/connect/get-started/)**: Handles user-friendly asset transfers.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Moves native assets across chains.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/)**: Moves native assets across chains.
     - **[Queries](/docs/products/queries/overview/)**: Fetches real-time prices for optimal trade execution.
 
 - **Cross-Chain Payment Widgets**
 
     - **[Connect](/docs/products/connect/get-started/)**: Facilitates seamless payments in various tokens.
-    - **[Native Token Transfers](/docs/products/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
+    - **[Native Token Transfers](/docs/products/token-transfers/native-token-transfers/overview/)**: Ensures direct, native asset transfers.
 
 - **Web3 Game Asset Transfers**
 
     - **[Connect](/docs/products/connect/get-started/)**: Provide a user-friendly way to move game tokens across chains.
-    - **[Token Bridge](/docs/products/token-bridge/overview/)**: Handle the underlying lock-and-mint logic securely.
+    - **[Wrapped Token Transfers](/docs/products/token-transfers/wrapped-token-transfers/overview/)**: Handle the underlying lock-and-mint logic securely.
 
 ## Next Steps 
 

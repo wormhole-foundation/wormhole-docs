@@ -36,7 +36,7 @@ MultiGov expands DAO governance across blockchains, increasing participation, im
 
     - **[MultiGov](/docs/products/multigov/get-started/){target=\_blank}**: Vote on treasury actions from any supported chain.
     - **[Messaging](/docs/products/messaging/overview/){target=\_blank}**: Transmit proposal execution to target chains.
-    - **[Token Bridge](/docs/products/token-bridge/overview/){target=\_blank}**: Optionally move assets.
+    - **[Wrapped Token Transfers (WTT)](/docs/products/token-transfers/wrapped-token-transfers/overview/){target=\_blank}**: Optionally move assets.
 
 - **Coordinated Protocol Upgrades Across Chains**
 

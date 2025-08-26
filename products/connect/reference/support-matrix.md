@@ -1,6 +1,6 @@
 ---
 title: Features
-description: Explore a comprehensive Feature Support matrix and explain Wormhole's capabilities across networks for Token Bridge, CCTP, ETH Bridge, and more. 
+description: Explore a comprehensive Feature Support matrix and explain Wormhole's capabilities across networks for WTT, CCTP, ETH Bridge, and more. 
 categories: Connect, Transfer
 ---
 
@@ -8,7 +8,7 @@ categories: Connect, Transfer
 
 *Scroll down for details about each column.*
 
-| **Network** | **Token Bridge** | **Token Bridge Relayer** | **Circle CCTP** | **ETH Bridge** | **Gas Drop Off** |
+| **Network** | **WTT**          | **WTT Relayer**          | **Circle CCTP** | **ETH Bridge** | **Gas Drop Off** |
 |:-----------:|:----------------:|:------------------------:|:---------------:|:--------------:|:----------------:|
 |   Solana    |        ✅         |            ✅             |        ✅        |       ❌        |        ✅         |
 |  Ethereum   |        ✅         |            ✅             |        ✅        |       ✅        |        ✅         |
@@ -30,28 +30,31 @@ categories: Connect, Transfer
 |    Blast    |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 |   X Layer   |        ✅         |            ❌             |        ❌        |       ❌        |        ❌         |
 
+!!! note "Terminology" 
+    The SDK and smart contracts use the name Token Bridge. In documentation, this product is referred to as Wrapped Token Transfers (WTT). Both terms describe the same protocol.
+
 ## Feature Explanation {: #feature-explanation}
 
-### Token Bridge {: #token-bridge}
+### Wrapped Token Transfers (WTT) {: #wrapped-token-transfers}
 
-Wormhole is best known for its Token Bridge transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
+Wormhole is best known for its WTT transfer method. It locks assets on the source chain and mints Wormhole-wrapped "IOU" tokens on the destination chain. To transfer the assets back, the Wormhole-wrapped tokens are burned, unlocking the tokens on their original chain.
 
 This route appears if both of the following conditions are satisfied:
 
- - Both the origin and destination chains support Token Bridge.
- - No non-Token Bridge routes are available for the selected token.
+ - Both the origin and destination chains support WTT.
+ - No non-WTT routes are available for the selected token.
 
-### Token Bridge Relayer {: #token-bridge-relayer}
+### WTT Relayer {: #wtt-relayer}
 
-On the [routes](/docs/products/connect/concepts/routes/){target=\_blank} page, this is referred to as the automatic route in the Token Bridge section.
+On the [routes](/docs/products/connect/concepts/routes/){target=\_blank} page, this is referred to as the automatic route in the WTT section.
 
 Trustless relayers can execute the second transaction on behalf of the user, so the user only needs to perform one transaction on the origin chain to have the tokens delivered to the destination automatically—for a small fee.
 
 This route appears if all of the following conditions are satisfied:
 
-- Both the origin and destination chains support Token Bridge.
-- Both the origin and destination chains support Token Bridge relayer.
-- No non-Token Bridge routes are available for the selected token.
+- Both the origin and destination chains support WTT.
+- Both the origin and destination chains support WTT relayer.
+- No non-WTT routes are available for the selected token.
 - The relayer supports the selected token on the origin chain.
 
 ### Circle CCTP {: #circle-cctp}
