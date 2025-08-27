@@ -6370,7 +6370,7 @@ Verification adds even more cost: the `post_vaa` instruction creates additional 
 
 This design ensures reliability, as message data is always available on-chain for Guardians to observe. However, it comes at a cost in both storage and lost SOL. To address these issues, Wormhole introduces Solana shims, which fundamentally change the cost model for emission and verification.
 
-## What Are the Solana Shim Programs?
+## What Are the Solana Shims?
 
 To address the limitations of the Core Bridge, Wormhole deploys two specialized Solana programs called shims:
 
@@ -6390,7 +6390,7 @@ Wormhole shims on Solana refer to two different approaches depending on whether 
 
 **Emission Shim**
 
-A Solana program deployed at [EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}. It wraps the Core Bridge’s `post_message_unreliable` instruction and emits message data as a log event instead of storing it in a rent-exempt message account. This eliminates rent costs and prevents long-term state bloat. Guardians are configured to observe this canonical shim, allowing integrators to send messages through it without additional setup.
+A Solana program deployed at [EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX](https://explorer.solana.com/address/EtZMZM22ViKMo4r5y4Anovs3wKQ2owUmDpjygnMMcdEX){target=\_blank}. It wraps the Core Bridge’s `post_message_unreliable` instruction and emits message data as a log event instead of storing it in a rent-exempt message account. This removes rent costs and avoids long-term state bloat. Guardians are configured to observe this canonical shim, allowing integrators to send messages through it without additional setup.
 
 - **How it works**: Call the [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=_blank} instruction on the Post Message Shim program. This emits the Wormhole message as a log event instead of creating a rent-exempt message account.
 
@@ -6414,14 +6414,14 @@ To understand how shims work, it helps to know a few Solana basics:
 
 ## Guardian Observation Methods
 
-|                      | Legacy Model                   | Shim Model                            |
-|----------------------|--------------------------------|---------------------------------------|
-| Message Storage      | On-chain message account       | Transaction logs (CPI event)          |
-| Data Permanence      | On-chain forever               | In logs (until RPC history is pruned) |
-| Guardian Observation | Reads account data             | Reads transaction logs                |
-| Cost                 | High (rent + compute)          | Low (compute only, no rent)           |
-| Sequence Handling    | Account-based                  | Account-based                         |
-| Closing Accounts     | Not possible                   | Not needed                            |
+|                      | Legacy Model           | Shim Model               |
+|----------------------|------------------------|--------------------------|
+| Message Storage      | On-chain account       | Transaction logs (CPI)   |
+| Data Permanence      | Permanent              | Until RPC history pruned |
+| Guardian Observation | Reads account data     | Reads transaction logs   |
+| Cost                 | High (rent + compute)  | Low (compute only)       |
+| Sequence Handling    | Account-based          | Account-based            |
+| Closing Accounts     | Not possible           | Not needed               |
 
 With shims, the message’s existence depends on the transaction log, so cost drops, but indefinite on-chain visibility is no longer guaranteed. Sequence tracking remains the same as the legacy model, so integrators can switch between the two without disrupting sequence numbers.
 
@@ -6443,9 +6443,8 @@ This trade-off is consistent with all other Wormhole chain implementations, none
 
 ## Next Steps
 
-- [Efficient Emission on Solana (Shim)](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
-- [Efficient Verification on Solana (Shim)](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
-- [Solana Shim Deployment Guide](/docs/products/messaging/guides/solana-shims/shim-deployment/){target=\_blank}
+- [Efficient Emission on Solana](/docs/products/messaging/guides/solana-shims/sol-emission/){target=\_blank}
+- [Efficient Verification on Solana](/docs/products/messaging/guides/solana-shims/sol-verification/){target=\_blank}
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/get-started.md
@@ -7134,12 +7133,12 @@ For a deeper understanding of the Core Contract implementation for a specific bl
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/solana-shims/sol-emission.md
 --- BEGIN CONTENT ---
 ---
-title: Efficient Emission on Solana (Shim)
+title: Solana Message Emission via Shim
 description: Learn how to reduce rent costs when emitting Wormhole messages on Solana by using the emission shim instead of post_message.
 categories: Basics
 ---
 
-# Efficient Emission on Solana (Shim)
+# Solana Message Emission via Shim
 
 This guide explains how to use Wormhole’s emission shim on Solana to reduce the cost of message emission. The shim enables integrators to emit messages without creating a new account for each message, minimizing rent costs and state bloat while maintaining Guardian compatibility.
 
@@ -7147,21 +7146,28 @@ For more background, see [Solana Shims concept page](/docs/products/messaging/co
 
 ## Using the Emission Shim
 
-The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that matches the signature and accounts of `post_message_unreliable`. If you are already emitting messages via Wormhole, integrating the shim is a minimal change, primarily just switching the program address.
+The emission shim exposes a [`post_message`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_message.rs){target=\_blank} instruction that is closely modeled on the Core Bridge’s `post_message_unreliable`, but not identical. Integrators should follow the [IDL](https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/idls/wormhole_post_message_shim.json){target=\_blank} when wiring accounts.
+
+The main differences are:
+
+- The shim uses a PDA per emitter for message accounts (so you don’t need to generate a new keypair each time).
+- It emits the message data via an Anchor CPI event for Guardians to observe, instead of storing it in a persistent rent-exempt account.
 
 ### Required Accounts
 
-Your transaction to the shim’s `post_message` should include:
+When calling the shim’s `post_message` instruction, you should include the following:
 
-- `bridge`: Core Bridge config (mutable).
-- `message`: PDA for posted message (account is reused by the shim, not unique per message).
-- `emitter`: The emitter address (Signer).
-- `sequence`: PDA for sequence tracking (mutable).
-- `payer`: Pays compute and (if needed) new account rent (Signer).
-- `fee_collector`: Fee account (mutable).
+- `bridge`: Core Bridge config.
+- `message`: PDA derived from the emitter; reused by the shim instead of generating new accounts.
+- `emitter`: The emitter address (signer).
+- `sequence`: PDA for sequence tracking.
+- `payer`: Pays compute and any rent needed on first use (signer).
+- `fee_collector`: Fee account.
 - `clock`: Sysvar for current time.
-
-These are exactly as expected for the regular core bridge interface.
+- `system_program`: Standard Solana system program (for account creation on first use).
+- `wormhole_program`: The Wormhole Core Bridge program.
+- `event_authority`: PDA used by the shim to emit log events (Anchor CPI events).
+- `program`: The shim program itself.
 
 ### Data Payload
 
@@ -7185,8 +7191,8 @@ shim_program
 
 ## How It Works
 
-- **Shim Program**: Exposes a `post_message` instruction with the same arguments as `post_message_unreliable`.
-- **Sequence Handling**: Reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
+- **Shim Program**: Provides a `post_message` instruction modeled on the Core Bridge’s `post_message_unreliable`.
+- **Sequence Handling**: The Core Bridge still manages sequence numbers. It reads the sequence number from the core bridge and emits it in a [CPI event](https://www.anchor-lang.com/docs/basics/cpi){target=\_blank}, along with the timestamp.
 - **Message Account**: Calls `post_message_unreliable` on the core bridge, writing an empty payload, so no unique message is stored on-chain.
 - **Guardian Role**: Guardians reconstruct the message from instruction data and the emitted event, not from a persistent account.
 
@@ -7207,9 +7213,7 @@ The typical flow in your on-chain logic:
 1. Prepare the accounts.
 2. Call the shim’s `post_message`, passing your payload, nonce, and desired consistency level.
 
-For most integrators, the only adjustment is to change the program ID to the shim and, if migrating mid-sequence, ensure you do not reuse any (emitter, sequence) pairs. Sequence tracking continues as before; only the storage model changes.
-
-The emission fee is still paid. The sequence is tracked on the core bridge as usual. However, instead of storing your message in a new PDA account, the shim emits a CPI event with the sequence and timestamp, and passes an empty payload to the core bridge. All the data needed for Guardians is captured in the transaction logs.
+The emission fee is still paid, and sequence numbers are still managed by the Core Bridge as before. The difference is that instead of creating a new message account for each emission, the shim emits a CPI event with the the message data. All the information Guardians need is captured in the transaction logs, without leaving behind permanent accounts.
 
 ## Migration Guidance
 
@@ -7227,7 +7231,7 @@ Guardians are configured to:
 - Extract the message data, emitter, sequence, and nonce from instruction data and the CPI event, not from an on-chain message.
 - Ignore the empty account that the core bridge might write (since the payload is empty), preventing duplicate VAAs.
 
-At least 13/19 Guardians must monitor the shim for your emissions to reliably result in VAAs. Until then, shim emissions may not be processed by the full network.
+All 19 Guardians are configured to observe shim emissions on mainnet. As with all Wormhole messages, at least 13 of 19 Guardians must attest for a VAA to be produced and the shim emissions to be processed by the network.
 
 ## Limitations and Security Considerations 
 
@@ -7239,41 +7243,54 @@ At least 13/19 Guardians must monitor the shim for your emissions to reliably re
 ## Conclusion
 
 By using the emission shim, you can dramatically reduce rent costs when emitting Wormhole messages from Solana, while ensuring compatibility with Guardian observation and core bridge sequencing.
+
+
+<!--
+file should focus more on the concrete steps a new integrator would take to publish messages via the emission shim. example program instruction.
+https://github.com/wormhole-foundation/wormhole/blob/main/svm/wormhole-core-shims/anchor/programs/wormhole-integrator-example/src/instructions/post_message.rs
+-->
 --- END CONTENT ---
 
 Doc-Content: https://raw.githubusercontent.com/wormhole-foundation/wormhole-docs/refs/heads/main/products/messaging/guides/solana-shims/sol-verification.md
 --- BEGIN CONTENT ---
 ---
-title: Efficient VAA Verification on Solana (Shim)
-description: Efficiently verify Wormhole VAAs on Solana without leaving rent-exempt accounts, using the core bridge’s standard instructions.
+title: Solana VAA Verification via Shim
+description: Efficiently verify Wormhole VAAs on Solana using the Verification Shim, which avoids persistent rent-exempt accounts while keeping full security guarantees.
 categories: Basics
 ---
 
-# Efficient VAA Verification on Solana (Shim)
+# Solana VAA Verification via Shim
 
-This guide explains how to efficiently verify Wormhole VAAs on Solana by leveraging the core bridge’s [`verify_signatures`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/verify_signature.rs){target=\_blank} and [`post_vaa`](https://github.com/wormhole-foundation/wormhole/blob/main/solana/bridge/program/src/api/post_vaa.rs){target=\_blank} instructions, and cleaning up temporary accounts after use.
+Verifying VAAs on Solana with the legacy Core Bridge requires creating multiple rent-exempt accounts (for signatures and posted VAAs). These accounts persist even after verification is complete, which increases costs and bloats on-chain state.
 
-The goal is to accumulate all guardian signatures into a temporary `SignatureSet` account using `verify_signatures`, verify the VAA and guardian set using `post_vaa`, and immediately close any accounts you created for this process.
+The Verification Shim solves this by replacing the Core Bridge verification flow with its own instructions:
+
+- `post_signatures`: Accumulates Guardian signatures into a temporary account.
+- `verify_hash`: Validates the VAA by checking the signatures against the active Guardian set and ensuring quorum.
+- `close_signatures`: Closes the temporary account to reclaim lamports.
+
+Because the shim avoids leaving permanent accounts behind, verification becomes much cheaper while keeping the same security guarantees.
+
+This page introduces the Verification Shim, explains how it works, and shows how integrators can adopt it in place of the Core Bridge’s `verify_signatures` and `post_vaa`.
 
 For more background, see [Solana Shims concept page](/docs/products/messaging/concepts/solana-shim/){target=\_blank}. 
 
 ## How It Works
 
-The verification shim replaces the legacy multi-account pattern with a flow where you only create a temporary signature set account. After verification, you can close it to reclaim your lamports.
+Instead of Core Bridge instructions like `verify_signatures` and `post_vaa`, the verification shim provides its own flow using `post_signatures`, `verify_hash`, and `close_signatures`. The flow is a simpler sequence that avoids leaving permanent accounts on-chain:
 
-1. **Create a temporary `SignatureSet` account**: Fund it as rent-exempt for the required size.
-2. **Call `verify_signatures`** as many times as needed, using the secp256k1 syscall and all guardian signatures. The SignatureSet account will accumulate valid signatures.
-3. **Call `post_vaa`** to check guardian set validity, consensus, and VAA integrity.
-   - If verification succeeds, proceed with your on-chain logic (e.g., updating state, processing transfers).
-4. **Immediately close** the `GuardianSignatures` account via `close_signatures` to reclaim lamports, if you are the payer.
+1. Call `post_signatures`: Creates (or appends to) a temporary `GuardianSignatures` account that stores the collected Guardian signatures. This account is owned and managed by the verification shim.
+2. Call `verify_hash`: Verifies the digest of the VAA against the active Guardian set and checks quorum by recovering and validating each Guardian signature. If verification succeeds, your program can continue its logic.
+3. Call `close_signatures`: Immediately close the `GuardianSignatures` account to reclaim the lamports paid for its creation.
 
 ```mermaid
 graph LR
-    A[Create SignatureSet] --> B[verify_signatures]
-    B --> C[post_vaa]
-    C --> D[Process Logic]
-    D --> E[Close SignatureSet & PostedVAA]
+    A[post_signatures] --> B[verify_hash]
+    B --> C[Process Logic]
+    C --> D[close_signatures]
 ```
+
+This flow ensures verification is both rent-efficient and secure, no permanent accounts remain, and Guardians still enforce quorum and integrity guarantees.
 
 ## Verify VAA
 
@@ -7299,7 +7316,7 @@ let digest = keccak::hash(message_hash.as_slice()).to_bytes();
 
 ## Limitations and Security Considerations
 
-- You must be the payer and/or account owner to reclaim lamports from SignatureSet and PostedVAA accounts.
+- You must be the payer and/or account owner to reclaim lamports from `GuardianSignatures` account.
 - The verification proof is ephemeral—no permanent on-chain record unless you keep the account.
 - Compute usage (CU) is higher for the rent-efficient pattern, but total cost is dramatically lower than keeping permanent accounts.
 - All validation guarantees remain as strong as with the legacy method.
